@@ -20,7 +20,7 @@ function updateTokens(transaction) {
         var responseData = JSON.parse(transaction.results.body.values.actual);
         testStash.accessToken = responseData.access_token;
         testStash.refreshToken = responseData.refresh_token;
-        hooks.log("\nNew tokens retrieved:\n");
+        // hooks.log("\nNew tokens retrieved:\n");
     }
 }
 
