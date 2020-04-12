@@ -1,0 +1,24 @@
+summary: Get a server by ID
+tags:
+  - Servers
+parameters:
+  - $ref: '#/components/parameters/authHeader'
+  - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/contentTypeHeader'
+  - in: path
+    name: id
+    example: 1
+    schema:
+      type: integer
+      minimum: 1
+    required: true
+    description: Numeric ID of the server to get
+responses:
+  200:
+    description: 'Ok'
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Server'
+  404:
+    $ref: '#/components/responses/NotFound'

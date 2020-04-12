@@ -1,0 +1,20 @@
+summary: Delete a given source provider from current user's account
+tags:
+  - Source Providers
+parameters:
+  - $ref: '#/components/parameters/authHeader'
+  - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/contentTypeHeader'
+  - in: path
+    name: id
+    example: 123
+    schema:
+      type: integer
+      minimum: 1
+    required: true
+    description: Unique Id of the source provider to be deleted
+responses:
+  204:
+    $ref: '#/components/responses/NoContent'
+  404:
+    $ref: '#/components/responses/NotFound'

@@ -1,0 +1,18 @@
+type: object
+properties:
+  type:
+    type: string
+    description: The type of the deployment being triggered
+    enum: [deploy, redeploy, rollback]
+    example: 'deploy'
+  branch:
+    type: string
+    description: The name of the branch from which the source code should be retrieved and deployed
+    example: 'feature/deployment-api-endpoints-and-docs-long-name'
+  hash:
+    type: string
+    description: The commit's full hash that uniquely identify a commit. Required when re-deploying
+    example: '4a03b9d21edeef8434c45818594a5d72027c14e7'
+required:
+  - type
+  - branch

@@ -1,0 +1,40 @@
+summary: Get details of a repository, by its name
+tags:
+  - Source Providers - Repositories
+parameters:
+  - $ref: '#/components/parameters/authHeader'
+  - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/contentTypeHeader'
+  - in: path
+    name: provider
+    example: gitlab
+    schema:
+      type: string
+      minimum: 3
+    required: true
+    description: Unique name/Id of the provider where the repository is hosted
+  - in: path
+    name: repository_owner
+    example: devopness
+    schema:
+      type: string
+      minimum: 3
+    required: true
+    description: Nickname/user id of the owner of the repository
+  - in: path
+    name: repository_name
+    example: devopness-site
+    schema:
+      type: string
+      minimum: 3
+    required: true
+    description: The name of the repository to be retrieved
+responses:
+  200:
+    description: 'Ok'
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Repository'
+  404:
+    $ref: '#/components/responses/NotFound'

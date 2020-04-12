@@ -1,0 +1,22 @@
+summary: List all servers linked to a project
+tags:
+  - Projects - Servers
+parameters:
+  - $ref: '#/components/parameters/authHeader'
+  - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/contentTypeHeader'
+  - in: path
+    name: id
+    example: 1
+    schema:
+      type: integer
+      minimum: 1
+    required: true
+    description: The project numeric Id
+responses:
+  200:
+    description: 'Ok'
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Servers'

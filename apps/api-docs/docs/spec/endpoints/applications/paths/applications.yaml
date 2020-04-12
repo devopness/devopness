@@ -1,0 +1,27 @@
+summary: 'Create a new application'
+tags:
+  - Projects - Applications
+parameters:
+  - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/authHeader'
+  - $ref: '#/components/parameters/contentTypeHeader'
+  - in: path
+    name: id
+    example: 1
+    schema:
+      type: integer
+      minimum: 1
+    required: true
+    description: Numeric ID of the application to get
+requestBody:
+  description: A JSON object containing project data
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/Application'
+responses:
+  201:
+    $ref: '#/components/responses/Created'
+  422:
+    $ref: '#/components/responses/ValidationError'

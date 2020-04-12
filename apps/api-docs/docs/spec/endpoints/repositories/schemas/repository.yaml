@@ -1,0 +1,23 @@
+type: object
+properties:
+  name:
+    type: string
+    description: The name of the repository
+    example: 'myrepo'
+  user_name:
+    type: string
+    description: The name of the user/account on the Version Control System
+    example: 'myusername'
+  full_name:
+    type: string
+    description: The fully qualified repository name. Usually composed of user_name/name
+    example: 'myusername/myrepo'
+  html_url:
+    type: string
+    format: url
+    description: The URL for viewing repository details on the provider's web application
+    example: https://github.com/myusername/myrepo
+  branches:
+    type: array
+    items:
+      $ref: '#/components/schemas/RepositoryBranch'

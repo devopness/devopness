@@ -1,0 +1,23 @@
+type: object
+properties:
+  name:
+    type: string
+    description: The internal name/code of the language runtime
+    example: 'nodejs'
+  displayable_name:
+    type: string
+    description: The formatted name to be displayed in user interfaces
+    example: 'Node.js'
+  engine_versions:
+    description: The list of the supported versions of the runtime engine
+    type: array
+    items:
+      properties:
+        version:
+          type: string
+          example: "13.8"
+  frameworks:
+    description: The list of supported frameworks built on top of the runtime engine
+    type: array
+    items:
+      $ref: '#/components/schemas/LanguageRuntimeFramework'

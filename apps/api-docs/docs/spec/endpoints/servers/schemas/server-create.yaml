@@ -1,0 +1,26 @@
+type: object
+properties:
+  hostname:
+    type: string
+    description: The hostname to be set on Linux servers. Accepts numbers (0-9), dash (-) and lower case non accented characters
+    example: web-srv-1
+  ip_address:
+    type: string
+    format: ipv4
+    description: Public ipv4 address for server access
+    example: 200.123.45.67
+  ssh_port:
+    type: integer
+    description: The network port to which the SSH daemon is listening to SSH connections on the server
+    example: 22
+  blueprint:
+    $ref: '#/components/schemas/ServerBlueprint'
+  actions:
+    description: "The list of actions related to the server"
+    type: array
+    items:
+      $ref: '#/components/schemas/Action'
+required:
+  - hostname
+  - ip_address
+  - ssh_port

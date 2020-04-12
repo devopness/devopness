@@ -1,0 +1,102 @@
+Action:
+  $ref: ./shared/schemas/action.yaml
+Actions:
+  $ref: ./endpoints/actions/schemas/action-list.yaml
+Application:
+  $ref: ./endpoints/applications/schemas/application.yaml
+ApplicationDeployment:
+  $ref: ./endpoints/applications/schemas/application-deployment.yaml
+ApplicationDeploymentSettings:
+  $ref: ./endpoints/applications/schemas/application-deployment-settings.yaml
+Applications:
+  $ref: ./endpoints/applications/schemas/application-list.yaml
+BlueprintItem:
+  $ref: ./shared/schemas/blueprint-item.yaml
+Commit:
+  $ref: ./shared/schemas/commit.yaml
+Deployment:
+  $ref: ./endpoints/deployments/schemas/deployment.yaml
+DeploymentCreate:
+  $ref: ./endpoints/deployments/schemas/deployment-create.yaml
+DeploymentCreateApplication:
+  $ref: ./endpoints/deployments/schemas/deployment-create-application.yaml
+DeploymentCreateServer:
+  $ref: ./endpoints/deployments/schemas/deployment-create-server.yaml
+Deployments:
+  $ref: ./endpoints/deployments/schemas/deployment-list.yaml
+DeploymentStep:
+  $ref: ./endpoints/deployments/schemas/deployment-step.yaml
+Environment:
+  $ref: ./endpoints/environments/schemas/environment.yaml
+EnvironmentCreate:
+  $ref: ./endpoints/environments/schemas/environment-create.yaml
+Environments:
+  $ref: ./endpoints/environments/schemas/environment-list.yaml
+Error:
+  $ref: ./shared/schemas/error.yaml
+Pagination:
+  $ref: ./shared/schemas/pagination.yaml
+LanguageRuntime:
+  $ref: ./endpoints/static/schemas/language-runtime.yaml
+LanguageRuntimeFramework:
+  $ref: ./endpoints/static/schemas/language-runtime-framework.yaml
+LanguageRuntimes:
+  $ref: ./endpoints/static/schemas/language-runtime-list.yaml
+Log:
+  $ref: ./endpoints/logs/schemas/log.yaml
+LoginCredentials:
+  $ref: ./endpoints/users/schemas/login-credentials.yaml
+NetworkRule:
+  $ref: ./endpoints/network-rules/schemas/network-rule.yaml
+NetworkRuleCreate:
+  $ref: ./endpoints/network-rules/schemas/network-rule-create.yaml
+NetworkRules:
+  $ref: ./endpoints/network-rules/schemas/network-rule-list.yaml
+Process:
+  $ref: ./endpoints/processes/schemas/process.yaml
+ProcessCreate:
+  $ref: ./endpoints/processes/schemas/process-create.yaml
+Processes:
+  $ref: ./endpoints/processes/schemas/process-list.yaml
+Project:
+  $ref: ./endpoints/projects/schemas/project.yaml
+Projects:
+  $ref: ./endpoints/projects/schemas/project-list.yaml
+Repositories:
+  $ref: ./endpoints/repositories/schemas/repository-list.yaml
+Repository:
+  $ref: ./endpoints/repositories/schemas/repository.yaml
+RepositoryBranch:
+  $ref: ./endpoints/repositories/schemas/repository-branch.yaml
+Server:
+  $ref: ./endpoints/servers/schemas/server.yaml
+ServerBlueprint:
+  $ref: ./endpoints/servers/schemas/server-blueprint.yaml
+ServerCreate:
+  $ref: ./endpoints/servers/schemas/server-create.yaml
+Servers:
+  $ref: ./endpoints/servers/schemas/server-list.yaml
+SshKey:
+  $ref: ./endpoints/ssh-keys/schemas/ssh-key.yaml
+SshKeys:
+  $ref: ./endpoints/ssh-keys/schemas/ssh-key-list.yaml
+SocialAccount:
+  $ref: ./endpoints/social-accounts/schemas/social-account.yaml
+SocialAccountCreate:
+  $ref: ./endpoints/social-accounts/schemas/social-account-create.yaml
+SocialAccounts:
+  $ref: ./endpoints/social-accounts/schemas/social-account-list.yaml
+SocialAccountStatus:
+  $ref: ./endpoints/social-accounts/schemas/social-account-status.yaml
+Task:
+  $ref: ./endpoints/tasks/schemas/task.yaml
+TaskCreate:
+  $ref: ./endpoints/tasks/schemas/task-create.yaml
+Tasks:
+  $ref: ./endpoints/tasks/schemas/task-list.yaml
+User:
+  $ref: ./endpoints/users/schemas/user.yaml
+UserCreate:
+  $ref: ./endpoints/users/schemas/user-create.yaml
+UserTokens:
+  $ref: ./endpoints/users/schemas/user-tokens.yaml

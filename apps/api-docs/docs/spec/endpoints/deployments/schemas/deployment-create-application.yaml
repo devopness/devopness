@@ -1,0 +1,24 @@
+type: object
+properties:
+  id:
+    type: integer
+    format: integer
+    description: Numeric ID of the application
+    example: 123
+  name:
+    type: string
+    format: name
+    description: The applications's name
+    example: my-awesome.app
+  branch:
+    type: string
+    description: The name of the branch from which the source code should be retrieved and deployed
+    example: 'feature/deployment-api-endpoints-and-docs-long-name'
+  hash:
+    type: string
+    description: The commit's full hash that uniquely identify a commit. Required when re-deploying
+    example: '4a03b9d21edeef8434c45818594a5d72027c14e7'
+required:
+  - id
+  - name
+  - branch

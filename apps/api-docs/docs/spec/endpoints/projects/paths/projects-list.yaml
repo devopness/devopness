@@ -1,0 +1,13 @@
+summary: 'Returns a list of all projects belonging to current user'
+tags:
+  - Projects
+parameters:
+  - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/contentTypeHeader'
+responses:
+  200:
+    description: 'Ok'
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Projects'

@@ -1,0 +1,43 @@
+summary: Connect a server to devopness platform
+tags:
+  - Servers
+parameters:
+  - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/contentTypeHeader'
+  - in: path
+    name: id
+    example: 1
+    schema:
+      type: integer
+      minimum: 1
+    required: true
+    description: The server numeric Id
+  - in: path
+    name: activation_token
+    example: 1
+    schema:
+      type: string
+      minimum: 60
+    required: true
+    description: The server activation token
+responses:
+  200:
+    description: 'Ok'
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              format: string
+              description: Output message indicating success or failure
+              example: "Server successfully connected"
+          required:
+            - message
+  401:
+    $ref: '#/components/responses/Unauthenticated'
+  403:
+    $ref: '#/components/responses/Forbidden'
+  404:
+    $ref: '#/components/responses/NotFound'

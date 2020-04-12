@@ -1,0 +1,24 @@
+summary: Get the connect status of a Social authentication provider, by its name
+tags:
+  - Social Accounts
+parameters:
+  - $ref: '#/components/parameters/authHeader'
+  - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/contentTypeHeader'
+  - in: path
+    name: provider
+    example: google
+    schema:
+      type: string
+      minimum: 3
+    required: true
+    description: Unique name of the provider to be retrieved
+responses:
+  200:
+    description: 'Ok'
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/SocialAccountStatus'
+  404:
+    $ref: '#/components/responses/NotFound'

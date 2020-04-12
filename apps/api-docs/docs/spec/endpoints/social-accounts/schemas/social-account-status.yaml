@@ -1,0 +1,15 @@
+type: object
+properties:
+  provider:
+    type: string
+    description: The name of the Social Authentication provider
+    enum: ['bitbucket', 'facebook', 'github', 'gitlab', 'google', 'linkedin']
+    example: 'bitbucket'
+  connected:
+    type: boolean
+    description: Tells if the provider is already connected to the current user's account
+  connect_url:
+    type: string
+    format: url
+    description: A URL path to the provider's OAuth page
+    example: https://github.com/login/oauth/authorize?client_id=...&redirect_uri=...&scope=...

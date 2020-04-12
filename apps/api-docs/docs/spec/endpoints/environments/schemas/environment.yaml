@@ -1,0 +1,24 @@
+type: object
+properties:
+  name:
+    type: string
+    format: name
+    description: The environment's name
+  type:
+    type: string
+    description: The type of the deployment being triggred
+    enum: ['testing', 'staging', 'production']
+    example: 'staging'
+  created_at:
+    type: string
+    format: date-time
+    description: The date and time when the record was created
+    example: '2019-09-25 13:49:51'
+  updated_at:
+    type: string
+    format: date-time
+    description: The date and time when the record was last updated
+    example: '2019-09-25 13:52:04'
+required:
+  - name
+  - type

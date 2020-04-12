@@ -1,0 +1,42 @@
+type: object
+properties:
+  name:
+    type: string
+    description: The rule's name/description/reminder
+    example: HTTPS|SSH|"Opening MySQL port so desktop apps can access it remotely"
+  type:
+    type: string
+    description: The type of network traffic to which this rule will be applied
+    enum: ['inbound', 'outbound']
+    example: 'inbound'
+  protocol:
+    type: string
+    description: The network protocol to which this rule will be applied.
+    enum: ['any', 'tcp', 'udp']
+    example: 'any'
+  ip_address_from:
+    type: string
+    format: ipv4
+    description: Starting range of the public ipv4 or ipv6 addresses that can access this rule
+    example: 200.123.45.67
+  ip_address_to:
+    type: string
+    format: ipv4
+    description: Ending range of the public ipv4 or ipv6 addresses that can access this rule
+    example: 200.123.45.99
+  port_from:
+    type: integer
+    description: Starting range of network ports to be considered by this rule
+    example: 6123
+  port_to:
+    type: integer
+    description: Ending range of network ports to be considered by this rule
+    example: 7654
+required:
+  - name
+  - type
+  - protocol
+  - ip_address_from
+  - ip_address_to
+  - port_from
+  - port_to

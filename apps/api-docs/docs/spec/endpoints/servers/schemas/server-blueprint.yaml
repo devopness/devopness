@@ -1,0 +1,19 @@
+type: object
+properties:
+  databases:
+    description: "The list of databases that must be installed on the server"
+    type: array
+    items:
+      $ref: '#/components/schemas/BlueprintItem'
+  providers:
+    description: "The list of tools that must be made available on the server"
+    type: array
+    items:
+      $ref: '#/components/schemas/BlueprintItem'
+  tools:
+    description: "The list of tools that must be made available on the server"
+    type: array
+    items:
+      $ref: '#/components/schemas/BlueprintItem'
+required:
+  - providers

@@ -1,0 +1,74 @@
+# not sure if `deployment_settings` should be documented within the application object
+type: object
+properties:
+  id:
+    type: integer
+    description: The Id of the given group of settings
+    example: 1
+  application_id:
+    type: integer
+    description: The Id of the application to which the settings apply to
+    example: 2
+  environment_id:
+    type: integer
+    description: The Id of the environment to which the settings apply to
+    example: 3
+  blueprint_id:
+    type: integer
+    description: The Id of the optional blueprint that might contain technology stack specific settings
+    example: 4
+  domain_name:
+    type: string
+    format: name
+    description: The sub-domain through which the application deployed with these settings will be accessed
+    example: "test.my-app.co.uk"
+  app_directory:
+    type: string
+    description: The physical path of the applicaton code/artifacts on the deployed servers
+    example: "/var/www/my-app"
+  default_branch:
+    type: string
+    description: The version control branch that, by default, will be retrieved and deployed. This might be overriden by client apps API calls when actually triggering a new deployment.
+    example: 'develop'
+  deployments_keep:
+    type: integer
+    description: The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers
+    example: 4
+  install_dependencies_dev:
+    description: Indicates if at deployment time we should execute package manager command to install dependencies used in development mode
+    type: boolean
+    example: false
+  install_dependencies_prod:
+    description: Indicates if at deployment time we should execute package manager command to install dependencies used in production mode
+    type: boolean
+    example: true
+  push_to_deploy:
+    description: Indicates if push to deploy webhooks are enabled for this application/environment, if so code will be deployed when commited to the default_branch
+    type: boolean
+    example: false
+  engine_version:
+    description: The language runtime engine versin to be used to execute this application code on the deployed servers
+    type: string
+    example: "19.03.2"
+  build_command:
+    description: The command that should be executed once to build the application source code. If set, `devopness` will not execute it's own build process to resolve package dependencies and get the application in a ready state. It will be assumed that the user is an advanced user that knows what she/he is doing, therefore the command specified here will be run as is everytime the application needs to be started.
+    type: string
+    example: "`docker build -t my_image_name .`, `yarn build`, `jekyll build`, `python build.py`"
+  init_command:
+    description: The start up command that should be executed every time the application needs to be started. If set, `devopness` will not generate it's own start up script. It will be assumed that the user is an advanced user that knows what she/he is doing, therefore the command specified here will be run as is everytime the application needs to be built.
+    type: string
+    example: "`npm run production`, `docker run -d -P --name my_container_name my_image_name`, `php artisan serve –-host=192.168.2.20 --port=8000`"
+  listening_address:
+    description: Useful, for instance, when deploying `docker` containerized applications. If the application is not initialized by `devopness` itself, the user should inform the address at which the application listens to external calls. The address can be an IP, IP:PORT, HOSTNAME, HOSTNAME:PORT or unix:PATH
+    type: string
+    example: "`unix:/tmp/backend3`, `http://127.0.0.1:8000`, `127.0.0.1:3000`, `http://localhost`"
+required:
+  - application_id
+  - environment_id
+  - domain_name
+  - app_directory
+  - default_branch
+  - deployments_keep
+  - install_dependencies_dev
+  - install_dependencies_prod
+  - push_to_deploy

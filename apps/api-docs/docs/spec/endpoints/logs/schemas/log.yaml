@@ -1,0 +1,7 @@
+type: object
+properties:
+  output:
+    type: string
+    description: The full text output log of executed tasks
+required:
+  - output

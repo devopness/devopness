@@ -1,0 +1,21 @@
+type: object
+properties:
+  type:
+    type: string
+    description: The type of the deployment being triggred
+    enum: [deploy, redeploy, rollback]
+    example: 'deploy'
+  applications:
+    description: "The list of applications to be deployed together"
+    type: array
+    items:
+      $ref: '#/components/schemas/DeploymentCreateApplication'
+  servers:
+    description: "The list of servers to which all `applications` will be deployed to"
+    type: array
+    items:
+      $ref: '#/components/schemas/DeploymentCreateServer'
+required:
+  - type
+  - applications
+  - servers

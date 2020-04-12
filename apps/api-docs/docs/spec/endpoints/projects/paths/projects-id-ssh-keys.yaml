@@ -1,0 +1,31 @@
+summary: Create a SSH key and link it to the given project
+tags:
+  - Projects - SSH Keys
+parameters:
+  - $ref: '#/components/parameters/authHeader'
+  - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/contentTypeHeader'
+  - in: path
+    name: id
+    example: 1
+    schema:
+      type: integer
+      minimum: 1
+    required: true
+    description: The project numeric Id
+requestBody:
+  description: A JSON object containing SSH key data
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/SshKey'
+responses:
+  201:
+    description: 'Created'
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/SshKey'
+  422:
+    $ref: '#/components/responses/ValidationError'

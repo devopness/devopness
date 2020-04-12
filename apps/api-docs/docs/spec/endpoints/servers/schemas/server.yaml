@@ -1,0 +1,38 @@
+type: object
+properties:
+  hostname:
+    type: string
+    description: The server's hostname
+    example: web-srv-1
+  ip_address:
+    type: string
+    format: ipv4
+    description: Public ipv4 address for server access
+    example: 200.123.45.67
+  ssh_port:
+    type: integer
+    description: The network port to which the SSH daemon is listening to SSH connections on the server
+    example: 22
+  user_id:
+    type: integer
+    description: The id of the user who created the server and to whom the server belongs
+    example: 1
+  active:
+    type: boolean
+    description: Tells if the server is active or not
+  actions:
+    description: "The list of actions related to the server"
+    type: array
+    items:
+      $ref: '#/components/schemas/Action'
+  environments:
+    description: "The list of environments to which the server is linked to"
+    type: array
+    items:
+      $ref: '#/components/schemas/Environment'
+required:
+  - hostname
+  - ip_address
+  - ssh_port
+  - user_id
+  - active

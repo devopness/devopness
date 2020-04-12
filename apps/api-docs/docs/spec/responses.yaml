@@ -1,0 +1,36 @@
+Ok: # HTTP Status Code: 200
+  description: 'Ok'
+  content:
+    application/json:
+      schema:
+        type: object
+Created: # HTTP Status Code: 201
+  description: Created
+NoContent: # HTTP Status Code: 204
+  description: No Content
+Unauthenticated: # HTTP Status Code: 401
+  description: Unauthenticated
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/Error'
+Forbidden: # HTTP Status Code: 403
+  description: Forbidden/Unauthorized
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/Error'
+NotFound: # HTTP Status Code: 404
+  description: The specified resource was not found
+Conflict: # HTTP Status Code: 409
+  description: The current request conflicts with server state
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/Error'
+ValidationError: # HTTP Status Code: 422
+  description: Unprocessable Entity/Validation Error
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/Error'

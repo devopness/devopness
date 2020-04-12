@@ -1,0 +1,159 @@
+/actions:
+  get:
+    $ref: ./endpoints/actions/paths/actions-list.yaml
+/actions/{id}:
+  get:
+    $ref: ./endpoints/actions/paths/actions-id.yaml
+/applications/{application_id}:
+  get:
+    $ref: ./endpoints/applications/paths/applications-id.yaml
+  put:
+    $ref: ./endpoints/applications/paths/applications-id-update.yaml
+  delete:
+    $ref: ./endpoints/applications/paths/applications-id-delete.yaml
+/applications/{application_id}/deployments:
+  post:
+    $ref: ./endpoints/applications/paths/applications-id-deployments.yaml
+  get:
+    $ref: ./endpoints/applications/paths/applications-id-deployments-list.yaml
+/deployments/{deployment_id}:
+  get:
+    $ref: ./endpoints/deployments/paths/deployments-id.yaml
+/logs/deployments/{deployment_id}/steps/{step_id}:
+  get:
+    $ref: ./endpoints/logs/paths/logs-deployments-id-steps-id.yaml
+/network-rules/{rule_id}:
+  delete:
+    $ref: ./endpoints/network-rules/paths/network-rules-id-delete.yaml
+  get:
+    $ref: ./endpoints/network-rules/paths/network-rules-id.yaml
+/processes/{process_id}:
+  delete:
+    $ref: ./endpoints/processes/paths/processes-id-delete.yaml
+  get:
+    $ref: ./endpoints/processes/paths/processes-id.yaml
+/processes/{process_id}/restart:
+  post:
+    $ref: ./endpoints/processes/paths/processes-id-restart.yaml
+/projects:
+  post:
+    $ref: ./endpoints/projects/paths/projects.yaml
+  get:
+    $ref: ./endpoints/projects/paths/projects-list.yaml
+/projects/{id}:
+  get:
+    $ref: ./endpoints/projects/paths/projects-id.yaml
+  put:
+    $ref: ./endpoints/projects/paths/projects-id-update.yaml
+/projects/{id}/applications:
+  post:
+    $ref: ./endpoints/applications/paths/applications.yaml
+  get:
+    $ref: ./endpoints/applications/paths/applications-list.yaml
+/projects/{id}/deployments:
+  post:
+    $ref: ./endpoints/projects/paths/projects-id-deployments.yaml
+  get:
+    $ref: ./endpoints/projects/paths/projects-id-deployments-list.yaml
+/projects/{id}/environments:
+  post:
+    $ref: ./endpoints/projects/paths/projects-id-environments.yaml
+  get:
+    $ref: ./endpoints/projects/paths/projects-id-environments-list.yaml
+/projects/{id}/network-rules:
+  post:
+    $ref: ./endpoints/projects/paths/projects-id-network-rules.yaml
+  get:
+    $ref: ./endpoints/projects/paths/projects-id-network-rules-list.yaml
+/projects/{id}/processes:
+  post:
+    $ref: ./endpoints/processes/paths/processes.yaml
+  get:
+    $ref: ./endpoints/processes/paths/processes-list.yaml
+/projects/{id}/servers:
+  post:
+    $ref: ./endpoints/projects/paths/projects-id-servers.yaml
+  get:
+    $ref: ./endpoints/projects/paths/projects-id-servers-list.yaml
+/projects/{id}/ssh-keys:
+  post:
+    $ref: ./endpoints/projects/paths/projects-id-ssh-keys.yaml
+  get:
+    $ref: ./endpoints/projects/paths/projects-id-ssh-keys-list.yaml
+/projects/{id}/tasks:
+  post:
+    $ref: ./endpoints/tasks/paths/tasks.yaml
+  get:
+    $ref: ./endpoints/tasks/paths/tasks-list.yaml
+/servers:
+  get:
+    $ref: ./endpoints/servers/paths/servers-list.yaml
+/servers/{id}:
+  get:
+    $ref: ./endpoints/servers/paths/servers-id.yaml
+/servers/{id}/commands:
+  get:
+    $ref: ./endpoints/servers/paths/servers-id-commands.yaml
+/servers/{id}/connect/{activation_token}:
+  post:
+    $ref: ./endpoints/servers/paths/servers-id-connect.yaml
+/ssh-keys/{ssh_key_id}:
+  get:
+    $ref: ./endpoints/ssh-keys/paths/ssh-keys-id.yaml
+  delete:
+    $ref: ./endpoints/ssh-keys/paths/ssh-keys-id-delete.yaml
+/social-accounts:
+  post:
+    $ref: ./endpoints/social-accounts/paths/social-accounts.yaml
+  get:
+    $ref: ./endpoints/social-accounts/paths/social-accounts-list.yaml
+/social-accounts/{id}:
+  delete:
+    $ref: ./endpoints/social-accounts/paths/social-accounts-id-delete.yaml
+/social-accounts/{provider}:
+  get:
+    $ref: ./endpoints/social-accounts/paths/social-accounts-name.yaml
+/social-accounts/{provider}/status:
+  get:
+    $ref: ./endpoints/social-accounts/paths/social-accounts-name-status.yaml
+/source-providers/{provider}/repositories:
+  get:
+    $ref: ./endpoints/repositories/paths/repositories-list.yaml
+/source-providers/{provider}/repositories/{repository_owner}/{repository_name}:
+  get:
+    $ref: ./endpoints/repositories/paths/repositories-id.yaml
+/source-providers:
+  get:
+    $ref: ./endpoints/source-providers/paths/source-providers-list.yaml
+/source-providers/{id}:
+  delete:
+    $ref: ./endpoints/source-providers/paths/source-providers-id-delete.yaml
+/source-providers/{provider}:
+  get:
+    $ref: ./endpoints/source-providers/paths/source-providers-name.yaml
+/static/language-runtimes:
+  get:
+    $ref: ./endpoints/static/paths/language-runtimes-list.yaml
+/tasks/{task_id}:
+  delete:
+    $ref: ./endpoints/tasks/paths/tasks-id-delete.yaml
+  get:
+    $ref: ./endpoints/tasks/paths/tasks-id.yaml
+/users:
+  post:
+    $ref: ./endpoints/users/paths/users.yaml
+/users/activate:
+  get:
+    $ref: ./endpoints/users/paths/activate.yaml
+/users/login:
+  post:
+    $ref: ./endpoints/users/paths/login.yaml
+/users/logout:
+  get:
+    $ref: ./endpoints/users/paths/logout.yaml
+/users/{id}:
+  get:
+    $ref: ./endpoints/users/paths/users-id.yaml
+/users/refresh-token:
+  post:
+    $ref: ./endpoints/users/paths/users-refresh-token.yaml

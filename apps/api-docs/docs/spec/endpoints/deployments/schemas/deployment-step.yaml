@@ -1,0 +1,29 @@
+type: object
+properties:
+  order:
+    type: integer
+    description: The execution order of the given step
+    example: 3
+  name:
+    type: string
+    description: The step name
+    example: 'Install dependencies'
+  status:
+    type: string
+    description: Current status of the deployment step
+    enum: ['pending', 'in-progress', 'cancelled', 'successful', 'failed']
+    example: 'failed'
+  started_at:
+    type: string
+    format: date-time
+    description: The date and time when the step started to be executed (left the `pending/waiting` status)
+    example: '2019-09-25 13:49:51'
+  completed_at:
+    type: string
+    format: date-time
+    description: The date and time when the step has finished execution
+    example: '2019-09-25 13:52:04'
+required:
+  - name
+  - order
+  - status

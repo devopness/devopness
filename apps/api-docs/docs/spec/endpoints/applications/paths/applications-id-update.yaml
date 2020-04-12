@@ -1,0 +1,26 @@
+summary: Update an existing application
+tags:
+  - Applications
+parameters:
+  - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/contentTypeHeader'
+  - in: path
+    name: application_id
+    example: 1
+    schema:
+      type: integer
+      minimum: 1
+    required: true
+    description: Numeric ID of the application to be updated
+requestBody:
+  description: A JSON object containing application data
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/Application'
+responses:
+  204:
+    $ref: '#/components/responses/NoContent'
+  422:
+    $ref: '#/components/responses/ValidationError'

@@ -1,0 +1,18 @@
+summary: 'Create a new project'
+tags:
+  - Projects
+parameters:
+  - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/contentTypeHeader'
+requestBody:
+  description: A JSON object containing project data
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/Project'
+responses:
+  201:
+    $ref: '#/components/responses/Created'
+  422:
+    $ref: '#/components/responses/ValidationError'

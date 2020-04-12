@@ -1,0 +1,7 @@
+type: object
+properties:
+  name:
+    type: string
+    description: The name of the dependency item
+    enum: ['mysql', 'phpmyadmin', 'redis', 'aws', 'self-hosted']
+    example: 'mysql'

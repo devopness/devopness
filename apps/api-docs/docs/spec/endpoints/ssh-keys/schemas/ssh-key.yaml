@@ -1,0 +1,22 @@
+type: object
+properties:
+  id:
+    type: integer
+    description: The Id of the given SSH public key
+    example: 1
+  name:
+    type: string
+    description: The name entered by the user to uniquely identify the public SSH key
+    example: 'my-laptop-ssh-key'
+  user_id:
+    type: integer
+    description: The Id of the user to which the SSH key belongs to
+    example: 123
+  public_key:
+    type: string
+    description: The public SSH key to add to your `devopness` account and associate it to the given project
+    example: "ssh-rsa AAA..."
+  fingerprint:
+    type: string
+    description: The hashed fingerprint of the public key
+    example: "41:17:72:a5:21:cd:f2:5b:30:28:a1:4e:7d:26:8e:f2"

@@ -1,0 +1,22 @@
+summary: 'Return a list of all repositories belonging to a current user social provider account'
+tags:
+  - Source Providers - Repositories
+parameters:
+  - $ref: '#/components/parameters/authHeader'
+  - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/contentTypeHeader'
+  - in: path
+    name: provider
+    example: bitbucket
+    schema:
+      type: string
+      minimum: 3
+    required: true
+    description: Unique name of the source code provider where the repository is hosted
+responses:
+  200:
+    description: 'Ok'
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Repositories'

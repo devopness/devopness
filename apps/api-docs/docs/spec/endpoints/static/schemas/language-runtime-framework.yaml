@@ -1,0 +1,39 @@
+type: object
+properties:
+  name:
+    type: string
+    description: The internal name/code of the language runtime
+    example: 'nodejs'
+  displayable_name:
+    type: string
+    description: The formatted name to be displayed in user interfaces
+    example: 'Node.js'
+  defaults:
+    description: Default values that apply to apps created in devopness using this framework
+    type: array
+    items:
+      properties:
+        build_command:
+          description: The command that should be executed once to build the application source code. If set, `devopness` will not execute it's own build process to resolve package dependencies and get the application in a ready state. It will be assumed that the user is an advanced user that knows what she/he is doing, therefore the command specified here will be run as is everytime the application needs to be started.
+          type: string
+          example: "`docker build -t my_image_name .`, `yarn build`, `jekyll build`, `python build.py`"
+        init_command:
+          description: The start up command that should be executed every time the application needs to be started. If set, `devopness` will not generate it's own start up script. It will be assumed that the user is an advanced user that knows what she/he is doing, therefore the command specified here will be run as is everytime the application needs to be built.
+          type: string
+          example: "`npm run production`, `docker run -d -P --name my_container_name my_image_name`, `php artisan serve –-host=192.168.2.20 --port=8000`"
+        listening_address:
+          description: Useful, for instance, when deploying `docker` containerized applications. If the application is not initialized by `devopness` itself, the user should inform the address at which the application listens to external calls. The address can be an IP, IP:PORT, HOSTNAME, HOSTNAME:PORT or unix:PATH
+          type: string
+          example: "`unix:/tmp/backend3`, `http://127.0.0.1:8000`, `127.0.0.1:3000`, `http://localhost`"
+        entrypoint:
+          type: string
+          description: The applicaton initialization file/module/function.
+          example: "index.js|server.js|server.php|index.php|index:app|my-site.wsgi:application|my-project:main|my-project.wsgi"
+        root_directory:
+          type: string
+          description: The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository.
+          example: "/ or /src or /lib/src or /code or /app"
+        public_directory:
+          type: string
+          description: The relative web directory where publicly accessible assets are located and the web content should be served from
+          example: "/public"

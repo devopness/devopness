@@ -1,0 +1,26 @@
+summary: 'Update an existing project'
+tags:
+  - Projects
+parameters:
+  - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/contentTypeHeader'
+  - in: path
+    name: id
+    example: 1
+    schema:
+      type: integer
+      minimum: 1
+    required: true
+    description: Numeric ID of the project to put
+requestBody:
+  description: A JSON object containing project data
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/Project'
+responses:
+  204:
+    $ref: '#/components/responses/NoContent'
+  422:
+    $ref: '#/components/responses/ValidationError'

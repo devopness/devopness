@@ -1,0 +1,31 @@
+summary: Add a scheduled task to the given project
+tags:
+  - Projects - Tasks
+parameters:
+  - $ref: '#/components/parameters/authHeader'
+  - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/contentTypeHeader'
+  - in: path
+    name: id
+    example: 1
+    schema:
+      type: integer
+      minimum: 1
+    required: true
+    description: The project numeric Id
+requestBody:
+  description: A JSON object containing task data
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/TaskCreate'
+responses:
+  201:
+    description: 'Created'
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Task'
+  422:
+    $ref: '#/components/responses/ValidationError'

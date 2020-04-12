@@ -1,0 +1,36 @@
+type: object
+properties:
+  name:
+    type: string
+    format: name
+    description: The project's name
+  type:
+    type: string
+    description: The type of the project, usually indicating the main technology, programming language or base framework
+    example: 'php-laravel'
+  logo_image:
+    type: string
+    format: base64
+    description: A base64 string representation of the logo image
+    example: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACA.../AgwAgJqsE2/7ccAAAAAASUVORK5CYII="
+  logo_url:
+    type: string
+    format: url
+    description: A URL path to the project's logo image
+    example: https://example.com/projects-beautiful-logo.png
+  ssh_keys:
+    description: "The list of SSH keys added to the project"
+    type: array
+    items:
+      $ref: '#/components/schemas/SshKey'
+  os_users:
+    description: "The list of the operating system users found in all the servers linked to a project"
+    type: array
+    items:
+      properties:
+        name:
+          type: string
+      example:
+        name: devopness
+required:
+  - name

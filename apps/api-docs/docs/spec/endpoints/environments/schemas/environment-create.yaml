@@ -1,0 +1,14 @@
+type: object
+properties:
+  name:
+    type: string
+    format: name
+    description: The environment's name
+  type:
+    type: string
+    description: The type of the deployment being triggred
+    enum: ['testing', 'staging', 'production']
+    example: 'staging'
+required:
+  - name
+  - type

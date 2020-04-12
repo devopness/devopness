@@ -1,0 +1,30 @@
+summary: 'Refresh an existing user access token'
+tags:
+  - Users
+parameters:
+  - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/contentTypeHeader'
+requestBody:
+  description: A JSON object containing user essential data
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          refresh_token:
+            type: string
+            description: |
+              A token to be used after the original access token has expired, to issue a new token
+              without requiring a new request to the `/users/login` endpoint
+        required:
+          - refresh_token
+responses:
+  200:
+    description: 'Ok - Tokens refreshed'
+    content:
+      'application/json; charset=utf-8':
+        schema:
+          $ref: '#/components/schemas/UserTokens'
+  422:
+    $ref: '#/components/responses/ValidationError'

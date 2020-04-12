@@ -1,0 +1,28 @@
+type: object
+properties:
+  provider:
+    type: string
+    description: The name of the Social Authentication provider
+    enum: ['bitbucket', 'facebook', 'github', 'gitlab', 'google', 'linkedin']
+    example: 'bitbucket'
+  provider_user_name:
+    type: string
+    description: The name of the user on the Social Authentication provider
+    example: 'Joe Smith'
+  is_vcs:
+    type: boolean
+    description: Tells if the social account provider is a Source Code Provider/Version Control System. e.g. false for Facebook, true for Github
+  user_id:
+    type: integer
+    description: The current user's id
+    example: 123
+  created_at:
+    type: string
+    format: date-time
+    description: The date and time when the record was created
+    example: '2019-09-25 13:49:51'
+  updated_at:
+    type: string
+    format: date-time
+    description: The date and time when the record was last updated
+    example: '2019-09-25 13:52:04'

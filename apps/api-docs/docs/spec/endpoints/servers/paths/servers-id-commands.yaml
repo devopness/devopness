@@ -1,0 +1,32 @@
+summary: Get commands to be executed on the given server
+tags:
+  - Servers
+parameters:
+  - $ref: '#/components/parameters/authHeader'
+  - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/contentTypeHeader'
+  - in: path
+    name: id
+    example: 1
+    schema:
+      type: integer
+      minimum: 1
+    required: true
+    description: The server numeric Id
+responses:
+  200:
+    description: 'Ok'
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            connect_command:
+              type: string
+              format: string
+              description: The Shell Script command to be executed in an existing Linux server in order to connect it to the `devopness`
+              example: "echo '# devopness:' | ..."
+          required:
+            - connect_command
+  409:
+    $ref: '#/components/responses/Conflict'

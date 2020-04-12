@@ -1,0 +1,31 @@
+summary: Creates a server and link it to the given project
+tags:
+  - Projects - Servers
+parameters:
+  - $ref: '#/components/parameters/authHeader'
+  - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/contentTypeHeader'
+  - in: path
+    name: id
+    example: 1
+    schema:
+      type: integer
+      minimum: 1
+    required: true
+    description: The project numeric Id
+requestBody:
+  description: A JSON object containing server data
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/ServerCreate'
+responses:
+  201:
+    description: 'Created'
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Server'
+  422:
+    $ref: '#/components/responses/ValidationError'

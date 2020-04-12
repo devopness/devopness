@@ -1,0 +1,37 @@
+acceptHeader:
+  name: Accept
+  in: header
+  required: true
+  schema:
+    type: string
+  description: application/json
+
+authHeader:
+  name: Authorization
+  in: header
+  required: true
+  schema:
+    type: string
+  description: Bearer {{access_token}}
+
+contentTypeHeader:
+  name: Content-Type
+  in: header
+  required: true
+  schema:
+    type: string
+  description: application/json
+
+pageNumber:
+  name: page
+  in: query
+  required: false
+  schema:
+    type: integer
+
+limit:
+  name: limit
+  in: query
+  required: false
+  schema:
+    type: integer
