@@ -1,10 +1,21 @@
+/**
+ * @todo: assume an empty database before running this (i.e always run
+ * `php artisan devopness:db-reset` before running this script)
+ *
+ * @todo: move this to `devopness/api` folder, along with dredd.yml file
+ *
+ * @todo: start by implementing basic `sign-up/login/logout` flow
+ *
+ * @todo: we can increment it by after sign-up and login create a project and a server inside a project,
+ * assuming a default project environment for the server
+ */
 var hooks = require('hooks');
 var testStash = {
     acessToken: null,
     refreshToken: null
 };
 
-// transaction names can be obtained by running `dredd --names`
+// transaction names can be obtained by running `npx dredd --names`
 const transactionNames = {
     'users-login': 'Users > /users/login > Login/create a new token for the given credentials > 200 > application/json; charset=utf-8',
     'users-logout': 'Users > /users/logout > Logout/revoke an existing token > 204',
@@ -20,7 +31,7 @@ function updateTokens(transaction) {
         var responseData = JSON.parse(transaction.results.body.values.actual);
         testStash.accessToken = responseData.access_token;
         testStash.refreshToken = responseData.refresh_token;
-        // hooks.log("\nNew tokens retrieved:\n");
+        // hooks.log("\nNew tokens retrieved:\n" + " accessToken: " + responseData.access_token);
     }
 }
 
@@ -28,8 +39,15 @@ hooks.beforeEach(function(transaction) {
     // hooks.log('Executing hook "beforeEach" for transaction "' + transaction.name + '"');
     if(transaction.request.headers['Authorization'] != undefined) {
         // transaction requires Authorization header, according to documentation
-        if (transaction.request.headers.Authorization == '' && testStash.accessToken != null) {
-            transaction.request.headers.Authorization = 'Bearer ' + testStash.accessToken;
+        if (transaction.request.headers.Authorization == '') {
+            if (testStash.accessToken == null) {
+                // TO DO: should invoke request token, see git stash generated for tremtec
+                // in the beginning of the project
+                // updateTokens(transaction);
+            }
+            if (testStash.accessToken != null) {
+                transaction.request.headers.Authorization = 'Bearer ' + testStash.accessToken;
+            }
         }
     }
     transaction.request.headers['Content-Type'] = 'application/json';
