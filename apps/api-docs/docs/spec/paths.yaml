@@ -75,6 +75,11 @@
     $ref: ./endpoints/projects/paths/projects-id-servers.yaml
   get:
     $ref: ./endpoints/projects/paths/projects-id-servers-list.yaml
+/projects/{id}/services:
+  post:
+    $ref: ./endpoints/projects/paths/projects-id-services.yaml
+  get:
+    $ref: ./endpoints/projects/paths/projects-id-services-list.yaml
 /projects/{id}/ssh-keys:
   post:
     $ref: ./endpoints/projects/paths/projects-id-ssh-keys.yaml
@@ -97,6 +102,9 @@
 /servers/{id}/connect/{activation_token}:
   post:
     $ref: ./endpoints/servers/paths/servers-id-connect.yaml
+/services/{id}:
+  get:
+    $ref: ./endpoints/services/paths/services-id.yaml
 /ssh-keys/{ssh_key_id}:
   get:
     $ref: ./endpoints/ssh-keys/paths/ssh-keys-id.yaml

@@ -150,11 +150,13 @@ tags:
     description: |
         The terms `process`, `background process` and `daemon` may be used interchangeably in the `devopness` API documentation to denote the same thing: i.e., a computer process that runs behind the scenes without user intervention, detached from TTY (teletype/terminal type) and having no associated console or controlling terminal, therefore prevented from receiving `SIGHUP` on shell termination.
   - name: Projects - Servers
+  - name: Projects - Services
   - name: Projects - SSH Keys
   - name: Projects - Tasks
     description: |
         A task is a scheduled command to be set on one or more project servers to ensure a given routine will be executed on time.
   - name: Servers
+  - name: Services
   - name: SSH Keys
   - name: Social Accounts
     description: |

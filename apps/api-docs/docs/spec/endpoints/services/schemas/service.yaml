@@ -1,0 +1,40 @@
+type: object
+properties:
+  name:
+    type: string
+    description: The service name
+    example: mysql
+  description:
+    type: string
+    description: A description text describing the service
+    example: MySQL Community Server
+  version:
+    type: string
+    description: The service current installed version
+    example: 5.7.29
+  status:
+    type: string
+    description: The status of the service at the `updated_at` point in time
+    enum: [active, reloading, inactive, failed, activating, deactivating]
+    example: "active"
+  started_at:
+    type: string
+    format: date-time
+    description: The date and time when the service was started and wheng the uptime is calculated from
+    example: "2019-04-05 09:32:56"
+  created_at:
+    type: string
+    format: date-time
+    description: The date and time when the record was created
+    example: "2019-09-25 13:49:51"
+  updated_at:
+    type: string
+    format: date-time
+    description: The date and time when the record was last updated
+    example: "2019-09-25 13:52:04"
+required:
+  - name
+  - status
+  - created_at
+  - started_at
+  - updated_at

@@ -1,0 +1,31 @@
+type: object
+properties:
+  name:
+    type: string
+    description: The service name
+    example: mysql
+  action:
+    type: string
+    description: The action to be executed for the given service
+    enum:
+      [
+        status,
+        start,
+        stop,
+        reload,
+        restart,
+        enable,
+        disable,
+        install,
+        uninstall,
+      ]
+    example: "active"
+  servers:
+    description: The list of IDs of servers to which the service action must be performed
+    type: array
+    items:
+      type: integer
+      example: [1, 2, 3]
+required:
+  - name
+  - action

@@ -1,0 +1,22 @@
+summary: List all services in a project
+tags:
+  - Projects - Services
+parameters:
+  - $ref: '#/components/parameters/authHeader'
+  - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/contentTypeHeader'
+  - in: path
+    name: id
+    example: 1
+    schema:
+      type: integer
+      minimum: 1
+    required: true
+    description: The service unique Id
+responses:
+  200:
+    description: 'Ok'
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Services'

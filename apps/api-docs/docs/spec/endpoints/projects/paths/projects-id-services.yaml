@@ -1,0 +1,31 @@
+summary: Trigger an action on the given service
+tags:
+  - Projects - Services
+parameters:
+  - $ref: '#/components/parameters/authHeader'
+  - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/contentTypeHeader'
+  - in: path
+    name: id
+    example: 1
+    schema:
+      type: integer
+      minimum: 1
+    required: true
+    description: The service's unique id
+requestBody:
+  description: A JSON object containing service data
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/ServiceAction'
+responses:
+  201:
+    description: 'Created'
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Service'
+  422:
+    $ref: '#/components/responses/ValidationError'

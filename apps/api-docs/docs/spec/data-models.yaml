@@ -76,6 +76,12 @@ ServerCreate:
   $ref: ./endpoints/servers/schemas/server-create.yaml
 Servers:
   $ref: ./endpoints/servers/schemas/server-list.yaml
+Service:
+  $ref: ./endpoints/services/schemas/service.yaml
+ServiceAction:
+  $ref: ./endpoints/services/schemas/service-action.yaml
+Services:
+  $ref: ./endpoints/services/schemas/service-list.yaml
 SshKey:
   $ref: ./endpoints/ssh-keys/schemas/ssh-key.yaml
 SshKeys:
