@@ -2,8 +2,8 @@ type: object
 properties:
   name:
     type: string
-    format: name
     description: The environment's name
+    example: 'produção'
   type:
     type: string
     description: The type of the deployment being triggred

@@ -7,7 +7,6 @@ properties:
     example: 123
   name:
     type: string
-    format: name
     description: The applications's name
     example: my-awesome.app
   branch:

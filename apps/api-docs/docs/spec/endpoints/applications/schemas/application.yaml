@@ -2,7 +2,6 @@ type: object
 properties:
   name:
     type: string
-    format: name
     description: A domain name that points to application main web address. Can be a naked domain or any subdomain. If app has domain names `testing.my-app.com`, `staging.my-app.com` and `www.my-app.com` a possible good candidate for the application name would be the "naked" domain `my-app.com`
     example: "my-app.co.uk"
   project_id:

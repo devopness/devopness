@@ -2,7 +2,6 @@ type: object
 properties:
   name:
     type: string
-    format: name
     description: The environment's name
   type:
     type: string

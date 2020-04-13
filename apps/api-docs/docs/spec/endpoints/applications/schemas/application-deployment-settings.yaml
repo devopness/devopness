@@ -19,7 +19,7 @@ properties:
     example: 4
   domain_name:
     type: string
-    format: name
+    format: hostname
     description: The sub-domain through which the application deployed with these settings will be accessed
     example: "test.my-app.co.uk"
   app_directory:

@@ -14,7 +14,7 @@ parameters:
     description: The server numeric Id
   - in: path
     name: activation_token
-    example: 1
+    example: B54AWSVf3iIB3QWFs7eF3c6jiXS03ZJLqicyzCNpWMjpV5lR09Gj11naMwCu
     schema:
       type: string
       minimum: 60
