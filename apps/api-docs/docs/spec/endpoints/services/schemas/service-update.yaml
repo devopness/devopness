@@ -4,6 +4,16 @@ properties:
     type: string
     description: The service name
     example: mysql
+  auto_start:
+    type: boolean
+    default: false
+    description: Indicates if the service is marked for start automatically on operating system boot
+  initial_state:
+    type: string
+    default: 'started'
+    description: The expected initial state of the service after installed
+    enum: [started, stopped]
+    example: 'stopped'
   action:
     type: string
     description: The action to be executed for the given service

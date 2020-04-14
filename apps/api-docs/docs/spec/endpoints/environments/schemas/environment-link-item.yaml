@@ -1,0 +1,20 @@
+type: object
+properties:
+  id:
+    type: string
+    description: The environment's unique id
+    example: 867
+  name:
+    type: string
+    description: The environment's name
+    example: 'my project - staging'
+  servers:
+    description: The list of IDs of servers to which the service action must be performed
+    type: array
+    example: [54789, 235, 1089044]
+    items:
+      type: integer
+required:
+  - id
+  - name
+  - servers

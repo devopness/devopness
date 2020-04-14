@@ -1,0 +1,22 @@
+type: object
+properties:
+  name:
+    type: string
+    description: The service name
+    example: mysql
+  auto_start:
+    type: boolean
+    default: false
+    description: Indicates if the service is marked for start automatically on operating system boot
+  initial_state:
+    type: string
+    default: 'started'
+    description: The expected initial state of the service after installed
+    enum: [started, stopped]
+    example: 'stopped'
+  environments:
+    $ref: '#/components/schemas/EnvironmentLinks'
+required:
+  - name
+  - auto_start
+  - initial_state

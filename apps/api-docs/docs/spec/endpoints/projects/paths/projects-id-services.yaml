@@ -19,7 +19,7 @@ requestBody:
   content:
     application/json:
       schema:
-        $ref: '#/components/schemas/ServiceAction'
+        $ref: '#/components/schemas/ServiceCreate'
 responses:
   201:
     description: 'Created'

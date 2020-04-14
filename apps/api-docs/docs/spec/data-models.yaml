@@ -30,6 +30,10 @@ Environment:
   $ref: ./endpoints/environments/schemas/environment.yaml
 EnvironmentCreate:
   $ref: ./endpoints/environments/schemas/environment-create.yaml
+EnvironmentLinkItem:
+  $ref: ./endpoints/environments/schemas/environment-link-item.yaml
+EnvironmentLinks:
+  $ref: ./endpoints/environments/schemas/environment-links.yaml
 Environments:
   $ref: ./endpoints/environments/schemas/environment-list.yaml
 Error:
@@ -78,8 +82,8 @@ Servers:
   $ref: ./endpoints/servers/schemas/server-list.yaml
 Service:
   $ref: ./endpoints/services/schemas/service.yaml
-ServiceAction:
-  $ref: ./endpoints/services/schemas/service-action.yaml
+ServiceCreate:
+  $ref: ./endpoints/services/schemas/service-create.yaml
 Services:
   $ref: ./endpoints/services/schemas/service-list.yaml
 SshKey:
