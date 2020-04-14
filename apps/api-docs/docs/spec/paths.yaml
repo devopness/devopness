@@ -103,6 +103,8 @@
   post:
     $ref: ./endpoints/servers/paths/servers-id-connect.yaml
 /services/{id}:
+  delete:
+    $ref: ./endpoints/services/paths/services-id-delete.yaml
   get:
     $ref: ./endpoints/services/paths/services-id.yaml
 /ssh-keys/{ssh_key_id}:
