@@ -36,7 +36,5 @@ required:
   - name
   - type
   - protocol
-  - ip_address_from
-  - ip_address_to
   - port_from
   - port_to
