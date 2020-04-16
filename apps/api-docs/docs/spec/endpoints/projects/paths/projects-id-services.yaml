@@ -1,4 +1,4 @@
-summary: Trigger an action on the given service
+summary: Add a service to a project and triggers its setup in each linked server
 tags:
   - Projects - Services
 parameters:
