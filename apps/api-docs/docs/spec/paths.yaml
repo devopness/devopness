@@ -107,6 +107,18 @@
     $ref: ./endpoints/services/paths/services-id-delete.yaml
   get:
     $ref: ./endpoints/services/paths/services-id.yaml
+/services/{id}/reload:
+  post:
+    $ref: ./endpoints/services/paths/services-id-reload.yaml
+/services/{id}/restart:
+  post:
+    $ref: ./endpoints/services/paths/services-id-restart.yaml
+/services/{id}/start:
+  post:
+    $ref: ./endpoints/services/paths/services-id-start.yaml
+/services/{id}/stop:
+  post:
+    $ref: ./endpoints/services/paths/services-id-stop.yaml
 /ssh-keys/{ssh_key_id}:
   get:
     $ref: ./endpoints/ssh-keys/paths/ssh-keys-id.yaml

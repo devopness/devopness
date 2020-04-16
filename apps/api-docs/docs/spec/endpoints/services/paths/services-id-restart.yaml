@@ -1,0 +1,22 @@
+summary: Restart a service
+tags:
+  - Services
+parameters:
+  - $ref: '#/components/parameters/authHeader'
+  - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/contentTypeHeader'
+  - in: path
+    name: id
+    example: 1
+    schema:
+      type: integer
+      minimum: 1
+    required: true
+    description: The unique id of the service
+responses:
+  204:
+    $ref: '#/components/responses/NoContent'
+  403:
+    $ref: '#/components/responses/Forbidden'
+  404:
+    $ref: '#/components/responses/NotFound'

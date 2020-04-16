@@ -4,6 +4,10 @@ properties:
     type: string
     description: The service name
     example: mysql
+  displayable_name:
+    type: string
+    description: Formatted/human readable version of the service name
+    example: MySQL
   version:
     type: string
     description: The service current installed version
@@ -24,19 +28,18 @@ properties:
     example: 'stopped'
   description:
     type: string
-    description: A description text describing the service
+    description: A text describing the service, provided by the service author
     example: MySQL Community Server
-  # todo: re-think if status and started_at do actually belong here or linked to each server
   status:
     type: string
-    description: The status of the service at the `updated_at` point in time
-    enum: [active, reloading, inactive, failed, activating, deactivating]
-    example: "active"
-  started_at:
-    type: string
-    format: date-time
-    description: The date and time when the service was started and wheng the uptime is calculated from
-    example: "2019-04-05 09:32:56"
+    description: Current status of deploying to remote servers the current task
+    enum: ["pending", "in-progress", "cancelled", "completed", "failed"]
+    example: "completed"
+  # started_at:
+  #   type: string
+  #   format: date-time
+  #   description: The date and time when the service was started and wheng the uptime is calculated from
+  #   example: "2019-04-05 09:32:56"
   created_at:
     type: string
     format: date-time

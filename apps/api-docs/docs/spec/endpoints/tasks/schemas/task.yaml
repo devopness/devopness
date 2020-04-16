@@ -28,8 +28,8 @@ properties:
   status:
     type: string
     description: Current status of deploying to remote servers the current task
-    enum: ["pending", "in-progress", "cancelled", "successful", "failed"]
-    example: "successful"
+    enum: ["pending", "in-progress", "cancelled", "completed", "failed"]
+    example: "completed"
 required:
   - command
   - pattern
