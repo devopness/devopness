@@ -32,6 +32,11 @@ properties:
     type: integer
     description: Ending range of network ports to be considered by this rule
     example: 7654
+  status:
+    type: string
+    description: Current status of deploying to remote servers the current network rule
+    enum: ["pending", "in-progress", "cancelled", "completed", "failed"]
+    example: "completed"
 required:
   - name
   - type

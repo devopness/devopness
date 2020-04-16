@@ -32,7 +32,7 @@ properties:
     example: MySQL Community Server
   status:
     type: string
-    description: Current status of deploying to remote servers the current task
+    description: Current status of deploying to remote servers the current service
     enum: ["pending", "in-progress", "cancelled", "completed", "failed"]
     example: "completed"
   # started_at:

@@ -20,3 +20,8 @@ properties:
     type: string
     description: The hashed fingerprint of the public key
     example: "41:17:72:a5:21:cd:f2:5b:30:28:a1:4e:7d:26:8e:f2"
+  status:
+    type: string
+    description: Current status of deploying to remote servers the current key
+    enum: ["pending", "in-progress", "cancelled", "completed", "failed"]
+    example: "completed"

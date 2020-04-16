@@ -47,6 +47,11 @@ properties:
     type: array
     items:
       $ref: '#/components/schemas/Environment'
+  status:
+    type: string
+    description: Current status of deploying to remote servers the current application
+    enum: ["pending", "in-progress", "cancelled", "completed", "failed"]
+    example: "completed"
 required:
   - project_id
   - name
