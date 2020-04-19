@@ -9,7 +9,7 @@ properties:
   issuer:
     type: string
     description: The entity or certification authority (CA) who issued the certificate
-    enum: ["custom", "letsencrypt"]
+    enum: ["custom", "lets-encrypt"]
     example: "custom"
   type:
     type: string
