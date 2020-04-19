@@ -156,6 +156,11 @@
 /ssl-certificates:
   post:
     $ref: ./endpoints/ssl-certificates/paths/ssl-certificates.yaml
+/ssl-certificates/{id}:
+  get:
+    $ref: ./endpoints/ssl-certificates/paths/ssl-certificates-id.yaml
+  delete:
+    $ref: ./endpoints/ssl-certificates/paths/ssl-certificates-id-delete.yaml
 /static/language-runtimes:
   get:
     $ref: ./endpoints/static/paths/language-runtimes-list.yaml

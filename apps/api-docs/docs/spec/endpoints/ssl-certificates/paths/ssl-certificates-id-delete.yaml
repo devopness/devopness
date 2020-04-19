@@ -1,0 +1,20 @@
+summary: Delete a SSL certificate
+tags:
+  - SSL Certificates
+parameters:
+  - $ref: "#/components/parameters/authHeader"
+  - $ref: "#/components/parameters/acceptHeader"
+  - $ref: "#/components/parameters/contentTypeHeader"
+  - in: path
+    name: id
+    example: 1
+    schema:
+      type: integer
+      minimum: 1
+    required: true
+    description: The unique id of the record to be deleted
+responses:
+  204:
+    $ref: "#/components/responses/NoContent"
+  404:
+    $ref: "#/components/responses/NotFound"

@@ -1,0 +1,24 @@
+summary: Get details of a single SSL certificate
+tags:
+  - SSL Certificates
+parameters:
+  - $ref: "#/components/parameters/authHeader"
+  - $ref: "#/components/parameters/acceptHeader"
+  - $ref: "#/components/parameters/contentTypeHeader"
+  - in: path
+    name: id
+    example: 1
+    schema:
+      type: integer
+      minimum: 1
+    required: true
+    description: Unique ID of the item to be retrieved
+responses:
+  200:
+    description: "Ok"
+    content:
+      application/json:
+        schema:
+          $ref: "#/components/schemas/SslCertificate"
+  404:
+    $ref: "#/components/responses/NotFound"
