@@ -119,11 +119,6 @@
 /services/{id}/stop:
   post:
     $ref: ./endpoints/services/paths/services-id-stop.yaml
-/ssh-keys/{ssh_key_id}:
-  get:
-    $ref: ./endpoints/ssh-keys/paths/ssh-keys-id.yaml
-  delete:
-    $ref: ./endpoints/ssh-keys/paths/ssh-keys-id-delete.yaml
 /social-accounts:
   post:
     $ref: ./endpoints/social-accounts/paths/social-accounts.yaml
@@ -153,6 +148,14 @@
 /source-providers/{provider}:
   get:
     $ref: ./endpoints/source-providers/paths/source-providers-name.yaml
+/ssh-keys/{ssh_key_id}:
+  get:
+    $ref: ./endpoints/ssh-keys/paths/ssh-keys-id.yaml
+  delete:
+    $ref: ./endpoints/ssh-keys/paths/ssh-keys-id-delete.yaml
+/ssl-certificates:
+  post:
+    $ref: ./endpoints/ssl-certificates/paths/ssl-certificates.yaml
 /static/language-runtimes:
   get:
     $ref: ./endpoints/static/paths/language-runtimes-list.yaml

@@ -1,0 +1,23 @@
+summary: Create a new SSL certificate linked to the current user's profile
+tags:
+  - SSL Certificates
+parameters:
+  - $ref: "#/components/parameters/authHeader"
+  - $ref: "#/components/parameters/acceptHeader"
+  - $ref: "#/components/parameters/contentTypeHeader"
+requestBody:
+  description: A JSON object containing data for creating a new record of SSL certificate
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: "#/components/schemas/SslCertificateCreate"
+responses:
+  200:
+    description: "Ok"
+    content:
+      application/json:
+        schema:
+          $ref: "#/components/schemas/SslCertificate"
+  404:
+    $ref: "#/components/responses/NotFound"

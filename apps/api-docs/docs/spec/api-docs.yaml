@@ -1,6 +1,6 @@
-openapi: '3.0.0'
+openapi: "3.0.0"
 info:
-  version: 'latest'
+  version: "latest"
   title: devopness API
   x-logo:
     url: https://staging.devopness.com/26f9f5be5cd326a0ad0cc4f4ed65129b.png
@@ -132,8 +132,8 @@ paths:
 tags:
   - name: Static Data
     description: |
-        Client API applications might need to retrieve possible accepted values to fulfill their forms and allow end users to pick values from a list of valid data.
-        All static data that need to be used through `devopness` API client applications is provided through the `/static/*` endpoints.
+      Client API applications might need to retrieve possible accepted values to fulfill their forms and allow end users to pick values from a list of valid data.
+      All static data that need to be used through `devopness` API client applications is provided through the `/static/*` endpoints.
   - name: Actions
   - name: Applications
   - name: Applications - Deployments
@@ -148,23 +148,26 @@ tags:
   - name: Projects - Network Rules
   - name: Projects - Processes
     description: |
-        The terms `process`, `background process` and `daemon` may be used interchangeably in the `devopness` API documentation to denote the same thing: i.e., a computer process that runs behind the scenes without user intervention, detached from TTY (teletype/terminal type) and having no associated console or controlling terminal, therefore prevented from receiving `SIGHUP` on shell termination.
+      The terms `process`, `background process` and `daemon` may be used interchangeably in the `devopness` API documentation to denote the same thing: i.e., a computer process that runs behind the scenes without user intervention, detached from TTY (teletype/terminal type) and having no associated console or controlling terminal, therefore prevented from receiving `SIGHUP` on shell termination.
   - name: Projects - Servers
   - name: Projects - Services
   - name: Projects - SSH Keys
   - name: Projects - Tasks
     description: |
-        A task is a scheduled command to be set on one or more project servers to ensure a given routine will be executed on time.
+      A task is a scheduled command to be set on one or more project servers to ensure a given routine will be executed on time.
   - name: Servers
   - name: Services
-  - name: SSH Keys
   - name: Social Accounts
     description: |
-        A social account is a third party login/authorization service connected to the current user's account. e.g.: Facebook, Google, GitHub
+      A social account is a third party login/authorization service connected to the current user's account. e.g.: Facebook, Google, GitHub
   - name: Source Providers
     description: |
-        A source provider is a Version Control System (VCS)/Source Code Management (SCM) connected to the current user's account. e.g.: BitBucket, GitHub, GitLab
+      A source provider is a Version Control System (VCS)/Source Code Management (SCM) connected to the current user's account. e.g.: BitBucket, GitHub, GitLab
   - name: Source Providers - Repositories
+  - name: SSH Keys
+  - name: SSL Certificates
+    description: |
+      Throughout the `devopness` documentation the term `SSL Certificate` refers to a public key certificate adhering to `X.509` standard. This certificate might be used as an HTTPS/SSL/TLS and other internet protocols to establish encrypted connections between client apps (e.g. browsers) and the web application servers managed through `devopness`, but it's not limited to be used for authenticating server's identity.
   - name: Tasks
   - name: Users
 

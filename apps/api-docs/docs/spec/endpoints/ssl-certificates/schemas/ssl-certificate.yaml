@@ -1,0 +1,70 @@
+type: object
+properties:
+  domains:
+    description: The list of domain names to which the SSL certificate refers to
+    type: array
+    example: ['my-subdomain.example.com', 'example.com', '*.example.com']
+    items:
+      type: string
+  issuer:
+    type: string
+    description: The entity or certification authority (CA) who issued the certificate
+    enum: ["custom", "letsencrypt"]
+    example: "custom"
+  type:
+    type: string
+    description: The certificate type, indicating its scope
+    enum: ["single-domain", "multi-domain", "wildcard"]
+    example: "single-domain"
+  validation_level:
+    type: string
+    description: "The level of validation applied when issuing the certificate. This can be one out of the three validation levels conforming to public key certificates standards: `DV (Domain Validation)`, `OV (Organization validation)` or `EV (Extended Validation)`"
+    enum: ["DV", "OV", "EV"]
+    example: "DV"
+  custom_private_key:
+    type: string
+    description: The private key provided by the Certification Authority, when the certificate has not being automatically issued through `devopness`
+    example: "-----BEGIN RSA PRIVATE KEY-----MIIJKQIBAAKCAgEA6AUEbdJa ..."
+  custom_certificate:
+    type: string
+    description: The contents of the certificate provided by the Certification Authority, when the certificate has not being automatically issued through `devopness`
+    example: "-----BEGIN CERTIFICATE-----MIIGdDCCBVygAwIBAgISAy66cNIj ..."
+  status:
+    type: string
+    description: Current status of deploying to remote servers the current certificate
+    enum: ["pending", "in-progress", "cancelled", "completed", "failed"]
+    example: "completed"
+  active:
+    type: boolean
+    description: Tells if the certificate is active for all linked servers and applications
+  user_id:
+    type: integer
+    description: The unique id of the user to which this record belongs to
+    example: 123
+  expires_at:
+    type: string
+    format: date-time
+    description: The date and time when this certificate will no longer be valid, down to minute precision
+    example: "2029-08-07 06:05"
+  last_renewed_at:
+    type: string
+    format: date-time
+    description: The date and time when this certificate was renewed for the last time
+    example: "2029-08-07 06:05"
+  created_at:
+    type: string
+    format: date-time
+    description: The date and time when the record was created
+    example: "2019-09-25 13:49:51"
+  updated_at:
+    type: string
+    format: date-time
+    description: The date and time when the record was last updated
+    example: "2019-09-25 13:52:04"
+required:
+  - domains
+  - issuer
+  - type
+  - validation_level
+  - status
+  - active

@@ -86,10 +86,6 @@ ServiceCreate:
   $ref: ./endpoints/services/schemas/service-create.yaml
 Services:
   $ref: ./endpoints/services/schemas/service-list.yaml
-SshKey:
-  $ref: ./endpoints/ssh-keys/schemas/ssh-key.yaml
-SshKeys:
-  $ref: ./endpoints/ssh-keys/schemas/ssh-key-list.yaml
 SocialAccount:
   $ref: ./endpoints/social-accounts/schemas/social-account.yaml
 SocialAccountCreate:
@@ -98,6 +94,14 @@ SocialAccounts:
   $ref: ./endpoints/social-accounts/schemas/social-account-list.yaml
 SocialAccountStatus:
   $ref: ./endpoints/social-accounts/schemas/social-account-status.yaml
+SshKey:
+  $ref: ./endpoints/ssh-keys/schemas/ssh-key.yaml
+SshKeys:
+  $ref: ./endpoints/ssh-keys/schemas/ssh-key-list.yaml
+SslCertificate:
+  $ref: ./endpoints/ssl-certificates/schemas/ssl-certificate.yaml
+SslCertificateCreate:
+  $ref: ./endpoints/ssl-certificates/schemas/ssl-certificate-create.yaml
 Task:
   $ref: ./endpoints/tasks/schemas/task.yaml
 TaskCreate:
