@@ -16,6 +16,9 @@
     $ref: ./endpoints/applications/paths/applications-id-deployments.yaml
   get:
     $ref: ./endpoints/applications/paths/applications-id-deployments-list.yaml
+/applications/{application_id}/ssl-certificates:
+  post:
+    $ref: ./endpoints/applications/paths/applications-id-ssl-certificates.yaml
 /deployments/{deployment_id}:
   get:
     $ref: ./endpoints/deployments/paths/deployments-id.yaml
@@ -153,9 +156,6 @@
     $ref: ./endpoints/ssh-keys/paths/ssh-keys-id.yaml
   delete:
     $ref: ./endpoints/ssh-keys/paths/ssh-keys-id-delete.yaml
-/ssl-certificates:
-  post:
-    $ref: ./endpoints/ssl-certificates/paths/ssl-certificates.yaml
 /ssl-certificates/{id}:
   get:
     $ref: ./endpoints/ssl-certificates/paths/ssl-certificates-id.yaml

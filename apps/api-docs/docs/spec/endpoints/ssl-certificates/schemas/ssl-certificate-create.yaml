@@ -1,5 +1,9 @@
 type: object
 properties:
+  environment_id:
+    type: integer
+    description: The Id of the environment to which the settings apply to
+    example: 3
   domains:
     description: The list of domain names to which the SSL certificate refers to
     type: array
@@ -32,6 +36,7 @@ properties:
   environments:
     $ref: '#/components/schemas/EnvironmentLinks'
 required:
+  - environment_id
   - domains
   - issuer
   - type

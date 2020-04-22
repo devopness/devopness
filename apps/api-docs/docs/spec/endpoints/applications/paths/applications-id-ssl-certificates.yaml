@@ -1,10 +1,18 @@
-summary: Create a new SSL certificate linked to the current user's profile
+summary: Create a new SSL certificate linked to the current application
 tags:
-  - SSL Certificates
+  - Applications - SSL Certificates
 parameters:
   - $ref: "#/components/parameters/authHeader"
   - $ref: "#/components/parameters/acceptHeader"
   - $ref: "#/components/parameters/contentTypeHeader"
+  - in: path
+    name: application_id
+    example: 1
+    schema:
+      type: integer
+      minimum: 1
+    required: true
+    description: Unique id of the parent application
 requestBody:
   description: A JSON object containing data for creating a new record of SSL certificate
   required: true

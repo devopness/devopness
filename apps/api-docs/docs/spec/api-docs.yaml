@@ -137,6 +137,9 @@ tags:
   - name: Actions
   - name: Applications
   - name: Applications - Deployments
+  - name: Applications - SSL Certificates
+    description: |
+      Throughout the `devopness` documentation the term `SSL Certificate` refers to a public key certificate adhering to `X.509` standard. While TLS is the protocol more used nowadays for web encryption, for historical reasons web encryption is often referred to simply as SSL. A SSL Certificate managed by `devopness` might be used as an HTTPS/SSL/TLS and other internet protocols to establish encrypted connections between client apps (e.g. browsers) and the web application servers managed through `devopness`, but it's not limited to be used for authenticating server's identity.
   - name: Deployments
   - name: Logs
   - name: Network Rules
