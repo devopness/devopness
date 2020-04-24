@@ -22,6 +22,11 @@
 /deployments/{deployment_id}:
   get:
     $ref: ./endpoints/deployments/paths/deployments-id.yaml
+/environments/{environment_id}:
+  delete:
+    $ref: ./endpoints/environments/paths/environments-id-delete.yaml
+  get:
+    $ref: ./endpoints/environments/paths/environments-id.yaml
 /logs/deployments/{deployment_id}/steps/{step_id}:
   get:
     $ref: ./endpoints/logs/paths/logs-deployments-id-steps-id.yaml

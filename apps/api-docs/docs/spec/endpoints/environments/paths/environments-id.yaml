@@ -1,0 +1,24 @@
+summary: Get an environment by ID
+tags:
+  - Environments
+parameters:
+  - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/authHeader'
+  - $ref: '#/components/parameters/contentTypeHeader'
+  - in: path
+    name: environment_id
+    example: 1
+    schema:
+      type: integer
+      minimum: 1
+    required: true
+    description: Unique ID of the environment to get
+responses:
+  200:
+    description: 'Ok'
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Environment'
+  404:
+    $ref: '#/components/responses/NotFound'

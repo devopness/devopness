@@ -9,6 +9,8 @@ properties:
     description: The type of the deployment being triggred
     enum: ['testing', 'staging', 'production']
     example: 'staging'
+  servers:
+    $ref: '#/components/schemas/Servers'
   created_at:
     type: string
     format: date-time
