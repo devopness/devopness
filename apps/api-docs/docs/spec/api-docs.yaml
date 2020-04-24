@@ -76,7 +76,7 @@ info:
     ## Routes and Endpoints
     A route is a URI which can be mapped to different HTTP methods. The mapping of an individual HTTP method to a route is known as an endpoint. `devopness` API exposes, as much as posible, well standardized endpoints with resources and segments leading the path to access the desired resource data.
 
-    Each resource mentionned in an endpoint segment has its name written in the plural form, as we are always referencing a collection of objects, that might or might not be filtered by a single ID or extra query string parameters.
+    Each resource mentioned in an endpoint segment has its name written in the plural form, as we are always referencing a collection of objects, that might or might not be filtered by a single ID or extra query string parameters.
 
     ### Resources and nested resources endpoints
     Basically there are two types of endpoints used in `devopness` API:
