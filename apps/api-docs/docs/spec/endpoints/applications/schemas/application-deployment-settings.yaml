@@ -47,7 +47,7 @@ properties:
     type: boolean
     example: false
   engine_version:
-    description: The language runtime engine versin to be used to execute this application code on the deployed servers
+    description: The language runtime engine version to be used to execute this application code on the deployed servers
     type: string
     example: "19.03.2"
   build_command:
