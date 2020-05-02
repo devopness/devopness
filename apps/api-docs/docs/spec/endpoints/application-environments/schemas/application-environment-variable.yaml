@@ -11,7 +11,7 @@ properties:
   description:
     type: string
     description: A text describing the variable, provided by the end user
-    example: 'The public URL to access this app environment domain'
+    example: 'Sample variable description'
   target:
     type: string
     description: The target defining how the variable key/value pair will be deployed

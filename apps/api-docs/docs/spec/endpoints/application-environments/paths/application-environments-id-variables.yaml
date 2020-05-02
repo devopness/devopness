@@ -1,31 +1,31 @@
-summary: Create a new SSL certificate linked to the current application
+summary: Create a new variable linked to an application environment
 tags:
-  - Applications - SSL Certificates
+  - Applications - Environments
 parameters:
   - $ref: "#/components/parameters/authHeader"
   - $ref: "#/components/parameters/acceptHeader"
   - $ref: "#/components/parameters/contentTypeHeader"
   - in: path
-    name: application_id
+    name: application_environment_id
     example: 1
     schema:
       type: integer
       minimum: 1
     required: true
-    description: Unique id of the parent application
+    description: Unique id of the application environment
 requestBody:
-  description: A JSON object containing data for creating a new record of SSL certificate
+  description: A JSON object containing data for creating a new record of application environment variable
   required: true
   content:
     application/json:
       schema:
-        $ref: "#/components/schemas/SslCertificateCreate"
+        $ref: "#/components/schemas/ApplicationEnvironmentVariable"
 responses:
   201:
     description: 'Created'
     content:
       application/json:
         schema:
-          $ref: "#/components/schemas/SslCertificate"
+          $ref: "#/components/schemas/ApplicationEnvironmentVariable"
   404:
     $ref: "#/components/responses/NotFound"

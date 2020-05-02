@@ -14,8 +14,8 @@ parameters:
     required: true
     description: Numeric ID of the application to be deployed
 responses:
-  200:
-    description: 'Ok'
+  201:
+    description: 'Created'
     content:
       application/json:
         schema:

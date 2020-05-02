@@ -13,8 +13,8 @@ requestBody:
       schema:
         $ref: '#/components/schemas/SocialAccountCreate'
 responses:
-  200:
-    description: 'Ok'
+  201:
+    description: 'Created'
     content:
       application/json:
         schema:
