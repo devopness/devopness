@@ -8,6 +8,10 @@ ApplicationDeployment:
   $ref: ./endpoints/applications/schemas/application-deployment.yaml
 ApplicationDeploymentSettings:
   $ref: ./endpoints/applications/schemas/application-deployment-settings.yaml
+ApplicationEnvironmentVariable:
+  $ref: ./endpoints/application-environments/schemas/application-environment-variable.yaml
+ApplicationEnvironmentVariables:
+  $ref: ./endpoints/application-environments/schemas/application-environment-variable-list.yaml
 Applications:
   $ref: ./endpoints/applications/schemas/application-list.yaml
 BlueprintItem:

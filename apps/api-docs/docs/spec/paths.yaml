@@ -16,6 +16,9 @@
     $ref: ./endpoints/applications/paths/applications-id-deployments.yaml
   get:
     $ref: ./endpoints/applications/paths/applications-id-deployments-list.yaml
+/application-environments/{application_environment_id}/variables:
+  get:
+    $ref: ./endpoints/application-environments/paths/application-environments-id-variables-list.yaml
 /applications/{application_id}/ssl-certificates:
   post:
     $ref: ./endpoints/applications/paths/applications-id-ssl-certificates.yaml
