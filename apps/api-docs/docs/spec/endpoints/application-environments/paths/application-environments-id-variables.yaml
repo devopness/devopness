@@ -19,7 +19,7 @@ requestBody:
   content:
     application/json:
       schema:
-        $ref: "#/components/schemas/ApplicationEnvironmentVariable"
+        $ref: "#/components/schemas/ApplicationEnvironmentVariableCreate"
 responses:
   201:
     description: 'Created'

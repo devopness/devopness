@@ -10,6 +10,8 @@ ApplicationDeploymentSettings:
   $ref: ./endpoints/applications/schemas/application-deployment-settings.yaml
 ApplicationEnvironmentVariable:
   $ref: ./endpoints/application-environments/schemas/application-environment-variable.yaml
+ApplicationEnvironmentVariableCreate:
+  $ref: ./endpoints/application-environments/schemas/application-environment-variable-create.yaml
 ApplicationEnvironmentVariables:
   $ref: ./endpoints/application-environments/schemas/application-environment-variable-list.yaml
 Applications:
