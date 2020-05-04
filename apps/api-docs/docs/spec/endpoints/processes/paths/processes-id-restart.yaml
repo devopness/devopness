@@ -1,6 +1,6 @@
 summary: Restart a background process
 tags:
-  - Processes
+  - Daemons/Processes
 parameters:
   - $ref: '#/components/parameters/acceptHeader'
   - $ref: '#/components/parameters/authHeader'

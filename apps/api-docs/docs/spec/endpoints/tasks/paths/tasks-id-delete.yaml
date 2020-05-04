@@ -1,6 +1,6 @@
 summary: Delete a given task
 tags:
-  - Tasks
+  - Cronjobs/Scheduled Tasks
 parameters:
   - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/acceptHeader'

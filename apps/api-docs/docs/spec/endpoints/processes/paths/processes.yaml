@@ -1,6 +1,6 @@
 summary: Add a background process to the given project
 tags:
-  - Projects - Processes
+  - Projects - Daemons/Processes
 parameters:
   - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/acceptHeader'

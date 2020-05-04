@@ -1,6 +1,6 @@
 summary: 'Returns a list of all processes belonging to a project'
 tags:
-  - Projects - Processes
+  - Projects - Daemons/Processes
 parameters:
   - $ref: '#/components/parameters/acceptHeader'
   - $ref: '#/components/parameters/authHeader'

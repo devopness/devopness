@@ -141,25 +141,30 @@ tags:
   - name: Applications - SSL Certificates
     description: |
       Throughout the `devopness` documentation the term `SSL Certificate` refers to a public key certificate adhering to `X.509` standard. While TLS is the protocol more used nowadays for web encryption, for historical reasons web encryption is often referred to simply as SSL. A SSL Certificate managed by `devopness` might be used as an HTTPS/SSL/TLS and other internet protocols to establish encrypted connections between client apps (e.g. browsers) and the web application servers managed through `devopness`, but it's not limited to be used for authenticating server's identity.
+  - name: Cronjobs/Scheduled Tasks
+    description: |
+      A cronjob or scheduled task is a scheduled command to be set on one or more project servers to ensure a given routine will be executed on time.
+  - name: Daemons/Processes
+    description: |
+      The terms `process`, `background process` and `daemon` may be used interchangeably in the `devopness` API documentation to denote the same thing: i.e., a computer process that runs behind the scenes without user intervention, detached from TTY (teletype/terminal type) and having no associated console or controlling terminal, therefore prevented from receiving `SIGHUP` on shell termination.
   - name: Deployments
   - name: Environments
   - name: Logs
   - name: Network Rules
-  - name: Processes
   - name: Projects
   - name: Projects - Applications
+  - name: Projects - Cronjobs/Scheduled Tasks
+    description: |
+      A cronjob or scheduled task is a scheduled command to be set on one or more project servers to ensure a given routine will be executed on time.
+  - name: Projects - Daemons/Processes
+    description: |
+      The terms `process`, `background process` and `daemon` may be used interchangeably in the `devopness` API documentation to denote the same thing: i.e., a computer process that runs behind the scenes without user intervention, detached from TTY (teletype/terminal type) and having no associated console or controlling terminal, therefore prevented from receiving `SIGHUP` on shell termination.
   - name: Projects - Deployments
   - name: Projects - Environments
   - name: Projects - Network Rules
-  - name: Projects - Processes
-    description: |
-      The terms `process`, `background process` and `daemon` may be used interchangeably in the `devopness` API documentation to denote the same thing: i.e., a computer process that runs behind the scenes without user intervention, detached from TTY (teletype/terminal type) and having no associated console or controlling terminal, therefore prevented from receiving `SIGHUP` on shell termination.
   - name: Projects - Servers
   - name: Projects - Services
   - name: Projects - SSH Keys
-  - name: Projects - Tasks
-    description: |
-      A task is a scheduled command to be set on one or more project servers to ensure a given routine will be executed on time.
   - name: Servers
   - name: Services
   - name: Social Accounts
@@ -173,7 +178,6 @@ tags:
   - name: SSL Certificates
     description: |
       Throughout the `devopness` documentation the term `SSL Certificate` refers to a public key certificate adhering to `X.509` standard. While TLS is the protocol more used nowadays for web encryption, for historical reasons web encryption is often referred to simply as SSL. A SSL Certificate managed by `devopness` might be used as an HTTPS/SSL/TLS and other internet protocols to establish encrypted connections between client apps (e.g. browsers) and the web application servers managed through `devopness`, but it's not limited to be used for authenticating server's identity.
-  - name: Tasks
   - name: Users
 
 components:

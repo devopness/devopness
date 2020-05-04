@@ -1,6 +1,6 @@
 summary: Get a task by ID
 tags:
-  - Tasks
+  - Cronjobs/Scheduled Tasks
 parameters:
   - $ref: '#/components/parameters/acceptHeader'
   - $ref: '#/components/parameters/authHeader'

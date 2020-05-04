@@ -1,6 +1,6 @@
 summary: Return a list of all tasks belonging to a project
 tags:
-  - Projects - Tasks
+  - Projects - Cronjobs/Scheduled Tasks
 parameters:
   - $ref: '#/components/parameters/acceptHeader'
   - $ref: '#/components/parameters/authHeader'

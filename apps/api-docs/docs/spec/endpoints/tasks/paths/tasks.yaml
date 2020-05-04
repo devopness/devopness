@@ -1,6 +1,6 @@
 summary: Add a scheduled task to the given project
 tags:
-  - Projects - Tasks
+  - Projects - Cronjobs/Scheduled Tasks
 parameters:
   - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/acceptHeader'

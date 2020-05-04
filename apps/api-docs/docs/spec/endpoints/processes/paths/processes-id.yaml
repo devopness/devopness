@@ -1,6 +1,6 @@
 summary: Get a background process by ID
 tags:
-  - Processes
+  - Daemons/Processes
 parameters:
   - $ref: '#/components/parameters/acceptHeader'
   - $ref: '#/components/parameters/authHeader'
