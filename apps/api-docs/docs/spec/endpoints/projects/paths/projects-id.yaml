@@ -2,8 +2,8 @@ summary: Get a project by ID
 tags:
   - Projects
 parameters:
-  - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/contentTypeHeader'
   - in: path
     name: id

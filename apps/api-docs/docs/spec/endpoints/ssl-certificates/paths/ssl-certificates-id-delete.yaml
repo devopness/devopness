@@ -2,8 +2,8 @@ summary: Delete a SSL certificate
 tags:
   - SSL Certificates
 parameters:
-  - $ref: "#/components/parameters/authHeader"
   - $ref: "#/components/parameters/acceptHeader"
+  - $ref: "#/components/parameters/authHeader"
   - $ref: "#/components/parameters/contentTypeHeader"
   - in: path
     name: id

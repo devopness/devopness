@@ -2,8 +2,8 @@ summary: Create a new SSL certificate linked to the current application
 tags:
   - Applications - SSL Certificates
 parameters:
-  - $ref: "#/components/parameters/authHeader"
   - $ref: "#/components/parameters/acceptHeader"
+  - $ref: "#/components/parameters/authHeader"
   - $ref: "#/components/parameters/contentTypeHeader"
   - in: path
     name: application_id

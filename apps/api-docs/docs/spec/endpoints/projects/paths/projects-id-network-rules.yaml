@@ -2,8 +2,8 @@ summary: Add a network tule to the given project
 tags:
   - Projects - Network Rules
 parameters:
-  - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/contentTypeHeader'
   - in: path
     name: id

@@ -2,8 +2,8 @@ summary: Create a new variable linked to an application environment
 tags:
   - Applications - Environments
 parameters:
-  - $ref: "#/components/parameters/authHeader"
   - $ref: "#/components/parameters/acceptHeader"
+  - $ref: "#/components/parameters/authHeader"
   - $ref: "#/components/parameters/contentTypeHeader"
   - in: path
     name: application_environment_id

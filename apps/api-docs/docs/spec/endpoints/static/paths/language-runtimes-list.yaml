@@ -2,8 +2,8 @@ summary: List supported language runtimes and respective frameworks
 tags:
   - Static Data
 parameters:
-  - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/contentTypeHeader'
 responses:
   200:

@@ -2,8 +2,8 @@ summary: 'Return a list of all SSH keys added to a project'
 tags:
   - Projects - SSH Keys
 parameters:
-  - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/contentTypeHeader'
   - in: path
     name: id

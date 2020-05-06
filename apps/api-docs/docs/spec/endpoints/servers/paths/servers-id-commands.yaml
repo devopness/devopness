@@ -2,8 +2,8 @@ summary: Get commands to be executed on the given server
 tags:
   - Servers
 parameters:
-  - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/contentTypeHeader'
   - in: path
     name: id

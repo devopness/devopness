@@ -2,8 +2,8 @@ summary: Return a list of all social accounts belonging to current user
 tags:
   - Social Accounts
 parameters:
-  - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/contentTypeHeader'
 responses:
   200:

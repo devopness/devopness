@@ -2,8 +2,8 @@ summary: Get the connect status of a Social authentication provider, by its name
 tags:
   - Social Accounts
 parameters:
-  - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/contentTypeHeader'
   - in: path
     name: provider

@@ -2,8 +2,8 @@ summary: 'Return a list of all servers belonging to current user'
 tags:
   - Servers
 parameters:
-  - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/contentTypeHeader'
 responses:
   200:

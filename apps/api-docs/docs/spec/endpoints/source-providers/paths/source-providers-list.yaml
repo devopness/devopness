@@ -2,8 +2,8 @@ summary: Return a list of all source code providers linked to current user
 tags:
   - Source Providers
 parameters:
-  - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/contentTypeHeader'
 responses:
   200:

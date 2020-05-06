@@ -2,8 +2,8 @@ summary: 'Return a list of all repositories belonging to a current user social p
 tags:
   - Source Providers - Repositories
 parameters:
-  - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/contentTypeHeader'
   - in: path
     name: provider

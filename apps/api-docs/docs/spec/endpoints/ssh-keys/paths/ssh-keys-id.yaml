@@ -2,8 +2,8 @@ summary: Get a SSH key by ID
 tags:
   - SSH Keys
 parameters:
-  - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/contentTypeHeader'
   - in: path
     name: ssh_key_id

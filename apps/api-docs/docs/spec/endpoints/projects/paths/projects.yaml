@@ -3,6 +3,7 @@ tags:
   - Projects
 parameters:
   - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/contentTypeHeader'
 requestBody:
   description: A JSON object containing project data

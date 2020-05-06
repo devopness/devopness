@@ -2,8 +2,8 @@ summary: Delete a given Background process
 tags:
   - Daemons/Processes
 parameters:
-  - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/contentTypeHeader'
   - in: path
     name: process_id

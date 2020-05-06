@@ -2,8 +2,8 @@ summary: 'Logout/revoke an existing token'
 tags:
   - Users
 parameters:
-  - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/contentTypeHeader'
 responses:
   204:
