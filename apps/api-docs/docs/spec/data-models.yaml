@@ -109,11 +109,11 @@ SslCertificate:
 SslCertificateCreate:
   $ref: ./endpoints/ssl-certificates/schemas/ssl-certificate-create.yaml
 Task:
-  $ref: ./endpoints/tasks/schemas/task.yaml
+  $ref: ./endpoints/cronjobs/schemas/cronjob.yaml
 TaskCreate:
-  $ref: ./endpoints/tasks/schemas/task-create.yaml
+  $ref: ./endpoints/cronjobs/schemas/cronjob-create.yaml
 Tasks:
-  $ref: ./endpoints/tasks/schemas/task-list.yaml
+  $ref: ./endpoints/cronjobs/schemas/cronjob-list.yaml
 User:
   $ref: ./endpoints/users/schemas/user.yaml
 UserCreate:

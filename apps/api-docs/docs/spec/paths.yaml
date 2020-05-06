@@ -102,9 +102,9 @@
     $ref: ./endpoints/projects/paths/projects-id-ssh-keys-list.yaml
 /projects/{id}/tasks:
   post:
-    $ref: ./endpoints/tasks/paths/tasks.yaml
+    $ref: ./endpoints/cronjobs/paths/cronjobs.yaml
   get:
-    $ref: ./endpoints/tasks/paths/tasks-list.yaml
+    $ref: ./endpoints/cronjobs/paths/cronjobs-list.yaml
 /servers:
   get:
     $ref: ./endpoints/servers/paths/servers-list.yaml
@@ -178,9 +178,9 @@
     $ref: ./endpoints/static/paths/language-runtimes-list.yaml
 /tasks/{task_id}:
   delete:
-    $ref: ./endpoints/tasks/paths/tasks-id-delete.yaml
+    $ref: ./endpoints/cronjobs/paths/cronjobs-id-delete.yaml
   get:
-    $ref: ./endpoints/tasks/paths/tasks-id.yaml
+    $ref: ./endpoints/cronjobs/paths/cronjobs-id.yaml
 /users:
   post:
     $ref: ./endpoints/users/paths/users.yaml
