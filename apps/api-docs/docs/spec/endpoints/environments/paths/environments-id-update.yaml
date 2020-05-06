@@ -1,0 +1,27 @@
+summary: Update a given environment
+tags:
+  - Environments
+parameters:
+  - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/authHeader'
+  - $ref: '#/components/parameters/contentTypeHeader'
+  - in: path
+    name: environment_id
+    example: 1
+    schema:
+      type: integer
+      minimum: 1
+    required: true
+    description: Unique ID of the environment to delete
+requestBody:
+  description: A JSON object containing environment data
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/Environment'
+responses:
+  204:
+    $ref: '#/components/responses/NoContent'
+  404:
+    $ref: '#/components/responses/NotFound'

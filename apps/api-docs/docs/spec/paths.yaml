@@ -30,6 +30,8 @@
 /environments/{environment_id}:
   delete:
     $ref: ./endpoints/environments/paths/environments-id-delete.yaml
+  put:
+    $ref: ./endpoints/environments/paths/environments-id-update.yaml
   get:
     $ref: ./endpoints/environments/paths/environments-id.yaml
 /logs/deployments/{deployment_id}/steps/{step_id}:
