@@ -100,7 +100,7 @@ info:
     2) Nested resources endpoints:
 
     Nested resources are used when there is a clear hierarchy between the parent resource and the subresource, or for convenience to make it easy and predcitable on how to filter subresources belonging to a parent resource.
-    In `devopness` API design we never nest resources more than 1 level deep + one action related to the child resource or to the relationship between parent and child.
+    In `devopness` API design we strive to avoid nesting resources more than 1 level deep + one action related to the child resource or to the relationship between parent and child.
 
     **Pattern:**
 
