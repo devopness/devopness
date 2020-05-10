@@ -1,0 +1,23 @@
+{
+  "name": "devopness-sdk-js",
+  "version": "1.0.0",
+  "description": "[![MIT License](https://img.shields.io/badge/license-MIT_License-green.svg?style=flat-square)](https://github.com/devopness/devopness-api-sdk-js/blob/master/LICENSE)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devopness/devopness-sdk-js.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/devopness/devopness-sdk-js/issues"
+  },
+  "homepage": "https://github.com/devopness/devopness-sdk-js#readme",
+  "devDependencies": {
+    "typescript": "^3.8.3"
+  }
+}
