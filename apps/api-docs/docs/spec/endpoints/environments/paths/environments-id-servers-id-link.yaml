@@ -1,0 +1,28 @@
+summary: Link a server to an environment
+tags:
+  - Environments - Servers
+parameters:
+  - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/authHeader'
+  - $ref: '#/components/parameters/contentTypeHeader'
+  - in: path
+    name: environment_id
+    example: 1
+    schema:
+      type: integer
+      minimum: 1
+    required: true
+    description: Unique ID of the environment
+  - in: path
+    name: server_id
+    example: 1
+    schema:
+      type: integer
+      minimum: 1
+    required: true
+    description: Unique ID of the server to be linked
+responses:
+  201:
+    $ref: '#/components/responses/NoContent'
+  404:
+    $ref: '#/components/responses/NotFound'

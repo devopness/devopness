@@ -34,6 +34,12 @@
     $ref: ./endpoints/environments/paths/environments-id-update.yaml
   get:
     $ref: ./endpoints/environments/paths/environments-id.yaml
+/environments/{environment_id}/servers/{server_id}/link:
+  post:
+    $ref: ./endpoints/environments/paths/environments-id-servers-id-link.yaml
+/environments/{environment_id}/servers/{server_id}/unlink:
+  delete:
+    $ref: ./endpoints/environments/paths/environments-id-servers-id-unlink.yaml
 /logs/deployments/{deployment_id}/steps/{step_id}:
   get:
     $ref: ./endpoints/logs/paths/logs-deployments-id-steps-id.yaml
