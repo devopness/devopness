@@ -1,23 +1,38 @@
 {
   "name": "devopness-sdk-js",
-  "version": "1.0.0",
-  "description": "[![MIT License](https://img.shields.io/badge/license-MIT_License-green.svg?style=flat-square)](https://github.com/devopness/devopness-api-sdk-js/blob/master/LICENSE)",
-  "main": "index.js",
+  "version": "0.1.0",
+  "description": "Painless essential DevOps to everyone",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "prepare": "npm run build",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/devopness/devopness-sdk-js.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "DevOps",
+    "Devopness",
+    "Deploy",
+    "Deployment",
+    "Zero Downtime Deploy",
+    "Server Management",
+    "Configuration Management"
+  ],
+  "author": "Devopness (https://www.devopness.com)",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/devopness/devopness-sdk-js/issues"
   },
   "homepage": "https://github.com/devopness/devopness-sdk-js#readme",
   "devDependencies": {
+    "tslint": "^6.1.2",
     "typescript": "^3.8.3"
   }
 }
