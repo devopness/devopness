@@ -2,14 +2,12 @@ import axios, { AxiosError, AxiosRequestConfig, AxiosResponse, AxiosInstance } f
 
 export class BaseApi {
   private api: AxiosInstance;
+  public static baseUrl: string;
 
   defaultAxiosSettings: AxiosRequestConfig = {
-    baseURL: "https://base-url",
     timeout: 30000,
     headers: {
       common: {
-        "Cache-Control": "no-cache, no-store, must-revalidate",
-        Pragma: "no-cache",
         "Content-Type": "application/json",
         Accept: "application/json",
       },
@@ -23,6 +21,8 @@ export class BaseApi {
      * @todo: refresh-token
      */
     const settings = Object.assign({}, config, this.defaultAxiosSettings);
+    settings.baseURL = BaseApi.baseUrl;
+
     if (credentials && credentials.accessToken) {
       settings.headers.common.Authorization = 'Bearer ' + credentials.accessToken;
     }
