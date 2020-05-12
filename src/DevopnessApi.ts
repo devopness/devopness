@@ -8,7 +8,7 @@ export class DevopnessApi {
    * @todo define complex type `credentials` so the `.d.ts` file is created
    * and exported
    */
-  constructor(credentials: Object) {
+  constructor(credentials: any) {
     this.projects = new ProjectApi(credentials);
   }
 }

@@ -9,6 +9,7 @@
   ],
   "scripts": {
     "build": "tsc",
+    "lint": "tslint -c ./tslint.json './src/**/*.ts'",
     "prepare": "npm run build"
   },
   "repository": {
