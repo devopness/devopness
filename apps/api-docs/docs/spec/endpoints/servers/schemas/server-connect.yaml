@@ -1,0 +1,9 @@
+type: object
+properties:
+  message:
+    type: string
+    format: string
+    description: Output message indicating success or failure
+    example: "Server successfully connected"
+required:
+  - message

@@ -82,6 +82,10 @@ Server:
   $ref: ./endpoints/servers/schemas/server.yaml
 ServerBlueprint:
   $ref: ./endpoints/servers/schemas/server-blueprint.yaml
+ServerCommands:
+  $ref: ./endpoints/servers/schemas/server-commands.yaml
+ServerConnect:
+  $ref: ./endpoints/servers/schemas/server-connect.yaml
 ServerCreate:
   $ref: ./endpoints/servers/schemas/server-create.yaml
 Servers:

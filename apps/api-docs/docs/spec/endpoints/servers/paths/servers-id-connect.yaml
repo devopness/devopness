@@ -27,15 +27,7 @@ responses:
     content:
       application/json:
         schema:
-          type: object
-          properties:
-            message:
-              type: string
-              format: string
-              description: Output message indicating success or failure
-              example: "Server successfully connected"
-          required:
-            - message
+          $ref: '#/components/schemas/ServerConnect'
   401:
     $ref: '#/components/responses/Unauthenticated'
   403:
