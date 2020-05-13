@@ -44,8 +44,6 @@ Environments:
   $ref: ./endpoints/environments/schemas/environment-list.yaml
 Error:
   $ref: ./shared/schemas/error.yaml
-Pagination:
-  $ref: ./shared/schemas/pagination.yaml
 LanguageRuntime:
   $ref: ./endpoints/static/schemas/language-runtime.yaml
 LanguageRuntimeFramework:
