@@ -8,7 +8,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "npm run lint && tsc",
+    "build-api-models": "openapi-generator generate --skip-validate-spec -i http://127.0.0.1:9090/spec.json -g typescript-axios -o _generated-sources/openapi -p withSeparateModelsAndApi=true --api-package ./src/_auto_generated_apis_ignore --model-package ./src/models --additional-properties supportsES6=true",
     "lint": "eslint . --ext .ts",
     "prepublishOnly": "npm test && npm run lint",
     "prepare": "npm run build",
@@ -35,6 +36,7 @@
   },
   "homepage": "https://github.com/devopness/devopness-sdk-js#readme",
   "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^1.0.13-4.3.1",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",
     "eslint": "^6.8.0",
