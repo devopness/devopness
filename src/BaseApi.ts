@@ -1,4 +1,10 @@
-import axios, { AxiosError, AxiosRequestConfig, AxiosResponse, AxiosInstance } from "axios";
+import axios, { AxiosRequestConfig, AxiosResponse, AxiosInstance } from "axios";
+
+export interface Credentials {
+  accessToken: string;
+  email: string;
+  password: string;
+}
 
 export class BaseApi {
   private api: AxiosInstance;
@@ -15,7 +21,7 @@ export class BaseApi {
     withCredentials: false
   }
 
-  constructor(credentials?: any, config?: AxiosRequestConfig) {
+  constructor(credentials?: Credentials, config?: AxiosRequestConfig) {
     /**
      * @todo: use credentials (email password)
      * @todo: refresh-token
@@ -29,7 +35,11 @@ export class BaseApi {
     this.api = axios.create(settings);
   }
 
+  protected authenticate(): void {
+    //
+  }
+
   public get<T, R = AxiosResponse<T>>(endpoint: string, config?: AxiosRequestConfig): Promise<R> {
-    return this.api.get<T, R>(this.api.defaults.baseURL + endpoint);
+    return this.api.get<T, R>(this.api.defaults.baseURL + endpoint, config);
   }
 }
