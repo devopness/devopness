@@ -3,7 +3,10 @@
     /* Basic Options */
     "target": "es2015",
     "module": "commonjs",
-    "allowJs": false,
+    "lib": [
+      "ES2015"
+    ],
+      "allowJs": false,
     "declaration": true,
     "sourceMap": true,
     "rootDir": "./src",
