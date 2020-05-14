@@ -9,7 +9,7 @@
 #ApiClient.cs
 
 # Exclude files that we don't want to versioning in `devopness-sdk-js` repository
-_auto_generated_apis_ignore
+_auto_generated_apis_ignore/*.ts
 .gitignore
 .npmignore
 api.ts
