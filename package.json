@@ -9,7 +9,8 @@
   ],
   "scripts": {
     "build": "npm run lint && tsc",
-    "build-api-models": "openapi-generator generate --skip-validate-spec -i http://127.0.0.1:9090/spec.json -g typescript-axios -o _generated-sources/openapi -p withSeparateModelsAndApi=true --api-package ./src/_auto_generated_apis_ignore --model-package ./src/models --additional-properties supportsES6=true",
+    "build-api-models": "openapi-generator generate --skip-validate-spec --minimal-update -i http://127.0.0.1:9090/spec.json -g typescript-axios -o ./src/api -p withSeparateModelsAndApi=true --api-package _auto_generated_apis_ignore --model-package models --additional-properties supportsES6=false && npm run replace-tslint-disable-directive-with-eslint",
+    "replace-tslint-disable-directive-with-eslint": "find ./src/api -type f -name '*.ts' -exec sed -i '' 's/\\/\\/ tslint:disable/\\/\\* eslint-disable \\*\\//g' {} +",
     "lint": "eslint . --ext .ts",
     "prepublishOnly": "npm test && npm run lint",
     "prepare": "npm run build",
