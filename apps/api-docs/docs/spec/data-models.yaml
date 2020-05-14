@@ -120,5 +120,7 @@ User:
   $ref: ./endpoints/users/schemas/user.yaml
 UserCreate:
   $ref: ./endpoints/users/schemas/user-create.yaml
+UserRefreshTokenCreate:
+  $ref: ./endpoints/users/schemas/user-refresh-token-create.yaml
 UserTokens:
   $ref: ./endpoints/users/schemas/user-tokens.yaml

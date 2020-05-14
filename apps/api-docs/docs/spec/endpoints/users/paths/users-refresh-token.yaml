@@ -10,15 +10,7 @@ requestBody:
   content:
     application/json:
       schema:
-        type: object
-        properties:
-          refresh_token:
-            type: string
-            description: |
-              A token to be used after the original access token has expired, to issue a new token
-              without requiring a new request to the `/users/login` endpoint
-        required:
-          - refresh_token
+        $ref: '#/components/schemas/UserRefreshTokenCreate'
 responses:
   200:
     description: 'Ok - Tokens refreshed'
