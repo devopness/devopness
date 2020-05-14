@@ -1,4 +1,4 @@
-// tslint:disable
+/* eslint-disable */
 /**
  * devopness API
  * Devopness API - Painless essential DevOps to everyone 
