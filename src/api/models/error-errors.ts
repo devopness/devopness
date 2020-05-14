@@ -12,6 +12,7 @@
  */
 
 
+import { ErrorErrorsFieldName } from './error-errors-field-name';
 
 /**
  * Optional error object containing details of the server error
@@ -21,10 +22,10 @@
 export interface ErrorErrors {
     /**
      * Error message specific to each field included in the errors object
-     * @type {Array}
+     * @type {Array<ErrorErrorsFieldName>}
      * @memberof ErrorErrors
      */
-    field_name?: Array;
+    field_name?: Array<ErrorErrorsFieldName>;
 }
 
 
