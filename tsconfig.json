@@ -17,5 +17,12 @@
     "esModuleInterop": true,
     /* Advanced Options */
     "forceConsistentCasingInFileNames": true
-  }
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "src/api/_auto_generated_apis_ignore",
+    "**/*.spec.ts"
+  ]
 }
