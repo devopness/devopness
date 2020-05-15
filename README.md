@@ -15,24 +15,30 @@ By streamlining essential DevOps practices we're making first class software dep
 
 This project is the `Devopness` frontend web application.
 
-## Getting started
-
-### Setup
-To use this package follow the steps below:
+## Setup
+Use `npm` or `yarn` to install the `Devopness SDK` as a project dependency:
 - Using `npm`: `npm install devopness-sdk-js`
 - Using `yarn`: `yard add devopness-sdk-js`
 
-### Usage - Initializing and authenticating
+## Usage
+
+### TypeScript support
+This package includes TypeScript declarations for every method.
+TypeScript versions >= 3.1 are supported.
+
+Some methods in `Devopness SDK JavaScript` accept and return objects from the Devopness API. The type declarations for these objects will always track the latest version of the API. Therefore, if you'e using the latest version of this package you can rely on the Devopness API documentation for checking the input and return types expected by each API endpoint.
+
+### Initializing and authenticating
 
 Here is a generic simple example that can be used from `Node.js`, `TypeScript` or `Javascript` applications:
 
 ```javascript
-import { DevopnessApiClient } from 'devopness-sdk-js';
+var devopnessSdkJs = require("devopness-sdk-js")
 
 const DEVOPNESS_API_BASE_URL = 'https://dev-api.devopness.com';
-const devopnessApi = new DevopnessApiClient({ baseUrl: DEVOPNESS_API_BASE_URL });
+const devopnessApi = new devopnessSdkJs.DevopnessApiClient({ baseUrl: DEVOPNESS_API_BASE_URL });
 
-async function doLogin(email, pass) {
+async function authenticateAndGetUserProfile(email, pass) {
   var userCredentials = {
     email: email,
     password: pass,
@@ -48,21 +54,17 @@ async function doLogin(email, pass) {
     // optionally: store the token in any storage for further re-usage
     // localStorage.setItem('devopness-api::access_token', userTokens.access_token)
     // localStorage.setItem('devopness-api::refresh_token', userTokens.refresh_token)
+
+    // now that we're authenticated, we can invoke any of the available API client methods
+    const currentUser = await devopnessApi.users.getCurrentUser();
+    console.log('Successfully retrieved user details: ', currentUser);
+
   } catch (error) {
     console.log('Error on user authentication: ', JSON.stringify(error.response.data));
   };
 }
 
 // invoke the authentication method
-doLogin('my-email@example.com', 'my-secret');
-
-// now that we're authenticated, we can invoke any of the available API remote methods
-devopnessApi.users.getCurrentUser()
-  .then((currentUser) => {
-    console.log('Successfully retrieved user details: ', currentUser);
-  })
-  .catch((error) => {
-    console.log('Error retrieveing current user details: ', error)
-  });
+authenticateAndGetUserProfile('user@email.com', 'secret-password');
 
 ```
