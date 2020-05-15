@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig, AxiosResponse, AxiosInstance } from "axios";
+import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { ArgumentNullException } from "../common/Exceptions";
 
 export interface ConfigurationOptions {
@@ -29,7 +29,11 @@ export class Configuration implements ConfigurationOptions {
 
 export class ApiBaseService {
     private api: AxiosInstance;
+    private static _accessToken: string;
+
     public static configuration: Configuration;
+
+    // public onTokenExpired: () => void;
 
     private defaultAxiosSettings: AxiosRequestConfig = {
         timeout: 30000,
@@ -52,9 +56,41 @@ export class ApiBaseService {
         settings.baseURL = ApiBaseService.configuration.baseUrl;
 
         this.api = axios.create(settings);
+        this.setupAxiosInterceptors();
     }
 
-    protected post<T, B, R = AxiosResponse<T>>(endpoint: string, data?: B): Promise<R> {
+    private setupAxiosInterceptors(): void {
+        this.api.interceptors.request.use((config: AxiosRequestConfig) => {
+            if (ApiBaseService._accessToken) {
+                config.headers.Authorization = `Bearer ${ApiBaseService._accessToken}`;
+            } else {
+                delete config.headers.Authorization;
+            }
+
+            return config;
+        });
+    }
+
+    public static get accessToken(): string {
+        return ApiBaseService._accessToken;
+    }
+
+    public static set accessToken(value: string) {
+        ApiBaseService._accessToken = value;
+    }
+
+    // TO DO: define events to notify the external world that a token has expired
+    // so the consumer app can invoke refresh-token
+    // so a web app might decide to redirect the user to login page or set
+    // a or should we add an event parameter allowing `refresh: false` to be set to
+    // true and we trigger refresh?
+    // public tokenExpired(): void {
+    //     if (this.onTokenExpired) {
+    //         this.onTokenExpired();
+    //     }
+    // }
+
+    protected post<T, B, R = AxiosResponse<T>>(endpoint: string, data?: B, requiresAuthentication = true): Promise<R> {
         return this.api.post<T, R>(endpoint, data);
     }
 
@@ -70,5 +106,9 @@ export class ApiBaseService {
 
     public success<T>(response: AxiosResponse<T>): T {
         return response.data;
+    }
+
+    public error(error: AxiosError<Error>) {
+        throw error;
     }
 }
