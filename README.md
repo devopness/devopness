@@ -2,6 +2,8 @@
 
 [![MIT License](https://img.shields.io/badge/license-MIT_License-green.svg?style=flat-square)](https://github.com/devopness/devopness-api-sdk-js/blob/master/LICENSE)
 
+[![NPM](https://nodei.co/npm/devopness-sdk-js.png?downloads=true&stars=true)](https://nodei.co/npm/devopness-sdk-js/)
+
 The official Devopness SDK for JavaScript, available for browsers, mobile devices and `Node.js` backends.
 
 The `Devopness` SDK provides convenient access to the `Devopness` API from applications written in the JavaScript language. It includes a pre-defined set of classes for API resources and aims to make it easy and fun to consume `Devopness` API from web apps, Node.js apps, or mobile apps written in the JavaScript language.
@@ -21,6 +23,9 @@ To use this package follow the steps below:
 - Using `yarn`: `yard add devopness-sdk-js`
 
 ### Usage - Initializing and authenticating
+
+Here is a generic simple example that can be used from `Node.js`, `TypeScript` or `Javascript` applications:
+
 ```javascript
 import { DevopnessApiClient } from 'devopness-sdk-js';
 
