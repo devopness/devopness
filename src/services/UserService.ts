@@ -5,6 +5,7 @@ import { UserTokens } from '../api/models/user-tokens';
 
 // to do: find a more generic way to expose data without exposing AxiosResponse type
 import { AxiosResponse } from "axios";
+import { UserCreate } from '../api/models';
 
 export class UserService extends ApiBaseService {
     /**
@@ -23,5 +24,13 @@ export class UserService extends ApiBaseService {
 
     public login(credentials: LoginCredentials): Promise<AxiosResponse<UserTokens>> {
         return this.post<UserTokens, LoginCredentials>(`/users/login`, credentials);
+    }
+
+    public signup(newUserData: UserCreate): Promise<AxiosResponse<void>> {
+        return this.post<void, UserCreate>(`/users/signup`, newUserData);
+    }
+
+    public logout(): Promise<AxiosResponse<void>> {
+        return this.get(`/users/logout`);
     }
 }

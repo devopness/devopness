@@ -90,7 +90,7 @@ export class ApiBaseService {
     //     }
     // }
 
-    protected post<T, B, R = AxiosResponse<T>>(endpoint: string, data?: B, requiresAuthentication = true): Promise<R> {
+    protected post<T, B, R = AxiosResponse<T>>(endpoint: string, data?: B): Promise<R> {
         return this.api.post<T, R>(endpoint, data);
     }
 
@@ -108,7 +108,7 @@ export class ApiBaseService {
         return response.data;
     }
 
-    public error(error: AxiosError<Error>) {
+    public error(error: AxiosError<Error>): void {
         throw error;
     }
 }
