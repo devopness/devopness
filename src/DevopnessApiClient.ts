@@ -1,8 +1,9 @@
-// import { ProjectApi } from './modules/projects/ProjectApi';
-import { UserService } from './services/UserService';
 import { ApiBaseService, ConfigurationOptions, Configuration } from './services/ApiBaseService';
+import { ProjectService } from './services/ProjectService';
+import { UserService } from './services/UserService';
 
 export class DevopnessApiClient {
+  public projects: ProjectService;
   public users: UserService;
 
   /**
@@ -29,6 +30,7 @@ export class DevopnessApiClient {
     // parameters. Furthermore, we ensure all assertions for required parameters (like the
     // above check for `baseUrl`) are quickly returned to the end user before spending
     // time loading extra resources
+    this.projects = new ProjectService();
     this.users = new UserService();
   }
 
@@ -44,7 +46,7 @@ export class DevopnessApiClient {
      * at least check for min length and return a substring of it to help users identify the
      * issue when first initializing this SDK from their apps
      */
-    if (accessToken &&  accessToken.length < MIN_TOKEN_LENGHT) {
+    if (accessToken && accessToken.length < MIN_TOKEN_LENGHT) {
       throw new Error(`"${accessToken.substring(0, 10)} ..." doesn't seem to be a valid access token issued by Devopness API.`);
     }
 

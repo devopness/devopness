@@ -90,8 +90,23 @@ export class ApiBaseService {
     //     }
     // }
 
-    protected post<T, B, R = AxiosResponse<T>>(endpoint: string, data?: B): Promise<R> {
+    protected async post<T, B, R = AxiosResponse<T>>(endpoint: string, data?: B): Promise<R> {
         return this.api.post<T, R>(endpoint, data);
+
+        //     try {
+        //         const response = await this.api.post<T, R>(endpoint, data);
+        //         const result = response.data;
+        //         return result;
+        //     } catch (exception) {
+        //         if (exception && exception.response) {
+        //             const axiosError = exception as AxiosError<any>;
+        //             return axiosError.response.data;
+        //         }
+
+        //         throw err;
+        //     }
+        // };
+
     }
 
     protected get<T, R = AxiosResponse<T>>(endpoint: string): Promise<R> {
