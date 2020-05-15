@@ -5,7 +5,6 @@ import { UserTokens } from '../api/models/user-tokens';
 import { UserCreate } from '../api/models';
 
 export class UserService extends ApiBaseService {
-
     public async getById(userId?: number): Promise<User> {
         const response = await this.get<User>(`/users/${userId}`);
         return response.data;

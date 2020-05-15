@@ -3,9 +3,6 @@ import { ArgumentNullException } from "../common/Exceptions";
 
 export interface ConfigurationOptions {
     apiKey?: string;
-    // email?: string;
-    // password?: string;
-    // accessToken?: string;
     baseUrl: string;
 }
 
@@ -13,16 +10,10 @@ export class Configuration implements ConfigurationOptions {
     // API_KEY may or may not be needed in the future.
     // so far only supporting authentication with user credentials
     public apiKey?: string;
-    // public email?: string;
-    // public password?: string;
-    // public accessToken?: string;
     public baseUrl: string;
 
     constructor(options: ConfigurationOptions) {
         this.apiKey = options.apiKey;
-        // this.email = options.email;
-        // this.password = options.password;
-        // this.accessToken = options.accessToken;
         this.baseUrl = options.baseUrl;
     }
 }

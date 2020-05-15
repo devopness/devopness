@@ -6,7 +6,7 @@
     "lib": [
       "ES2015"
     ],
-      "allowJs": false,
+    "allowJs": false,
     "declaration": true,
     "sourceMap": true,
     "rootDir": "./src",

@@ -6,4 +6,9 @@ export class ProjectService extends ApiBaseService {
         const response = await this.get<Array<Project>>(`/projects`);
         return response.data;
     }
+
+    public async getById(projectId?: number): Promise<Project> {
+        const response = await this.get<Project>(`/projects/${projectId}`);
+        return response.data;
+    }
 }
