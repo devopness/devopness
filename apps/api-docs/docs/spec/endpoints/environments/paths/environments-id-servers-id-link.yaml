@@ -1,4 +1,5 @@
 summary: Link a server to an environment
+operationId: link_EnvironmentServer
 tags:
   - Environments - Servers
 parameters:
@@ -21,6 +22,13 @@ parameters:
       minimum: 1
     required: true
     description: Unique ID of the server to be linked
+requestBody:
+  description: A JSON object containing environment server link optional parameters
+  required: false
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/EnvironmentLinkItem'
 responses:
   201:
     $ref: '#/components/responses/NoContent'
