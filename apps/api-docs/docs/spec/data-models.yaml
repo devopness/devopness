@@ -44,6 +44,8 @@ Environments:
   $ref: ./endpoints/environments/schemas/environment-list.yaml
 Error:
   $ref: ./shared/schemas/error.yaml
+ExtraBodyParams:
+  $ref: ./shared/schemas/extra-body-params.yaml
 LanguageRuntime:
   $ref: ./endpoints/static/schemas/language-runtime.yaml
 LanguageRuntimeFramework:
