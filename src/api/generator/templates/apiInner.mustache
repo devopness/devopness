@@ -1,0 +1,44 @@
+{{#withSeparateModelsAndApi}}
+/* eslint-disable */
+{{>licenseInfo}}
+import { ApiBaseService } from "./ApiBaseService";
+{{#imports}}
+import { {{classname}} } from '{{apiRelativeToRoot}}{{tsModelPackage}}';
+{{/imports}}
+
+{{/withSeparateModelsAndApi}}
+{{^withSeparateModelsAndApi}}
+{{/withSeparateModelsAndApi}}
+{{#operations}}
+/**
+ * {{classname}}Service - object-oriented Devopness API interface{{#description}}
+ * {{{description}}}{{/description}}
+ */
+{{#withInterfaces}}
+export class {{classname}} extends ApiBaseService implements ISomeDevopnessInterfaceName {
+{{/withInterfaces}}
+{{^withInterfaces}}
+export class {{classname}}Service extends ApiBaseService {
+{{/withInterfaces}}
+    {{#operation}}
+    /**
+     * {{&notes}}
+     {{#summary}}
+     * @summary {{&summary}}
+     {{/summary}}
+     {{#allParams}}
+        {{^isHeaderParam}}
+     * @param {{=<% %>=}}{<%&dataType%>}<%={{ }}=%> {{^required}}[{{/required}}{{paramName}}{{^required}}]{{/required}} {{description}}
+        {{/isHeaderParam}}
+     {{/allParams}}
+     */
+    public async {{nickname}}({{#allParams}}{{^isHeaderParam}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}{{/isHeaderParam}}{{/allParams}}): Promise<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}void{{/returnType}}> {
+        const response = await this.{{#lambda.lowercase}}{{httpMethod}}{{/lambda.lowercase}}<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}void{{/returnType}}, {{#allParams}}{{#-last}}{{dataType}}{{/-last}}{{/allParams}}>(`{{{path}}}`, {{#allParams}}{{#-last}}{{paramName}}{{/-last}}{{/allParams}});
+        return response.data;
+    }
+    {{^-last}}
+
+    {{/-last}}
+    {{/operation}}
+}
+{{/operations}}
