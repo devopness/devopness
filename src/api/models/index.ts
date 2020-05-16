@@ -16,6 +16,7 @@ export * from './environment-create';
 export * from './environment-link-item';
 export * from './error-errors';
 export * from './error-errors-field-name';
+export * from './extra-body-params';
 export * from './language-runtime';
 export * from './language-runtime-framework';
 export * from './log';

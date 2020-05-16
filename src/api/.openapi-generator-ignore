@@ -9,7 +9,12 @@
 #ApiClient.cs
 
 # Exclude files that we don't want to versioning in `devopness-sdk-js` repository
+# TO DO:
+#   - template use`operationIdOriginal` instead of `nickname` once all operations are improved on API docs
+#   - template for models, so `replace-tslint-disable-directive-with-eslint` is no longer needed in package.json
+#   - generator should fail on warning from openapi docs issues, and break the build, better for automation
 _auto_generated_apis_ignore/*.ts
+
 .gitignore
 .npmignore
 api.ts

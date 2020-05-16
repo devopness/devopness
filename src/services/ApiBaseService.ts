@@ -105,14 +105,19 @@ export class ApiBaseService {
 
     }
 
+    protected async put<T, B, R = AxiosResponse<T>>(endpoint: string, data?: B): Promise<R> {
+        return this.api.post<T, R>(endpoint, data);
+    }
+
+    protected delete<T, R = AxiosResponse<T>>(endpoint: string): Promise<R> {
+        /**
+         * @todo: why not return `response.data` from here instead of AxiosResponse<T>?
+         */
+        return this.api.get<T, R>(this.api.defaults.baseURL + endpoint);
+    }
+
     protected get<T, R = AxiosResponse<T>>(endpoint: string): Promise<R> {
         return this.api.get<T, R>(this.api.defaults.baseURL + endpoint);
-
-
-        // .then((response: R) => {
-        //     return response.data<T>;
-        // })
-        // .then((res: R) => res);
     }
 
     public success<T>(response: AxiosResponse<T>): T {

@@ -1,7 +1,7 @@
 {{#withSeparateModelsAndApi}}
 /* eslint-disable */
 {{>licenseInfo}}
-import { ApiBaseService } from "./ApiBaseService";
+import { ApiBaseService } from "../../services/ApiBaseService";
 {{#imports}}
 import { {{classname}} } from '{{apiRelativeToRoot}}{{tsModelPackage}}';
 {{/imports}}
@@ -11,7 +11,7 @@ import { {{classname}} } from '{{apiRelativeToRoot}}{{tsModelPackage}}';
 {{/withSeparateModelsAndApi}}
 {{#operations}}
 /**
- * {{classname}}Service - object-oriented Devopness API interface{{#description}}
+ * {{classname}}Service - Auto-generated{{#description}}
  * {{{description}}}{{/description}}
  */
 {{#withInterfaces}}
@@ -32,8 +32,8 @@ export class {{classname}}Service extends ApiBaseService {
         {{/isHeaderParam}}
      {{/allParams}}
      */
-    public async {{nickname}}({{#allParams}}{{^isHeaderParam}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}{{/isHeaderParam}}{{/allParams}}): Promise<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}void{{/returnType}}> {
-        const response = await this.{{#lambda.lowercase}}{{httpMethod}}{{/lambda.lowercase}}<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}void{{/returnType}}, {{#allParams}}{{#-last}}{{dataType}}{{/-last}}{{/allParams}}>(`{{{path}}}`, {{#allParams}}{{#-last}}{{paramName}}{{/-last}}{{/allParams}});
+    protected async {{nickname}}({{#allParams}}{{^isHeaderParam}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}{{^-last}}, {{/-last}}{{/isHeaderParam}}{{/allParams}}): Promise<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}void{{/returnType}}> {
+        const response = await this.{{#lambda.lowercase}}{{httpMethod}} {{/lambda.lowercase}}<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}void{{/returnType}}{{#allParams}}{{^isHeaderParam}}{{#-last}}{{^isPrimitiveType}}, {{dataType}}{{/isPrimitiveType}}{{/-last}}{{/isHeaderParam}}{{/allParams}}>(`{{{path}}}`{{#pathParams}}.replace(`{${"{{baseName}}"}}`, encodeURIComponent(String({{paramName}}))){{/pathParams}});
         return response.data;
     }
     {{^-last}}
