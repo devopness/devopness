@@ -34,7 +34,7 @@
     $ref: ./endpoints/environments/paths/environments-id-update.yaml
   get:
     $ref: ./endpoints/environments/paths/environments-id.yaml
-/environments/{environment_id}/replace-linked-servers:
+/environments/{environment_id}/servers/replace-linked-servers:
   post:
     $ref: ./endpoints/environments/paths/environments-id-servers-replace-linked-servers.yaml
 /environments/{environment_id}/servers/{server_id}/link:
