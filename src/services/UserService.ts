@@ -17,14 +17,14 @@ export class UserService extends ApiBaseService {
     }
 
     public async login(loginCredentials: LoginCredentials): Promise<UserTokens> {
+        /**
+         * @todo: example on README must show how to catch the required param exceptions like this one
+         * @todo: Error currently not being caught on a promisse `catch` simple example
+         */
         if (loginCredentials === null || loginCredentials === undefined) {
-            /**
-             * @todo: example on README must show how to catch the required param exceptions like this one
-             * @todo: Error currently not being caught on a promisse `catch` simple example
-             */
             throw new ArgumentNullException('loginCredentials', 'usersLoginPost');
         }
-        const response = await this.post <UserTokens, LoginCredentials>(`/users/login`);
+        const response = await this.post <UserTokens, LoginCredentials>(`/users/login`, loginCredentials);
         return response.data;
     }
 

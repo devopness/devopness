@@ -17,7 +17,7 @@
     /* Strict Type-Checking Options */
     "strict": true,
     "noImplicitAny": true,
-    "noUnusedLocals": true,
+    "noUnusedLocals": false,
     "strictNullChecks": true,
     /* Module Resolution Options */
     "esModuleInterop": true,
@@ -29,6 +29,7 @@
   ],
   "exclude": [
     "src/api/_auto_generated_apis_ignore",
+    "src/services/AuthService.ts",
     "**/*.spec.ts"
   ]
 }
