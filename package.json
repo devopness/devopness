@@ -14,7 +14,7 @@
     "lint": "eslint . --ext .ts",
     "prepublishOnly": "npm test && npm run lint",
     "prepare": "npm run build",
-    "preversion": "npm run lint"
+    "preversion": "npm run lint && npm version patch"
   },
   "repository": {
     "type": "git",

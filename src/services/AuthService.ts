@@ -9,8 +9,8 @@ import { ApiBaseService } from './ApiBaseService';
  * 4) API_KEY + access_token (useful to act on behalf of another user)
  */
 export class AuthService extends ApiBaseService {
-    private STORAGE_KEY_ACCESS_TOKEN = 'devopness-api::access_token';
-    private STORAGE_KEY_REFRESH_TOKEN = 'devopness-api::refresh_token';
+    // private STORAGE_KEY_ACCESS_TOKEN = 'devopness-api::access_token';
+    // private STORAGE_KEY_REFRESH_TOKEN = 'devopness-api::refresh_token';
 
     /**
      * @todo: Local storage or HTTP cookies? What's safer? Check 2020 best practices
