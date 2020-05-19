@@ -1,6 +1,6 @@
 {
   "name": "devopness-sdk-js",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Devopness API JS/TS SDK - Painless essential DevOps to everyone",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
