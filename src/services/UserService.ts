@@ -3,6 +3,7 @@ import { LoginCredentials } from '../api/models/login-credentials';
 import { User } from '../api/models/user';
 import { UserTokens } from '../api/models/user-tokens';
 import { UserCreate } from '../api/models';
+import { ArgumentNullException } from '../common/Exceptions';
 
 export class UserService extends ApiBaseService {
     public async getById(userId?: number): Promise<User> {
@@ -15,8 +16,15 @@ export class UserService extends ApiBaseService {
         return response.data;
     }
 
-    public async login(credentials: LoginCredentials): Promise<UserTokens> {
-        const response = await this.post<UserTokens, LoginCredentials>(`/users/login`, credentials);
+    public async login(loginCredentials: LoginCredentials): Promise<UserTokens> {
+        if (loginCredentials === null || loginCredentials === undefined) {
+            /**
+             * @todo: example on README must show how to catch the required param exceptions like this one
+             * @todo: Error currently not being caught on a promisse `catch` simple example
+             */
+            throw new ArgumentNullException('loginCredentials', 'usersLoginPost');
+        }
+        const response = await this.post <UserTokens, LoginCredentials>(`/users/login`);
         return response.data;
     }
 

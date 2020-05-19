@@ -3,18 +3,21 @@
     /* Basic Options */
     "target": "es2015",
     "module": "commonjs",
+    "moduleResolution": "node",
     "lib": [
       "ES2015"
     ],
     "allowJs": false,
     "declaration": true,
-    "sourceMap": true,
+    "sourceMap": false,
+    "resolveJsonModule": true,
     "rootDir": "./src",
     "outDir": "./dist",
     "removeComments": true,
     /* Strict Type-Checking Options */
     "strict": true,
     "noImplicitAny": true,
+    "noUnusedLocals": true,
     "strictNullChecks": true,
     /* Module Resolution Options */
     "esModuleInterop": true,

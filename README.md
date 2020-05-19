@@ -18,7 +18,7 @@ This project is the `Devopness` frontend web application.
 ## Setup
 Use `npm` or `yarn` to install the `Devopness SDK` as a project dependency:
 - Using `npm`: `npm install devopness-sdk-js`
-- Using `yarn`: `yard add devopness-sdk-js`
+- Using `yarn`: `yarn add devopness-sdk-js`
 
 ## Usage
 

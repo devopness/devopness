@@ -2,6 +2,7 @@
 /* eslint-disable */
 {{>licenseInfo}}
 import { ApiBaseService } from "../../services/ApiBaseService";
+import { ArgumentNullException } from "../../common/Exceptions";
 {{#imports}}
 import { {{classname}} } from '{{apiRelativeToRoot}}{{tsModelPackage}}';
 {{/imports}}
@@ -33,6 +34,15 @@ export class {{classname}}Service extends ApiBaseService {
      {{/allParams}}
      */
     protected async {{nickname}}({{#allParams}}{{^isHeaderParam}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}{{^-last}}, {{/-last}}{{/isHeaderParam}}{{/allParams}}): Promise<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}void{{/returnType}}> {
+    {{#allParams}}
+    {{^isHeaderParam}}
+    {{#required}}
+        if ({{paramName}} === null || {{paramName}} === undefined) {
+            throw new ArgumentNullException('{{paramName}}', '{{nickname}}');
+        }
+    {{/required}}
+    {{/isHeaderParam}}
+    {{/allParams}}
         const response = await this.{{#lambda.lowercase}}{{httpMethod}} {{/lambda.lowercase}}<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}void{{/returnType}}{{#allParams}}{{^isHeaderParam}}{{#-last}}{{^isPrimitiveType}}, {{dataType}}{{/isPrimitiveType}}{{/-last}}{{/isHeaderParam}}{{/allParams}}>(`{{{path}}}`{{#pathParams}}.replace(`{${"{{baseName}}"}}`, encodeURIComponent(String({{paramName}}))){{/pathParams}});
         return response.data;
     }
