@@ -28,7 +28,6 @@
     "src/**/*"
   ],
   "exclude": [
-    "src/api/_auto_generated_apis_ignore",
     "src/services/AuthService.ts",
     "**/*.spec.ts"
   ]

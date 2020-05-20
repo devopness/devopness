@@ -1,5 +1,1 @@
-# TO DO: find or implement on openapi-generator option to do not generate below files and folder
-api/.gitignore
 api/.openapi-generator
-api/_auto_generated_apis_ignore
-api/.npmignore

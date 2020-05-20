@@ -13,7 +13,16 @@
 #   - template use`operationIdOriginal` instead of `nickname` once all operations are improved on API docs
 #   - template for models, so `replace-tslint-disable-directive-with-eslint` is no longer needed in package.json
 #   - generator should fail on warning from openapi docs issues, and break the build, better for automation
-_auto_generated_apis_ignore/*.ts
+generated/apis/a*.ts
+generated/apis/b*.ts
+generated/apis/c*.ts
+generated/apis/d*.ts
+generated/apis/e*.ts
+generated/apis/l*.ts
+generated/apis/n*.ts
+generated/apis/p*.ts
+generated/apis/s*.ts
+generated/apis/t*.ts
 
 .gitignore
 .npmignore

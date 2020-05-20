@@ -1,14 +1,11 @@
-import { ApiBaseService } from "./ApiBaseService";
-import { Project } from "../api/models";
+import { ProjectsApiService } from '../api/generated/apis/projects-api';
 
-export class ProjectService extends ApiBaseService {
-    public async all(): Promise<Array<Project>> {
-        const response = await this.get<Array<Project>>(`/projects`);
-        return response.data;
-    }
-
-    public async getById(projectId?: number): Promise<Project> {
-        const response = await this.get<Project>(`/projects/${projectId}`);
-        return response.data;
-    }
+export class ProjectService extends ProjectsApiService {
+    /**
+     * We auto-generate api proxy classes automatically, but it's safer to have control over exposed
+     * services and methods, hence this public service class extends the generated classes, so we
+     * can intercept, override or even hide generated methods.
+     *
+     * @todo: move services to `public` folder
+     */
 }

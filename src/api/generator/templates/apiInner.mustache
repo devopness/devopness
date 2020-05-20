@@ -1,8 +1,8 @@
 {{#withSeparateModelsAndApi}}
 /* eslint-disable */
 {{>licenseInfo}}
-import { ApiBaseService } from "../../services/ApiBaseService";
-import { ArgumentNullException } from "../../common/Exceptions";
+import { ApiBaseService } from "../../../services/ApiBaseService";
+import { ArgumentNullException } from "../../../common/Exceptions";
 {{#imports}}
 import { {{classname}} } from '{{apiRelativeToRoot}}{{tsModelPackage}}';
 {{/imports}}
