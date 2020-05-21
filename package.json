@@ -12,7 +12,7 @@
     "build-api-models": "openapi-generator generate --template-dir ./src/api/generator/templates --skip-validate-spec --minimal-update -i http://127.0.0.1:9090/spec.json -g typescript-axios -o ./src/api -p withSeparateModelsAndApi=true --api-package generated/apis --model-package generated/models --additional-properties supportsES6=false && npm run replace-tslint-disable-directive-with-eslint && npm run build",
     "replace-tslint-disable-directive-with-eslint": "find ./src/api -type f -name '*.ts' -exec sed -i '' 's/\\/\\/ tslint:disable/\\/\\* eslint-disable \\*\\//g' {} +",
     "lint": "eslint . --ext .ts",
-    "prepublishOnly": "npm test && npm run lint && npm version patch",
+    "prepublishOnly": "rm -R ./dist && npm test && npm run lint && npm version patch",
     "prepare": "npm run build",
     "preversion": "npm run lint"
   },
