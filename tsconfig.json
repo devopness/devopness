@@ -13,7 +13,7 @@
     "resolveJsonModule": true,
     "rootDir": "./src",
     "outDir": "./dist",
-    "removeComments": true,
+    "removeComments": false,
     /* Strict Type-Checking Options */
     "strict": true,
     "noImplicitAny": true,

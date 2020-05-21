@@ -25,6 +25,15 @@ import { UserTokens } from '../../generated/models';
 export class UsersApiService extends ApiBaseService {
     /**
      * 
+     * @summary Activate an user account
+     */
+    public async activateUser(): Promise<object> {
+        const response = await this.get <object>(`/users/activate`);
+        return response.data;
+    }
+
+    /**
+     * 
      * @summary Sign up/register a new user
      * @param {UserCreate} userCreate A JSON object containing user essential data
      */
@@ -81,15 +90,6 @@ export class UsersApiService extends ApiBaseService {
             throw new ArgumentNullException('userRefreshTokenCreate', 'refreshToken');
         }
         const response = await this.post <UserTokens, UserRefreshTokenCreate>(`/users/refresh-token`, userRefreshTokenCreate);
-        return response.data;
-    }
-
-    /**
-     * 
-     * @summary Activate an user account
-     */
-    public async usersActivateGet(): Promise<object> {
-        const response = await this.get <object>(`/users/activate`);
         return response.data;
     }
 }
