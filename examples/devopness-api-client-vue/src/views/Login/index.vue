@@ -57,6 +57,14 @@ export default {
           this.error = true
         })
     }
-  }
+  },
+  watch: {
+    username() {
+      this.error = false
+    },
+    password() {
+      this.error = false
+    }
+  },
 };
 </script>
