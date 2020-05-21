@@ -1,11 +1,20 @@
 import { ProjectsApiService } from '../api/generated/apis/projects-api';
+import { ProjectsEnvironmentsApiService } from '../api/generated/apis/projects-environments-api';
+import { ProjectsNetworkRulesApiService } from '../api/generated/apis/projects-network-rules-api';
+import { ProjectsServersApiService } from '../api/generated/apis/projects-servers-api';
+import { ProjectsServicesApiService } from '../api/generated/apis/projects-services-api';
+import { ProjectsSSHKeysApiService } from '../api/generated/apis/projects-sshkeys-api';
+import { ProjectsDeploymentsApiService } from '../api/generated/apis/projects-deployments-api';
+import { ProjectsCronjobsScheduledTasksApiService } from '../api/generated/apis/projects-cronjobs-scheduled-tasks-api';
+import { ProjectsDaemonsProcessesApiService } from '../api/generated/apis/projects-daemons-processes-api';
 
 export class ProjectService extends ProjectsApiService {
-    /**
-     * We auto-generate api proxy classes automatically, but it's safer to have control over exposed
-     * services and methods, hence this public service class extends the generated classes, so we
-     * can intercept, override or even hide generated methods.
-     *
-     * @todo: move services to `public` folder
-     */
+    public cronjobs = new ProjectsCronjobsScheduledTasksApiService();
+    public daemons = new ProjectsDaemonsProcessesApiService();
+    public deployments = new ProjectsDeploymentsApiService();
+    public environments = new ProjectsEnvironmentsApiService();
+    public networkRules = new ProjectsNetworkRulesApiService()
+    public servers = new ProjectsServersApiService()
+    public services = new ProjectsServicesApiService()
+    public sshKeys = new ProjectsSSHKeysApiService()
 }

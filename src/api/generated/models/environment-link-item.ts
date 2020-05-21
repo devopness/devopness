@@ -21,18 +21,18 @@
 export interface EnvironmentLinkItem {
     /**
      * The environment\'s unique id
-     * @type {string}
+     * @type {number}
      * @memberof EnvironmentLinkItem
      */
-    id: string;
+    id?: number;
     /**
      * The environment\'s name
      * @type {string}
      * @memberof EnvironmentLinkItem
      */
-    name: string;
+    name?: string;
     /**
-     * The list of IDs of servers to which the service action must be performed
+     * The list of IDs of servers to which the action must be performed
      * @type {Array<number>}
      * @memberof EnvironmentLinkItem
      */

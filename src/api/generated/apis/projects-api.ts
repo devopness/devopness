@@ -21,53 +21,53 @@ import { Project } from '../../generated/models';
 export class ProjectsApiService extends ApiBaseService {
     /**
      * 
-     * @summary Returns a list of all projects belonging to current user
+     * @summary Create a new project
+     * @param {Project} project A JSON object containing project data
      */
-    protected async projectsGet(): Promise<Array<Project>> {
-        const response = await this.get <Array<Project>>(`/projects`);
+    public async addProject(project: Project): Promise<void> {
+        if (project === null || project === undefined) {
+            throw new ArgumentNullException('project', 'addProject');
+        }
+        const response = await this.post <void, Project>(`/projects`, project);
         return response.data;
     }
 
     /**
      * 
      * @summary Get a project by ID
-     * @param {number} id Numeric ID of the project to get
+     * @param {number} projectId Numeric ID of the project to get
      */
-    protected async projectsIdGet(id: number): Promise<Project> {
-        if (id === null || id === undefined) {
-            throw new ArgumentNullException('id', 'projectsIdGet');
+    public async getProject(projectId: number): Promise<Project> {
+        if (projectId === null || projectId === undefined) {
+            throw new ArgumentNullException('projectId', 'getProject');
         }
-        const response = await this.get <Project>(`/projects/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(id))));
+        const response = await this.get <Project>(`/projects/{project_id}`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
+        return response.data;
+    }
+
+    /**
+     * 
+     * @summary Returns a list of all projects belonging to current user
+     */
+    public async listProjects(): Promise<Array<Project>> {
+        const response = await this.get <Array<Project>>(`/projects`);
         return response.data;
     }
 
     /**
      * 
      * @summary Update an existing project
-     * @param {number} id Numeric ID of the project to put
+     * @param {number} projectId Numeric ID of the project to put
      * @param {Project} project A JSON object containing project data
      */
-    protected async projectsIdPut(id: number, project: Project): Promise<void> {
-        if (id === null || id === undefined) {
-            throw new ArgumentNullException('id', 'projectsIdPut');
+    public async updateProject(projectId: number, project: Project): Promise<void> {
+        if (projectId === null || projectId === undefined) {
+            throw new ArgumentNullException('projectId', 'updateProject');
         }
         if (project === null || project === undefined) {
-            throw new ArgumentNullException('project', 'projectsIdPut');
+            throw new ArgumentNullException('project', 'updateProject');
         }
-        const response = await this.put <void, Project>(`/projects/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(id))), project);
-        return response.data;
-    }
-
-    /**
-     * 
-     * @summary Create a new project
-     * @param {Project} project A JSON object containing project data
-     */
-    protected async projectsPost(project: Project): Promise<void> {
-        if (project === null || project === undefined) {
-            throw new ArgumentNullException('project', 'projectsPost');
-        }
-        const response = await this.post <void, Project>(`/projects`, project);
+        const response = await this.put <void, Project>(`/projects/{project_id}`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), project);
         return response.data;
     }
 }

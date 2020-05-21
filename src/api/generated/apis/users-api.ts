@@ -28,7 +28,7 @@ export class UsersApiService extends ApiBaseService {
      * @summary Sign up/register a new user
      * @param {UserCreate} userCreate A JSON object containing user essential data
      */
-    protected async addUser(userCreate: UserCreate): Promise<void> {
+    public async addUser(userCreate: UserCreate): Promise<void> {
         if (userCreate === null || userCreate === undefined) {
             throw new ArgumentNullException('userCreate', 'addUser');
         }
@@ -41,7 +41,7 @@ export class UsersApiService extends ApiBaseService {
      * @summary Get a user by ID
      * @param {number} id Numeric ID of the user or the string literal &#x60;me&#x60; for the current user
      */
-    protected async getUser(id: number): Promise<User> {
+    public async getUser(id: number): Promise<User> {
         if (id === null || id === undefined) {
             throw new ArgumentNullException('id', 'getUser');
         }
@@ -54,7 +54,7 @@ export class UsersApiService extends ApiBaseService {
      * @summary Login/create a new token for the given credentials
      * @param {LoginCredentials} loginCredentials A JSON object containing user credentials
      */
-    protected async login(loginCredentials: LoginCredentials): Promise<UserTokens> {
+    public async login(loginCredentials: LoginCredentials): Promise<UserTokens> {
         if (loginCredentials === null || loginCredentials === undefined) {
             throw new ArgumentNullException('loginCredentials', 'login');
         }
@@ -66,7 +66,7 @@ export class UsersApiService extends ApiBaseService {
      * 
      * @summary Logout/revoke an existing token
      */
-    protected async logout(): Promise<void> {
+    public async logout(): Promise<void> {
         const response = await this.get <void>(`/users/logout`);
         return response.data;
     }
@@ -76,7 +76,7 @@ export class UsersApiService extends ApiBaseService {
      * @summary Refresh an existing user access token
      * @param {UserRefreshTokenCreate} userRefreshTokenCreate A JSON object containing user essential data
      */
-    protected async refreshToken(userRefreshTokenCreate: UserRefreshTokenCreate): Promise<UserTokens> {
+    public async refreshToken(userRefreshTokenCreate: UserRefreshTokenCreate): Promise<UserTokens> {
         if (userRefreshTokenCreate === null || userRefreshTokenCreate === undefined) {
             throw new ArgumentNullException('userRefreshTokenCreate', 'refreshToken');
         }
@@ -88,7 +88,7 @@ export class UsersApiService extends ApiBaseService {
      * 
      * @summary Activate an user account
      */
-    protected async usersActivateGet(): Promise<object> {
+    public async usersActivateGet(): Promise<object> {
         const response = await this.get <object>(`/users/activate`);
         return response.data;
     }

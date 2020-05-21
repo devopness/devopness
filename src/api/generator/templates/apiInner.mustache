@@ -33,7 +33,7 @@ export class {{classname}}Service extends ApiBaseService {
         {{/isHeaderParam}}
      {{/allParams}}
      */
-    protected async {{nickname}}({{#allParams}}{{^isHeaderParam}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}{{^-last}}, {{/-last}}{{/isHeaderParam}}{{/allParams}}): Promise<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}void{{/returnType}}> {
+    public async {{nickname}}({{#allParams}}{{^isHeaderParam}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}{{^-last}}, {{/-last}}{{/isHeaderParam}}{{/allParams}}): Promise<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}void{{/returnType}}> {
     {{#allParams}}
     {{^isHeaderParam}}
     {{#required}}
