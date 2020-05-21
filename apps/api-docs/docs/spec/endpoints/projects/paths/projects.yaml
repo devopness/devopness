@@ -1,4 +1,5 @@
 summary: 'Create a new project'
+operationId: addProject
 tags:
   - Projects
 parameters:

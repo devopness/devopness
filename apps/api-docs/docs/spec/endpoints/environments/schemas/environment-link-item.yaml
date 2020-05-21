@@ -1,7 +1,7 @@
 type: object
 properties:
   id:
-    type: string
+    type: integer
     description: The environment's unique id
     example: 867
   name:

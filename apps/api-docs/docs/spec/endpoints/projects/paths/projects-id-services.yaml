@@ -1,4 +1,5 @@
 summary: Add a service to a project and triggers its setup in each linked server
+operationId: addServiceToProject
 tags:
   - Projects - Services
 parameters:
@@ -6,7 +7,7 @@ parameters:
   - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/contentTypeHeader'
   - in: path
-    name: id
+    name: project_id
     example: 1
     schema:
       type: integer

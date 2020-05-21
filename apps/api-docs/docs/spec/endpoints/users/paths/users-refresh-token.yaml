@@ -1,4 +1,5 @@
 summary: 'Refresh an existing user access token'
+operationId: refreshToken
 tags:
   - Users
 parameters:

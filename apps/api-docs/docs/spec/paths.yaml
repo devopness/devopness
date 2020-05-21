@@ -64,56 +64,56 @@
     $ref: ./endpoints/projects/paths/projects.yaml
   get:
     $ref: ./endpoints/projects/paths/projects-list.yaml
-/projects/{id}:
+/projects/{project_id}:
   get:
     $ref: ./endpoints/projects/paths/projects-id.yaml
   put:
     $ref: ./endpoints/projects/paths/projects-id-update.yaml
-/projects/{id}/applications:
+/projects/{project_id}/applications:
   post:
-    $ref: ./endpoints/applications/paths/applications.yaml
+    $ref: ./endpoints/applications/paths/projects-id-applications.yaml
   get:
-    $ref: ./endpoints/applications/paths/applications-list.yaml
-/projects/{id}/deployments:
+    $ref: ./endpoints/applications/paths/projects-id-applications-list.yaml
+/projects/{project_id}/deployments:
   post:
     $ref: ./endpoints/projects/paths/projects-id-deployments.yaml
   get:
     $ref: ./endpoints/projects/paths/projects-id-deployments-list.yaml
-/projects/{id}/environments:
+/projects/{project_id}/environments:
   post:
     $ref: ./endpoints/projects/paths/projects-id-environments.yaml
   get:
     $ref: ./endpoints/projects/paths/projects-id-environments-list.yaml
-/projects/{id}/network-rules:
+/projects/{project_id}/network-rules:
   post:
     $ref: ./endpoints/projects/paths/projects-id-network-rules.yaml
   get:
     $ref: ./endpoints/projects/paths/projects-id-network-rules-list.yaml
-/projects/{id}/processes:
+/projects/{project_id}/processes:
   post:
-    $ref: ./endpoints/processes/paths/processes.yaml
+    $ref: ./endpoints/processes/paths/projects-id-processes.yaml
   get:
-    $ref: ./endpoints/processes/paths/processes-list.yaml
-/projects/{id}/servers:
+    $ref: ./endpoints/processes/paths/projects-id-processes-list.yaml
+/projects/{project_id}/servers:
   post:
     $ref: ./endpoints/projects/paths/projects-id-servers.yaml
   get:
     $ref: ./endpoints/projects/paths/projects-id-servers-list.yaml
-/projects/{id}/services:
+/projects/{project_id}/services:
   post:
     $ref: ./endpoints/projects/paths/projects-id-services.yaml
   get:
     $ref: ./endpoints/projects/paths/projects-id-services-list.yaml
-/projects/{id}/ssh-keys:
+/projects/{project_id}/ssh-keys:
   post:
     $ref: ./endpoints/projects/paths/projects-id-ssh-keys.yaml
   get:
     $ref: ./endpoints/projects/paths/projects-id-ssh-keys-list.yaml
-/projects/{id}/tasks:
+/projects/{project_id}/tasks:
   post:
-    $ref: ./endpoints/cronjobs/paths/cronjobs.yaml
+    $ref: ./endpoints/cronjobs/paths/projects-id-cronjobs.yaml
   get:
-    $ref: ./endpoints/cronjobs/paths/cronjobs-list.yaml
+    $ref: ./endpoints/cronjobs/paths/projects-id-cronjobs-list.yaml
 /servers:
   get:
     $ref: ./endpoints/servers/paths/servers-list.yaml

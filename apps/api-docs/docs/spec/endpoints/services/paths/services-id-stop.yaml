@@ -1,5 +1,5 @@
 summary: Stop a service
-operationId: stop_Service
+operationId: stopService
 tags:
   - Services
 parameters:

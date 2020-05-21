@@ -1,22 +1,23 @@
-summary: Return a list of all tasks belonging to a project
+summary: 'Returns a list of all applications belonging to a project'
+operationId: listProjectApplications
 tags:
-  - Projects - Cronjobs/Scheduled Tasks
+  - Projects - Applications
 parameters:
   - $ref: '#/components/parameters/acceptHeader'
   - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/contentTypeHeader'
   - in: path
-    name: id
+    name: project_id
     example: 1
     schema:
       type: integer
       minimum: 1
     required: true
-    description: Numeric ID of the project to get tasks from
+    description: Numeric ID of the project to get applications from
 responses:
   200:
     description: 'Ok'
     content:
       application/json:
         schema:
-          $ref: '#/components/schemas/Tasks'
+          $ref: '#/components/schemas/Applications'

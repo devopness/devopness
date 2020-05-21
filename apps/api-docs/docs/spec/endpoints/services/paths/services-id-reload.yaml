@@ -1,5 +1,5 @@
 summary: Reload a service
-operationId: reload_Service
+operationId: reloadService
 tags:
   - Services
 parameters:

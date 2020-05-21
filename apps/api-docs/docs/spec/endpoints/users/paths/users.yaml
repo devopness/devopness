@@ -1,4 +1,5 @@
 summary: 'Sign up/register a new user'
+operationId: addUser
 tags:
   - Users
 parameters:

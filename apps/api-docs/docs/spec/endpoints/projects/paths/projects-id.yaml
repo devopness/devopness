@@ -1,4 +1,5 @@
 summary: Get a project by ID
+operationId: getProject
 tags:
   - Projects
 parameters:
@@ -6,7 +7,7 @@ parameters:
   - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/contentTypeHeader'
   - in: path
-    name: id
+    name: project_id
     example: 1
     schema:
       type: integer

@@ -1,4 +1,5 @@
 summary: 'Returns a list of all projects belonging to current user'
+operationId: listProjects
 tags:
   - Projects
 parameters:

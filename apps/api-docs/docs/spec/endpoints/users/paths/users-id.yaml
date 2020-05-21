@@ -1,4 +1,5 @@
 summary: Get a user by ID
+operationId: getUser
 tags:
   - Users
 parameters:

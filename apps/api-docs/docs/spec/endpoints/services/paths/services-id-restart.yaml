@@ -1,5 +1,5 @@
 summary: Restart a service
-operationId: restart_Service
+operationId: restartService
 tags:
   - Services
 parameters:

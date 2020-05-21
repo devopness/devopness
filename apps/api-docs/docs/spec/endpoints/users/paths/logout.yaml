@@ -1,4 +1,5 @@
 summary: 'Logout/revoke an existing token'
+operationId: logout
 tags:
   - Users
 parameters:

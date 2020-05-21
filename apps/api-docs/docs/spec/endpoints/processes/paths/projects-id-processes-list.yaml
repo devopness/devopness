@@ -1,22 +1,23 @@
-summary: 'Returns a list of all applications belonging to a project'
+summary: 'Returns a list of all processes belonging to a project'
+operationId: listProjectDaemons
 tags:
-  - Projects - Applications
+  - Projects - Daemons/Processes
 parameters:
   - $ref: '#/components/parameters/acceptHeader'
   - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/contentTypeHeader'
   - in: path
-    name: id
+    name: project_id
     example: 1
     schema:
       type: integer
       minimum: 1
     required: true
-    description: Numeric ID of the project to get applications from
+    description: Numeric ID of the project to get processes from
 responses:
   200:
     description: 'Ok'
     content:
       application/json:
         schema:
-          $ref: '#/components/schemas/Applications'
+          $ref: '#/components/schemas/Processes'

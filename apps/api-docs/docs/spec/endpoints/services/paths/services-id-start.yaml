@@ -1,5 +1,5 @@
 summary: Start a service
-operationId: start_Service
+operationId: startService
 tags:
   - Services
 parameters:

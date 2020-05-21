@@ -1,4 +1,5 @@
 summary: 'Login/create a new token for the given credentials'
+operationId: login
 tags:
   - Users
 parameters:
