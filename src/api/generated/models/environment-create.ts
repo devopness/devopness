@@ -1,7 +1,7 @@
-/* eslint-disable */
+// tslint:disable
 /**
  * devopness API
- * Devopness API - Painless essential DevOps to everyone 
+ * Devopness API - Painless essential DevOps to everyone  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
  *
  * The version of the OpenAPI document: latest
  * 

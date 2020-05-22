@@ -1,7 +1,7 @@
 /* eslint-disable */
 /**
  * devopness API
- * Devopness API - Painless essential DevOps to everyone 
+ * Devopness API - Painless essential DevOps to everyone  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
  *
  * The version of the OpenAPI document: latest
  * 
@@ -12,6 +12,7 @@
  */
 
 import { ApiBaseService } from "../../../services/ApiBaseService";
+import { ApiResponse, apiResponseFromAxiosResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { Environment } from '../../generated/models';
 import { EnvironmentCreate } from '../../generated/models';
@@ -26,7 +27,7 @@ export class ProjectsEnvironmentsApiService extends ApiBaseService {
      * @param {number} projectId Numeric ID of the project to which an environment will be added
      * @param {EnvironmentCreate} environmentCreate A JSON object containing environment data
      */
-    public async addEnvironmentToProject(projectId: number, environmentCreate: EnvironmentCreate): Promise<void> {
+    public async addEnvironmentToProject(projectId: number, environmentCreate: EnvironmentCreate): Promise<ApiResponse<void>> {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'addEnvironmentToProject');
         }
@@ -34,7 +35,7 @@ export class ProjectsEnvironmentsApiService extends ApiBaseService {
             throw new ArgumentNullException('environmentCreate', 'addEnvironmentToProject');
         }
         const response = await this.post <void, EnvironmentCreate>(`/projects/{project_id}/environments`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), environmentCreate);
-        return response.data;
+        return apiResponseFromAxiosResponse(response);
     }
 
     /**
@@ -42,11 +43,11 @@ export class ProjectsEnvironmentsApiService extends ApiBaseService {
      * @summary Returns a list of all environments belonging to a project
      * @param {number} projectId Numeric ID of the project to get environments from
      */
-    public async listProjectEnvironments(projectId: number): Promise<Array<Environment>> {
+    public async listProjectEnvironments(projectId: number): Promise<ApiResponse<Array<Environment>>> {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'listProjectEnvironments');
         }
         const response = await this.get <Array<Environment>>(`/projects/{project_id}/environments`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
-        return response.data;
+        return apiResponseFromAxiosResponse(response);
     }
 }
