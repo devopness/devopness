@@ -12,7 +12,7 @@
  */
 
 import { ApiBaseService } from "../../../services/ApiBaseService";
-import { ApiResponse, apiResponseFromAxiosResponse } from "../../../common/ApiResponse";
+import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { SshKey } from '../../generated/models';
 
@@ -34,7 +34,7 @@ export class ProjectsSSHKeysApiService extends ApiBaseService {
             throw new ArgumentNullException('sshKey', 'addSshKeyToProject');
         }
         const response = await this.post <SshKey, SshKey>(`/projects/{project_id}/ssh-keys`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), sshKey);
-        return apiResponseFromAxiosResponse(response);
+        return new ApiResponse(response);
     }
 
     /**
@@ -47,6 +47,6 @@ export class ProjectsSSHKeysApiService extends ApiBaseService {
             throw new ArgumentNullException('projectId', 'listProjectSshKeys');
         }
         const response = await this.get <Array<SshKey>>(`/projects/{project_id}/ssh-keys`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
-        return apiResponseFromAxiosResponse(response);
+        return new ApiResponse(response);
     }
 }

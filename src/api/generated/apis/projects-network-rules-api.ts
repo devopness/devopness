@@ -12,7 +12,7 @@
  */
 
 import { ApiBaseService } from "../../../services/ApiBaseService";
-import { ApiResponse, apiResponseFromAxiosResponse } from "../../../common/ApiResponse";
+import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { NetworkRule } from '../../generated/models';
 import { NetworkRuleCreate } from '../../generated/models';
@@ -35,7 +35,7 @@ export class ProjectsNetworkRulesApiService extends ApiBaseService {
             throw new ArgumentNullException('networkRuleCreate', 'addNetworkRuleToProject');
         }
         const response = await this.post <NetworkRule, NetworkRuleCreate>(`/projects/{project_id}/network-rules`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), networkRuleCreate);
-        return apiResponseFromAxiosResponse(response);
+        return new ApiResponse(response);
     }
 
     /**
@@ -48,6 +48,6 @@ export class ProjectsNetworkRulesApiService extends ApiBaseService {
             throw new ArgumentNullException('projectId', 'listProjectNetworkRules');
         }
         const response = await this.get <Array<NetworkRule>>(`/projects/{project_id}/network-rules`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
-        return apiResponseFromAxiosResponse(response);
+        return new ApiResponse(response);
     }
 }

@@ -12,7 +12,7 @@
  */
 
 import { ApiBaseService } from "../../../services/ApiBaseService";
-import { ApiResponse, apiResponseFromAxiosResponse } from "../../../common/ApiResponse";
+import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { LoginCredentials } from '../../generated/models';
 import { User } from '../../generated/models';
@@ -34,7 +34,7 @@ export class UsersApiService extends ApiBaseService {
             throw new ArgumentNullException('userCreate', 'addUser');
         }
         const response = await this.post <void, UserCreate>(`/users`, userCreate);
-        return apiResponseFromAxiosResponse(response);
+        return new ApiResponse(response);
     }
 
     /**
@@ -47,7 +47,7 @@ export class UsersApiService extends ApiBaseService {
             throw new ArgumentNullException('id', 'getUser');
         }
         const response = await this.get <User>(`/users/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(id))));
-        return apiResponseFromAxiosResponse(response);
+        return new ApiResponse(response);
     }
 
     /**
@@ -60,7 +60,7 @@ export class UsersApiService extends ApiBaseService {
             throw new ArgumentNullException('loginCredentials', 'login');
         }
         const response = await this.post <UserTokens, LoginCredentials>(`/users/login`, loginCredentials);
-        return apiResponseFromAxiosResponse(response);
+        return new ApiResponse(response);
     }
 
     /**
@@ -69,7 +69,7 @@ export class UsersApiService extends ApiBaseService {
      */
     public async logout(): Promise<ApiResponse<void>> {
         const response = await this.get <void>(`/users/logout`);
-        return apiResponseFromAxiosResponse(response);
+        return new ApiResponse(response);
     }
 
     /**
@@ -82,7 +82,7 @@ export class UsersApiService extends ApiBaseService {
             throw new ArgumentNullException('userRefreshTokenCreate', 'refreshToken');
         }
         const response = await this.post <UserTokens, UserRefreshTokenCreate>(`/users/refresh-token`, userRefreshTokenCreate);
-        return apiResponseFromAxiosResponse(response);
+        return new ApiResponse(response);
     }
 
     /**
@@ -91,6 +91,6 @@ export class UsersApiService extends ApiBaseService {
      */
     public async usersActivateGet(): Promise<ApiResponse<object>> {
         const response = await this.get <object>(`/users/activate`);
-        return apiResponseFromAxiosResponse(response);
+        return new ApiResponse(response);
     }
 }

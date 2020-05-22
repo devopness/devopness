@@ -12,7 +12,7 @@
  */
 
 import { ApiBaseService } from "../../../services/ApiBaseService";
-import { ApiResponse, apiResponseFromAxiosResponse } from "../../../common/ApiResponse";
+import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { Process } from '../../generated/models';
 import { ProcessCreate } from '../../generated/models';
@@ -35,7 +35,7 @@ export class ProjectsDaemonsProcessesApiService extends ApiBaseService {
             throw new ArgumentNullException('processCreate', 'addDaemonToProject');
         }
         const response = await this.post <Process, ProcessCreate>(`/projects/{project_id}/processes`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), processCreate);
-        return apiResponseFromAxiosResponse(response);
+        return new ApiResponse(response);
     }
 
     /**
@@ -48,6 +48,6 @@ export class ProjectsDaemonsProcessesApiService extends ApiBaseService {
             throw new ArgumentNullException('projectId', 'listProjectDaemons');
         }
         const response = await this.get <Array<Process>>(`/projects/{project_id}/processes`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
-        return apiResponseFromAxiosResponse(response);
+        return new ApiResponse(response);
     }
 }

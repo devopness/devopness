@@ -12,7 +12,7 @@
  */
 
 import { ApiBaseService } from "../../../services/ApiBaseService";
-import { ApiResponse, apiResponseFromAxiosResponse } from "../../../common/ApiResponse";
+import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { Server } from '../../generated/models';
 import { ServerCreate } from '../../generated/models';
@@ -35,7 +35,7 @@ export class ProjectsServersApiService extends ApiBaseService {
             throw new ArgumentNullException('serverCreate', 'addServerToProject');
         }
         const response = await this.post <Server, ServerCreate>(`/projects/{project_id}/servers`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), serverCreate);
-        return apiResponseFromAxiosResponse(response);
+        return new ApiResponse(response);
     }
 
     /**
@@ -48,6 +48,6 @@ export class ProjectsServersApiService extends ApiBaseService {
             throw new ArgumentNullException('projectId', 'listProjectServers');
         }
         const response = await this.get <Array<Server>>(`/projects/{project_id}/servers`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
-        return apiResponseFromAxiosResponse(response);
+        return new ApiResponse(response);
     }
 }

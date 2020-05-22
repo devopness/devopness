@@ -12,7 +12,7 @@
  */
 
 import { ApiBaseService } from "../../../services/ApiBaseService";
-import { ApiResponse, apiResponseFromAxiosResponse } from "../../../common/ApiResponse";
+import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { Environment } from '../../generated/models';
 import { EnvironmentCreate } from '../../generated/models';
@@ -35,7 +35,7 @@ export class ProjectsEnvironmentsApiService extends ApiBaseService {
             throw new ArgumentNullException('environmentCreate', 'addEnvironmentToProject');
         }
         const response = await this.post <void, EnvironmentCreate>(`/projects/{project_id}/environments`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), environmentCreate);
-        return apiResponseFromAxiosResponse(response);
+        return new ApiResponse(response);
     }
 
     /**
@@ -48,6 +48,6 @@ export class ProjectsEnvironmentsApiService extends ApiBaseService {
             throw new ArgumentNullException('projectId', 'listProjectEnvironments');
         }
         const response = await this.get <Array<Environment>>(`/projects/{project_id}/environments`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
-        return apiResponseFromAxiosResponse(response);
+        return new ApiResponse(response);
     }
 }

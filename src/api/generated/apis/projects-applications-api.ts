@@ -12,7 +12,7 @@
  */
 
 import { ApiBaseService } from "../../../services/ApiBaseService";
-import { ApiResponse, apiResponseFromAxiosResponse } from "../../../common/ApiResponse";
+import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { Application } from '../../generated/models';
 
@@ -34,7 +34,7 @@ export class ProjectsApplicationsApiService extends ApiBaseService {
             throw new ArgumentNullException('application', 'addApplicationToProject');
         }
         const response = await this.post <void, Application>(`/projects/{project_id}/applications`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), application);
-        return apiResponseFromAxiosResponse(response);
+        return new ApiResponse(response);
     }
 
     /**
@@ -47,6 +47,6 @@ export class ProjectsApplicationsApiService extends ApiBaseService {
             throw new ArgumentNullException('projectId', 'listProjectApplications');
         }
         const response = await this.get <Array<Application>>(`/projects/{project_id}/applications`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
-        return apiResponseFromAxiosResponse(response);
+        return new ApiResponse(response);
     }
 }

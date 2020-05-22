@@ -12,7 +12,7 @@
  */
 
 import { ApiBaseService } from "../../../services/ApiBaseService";
-import { ApiResponse, apiResponseFromAxiosResponse } from "../../../common/ApiResponse";
+import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { Task } from '../../generated/models';
 import { TaskCreate } from '../../generated/models';
@@ -35,7 +35,7 @@ export class ProjectsCronjobsScheduledTasksApiService extends ApiBaseService {
             throw new ArgumentNullException('taskCreate', 'addCronjobToProject');
         }
         const response = await this.post <Task, TaskCreate>(`/projects/{project_id}/tasks`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), taskCreate);
-        return apiResponseFromAxiosResponse(response);
+        return new ApiResponse(response);
     }
 
     /**
@@ -48,6 +48,6 @@ export class ProjectsCronjobsScheduledTasksApiService extends ApiBaseService {
             throw new ArgumentNullException('projectId', 'listProjectCronjobs');
         }
         const response = await this.get <Array<Task>>(`/projects/{project_id}/tasks`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
-        return apiResponseFromAxiosResponse(response);
+        return new ApiResponse(response);
     }
 }

@@ -12,7 +12,7 @@
  */
 
 import { ApiBaseService } from "../../../services/ApiBaseService";
-import { ApiResponse, apiResponseFromAxiosResponse } from "../../../common/ApiResponse";
+import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { Project } from '../../generated/models';
 
@@ -30,7 +30,7 @@ export class ProjectsApiService extends ApiBaseService {
             throw new ArgumentNullException('project', 'addProject');
         }
         const response = await this.post <void, Project>(`/projects`, project);
-        return apiResponseFromAxiosResponse(response);
+        return new ApiResponse(response);
     }
 
     /**
@@ -43,7 +43,7 @@ export class ProjectsApiService extends ApiBaseService {
             throw new ArgumentNullException('projectId', 'getProject');
         }
         const response = await this.get <Project>(`/projects/{project_id}`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
-        return apiResponseFromAxiosResponse(response);
+        return new ApiResponse(response);
     }
 
     /**
@@ -52,7 +52,7 @@ export class ProjectsApiService extends ApiBaseService {
      */
     public async listProjects(): Promise<ApiResponse<Array<Project>>> {
         const response = await this.get <Array<Project>>(`/projects`);
-        return apiResponseFromAxiosResponse(response);
+        return new ApiResponse(response);
     }
 
     /**
@@ -69,6 +69,6 @@ export class ProjectsApiService extends ApiBaseService {
             throw new ArgumentNullException('project', 'updateProject');
         }
         const response = await this.put <void, Project>(`/projects/{project_id}`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), project);
-        return apiResponseFromAxiosResponse(response);
+        return new ApiResponse(response);
     }
 }
