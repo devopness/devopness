@@ -14,10 +14,8 @@ The `Devopness` SDK provides convenient access to the `Devopness` API from appli
 
 By streamlining essential DevOps practices we're making first class software deployment and server management tools accessible and affordable to every developer in the world.
 
-This project is the `Devopness` frontend web application.
-
 ## Setup
-Use `npm` or `yarn` to install the `Devopness SDK` as a project dependency:
+Use `npm` or `yarn` to install the Devopness SDK npm package as a project dependency:
 - Using `npm`: `npm install devopness-sdk-js`
 - Using `yarn`: `yarn add devopness-sdk-js`
 
