@@ -2,7 +2,7 @@
 /* eslint-disable */
 {{>licenseInfo}}
 import { ApiBaseService } from "../../../services/ApiBaseService";
-import { ApiResponse, apiResponseFromAxiosResponse } from "../../../common/ApiResponse";
+import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 {{#imports}}
 import { {{classname}} } from '{{apiRelativeToRoot}}{{tsModelPackage}}';
@@ -45,7 +45,7 @@ export class {{classname}}Service extends ApiBaseService {
     {{/isHeaderParam}}
     {{/allParams}}
         const response = await this.{{#lambda.lowercase}}{{httpMethod}} {{/lambda.lowercase}}<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}void{{/returnType}}{{#allParams}}{{^isHeaderParam}}{{#-last}}{{^isPrimitiveType}}, {{dataType}}{{/isPrimitiveType}}{{/-last}}{{/isHeaderParam}}{{/allParams}}>(`{{{path}}}`{{#pathParams}}.replace(`{${"{{baseName}}"}}`, encodeURIComponent(String({{paramName}}))){{/pathParams}}{{#allParams}}{{^isHeaderParam}}{{#-last}}{{^isPrimitiveType}}, {{paramName}}{{/isPrimitiveType}}{{/-last}}{{/isHeaderParam}}{{/allParams}});
-        return apiResponseFromAxiosResponse(response);
+        return new ApiResponse(response);
     }
     {{^-last}}
 
