@@ -1,4 +1,5 @@
 summary: Activate an user account
+operationId: activateUser
 tags:
   - Users
 parameters:
