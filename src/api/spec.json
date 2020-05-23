@@ -1,0 +1,5927 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "latest",
+    "title": "devopness API",
+    "x-logo": {
+      "url": "https://staging.devopness.com/26f9f5be5cd326a0ad0cc4f4ed65129b.png"
+    },
+    "description": "Devopness API - Painless essential DevOps to everyone\n"
+  },
+  "servers": [
+    {
+      "url": "http://devopness-api.local",
+      "description": "Local Dev server"
+    },
+    {
+      "url": "https://test-api.devopness.com",
+      "description": "Staging server"
+    },
+    {
+      "url": "https://api.devopness.com",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/actions": {
+      "get": {
+        "summary": "Return a list of all actions belonging to current user",
+        "tags": [
+          "Actions"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Actions"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/actions/{id}": {
+      "get": {
+        "summary": "Get an action by ID",
+        "tags": [
+          "Actions"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the action to be retrieved"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Action"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/applications/{application_id}": {
+      "get": {
+        "summary": "Get an application by ID",
+        "tags": [
+          "Applications"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "application_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the application to get"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Application"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update an existing application",
+        "tags": [
+          "Applications"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "application_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the application to be updated"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing application data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Application"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a given application",
+        "tags": [
+          "Applications"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "application_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the application to be deleted"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Application"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/applications/{application_id}/deployments": {
+      "post": {
+        "summary": "Trigger a new deployment for current application",
+        "tags": [
+          "Applications - Deployments"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "application_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the application to be deployed"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing list of additional parameters",
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExtraBodyParams"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationDeployment"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "get": {
+        "summary": "Returns a list of all deployments belonging to an application",
+        "tags": [
+          "Applications - Deployments"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "application_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the application to get deployments from"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Deployments"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/application-environments/{application_environment_id}/variables": {
+      "post": {
+        "summary": "Create a new variable linked to an application environment",
+        "tags": [
+          "Applications - Environments"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "application_environment_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Unique id of the application environment"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing data for creating a new record of application environment variable",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplicationEnvironmentVariableCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationEnvironmentVariable"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "get": {
+        "summary": "Returns a list of variables belonging to an application environment",
+        "tags": [
+          "Applications - Environments"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "application_environment_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Unique ID of the application environment to retrieved variables from"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationEnvironmentVariables"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/applications/{application_id}/ssl-certificates": {
+      "post": {
+        "summary": "Create a new SSL certificate linked to the current application",
+        "tags": [
+          "Applications - SSL Certificates"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "application_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Unique id of the parent application"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing data for creating a new record of SSL certificate",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SslCertificateCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SslCertificate"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/deployments/{deployment_id}": {
+      "get": {
+        "summary": "Get a deployment by ID",
+        "tags": [
+          "Deployments"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "deployment_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the deployment to get"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Deployment"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/environments/{environment_id}": {
+      "delete": {
+        "summary": "Delete a given environment",
+        "tags": [
+          "Environments"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "environment_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Unique ID of the environment to delete"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a given environment",
+        "tags": [
+          "Environments"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "environment_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Unique ID of the environment to delete"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing environment data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EnvironmentCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "get": {
+        "summary": "Get an environment by ID",
+        "tags": [
+          "Environments"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "environment_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Unique ID of the environment to get"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Environment"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/environments/{environment_id}/servers/replace-linked-servers": {
+      "post": {
+        "summary": "Replace all linked servers by new ones. Immediately deploying all changes to previously and newly linked servers",
+        "operationId": "replaceLinkedServers_EnvironmentServer",
+        "tags": [
+          "Environments - Servers"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "environment_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Unique ID of the environment"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing environment server link parameters",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EnvironmentLinkItem"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/environments/{environment_id}/servers/{server_id}/link": {
+      "post": {
+        "summary": "Link a server to an environment",
+        "operationId": "link_EnvironmentServer",
+        "tags": [
+          "Environments - Servers"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "environment_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Unique ID of the environment"
+          },
+          {
+            "in": "path",
+            "name": "server_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Unique ID of the server to be linked"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing environment server link optional parameters",
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EnvironmentLinkItem"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/environments/{environment_id}/servers/{server_id}/unlink": {
+      "post": {
+        "summary": "Unlink/Remove a server from an environment",
+        "operationId": "unlink_EnvironmentServer",
+        "tags": [
+          "Environments - Servers"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "environment_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Unique ID of the environment"
+          },
+          {
+            "in": "path",
+            "name": "server_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Unique ID of the server to unlink"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing environment server unlink optional parameters",
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EnvironmentLinkItem"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/logs/deployments/{deployment_id}/steps/{step_id}": {
+      "get": {
+        "summary": "Get log of a deployment step",
+        "tags": [
+          "Logs"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "deployment_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9999999999
+            },
+            "required": true,
+            "description": "Numeric ID of the deployment to which the step belongs to"
+          },
+          {
+            "in": "path",
+            "name": "step_id",
+            "example": 3,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 12
+            },
+            "required": true,
+            "description": "Relative order number of the deployment step"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Log"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/network-rules/{rule_id}": {
+      "delete": {
+        "summary": "Delete a given network rule",
+        "tags": [
+          "Network Rules"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "rule_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the rule to be deleted"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "get": {
+        "summary": "Get a network rule by ID",
+        "tags": [
+          "Network Rules"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "rule_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the rule to get"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NetworkRule"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/processes/{process_id}": {
+      "delete": {
+        "summary": "Delete a given Background process",
+        "tags": [
+          "Daemons/Processes"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "process_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the process to be deleted"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "get": {
+        "summary": "Get a background process by ID",
+        "tags": [
+          "Daemons/Processes"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "process_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the process to get"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Process"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/processes/{process_id}/restart": {
+      "post": {
+        "summary": "Restart a background process",
+        "tags": [
+          "Daemons/Processes"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "process_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the process to restart"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing list of additional parameters",
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExtraBodyParams"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Process"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/projects": {
+      "post": {
+        "summary": "Create a new project",
+        "operationId": "addProject",
+        "tags": [
+          "Projects"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing project data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Project"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "$ref": "#/components/responses/Created"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          }
+        }
+      },
+      "get": {
+        "summary": "Returns a list of all projects belonging to current user",
+        "operationId": "listProjects",
+        "tags": [
+          "Projects"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Projects"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}": {
+      "get": {
+        "summary": "Get a project by ID",
+        "operationId": "getProject",
+        "tags": [
+          "Projects"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the project to get"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Project"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update an existing project",
+        "operationId": "updateProject",
+        "tags": [
+          "Projects"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the project to put"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing project data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Project"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/applications": {
+      "post": {
+        "summary": "Create a new application",
+        "operationId": "addApplicationToProject",
+        "tags": [
+          "Projects - Applications"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the application to get"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing project data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Application"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "$ref": "#/components/responses/Created"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          }
+        }
+      },
+      "get": {
+        "summary": "Returns a list of all applications belonging to a project",
+        "operationId": "listProjectApplications",
+        "tags": [
+          "Projects - Applications"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the project to get applications from"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Applications"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/deployments": {
+      "post": {
+        "summary": "Trigger a new deployment, on the current project",
+        "operationId": "deployProjectApps",
+        "tags": [
+          "Projects - Deployments"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the project for which a deployment is being triggered"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing deployment data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeploymentCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "$ref": "#/components/responses/Created"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          }
+        }
+      },
+      "get": {
+        "summary": "Returns a list of all deployments belonging to a project",
+        "operationId": "listProjectDeployments",
+        "tags": [
+          "Projects - Deployments"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the project to get deployments from"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Deployments"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/environments": {
+      "post": {
+        "summary": "Create a new environment, on the current project",
+        "operationId": "addEnvironmentToProject",
+        "tags": [
+          "Projects - Environments"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the project to which an environment will be added"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing environment data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EnvironmentCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "$ref": "#/components/responses/Created"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          }
+        }
+      },
+      "get": {
+        "summary": "Returns a list of all environments belonging to a project",
+        "operationId": "listProjectEnvironments",
+        "tags": [
+          "Projects - Environments"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the project to get environments from"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Environments"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/network-rules": {
+      "post": {
+        "summary": "Add a network rule to the given project",
+        "operationId": "addNetworkRuleToProject",
+        "tags": [
+          "Projects - Network Rules"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "The project numeric Id"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing backgroud process data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NetworkRuleCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NetworkRule"
+                }
+              }
+            }
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          }
+        }
+      },
+      "get": {
+        "summary": "Returns a list of all network rules that applies to a project",
+        "operationId": "listProjectNetworkRules",
+        "tags": [
+          "Projects - Network Rules"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the project to get network rules from"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NetworkRules"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/processes": {
+      "post": {
+        "summary": "Add a background process to the given project",
+        "operationId": "addDaemonToProject",
+        "tags": [
+          "Projects - Daemons/Processes"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "The project numeric Id"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing backgroud process data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProcessCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Process"
+                }
+              }
+            }
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          }
+        }
+      },
+      "get": {
+        "summary": "Returns a list of all processes belonging to a project",
+        "operationId": "listProjectDaemons",
+        "tags": [
+          "Projects - Daemons/Processes"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the project to get processes from"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Processes"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/servers": {
+      "post": {
+        "summary": "Creates a server and link it to the given project",
+        "operationId": "addServerToProject",
+        "tags": [
+          "Projects - Servers"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "The project numeric Id"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing server data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ServerCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Server"
+                }
+              }
+            }
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          }
+        }
+      },
+      "get": {
+        "summary": "List all servers linked to a project",
+        "operationId": "listProjectServers",
+        "tags": [
+          "Projects - Servers"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "The project numeric Id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Servers"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/services": {
+      "post": {
+        "summary": "Add a service to a project and triggers its setup in each linked server",
+        "operationId": "addServiceToProject",
+        "tags": [
+          "Projects - Services"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "The service's unique id"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing service data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ServiceCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Service"
+                }
+              }
+            }
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          }
+        }
+      },
+      "get": {
+        "summary": "List all services in a project",
+        "operationId": "listProjectServices",
+        "tags": [
+          "Projects - Services"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "The service unique Id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Services"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/ssh-keys": {
+      "post": {
+        "summary": "Create a SSH key and link it to the given project",
+        "operationId": "addSshKeyToProject",
+        "tags": [
+          "Projects - SSH Keys"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "The project numeric Id"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing SSH key data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SshKey"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SshKey"
+                }
+              }
+            }
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          }
+        }
+      },
+      "get": {
+        "summary": "Return a list of all SSH keys added to a project",
+        "operationId": "listProjectSshKeys",
+        "tags": [
+          "Projects - SSH Keys"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "The project numeric Id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SshKeys"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/tasks": {
+      "post": {
+        "summary": "Add a scheduled task to the given project",
+        "operationId": "addCronjobToProject",
+        "tags": [
+          "Projects - Cronjobs/Scheduled Tasks"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "The project numeric Id"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing task data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TaskCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Task"
+                }
+              }
+            }
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          }
+        }
+      },
+      "get": {
+        "summary": "Return a list of all tasks belonging to a project",
+        "operationId": "listProjectCronjobs",
+        "tags": [
+          "Projects - Cronjobs/Scheduled Tasks"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the project to get tasks from"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Tasks"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/servers": {
+      "get": {
+        "summary": "Return a list of all servers belonging to current user",
+        "tags": [
+          "Servers"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Servers"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/servers/{id}": {
+      "get": {
+        "summary": "Get a server by ID",
+        "tags": [
+          "Servers"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the server to get"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Server"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/servers/{id}/commands": {
+      "get": {
+        "summary": "Get commands to be executed on the given server",
+        "tags": [
+          "Servers"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "The server numeric Id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerCommands"
+                }
+              }
+            }
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          }
+        }
+      }
+    },
+    "/servers/{id}/connect/{activation_token}": {
+      "post": {
+        "summary": "Connect a server to devopness platform",
+        "tags": [
+          "Servers"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "The server numeric Id"
+          },
+          {
+            "in": "path",
+            "name": "activation_token",
+            "example": "B54AWSVf3iIB3QWFs7eF3c6jiXS03ZJLqicyzCNpWMjpV5lR09Gj11naMwCu",
+            "schema": {
+              "type": "string",
+              "minimum": 60
+            },
+            "required": true,
+            "description": "The server activation token"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing list of additional parameters",
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExtraBodyParams"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerConnect"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/services/{id}": {
+      "delete": {
+        "summary": "Delete a given service",
+        "operationId": "deleteService",
+        "tags": [
+          "Services"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "The Id of the service to be deleted"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "get": {
+        "summary": "Get details of a single service",
+        "operationId": "getService",
+        "tags": [
+          "Services"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Unique ID of the service to get"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Service"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/services/{id}/reload": {
+      "post": {
+        "summary": "Reload a service",
+        "operationId": "reloadService",
+        "tags": [
+          "Services"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "The unique id of the service"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing list of additional parameters",
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExtraBodyParams"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/services/{id}/restart": {
+      "post": {
+        "summary": "Restart a service",
+        "operationId": "restartService",
+        "tags": [
+          "Services"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "The unique id of the service"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing list of additional parameters",
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExtraBodyParams"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/services/{id}/start": {
+      "post": {
+        "summary": "Start a service",
+        "operationId": "startService",
+        "tags": [
+          "Services"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "The unique id of the service"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing list of additional parameters",
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExtraBodyParams"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/services/{id}/stop": {
+      "post": {
+        "summary": "Stop a service",
+        "operationId": "stopService",
+        "tags": [
+          "Services"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "The unique id of the service"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing list of additional parameters",
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExtraBodyParams"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/social-accounts": {
+      "post": {
+        "summary": "Create a new social account linked to the current user's profile",
+        "tags": [
+          "Social Accounts"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing social provider callback data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SocialAccountCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SocialAccount"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "get": {
+        "summary": "Return a list of all social accounts belonging to current user",
+        "tags": [
+          "Social Accounts"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SocialAccounts"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/social-accounts/{id}": {
+      "delete": {
+        "summary": "Delete a given social account",
+        "tags": [
+          "Social Accounts"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "The Id of the social account to be deleted"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/social-accounts/{provider}": {
+      "get": {
+        "summary": "Get details of a Social authentication provider, by its name",
+        "tags": [
+          "Social Accounts"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "provider",
+            "example": "facebook",
+            "schema": {
+              "type": "string",
+              "minimum": 3
+            },
+            "required": true,
+            "description": "Unique name/Id of the provider to be retrieved"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SocialAccount"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/social-accounts/{provider}/status": {
+      "get": {
+        "summary": "Get the connect status of a Social authentication provider, by its name",
+        "tags": [
+          "Social Accounts"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "provider",
+            "example": "google",
+            "schema": {
+              "type": "string",
+              "minimum": 3
+            },
+            "required": true,
+            "description": "Unique name of the provider to be retrieved"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SocialAccountStatus"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/source-providers/{provider}/repositories": {
+      "get": {
+        "summary": "Return a list of all repositories belonging to a current user social provider account",
+        "tags": [
+          "Source Providers - Repositories"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "provider",
+            "example": "bitbucket",
+            "schema": {
+              "type": "string",
+              "minimum": 3
+            },
+            "required": true,
+            "description": "Unique name of the source code provider where the repository is hosted"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Repositories"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/source-providers/{provider}/repositories/{repository_owner}/{repository_name}": {
+      "get": {
+        "summary": "Get details of a repository, by its name",
+        "tags": [
+          "Source Providers - Repositories"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "provider",
+            "example": "gitlab",
+            "schema": {
+              "type": "string",
+              "minimum": 3
+            },
+            "required": true,
+            "description": "Unique name/Id of the provider where the repository is hosted"
+          },
+          {
+            "in": "path",
+            "name": "repository_owner",
+            "example": "devopness",
+            "schema": {
+              "type": "string",
+              "minimum": 3
+            },
+            "required": true,
+            "description": "Nickname/user id of the owner of the repository"
+          },
+          {
+            "in": "path",
+            "name": "repository_name",
+            "example": "devopness-site",
+            "schema": {
+              "type": "string",
+              "minimum": 3
+            },
+            "required": true,
+            "description": "The name of the repository to be retrieved"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Repository"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/source-providers": {
+      "get": {
+        "summary": "Return a list of all source code providers linked to current user",
+        "tags": [
+          "Source Providers"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SocialAccounts"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/source-providers/{id}": {
+      "delete": {
+        "summary": "Delete a given source provider from current user's account",
+        "tags": [
+          "Source Providers"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "example": 123,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Unique Id of the source provider to be deleted"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/source-providers/{provider}": {
+      "get": {
+        "summary": "Get details of a source code provider, by its name",
+        "tags": [
+          "Source Providers"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "provider",
+            "example": "github",
+            "schema": {
+              "type": "string",
+              "minimum": 3
+            },
+            "required": true,
+            "description": "Unique name/Id of the provider to be retrieved"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SocialAccount"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/ssh-keys/{ssh_key_id}": {
+      "get": {
+        "summary": "Get a SSH key by ID",
+        "tags": [
+          "SSH Keys"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "ssh_key_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the SSH key to get"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SshKey"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a given SSH key",
+        "tags": [
+          "SSH Keys"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "ssh_key_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the SSH key to be deleted"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/ssl-certificates/{id}": {
+      "get": {
+        "summary": "Get details of a single SSL certificate",
+        "tags": [
+          "SSL Certificates"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Unique ID of the item to be retrieved"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SslCertificate"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a SSL certificate",
+        "tags": [
+          "SSL Certificates"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "The unique id of the record to be deleted"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/static/language-runtimes": {
+      "get": {
+        "summary": "List supported language runtimes and respective frameworks",
+        "tags": [
+          "Static Data"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LanguageRuntimes"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tasks/{task_id}": {
+      "delete": {
+        "summary": "Delete a given task",
+        "tags": [
+          "Cronjobs/Scheduled Tasks"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "task_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the task to be deleted"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "get": {
+        "summary": "Get a task by ID",
+        "tags": [
+          "Cronjobs/Scheduled Tasks"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "task_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the task to get"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Task"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/users": {
+      "post": {
+        "summary": "Sign up/register a new user",
+        "operationId": "addUser",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing user essential data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "$ref": "#/components/responses/Created"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          }
+        }
+      }
+    },
+    "/users/activate": {
+      "get": {
+        "summary": "Activate an user account",
+        "operationId": "activateUser",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserCreate"
+                }
+              }
+            },
+            "$ref": "#/components/responses/Ok"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/users/login": {
+      "post": {
+        "summary": "Login/create a new token for the given credentials",
+        "operationId": "login",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing user credentials",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginCredentials"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok - Tokens created",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserTokens"
+                }
+              }
+            }
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          }
+        }
+      }
+    },
+    "/users/logout": {
+      "get": {
+        "summary": "Logout/revoke an existing token",
+        "operationId": "logout",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "summary": "Get a user by ID",
+        "operationId": "getUser",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the user or the string literal `me` for the current user"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/users/refresh-token": {
+      "post": {
+        "summary": "Refresh an existing user access token",
+        "operationId": "refreshToken",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing user essential data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRefreshTokenCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok - Tokens refreshed",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserTokens"
+                }
+              }
+            }
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "API Reference",
+      "description": "This page contains the documentation on how to use `devopness` through API calls.\n> Note: This documentation is not complete, so for missing parts or inaccurate API description please\n>\n> reach out to `devopness` API team.\n\n## Introduction\ndevopness's API exposes all `devopness` features via a standardized programmatic interface. Through devopness API a registered Devopness user can perform every operation you can do on https://www.devopness.com web interfaces and mobile apps.\n\n## Getting started\nAll you need to obtain a token and start consuming this API is a valid email/password registered with devopness.com.\n\n\nThe `devopness` API is based on HTTPS requests and JSON responses, organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API has predictable resource-oriented URLs, accepts requests with [JSON-encoded](http://www.json.org/) bodies with arguments, returns [JSON-encoded](http://www.json.org/) responses, and uses standard HTTP response codes, authentication, and verbs.\n\n## Date format\nAll dates in the API use UTC and are strings in the [ISO 8601 \"combined date and time representation\" format](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations):\n```\n2015-05-15 15:50:38\n```\n\n## Errors\nThe devopness API uses standard HTTP status codes to indicate the success or failure of an API call. In general: Codes in the `2xx` range indicate success. Codes in the `4xx` range indicate an error that failed given the information provided (e.g., a required parameter was omitted). Codes in the `5xx` range indicate an error on the API servers and are very rare.\n\nThe body of the error response is a JSON in the following format:\n\n```\n{\n  \"message\": \"The given request data was invalid\"\n  \"errors\": { // Optional errors object, returned only when there are detailed error message to be shared\n      \"field_1\": [\n          \"Optional error message related to field_1\"\n      ],\n      \"field_2\": [\n          \"Optional error message related to field_2\"\n      ],\n  }\n}\n```\n\n## Responses\nWhen a request is successful, a response body will typically be sent back in the form of a JSON object.\nException to this rule is when a DELETE request is processed, which will result in a successful HTTP 204 status and an empty response body.\n\n### Response codes\nResponse codes indicate success or failure of request processing.\nStatus codes from the `2xx` range indicate that request has been accepted.\nIf the returned code is from the `4xx` or `5xx` range then it reveals either problem with the request or unability to process data.\nSee below for a list of HTTP Status codes used by `devopness` API:\n\n| Status Code   | Description   |\n| -------------:|---------------|\n| 200           | Ok - The request was successful\n| 201           | Created - The request was successful and a new resource has been created as a result\n| 202           | Accepted - The request has been received but not yet completely processed\n| 204           | No content - The request was successful. There is no content to return, but the headers may be useful\n| 400           | Bad Request - The server could not understand the request due to invalid syntax\n| 401           | Unauthenticated - It is usally caused by using wrong or expired credentials\n| 403           | Forbidden/Unauthorized - The used credentials do not allow access to the resource\n| 404           | Not Found - The server cannot find the requested resource\n| 405           | Method not allowed - The request method has been disabled and cannot be used\n| 409           | Conflict - The current request conflicts with the current state of the server\n| 415           | Unsupported Media Type - The request's `Content-Type` or `Accept` headers are not set to a valid format\n| 422           | Unprocessable Entity - The request was unable to be processed due to validation errors\n| 429           | Too many requests - The client exceeded the requests limit in a window of time\n| 500           | Internal Server Error. Please contact the `devopness` team\n\n## Routes and Endpoints\nA route is a URI which can be mapped to different HTTP methods. The mapping of an individual HTTP method to a route is known as an endpoint. `devopness` API exposes, as much as posible, well standardized endpoints with resources and segments leading the path to access the desired resource data.\n\nEach resource mentioned in an endpoint segment has its name written in the plural form, as we are always referencing a collection of objects, that might or might not be filtered by a single ID or extra query string parameters.\n\n### Resources and nested resources endpoints\nBasically there are two types of endpoints used in `devopness` API:\n1) Resource endpoints:\n\n**Pattern:**\n\n`/collection/{resource_id}/[{action}]`\n\n**Examples:**\n\n| HTTP Method   | Example                            | Purpose       |\n| -------------:|------------------------------------|---------------|\n| POST          | /projects                          | Create new item\n| GET           | /social-accounts                   | List all items\n| GET           | /social-accounts/{account}/status  | Perform a custom action (`status`) for a single item\n| GET           | /tasks/{id}                        | Get a single item by id\n| PUT           | /applications/{id}                 | Modify an item\n| DELETE        | /processes/{id}                    | Remove an item permanently\n\n2) Nested resources endpoints:\n\nNested resources are used when there is a clear hierarchy between the parent resource and the subresource, or for convenience to make it easy and predcitable on how to filter subresources belonging to a parent resource.\nIn `devopness` API design we strive to avoid nesting resources more than 1 level deep + one action related to the child resource or to the relationship between parent and child.\n\n**Pattern:**\n\n`/parent-collection/{parent_id}/{child-collection}/{child_id}/[{action}]`\n\n**Examples:**\n\n| HTTP Method   | Example                        | Purpose       |\n| -------------:|--------------------------------|---------------|\n| GET           | /projects/{id}/servers         | List all items belonging/linked to the parent resource\n| POST          | /projects/{id}/servers         | Create a new subresource item and link it to the parent object\n| POST          | /parent/{id}/child/{id}/link   | Create a relationship between parent and child object when both items already existed but were not linked.\n| DELETE        | /parent/{id}/child/{id}/unlink | Remove the relationship between parent and child resources, without deleting any item\n\n## Expanding objects\n`TO DO:` define the rules for object expansion and document it here\n"
+    },
+    {
+      "name": "Static Data",
+      "description": "Client API applications might need to retrieve possible accepted values to fulfill their forms and allow end users to pick values from a list of valid data.\nAll static data that need to be used through `devopness` API client applications is provided through the `/static/*` endpoints.\n"
+    },
+    {
+      "name": "Actions"
+    },
+    {
+      "name": "Applications"
+    },
+    {
+      "name": "Applications - Deployments"
+    },
+    {
+      "name": "Applications - Environments"
+    },
+    {
+      "name": "Applications - SSL Certificates",
+      "description": "Throughout the `devopness` documentation the term `SSL Certificate` refers to a public key certificate adhering to `X.509` standard. While TLS is the protocol more used nowadays for web encryption, for historical reasons web encryption is often referred to simply as SSL. A SSL Certificate managed by `devopness` might be used as an HTTPS/SSL/TLS and other internet protocols to establish encrypted connections between client apps (e.g. browsers) and the web application servers managed through `devopness`, but it's not limited to be used for authenticating server's identity.\n"
+    },
+    {
+      "name": "Cronjobs/Scheduled Tasks",
+      "description": "A cronjob or scheduled task is a scheduled command to be set on one or more project servers to ensure a given routine will be executed on time.\n"
+    },
+    {
+      "name": "Daemons/Processes",
+      "description": "The terms `process`, `background process` and `daemon` may be used interchangeably in the `devopness` API documentation to denote the same thing: i.e., a computer process that runs behind the scenes without user intervention, detached from TTY (teletype/terminal type) and having no associated console or controlling terminal, therefore prevented from receiving `SIGHUP` on shell termination.\n"
+    },
+    {
+      "name": "Deployments"
+    },
+    {
+      "name": "Environments"
+    },
+    {
+      "name": "Environments - Servers"
+    },
+    {
+      "name": "Logs"
+    },
+    {
+      "name": "Network Rules"
+    },
+    {
+      "name": "Projects"
+    },
+    {
+      "name": "Projects - Applications"
+    },
+    {
+      "name": "Projects - Cronjobs/Scheduled Tasks",
+      "description": "A cronjob or scheduled task is a scheduled command to be set on one or more project servers to ensure a given routine will be executed on time.\n"
+    },
+    {
+      "name": "Projects - Daemons/Processes",
+      "description": "The terms `process`, `background process` and `daemon` may be used interchangeably in the `devopness` API documentation to denote the same thing: i.e., a computer process that runs behind the scenes without user intervention, detached from TTY (teletype/terminal type) and having no associated console or controlling terminal, therefore prevented from receiving `SIGHUP` on shell termination.\n"
+    },
+    {
+      "name": "Projects - Deployments"
+    },
+    {
+      "name": "Projects - Environments"
+    },
+    {
+      "name": "Projects - Network Rules"
+    },
+    {
+      "name": "Projects - Servers"
+    },
+    {
+      "name": "Projects - Services"
+    },
+    {
+      "name": "Projects - SSH Keys"
+    },
+    {
+      "name": "Servers"
+    },
+    {
+      "name": "Services"
+    },
+    {
+      "name": "Social Accounts",
+      "description": "A social account is a third party login/authorization service connected to the current user's account. e.g.: Facebook, Google, GitHub\n"
+    },
+    {
+      "name": "Source Providers",
+      "description": "A source provider is a Version Control System (VCS)/Source Code Management (SCM) connected to the current user's account. e.g.: BitBucket, GitHub, GitLab\n"
+    },
+    {
+      "name": "Source Providers - Repositories"
+    },
+    {
+      "name": "SSH Keys"
+    },
+    {
+      "name": "SSL Certificates",
+      "description": "Throughout the `devopness` documentation the term `SSL Certificate` refers to a public key certificate adhering to `X.509` standard. While TLS is the protocol more used nowadays for web encryption, for historical reasons web encryption is often referred to simply as SSL. A SSL Certificate managed by `devopness` might be used as an HTTPS/SSL/TLS and other internet protocols to establish encrypted connections between client apps (e.g. browsers) and the web application servers managed through `devopness`, but it's not limited to be used for authenticating server's identity.\n"
+    },
+    {
+      "name": "Users"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "description": "Some few endpoints do not require authentication, but pretty much anything else will require you to be authenticated.\nTo become authenticated you will need to request an API access token through the `/users/login` endpoint.\n\n## Using an access token\nOnce you have an access token for a given user you can pass it along in the HTTP request header.\nAlternatively, if consuming the API through a web application, the token can be sent in the `AuthToken` HTTPOnly cookie as part of the HTTP request.\n"
+      }
+    },
+    "parameters": {
+      "acceptHeader": {
+        "name": "Accept",
+        "in": "header",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "description": "application/json"
+      },
+      "authHeader": {
+        "name": "Authorization",
+        "in": "header",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "description": "Bearer {{access_token}}"
+      },
+      "contentTypeHeader": {
+        "name": "Content-Type",
+        "in": "header",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "description": "application/json"
+      },
+      "pageNumber": {
+        "name": "page",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "limit": {
+        "name": "limit",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "integer"
+        }
+      }
+    },
+    "schemas": {
+      "Action": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "The current status of the action",
+            "enum": [
+              "pending",
+              "in-progress",
+              "cancelled",
+              "completed",
+              "failed"
+            ],
+            "example": "in-progress"
+          },
+          "type": {
+            "type": "string",
+            "description": "The action type",
+            "enum": [
+              "create",
+              "launch",
+              "setup",
+              "deploy",
+              "remove",
+              "connect"
+            ],
+            "example": "setup"
+          },
+          "total_steps": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 127,
+            "description": "The total number of steps to complete the action",
+            "example": 5
+          },
+          "current_step": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 127,
+            "description": "The current action step being executed",
+            "example": 2
+          },
+          "current_step_message": {
+            "type": "string",
+            "description": "A message describing the current step being executed",
+            "example": "Step 2 of 5"
+          },
+          "output": {
+            "type": "string",
+            "description": "A memo/text with full action output log - when available"
+          },
+          "started_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the action started to be executed (left the `pending/waiting` status)",
+            "example": "2019-09-25 13:49:51"
+          },
+          "completed_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the action has finished execution",
+            "example": "2019-09-25 13:52:04"
+          }
+        }
+      },
+      "Actions": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Action"
+        }
+      },
+      "Application": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "A domain name that points to application main web address. Can be a naked domain or any subdomain. If app has domain names `testing.my-app.com`, `staging.my-app.com` and `www.my-app.com` a possible good candidate for the application name would be the \"naked\" domain `my-app.com`",
+            "example": "my-app.co.uk"
+          },
+          "project_id": {
+            "type": "integer",
+            "description": "Numeric ID of the project that the application belongs to"
+          },
+          "source_provider_id": {
+            "type": "integer",
+            "description": "Numeric ID of the source provider account where the repository is hosted. Required when the `repository` field is informed."
+          },
+          "repository": {
+            "description": "The name of the repository containing the application source code. Required when the `source_provider_id` field is informed.",
+            "type": "string",
+            "example": "devopness/devopness-web-site"
+          },
+          "programming_language": {
+            "type": "string",
+            "description": "The predominant programming language used in the application source code",
+            "example": "php"
+          },
+          "framework": {
+            "type": "string",
+            "description": "The base framework on top of which the application has been implemented - if any",
+            "example": "drupal"
+          },
+          "entrypoint": {
+            "type": "string",
+            "description": "The applicaton initialization file/module/function from which the application execution starts. It might be a file name, a package manager script or a module/class/function exported by application code and invoked by a run time environment of the technology used by the application.",
+            "example": "index.js|server.js|server.php|index.php|index:app|my-site.wsgi:application|my-project:main|my-project.wsgi"
+          },
+          "root_directory": {
+            "type": "string",
+            "description": "The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository.",
+            "example": "/ or /src or /lib/src or /code or /app"
+          },
+          "public_directory": {
+            "type": "string",
+            "description": "The relative web directory where publicly accessible assets are located and the web content should be served from",
+            "example": "/public"
+          },
+          "source_provider": {
+            "description": "The source provider from where the application source code repository has been retrieved",
+            "$ref": "#/components/schemas/SocialAccount"
+          },
+          "deployment_settings": {
+            "description": "The list of deployment settings for each application environment",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApplicationDeploymentSettings"
+            }
+          },
+          "environments": {
+            "description": "The list of environments to which the application is linked to",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Environment"
+            }
+          },
+          "status": {
+            "type": "string",
+            "description": "Current status of deploying to remote servers the current application",
+            "enum": [
+              "pending",
+              "in-progress",
+              "cancelled",
+              "completed",
+              "failed"
+            ],
+            "example": "completed"
+          }
+        },
+        "required": [
+          "project_id",
+          "name",
+          "framework",
+          "programming_language",
+          "public_directory"
+        ]
+      },
+      "ApplicationDeployment": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "The type of the deployment being triggered",
+            "enum": [
+              "deploy",
+              "redeploy",
+              "rollback"
+            ],
+            "example": "deploy"
+          },
+          "branch": {
+            "type": "string",
+            "description": "The name of the branch from which the source code should be retrieved and deployed",
+            "example": "feature/deployment-api-endpoints-and-docs-long-name"
+          },
+          "hash": {
+            "type": "string",
+            "description": "The commit's full hash that uniquely identify a commit. Required when re-deploying",
+            "example": "4a03b9d21edeef8434c45818594a5d72027c14e7"
+          }
+        },
+        "required": [
+          "type",
+          "branch"
+        ]
+      },
+      "ApplicationDeploymentSettings": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The Id of the given group of settings",
+            "example": 1
+          },
+          "application_id": {
+            "type": "integer",
+            "description": "The Id of the application to which the settings apply to",
+            "example": 2
+          },
+          "environment_id": {
+            "type": "integer",
+            "description": "The Id of the environment to which the settings apply to",
+            "example": 3
+          },
+          "blueprint_id": {
+            "type": "integer",
+            "description": "The Id of the optional blueprint that might contain technology stack specific settings",
+            "example": 4
+          },
+          "domain_name": {
+            "type": "string",
+            "format": "hostname",
+            "description": "The sub-domain through which the application deployed with these settings will be accessed",
+            "example": "test.my-app.co.uk"
+          },
+          "app_directory": {
+            "type": "string",
+            "description": "The physical path of the applicaton code/artifacts on the deployed servers",
+            "example": "/var/www/my-app"
+          },
+          "default_branch": {
+            "type": "string",
+            "description": "The version control branch that, by default, will be retrieved and deployed. This might be overriden by client apps API calls when actually triggering a new deployment.",
+            "example": "develop"
+          },
+          "deployments_keep": {
+            "type": "integer",
+            "description": "The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers",
+            "example": 4
+          },
+          "install_dependencies_dev": {
+            "description": "Indicates if at deployment time we should execute package manager command to install dependencies used in development mode",
+            "type": "boolean",
+            "example": false
+          },
+          "install_dependencies_prod": {
+            "description": "Indicates if at deployment time we should execute package manager command to install dependencies used in production mode",
+            "type": "boolean",
+            "example": true
+          },
+          "push_to_deploy": {
+            "description": "Indicates if push to deploy webhooks are enabled for this application/environment, if so code will be deployed when commited to the default_branch",
+            "type": "boolean",
+            "example": false
+          },
+          "engine_version": {
+            "description": "The language runtime engine version to be used to execute this application code on the deployed servers",
+            "type": "string",
+            "example": "19.03.2"
+          },
+          "build_command": {
+            "description": "The command that should be executed once to build the application source code. If set, `devopness` will not execute it's own build process to resolve package dependencies and get the application in a ready state. It will be assumed that the user is an advanced user that knows what she/he is doing, therefore the command specified here will be run as is everytime the application needs to be started.",
+            "type": "string",
+            "example": "`docker build -t my_image_name .`, `yarn build`, `jekyll build`, `python build.py`"
+          },
+          "init_command": {
+            "description": "The start up command that should be executed every time the application needs to be started. If set, `devopness` will not generate it's own start up script. It will be assumed that the user is an advanced user that knows what she/he is doing, therefore the command specified here will be run as is everytime the application needs to be built.",
+            "type": "string",
+            "example": "`npm run production`, `docker run -d -P --name my_container_name my_image_name`, `php artisan serve –-host=192.168.2.20 --port=8000`"
+          },
+          "listening_address": {
+            "description": "Useful, for instance, when deploying `docker` containerized applications. If the application is not initialized by `devopness` itself, the user should inform the address at which the application listens to external calls. The address can be an IP, IP:PORT, HOSTNAME, HOSTNAME:PORT or unix:PATH",
+            "type": "string",
+            "example": "`unix:/tmp/backend3`, `http://127.0.0.1:8000`, `127.0.0.1:3000`, `http://localhost`"
+          }
+        },
+        "required": [
+          "application_id",
+          "environment_id",
+          "domain_name",
+          "app_directory",
+          "default_branch",
+          "deployments_keep",
+          "install_dependencies_dev",
+          "install_dependencies_prod",
+          "push_to_deploy"
+        ]
+      },
+      "ApplicationEnvironmentVariable": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "The unique key used to identify the variable on the target",
+            "example": "APP_URL"
+          },
+          "value": {
+            "type": "string",
+            "description": "The value to be assigned to this variable when deployed to its target",
+            "example": "https://staging.devopness.com"
+          },
+          "description": {
+            "type": "string",
+            "description": "A text describing the variable, provided by the end user",
+            "example": "Sample variable description"
+          },
+          "target": {
+            "type": "string",
+            "description": "The target defining how the variable key/value pair will be deployed",
+            "enum": [
+              "app-config-file",
+              "deployment-script",
+              "shared-script",
+              "nginx-block-http-before",
+              "nginx-block-http-after",
+              "nginx-block-server",
+              "os-env-var",
+              "php-cli",
+              "php-web"
+            ],
+            "example": "app-config-file"
+          },
+          "type": {
+            "type": "string",
+            "description": "The type of the key/value pair",
+            "enum": [
+              "variable",
+              "file"
+            ],
+            "example": "variable"
+          },
+          "encrypted": {
+            "type": "boolean",
+            "default": false,
+            "description": "Indicates if the variable value should be encrypted by `devopness` in the deployment logs"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25 13:49:51"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25 13:52:04"
+          }
+        },
+        "required": [
+          "key",
+          "value",
+          "target",
+          "type"
+        ]
+      },
+      "ApplicationEnvironmentVariableCreate": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "The unique key used to identify the variable on the target",
+            "example": "APP_URL"
+          },
+          "value": {
+            "type": "string",
+            "description": "The value to be assigned to this variable when deployed to its target",
+            "example": "https://staging.devopness.com"
+          },
+          "description": {
+            "type": "string",
+            "description": "A text describing the variable, provided by the end user",
+            "example": "Sample variable description"
+          },
+          "target": {
+            "type": "string",
+            "description": "The target defining how the variable key/value pair will be deployed",
+            "enum": [
+              "app-config-file",
+              "deployment-script",
+              "shared-script",
+              "nginx-block-http-before",
+              "nginx-block-http-after",
+              "nginx-block-server",
+              "os-env-var",
+              "php-cli",
+              "php-web"
+            ],
+            "example": "app-config-file"
+          },
+          "type": {
+            "type": "string",
+            "description": "The type of the key/value pair",
+            "enum": [
+              "variable",
+              "file"
+            ],
+            "example": "variable"
+          },
+          "encrypted": {
+            "type": "boolean",
+            "default": false,
+            "description": "Indicates if the variable value should be encrypted by `devopness` in the deployment logs"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25 13:49:51"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25 13:52:04"
+          }
+        },
+        "required": [
+          "key",
+          "value",
+          "encrypted",
+          "target",
+          "type"
+        ]
+      },
+      "ApplicationEnvironmentVariables": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/ApplicationEnvironmentVariable"
+        }
+      },
+      "Applications": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Application"
+        }
+      },
+      "BlueprintItem": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the dependency item",
+            "enum": [
+              "mysql",
+              "phpmyadmin",
+              "redis",
+              "aws",
+              "self-hosted"
+            ],
+            "example": "mysql"
+          }
+        }
+      },
+      "Commit": {
+        "type": "object",
+        "properties": {
+          "hash": {
+            "type": "string",
+            "description": "The commit comment's full hash that uniquely identify it",
+            "example": "4a03b9d21edeef8434c45818594a5d72027c14e7"
+          },
+          "message": {
+            "type": "string",
+            "description": "The commit's comment message",
+            "example": "Good developers always add messages to their commits"
+          },
+          "committed_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the commit has been submitted",
+            "example": "2019-09-25 13:49:51"
+          },
+          "provider": {
+            "type": "string",
+            "description": "The source provider where the commit has been retrieved from",
+            "enum": [
+              "bitbucket",
+              "github",
+              "gitlab"
+            ],
+            "example": "github"
+          },
+          "repository": {
+            "type": "string",
+            "description": "The full name of the repository (`owner/repository`) to which the commit belongs to",
+            "example": "devopness/devopness-site"
+          },
+          "branch": {
+            "type": "string",
+            "description": "The name of the branch of which the commit was the head at the time of its retrieval",
+            "example": "develop"
+          },
+          "url": {
+            "type": "string",
+            "format": "url",
+            "description": "The direct URL for accessing commit details on the provider's web application",
+            "example": "https://github.com/myusername/myrepo"
+          },
+          "author_email": {
+            "type": "string",
+            "format": "email",
+            "description": "The e-mail of the commit's author"
+          },
+          "author_name": {
+            "type": "string",
+            "description": "The name of the commit's author",
+            "example": "feature/some-branch"
+          }
+        }
+      },
+      "Deployment": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Current status of the deployment",
+            "enum": [
+              "pending",
+              "in-progress",
+              "cancelled",
+              "successful",
+              "failed"
+            ],
+            "example": "successful"
+          },
+          "type": {
+            "type": "string",
+            "description": "The deployment type",
+            "enum": [
+              "deploy",
+              "redeploy",
+              "rollback"
+            ],
+            "example": "deploy"
+          },
+          "source": {
+            "type": "string",
+            "description": "Source/channel from which the deployment has been triggered",
+            "enum": [
+              "manual",
+              "git-push",
+              "scheduled"
+            ],
+            "example": "manual"
+          },
+          "started_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the action started to be executed (left the `pending/waiting` status)",
+            "example": "2019-09-25 13:49:51"
+          },
+          "completed_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the action has finished execution",
+            "example": "2019-09-25 13:52:04"
+          },
+          "actions": {
+            "description": "The list of actions related to the deployment",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Action"
+            }
+          },
+          "commit": {
+            "$ref": "#/components/schemas/Commit"
+          },
+          "steps": {
+            "description": "The steps that were meant to be executed when the deployment was triggered",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeploymentStep"
+            }
+          },
+          "triggered_by_user": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "required": [
+          "status",
+          "type",
+          "source",
+          "commit",
+          "steps"
+        ]
+      },
+      "DeploymentCreate": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "The type of the deployment being triggred",
+            "enum": [
+              "deploy",
+              "redeploy",
+              "rollback"
+            ],
+            "example": "deploy"
+          },
+          "applications": {
+            "description": "The list of applications to be deployed together",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeploymentCreateApplication"
+            }
+          },
+          "servers": {
+            "description": "The list of servers to which all `applications` will be deployed to",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeploymentCreateServer"
+            }
+          }
+        },
+        "required": [
+          "type",
+          "applications",
+          "servers"
+        ]
+      },
+      "DeploymentCreateApplication": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "integer",
+            "description": "Numeric ID of the application",
+            "example": 123
+          },
+          "name": {
+            "type": "string",
+            "description": "The applications's name",
+            "example": "my-awesome.app"
+          },
+          "branch": {
+            "type": "string",
+            "description": "The name of the branch from which the source code should be retrieved and deployed",
+            "example": "feature/deployment-api-endpoints-and-docs-long-name"
+          },
+          "hash": {
+            "type": "string",
+            "description": "The commit's full hash that uniquely identify a commit. Required when re-deploying",
+            "example": "4a03b9d21edeef8434c45818594a5d72027c14e7"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "branch"
+        ]
+      },
+      "DeploymentCreateServer": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "integer",
+            "description": "Numeric ID of the server",
+            "example": 123
+          },
+          "hostname": {
+            "type": "string",
+            "description": "The server's hostname",
+            "example": "web-srv-1"
+          }
+        },
+        "required": [
+          "id",
+          "hostname"
+        ]
+      },
+      "Deployments": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Deployment"
+        }
+      },
+      "DeploymentStep": {
+        "type": "object",
+        "properties": {
+          "order": {
+            "type": "integer",
+            "description": "The execution order of the given step",
+            "example": 3
+          },
+          "name": {
+            "type": "string",
+            "description": "The step name",
+            "example": "Install dependencies"
+          },
+          "status": {
+            "type": "string",
+            "description": "Current status of the deployment step",
+            "enum": [
+              "pending",
+              "in-progress",
+              "cancelled",
+              "successful",
+              "failed"
+            ],
+            "example": "failed"
+          },
+          "started_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the step started to be executed (left the `pending/waiting` status)",
+            "example": "2019-09-25 13:49:51"
+          },
+          "completed_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the step has finished execution",
+            "example": "2019-09-25 13:52:04"
+          }
+        },
+        "required": [
+          "name",
+          "order",
+          "status"
+        ]
+      },
+      "Environment": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The environment's name",
+            "example": "produção"
+          },
+          "type": {
+            "type": "string",
+            "description": "The type of the deployment being triggred",
+            "enum": [
+              "testing",
+              "staging",
+              "production"
+            ],
+            "example": "staging"
+          },
+          "servers": {
+            "$ref": "#/components/schemas/Servers"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25 13:49:51"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25 13:52:04"
+          }
+        },
+        "required": [
+          "name",
+          "type"
+        ]
+      },
+      "EnvironmentCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The environment's name"
+          },
+          "type": {
+            "type": "string",
+            "description": "The type of the deployment being triggred",
+            "enum": [
+              "testing",
+              "staging",
+              "production"
+            ],
+            "example": "staging"
+          }
+        },
+        "required": [
+          "name",
+          "type"
+        ]
+      },
+      "EnvironmentLinkItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The environment's unique id",
+            "example": 867
+          },
+          "name": {
+            "type": "string",
+            "description": "The environment's name",
+            "example": "my project - staging"
+          },
+          "servers": {
+            "description": "The list of IDs of servers to which the action must be performed",
+            "type": "array",
+            "example": [
+              54789,
+              235,
+              1089044
+            ],
+            "items": {
+              "type": "integer"
+            }
+          }
+        },
+        "required": [
+          "servers"
+        ]
+      },
+      "EnvironmentLinks": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/EnvironmentLinkItem"
+        }
+      },
+      "Environments": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Environment"
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "The main exception raised by the server",
+            "example": "The given data was invalid."
+          },
+          "errors": {
+            "type": "object",
+            "description": "Optional error object containing details of the server error",
+            "properties": {
+              "field_name": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "field": {
+                      "type": "string",
+                      "description": "Field name and respective error message",
+                      "example": "field_9"
+                    }
+                  }
+                },
+                "description": "Error message specific to each field included in the errors object"
+              }
+            },
+            "example": {
+              "field_1": "The field 'field_1' is required",
+              "field_2": "The field 'field_2' is not of the expected type"
+            }
+          }
+        },
+        "required": [
+          "message"
+        ]
+      },
+      "ExtraBodyParams": {
+        "type": "object",
+        "properties": {
+          "params": {
+            "type": "string",
+            "description": "Optional free form list of additional parameters to forward to API operation"
+          }
+        }
+      },
+      "LanguageRuntime": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The internal name/code of the language runtime",
+            "example": "nodejs"
+          },
+          "displayable_name": {
+            "type": "string",
+            "description": "The formatted name to be displayed in user interfaces",
+            "example": "Node.js"
+          },
+          "engine_versions": {
+            "description": "The list of the supported versions of the runtime engine",
+            "type": "array",
+            "items": {
+              "properties": {
+                "version": {
+                  "type": "string",
+                  "example": "13.8"
+                }
+              }
+            }
+          },
+          "frameworks": {
+            "description": "The list of supported frameworks built on top of the runtime engine",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LanguageRuntimeFramework"
+            }
+          }
+        }
+      },
+      "LanguageRuntimeFramework": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The internal name/code of the language runtime",
+            "example": "nodejs"
+          },
+          "displayable_name": {
+            "type": "string",
+            "description": "The formatted name to be displayed in user interfaces",
+            "example": "Node.js"
+          },
+          "defaults": {
+            "description": "Default values that apply to apps created in devopness using this framework",
+            "type": "array",
+            "items": {
+              "properties": {
+                "build_command": {
+                  "description": "The command that should be executed once to build the application source code. If set, `devopness` will not execute it's own build process to resolve package dependencies and get the application in a ready state. It will be assumed that the user is an advanced user that knows what she/he is doing, therefore the command specified here will be run as is everytime the application needs to be started.",
+                  "type": "string",
+                  "example": "`docker build -t my_image_name .`, `yarn build`, `jekyll build`, `python build.py`"
+                },
+                "init_command": {
+                  "description": "The start up command that should be executed every time the application needs to be started. If set, `devopness` will not generate it's own start up script. It will be assumed that the user is an advanced user that knows what she/he is doing, therefore the command specified here will be run as is everytime the application needs to be built.",
+                  "type": "string",
+                  "example": "`npm run production`, `docker run -d -P --name my_container_name my_image_name`, `php artisan serve –-host=192.168.2.20 --port=8000`"
+                },
+                "listening_address": {
+                  "description": "Useful, for instance, when deploying `docker` containerized applications. If the application is not initialized by `devopness` itself, the user should inform the address at which the application listens to external calls. The address can be an IP, IP:PORT, HOSTNAME, HOSTNAME:PORT or unix:PATH",
+                  "type": "string",
+                  "example": "`unix:/tmp/backend3`, `http://127.0.0.1:8000`, `127.0.0.1:3000`, `http://localhost`"
+                },
+                "entrypoint": {
+                  "type": "string",
+                  "description": "The applicaton initialization file/module/function from which the application execution starts. It might be a file name, a package manager script or a module/class/function exported by application code and invoked by a run time environment of the technology used by the application.",
+                  "example": "index.js|server.js|server.php|index.php|index:app|my-site.wsgi:application|my-project:main|my-project.wsgi"
+                },
+                "root_directory": {
+                  "type": "string",
+                  "description": "The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository.",
+                  "example": "/ or /src or /lib/src or /code or /app"
+                },
+                "public_directory": {
+                  "type": "string",
+                  "description": "The relative web directory where publicly accessible assets are located and the web content should be served from",
+                  "example": "/public"
+                }
+              }
+            }
+          }
+        }
+      },
+      "LanguageRuntimes": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/LanguageRuntime"
+        }
+      },
+      "Log": {
+        "type": "object",
+        "properties": {
+          "output": {
+            "type": "string",
+            "description": "The full text output log of executed tasks"
+          }
+        },
+        "required": [
+          "output"
+        ]
+      },
+      "LoginCredentials": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "The user's registered e-mail address"
+          },
+          "password": {
+            "type": "string",
+            "format": "password"
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ]
+      },
+      "NetworkRule": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The rule's name/description/reminder",
+            "example": "HTTPS|SSH|\"Opening MySQL port so desktop apps can access it remotely\""
+          },
+          "type": {
+            "type": "string",
+            "description": "The type of network traffic to which this rule will be applied",
+            "enum": [
+              "inbound",
+              "outbound"
+            ],
+            "example": "inbound"
+          },
+          "protocol": {
+            "type": "string",
+            "description": "The network protocol to which this rule will be applied.",
+            "enum": [
+              "any",
+              "tcp",
+              "udp"
+            ],
+            "example": "any"
+          },
+          "ip_address_from": {
+            "type": "string",
+            "format": "ipv4",
+            "description": "Starting range of the public ipv4 or ipv6 addresses that can access this rule",
+            "example": "200.123.45.67"
+          },
+          "ip_address_to": {
+            "type": "string",
+            "format": "ipv4",
+            "description": "Ending range of the public ipv4 or ipv6 addresses that can access this rule",
+            "example": "200.123.45.99"
+          },
+          "port_from": {
+            "type": "integer",
+            "description": "Starting range of network ports to be considered by this rule",
+            "example": 6123
+          },
+          "port_to": {
+            "type": "integer",
+            "description": "Ending range of network ports to be considered by this rule",
+            "example": 7654
+          },
+          "status": {
+            "type": "string",
+            "description": "Current status of deploying to remote servers the current network rule",
+            "enum": [
+              "pending",
+              "in-progress",
+              "cancelled",
+              "completed",
+              "failed"
+            ],
+            "example": "completed"
+          }
+        },
+        "required": [
+          "name",
+          "type",
+          "protocol",
+          "port_from",
+          "port_to"
+        ]
+      },
+      "NetworkRuleCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The rule's name/description/reminder",
+            "example": "HTTPS|SSH|\"Opening MySQL port so desktop apps can access it remotely\""
+          },
+          "type": {
+            "type": "string",
+            "description": "The type of network traffic to which this rule will be applied",
+            "enum": [
+              "inbound",
+              "outbound"
+            ],
+            "example": "inbound"
+          },
+          "protocol": {
+            "type": "string",
+            "description": "The network protocol to which this rule will be applied.",
+            "enum": [
+              "any",
+              "tcp",
+              "udp"
+            ],
+            "example": "any"
+          },
+          "ip_address_from": {
+            "type": "string",
+            "format": "ipv4",
+            "description": "Starting range of the public ipv4 or ipv6 addresses that can access this rule",
+            "example": "200.123.45.67"
+          },
+          "ip_address_to": {
+            "type": "string",
+            "format": "ipv4",
+            "description": "Ending range of the public ipv4 or ipv6 addresses that can access this rule",
+            "example": "200.123.45.99"
+          },
+          "port_from": {
+            "type": "integer",
+            "description": "Starting range of network ports to be considered by this rule",
+            "example": 6123
+          },
+          "port_to": {
+            "type": "integer",
+            "description": "Ending range of network ports to be considered by this rule",
+            "example": 7654
+          }
+        },
+        "required": [
+          "name",
+          "type",
+          "protocol",
+          "ip_address_from",
+          "ip_address_to",
+          "port_from",
+          "port_to"
+        ]
+      },
+      "NetworkRules": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/NetworkRule"
+        }
+      },
+      "Process": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The Id of the given background process",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "description": "The name entered by the user (or auto-generated by `devopness`) to uniquely identify the process",
+            "example": "my-app"
+          },
+          "command": {
+            "type": "string",
+            "description": "The command line to be executed to start the process",
+            "example": "/usr/bin/example --parameter=%(ENV_VAR_TO_GET_PARAM_VALUE_FROM)s"
+          },
+          "working_directory": {
+            "type": "string",
+            "description": "The working directory where the process will be relative to when performing disk i/o",
+            "example": "/path/to/your/app"
+          },
+          "process_count": {
+            "type": "integer",
+            "description": "The number of process instances of the program to run simultaneously",
+            "example": 3
+          },
+          "run_as_user": {
+            "type": "string",
+            "description": "The name of the Unix user on behalf of which the process will run",
+            "example": "root"
+          },
+          "auto_generated": {
+            "default": false,
+            "type": "boolean",
+            "description": "Indicates if the command was auto_generated by `devopness` itself"
+          },
+          "status": {
+            "type": "string",
+            "description": "Current status of deploying to remote servers the current daemon process",
+            "enum": [
+              "pending",
+              "in-progress",
+              "cancelled",
+              "completed",
+              "failed"
+            ],
+            "example": "completed"
+          }
+        },
+        "required": [
+          "command",
+          "name",
+          "process_count",
+          "run_as_user",
+          "working_directory"
+        ]
+      },
+      "ProcessCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name entered by the user (or auto-generated by `devopness`) to uniquely identify the process",
+            "example": "my-app"
+          },
+          "command": {
+            "type": "string",
+            "description": "The command line to be executed to start the process",
+            "example": "/usr/bin/example --parameter=%(ENV_VAR_TO_GET_PARAM_VALUE_FROM)s"
+          },
+          "working_directory": {
+            "type": "string",
+            "description": "The working directory where the process will be relative to when performing disk i/o",
+            "example": "/path/to/your/app"
+          },
+          "process_count": {
+            "type": "integer",
+            "description": "The number of process instances of the program to run simultaneously",
+            "example": 3
+          },
+          "run_as_user": {
+            "type": "string",
+            "description": "The name of the Unix user on behalf of which the process will run",
+            "example": "root"
+          },
+          "auto_generated": {
+            "default": false,
+            "type": "boolean",
+            "description": "Indicates if the command was auto_generated by `devopness` itself"
+          }
+        },
+        "required": [
+          "command",
+          "name",
+          "process_count",
+          "run_as_user",
+          "working_directory"
+        ]
+      },
+      "Processes": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Process"
+        }
+      },
+      "Project": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The project's name",
+            "example": "my project"
+          },
+          "type": {
+            "type": "string",
+            "description": "The type of the project, usually indicating the main technology, programming language or base framework",
+            "example": "php-laravel"
+          },
+          "logo_image": {
+            "type": "string",
+            "format": "base64",
+            "description": "A base64 string representation of the logo image",
+            "example": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACA.../AgwAgJqsE2/7ccAAAAAASUVORK5CYII="
+          },
+          "logo_url": {
+            "type": "string",
+            "format": "url",
+            "description": "A URL path to the project's logo image",
+            "example": "https://example.com/projects-beautiful-logo.png"
+          },
+          "ssh_keys": {
+            "description": "The list of SSH keys added to the project",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SshKey"
+            }
+          },
+          "os_users": {
+            "description": "The list of the operating system users found in all the servers linked to a project",
+            "type": "array",
+            "items": {
+              "properties": {
+                "name": {
+                  "type": "string"
+                }
+              },
+              "example": {
+                "name": "devopness"
+              }
+            }
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "Projects": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Project"
+        }
+      },
+      "Repositories": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Repository"
+        }
+      },
+      "Repository": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the repository",
+            "example": "myrepo"
+          },
+          "user_name": {
+            "type": "string",
+            "description": "The name of the user/account on the Version Control System",
+            "example": "myusername"
+          },
+          "full_name": {
+            "type": "string",
+            "description": "The fully qualified repository name. Usually composed of user_name/name",
+            "example": "myusername/myrepo"
+          },
+          "html_url": {
+            "type": "string",
+            "format": "url",
+            "description": "The URL for viewing repository details on the provider's web application",
+            "example": "https://github.com/myusername/myrepo"
+          },
+          "branches": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RepositoryBranch"
+            }
+          }
+        }
+      },
+      "RepositoryBranch": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the branch",
+            "example": "feature/some-branch"
+          },
+          "repo_full_name": {
+            "type": "string",
+            "description": "The full name of the repository (`owner/repository`)",
+            "example": "devopness/devopness-site"
+          },
+          "commit": {
+            "$ref": "#/components/schemas/Commit"
+          }
+        }
+      },
+      "Server": {
+        "type": "object",
+        "properties": {
+          "hostname": {
+            "type": "string",
+            "description": "The server's hostname",
+            "example": "web-srv-1"
+          },
+          "ip_address": {
+            "type": "string",
+            "format": "ipv4",
+            "description": "Public ipv4 address for server access",
+            "example": "200.123.45.67"
+          },
+          "ssh_port": {
+            "type": "integer",
+            "description": "The network port to which the SSH daemon is listening to SSH connections on the server",
+            "example": 22
+          },
+          "user_id": {
+            "type": "integer",
+            "description": "The id of the user who created the server and to whom the server belongs",
+            "example": 1
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Tells if the server is active or not"
+          },
+          "actions": {
+            "description": "The list of actions related to the server",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Action"
+            }
+          },
+          "environments": {
+            "description": "The list of environments to which the server is linked to",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Environment"
+            }
+          }
+        },
+        "required": [
+          "hostname",
+          "ip_address",
+          "ssh_port",
+          "user_id",
+          "active"
+        ]
+      },
+      "ServerBlueprint": {
+        "type": "object",
+        "properties": {
+          "databases": {
+            "description": "The list of databases that must be installed on the server",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BlueprintItem"
+            }
+          },
+          "providers": {
+            "description": "The list of tools that must be made available on the server",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BlueprintItem"
+            }
+          },
+          "tools": {
+            "description": "The list of tools that must be made available on the server",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BlueprintItem"
+            }
+          }
+        },
+        "required": [
+          "providers"
+        ]
+      },
+      "ServerCommands": {
+        "type": "object",
+        "properties": {
+          "connect_command": {
+            "type": "string",
+            "format": "string",
+            "description": "The Shell Script command to be executed in an existing Linux server in order to connect it to the `devopness`",
+            "example": "echo '# devopness:' | ..."
+          }
+        },
+        "required": [
+          "connect_command"
+        ]
+      },
+      "ServerConnect": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "format": "string",
+            "description": "Output message indicating success or failure",
+            "example": "Server successfully connected"
+          }
+        },
+        "required": [
+          "message"
+        ]
+      },
+      "ServerCreate": {
+        "type": "object",
+        "properties": {
+          "hostname": {
+            "type": "string",
+            "description": "The hostname to be set on Linux servers. Accepts numbers (0-9), dash (-) and lower case non accented characters",
+            "example": "web-srv-1"
+          },
+          "ip_address": {
+            "type": "string",
+            "format": "ipv4",
+            "description": "Public ipv4 address for server access",
+            "example": "200.123.45.67"
+          },
+          "ssh_port": {
+            "type": "integer",
+            "description": "The network port to which the SSH daemon is listening to SSH connections on the server",
+            "example": 22
+          },
+          "blueprint": {
+            "$ref": "#/components/schemas/ServerBlueprint"
+          },
+          "actions": {
+            "description": "The list of actions related to the server",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Action"
+            }
+          }
+        },
+        "required": [
+          "hostname",
+          "ip_address",
+          "ssh_port"
+        ]
+      },
+      "Servers": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Server"
+        }
+      },
+      "Service": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The service name",
+            "example": "mysql"
+          },
+          "displayable_name": {
+            "type": "string",
+            "description": "Formatted/human readable version of the service name",
+            "example": "MySQL"
+          },
+          "version": {
+            "type": "string",
+            "description": "The service current installed version",
+            "example": "5.7.29"
+          },
+          "auto_generated": {
+            "type": "boolean",
+            "default": false,
+            "description": "Indicates if the service was auto_generated by `devopness` itself"
+          },
+          "auto_start": {
+            "type": "boolean",
+            "default": false,
+            "description": "Indicates if the service is marked for start automatically on operating system boot"
+          },
+          "initial_state": {
+            "type": "string",
+            "default": "started",
+            "description": "The expected initial state of the service after installed",
+            "enum": [
+              "started",
+              "stopped"
+            ],
+            "example": "stopped"
+          },
+          "description": {
+            "type": "string",
+            "description": "A text describing the service, provided by the service author",
+            "example": "MySQL Community Server"
+          },
+          "status": {
+            "type": "string",
+            "description": "Current status of deploying to remote servers the current service",
+            "enum": [
+              "pending",
+              "in-progress",
+              "cancelled",
+              "completed",
+              "failed"
+            ],
+            "example": "completed"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25 13:49:51"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25 13:52:04"
+          }
+        },
+        "required": [
+          "name",
+          "auto_generated",
+          "auto_start",
+          "initial_state",
+          "created_at",
+          "updated_at"
+        ]
+      },
+      "ServiceCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The service name",
+            "example": "mysql"
+          },
+          "auto_start": {
+            "type": "boolean",
+            "default": false,
+            "description": "Indicates if the service is marked for start automatically on operating system boot"
+          },
+          "initial_state": {
+            "type": "string",
+            "default": "started",
+            "description": "The expected initial state of the service after installed",
+            "enum": [
+              "started",
+              "stopped"
+            ],
+            "example": "stopped"
+          },
+          "environments": {
+            "$ref": "#/components/schemas/EnvironmentLinks"
+          }
+        },
+        "required": [
+          "name",
+          "auto_start",
+          "initial_state"
+        ]
+      },
+      "Services": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Service"
+        }
+      },
+      "SocialAccount": {
+        "type": "object",
+        "properties": {
+          "provider": {
+            "type": "string",
+            "description": "The name of the Social Authentication provider",
+            "enum": [
+              "bitbucket",
+              "facebook",
+              "github",
+              "gitlab",
+              "google",
+              "linkedin"
+            ],
+            "example": "bitbucket"
+          },
+          "provider_user_name": {
+            "type": "string",
+            "description": "The name of the user on the Social Authentication provider",
+            "example": "Joe Smith"
+          },
+          "is_vcs": {
+            "type": "boolean",
+            "description": "Tells if the social account provider is a Source Code Provider/Version Control System. e.g. false for Facebook, true for Github"
+          },
+          "user_id": {
+            "type": "integer",
+            "description": "The current user's id",
+            "example": 123
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25 13:49:51"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25 13:52:04"
+          }
+        }
+      },
+      "SocialAccountCreate": {
+        "type": "object",
+        "properties": {
+          "provider": {
+            "type": "string",
+            "description": "The name of the Social Authentication provider",
+            "enum": [
+              "bitbucket",
+              "facebook",
+              "github",
+              "gitlab",
+              "google",
+              "linkedin"
+            ],
+            "example": "bitbucket"
+          },
+          "callback_code": {
+            "type": "string",
+            "description": "The temporary code forwarded by the OAuth provider as a parameter to our callback URL",
+            "example": "a606964974b5fb082971"
+          }
+        },
+        "required": [
+          "provider",
+          "callback_code"
+        ]
+      },
+      "SocialAccounts": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/SocialAccount"
+        }
+      },
+      "SocialAccountStatus": {
+        "type": "object",
+        "properties": {
+          "provider": {
+            "type": "string",
+            "description": "The name of the Social Authentication provider",
+            "enum": [
+              "bitbucket",
+              "facebook",
+              "github",
+              "gitlab",
+              "google",
+              "linkedin"
+            ],
+            "example": "bitbucket"
+          },
+          "connected": {
+            "type": "boolean",
+            "description": "Tells if the provider is already connected to the current user's account"
+          },
+          "connect_url": {
+            "type": "string",
+            "format": "url",
+            "description": "A URL path to the provider's OAuth page",
+            "example": "https://github.com/login/oauth/authorize?client_id=...&redirect_uri=...&scope=..."
+          }
+        }
+      },
+      "SshKey": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The Id of the given SSH public key",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "description": "The name entered by the user to uniquely identify the public SSH key",
+            "example": "my-laptop-ssh-key"
+          },
+          "user_id": {
+            "type": "integer",
+            "description": "The Id of the user to which the SSH key belongs to",
+            "example": 123
+          },
+          "public_key": {
+            "type": "string",
+            "description": "The public SSH key to add to your `devopness` account and associate it to the given project",
+            "example": "ssh-rsa AAA..."
+          },
+          "fingerprint": {
+            "type": "string",
+            "description": "The hashed fingerprint of the public key",
+            "example": "41:17:72:a5:21:cd:f2:5b:30:28:a1:4e:7d:26:8e:f2"
+          },
+          "status": {
+            "type": "string",
+            "description": "Current status of deploying to remote servers the current key",
+            "enum": [
+              "pending",
+              "in-progress",
+              "cancelled",
+              "completed",
+              "failed"
+            ],
+            "example": "completed"
+          }
+        }
+      },
+      "SshKeys": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/SshKey"
+        }
+      },
+      "SslCertificate": {
+        "type": "object",
+        "properties": {
+          "domains": {
+            "description": "The list of domain names to which the SSL certificate refers to",
+            "type": "array",
+            "example": [
+              "my-subdomain.example.com",
+              "example.com",
+              "*.example.com"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "issuer": {
+            "type": "string",
+            "description": "The entity or certification authority (CA) who issued the certificate",
+            "enum": [
+              "custom",
+              "lets-encrypt"
+            ],
+            "example": "custom"
+          },
+          "type": {
+            "type": "string",
+            "description": "The certificate type, indicating its scope",
+            "enum": [
+              "single-domain",
+              "multi-domain",
+              "wildcard"
+            ],
+            "example": "single-domain"
+          },
+          "validation_level": {
+            "type": "string",
+            "description": "The level of validation applied when issuing the certificate. This can be one out of the three validation levels conforming to public key certificates standards: `DV (Domain Validation)`, `OV (Organization validation)` or `EV (Extended Validation)`",
+            "enum": [
+              "DV",
+              "OV",
+              "EV"
+            ],
+            "example": "DV"
+          },
+          "custom_private_key": {
+            "type": "string",
+            "description": "The private key provided by the Certification Authority, when the certificate has not being automatically issued through `devopness`",
+            "example": "-----BEGIN RSA PRIVATE KEY-----MIIJKQIBAAKCAgEA6AUEbdJa ..."
+          },
+          "custom_certificate": {
+            "type": "string",
+            "description": "The contents of the certificate provided by the Certification Authority, when the certificate has not being automatically issued through `devopness`",
+            "example": "-----BEGIN CERTIFICATE-----MIIGdDCCBVygAwIBAgISAy66cNIj ..."
+          },
+          "status": {
+            "type": "string",
+            "description": "Current status of deploying to remote servers the current certificate",
+            "enum": [
+              "pending",
+              "in-progress",
+              "cancelled",
+              "completed",
+              "failed"
+            ],
+            "example": "completed"
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Tells if the certificate is active for all linked servers and applications"
+          },
+          "user_id": {
+            "type": "integer",
+            "description": "The unique id of the user to which this record belongs to",
+            "example": 123
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when this certificate will no longer be valid, down to minute precision",
+            "example": "2029-08-07 06:05"
+          },
+          "last_renewed_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when this certificate was renewed for the last time",
+            "example": "2029-08-07 06:05"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25 13:49:51"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25 13:52:04"
+          }
+        },
+        "required": [
+          "domains",
+          "issuer",
+          "type",
+          "validation_level",
+          "status",
+          "active"
+        ]
+      },
+      "SslCertificateCreate": {
+        "type": "object",
+        "properties": {
+          "environment_id": {
+            "type": "integer",
+            "description": "The Id of the environment to which the settings apply to",
+            "example": 3
+          },
+          "domains": {
+            "description": "The list of domain names to which the SSL certificate refers to",
+            "type": "array",
+            "example": [
+              "my-subdomain.example.com",
+              "example.com",
+              "*.example.com"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "issuer": {
+            "type": "string",
+            "description": "The entity or certification authority (CA) who issued the certificate",
+            "enum": [
+              "custom",
+              "lets-encrypt"
+            ],
+            "example": "custom"
+          },
+          "type": {
+            "type": "string",
+            "description": "The certificate type, indicating its scope",
+            "enum": [
+              "single-domain",
+              "multi-domain",
+              "wildcard"
+            ],
+            "example": "single-domain"
+          },
+          "validation_level": {
+            "type": "string",
+            "description": "The level of validation applied when issuing the certificate. This can be one out of the three validation levels conforming to public key certificates standards: `DV (Domain Validation)`, `OV (Organization validation)` or `EV (Extended Validation)`",
+            "enum": [
+              "DV",
+              "OV",
+              "EV"
+            ],
+            "example": "DV"
+          },
+          "custom_private_key": {
+            "type": "string",
+            "description": "The private key provided by the Certification Authority, when the certificate has not being automatically issued through `devopness`",
+            "example": "-----BEGIN RSA PRIVATE KEY-----MIIJKQIBAAKCAgEA6AUEbdJa ..."
+          },
+          "custom_certificate": {
+            "type": "string",
+            "description": "The contents of the certificate provided by the Certification Authority, when the certificate has not being automatically issued through `devopness`",
+            "example": "-----BEGIN CERTIFICATE-----MIIGdDCCBVygAwIBAgISAy66cNIj ..."
+          },
+          "environments": {
+            "$ref": "#/components/schemas/EnvironmentLinks"
+          }
+        },
+        "required": [
+          "environment_id",
+          "domains",
+          "issuer",
+          "type"
+        ]
+      },
+      "Task": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The Id of the given background process",
+            "example": 1
+          },
+          "command": {
+            "type": "string",
+            "description": "The command line to be executed when running the task",
+            "example": "echo 'devopness rocks!' | tee -a /tmp/task-output.log"
+          },
+          "pattern": {
+            "type": "string",
+            "description": "A cron expression consisting of Minute, Hour, Day of Month, Month and Day of Week subexpressions",
+            "example": "0 0 * * *"
+          },
+          "pattern_human_readable": {
+            "type": "string",
+            "description": "A translation of the cron expression to a readable string indicating its execution frequency.",
+            "enum": [
+              "Every Minute",
+              "Hourly",
+              "Nightly",
+              "Weekly",
+              "Monthly",
+              "Yearly"
+            ],
+            "example": "Every Minute"
+          },
+          "run_as_user": {
+            "type": "string",
+            "description": "The name of the Unix user on behalf of which the task will be executed",
+            "example": "root"
+          },
+          "auto_generated": {
+            "default": false,
+            "type": "boolean",
+            "description": "Indicates if the task was auto_generated by `devopness` itself"
+          },
+          "status": {
+            "type": "string",
+            "description": "Current status of deploying to remote servers the current task",
+            "enum": [
+              "pending",
+              "in-progress",
+              "cancelled",
+              "completed",
+              "failed"
+            ],
+            "example": "completed"
+          }
+        },
+        "required": [
+          "command",
+          "pattern",
+          "run_as_user"
+        ]
+      },
+      "TaskCreate": {
+        "type": "object",
+        "properties": {
+          "command": {
+            "type": "string",
+            "description": "The command line to be executed when running the task",
+            "example": "echo 'devopness rocks!' | tee -a /tmp/task-output.log"
+          },
+          "pattern": {
+            "type": "string",
+            "description": "A cron expression consisting of Minute, Hour, Day of Month, Month and Day of Week subexpressions",
+            "example": "0 0 * * *"
+          },
+          "run_as_user": {
+            "type": "string",
+            "description": "The name of the Unix user on behalf of which the task will be executed",
+            "example": "root"
+          },
+          "auto_generated": {
+            "default": false,
+            "type": "boolean",
+            "description": "Indicates if the task was auto_generated by `devopness` itself"
+          }
+        },
+        "required": [
+          "command",
+          "pattern",
+          "run_as_user"
+        ]
+      },
+      "Tasks": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Task"
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The Id of the given user",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "description": "User's full name",
+            "minLength": 5,
+            "maxLength": 60
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "The e-mail that will uniquely identify the user on the system and become its login credential"
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Tells if the user is active or not"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25 13:49:51"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25 13:52:04"
+          },
+          "social_accounts": {
+            "description": "The list of social accounts (source providers + login providers) connected to the user",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SocialAccount"
+            }
+          }
+        },
+        "required": [
+          "email",
+          "name"
+        ]
+      },
+      "UserCreate": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "The e-mail that will uniquely identify the user on the system and become its login credential"
+          },
+          "name": {
+            "type": "string",
+            "description": "User's full name",
+            "minLength": 5,
+            "maxLength": 60
+          },
+          "password": {
+            "type": "string",
+            "description": "User's password",
+            "format": "password",
+            "minLength": 3,
+            "maxLength": 50
+          }
+        },
+        "required": [
+          "email",
+          "name",
+          "password"
+        ]
+      },
+      "UserRefreshTokenCreate": {
+        "type": "object",
+        "properties": {
+          "refresh_token": {
+            "type": "string",
+            "description": "A token to be used after the original access token has expired, to issue a new token\nwithout requiring a new request to the `/users/login` endpoint\n"
+          }
+        },
+        "required": [
+          "refresh_token"
+        ]
+      },
+      "UserTokens": {
+        "type": "object",
+        "properties": {
+          "token_type": {
+            "type": "string",
+            "format": "string",
+            "example": "Bearer",
+            "description": "The type of the authorization token being issued"
+          },
+          "expires_in": {
+            "type": "integer",
+            "example": 3600,
+            "description": "The number of seconds remaining to the token expiration time,\nto be counted since the token issue date and time\n"
+          },
+          "access_token": {
+            "type": "string",
+            "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImYwYjQxZjk1MTdiYWExOTg4Zjk...",
+            "description": "The issued JWT access token"
+          },
+          "refresh_token": {
+            "type": "string",
+            "example": "def50200a757a1c4dbc4859a4c47195632f4df60ebb521ac5a28a0b7553101f08f8b9...",
+            "description": "A token to be used after the original access token has expired, to issue a new token\nwithout requiring a new request to the `/users/login` endpoint\n",
+            "format": "string"
+          }
+        },
+        "required": [
+          "access_token",
+          "refresh_token"
+        ]
+      }
+    },
+    "responses": {
+      "Ok": {
+        "description": "Ok",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "Created": {
+        "description": "Created"
+      },
+      "NoContent": {
+        "description": "No Content"
+      },
+      "Unauthenticated": {
+        "description": "Unauthenticated",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "Forbidden": {
+        "description": "Forbidden/Unauthorized",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "NotFound": {
+        "description": "The specified resource was not found"
+      },
+      "Conflict": {
+        "description": "The current request conflicts with server state",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "ValidationError": {
+        "description": "Unprocessable Entity/Validation Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      }
+    }
+  }
+}

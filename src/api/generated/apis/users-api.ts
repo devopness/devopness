@@ -1,7 +1,7 @@
 /* eslint-disable */
 /**
  * devopness API
- * Devopness API - Painless essential DevOps to everyone  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Devopness API - Painless essential DevOps to everyone 
  *
  * The version of the OpenAPI document: latest
  * 
@@ -24,6 +24,15 @@ import { UserTokens } from '../../generated/models';
  * UsersApiService - Auto-generated
  */
 export class UsersApiService extends ApiBaseService {
+    /**
+     * 
+     * @summary Activate an user account
+     */
+    public async activateUser(): Promise<ApiResponse<object>> {
+        const response = await this.get <object>(`/users/activate`);
+        return new ApiResponse(response);
+    }
+
     /**
      * 
      * @summary Sign up/register a new user
@@ -82,15 +91,6 @@ export class UsersApiService extends ApiBaseService {
             throw new ArgumentNullException('userRefreshTokenCreate', 'refreshToken');
         }
         const response = await this.post <UserTokens, UserRefreshTokenCreate>(`/users/refresh-token`, userRefreshTokenCreate);
-        return new ApiResponse(response);
-    }
-
-    /**
-     * 
-     * @summary Activate an user account
-     */
-    public async usersActivateGet(): Promise<ApiResponse<object>> {
-        const response = await this.get <object>(`/users/activate`);
         return new ApiResponse(response);
     }
 }
