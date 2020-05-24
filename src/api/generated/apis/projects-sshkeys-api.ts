@@ -12,6 +12,7 @@
  */
 
 import { ApiBaseService } from "../../../services/ApiBaseService";
+import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { SshKey } from '../../generated/models';
 
@@ -25,7 +26,7 @@ export class ProjectsSSHKeysApiService extends ApiBaseService {
      * @param {number} projectId The project numeric Id
      * @param {SshKey} sshKey A JSON object containing SSH key data
      */
-    public async addSshKeyToProject(projectId: number, sshKey: SshKey): Promise<SshKey> {
+    public async addSshKeyToProject(projectId: number, sshKey: SshKey): Promise<ApiResponse<SshKey>> {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'addSshKeyToProject');
         }
@@ -33,7 +34,7 @@ export class ProjectsSSHKeysApiService extends ApiBaseService {
             throw new ArgumentNullException('sshKey', 'addSshKeyToProject');
         }
         const response = await this.post <SshKey, SshKey>(`/projects/{project_id}/ssh-keys`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), sshKey);
-        return response.data;
+        return new ApiResponse(response);
     }
 
     /**
@@ -41,11 +42,11 @@ export class ProjectsSSHKeysApiService extends ApiBaseService {
      * @summary Return a list of all SSH keys added to a project
      * @param {number} projectId The project numeric Id
      */
-    public async listProjectSshKeys(projectId: number): Promise<Array<SshKey>> {
+    public async listProjectSshKeys(projectId: number): Promise<ApiResponse<Array<SshKey>>> {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'listProjectSshKeys');
         }
         const response = await this.get <Array<SshKey>>(`/projects/{project_id}/ssh-keys`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
-        return response.data;
+        return new ApiResponse(response);
     }
 }

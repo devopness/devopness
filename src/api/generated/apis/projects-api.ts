@@ -12,6 +12,7 @@
  */
 
 import { ApiBaseService } from "../../../services/ApiBaseService";
+import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { Project } from '../../generated/models';
 
@@ -24,12 +25,12 @@ export class ProjectsApiService extends ApiBaseService {
      * @summary Create a new project
      * @param {Project} project A JSON object containing project data
      */
-    public async addProject(project: Project): Promise<void> {
+    public async addProject(project: Project): Promise<ApiResponse<void>> {
         if (project === null || project === undefined) {
             throw new ArgumentNullException('project', 'addProject');
         }
         const response = await this.post <void, Project>(`/projects`, project);
-        return response.data;
+        return new ApiResponse(response);
     }
 
     /**
@@ -37,21 +38,21 @@ export class ProjectsApiService extends ApiBaseService {
      * @summary Get a project by ID
      * @param {number} projectId Numeric ID of the project to get
      */
-    public async getProject(projectId: number): Promise<Project> {
+    public async getProject(projectId: number): Promise<ApiResponse<Project>> {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'getProject');
         }
         const response = await this.get <Project>(`/projects/{project_id}`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
-        return response.data;
+        return new ApiResponse(response);
     }
 
     /**
      * 
      * @summary Returns a list of all projects belonging to current user
      */
-    public async listProjects(): Promise<Array<Project>> {
+    public async listProjects(): Promise<ApiResponse<Array<Project>>> {
         const response = await this.get <Array<Project>>(`/projects`);
-        return response.data;
+        return new ApiResponse(response);
     }
 
     /**
@@ -60,7 +61,7 @@ export class ProjectsApiService extends ApiBaseService {
      * @param {number} projectId Numeric ID of the project to put
      * @param {Project} project A JSON object containing project data
      */
-    public async updateProject(projectId: number, project: Project): Promise<void> {
+    public async updateProject(projectId: number, project: Project): Promise<ApiResponse<void>> {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'updateProject');
         }
@@ -68,6 +69,6 @@ export class ProjectsApiService extends ApiBaseService {
             throw new ArgumentNullException('project', 'updateProject');
         }
         const response = await this.put <void, Project>(`/projects/{project_id}`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), project);
-        return response.data;
+        return new ApiResponse(response);
     }
 }

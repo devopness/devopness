@@ -12,6 +12,7 @@
  */
 
 import { ApiBaseService } from "../../../services/ApiBaseService";
+import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { Server } from '../../generated/models';
 import { ServerCreate } from '../../generated/models';
@@ -26,7 +27,7 @@ export class ProjectsServersApiService extends ApiBaseService {
      * @param {number} projectId The project numeric Id
      * @param {ServerCreate} serverCreate A JSON object containing server data
      */
-    public async addServerToProject(projectId: number, serverCreate: ServerCreate): Promise<Server> {
+    public async addServerToProject(projectId: number, serverCreate: ServerCreate): Promise<ApiResponse<Server>> {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'addServerToProject');
         }
@@ -34,7 +35,7 @@ export class ProjectsServersApiService extends ApiBaseService {
             throw new ArgumentNullException('serverCreate', 'addServerToProject');
         }
         const response = await this.post <Server, ServerCreate>(`/projects/{project_id}/servers`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), serverCreate);
-        return response.data;
+        return new ApiResponse(response);
     }
 
     /**
@@ -42,11 +43,11 @@ export class ProjectsServersApiService extends ApiBaseService {
      * @summary List all servers linked to a project
      * @param {number} projectId The project numeric Id
      */
-    public async listProjectServers(projectId: number): Promise<Array<Server>> {
+    public async listProjectServers(projectId: number): Promise<ApiResponse<Array<Server>>> {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'listProjectServers');
         }
         const response = await this.get <Array<Server>>(`/projects/{project_id}/servers`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
-        return response.data;
+        return new ApiResponse(response);
     }
 }

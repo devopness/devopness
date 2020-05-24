@@ -2,6 +2,7 @@
 /* eslint-disable */
 {{>licenseInfo}}
 import { ApiBaseService } from "../../../services/ApiBaseService";
+import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 {{#imports}}
 import { {{classname}} } from '{{apiRelativeToRoot}}{{tsModelPackage}}';
@@ -33,7 +34,7 @@ export class {{classname}}Service extends ApiBaseService {
         {{/isHeaderParam}}
      {{/allParams}}
      */
-    public async {{nickname}}({{#allParams}}{{^isHeaderParam}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}{{^-last}}, {{/-last}}{{/isHeaderParam}}{{/allParams}}): Promise<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}void{{/returnType}}> {
+    public async {{nickname}}({{#allParams}}{{^isHeaderParam}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}{{^-last}}, {{/-last}}{{/isHeaderParam}}{{/allParams}}): Promise<ApiResponse<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}void{{/returnType}}>> {
     {{#allParams}}
     {{^isHeaderParam}}
     {{#required}}
@@ -44,7 +45,7 @@ export class {{classname}}Service extends ApiBaseService {
     {{/isHeaderParam}}
     {{/allParams}}
         const response = await this.{{#lambda.lowercase}}{{httpMethod}} {{/lambda.lowercase}}<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}void{{/returnType}}{{#allParams}}{{^isHeaderParam}}{{#-last}}{{^isPrimitiveType}}, {{dataType}}{{/isPrimitiveType}}{{/-last}}{{/isHeaderParam}}{{/allParams}}>(`{{{path}}}`{{#pathParams}}.replace(`{${"{{baseName}}"}}`, encodeURIComponent(String({{paramName}}))){{/pathParams}}{{#allParams}}{{^isHeaderParam}}{{#-last}}{{^isPrimitiveType}}, {{paramName}}{{/isPrimitiveType}}{{/-last}}{{/isHeaderParam}}{{/allParams}});
-        return response.data;
+        return new ApiResponse(response);
     }
     {{^-last}}
 

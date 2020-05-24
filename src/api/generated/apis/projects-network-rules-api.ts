@@ -12,6 +12,7 @@
  */
 
 import { ApiBaseService } from "../../../services/ApiBaseService";
+import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { NetworkRule } from '../../generated/models';
 import { NetworkRuleCreate } from '../../generated/models';
@@ -26,7 +27,7 @@ export class ProjectsNetworkRulesApiService extends ApiBaseService {
      * @param {number} projectId The project numeric Id
      * @param {NetworkRuleCreate} networkRuleCreate A JSON object containing backgroud process data
      */
-    public async addNetworkRuleToProject(projectId: number, networkRuleCreate: NetworkRuleCreate): Promise<NetworkRule> {
+    public async addNetworkRuleToProject(projectId: number, networkRuleCreate: NetworkRuleCreate): Promise<ApiResponse<NetworkRule>> {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'addNetworkRuleToProject');
         }
@@ -34,7 +35,7 @@ export class ProjectsNetworkRulesApiService extends ApiBaseService {
             throw new ArgumentNullException('networkRuleCreate', 'addNetworkRuleToProject');
         }
         const response = await this.post <NetworkRule, NetworkRuleCreate>(`/projects/{project_id}/network-rules`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), networkRuleCreate);
-        return response.data;
+        return new ApiResponse(response);
     }
 
     /**
@@ -42,11 +43,11 @@ export class ProjectsNetworkRulesApiService extends ApiBaseService {
      * @summary Returns a list of all network rules that applies to a project
      * @param {number} projectId Numeric ID of the project to get network rules from
      */
-    public async listProjectNetworkRules(projectId: number): Promise<Array<NetworkRule>> {
+    public async listProjectNetworkRules(projectId: number): Promise<ApiResponse<Array<NetworkRule>>> {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'listProjectNetworkRules');
         }
         const response = await this.get <Array<NetworkRule>>(`/projects/{project_id}/network-rules`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
-        return response.data;
+        return new ApiResponse(response);
     }
 }

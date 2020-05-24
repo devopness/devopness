@@ -12,6 +12,7 @@
  */
 
 import { ApiBaseService } from "../../../services/ApiBaseService";
+import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { Service } from '../../generated/models';
 import { ServiceCreate } from '../../generated/models';
@@ -26,7 +27,7 @@ export class ProjectsServicesApiService extends ApiBaseService {
      * @param {number} projectId The service\&#39;s unique id
      * @param {ServiceCreate} serviceCreate A JSON object containing service data
      */
-    public async addServiceToProject(projectId: number, serviceCreate: ServiceCreate): Promise<Service> {
+    public async addServiceToProject(projectId: number, serviceCreate: ServiceCreate): Promise<ApiResponse<Service>> {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'addServiceToProject');
         }
@@ -34,7 +35,7 @@ export class ProjectsServicesApiService extends ApiBaseService {
             throw new ArgumentNullException('serviceCreate', 'addServiceToProject');
         }
         const response = await this.post <Service, ServiceCreate>(`/projects/{project_id}/services`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), serviceCreate);
-        return response.data;
+        return new ApiResponse(response);
     }
 
     /**
@@ -42,11 +43,11 @@ export class ProjectsServicesApiService extends ApiBaseService {
      * @summary List all services in a project
      * @param {number} projectId The service unique Id
      */
-    public async listProjectServices(projectId: number): Promise<Array<Service>> {
+    public async listProjectServices(projectId: number): Promise<ApiResponse<Array<Service>>> {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'listProjectServices');
         }
         const response = await this.get <Array<Service>>(`/projects/{project_id}/services`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
-        return response.data;
+        return new ApiResponse(response);
     }
 }

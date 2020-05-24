@@ -12,6 +12,7 @@
  */
 
 import { ApiBaseService } from "../../../services/ApiBaseService";
+import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { Process } from '../../generated/models';
 import { ProcessCreate } from '../../generated/models';
@@ -26,7 +27,7 @@ export class ProjectsDaemonsProcessesApiService extends ApiBaseService {
      * @param {number} projectId The project numeric Id
      * @param {ProcessCreate} processCreate A JSON object containing backgroud process data
      */
-    public async addDaemonToProject(projectId: number, processCreate: ProcessCreate): Promise<Process> {
+    public async addDaemonToProject(projectId: number, processCreate: ProcessCreate): Promise<ApiResponse<Process>> {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'addDaemonToProject');
         }
@@ -34,7 +35,7 @@ export class ProjectsDaemonsProcessesApiService extends ApiBaseService {
             throw new ArgumentNullException('processCreate', 'addDaemonToProject');
         }
         const response = await this.post <Process, ProcessCreate>(`/projects/{project_id}/processes`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), processCreate);
-        return response.data;
+        return new ApiResponse(response);
     }
 
     /**
@@ -42,11 +43,11 @@ export class ProjectsDaemonsProcessesApiService extends ApiBaseService {
      * @summary Returns a list of all processes belonging to a project
      * @param {number} projectId Numeric ID of the project to get processes from
      */
-    public async listProjectDaemons(projectId: number): Promise<Array<Process>> {
+    public async listProjectDaemons(projectId: number): Promise<ApiResponse<Array<Process>>> {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'listProjectDaemons');
         }
         const response = await this.get <Array<Process>>(`/projects/{project_id}/processes`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
-        return response.data;
+        return new ApiResponse(response);
     }
 }

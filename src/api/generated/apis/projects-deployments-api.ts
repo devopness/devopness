@@ -12,6 +12,7 @@
  */
 
 import { ApiBaseService } from "../../../services/ApiBaseService";
+import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { Deployment } from '../../generated/models';
 import { DeploymentCreate } from '../../generated/models';
@@ -26,7 +27,7 @@ export class ProjectsDeploymentsApiService extends ApiBaseService {
      * @param {number} projectId Numeric ID of the project for which a deployment is being triggered
      * @param {DeploymentCreate} deploymentCreate A JSON object containing deployment data
      */
-    public async deployProjectApps(projectId: number, deploymentCreate: DeploymentCreate): Promise<void> {
+    public async deployProjectApps(projectId: number, deploymentCreate: DeploymentCreate): Promise<ApiResponse<void>> {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'deployProjectApps');
         }
@@ -34,7 +35,7 @@ export class ProjectsDeploymentsApiService extends ApiBaseService {
             throw new ArgumentNullException('deploymentCreate', 'deployProjectApps');
         }
         const response = await this.post <void, DeploymentCreate>(`/projects/{project_id}/deployments`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), deploymentCreate);
-        return response.data;
+        return new ApiResponse(response);
     }
 
     /**
@@ -42,11 +43,11 @@ export class ProjectsDeploymentsApiService extends ApiBaseService {
      * @summary Returns a list of all deployments belonging to a project
      * @param {number} projectId Numeric ID of the project to get deployments from
      */
-    public async listProjectDeployments(projectId: number): Promise<Array<Deployment>> {
+    public async listProjectDeployments(projectId: number): Promise<ApiResponse<Array<Deployment>>> {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'listProjectDeployments');
         }
         const response = await this.get <Array<Deployment>>(`/projects/{project_id}/deployments`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
-        return response.data;
+        return new ApiResponse(response);
     }
 }
