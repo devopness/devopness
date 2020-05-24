@@ -10,7 +10,7 @@ export class Configuration implements ConfigurationOptions {
     // API_KEY may or may not be needed in the future.
     // so far only supporting authentication with user credentials
     public apiKey?: string;
-    public baseUrl: string = "https://api.devopness.com";
+    public baseUrl = "https://api.devopness.com";
 
     constructor(options: ConfigurationOptions) {
         this.apiKey = options.apiKey;
