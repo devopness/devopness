@@ -52,4 +52,3 @@ export interface Repository {
     branches?: Array<RepositoryBranch>;
 }
 
-

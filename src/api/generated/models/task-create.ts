@@ -45,4 +45,3 @@ export interface TaskCreate {
     auto_generated?: boolean;
 }
 
-

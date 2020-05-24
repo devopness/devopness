@@ -57,4 +57,3 @@ export interface ProcessCreate {
     auto_generated?: boolean;
 }
 
-

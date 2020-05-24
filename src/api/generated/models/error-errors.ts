@@ -28,4 +28,3 @@ export interface ErrorErrors {
     field_name?: Array<ErrorErrorsFieldName>;
 }
 
-

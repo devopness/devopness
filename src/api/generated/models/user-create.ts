@@ -39,4 +39,3 @@ export interface UserCreate {
     password: string;
 }
 
-

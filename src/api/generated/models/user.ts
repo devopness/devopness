@@ -64,4 +64,3 @@ export interface User {
     social_accounts?: Array<SocialAccount>;
 }
 
-

@@ -27,4 +27,3 @@ export interface ServerCommands {
     connect_command: string;
 }
 
-

@@ -53,4 +53,3 @@ export interface ServerCreate {
     actions?: Array<Action>;
 }
 
-

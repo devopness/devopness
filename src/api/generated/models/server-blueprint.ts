@@ -40,4 +40,3 @@ export interface ServerBlueprint {
     tools?: Array<BlueprintItem>;
 }
 
-

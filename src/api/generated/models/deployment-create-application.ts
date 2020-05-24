@@ -45,4 +45,3 @@ export interface DeploymentCreateApplication {
     hash?: string;
 }
 
-
