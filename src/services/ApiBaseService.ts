@@ -96,7 +96,7 @@ export class ApiBaseService {
         ApiBaseService._accessToken = value;
     }
 
-    public get baseURL(): string {
+    public baseURL(): string {
         return this.api.defaults.baseURL ? this.api.defaults.baseURL : "";
     }
 

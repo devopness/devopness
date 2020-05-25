@@ -26,11 +26,6 @@ export class DevopnessApiClient {
     this.users = new UserService();
   }
 
-  public get baseURL(): string {
-    // all baseURLs should be the same anyways
-    return this.projects.baseURL;
-  }
-
   public get accessToken(): string {
     return ApiBaseService.accessToken;
   }
