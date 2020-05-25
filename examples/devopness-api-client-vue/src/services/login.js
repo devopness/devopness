@@ -1,7 +1,4 @@
-import { DevopnessApiClient } from 'devopness-sdk-js'
-
-const DEVOPNESS_API_BASE_URL = 'https://test-api.devopness.com'
-const devopnessApi = new DevopnessApiClient({ baseUrl: DEVOPNESS_API_BASE_URL })
+import { devopnessApi } from './api'
 
 export const login = (email, password) => {
   const userCredentials = {
