@@ -13,7 +13,8 @@
     "lint": "eslint . --ext .ts",
     "prepublishOnly": "npm test && npm version patch",
     "prepare": "npm run build",
-    "preversion": "npm run lint"
+    "preversion": "npm run lint",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -36,6 +37,7 @@
   "homepage": "https://github.com/devopness/devopness-sdk-js#readme",
   "devDependencies": {
     "@openapitools/openapi-generator-cli": "^1.0.13-4.3.1",
+    "@types/jest": "^25.2.3",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",
     "eslint": "^6.8.0",
@@ -44,6 +46,8 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
+    "jest": "^26.0.1",
+    "ts-jest": "^26.0.0",
     "typescript": "^3.8.3"
   },
   "dependencies": {
