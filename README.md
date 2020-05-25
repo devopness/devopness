@@ -49,7 +49,7 @@ async function authenticateAndGetUserProfile(email, pass) {
     // This accessToken must be replaced every time a token refresh is
     // performed, and it will be automatically cleaned up when
     // invoking `devopnessApi.users.logout`
-    devopnessApi.accessToken = userTokens.access_token;
+    devopnessApi.accessToken = userTokens.data.access_token;
     // optionally: store the token in any storage for further re-usage
     // localStorage.setItem('devopness-api::access_token', userTokens.access_token)
     // localStorage.setItem('devopness-api::refresh_token', userTokens.refresh_token)
@@ -59,7 +59,10 @@ async function authenticateAndGetUserProfile(email, pass) {
     console.log('Successfully retrieved user details: ', currentUser);
 
   } catch (error) {
-    console.log('Error on user authentication: ', JSON.stringify(error.response.data));
+    console.log('Error on user authentication: ');
+    console.log('Message: ', error.message);
+    console.log('Status: ', error.status);
+    console.log('Error data: ', error.errors);
   };
 }
 
