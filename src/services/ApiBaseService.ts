@@ -3,18 +3,18 @@ import { ArgumentNullException, ApiError } from "../common/Exceptions";
 
 export interface ConfigurationOptions {
     apiKey?: string;
-    baseUrl?: string;
+    baseURL?: string;
 }
 
 export class Configuration implements ConfigurationOptions {
     // API_KEY may or may not be needed in the future.
     // so far only supporting authentication with user credentials
     public apiKey?: string;
-    public baseUrl = "https://api.devopness.com";
+    public baseURL = "https://api.devopness.com";
 
     constructor(options: ConfigurationOptions) {
         this.apiKey = options.apiKey;
-        this.baseUrl = options.baseUrl || this.baseUrl;
+        this.baseURL = options.baseURL || this.baseURL;
     }
 }
 
@@ -49,7 +49,7 @@ export class ApiBaseService {
         }
 
         const settings = this.defaultAxiosSettings;
-        settings.baseURL = ApiBaseService.configuration.baseUrl;
+        settings.baseURL = ApiBaseService.configuration.baseURL;
 
         this.api = axios.create(settings);
         this.setupAxiosInterceptors();
@@ -94,6 +94,10 @@ export class ApiBaseService {
 
     public static set accessToken(value: string) {
         ApiBaseService._accessToken = value;
+    }
+
+    public get baseURL(): string | undefined {
+        return this.api.defaults.baseURL;
     }
 
     // TO DO: define events to notify the external world that a token has expired
