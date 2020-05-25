@@ -21,9 +21,11 @@
             :class="{'input-error': error}"
           />
         </div>
-        <div v-show="error"  class="error-container">*Invalid credentials</div>
+        <div v-if="error != null"  class="error-container">
+          <strong>{{error.message}}</strong>
+        </div>
         <div>
-          <button type="submit" :class="{ 'disabled': submitted }" >Login</button>
+          <button type="submit" :class="{'disabled': submitted}" >Login</button>
         </div>
       </form>
     </div>
@@ -40,7 +42,7 @@ export default {
       username: "",
       password: "",
       submitted: false,
-      error: false
+      error: null
     };
   },
   methods: {
@@ -53,17 +55,17 @@ export default {
           this.$router.push('home')
         })
         .catch(error => {
+          this.error = error
           this.submitted = false
-          this.error = true
         })
     }
   },
   watch: {
     username() {
-      this.error = false
+      this.error = null
     },
     password() {
-      this.error = false
+      this.error = null
     }
   },
 };
