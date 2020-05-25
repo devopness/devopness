@@ -12,5 +12,5 @@ module.exports = {
   parserOptions: {
     "project": "./tsconfig.json"
   },
-  ignorePatterns: ["jest.config.js"]
+  ignorePatterns: ["jest.config.js", "tests/*"]
 };
