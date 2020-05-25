@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
-import { ArgumentNullException } from "../common/Exceptions";
+import { ArgumentNullException, ApiError } from "../common/Exceptions";
 
 export interface ConfigurationOptions {
     apiKey?: string;
@@ -56,15 +56,36 @@ export class ApiBaseService {
     }
 
     private setupAxiosInterceptors(): void {
-        this.api.interceptors.request.use((config: AxiosRequestConfig) => {
-            if (ApiBaseService._accessToken) {
-                config.headers.Authorization = `Bearer ${ApiBaseService._accessToken}`;
-            } else {
-                delete config.headers.Authorization;
-            }
+        this.setupAxiosRequestInterceptors();
+        this.setupAxiosResponseInterceptors();
+    }
 
-            return config;
-        });
+    private setupAxiosRequestInterceptors(): void {
+        this.api.interceptors.request.use(
+            (config: AxiosRequestConfig) => {
+                if (ApiBaseService._accessToken) {
+                    config.headers.Authorization = `Bearer ${ApiBaseService._accessToken}`;
+                } else {
+                    delete config.headers.Authorization;
+                }
+
+                return config;
+            },
+            (error: any) => {
+                throw error;
+            }
+        );
+    }
+
+    private setupAxiosResponseInterceptors(): void {
+        this.api.interceptors.response.use(
+            (response: AxiosResponse) => {
+                return response;
+            },
+            (error: any) => {
+                throw new ApiError(error);
+            }
+        );
     }
 
     public static get accessToken(): string {
