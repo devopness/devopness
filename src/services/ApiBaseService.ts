@@ -96,8 +96,8 @@ export class ApiBaseService {
         ApiBaseService._accessToken = value;
     }
 
-    public get baseURL(): string | undefined {
-        return this.api.defaults.baseURL;
+    public get baseURL(): string {
+        return this.api.defaults.baseURL ? this.api.defaults.baseURL : "";
     }
 
     // TO DO: define events to notify the external world that a token has expired
@@ -138,11 +138,11 @@ export class ApiBaseService {
         /**
          * @todo: why not return `response.data` from here instead of AxiosResponse<T>?
          */
-        return this.api.get<T, R>(this.api.defaults.baseURL + endpoint);
+        return this.api.get<T, R>(endpoint);
     }
 
     protected get<T, R = AxiosResponse<T>>(endpoint: string): Promise<R> {
-        return this.api.get<T, R>(this.api.defaults.baseURL + endpoint);
+        return this.api.get<T, R>(endpoint);
     }
 
     public success<T>(response: AxiosResponse<T>): T {
