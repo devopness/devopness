@@ -32,41 +32,22 @@ Some methods in `Devopness SDK JavaScript` accept and return objects from the De
 Here is a generic simple example that can be used from `Node.js`, `TypeScript` or `Javascript` applications:
 
 ```javascript
-var devopnessSdkJs = require("devopness-sdk-js")
+const { DevopnessApiClient } = require("devopness-sdk-js")
+const devopnessApi = new DevopnessApiClient();
 
-const DEVOPNESS_API_BASE_URL = 'https://dev-api.devopness.com';
-const devopnessApi = new devopnessSdkJs.DevopnessApiClient({ baseUrl: DEVOPNESS_API_BASE_URL });
+async function authenticate(email, pass) {
+  const userTokens = await devopnessApi.users.login({ email: email, password: pass });
+  // The `accessToken` must be set every time a token is obtained or refreshed.
+  devopnessApi.accessToken = userTokens.data.access_token;
+}
 
-async function authenticateAndGetUserProfile(email, pass) {
-  var userCredentials = {
-    email: email,
-    password: pass,
-  };
-
-  try {
-    const userTokens = await devopnessApi.users.login(userCredentials);
-    // after logging in, tell the api to use the newly received `accessToken`.
-    // This accessToken must be replaced every time a token refresh is
-    // performed, and it will be automatically cleaned up when
-    // invoking `devopnessApi.users.logout`
-    devopnessApi.accessToken = userTokens.data.access_token;
-    // optionally: store the token in any storage for further re-usage
-    // localStorage.setItem('devopness-api::access_token', userTokens.access_token)
-    // localStorage.setItem('devopness-api::refresh_token', userTokens.refresh_token)
-
-    // now that we're authenticated, we can invoke any of the available API client methods
+async function getUserProfile() {
     const currentUser = await devopnessApi.users.getCurrentUser();
-    console.log('Successfully retrieved user details: ', currentUser);
-
-  } catch (error) {
-    console.log('Error on user authentication: ');
-    console.log('Message: ', error.message);
-    console.log('Status: ', error.status);
-    console.log('Error data: ', error.errors);
-  };
+    console.log('Successfully retrieved user profile: ', currentUser);
 }
 
 // invoke the authentication method
-authenticateAndGetUserProfile('user@email.com', 'secret-password');
-
+authenticate('user@email.com', 'secret-password');
+// Now that we're authenticated, retrieves the current user profile
+getUserProfile();
 ```
