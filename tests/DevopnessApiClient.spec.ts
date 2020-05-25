@@ -1,4 +1,4 @@
-import { DevopnessApiClient } from './DevopnessApiClient'
+import { DevopnessApiClient } from '../src/DevopnessApiClient'
 
 test("base URL defaults to production environment", () => {
     const apiClient = new DevopnessApiClient();
