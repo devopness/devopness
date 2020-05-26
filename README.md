@@ -1,9 +1,9 @@
 # Devopness SDK - JavaScript
 
-[![MIT License](https://img.shields.io/badge/license-MIT_License-green.svg?style=flat-square)](https://github.com/devopness/devopness-api-sdk-js/blob/master/LICENSE)
-![CI](https://github.com/devopness/devopness-sdk-js/workflows/CI/badge.svg)
+[![MIT License](https://img.shields.io/badge/license-MIT_License-green.svg?style=flat-square)](https://github.com/devopness/devopness/sdk-js/blob/master/LICENSE)
+![CI](https://github.com/devopness/sdk-js/workflows/CI/badge.svg)
 
-[![NPM](https://nodei.co/npm/devopness-sdk-js.png?downloads=true&stars=true)](https://nodei.co/npm/devopness-sdk-js/)
+[![NPM](https://nodei.co/npm/sdk-js.png?downloads=true&stars=true)](https://nodei.co/npm/@devopness/sdk-js/)
 
 The official Devopness SDK for JavaScript, available for browsers, mobile devices and `Node.js` backends.
 
@@ -16,8 +16,8 @@ By streamlining essential DevOps practices we're making first class software dep
 
 ## Setup
 Use `npm` or `yarn` to install the Devopness SDK npm package as a project dependency:
-- Using `npm`: `npm install devopness-sdk-js`
-- Using `yarn`: `yarn add devopness-sdk-js`
+- Using `npm`: `npm install @devopness/sdk-js`
+- Using `yarn`: `yarn add @devopness/sdk-js`
 
 ## Usage
 
@@ -32,7 +32,7 @@ Some methods in `Devopness SDK JavaScript` accept and return objects from the De
 Here is a generic simple example that can be used from `Node.js`, `TypeScript` or `Javascript` applications:
 
 ```javascript
-const { DevopnessApiClient } = require("devopness-sdk-js")
+const { DevopnessApiClient } = require("@devopness/sdk-js")
 const devopnessApi = new DevopnessApiClient();
 
 async function authenticate(email, pass) {
