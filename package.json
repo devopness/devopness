@@ -33,6 +33,9 @@
   ],
   "author": "Devopness (https://www.devopness.com)",
   "license": "MIT",
+  "release": {
+    "branches": ["master"]
+  },
   "bugs": {
     "url": "https://github.com/devopness/devopness-sdk-js/issues"
   },

@@ -1,4 +1,4 @@
-import { AxiosResponse } from 'axios'
+import { AxiosError, AxiosResponse } from 'axios'
 
 export class ArgumentNullException extends Error {
     constructor(public param: string, method?: string, msg?: string) {
@@ -7,13 +7,18 @@ export class ArgumentNullException extends Error {
     }
 }
 
+export interface ErrorResponseData {
+    message: string | undefined;
+    errors?: Array<Record<string, string>>;
+}
+
 export class ApiError<T> extends Error {
-    errors?: any;
-    request?: any;
+    errors?: Array<Record<string, string>>;
+    // request?: any;
     response?: AxiosResponse<T>;
     status: number;
 
-    constructor(error: any) {
+    constructor(error: AxiosError) {
         if (!error.response) {
             throw error;
         }
@@ -22,11 +27,10 @@ export class ApiError<T> extends Error {
         this.status = error.response.status;
 
         if (error.response.data) {
-            if ((error.response.data as any).message) {
-                this.message = (error.response.data as any).message;
-            }
-            if ((error.response.data as any).errors) {
-                this.errors = (error.response.data as any).errors;
+            const data = (error.response.data as ErrorResponseData);
+            this.errors = data.errors;
+            if (data.message) {
+                this.message = data.message;
             }
         }
     }
