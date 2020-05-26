@@ -71,7 +71,7 @@ export class ApiBaseService {
 
                 return config;
             },
-            (error: any) => {
+            (error: AxiosError) => {
                 throw error;
             }
         );
@@ -82,7 +82,7 @@ export class ApiBaseService {
             (response: AxiosResponse) => {
                 return response;
             },
-            (error: any) => {
+            (error: AxiosError) => {
                 throw new ApiError(error);
             }
         );
