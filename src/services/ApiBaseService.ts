@@ -3,18 +3,18 @@ import { ArgumentNullException, ApiError } from "../common/Exceptions";
 
 export interface ConfigurationOptions {
     apiKey?: string;
-    baseUrl?: string;
+    baseURL?: string;
 }
 
 export class Configuration implements ConfigurationOptions {
     // API_KEY may or may not be needed in the future.
     // so far only supporting authentication with user credentials
     public apiKey?: string;
-    public baseUrl = "https://api.devopness.com";
+    public baseURL = "https://api.devopness.com";
 
     constructor(options: ConfigurationOptions) {
         this.apiKey = options.apiKey;
-        this.baseUrl = options.baseUrl || this.baseUrl;
+        this.baseURL = options.baseURL || this.baseURL;
     }
 }
 
@@ -49,7 +49,7 @@ export class ApiBaseService {
         }
 
         const settings = this.defaultAxiosSettings;
-        settings.baseURL = ApiBaseService.configuration.baseUrl;
+        settings.baseURL = ApiBaseService.configuration.baseURL;
 
         this.api = axios.create(settings);
         this.setupAxiosInterceptors();
@@ -96,6 +96,10 @@ export class ApiBaseService {
         ApiBaseService._accessToken = value;
     }
 
+    public baseURL(): string {
+        return this.api.defaults.baseURL ? this.api.defaults.baseURL : "";
+    }
+
     // TO DO: define events to notify the external world that a token has expired
     // so the consumer app can invoke refresh-token
     // so a web app might decide to redirect the user to login page or set
@@ -134,11 +138,11 @@ export class ApiBaseService {
         /**
          * @todo: why not return `response.data` from here instead of AxiosResponse<T>?
          */
-        return this.api.get<T, R>(this.api.defaults.baseURL + endpoint);
+        return this.api.get<T, R>(endpoint);
     }
 
     protected get<T, R = AxiosResponse<T>>(endpoint: string): Promise<R> {
-        return this.api.get<T, R>(this.api.defaults.baseURL + endpoint);
+        return this.api.get<T, R>(endpoint);
     }
 
     public success<T>(response: AxiosResponse<T>): T {

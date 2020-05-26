@@ -14,16 +14,8 @@ export class DevopnessApiClient {
    * of this SDK
    */
 
-  constructor(options: ConfigurationOptions) {
-    if (options === undefined) {
-      throw new Error('API services cannot be initialized: Configuration options must be provided');
-    }
-
-    if (options.baseUrl == undefined || options.baseUrl == '') {
-      throw new Error('API services cannot be initialized: base URL must be provided');
-    }
-
-    ApiBaseService.configuration = new Configuration(options);
+  constructor(options?: ConfigurationOptions) {
+    ApiBaseService.configuration = new Configuration(options || {});
 
     // we'd better initialize the services explicitly, instead of auto initialize them on property
     // declaration in the beginning of the class, cause some (or all) of them might need constructor

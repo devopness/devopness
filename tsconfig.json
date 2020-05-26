@@ -29,6 +29,6 @@
   ],
   "exclude": [
     "src/services/AuthService.ts",
-    "**/*.spec.ts"
+    "tests/*"
   ]
 }
