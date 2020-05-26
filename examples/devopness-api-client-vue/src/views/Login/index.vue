@@ -34,7 +34,7 @@
 
 <script>
 import "./styled.css";
-import { login } from '../../services/login'
+import auth from '../../services/auth'
 
 export default {
   data() {
@@ -50,7 +50,7 @@ export default {
       const { username, password } = this
       this.submitted = true
 
-      login(username, password)
+      auth.login(username, password)
         .then(response => {
           this.$router.push('home')
         })
