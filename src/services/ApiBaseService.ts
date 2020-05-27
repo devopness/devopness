@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
-import { ArgumentNullException, ApiError } from "../common/Exceptions";
+import { ArgumentNullException, ApiError, NetworkError } from "../common/Exceptions";
 
 export interface ConfigurationOptions {
     apiKey?: string;
@@ -83,7 +83,17 @@ export class ApiBaseService {
                 return response;
             },
             (error: AxiosError) => {
-                throw new ApiError(error);
+                if (error.response) {
+                    // server responded with something different than 2xx
+                    throw new ApiError(error);
+                } else if (error.request) {
+                    // no response received
+                    // TODO: is this relevant?
+                    throw new NetworkError(error);
+                } else {
+                    // request wasn't sent
+                    throw new NetworkError(error);
+                }
             }
         );
     }
