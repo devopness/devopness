@@ -35,7 +35,9 @@
   "author": "Devopness (https://www.devopness.com)",
   "license": "MIT",
   "release": {
-    "branches": ["master"]
+    "branches": [
+      "master"
+    ]
   },
   "bugs": {
     "url": "https://github.com/devopness/devopness-sdk-js/issues"
@@ -46,6 +48,7 @@
     "@types/jest": "^25.2.3",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",
+    "axios-mock-adapter": "^1.18.1",
     "eslint": "^6.8.0",
     "eslint-config-standard-with-typescript": "^17.0.0",
     "eslint-plugin-import": "^2.20.2",

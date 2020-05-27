@@ -12,9 +12,14 @@ export interface ErrorResponseData {
     errors?: Array<Record<string, string>>;
 }
 
+export class NetworkError extends Error {
+    constructor(error: AxiosError) {
+        super(error.message);
+    }
+}
+
 export class ApiError<T> extends Error {
     errors?: Array<Record<string, string>>;
-    // request?: any;
     response?: AxiosResponse<T>;
     status: number;
 
