@@ -2835,6 +2835,7 @@
     "/source-providers/{provider}/repositories": {
       "get": {
         "summary": "Return a list of all repositories belonging to a current user social provider account",
+        "operationId": "getAllRepositories",
         "tags": [
           "Source Providers - Repositories"
         ],
@@ -2877,6 +2878,7 @@
     "/source-providers/{provider}/repositories/{repository_owner}/{repository_name}": {
       "get": {
         "summary": "Get details of a repository, by its name",
+        "operationId": "getRepository",
         "tags": [
           "Source Providers - Repositories"
         ],
