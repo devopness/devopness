@@ -1,5 +1,5 @@
 summary: Unlink/Remove a server from an environment
-operationId: unlink_EnvironmentServer
+operationId: unlinkServerFromEnvironment
 tags:
   - Environments - Servers
 parameters:

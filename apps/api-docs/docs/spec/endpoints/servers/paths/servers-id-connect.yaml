@@ -1,4 +1,5 @@
 summary: Connect a server to devopness platform
+operationId: connectServer
 tags:
   - Servers
 parameters:

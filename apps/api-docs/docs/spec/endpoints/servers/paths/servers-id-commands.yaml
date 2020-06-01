@@ -1,4 +1,5 @@
 summary: Get commands to be executed on the given server
+operationId: getServerCommands
 tags:
   - Servers
 parameters:

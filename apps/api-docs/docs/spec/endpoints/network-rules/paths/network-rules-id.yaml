@@ -1,4 +1,5 @@
 summary: Get a network rule by ID
+operationId: getNetworkRule
 tags:
   - Network Rules
 parameters:

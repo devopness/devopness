@@ -1,4 +1,5 @@
 summary: Delete a SSL certificate
+operationId: deleteSslCertificate
 tags:
   - SSL Certificates
 parameters:

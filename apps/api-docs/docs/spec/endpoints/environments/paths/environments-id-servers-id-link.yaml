@@ -1,5 +1,5 @@
 summary: Link a server to an environment
-operationId: link_EnvironmentServer
+operationId: linkServerToEnvironment
 tags:
   - Environments - Servers
 parameters:

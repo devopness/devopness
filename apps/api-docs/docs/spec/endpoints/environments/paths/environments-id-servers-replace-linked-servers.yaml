@@ -1,5 +1,5 @@
 summary: Replace all linked servers by new ones. Immediately deploying all changes to previously and newly linked servers
-operationId: replaceLinkedServers_EnvironmentServer
+operationId: replaceLinkedServers
 tags:
   - Environments - Servers
 parameters:

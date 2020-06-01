@@ -1,4 +1,5 @@
 summary: Get the connect status of a Social authentication provider, by its name
+operationId: getSocialAccountStatusByName
 tags:
   - Social Accounts
 parameters:

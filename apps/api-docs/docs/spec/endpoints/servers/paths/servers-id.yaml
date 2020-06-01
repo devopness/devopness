@@ -1,4 +1,5 @@
 summary: Get a server by ID
+operationId: getServer
 tags:
   - Servers
 parameters:

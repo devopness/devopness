@@ -1,4 +1,5 @@
 summary: Create a new social account linked to the current user's profile
+operationId: addSocialAccount
 tags:
   - Social Accounts
 parameters:

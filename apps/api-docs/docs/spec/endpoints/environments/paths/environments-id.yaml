@@ -1,4 +1,5 @@
 summary: Get an environment by ID
+operationId: getEnvironment
 tags:
   - Environments
 parameters:

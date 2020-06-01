@@ -1,4 +1,5 @@
 summary: Return a list of all social accounts belonging to current user
+operationId: getAllSocialAccounts
 tags:
   - Social Accounts
 parameters:

@@ -1,4 +1,5 @@
 summary: Delete a given network rule
+operationId: deleteNetworkRule
 tags:
   - Network Rules
 parameters:

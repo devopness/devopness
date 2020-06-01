@@ -1,4 +1,5 @@
 summary: Get details of a source code provider, by its name
+operationId: getSourceProviderByName
 tags:
   - Source Providers
 parameters:

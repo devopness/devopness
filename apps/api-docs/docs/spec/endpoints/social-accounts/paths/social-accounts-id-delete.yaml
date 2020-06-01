@@ -1,4 +1,5 @@
 summary: Delete a given social account
+operationId: deleteSocialAccount
 tags:
   - Social Accounts
 parameters:

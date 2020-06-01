@@ -1,4 +1,5 @@
 summary: Get details of a Social authentication provider, by its name
+operationId: getSocialAccountByName
 tags:
   - Social Accounts
 parameters:
