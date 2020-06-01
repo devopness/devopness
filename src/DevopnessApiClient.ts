@@ -1,8 +1,10 @@
 import { ApiBaseService, ConfigurationOptions, Configuration } from './services/ApiBaseService';
 import { ProjectService } from './services/ProjectService';
 import { UserService } from './services/UserService';
+import { EnvironmentService } from './services/EnvironmentService';
 
 export class DevopnessApiClient {
+  public environments: EnvironmentService;
   public projects: ProjectService;
   public users: UserService;
 
@@ -22,6 +24,7 @@ export class DevopnessApiClient {
     // parameters. Furthermore, we ensure all assertions for required parameters (like the
     // above check for `baseUrl`) are quickly returned to the end user before spending
     // time loading extra resources
+    this.environments = new EnvironmentService();
     this.projects = new ProjectService();
     this.users = new UserService();
   }
