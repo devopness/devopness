@@ -530,6 +530,7 @@
     "/environments/{environment_id}": {
       "delete": {
         "summary": "Delete a given environment",
+        "operationId": "deleteEnvironment",
         "tags": [
           "Environments"
         ],
@@ -566,6 +567,7 @@
       },
       "put": {
         "summary": "Update a given environment",
+        "operationId": "updateEnvironment",
         "tags": [
           "Environments"
         ],
@@ -613,6 +615,7 @@
       },
       "get": {
         "summary": "Get an environment by ID",
+        "operationId": "getEnvironment",
         "tags": [
           "Environments"
         ],
@@ -658,7 +661,7 @@
     "/environments/{environment_id}/servers/replace-linked-servers": {
       "post": {
         "summary": "Replace all linked servers by new ones. Immediately deploying all changes to previously and newly linked servers",
-        "operationId": "replaceLinkedServers_EnvironmentServer",
+        "operationId": "replaceLinkedServers",
         "tags": [
           "Environments - Servers"
         ],
@@ -708,7 +711,7 @@
     "/environments/{environment_id}/servers/{server_id}/link": {
       "post": {
         "summary": "Link a server to an environment",
-        "operationId": "link_EnvironmentServer",
+        "operationId": "linkServerToEnvironment",
         "tags": [
           "Environments - Servers"
         ],
@@ -769,7 +772,7 @@
     "/environments/{environment_id}/servers/{server_id}/unlink": {
       "post": {
         "summary": "Unlink/Remove a server from an environment",
-        "operationId": "unlink_EnvironmentServer",
+        "operationId": "unlinkServerFromEnvironment",
         "tags": [
           "Environments - Servers"
         ],
@@ -3478,7 +3481,45 @@
               "minimum": 1
             },
             "required": true,
-            "description": "Numeric ID of the user or the string literal `me` for the current user"
+            "description": "Numeric ID of the user to be retrieved"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/users/me": {
+      "get": {
+        "summary": "Get details of the current user",
+        "operationId": "getCurrentUser",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
           }
         ],
         "responses": {

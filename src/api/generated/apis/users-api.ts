@@ -48,8 +48,17 @@ export class UsersApiService extends ApiBaseService {
 
     /**
      * 
+     * @summary Get details of the current user
+     */
+    public async getCurrentUser(): Promise<ApiResponse<User>> {
+        const response = await this.get <User>(`/users/me`);
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
      * @summary Get a user by ID
-     * @param {number} id Numeric ID of the user or the string literal &#x60;me&#x60; for the current user
+     * @param {number} id Numeric ID of the user to be retrieved
      */
     public async getUser(id: number): Promise<ApiResponse<User>> {
         if (id === null || id === undefined) {
