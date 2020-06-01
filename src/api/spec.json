@@ -891,6 +891,7 @@
     "/network-rules/{rule_id}": {
       "delete": {
         "summary": "Delete a given network rule",
+        "operationId": "deleteNetworkRule",
         "tags": [
           "Network Rules"
         ],
@@ -927,6 +928,7 @@
       },
       "get": {
         "summary": "Get a network rule by ID",
+        "operationId": "getNetworkRule",
         "tags": [
           "Network Rules"
         ],
@@ -2133,6 +2135,7 @@
     "/servers": {
       "get": {
         "summary": "Return a list of all servers belonging to current user",
+        "operationId": "getAllServers",
         "tags": [
           "Servers"
         ],
@@ -2164,6 +2167,7 @@
     "/servers/{id}": {
       "get": {
         "summary": "Get a server by ID",
+        "operationId": "getServer",
         "tags": [
           "Servers"
         ],
@@ -2209,6 +2213,7 @@
     "/servers/{id}/commands": {
       "get": {
         "summary": "Get commands to be executed on the given server",
+        "operationId": "getServerCommands",
         "tags": [
           "Servers"
         ],
@@ -2254,6 +2259,7 @@
     "/servers/{id}/connect/{activation_token}": {
       "post": {
         "summary": "Connect a server to devopness platform",
+        "operationId": "connectServer",
         "tags": [
           "Servers"
         ],
@@ -2622,6 +2628,7 @@
     "/social-accounts": {
       "post": {
         "summary": "Create a new social account linked to the current user's profile",
+        "operationId": "addSocialAccount",
         "tags": [
           "Social Accounts"
         ],
@@ -2665,6 +2672,7 @@
       },
       "get": {
         "summary": "Return a list of all social accounts belonging to current user",
+        "operationId": "getAllSocialAccounts",
         "tags": [
           "Social Accounts"
         ],
@@ -2696,6 +2704,7 @@
     "/social-accounts/{id}": {
       "delete": {
         "summary": "Delete a given social account",
+        "operationId": "deleteSocialAccount",
         "tags": [
           "Social Accounts"
         ],
@@ -2734,6 +2743,7 @@
     "/social-accounts/{provider}": {
       "get": {
         "summary": "Get details of a Social authentication provider, by its name",
+        "operationId": "getSocialAccountByName",
         "tags": [
           "Social Accounts"
         ],
@@ -2779,6 +2789,7 @@
     "/social-accounts/{provider}/status": {
       "get": {
         "summary": "Get the connect status of a Social authentication provider, by its name",
+        "operationId": "getSocialAccountStatusByName",
         "tags": [
           "Social Accounts"
         ],
@@ -2933,6 +2944,7 @@
     "/source-providers": {
       "get": {
         "summary": "Return a list of all source code providers linked to current user",
+        "operationId": "getAllSourceProviders",
         "tags": [
           "Source Providers"
         ],
@@ -2964,6 +2976,7 @@
     "/source-providers/{id}": {
       "delete": {
         "summary": "Delete a given source provider from current user's account",
+        "operationId": "deleteSourceProvider",
         "tags": [
           "Source Providers"
         ],
@@ -3002,6 +3015,7 @@
     "/source-providers/{provider}": {
       "get": {
         "summary": "Get details of a source code provider, by its name",
+        "operationId": "getSourceProviderByName",
         "tags": [
           "Source Providers"
         ],
@@ -3047,6 +3061,7 @@
     "/ssh-keys/{ssh_key_id}": {
       "get": {
         "summary": "Get a SSH key by ID",
+        "operationId": "getSshKey",
         "tags": [
           "SSH Keys"
         ],
@@ -3090,6 +3105,7 @@
       },
       "delete": {
         "summary": "Delete a given SSH key",
+        "operationId": "deleteSshKey",
         "tags": [
           "SSH Keys"
         ],
@@ -3128,6 +3144,7 @@
     "/ssl-certificates/{id}": {
       "get": {
         "summary": "Get details of a single SSL certificate",
+        "operationId": "getSslCertificate",
         "tags": [
           "SSL Certificates"
         ],
@@ -3171,6 +3188,7 @@
       },
       "delete": {
         "summary": "Delete a SSL certificate",
+        "operationId": "deleteSslCertificate",
         "tags": [
           "SSL Certificates"
         ],

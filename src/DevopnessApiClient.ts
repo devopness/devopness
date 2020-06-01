@@ -2,11 +2,17 @@ import { ApiBaseService, ConfigurationOptions, Configuration } from './services/
 import { ProjectService } from './services/ProjectService';
 import { UserService } from './services/UserService';
 import { EnvironmentService } from './services/EnvironmentService';
+import { NetworkRuleService } from './services/NetworkRuleService';
+import { ServerService } from './services/ServerService';
+import { ServiceService } from './services/ServiceService';
 
 export class DevopnessApiClient {
-  public environments: EnvironmentService;
-  public projects: ProjectService;
-  public users: UserService;
+  environments: EnvironmentService;
+  networkRules: NetworkRuleService;
+  projects: ProjectService;
+  servers: ServerService;
+  services: ServiceService;
+  users: UserService;
 
   /**
    * @todo provide a global onError event? How to make it easy to clients to interact with
@@ -25,7 +31,10 @@ export class DevopnessApiClient {
     // above check for `baseUrl`) are quickly returned to the end user before spending
     // time loading extra resources
     this.environments = new EnvironmentService();
+    this.networkRules = new NetworkRuleService();
     this.projects = new ProjectService();
+    this.servers = new ServerService();
+    this.services = new ServiceService();
     this.users = new UserService();
   }
 
