@@ -1,19 +1,11 @@
-summary: Get a user by ID
-operationId: getUser
+summary: Get details of the current user
+operationId: getCurrentUser
 tags:
   - Users
 parameters:
   - $ref: '#/components/parameters/acceptHeader'
   - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/contentTypeHeader'
-  - in: path
-    name: id
-    example: 1
-    schema:
-      type: integer
-      minimum: 1
-    required: true
-    description: Numeric ID of the user to be retrieved
 responses:
   200:
     description: 'Ok'

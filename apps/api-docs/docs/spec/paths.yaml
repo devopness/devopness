@@ -205,6 +205,9 @@
 /users/{id}:
   get:
     $ref: ./endpoints/users/paths/users-id.yaml
+/users/me:
+  get:
+    $ref: ./endpoints/users/paths/users-current.yaml
 /users/refresh-token:
   post:
     $ref: ./endpoints/users/paths/users-refresh-token.yaml
