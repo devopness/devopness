@@ -1,5 +1,5 @@
 summary: Get a SSH key by ID
-operationId: getSshKey
+operationId: getSSHKey
 tags:
   - SSH Keys
 parameters:

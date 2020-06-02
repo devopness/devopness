@@ -1,5 +1,5 @@
 summary: Create a SSH key and link it to the given project
-operationId: addSshKeyToProject
+operationId: addSSHKeyToProject
 tags:
   - Projects - SSH Keys
 parameters:

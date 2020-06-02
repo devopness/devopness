@@ -1,5 +1,5 @@
 summary: 'Return a list of all SSH keys added to a project'
-operationId: listProjectSshKeys
+operationId: listProjectSSHKeys
 tags:
   - Projects - SSH Keys
 parameters:
