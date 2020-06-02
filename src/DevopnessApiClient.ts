@@ -8,6 +8,7 @@ import { ServiceService } from './services/ServiceService';
 import { DaemonService } from './services/DaemonService';
 import { SshKeysService } from './services/SshKeysService';
 import { SslCertificatesService } from './services/SslCertificatesService';
+import { SourceProvidersService } from './services/SourceProvidersService'
 
 export class DevopnessApiClient {
   daemons: DaemonService;
@@ -18,6 +19,7 @@ export class DevopnessApiClient {
   services: ServiceService;
   sshKeys: SshKeysService;
   sslCertificates: SslCertificatesService;
+  sourceProviders: SourceProvidersService;
   users: UserService;
 
   /**
@@ -44,6 +46,7 @@ export class DevopnessApiClient {
     this.services = new ServiceService();
     this.sshKeys = new SshKeysService();
     this.sslCertificates = new SslCertificatesService();
+    this.sourceProviders = new SourceProvidersService();
     this.users = new UserService();
   }
 
