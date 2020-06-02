@@ -6,14 +6,22 @@ import { NetworkRuleService } from './services/NetworkRuleService';
 import { ServerService } from './services/ServerService';
 import { ServiceService } from './services/ServiceService';
 import { DaemonService } from './services/DaemonService';
+import { DeploymentService } from './services/DeploymentService'
+import { SshKeyService } from './services/SshKeyService';
+import { SslCertificateService } from './services/SslCertificateService';
+import { SourceProviderService } from './services/SourceProviderService'
 
 export class DevopnessApiClient {
   daemons: DaemonService;
+  deployments: DeploymentService;
   environments: EnvironmentService;
   networkRules: NetworkRuleService;
   projects: ProjectService;
   servers: ServerService;
   services: ServiceService;
+  sshKeys: SshKeyService;
+  sslCertificates: SslCertificateService;
+  sourceProviders: SourceProviderService;
   users: UserService;
 
   /**
@@ -33,11 +41,15 @@ export class DevopnessApiClient {
     // above check for `baseUrl`) are quickly returned to the end user before spending
     // time loading extra resources
     this.daemons = new DaemonService();
+    this.deployments = new DeploymentService();
     this.environments = new EnvironmentService();
     this.networkRules = new NetworkRuleService();
     this.projects = new ProjectService();
     this.servers = new ServerService();
     this.services = new ServiceService();
+    this.sshKeys = new SshKeyService();
+    this.sslCertificates = new SslCertificateService();
+    this.sourceProviders = new SourceProviderService();
     this.users = new UserService();
   }
 

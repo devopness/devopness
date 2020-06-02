@@ -1943,7 +1943,7 @@
     "/projects/{project_id}/ssh-keys": {
       "post": {
         "summary": "Create a SSH key and link it to the given project",
-        "operationId": "addSSHKeyToProject",
+        "operationId": "addSshKeyToProject",
         "tags": [
           "Projects - SSH Keys"
         ],
@@ -1998,7 +1998,7 @@
       },
       "get": {
         "summary": "Return a list of all SSH keys added to a project",
-        "operationId": "listProjectSSHKeys",
+        "operationId": "listProjectSshKeys",
         "tags": [
           "Projects - SSH Keys"
         ],
@@ -3067,7 +3067,7 @@
     "/ssh-keys/{ssh_key_id}": {
       "get": {
         "summary": "Get a SSH key by ID",
-        "operationId": "getSSHKey",
+        "operationId": "getSshKey",
         "tags": [
           "SSH Keys"
         ],
@@ -3111,7 +3111,7 @@
       },
       "delete": {
         "summary": "Delete a given SSH key",
-        "operationId": "deleteSSHKey",
+        "operationId": "deleteSshKey",
         "tags": [
           "SSH Keys"
         ],
