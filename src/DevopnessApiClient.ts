@@ -6,6 +6,7 @@ import { NetworkRuleService } from './services/NetworkRuleService';
 import { ServerService } from './services/ServerService';
 import { ServiceService } from './services/ServiceService';
 import { DaemonService } from './services/DaemonService';
+import { SshKeysService } from './services/SshKeysService';
 
 export class DevopnessApiClient {
   daemons: DaemonService;
@@ -14,6 +15,7 @@ export class DevopnessApiClient {
   projects: ProjectService;
   servers: ServerService;
   services: ServiceService;
+  sshKeys: SshKeysService;
   users: UserService;
 
   /**
@@ -38,6 +40,7 @@ export class DevopnessApiClient {
     this.projects = new ProjectService();
     this.servers = new ServerService();
     this.services = new ServiceService();
+    this.sshKeys = new SshKeysService();
     this.users = new UserService();
   }
 
