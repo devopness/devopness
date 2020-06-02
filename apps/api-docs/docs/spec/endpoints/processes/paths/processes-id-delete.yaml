@@ -1,4 +1,5 @@
 summary: Delete a given Background process
+operationId: deleteDaemon
 tags:
   - Daemons/Processes
 parameters:

@@ -1,4 +1,5 @@
 summary: Restart a background process
+operationId: restartDaemon
 tags:
   - Daemons/Processes
 parameters:

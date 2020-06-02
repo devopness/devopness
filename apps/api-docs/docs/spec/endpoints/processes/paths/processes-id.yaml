@@ -1,4 +1,5 @@
 summary: Get a background process by ID
+operationId: getDaemon
 tags:
   - Daemons/Processes
 parameters:

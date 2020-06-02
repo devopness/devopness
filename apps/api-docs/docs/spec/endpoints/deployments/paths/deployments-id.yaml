@@ -1,4 +1,5 @@
 summary: Get a deployment by ID
+operationId: getDeployment
 tags:
   - Deployments
 parameters:
