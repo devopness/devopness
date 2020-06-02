@@ -14,40 +14,67 @@ The `Devopness` SDK provides convenient access to the `Devopness` API from appli
 
 By streamlining essential DevOps practices we're making first class software deployment and server management tools accessible and affordable to every developer in the world.
 
-## Setup
-Use `npm` or `yarn` to install the Devopness SDK npm package as a project dependency:
-- Using `npm`: `npm install @devopness/sdk-js`
-- Using `yarn`: `yarn add @devopness/sdk-js`
-
 ## Usage
 
-### TypeScript support
-This package includes TypeScript declarations for every method.
-TypeScript versions >= 3.1 are supported.
+### Installation
+Use `npm` to install the Devopness SDK package as a dependency of your project:
+```
+npm install @devopness/sdk-js
+```
 
-Some methods in `Devopness SDK JavaScript` accept and return objects from the Devopness API. The type declarations for these objects will always track the latest version of the API. Therefore, if you'e using the latest version of this package you can rely on the Devopness API documentation for checking the input and return types expected by each API endpoint.
+### Upgrade
+To upgrade the Devopness SDK npm package to the latest version, add the `@latest` suffix to the package name:
+```
+npm install @devopness/sdk-js@latest
+```
+### Initializing
 
-### Initializing and authenticating
+To initialize the usage of Devopness SDK just import it and create a new instance of `DevopnessApiClient` class.
 
 Here is a generic simple example that can be used from `Node.js`, `TypeScript` or `Javascript` applications:
 
 ```javascript
-const { DevopnessApiClient } = require("@devopness/sdk-js")
+import { DevopnessApiClient } from '@devopness/sdk-js'
 const devopnessApi = new DevopnessApiClient();
+```
 
+### Authenticating
+
+To authenticate, just invoke the `login` method on the `users` service:
+
+```javascript
 async function authenticate(email, pass) {
   const userTokens = await devopnessApi.users.login({ email: email, password: pass });
   // The `accessToken` must be set every time a token is obtained or refreshed.
   devopnessApi.accessToken = userTokens.data.access_token;
 }
 
+// invoke the authentication method
+authenticate('user@email.com', 'secret-password');
+```
+
+### Invoking authentication protected endpoints
+Once an authentication token is set, any protected endpoint can be invoked.
+Example retrieving current user details:
+
+```javascript
 async function getUserProfile() {
+    // invoke the authentication method to ensure an auth token
+    // is retrieved and set to the SDK instance
+    await authenticate('user@email.com', 'secret-password');
+
+    // Now that we're authenticated, we can invoke methods on any services.
+    // Here we're invoking the `getCurrentUser()` method on the `users` service
     const currentUser = await devopnessApi.users.getCurrentUser();
     console.log('Successfully retrieved user profile: ', currentUser);
 }
 
-// invoke the authentication method
-authenticate('user@email.com', 'secret-password');
-// Now that we're authenticated, retrieves the current user profile
 getUserProfile();
 ```
+
+
+### TypeScript support
+This package includes TypeScript declarations for every method.
+TypeScript versions >= 3.1 are supported.
+
+Some methods in `Devopness SDK JavaScript` accept and return objects from the Devopness API. The type declarations for these objects will always track the latest version of the API. Therefore, if you'e using the latest version of this package you can rely on the Devopness API documentation for checking the input and return types of each API endpoint.
