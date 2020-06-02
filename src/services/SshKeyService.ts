@@ -1,4 +1,4 @@
 import { SSHKeysApiService } from '../api/generated/apis/sshkeys-api';
 
-export class SshKeysService extends SSHKeysApiService {
+export class SshKeyService extends SSHKeysApiService {
 }
