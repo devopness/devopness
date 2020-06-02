@@ -5,8 +5,10 @@ import { EnvironmentService } from './services/EnvironmentService';
 import { NetworkRuleService } from './services/NetworkRuleService';
 import { ServerService } from './services/ServerService';
 import { ServiceService } from './services/ServiceService';
+import { DaemonService } from './services/DaemonService';
 
 export class DevopnessApiClient {
+  daemons: DaemonService;
   environments: EnvironmentService;
   networkRules: NetworkRuleService;
   projects: ProjectService;
@@ -30,6 +32,7 @@ export class DevopnessApiClient {
     // parameters. Furthermore, we ensure all assertions for required parameters (like the
     // above check for `baseUrl`) are quickly returned to the end user before spending
     // time loading extra resources
+    this.daemons = new DaemonService();
     this.environments = new EnvironmentService();
     this.networkRules = new NetworkRuleService();
     this.projects = new ProjectService();

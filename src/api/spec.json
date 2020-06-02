@@ -974,6 +974,7 @@
     "/processes/{process_id}": {
       "delete": {
         "summary": "Delete a given Background process",
+        "operationId": "deleteDaemon",
         "tags": [
           "Daemons/Processes"
         ],
@@ -1010,6 +1011,7 @@
       },
       "get": {
         "summary": "Get a background process by ID",
+        "operationId": "getDaemon",
         "tags": [
           "Daemons/Processes"
         ],
@@ -1055,6 +1057,7 @@
     "/processes/{process_id}/restart": {
       "post": {
         "summary": "Restart a background process",
+        "operationId": "restartDaemon",
         "tags": [
           "Daemons/Processes"
         ],

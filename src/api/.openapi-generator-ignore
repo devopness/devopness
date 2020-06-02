@@ -16,7 +16,6 @@
 generated/apis/a*.ts
 generated/apis/b*.ts
 generated/apis/c*.ts
-generated/apis/d*.ts
 generated/apis/l*.ts
 generated/apis/social*.ts
 generated/apis/static*.ts
