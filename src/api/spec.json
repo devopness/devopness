@@ -485,6 +485,7 @@
     "/deployments/{deployment_id}": {
       "get": {
         "summary": "Get a deployment by ID",
+        "operationId": "getDeployment",
         "tags": [
           "Deployments"
         ],
