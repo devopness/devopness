@@ -84,11 +84,10 @@ export class ApiBaseService {
             },
             (error: AxiosError) => {
                 if (error.response) {
-                    // server responded with something different than 2xx
+                    // server responded with a status code other than 2xx
                     throw new ApiError(error);
                 } else if (error.request) {
-                    // no response received
-                    // TODO: is this relevant?
+                    // no response received. e.g.: client lost internet connection after request has been sent
                     throw new NetworkError(error);
                 } else {
                     // request wasn't sent
