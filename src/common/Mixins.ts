@@ -15,7 +15,7 @@ export function applyMixins(target: any, mixins: any[]): any {
             if (descriptor) {
                 Object.defineProperty(target.prototype, name, descriptor);
             } else {
-                throw `undefined property descriptor '${name}' in '${typeof mixin}'`;
+                throw `can't apply mixin: undefined property descriptor '${name}' in '${mixin.name}'`;
             }
         });
     });
