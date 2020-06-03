@@ -11,7 +11,7 @@ class Swimming {
     }
 }
 
-test("methods from mixins should be available in target objects", () => {
+test("methods from mixins should be available in target classes", () => {
     class Duck {}
     interface Duck extends Flying, Swimming {}
     applyMixins(Duck, [Flying, Swimming]);
@@ -27,7 +27,7 @@ test("methods from mixins should be available in target objects", () => {
     expect(duck.swim()).toBe('swimming!')
 })
 
-test("methods from mixins override methods from classes", () => {
+test("methods from mixins override methods from target class", () => {
     class Whale {
         public swim() {
             return "always swimming!"
@@ -38,4 +38,18 @@ test("methods from mixins override methods from classes", () => {
 
     let whale = new Whale();
     expect(whale.swim()).toBe('swimming!');
+})
+
+test("mixins must have same superclass as target class", () => {
+    class Base {}
+
+    class A {}
+    class B extends Base {}
+    interface A extends B {}
+    expect(() => applyMixins(A, [B])).toThrow()
+
+    class C extends Base {}
+    class D extends Base {}
+    interface C extends D {}
+    expect(() => applyMixins(C, [D])).not.toThrow()
 })
