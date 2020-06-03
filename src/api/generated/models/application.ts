@@ -41,11 +41,23 @@ export interface Application {
      */
     source_provider_id?: number;
     /**
-     * The name of the repository containing the application source code. Required when the `source_provider_id` field is informed.
+     * The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed.
      * @type {string}
      * @memberof Application
      */
     repository?: string;
+    /**
+     * The name part of a repository full name (`repository_owner/repository_name`)
+     * @type {string}
+     * @memberof Application
+     */
+    repository_name?: string;
+    /**
+     * The owner part of a repository full name (`repository_owner/repository_name`)
+     * @type {string}
+     * @memberof Application
+     */
+    repository_owner?: string;
     /**
      * The predominant programming language used in the application source code
      * @type {string}

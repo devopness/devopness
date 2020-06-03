@@ -102,6 +102,7 @@
     "/applications/{application_id}": {
       "get": {
         "summary": "Get an application by ID",
+        "operationId": "getApplication",
         "tags": [
           "Applications"
         ],
@@ -145,6 +146,7 @@
       },
       "put": {
         "summary": "Update an existing application",
+        "operationId": "updateApplication",
         "tags": [
           "Applications"
         ],
@@ -192,6 +194,7 @@
       },
       "delete": {
         "summary": "Delete a given application",
+        "operationId": "deleteApplication",
         "tags": [
           "Applications"
         ],
@@ -237,6 +240,7 @@
     "/applications/{application_id}/deployments": {
       "post": {
         "summary": "Trigger a new deployment for current application",
+        "operationId": "deployApplication",
         "tags": [
           "Applications - Deployments"
         ],
@@ -291,6 +295,7 @@
       },
       "get": {
         "summary": "Returns a list of all deployments belonging to an application",
+        "operationId": "listApplicationDeployments",
         "tags": [
           "Applications - Deployments"
         ],
@@ -333,6 +338,7 @@
     "/application-environments/{application_environment_id}/variables": {
       "post": {
         "summary": "Create a new variable linked to an application environment",
+        "operationId": "addEnvironmentVariableToApplication",
         "tags": [
           "Applications - Environments"
         ],
@@ -387,6 +393,7 @@
       },
       "get": {
         "summary": "Returns a list of variables belonging to an application environment",
+        "operationId": "listApplicationEnvironmentVariables",
         "tags": [
           "Applications - Environments"
         ],
@@ -429,6 +436,7 @@
     "/applications/{application_id}/ssl-certificates": {
       "post": {
         "summary": "Create a new SSL certificate linked to the current application",
+        "operationId": "addSslCertificateToApplication",
         "tags": [
           "Applications - SSL Certificates"
         ],
@@ -3861,9 +3869,19 @@
             "description": "Numeric ID of the source provider account where the repository is hosted. Required when the `repository` field is informed."
           },
           "repository": {
-            "description": "The name of the repository containing the application source code. Required when the `source_provider_id` field is informed.",
+            "description": "The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed.",
             "type": "string",
             "example": "devopness/devopness-web-site"
+          },
+          "repository_name": {
+            "description": "The name part of a repository full name (`repository_owner/repository_name`)",
+            "type": "string",
+            "example": "devopness"
+          },
+          "repository_owner": {
+            "description": "The owner part of a repository full name (`repository_owner/repository_name`)",
+            "type": "string",
+            "example": "devopness-web-site"
           },
           "programming_language": {
             "type": "string",
