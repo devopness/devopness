@@ -8,6 +8,13 @@
     "doc": "docs"
   },
   "scripts": {
+    "build": "npm run api-docs",
+    "api-build-spec": "cd docs && node ./spec/build-api-spec.js && swagger-cli validate build/api-docs-output.yaml",
+    "api-convert-spec-to-dredd": "api-spec-converter --from=openapi_3 --to=swagger_2 --syntax=yaml --order=alpha docs/build/api-docs-output.yaml > docs/build/api-docs-output-v2.yaml",
+    "api-docs-export-page": "redoc-cli bundle docs/build/api-docs-output.yaml --title 'devopness API' --output public/index.html --cdn true",
+    "api-docs": "npm run api-build-spec && npm run api-convert-spec-to-dredd && npm run api-docs-export-page && dredd --dry-run",
+    "api-docs-serve": "npm run api-docs && redoc-cli serve docs/build/api-docs-output.yaml --port 9090 --title 'Devopness API docs'",
+    "api-test": "dredd",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,5 +26,11 @@
   "bugs": {
     "url": "https://github.com/devopness/api-docs/issues"
   },
-  "homepage": "https://docs.devopness.com/"
+  "homepage": "https://docs.devopness.com/",
+  "devDependencies": {
+    "api-spec-converter": "^2.11.0",
+    "dredd": "^13.1.1",
+    "redoc-cli": "^0.9.8",
+    "swagger-cli": "^4.0.3"
+  }
 }
