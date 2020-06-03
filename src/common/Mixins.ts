@@ -1,4 +1,5 @@
 // https://www.typescriptlang.org/docs/handbook/mixins.html
+/* eslint-disable */
 export function applyMixins(derivedCtor: any, baseCtors: any[]): any {
     baseCtors.forEach(baseCtor => {
         Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
