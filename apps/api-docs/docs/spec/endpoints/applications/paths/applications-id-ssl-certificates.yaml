@@ -1,4 +1,5 @@
 summary: Create a new SSL certificate linked to the current application
+operationId: addSslCertificateToApplication
 tags:
   - Applications - SSL Certificates
 parameters:

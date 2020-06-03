@@ -1,4 +1,5 @@
 summary: Update an existing application
+operationId: updateApplication
 tags:
   - Applications
 parameters:

@@ -1,4 +1,5 @@
 summary: Get an application by ID
+operationId: getApplication
 tags:
   - Applications
 parameters:

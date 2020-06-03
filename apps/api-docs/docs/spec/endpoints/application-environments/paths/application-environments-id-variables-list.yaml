@@ -1,4 +1,5 @@
 summary: Returns a list of variables belonging to an application environment
+operationId: listApplicationEnvironmentVariables
 tags:
   - Applications - Environments
 parameters:

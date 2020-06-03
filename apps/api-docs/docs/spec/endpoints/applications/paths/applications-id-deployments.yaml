@@ -1,4 +1,5 @@
 summary: Trigger a new deployment for current application
+operationId: deployApplication
 tags:
   - Applications - Deployments
 parameters:

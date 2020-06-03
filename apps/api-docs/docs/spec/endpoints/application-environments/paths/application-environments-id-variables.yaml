@@ -1,4 +1,5 @@
 summary: Create a new variable linked to an application environment
+operationId: addEnvironmentVariableToApplication
 tags:
   - Applications - Environments
 parameters:

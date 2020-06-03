@@ -1,5 +1,5 @@
 summary: Delete a given SSH key
-operationId: deleteSSHKey
+operationId: deleteSshKey
 tags:
   - SSH Keys
 parameters:
