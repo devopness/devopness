@@ -1,0 +1,23 @@
+{
+  "private": true,
+  "name": "devopness-api-docs",
+  "version": "1.0.0",
+  "description": "Devopness API documentation",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/devopness/api-docs"
+  },
+  "author": "devopness",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/devopness/api-docs/issues"
+  },
+  "homepage": "https://docs.devopness.com/"
+}
