@@ -19,7 +19,7 @@ By streamlining essential DevOps practices we're making first class software dep
 ### Installation
 Use `npm` to install the Devopness SDK package as a dependency of your project:
 ```
-npm install @devopness/sdk-js
+npm install @devopness/sdk-js@latest
 ```
 
 ### Upgrade
