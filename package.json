@@ -14,6 +14,7 @@
     "build": "rm -R ./dist || true && npm run lint && tsc",
     "build-api-models": "openapi-generator generate --template-dir ./src/api/generator/templates --skip-validate-spec --minimal-update -i ./src/api/spec.json -g typescript-axios -o ./src/api -p withSeparateModelsAndApi=true --api-package generated/apis --model-package generated/models --additional-properties supportsES6=false && npm run build",
     "lint": "eslint . --ext .ts",
+    "link-git-hooks": "bash scripts/link-git-hooks.sh",
     "prepublishOnly": "npm test",
     "prepare": "npm run build",
     "preversion": "npm run lint",
