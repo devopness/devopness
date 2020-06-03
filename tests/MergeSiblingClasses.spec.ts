@@ -1,4 +1,4 @@
-import { applyMixins } from '../src/common/Mixins';
+import { mergeSiblingClasses } from '../src/common/MergeSiblingClasses';
 
 class Flying {
     public fly() {
@@ -11,10 +11,10 @@ class Swimming {
     }
 }
 
-test("methods from mixins should be available in target objects", () => {
+test("methods from all merged classes should be available in target classes", () => {
     class Duck {}
     interface Duck extends Flying, Swimming {}
-    applyMixins(Duck, [Flying, Swimming]);
+    mergeSiblingClasses(Duck, [Flying, Swimming]);
 
     let duck = new Duck();
 
@@ -27,15 +27,29 @@ test("methods from mixins should be available in target objects", () => {
     expect(duck.swim()).toBe('swimming!')
 })
 
-test("methods from mixins override methods from classes", () => {
+test("methods from siblings override methods from target class", () => {
     class Whale {
         public swim() {
             return "always swimming!"
         }
     }
     interface Whale extends Swimming {}
-    applyMixins(Whale, [Swimming]);
+    mergeSiblingClasses(Whale, [Swimming]);
 
     let whale = new Whale();
     expect(whale.swim()).toBe('swimming!');
+})
+
+test("merged siblings must have same superclass as target class", () => {
+    class Base {}
+
+    class A {}
+    class B extends Base {}
+    interface A extends B {}
+    expect(() => mergeSiblingClasses(A, [B])).toThrow()
+
+    class C extends Base {}
+    class D extends Base {}
+    interface C extends D {}
+    expect(() => mergeSiblingClasses(C, [D])).not.toThrow()
 })
