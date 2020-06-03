@@ -1,10 +1,8 @@
 /**
  * @todo: assume an empty database before running this (i.e always run
- * `php artisan devopness:db-reset` before running this script)
+ * `/db-reset` before running this script) ?
  *
- * @todo: move this to `devopness/api` folder, along with dredd.yml file
- *
- * @todo: start by implementing basic `sign-up/login/logout` flow
+ * @todo: implement basic `sign-up/login/logout` flow
  *
  * @todo: we can increment it by after sign-up and login create a project and a server inside a project,
  * assuming a default project environment for the server
@@ -68,7 +66,7 @@ hooks.before(transactionNames['users-login'], function(transaction) {
     // hooks.log('Executing hook "before" transaction "' + transactionNames['users-login'] + '"');
 
     var testCredentials = {
-        "email": "blabla@umdeia.com",
+        "email": "blabla@test.com",
         "password": "algumasenha"
     };
     transaction.request.body = JSON.stringify(testCredentials);
