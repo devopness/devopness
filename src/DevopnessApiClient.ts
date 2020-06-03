@@ -1,17 +1,19 @@
 import { ApiBaseService, ConfigurationOptions, Configuration } from './services/ApiBaseService';
-import { ProjectService } from './services/ProjectService';
-import { UserService } from './services/UserService';
-import { EnvironmentService } from './services/EnvironmentService';
-import { NetworkRuleService } from './services/NetworkRuleService';
-import { ServerService } from './services/ServerService';
-import { ServiceService } from './services/ServiceService';
+import { ApplicationService } from './services/ApplicationService';
 import { DaemonService } from './services/DaemonService';
 import { DeploymentService } from './services/DeploymentService'
+import { EnvironmentService } from './services/EnvironmentService';
+import { NetworkRuleService } from './services/NetworkRuleService';
+import { ProjectService } from './services/ProjectService';
+import { ServerService } from './services/ServerService';
+import { ServiceService } from './services/ServiceService';
+import { SourceProviderService } from './services/SourceProviderService'
 import { SshKeyService } from './services/SshKeyService';
 import { SslCertificateService } from './services/SslCertificateService';
-import { SourceProviderService } from './services/SourceProviderService'
+import { UserService } from './services/UserService';
 
 export class DevopnessApiClient {
+  applications: ApplicationService;
   daemons: DaemonService;
   deployments: DeploymentService;
   environments: EnvironmentService;
@@ -19,9 +21,9 @@ export class DevopnessApiClient {
   projects: ProjectService;
   servers: ServerService;
   services: ServiceService;
+  sourceProviders: SourceProviderService;
   sshKeys: SshKeyService;
   sslCertificates: SslCertificateService;
-  sourceProviders: SourceProviderService;
   users: UserService;
 
   /**
@@ -40,6 +42,7 @@ export class DevopnessApiClient {
     // parameters. Furthermore, we ensure all assertions for required parameters (like the
     // above check for `baseUrl`) are quickly returned to the end user before spending
     // time loading extra resources
+    this.applications = new ApplicationService();
     this.daemons = new DaemonService();
     this.deployments = new DeploymentService();
     this.environments = new EnvironmentService();
@@ -47,9 +50,9 @@ export class DevopnessApiClient {
     this.projects = new ProjectService();
     this.servers = new ServerService();
     this.services = new ServiceService();
+    this.sourceProviders = new SourceProviderService();
     this.sshKeys = new SshKeyService();
     this.sslCertificates = new SslCertificateService();
-    this.sourceProviders = new SourceProviderService();
     this.users = new UserService();
   }
 
