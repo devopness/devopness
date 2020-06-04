@@ -12,6 +12,7 @@ import { SshKeyService } from './services/SshKeyService';
 import { SslCertificateService } from './services/SslCertificateService';
 import { UserService } from './services/UserService';
 import { CronJobService } from './services/CronJobService';
+import { StaticService } from './services/StaticService';
 
 export class DevopnessApiClient {
   applications: ApplicationService;
@@ -26,6 +27,7 @@ export class DevopnessApiClient {
   sourceProviders: SourceProviderService;
   sshKeys: SshKeyService;
   sslCertificates: SslCertificateService;
+  static: StaticService;
   users: UserService;
 
   /**
@@ -56,6 +58,7 @@ export class DevopnessApiClient {
     this.sourceProviders = new SourceProviderService();
     this.sshKeys = new SshKeyService();
     this.sslCertificates = new SslCertificateService();
+    this.static = new StaticService();
     this.users = new UserService();
   }
 
