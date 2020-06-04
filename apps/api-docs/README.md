@@ -22,7 +22,7 @@ npm ci
 npm run build
 ```
 
-### ### Generate docs and initialize a local server
+### Generate docs and initialize a local server
 ```
 npm run api-docs-serve
 ```
