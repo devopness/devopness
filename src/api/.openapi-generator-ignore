@@ -15,11 +15,9 @@
 #   - generator should fail on warning from openapi docs issues, and break the build, better for automation
 generated/apis/action*.ts
 generated/apis/b*.ts
-generated/apis/c*.ts
 generated/apis/l*.ts
 generated/apis/social*.ts
 generated/apis/static*.ts
-generated/apis/t*.ts
 
 .gitignore
 .npmignore

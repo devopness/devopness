@@ -2048,10 +2048,10 @@
     },
     "/projects/{project_id}/tasks": {
       "post": {
-        "summary": "Add a scheduled task to the given project",
-        "operationId": "addCronjobToProject",
+        "summary": "Add a Cron Job to the given project",
+        "operationId": "addCronJobToProject",
         "tags": [
-          "Projects - Cronjobs/Scheduled Tasks"
+          "Projects - Cron Jobs"
         ],
         "parameters": [
           {
@@ -2076,12 +2076,12 @@
           }
         ],
         "requestBody": {
-          "description": "A JSON object containing task data",
+          "description": "A JSON object containing cron job data",
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TaskCreate"
+                "$ref": "#/components/schemas/CronJobCreate"
               }
             }
           }
@@ -2092,7 +2092,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Task"
+                  "$ref": "#/components/schemas/CronJob"
                 }
               }
             }
@@ -2103,10 +2103,10 @@
         }
       },
       "get": {
-        "summary": "Return a list of all tasks belonging to a project",
-        "operationId": "listProjectCronjobs",
+        "summary": "Return a list of all Cron Jobs belonging to a project",
+        "operationId": "listProjectCronJobs",
         "tags": [
-          "Projects - Cronjobs/Scheduled Tasks"
+          "Projects - Cron Jobs"
         ],
         "parameters": [
           {
@@ -2127,7 +2127,7 @@
               "minimum": 1
             },
             "required": true,
-            "description": "Numeric ID of the project to get tasks from"
+            "description": "Numeric ID of the project to get cron jobs from"
           }
         ],
         "responses": {
@@ -2136,7 +2136,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Tasks"
+                  "$ref": "#/components/schemas/CronJobs"
                 }
               }
             }
@@ -3271,9 +3271,10 @@
     },
     "/tasks/{task_id}": {
       "delete": {
-        "summary": "Delete a given task",
+        "summary": "Delete a given CronJob",
+        "operationId": "deleteCronJob",
         "tags": [
-          "Cronjobs/Scheduled Tasks"
+          "Cron Jobs"
         ],
         "parameters": [
           {
@@ -3294,7 +3295,7 @@
               "minimum": 1
             },
             "required": true,
-            "description": "Numeric ID of the task to be deleted"
+            "description": "Numeric ID of the cron job to be deleted"
           }
         ],
         "responses": {
@@ -3307,9 +3308,10 @@
         }
       },
       "get": {
-        "summary": "Get a task by ID",
+        "summary": "Get a CronJob by ID",
+        "operationId": "getCronJob",
         "tags": [
-          "Cronjobs/Scheduled Tasks"
+          "Cron Jobs"
         ],
         "parameters": [
           {
@@ -3330,7 +3332,7 @@
               "minimum": 1
             },
             "required": true,
-            "description": "Numeric ID of the task to get"
+            "description": "Numeric ID of the cron job to get"
           }
         ],
         "responses": {
@@ -3339,7 +3341,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Task"
+                  "$ref": "#/components/schemas/CronJob"
                 }
               }
             }
@@ -3644,8 +3646,8 @@
       "description": "Throughout the `devopness` documentation the term `SSL Certificate` refers to a public key certificate adhering to `X.509` standard. While TLS is the protocol more used nowadays for web encryption, for historical reasons web encryption is often referred to simply as SSL. A SSL Certificate managed by `devopness` might be used as an HTTPS/SSL/TLS and other internet protocols to establish encrypted connections between client apps (e.g. browsers) and the web application servers managed through `devopness`, but it's not limited to be used for authenticating server's identity.\n"
     },
     {
-      "name": "Cronjobs/Scheduled Tasks",
-      "description": "A cronjob or scheduled task is a scheduled command to be set on one or more project servers to ensure a given routine will be executed on time.\n"
+      "name": "Cron Jobs",
+      "description": "A cronjob is a scheduled command to be set on one or more project servers to ensure a given routine will be executed on time. Cronjobs are useful for creating periodic and recurring tasks, like running backups or sending emails. Cronjobs can also schedule individual tasks for a specific time, such as if you want to schedule a job for a low activity period.\n"
     },
     {
       "name": "Daemons/Processes",
@@ -3673,7 +3675,7 @@
       "name": "Projects - Applications"
     },
     {
-      "name": "Projects - Cronjobs/Scheduled Tasks",
+      "name": "Projects - Cron Jobs",
       "description": "A cronjob or scheduled task is a scheduled command to be set on one or more project servers to ensure a given routine will be executed on time.\n"
     },
     {
@@ -4289,6 +4291,102 @@
             "description": "The name of the commit's author",
             "example": "feature/some-branch"
           }
+        }
+      },
+      "CronJob": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The Id of the given background process",
+            "example": 1
+          },
+          "command": {
+            "type": "string",
+            "description": "The command line to be executed when running the task",
+            "example": "echo 'devopness rocks!' | tee -a /tmp/task-output.log"
+          },
+          "pattern": {
+            "type": "string",
+            "description": "A cron expression consisting of Minute, Hour, Day of Month, Month and Day of Week subexpressions",
+            "example": "0 0 * * *"
+          },
+          "pattern_human_readable": {
+            "type": "string",
+            "description": "A translation of the cron expression to a readable string indicating its execution frequency.",
+            "enum": [
+              "Every Minute",
+              "Hourly",
+              "Nightly",
+              "Weekly",
+              "Monthly",
+              "Yearly"
+            ],
+            "example": "Every Minute"
+          },
+          "run_as_user": {
+            "type": "string",
+            "description": "The name of the Unix user on behalf of which the task will be executed",
+            "example": "root"
+          },
+          "auto_generated": {
+            "default": false,
+            "type": "boolean",
+            "description": "Indicates if the cron job was auto_generated by `devopness` itself"
+          },
+          "status": {
+            "type": "string",
+            "description": "Current status of deploying to remote servers the current cron job",
+            "enum": [
+              "pending",
+              "in-progress",
+              "cancelled",
+              "completed",
+              "failed"
+            ],
+            "example": "completed"
+          }
+        },
+        "required": [
+          "command",
+          "pattern",
+          "run_as_user"
+        ]
+      },
+      "CronJobCreate": {
+        "type": "object",
+        "properties": {
+          "command": {
+            "type": "string",
+            "description": "The command line to be executed when running the cron job",
+            "example": "echo 'devopness rocks!' | tee -a /tmp/task-output.log"
+          },
+          "pattern": {
+            "type": "string",
+            "description": "A cron expression consisting of Minute, Hour, Day of Month, Month and Day of Week subexpressions",
+            "example": "0 0 * * *"
+          },
+          "run_as_user": {
+            "type": "string",
+            "description": "The name of the Unix user on behalf of which the cron job will be executed",
+            "example": "root"
+          },
+          "auto_generated": {
+            "default": false,
+            "type": "boolean",
+            "description": "Indicates if the cron job was auto_generated by `devopness` itself"
+          }
+        },
+        "required": [
+          "command",
+          "pattern",
+          "run_as_user"
+        ]
+      },
+      "CronJobs": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/CronJob"
         }
       },
       "Deployment": {
@@ -5728,102 +5826,6 @@
           "issuer",
           "type"
         ]
-      },
-      "Task": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "description": "The Id of the given background process",
-            "example": 1
-          },
-          "command": {
-            "type": "string",
-            "description": "The command line to be executed when running the task",
-            "example": "echo 'devopness rocks!' | tee -a /tmp/task-output.log"
-          },
-          "pattern": {
-            "type": "string",
-            "description": "A cron expression consisting of Minute, Hour, Day of Month, Month and Day of Week subexpressions",
-            "example": "0 0 * * *"
-          },
-          "pattern_human_readable": {
-            "type": "string",
-            "description": "A translation of the cron expression to a readable string indicating its execution frequency.",
-            "enum": [
-              "Every Minute",
-              "Hourly",
-              "Nightly",
-              "Weekly",
-              "Monthly",
-              "Yearly"
-            ],
-            "example": "Every Minute"
-          },
-          "run_as_user": {
-            "type": "string",
-            "description": "The name of the Unix user on behalf of which the task will be executed",
-            "example": "root"
-          },
-          "auto_generated": {
-            "default": false,
-            "type": "boolean",
-            "description": "Indicates if the task was auto_generated by `devopness` itself"
-          },
-          "status": {
-            "type": "string",
-            "description": "Current status of deploying to remote servers the current task",
-            "enum": [
-              "pending",
-              "in-progress",
-              "cancelled",
-              "completed",
-              "failed"
-            ],
-            "example": "completed"
-          }
-        },
-        "required": [
-          "command",
-          "pattern",
-          "run_as_user"
-        ]
-      },
-      "TaskCreate": {
-        "type": "object",
-        "properties": {
-          "command": {
-            "type": "string",
-            "description": "The command line to be executed when running the task",
-            "example": "echo 'devopness rocks!' | tee -a /tmp/task-output.log"
-          },
-          "pattern": {
-            "type": "string",
-            "description": "A cron expression consisting of Minute, Hour, Day of Month, Month and Day of Week subexpressions",
-            "example": "0 0 * * *"
-          },
-          "run_as_user": {
-            "type": "string",
-            "description": "The name of the Unix user on behalf of which the task will be executed",
-            "example": "root"
-          },
-          "auto_generated": {
-            "default": false,
-            "type": "boolean",
-            "description": "Indicates if the task was auto_generated by `devopness` itself"
-          }
-        },
-        "required": [
-          "command",
-          "pattern",
-          "run_as_user"
-        ]
-      },
-      "Tasks": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Task"
-        }
       },
       "User": {
         "type": "object",
