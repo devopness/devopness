@@ -1,9 +1,9 @@
 # api-docs
 Devopness API documentation
 
-![CI](https://github.com/devopness/api-docs/workflows/Node.js%20CI/badge.svg)
+![CI](https://github.com/devopness/api-docs/workflows/CI/badge.svg)
 
-Source code for [Devopness API docummentation](https://api-docs.devopness.com)
+Source code for [Devopness API documentation](https://api-docs.devopness.com)
 
 ## About Devopness
 `Devopness` aims to drastically change the way software developers deploy applications and manage on-premise and cloud servers in a secure and performant fashion.
@@ -19,7 +19,7 @@ npm ci
 
 ### Generate docs
 ```
-npm run api-docs
+npm run build
 ```
 
 ### ### Generate docs and initialize a local server
