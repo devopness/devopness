@@ -6,6 +6,8 @@ test("base URL defaults to production environment", () => {
 })
 
 test("base URL is configurable on initialization", () => {
-    const apiClient = new DevopnessApiClient({ baseURL: "https://test-api.devopness.com" });
-    expect(apiClient.projects.baseURL()).toBe("https://test-api.devopness.com")
+    const apiServerUrl = "https://test-api.devopness.com";
+
+    const apiClient = new DevopnessApiClient({ baseURL: apiServerUrl });
+    expect(apiClient.projects.baseURL()).toBe(apiServerUrl)
 })
