@@ -1,6 +1,7 @@
-summary: Get a task by ID
+summary: Get a CronJob by ID
+operationId: getCronJob
 tags:
-  - Cronjobs/Scheduled Tasks
+  - Cron Jobs
 parameters:
   - $ref: '#/components/parameters/acceptHeader'
   - $ref: '#/components/parameters/authHeader'
@@ -12,13 +13,13 @@ parameters:
       type: integer
       minimum: 1
     required: true
-    description: Numeric ID of the task to get
+    description: Numeric ID of the cron job to get
 responses:
   200:
     description: 'Ok'
     content:
       application/json:
         schema:
-          $ref: '#/components/schemas/Task'
+          $ref: '#/components/schemas/CronJob'
   404:
     $ref: '#/components/responses/NotFound'

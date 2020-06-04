@@ -20,6 +20,12 @@ BlueprintItem:
   $ref: ./shared/schemas/blueprint-item.yaml
 Commit:
   $ref: ./shared/schemas/commit.yaml
+CronJob:
+  $ref: ./endpoints/cronjobs/schemas/cronjob.yaml
+CronJobCreate:
+  $ref: ./endpoints/cronjobs/schemas/cronjob-create.yaml
+CronJobs:
+  $ref: ./endpoints/cronjobs/schemas/cronjob-list.yaml
 Deployment:
   $ref: ./endpoints/deployments/schemas/deployment.yaml
 DeploymentCreate:
@@ -112,12 +118,6 @@ SslCertificate:
   $ref: ./endpoints/ssl-certificates/schemas/ssl-certificate.yaml
 SslCertificateCreate:
   $ref: ./endpoints/ssl-certificates/schemas/ssl-certificate-create.yaml
-Task:
-  $ref: ./endpoints/cronjobs/schemas/cronjob.yaml
-TaskCreate:
-  $ref: ./endpoints/cronjobs/schemas/cronjob-create.yaml
-Tasks:
-  $ref: ./endpoints/cronjobs/schemas/cronjob-list.yaml
 User:
   $ref: ./endpoints/users/schemas/user.yaml
 UserCreate:
