@@ -11,9 +11,11 @@ import { SourceProviderService } from './services/SourceProviderService'
 import { SshKeyService } from './services/SshKeyService';
 import { SslCertificateService } from './services/SslCertificateService';
 import { UserService } from './services/UserService';
+import { CronJobService } from './services/CronJobService';
 
 export class DevopnessApiClient {
   applications: ApplicationService;
+  cronjobs: CronJobService;
   daemons: DaemonService;
   deployments: DeploymentService;
   environments: EnvironmentService;
@@ -43,6 +45,7 @@ export class DevopnessApiClient {
     // above check for `baseUrl`) are quickly returned to the end user before spending
     // time loading extra resources
     this.applications = new ApplicationService();
+    this.cronjobs = new CronJobService();
     this.daemons = new DaemonService();
     this.deployments = new DeploymentService();
     this.environments = new EnvironmentService();
