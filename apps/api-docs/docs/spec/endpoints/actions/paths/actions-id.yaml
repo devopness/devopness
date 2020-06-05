@@ -1,4 +1,5 @@
 summary: Get an action by ID
+operationId: getAction
 tags:
   - Actions
 parameters:

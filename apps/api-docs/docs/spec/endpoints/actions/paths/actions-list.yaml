@@ -1,4 +1,5 @@
 summary: 'Return a list of all actions belonging to current user'
+operationId: listActions
 tags:
   - Actions
 parameters:
