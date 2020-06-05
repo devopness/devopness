@@ -24,18 +24,18 @@ export class ApiBaseService {
 
     public static configuration: Configuration;
 
-    // private static SDK_VERSION = '0.1';
+    private static SDK_VERSION = '0.0.0-development';
 
     private defaultAxiosSettings: AxiosRequestConfig = {
         timeout: 30000,
         responseType: 'json',
         headers: {
             common: {
-                "Content-Type": "application/json",
                 Accept: "application/json",
-                // if we need to track SDK adoption and usage from the API servers,
-                // setting the `User-Agent` with SDK version might be a solution
-                // 'User-Agent': `devopness-sdk-js/${ApiBaseService.SDK_VERSION}`
+                'Content-Type': "application/json",
+                // Setting the `User-Agent` with SDK version so we can track SDK adoption
+                // through requests sent through it hitting our API servers
+                'User-Agent': `devopness-sdk-js/${ApiBaseService.SDK_VERSION}`
             },
         },
         withCredentials: false
