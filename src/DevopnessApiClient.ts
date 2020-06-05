@@ -13,8 +13,11 @@ import { SslCertificateService } from './services/SslCertificateService';
 import { UserService } from './services/UserService';
 import { CronJobService } from './services/CronJobService';
 import { StaticService } from './services/StaticService';
+import { ActionsApiService } from './api/generated/apis/actions-api';
+import { SocialAccountService } from './services/SocialAccountService';
 
 export class DevopnessApiClient {
+  actions: ActionsApiService;
   applications: ApplicationService;
   cronjobs: CronJobService;
   daemons: DaemonService;
@@ -24,6 +27,7 @@ export class DevopnessApiClient {
   projects: ProjectService;
   servers: ServerService;
   services: ServiceService;
+  socialAccounts: SocialAccountService;
   sourceProviders: SourceProviderService;
   sshKeys: SshKeyService;
   sslCertificates: SslCertificateService;
@@ -46,6 +50,7 @@ export class DevopnessApiClient {
     // parameters. Furthermore, we ensure all assertions for required parameters (like the
     // above check for `baseUrl`) are quickly returned to the end user before spending
     // time loading extra resources
+    this.actions = new ActionsApiService();
     this.applications = new ApplicationService();
     this.cronjobs = new CronJobService();
     this.daemons = new DaemonService();
@@ -55,6 +60,7 @@ export class DevopnessApiClient {
     this.projects = new ProjectService();
     this.servers = new ServerService();
     this.services = new ServiceService();
+    this.socialAccounts = new SocialAccountService();
     this.sourceProviders = new SourceProviderService();
     this.sshKeys = new SshKeyService();
     this.sslCertificates = new SslCertificateService();

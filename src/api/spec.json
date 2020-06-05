@@ -26,6 +26,7 @@
     "/actions": {
       "get": {
         "summary": "Return a list of all actions belonging to current user",
+        "operationId": "listActions",
         "tags": [
           "Actions"
         ],
@@ -57,6 +58,7 @@
     "/actions/{id}": {
       "get": {
         "summary": "Get an action by ID",
+        "operationId": "getAction",
         "tags": [
           "Actions"
         ],
