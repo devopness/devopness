@@ -2,7 +2,6 @@ import { devopnessApi } from './api'
 
 export default {
   login: (email, password) => {
-    try {
       const userCredentials = {
         email,
         password
@@ -11,8 +10,5 @@ export default {
       const userToken = devopnessApi.users.login(userCredentials)
 
       return userToken
-    } catch (error) {
-      throw error
-    }
-  }
+  },
 }
