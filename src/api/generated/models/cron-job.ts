@@ -20,19 +20,19 @@
  */
 export interface CronJob {
     /**
-     * The Id of the given background process
+     * The Id of the given cron job
      * @type {number}
      * @memberof CronJob
      */
     id?: number;
     /**
-     * The name of the task
+     * The name of the cron job
      * @type {string}
      * @memberof CronJob
      */
     name: string;
     /**
-     * The command line to be executed when running the task
+     * The command line to be executed when running the cron job
      * @type {string}
      * @memberof CronJob
      */
@@ -50,7 +50,7 @@ export interface CronJob {
      */
     pattern_human_readable?: CronJobPatternHumanReadableEnum;
     /**
-     * The name of the Unix user on behalf of which the task will be executed
+     * The name of the Unix user on behalf of which the cron job will be executed
      * @type {string}
      * @memberof CronJob
      */

@@ -50,15 +50,6 @@ export class SocialAccountsApiService extends ApiBaseService {
 
     /**
      * 
-     * @summary Return a list of all social accounts belonging to current user
-     */
-    public async getAllSocialAccounts(): Promise<ApiResponse<Array<SocialAccount>>> {
-        const response = await this.get <Array<SocialAccount>>(`/social-accounts`);
-        return new ApiResponse(response);
-    }
-
-    /**
-     * 
      * @summary Get details of a Social authentication provider, by its name
      * @param {string} provider Unique name/Id of the provider to be retrieved
      */
@@ -80,6 +71,15 @@ export class SocialAccountsApiService extends ApiBaseService {
             throw new ArgumentNullException('provider', 'getSocialAccountStatusByName');
         }
         const response = await this.get <SocialAccountStatus>(`/social-accounts/{provider}/status`.replace(`{${"provider"}}`, encodeURIComponent(String(provider))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Return a list of all social accounts belonging to current user
+     */
+    public async listSocialAccounts(): Promise<ApiResponse<Array<SocialAccount>>> {
+        const response = await this.get <Array<SocialAccount>>(`/social-accounts`);
         return new ApiResponse(response);
     }
 }

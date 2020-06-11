@@ -2149,7 +2149,7 @@
     "/servers": {
       "get": {
         "summary": "Return a list of all servers belonging to current user",
-        "operationId": "getAllServers",
+        "operationId": "listServers",
         "tags": [
           "Servers"
         ],
@@ -2686,7 +2686,7 @@
       },
       "get": {
         "summary": "Return a list of all social accounts belonging to current user",
-        "operationId": "getAllSocialAccounts",
+        "operationId": "listSocialAccounts",
         "tags": [
           "Social Accounts"
         ],
@@ -2849,7 +2849,7 @@
     "/source-providers/{provider}/repositories": {
       "get": {
         "summary": "Return a list of all repositories belonging to a current user social provider account",
-        "operationId": "getAllRepositories",
+        "operationId": "listRepositories",
         "tags": [
           "Source Providers - Repositories"
         ],
@@ -2960,7 +2960,7 @@
     "/source-providers": {
       "get": {
         "summary": "Return a list of all source code providers linked to current user",
-        "operationId": "getAllSourceProviders",
+        "operationId": "listSourceProviders",
         "tags": [
           "Source Providers"
         ],
@@ -4300,17 +4300,17 @@
         "properties": {
           "id": {
             "type": "integer",
-            "description": "The Id of the given background process",
+            "description": "The Id of the given cron job",
             "example": 1
           },
           "name": {
             "type": "string",
-            "description": "The name of the task",
-            "example": "My cool task"
+            "description": "The name of the cron job",
+            "example": "My cool cron job"
           },
           "command": {
             "type": "string",
-            "description": "The command line to be executed when running the task",
+            "description": "The command line to be executed when running the cron job",
             "example": "echo 'devopness rocks!' | tee -a /tmp/task-output.log"
           },
           "pattern": {
@@ -4333,7 +4333,7 @@
           },
           "run_as_user": {
             "type": "string",
-            "description": "The name of the Unix user on behalf of which the task will be executed",
+            "description": "The name of the Unix user on behalf of which the cron job will be executed",
             "example": "root"
           },
           "auto_generated": {
@@ -4371,8 +4371,8 @@
           },
           "name": {
             "type": "string",
-            "description": "The name of the task",
-            "example": "My cool task"
+            "description": "The name of the cron job",
+            "example": "My cool cron job"
           },
           "pattern": {
             "type": "string",

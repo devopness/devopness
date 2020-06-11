@@ -26,7 +26,7 @@ export interface CronJobCreate {
      */
     command: string;
     /**
-     * The name of the task
+     * The name of the cron job
      * @type {string}
      * @memberof CronJobCreate
      */
