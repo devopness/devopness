@@ -3243,6 +3243,7 @@
     "/static/language-runtimes": {
       "get": {
         "summary": "List supported language runtimes and respective frameworks",
+        "operationId": "listLanguageRuntimes",
         "tags": [
           "Static Data"
         ],
