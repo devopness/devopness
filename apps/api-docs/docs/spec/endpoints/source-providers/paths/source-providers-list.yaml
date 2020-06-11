@@ -1,5 +1,5 @@
 summary: Return a list of all source code providers linked to current user
-operationId: getAllSourceProviders
+operationId: listSourceProviders
 tags:
   - Source Providers
 parameters:

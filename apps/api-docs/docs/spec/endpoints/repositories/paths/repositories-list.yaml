@@ -1,5 +1,5 @@
 summary: 'Return a list of all repositories belonging to a current user social provider account'
-operationId: getAllRepositories
+operationId: listRepositories
 tags:
   - Source Providers - Repositories
 parameters:
