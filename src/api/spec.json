@@ -4301,12 +4301,17 @@
         "properties": {
           "id": {
             "type": "integer",
-            "description": "The Id of the given background process",
+            "description": "The Id of the given cron job",
             "example": 1
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the cron job",
+            "example": "My cool cron job"
           },
           "command": {
             "type": "string",
-            "description": "The command line to be executed when running the task",
+            "description": "The command line to be executed when running the cron job",
             "example": "echo 'devopness rocks!' | tee -a /tmp/task-output.log"
           },
           "pattern": {
@@ -4329,7 +4334,7 @@
           },
           "run_as_user": {
             "type": "string",
-            "description": "The name of the Unix user on behalf of which the task will be executed",
+            "description": "The name of the Unix user on behalf of which the cron job will be executed",
             "example": "root"
           },
           "auto_generated": {
@@ -4352,6 +4357,7 @@
         },
         "required": [
           "command",
+          "name",
           "pattern",
           "run_as_user"
         ]
@@ -4363,6 +4369,11 @@
             "type": "string",
             "description": "The command line to be executed when running the cron job",
             "example": "echo 'devopness rocks!' | tee -a /tmp/task-output.log"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the cron job",
+            "example": "My cool cron job"
           },
           "pattern": {
             "type": "string",
@@ -4382,6 +4393,7 @@
         },
         "required": [
           "command",
+          "name",
           "pattern",
           "run_as_user"
         ]
