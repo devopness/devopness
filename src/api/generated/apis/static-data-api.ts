@@ -24,7 +24,7 @@ export class StaticDataApiService extends ApiBaseService {
      * 
      * @summary List supported language runtimes and respective frameworks
      */
-    public async listLanguageRuntimes(): Promise<ApiResponse<Array<LanguageRuntime>>> {
+    public async staticLanguageRuntimesGet(): Promise<ApiResponse<Array<LanguageRuntime>>> {
         const response = await this.get <Array<LanguageRuntime>>(`/static/language-runtimes`);
         return new ApiResponse(response);
     }

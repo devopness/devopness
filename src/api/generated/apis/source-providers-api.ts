@@ -35,6 +35,15 @@ export class SourceProvidersApiService extends ApiBaseService {
 
     /**
      * 
+     * @summary Return a list of all source code providers linked to current user
+     */
+    public async getAllSourceProviders(): Promise<ApiResponse<Array<SocialAccount>>> {
+        const response = await this.get <Array<SocialAccount>>(`/source-providers`);
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
      * @summary Get details of a source code provider, by its name
      * @param {string} provider Unique name/Id of the provider to be retrieved
      */
@@ -43,15 +52,6 @@ export class SourceProvidersApiService extends ApiBaseService {
             throw new ArgumentNullException('provider', 'getSourceProviderByName');
         }
         const response = await this.get <SocialAccount>(`/source-providers/{provider}`.replace(`{${"provider"}}`, encodeURIComponent(String(provider))));
-        return new ApiResponse(response);
-    }
-
-    /**
-     * 
-     * @summary Return a list of all source code providers linked to current user
-     */
-    public async listSourceProviders(): Promise<ApiResponse<Array<SocialAccount>>> {
-        const response = await this.get <Array<SocialAccount>>(`/source-providers`);
         return new ApiResponse(response);
     }
 }

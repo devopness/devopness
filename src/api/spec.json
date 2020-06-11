@@ -2149,7 +2149,7 @@
     "/servers": {
       "get": {
         "summary": "Return a list of all servers belonging to current user",
-        "operationId": "listServers",
+        "operationId": "getAllServers",
         "tags": [
           "Servers"
         ],
@@ -2686,7 +2686,7 @@
       },
       "get": {
         "summary": "Return a list of all social accounts belonging to current user",
-        "operationId": "listSocialAccounts",
+        "operationId": "getAllSocialAccounts",
         "tags": [
           "Social Accounts"
         ],
@@ -2849,7 +2849,7 @@
     "/source-providers/{provider}/repositories": {
       "get": {
         "summary": "Return a list of all repositories belonging to a current user social provider account",
-        "operationId": "listRepositories",
+        "operationId": "getAllRepositories",
         "tags": [
           "Source Providers - Repositories"
         ],
@@ -2960,7 +2960,7 @@
     "/source-providers": {
       "get": {
         "summary": "Return a list of all source code providers linked to current user",
-        "operationId": "listSourceProviders",
+        "operationId": "getAllSourceProviders",
         "tags": [
           "Source Providers"
         ],
@@ -3243,7 +3243,6 @@
     "/static/language-runtimes": {
       "get": {
         "summary": "List supported language runtimes and respective frameworks",
-        "operationId": "listLanguageRuntimes",
         "tags": [
           "Static Data"
         ],
@@ -4304,6 +4303,11 @@
             "description": "The Id of the given background process",
             "example": 1
           },
+          "name": {
+            "type": "string",
+            "description": "The name of the task",
+            "example": "My cool task"
+          },
           "command": {
             "type": "string",
             "description": "The command line to be executed when running the task",
@@ -4352,6 +4356,7 @@
         },
         "required": [
           "command",
+          "name",
           "pattern",
           "run_as_user"
         ]
@@ -4363,6 +4368,11 @@
             "type": "string",
             "description": "The command line to be executed when running the cron job",
             "example": "echo 'devopness rocks!' | tee -a /tmp/task-output.log"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the task",
+            "example": "My cool task"
           },
           "pattern": {
             "type": "string",
@@ -4382,6 +4392,7 @@
         },
         "required": [
           "command",
+          "name",
           "pattern",
           "run_as_user"
         ]

@@ -26,6 +26,12 @@ export interface CronJob {
      */
     id?: number;
     /**
+     * The name of the task
+     * @type {string}
+     * @memberof CronJob
+     */
+    name: string;
+    /**
      * The command line to be executed when running the task
      * @type {string}
      * @memberof CronJob

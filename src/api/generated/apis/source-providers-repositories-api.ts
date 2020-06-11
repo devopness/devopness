@@ -22,6 +22,19 @@ import { Repository } from '../../generated/models';
 export class SourceProvidersRepositoriesApiService extends ApiBaseService {
     /**
      * 
+     * @summary Return a list of all repositories belonging to a current user social provider account
+     * @param {string} provider Unique name of the source code provider where the repository is hosted
+     */
+    public async getAllRepositories(provider: string): Promise<ApiResponse<Array<Repository>>> {
+        if (provider === null || provider === undefined) {
+            throw new ArgumentNullException('provider', 'getAllRepositories');
+        }
+        const response = await this.get <Array<Repository>>(`/source-providers/{provider}/repositories`.replace(`{${"provider"}}`, encodeURIComponent(String(provider))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
      * @summary Get details of a repository, by its name
      * @param {string} provider Unique name/Id of the provider where the repository is hosted
      * @param {string} repositoryOwner Nickname/user id of the owner of the repository
@@ -38,19 +51,6 @@ export class SourceProvidersRepositoriesApiService extends ApiBaseService {
             throw new ArgumentNullException('repositoryName', 'getRepository');
         }
         const response = await this.get <Repository>(`/source-providers/{provider}/repositories/{repository_owner}/{repository_name}`.replace(`{${"provider"}}`, encodeURIComponent(String(provider))).replace(`{${"repository_owner"}}`, encodeURIComponent(String(repositoryOwner))).replace(`{${"repository_name"}}`, encodeURIComponent(String(repositoryName))));
-        return new ApiResponse(response);
-    }
-
-    /**
-     * 
-     * @summary Return a list of all repositories belonging to a current user social provider account
-     * @param {string} provider Unique name of the source code provider where the repository is hosted
-     */
-    public async listRepositories(provider: string): Promise<ApiResponse<Array<Repository>>> {
-        if (provider === null || provider === undefined) {
-            throw new ArgumentNullException('provider', 'listRepositories');
-        }
-        const response = await this.get <Array<Repository>>(`/source-providers/{provider}/repositories`.replace(`{${"provider"}}`, encodeURIComponent(String(provider))));
         return new ApiResponse(response);
     }
 }

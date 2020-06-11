@@ -43,6 +43,15 @@ export class ServersApiService extends ApiBaseService {
 
     /**
      * 
+     * @summary Return a list of all servers belonging to current user
+     */
+    public async getAllServers(): Promise<ApiResponse<Array<Server>>> {
+        const response = await this.get <Array<Server>>(`/servers`);
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
      * @summary Get a server by ID
      * @param {number} id Numeric ID of the server to get
      */
@@ -64,15 +73,6 @@ export class ServersApiService extends ApiBaseService {
             throw new ArgumentNullException('id', 'getServerCommands');
         }
         const response = await this.get <ServerCommands>(`/servers/{id}/commands`.replace(`{${"id"}}`, encodeURIComponent(String(id))));
-        return new ApiResponse(response);
-    }
-
-    /**
-     * 
-     * @summary Return a list of all servers belonging to current user
-     */
-    public async listServers(): Promise<ApiResponse<Array<Server>>> {
-        const response = await this.get <Array<Server>>(`/servers`);
         return new ApiResponse(response);
     }
 }

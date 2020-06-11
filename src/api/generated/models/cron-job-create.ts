@@ -26,6 +26,12 @@ export interface CronJobCreate {
      */
     command: string;
     /**
+     * The name of the task
+     * @type {string}
+     * @memberof CronJobCreate
+     */
+    name: string;
+    /**
      * A cron expression consisting of Minute, Hour, Day of Month, Month and Day of Week subexpressions
      * @type {string}
      * @memberof CronJobCreate
