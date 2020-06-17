@@ -1,6 +1,6 @@
 color: true
 dry-run: null
-hookfiles: ./dredd-hooks.js
+hookfiles: ./build/dredd-hooks.js
 language: nodejs
 require: null
 server: null

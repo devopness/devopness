@@ -1,13 +1,13 @@
-const JsonRefs = require('json-refs');
-const YAML = require('js-yaml');
-const fs = require('fs');
-const path = require('path');
+import JsonRefs from 'json-refs';
+import YAML from 'js-yaml';
+import fs from 'fs';
+import path from 'path';
 
-async function buildYamlSpec(srcPath, destPath) {
+async function buildYamlSpec(srcPath: string, destPath: string) {
     const srcYaml = YAML.load(fs.readFileSync(srcPath).toString());
     const options = {
         loaderOptions: {
-            processContent: function(res, callback) {
+            processContent: (res: { text: string }, callback: Function) => {
                 callback(YAML.safeLoad(res.text));
             }
         },
@@ -23,6 +23,6 @@ async function buildYamlSpec(srcPath, destPath) {
     console.log(`Specification written at '${destPath}'`);
 }
 
-const src = './spec/api-docs.yaml';
-const dest = './build/api-docs-output.yaml';
+const src = './docs/spec/api-docs.yaml';
+const dest = './docs/build/api-docs-output.yaml';
 buildYamlSpec(src, dest);
