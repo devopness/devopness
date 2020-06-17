@@ -2,7 +2,6 @@ type: object
 properties:
   token_type:
     type: string
-    format: string
     example: Bearer
     description: The type of the authorization token being issued
   expires_in:
@@ -21,7 +20,6 @@ properties:
     description: |
       A token to be used after the original access token has expired, to issue a new token
       without requiring a new request to the `/users/login` endpoint
-    format: string
 required:
   - access_token
   - refresh_token
