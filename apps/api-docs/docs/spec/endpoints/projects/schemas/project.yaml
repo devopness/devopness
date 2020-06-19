@@ -8,9 +8,9 @@ properties:
     type: string
     description: The type of the project, usually indicating the main technology, programming language or base framework
     example: 'php-laravel'
+    nullable: true
   logo_image:
     type: string
-    format: base64
     description: A base64 string representation of the logo image
     example: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACA.../AgwAgJqsE2/7ccAAAAAASUVORK5CYII="
   logo_url:

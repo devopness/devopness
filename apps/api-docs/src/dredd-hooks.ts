@@ -12,10 +12,18 @@ import { v1, v4 } from 'uuid';
 
 // transaction names can be obtained by running `npx dredd --names`
 const transactionNames: { [id: string]: string } = {
+    // users
     'users-signup': 'Users > /users > Sign up/register a new user > 201',
     'users-login': 'Users > /users/login > Login/create a new token for the given credentials > 200 > application/json; charset=utf-8',
     'users-logout': 'Users > /users/logout > Logout/revoke an existing token > 204',
     'users-refresh-token': 'Users > /users/refresh-token > Refresh an existing user access token > 200 > application/json; charset=utf-8',
+    // projects
+    'projects-create': 'Projects > /projects > Create a new project > 201',
+    'projects-get': 'Projects > /projects/{project_id} > Get a project by ID > 200 > application/json',
+    // projects - ssh-keys
+    'projects-ssh-keys-create': 'Projects - SSH Keys > /projects/{project_id}/ssh-keys > Create a SSH key and link it to the given project > 201 > application/json',
+    // ssh-keys
+    'ssh-keys-get': 'SSH Keys > /ssh-keys/{ssh_key_id} > Get a SSH key by ID > 200 > application/json',
 };
 
 // transactionOrder specifies which methods will run in which order
@@ -23,6 +31,10 @@ const transactionOrder: string[] = [
     'users-signup',
     'users-login',
     'users-refresh-token',
+    'projects-create',
+    'projects-get',
+    'projects-ssh-keys-create',
+    'ssh-keys-get',
     'users-logout'
 ].map(k => transactionNames[k]);
 
@@ -46,34 +58,45 @@ hooks.beforeAll((transactions, done) => {
     done();
 })
 
+// only fields that are accessed directly by hooks are required to be typed here
+interface Identifiable {
+    id: string
+}
 type UserCredentials = {
-    email: string,
+    email: string
     password: string
 };
 type AuthToken = {
-    access_token: string,
+    access_token: string
     refresh_token: string
 };
-type Fixture = AuthToken | UserCredentials;
+type Fixture = UserCredentials | AuthToken | Identifiable;
+
+// fixture keys are written with underscores so they map directly to URL and JSON param names
+type FixtureKey = 'user_credentials' | 'auth_token' | 'project' | 'ssh_key'
 
 const fixtures: { [key: string]: Fixture } = {};
-function getFixture<T extends Fixture>(key: string): T | null {
+function getFixture<T extends Fixture>(key: FixtureKey): T | null {
+    if (!(key as FixtureKey)) {
+        hooks.log(`invalid fixture key "${key}"`);
+    }
     const typed = fixtures[key] as T;
     if (typed) {
         return typed;
     }
+    hooks.log(`missing fixture "${key}"`);
     return null;
 }
-function putFixture(key: string, value: Fixture) {
-    // hooks.log(`storing fixture "${key}": ${value}`);
+function putFixture(key: FixtureKey, value: Fixture) {
+    // hooks.log(`storing fixture "${key}": ${JSON.stringify(value)}`);
     fixtures[key] = value;
 };
-function deleteFixture(key: string) {
+function deleteFixture(key: FixtureKey) {
     // hooks.log(`deleting fixture "${key}"`);
     delete fixtures[key];
 };
 
-function storeFixtureFromTestResult<T>(key: string): TransactionHook {
+function storeFixtureFromTestResult<T>(key: FixtureKey): TransactionHook {
     return (transaction: Transaction) => {
         if (transaction.test.valid && transaction.real.body) {
             const data = JSON.parse(transaction.real.body);
@@ -87,6 +110,20 @@ function storeFixtureFromTestResult<T>(key: string): TransactionHook {
     };
 };
 
+// replaces `${fixtureKey}_id` with ${fixture.id} in transaction request path
+function renderFixtureIdInTransactionPath<T extends Fixture & Identifiable>(fixtureKey: FixtureKey) {
+    return (transaction: Transaction) => {
+        const fixture = getFixture<T>(fixtureKey);
+        if (fixture) {
+            const replacedPath = transaction.origin.resourceName.replace(`{${fixtureKey}_id}`, fixture.id);
+            transaction.fullPath = replacedPath;
+        } else {
+            hooks.log(`transaction '${transaction.id}' requires '${fixtureKey}' fixture; skipping`)
+            transaction.skip = true;
+        }
+    }
+};
+
 hooks.beforeEach((transaction: Transaction) => {
     if (!transaction.request.headers) {
         return;
@@ -95,7 +132,7 @@ hooks.beforeEach((transaction: Transaction) => {
     // attach auth header if request requires it
     if(transaction.request.headers.hasOwnProperty('Authorization')) {
         if (transaction.request.headers.Authorization === '') {
-            const authToken = getFixture<AuthToken>('authToken');
+            const authToken = getFixture<AuthToken>('auth_token');
             if (authToken && authToken.access_token) {
                 transaction.request.headers.Authorization = 'Bearer ' + authToken.access_token;
             } else {
@@ -118,11 +155,11 @@ before('users-signup', (transaction: Transaction) => {
     const credentials: UserCredentials = { email, password } ;
 
     transaction.request.body = JSON.stringify(credentials);
-    putFixture('userCredentials', credentials);
+    putFixture('user_credentials', credentials);
 })
 
 before('users-login', (transaction: Transaction) => {
-    const user = getFixture<UserCredentials>('userCredentials');
+    const user = getFixture<UserCredentials>('user_credentials');
     if (user) {
         const credentials = { email: user.email, password: user.password } ;
         transaction.request.body = JSON.stringify(credentials);
@@ -131,10 +168,10 @@ before('users-login', (transaction: Transaction) => {
         transaction.skip = true;
     }
 });
-after('users-login', storeFixtureFromTestResult('authToken'));
+after('users-login', storeFixtureFromTestResult('auth_token'));
 
 before('users-refresh-token', (transaction: Transaction) => {
-    const authToken = getFixture<AuthToken>('authToken');
+    const authToken = getFixture<AuthToken>('auth_token');
     if (authToken && transaction.request.body) {
         const body = JSON.parse(transaction.request.body);
         body.refresh_token = authToken.refresh_token;
@@ -144,10 +181,44 @@ before('users-refresh-token', (transaction: Transaction) => {
         transaction.skip = true;
     }
 });
-after('users-refresh-token', storeFixtureFromTestResult('authToken'));
+after('users-refresh-token', storeFixtureFromTestResult('auth_token'));
 
 after('users-logout', (transaction: Transaction) => {
     if (transaction.test.valid) {
-        deleteFixture('authToken');
+        deleteFixture('auth_token');
     }
 });
+
+
+///////////////////////////////////////////////////////////////////////////////
+// projects
+///////////////////////////////////////////////////////////////////////////////
+
+function removeLogoImage(transaction: Transaction) {
+    if (transaction.request.body) {
+        const body = JSON.parse(transaction.request.body);
+        if (body.hasOwnProperty('logo_image')) {
+            delete body['logo_image'];
+        }
+        transaction.request.body = JSON.stringify(body);
+    }
+}
+
+before('projects-create', removeLogoImage);
+after('projects-create', storeFixtureFromTestResult('project'));
+
+before('projects-get', removeLogoImage);
+before('projects-get', renderFixtureIdInTransactionPath<Identifiable>('project'));
+
+///////////////////////////////////////////////////////////////////////////////
+// projects - ssh-keys
+///////////////////////////////////////////////////////////////////////////////
+
+before('projects-ssh-keys-create', renderFixtureIdInTransactionPath<Identifiable>('project'));
+after('projects-ssh-keys-create', storeFixtureFromTestResult('ssh_key'));
+
+///////////////////////////////////////////////////////////////////////////////
+// ssh-keys
+///////////////////////////////////////////////////////////////////////////////
+
+before('ssh-keys-get', renderFixtureIdInTransactionPath('ssh_key'));

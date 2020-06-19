@@ -13,7 +13,7 @@
     "api-build-spec": "npm run tsc && node ./build/build-api-spec.js && swagger-cli validate docs/build/api-docs-output.yaml",
     "api-convert-spec-to-dredd": "api-spec-converter --from=openapi_3 --to=swagger_2 --syntax=yaml --order=alpha docs/build/api-docs-output.yaml > docs/build/api-docs-output-v2.yaml",
     "api-docs-export-page": "redoc-cli bundle docs/build/api-docs-output.yaml --title 'devopness API' --output public/index.html --cdn true",
-    "api-docs": "npm run api-build-spec && npm run api-convert-spec-to-dredd && npm run api-docs-export-page && dredd --dry-run",
+    "api-docs": "npm run api-build-spec && npm run api-convert-spec-to-dredd && npm run api-docs-export-page && dredd",
     "api-docs-serve": "npm run api-docs && redoc-cli serve docs/build/api-docs-output.yaml --port 9090 --title 'Devopness API docs'",
     "api-test": "npm run tsc && dredd"
   },

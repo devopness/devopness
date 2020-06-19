@@ -15,11 +15,11 @@ properties:
   public_key:
     type: string
     description: The public SSH key to add to your `devopness` account and associate it to the given project
-    example: "ssh-rsa AAA..."
+    example: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCu2g54rOA/7OhsILhFncrBAaPe8K0mZilMQugwGpiqQY89Xx0rhcZ/HS2rvmJnGC0nATxOZFsZLfjInpHhq+Y5WumTO0GUrkF215t4QavEU6UMd7VC+mqm2mm4WP+9zkcSSCzy7ZQ1Tuig6IWAB90FNqD7tXRFAqAjlC1LW8V+Efw9AO2mROglpxnoHuH8ZN0a/LQBi5iyeqOLuKZzgUWv4nEIqyYYGslDS1eru2aINwCNahDljXM7f7LcrHlhv5c4y5WSdEYlxSdQQh/ijDcuIIZEv27ivYoY1fse24b2MqD2XdHJpSb1GLnOI76t7+MSmDow3BtSxUNqW0rIUqObFxlMVx9oozHjnn3FkFee+qhQ/9knA7+V9Z7M6SJzDwcGqzJXEpuX/E4AHV04vEI4+RV2vNLhPsHZ2DDQ1fm3ZUtXnWXcIwsLC9WNFdiCOL+WyIYKieQ/CiWfDDIp0xlho83HMp79+BJ4ceFRP/PAdee+TltbtoJR00Ezf8b2nFU="
   fingerprint:
     type: string
     description: The hashed fingerprint of the public key
-    example: "41:17:72:a5:21:cd:f2:5b:30:28:a1:4e:7d:26:8e:f2"
+    example: "f1:59:d6:c4:55:97:06:94:e3:f2:82:de:46:e5:27:39"
   status:
     type: string
     description: Current status of deploying to remote servers the current key
