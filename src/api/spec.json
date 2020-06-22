@@ -5252,6 +5252,11 @@
       "Server": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The unique id of the given record",
+            "example": 9654123
+          },
           "hostname": {
             "type": "string",
             "description": "The server's hostname",
