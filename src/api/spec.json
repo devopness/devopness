@@ -5134,6 +5134,11 @@
       "Project": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The unique id of the given record",
+            "example": 45678
+          },
           "name": {
             "type": "string",
             "description": "The project's name",
@@ -5142,11 +5147,11 @@
           "type": {
             "type": "string",
             "description": "The type of the project, usually indicating the main technology, programming language or base framework",
-            "example": "php-laravel"
+            "example": "php-laravel",
+            "nullable": true
           },
           "logo_image": {
             "type": "string",
-            "format": "base64",
             "description": "A base64 string representation of the logo image",
             "example": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACA.../AgwAgJqsE2/7ccAAAAAASUVORK5CYII="
           },
@@ -5329,7 +5334,6 @@
         "properties": {
           "connect_command": {
             "type": "string",
-            "format": "string",
             "description": "The Shell Script command to be executed in an existing Linux server in order to connect it to the `devopness`",
             "example": "echo '# devopness:' | ..."
           }
@@ -5343,7 +5347,6 @@
         "properties": {
           "message": {
             "type": "string",
-            "format": "string",
             "description": "Output message indicating success or failure",
             "example": "Server successfully connected"
           }
@@ -5636,12 +5639,12 @@
           "public_key": {
             "type": "string",
             "description": "The public SSH key to add to your `devopness` account and associate it to the given project",
-            "example": "ssh-rsa AAA..."
+            "example": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCu2g54rOA/7OhsILhFncrBAaPe8K0mZilMQugwGpiqQY89Xx0rhcZ/HS2rvmJnGC0nATxOZFsZLfjInpHhq+Y5WumTO0GUrkF215t4QavEU6UMd7VC+mqm2mm4WP+9zkcSSCzy7ZQ1Tuig6IWAB90FNqD7tXRFAqAjlC1LW8V+Efw9AO2mROglpxnoHuH8ZN0a/LQBi5iyeqOLuKZzgUWv4nEIqyYYGslDS1eru2aINwCNahDljXM7f7LcrHlhv5c4y5WSdEYlxSdQQh/ijDcuIIZEv27ivYoY1fse24b2MqD2XdHJpSb1GLnOI76t7+MSmDow3BtSxUNqW0rIUqObFxlMVx9oozHjnn3FkFee+qhQ/9knA7+V9Z7M6SJzDwcGqzJXEpuX/E4AHV04vEI4+RV2vNLhPsHZ2DDQ1fm3ZUtXnWXcIwsLC9WNFdiCOL+WyIYKieQ/CiWfDDIp0xlho83HMp79+BJ4ceFRP/PAdee+TltbtoJR00Ezf8b2nFU="
           },
           "fingerprint": {
             "type": "string",
             "description": "The hashed fingerprint of the public key",
-            "example": "41:17:72:a5:21:cd:f2:5b:30:28:a1:4e:7d:26:8e:f2"
+            "example": "f1:59:d6:c4:55:97:06:94:e3:f2:82:de:46:e5:27:39"
           },
           "status": {
             "type": "string",
@@ -5935,7 +5938,6 @@
         "properties": {
           "token_type": {
             "type": "string",
-            "format": "string",
             "example": "Bearer",
             "description": "The type of the authorization token being issued"
           },
@@ -5952,8 +5954,7 @@
           "refresh_token": {
             "type": "string",
             "example": "def50200a757a1c4dbc4859a4c47195632f4df60ebb521ac5a28a0b7553101f08f8b9...",
-            "description": "A token to be used after the original access token has expired, to issue a new token\nwithout requiring a new request to the `/users/login` endpoint\n",
-            "format": "string"
+            "description": "A token to be used after the original access token has expired, to issue a new token\nwithout requiring a new request to the `/users/login` endpoint\n"
           }
         },
         "required": [

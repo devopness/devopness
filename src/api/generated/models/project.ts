@@ -21,6 +21,12 @@ import { SshKey } from './ssh-key';
  */
 export interface Project {
     /**
+     * The unique id of the given record
+     * @type {number}
+     * @memberof Project
+     */
+    id?: number;
+    /**
      * The project\'s name
      * @type {string}
      * @memberof Project
@@ -31,7 +37,7 @@ export interface Project {
      * @type {string}
      * @memberof Project
      */
-    type?: string;
+    type?: string | null;
     /**
      * A base64 string representation of the logo image
      * @type {string}
