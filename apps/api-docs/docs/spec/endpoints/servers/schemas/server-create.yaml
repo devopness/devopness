@@ -21,6 +21,7 @@ properties:
     items:
       $ref: '#/components/schemas/Action'
 required:
+  - blueprint
   - hostname
   - ip_address
   - ssh_port
