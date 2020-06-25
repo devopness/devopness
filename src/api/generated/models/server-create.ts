@@ -44,7 +44,7 @@ export interface ServerCreate {
      * @type {ServerBlueprint}
      * @memberof ServerCreate
      */
-    blueprint?: ServerBlueprint;
+    blueprint: ServerBlueprint;
     /**
      * The list of actions related to the server
      * @type {Array<Action>}

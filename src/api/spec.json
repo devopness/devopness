@@ -5391,6 +5391,7 @@
           }
         },
         "required": [
+          "blueprint",
           "hostname",
           "ip_address",
           "ssh_port"
