@@ -15,6 +15,8 @@ properties:
     example: 22
   blueprint:
     $ref: '#/components/schemas/ServerBlueprint'
+  environments:
+    $ref: '#/components/schemas/EnvironmentLinks'
   actions:
     description: "The list of actions related to the server"
     type: array
