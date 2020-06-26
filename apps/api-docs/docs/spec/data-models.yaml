@@ -2,6 +2,8 @@ Action:
   $ref: ./shared/schemas/action.yaml
 Actions:
   $ref: ./endpoints/actions/schemas/action-list.yaml
+ApiError:
+  $ref: ./shared/schemas/api-error.yaml
 Application:
   $ref: ./endpoints/applications/schemas/application.yaml
 ApplicationDeployment:
@@ -48,8 +50,6 @@ EnvironmentLinks:
   $ref: ./endpoints/environments/schemas/environment-links.yaml
 Environments:
   $ref: ./endpoints/environments/schemas/environment-list.yaml
-Error:
-  $ref: ./shared/schemas/error.yaml
 ExtraBodyParams:
   $ref: ./shared/schemas/extra-body-params.yaml
 LanguageRuntime:

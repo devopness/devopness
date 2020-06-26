@@ -13,13 +13,13 @@ Unauthenticated: # HTTP Status Code: 401
   content:
     application/json:
       schema:
-        $ref: '#/components/schemas/Error'
+        $ref: '#/components/schemas/ApiError'
 Forbidden: # HTTP Status Code: 403
   description: Forbidden/Unauthorized
   content:
     application/json:
       schema:
-        $ref: '#/components/schemas/Error'
+        $ref: '#/components/schemas/ApiError'
 NotFound: # HTTP Status Code: 404
   description: The specified resource was not found
 Conflict: # HTTP Status Code: 409
@@ -27,10 +27,10 @@ Conflict: # HTTP Status Code: 409
   content:
     application/json:
       schema:
-        $ref: '#/components/schemas/Error'
+        $ref: '#/components/schemas/ApiError'
 ValidationError: # HTTP Status Code: 422
   description: Unprocessable Entity/Validation Error
   content:
     application/json:
       schema:
-        $ref: '#/components/schemas/Error'
+        $ref: '#/components/schemas/ApiError'
