@@ -7,7 +7,7 @@ parameters:
   - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/contentTypeHeader'
   - in: path
-    name: id
+    name: service_id
     example: 1
     schema:
       type: integer

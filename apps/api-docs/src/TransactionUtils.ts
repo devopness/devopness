@@ -1,6 +1,6 @@
 import { Transaction, TransactionHook } from 'hooks';
-import { Fixture, Identifiable, AuthToken } from './fixtures';
-import FixtureStore, { FixtureKey } from './FixtureStore';
+import { FixtureKey, Fixture, Identifiable, AuthToken } from './fixtureTypes';
+import FixtureStore from './FixtureStore';
 
 type LogFunction = (...any: any[]) => void;
 
@@ -29,7 +29,7 @@ export default class TransactionUtils {
             transactions.push(keep[i]);
         }
     }
-    
+
     // ensures that a transaction request has content type and accept headers set to a json mimetype
     setTransactionRequestJsonHeaders(transaction: Transaction) {
         if (!transaction.request.headers) {
@@ -41,14 +41,15 @@ export default class TransactionUtils {
     }
     
     // replaces `${fixtureKey}_id` with ${fixture.id} in transaction request path
-    writeFixtureIdInTransactionPath<T extends Fixture & Identifiable>(key: FixtureKey): TransactionHook {
+    writeFixtureIdInTransactionPath<T extends Identifiable>(key: FixtureKey): TransactionHook {
         return (transaction: Transaction) => {
             const fixture = this.fixtureStore.get<T>(key);
             if (fixture) {
                 const replacedPath = transaction.origin.resourceName.replace(`{${key}_id}`, fixture.id);
+                this.log(`[writeFixtureIdInTransactionPath] '${transaction.fullPath}' -> '${replacedPath}'`)
                 transaction.fullPath = replacedPath;
             } else {
-                this.log(`transaction '${transaction.id}' requires '${key}' fixture; skipping`)
+                this.log(`[writeFixtureIdInTransactionPath] transaction '${transaction.id}' requires '${key}' fixture; skipping`)
                 transaction.fail = true;
             }
         }

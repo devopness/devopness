@@ -1,8 +1,5 @@
 import { Transaction, TransactionHook } from 'hooks';
-import { Fixture, Identifiable } from './fixtures'
-
-// fixture keys are written with underscores so they map directly to URL and JSON param names
-export type FixtureKey = 'user_credentials' | 'auth_token' | 'project' | 'ssh_key'
+import { Fixture, FixtureKey } from './fixtureTypes'
 
 export default class FixtureStore {
     store: { [key: string]: Fixture } = {};

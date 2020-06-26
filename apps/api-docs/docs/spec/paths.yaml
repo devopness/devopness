@@ -1,7 +1,7 @@
 /actions:
   get:
     $ref: ./endpoints/actions/paths/actions-list.yaml
-/actions/{id}:
+/actions/{action_id}:
   get:
     $ref: ./endpoints/actions/paths/actions-id.yaml
 /applications/{application_id}:
@@ -117,30 +117,30 @@
 /servers:
   get:
     $ref: ./endpoints/servers/paths/servers-list.yaml
-/servers/{id}:
+/servers/{server_id}:
   get:
     $ref: ./endpoints/servers/paths/servers-id.yaml
-/servers/{id}/commands:
+/servers/{server_id}/commands:
   get:
     $ref: ./endpoints/servers/paths/servers-id-commands.yaml
-/servers/{id}/connect/{activation_token}:
+/servers/{server_id}/connect/{activation_token}:
   post:
     $ref: ./endpoints/servers/paths/servers-id-connect.yaml
-/services/{id}:
+/services/{service_id}:
   delete:
     $ref: ./endpoints/services/paths/services-id-delete.yaml
   get:
     $ref: ./endpoints/services/paths/services-id.yaml
-/services/{id}/reload:
+/services/{service_id}/reload:
   post:
     $ref: ./endpoints/services/paths/services-id-reload.yaml
-/services/{id}/restart:
+/services/{service_id}/restart:
   post:
     $ref: ./endpoints/services/paths/services-id-restart.yaml
-/services/{id}/start:
+/services/{service_id}/start:
   post:
     $ref: ./endpoints/services/paths/services-id-start.yaml
-/services/{id}/stop:
+/services/{service_id}/stop:
   post:
     $ref: ./endpoints/services/paths/services-id-stop.yaml
 /social-accounts:
@@ -148,28 +148,28 @@
     $ref: ./endpoints/social-accounts/paths/social-accounts.yaml
   get:
     $ref: ./endpoints/social-accounts/paths/social-accounts-list.yaml
-/social-accounts/{id}:
+/social-accounts/{social_account_id}:
   delete:
     $ref: ./endpoints/social-accounts/paths/social-accounts-id-delete.yaml
-/social-accounts/{provider}:
+/social-accounts/{social_account_provider}:
   get:
     $ref: ./endpoints/social-accounts/paths/social-accounts-name.yaml
-/social-accounts/{provider}/status:
+/social-accounts/{social_account_provider}/status:
   get:
     $ref: ./endpoints/social-accounts/paths/social-accounts-name-status.yaml
-/source-providers/{provider}/repositories:
+/source-providers/{source_provider_name}/repositories:
   get:
     $ref: ./endpoints/repositories/paths/repositories-list.yaml
-/source-providers/{provider}/repositories/{repository_owner}/{repository_name}:
+/source-providers/{source_provider_name}/repositories/{repository_owner}/{repository_name}:
   get:
     $ref: ./endpoints/repositories/paths/repositories-id.yaml
 /source-providers:
   get:
     $ref: ./endpoints/source-providers/paths/source-providers-list.yaml
-/source-providers/{id}:
+/source-providers/{source_provider_id}:
   delete:
     $ref: ./endpoints/source-providers/paths/source-providers-id-delete.yaml
-/source-providers/{provider}:
+/source-providers/{source_provider_name}:
   get:
     $ref: ./endpoints/source-providers/paths/source-providers-name.yaml
 /ssh-keys/{ssh_key_id}:
@@ -177,7 +177,7 @@
     $ref: ./endpoints/ssh-keys/paths/ssh-keys-id.yaml
   delete:
     $ref: ./endpoints/ssh-keys/paths/ssh-keys-id-delete.yaml
-/ssl-certificates/{id}:
+/ssl-certificates/{ssl_certificate_id}:
   get:
     $ref: ./endpoints/ssl-certificates/paths/ssl-certificates-id.yaml
   delete:
@@ -202,7 +202,7 @@
 /users/logout:
   get:
     $ref: ./endpoints/users/paths/logout.yaml
-/users/{id}:
+/users/{user_id}:
   get:
     $ref: ./endpoints/users/paths/users-id.yaml
 /users/me:

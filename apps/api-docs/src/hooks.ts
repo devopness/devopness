@@ -10,8 +10,8 @@
 import hooks, { Transaction, TransactionHook } from 'hooks';
 import { v1, v4 } from 'uuid';
 
-import { Identifiable, UserCredentials, AuthToken } from './fixtures';
-import FixtureStore from './FixtureStore';
+import { Identifiable, UserCredentials, AuthToken, isFixtureKey } from './fixtureTypes';
+import FixtureStore  from './FixtureStore';
 import TransactionUtils from './TransactionUtils';
 
 // transaction names can be obtained by running `npx dredd --names`
@@ -50,6 +50,20 @@ const utils = new TransactionUtils(fixtures, hooks.log);
 
 hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     utils.selectTransactionsByName(transactions, transactionOrder);
+    transactions.forEach((transaction: Transaction) => {
+        // transaction requires a fixture id
+        const idPattern = /{([a-zA-Z_]+)_id}/g;
+        let idParamMatch = idPattern.exec(transaction.origin.resourceName);
+        while (idParamMatch) {
+            const paramType = idParamMatch[1];
+            if (isFixtureKey(paramType)) {
+                hooks.before(transaction.name, utils.writeFixtureIdInTransactionPath(paramType));
+            } else {
+                hooks.log(`[beforeAll] can't ${paramType} is not a valid fixture key`);
+            }
+            idParamMatch = idPattern.exec(transaction.origin.resourceName);
+        }
+    });
     done();
 })
 
@@ -89,17 +103,13 @@ before('projects-create', utils.rewriteTransactionRequestBody(removeLogoImage));
 after('projects-create', utils.storeTransactionResult('project'));
 
 before('projects-get', utils.rewriteTransactionRequestBody(removeLogoImage));
-before('projects-get', utils.writeFixtureIdInTransactionPath<Identifiable>('project'));
 
 ///////////////////////////////////////////////////////////////////////////////
 // projects - ssh-keys
 ///////////////////////////////////////////////////////////////////////////////
 
-before('projects-ssh-keys-create', utils.writeFixtureIdInTransactionPath<Identifiable>('project'));
 after('projects-ssh-keys-create', utils.storeTransactionResult('ssh_key'));
 
 ///////////////////////////////////////////////////////////////////////////////
 // ssh-keys
 ///////////////////////////////////////////////////////////////////////////////
-
-before('ssh-keys-get', utils.writeFixtureIdInTransactionPath('ssh_key'));
