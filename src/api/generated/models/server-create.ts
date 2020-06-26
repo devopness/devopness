@@ -13,6 +13,7 @@
 
 
 import { Action } from './action';
+import { EnvironmentLinkItem } from './environment-link-item';
 import { ServerBlueprint } from './server-blueprint';
 
 /**
@@ -45,6 +46,12 @@ export interface ServerCreate {
      * @memberof ServerCreate
      */
     blueprint: ServerBlueprint;
+    /**
+     * 
+     * @type {Array<EnvironmentLinkItem>}
+     * @memberof ServerCreate
+     */
+    environments?: Array<EnvironmentLinkItem>;
     /**
      * The list of actions related to the server
      * @type {Array<Action>}
