@@ -23,26 +23,26 @@ export class SourceProvidersApiService extends ApiBaseService {
     /**
      * 
      * @summary Delete a given source provider from current user\'s account
-     * @param {number} id Unique Id of the source provider to be deleted
+     * @param {number} sourceProviderId Unique Id of the source provider to be deleted
      */
-    public async deleteSourceProvider(id: number): Promise<ApiResponse<void>> {
-        if (id === null || id === undefined) {
-            throw new ArgumentNullException('id', 'deleteSourceProvider');
+    public async deleteSourceProvider(sourceProviderId: number): Promise<ApiResponse<void>> {
+        if (sourceProviderId === null || sourceProviderId === undefined) {
+            throw new ArgumentNullException('sourceProviderId', 'deleteSourceProvider');
         }
-        const response = await this.delete <void>(`/source-providers/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(id))));
+        const response = await this.delete <void>(`/source-providers/{source_provider_id}`.replace(`{${"source_provider_id"}}`, encodeURIComponent(String(sourceProviderId))));
         return new ApiResponse(response);
     }
 
     /**
      * 
      * @summary Get details of a source code provider, by its name
-     * @param {string} provider Unique name/Id of the provider to be retrieved
+     * @param {string} sourceProviderName Unique name/Id of the provider to be retrieved
      */
-    public async getSourceProviderByName(provider: string): Promise<ApiResponse<SocialAccount>> {
-        if (provider === null || provider === undefined) {
-            throw new ArgumentNullException('provider', 'getSourceProviderByName');
+    public async getSourceProviderByName(sourceProviderName: string): Promise<ApiResponse<SocialAccount>> {
+        if (sourceProviderName === null || sourceProviderName === undefined) {
+            throw new ArgumentNullException('sourceProviderName', 'getSourceProviderByName');
         }
-        const response = await this.get <SocialAccount>(`/source-providers/{provider}`.replace(`{${"provider"}}`, encodeURIComponent(String(provider))));
+        const response = await this.get <SocialAccount>(`/source-providers/{source_provider_name}`.replace(`{${"source_provider_name"}}`, encodeURIComponent(String(sourceProviderName))));
         return new ApiResponse(response);
     }
 

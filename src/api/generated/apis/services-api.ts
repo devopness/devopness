@@ -24,82 +24,82 @@ export class ServicesApiService extends ApiBaseService {
     /**
      * 
      * @summary Delete a given service
-     * @param {number} id The Id of the service to be deleted
+     * @param {number} serviceId The Id of the service to be deleted
      */
-    public async deleteService(id: number): Promise<ApiResponse<void>> {
-        if (id === null || id === undefined) {
-            throw new ArgumentNullException('id', 'deleteService');
+    public async deleteService(serviceId: number): Promise<ApiResponse<void>> {
+        if (serviceId === null || serviceId === undefined) {
+            throw new ArgumentNullException('serviceId', 'deleteService');
         }
-        const response = await this.delete <void>(`/services/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(id))));
+        const response = await this.delete <void>(`/services/{service_id}`.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))));
         return new ApiResponse(response);
     }
 
     /**
      * 
      * @summary Get details of a single service
-     * @param {number} id Unique ID of the service to get
+     * @param {number} serviceId Unique ID of the service to get
      */
-    public async getService(id: number): Promise<ApiResponse<Service>> {
-        if (id === null || id === undefined) {
-            throw new ArgumentNullException('id', 'getService');
+    public async getService(serviceId: number): Promise<ApiResponse<Service>> {
+        if (serviceId === null || serviceId === undefined) {
+            throw new ArgumentNullException('serviceId', 'getService');
         }
-        const response = await this.get <Service>(`/services/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(id))));
+        const response = await this.get <Service>(`/services/{service_id}`.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))));
         return new ApiResponse(response);
     }
 
     /**
      * 
      * @summary Reload a service
-     * @param {number} id The unique id of the service
+     * @param {number} serviceId The unique id of the service
      * @param {ExtraBodyParams} [extraBodyParams] A JSON object containing list of additional parameters
      */
-    public async reloadService(id: number, extraBodyParams?: ExtraBodyParams): Promise<ApiResponse<void>> {
-        if (id === null || id === undefined) {
-            throw new ArgumentNullException('id', 'reloadService');
+    public async reloadService(serviceId: number, extraBodyParams?: ExtraBodyParams): Promise<ApiResponse<void>> {
+        if (serviceId === null || serviceId === undefined) {
+            throw new ArgumentNullException('serviceId', 'reloadService');
         }
-        const response = await this.post <void, ExtraBodyParams>(`/services/{id}/reload`.replace(`{${"id"}}`, encodeURIComponent(String(id))), extraBodyParams);
+        const response = await this.post <void, ExtraBodyParams>(`/services/{service_id}/reload`.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))), extraBodyParams);
         return new ApiResponse(response);
     }
 
     /**
      * 
      * @summary Restart a service
-     * @param {number} id The unique id of the service
+     * @param {number} serviceId The unique id of the service
      * @param {ExtraBodyParams} [extraBodyParams] A JSON object containing list of additional parameters
      */
-    public async restartService(id: number, extraBodyParams?: ExtraBodyParams): Promise<ApiResponse<void>> {
-        if (id === null || id === undefined) {
-            throw new ArgumentNullException('id', 'restartService');
+    public async restartService(serviceId: number, extraBodyParams?: ExtraBodyParams): Promise<ApiResponse<void>> {
+        if (serviceId === null || serviceId === undefined) {
+            throw new ArgumentNullException('serviceId', 'restartService');
         }
-        const response = await this.post <void, ExtraBodyParams>(`/services/{id}/restart`.replace(`{${"id"}}`, encodeURIComponent(String(id))), extraBodyParams);
+        const response = await this.post <void, ExtraBodyParams>(`/services/{service_id}/restart`.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))), extraBodyParams);
         return new ApiResponse(response);
     }
 
     /**
      * 
      * @summary Start a service
-     * @param {number} id The unique id of the service
+     * @param {number} serviceId The unique id of the service
      * @param {ExtraBodyParams} [extraBodyParams] A JSON object containing list of additional parameters
      */
-    public async startService(id: number, extraBodyParams?: ExtraBodyParams): Promise<ApiResponse<void>> {
-        if (id === null || id === undefined) {
-            throw new ArgumentNullException('id', 'startService');
+    public async startService(serviceId: number, extraBodyParams?: ExtraBodyParams): Promise<ApiResponse<void>> {
+        if (serviceId === null || serviceId === undefined) {
+            throw new ArgumentNullException('serviceId', 'startService');
         }
-        const response = await this.post <void, ExtraBodyParams>(`/services/{id}/start`.replace(`{${"id"}}`, encodeURIComponent(String(id))), extraBodyParams);
+        const response = await this.post <void, ExtraBodyParams>(`/services/{service_id}/start`.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))), extraBodyParams);
         return new ApiResponse(response);
     }
 
     /**
      * 
      * @summary Stop a service
-     * @param {number} id The unique id of the service
+     * @param {number} serviceId The unique id of the service
      * @param {ExtraBodyParams} [extraBodyParams] A JSON object containing list of additional parameters
      */
-    public async stopService(id: number, extraBodyParams?: ExtraBodyParams): Promise<ApiResponse<void>> {
-        if (id === null || id === undefined) {
-            throw new ArgumentNullException('id', 'stopService');
+    public async stopService(serviceId: number, extraBodyParams?: ExtraBodyParams): Promise<ApiResponse<void>> {
+        if (serviceId === null || serviceId === undefined) {
+            throw new ArgumentNullException('serviceId', 'stopService');
         }
-        const response = await this.post <void, ExtraBodyParams>(`/services/{id}/stop`.replace(`{${"id"}}`, encodeURIComponent(String(id))), extraBodyParams);
+        const response = await this.post <void, ExtraBodyParams>(`/services/{service_id}/stop`.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))), extraBodyParams);
         return new ApiResponse(response);
     }
 }

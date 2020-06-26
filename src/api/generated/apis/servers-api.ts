@@ -26,44 +26,44 @@ export class ServersApiService extends ApiBaseService {
     /**
      * 
      * @summary Connect a server to devopness platform
-     * @param {number} id The server numeric Id
+     * @param {number} serverId The server numeric Id
      * @param {string} activationToken The server activation token
      * @param {ExtraBodyParams} [extraBodyParams] A JSON object containing list of additional parameters
      */
-    public async connectServer(id: number, activationToken: string, extraBodyParams?: ExtraBodyParams): Promise<ApiResponse<ServerConnect>> {
-        if (id === null || id === undefined) {
-            throw new ArgumentNullException('id', 'connectServer');
+    public async connectServer(serverId: number, activationToken: string, extraBodyParams?: ExtraBodyParams): Promise<ApiResponse<ServerConnect>> {
+        if (serverId === null || serverId === undefined) {
+            throw new ArgumentNullException('serverId', 'connectServer');
         }
         if (activationToken === null || activationToken === undefined) {
             throw new ArgumentNullException('activationToken', 'connectServer');
         }
-        const response = await this.post <ServerConnect, ExtraBodyParams>(`/servers/{id}/connect/{activation_token}`.replace(`{${"id"}}`, encodeURIComponent(String(id))).replace(`{${"activation_token"}}`, encodeURIComponent(String(activationToken))), extraBodyParams);
+        const response = await this.post <ServerConnect, ExtraBodyParams>(`/servers/{server_id}/connect/{activation_token}`.replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))).replace(`{${"activation_token"}}`, encodeURIComponent(String(activationToken))), extraBodyParams);
         return new ApiResponse(response);
     }
 
     /**
      * 
      * @summary Get a server by ID
-     * @param {number} id Numeric ID of the server to get
+     * @param {number} serverId Numeric ID of the server to get
      */
-    public async getServer(id: number): Promise<ApiResponse<Server>> {
-        if (id === null || id === undefined) {
-            throw new ArgumentNullException('id', 'getServer');
+    public async getServer(serverId: number): Promise<ApiResponse<Server>> {
+        if (serverId === null || serverId === undefined) {
+            throw new ArgumentNullException('serverId', 'getServer');
         }
-        const response = await this.get <Server>(`/servers/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(id))));
+        const response = await this.get <Server>(`/servers/{server_id}`.replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))));
         return new ApiResponse(response);
     }
 
     /**
      * 
      * @summary Get commands to be executed on the given server
-     * @param {number} id The server numeric Id
+     * @param {number} serverId The server numeric Id
      */
-    public async getServerCommands(id: number): Promise<ApiResponse<ServerCommands>> {
-        if (id === null || id === undefined) {
-            throw new ArgumentNullException('id', 'getServerCommands');
+    public async getServerCommands(serverId: number): Promise<ApiResponse<ServerCommands>> {
+        if (serverId === null || serverId === undefined) {
+            throw new ArgumentNullException('serverId', 'getServerCommands');
         }
-        const response = await this.get <ServerCommands>(`/servers/{id}/commands`.replace(`{${"id"}}`, encodeURIComponent(String(id))));
+        const response = await this.get <ServerCommands>(`/servers/{server_id}/commands`.replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))));
         return new ApiResponse(response);
     }
 

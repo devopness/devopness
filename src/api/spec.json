@@ -55,7 +55,7 @@
         }
       }
     },
-    "/actions/{id}": {
+    "/actions/{action_id}": {
       "get": {
         "summary": "Get an action by ID",
         "operationId": "getAction",
@@ -74,7 +74,7 @@
           },
           {
             "in": "path",
-            "name": "id",
+            "name": "action_id",
             "example": 1,
             "schema": {
               "type": "integer",
@@ -2178,7 +2178,7 @@
         }
       }
     },
-    "/servers/{id}": {
+    "/servers/{server_id}": {
       "get": {
         "summary": "Get a server by ID",
         "operationId": "getServer",
@@ -2197,7 +2197,7 @@
           },
           {
             "in": "path",
-            "name": "id",
+            "name": "server_id",
             "example": 1,
             "schema": {
               "type": "integer",
@@ -2224,7 +2224,7 @@
         }
       }
     },
-    "/servers/{id}/commands": {
+    "/servers/{server_id}/commands": {
       "get": {
         "summary": "Get commands to be executed on the given server",
         "operationId": "getServerCommands",
@@ -2243,7 +2243,7 @@
           },
           {
             "in": "path",
-            "name": "id",
+            "name": "server_id",
             "example": 1,
             "schema": {
               "type": "integer",
@@ -2270,7 +2270,7 @@
         }
       }
     },
-    "/servers/{id}/connect/{activation_token}": {
+    "/servers/{server_id}/connect/{activation_token}": {
       "post": {
         "summary": "Connect a server to devopness platform",
         "operationId": "connectServer",
@@ -2289,7 +2289,7 @@
           },
           {
             "in": "path",
-            "name": "id",
+            "name": "server_id",
             "example": 1,
             "schema": {
               "type": "integer",
@@ -2344,7 +2344,7 @@
         }
       }
     },
-    "/services/{id}": {
+    "/services/{service_id}": {
       "delete": {
         "summary": "Delete a given service",
         "operationId": "deleteService",
@@ -2363,7 +2363,7 @@
           },
           {
             "in": "path",
-            "name": "id",
+            "name": "service_id",
             "example": 1,
             "schema": {
               "type": "integer",
@@ -2400,7 +2400,7 @@
           },
           {
             "in": "path",
-            "name": "id",
+            "name": "service_id",
             "example": 1,
             "schema": {
               "type": "integer",
@@ -2427,7 +2427,7 @@
         }
       }
     },
-    "/services/{id}/reload": {
+    "/services/{service_id}/reload": {
       "post": {
         "summary": "Reload a service",
         "operationId": "reloadService",
@@ -2446,7 +2446,7 @@
           },
           {
             "in": "path",
-            "name": "id",
+            "name": "service_id",
             "example": 1,
             "schema": {
               "type": "integer",
@@ -2480,7 +2480,7 @@
         }
       }
     },
-    "/services/{id}/restart": {
+    "/services/{service_id}/restart": {
       "post": {
         "summary": "Restart a service",
         "operationId": "restartService",
@@ -2499,7 +2499,7 @@
           },
           {
             "in": "path",
-            "name": "id",
+            "name": "service_id",
             "example": 1,
             "schema": {
               "type": "integer",
@@ -2533,7 +2533,7 @@
         }
       }
     },
-    "/services/{id}/start": {
+    "/services/{service_id}/start": {
       "post": {
         "summary": "Start a service",
         "operationId": "startService",
@@ -2552,7 +2552,7 @@
           },
           {
             "in": "path",
-            "name": "id",
+            "name": "service_id",
             "example": 1,
             "schema": {
               "type": "integer",
@@ -2586,7 +2586,7 @@
         }
       }
     },
-    "/services/{id}/stop": {
+    "/services/{service_id}/stop": {
       "post": {
         "summary": "Stop a service",
         "operationId": "stopService",
@@ -2605,7 +2605,7 @@
           },
           {
             "in": "path",
-            "name": "id",
+            "name": "service_id",
             "example": 1,
             "schema": {
               "type": "integer",
@@ -2715,7 +2715,7 @@
         }
       }
     },
-    "/social-accounts/{id}": {
+    "/social-accounts/{social_account_id}": {
       "delete": {
         "summary": "Delete a given social account",
         "operationId": "deleteSocialAccount",
@@ -2734,7 +2734,7 @@
           },
           {
             "in": "path",
-            "name": "id",
+            "name": "social_account_id",
             "example": 1,
             "schema": {
               "type": "integer",
@@ -2754,7 +2754,7 @@
         }
       }
     },
-    "/social-accounts/{provider}": {
+    "/social-accounts/{social_account_provider}": {
       "get": {
         "summary": "Get details of a Social authentication provider, by its name",
         "operationId": "getSocialAccountByName",
@@ -2773,7 +2773,7 @@
           },
           {
             "in": "path",
-            "name": "provider",
+            "name": "social_account_provider",
             "example": "facebook",
             "schema": {
               "type": "string",
@@ -2800,7 +2800,7 @@
         }
       }
     },
-    "/social-accounts/{provider}/status": {
+    "/social-accounts/{social_account_provider}/status": {
       "get": {
         "summary": "Get the connect status of a Social authentication provider, by its name",
         "operationId": "getSocialAccountStatusByName",
@@ -2819,7 +2819,7 @@
           },
           {
             "in": "path",
-            "name": "provider",
+            "name": "social_account_provider",
             "example": "google",
             "schema": {
               "type": "string",
@@ -2846,7 +2846,7 @@
         }
       }
     },
-    "/source-providers/{provider}/repositories": {
+    "/source-providers/{source_provider_name}/repositories": {
       "get": {
         "summary": "Return a list of all repositories belonging to a current user social provider account",
         "operationId": "listRepositories",
@@ -2865,7 +2865,7 @@
           },
           {
             "in": "path",
-            "name": "provider",
+            "name": "source_provider_name",
             "example": "bitbucket",
             "schema": {
               "type": "string",
@@ -2889,7 +2889,7 @@
         }
       }
     },
-    "/source-providers/{provider}/repositories/{repository_owner}/{repository_name}": {
+    "/source-providers/{source_provider_name}/repositories/{repository_owner}/{repository_name}": {
       "get": {
         "summary": "Get details of a repository, by its name",
         "operationId": "getRepository",
@@ -2908,7 +2908,7 @@
           },
           {
             "in": "path",
-            "name": "provider",
+            "name": "source_provider_name",
             "example": "gitlab",
             "schema": {
               "type": "string",
@@ -2989,7 +2989,7 @@
         }
       }
     },
-    "/source-providers/{id}": {
+    "/source-providers/{source_provider_id}": {
       "delete": {
         "summary": "Delete a given source provider from current user's account",
         "operationId": "deleteSourceProvider",
@@ -3008,7 +3008,7 @@
           },
           {
             "in": "path",
-            "name": "id",
+            "name": "source_provider_id",
             "example": 123,
             "schema": {
               "type": "integer",
@@ -3028,7 +3028,7 @@
         }
       }
     },
-    "/source-providers/{provider}": {
+    "/source-providers/{source_provider_name}": {
       "get": {
         "summary": "Get details of a source code provider, by its name",
         "operationId": "getSourceProviderByName",
@@ -3047,7 +3047,7 @@
           },
           {
             "in": "path",
-            "name": "provider",
+            "name": "source_provider_name",
             "example": "github",
             "schema": {
               "type": "string",
@@ -3157,7 +3157,7 @@
         }
       }
     },
-    "/ssl-certificates/{id}": {
+    "/ssl-certificates/{ssl_certificate_id}": {
       "get": {
         "summary": "Get details of a single SSL certificate",
         "operationId": "getSslCertificate",
@@ -3176,7 +3176,7 @@
           },
           {
             "in": "path",
-            "name": "id",
+            "name": "ssl_certificate_id",
             "example": 1,
             "schema": {
               "type": "integer",
@@ -3220,7 +3220,7 @@
           },
           {
             "in": "path",
-            "name": "id",
+            "name": "ssl_certificate_id",
             "example": 1,
             "schema": {
               "type": "integer",
@@ -3492,7 +3492,7 @@
         }
       }
     },
-    "/users/{id}": {
+    "/users/{user_id}": {
       "get": {
         "summary": "Get a user by ID",
         "operationId": "getUser",
@@ -3511,7 +3511,7 @@
           },
           {
             "in": "path",
-            "name": "id",
+            "name": "user_id",
             "example": 1,
             "schema": {
               "type": "integer",

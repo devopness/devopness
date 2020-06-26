@@ -38,39 +38,39 @@ export class SocialAccountsApiService extends ApiBaseService {
     /**
      * 
      * @summary Delete a given social account
-     * @param {number} id The Id of the social account to be deleted
+     * @param {number} socialAccountId The Id of the social account to be deleted
      */
-    public async deleteSocialAccount(id: number): Promise<ApiResponse<void>> {
-        if (id === null || id === undefined) {
-            throw new ArgumentNullException('id', 'deleteSocialAccount');
+    public async deleteSocialAccount(socialAccountId: number): Promise<ApiResponse<void>> {
+        if (socialAccountId === null || socialAccountId === undefined) {
+            throw new ArgumentNullException('socialAccountId', 'deleteSocialAccount');
         }
-        const response = await this.delete <void>(`/social-accounts/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(id))));
+        const response = await this.delete <void>(`/social-accounts/{social_account_id}`.replace(`{${"social_account_id"}}`, encodeURIComponent(String(socialAccountId))));
         return new ApiResponse(response);
     }
 
     /**
      * 
      * @summary Get details of a Social authentication provider, by its name
-     * @param {string} provider Unique name/Id of the provider to be retrieved
+     * @param {string} socialAccountProvider Unique name/Id of the provider to be retrieved
      */
-    public async getSocialAccountByName(provider: string): Promise<ApiResponse<SocialAccount>> {
-        if (provider === null || provider === undefined) {
-            throw new ArgumentNullException('provider', 'getSocialAccountByName');
+    public async getSocialAccountByName(socialAccountProvider: string): Promise<ApiResponse<SocialAccount>> {
+        if (socialAccountProvider === null || socialAccountProvider === undefined) {
+            throw new ArgumentNullException('socialAccountProvider', 'getSocialAccountByName');
         }
-        const response = await this.get <SocialAccount>(`/social-accounts/{provider}`.replace(`{${"provider"}}`, encodeURIComponent(String(provider))));
+        const response = await this.get <SocialAccount>(`/social-accounts/{social_account_provider}`.replace(`{${"social_account_provider"}}`, encodeURIComponent(String(socialAccountProvider))));
         return new ApiResponse(response);
     }
 
     /**
      * 
      * @summary Get the connect status of a Social authentication provider, by its name
-     * @param {string} provider Unique name of the provider to be retrieved
+     * @param {string} socialAccountProvider Unique name of the provider to be retrieved
      */
-    public async getSocialAccountStatusByName(provider: string): Promise<ApiResponse<SocialAccountStatus>> {
-        if (provider === null || provider === undefined) {
-            throw new ArgumentNullException('provider', 'getSocialAccountStatusByName');
+    public async getSocialAccountStatusByName(socialAccountProvider: string): Promise<ApiResponse<SocialAccountStatus>> {
+        if (socialAccountProvider === null || socialAccountProvider === undefined) {
+            throw new ArgumentNullException('socialAccountProvider', 'getSocialAccountStatusByName');
         }
-        const response = await this.get <SocialAccountStatus>(`/social-accounts/{provider}/status`.replace(`{${"provider"}}`, encodeURIComponent(String(provider))));
+        const response = await this.get <SocialAccountStatus>(`/social-accounts/{social_account_provider}/status`.replace(`{${"social_account_provider"}}`, encodeURIComponent(String(socialAccountProvider))));
         return new ApiResponse(response);
     }
 

@@ -23,13 +23,13 @@ export class ActionsApiService extends ApiBaseService {
     /**
      * 
      * @summary Get an action by ID
-     * @param {number} id Numeric ID of the action to be retrieved
+     * @param {number} actionId Numeric ID of the action to be retrieved
      */
-    public async getAction(id: number): Promise<ApiResponse<Action>> {
-        if (id === null || id === undefined) {
-            throw new ArgumentNullException('id', 'getAction');
+    public async getAction(actionId: number): Promise<ApiResponse<Action>> {
+        if (actionId === null || actionId === undefined) {
+            throw new ArgumentNullException('actionId', 'getAction');
         }
-        const response = await this.get <Action>(`/actions/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(id))));
+        const response = await this.get <Action>(`/actions/{action_id}`.replace(`{${"action_id"}}`, encodeURIComponent(String(actionId))));
         return new ApiResponse(response);
     }
 

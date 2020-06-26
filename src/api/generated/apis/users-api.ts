@@ -58,13 +58,13 @@ export class UsersApiService extends ApiBaseService {
     /**
      * 
      * @summary Get a user by ID
-     * @param {number} id Numeric ID of the user to be retrieved
+     * @param {number} userId Numeric ID of the user to be retrieved
      */
-    public async getUser(id: number): Promise<ApiResponse<User>> {
-        if (id === null || id === undefined) {
-            throw new ArgumentNullException('id', 'getUser');
+    public async getUser(userId: number): Promise<ApiResponse<User>> {
+        if (userId === null || userId === undefined) {
+            throw new ArgumentNullException('userId', 'getUser');
         }
-        const response = await this.get <User>(`/users/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(id))));
+        const response = await this.get <User>(`/users/{user_id}`.replace(`{${"user_id"}}`, encodeURIComponent(String(userId))));
         return new ApiResponse(response);
     }
 

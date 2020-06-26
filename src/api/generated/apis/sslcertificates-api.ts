@@ -23,26 +23,26 @@ export class SSLCertificatesApiService extends ApiBaseService {
     /**
      * 
      * @summary Delete a SSL certificate
-     * @param {number} id The unique id of the record to be deleted
+     * @param {number} sslCertificateId The unique id of the record to be deleted
      */
-    public async deleteSslCertificate(id: number): Promise<ApiResponse<void>> {
-        if (id === null || id === undefined) {
-            throw new ArgumentNullException('id', 'deleteSslCertificate');
+    public async deleteSslCertificate(sslCertificateId: number): Promise<ApiResponse<void>> {
+        if (sslCertificateId === null || sslCertificateId === undefined) {
+            throw new ArgumentNullException('sslCertificateId', 'deleteSslCertificate');
         }
-        const response = await this.delete <void>(`/ssl-certificates/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(id))));
+        const response = await this.delete <void>(`/ssl-certificates/{ssl_certificate_id}`.replace(`{${"ssl_certificate_id"}}`, encodeURIComponent(String(sslCertificateId))));
         return new ApiResponse(response);
     }
 
     /**
      * 
      * @summary Get details of a single SSL certificate
-     * @param {number} id Unique ID of the item to be retrieved
+     * @param {number} sslCertificateId Unique ID of the item to be retrieved
      */
-    public async getSslCertificate(id: number): Promise<ApiResponse<SslCertificate>> {
-        if (id === null || id === undefined) {
-            throw new ArgumentNullException('id', 'getSslCertificate');
+    public async getSslCertificate(sslCertificateId: number): Promise<ApiResponse<SslCertificate>> {
+        if (sslCertificateId === null || sslCertificateId === undefined) {
+            throw new ArgumentNullException('sslCertificateId', 'getSslCertificate');
         }
-        const response = await this.get <SslCertificate>(`/ssl-certificates/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(id))));
+        const response = await this.get <SslCertificate>(`/ssl-certificates/{ssl_certificate_id}`.replace(`{${"ssl_certificate_id"}}`, encodeURIComponent(String(sslCertificateId))));
         return new ApiResponse(response);
     }
 }
