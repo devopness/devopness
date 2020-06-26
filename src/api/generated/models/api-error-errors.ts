@@ -12,19 +12,19 @@
  */
 
 
-import { ErrorErrorsFieldName } from './error-errors-field-name';
+import { ApiErrorErrorsFieldName } from './api-error-errors-field-name';
 
 /**
  * Optional error object containing details of the server error
  * @export
- * @interface ErrorErrors
+ * @interface ApiErrorErrors
  */
-export interface ErrorErrors {
+export interface ApiErrorErrors {
     /**
      * Error message specific to each field included in the errors object
-     * @type {Array<ErrorErrorsFieldName>}
-     * @memberof ErrorErrors
+     * @type {Array<ApiErrorErrorsFieldName>}
+     * @memberof ApiErrorErrors
      */
-    field_name?: Array<ErrorErrorsFieldName>;
+    field_name?: Array<ApiErrorErrorsFieldName>;
 }
 

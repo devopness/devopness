@@ -12,25 +12,25 @@
  */
 
 
-import { ErrorErrors } from './error-errors';
+import { ApiErrorErrors } from './api-error-errors';
 
 /**
  * 
  * @export
- * @interface ModelError
+ * @interface ApiError
  */
-export interface ModelError {
+export interface ApiError {
     /**
      * The main exception raised by the server
      * @type {string}
-     * @memberof ModelError
+     * @memberof ApiError
      */
     message: string;
     /**
      * 
-     * @type {ErrorErrors}
-     * @memberof ModelError
+     * @type {ApiErrorErrors}
+     * @memberof ApiError
      */
-    errors?: ErrorErrors;
+    errors?: ApiErrorErrors;
 }
 

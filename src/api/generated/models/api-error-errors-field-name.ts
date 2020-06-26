@@ -16,13 +16,13 @@
 /**
  * 
  * @export
- * @interface ErrorErrorsFieldName
+ * @interface ApiErrorErrorsFieldName
  */
-export interface ErrorErrorsFieldName {
+export interface ApiErrorErrorsFieldName {
     /**
      * Field name and respective error message
      * @type {string}
-     * @memberof ErrorErrorsFieldName
+     * @memberof ApiErrorErrorsFieldName
      */
     field?: string;
 }

@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { ApiError } from '../../generated/models';
 import { LoginCredentials } from '../../generated/models';
 import { User } from '../../generated/models';
 import { UserCreate } from '../../generated/models';

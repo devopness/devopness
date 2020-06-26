@@ -3857,6 +3857,43 @@
           "$ref": "#/components/schemas/Action"
         }
       },
+      "ApiError": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "The main exception raised by the server",
+            "example": "The given data was invalid."
+          },
+          "errors": {
+            "type": "object",
+            "description": "Optional error object containing details of the server error",
+            "properties": {
+              "field_name": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "field": {
+                      "type": "string",
+                      "description": "Field name and respective error message",
+                      "example": "field_9"
+                    }
+                  }
+                },
+                "description": "Error message specific to each field included in the errors object"
+              }
+            },
+            "example": {
+              "field_1": "The field 'field_1' is required",
+              "field_2": "The field 'field_2' is not of the expected type"
+            }
+          }
+        },
+        "required": [
+          "message"
+        ]
+      },
       "Application": {
         "type": "object",
         "properties": {
@@ -4718,43 +4755,6 @@
         "items": {
           "$ref": "#/components/schemas/Environment"
         }
-      },
-      "Error": {
-        "type": "object",
-        "properties": {
-          "message": {
-            "type": "string",
-            "description": "The main exception raised by the server",
-            "example": "The given data was invalid."
-          },
-          "errors": {
-            "type": "object",
-            "description": "Optional error object containing details of the server error",
-            "properties": {
-              "field_name": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "field": {
-                      "type": "string",
-                      "description": "Field name and respective error message",
-                      "example": "field_9"
-                    }
-                  }
-                },
-                "description": "Error message specific to each field included in the errors object"
-              }
-            },
-            "example": {
-              "field_1": "The field 'field_1' is required",
-              "field_2": "The field 'field_2' is not of the expected type"
-            }
-          }
-        },
-        "required": [
-          "message"
-        ]
       },
       "ExtraBodyParams": {
         "type": "object",
@@ -5994,7 +5994,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/Error"
+              "$ref": "#/components/schemas/ApiError"
             }
           }
         }
@@ -6004,7 +6004,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/Error"
+              "$ref": "#/components/schemas/ApiError"
             }
           }
         }
@@ -6017,7 +6017,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/Error"
+              "$ref": "#/components/schemas/ApiError"
             }
           }
         }
@@ -6027,7 +6027,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/Error"
+              "$ref": "#/components/schemas/ApiError"
             }
           }
         }
