@@ -2,17 +2,19 @@ type: object
 properties:
   id:
     type: integer
-    description: The environment's unique id
+    description: Environment's unique id
     example: 867
   name:
     type: string
-    description: The environment's name
+    description: Environment's name
     example: 'my project - staging'
+    nullable: true
   servers:
-    description: The list of IDs of servers to which the action must be performed
+    description: A list of server IDs to which the item link/unlink operations must be performed
     type: array
     example: [54789, 235, 1089044]
     items:
       type: integer
 required:
+  - id
   - servers

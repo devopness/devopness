@@ -1,14 +1,16 @@
 type: object
 properties:
+  id:
+    type: integer
+    description: Unique id of the given record
+    example: 123
   name:
     type: string
-    description: The environment's name
+    description: Environment's name
     example: 'produção'
   type:
-    type: string
+    $ref: '#/components/schemas/EnvironmentType'
     description: The type of the deployment being triggred
-    enum: ['testing', 'staging', 'production']
-    example: 'staging'
   servers:
     $ref: '#/components/schemas/Servers'
   created_at:

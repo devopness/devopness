@@ -1,0 +1,4 @@
+type: string
+enum: ['development', 'staging', 'production']
+description: Environment's type
+example: 'staging'
