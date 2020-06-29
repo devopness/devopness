@@ -14,14 +14,13 @@ properties:
     description: The network port to which the SSH daemon is listening to SSH connections on the server
     example: 22
   blueprint:
-    $ref: '#/components/schemas/ServerBlueprint'
+    $ref: "#/components/schemas/ServerBlueprint"
   environments:
-    $ref: '#/components/schemas/EnvironmentLinks'
-  actions:
-    description: "The list of actions related to the server"
+    description: A list of environment IDs to which the server will be linked to
     type: array
+    example: [54789, 235, 1089044]
     items:
-      $ref: '#/components/schemas/Action'
+      type: integer
 required:
   - blueprint
   - hostname
