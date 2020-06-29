@@ -21,22 +21,22 @@ import { BlueprintItem } from './blueprint-item';
  */
 export interface ServerBlueprint {
     /**
-     * The list of databases that must be installed on the server
-     * @type {Array<BlueprintItem>}
-     * @memberof ServerBlueprint
-     */
-    databases?: Array<BlueprintItem>;
-    /**
-     * The list of tools that must be made available on the server
+     * `self-hosted` if connecting to an existing server instance. May also be a list of cloud providers to which the server spec will be used to launch instances.
      * @type {Array<BlueprintItem>}
      * @memberof ServerBlueprint
      */
     providers: Array<BlueprintItem>;
     /**
-     * The list of tools that must be made available on the server
+     * The list of databases services that must be installed on the server
      * @type {Array<BlueprintItem>}
      * @memberof ServerBlueprint
      */
-    tools?: Array<BlueprintItem>;
+    databases?: Array<BlueprintItem> | null;
+    /**
+     * A list of tools that must be made available on the server
+     * @type {Array<BlueprintItem>}
+     * @memberof ServerBlueprint
+     */
+    tools?: Array<BlueprintItem> | null;
 }
 

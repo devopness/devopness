@@ -12,6 +12,7 @@
  */
 
 
+import { EnvironmentType } from './environment-type';
 
 /**
  * 
@@ -26,21 +27,10 @@ export interface EnvironmentCreate {
      */
     name: string;
     /**
-     * The type of the deployment being triggred
-     * @type {string}
+     * 
+     * @type {EnvironmentType}
      * @memberof EnvironmentCreate
      */
-    type: EnvironmentCreateTypeEnum;
+    type: EnvironmentType;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum EnvironmentCreateTypeEnum {
-    Testing = 'testing',
-    Staging = 'staging',
-    Production = 'production'
-}
-
 

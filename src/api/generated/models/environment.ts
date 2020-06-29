@@ -12,6 +12,7 @@
  */
 
 
+import { EnvironmentType } from './environment-type';
 import { Server } from './server';
 
 /**
@@ -21,17 +22,23 @@ import { Server } from './server';
  */
 export interface Environment {
     /**
-     * The environment\'s name
+     * Unique id of the given record
+     * @type {number}
+     * @memberof Environment
+     */
+    id?: number;
+    /**
+     * Environment\'s name
      * @type {string}
      * @memberof Environment
      */
     name: string;
     /**
-     * The type of the deployment being triggred
-     * @type {string}
+     * 
+     * @type {EnvironmentType}
      * @memberof Environment
      */
-    type: EnvironmentTypeEnum;
+    type: EnvironmentType;
     /**
      * 
      * @type {Array<Server>}
@@ -51,15 +58,4 @@ export interface Environment {
      */
     updated_at?: string;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum EnvironmentTypeEnum {
-    Testing = 'testing',
-    Staging = 'staging',
-    Production = 'production'
-}
-
 
