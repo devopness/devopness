@@ -45,9 +45,9 @@ Environment:
 EnvironmentCreate:
   $ref: ./endpoints/environments/schemas/environment-create.yaml
 EnvironmentLinkItem:
-  $ref: ./endpoints/environments/schemas/environment-link-item.yaml
+  $ref: ./shared/schemas/environment-link-item.yaml
 EnvironmentLinks:
-  $ref: ./endpoints/environments/schemas/environment-links.yaml
+  $ref: ./shared/schemas/environment-links.yaml
 Environments:
   $ref: ./endpoints/environments/schemas/environment-list.yaml
 EnvironmentType:
