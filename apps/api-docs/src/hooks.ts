@@ -10,7 +10,7 @@
 import hooks, { Transaction, TransactionHook } from 'hooks';
 import { v1, v4 } from 'uuid';
 
-import { Identifiable, UserCredentials, AuthToken, isFixtureKey } from './fixtureTypes';
+import { UserCredentials, UserTokens } from './fixtureTypes';
 import FixtureStore  from './FixtureStore';
 import TransactionUtils from './TransactionUtils';
 
@@ -52,22 +52,21 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     utils.selectTransactionsByName(transactions, transactionOrder);
     transactions.forEach((transaction: Transaction) => {
         // transaction requires a fixture id
-        const idPattern = /{([a-zA-Z_]+)_id}/g;
-        let idParamMatch = idPattern.exec(transaction.origin.resourceName);
-        while (idParamMatch) {
-            const paramType = idParamMatch[1];
-            if (isFixtureKey(paramType)) {
-                hooks.before(transaction.name, utils.writeFixtureIdInTransactionPath(paramType));
-            } else {
-                hooks.log(`[beforeAll] can't ${paramType} is not a valid fixture key`);
-            }
-            idParamMatch = idPattern.exec(transaction.origin.resourceName);
+        const requestPathParamFixtureKeys = utils.fixtureIdParamsInTransactionPath(transaction);
+        // TODO: handle request paths with multiple params (`/environments/${environment_id}/servers/${server_id}/link`)
+        if (requestPathParamFixtureKeys.length > 0) {
+            hooks.before(transaction.name, utils.writeFixtureIdInTransactionPath(requestPathParamFixtureKeys[0]));
+        }
+        // transaction returns a fixture
+        const responseFixtureKey = utils.fixtureKeyFromTransactionResponseSchema(transaction);
+        if (responseFixtureKey != null) {
+            hooks.after(transaction.name, utils.storeTransactionResult(responseFixtureKey));
         }
     });
     done();
 })
 
-hooks.beforeEach(utils.setTransactionRequestAuthHeaderWithFixture('auth_token'));
+hooks.beforeEach(utils.setTransactionRequestAuthHeaderWithFixture('user_tokens'));
 hooks.beforeEach(utils.setTransactionRequestJsonHeaders);
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -82,14 +81,12 @@ before('users-signup', (transaction: Transaction) => {
 })
 
 before('users-login', utils.setTransactionRequestBodyToFixture<UserCredentials>('user_credentials'));
-after('users-login', utils.storeTransactionResult('auth_token'));
 
-before('users-refresh-token', utils.setTransactionRequestBodyToFixture<AuthToken>('auth_token'));
-after('users-refresh-token', utils.storeTransactionResult('auth_token'));
+before('users-refresh-token', utils.setTransactionRequestBodyToFixture<UserTokens>('user_tokens'));
 
 after('users-logout', (transaction: Transaction) => {
     if (transaction.test.valid) {
-        fixtures.delete('auth_token');
+        fixtures.delete('user_tokens');
     }
 });
 
@@ -100,16 +97,7 @@ after('users-logout', (transaction: Transaction) => {
 const removeLogoImage = (body: any) => { delete body['logo_image']; }
 
 before('projects-create', utils.rewriteTransactionRequestBody(removeLogoImage));
+// TODO: 'projects-create' (POST /projects) spec should specify a { spec: { $ref: 'Project' }} return body
 after('projects-create', utils.storeTransactionResult('project'));
 
 before('projects-get', utils.rewriteTransactionRequestBody(removeLogoImage));
-
-///////////////////////////////////////////////////////////////////////////////
-// projects - ssh-keys
-///////////////////////////////////////////////////////////////////////////////
-
-after('projects-ssh-keys-create', utils.storeTransactionResult('ssh_key'));
-
-///////////////////////////////////////////////////////////////////////////////
-// ssh-keys
-///////////////////////////////////////////////////////////////////////////////

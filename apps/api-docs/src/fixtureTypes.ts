@@ -6,16 +6,16 @@ export type UserCredentials = {
     email: string
     password: string
 };
-export type AuthToken = {
+export type UserTokens = {
     access_token: string
     refresh_token: string
 };
-export type Fixture = UserCredentials | AuthToken | Identifiable;
+export type Fixture = UserCredentials | UserTokens | Identifiable;
 
 // fixture keys are written with underscores so they map directly to URL and JSON param names
 const fixtureKeys = {
     'user_credentials': '',
-    'auth_token': '',
+    'user_tokens': '',
     'project': '', 
     'ssh_key': '',
 };
