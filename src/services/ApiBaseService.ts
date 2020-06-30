@@ -59,15 +59,15 @@ export class ApiBaseService {
     }
 
     private setUserAgent(): void {
-        // Firefox is fine with setting the 'User-Agent' header, but Chrome/Safari are not.
+        // Firefox is fine with setting the 'User-Agent' header, but Chrome and Safari are not.
         // As we don't want Chrome to raise piles of console logs with the error message:
         // 'Refused to set unsafe header "User-Agent"', we then only set the UA header
         // when the SDK is not being consumed from an app running on a browser foreground.
         // i.e: node.js cli, node.js server side, web workers, ...
         // if a window object is defined then we're very likely on a browser
         // so we don't set a custom User-Agent header
-        const devopnessSdkRunningOnBrowserForeground = typeof window !== 'undefined';
-        if (!devopnessSdkRunningOnBrowserForeground) {
+        const runningOnBrowserForeground = typeof window !== 'undefined';
+        if (!runningOnBrowserForeground) {
             // Setting the `User-Agent` with SDK version so we can track SDK adoption
             // through requests sent through it hitting our API servers
             this.api.defaults.headers.common['User-Agent'] = `devopness-sdk-js/${ApiBaseService.SDK_VERSION}`;
