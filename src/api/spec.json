@@ -5313,6 +5313,7 @@
           }
         },
         "required": [
+          "id",
           "hostname",
           "ip_address",
           "ssh_port",

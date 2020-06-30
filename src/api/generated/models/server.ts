@@ -26,7 +26,7 @@ export interface Server {
      * @type {number}
      * @memberof Server
      */
-    id?: number;
+    id: number;
     /**
      * The server\'s hostname
      * @type {string}
