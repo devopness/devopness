@@ -1,8 +1,13 @@
 import { AxiosError, AxiosResponse } from 'axios'
 
-export class ArgumentNullException extends Error {
+export class DevopnessSdkError extends Error {
+    constructor(message?: string) {
+        super(`Devopness SDK Error - ${message}`);
+    }
+}
+
+export class ArgumentNullException extends DevopnessSdkError {
     constructor(public param: string, method?: string, msg?: string) {
-        // TO DO: check if it's possible to use reflection/prototype to retrieve the method name
         super(msg || `Value cannot be null. Missing required parameter: "${param}" when calling "${method}"`);
     }
 }
@@ -12,13 +17,13 @@ export interface ErrorResponseData {
     errors?: Array<Record<string, string>>;
 }
 
-export class NetworkError extends Error {
+export class NetworkError extends DevopnessSdkError {
     constructor(error: AxiosError) {
         super(error.message);
     }
 }
 
-export class ApiError<T> extends Error {
+export class ApiError<T> extends DevopnessSdkError {
     errors?: Array<Record<string, string>>;
     response?: AxiosResponse<T>;
     status: number;
