@@ -1,3 +1,3 @@
 export * from './DevopnessApiClient';
 export * as DevopnessSdkExceptions from './common/Exceptions';
-export * from './api/generated/models';
+export * as DevopnessSdkModels from './api/generated/models';
