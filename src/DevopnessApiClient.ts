@@ -34,14 +34,6 @@ export class DevopnessApiClient {
   static: StaticService;
   users: UserService;
 
-  /**
-   * @todo provide a global onError event? How to make it easy to clients to interact with
-   * this SDK without being dependant themselves on AxiosResponse types?
-   * We should be the only ones concerned about axios and moving from
-   * Axios to another HTTP library should not affect the consumers
-   * of this SDK
-   */
-
   constructor(options?: ConfigurationOptions) {
     ApiBaseService.configuration = new Configuration(options || {});
 
