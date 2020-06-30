@@ -4742,6 +4742,19 @@
           "$ref": "#/components/schemas/EnvironmentLinkItem"
         }
       },
+      "EnvironmentLinkServer": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Environment's unique id",
+            "example": 867
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
       "Environments": {
         "type": "array",
         "items": {
@@ -5323,8 +5336,7 @@
             "items": {
               "$ref": "#/components/schemas/BlueprintItem"
             },
-            "nullable": true,
-            "deprecated": true
+            "nullable": true
           },
           "tools": {
             "description": "A list of tools that must be made available on the server",
@@ -5388,15 +5400,9 @@
             "$ref": "#/components/schemas/ServerBlueprint"
           },
           "environments": {
-            "description": "A list of environment IDs to which the server will be linked to",
             "type": "array",
-            "example": [
-              54789,
-              235,
-              1089044
-            ],
             "items": {
-              "type": "integer"
+              "$ref": "#/components/schemas/EnvironmentLinkServer"
             }
           }
         },

@@ -12,6 +12,7 @@
  */
 
 
+import { EnvironmentLinkServer } from './environment-link-server';
 import { ServerBlueprint } from './server-blueprint';
 
 /**
@@ -45,10 +46,10 @@ export interface ServerCreate {
      */
     blueprint: ServerBlueprint;
     /**
-     * A list of environment IDs to which the server will be linked to
-     * @type {Array<number>}
+     * 
+     * @type {Array<EnvironmentLinkServer>}
      * @memberof ServerCreate
      */
-    environments?: Array<number>;
+    environments?: Array<EnvironmentLinkServer>;
 }
 

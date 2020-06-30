@@ -19,6 +19,7 @@ export * from './deployment-step';
 export * from './environment';
 export * from './environment-create';
 export * from './environment-link-item';
+export * from './environment-link-server';
 export * from './environment-type';
 export * from './extra-body-params';
 export * from './language-runtime';
