@@ -16,11 +16,9 @@ properties:
   blueprint:
     $ref: "#/components/schemas/ServerBlueprint"
   environments:
-    description: A list of environment IDs to which the server will be linked to
     type: array
-    example: [54789, 235, 1089044]
     items:
-      type: integer
+      $ref: '#/components/schemas/EnvironmentLinkServer'
 required:
   - blueprint
   - hostname

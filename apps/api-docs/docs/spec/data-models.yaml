@@ -48,6 +48,8 @@ EnvironmentLinkItem:
   $ref: ./shared/schemas/environment-link-item.yaml
 EnvironmentLinks:
   $ref: ./shared/schemas/environment-links.yaml
+EnvironmentLinkServer:
+  $ref: ./shared/schemas/environment-link-server.yaml
 Environments:
   $ref: ./endpoints/environments/schemas/environment-list.yaml
 EnvironmentType:
