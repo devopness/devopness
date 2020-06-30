@@ -1,12 +1,12 @@
 import { AxiosError, AxiosResponse } from 'axios'
 
-export class DevopnessSdkError extends Error {
+export class SdkError extends Error {
     constructor(message?: string) {
         super(`Devopness SDK Error - ${message}`);
     }
 }
 
-export class ArgumentNullException extends DevopnessSdkError {
+export class ArgumentNullException extends SdkError {
     constructor(public param: string, method?: string, msg?: string) {
         super(msg || `Value cannot be null. Missing required parameter: "${param}" when calling "${method}"`);
     }
@@ -17,13 +17,13 @@ export interface ErrorResponseData {
     errors?: Array<Record<string, string>>;
 }
 
-export class NetworkError extends DevopnessSdkError {
+export class NetworkError extends SdkError {
     constructor(error: AxiosError) {
         super(error.message);
     }
 }
 
-export class ApiError<T> extends DevopnessSdkError {
+export class ApiError<T> extends SdkError {
     errors?: Array<Record<string, string>>;
     response?: AxiosResponse<T>;
     status: number;
