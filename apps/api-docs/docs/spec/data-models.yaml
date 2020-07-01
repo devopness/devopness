@@ -6,6 +6,8 @@ ApiError:
   $ref: ./shared/schemas/api-error.yaml
 Application:
   $ref: ./endpoints/applications/schemas/application.yaml
+ApplicationCreate:
+  $ref: ./endpoints/applications/schemas/application-create.yaml
 ApplicationDeployment:
   $ref: ./endpoints/applications/schemas/application-deployment.yaml
 ApplicationDeploymentSettings:
