@@ -1320,14 +1320,21 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Application"
+                "$ref": "#/components/schemas/ApplicationCreate"
               }
             }
           }
         },
         "responses": {
           "201": {
-            "$ref": "#/components/responses/Created"
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Application"
+                }
+              }
+            }
           },
           "422": {
             "$ref": "#/components/responses/ValidationError"
@@ -1509,7 +1516,14 @@
         },
         "responses": {
           "201": {
-            "$ref": "#/components/responses/Created"
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Environment"
+                }
+              }
+            }
           },
           "422": {
             "$ref": "#/components/responses/ValidationError"
@@ -3987,6 +4001,73 @@
           "framework",
           "programming_language",
           "public_directory"
+        ]
+      },
+      "ApplicationCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "A domain name that points to application main web address. Can be a naked domain or any subdomain. If app has domain names `testing.my-app.com`, `staging.my-app.com` and `www.my-app.com` a possible good candidate for the application name would be the \"naked\" domain `my-app.com`",
+            "example": "my-app.co.uk"
+          },
+          "source_provider_id": {
+            "type": "integer",
+            "description": "Numeric ID of the source provider account where the repository is hosted. Required when the `repository` field is informed."
+          },
+          "repository": {
+            "description": "The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed.",
+            "type": "string",
+            "example": "devopness/devopness-web-site"
+          },
+          "programming_language": {
+            "type": "string",
+            "description": "The predominant programming language used in the application source code",
+            "example": "php"
+          },
+          "framework": {
+            "type": "string",
+            "description": "The base framework on top of which the application has been implemented - if any",
+            "example": "drupal"
+          },
+          "public_directory": {
+            "type": "string",
+            "description": "The relative web directory where publicly accessible assets are located and the web content should be served from",
+            "example": "/public"
+          },
+          "root_directory": {
+            "type": "string",
+            "description": "The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository.",
+            "example": "/ or /src or /lib/src or /code or /app"
+          },
+          "entrypoint": {
+            "type": "string",
+            "description": "The applicaton initialization file/module/function from which the application execution starts. It might be a file name, a package manager script or a module/class/function exported by application code and invoked by a run time environment of the technology used by the application.",
+            "example": "index.js|server.js|server.php|index.php|index:app|my-site.wsgi:application|my-project:main|my-project.wsgi"
+          },
+          "deployment_settings": {
+            "description": "The list of deployment settings for each application environment",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApplicationDeploymentSettings"
+            }
+          },
+          "environments": {
+            "description": "The list of environments to which the application is linked to",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Environment"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "entrypoint",
+          "framework",
+          "programming_language",
+          "public_directory",
+          "repository",
+          "source_provider_id"
         ]
       },
       "ApplicationDeployment": {

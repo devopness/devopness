@@ -28,14 +28,14 @@ export class ProjectsEnvironmentsApiService extends ApiBaseService {
      * @param {number} projectId Numeric ID of the project to which an environment will be added
      * @param {EnvironmentCreate} environmentCreate A JSON object containing environment data
      */
-    public async addEnvironmentToProject(projectId: number, environmentCreate: EnvironmentCreate): Promise<ApiResponse<void>> {
+    public async addEnvironmentToProject(projectId: number, environmentCreate: EnvironmentCreate): Promise<ApiResponse<Environment>> {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'addEnvironmentToProject');
         }
         if (environmentCreate === null || environmentCreate === undefined) {
             throw new ArgumentNullException('environmentCreate', 'addEnvironmentToProject');
         }
-        const response = await this.post <void, EnvironmentCreate>(`/projects/{project_id}/environments`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), environmentCreate);
+        const response = await this.post <Environment, EnvironmentCreate>(`/projects/{project_id}/environments`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), environmentCreate);
         return new ApiResponse(response);
     }
 

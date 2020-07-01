@@ -16,6 +16,7 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { Application } from '../../generated/models';
+import { ApplicationCreate } from '../../generated/models';
 
 /**
  * ProjectsApplicationsApiService - Auto-generated
@@ -25,16 +26,16 @@ export class ProjectsApplicationsApiService extends ApiBaseService {
      * 
      * @summary Create a new application
      * @param {number} projectId Numeric ID of the application to get
-     * @param {Application} application A JSON object containing project data
+     * @param {ApplicationCreate} applicationCreate A JSON object containing project data
      */
-    public async addApplicationToProject(projectId: number, application: Application): Promise<ApiResponse<void>> {
+    public async addApplicationToProject(projectId: number, applicationCreate: ApplicationCreate): Promise<ApiResponse<Application>> {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'addApplicationToProject');
         }
-        if (application === null || application === undefined) {
-            throw new ArgumentNullException('application', 'addApplicationToProject');
+        if (applicationCreate === null || applicationCreate === undefined) {
+            throw new ArgumentNullException('applicationCreate', 'addApplicationToProject');
         }
-        const response = await this.post <void, Application>(`/projects/{project_id}/applications`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), application);
+        const response = await this.post <Application, ApplicationCreate>(`/projects/{project_id}/applications`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), applicationCreate);
         return new ApiResponse(response);
     }
 

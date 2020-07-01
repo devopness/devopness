@@ -3,6 +3,7 @@ export * from './api-error';
 export * from './api-error-errors';
 export * from './api-error-errors-field-name';
 export * from './application';
+export * from './application-create';
 export * from './application-deployment';
 export * from './application-deployment-settings';
 export * from './application-environment-variable';
