@@ -3,9 +3,9 @@ operationId: addEnvironmentToProject
 tags:
   - Projects - Environments
 parameters:
-  - $ref: '#/components/parameters/acceptHeader'
-  - $ref: '#/components/parameters/authHeader'
-  - $ref: '#/components/parameters/contentTypeHeader'
+  - $ref: "#/components/parameters/acceptHeader"
+  - $ref: "#/components/parameters/authHeader"
+  - $ref: "#/components/parameters/contentTypeHeader"
   - in: path
     name: project_id
     example: 1
@@ -20,9 +20,13 @@ requestBody:
   content:
     application/json:
       schema:
-        $ref: '#/components/schemas/EnvironmentCreate'
+        $ref: "#/components/schemas/EnvironmentCreate"
 responses:
   201:
-    $ref: '#/components/responses/Created'
+    description: "Created"
+    content:
+      application/json:
+        schema:
+          $ref: "#/components/schemas/Environment"
   422:
-    $ref: '#/components/responses/ValidationError'
+    $ref: "#/components/responses/ValidationError"

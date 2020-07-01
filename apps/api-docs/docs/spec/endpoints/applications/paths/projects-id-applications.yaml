@@ -1,11 +1,11 @@
-summary: 'Create a new application'
+summary: "Create a new application"
 operationId: addApplicationToProject
 tags:
   - Projects - Applications
 parameters:
-  - $ref: '#/components/parameters/acceptHeader'
-  - $ref: '#/components/parameters/authHeader'
-  - $ref: '#/components/parameters/contentTypeHeader'
+  - $ref: "#/components/parameters/acceptHeader"
+  - $ref: "#/components/parameters/authHeader"
+  - $ref: "#/components/parameters/contentTypeHeader"
   - in: path
     name: project_id
     example: 1
@@ -20,9 +20,13 @@ requestBody:
   content:
     application/json:
       schema:
-        $ref: '#/components/schemas/Application'
+        $ref: "#/components/schemas/ApplicationCreate"
 responses:
   201:
-    $ref: '#/components/responses/Created'
+    description: "Created"
+    content:
+      application/json:
+        schema:
+          $ref: "#/components/schemas/Application"
   422:
-    $ref: '#/components/responses/ValidationError'
+    $ref: "#/components/responses/ValidationError"
