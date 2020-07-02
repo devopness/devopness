@@ -29,14 +29,15 @@
   "homepage": "https://docs.devopness.com/",
   "devDependencies": {
     "@types/js-yaml": "^3.12.4",
+    "@types/toposort": "^2.0.3",
     "@types/uuid": "^8.0.0",
     "api-spec-converter": "^2.11.0",
     "dredd": "^13.1.1",
     "redoc-cli": "^0.9.8",
     "swagger-cli": "^4.0.3",
-    "typescript": "^3.9.5"
-  },
-  "dependencies": {
+    "typescript": "^3.9.5",
+    "openapi-types": "^1.3.5",
+    "toposort": "^2.0.2",
     "uuid": "^8.1.0"
   }
 }

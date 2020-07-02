@@ -13,91 +13,89 @@ import { v1, v4 } from 'uuid';
 import { UserCredentials, UserTokens } from './fixtureTypes';
 import FixtureStore  from './FixtureStore';
 import TransactionUtils from './TransactionUtils';
+import TransactionSpec from './TransactionSpec';
+import TransactionGraph from './TransactionGraph';
 
 // transaction names can be obtained by running `npx dredd --names`
-const transactionNames: { [id: string]: string } = {
-    // users
-    'users-signup': 'Users > /users > Sign up/register a new user > 201',
-    'users-login': 'Users > /users/login > Login/create a new token for the given credentials > 200 > application/json; charset=utf-8',
-    'users-logout': 'Users > /users/logout > Logout/revoke an existing token > 204',
-    'users-refresh-token': 'Users > /users/refresh-token > Refresh an existing user access token > 200 > application/json; charset=utf-8',
-    // projects
-    'projects-create': 'Projects > /projects > Create a new project > 201',
-    'projects-get': 'Projects > /projects/{project_id} > Get a project by ID > 200 > application/json',
-    // projects - ssh-keys
-    'projects-ssh-keys-create': 'Projects - SSH Keys > /projects/{project_id}/ssh-keys > Create a SSH key and link it to the given project > 201 > application/json',
-    // ssh-keys
-    'ssh-keys-get': 'SSH Keys > /ssh-keys/{ssh_key_id} > Get a SSH key by ID > 200 > application/json',
-};
-
-// transactionOrder specifies which methods will run in which order
-const transactionOrder: string[] = [
-    'users-signup',
-    'users-login',
-    'users-refresh-token',
-    'projects-create',
-    'projects-get',
-    'projects-ssh-keys-create',
-    'ssh-keys-get',
-    'users-logout'
-].map(k => transactionNames[k]);
-
-const after = (id: string, cb: TransactionHook) => hooks.after(transactionNames[id], cb);
-const before = (id: string, cb: TransactionHook) => hooks.before(transactionNames[id], cb);
+const transactionSlugToName: { [id: string]: string } = {};
+const transactionNameToSpec: { [id: string]: TransactionSpec } = {};
 
 const fixtures = new FixtureStore();
 const utils = new TransactionUtils(fixtures, hooks.log);
 
+// all setup code for the tests run inside this beforeAll hook
 hooks.beforeAll((transactions: Transaction[], done: () => void) => {
+    // get transaction specs and build maps
+    const transactionSpecs: TransactionSpec[] = [];
+    transactions.forEach((tx: Transaction) => {
+        const spec = new TransactionSpec(tx, hooks.log);
+        transactionSlugToName[spec.slug] = tx.name;
+        transactionNameToSpec[tx.name] = spec;
+        transactionSpecs.push(spec);
+    });
+
+    // build transaction graph
+    const graph = new TransactionGraph(transactionSpecs);
+    const txOrder = JSON.stringify(graph.topologicalSort());
+    hooks.log(`possible transaction order: ${JSON.stringify(txOrder)}`);
+
+    // specify which transactions will run in which order
+    const transactionOrder: string[] = [
+        'addUser201',
+        'login200',
+        'refreshToken200',
+        'addProject201',
+        'getProject200',
+        'addSshKeyToProject201',
+        'getSshKey200',
+        'logout204'
+    ].map(k => transactionSlugToName[k]);
     utils.selectTransactionsByName(transactions, transactionOrder);
+
+    // attach graph inferred hooks
     transactions.forEach((transaction: Transaction) => {
-        // transaction requires a fixture id
-        const requestPathParamFixtureKeys = utils.fixtureIdParamsInTransactionPath(transaction);
-        // TODO: handle request paths with multiple params (`/environments/${environment_id}/servers/${server_id}/link`)
-        if (requestPathParamFixtureKeys.length > 0) {
-            hooks.before(transaction.name, utils.writeFixtureIdInTransactionPath(requestPathParamFixtureKeys[0]));
-        }
-        // transaction returns a fixture
-        const responseFixtureKey = utils.fixtureKeyFromTransactionResponseSchema(transaction);
-        if (responseFixtureKey != null) {
-            hooks.after(transaction.name, utils.storeTransactionResult(responseFixtureKey));
+        const transactionSpec = transactionNameToSpec[transaction.name];
+        if (transactionSpec) {
+            // TODO: handle request paths with multiple params
+            // ex.: (`/environments/${environment_id}/servers/${server_id}/link`)
+            if (transactionSpec.inputs.length > 0) {
+                hooks.before(transaction.name, utils.writeFixtureIdInTransactionPath(transactionSpec.inputs[0]));
+            }
+            if (transactionSpec.output) {
+                hooks.after(transaction.name, utils.storeTransactionResult(transactionSpec.output));
+            }
         }
     });
+
+    // request headers
+    hooks.beforeEach(utils.setTransactionRequestAuthHeaderWithFixture('user_tokens'));
+    hooks.beforeEach(utils.setTransactionRequestJsonHeaders);
+
+    //// shorthand methods for adding hooks by transaction slug
+    const before = (id: string, cb: TransactionHook) => hooks.before(transactionSlugToName[id], cb);
+    const after = (id: string, cb: TransactionHook) => hooks.after(transactionSlugToName[id], cb);
+
+    // users
+    before('addUser201', (transaction: Transaction) => {
+        // randomize user, as db state won't be clean
+        const credentials = { email: `${v1()}@api-test.devopness`, password: v4() }
+        transaction.request.body = JSON.stringify(credentials);
+        fixtures.put('user_credentials', credentials);
+    });
+
+    before('login200', utils.setTransactionRequestBodyToFixture<UserCredentials>('user_credentials'));
+
+    before('refreshToken200', utils.setTransactionRequestBodyToFixture<UserTokens>('user_tokens'));
+
+    after('logout204', (transaction: Transaction) => { if (transaction.test.valid) { fixtures.delete('user_tokens'); } });
+
+    // projects
+    const removeLogoImage = (body: any) => { delete body['logo_image']; }
+
+    before('addProject201', utils.rewriteTransactionRequestBody(removeLogoImage));
+    after('addProject201', utils.storeTransactionResult('project'));
+
+    before('getProject200', utils.rewriteTransactionRequestBody(removeLogoImage));
+
     done();
 })
-
-hooks.beforeEach(utils.setTransactionRequestAuthHeaderWithFixture('user_tokens'));
-hooks.beforeEach(utils.setTransactionRequestJsonHeaders);
-
-///////////////////////////////////////////////////////////////////////////////
-// users
-///////////////////////////////////////////////////////////////////////////////
-
-// randomize user, as db state won't be clean
-before('users-signup', (transaction: Transaction) => {
-    const credentials = { email: `${v1()}@api-test.devopness`, password: v4() }
-    transaction.request.body = JSON.stringify(credentials);
-    fixtures.put('user_credentials', credentials);
-})
-
-before('users-login', utils.setTransactionRequestBodyToFixture<UserCredentials>('user_credentials'));
-
-before('users-refresh-token', utils.setTransactionRequestBodyToFixture<UserTokens>('user_tokens'));
-
-after('users-logout', (transaction: Transaction) => {
-    if (transaction.test.valid) {
-        fixtures.delete('user_tokens');
-    }
-});
-
-///////////////////////////////////////////////////////////////////////////////
-// projects
-///////////////////////////////////////////////////////////////////////////////
-
-const removeLogoImage = (body: any) => { delete body['logo_image']; }
-
-before('projects-create', utils.rewriteTransactionRequestBody(removeLogoImage));
-// TODO: 'projects-create' (POST /projects) spec should specify a { spec: { $ref: 'Project' }} return body
-after('projects-create', utils.storeTransactionResult('project'));
-
-before('projects-get', utils.rewriteTransactionRequestBody(removeLogoImage));

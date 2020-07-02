@@ -1,6 +1,3 @@
-import fs from 'fs';
-import YAML from 'js-yaml';
-
 import { Transaction, TransactionHook } from 'hooks';
 
 import { FixtureKey, Fixture, Identifiable, UserTokens, isFixtureKey } from './fixtureTypes';
@@ -12,20 +9,17 @@ type LogFunction = (...any: any[]) => void;
 export default class TransactionUtils {
     fixtureStore: FixtureStore;
     log: LogFunction;
-    specCache: { [filename: string]: any };
-
     constructor(store: FixtureStore, log: LogFunction) {
         this.fixtureStore = store;
         this.log = log;
-        this.specCache = {};
     }
 
     // define which transactions will be ran and in which order
     // inspired by https://github.com/apiaryio/dredd/issues/456
-    selectTransactionsByName(transactions: Transaction[], names: string[]) {
+    selectTransactionsByName(transactions: Transaction[], slugs: string[]) {
         let keep = [];
         for (const transaction of transactions) {
-            const idx = names.indexOf(transaction.name);
+            const idx = slugs.indexOf(transaction.name);
             if (idx > -1) {
                 keep[idx] = transaction;
             }
@@ -36,74 +30,11 @@ export default class TransactionUtils {
         }
     }
 
-    fixtureIdParamsInTransactionPath(transaction: Transaction): FixtureKey[] {
-        const idParams: FixtureKey[] = [];
-        const idPattern = /{([a-zA-Z_]+)_id}/g;
-        let idParamMatch = idPattern.exec(transaction.origin.resourceName);
-        while (idParamMatch) {
-            const paramType = idParamMatch[1];
-            if (isFixtureKey(paramType)) {
-            } else {
-                this.log(`[beforeAll] can't ${paramType} is not a valid fixture key`);
-            }
-            if (idParamMatch && idParamMatch.length > 1) {
-                const idParam = idParamMatch[1];
-                if (isFixtureKey(idParam)) {
-                    idParams.push(idParam);
-                }
-            }
-            idParamMatch = idPattern.exec(transaction.origin.resourceName);
-        }
-        return idParams;
-    }
-
-    readSpecFile(path: string): any {
-        if (!(path in this.specCache)) {
-            this.specCache[path] = YAML.load(fs.readFileSync(path).toString());
-        }
-        return this.specCache[path];
-    }
-
-    fixtureKeyFromTransactionResponseSchema(transaction: Transaction): FixtureKey | null {
-        const spec = this.readSpecFile(transaction.origin.filename);
-
-        // spec[resourceName][requestMethod].responses[statusCode].schema['$ref']
-        const resourceName = transaction.origin.resourceName;
-        const method =  transaction.request.method.toLowerCase();
-        const endpointSpec = spec.paths[resourceName][method]
-        if (endpointSpec && endpointSpec.hasOwnProperty('responses')) {
-            const statusCode = transaction.expected.statusCode;
-            const responseSpec = endpointSpec.responses[statusCode]
-            if (responseSpec && responseSpec.hasOwnProperty('schema')) {
-                // schema['$ref'] = '#/definitions/SchemaName'
-                const schemaRef = responseSpec.schema['$ref'];
-                const schemaRefParts = schemaRef.split('/');
-                let schemaName = schemaRefParts[schemaRefParts.length - 1];
-
-                // SchemaName -> schema_name
-                schemaName = schemaName.replace(/([A-Z])/g, (g: string) => `_${g[0].toLowerCase()}`);
-                schemaName = schemaName[0] == '_' ? schemaName.substr(1) : schemaName;
-
-                // should be a valid fixture key
-                if (isFixtureKey(schemaName)) {
-                    return schemaName
-                } 
-                this.log(`[fixtureKeyFromTransactionResponseSchema] '${schemaName}' is not a valid fixture key`)
-            } else{
-                this.log(`[fixtureKeyFromTransactionResponseSchema] ${transaction.fullPath} responseSpec = '${JSON.stringify(responseSpec)}'`)
-            }
-        } else{
-            this.log(`[fixtureKeyFromTransactionResponseSchema] ${transaction.fullPath} endpointSpec = '${JSON.stringify(endpointSpec)}'`)
-        }
-        return null
-    }
-
     // ensures that a transaction request has content type and accept headers set to a json mimetype
     setTransactionRequestJsonHeaders(transaction: Transaction) {
         if (!transaction.request.headers) {
             return;
         }
-        
         transaction.request.headers['Content-Type'] = 'application/json';
         transaction.request.headers['Accept'] = 'application/json';
     }
@@ -180,5 +111,4 @@ export default class TransactionUtils {
             }
         }
     }
-    
 }
