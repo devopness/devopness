@@ -20,6 +20,12 @@
  */
 export interface SslCertificate {
     /**
+     * The unique id of the given record
+     * @type {number}
+     * @memberof SslCertificate
+     */
+    id: number;
+    /**
      * The list of domain names to which the SSL certificate refers to
      * @type {Array<string>}
      * @memberof SslCertificate

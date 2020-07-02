@@ -24,6 +24,12 @@ import { User } from './user';
  */
 export interface Deployment {
     /**
+     * The unique id of the given record
+     * @type {number}
+     * @memberof Deployment
+     */
+    id: number;
+    /**
      * Current status of the deployment
      * @type {string}
      * @memberof Deployment

@@ -26,7 +26,7 @@ export interface Environment {
      * @type {number}
      * @memberof Environment
      */
-    id?: number;
+    id: number;
     /**
      * Environment\'s name
      * @type {string}

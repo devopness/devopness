@@ -3911,6 +3911,11 @@
       "Application": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The unique id of the given record",
+            "example": 445678964
+          },
           "name": {
             "type": "string",
             "description": "A domain name that points to application main web address. Can be a naked domain or any subdomain. If app has domain names `testing.my-app.com`, `staging.my-app.com` and `www.my-app.com` a possible good candidate for the application name would be the \"naked\" domain `my-app.com`",
@@ -3996,8 +4001,10 @@
           }
         },
         "required": [
+          "id",
           "project_id",
           "name",
+          "entrypoint",
           "framework",
           "programming_language",
           "public_directory"
@@ -4420,7 +4427,7 @@
           "id": {
             "type": "integer",
             "description": "The Id of the given cron job",
-            "example": 1
+            "example": 19876
           },
           "name": {
             "type": "string",
@@ -4474,6 +4481,7 @@
           }
         },
         "required": [
+          "id",
           "command",
           "name",
           "pattern",
@@ -4523,6 +4531,11 @@
       "Deployment": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The unique id of the given record",
+            "example": 93457689064
+          },
           "status": {
             "type": "string",
             "description": "Current status of the deployment",
@@ -4589,6 +4602,7 @@
           }
         },
         "required": [
+          "id",
           "status",
           "type",
           "source",
@@ -4737,7 +4751,7 @@
           "id": {
             "type": "integer",
             "description": "Unique id of the given record",
-            "example": 123
+            "example": 16523
           },
           "name": {
             "type": "string",
@@ -4765,6 +4779,7 @@
           }
         },
         "required": [
+          "id",
           "name",
           "type"
         ]
@@ -4987,6 +5002,11 @@
       "NetworkRule": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The unique id of the given record",
+            "example": 967864
+          },
           "name": {
             "type": "string",
             "description": "The rule's name/description/reminder",
@@ -5047,6 +5067,7 @@
           }
         },
         "required": [
+          "id",
           "name",
           "type",
           "protocol",
@@ -5504,6 +5525,11 @@
       "Service": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The unique id of the given record",
+            "example": 652674
+          },
           "name": {
             "type": "string",
             "description": "The service name",
@@ -5570,6 +5596,7 @@
           }
         },
         "required": [
+          "id",
           "name",
           "auto_generated",
           "auto_start",
@@ -5620,6 +5647,11 @@
       "SocialAccount": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The unique id of the given record",
+            "example": 964
+          },
           "provider": {
             "type": "string",
             "description": "The name of the Social Authentication provider",
@@ -5633,9 +5665,9 @@
             ],
             "example": "bitbucket"
           },
-          "provider_user_name": {
+          "provider_user_nickname": {
             "type": "string",
-            "description": "The name of the user on the Social Authentication provider",
+            "description": "The nickname of the user on the Social Authentication provider",
             "example": "Joe Smith"
           },
           "is_vcs": {
@@ -5659,7 +5691,12 @@
             "description": "The date and time when the record was last updated",
             "example": "2019-09-25 13:52:04"
           }
-        }
+        },
+        "required": [
+          "id",
+          "provider",
+          "provider_user_nickname"
+        ]
       },
       "SocialAccountCreate": {
         "type": "object",
@@ -5773,6 +5810,11 @@
       "SslCertificate": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The unique id of the given record",
+            "example": 6789
+          },
           "domains": {
             "description": "The list of domain names to which the SSL certificate refers to",
             "type": "array",
@@ -5871,6 +5913,7 @@
           }
         },
         "required": [
+          "id",
           "domains",
           "issuer",
           "type",

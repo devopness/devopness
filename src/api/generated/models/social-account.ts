@@ -20,17 +20,23 @@
  */
 export interface SocialAccount {
     /**
+     * The unique id of the given record
+     * @type {number}
+     * @memberof SocialAccount
+     */
+    id: number;
+    /**
      * The name of the Social Authentication provider
      * @type {string}
      * @memberof SocialAccount
      */
-    provider?: SocialAccountProviderEnum;
+    provider: SocialAccountProviderEnum;
     /**
-     * The name of the user on the Social Authentication provider
+     * The nickname of the user on the Social Authentication provider
      * @type {string}
      * @memberof SocialAccount
      */
-    provider_user_name?: string;
+    provider_user_nickname: string;
     /**
      * Tells if the social account provider is a Source Code Provider/Version Control System. e.g. false for Facebook, true for Github
      * @type {boolean}

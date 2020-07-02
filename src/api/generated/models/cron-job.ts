@@ -24,7 +24,7 @@ export interface CronJob {
      * @type {number}
      * @memberof CronJob
      */
-    id?: number;
+    id: number;
     /**
      * The name of the cron job
      * @type {string}

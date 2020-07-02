@@ -20,6 +20,12 @@
  */
 export interface Service {
     /**
+     * The unique id of the given record
+     * @type {number}
+     * @memberof Service
+     */
+    id: number;
+    /**
      * The service name
      * @type {string}
      * @memberof Service

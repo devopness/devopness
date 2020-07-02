@@ -20,6 +20,12 @@
  */
 export interface NetworkRule {
     /**
+     * The unique id of the given record
+     * @type {number}
+     * @memberof NetworkRule
+     */
+    id: number;
+    /**
      * The rule\'s name/description/reminder
      * @type {string}
      * @memberof NetworkRule

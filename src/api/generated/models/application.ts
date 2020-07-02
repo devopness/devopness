@@ -23,6 +23,12 @@ import { SocialAccount } from './social-account';
  */
 export interface Application {
     /**
+     * The unique id of the given record
+     * @type {number}
+     * @memberof Application
+     */
+    id: number;
+    /**
      * A domain name that points to application main web address. Can be a naked domain or any subdomain. If app has domain names `testing.my-app.com`, `staging.my-app.com` and `www.my-app.com` a possible good candidate for the application name would be the \"naked\" domain `my-app.com`
      * @type {string}
      * @memberof Application
@@ -75,7 +81,7 @@ export interface Application {
      * @type {string}
      * @memberof Application
      */
-    entrypoint?: string;
+    entrypoint: string;
     /**
      * The relative directory where package manager\'s manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository.
      * @type {string}
