@@ -1,13 +1,17 @@
 type: object
 properties:
+  id:
+    type: integer
+    description: The unique id of the given record
+    example: 964
   provider:
     type: string
     description: The name of the Social Authentication provider
     enum: ['bitbucket', 'facebook', 'github', 'gitlab', 'google', 'linkedin']
     example: 'bitbucket'
-  provider_user_name:
+  provider_user_nickname:
     type: string
-    description: The name of the user on the Social Authentication provider
+    description: The nickname of the user on the Social Authentication provider
     example: 'Joe Smith'
   is_vcs:
     type: boolean
@@ -26,3 +30,7 @@ properties:
     format: date-time
     description: The date and time when the record was last updated
     example: '2019-09-25 13:52:04'
+required:
+  - id
+  - provider
+  - provider_user_nickname

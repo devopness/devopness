@@ -1,5 +1,9 @@
 type: object
 properties:
+  id:
+    type: integer
+    description: The unique id of the given record
+    example: 93457689064
   status:
     type: string
     description: Current status of the deployment
@@ -40,6 +44,7 @@ properties:
   triggered_by_user:
     $ref: '#/components/schemas/User'
 required:
+  - id
   - status
   - type
   - source

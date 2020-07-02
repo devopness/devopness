@@ -1,5 +1,9 @@
 type: object
 properties:
+  id:
+    type: integer
+    description: The unique id of the given record
+    example: 445678964
   name:
     type: string
     description: A domain name that points to application main web address. Can be a naked domain or any subdomain. If app has domain names `testing.my-app.com`, `staging.my-app.com` and `www.my-app.com` a possible good candidate for the application name would be the "naked" domain `my-app.com`
@@ -61,8 +65,10 @@ properties:
     enum: ["pending", "in-progress", "cancelled", "completed", "failed"]
     example: "completed"
 required:
+  - id
   - project_id
   - name
+  - entrypoint
   - framework
   - programming_language
   - public_directory

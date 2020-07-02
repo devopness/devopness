@@ -3,7 +3,7 @@ properties:
   id:
     type: integer
     description: Unique id of the given record
-    example: 123
+    example: 16523
   name:
     type: string
     description: Environment's name
@@ -24,5 +24,6 @@ properties:
     description: The date and time when the record was last updated
     example: '2019-09-25 13:52:04'
 required:
+  - id
   - name
   - type

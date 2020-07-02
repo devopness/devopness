@@ -3,7 +3,7 @@ properties:
   id:
     type: integer
     description: The Id of the given cron job
-    example: 1
+    example: 19876
   name:
     type: string
     description: The name of the cron job
@@ -35,6 +35,7 @@ properties:
     enum: ["pending", "in-progress", "cancelled", "completed", "failed"]
     example: "completed"
 required:
+  - id
   - command
   - name
   - pattern

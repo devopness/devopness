@@ -1,5 +1,9 @@
 type: object
 properties:
+  id:
+    type: integer
+    description: The unique id of the given record
+    example: 652674
   name:
     type: string
     description: The service name
@@ -51,6 +55,7 @@ properties:
     description: The date and time when the record was last updated
     example: "2019-09-25 13:52:04"
 required:
+  - id
   - name
   - auto_generated
   - auto_start

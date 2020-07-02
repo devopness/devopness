@@ -1,5 +1,9 @@
 type: object
 properties:
+  id:
+    type: integer
+    description: The unique id of the given record
+    example: 967864
   name:
     type: string
     description: The rule's name/description/reminder
@@ -38,6 +42,7 @@ properties:
     enum: ["pending", "in-progress", "cancelled", "completed", "failed"]
     example: "completed"
 required:
+  - id
   - name
   - type
   - protocol
