@@ -98,13 +98,13 @@ export class ApiBaseService {
             },
             (error: AxiosError) => {
                 if (error.response) {
-                    // server responded with a status code other than 2xx
+                    // server responded, but with a status code other than 2xx
                     throw new ApiError(error);
                 } else if (error.request) {
                     // no response received. e.g.: client lost internet connection after request has been sent
                     throw new NetworkError(error);
                 } else {
-                    // request wasn't sent
+                    // request wasn't sent. e.g: invalid IP/DNS provided as API base URL
                     throw new NetworkError(error);
                 }
             }
@@ -137,13 +137,5 @@ export class ApiBaseService {
 
     protected get<T, R = AxiosResponse<T>>(endpoint: string): Promise<R> {
         return this.api.get<T, R>(endpoint);
-    }
-
-    public success<T>(response: AxiosResponse<T>): T {
-        return response.data;
-    }
-
-    public error(error: AxiosError<Error>): void {
-        throw error;
     }
 }
