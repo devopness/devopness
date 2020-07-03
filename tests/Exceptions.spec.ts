@@ -34,6 +34,28 @@ test("non-200 response should reject with an ApiError", async () => {
     }
 });
 
+test("ApiError message must contain a prefix so consumers know it's been raised by Devopness SDK", async () => {
+    expect.assertions(2);
+    reqMock.onGet('/users/me').replyOnce(403, {});
+    try {
+        await (apiClient.users.getCurrentUser());
+    } catch (e) {
+        expect(e).toBeInstanceOf(ApiError)
+        expect(e.message).toBe('Devopness SDK Error - Request failed with status code 403');
+    }
+});
+
+test("NetworkError message must contain a prefix so consumers know it's been raised by Devopness SDK", async () => {
+    expect.assertions(2);
+    reqMock.onGet('/users/me').timeoutOnce();
+    try {
+        await (apiClient.users.getCurrentUser());
+    } catch (e) {
+        expect(e).toBeInstanceOf(NetworkError)
+        expect(e.message).toContain('Devopness SDK Error - timeout of ');
+    }
+});
+
 test("request timeout should reject with a NetworkError", async () => {
     expect.assertions(1);
     const email = 'notanemail'
@@ -57,4 +79,3 @@ test("request network error should reject with a NetworkError", async () => {
         expect(e).toBeInstanceOf(NetworkError)
     }
 });
-
