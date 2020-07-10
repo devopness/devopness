@@ -10,7 +10,7 @@
 import hooks, { Transaction, TransactionHook } from 'hooks';
 import { v1, v4 } from 'uuid';
 
-import { UserCredentials, UserTokens } from './fixtureTypes';
+import { UserCredentials, UserTokens, isFixtureKey, isFixtureListKey } from './fixtureTypes';
 import FixtureStore  from './FixtureStore';
 import TransactionUtils from './TransactionUtils';
 import TransactionSpec from './TransactionSpec';
@@ -48,6 +48,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         'getProject200',
         'addSshKeyToProject201',
         'getSshKey200',
+        'listProjects200',
         'logout204'
     ].map(k => transactionSlugToName[k]);
     utils.selectTransactionsByName(transactions, transactionOrder);
@@ -62,7 +63,9 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
                 hooks.before(transaction.name, utils.writeFixtureIdInTransactionPath(transactionSpec.inputs[0]));
             }
             if (transactionSpec.output) {
-                hooks.after(transaction.name, utils.storeTransactionResult(transactionSpec.output));
+                if (isFixtureKey(transactionSpec.output)) {
+                    hooks.after(transaction.name, utils.storeTransactionResult(transactionSpec.output));
+                }
             }
         }
     });
@@ -96,6 +99,6 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     after('addProject201', utils.storeTransactionResult('project'));
 
     before('getProject200', utils.rewriteTransactionRequestBody(removeLogoImage));
-
+    
     done();
 })

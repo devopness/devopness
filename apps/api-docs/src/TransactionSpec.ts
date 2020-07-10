@@ -3,7 +3,10 @@ import YAML from 'js-yaml';
 import { OpenAPIV2 } from "openapi-types";
 
 import { Transaction } from 'hooks';
-import { FixtureKey, isFixtureKey } from './fixtureTypes';
+import { 
+    FixtureKey, isFixtureKey, 
+    FixtureListKey, isFixtureListKey,
+} from './fixtureTypes';
 
 const specCache: { [filename: string]: any } = {};
 
@@ -12,7 +15,7 @@ type LogFunction = (...any: any[]) => void;
 export default class TransactionSpec {
     slug: string;
     inputs: FixtureKey[];
-    output: FixtureKey | null;
+    output: FixtureKey | FixtureListKey | null;
     requiresAuth: boolean;
     isDelete: boolean;
     log: LogFunction;
@@ -41,8 +44,8 @@ export default class TransactionSpec {
         this.requiresAuth = this.operationSpecHasAuthorizationHeaderParam(operationSpec);
         this.isDelete = method === 'delete';
         this.slug = `${operationSpec.operationId}${statusCode}`;
-        this.inputs = this.inputFixtureKeysFromOperationSpec(operationSpec);
-        this.output = this.outputFixtureKeyFromResponseSpec(responseSpec);
+        this.inputs = this.inputsFromOperationSpec(operationSpec);
+        this.output = this.outputFromResponseSpec(responseSpec);
     }
 
     operationSpecHasAuthorizationHeaderParam(operationSpec: OpenAPIV2.OperationObject): boolean {
@@ -58,7 +61,7 @@ export default class TransactionSpec {
         return false;
     }
 
-    inputFixtureKeysFromOperationSpec(operationSpec: OpenAPIV2.OperationObject): FixtureKey[] {
+    inputsFromOperationSpec(operationSpec: OpenAPIV2.OperationObject): FixtureKey[] {
         let inputs: FixtureKey[] = [];
         const parametersSpec = operationSpec.parameters;
         if (parametersSpec) {
@@ -77,7 +80,9 @@ export default class TransactionSpec {
         return inputs;
     }
 
-    outputFixtureKeyFromResponseSpec(responseSpec: OpenAPIV2.ResponseObject): FixtureKey | null {
+    ignoreSchemas = ['api_error', 'log'];
+
+    outputFromResponseSpec(responseSpec: OpenAPIV2.ResponseObject): FixtureKey | FixtureListKey | null {
         // schema['$ref'] = '#/definitions/SchemaName'
         if (responseSpec.schema) {
             const schemaRef = responseSpec.schema as OpenAPIV2.ReferenceObject;
@@ -92,7 +97,9 @@ export default class TransactionSpec {
                 // should be a valid fixture key
                 if (isFixtureKey(schemaName)) {
                     return schemaName;
-                } else if (schemaName != 'error') {
+                } else if (isFixtureListKey(schemaName)) {
+                    return schemaName;
+                } else if (!this.ignoreSchemas.includes(schemaName)) {
                     this.log(`[outputFixtureKeyFromResponseSpec] '${schemaName}' is not a valid fixture key`)
                 }
             } else {

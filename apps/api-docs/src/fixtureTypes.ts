@@ -28,16 +28,40 @@ const fixtureKeys = {
     'environment': '',
     'process': '',
     'network_rule': '',
-    'rule': '',
+    // 'rule': '',
     'server': '',
     'service': '',
     'social_account': '',
+    'source_provider': '',
     'ssl_certificate': '',
     'user': '',
     'repository': '',
-    'task': '',
+    // 'task': '',
 };
 export type FixtureKey = keyof typeof fixtureKeys;
 export function isFixtureKey(str: string): str is FixtureKey {
     return fixtureKeys.hasOwnProperty(str);
+}
+
+const fixtureListKeys = {
+    'projects': 'project',
+    'actions': 'action',
+    'deployments': 'deployment',
+    'environments': 'environment',
+    'network_rules': 'network_rule',
+    'processes': 'process',
+    'servers': 'server',
+    'services': 'service',
+    'ssh_keys': 'ssh_key',
+    'cron_jobs': 'cron_job',
+    'social_accounts': 'social_account',
+    'repositories': 'repository',
+}
+export type FixtureListKey = keyof typeof fixtureListKeys;
+export function isFixtureListKey(str: string): str is FixtureListKey {
+    return fixtureListKeys.hasOwnProperty(str);
+}
+
+export function fixtureKeyElement(key: FixtureKey | FixtureListKey): FixtureKey {
+    return isFixtureKey(key) ? key : fixtureListKeys[key] as FixtureKey;
 }

@@ -111,4 +111,11 @@ export default class TransactionUtils {
             }
         }
     }
+
+    // logs a transaction
+    transactionLogger(): TransactionHook {
+        return (transaction: Transaction) => {
+            this.log(JSON.stringify(transaction, null, 2));
+        }
+    }
 }

@@ -2,6 +2,7 @@ import fs from 'fs';
 import toposort from 'toposort';
 
 import TransactionSpec from './TransactionSpec';
+import { fixtureKeyElement } from './fixtureTypes';
 
 type TransactionNode = string;
 type FixtureNode = string;
@@ -57,8 +58,8 @@ export default class TransactionGraph {
                 }
             } else {
                 // skip output on transactions that have same input and output types to avoid cycles
-                if (txSpec.output && (txSpec.inputs.indexOf(txSpec.output) == -1)) {
-                    fixtureTransactionGraphPush(fixtureTransactionOutputs, txSpec.output, txSpec.slug);
+                if (txSpec.output && (txSpec.inputs.indexOf(fixtureKeyElement(txSpec.output)) == -1)) {
+                    fixtureTransactionGraphPush(fixtureTransactionOutputs, fixtureKeyElement(txSpec.output), txSpec.slug);
                 }
                 for (const input of txSpec.inputs) {
                     fixtureTransactionGraphPush(fixtureTransactionInputs, input, txSpec.slug);
