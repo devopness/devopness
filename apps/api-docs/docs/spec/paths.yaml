@@ -46,7 +46,7 @@
 /logs/deployments/{deployment_id}/steps/{step_id}:
   get:
     $ref: ./endpoints/logs/paths/logs-deployments-id-steps-id.yaml
-/network-rules/{rule_id}:
+/network-rules/{network_rule_id}:
   delete:
     $ref: ./endpoints/network-rules/paths/network-rules-id-delete.yaml
   get:
