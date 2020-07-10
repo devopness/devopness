@@ -40,17 +40,21 @@ export default class TransactionUtils {
     }
     
     // replaces `${fixtureKey}_id` with ${fixture.id} in transaction request path
-    writeFixtureIdInTransactionPath<T extends Identifiable>(key: FixtureKey): TransactionHook {
+    writeFixtureIdsInTransactionPath<T extends Identifiable>(keys: FixtureKey[]): TransactionHook {
         return (transaction: Transaction) => {
-            const fixture = this.fixtureStore.get<T>(key);
-            if (fixture) {
-                const replacedPath = transaction.origin.resourceName.replace(`{${key}_id}`, fixture.id);
-                this.log(`[writeFixtureIdInTransactionPath] '${transaction.fullPath}' => '${replacedPath}'`)
-                transaction.fullPath = replacedPath;
-            } else {
-                this.log(`[writeFixtureIdInTransactionPath] transaction '${transaction.id}' requires '${key}' fixture; skipping`)
-                transaction.fail = true;
+            let path = transaction.origin.resourceName;
+            for (const key of keys) {
+                const fixture = this.fixtureStore.get<T>(key);
+                if (fixture) {
+                    path = path.replace(`{${key}_id}`, fixture.id);
+                } else {
+                    this.log(`[writeFixtureIdsInTransactionPath] transaction '${transaction.id}' requires '${key}' fixture; skipping`)
+                    transaction.fail = true;
+                    break;
+                }
             }
+            this.log(`[writeFixtureIdsInTransactionPath] '${transaction.fullPath}' => '${path}'`)
+            transaction.fullPath = path;
         }
     }
     

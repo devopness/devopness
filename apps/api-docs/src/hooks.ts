@@ -57,10 +57,9 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     transactions.forEach((transaction: Transaction) => {
         const transactionSpec = transactionNameToSpec[transaction.name];
         if (transactionSpec) {
-            // TODO: handle request paths with multiple params
-            // ex.: (`/environments/${environment_id}/servers/${server_id}/link`)
+            // TODO: test on (`/environments/${environment_id}/servers/${server_id}/link`)
             if (transactionSpec.inputs.length > 0) {
-                hooks.before(transaction.name, utils.writeFixtureIdInTransactionPath(transactionSpec.inputs[0]));
+                hooks.before(transaction.name, utils.writeFixtureIdsInTransactionPath(transactionSpec.inputs));
             }
             if (transactionSpec.output) {
                 if (isFixtureKey(transactionSpec.output)) {
