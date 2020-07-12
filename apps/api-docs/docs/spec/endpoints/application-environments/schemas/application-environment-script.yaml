@@ -1,0 +1,44 @@
+type: object
+properties:
+  id:
+    type: integer
+    description: The unique id of the given record
+    example: 35678964
+  trigger_type:
+    type: string
+    description: The type of event that will trigger the script execution
+    enum: [before, after]
+    example: "after"
+  trigger_event:
+    type: string
+    description: The application deployment event to which the script is attached
+    enum:
+      [
+        get-new-release,
+        install-dependencies,
+        activate-new-release,
+        remove-old-releases,
+      ]
+    example: "install-dependencies"
+  trigger_order:
+    type: integer
+    description: The relative order of the script execution in case the event has multiple scripts attached
+    example: 2
+  created_at:
+    type: string
+    format: date-time
+    description: The date and time when the record was created
+    example: "2019-09-25 13:49:51"
+  updated_at:
+    type: string
+    format: date-time
+    description: The date and time when the record was last updated
+    example: "2019-09-25 13:52:04"
+  script:
+    description: "The script record attached to the application deployment event"
+    $ref: "#/components/schemas/Script"
+required:
+  - id
+  - trigger_event
+  - trigger_order
+  - trigger_type

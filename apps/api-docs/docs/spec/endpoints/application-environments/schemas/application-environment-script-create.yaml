@@ -1,0 +1,25 @@
+type: object
+properties:
+  script_id:
+    type: integer
+    description: Id of an existing script to be attached to an application environment event
+    example: 57
+  trigger_type:
+    type: string
+    description: The type of event that will trigger the script execution
+    enum: [before, after]
+    example: 'after'
+  trigger_event:
+    type: string
+    description: The application deployment event to which the script is attached
+    enum:  [get-new-release, install-dependencies, activate-new-release, remove-old-releases]
+    example: 'install-dependencies'
+  trigger_order:
+    type: integer
+    description: The relative order of the script execution in case the event has multiple scripts attached to it
+    example: 2
+required:
+  - script_id
+  - trigger_event
+  - trigger_order
+  - trigger_type

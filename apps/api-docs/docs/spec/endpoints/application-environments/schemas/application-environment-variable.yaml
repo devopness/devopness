@@ -1,5 +1,9 @@
 type: object
 properties:
+  id:
+    type: integer
+    description: The unique id of the given record
+    example: 415678964
   key:
     type: string
     description: The unique key used to identify the variable on the target

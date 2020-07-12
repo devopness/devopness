@@ -25,3 +25,16 @@ properties:
     description: Current status of deploying to remote servers the current key
     enum: ["pending", "in-progress", "cancelled", "completed", "failed"]
     example: "completed"
+  # created_at:
+  #   type: string
+  #   format: date-time
+  #   description: The date and time when the record was created
+  #   example: '2019-09-25 13:49:51'
+  # updated_at:
+  #   type: string
+  #   format: date-time
+  #   description: The date and time when the record was last updated
+  #   example: '2019-09-25 13:52:04'
+required:
+  - name
+#  - public_key # TO DO: define a separate `ssh-key-create.yaml` schema. Se projects or users for references

@@ -1,5 +1,5 @@
-summary: Returns a list of variables belonging to an application environment
-operationId: listApplicationEnvironmentVariables
+summary: List scripts to be executed as custom deployment steps of an application environment
+operationId: listApplicationEnvironmentScripts
 tags:
   - Applications - Environments
 parameters:
@@ -13,11 +13,11 @@ parameters:
       type: integer
       minimum: 1
     required: true
-    description: Unique ID of the application environment to retrieve variables from
+    description: Unique ID of the application environment to retrieve scripts from
 responses:
   200:
     description: 'Ok'
     content:
       application/json:
         schema:
-          $ref: '#/components/schemas/ApplicationEnvironmentVariables'
+          $ref: '#/components/schemas/ApplicationEnvironmentScripts'

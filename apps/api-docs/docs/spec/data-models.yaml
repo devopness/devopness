@@ -12,6 +12,12 @@ ApplicationDeployment:
   $ref: ./endpoints/applications/schemas/application-deployment.yaml
 ApplicationDeploymentSettings:
   $ref: ./endpoints/applications/schemas/application-deployment-settings.yaml
+ApplicationEnvironmentScript:
+  $ref: ./endpoints/application-environments/schemas/application-environment-script.yaml
+ApplicationEnvironmentScriptCreate:
+  $ref: ./endpoints/application-environments/schemas/application-environment-script-create.yaml
+ApplicationEnvironmentScripts:
+  $ref: ./endpoints/application-environments/schemas/application-environment-script-list.yaml
 ApplicationEnvironmentVariable:
   $ref: ./endpoints/application-environments/schemas/application-environment-variable.yaml
 ApplicationEnvironmentVariableCreate:
@@ -90,6 +96,8 @@ Repository:
   $ref: ./endpoints/repositories/schemas/repository.yaml
 RepositoryBranch:
   $ref: ./endpoints/repositories/schemas/repository-branch.yaml
+Script:
+  $ref: ./endpoints/scripts/schemas/script.yaml
 Server:
   $ref: ./endpoints/servers/schemas/server.yaml
 ServerBlueprint:
