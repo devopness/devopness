@@ -34,10 +34,14 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         transactionSpecs.push(spec);
     });
 
-    // build transaction graph
-    const graph = new TransactionGraph(transactionSpecs);
-    const txOrder = JSON.stringify(graph.topologicalSort());
-    hooks.log(`possible transaction order: ${JSON.stringify(txOrder)}`);
+    // build transaction graph to find running order
+    const graph = new TransactionGraph(transactionSpecs, hooks.log);
+    const txOrder = graph.topologicalSort();
+    for (const i in txOrder) {
+        const slug = txOrder[i];
+        const [inputs, outputs] = graph.edges(slug);
+        hooks.log(`${i}  \t  ${slug}:  (${inputs.join(', ')}) -> (${outputs.join(', ')})`);
+    }
 
     // specify which transactions will run in which order
     const transactionOrder: string[] = [
@@ -50,8 +54,8 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         'getSshKey200',
         'listProjects200',
         'logout204'
-    ].map(k => transactionSlugToName[k]);
-    utils.selectTransactionsByName(transactions, transactionOrder);
+    ];
+    utils.selectTransactionsByName(transactions, transactionOrder.map(k => transactionSlugToName[k]));
 
     // attach graph inferred hooks
     transactions.forEach((transaction: Transaction) => {

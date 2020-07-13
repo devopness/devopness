@@ -2,12 +2,11 @@ import fs from 'fs';
 import toposort from 'toposort';
 
 import TransactionSpec from './TransactionSpec';
-import { fixtureKeyElement } from './fixtureTypes';
+import { fixtureKeyElement, isFixtureListKey } from './fixtureTypes';
 
 type TransactionNode = string;
 type FixtureNode = string;
 
-type FixtureToTransactionMap = { [key: string]: TransactionNode };
 type FixtureToTransactionListMap = { [key: string]: TransactionNode[] };
 
 function fixtureTransactionGraphPush(map: FixtureToTransactionListMap, k: FixtureNode, v: TransactionNode) {
@@ -23,20 +22,25 @@ interface FixtureTransactionGraph {
     // maps fixtures to a list of transactions that take it as output
     fixtureTransactionOutputs: FixtureToTransactionListMap
     // maps fixtures to their delete transaction
-    fixtureDeleteTransactions: FixtureToTransactionMap
+    fixtureDeleteTransactions: FixtureToTransactionListMap
 };
+
+type LogFunction = (...any: any[]) => void;
 
 // TransactionGraph represents a Directed Acyclical Graph (DAG) of transactions
 // and their dependencies through fixtures
 export default class TransactionGraph {
     adjacencyList: [TransactionNode, TransactionNode][] = [];
+    log: LogFunction;
 
-    constructor(transactionSpecs: TransactionSpec[]) {
+    constructor(transactionSpecs: TransactionSpec[], log: LogFunction) {
+        this.log = log;
+
         // user_credentials and user_tokens are handled differently than other fixtures, so add them manually to the graph
         const initialFixtureTransactionGraph: FixtureTransactionGraph = {
             fixtureTransactionInputs: { 'user_credentials': ['login200'] },
             fixtureTransactionOutputs: { 'user_credentials': ['addUser201'], 'user_tokens': ['login200'] },
-            fixtureDeleteTransactions:  { 'user_tokens': 'logout204' }
+            fixtureDeleteTransactions:  { 'user_tokens': ['logout204'] }
         };
         const fixtureTransactionGraph = this.fixtureTransactionGraphFromTransactionSpecs(transactionSpecs, initialFixtureTransactionGraph);
         this.populateAdjacencyList(fixtureTransactionGraph);
@@ -54,12 +58,18 @@ export default class TransactionGraph {
             if (txSpec.isDelete) {
                 // delete transactions should have only one input, but let's iterate anyways
                 for (const input of txSpec.inputs) {
-                    fixtureDeleteTransactions[input] = txSpec.slug;
+                   fixtureTransactionGraphPush(fixtureDeleteTransactions, fixtureKeyElement(input), txSpec.slug);
                 }
             } else {
-                // skip output on transactions that have same input and output types to avoid cycles
-                if (txSpec.output && (txSpec.inputs.indexOf(fixtureKeyElement(txSpec.output)) == -1)) {
-                    fixtureTransactionGraphPush(fixtureTransactionOutputs, fixtureKeyElement(txSpec.output), txSpec.slug);
+                if (txSpec.output) {                    
+                    // list fixtures should be considered only to have inputs, as they don't _generate_ fixtures
+                    if (isFixtureListKey(txSpec.output)) {
+                        fixtureTransactionGraphPush(fixtureTransactionInputs, fixtureKeyElement(txSpec.output), txSpec.slug);
+                    }
+                    // skip output on transactions that have same input and output types to avoid cycles
+                    else if (txSpec.inputs.indexOf(fixtureKeyElement(txSpec.output)) == -1) {
+                        fixtureTransactionGraphPush(fixtureTransactionOutputs, fixtureKeyElement(txSpec.output), txSpec.slug);
+                    }
                 }
                 for (const input of txSpec.inputs) {
                     fixtureTransactionGraphPush(fixtureTransactionInputs, input, txSpec.slug);
@@ -82,24 +92,51 @@ export default class TransactionGraph {
     populateAdjacencyList(fixtureTransactionGraph: FixtureTransactionGraph) {
         const { fixtureTransactionInputs, fixtureTransactionOutputs, fixtureDeleteTransactions } = fixtureTransactionGraph;
 
+        const unreachable: { [tx: string]: boolean } = {};
+        // first pass: check for unreachable fixtures and find transactions that require them
         for (const fixture in fixtureTransactionInputs) {
-            for (const input of fixtureTransactionInputs[fixture]) {
-                if (fixture in fixtureTransactionOutputs) {
-                    for (const output of fixtureTransactionOutputs[fixture]) {
-                        // transactions that take a fixture both as input and output
-                        // are handled as terminal nodes to avoid cycles
-                        if (output != input) {
-                            this.addEdge(output, input);
-                        }
+            // check if there's transaction producing that fixture, otherwise it's an unreachable branch
+            if (!(fixture in fixtureTransactionOutputs)) {
+                this.log(`fixture '${fixture}' has no generator transactions, skipping transactions [${fixtureTransactionInputs[fixture]}];`)
+                for (const transaction of fixtureTransactionInputs[fixture] || []) {
+                    unreachable[transaction] = true;
+                }
+                for (const transaction of fixtureDeleteTransactions[fixture] || []) {
+                    unreachable[transaction] = true;
+                }
+            }
+        }
+
+        // second pass: add edges connecting fixture dependencies
+        for (const fixture in fixtureTransactionInputs) {
+            for (const input of fixtureTransactionInputs[fixture] || []) {
+                if (unreachable[input]) {
+                    continue;
+                }
+                for (const output of fixtureTransactionOutputs[fixture] || []) {
+                    // transactions that take a fixture both as input and output
+                    // are handled as terminal nodes to avoid cycles
+                    if (!unreachable[output] && output != input) {
+                        this.addEdge(output, input);
                     }
                 }
                 // delete transactions depend on all transactions
                 // that take a fixture as input running before it
-                if (fixture in fixtureDeleteTransactions) {
+                for (const del of fixtureDeleteTransactions[fixture] || []) {
                     // delete transaction is also an input transaction,
                     // so skip adding an edge to itself to avoid cycles
-                    if (input != fixtureDeleteTransactions[fixture]) {
-                        this.addEdge(input, fixtureDeleteTransactions[fixture]);
+                    if (!unreachable[del] && input != del) {
+                        this.addEdge(input, del);
+                    }
+                }
+            }
+            // delete transactions depend on fixtures output by other transactions
+            for (const del in fixtureDeleteTransactions[fixture] || []) {
+                if (!unreachable[del]) {
+                    for (const output of fixtureTransactionOutputs[fixture] || []) {
+                        if (!unreachable[output]) {
+                            this.addEdge(output, del);
+                        }
                     }
                 }
             }
@@ -117,5 +154,20 @@ export default class TransactionGraph {
 
     topologicalSort(): string[] {
         return toposort(this.adjacencyList);
+    }
+
+    edges(node: TransactionNode): [TransactionNode[], TransactionNode[]] {
+        const inputs: TransactionNode[] = [];
+        const outputs: TransactionNode[] = [];
+
+        for (const [a, b] of this.adjacencyList) {
+            if (a == node) {
+                outputs.indexOf(b) == -1 ? outputs.push(b) : null;
+            } else if (b == node) {
+                inputs.indexOf(a) == -1 ? inputs.push(a) : null;
+            }
+        }
+
+        return [inputs, outputs];
     }
 }
