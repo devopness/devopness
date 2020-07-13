@@ -1,25 +1,11 @@
 import { AxiosError, AxiosResponse } from 'axios'
 
 export class SdkError extends Error {
-    constructor(message?: string) {
-        super();
-        this.setMessage(message || '');
-    }
-
-    private getFormattedMessage(message?: string): string {
-        const SDK_ERROR_MESSAGE_PREFIX = 'Devopness SDK Error';
-
-        return `${SDK_ERROR_MESSAGE_PREFIX} - ${message}`;
-    }
-
-    public setMessage(message: string): void {
-        this.message = this.getFormattedMessage(message);
-    }
 }
 
 export class ArgumentNullException extends SdkError {
     constructor(public param: string, method?: string, msg?: string) {
-        super(msg || `Value cannot be null. Missing required parameter: "${param}" when calling "${method}"`);
+        super(msg || `Devopness SDK Error - Value cannot be null. Missing required parameter: "${param}" when calling "${method}"`);
     }
 }
 
@@ -30,7 +16,7 @@ export interface ErrorResponseData {
 
 export class NetworkError extends SdkError {
     constructor(error: AxiosError) {
-        super(error.message);
+        super(`Devopness SDK Network Error - ${error.message}`);
     }
 }
 
@@ -64,5 +50,18 @@ export class ApiError<T> extends SdkError {
             // when an exception is an HTTP error
             this.setMessage(error.response?.statusText);
         }
+    }
+
+    private getFormattedMessage(message?: string): string {
+        // we adopt the `Response` prefix instead of `Error` here cause most returned messages are validation/security related
+        // messages that prevent damage to be caused to user's data and it's not exactly and exception.
+        // A real error, e.g. HTTP 5xx status codes, will be absolutely rare. Real errors like
+        // NetworkError are handled in their own Error classes in this file.
+        const SDK_ERROR_MESSAGE_PREFIX = 'API Response';
+        return `${SDK_ERROR_MESSAGE_PREFIX}: ${message}`;
+    }
+
+    private setMessage(message: string): void {
+        this.message = this.getFormattedMessage(message);
     }
 }

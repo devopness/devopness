@@ -41,7 +41,7 @@ test("ApiError message must contain a prefix so consumers know it's been raised 
         await (apiClient.users.getCurrentUser());
     } catch (e) {
         expect(e).toBeInstanceOf(ApiError)
-        expect(e.message).toBe('Devopness SDK Error - Request failed with status code 403');
+        expect(e.message).toBe('API Response: Request failed with status code 403');
     }
 });
 
@@ -52,7 +52,7 @@ test("NetworkError message must contain a prefix so consumers know it's been rai
         await (apiClient.users.getCurrentUser());
     } catch (e) {
         expect(e).toBeInstanceOf(NetworkError)
-        expect(e.message).toContain('Devopness SDK Error - timeout of ');
+        expect(e.message).toContain('Devopness SDK Network Error - timeout of ');
     }
 });
 
