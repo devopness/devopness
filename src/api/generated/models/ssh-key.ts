@@ -30,7 +30,7 @@ export interface SshKey {
      * @type {string}
      * @memberof SshKey
      */
-    name?: string;
+    name: string;
     /**
      * The Id of the user to which the SSH key belongs to
      * @type {number}
