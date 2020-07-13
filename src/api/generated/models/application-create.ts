@@ -13,7 +13,7 @@
 
 
 import { ApplicationDeploymentSettings } from './application-deployment-settings';
-import { Environment } from './environment';
+import { EnvironmentLinkItem } from './environment-link-item';
 
 /**
  * 
@@ -76,10 +76,10 @@ export interface ApplicationCreate {
      */
     deployment_settings?: Array<ApplicationDeploymentSettings>;
     /**
-     * The list of environments to which the application is linked to
-     * @type {Array<Environment>}
+     * 
+     * @type {Array<EnvironmentLinkItem>}
      * @memberof ApplicationCreate
      */
-    environments?: Array<Environment>;
+    environments?: Array<EnvironmentLinkItem>;
 }
 

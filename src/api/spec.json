@@ -337,6 +337,107 @@
         }
       }
     },
+    "/application-environments/{application_environment_id}/scripts": {
+      "post": {
+        "summary": "Add script to application environment as a deployment step",
+        "operationId": "addScriptToApplicationEnvironment",
+        "tags": [
+          "Applications - Environments"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "application_environment_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Unique ID of the application environment to retrieve scripts from"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing application environment script data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplicationEnvironmentScriptCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationEnvironmentScripts"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          }
+        }
+      },
+      "get": {
+        "summary": "List scripts to be executed as custom deployment steps of an application environment",
+        "operationId": "listApplicationEnvironmentScripts",
+        "tags": [
+          "Applications - Environments"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "application_environment_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Unique ID of the application environment to retrieve scripts from"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationEnvironmentScripts"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/application-environments/{application_environment_id}/variables": {
       "post": {
         "summary": "Create a new variable linked to an application environment",
@@ -418,7 +519,7 @@
               "minimum": 1
             },
             "required": true,
-            "description": "Unique ID of the application environment to retrieved variables from"
+            "description": "Unique ID of the application environment to retrieve variables from"
           }
         ],
         "responses": {
@@ -899,7 +1000,7 @@
         }
       }
     },
-    "/network-rules/{rule_id}": {
+    "/network-rules/{network_rule_id}": {
       "delete": {
         "summary": "Delete a given network rule",
         "operationId": "deleteNetworkRule",
@@ -918,7 +1019,7 @@
           },
           {
             "in": "path",
-            "name": "rule_id",
+            "name": "network_rule_id",
             "example": 1,
             "schema": {
               "type": "integer",
@@ -955,7 +1056,7 @@
           },
           {
             "in": "path",
-            "name": "rule_id",
+            "name": "network_rule_id",
             "example": 1,
             "schema": {
               "type": "integer",
@@ -4060,11 +4161,7 @@
             }
           },
           "environments": {
-            "description": "The list of environments to which the application is linked to",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Environment"
-            }
+            "$ref": "#/components/schemas/EnvironmentLinks"
           }
         },
         "required": [
@@ -4198,9 +4295,118 @@
           "push_to_deploy"
         ]
       },
+      "ApplicationEnvironmentScript": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The unique id of the given record",
+            "example": 35678964
+          },
+          "trigger_type": {
+            "type": "string",
+            "description": "The type of event that will trigger the script execution",
+            "enum": [
+              "before",
+              "after"
+            ],
+            "example": "after"
+          },
+          "trigger_event": {
+            "type": "string",
+            "description": "The application deployment event to which the script is attached",
+            "enum": [
+              "get-new-release",
+              "install-dependencies",
+              "activate-new-release",
+              "remove-old-releases"
+            ],
+            "example": "install-dependencies"
+          },
+          "trigger_order": {
+            "type": "integer",
+            "description": "The relative order of the script execution in case the event has multiple scripts attached",
+            "example": 2
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25 13:49:51"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25 13:52:04"
+          },
+          "script": {
+            "description": "The script record attached to the application deployment event",
+            "$ref": "#/components/schemas/Script"
+          }
+        },
+        "required": [
+          "id",
+          "trigger_event",
+          "trigger_order",
+          "trigger_type"
+        ]
+      },
+      "ApplicationEnvironmentScriptCreate": {
+        "type": "object",
+        "properties": {
+          "script_id": {
+            "type": "integer",
+            "description": "Id of an existing script to be attached to an application environment event",
+            "example": 57
+          },
+          "trigger_type": {
+            "type": "string",
+            "description": "The type of event that will trigger the script execution",
+            "enum": [
+              "before",
+              "after"
+            ],
+            "example": "after"
+          },
+          "trigger_event": {
+            "type": "string",
+            "description": "The application deployment event to which the script is attached",
+            "enum": [
+              "get-new-release",
+              "install-dependencies",
+              "activate-new-release",
+              "remove-old-releases"
+            ],
+            "example": "install-dependencies"
+          },
+          "trigger_order": {
+            "type": "integer",
+            "description": "The relative order of the script execution in case the event has multiple scripts attached to it",
+            "example": 2
+          }
+        },
+        "required": [
+          "script_id",
+          "trigger_event",
+          "trigger_order",
+          "trigger_type"
+        ]
+      },
+      "ApplicationEnvironmentScripts": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/ApplicationEnvironmentScript"
+        }
+      },
       "ApplicationEnvironmentVariable": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The unique id of the given record",
+            "example": 415678964
+          },
           "key": {
             "type": "string",
             "description": "The unique key used to identify the variable on the target",
@@ -5366,6 +5572,43 @@
           }
         }
       },
+      "Script": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The Id of the given script",
+            "example": 19876
+          },
+          "name": {
+            "type": "string",
+            "description": "Name/short description of the script",
+            "example": "Extra step before build app"
+          },
+          "source_code": {
+            "type": "string",
+            "description": "A command line or multiline bash script",
+            "example": "echo 'Deploy with devopness is a breeze!' | tee -a /tmp/build-started.log"
+          },
+          "run_as_user": {
+            "type": "string",
+            "description": "The name of the Unix user on behalf of which the script will be executed",
+            "example": "devopness"
+          },
+          "auto_generated": {
+            "default": false,
+            "type": "boolean",
+            "description": "Indicates if the script was auto_generated by `devopness` itself"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "source_code",
+          "run_as_user",
+          "auto_generated"
+        ]
+      },
       "Server": {
         "type": "object",
         "properties": {
@@ -5799,7 +6042,10 @@
             ],
             "example": "completed"
           }
-        }
+        },
+        "required": [
+          "name"
+        ]
       },
       "SshKeys": {
         "type": "array",
