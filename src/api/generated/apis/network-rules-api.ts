@@ -23,26 +23,26 @@ export class NetworkRulesApiService extends ApiBaseService {
     /**
      * 
      * @summary Delete a given network rule
-     * @param {number} ruleId Numeric ID of the rule to be deleted
+     * @param {number} networkRuleId Numeric ID of the rule to be deleted
      */
-    public async deleteNetworkRule(ruleId: number): Promise<ApiResponse<void>> {
-        if (ruleId === null || ruleId === undefined) {
-            throw new ArgumentNullException('ruleId', 'deleteNetworkRule');
+    public async deleteNetworkRule(networkRuleId: number): Promise<ApiResponse<void>> {
+        if (networkRuleId === null || networkRuleId === undefined) {
+            throw new ArgumentNullException('networkRuleId', 'deleteNetworkRule');
         }
-        const response = await this.delete <void>(`/network-rules/{rule_id}`.replace(`{${"rule_id"}}`, encodeURIComponent(String(ruleId))));
+        const response = await this.delete <void>(`/network-rules/{network_rule_id}`.replace(`{${"network_rule_id"}}`, encodeURIComponent(String(networkRuleId))));
         return new ApiResponse(response);
     }
 
     /**
      * 
      * @summary Get a network rule by ID
-     * @param {number} ruleId Numeric ID of the rule to get
+     * @param {number} networkRuleId Numeric ID of the rule to get
      */
-    public async getNetworkRule(ruleId: number): Promise<ApiResponse<NetworkRule>> {
-        if (ruleId === null || ruleId === undefined) {
-            throw new ArgumentNullException('ruleId', 'getNetworkRule');
+    public async getNetworkRule(networkRuleId: number): Promise<ApiResponse<NetworkRule>> {
+        if (networkRuleId === null || networkRuleId === undefined) {
+            throw new ArgumentNullException('networkRuleId', 'getNetworkRule');
         }
-        const response = await this.get <NetworkRule>(`/network-rules/{rule_id}`.replace(`{${"rule_id"}}`, encodeURIComponent(String(ruleId))));
+        const response = await this.get <NetworkRule>(`/network-rules/{network_rule_id}`.replace(`{${"network_rule_id"}}`, encodeURIComponent(String(networkRuleId))));
         return new ApiResponse(response);
     }
 }

@@ -20,6 +20,12 @@
  */
 export interface ApplicationEnvironmentVariable {
     /**
+     * The unique id of the given record
+     * @type {number}
+     * @memberof ApplicationEnvironmentVariable
+     */
+    id?: number;
+    /**
      * The unique key used to identify the variable on the target
      * @type {string}
      * @memberof ApplicationEnvironmentVariable

@@ -14,6 +14,9 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { ApiError } from '../../generated/models';
+import { ApplicationEnvironmentScript } from '../../generated/models';
+import { ApplicationEnvironmentScriptCreate } from '../../generated/models';
 import { ApplicationEnvironmentVariable } from '../../generated/models';
 import { ApplicationEnvironmentVariableCreate } from '../../generated/models';
 
@@ -40,8 +43,38 @@ export class ApplicationsEnvironmentsApiService extends ApiBaseService {
 
     /**
      * 
+     * @summary Add script to application environment as a deployment step
+     * @param {number} applicationEnvironmentId Unique ID of the application environment to retrieve scripts from
+     * @param {ApplicationEnvironmentScriptCreate} applicationEnvironmentScriptCreate A JSON object containing application environment script data
+     */
+    public async addScriptToApplicationEnvironment(applicationEnvironmentId: number, applicationEnvironmentScriptCreate: ApplicationEnvironmentScriptCreate): Promise<ApiResponse<Array<ApplicationEnvironmentScript>>> {
+        if (applicationEnvironmentId === null || applicationEnvironmentId === undefined) {
+            throw new ArgumentNullException('applicationEnvironmentId', 'addScriptToApplicationEnvironment');
+        }
+        if (applicationEnvironmentScriptCreate === null || applicationEnvironmentScriptCreate === undefined) {
+            throw new ArgumentNullException('applicationEnvironmentScriptCreate', 'addScriptToApplicationEnvironment');
+        }
+        const response = await this.post <Array<ApplicationEnvironmentScript>, ApplicationEnvironmentScriptCreate>(`/application-environments/{application_environment_id}/scripts`.replace(`{${"application_environment_id"}}`, encodeURIComponent(String(applicationEnvironmentId))), applicationEnvironmentScriptCreate);
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary List scripts to be executed as custom deployment steps of an application environment
+     * @param {number} applicationEnvironmentId Unique ID of the application environment to retrieve scripts from
+     */
+    public async listApplicationEnvironmentScripts(applicationEnvironmentId: number): Promise<ApiResponse<Array<ApplicationEnvironmentScript>>> {
+        if (applicationEnvironmentId === null || applicationEnvironmentId === undefined) {
+            throw new ArgumentNullException('applicationEnvironmentId', 'listApplicationEnvironmentScripts');
+        }
+        const response = await this.get <Array<ApplicationEnvironmentScript>>(`/application-environments/{application_environment_id}/scripts`.replace(`{${"application_environment_id"}}`, encodeURIComponent(String(applicationEnvironmentId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
      * @summary Returns a list of variables belonging to an application environment
-     * @param {number} applicationEnvironmentId Unique ID of the application environment to retrieved variables from
+     * @param {number} applicationEnvironmentId Unique ID of the application environment to retrieve variables from
      */
     public async listApplicationEnvironmentVariables(applicationEnvironmentId: number): Promise<ApiResponse<Array<ApplicationEnvironmentVariable>>> {
         if (applicationEnvironmentId === null || applicationEnvironmentId === undefined) {
