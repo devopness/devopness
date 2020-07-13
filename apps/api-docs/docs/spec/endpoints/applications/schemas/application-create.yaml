@@ -37,10 +37,7 @@ properties:
     items:
       $ref: '#/components/schemas/ApplicationDeploymentSettings'
   environments:
-    description: "The list of environments to which the application is linked to"
-    type: array
-    items:
-      $ref: '#/components/schemas/Environment'
+    $ref: '#/components/schemas/EnvironmentLinks'
 required:
   - name
   - entrypoint
