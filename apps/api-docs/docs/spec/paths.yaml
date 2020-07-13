@@ -48,7 +48,7 @@
 /environments/{environment_id}/servers/{server_id}/unlink:
   post:
     $ref: ./endpoints/environments/paths/environments-id-servers-id-unlink.yaml
-/logs/deployments/{deployment_id}/steps/{step_id}:
+/logs/deployments/{deployment_id}/steps/{deployment_step_id}:
   get:
     $ref: ./endpoints/logs/paths/logs-deployments-id-steps-id.yaml
 /network-rules/{network_rule_id}:

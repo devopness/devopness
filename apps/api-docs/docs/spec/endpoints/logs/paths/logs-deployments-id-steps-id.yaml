@@ -1,4 +1,5 @@
 summary: Get log of a deployment step
+operationId: getDeploymentStepLog
 tags:
   - Logs
 parameters:
@@ -15,7 +16,7 @@ parameters:
     required: true
     description: Numeric ID of the deployment to which the step belongs to
   - in: path
-    name: step_id
+    name: deployment_step_id
     example: 3
     schema:
       type: integer
