@@ -13,8 +13,8 @@ jobs:
 
     strategy:
       matrix:
-        node: [10, 12]
-        os: [ubuntu-latest, macOS-latest]
+        node: [12]
+        os: [ubuntu-latest]
 
     steps:
       - uses: actions/checkout@v2
