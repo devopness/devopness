@@ -190,7 +190,7 @@
 /static/language-runtimes:
   get:
     $ref: ./endpoints/static/paths/language-runtimes-list.yaml
-/tasks/{task_id}:
+/tasks/{cron_job_id}:
   delete:
     $ref: ./endpoints/cronjobs/paths/cronjobs-id-delete.yaml
   get:

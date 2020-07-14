@@ -15,6 +15,10 @@ requestBody:
         $ref: '#/components/schemas/Project'
 responses:
   201:
-    $ref: '#/components/responses/Created'
+    description: "Created"
+    content:
+      application/json:
+        schema:
+          $ref: "#/components/schemas/Project"
   422:
     $ref: '#/components/responses/ValidationError'
