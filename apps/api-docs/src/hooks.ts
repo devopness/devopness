@@ -37,38 +37,47 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     // build transaction graph to find running order
     const graph = new TransactionGraph(transactionSpecs, hooks.log);
     const txOrder = graph.topologicalSort();
-    for (const i in txOrder) {
-        const slug = txOrder[i];
-        const [inputs, outputs] = graph.edges(slug);
-        hooks.log(`${i}  \t  ${slug}:  (${inputs.join(', ')}) -> (${outputs.join(', ')})`);
-    }
+    // for (const i in txOrder) {
+    //     const slug = txOrder[i];
+    //     const [inputs, outputs] = graph.edges(slug);
+    //     hooks.log(`${i}  \t  ${slug}:  (${inputs.join(', ')}) -> (${outputs.join(', ')})`);
+    // }
 
     // specify which transactions will run in which order
-    const transactionOrder: string[] = [
-        'addUser201',
-        'login200',
-        'refreshToken200',
-        'addProject201',
-        'getProject200',
-        'addSshKeyToProject201',
-        'getSshKey200',
-        'listProjects200',
-        'logout204'
-    ];
-    utils.selectTransactionsByName(transactions, transactionOrder.map(k => transactionSlugToName[k]));
+    // const transactionOrder: string[] = [
+    //     'addUser201',
+    //     'login200',
+    //     'refreshToken200',
+    //     'addProject201',
+    //     'getProject200',
+    //     'addSshKeyToProject201',
+    //     'getSshKey200',
+    //     'listProjects200',
+    //     'logout204'
+    // ];
+    // utils.selectTransactionsByName(transactions, transactionOrder.map(k => transactionSlugToName[k]));
+    utils.selectTransactionsByName(transactions, txOrder.slice(0, 9).map(k => transactionSlugToName[k]));
 
     // attach graph inferred hooks
     transactions.forEach((transaction: Transaction) => {
         const transactionSpec = transactionNameToSpec[transaction.name];
         if (transactionSpec) {
             // TODO: test on (`/environments/${environment_id}/servers/${server_id}/link`)
-            if (transactionSpec.inputs.length > 0) {
-                hooks.before(transaction.name, utils.writeFixtureIdsInTransactionPath(transactionSpec.inputs));
+            if (transactionSpec.pathInputs.length > 0) {
+                hooks.before(transaction.name, utils.writeFixtureIdsInTransactionPath(transactionSpec.pathInputs));
             }
-            if (transactionSpec.output) {
-                if (isFixtureKey(transactionSpec.output)) {
-                    hooks.after(transaction.name, utils.storeTransactionResult(transactionSpec.output));
+            // body.id parameter should match path {fixture}_id parameter
+            if (transactionSpec.bodyInput && isFixtureKey(transactionSpec.bodyInput)) {
+                if (transactionSpec.bodyInput === "project") {
+                    const removeLogoImage = (body: any) => { delete body['logo_image']; }
+                    hooks.before(transaction.name, utils.rewriteTransactionRequestBody(removeLogoImage));
                 }
+                if (transactionSpec.pathInputs.includes(transactionSpec.bodyInput)) {
+                    hooks.before(transaction.name, utils.setTransactionRequestBodyFixtureId(transactionSpec.bodyInput));
+                }
+            }
+            if (transactionSpec.output && isFixtureKey(transactionSpec.output)) {
+                hooks.after(transaction.name, utils.storeTransactionResult(transactionSpec.output));
             }
         }
     });
@@ -95,13 +104,5 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
 
     after('logout204', (transaction: Transaction) => { if (transaction.test.valid) { fixtures.delete('user_tokens'); } });
 
-    // projects
-    const removeLogoImage = (body: any) => { delete body['logo_image']; }
-
-    before('addProject201', utils.rewriteTransactionRequestBody(removeLogoImage));
-    after('addProject201', utils.storeTransactionResult('project'));
-
-    before('getProject200', utils.rewriteTransactionRequestBody(removeLogoImage));
-    
     done();
 })

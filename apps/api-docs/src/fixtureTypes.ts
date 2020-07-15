@@ -20,6 +20,7 @@ const fixtureKeys = {
     'application': '',
     'cron_job': '',
     'deployment': '',
+    'deployment_step': '',
     'environment': '',
     'network_rule': '',
     'process': '',

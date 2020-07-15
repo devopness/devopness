@@ -55,9 +55,9 @@ export default class TransactionGraph {
         const { fixtureTransactionInputs, fixtureTransactionOutputs, fixtureDeleteTransactions } = initialGraph;
         for (const txSpec of transactionSpecs) {
             // delete transactions are terminal nodes
-            if (txSpec.isDelete) {
+            if (txSpec.method == "delete") {
                 // delete transactions should have only one input, but let's iterate anyways
-                for (const input of txSpec.inputs) {
+                for (const input of txSpec.pathInputs) {
                    fixtureTransactionGraphPush(fixtureDeleteTransactions, fixtureKeyElement(input), txSpec.slug);
                 }
             } else {
@@ -67,11 +67,11 @@ export default class TransactionGraph {
                         fixtureTransactionGraphPush(fixtureTransactionInputs, fixtureKeyElement(txSpec.output), txSpec.slug);
                     }
                     // skip output on transactions that have same input and output types to avoid cycles
-                    else if (txSpec.inputs.indexOf(fixtureKeyElement(txSpec.output)) == -1) {
+                    else if (txSpec.pathInputs.indexOf(fixtureKeyElement(txSpec.output)) == -1) {
                         fixtureTransactionGraphPush(fixtureTransactionOutputs, fixtureKeyElement(txSpec.output), txSpec.slug);
                     }
                 }
-                for (const input of txSpec.inputs) {
+                for (const input of txSpec.pathInputs) {
                     fixtureTransactionGraphPush(fixtureTransactionInputs, input, txSpec.slug);
                 }
             }

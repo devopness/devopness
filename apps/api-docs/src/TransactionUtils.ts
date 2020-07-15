@@ -2,6 +2,7 @@ import { Transaction, TransactionHook } from 'hooks';
 
 import { FixtureKey, Fixture, Identifiable, UserTokens, isFixtureKey } from './fixtureTypes';
 import FixtureStore from './FixtureStore';
+import TransactionSpec from './TransactionSpec';
 
 type LogFunction = (...any: any[]) => void;
 
@@ -9,6 +10,7 @@ type LogFunction = (...any: any[]) => void;
 export default class TransactionUtils {
     fixtureStore: FixtureStore;
     log: LogFunction;
+
     constructor(store: FixtureStore, log: LogFunction) {
         this.fixtureStore = store;
         this.log = log;
@@ -43,17 +45,18 @@ export default class TransactionUtils {
     writeFixtureIdsInTransactionPath<T extends Identifiable>(keys: FixtureKey[]): TransactionHook {
         return (transaction: Transaction) => {
             let path = transaction.origin.resourceName;
+            const tag = `${transaction.id} [writeFixtureIdsInTransactionPath]`;
             for (const key of keys) {
                 const fixture = this.fixtureStore.get<T>(key);
                 if (fixture) {
                     path = path.replace(`{${key}_id}`, fixture.id);
                 } else {
-                    this.log(`[writeFixtureIdsInTransactionPath] transaction '${transaction.id}' requires '${key}' fixture; skipping`)
+                    this.log(`${tag} transaction '${transaction.id}' requires '${key}' fixture; skipping`)
                     transaction.fail = true;
                     break;
                 }
             }
-            this.log(`[writeFixtureIdsInTransactionPath] '${transaction.fullPath}' => '${path}'`)
+            this.log(`${tag} '${transaction.fullPath}' => '${path}'`)
             transaction.fullPath = path;
         }
     }
@@ -62,13 +65,14 @@ export default class TransactionUtils {
     storeTransactionResult<T extends Fixture>(key: FixtureKey): TransactionHook {
         return (transaction: Transaction) => {
             if (transaction.test.valid && transaction.real.body) {
+                const tag = `${transaction.id} [storeTransactionResult]`;
                 const data = JSON.parse(transaction.real.body);
                 const typed = (data as T);
                 if (typed) {
-                    this.log(`[storeTransactionResult] '${transaction.request.method} (${transaction.real.statusCode}) ${transaction.fullPath}' => '${key}'`)
+                    this.log(`${tag} => '${key}'`)
                     this.fixtureStore.put(key, data);
                 } else {
-                    this.log(`Couldn't save fixture '${key}', wrong datatype: '${JSON.stringify(data)}'`);
+                    this.log(`${tag} couldn't save fixture '${key}', wrong datatype: '${JSON.stringify(data)}'`);
                     transaction.fail = true;
                 }
             };
@@ -84,7 +88,7 @@ export default class TransactionUtils {
                     if (authToken && authToken.access_token) {
                         transaction.request.headers.Authorization = 'Bearer ' + authToken.access_token;
                     } else {
-                        // hooks.log(`'${transaction.id}' requires 'authToken' fixture;`)
+                        this.log(`${transaction.id} [setTransactionRequestAuthHeaderWithFixture] requires 'authToken' fixture;`)
                         transaction.fail = true;
                     }
                 }
@@ -93,19 +97,19 @@ export default class TransactionUtils {
     }
     
     // set the request body of a transaction to a fixture
-    setTransactionRequestBodyToFixture<T extends Fixture> (key: FixtureKey): TransactionHook {
+    setTransactionRequestBodyToFixture<T extends Fixture>(key: FixtureKey): TransactionHook {
         return (transaction: Transaction) => {
             const fixture = this.fixtureStore.get<T>(key);
             if (fixture) {
                 transaction.request.body = JSON.stringify(fixture);
             } else {
-                this.log(`transaction '${transaction.id}' requires '${key}' fixture`)
+                this.log(`${transaction.id} [setTransactionRequestBodyToFixture] missing '${key}' fixture`);
                 transaction.fail = true;
             }
         }
     }
-    
-    // parse transaction request body, applies `reqwriteFn`, then stringifies serializes it again
+   
+    // parse transaction request body, applies `rewriteFn`, then stringifies serializes it again
     rewriteTransactionRequestBody(rewriteFn: (body: any) => any): TransactionHook {
         return (transaction: Transaction) => {
             if (transaction.request.body) {
@@ -115,6 +119,21 @@ export default class TransactionUtils {
             }
         }
     }
+
+    setTransactionRequestBodyFixtureId<T extends Identifiable>(key: FixtureKey): TransactionHook {
+        return (transaction: Transaction) => {
+            const tag = `${transaction.id} [setTransactionRequestBodyFixtureId]`
+            const fixture = this.fixtureStore.get<T>(key);
+            if (fixture) {
+                this.log(`${tag} ${key}.id=${fixture.id}`)
+                this.rewriteTransactionRequestBody((body: Identifiable) => body.id = fixture.id)(transaction);
+            } else {
+                this.log(`${tag} missing '${key}' fixture`)
+                transaction.fail = true;
+            }
+        }
+    }
+ 
 
     // logs a transaction
     transactionLogger(): TransactionHook {
