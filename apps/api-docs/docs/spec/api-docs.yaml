@@ -107,7 +107,7 @@ tags:
       | POST          | /projects                          | Create new item
       | GET           | /social-accounts                   | List all items
       | GET           | /social-accounts/{account}/status  | Perform a custom action (`status`) for a single item
-      | GET           | /tasks/{id}                        | Get a single item by id
+      | GET           | /cron-jobs/{id}                    | Get a single item by id
       | PUT           | /applications/{id}                 | Modify an item
       | DELETE        | /processes/{id}                    | Remove an item permanently
 
