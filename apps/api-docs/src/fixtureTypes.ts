@@ -13,6 +13,7 @@ export type UserTokens = {
 export type Fixture = UserCredentials | UserTokens | Identifiable;
 
 // fixture keys are written with underscores so they map directly to URL and JSON param names
+// some fixtureKeys have a mapped value, meaning that they are just aliases to that value
 const fixtureKeys = {
     'action': '',
     'application_environment_variable': '',
@@ -22,6 +23,7 @@ const fixtureKeys = {
     'deployment': '',
     'deployment_step': '',
     'environment': '',
+    'environment_update': 'environment',
     'network_rule': '',
     'process': '',
     'project': '', 
@@ -39,6 +41,14 @@ const fixtureKeys = {
 export type FixtureKey = keyof typeof fixtureKeys;
 export function isFixtureKey(str: string): str is FixtureKey {
     return fixtureKeys.hasOwnProperty(str);
+}
+export function resolveFixtureKey(key: FixtureKey): FixtureKey {
+    const val = fixtureKeys[key];
+    if (val == '') {
+        return key;
+    }
+    // TODO: should return null if val isn't a fixtureKey?
+    return isFixtureKey(val) ? val : key;
 }
 
 const fixtureListKeys = {

@@ -42,21 +42,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     //     const [inputs, outputs] = graph.edges(slug);
     //     hooks.log(`${i}  \t  ${slug}:  (${inputs.join(', ')}) -> (${outputs.join(', ')})`);
     // }
-
-    // specify which transactions will run in which order
-    // const transactionOrder: string[] = [
-    //     'addUser201',
-    //     'login200',
-    //     'refreshToken200',
-    //     'addProject201',
-    //     'getProject200',
-    //     'addSshKeyToProject201',
-    //     'getSshKey200',
-    //     'listProjects200',
-    //     'logout204'
-    // ];
-    // utils.selectTransactionsByName(transactions, transactionOrder.map(k => transactionSlugToName[k]));
-    utils.selectTransactionsByName(transactions, txOrder.slice(0, 9).map(k => transactionSlugToName[k]));
+    utils.selectTransactionsByName(transactions, txOrder.slice(0, 10).map(k => transactionSlugToName[k]));
 
     // attach graph inferred hooks
     transactions.forEach((transaction: Transaction) => {

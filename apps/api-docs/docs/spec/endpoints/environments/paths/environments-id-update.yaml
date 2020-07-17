@@ -20,7 +20,7 @@ requestBody:
   content:
     application/json:
       schema:
-        $ref: '#/components/schemas/EnvironmentCreate'
+        $ref: '#/components/schemas/EnvironmentUpdate'
 responses:
   204:
     $ref: '#/components/responses/NoContent'

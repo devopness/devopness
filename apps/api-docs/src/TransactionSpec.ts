@@ -5,7 +5,7 @@ import { OpenAPIV2 } from "openapi-types";
 import { Transaction, HTTPMethod as DreddHTTPMethod } from 'hooks';
 import { 
     FixtureKey, isFixtureKey, 
-    FixtureListKey, isFixtureListKey, Fixture,
+    FixtureListKey, isFixtureListKey, resolveFixtureKey,
 } from './fixtureTypes';
 import FixtureStore from './FixtureStore';
 
@@ -90,7 +90,9 @@ export default class TransactionSpec {
             schemaName = schemaName[0] == '_' ? schemaName.substr(1) : schemaName;
 
             // should be a valid fixture key
-            if (isFixtureKey(schemaName) ||  isFixtureListKey(schemaName)) {
+            if (isFixtureKey(schemaName)) {
+                return resolveFixtureKey(schemaName);
+            } else if (isFixtureListKey(schemaName)) {
                 return schemaName;
             } else if (!this.ignoreSchemas.includes(schemaName)) {
                 this.log(`[outputFixtureKeyFromResponseSpec] '${schemaName}' is not a valid fixture key`)

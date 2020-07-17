@@ -38,7 +38,11 @@ export default class TransactionGraph {
 
         // user_credentials and user_tokens are handled differently than other fixtures, so add them manually to the graph
         const initialFixtureTransactionGraph: FixtureTransactionGraph = {
-            fixtureTransactionInputs: { 'user_credentials': ['login200'] },
+            fixtureTransactionInputs: { 
+                'environment': ['addServerToProject201'],
+                'server': ['addApplicationToProject201'],
+                'user_credentials': ['login200'],
+            },
             fixtureTransactionOutputs: { 'user_credentials': ['addUser201'], 'user_tokens': ['login200'] },
             fixtureDeleteTransactions:  { 'user_tokens': ['logout204'] }
         };

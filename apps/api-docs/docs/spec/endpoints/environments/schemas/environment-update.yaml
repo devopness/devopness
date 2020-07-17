@@ -1,5 +1,9 @@
 type: object
 properties:
+  id:
+    description: Environment's unique id
+    example: 867
+    type: integer
   name:
     type: string
     description: The environment's name
