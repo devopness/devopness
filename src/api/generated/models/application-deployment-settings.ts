@@ -92,17 +92,17 @@ export interface ApplicationDeploymentSettings {
      */
     engine_version?: string;
     /**
-     * The command that should be executed once to build the application source code. If set, `devopness` will not execute it\'s own build process to resolve package dependencies and get the application in a ready state. It will be assumed that the user is an advanced user that knows what she/he is doing, therefore the command specified here will be run as is everytime the application needs to be started.
+     * The entrypoint tells devopness how an application should be started and has basically two forms:  1) `File`: if it\'s a simple file name/path an web app will be served using the entrypoint value as its index file. Example: `index.html`  2) `Command`: if a command line instruction is provided as the entrypoint value, it will be handled as the start up command that initalizes the application. It will be assumed that the user is an advanced user that knows what she/he is doing, therefore the command specified here will be run - as is - everytime the application needs to be started. 
+     * @type {string}
+     * @memberof ApplicationDeploymentSettings
+     */
+    entrypoint: string;
+    /**
+     * The optional command that should be executed once during deployment to build the source code and get the application in a ready state.
      * @type {string}
      * @memberof ApplicationDeploymentSettings
      */
     build_command?: string;
-    /**
-     * The start up command that should be executed every time the application needs to be started. If set, `devopness` will not generate it\'s own start up script. It will be assumed that the user is an advanced user that knows what she/he is doing, therefore the command specified here will be run as is everytime the application needs to be built.
-     * @type {string}
-     * @memberof ApplicationDeploymentSettings
-     */
-    init_command?: string;
     /**
      * Useful, for instance, when deploying `docker` containerized applications. If the application is not initialized by `devopness` itself, the user should inform the address at which the application listens to external calls. The address can be an IP, IP:PORT, HOSTNAME, HOSTNAME:PORT or unix:PATH
      * @type {string}
