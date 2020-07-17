@@ -4061,6 +4061,11 @@
             "description": "The base framework on top of which the application has been implemented - if any",
             "example": "drupal"
           },
+          "entrypoint": {
+            "type": "string",
+            "description": "The applicaton initialization file/module/function from which the application execution starts. It might be a file name, a package manager script or a module/class/function exported by application code and invoked by a run time environment of the technology used by the application.",
+            "example": "index.js|server.js|server.php|index.php|index:app|my-site.wsgi:application|my-project:main|my-project.wsgi"
+          },
           "root_directory": {
             "type": "string",
             "description": "The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository.",
@@ -4106,6 +4111,7 @@
           "id",
           "project_id",
           "name",
+          "entrypoint",
           "framework",
           "programming_language",
           "public_directory"
@@ -4148,6 +4154,11 @@
             "description": "The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository.",
             "example": "/ or /src or /lib/src or /code or /app"
           },
+          "entrypoint": {
+            "type": "string",
+            "description": "The applicaton initialization file/module/function from which the application execution starts. It might be a file name, a package manager script or a module/class/function exported by application code and invoked by a run time environment of the technology used by the application.",
+            "example": "index.js|server.js|server.php|index.php|index:app|my-site.wsgi:application|my-project:main|my-project.wsgi"
+          },
           "deployment_settings": {
             "description": "The list of deployment settings for each application environment",
             "type": "array",
@@ -4161,6 +4172,7 @@
         },
         "required": [
           "name",
+          "entrypoint",
           "framework",
           "programming_language",
           "public_directory",
@@ -4261,15 +4273,15 @@
             "type": "string",
             "example": "19.03.2"
           },
-          "entrypoint": {
-            "type": "string",
-            "description": "The entrypoint tells devopness how an application should be started and has basically two forms:\n\n1) `File`: if it's a simple file name/path an web app will be served using the entrypoint value as its index file. Example: `index.html`\n\n2) `Command`: if a command line instruction is provided as the entrypoint value, it will be handled as the start up command that initalizes the application. It will be assumed that the user is an advanced user that knows what she/he is doing, therefore the command specified here will be run - as is - everytime the application needs to be started.\n",
-            "example": "`index.html`, `index.php`, `server.php`, `default.htm`, `node server.js`, `yarn start`, `npm run production`, `docker run -d -P --name my_container_name my_image_name`, `php artisan serve –-host=192.168.2.20 --port=8000`"
-          },
           "build_command": {
-            "description": "The optional command that should be executed once during deployment to build the source code and get the application in a ready state.",
+            "description": "The command that should be executed once to build the application source code. If set, `devopness` will not execute it's own build process to resolve package dependencies and get the application in a ready state. It will be assumed that the user is an advanced user that knows what she/he is doing, therefore the command specified here will be run as is everytime the application needs to be started.",
             "type": "string",
             "example": "`docker build -t my_image_name .`, `yarn build`, `jekyll build`, `python build.py`"
+          },
+          "init_command": {
+            "description": "The start up command that should be executed every time the application needs to be started. If set, `devopness` will not generate it's own start up script. It will be assumed that the user is an advanced user that knows what she/he is doing, therefore the command specified here will be run as is everytime the application needs to be built.",
+            "type": "string",
+            "example": "`npm run production`, `docker run -d -P --name my_container_name my_image_name`, `php artisan serve –-host=192.168.2.20 --port=8000`"
           },
           "listening_address": {
             "description": "Useful, for instance, when deploying `docker` containerized applications. If the application is not initialized by `devopness` itself, the user should inform the address at which the application listens to external calls. The address can be an IP, IP:PORT, HOSTNAME, HOSTNAME:PORT or unix:PATH",
@@ -4284,7 +4296,6 @@
           "app_directory",
           "default_branch",
           "deployments_keep",
-          "entrypoint",
           "install_dependencies_dev",
           "install_dependencies_prod",
           "push_to_deploy"
@@ -5139,6 +5150,26 @@
             "type": "array",
             "items": {
               "properties": {
+                "build_command": {
+                  "description": "The command that should be executed once to build the application source code. If set, `devopness` will not execute it's own build process to resolve package dependencies and get the application in a ready state. It will be assumed that the user is an advanced user that knows what she/he is doing, therefore the command specified here will be run as is everytime the application needs to be started.",
+                  "type": "string",
+                  "example": "`docker build -t my_image_name .`, `yarn build`, `jekyll build`, `python build.py`"
+                },
+                "init_command": {
+                  "description": "The start up command that should be executed every time the application needs to be started. If set, `devopness` will not generate it's own start up script. It will be assumed that the user is an advanced user that knows what she/he is doing, therefore the command specified here will be run as is everytime the application needs to be built.",
+                  "type": "string",
+                  "example": "`npm run production`, `docker run -d -P --name my_container_name my_image_name`, `php artisan serve –-host=192.168.2.20 --port=8000`"
+                },
+                "listening_address": {
+                  "description": "Useful, for instance, when deploying `docker` containerized applications. If the application is not initialized by `devopness` itself, the user should inform the address at which the application listens to external calls. The address can be an IP, IP:PORT, HOSTNAME, HOSTNAME:PORT or unix:PATH",
+                  "type": "string",
+                  "example": "`unix:/tmp/backend3`, `http://127.0.0.1:8000`, `127.0.0.1:3000`, `http://localhost`"
+                },
+                "entrypoint": {
+                  "type": "string",
+                  "description": "The applicaton initialization file/module/function from which the application execution starts. It might be a file name, a package manager script or a module/class/function exported by application code and invoked by a run time environment of the technology used by the application.",
+                  "example": "index.js|server.js|server.php|index.php|index:app|my-site.wsgi:application|my-project:main|my-project.wsgi"
+                },
                 "root_directory": {
                   "type": "string",
                   "description": "The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository.",
@@ -5148,13 +5179,6 @@
                   "type": "string",
                   "description": "The relative web directory where publicly accessible assets are located and the web content should be served from",
                   "example": "/public"
-                },
-                "deployment_settings": {
-                  "description": "The list of deployment settings for each application environment",
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ApplicationDeploymentSettings"
-                  }
                 }
               }
             }
