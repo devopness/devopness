@@ -35,7 +35,7 @@ export class ProjectsCronJobsApiService extends ApiBaseService {
         if (cronJobCreate === null || cronJobCreate === undefined) {
             throw new ArgumentNullException('cronJobCreate', 'addCronJobToProject');
         }
-        const response = await this.post <CronJob, CronJobCreate>(`/projects/{project_id}/tasks`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), cronJobCreate);
+        const response = await this.post <CronJob, CronJobCreate>(`/projects/{project_id}/cron-jobs`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), cronJobCreate);
         return new ApiResponse(response);
     }
 
@@ -48,7 +48,7 @@ export class ProjectsCronJobsApiService extends ApiBaseService {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'listProjectCronJobs');
         }
-        const response = await this.get <Array<CronJob>>(`/projects/{project_id}/tasks`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
+        const response = await this.get <Array<CronJob>>(`/projects/{project_id}/cron-jobs`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
         return new ApiResponse(response);
     }
 }

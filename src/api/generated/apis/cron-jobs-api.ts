@@ -23,26 +23,26 @@ export class CronJobsApiService extends ApiBaseService {
     /**
      * 
      * @summary Delete a given CronJob
-     * @param {number} taskId Numeric ID of the cron job to be deleted
+     * @param {number} cronJobId Numeric ID of the cron job to be deleted
      */
-    public async deleteCronJob(taskId: number): Promise<ApiResponse<void>> {
-        if (taskId === null || taskId === undefined) {
-            throw new ArgumentNullException('taskId', 'deleteCronJob');
+    public async deleteCronJob(cronJobId: number): Promise<ApiResponse<void>> {
+        if (cronJobId === null || cronJobId === undefined) {
+            throw new ArgumentNullException('cronJobId', 'deleteCronJob');
         }
-        const response = await this.delete <void>(`/tasks/{task_id}`.replace(`{${"task_id"}}`, encodeURIComponent(String(taskId))));
+        const response = await this.delete <void>(`/cron-jobs/{cron_job_id}`.replace(`{${"cron_job_id"}}`, encodeURIComponent(String(cronJobId))));
         return new ApiResponse(response);
     }
 
     /**
      * 
      * @summary Get a CronJob by ID
-     * @param {number} taskId Numeric ID of the cron job to get
+     * @param {number} cronJobId Numeric ID of the cron job to get
      */
-    public async getCronJob(taskId: number): Promise<ApiResponse<CronJob>> {
-        if (taskId === null || taskId === undefined) {
-            throw new ArgumentNullException('taskId', 'getCronJob');
+    public async getCronJob(cronJobId: number): Promise<ApiResponse<CronJob>> {
+        if (cronJobId === null || cronJobId === undefined) {
+            throw new ArgumentNullException('cronJobId', 'getCronJob');
         }
-        const response = await this.get <CronJob>(`/tasks/{task_id}`.replace(`{${"task_id"}}`, encodeURIComponent(String(taskId))));
+        const response = await this.get <CronJob>(`/cron-jobs/{cron_job_id}`.replace(`{${"cron_job_id"}}`, encodeURIComponent(String(cronJobId))));
         return new ApiResponse(response);
     }
 }

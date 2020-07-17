@@ -26,11 +26,11 @@ export class ProjectsApiService extends ApiBaseService {
      * @summary Create a new project
      * @param {Project} project A JSON object containing project data
      */
-    public async addProject(project: Project): Promise<ApiResponse<void>> {
+    public async addProject(project: Project): Promise<ApiResponse<Project>> {
         if (project === null || project === undefined) {
             throw new ArgumentNullException('project', 'addProject');
         }
-        const response = await this.post <void, Project>(`/projects`, project);
+        const response = await this.post <Project, Project>(`/projects`, project);
         return new ApiResponse(response);
     }
 
