@@ -11,5 +11,6 @@ properties:
   type:
     $ref: '#/components/schemas/EnvironmentType'
 required:
+  - id
   - name
   - type

@@ -12,7 +12,7 @@ requestBody:
   content:
     application/json:
       schema:
-        $ref: '#/components/schemas/Project'
+        $ref: '#/components/schemas/ProjectCreate'
 responses:
   201:
     description: "Created"

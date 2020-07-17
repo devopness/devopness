@@ -1,8 +1,7 @@
 import { Transaction, TransactionHook } from 'hooks';
 
-import { FixtureKey, Fixture, Identifiable, UserTokens, isFixtureKey } from './fixtureTypes';
+import { FixtureKey, Fixture, Identifiable, UserTokens, isFixtureKey, isIdentifiable } from './fixtureTypes';
 import FixtureStore from './FixtureStore';
-import TransactionSpec from './TransactionSpec';
 
 type LogFunction = (...any: any[]) => void;
 
@@ -120,13 +119,17 @@ export default class TransactionUtils {
         }
     }
 
-    setTransactionRequestBodyFixtureId<T extends Identifiable>(key: FixtureKey): TransactionHook {
+    setTransactionRequestBodyFixtureId<T extends Fixture>(key: FixtureKey): TransactionHook {
         return (transaction: Transaction) => {
             const tag = `${transaction.id} [setTransactionRequestBodyFixtureId]`
             const fixture = this.fixtureStore.get<T>(key);
             if (fixture) {
-                this.log(`${tag} ${key}.id=${fixture.id}`)
-                this.rewriteTransactionRequestBody((body: Identifiable) => body.id = fixture.id)(transaction);
+                if (isIdentifiable(fixture)) {
+                    this.log(`${tag} ${key}.id=${fixture.id}`)
+                    this.rewriteTransactionRequestBody((body: Identifiable) => body.id = fixture.id)(transaction);
+                } else{
+                    this.log(`${tag} fixture '${key}' doesn't have an 'id' field`)
+                }
             } else {
                 this.log(`${tag} missing '${key}' fixture`)
                 transaction.fail = true;

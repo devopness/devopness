@@ -52,12 +52,13 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
             if (transactionSpec.pathInputs.length > 0) {
                 hooks.before(transaction.name, utils.writeFixtureIdsInTransactionPath(transactionSpec.pathInputs));
             }
-            // body.id parameter should match path {fixture}_id parameter
             if (transactionSpec.bodyInput && isFixtureKey(transactionSpec.bodyInput)) {
-                if (transactionSpec.bodyInput === "project") {
+                if (["project", "project_create"].includes(transactionSpec.bodyInput)) {
+                    hooks.log(`delete logo image: ${transactionSpec.bodyInput}`)
                     const removeLogoImage = (body: any) => { delete body['logo_image']; }
                     hooks.before(transaction.name, utils.rewriteTransactionRequestBody(removeLogoImage));
                 }
+                // body.id parameter should match path {fixture}_id parameter
                 if (transactionSpec.pathInputs.includes(transactionSpec.bodyInput)) {
                     hooks.before(transaction.name, utils.setTransactionRequestBodyFixtureId(transactionSpec.bodyInput));
                 }

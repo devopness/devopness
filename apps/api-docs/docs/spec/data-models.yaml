@@ -90,6 +90,8 @@ Processes:
   $ref: ./endpoints/processes/schemas/process-list.yaml
 Project:
   $ref: ./endpoints/projects/schemas/project.yaml
+ProjectCreate:
+  $ref: ./endpoints/projects/schemas/project-create.yaml
 Projects:
   $ref: ./endpoints/projects/schemas/project-list.yaml
 Repositories:

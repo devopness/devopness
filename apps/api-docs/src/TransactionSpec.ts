@@ -64,7 +64,7 @@ export default class TransactionSpec {
         this.method = method;
         this.slug = `${operationSpec.operationId}${statusCode}`;
         this.output = this.outputFromResponseSpec(responseSpec);
-        [this.pathInputs, this.bodyInput] = this.inputsFromOperationSpec(operationSpec, spec);
+        [this.pathInputs, this.bodyInput] = this.inputsFromOperationSpec(operationSpec);
     }
 
     operationSpecHasAuthorizationHeaderParam(operationSpec: OpenAPIV2.OperationObject): boolean {
@@ -112,7 +112,7 @@ export default class TransactionSpec {
         return null;
     }
 
-    inputsFromOperationSpec(operationSpec: OpenAPIV2.OperationObject, spec: OpenAPIV2.Document): [FixtureKey[], FixtureKey | FixtureListKey | null] {
+    inputsFromOperationSpec(operationSpec: OpenAPIV2.OperationObject): [FixtureKey[], FixtureKey | FixtureListKey | null] {
         const inputs: FixtureKey[] = [];
         let body: FixtureKey | FixtureListKey | null = null;
         const parametersSpec = operationSpec.parameters;
@@ -130,9 +130,9 @@ export default class TransactionSpec {
                 } else if (paramSpec.in == 'body') {
                     paramSpec = paramSpec as OpenAPIV2.InBodyParameterObject;
                     const schemaRef = paramSpec.schema as OpenAPIV2.ReferenceObject;
-                    const schemaDefinition = this.getDefinitionFromSchemaRef(spec, schemaRef);
-                    if (schemaDefinition?.properties?.id !== undefined) {
-                        body = this.fixtureFromSchemaRef(schemaRef);
+                    const fixtureKey = this.fixtureFromSchemaRef(schemaRef);
+                    if (fixtureKey != null) {
+                        body = fixtureKey;
                     }
                 }
             }
