@@ -50,14 +50,19 @@ properties:
     description: The language runtime engine version to be used to execute this application code on the deployed servers
     type: string
     example: "19.03.2"
+  entrypoint:
+    type: string
+    description: |
+      The entrypoint tells devopness how an application should be started and has basically two forms:
+
+      1) `File`: if it's a simple file name/path an web app will be served using the entrypoint value as its index file. Example: `index.html`
+
+      2) `Command`: if a command line instruction is provided as the entrypoint value, it will be handled as the start up command that initalizes the application. It will be assumed that the user is an advanced user that knows what she/he is doing, therefore the command specified here will be run - as is - everytime the application needs to be started.
+    example: "`index.html`, `index.php`, `server.php`, `default.htm`, `node server.js`, `yarn start`, `npm run production`, `docker run -d -P --name my_container_name my_image_name`, `php artisan serve –-host=192.168.2.20 --port=8000`"
   build_command:
-    description: The command that should be executed once to build the application source code. If set, `devopness` will not execute it's own build process to resolve package dependencies and get the application in a ready state. It will be assumed that the user is an advanced user that knows what she/he is doing, therefore the command specified here will be run as is everytime the application needs to be started.
+    description: The optional command that should be executed once during deployment to build the source code and get the application in a ready state.
     type: string
     example: "`docker build -t my_image_name .`, `yarn build`, `jekyll build`, `python build.py`"
-  init_command:
-    description: The start up command that should be executed every time the application needs to be started. If set, `devopness` will not generate it's own start up script. It will be assumed that the user is an advanced user that knows what she/he is doing, therefore the command specified here will be run as is everytime the application needs to be built.
-    type: string
-    example: "`npm run production`, `docker run -d -P --name my_container_name my_image_name`, `php artisan serve –-host=192.168.2.20 --port=8000`"
   listening_address:
     description: Useful, for instance, when deploying `docker` containerized applications. If the application is not initialized by `devopness` itself, the user should inform the address at which the application listens to external calls. The address can be an IP, IP:PORT, HOSTNAME, HOSTNAME:PORT or unix:PATH
     type: string
@@ -69,6 +74,7 @@ required:
   - app_directory
   - default_branch
   - deployments_keep
+  - entrypoint
   - install_dependencies_dev
   - install_dependencies_prod
   - push_to_deploy

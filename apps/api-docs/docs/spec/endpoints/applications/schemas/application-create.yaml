@@ -27,10 +27,6 @@ properties:
     type: string
     description: The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository.
     example: "/ or /src or /lib/src or /code or /app"
-  entrypoint:
-    type: string
-    description: The applicaton initialization file/module/function from which the application execution starts. It might be a file name, a package manager script or a module/class/function exported by application code and invoked by a run time environment of the technology used by the application.
-    example: "index.js|server.js|server.php|index.php|index:app|my-site.wsgi:application|my-project:main|my-project.wsgi"
   deployment_settings:
     description: "The list of deployment settings for each application environment"
     type: array
@@ -40,7 +36,6 @@ properties:
     $ref: '#/components/schemas/EnvironmentLinks'
 required:
   - name
-  - entrypoint
   - framework
   - programming_language
   - public_directory
