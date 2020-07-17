@@ -64,12 +64,6 @@ export interface ApplicationCreate {
      */
     root_directory?: string;
     /**
-     * The applicaton initialization file/module/function from which the application execution starts. It might be a file name, a package manager script or a module/class/function exported by application code and invoked by a run time environment of the technology used by the application.
-     * @type {string}
-     * @memberof ApplicationCreate
-     */
-    entrypoint: string;
-    /**
      * The list of deployment settings for each application environment
      * @type {Array<ApplicationDeploymentSettings>}
      * @memberof ApplicationCreate
