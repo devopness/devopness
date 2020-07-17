@@ -24,6 +24,7 @@ export * from './environment-create';
 export * from './environment-link-item';
 export * from './environment-link-server';
 export * from './environment-type';
+export * from './environment-update';
 export * from './extra-body-params';
 export * from './language-runtime';
 export * from './language-runtime-framework';

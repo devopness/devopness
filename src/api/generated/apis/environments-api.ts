@@ -15,7 +15,7 @@ import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { Environment } from '../../generated/models';
-import { EnvironmentCreate } from '../../generated/models';
+import { EnvironmentUpdate } from '../../generated/models';
 
 /**
  * EnvironmentsApiService - Auto-generated
@@ -51,16 +51,16 @@ export class EnvironmentsApiService extends ApiBaseService {
      * 
      * @summary Update a given environment
      * @param {number} environmentId Unique ID of the environment to delete
-     * @param {EnvironmentCreate} environmentCreate A JSON object containing environment data
+     * @param {EnvironmentUpdate} environmentUpdate A JSON object containing environment data
      */
-    public async updateEnvironment(environmentId: number, environmentCreate: EnvironmentCreate): Promise<ApiResponse<void>> {
+    public async updateEnvironment(environmentId: number, environmentUpdate: EnvironmentUpdate): Promise<ApiResponse<void>> {
         if (environmentId === null || environmentId === undefined) {
             throw new ArgumentNullException('environmentId', 'updateEnvironment');
         }
-        if (environmentCreate === null || environmentCreate === undefined) {
-            throw new ArgumentNullException('environmentCreate', 'updateEnvironment');
+        if (environmentUpdate === null || environmentUpdate === undefined) {
+            throw new ArgumentNullException('environmentUpdate', 'updateEnvironment');
         }
-        const response = await this.put <void, EnvironmentCreate>(`/environments/{environment_id}`.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))), environmentCreate);
+        const response = await this.put <void, EnvironmentUpdate>(`/environments/{environment_id}`.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))), environmentUpdate);
         return new ApiResponse(response);
     }
 }
