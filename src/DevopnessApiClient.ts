@@ -15,6 +15,7 @@ import { CronJobService } from './services/CronJobService';
 import { StaticService } from './services/StaticService';
 import { ActionsApiService } from './api/generated/apis/actions-api';
 import { SocialAccountService } from './services/SocialAccountService';
+import { LogService } from './services/LogService';
 
 export class DevopnessApiClient {
   actions: ActionsApiService;
@@ -23,6 +24,7 @@ export class DevopnessApiClient {
   daemons: DaemonService;
   deployments: DeploymentService;
   environments: EnvironmentService;
+  logs: LogService;
   networkRules: NetworkRuleService;
   projects: ProjectService;
   servers: ServerService;
@@ -37,17 +39,16 @@ export class DevopnessApiClient {
   constructor(options?: ConfigurationOptions) {
     ApiBaseService.configuration = new Configuration(options || {});
 
-    // we'd better initialize the services explicitly, instead of auto initialize them on property
-    // declaration in the beginning of the class, cause some (or all) of them might need constructor
-    // parameters. Furthermore, we ensure all assertions for required parameters (like the
-    // above check for `baseUrl`) are quickly returned to the end user before spending
-    // time loading extra resources
+    // we initialize the services explicitly, instead of auto initialize them on property declaration in the beginning of the class,
+    // cause some (or all) of them depend on `ApiBaseService.configuration` property be set. Furthermore, we ensure all assertions
+    // for non provided required parameters are quickly returned to the end user before spending time loading extra resources
     this.actions = new ActionsApiService();
     this.applications = new ApplicationService();
     this.cronjobs = new CronJobService();
     this.daemons = new DaemonService();
     this.deployments = new DeploymentService();
     this.environments = new EnvironmentService();
+    this.logs = new LogService();
     this.networkRules = new NetworkRuleService();
     this.projects = new ProjectService();
     this.servers = new ServerService();

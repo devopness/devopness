@@ -14,7 +14,6 @@
 #   - template for models, so `replace-tslint-disable-directive-with-eslint` is no longer needed in package.json
 #   - generator should fail on warning from openapi docs issues, and break the build, better for automation
 generated/apis/b*.ts
-generated/apis/l*.ts
 
 .gitignore
 .npmignore
