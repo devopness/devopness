@@ -50,7 +50,7 @@ export class EnvironmentsApiService extends ApiBaseService {
     /**
      * 
      * @summary Update a given environment
-     * @param {number} environmentId Unique ID of the environment to delete
+     * @param {number} environmentId Unique ID of the environment to update
      * @param {EnvironmentUpdate} environmentUpdate A JSON object containing environment data
      */
     public async updateEnvironment(environmentId: number, environmentUpdate: EnvironmentUpdate): Promise<ApiResponse<void>> {

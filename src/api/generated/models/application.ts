@@ -12,7 +12,6 @@
  */
 
 
-import { ApplicationDeploymentSettings } from './application-deployment-settings';
 import { Environment } from './environment';
 import { SocialAccount } from './social-account';
 
@@ -35,17 +34,17 @@ export interface Application {
      */
     name: string;
     /**
-     * Numeric ID of the project that the application belongs to
-     * @type {number}
+     * The sub-domain through which the application deployed with these settings will be accessed
+     * @type {string}
      * @memberof Application
      */
-    project_id: number;
+    domain_name: string;
     /**
-     * Numeric ID of the source provider account where the repository is hosted. Required when the `repository` field is informed.
-     * @type {number}
+     * 
+     * @type {SocialAccount}
      * @memberof Application
      */
-    source_provider_id?: number;
+    source_provider?: SocialAccount;
     /**
      * The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed.
      * @type {string}
@@ -65,17 +64,41 @@ export interface Application {
      */
     repository_owner?: string;
     /**
+     * The version control branch that, by default, will be retrieved and deployed. This might be overriden by client apps API calls when actually triggering a new deployment.
+     * @type {string}
+     * @memberof Application
+     */
+    default_branch?: string;
+    /**
+     * Indicates if push to deploy webhooks are enabled for this application/environment, if so code will be deployed when commited to the default_branch
+     * @type {boolean}
+     * @memberof Application
+     */
+    push_to_deploy?: boolean;
+    /**
      * The predominant programming language used in the application source code
      * @type {string}
      * @memberof Application
      */
     programming_language: string;
     /**
+     * The language runtime engine version to be used to execute this application code on the deployed servers
+     * @type {string}
+     * @memberof Application
+     */
+    engine_version?: string;
+    /**
      * The base framework on top of which the application has been implemented - if any
      * @type {string}
      * @memberof Application
      */
     framework: string;
+    /**
+     * The physical path of the applicaton code/artifacts on the deployed servers
+     * @type {string}
+     * @memberof Application
+     */
+    app_directory?: string;
     /**
      * The relative directory where package manager\'s manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository.
      * @type {string}
@@ -89,29 +112,59 @@ export interface Application {
      */
     public_directory: string;
     /**
-     * 
-     * @type {SocialAccount}
+     * The entrypoint tells devopness how an application should be started and has basically two forms:  1) `File`: if it\'s a simple file name/path an web app will be served using the entrypoint value as its index file. Example: `index.html`  2) `Command`: if a command line instruction is provided as the entrypoint value, it will be handled as the start up command that initalizes the application. It will be assumed that the user is an advanced user that knows what she/he is doing, therefore the command specified here will be run - as is - everytime the application needs to be started. 
+     * @type {string}
      * @memberof Application
      */
-    source_provider?: SocialAccount;
+    entrypoint?: string;
     /**
-     * The list of deployment settings for each application environment
-     * @type {Array<ApplicationDeploymentSettings>}
+     * Useful, for instance, when deploying `docker` containerized applications. If the application is not initialized by `devopness` itself, the user should inform the address at which the application listens to external calls. The address can be an IP, IP:PORT, HOSTNAME, HOSTNAME:PORT or unix:PATH
+     * @type {string}
      * @memberof Application
      */
-    deployment_settings?: Array<ApplicationDeploymentSettings>;
+    listening_address?: string;
+    /**
+     * The number of deployment history, logs and artifacts to keep stored in both devopness servers and user\'s servers
+     * @type {number}
+     * @memberof Application
+     */
+    deployments_keep?: number;
+    /**
+     * Indicates if at deployment time we should execute package manager command to install dependencies used in development mode
+     * @type {boolean}
+     * @memberof Application
+     */
+    install_dependencies_dev?: boolean;
+    /**
+     * Indicates if at deployment time we should execute package manager command to install dependencies used in production mode
+     * @type {boolean}
+     * @memberof Application
+     */
+    install_dependencies_prod?: boolean;
     /**
      * The list of environments to which the application is linked to
      * @type {Array<Environment>}
      * @memberof Application
      */
-    environments?: Array<Environment>;
+    environments: Array<Environment>;
     /**
      * Current status of deploying to remote servers the current application
      * @type {string}
      * @memberof Application
      */
     status?: ApplicationStatusEnum;
+    /**
+     * Numeric ID of the project that the application belongs to
+     * @type {number}
+     * @memberof Application
+     */
+    project_id: number;
+    /**
+     * Numeric ID of the source provider account where the repository is hosted. Required when the `repository` field is informed.
+     * @type {number}
+     * @memberof Application
+     */
+    source_provider_id?: number;
 }
 
 /**

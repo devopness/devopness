@@ -25,7 +25,7 @@ export interface EnvironmentUpdate {
      * @type {number}
      * @memberof EnvironmentUpdate
      */
-    id?: number;
+    id: number;
     /**
      * The environment\'s name
      * @type {string}

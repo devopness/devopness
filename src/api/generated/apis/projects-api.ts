@@ -16,6 +16,8 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { Project } from '../../generated/models';
+import { ProjectCreate } from '../../generated/models';
+import { ProjectUpdate } from '../../generated/models';
 
 /**
  * ProjectsApiService - Auto-generated
@@ -24,13 +26,13 @@ export class ProjectsApiService extends ApiBaseService {
     /**
      * 
      * @summary Create a new project
-     * @param {Project} project A JSON object containing project data
+     * @param {ProjectCreate} projectCreate A JSON object containing project data
      */
-    public async addProject(project: Project): Promise<ApiResponse<Project>> {
-        if (project === null || project === undefined) {
-            throw new ArgumentNullException('project', 'addProject');
+    public async addProject(projectCreate: ProjectCreate): Promise<ApiResponse<Project>> {
+        if (projectCreate === null || projectCreate === undefined) {
+            throw new ArgumentNullException('projectCreate', 'addProject');
         }
-        const response = await this.post <Project, Project>(`/projects`, project);
+        const response = await this.post <Project, ProjectCreate>(`/projects`, projectCreate);
         return new ApiResponse(response);
     }
 
@@ -60,16 +62,16 @@ export class ProjectsApiService extends ApiBaseService {
      * 
      * @summary Update an existing project
      * @param {number} projectId Numeric ID of the project to put
-     * @param {Project} project A JSON object containing project data
+     * @param {ProjectUpdate} projectUpdate A JSON object containing project data
      */
-    public async updateProject(projectId: number, project: Project): Promise<ApiResponse<void>> {
+    public async updateProject(projectId: number, projectUpdate: ProjectUpdate): Promise<ApiResponse<void>> {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'updateProject');
         }
-        if (project === null || project === undefined) {
-            throw new ArgumentNullException('project', 'updateProject');
+        if (projectUpdate === null || projectUpdate === undefined) {
+            throw new ArgumentNullException('projectUpdate', 'updateProject');
         }
-        const response = await this.put <void, Project>(`/projects/{project_id}`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), project);
+        const response = await this.put <void, ProjectUpdate>(`/projects/{project_id}`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), projectUpdate);
         return new ApiResponse(response);
     }
 }

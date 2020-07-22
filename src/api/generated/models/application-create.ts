@@ -12,7 +12,6 @@
  */
 
 
-import { ApplicationDeploymentSettings } from './application-deployment-settings';
 import { EnvironmentLinkItem } from './environment-link-item';
 
 /**
@@ -22,17 +21,23 @@ import { EnvironmentLinkItem } from './environment-link-item';
  */
 export interface ApplicationCreate {
     /**
+     * Numeric ID of the source provider account where the repository is hosted. Required when the `repository` field is informed.
+     * @type {number}
+     * @memberof ApplicationCreate
+     */
+    source_provider_id: number;
+    /**
      * A domain name that points to application main web address. Can be a naked domain or any subdomain. If app has domain names `testing.my-app.com`, `staging.my-app.com` and `www.my-app.com` a possible good candidate for the application name would be the \"naked\" domain `my-app.com`
      * @type {string}
      * @memberof ApplicationCreate
      */
     name: string;
     /**
-     * Numeric ID of the source provider account where the repository is hosted. Required when the `repository` field is informed.
-     * @type {number}
+     * The sub-domain through which the application deployed with these settings will be accessed
+     * @type {string}
      * @memberof ApplicationCreate
      */
-    source_provider_id: number;
+    domain_name?: string;
     /**
      * The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed.
      * @type {string}
@@ -40,11 +45,29 @@ export interface ApplicationCreate {
      */
     repository: string;
     /**
+     * The version control branch that, by default, will be retrieved and deployed. This might be overriden by client apps API calls when actually triggering a new deployment.
+     * @type {string}
+     * @memberof ApplicationCreate
+     */
+    default_branch?: string;
+    /**
+     * Indicates if push to deploy webhooks are enabled for this application/environment, if so code will be deployed when commited to the default_branch
+     * @type {boolean}
+     * @memberof ApplicationCreate
+     */
+    push_to_deploy?: boolean;
+    /**
      * The predominant programming language used in the application source code
      * @type {string}
      * @memberof ApplicationCreate
      */
     programming_language: string;
+    /**
+     * The language runtime engine version to be used to execute this application code on the deployed servers
+     * @type {string}
+     * @memberof ApplicationCreate
+     */
+    engine_version?: string;
     /**
      * The base framework on top of which the application has been implemented - if any
      * @type {string}
@@ -52,11 +75,11 @@ export interface ApplicationCreate {
      */
     framework: string;
     /**
-     * The relative web directory where publicly accessible assets are located and the web content should be served from
+     * The physical path of the applicaton code/artifacts on the deployed servers
      * @type {string}
      * @memberof ApplicationCreate
      */
-    public_directory: string;
+    app_directory?: string;
     /**
      * The relative directory where package manager\'s manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository.
      * @type {string}
@@ -64,11 +87,53 @@ export interface ApplicationCreate {
      */
     root_directory?: string;
     /**
-     * The list of deployment settings for each application environment
-     * @type {Array<ApplicationDeploymentSettings>}
+     * The relative web directory where publicly accessible assets are located and the web content should be served from
+     * @type {string}
      * @memberof ApplicationCreate
      */
-    deployment_settings?: Array<ApplicationDeploymentSettings>;
+    public_directory: string;
+    /**
+     * The entrypoint tells devopness how an application should be started and has basically two forms:  1) `File`: if it\'s a simple file name/path an web app will be served using the entrypoint value as its index file. Example: `index.html`  2) `Command`: if a command line instruction is provided as the entrypoint value, it will be handled as the start up command that initalizes the application. It will be assumed that the user is an advanced user that knows what she/he is doing, therefore the command specified here will be run - as is - everytime the application needs to be started. 
+     * @type {string}
+     * @memberof ApplicationCreate
+     */
+    entrypoint: string;
+    /**
+     * Useful, for instance, when deploying `docker` containerized applications. If the application is not initialized by `devopness` itself, the user should inform the address at which the application listens to external calls. The address can be an IP, IP:PORT, HOSTNAME, HOSTNAME:PORT or unix:PATH
+     * @type {string}
+     * @memberof ApplicationCreate
+     */
+    listening_address?: string;
+    /**
+     * The optional command that should be executed once during deployment to build the source code and get the application in a ready state.
+     * @type {string}
+     * @memberof ApplicationCreate
+     */
+    build_command?: string;
+    /**
+     * The number of deployment history, logs and artifacts to keep stored in both devopness servers and user\'s servers
+     * @type {number}
+     * @memberof ApplicationCreate
+     */
+    deployments_keep?: number;
+    /**
+     * Indicates if at deployment time we should execute package manager command to install dependencies used in development mode
+     * @type {boolean}
+     * @memberof ApplicationCreate
+     */
+    install_dependencies_dev?: boolean;
+    /**
+     * Indicates if at deployment time we should execute package manager command to install dependencies used in production mode
+     * @type {boolean}
+     * @memberof ApplicationCreate
+     */
+    install_dependencies_prod?: boolean;
+    /**
+     * Numeric ID of the project that the application belongs to
+     * @type {number}
+     * @memberof ApplicationCreate
+     */
+    project_id?: number;
     /**
      * 
      * @type {Array<EnvironmentLinkItem>}

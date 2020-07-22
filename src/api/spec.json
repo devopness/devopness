@@ -702,7 +702,7 @@
               "minimum": 1
             },
             "required": true,
-            "description": "Unique ID of the environment to delete"
+            "description": "Unique ID of the environment to update"
           }
         ],
         "requestBody": {
@@ -1248,7 +1248,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Project"
+                "$ref": "#/components/schemas/ProjectCreate"
               }
             }
           }
@@ -1379,7 +1379,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Project"
+                "$ref": "#/components/schemas/ProjectUpdate"
               }
             }
           }
@@ -4028,13 +4028,15 @@
             "description": "A domain name that points to application main web address. Can be a naked domain or any subdomain. If app has domain names `testing.my-app.com`, `staging.my-app.com` and `www.my-app.com` a possible good candidate for the application name would be the \"naked\" domain `my-app.com`",
             "example": "my-app.co.uk"
           },
-          "project_id": {
-            "type": "integer",
-            "description": "Numeric ID of the project that the application belongs to"
+          "domain_name": {
+            "type": "string",
+            "format": "hostname",
+            "description": "The sub-domain through which the application deployed with these settings will be accessed",
+            "example": "test.my-app.co.uk"
           },
-          "source_provider_id": {
-            "type": "integer",
-            "description": "Numeric ID of the source provider account where the repository is hosted. Required when the `repository` field is informed."
+          "source_provider": {
+            "description": "The source provider from where the application source code repository has been retrieved",
+            "$ref": "#/components/schemas/SocialAccount"
           },
           "repository": {
             "description": "The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed.",
@@ -4051,15 +4053,35 @@
             "type": "string",
             "example": "devopness-web-site"
           },
+          "default_branch": {
+            "type": "string",
+            "description": "The version control branch that, by default, will be retrieved and deployed. This might be overriden by client apps API calls when actually triggering a new deployment.",
+            "example": "develop"
+          },
+          "push_to_deploy": {
+            "description": "Indicates if push to deploy webhooks are enabled for this application/environment, if so code will be deployed when commited to the default_branch",
+            "type": "boolean",
+            "example": false
+          },
           "programming_language": {
             "type": "string",
             "description": "The predominant programming language used in the application source code",
             "example": "php"
           },
+          "engine_version": {
+            "description": "The language runtime engine version to be used to execute this application code on the deployed servers",
+            "type": "string",
+            "example": "19.03.2"
+          },
           "framework": {
             "type": "string",
             "description": "The base framework on top of which the application has been implemented - if any",
             "example": "drupal"
+          },
+          "app_directory": {
+            "type": "string",
+            "description": "The physical path of the applicaton code/artifacts on the deployed servers",
+            "example": "/var/www/my-app"
           },
           "root_directory": {
             "type": "string",
@@ -4071,16 +4093,30 @@
             "description": "The relative web directory where publicly accessible assets are located and the web content should be served from",
             "example": "/public"
           },
-          "source_provider": {
-            "description": "The source provider from where the application source code repository has been retrieved",
-            "$ref": "#/components/schemas/SocialAccount"
+          "entrypoint": {
+            "type": "string",
+            "description": "The entrypoint tells devopness how an application should be started and has basically two forms:\n\n1) `File`: if it's a simple file name/path an web app will be served using the entrypoint value as its index file. Example: `index.html`\n\n2) `Command`: if a command line instruction is provided as the entrypoint value, it will be handled as the start up command that initalizes the application. It will be assumed that the user is an advanced user that knows what she/he is doing, therefore the command specified here will be run - as is - everytime the application needs to be started.\n",
+            "example": "`index.html`, `index.php`, `server.php`, `default.htm`, `node server.js`, `yarn start`, `npm run production`, `docker run -d -P --name my_container_name my_image_name`, `php artisan serve –-host=192.168.2.20 --port=8000`"
           },
-          "deployment_settings": {
-            "description": "The list of deployment settings for each application environment",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ApplicationDeploymentSettings"
-            }
+          "listening_address": {
+            "description": "Useful, for instance, when deploying `docker` containerized applications. If the application is not initialized by `devopness` itself, the user should inform the address at which the application listens to external calls. The address can be an IP, IP:PORT, HOSTNAME, HOSTNAME:PORT or unix:PATH",
+            "type": "string",
+            "example": "`unix:/tmp/backend3`, `http://127.0.0.1:8000`, `127.0.0.1:3000`, `http://localhost`"
+          },
+          "deployments_keep": {
+            "type": "integer",
+            "description": "The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers",
+            "example": 4
+          },
+          "install_dependencies_dev": {
+            "description": "Indicates if at deployment time we should execute package manager command to install dependencies used in development mode",
+            "type": "boolean",
+            "example": false
+          },
+          "install_dependencies_prod": {
+            "description": "Indicates if at deployment time we should execute package manager command to install dependencies used in production mode",
+            "type": "boolean",
+            "example": true
           },
           "environments": {
             "description": "The list of environments to which the application is linked to",
@@ -4100,12 +4136,22 @@
               "failed"
             ],
             "example": "completed"
+          },
+          "project_id": {
+            "type": "integer",
+            "description": "Numeric ID of the project that the application belongs to"
+          },
+          "source_provider_id": {
+            "type": "integer",
+            "description": "Numeric ID of the source provider account where the repository is hosted. Required when the `repository` field is informed."
           }
         },
         "required": [
           "id",
           "project_id",
+          "environments",
           "name",
+          "domain_name",
           "framework",
           "programming_language",
           "public_directory"
@@ -4114,46 +4160,99 @@
       "ApplicationCreate": {
         "type": "object",
         "properties": {
+          "source_provider_id": {
+            "type": "integer",
+            "description": "Numeric ID of the source provider account where the repository is hosted. Required when the `repository` field is informed."
+          },
           "name": {
             "type": "string",
             "description": "A domain name that points to application main web address. Can be a naked domain or any subdomain. If app has domain names `testing.my-app.com`, `staging.my-app.com` and `www.my-app.com` a possible good candidate for the application name would be the \"naked\" domain `my-app.com`",
             "example": "my-app.co.uk"
           },
-          "source_provider_id": {
-            "type": "integer",
-            "description": "Numeric ID of the source provider account where the repository is hosted. Required when the `repository` field is informed."
+          "domain_name": {
+            "type": "string",
+            "format": "hostname",
+            "description": "The sub-domain through which the application deployed with these settings will be accessed",
+            "example": "test.my-app.co.uk"
           },
           "repository": {
             "description": "The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed.",
             "type": "string",
             "example": "devopness/devopness-web-site"
           },
+          "default_branch": {
+            "type": "string",
+            "description": "The version control branch that, by default, will be retrieved and deployed. This might be overriden by client apps API calls when actually triggering a new deployment.",
+            "example": "develop"
+          },
+          "push_to_deploy": {
+            "description": "Indicates if push to deploy webhooks are enabled for this application/environment, if so code will be deployed when commited to the default_branch",
+            "type": "boolean",
+            "example": false
+          },
           "programming_language": {
             "type": "string",
             "description": "The predominant programming language used in the application source code",
             "example": "php"
+          },
+          "engine_version": {
+            "description": "The language runtime engine version to be used to execute this application code on the deployed servers",
+            "type": "string",
+            "example": "19.03.2"
           },
           "framework": {
             "type": "string",
             "description": "The base framework on top of which the application has been implemented - if any",
             "example": "drupal"
           },
-          "public_directory": {
+          "app_directory": {
             "type": "string",
-            "description": "The relative web directory where publicly accessible assets are located and the web content should be served from",
-            "example": "/public"
+            "description": "The physical path of the applicaton code/artifacts on the deployed servers",
+            "example": "/var/www/my-app"
           },
           "root_directory": {
             "type": "string",
             "description": "The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository.",
             "example": "/ or /src or /lib/src or /code or /app"
           },
-          "deployment_settings": {
-            "description": "The list of deployment settings for each application environment",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ApplicationDeploymentSettings"
-            }
+          "public_directory": {
+            "type": "string",
+            "description": "The relative web directory where publicly accessible assets are located and the web content should be served from",
+            "example": "/public"
+          },
+          "entrypoint": {
+            "type": "string",
+            "description": "The entrypoint tells devopness how an application should be started and has basically two forms:\n\n1) `File`: if it's a simple file name/path an web app will be served using the entrypoint value as its index file. Example: `index.html`\n\n2) `Command`: if a command line instruction is provided as the entrypoint value, it will be handled as the start up command that initalizes the application. It will be assumed that the user is an advanced user that knows what she/he is doing, therefore the command specified here will be run - as is - everytime the application needs to be started.\n",
+            "example": "`index.html`, `index.php`, `server.php`, `default.htm`, `node server.js`, `yarn start`, `npm run production`, `docker run -d -P --name my_container_name my_image_name`, `php artisan serve –-host=192.168.2.20 --port=8000`"
+          },
+          "listening_address": {
+            "description": "Useful, for instance, when deploying `docker` containerized applications. If the application is not initialized by `devopness` itself, the user should inform the address at which the application listens to external calls. The address can be an IP, IP:PORT, HOSTNAME, HOSTNAME:PORT or unix:PATH",
+            "type": "string",
+            "example": "`unix:/tmp/backend3`, `http://127.0.0.1:8000`, `127.0.0.1:3000`, `http://localhost`"
+          },
+          "build_command": {
+            "description": "The optional command that should be executed once during deployment to build the source code and get the application in a ready state.",
+            "type": "string",
+            "example": "`docker build -t my_image_name .`, `yarn build`, `jekyll build`, `python build.py`"
+          },
+          "deployments_keep": {
+            "type": "integer",
+            "description": "The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers",
+            "example": 4
+          },
+          "install_dependencies_dev": {
+            "description": "Indicates if at deployment time we should execute package manager command to install dependencies used in development mode",
+            "type": "boolean",
+            "example": false
+          },
+          "install_dependencies_prod": {
+            "description": "Indicates if at deployment time we should execute package manager command to install dependencies used in production mode",
+            "type": "boolean",
+            "example": true
+          },
+          "project_id": {
+            "type": "integer",
+            "description": "Numeric ID of the project that the application belongs to"
           },
           "environments": {
             "$ref": "#/components/schemas/EnvironmentLinks"
@@ -4161,11 +4260,12 @@
         },
         "required": [
           "name",
-          "framework",
-          "programming_language",
-          "public_directory",
+          "source_provider_id",
           "repository",
-          "source_provider_id"
+          "programming_language",
+          "framework",
+          "public_directory",
+          "entrypoint"
         ]
       },
       "ApplicationDeployment": {
@@ -4195,99 +4295,6 @@
         "required": [
           "type",
           "branch"
-        ]
-      },
-      "ApplicationDeploymentSettings": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "description": "The Id of the given group of settings",
-            "example": 1
-          },
-          "application_id": {
-            "type": "integer",
-            "description": "The Id of the application to which the settings apply to",
-            "example": 2
-          },
-          "environment_id": {
-            "type": "integer",
-            "description": "The Id of the environment to which the settings apply to",
-            "example": 3
-          },
-          "blueprint_id": {
-            "type": "integer",
-            "description": "The Id of the optional blueprint that might contain technology stack specific settings",
-            "example": 4
-          },
-          "domain_name": {
-            "type": "string",
-            "format": "hostname",
-            "description": "The sub-domain through which the application deployed with these settings will be accessed",
-            "example": "test.my-app.co.uk"
-          },
-          "app_directory": {
-            "type": "string",
-            "description": "The physical path of the applicaton code/artifacts on the deployed servers",
-            "example": "/var/www/my-app"
-          },
-          "default_branch": {
-            "type": "string",
-            "description": "The version control branch that, by default, will be retrieved and deployed. This might be overriden by client apps API calls when actually triggering a new deployment.",
-            "example": "develop"
-          },
-          "deployments_keep": {
-            "type": "integer",
-            "description": "The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers",
-            "example": 4
-          },
-          "install_dependencies_dev": {
-            "description": "Indicates if at deployment time we should execute package manager command to install dependencies used in development mode",
-            "type": "boolean",
-            "example": false
-          },
-          "install_dependencies_prod": {
-            "description": "Indicates if at deployment time we should execute package manager command to install dependencies used in production mode",
-            "type": "boolean",
-            "example": true
-          },
-          "push_to_deploy": {
-            "description": "Indicates if push to deploy webhooks are enabled for this application/environment, if so code will be deployed when commited to the default_branch",
-            "type": "boolean",
-            "example": false
-          },
-          "engine_version": {
-            "description": "The language runtime engine version to be used to execute this application code on the deployed servers",
-            "type": "string",
-            "example": "19.03.2"
-          },
-          "entrypoint": {
-            "type": "string",
-            "description": "The entrypoint tells devopness how an application should be started and has basically two forms:\n\n1) `File`: if it's a simple file name/path an web app will be served using the entrypoint value as its index file. Example: `index.html`\n\n2) `Command`: if a command line instruction is provided as the entrypoint value, it will be handled as the start up command that initalizes the application. It will be assumed that the user is an advanced user that knows what she/he is doing, therefore the command specified here will be run - as is - everytime the application needs to be started.\n",
-            "example": "`index.html`, `index.php`, `server.php`, `default.htm`, `node server.js`, `yarn start`, `npm run production`, `docker run -d -P --name my_container_name my_image_name`, `php artisan serve –-host=192.168.2.20 --port=8000`"
-          },
-          "build_command": {
-            "description": "The optional command that should be executed once during deployment to build the source code and get the application in a ready state.",
-            "type": "string",
-            "example": "`docker build -t my_image_name .`, `yarn build`, `jekyll build`, `python build.py`"
-          },
-          "listening_address": {
-            "description": "Useful, for instance, when deploying `docker` containerized applications. If the application is not initialized by `devopness` itself, the user should inform the address at which the application listens to external calls. The address can be an IP, IP:PORT, HOSTNAME, HOSTNAME:PORT or unix:PATH",
-            "type": "string",
-            "example": "`unix:/tmp/backend3`, `http://127.0.0.1:8000`, `127.0.0.1:3000`, `http://localhost`"
-          }
-        },
-        "required": [
-          "application_id",
-          "environment_id",
-          "domain_name",
-          "app_directory",
-          "default_branch",
-          "deployments_keep",
-          "entrypoint",
-          "install_dependencies_dev",
-          "install_dependencies_prod",
-          "push_to_deploy"
         ]
       },
       "ApplicationEnvironmentScript": {
@@ -5007,6 +5014,7 @@
           }
         },
         "required": [
+          "id",
           "name",
           "type"
         ]
@@ -5139,6 +5147,36 @@
             "type": "array",
             "items": {
               "properties": {
+                "default_branch": {
+                  "type": "string",
+                  "description": "The version control branch that, by default, will be retrieved and deployed. This might be overriden by client apps API calls when actually triggering a new deployment.",
+                  "example": "develop"
+                },
+                "push_to_deploy": {
+                  "description": "Indicates if push to deploy webhooks are enabled for this application/environment, if so code will be deployed when commited to the default_branch",
+                  "type": "boolean",
+                  "example": false
+                },
+                "programming_language": {
+                  "type": "string",
+                  "description": "The predominant programming language used in the application source code",
+                  "example": "php"
+                },
+                "engine_version": {
+                  "description": "The language runtime engine version to be used to execute this application code on the deployed servers",
+                  "type": "string",
+                  "example": "19.03.2"
+                },
+                "framework": {
+                  "type": "string",
+                  "description": "The base framework on top of which the application has been implemented - if any",
+                  "example": "drupal"
+                },
+                "app_directory": {
+                  "type": "string",
+                  "description": "The physical path of the applicaton code/artifacts on the deployed servers",
+                  "example": "/var/www/my-app"
+                },
                 "root_directory": {
                   "type": "string",
                   "description": "The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository.",
@@ -5149,12 +5187,35 @@
                   "description": "The relative web directory where publicly accessible assets are located and the web content should be served from",
                   "example": "/public"
                 },
-                "deployment_settings": {
-                  "description": "The list of deployment settings for each application environment",
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ApplicationDeploymentSettings"
-                  }
+                "entrypoint": {
+                  "type": "string",
+                  "description": "The entrypoint tells devopness how an application should be started and has basically two forms:\n\n1) `File`: if it's a simple file name/path an web app will be served using the entrypoint value as its index file. Example: `index.html`\n\n2) `Command`: if a command line instruction is provided as the entrypoint value, it will be handled as the start up command that initalizes the application. It will be assumed that the user is an advanced user that knows what she/he is doing, therefore the command specified here will be run - as is - everytime the application needs to be started.\n",
+                  "example": "`index.html`, `index.php`, `server.php`, `default.htm`, `node server.js`, `yarn start`, `npm run production`, `docker run -d -P --name my_container_name my_image_name`, `php artisan serve –-host=192.168.2.20 --port=8000`"
+                },
+                "listening_address": {
+                  "description": "Useful, for instance, when deploying `docker` containerized applications. If the application is not initialized by `devopness` itself, the user should inform the address at which the application listens to external calls. The address can be an IP, IP:PORT, HOSTNAME, HOSTNAME:PORT or unix:PATH",
+                  "type": "string",
+                  "example": "`unix:/tmp/backend3`, `http://127.0.0.1:8000`, `127.0.0.1:3000`, `http://localhost`"
+                },
+                "build_command": {
+                  "description": "The optional command that should be executed once during deployment to build the source code and get the application in a ready state.",
+                  "type": "string",
+                  "example": "`docker build -t my_image_name .`, `yarn build`, `jekyll build`, `python build.py`"
+                },
+                "deployments_keep": {
+                  "type": "integer",
+                  "description": "The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers",
+                  "example": 4
+                },
+                "install_dependencies_dev": {
+                  "description": "Indicates if at deployment time we should execute package manager command to install dependencies used in development mode",
+                  "type": "boolean",
+                  "example": false
+                },
+                "install_dependencies_prod": {
+                  "description": "Indicates if at deployment time we should execute package manager command to install dependencies used in production mode",
+                  "type": "boolean",
+                  "example": true
                 }
               }
             }
@@ -5496,6 +5557,71 @@
                 "name": "devopness"
               }
             }
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "ProjectCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The project's name",
+            "example": "my project"
+          },
+          "type": {
+            "type": "string",
+            "description": "The type of the project, usually indicating the main technology, programming language or base framework",
+            "example": "php-laravel",
+            "nullable": true
+          },
+          "logo_image": {
+            "type": "string",
+            "description": "A base64 string representation of the logo image",
+            "example": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACA.../AgwAgJqsE2/7ccAAAAAASUVORK5CYII="
+          },
+          "logo_url": {
+            "type": "string",
+            "format": "url",
+            "description": "A URL path to the project's logo image",
+            "example": "https://example.com/projects-beautiful-logo.png"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "ProjectUpdate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The unique id of the given record",
+            "example": 45678
+          },
+          "name": {
+            "type": "string",
+            "description": "The project's name",
+            "example": "my project"
+          },
+          "type": {
+            "type": "string",
+            "description": "The type of the project, usually indicating the main technology, programming language or base framework",
+            "example": "php-laravel",
+            "nullable": true
+          },
+          "logo_image": {
+            "type": "string",
+            "description": "A base64 string representation of the logo image",
+            "example": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACA.../AgwAgJqsE2/7ccAAAAAASUVORK5CYII="
+          },
+          "logo_url": {
+            "type": "string",
+            "format": "url",
+            "description": "A URL path to the project's logo image",
+            "example": "https://example.com/projects-beautiful-logo.png"
           }
         },
         "required": [
