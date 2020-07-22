@@ -10,8 +10,6 @@ ApplicationCreate:
   $ref: ./endpoints/applications/schemas/application-create.yaml
 ApplicationDeployment:
   $ref: ./endpoints/applications/schemas/application-deployment.yaml
-ApplicationDeploymentSettings:
-  $ref: ./endpoints/applications/schemas/application-deployment-settings.yaml
 ApplicationEnvironmentScript:
   $ref: ./endpoints/application-environments/schemas/application-environment-script.yaml
 ApplicationEnvironmentScriptCreate:
