@@ -109,7 +109,7 @@ tags:
       | GET           | /social-accounts/{account}/status  | Perform a custom action (`status`) for a single item
       | GET           | /cron-jobs/{id}                    | Get a single item by id
       | PUT           | /applications/{id}                 | Modify an item
-      | DELETE        | /processes/{id}                    | Remove an item permanently
+      | DELETE        | /daemons/{id}                      | Remove an item permanently
 
       2) Nested resources endpoints:
 
@@ -145,7 +145,7 @@ tags:
   - name: Cron Jobs
     description: |
       A cronjob is a scheduled command to be set on one or more project servers to ensure a given routine will be executed on time. Cronjobs are useful for creating periodic and recurring tasks, like running backups or sending emails. Cronjobs can also schedule individual tasks for a specific time, such as if you want to schedule a job for a low activity period.
-  - name: Daemons/Processes
+  - name: Daemons
     description: |
       The terms `process`, `background process` and `daemon` may be used interchangeably in the `devopness` API documentation to denote the same thing: i.e., a computer process that runs behind the scenes without user intervention, detached from TTY (teletype/terminal type) and having no associated console or controlling terminal, therefore prevented from receiving `SIGHUP` on shell termination.
   - name: Deployments
@@ -158,7 +158,7 @@ tags:
   - name: Projects - Cron Jobs
     description: |
       A cronjob or scheduled task is a scheduled command to be set on one or more project servers to ensure a given routine will be executed on time.
-  - name: Projects - Daemons/Processes
+  - name: Projects - Daemons
     description: |
       The terms `process`, `background process` and `daemon` may be used interchangeably in the `devopness` API documentation to denote the same thing: i.e., a computer process that runs behind the scenes without user intervention, detached from TTY (teletype/terminal type) and having no associated console or controlling terminal, therefore prevented from receiving `SIGHUP` on shell termination.
   - name: Projects - Deployments

@@ -56,12 +56,12 @@
     $ref: ./endpoints/network-rules/paths/network-rules-id-delete.yaml
   get:
     $ref: ./endpoints/network-rules/paths/network-rules-id.yaml
-/processes/{process_id}:
+/daemons/{process_id}:
   delete:
     $ref: ./endpoints/processes/paths/processes-id-delete.yaml
   get:
     $ref: ./endpoints/processes/paths/processes-id.yaml
-/processes/{process_id}/restart:
+/daemons/{process_id}/restart:
   post:
     $ref: ./endpoints/processes/paths/processes-id-restart.yaml
 /projects:
@@ -94,7 +94,7 @@
     $ref: ./endpoints/projects/paths/projects-id-network-rules.yaml
   get:
     $ref: ./endpoints/projects/paths/projects-id-network-rules-list.yaml
-/projects/{project_id}/processes:
+/projects/{project_id}/daemons:
   post:
     $ref: ./endpoints/processes/paths/projects-id-processes.yaml
   get:

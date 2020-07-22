@@ -1,7 +1,7 @@
 summary: Delete a given Background process
 operationId: deleteDaemon
 tags:
-  - Daemons/Processes
+  - Daemons
 parameters:
   - $ref: '#/components/parameters/acceptHeader'
   - $ref: '#/components/parameters/authHeader'

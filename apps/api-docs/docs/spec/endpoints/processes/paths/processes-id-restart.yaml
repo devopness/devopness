@@ -1,7 +1,7 @@
 summary: Restart a background process
 operationId: restartDaemon
 tags:
-  - Daemons/Processes
+  - Daemons
 parameters:
   - $ref: '#/components/parameters/acceptHeader'
   - $ref: '#/components/parameters/authHeader'

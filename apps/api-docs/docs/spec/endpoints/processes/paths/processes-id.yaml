@@ -1,7 +1,7 @@
 summary: Get a background process by ID
 operationId: getDaemon
 tags:
-  - Daemons/Processes
+  - Daemons
 parameters:
   - $ref: '#/components/parameters/acceptHeader'
   - $ref: '#/components/parameters/authHeader'

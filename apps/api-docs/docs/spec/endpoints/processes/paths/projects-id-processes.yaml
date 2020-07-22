@@ -1,7 +1,7 @@
 summary: Add a background process to the given project
 operationId: addDaemonToProject
 tags:
-  - Projects - Daemons/Processes
+  - Projects - Daemons
 parameters:
   - $ref: '#/components/parameters/acceptHeader'
   - $ref: '#/components/parameters/authHeader'
