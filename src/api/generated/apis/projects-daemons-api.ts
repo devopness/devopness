@@ -19,9 +19,9 @@ import { Process } from '../../generated/models';
 import { ProcessCreate } from '../../generated/models';
 
 /**
- * ProjectsDaemonsProcessesApiService - Auto-generated
+ * ProjectsDaemonsApiService - Auto-generated
  */
-export class ProjectsDaemonsProcessesApiService extends ApiBaseService {
+export class ProjectsDaemonsApiService extends ApiBaseService {
     /**
      * 
      * @summary Add a background process to the given project
@@ -35,7 +35,7 @@ export class ProjectsDaemonsProcessesApiService extends ApiBaseService {
         if (processCreate === null || processCreate === undefined) {
             throw new ArgumentNullException('processCreate', 'addDaemonToProject');
         }
-        const response = await this.post <Process, ProcessCreate>(`/projects/{project_id}/processes`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), processCreate);
+        const response = await this.post <Process, ProcessCreate>(`/projects/{project_id}/daemons`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), processCreate);
         return new ApiResponse(response);
     }
 
@@ -48,7 +48,7 @@ export class ProjectsDaemonsProcessesApiService extends ApiBaseService {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'listProjectDaemons');
         }
-        const response = await this.get <Array<Process>>(`/projects/{project_id}/processes`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
+        const response = await this.get <Array<Process>>(`/projects/{project_id}/daemons`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
         return new ApiResponse(response);
     }
 }

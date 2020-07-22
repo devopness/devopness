@@ -1,4 +1,4 @@
-import { DaemonsProcessesApiService } from '../api/generated/apis/daemons-processes-api';
+import { DaemonsApiService } from "../api/generated/apis/daemons-api";
 
-export class DaemonService extends DaemonsProcessesApiService {
+export class DaemonService extends DaemonsApiService {
 }

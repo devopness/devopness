@@ -18,9 +18,9 @@ import { ExtraBodyParams } from '../../generated/models';
 import { Process } from '../../generated/models';
 
 /**
- * DaemonsProcessesApiService - Auto-generated
+ * DaemonsApiService - Auto-generated
  */
-export class DaemonsProcessesApiService extends ApiBaseService {
+export class DaemonsApiService extends ApiBaseService {
     /**
      * 
      * @summary Delete a given Background process
@@ -30,7 +30,7 @@ export class DaemonsProcessesApiService extends ApiBaseService {
         if (processId === null || processId === undefined) {
             throw new ArgumentNullException('processId', 'deleteDaemon');
         }
-        const response = await this.delete <void>(`/processes/{process_id}`.replace(`{${"process_id"}}`, encodeURIComponent(String(processId))));
+        const response = await this.delete <void>(`/daemons/{process_id}`.replace(`{${"process_id"}}`, encodeURIComponent(String(processId))));
         return new ApiResponse(response);
     }
 
@@ -43,7 +43,7 @@ export class DaemonsProcessesApiService extends ApiBaseService {
         if (processId === null || processId === undefined) {
             throw new ArgumentNullException('processId', 'getDaemon');
         }
-        const response = await this.get <Process>(`/processes/{process_id}`.replace(`{${"process_id"}}`, encodeURIComponent(String(processId))));
+        const response = await this.get <Process>(`/daemons/{process_id}`.replace(`{${"process_id"}}`, encodeURIComponent(String(processId))));
         return new ApiResponse(response);
     }
 
@@ -57,7 +57,7 @@ export class DaemonsProcessesApiService extends ApiBaseService {
         if (processId === null || processId === undefined) {
             throw new ArgumentNullException('processId', 'restartDaemon');
         }
-        const response = await this.post <Process, ExtraBodyParams>(`/processes/{process_id}/restart`.replace(`{${"process_id"}}`, encodeURIComponent(String(processId))), extraBodyParams);
+        const response = await this.post <Process, ExtraBodyParams>(`/daemons/{process_id}/restart`.replace(`{${"process_id"}}`, encodeURIComponent(String(processId))), extraBodyParams);
         return new ApiResponse(response);
     }
 }
