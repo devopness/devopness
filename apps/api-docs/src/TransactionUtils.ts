@@ -1,6 +1,8 @@
 import { Transaction, TransactionHook } from 'hooks';
+import { set } from 'lodash';
 
-import { FixtureKey, Fixture, Identifiable, UserTokens, isFixtureKey, isIdentifiable } from './fixtureTypes';
+
+import { FixtureKey, Fixture, Identifiable, UserTokens, FixtureDependency } from './fixtureTypes';
 import FixtureStore from './FixtureStore';
 
 type LogFunction = (...any: any[]) => void;
@@ -43,6 +45,8 @@ export default class TransactionUtils {
     // replaces `${fixtureKey}_id` with ${fixture.id} in transaction request path
     writeFixtureIdsInTransactionPath<T extends Identifiable>(keys: FixtureKey[]): TransactionHook {
         return (transaction: Transaction) => {
+            if (keys.length == 0) return;
+
             let path = transaction.origin.resourceName;
             const tag = `${transaction.id} [writeFixtureIdsInTransactionPath]`;
             for (const key of keys) {
@@ -50,7 +54,7 @@ export default class TransactionUtils {
                 if (fixture) {
                     path = path.replace(`{${key}_id}`, fixture.id);
                 } else {
-                    this.log(`${tag} transaction '${transaction.id}' requires '${key}' fixture; skipping`)
+                    this.log(`${tag} transaction '${transaction.id}' requires '${key}' fixture`)
                     transaction.fail = true;
                     break;
                 }
@@ -119,20 +123,31 @@ export default class TransactionUtils {
         }
     }
 
-    setTransactionRequestBodyFixtureId<T extends Fixture>(key: FixtureKey): TransactionHook {
+    applyTransactionRequestBodyFixtureDependencies(dependencies: FixtureDependency[]): TransactionHook {
         return (transaction: Transaction) => {
-            const tag = `${transaction.id} [setTransactionRequestBodyFixtureId]`
-            const fixture = this.fixtureStore.get<T>(key);
-            if (fixture) {
-                if (isIdentifiable(fixture)) {
-                    this.log(`${tag} ${key}.id=${fixture.id}`)
-                    this.rewriteTransactionRequestBody((body: Identifiable) => body.id = fixture.id)(transaction);
-                } else{
-                    this.log(`${tag} fixture '${key}' doesn't have an 'id' field`)
+            if (dependencies.length == 0) return;
+
+            const tag = `${transaction.id} [applyTransactionRequestBodyFixtureDependencies]`;
+
+            if (transaction.request.body) {
+                const body = JSON.parse(transaction.request.body);
+                for (const dep of dependencies) {
+                    const fixture: any = this.fixtureStore.get(dep.fixture);
+                    if (fixture) {
+                        const depData = fixture[dep.field];
+                        if (depData) {
+                            this.log(`${tag} body.${dep.path}=${JSON.stringify(depData)}`)
+                            set(body, dep.path, depData);
+                        } else {
+                            this.log(`${tag} fixture '${dep.fixture}' has no '${dep.field}' field`)
+                            transaction.fail = true;
+                        }
+                    } else {
+                        this.log(`${tag} missing '${dep.fixture}' fixture`)
+                        transaction.fail = true;
+                    }
                 }
-            } else {
-                this.log(`${tag} missing '${key}' fixture`)
-                transaction.fail = true;
+                transaction.request.body = JSON.stringify(body);
             }
         }
     }

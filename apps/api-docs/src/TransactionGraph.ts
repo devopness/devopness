@@ -2,7 +2,7 @@ import fs from 'fs';
 import toposort from 'toposort';
 
 import TransactionSpec from './TransactionSpec';
-import { fixtureKeyElement, isFixtureListKey } from './fixtureTypes';
+import { fixtureKeyElement, isFixtureListKey, isFixtureKey, FixtureKey } from './fixtureTypes';
 
 type TransactionNode = string;
 type FixtureNode = string;
@@ -39,7 +39,6 @@ export default class TransactionGraph {
         // user_credentials and user_tokens are handled differently than other fixtures, so add them manually to the graph
         const initialFixtureTransactionGraph: FixtureTransactionGraph = {
             fixtureTransactionInputs: { 
-                'environment': ['addServerToProject201'],
                 'server': ['addApplicationToProject201'],
                 'user_credentials': ['login200'],
             },
@@ -66,7 +65,7 @@ export default class TransactionGraph {
                 }
             } else {
                 if (txSpec.output) {                    
-                    // list fixtures should be considered only to have inputs, as they don't _generate_ fixtures
+                    // list fixtures outputs should be considered only to be inputs, as they don't _generate_ fixtures
                     if (isFixtureListKey(txSpec.output)) {
                         fixtureTransactionGraphPush(fixtureTransactionInputs, fixtureKeyElement(txSpec.output), txSpec.slug);
                     }
@@ -77,6 +76,10 @@ export default class TransactionGraph {
                 }
                 for (const input of txSpec.pathInputs) {
                     fixtureTransactionGraphPush(fixtureTransactionInputs, input, txSpec.slug);
+                }
+                if (txSpec.bodyInput) {
+                    txSpec.bodyInput.map(d => d.fixture).forEach((input: FixtureKey) => 
+                        fixtureTransactionGraphPush(fixtureTransactionInputs, input, txSpec.slug));
                 }
             }
             // auth requires a `user_tokens` fixture

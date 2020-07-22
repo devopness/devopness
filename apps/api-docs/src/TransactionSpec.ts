@@ -5,9 +5,8 @@ import { OpenAPIV2 } from "openapi-types";
 import { Transaction, HTTPMethod as DreddHTTPMethod } from 'hooks';
 import { 
     FixtureKey, isFixtureKey, 
-    FixtureListKey, isFixtureListKey, resolveFixtureKey,
+    FixtureListKey, isFixtureListKey, FixtureDependency, fixtureDependencies,
 } from './fixtureTypes';
-import FixtureStore from './FixtureStore';
 
 const specCache: { [filename: string]: any } = {};
 
@@ -28,7 +27,7 @@ function parseHTTPMethod(method: DreddHTTPMethod): HTTPMethod | null {
 
 export default class TransactionSpec {
     slug: string;
-    bodyInput: FixtureKey | FixtureListKey | null;
+    bodyInput: FixtureDependency[];
     pathInputs: FixtureKey[];
     output: FixtureKey | FixtureListKey | null;
     requiresAuth: boolean;
@@ -80,7 +79,7 @@ export default class TransactionSpec {
         return false;
     }
 
-    fixtureFromSchemaRef(schemaRef: OpenAPIV2.ReferenceObject): FixtureKey | FixtureListKey | null {
+    fixtureKeyFromSchemaRef(schemaRef: OpenAPIV2.ReferenceObject): FixtureKey | FixtureListKey | null {
         if (schemaRef.$ref) {
             const schemaRefParts = schemaRef.$ref.split('/');
             let schemaName = schemaRefParts[schemaRefParts.length - 1];
@@ -89,16 +88,14 @@ export default class TransactionSpec {
             schemaName = schemaName.replace(/([A-Z])/g, (g: string) => `_${g[0].toLowerCase()}`);
             schemaName = schemaName[0] == '_' ? schemaName.substr(1) : schemaName;
 
-            // should be a valid fixture key
-            if (isFixtureKey(schemaName)) {
-                return resolveFixtureKey(schemaName);
-            } else if (isFixtureListKey(schemaName)) {
+
+            if (isFixtureKey(schemaName) || isFixtureListKey(schemaName)) {
                 return schemaName;
             } else if (!this.ignoreSchemas.includes(schemaName)) {
-                this.log(`[outputFixtureKeyFromResponseSpec] '${schemaName}' is not a valid fixture key`)
+                this.log(`[fixtureKeyFromSchemaRef] '${schemaName}' is not a valid fixture key`)
             }
         } else {
-            this.log(`[outputFixtureKeyFromResponseSpec] schema isn't a ref: ${JSON.stringify(schemaRef)}`)
+            this.log(`[fixtureKeyFromSchemaRef] schema isn't a ref: ${JSON.stringify(schemaRef)}`)
         }
         return null;
     }
@@ -112,9 +109,9 @@ export default class TransactionSpec {
         return null;
     }
 
-    inputsFromOperationSpec(operationSpec: OpenAPIV2.OperationObject): [FixtureKey[], FixtureKey | FixtureListKey | null] {
+    inputsFromOperationSpec(operationSpec: OpenAPIV2.OperationObject): [FixtureKey[], FixtureDependency[]] {
         const inputs: FixtureKey[] = [];
-        let body: FixtureKey | FixtureListKey | null = null;
+        let body: FixtureDependency[] = [];
         const parametersSpec = operationSpec.parameters;
 
         if (parametersSpec) {
@@ -125,14 +122,19 @@ export default class TransactionSpec {
                     if (isFixtureKey(paramName)) {
                         inputs.push(paramName);
                     } else {
-                        this.log(`[inputFixtureKeysFromOperationSpec] '${paramName}' is not a valid fixture key`);
+                        this.log(`[inputsFromOperationSpec] '${paramName}' is not a valid fixture key`);
                     }
                 } else if (paramSpec.in == 'body') {
                     paramSpec = paramSpec as OpenAPIV2.InBodyParameterObject;
                     const schemaRef = paramSpec.schema as OpenAPIV2.ReferenceObject;
-                    const fixtureKey = this.fixtureFromSchemaRef(schemaRef);
-                    if (fixtureKey != null) {
-                        body = fixtureKey;
+                    const bodyFixture = this.fixtureKeyFromSchemaRef(schemaRef);
+                    if (bodyFixture) {
+                        const deps = fixtureDependencies(bodyFixture);
+                        if (deps.length == 0) {
+                            this.log(`[inputsFromOperationSpec] body inputs should have FixtureDependencies, got FixtureKey '${bodyFixture}'`);
+                        } else {
+                            body = deps;
+                        }
                     }
                 }
             }
@@ -146,7 +148,7 @@ export default class TransactionSpec {
         // schema['$ref'] = '#/definitions/SchemaName'
         if (responseSpec.schema) {
             const schemaRef = responseSpec.schema as OpenAPIV2.ReferenceObject;
-            return this.fixtureFromSchemaRef(schemaRef);
+            return this.fixtureKeyFromSchemaRef(schemaRef);
         }
         return null;
     }

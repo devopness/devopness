@@ -92,6 +92,8 @@ Project:
   $ref: ./endpoints/projects/schemas/project.yaml
 ProjectCreate:
   $ref: ./endpoints/projects/schemas/project-create.yaml
+ProjectUpdate:
+  $ref: ./endpoints/projects/schemas/project-update.yaml
 Projects:
   $ref: ./endpoints/projects/schemas/project-list.yaml
 Repositories:
