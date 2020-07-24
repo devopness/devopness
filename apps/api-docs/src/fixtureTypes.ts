@@ -46,7 +46,9 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     'project_update': [{ path: 'id', fixture: 'project', field: 'id' }],
     'repository': [],
     'server': [],
-    'server_create': [{ path: 'id', fixture: 'environment', field: 'id' }],
+    'server_create': [
+        { path: 'environments[0].id', fixture: 'environment', field: 'id'} ,
+    ],
     'service': [],
     'social_account': [],
     'source_provider': [],

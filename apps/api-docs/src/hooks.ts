@@ -10,7 +10,7 @@
 import hooks, { Transaction, TransactionHook } from 'hooks';
 import { v1, v4 } from 'uuid';
 
-import { UserCredentials, UserTokens, isFixtureKey, isFixtureListKey } from './fixtureTypes';
+import { UserCredentials, UserTokens, isFixtureKey, isFixtureListKey, Identifiable } from './fixtureTypes';
 import FixtureStore  from './FixtureStore';
 import TransactionUtils from './TransactionUtils';
 import TransactionSpec from './TransactionSpec';
@@ -47,7 +47,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     //     const [inputs, outputs] = graph.edges(slug);
     //     hooks.log(`${i}  \t  ${slug}:  (${inputs.join(', ')}) -> (${outputs.join(', ')})`);
     // }
-    const numTests = 12;
+    const numTests = 27;
     hooks.log(`running ${numTests}/${transactions.length} transactions`)
     utils.selectTransactionsByName(transactions, txOrder.slice(0, numTests).map(k => transactionSlugToName[k]));
 
@@ -85,10 +85,27 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     });
 
     before('login200', utils.setTransactionRequestBodyToFixture<UserCredentials>('user_credentials'));
-
     before('refreshToken200', utils.setTransactionRequestBodyToFixture<UserTokens>('user_tokens'));
-
     after('logout204', (transaction: Transaction) => { if (transaction.test.valid) { fixtures.delete('user_tokens'); } });
+
+    // servers
+    before('addServerToProject201', (transaction: Transaction) => {
+        const tag = `${transaction.id} [fake-server]`
+        if (transaction.request.body) {
+            const body = JSON.parse(transaction.request.body);
+            if (body.hostname) {
+                transaction.request.body = "";
+                const project = fixtures.get<Identifiable>('project');
+                if (project) {
+                    const path = `/dev-tests/fake-server/${project.id}/${body.hostname}`;
+                    hooks.log(`${tag} rewrite path '${transaction.fullPath}' => '${path}'`);
+                    transaction.fullPath = path;
+                } else {
+                    hooks.log(`${tag} transaction '${transaction.id}' requires 'project' fixture`)
+                }
+            }
+        }
+    })
 
     done();
 })

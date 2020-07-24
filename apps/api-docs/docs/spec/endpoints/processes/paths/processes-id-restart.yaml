@@ -22,11 +22,7 @@ requestBody:
       schema:
         $ref: '#/components/schemas/ExtraBodyParams'
 responses:
-  200:
+  204:
     description: 'Ok'
-    content:
-      application/json:
-        schema:
-          $ref: '#/components/schemas/Process'
   404:
     $ref: '#/components/responses/NotFound'
