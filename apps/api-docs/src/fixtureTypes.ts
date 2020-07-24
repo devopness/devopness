@@ -25,9 +25,14 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     'application_environment_variable': [],
     'application_environment': [],
     'application': [],
+    'application_create': [
+        { path: 'source_provider_id', fixture: 'social_account', field: 'social_account_id'} ,
+        { path: 'environments[0].id', fixture: 'environment', field: 'id'} ,
+        { path: 'project_id', fixture: 'project', field: 'id'} ,
+    ],
     'cron_job': [],
     'cron_job_create': [
-        { path: 'environments[0].id', fixture: 'environment', field: 'id'} ,
+        { path: 'environments[0].id', fixture: 'environment', field: 'id' } ,
         { path: 'environments[0].server[0]', fixture: 'server', field: 'id' }
      ], 
     'deployment': [],
@@ -39,20 +44,36 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     ],
     'deployment_step': [],
     'environment': [],
-    'environment_update': [{ path: 'id', fixture: 'environment', field: 'id' }],
+    'environment_link_item': [
+        { path: 'id', fixture: 'environment', field: 'id'} ,
+    ],
+    'environment_update': [
+        { path: 'id', fixture: 'environment', field: 'id' }
+    ],
     'network_rule': [],
+    'network_rule_create': [
+        { path: 'environments[0].id', fixture: 'environment', field: 'id' }
+    ],
     'process': [],
     'project': [], 
-    'project_update': [{ path: 'id', fixture: 'project', field: 'id' }],
+    'project_update': [
+        { path: 'id', fixture: 'project', field: 'id' }
+    ],
     'repository': [],
     'server': [],
     'server_create': [
-        { path: 'environments[0].id', fixture: 'environment', field: 'id'} ,
+        { path: 'environments[0].id', fixture: 'environment', field: 'id' }
     ],
     'service': [],
+    'service_create': [
+        { path: 'environments[0].id', fixture: 'environment', field: 'id' }
+    ],
     'social_account': [],
     'source_provider': [],
     'ssh_key': [],
+    'ssh_key_create': [
+        { path: 'environments[0].id', fixture: 'environment', field: 'id' }
+    ],
     'ssl_certificate': [],
     'user_credentials': [],
     'user_tokens': [],

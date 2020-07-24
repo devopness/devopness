@@ -130,6 +130,8 @@ SocialAccountStatus:
   $ref: ./endpoints/social-accounts/schemas/social-account-status.yaml
 SshKey:
   $ref: ./endpoints/ssh-keys/schemas/ssh-key.yaml
+SshKeyCreate:
+  $ref: ./endpoints/ssh-keys/schemas/ssh-key-create.yaml
 SshKeys:
   $ref: ./endpoints/ssh-keys/schemas/ssh-key-list.yaml
 SslCertificate:

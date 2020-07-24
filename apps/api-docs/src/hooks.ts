@@ -26,7 +26,11 @@ const utils = new TransactionUtils(fixtures, hooks.log);
 // all setup code for the tests run inside this beforeAll hook
 hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     // skip some transactions
-    const skipTransactions = ['replaceLinkedServers201'];
+    const skipTransactions = [
+        'replaceLinkedServers201',
+        'unlinkServerFromEnvironment204',
+        'connectServer200'
+    ];
 
     // get transaction specs and build maps
     const transactionSpecs: TransactionSpec[] = [];
@@ -47,8 +51,8 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     //     const [inputs, outputs] = graph.edges(slug);
     //     hooks.log(`${i}  \t  ${slug}:  (${inputs.join(', ')}) -> (${outputs.join(', ')})`);
     // }
-    const numTests = 27;
-    hooks.log(`running ${numTests}/${transactions.length} transactions`)
+    const numTests = 60;
+    hooks.log(`running ${numTests}/${transactions.length} transactions`);
     utils.selectTransactionsByName(transactions, txOrder.slice(0, numTests).map(k => transactionSlugToName[k]));
 
     // attach graph inferred hooks
@@ -106,6 +110,11 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
             }
         }
     })
+
+    // projects
+    before('addApplicationToProject201', utils.rewriteTransactionRequestBody((body: any) => {
+        body['entrypoint'] = 'index.html'
+    }))
 
     done();
 })

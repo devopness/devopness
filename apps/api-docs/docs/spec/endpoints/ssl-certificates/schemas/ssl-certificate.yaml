@@ -59,12 +59,12 @@ properties:
     type: string
     format: date-time
     description: The date and time when the record was created
-    example: "2019-09-25 13:49:51"
+    example: "2020-04-16T15:50:48+00:00"
   updated_at:
     type: string
     format: date-time
     description: The date and time when the record was last updated
-    example: "2019-09-25 13:52:04"
+    example: "2020-04-16T15:50:48+00:00"
 required:
   - id
   - domains

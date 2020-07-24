@@ -19,7 +19,7 @@ properties:
   pattern_human_readable:
     type: string
     description: A translation of the cron expression to a readable string indicating its execution frequency.
-    enum: ["Every Minute", "Hourly", "Nightly", "Weekly", "Monthly", "Yearly"]
+    enum: ["Every Minute", "Hourly", "Daily", "Weekly", "Monthly", "Yearly"]
     example: "Every Minute"
   run_as_user:
     type: string

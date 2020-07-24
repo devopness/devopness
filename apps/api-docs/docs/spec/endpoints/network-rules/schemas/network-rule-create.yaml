@@ -3,7 +3,7 @@ properties:
   name:
     type: string
     description: The rule's name/description/reminder
-    example: HTTPS|SSH|"Opening MySQL port so desktop apps can access it remotely"
+    example: HTTPS|SSH|"Open MySQL port for remote access"
   type:
     type: string
     description: The type of network traffic to which this rule will be applied
@@ -32,6 +32,8 @@ properties:
     type: integer
     description: Ending range of network ports to be considered by this rule
     example: 7654
+  environments:
+    $ref: '#/components/schemas/EnvironmentLinks'
 required:
   - name
   - type

@@ -20,7 +20,7 @@ requestBody:
   content:
     application/json:
       schema:
-        $ref: '#/components/schemas/SshKey'
+        $ref: '#/components/schemas/SshKeyCreate'
 responses:
   201:
     description: 'Created'
