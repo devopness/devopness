@@ -1,5 +1,5 @@
 summary: Get details of a single Source Code provider
-operationId: getSourceProviderByName
+operationId: getSourceProvider
 tags:
   - Source Providers
 parameters:

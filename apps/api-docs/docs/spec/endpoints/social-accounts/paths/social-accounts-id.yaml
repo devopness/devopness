@@ -1,5 +1,5 @@
 summary: Get details of a single Social authentication provider
-operationId: getSocialAccountByName
+operationId: getSocialAccount
 tags:
   - Social Accounts
 parameters:
