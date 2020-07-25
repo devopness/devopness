@@ -7,13 +7,13 @@ parameters:
   - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/contentTypeHeader'
   - in: path
-    name: source_provider_name
-    example: gitlab
+    name: source_provider_id
+    example: 567
     schema:
-      type: string
+      type: integer
       minimum: 3
     required: true
-    description: Unique name/Id of the provider where the repository is hosted
+    description: Unique ID of the provider where the repository is hosted
   - in: path
     name: repository_owner
     example: devopness

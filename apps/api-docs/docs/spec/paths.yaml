@@ -154,29 +154,27 @@
   get:
     $ref: ./endpoints/social-accounts/paths/social-accounts-list.yaml
 /social-accounts/{social_account_id}:
+  get:
+    $ref: ./endpoints/social-accounts/paths/social-accounts-id.yaml
   delete:
     $ref: ./endpoints/social-accounts/paths/social-accounts-id-delete.yaml
-/social-accounts/{social_account_provider}:
-  get:
-    $ref: ./endpoints/social-accounts/paths/social-accounts-name.yaml
-/social-accounts/{social_account_provider}/status:
+/social-accounts/{social_account_provider_name}/status:
   get:
     $ref: ./endpoints/social-accounts/paths/social-accounts-name-status.yaml
-/source-providers/{source_provider_name}/repositories:
+/source-providers/{source_provider_id}/repositories:
   get:
     $ref: ./endpoints/repositories/paths/repositories-list.yaml
-/source-providers/{source_provider_name}/repositories/{repository_owner}/{repository_name}:
+/source-providers/{source_provider_id}/repositories/{repository_owner}/{repository_name}:
   get:
     $ref: ./endpoints/repositories/paths/repositories-id.yaml
 /source-providers:
   get:
     $ref: ./endpoints/source-providers/paths/source-providers-list.yaml
 /source-providers/{source_provider_id}:
+  get:
+    $ref: ./endpoints/source-providers/paths/source-providers-id.yaml
   delete:
     $ref: ./endpoints/source-providers/paths/source-providers-id-delete.yaml
-/source-providers/{source_provider_name}:
-  get:
-    $ref: ./endpoints/source-providers/paths/source-providers-name.yaml
 /ssh-keys/{ssh_key_id}:
   get:
     $ref: ./endpoints/ssh-keys/paths/ssh-keys-id.yaml

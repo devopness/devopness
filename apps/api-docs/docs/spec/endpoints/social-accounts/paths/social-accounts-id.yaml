@@ -1,4 +1,4 @@
-summary: Get details of a Social authentication provider, by its name
+summary: Get details of a single Social authentication provider
 operationId: getSocialAccountByName
 tags:
   - Social Accounts
@@ -7,13 +7,13 @@ parameters:
   - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/contentTypeHeader'
   - in: path
-    name: social_account_provider
-    example: facebook
+    name: social_account_id
+    example: 1
     schema:
-      type: string
-      minimum: 3
+      type: integer
+      minimum: 1
     required: true
-    description: Unique name/Id of the provider to be retrieved
+    description: Unique ID of the provider to be retrieved
 responses:
   200:
     description: 'Ok'

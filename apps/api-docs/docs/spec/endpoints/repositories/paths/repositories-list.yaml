@@ -7,13 +7,13 @@ parameters:
   - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/contentTypeHeader'
   - in: path
-    name: source_provider_name
-    example: bitbucket
+    name: source_provider_id
+    example: 567
     schema:
-      type: string
+      type: integer
       minimum: 3
     required: true
-    description: Unique name of the source code provider where the repository is hosted
+    description: Unique ID of the provider where the repository is hosted
 responses:
   200:
     description: 'Ok'
