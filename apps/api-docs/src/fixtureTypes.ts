@@ -33,7 +33,7 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     'cron_job': [],
     'cron_job_create': [
         { path: 'environments[0].id', fixture: 'environment', field: 'id' } ,
-        { path: 'environments[0].server[0]', fixture: 'server', field: 'id' }
+        { path: 'environments[0].servers[0]', fixture: 'server', field: 'id' }
      ], 
     'deployment': [],
     'deployment_create': [
@@ -45,14 +45,15 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     'deployment_step': [],
     'environment': [],
     'environment_link_item': [
-        { path: 'id', fixture: 'environment', field: 'id'} ,
+        { path: 'id', fixture: 'environment', field: 'id'},
     ],
     'environment_update': [
-        { path: 'id', fixture: 'environment', field: 'id' }
+        { path: 'id', fixture: 'environment', field: 'id' },
     ],
     'network_rule': [],
     'network_rule_create': [
-        { path: 'environments[0].id', fixture: 'environment', field: 'id' }
+        { path: 'environments[0].id', fixture: 'environment', field: 'id' },
+        { path: 'environments[0].servers[0]', fixture: 'server', field: 'id' }
     ],
     'process': [],
     'project': [], 
@@ -66,13 +67,15 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     ],
     'service': [],
     'service_create': [
-        { path: 'environments[0].id', fixture: 'environment', field: 'id' }
+        { path: 'environments[0].id', fixture: 'environment', field: 'id' },
+        { path: 'environments[0].servers[0]', fixture: 'server', field: 'id' }
     ],
     'social_account': [],
     'source_provider': [],
     'ssh_key': [],
     'ssh_key_create': [
-        { path: 'environments[0].id', fixture: 'environment', field: 'id' }
+        { path: 'environments[0].id', fixture: 'environment', field: 'id' },
+        { path: 'environments[0].servers[0]', fixture: 'server', field: 'id' }
     ],
     'ssl_certificate': [],
     'user_credentials': [],

@@ -48,7 +48,7 @@ export default class TransactionUtils {
             if (keys.length == 0) return;
 
             let path = transaction.origin.resourceName;
-            const tag = `${transaction.id} [writeFixtureIdsInTransactionPath]`;
+            const tag = `[writeFixtureIdsInTransactionPath]`;
             for (const key of keys) {
                 const fixture = this.fixtureStore.get<T>(key);
                 if (fixture) {
@@ -68,11 +68,11 @@ export default class TransactionUtils {
     storeTransactionResult<T extends Fixture>(key: FixtureKey): TransactionHook {
         return (transaction: Transaction) => {
             if (transaction.test.valid && transaction.real.body) {
-                const tag = `${transaction.id} [storeTransactionResult]`;
+                const tag = `[storeTransactionResult]`;
                 const data = JSON.parse(transaction.real.body);
                 const typed = (data as T);
                 if (typed) {
-                    this.log(`${tag} => '${key}'`)
+                    this.log(`${tag} => '${key}' (id=${data.id})`)
                     this.fixtureStore.put(key, data);
                 } else {
                     this.log(`${tag} couldn't save fixture '${key}', wrong datatype: '${JSON.stringify(data)}'`);
@@ -127,7 +127,7 @@ export default class TransactionUtils {
         return (transaction: Transaction) => {
             if (dependencies.length == 0) return;
 
-            const tag = `${transaction.id} [applyTransactionRequestBodyFixtureDependencies]`;
+            const tag = `[applyTransactionRequestBodyFixtureDependencies]`;
 
             if (transaction.request.body) {
                 const body = JSON.parse(transaction.request.body);

@@ -29,7 +29,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     const skipTransactions = [
         'replaceLinkedServers201',
         'unlinkServerFromEnvironment204',
-        'connectServer200'
+        'connectServer200',
     ];
 
     // get transaction specs and build maps
@@ -51,14 +51,16 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     //     const [inputs, outputs] = graph.edges(slug);
     //     hooks.log(`${i}  \t  ${slug}:  (${inputs.join(', ')}) -> (${outputs.join(', ')})`);
     // }
-    const numTests = 60;
+    const numTests = 77;
     hooks.log(`running ${numTests}/${transactions.length} transactions`);
     utils.selectTransactionsByName(transactions, txOrder.slice(0, numTests).map(k => transactionSlugToName[k]));
 
     // attach graph inferred hooks
-    transactions.forEach((transaction: Transaction) => {
+    transactions.forEach((transaction: Transaction, index: number) => {
         const transactionSpec = transactionNameToSpec[transaction.name];
         if (transactionSpec) {
+            hooks.before(transaction.name, (_: Transaction) => hooks.log(`>> (${index}) ${transactionSpec.slug}`));
+
             // TODO: test on (`/environments/${environment_id}/servers/${server_id}/link`)
             hooks.before(transaction.name, utils.writeFixtureIdsInTransactionPath(transactionSpec.pathInputs));
             hooks.before(transaction.name, utils.applyTransactionRequestBodyFixtureDependencies(transactionSpec.bodyInput));
@@ -94,7 +96,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
 
     // servers
     before('addServerToProject201', (transaction: Transaction) => {
-        const tag = `${transaction.id} [fake-server]`
+        const tag = `[fake-server]`
         if (transaction.request.body) {
             const body = JSON.parse(transaction.request.body);
             if (body.hostname) {
