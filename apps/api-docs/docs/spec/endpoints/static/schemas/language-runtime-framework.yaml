@@ -35,7 +35,7 @@ properties:
           example: 'drupal'
         app_directory:
           type: string
-          description: The physical path of the applicaton code/artifacts on the deployed servers
+          description: The physical path of the application code/artifacts on the deployed servers
           example: "/var/www/my-app"
         root_directory:
           type: string

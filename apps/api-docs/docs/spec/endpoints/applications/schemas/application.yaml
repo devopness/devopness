@@ -6,7 +6,7 @@ properties:
     example: 445678964
   type:
     type: string
-    description: The applicaton's type, which will mainly define if it is publicly accessible through a web domain or not
+    description: The application's type, which will mainly define if it is publicly accessible through a web domain or not
     enum: ["web", "non-web"]
     example: 'web'
   name:
@@ -55,7 +55,7 @@ properties:
     example: 'drupal'
   app_directory:
     type: string
-    description: The physical path of the applicaton code/artifacts on the deployed servers
+    description: The physical path of the application code/artifacts on the deployed servers
     example: "/home/devopness/my-app"
   root_directory:
     type: string
