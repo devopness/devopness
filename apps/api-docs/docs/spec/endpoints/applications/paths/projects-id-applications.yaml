@@ -13,7 +13,7 @@ parameters:
       type: integer
       minimum: 1
     required: true
-    description: Numeric ID of the application to get
+    description: Numeric ID of the project to which the application will be added
 requestBody:
   description: A JSON object containing project data
   required: true
