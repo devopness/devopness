@@ -28,13 +28,19 @@ export interface Application {
      */
     id: number;
     /**
-     * A domain name that points to application main web address. Can be a naked domain or any subdomain. If app has domain names `testing.my-app.com`, `staging.my-app.com` and `www.my-app.com` a possible good candidate for the application name would be the \"naked\" domain `my-app.com`
+     * The type of the applicaton, which will define if it is publicly accessible through a web domain or not
+     * @type {string}
+     * @memberof Application
+     */
+    type: ApplicationTypeEnum;
+    /**
+     * The application\'s unique name
      * @type {string}
      * @memberof Application
      */
     name: string;
     /**
-     * The sub-domain through which the application deployed with these settings will be accessed
+     * The domain or sub-domain through which the application deployed with these settings will be accessed. It can be a naked domain or any subdomain. If app has domain names `testing.my-app.com`, `staging.my-app.com` and `www.my-app.com` a possible good candidate for the application name would be the \"naked\" domain `my-app.com`
      * @type {string}
      * @memberof Application
      */
@@ -167,6 +173,14 @@ export interface Application {
     source_provider_id?: number;
 }
 
+/**
+    * @export
+    * @enum {string}
+    */
+export enum ApplicationTypeEnum {
+    Web = 'web',
+    NonWeb = 'non-web'
+}
 /**
     * @export
     * @enum {string}

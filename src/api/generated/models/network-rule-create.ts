@@ -12,6 +12,7 @@
  */
 
 
+import { EnvironmentLinkItem } from './environment-link-item';
 
 /**
  * 
@@ -61,6 +62,12 @@ export interface NetworkRuleCreate {
      * @memberof NetworkRuleCreate
      */
     port_to: number;
+    /**
+     * 
+     * @type {Array<EnvironmentLinkItem>}
+     * @memberof NetworkRuleCreate
+     */
+    environments?: Array<EnvironmentLinkItem>;
 }
 
 /**

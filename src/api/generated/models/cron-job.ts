@@ -76,7 +76,7 @@ export interface CronJob {
 export enum CronJobPatternHumanReadableEnum {
     EveryMinute = 'Every Minute',
     Hourly = 'Hourly',
-    Nightly = 'Nightly',
+    Daily = 'Daily',
     Weekly = 'Weekly',
     Monthly = 'Monthly',
     Yearly = 'Yearly'

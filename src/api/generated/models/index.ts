@@ -50,6 +50,7 @@ export * from './social-account';
 export * from './social-account-create';
 export * from './social-account-status';
 export * from './ssh-key';
+export * from './ssh-key-create';
 export * from './ssl-certificate';
 export * from './ssl-certificate-create';
 export * from './user';

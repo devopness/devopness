@@ -35,14 +35,14 @@ export class SourceProvidersApiService extends ApiBaseService {
 
     /**
      * 
-     * @summary Get details of a source code provider, by its name
-     * @param {string} sourceProviderName Unique name/Id of the provider to be retrieved
+     * @summary Get details of a single Source Code provider
+     * @param {number} sourceProviderId Unique ID of the provider to be retrieved
      */
-    public async getSourceProviderByName(sourceProviderName: string): Promise<ApiResponse<SocialAccount>> {
-        if (sourceProviderName === null || sourceProviderName === undefined) {
-            throw new ArgumentNullException('sourceProviderName', 'getSourceProviderByName');
+    public async getSourceProvider(sourceProviderId: number): Promise<ApiResponse<SocialAccount>> {
+        if (sourceProviderId === null || sourceProviderId === undefined) {
+            throw new ArgumentNullException('sourceProviderId', 'getSourceProvider');
         }
-        const response = await this.get <SocialAccount>(`/source-providers/{source_provider_name}`.replace(`{${"source_provider_name"}}`, encodeURIComponent(String(sourceProviderName))));
+        const response = await this.get <SocialAccount>(`/source-providers/{source_provider_id}`.replace(`{${"source_provider_id"}}`, encodeURIComponent(String(sourceProviderId))));
         return new ApiResponse(response);
     }
 

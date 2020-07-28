@@ -1208,15 +1208,8 @@
           }
         },
         "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Process"
-                }
-              }
-            }
+          "204": {
+            "description": "Ok"
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
@@ -2108,7 +2101,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/SshKey"
+                "$ref": "#/components/schemas/SshKeyCreate"
               }
             }
           }
@@ -2839,6 +2832,50 @@
       }
     },
     "/social-accounts/{social_account_id}": {
+      "get": {
+        "summary": "Get details of a single Social authentication provider",
+        "operationId": "getSocialAccount",
+        "tags": [
+          "Social Accounts"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "social_account_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Unique ID of the provider to be retrieved"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SocialAccount"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
       "delete": {
         "summary": "Delete a given social account",
         "operationId": "deleteSocialAccount",
@@ -2877,53 +2914,7 @@
         }
       }
     },
-    "/social-accounts/{social_account_provider}": {
-      "get": {
-        "summary": "Get details of a Social authentication provider, by its name",
-        "operationId": "getSocialAccountByName",
-        "tags": [
-          "Social Accounts"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "social_account_provider",
-            "example": "facebook",
-            "schema": {
-              "type": "string",
-              "minimum": 3
-            },
-            "required": true,
-            "description": "Unique name/Id of the provider to be retrieved"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SocialAccount"
-                }
-              }
-            }
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          }
-        }
-      }
-    },
-    "/social-accounts/{social_account_provider}/status": {
+    "/social-accounts/{social_account_provider_name}/status": {
       "get": {
         "summary": "Get the connect status of a Social authentication provider, by its name",
         "operationId": "getSocialAccountStatusByName",
@@ -2942,7 +2933,7 @@
           },
           {
             "in": "path",
-            "name": "social_account_provider",
+            "name": "social_account_provider_name",
             "example": "google",
             "schema": {
               "type": "string",
@@ -2969,7 +2960,7 @@
         }
       }
     },
-    "/source-providers/{source_provider_name}/repositories": {
+    "/source-providers/{source_provider_id}/repositories": {
       "get": {
         "summary": "Return a list of all repositories belonging to a current user social provider account",
         "operationId": "listRepositories",
@@ -2988,14 +2979,14 @@
           },
           {
             "in": "path",
-            "name": "source_provider_name",
-            "example": "bitbucket",
+            "name": "source_provider_id",
+            "example": 567,
             "schema": {
-              "type": "string",
+              "type": "integer",
               "minimum": 3
             },
             "required": true,
-            "description": "Unique name of the source code provider where the repository is hosted"
+            "description": "Unique ID of the provider where the repository is hosted"
           }
         ],
         "responses": {
@@ -3012,7 +3003,7 @@
         }
       }
     },
-    "/source-providers/{source_provider_name}/repositories/{repository_owner}/{repository_name}": {
+    "/source-providers/{source_provider_id}/repositories/{repository_owner}/{repository_name}": {
       "get": {
         "summary": "Get details of a repository, by its name",
         "operationId": "getRepository",
@@ -3031,14 +3022,14 @@
           },
           {
             "in": "path",
-            "name": "source_provider_name",
-            "example": "gitlab",
+            "name": "source_provider_id",
+            "example": 567,
             "schema": {
-              "type": "string",
+              "type": "integer",
               "minimum": 3
             },
             "required": true,
-            "description": "Unique name/Id of the provider where the repository is hosted"
+            "description": "Unique ID of the provider where the repository is hosted"
           },
           {
             "in": "path",
@@ -3113,6 +3104,50 @@
       }
     },
     "/source-providers/{source_provider_id}": {
+      "get": {
+        "summary": "Get details of a single Source Code provider",
+        "operationId": "getSourceProvider",
+        "tags": [
+          "Source Providers"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "source_provider_id",
+            "example": 567,
+            "schema": {
+              "type": "integer",
+              "minimum": 3
+            },
+            "required": true,
+            "description": "Unique ID of the provider to be retrieved"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SocialAccount"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
       "delete": {
         "summary": "Delete a given source provider from current user's account",
         "operationId": "deleteSourceProvider",
@@ -3144,52 +3179,6 @@
         "responses": {
           "204": {
             "$ref": "#/components/responses/NoContent"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          }
-        }
-      }
-    },
-    "/source-providers/{source_provider_name}": {
-      "get": {
-        "summary": "Get details of a source code provider, by its name",
-        "operationId": "getSourceProviderByName",
-        "tags": [
-          "Source Providers"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "source_provider_name",
-            "example": "github",
-            "schema": {
-              "type": "string",
-              "minimum": 3
-            },
-            "required": true,
-            "description": "Unique name/Id of the provider to be retrieved"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SocialAccount"
-                }
-              }
-            }
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
@@ -3749,7 +3738,7 @@
   "tags": [
     {
       "name": "API Reference",
-      "description": "This page contains the documentation on how to use `devopness` through API calls.\n> Note: This documentation is not complete, so for missing parts or inaccurate API description please\n>\n> reach out to `devopness` API team.\n\n## Introduction\ndevopness's API exposes all `devopness` features via a standardized programmatic interface. Through devopness API a registered Devopness user can perform every operation you can do on https://www.devopness.com web interfaces and mobile apps.\n\n## Getting started\nAll you need to obtain a token and start consuming this API is a valid email/password registered with devopness.com.\n\n\nThe `devopness` API is based on HTTPS requests and JSON responses, organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API has predictable resource-oriented URLs, accepts requests with [JSON-encoded](http://www.json.org/) bodies with arguments, returns [JSON-encoded](http://www.json.org/) responses, and uses standard HTTP response codes, authentication, and verbs.\n\n## Date format\nAll dates in the API use UTC and are strings in the [ISO 8601 \"combined date and time representation\" format](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations):\n```\n2015-05-15 15:50:38\n```\n\n## Errors\nThe devopness API uses standard HTTP status codes to indicate the success or failure of an API call. In general: Codes in the `2xx` range indicate success. Codes in the `4xx` range indicate an error that failed given the information provided (e.g., a required parameter was omitted). Codes in the `5xx` range indicate an error on the API servers and are very rare.\n\nThe body of the error response is a JSON in the following format:\n\n```\n{\n  \"message\": \"The given request data was invalid\"\n  \"errors\": { // Optional errors object, returned only when there are detailed error message to be shared\n      \"field_1\": [\n          \"Optional error message related to field_1\"\n      ],\n      \"field_2\": [\n          \"Optional error message related to field_2\"\n      ],\n  }\n}\n```\n\n## Responses\nWhen a request is successful, a response body will typically be sent back in the form of a JSON object.\nException to this rule is when a DELETE request is processed, which will result in a successful HTTP 204 status and an empty response body.\n\n### Response codes\nResponse codes indicate success or failure of request processing.\nStatus codes from the `2xx` range indicate that request has been accepted.\nIf the returned code is from the `4xx` or `5xx` range then it reveals either problem with the request or unability to process data.\nSee below for a list of HTTP Status codes used by `devopness` API:\n\n| Status Code   | Description   |\n| -------------:|---------------|\n| 200           | Ok - The request was successful\n| 201           | Created - The request was successful and a new resource has been created as a result\n| 202           | Accepted - The request has been received but not yet completely processed\n| 204           | No content - The request was successful. There is no content to return, but the headers may be useful\n| 400           | Bad Request - The server could not understand the request due to invalid syntax\n| 401           | Unauthenticated - It is usally caused by using wrong or expired credentials\n| 403           | Forbidden/Unauthorized - The used credentials do not allow access to the resource\n| 404           | Not Found - The server cannot find the requested resource\n| 405           | Method not allowed - The request method has been disabled and cannot be used\n| 409           | Conflict - The current request conflicts with the current state of the server\n| 415           | Unsupported Media Type - The request's `Content-Type` or `Accept` headers are not set to a valid format\n| 422           | Unprocessable Entity - The request was unable to be processed due to validation errors\n| 429           | Too many requests - The client exceeded the requests limit in a window of time\n| 500           | Internal Server Error. Please contact the `devopness` team\n\n## Routes and Endpoints\nA route is a URI which can be mapped to different HTTP methods. The mapping of an individual HTTP method to a route is known as an endpoint. `devopness` API exposes, as much as posible, well standardized endpoints with resources and segments leading the path to access the desired resource data.\n\nEach resource mentioned in an endpoint segment has its name written in the plural form, as we are always referencing a collection of objects, that might or might not be filtered by a single ID or extra query string parameters.\n\n### Resources and nested resources endpoints\nBasically there are two types of endpoints used in `devopness` API:\n1) Resource endpoints:\n\n**Pattern:**\n\n`/collection/{resource_id}/[{action}]`\n\n**Examples:**\n\n| HTTP Method   | Example                            | Purpose       |\n| -------------:|------------------------------------|---------------|\n| POST          | /projects                          | Create new item\n| GET           | /social-accounts                   | List all items\n| GET           | /social-accounts/{account}/status  | Perform a custom action (`status`) for a single item\n| GET           | /cron-jobs/{id}                    | Get a single item by id\n| PUT           | /applications/{id}                 | Modify an item\n| DELETE        | /daemons/{id}                      | Remove an item permanently\n\n2) Nested resources endpoints:\n\nNested resources are used when there is a clear hierarchy between the parent resource and the subresource, or for convenience to make it easy and predcitable on how to filter subresources belonging to a parent resource.\nIn `devopness` API design we strive to avoid nesting resources more than 1 level deep + one action related to the child resource or to the relationship between parent and child.\n\n**Pattern:**\n\n`/parent-collection/{parent_id}/{child-collection}/{child_id}/[{action}]`\n\n**Examples:**\n\n| HTTP Method   | Example                        | Purpose       |\n| -------------:|--------------------------------|---------------|\n| GET           | /projects/{id}/servers         | List all items belonging/linked to the parent resource\n| POST          | /projects/{id}/servers         | Create a new subresource item and link it to the parent object\n| POST          | /parent/{id}/child/{id}/link   | Create a relationship between parent and child object when both items already existed but were not linked.\n| DELETE        | /parent/{id}/child/{id}/unlink | Remove the relationship between parent and child resources, without deleting any item\n\n## Expanding objects\n`TO DO:` define the rules for object expansion and document it here\n"
+      "description": "This page contains the documentation on how to use `devopness` through API calls.\n> Note: This documentation is not complete, so for missing parts or inaccurate API description please\n>\n> reach out to `devopness` API team.\n\n## Introduction\ndevopness's API exposes all `devopness` features via a standardized programmatic interface. Through devopness API a registered Devopness user can perform every operation you can do on https://www.devopness.com web interfaces and mobile apps.\n\n## Getting started\nAll you need to obtain a token and start consuming this API is a valid email/password registered with devopness.com.\n\n\nThe `devopness` API is based on HTTPS requests and JSON responses, organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API has predictable resource-oriented URLs, accepts requests with [JSON-encoded](http://www.json.org/) bodies with arguments, returns [JSON-encoded](http://www.json.org/) responses, and uses standard HTTP response codes, authentication, and verbs.\n\n## Date format\nAll dates in the API use UTC and are strings in the [ISO 8601 \"combined date and time representation\" format](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations), following the [RFC 3339](https://tools.ietf.org/html/rfc3339):\n```\n2015-05-12T15:50:38+00:00\n```\n\n## Errors\nThe devopness API uses standard HTTP status codes to indicate the success or failure of an API call. In general: Codes in the `2xx` range indicate success. Codes in the `4xx` range indicate an error that failed given the information provided (e.g., a required parameter was omitted). Codes in the `5xx` range indicate an error on the API servers and are very rare.\n\nThe body of the error response is a JSON in the following format:\n\n```\n{\n  \"message\": \"The given request data was invalid\"\n  \"errors\": { // Optional errors object, returned only when there are detailed error message to be shared\n      \"field_1\": [\n          \"Optional error message related to field_1\"\n      ],\n      \"field_2\": [\n          \"Optional error message related to field_2\"\n      ],\n  }\n}\n```\n\n## Responses\nWhen a request is successful, a response body will typically be sent back in the form of a JSON object.\nException to this rule is when a DELETE request is processed, which will result in a successful HTTP 204 status and an empty response body.\n\n### Response codes\nResponse codes indicate success or failure of request processing.\nStatus codes from the `2xx` range indicate that request has been accepted.\nIf the returned code is from the `4xx` or `5xx` range then it reveals either problem with the request or unability to process data.\nSee below for a list of HTTP Status codes used by `devopness` API:\n\n| Status Code   | Description   |\n| -------------:|---------------|\n| 200           | Ok - The request was successful\n| 201           | Created - The request was successful and a new resource has been created as a result\n| 202           | Accepted - The request has been received but not yet completely processed\n| 204           | No content - The request was successful. There is no content to return, but the headers may be useful\n| 400           | Bad Request - The server could not understand the request due to invalid syntax\n| 401           | Unauthenticated - It is usally caused by using wrong or expired credentials\n| 403           | Forbidden/Unauthorized - The used credentials do not allow access to the resource\n| 404           | Not Found - The server cannot find the requested resource\n| 405           | Method not allowed - The request method has been disabled and cannot be used\n| 409           | Conflict - The current request conflicts with the current state of the server\n| 415           | Unsupported Media Type - The request's `Content-Type` or `Accept` headers are not set to a valid format\n| 422           | Unprocessable Entity - The request was unable to be processed due to validation errors\n| 429           | Too many requests - The client exceeded the requests limit in a window of time\n| 500           | Internal Server Error. Please contact the `devopness` team\n\n## Routes and Endpoints\nA route is a URI which can be mapped to different HTTP methods. The mapping of an individual HTTP method to a route is known as an endpoint. `devopness` API exposes, as much as posible, well standardized endpoints with resources and segments leading the path to access the desired resource data.\n\nEach resource mentioned in an endpoint segment has its name written in the plural form, as we are always referencing a collection of objects, that might or might not be filtered by a single ID or extra query string parameters.\n\n### Resources and nested resources endpoints\nBasically there are two types of endpoints used in `devopness` API:\n1) Resource endpoints:\n\n**Pattern:**\n\n`/collection/{resource_id}/[{action}]`\n\n**Examples:**\n\n| HTTP Method   | Example                            | Purpose       |\n| -------------:|------------------------------------|---------------|\n| POST          | /projects                          | Create new item\n| GET           | /social-accounts                   | List all items\n| GET           | /social-accounts/{account}/status  | Perform a custom action (`status`) for a single item\n| GET           | /cron-jobs/{id}                    | Get a single item by id\n| PUT           | /applications/{id}                 | Modify an item\n| DELETE        | /daemons/{id}                      | Remove an item permanently\n\n2) Nested resources endpoints:\n\nNested resources are used when there is a clear hierarchy between the parent resource and the subresource, or for convenience to make it easy and predcitable on how to filter subresources belonging to a parent resource.\nIn `devopness` API design we strive to avoid nesting resources more than 1 level deep + one action related to the child resource or to the relationship between parent and child.\n\n**Pattern:**\n\n`/parent-collection/{parent_id}/{child-collection}/{child_id}/[{action}]`\n\n**Examples:**\n\n| HTTP Method   | Example                        | Purpose       |\n| -------------:|--------------------------------|---------------|\n| GET           | /projects/{id}/servers         | List all items belonging/linked to the parent resource\n| POST          | /projects/{id}/servers         | Create a new subresource item and link it to the parent object\n| POST          | /parent/{id}/child/{id}/link   | Create a relationship between parent and child object when both items already existed but were not linked.\n| DELETE        | /parent/{id}/child/{id}/unlink | Remove the relationship between parent and child resources, without deleting any item\n\n## Expanding objects\n`TO DO:` define the rules for object expansion and document it here\n"
     },
     {
       "name": "Static Data",
@@ -4025,15 +4014,25 @@
             "description": "The unique id of the given record",
             "example": 445678964
           },
+          "type": {
+            "type": "string",
+            "description": "The type of the applicaton, which will define if it is publicly accessible through a web domain or not",
+            "enum": [
+              "web",
+              "non-web"
+            ],
+            "example": "web",
+            "nullable": true
+          },
           "name": {
             "type": "string",
-            "description": "A domain name that points to application main web address. Can be a naked domain or any subdomain. If app has domain names `testing.my-app.com`, `staging.my-app.com` and `www.my-app.com` a possible good candidate for the application name would be the \"naked\" domain `my-app.com`",
-            "example": "my-app.co.uk"
+            "description": "The application's unique name",
+            "example": "my awesome app"
           },
           "domain_name": {
             "type": "string",
             "format": "hostname",
-            "description": "The sub-domain through which the application deployed with these settings will be accessed",
+            "description": "The domain or sub-domain through which the application deployed with these settings will be accessed. It can be a naked domain or any subdomain. If app has domain names `testing.my-app.com`, `staging.my-app.com` and `www.my-app.com` a possible good candidate for the application name would be the \"naked\" domain `my-app.com`",
             "example": "test.my-app.co.uk"
           },
           "source_provider": {
@@ -4152,6 +4151,7 @@
           "id",
           "project_id",
           "environments",
+          "type",
           "name",
           "domain_name",
           "framework",
@@ -4336,13 +4336,13 @@
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was created",
-            "example": "2019-09-25 13:49:51"
+            "example": "2020-04-16T15:50:48+00:00"
           },
           "updated_at": {
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was last updated",
-            "example": "2019-09-25 13:52:04"
+            "example": "2020-04-16T15:50:48+00:00"
           },
           "script": {
             "description": "The script record attached to the application deployment event",
@@ -4460,13 +4460,13 @@
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was created",
-            "example": "2019-09-25 13:49:51"
+            "example": "2020-04-16T15:50:48+00:00"
           },
           "updated_at": {
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was last updated",
-            "example": "2019-09-25 13:52:04"
+            "example": "2020-04-16T15:50:48+00:00"
           }
         },
         "required": [
@@ -4528,13 +4528,13 @@
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was created",
-            "example": "2019-09-25 13:49:51"
+            "example": "2020-04-16T15:50:48+00:00"
           },
           "updated_at": {
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was last updated",
-            "example": "2019-09-25 13:52:04"
+            "example": "2020-04-16T15:50:48+00:00"
           }
         },
         "required": [
@@ -4660,7 +4660,7 @@
             "enum": [
               "Every Minute",
               "Hourly",
-              "Nightly",
+              "Daily",
               "Weekly",
               "Monthly",
               "Yearly"
@@ -5355,7 +5355,7 @@
           "name": {
             "type": "string",
             "description": "The rule's name/description/reminder",
-            "example": "HTTPS|SSH|\"Opening MySQL port so desktop apps can access it remotely\""
+            "example": "HTTPS|SSH|\"Open MySQL port for remote access\""
           },
           "type": {
             "type": "string",
@@ -5397,6 +5397,9 @@
             "type": "integer",
             "description": "Ending range of network ports to be considered by this rule",
             "example": 7654
+          },
+          "environments": {
+            "$ref": "#/components/schemas/EnvironmentLinks"
           }
         },
         "required": [
@@ -5919,7 +5922,8 @@
           "version": {
             "type": "string",
             "description": "The service current installed version",
-            "example": "5.7.29"
+            "example": "5.7.29",
+            "nullable": true
           },
           "auto_generated": {
             "type": "boolean",
@@ -5944,7 +5948,8 @@
           "description": {
             "type": "string",
             "description": "A text describing the service, provided by the service author",
-            "example": "MySQL Community Server"
+            "example": "MySQL Community Server",
+            "nullable": true
           },
           "status": {
             "type": "string",
@@ -5962,13 +5967,13 @@
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was created",
-            "example": "2019-09-25 13:49:51"
+            "example": "2020-04-16T15:50:48+00:00"
           },
           "updated_at": {
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was last updated",
-            "example": "2019-09-25 13:52:04"
+            "example": "2020-04-16T15:50:48+00:00"
           }
         },
         "required": [
@@ -5986,7 +5991,12 @@
         "properties": {
           "name": {
             "type": "string",
-            "description": "The service name",
+            "description": "The name of a supported service",
+            "enum": [
+              "mysql",
+              "nginx",
+              "redis"
+            ],
             "example": "mysql"
           },
           "auto_start": {
@@ -6070,8 +6080,7 @@
         },
         "required": [
           "id",
-          "provider",
-          "provider_user_nickname"
+          "provider"
         ]
       },
       "SocialAccountCreate": {
@@ -6180,6 +6189,38 @@
           "name"
         ]
       },
+      "SshKeyCreate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The Id of the given SSH public key",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "description": "The name entered by the user to uniquely identify the public SSH key",
+            "example": "my-laptop-ssh-key"
+          },
+          "user_id": {
+            "type": "integer",
+            "description": "The Id of the user to which the SSH key belongs to",
+            "example": 123
+          },
+          "public_key": {
+            "type": "string",
+            "description": "The public SSH key to add to your `devopness` account and associate it to the given project",
+            "example": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCu2g54rOA/7OhsILhFncrBAaPe8K0mZilMQugwGpiqQY89Xx0rhcZ/HS2rvmJnGC0nATxOZFsZLfjInpHhq+Y5WumTO0GUrkF215t4QavEU6UMd7VC+mqm2mm4WP+9zkcSSCzy7ZQ1Tuig6IWAB90FNqD7tXRFAqAjlC1LW8V+Efw9AO2mROglpxnoHuH8ZN0a/LQBi5iyeqOLuKZzgUWv4nEIqyYYGslDS1eru2aINwCNahDljXM7f7LcrHlhv5c4y5WSdEYlxSdQQh/ijDcuIIZEv27ivYoY1fse24b2MqD2XdHJpSb1GLnOI76t7+MSmDow3BtSxUNqW0rIUqObFxlMVx9oozHjnn3FkFee+qhQ/9knA7+V9Z7M6SJzDwcGqzJXEpuX/E4AHV04vEI4+RV2vNLhPsHZ2DDQ1fm3ZUtXnWXcIwsLC9WNFdiCOL+WyIYKieQ/CiWfDDIp0xlho83HMp79+BJ4ceFRP/PAdee+TltbtoJR00Ezf8b2nFU="
+          },
+          "environments": {
+            "$ref": "#/components/schemas/EnvironmentLinks"
+          }
+        },
+        "required": [
+          "name",
+          "public_key"
+        ]
+      },
       "SshKeys": {
         "type": "array",
         "items": {
@@ -6282,13 +6323,13 @@
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was created",
-            "example": "2019-09-25 13:49:51"
+            "example": "2020-04-16T15:50:48+00:00"
           },
           "updated_at": {
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was last updated",
-            "example": "2019-09-25 13:52:04"
+            "example": "2020-04-16T15:50:48+00:00"
           }
         },
         "required": [

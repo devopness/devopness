@@ -23,13 +23,13 @@ export class SourceProvidersRepositoriesApiService extends ApiBaseService {
     /**
      * 
      * @summary Get details of a repository, by its name
-     * @param {string} sourceProviderName Unique name/Id of the provider where the repository is hosted
+     * @param {number} sourceProviderId Unique ID of the provider where the repository is hosted
      * @param {string} repositoryOwner Nickname/user id of the owner of the repository
      * @param {string} repositoryName The name of the repository to be retrieved
      */
-    public async getRepository(sourceProviderName: string, repositoryOwner: string, repositoryName: string): Promise<ApiResponse<Repository>> {
-        if (sourceProviderName === null || sourceProviderName === undefined) {
-            throw new ArgumentNullException('sourceProviderName', 'getRepository');
+    public async getRepository(sourceProviderId: number, repositoryOwner: string, repositoryName: string): Promise<ApiResponse<Repository>> {
+        if (sourceProviderId === null || sourceProviderId === undefined) {
+            throw new ArgumentNullException('sourceProviderId', 'getRepository');
         }
         if (repositoryOwner === null || repositoryOwner === undefined) {
             throw new ArgumentNullException('repositoryOwner', 'getRepository');
@@ -37,20 +37,20 @@ export class SourceProvidersRepositoriesApiService extends ApiBaseService {
         if (repositoryName === null || repositoryName === undefined) {
             throw new ArgumentNullException('repositoryName', 'getRepository');
         }
-        const response = await this.get <Repository>(`/source-providers/{source_provider_name}/repositories/{repository_owner}/{repository_name}`.replace(`{${"source_provider_name"}}`, encodeURIComponent(String(sourceProviderName))).replace(`{${"repository_owner"}}`, encodeURIComponent(String(repositoryOwner))).replace(`{${"repository_name"}}`, encodeURIComponent(String(repositoryName))));
+        const response = await this.get <Repository>(`/source-providers/{source_provider_id}/repositories/{repository_owner}/{repository_name}`.replace(`{${"source_provider_id"}}`, encodeURIComponent(String(sourceProviderId))).replace(`{${"repository_owner"}}`, encodeURIComponent(String(repositoryOwner))).replace(`{${"repository_name"}}`, encodeURIComponent(String(repositoryName))));
         return new ApiResponse(response);
     }
 
     /**
      * 
      * @summary Return a list of all repositories belonging to a current user social provider account
-     * @param {string} sourceProviderName Unique name of the source code provider where the repository is hosted
+     * @param {number} sourceProviderId Unique ID of the provider where the repository is hosted
      */
-    public async listRepositories(sourceProviderName: string): Promise<ApiResponse<Array<Repository>>> {
-        if (sourceProviderName === null || sourceProviderName === undefined) {
-            throw new ArgumentNullException('sourceProviderName', 'listRepositories');
+    public async listRepositories(sourceProviderId: number): Promise<ApiResponse<Array<Repository>>> {
+        if (sourceProviderId === null || sourceProviderId === undefined) {
+            throw new ArgumentNullException('sourceProviderId', 'listRepositories');
         }
-        const response = await this.get <Array<Repository>>(`/source-providers/{source_provider_name}/repositories`.replace(`{${"source_provider_name"}}`, encodeURIComponent(String(sourceProviderName))));
+        const response = await this.get <Array<Repository>>(`/source-providers/{source_provider_id}/repositories`.replace(`{${"source_provider_id"}}`, encodeURIComponent(String(sourceProviderId))));
         return new ApiResponse(response);
     }
 }

@@ -50,27 +50,27 @@ export class SocialAccountsApiService extends ApiBaseService {
 
     /**
      * 
-     * @summary Get details of a Social authentication provider, by its name
-     * @param {string} socialAccountProvider Unique name/Id of the provider to be retrieved
+     * @summary Get details of a single Social authentication provider
+     * @param {number} socialAccountId Unique ID of the provider to be retrieved
      */
-    public async getSocialAccountByName(socialAccountProvider: string): Promise<ApiResponse<SocialAccount>> {
-        if (socialAccountProvider === null || socialAccountProvider === undefined) {
-            throw new ArgumentNullException('socialAccountProvider', 'getSocialAccountByName');
+    public async getSocialAccount(socialAccountId: number): Promise<ApiResponse<SocialAccount>> {
+        if (socialAccountId === null || socialAccountId === undefined) {
+            throw new ArgumentNullException('socialAccountId', 'getSocialAccount');
         }
-        const response = await this.get <SocialAccount>(`/social-accounts/{social_account_provider}`.replace(`{${"social_account_provider"}}`, encodeURIComponent(String(socialAccountProvider))));
+        const response = await this.get <SocialAccount>(`/social-accounts/{social_account_id}`.replace(`{${"social_account_id"}}`, encodeURIComponent(String(socialAccountId))));
         return new ApiResponse(response);
     }
 
     /**
      * 
      * @summary Get the connect status of a Social authentication provider, by its name
-     * @param {string} socialAccountProvider Unique name of the provider to be retrieved
+     * @param {string} socialAccountProviderName Unique name of the provider to be retrieved
      */
-    public async getSocialAccountStatusByName(socialAccountProvider: string): Promise<ApiResponse<SocialAccountStatus>> {
-        if (socialAccountProvider === null || socialAccountProvider === undefined) {
-            throw new ArgumentNullException('socialAccountProvider', 'getSocialAccountStatusByName');
+    public async getSocialAccountStatusByName(socialAccountProviderName: string): Promise<ApiResponse<SocialAccountStatus>> {
+        if (socialAccountProviderName === null || socialAccountProviderName === undefined) {
+            throw new ArgumentNullException('socialAccountProviderName', 'getSocialAccountStatusByName');
         }
-        const response = await this.get <SocialAccountStatus>(`/social-accounts/{social_account_provider}/status`.replace(`{${"social_account_provider"}}`, encodeURIComponent(String(socialAccountProvider))));
+        const response = await this.get <SocialAccountStatus>(`/social-accounts/{social_account_provider_name}/status`.replace(`{${"social_account_provider_name"}}`, encodeURIComponent(String(socialAccountProviderName))));
         return new ApiResponse(response);
     }
 

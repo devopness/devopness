@@ -36,7 +36,7 @@ export interface SocialAccount {
      * @type {string}
      * @memberof SocialAccount
      */
-    provider_user_nickname: string;
+    provider_user_nickname?: string;
     /**
      * Tells if the social account provider is a Source Code Provider/Version Control System. e.g. false for Facebook, true for Github
      * @type {boolean}

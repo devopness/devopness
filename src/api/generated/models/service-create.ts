@@ -21,11 +21,11 @@ import { EnvironmentLinkItem } from './environment-link-item';
  */
 export interface ServiceCreate {
     /**
-     * The service name
+     * The name of a supported service
      * @type {string}
      * @memberof ServiceCreate
      */
-    name: string;
+    name: ServiceCreateNameEnum;
     /**
      * Indicates if the service is marked for start automatically on operating system boot
      * @type {boolean}
@@ -46,6 +46,15 @@ export interface ServiceCreate {
     environments?: Array<EnvironmentLinkItem>;
 }
 
+/**
+    * @export
+    * @enum {string}
+    */
+export enum ServiceCreateNameEnum {
+    Mysql = 'mysql',
+    Nginx = 'nginx',
+    Redis = 'redis'
+}
 /**
     * @export
     * @enum {string}

@@ -53,11 +53,11 @@ export class DaemonsApiService extends ApiBaseService {
      * @param {number} processId Numeric ID of the process to restart
      * @param {ExtraBodyParams} [extraBodyParams] A JSON object containing list of additional parameters
      */
-    public async restartDaemon(processId: number, extraBodyParams?: ExtraBodyParams): Promise<ApiResponse<Process>> {
+    public async restartDaemon(processId: number, extraBodyParams?: ExtraBodyParams): Promise<ApiResponse<void>> {
         if (processId === null || processId === undefined) {
             throw new ArgumentNullException('processId', 'restartDaemon');
         }
-        const response = await this.post <Process, ExtraBodyParams>(`/daemons/{process_id}/restart`.replace(`{${"process_id"}}`, encodeURIComponent(String(processId))), extraBodyParams);
+        const response = await this.post <void, ExtraBodyParams>(`/daemons/{process_id}/restart`.replace(`{${"process_id"}}`, encodeURIComponent(String(processId))), extraBodyParams);
         return new ApiResponse(response);
     }
 }
