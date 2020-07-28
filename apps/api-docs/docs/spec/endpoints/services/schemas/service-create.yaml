@@ -3,7 +3,7 @@ properties:
   name:
     type: string
     description: The name of a supported service
-    enum: [mysql, redis]
+    enum: [mysql, nginx, redis]
     example: mysql
   auto_start:
     type: boolean
