@@ -2,7 +2,8 @@ type: object
 properties:
   name:
     type: string
-    description: The service name
+    description: The name of a supported service
+    enum: [mysql, redis]
     example: mysql
   auto_start:
     type: boolean
@@ -10,12 +11,12 @@ properties:
     description: Indicates if the service is marked for start automatically on operating system boot
   initial_state:
     type: string
-    default: 'started'
+    default: "started"
     description: The expected initial state of the service after installed
     enum: [started, stopped]
-    example: 'stopped'
+    example: "stopped"
   environments:
-    $ref: '#/components/schemas/EnvironmentLinks'
+    $ref: "#/components/schemas/EnvironmentLinks"
 required:
   - name
   - auto_start
