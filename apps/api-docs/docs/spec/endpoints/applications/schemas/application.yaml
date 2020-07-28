@@ -113,7 +113,7 @@ required:
   - environments
   - type
   - name
-  - domain_name
   - framework
   - programming_language
   - public_directory
+  - default_branch
