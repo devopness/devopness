@@ -27,7 +27,7 @@ export interface ApplicationCreate {
      */
     source_provider_id: number;
     /**
-     * The type of the applicaton, which will define if it is publicly accessible through a web domain or not
+     * The application\'s type, which will mainly define if it is publicly accessible through a web domain or not
      * @type {string}
      * @memberof ApplicationCreate
      */
@@ -39,7 +39,7 @@ export interface ApplicationCreate {
      */
     name: string;
     /**
-     * The domain or sub-domain through which the application deployed with these settings will be accessed. It can be a naked domain or any subdomain. If app has domain names `testing.my-app.com`, `staging.my-app.com` and `www.my-app.com` a possible good candidate for the application name would be the \"naked\" domain `my-app.com`
+     * The domain or sub-domain through which the application deployed with these settings will be accessible. It can be a naked domain or any subdomain. If app has domain names `testing.my-app.com`, `staging.my-app.com` and `www.my-app.com` a possible good candidate for the application name would be the \"naked\" domain `my-app.com`
      * @type {string}
      * @memberof ApplicationCreate
      */
@@ -51,37 +51,37 @@ export interface ApplicationCreate {
      */
     repository: string;
     /**
-     * The version control branch that, by default, will be retrieved and deployed. This might be overriden by client apps API calls when actually triggering a new deployment.
+     * The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed.
      * @type {string}
      * @memberof ApplicationCreate
      */
     default_branch: string;
     /**
-     * Indicates if push to deploy webhooks are enabled for this application/environment, if so code will be deployed when commited to the default_branch
+     * Indicates if push to deploy webhooks are enabled for this application. If enabled an app deployment will be automatically triggered when new changes are commited to the `default_branch`
      * @type {boolean}
      * @memberof ApplicationCreate
      */
     push_to_deploy?: boolean;
     /**
-     * The predominant programming language used in the application source code
+     * The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`.
      * @type {string}
      * @memberof ApplicationCreate
      */
     programming_language: string;
     /**
-     * The language runtime engine version to be used to execute this application code on the deployed servers
+     * The language runtime engine version to be used to execute this application on the deployed servers
      * @type {string}
      * @memberof ApplicationCreate
      */
     engine_version?: string;
     /**
-     * The base framework on top of which the application has been implemented - if any
+     * The base framework on top of which the application has been implemented - it might have impact on the steps to be performed during application deployment
      * @type {string}
      * @memberof ApplicationCreate
      */
     framework: string;
     /**
-     * The physical path of the applicaton code/artifacts on the deployed servers
+     * The physical path of the application code/artifacts on the deployed servers
      * @type {string}
      * @memberof ApplicationCreate
      */
@@ -99,13 +99,13 @@ export interface ApplicationCreate {
      */
     public_directory: string;
     /**
-     * The entrypoint tells devopness how an application should be started and has basically two forms:  1) `File`: if it\'s a simple file name/path an web app will be served using the entrypoint value as its index file. Example: `index.html`  2) `Command`: if a command line instruction is provided as the entrypoint value, it will be handled as the start up command that initalizes the application. It will be assumed that the user is an advanced user that knows what she/he is doing, therefore the command specified here will be run - as is - everytime the application needs to be started. 
+     * The entrypoint tells devopness how an application should be started and has basically two forms:  1) `File`: if it\'s a simple file name/path a web app will be served using the entrypoint value as its index file. Example: `index.html`  2) `Command`: if a command line instruction is provided as the entrypoint value, it will be handled as the start up command that initalizes the application. It will be assumed that the user is an advanced user that knows what she/he is doing, therefore the command specified here will be run - as is - everytime the application needs to be started. 
      * @type {string}
      * @memberof ApplicationCreate
      */
     entrypoint: string;
     /**
-     * Useful, for instance, when deploying `docker` containerized applications. If the application is not initialized by `devopness` itself, the user should inform the address at which the application listens to external calls. The address can be an IP, IP:PORT, HOSTNAME, HOSTNAME:PORT or unix:PATH
+     * Required for CGI|FastCGI|SCGI|WSGI based applications or `docker` containerized applications. It tells `devopness` the private address at which the application listens to external calls. The address can be an IP:PORT, HOSTNAME:PORT or unix:PATH
      * @type {string}
      * @memberof ApplicationCreate
      */
@@ -117,25 +117,25 @@ export interface ApplicationCreate {
      */
     build_command?: string;
     /**
-     * The number of deployment history, logs and artifacts to keep stored in both devopness servers and user\'s servers
+     * The number of deployment history, logs and artifacts to keep stored in both devopness servers and user\'s servers. OR The number of deployment artifacts to be retained in the user\'s servers, making it easier and faster to rollback to previoius versions
      * @type {number}
      * @memberof ApplicationCreate
      */
     deployments_keep?: number;
     /**
-     * Indicates if at deployment time we should execute package manager command to install dependencies used in development mode
+     * Indicates if at deployment time Devopness should execute package manager commands to install dependencies used in development mode
      * @type {boolean}
      * @memberof ApplicationCreate
      */
     install_dependencies_dev?: boolean;
     /**
-     * Indicates if at deployment time we should execute package manager command to install dependencies used in production mode
+     * Indicates if at deployment time Devopness should execute package manager commands to install dependencies used in production mode
      * @type {boolean}
      * @memberof ApplicationCreate
      */
     install_dependencies_prod?: boolean;
     /**
-     * Numeric ID of the project that the application belongs to
+     * Numeric ID of the project to which the application belongs to
      * @type {number}
      * @memberof ApplicationCreate
      */

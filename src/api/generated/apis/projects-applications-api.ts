@@ -25,7 +25,7 @@ export class ProjectsApplicationsApiService extends ApiBaseService {
     /**
      * 
      * @summary Create a new application
-     * @param {number} projectId Numeric ID of the application to get
+     * @param {number} projectId Numeric ID of the project to which the application will be added
      * @param {ApplicationCreate} applicationCreate A JSON object containing project data
      */
     public async addApplicationToProject(projectId: number, applicationCreate: ApplicationCreate): Promise<ApiResponse<Application>> {
