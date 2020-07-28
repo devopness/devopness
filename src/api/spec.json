@@ -4153,10 +4153,10 @@
           "environments",
           "type",
           "name",
-          "domain_name",
           "framework",
           "programming_language",
-          "public_directory"
+          "public_directory",
+          "default_branch"
         ]
       },
       "ApplicationCreate": {
@@ -4166,15 +4166,25 @@
             "type": "integer",
             "description": "Numeric ID of the source provider account where the repository is hosted. Required when the `repository` field is informed."
           },
+          "type": {
+            "type": "string",
+            "description": "The type of the applicaton, which will define if it is publicly accessible through a web domain or not",
+            "enum": [
+              "web",
+              "non-web"
+            ],
+            "example": "web",
+            "nullable": true
+          },
           "name": {
             "type": "string",
-            "description": "A domain name that points to application main web address. Can be a naked domain or any subdomain. If app has domain names `testing.my-app.com`, `staging.my-app.com` and `www.my-app.com` a possible good candidate for the application name would be the \"naked\" domain `my-app.com`",
-            "example": "my-app.co.uk"
+            "description": "The application's unique name",
+            "example": "my awesome app"
           },
           "domain_name": {
             "type": "string",
             "format": "hostname",
-            "description": "The sub-domain through which the application deployed with these settings will be accessed",
+            "description": "The domain or sub-domain through which the application deployed with these settings will be accessed. It can be a naked domain or any subdomain. If app has domain names `testing.my-app.com`, `staging.my-app.com` and `www.my-app.com` a possible good candidate for the application name would be the \"naked\" domain `my-app.com`",
             "example": "test.my-app.co.uk"
           },
           "repository": {
@@ -4261,13 +4271,15 @@
           }
         },
         "required": [
+          "type",
           "name",
           "source_provider_id",
           "repository",
           "programming_language",
           "framework",
           "public_directory",
-          "entrypoint"
+          "entrypoint",
+          "default_branch"
         ]
       },
       "ApplicationDeployment": {
@@ -6080,7 +6092,8 @@
         },
         "required": [
           "id",
-          "provider"
+          "provider",
+          "provider_user_nickname"
         ]
       },
       "SocialAccountCreate": {

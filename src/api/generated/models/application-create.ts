@@ -27,13 +27,19 @@ export interface ApplicationCreate {
      */
     source_provider_id: number;
     /**
-     * A domain name that points to application main web address. Can be a naked domain or any subdomain. If app has domain names `testing.my-app.com`, `staging.my-app.com` and `www.my-app.com` a possible good candidate for the application name would be the \"naked\" domain `my-app.com`
+     * The type of the applicaton, which will define if it is publicly accessible through a web domain or not
+     * @type {string}
+     * @memberof ApplicationCreate
+     */
+    type: ApplicationCreateTypeEnum;
+    /**
+     * The application\'s unique name
      * @type {string}
      * @memberof ApplicationCreate
      */
     name: string;
     /**
-     * The sub-domain through which the application deployed with these settings will be accessed
+     * The domain or sub-domain through which the application deployed with these settings will be accessed. It can be a naked domain or any subdomain. If app has domain names `testing.my-app.com`, `staging.my-app.com` and `www.my-app.com` a possible good candidate for the application name would be the \"naked\" domain `my-app.com`
      * @type {string}
      * @memberof ApplicationCreate
      */
@@ -49,7 +55,7 @@ export interface ApplicationCreate {
      * @type {string}
      * @memberof ApplicationCreate
      */
-    default_branch?: string;
+    default_branch: string;
     /**
      * Indicates if push to deploy webhooks are enabled for this application/environment, if so code will be deployed when commited to the default_branch
      * @type {boolean}
@@ -141,4 +147,14 @@ export interface ApplicationCreate {
      */
     environments?: Array<EnvironmentLinkItem>;
 }
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum ApplicationCreateTypeEnum {
+    Web = 'web',
+    NonWeb = 'non-web'
+}
+
 

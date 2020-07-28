@@ -44,7 +44,7 @@ export interface Application {
      * @type {string}
      * @memberof Application
      */
-    domain_name: string;
+    domain_name?: string;
     /**
      * 
      * @type {SocialAccount}
@@ -74,7 +74,7 @@ export interface Application {
      * @type {string}
      * @memberof Application
      */
-    default_branch?: string;
+    default_branch: string;
     /**
      * Indicates if push to deploy webhooks are enabled for this application/environment, if so code will be deployed when commited to the default_branch
      * @type {boolean}
