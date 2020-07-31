@@ -45,6 +45,7 @@ export default class TransactionUtils {
     // replaces `${fixtureKey}_id` with ${fixture.id} in transaction request path
     writeFixtureIdsInTransactionPath<T extends Identifiable>(keys: FixtureKey[]): TransactionHook {
         return (transaction: Transaction) => {
+            if (transaction.skip) return;
             if (keys.length == 0) return;
 
             let path = transaction.origin.resourceName;
@@ -67,6 +68,7 @@ export default class TransactionUtils {
     // grab the response body of a transaction and store it as a fixture
     storeTransactionResult<T extends Fixture>(key: FixtureKey): TransactionHook {
         return (transaction: Transaction) => {
+            if (transaction.skip) return;
             if (transaction.test.valid && transaction.real.body) {
                 const tag = `[storeTransactionResult]`;
                 const data = JSON.parse(transaction.real.body);
@@ -85,6 +87,7 @@ export default class TransactionUtils {
     // attach auth header if request requires it
     setTransactionRequestAuthHeaderWithFixture(key: FixtureKey): TransactionHook {
         return (transaction: Transaction) => {
+            if (transaction.skip) return;
             if (transaction.request.headers && transaction.request.headers.hasOwnProperty('Authorization')) {
                 if (transaction.request.headers.Authorization === '') {
                     const authToken = this.fixtureStore.get<UserTokens>(key);
@@ -102,6 +105,7 @@ export default class TransactionUtils {
     // set the request body of a transaction to a fixture
     setTransactionRequestBodyToFixture<T extends Fixture>(key: FixtureKey): TransactionHook {
         return (transaction: Transaction) => {
+            if (transaction.skip) return;
             const fixture = this.fixtureStore.get<T>(key);
             if (fixture) {
                 transaction.request.body = JSON.stringify(fixture);
@@ -115,6 +119,7 @@ export default class TransactionUtils {
     // parse transaction request body, applies `rewriteFn`, then stringifies serializes it again
     rewriteTransactionRequestBody(rewriteFn: (body: any) => any): TransactionHook {
         return (transaction: Transaction) => {
+            if (transaction.skip) return;
             if (transaction.request.body) {
                 const body = JSON.parse(transaction.request.body);
                 rewriteFn(body);
@@ -125,6 +130,7 @@ export default class TransactionUtils {
 
     applyTransactionRequestBodyFixtureDependencies(dependencies: FixtureDependency[]): TransactionHook {
         return (transaction: Transaction) => {
+            if (transaction.skip) return;
             if (dependencies.length == 0) return;
 
             const tag = `[applyTransactionRequestBodyFixtureDependencies]`;

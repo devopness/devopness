@@ -46,11 +46,14 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     // build transaction graph to find running order
     const graph = new TransactionGraph(transactionSpecs, hooks.log);
     const txOrder = graph.topologicalSort();
-    // for (const i in txOrder) {
-    //     const slug = txOrder[i];
-    //     const [inputs, outputs] = graph.edges(slug);
-    //     hooks.log(`${i}  \t  ${slug}:  (${inputs.join(', ')}) -> (${outputs.join(', ')})`);
-    // }
+    // uncomment the snippet below to display the planned transaction order
+    /*
+    for (const i in txOrder) {
+        const slug = txOrder[i];
+        const [inputs, outputs] = graph.edges(slug);
+        hooks.log(`${i}  \t  ${slug}:  (${inputs.join(', ')}) -> (${outputs.join(', ')})`);
+    }
+    */
     const numTests = 77;
     hooks.log(`running ${numTests}/${transactions.length} transactions`);
     utils.selectTransactionsByName(transactions, txOrder.slice(0, numTests).map(k => transactionSlugToName[k]));
@@ -70,6 +73,16 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
             if (transactionSpec.slug.includes('Project')) {
                 const removeLogoImage = (body: any) => { delete body['logo_image']; }
                 hooks.before(transaction.name, utils.rewriteTransactionRequestBody(removeLogoImage));
+            }
+        }
+    });
+
+    // skip all transactions after first failure
+    hooks.afterEach((transaction: Transaction) => {
+        if (!transaction.skip && !transaction.test.valid) {
+            let i = transactions.indexOf(transaction) + 1;
+            for (; i < transactions.length; i++) {
+                transactions[i].skip = true;
             }
         }
     });

@@ -14,7 +14,7 @@ output: []
 header: []
 sorted: false
 user: null
-inline-errors: true
+inline-errors: false
 details: false
 method: []
 loglevel: warning
