@@ -2,7 +2,7 @@ type: object
 properties:
   script_id:
     type: integer
-    description: Id of an existing script to be attached to an application environment event
+    description: Id of an existing script to be attached to an application event
     example: 57
   trigger_type:
     type: string

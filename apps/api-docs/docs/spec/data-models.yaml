@@ -10,12 +10,12 @@ ApplicationCreate:
   $ref: ./endpoints/applications/schemas/application-create.yaml
 ApplicationDeployment:
   $ref: ./endpoints/applications/schemas/application-deployment.yaml
-ApplicationEnvironmentScript:
-  $ref: ./endpoints/application-environments/schemas/application-environment-script.yaml
-ApplicationEnvironmentScriptCreate:
-  $ref: ./endpoints/application-environments/schemas/application-environment-script-create.yaml
-ApplicationEnvironmentScripts:
-  $ref: ./endpoints/application-environments/schemas/application-environment-script-list.yaml
+ApplicationScript:
+  $ref: ./endpoints/applications/schemas/application-script.yaml
+ApplicationScriptCreate:
+  $ref: ./endpoints/applications/schemas/application-script-create.yaml
+ApplicationScripts:
+  $ref: ./endpoints/applications/schemas/application-script-list.yaml
 ApplicationEnvironmentVariable:
   $ref: ./endpoints/application-environments/schemas/application-environment-variable.yaml
 ApplicationEnvironmentVariableCreate:

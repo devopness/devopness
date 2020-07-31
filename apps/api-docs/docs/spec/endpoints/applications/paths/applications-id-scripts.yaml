@@ -1,33 +1,33 @@
-summary: Add script to application environment as a deployment step
-operationId: addScriptToApplicationEnvironment
+summary: Add script to application as a deployment step
+operationId: addScriptToApplication
 tags:
-  - Applications - Environments
+  - Applications - Scripts
 parameters:
   - $ref: '#/components/parameters/acceptHeader'
   - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/contentTypeHeader'
   - in: path
-    name: application_environment_id
+    name: application_id
     example: 1
     schema:
       type: integer
       minimum: 1
     required: true
-    description: Unique ID of the application environment to retrieve scripts from
+    description: Unique ID of the application to retrieve scripts from
 requestBody:
-  description: A JSON object containing application environment script data
+  description: A JSON object containing application script data
   required: true
   content:
     application/json:
       schema:
-        $ref: '#/components/schemas/ApplicationEnvironmentScriptCreate'
+        $ref: '#/components/schemas/ApplicationScriptCreate'
 responses:
   201:
     description: 'Created'
     content:
       application/json:
         schema:
-          $ref: '#/components/schemas/ApplicationEnvironmentScripts'
+          $ref: '#/components/schemas/ApplicationScripts'
   404:
     $ref: "#/components/responses/NotFound"
   422:

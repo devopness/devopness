@@ -16,11 +16,11 @@
     $ref: ./endpoints/applications/paths/applications-id-deployments.yaml
   get:
     $ref: ./endpoints/applications/paths/applications-id-deployments-list.yaml
-/application-environments/{application_environment_id}/scripts:
+/application/{application_id}/scripts:
   post:
-    $ref: ./endpoints/application-environments/paths/application-environments-id-scripts.yaml
+    $ref: ./endpoints/applications/paths/applications-id-scripts.yaml
   get:
-    $ref: ./endpoints/application-environments/paths/application-environments-id-scripts-list.yaml
+    $ref: ./endpoints/applications/paths/applications-id-scripts-list.yaml
 /application-environments/{application_environment_id}/variables:
   post:
     $ref: ./endpoints/application-environments/paths/application-environments-id-variables.yaml
