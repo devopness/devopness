@@ -1,5 +1,9 @@
 type: object
 properties:
+  id:
+    type: integer
+    description: The unique id of the given record
+    example: 415678964
   key:
     type: string
     description: The unique key used to identify the variable on the target
@@ -22,10 +26,10 @@ properties:
     description: The type of the key/value pair
     enum: [variable, file]
     example: 'variable'
-  encrypted:
+  hidden:
     type: boolean
     default: false
-    description: Indicates if the variable value should be encrypted by `devopness` in the deployment logs
+    description: Indicates if the variable value should be visible or not in the deployment logs
   created_at:
     type: string
     format: date-time
@@ -39,6 +43,5 @@ properties:
 required:
   - key
   - value
-  - encrypted
   - target
   - type

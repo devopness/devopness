@@ -16,12 +16,12 @@ ApplicationScriptCreate:
   $ref: ./endpoints/applications/schemas/application-script-create.yaml
 ApplicationScripts:
   $ref: ./endpoints/applications/schemas/application-script-list.yaml
-ApplicationEnvironmentVariable:
-  $ref: ./endpoints/application-environments/schemas/application-environment-variable.yaml
-ApplicationEnvironmentVariableCreate:
-  $ref: ./endpoints/application-environments/schemas/application-environment-variable-create.yaml
-ApplicationEnvironmentVariables:
-  $ref: ./endpoints/application-environments/schemas/application-environment-variable-list.yaml
+ApplicationVariable:
+  $ref: ./endpoints/applications/schemas/application-variable.yaml
+ApplicationVariableCreate:
+  $ref: ./endpoints/applications/schemas/application-variable-create.yaml
+ApplicationVariables:
+  $ref: ./endpoints/applications/schemas/application-variable-list.yaml
 Applications:
   $ref: ./endpoints/applications/schemas/application-list.yaml
 BlueprintItem:

@@ -21,14 +21,14 @@
     $ref: ./endpoints/applications/paths/applications-id-scripts.yaml
   get:
     $ref: ./endpoints/applications/paths/applications-id-scripts-list.yaml
-/application-environments/{application_environment_id}/variables:
-  post:
-    $ref: ./endpoints/application-environments/paths/application-environments-id-variables.yaml
-  get:
-    $ref: ./endpoints/application-environments/paths/application-environments-id-variables-list.yaml
 /applications/{application_id}/ssl-certificates:
   post:
     $ref: ./endpoints/applications/paths/applications-id-ssl-certificates.yaml
+/applications/{application_id}/variables:
+  post:
+    $ref: ./endpoints/applications/paths/applications-id-variables.yaml
+  get:
+    $ref: ./endpoints/applications/paths/applications-id-variables-list.yaml
 /deployments/{deployment_id}:
   get:
     $ref: ./endpoints/deployments/paths/deployments-id.yaml
