@@ -16,31 +16,31 @@
 /**
  * 
  * @export
- * @interface ApplicationEnvironmentScriptCreate
+ * @interface ApplicationScriptCreate
  */
-export interface ApplicationEnvironmentScriptCreate {
+export interface ApplicationScriptCreate {
     /**
-     * Id of an existing script to be attached to an application environment event
+     * Id of an existing script to be attached to an application event
      * @type {number}
-     * @memberof ApplicationEnvironmentScriptCreate
+     * @memberof ApplicationScriptCreate
      */
     script_id: number;
     /**
      * The type of event that will trigger the script execution
      * @type {string}
-     * @memberof ApplicationEnvironmentScriptCreate
+     * @memberof ApplicationScriptCreate
      */
-    trigger_type: ApplicationEnvironmentScriptCreateTriggerTypeEnum;
+    trigger_type: ApplicationScriptCreateTriggerTypeEnum;
     /**
      * The application deployment event to which the script is attached
      * @type {string}
-     * @memberof ApplicationEnvironmentScriptCreate
+     * @memberof ApplicationScriptCreate
      */
-    trigger_event: ApplicationEnvironmentScriptCreateTriggerEventEnum;
+    trigger_event: ApplicationScriptCreateTriggerEventEnum;
     /**
      * The relative order of the script execution in case the event has multiple scripts attached to it
      * @type {number}
-     * @memberof ApplicationEnvironmentScriptCreate
+     * @memberof ApplicationScriptCreate
      */
     trigger_order: number;
 }
@@ -49,7 +49,7 @@ export interface ApplicationEnvironmentScriptCreate {
     * @export
     * @enum {string}
     */
-export enum ApplicationEnvironmentScriptCreateTriggerTypeEnum {
+export enum ApplicationScriptCreateTriggerTypeEnum {
     Before = 'before',
     After = 'after'
 }
@@ -57,7 +57,7 @@ export enum ApplicationEnvironmentScriptCreateTriggerTypeEnum {
     * @export
     * @enum {string}
     */
-export enum ApplicationEnvironmentScriptCreateTriggerEventEnum {
+export enum ApplicationScriptCreateTriggerEventEnum {
     GetNewRelease = 'get-new-release',
     InstallDependencies = 'install-dependencies',
     ActivateNewRelease = 'activate-new-release',

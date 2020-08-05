@@ -16,55 +16,61 @@
 /**
  * 
  * @export
- * @interface ApplicationEnvironmentVariableCreate
+ * @interface ApplicationVariable
  */
-export interface ApplicationEnvironmentVariableCreate {
+export interface ApplicationVariable {
+    /**
+     * The unique id of the given record
+     * @type {number}
+     * @memberof ApplicationVariable
+     */
+    id?: number;
     /**
      * The unique key used to identify the variable on the target
      * @type {string}
-     * @memberof ApplicationEnvironmentVariableCreate
+     * @memberof ApplicationVariable
      */
     key: string;
     /**
      * The value to be assigned to this variable when deployed to its target
      * @type {string}
-     * @memberof ApplicationEnvironmentVariableCreate
+     * @memberof ApplicationVariable
      */
     value: string;
     /**
      * A text describing the variable, provided by the end user
      * @type {string}
-     * @memberof ApplicationEnvironmentVariableCreate
+     * @memberof ApplicationVariable
      */
     description?: string;
     /**
      * The target defining how the variable key/value pair will be deployed
      * @type {string}
-     * @memberof ApplicationEnvironmentVariableCreate
+     * @memberof ApplicationVariable
      */
-    target: ApplicationEnvironmentVariableCreateTargetEnum;
+    target: ApplicationVariableTargetEnum;
     /**
      * The type of the key/value pair
      * @type {string}
-     * @memberof ApplicationEnvironmentVariableCreate
+     * @memberof ApplicationVariable
      */
-    type: ApplicationEnvironmentVariableCreateTypeEnum;
+    type: ApplicationVariableTypeEnum;
     /**
-     * Indicates if the variable value should be encrypted by `devopness` in the deployment logs
+     * Indicates if the variable value should be visible or not in the deployment logs
      * @type {boolean}
-     * @memberof ApplicationEnvironmentVariableCreate
+     * @memberof ApplicationVariable
      */
-    encrypted: boolean;
+    hidden?: boolean;
     /**
      * The date and time when the record was created
      * @type {string}
-     * @memberof ApplicationEnvironmentVariableCreate
+     * @memberof ApplicationVariable
      */
     created_at?: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
-     * @memberof ApplicationEnvironmentVariableCreate
+     * @memberof ApplicationVariable
      */
     updated_at?: string;
 }
@@ -73,7 +79,7 @@ export interface ApplicationEnvironmentVariableCreate {
     * @export
     * @enum {string}
     */
-export enum ApplicationEnvironmentVariableCreateTargetEnum {
+export enum ApplicationVariableTargetEnum {
     AppConfigFile = 'app-config-file',
     DeploymentScript = 'deployment-script',
     SharedScript = 'shared-script',
@@ -88,7 +94,7 @@ export enum ApplicationEnvironmentVariableCreateTargetEnum {
     * @export
     * @enum {string}
     */
-export enum ApplicationEnvironmentVariableCreateTypeEnum {
+export enum ApplicationVariableTypeEnum {
     Variable = 'variable',
     File = 'file'
 }

@@ -337,12 +337,12 @@
         }
       }
     },
-    "/application-environments/{application_environment_id}/scripts": {
+    "/application/{application_id}/scripts": {
       "post": {
-        "summary": "Add script to application environment as a deployment step",
-        "operationId": "addScriptToApplicationEnvironment",
+        "summary": "Add script to application as a deployment step",
+        "operationId": "addScriptToApplication",
         "tags": [
-          "Applications - Environments"
+          "Applications - Scripts"
         ],
         "parameters": [
           {
@@ -356,23 +356,23 @@
           },
           {
             "in": "path",
-            "name": "application_environment_id",
+            "name": "application_id",
             "example": 1,
             "schema": {
               "type": "integer",
               "minimum": 1
             },
             "required": true,
-            "description": "Unique ID of the application environment to retrieve scripts from"
+            "description": "Unique ID of the application to retrieve scripts from"
           }
         ],
         "requestBody": {
-          "description": "A JSON object containing application environment script data",
+          "description": "A JSON object containing application script data",
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ApplicationEnvironmentScriptCreate"
+                "$ref": "#/components/schemas/ApplicationScriptCreate"
               }
             }
           }
@@ -383,7 +383,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ApplicationEnvironmentScripts"
+                  "$ref": "#/components/schemas/ApplicationScripts"
                 }
               }
             }
@@ -397,10 +397,10 @@
         }
       },
       "get": {
-        "summary": "List scripts to be executed as custom deployment steps of an application environment",
-        "operationId": "listApplicationEnvironmentScripts",
+        "summary": "List scripts to be executed as custom deployment steps of an application",
+        "operationId": "listApplicationScripts",
         "tags": [
-          "Applications - Environments"
+          "Applications - Scripts"
         ],
         "parameters": [
           {
@@ -414,14 +414,14 @@
           },
           {
             "in": "path",
-            "name": "application_environment_id",
+            "name": "application_id",
             "example": 1,
             "schema": {
               "type": "integer",
               "minimum": 1
             },
             "required": true,
-            "description": "Unique ID of the application environment to retrieve scripts from"
+            "description": "Unique ID of the application to retrieve scripts from"
           }
         ],
         "responses": {
@@ -430,105 +430,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ApplicationEnvironmentScripts"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/application-environments/{application_environment_id}/variables": {
-      "post": {
-        "summary": "Create a new variable linked to an application environment",
-        "operationId": "addEnvironmentVariableToApplication",
-        "tags": [
-          "Applications - Environments"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "application_environment_id",
-            "example": 1,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "required": true,
-            "description": "Unique id of the application environment"
-          }
-        ],
-        "requestBody": {
-          "description": "A JSON object containing data for creating a new record of application environment variable",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ApplicationEnvironmentVariableCreate"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApplicationEnvironmentVariable"
-                }
-              }
-            }
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          }
-        }
-      },
-      "get": {
-        "summary": "Returns a list of variables belonging to an application environment",
-        "operationId": "listApplicationEnvironmentVariables",
-        "tags": [
-          "Applications - Environments"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "application_environment_id",
-            "example": 1,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "required": true,
-            "description": "Unique ID of the application environment to retrieve variables from"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApplicationEnvironmentVariables"
+                  "$ref": "#/components/schemas/ApplicationScripts"
                 }
               }
             }
@@ -589,6 +491,104 @@
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/applications/{application_id}/variables": {
+      "post": {
+        "summary": "Create a new variable linked to an application",
+        "operationId": "addVariableToApplication",
+        "tags": [
+          "Applications - Variables"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "application_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Unique id of the application"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing application variable data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplicationVariableCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationVariable"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "get": {
+        "summary": "Returns a list of variables belonging to an application",
+        "operationId": "listApplicationVariables",
+        "tags": [
+          "Applications - Variables"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "application_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Unique ID of the application to retrieve variables from"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationVariables"
+                }
+              }
+            }
           }
         }
       }
@@ -3754,10 +3754,13 @@
       "name": "Applications - Deployments"
     },
     {
-      "name": "Applications - Environments"
+      "name": "Applications - Scripts"
     },
     {
-      "name": "Applications - SSL Certificates",
+      "name": "Applications - SSL Certificates"
+    },
+    {
+      "name": "Applications - Variables",
       "description": "Throughout the `devopness` documentation the term `SSL Certificate` refers to a public key certificate adhering to `X.509` standard. While TLS is the protocol more used nowadays for web encryption, for historical reasons web encryption is often referred to simply as SSL. A SSL Certificate managed by `devopness` might be used as an HTTPS/SSL/TLS and other internet protocols to establish encrypted connections between client apps (e.g. browsers) and the web application servers managed through `devopness`, but it's not limited to be used for authenticating server's identity.\n"
     },
     {
@@ -3901,30 +3904,23 @@
       "Action": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The Id of the given action",
+            "example": 567819876
+          },
+          "server_id": {
+            "type": "integer",
+            "description": "The Id of the server on which the action must be performed",
+            "example": 4567890
+          },
           "status": {
-            "type": "string",
-            "description": "The current status of the action",
-            "enum": [
-              "pending",
-              "in-progress",
-              "cancelled",
-              "completed",
-              "failed"
-            ],
-            "example": "in-progress"
+            "$ref": "#/components/schemas/ActionStatus",
+            "description": "The action current status"
           },
           "type": {
-            "type": "string",
-            "description": "The action type",
-            "enum": [
-              "create",
-              "launch",
-              "setup",
-              "deploy",
-              "remove",
-              "connect"
-            ],
-            "example": "setup"
+            "$ref": "#/components/schemas/ActionType",
+            "description": "The action type"
           },
           "total_steps": {
             "type": "integer",
@@ -3945,9 +3941,13 @@
             "description": "A message describing the current step being executed",
             "example": "Step 2 of 5"
           },
-          "output": {
+          "resource_entity": {
             "type": "string",
-            "description": "A memo/text with full action output log - when available"
+            "description": "Name of the resource_entity who the actions is related to",
+            "example": "server"
+          },
+          "triggered_by": {
+            "$ref": "#/components/schemas/User"
           },
           "started_at": {
             "type": "string",
@@ -3960,6 +3960,18 @@
             "format": "date-time",
             "description": "The date and time when the action has finished execution",
             "example": "2019-09-25 13:52:04"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25 13:49:51"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25 13:52:04"
           }
         }
       },
@@ -3968,6 +3980,34 @@
         "items": {
           "$ref": "#/components/schemas/Action"
         }
+      },
+      "ActionStatus": {
+        "type": "string",
+        "enum": [
+          "pending",
+          "in-progress",
+          "cancelled",
+          "completed",
+          "failed"
+        ],
+        "example": "in-progress"
+      },
+      "ActionType": {
+        "type": "string",
+        "enum": [
+          "authorization",
+          "connect",
+          "control",
+          "cronjob",
+          "deployment",
+          "firewall",
+          "launch",
+          "schedule",
+          "service",
+          "setup",
+          "ssl_certificate"
+        ],
+        "example": "deployment"
       },
       "ApiError": {
         "type": "object",
@@ -4309,7 +4349,7 @@
           "branch"
         ]
       },
-      "ApplicationEnvironmentScript": {
+      "ApplicationScript": {
         "type": "object",
         "properties": {
           "id": {
@@ -4366,12 +4406,12 @@
           "trigger_type"
         ]
       },
-      "ApplicationEnvironmentScriptCreate": {
+      "ApplicationScriptCreate": {
         "type": "object",
         "properties": {
           "script_id": {
             "type": "integer",
-            "description": "Id of an existing script to be attached to an application environment event",
+            "description": "Id of an existing script to be attached to an application event",
             "example": 57
           },
           "trigger_type": {
@@ -4407,13 +4447,13 @@
           "trigger_type"
         ]
       },
-      "ApplicationEnvironmentScripts": {
+      "ApplicationScripts": {
         "type": "array",
         "items": {
-          "$ref": "#/components/schemas/ApplicationEnvironmentScript"
+          "$ref": "#/components/schemas/ApplicationScript"
         }
       },
-      "ApplicationEnvironmentVariable": {
+      "ApplicationVariable": {
         "type": "object",
         "properties": {
           "id": {
@@ -4461,10 +4501,10 @@
             ],
             "example": "variable"
           },
-          "encrypted": {
+          "hidden": {
             "type": "boolean",
             "default": false,
-            "description": "Indicates if the variable value should be encrypted by `devopness` in the deployment logs"
+            "description": "Indicates if the variable value should be visible or not in the deployment logs"
           },
           "created_at": {
             "type": "string",
@@ -4486,7 +4526,7 @@
           "type"
         ]
       },
-      "ApplicationEnvironmentVariableCreate": {
+      "ApplicationVariableCreate": {
         "type": "object",
         "properties": {
           "key": {
@@ -4529,10 +4569,10 @@
             ],
             "example": "variable"
           },
-          "encrypted": {
+          "hidden": {
             "type": "boolean",
             "default": false,
-            "description": "Indicates if the variable value should be encrypted by `devopness` in the deployment logs"
+            "description": "Indicates if the variable value should be visible or not in the deployment logs"
           },
           "created_at": {
             "type": "string",
@@ -4550,15 +4590,15 @@
         "required": [
           "key",
           "value",
-          "encrypted",
+          "hidden",
           "target",
           "type"
         ]
       },
-      "ApplicationEnvironmentVariables": {
+      "ApplicationVariables": {
         "type": "array",
         "items": {
-          "$ref": "#/components/schemas/ApplicationEnvironmentVariable"
+          "$ref": "#/components/schemas/ApplicationVariable"
         }
       },
       "Applications": {
@@ -4980,7 +5020,7 @@
           },
           "type": {
             "$ref": "#/components/schemas/EnvironmentType",
-            "description": "The type of the deployment being triggred"
+            "description": "The type of the deployment being triggered"
           },
           "servers": {
             "$ref": "#/components/schemas/Servers"

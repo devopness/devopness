@@ -17,49 +17,49 @@ import { Script } from './script';
 /**
  * 
  * @export
- * @interface ApplicationEnvironmentScript
+ * @interface ApplicationScript
  */
-export interface ApplicationEnvironmentScript {
+export interface ApplicationScript {
     /**
      * The unique id of the given record
      * @type {number}
-     * @memberof ApplicationEnvironmentScript
+     * @memberof ApplicationScript
      */
     id: number;
     /**
      * The type of event that will trigger the script execution
      * @type {string}
-     * @memberof ApplicationEnvironmentScript
+     * @memberof ApplicationScript
      */
-    trigger_type: ApplicationEnvironmentScriptTriggerTypeEnum;
+    trigger_type: ApplicationScriptTriggerTypeEnum;
     /**
      * The application deployment event to which the script is attached
      * @type {string}
-     * @memberof ApplicationEnvironmentScript
+     * @memberof ApplicationScript
      */
-    trigger_event: ApplicationEnvironmentScriptTriggerEventEnum;
+    trigger_event: ApplicationScriptTriggerEventEnum;
     /**
      * The relative order of the script execution in case the event has multiple scripts attached
      * @type {number}
-     * @memberof ApplicationEnvironmentScript
+     * @memberof ApplicationScript
      */
     trigger_order: number;
     /**
      * The date and time when the record was created
      * @type {string}
-     * @memberof ApplicationEnvironmentScript
+     * @memberof ApplicationScript
      */
     created_at?: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
-     * @memberof ApplicationEnvironmentScript
+     * @memberof ApplicationScript
      */
     updated_at?: string;
     /**
      * 
      * @type {Script}
-     * @memberof ApplicationEnvironmentScript
+     * @memberof ApplicationScript
      */
     script?: Script;
 }
@@ -68,7 +68,7 @@ export interface ApplicationEnvironmentScript {
     * @export
     * @enum {string}
     */
-export enum ApplicationEnvironmentScriptTriggerTypeEnum {
+export enum ApplicationScriptTriggerTypeEnum {
     Before = 'before',
     After = 'after'
 }
@@ -76,7 +76,7 @@ export enum ApplicationEnvironmentScriptTriggerTypeEnum {
     * @export
     * @enum {string}
     */
-export enum ApplicationEnvironmentScriptTriggerEventEnum {
+export enum ApplicationScriptTriggerEventEnum {
     GetNewRelease = 'get-new-release',
     InstallDependencies = 'install-dependencies',
     ActivateNewRelease = 'activate-new-release',
