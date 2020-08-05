@@ -1,0 +1,58 @@
+type: object
+properties:
+  id:
+    type: integer
+    description: The Id of the given action
+    example: 567819876
+  server_id:
+    type: integer
+    description: The Id of the server on which the action must be performed
+    example: 4567890
+  status:
+    $ref: '#/components/schemas/ActionStatus'
+    description: The action current status
+  type:
+    $ref: '#/components/schemas/ActionType'
+    description: The action type
+  total_steps:
+    type: integer
+    minimum: 0
+    maximum: 127
+    description: The total number of steps to complete the action
+    example: 5
+  current_step:
+    type: integer
+    minimum: 0
+    maximum: 127
+    description: The current action step being executed
+    example: 2
+  current_step_message:
+    type: string
+    description: A message describing the current step being executed
+    example: Step 2 of 5
+  resource_entity:
+    type: string
+    description: Name of the resource_entity who the actions is related to
+    example: "server"
+  triggered_by:
+    $ref: '#/components/schemas/User'
+  started_at:
+    type: string
+    format: date-time
+    description: The date and time when the action started to be executed (left the `pending/waiting` status)
+    example: "2019-09-25 13:49:51"
+  completed_at:
+    type: string
+    format: date-time
+    description: The date and time when the action has finished execution
+    example: "2019-09-25 13:52:04"
+  created_at:
+    type: string
+    format: date-time
+    description: The date and time when the record was created
+    example: '2019-09-25 13:49:51'
+  updated_at:
+    type: string
+    format: date-time
+    description: The date and time when the record was last updated
+    example: '2019-09-25 13:52:04'

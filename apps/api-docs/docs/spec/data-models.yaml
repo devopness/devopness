@@ -1,7 +1,11 @@
 Action:
-  $ref: ./shared/schemas/action.yaml
+  $ref: ./endpoints/actions/schemas/action.yaml
 Actions:
   $ref: ./endpoints/actions/schemas/action-list.yaml
+ActionStatus:
+  $ref: ./endpoints/actions/schemas/action-status.yaml
+ActionType:
+  $ref: ./endpoints/actions/schemas/action-type.yaml
 ApiError:
   $ref: ./shared/schemas/api-error.yaml
 Application:

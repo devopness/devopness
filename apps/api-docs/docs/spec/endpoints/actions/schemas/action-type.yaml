@@ -1,0 +1,17 @@
+type: string
+# to do: use more meaningful names. It'll require changes on the back-end first
+enum:
+  [
+    "authorization",
+    "connect",
+    "control",
+    "cronjob",
+    "deployment",
+    "firewall",
+    "launch",
+    "schedule",
+    "service",
+    "setup",
+    "ssl_certificate",
+  ]
+example: deployment

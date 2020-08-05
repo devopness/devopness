@@ -10,7 +10,7 @@ properties:
     example: 'produção'
   type:
     $ref: '#/components/schemas/EnvironmentType'
-    description: The type of the deployment being triggred
+    description: The type of the deployment being triggered
   servers:
     $ref: '#/components/schemas/Servers'
   created_at:

@@ -1,0 +1,3 @@
+type: string
+enum: ["pending", "in-progress", "cancelled", "completed", "failed"]
+example: "in-progress"
