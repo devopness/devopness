@@ -12,6 +12,9 @@
  */
 
 
+import { ActionStatus } from './action-status';
+import { ActionType } from './action-type';
+import { User } from './user';
 
 /**
  * 
@@ -20,17 +23,29 @@
  */
 export interface Action {
     /**
-     * The current status of the action
-     * @type {string}
+     * The Id of the given action
+     * @type {number}
      * @memberof Action
      */
-    status?: ActionStatusEnum;
+    id?: number;
     /**
-     * The action type
-     * @type {string}
+     * The Id of the server on which the action must be performed
+     * @type {number}
      * @memberof Action
      */
-    type?: ActionTypeEnum;
+    server_id?: number;
+    /**
+     * 
+     * @type {ActionStatus}
+     * @memberof Action
+     */
+    status?: ActionStatus;
+    /**
+     * 
+     * @type {ActionType}
+     * @memberof Action
+     */
+    type?: ActionType;
     /**
      * The total number of steps to complete the action
      * @type {number}
@@ -50,11 +65,17 @@ export interface Action {
      */
     current_step_message?: string;
     /**
-     * A memo/text with full action output log - when available
+     * Name of the resource_entity who the actions is related to
      * @type {string}
      * @memberof Action
      */
-    output?: string;
+    resource_entity?: string;
+    /**
+     * 
+     * @type {User}
+     * @memberof Action
+     */
+    triggered_by?: User;
     /**
      * The date and time when the action started to be executed (left the `pending/waiting` status)
      * @type {string}
@@ -67,30 +88,17 @@ export interface Action {
      * @memberof Action
      */
     completed_at?: string;
+    /**
+     * The date and time when the record was created
+     * @type {string}
+     * @memberof Action
+     */
+    created_at?: string;
+    /**
+     * The date and time when the record was last updated
+     * @type {string}
+     * @memberof Action
+     */
+    updated_at?: string;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum ActionStatusEnum {
-    Pending = 'pending',
-    InProgress = 'in-progress',
-    Cancelled = 'cancelled',
-    Completed = 'completed',
-    Failed = 'failed'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum ActionTypeEnum {
-    Create = 'create',
-    Launch = 'launch',
-    Setup = 'setup',
-    Deploy = 'deploy',
-    Remove = 'remove',
-    Connect = 'connect'
-}
-
 
