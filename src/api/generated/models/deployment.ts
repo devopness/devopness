@@ -83,6 +83,18 @@ export interface Deployment {
      * @memberof Deployment
      */
     triggered_by_user?: User;
+    /**
+     * The date and time when the record was created
+     * @type {string}
+     * @memberof Deployment
+     */
+    created_at?: string;
+    /**
+     * The date and time when the record was last updated
+     * @type {string}
+     * @memberof Deployment
+     */
+    updated_at?: string;
 }
 
 /**

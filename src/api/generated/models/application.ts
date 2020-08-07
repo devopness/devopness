@@ -171,6 +171,18 @@ export interface Application {
      * @memberof Application
      */
     source_provider_id?: number;
+    /**
+     * The date and time when the record was created
+     * @type {string}
+     * @memberof Application
+     */
+    created_at?: string;
+    /**
+     * The date and time when the record was last updated
+     * @type {string}
+     * @memberof Application
+     */
+    updated_at?: string;
 }
 
 /**

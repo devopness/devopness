@@ -37,6 +37,18 @@ export interface ApplicationDeployment {
      * @memberof ApplicationDeployment
      */
     hash?: string;
+    /**
+     * The date and time when the record was created
+     * @type {string}
+     * @memberof ApplicationDeployment
+     */
+    created_at?: string;
+    /**
+     * The date and time when the record was last updated
+     * @type {string}
+     * @memberof ApplicationDeployment
+     */
+    updated_at?: string;
 }
 
 /**

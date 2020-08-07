@@ -67,6 +67,18 @@ export interface Process {
      * @memberof Process
      */
     status?: ProcessStatusEnum;
+    /**
+     * The date and time when the record was created
+     * @type {string}
+     * @memberof Process
+     */
+    created_at?: string;
+    /**
+     * The date and time when the record was last updated
+     * @type {string}
+     * @memberof Process
+     */
+    updated_at?: string;
 }
 
 /**

@@ -3953,25 +3953,25 @@
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the action started to be executed (left the `pending/waiting` status)",
-            "example": "2019-09-25 13:49:51"
+            "example": "2019-09-25T15:50:48+00:00"
           },
           "completed_at": {
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the action has finished execution",
-            "example": "2019-09-25 13:52:04"
+            "example": "2019-09-25T13:52:04+00:00"
           },
           "created_at": {
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was created",
-            "example": "2019-09-25 13:49:51"
+            "example": "2019-09-25T15:50:48+00:00"
           },
           "updated_at": {
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was last updated",
-            "example": "2019-09-25 13:52:04"
+            "example": "2019-09-25T13:52:04+00:00"
           }
         }
       },
@@ -4184,6 +4184,18 @@
           "source_provider_id": {
             "type": "integer",
             "description": "Numeric ID of the source provider account where the repository is hosted. Required when the `repository` field is informed."
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25T15:50:48+00:00"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25T13:52:04+00:00"
           }
         },
         "required": [
@@ -4342,6 +4354,18 @@
             "type": "string",
             "description": "The commit's full hash that uniquely identify a commit. Required when re-deploying",
             "example": "4a03b9d21edeef8434c45818594a5d72027c14e7"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25T15:50:48+00:00"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25T13:52:04+00:00"
           }
         },
         "required": [
@@ -4641,7 +4665,7 @@
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the commit has been submitted",
-            "example": "2019-09-25 13:49:51"
+            "example": "2019-09-25T15:50:48+00:00"
           },
           "provider": {
             "type": "string",
@@ -4738,6 +4762,18 @@
               "failed"
             ],
             "example": "completed"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25T15:50:48+00:00"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25T13:52:04+00:00"
           }
         },
         "required": [
@@ -4832,13 +4868,13 @@
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the action started to be executed (left the `pending/waiting` status)",
-            "example": "2019-09-25 13:49:51"
+            "example": "2019-09-25T15:50:48+00:00"
           },
           "completed_at": {
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the action has finished execution",
-            "example": "2019-09-25 13:52:04"
+            "example": "2019-09-25T13:52:04+00:00"
           },
           "actions": {
             "description": "The list of actions related to the deployment",
@@ -4859,6 +4895,18 @@
           },
           "triggered_by_user": {
             "$ref": "#/components/schemas/User"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25T15:50:48+00:00"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25T13:52:04+00:00"
           }
         },
         "required": [
@@ -4990,13 +5038,13 @@
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the step started to be executed (left the `pending/waiting` status)",
-            "example": "2019-09-25 13:49:51"
+            "example": "2019-09-25T15:50:48+00:00"
           },
           "completed_at": {
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the step has finished execution",
-            "example": "2019-09-25 13:52:04"
+            "example": "2019-09-25T13:52:04+00:00"
           }
         },
         "required": [
@@ -5029,13 +5077,13 @@
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was created",
-            "example": "2019-09-25 13:49:51"
+            "example": "2019-09-25T15:50:48+00:00"
           },
           "updated_at": {
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was last updated",
-            "example": "2019-09-25 13:52:04"
+            "example": "2019-09-25T13:52:04+00:00"
           }
         },
         "required": [
@@ -5388,6 +5436,18 @@
               "failed"
             ],
             "example": "completed"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25T15:50:48+00:00"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25T13:52:04+00:00"
           }
         },
         "required": [
@@ -5517,6 +5577,18 @@
               "failed"
             ],
             "example": "completed"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25T15:50:48+00:00"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25T13:52:04+00:00"
           }
         },
         "required": [
@@ -6088,6 +6160,19 @@
             "description": "The unique id of the given record",
             "example": 964
           },
+          "displayable_name": {
+            "type": "string",
+            "description": "A formatted version of the `provider` field value, aligned with the provider's name branding",
+            "enum": [
+              "Bitbucket",
+              "Facebook",
+              "GitHub",
+              "GitLab",
+              "Google",
+              "LinkedIn"
+            ],
+            "example": "GitHub"
+          },
           "provider": {
             "type": "string",
             "description": "The name of the Social Authentication provider",
@@ -6119,13 +6204,13 @@
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was created",
-            "example": "2019-09-25 13:49:51"
+            "example": "2019-09-25T15:50:48+00:00"
           },
           "updated_at": {
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was last updated",
-            "example": "2019-09-25 13:52:04"
+            "example": "2019-09-25T13:52:04+00:00"
           }
         },
         "required": [
@@ -6490,13 +6575,13 @@
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was created",
-            "example": "2019-09-25 13:49:51"
+            "example": "2019-09-25T15:50:48+00:00"
           },
           "updated_at": {
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was last updated",
-            "example": "2019-09-25 13:52:04"
+            "example": "2019-09-25T13:52:04+00:00"
           },
           "social_accounts": {
             "description": "The list of social accounts (source providers + login providers) connected to the user",

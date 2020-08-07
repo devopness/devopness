@@ -67,6 +67,18 @@ export interface CronJob {
      * @memberof CronJob
      */
     status?: CronJobStatusEnum;
+    /**
+     * The date and time when the record was created
+     * @type {string}
+     * @memberof CronJob
+     */
+    created_at?: string;
+    /**
+     * The date and time when the record was last updated
+     * @type {string}
+     * @memberof CronJob
+     */
+    updated_at?: string;
 }
 
 /**

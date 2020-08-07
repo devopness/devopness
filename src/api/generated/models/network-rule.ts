@@ -73,6 +73,18 @@ export interface NetworkRule {
      * @memberof NetworkRule
      */
     status?: NetworkRuleStatusEnum;
+    /**
+     * The date and time when the record was created
+     * @type {string}
+     * @memberof NetworkRule
+     */
+    created_at?: string;
+    /**
+     * The date and time when the record was last updated
+     * @type {string}
+     * @memberof NetworkRule
+     */
+    updated_at?: string;
 }
 
 /**
