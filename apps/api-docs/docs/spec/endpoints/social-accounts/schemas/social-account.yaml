@@ -4,6 +4,11 @@ properties:
     type: integer
     description: The unique id of the given record
     example: 964
+  displayable_name:
+    type: string
+    description: A formatted version of the `provider` field value, aligned with the provider's name branding
+    enum: ['Bitbucket', 'Facebook', 'GitHub', 'GitLab', 'Google', 'LinkedIn']
+    example: 'GitHub'
   provider:
     type: string
     description: The name of the Social Authentication provider
@@ -24,12 +29,12 @@ properties:
     type: string
     format: date-time
     description: The date and time when the record was created
-    example: '2019-09-25 13:49:51'
+    example: '2019-09-25T15:50:48+00:00'
   updated_at:
     type: string
     format: date-time
     description: The date and time when the record was last updated
-    example: '2019-09-25 13:52:04'
+    example: '2019-09-25T13:52:04+00:00'
 required:
   - id
   - provider

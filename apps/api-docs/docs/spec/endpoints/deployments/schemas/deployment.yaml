@@ -23,12 +23,12 @@ properties:
     type: string
     format: date-time
     description: The date and time when the action started to be executed (left the `pending/waiting` status)
-    example: '2019-09-25 13:49:51'
+    example: '2019-09-25T15:50:48+00:00'
   completed_at:
     type: string
     format: date-time
     description: The date and time when the action has finished execution
-    example: '2019-09-25 13:52:04'
+    example: '2019-09-25T13:52:04+00:00'
   actions:
     description: "The list of actions related to the deployment"
     type: array
@@ -43,6 +43,16 @@ properties:
       $ref: '#/components/schemas/DeploymentStep'
   triggered_by_user:
     $ref: '#/components/schemas/User'
+  created_at:
+    type: string
+    format: date-time
+    description: The date and time when the record was created
+    example: '2019-09-25T15:50:48+00:00'
+  updated_at:
+    type: string
+    format: date-time
+    description: The date and time when the record was last updated
+    example: '2019-09-25T13:52:04+00:00'
 required:
   - id
   - status
