@@ -1,9 +1,13 @@
 type: object
 properties:
-  script_id:
-    type: integer
-    description: Id of an existing script to be attached to an application event
-    example: 57
+  name:
+    type: string
+    description: Name/short description of the script
+    example: Prepare for build project
+  source_code:
+    type: string
+    description: A command line or multiline bash script
+    example: echo "Configuring project..." && ./configure
   trigger_type:
     type: string
     description: The type of event that will trigger the script execution
@@ -19,7 +23,8 @@ properties:
     description: The relative order of the script execution in case the event has multiple scripts attached to it
     example: 2
 required:
-  - script_id
+  - name
+  - source_code
   - trigger_event
   - trigger_order
   - trigger_type

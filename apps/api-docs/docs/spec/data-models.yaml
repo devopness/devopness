@@ -106,6 +106,8 @@ RepositoryBranch:
   $ref: ./endpoints/repositories/schemas/repository-branch.yaml
 Script:
   $ref: ./endpoints/scripts/schemas/script.yaml
+ScriptUpdate:
+  $ref: ./endpoints/scripts/schemas/script-update.yaml
 Server:
   $ref: ./endpoints/servers/schemas/server.yaml
 ServerBlueprint:

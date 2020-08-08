@@ -1,17 +1,13 @@
 type: object
 properties:
-  id:
-    type: integer
-    description: The Id of the given script
-    example: 19876
   application_id:
     type: integer
     description: The id of the application to be linked
     example: 9471
-  user_id:
-    type: integer
-    description: The id of the user that own the script
-    example: 984123
+  type:
+    type: string
+    description: The type of the script
+    example: deployment-step
   name:
     type: string
     description: Name/short description of the script
@@ -44,20 +40,7 @@ properties:
     type: integer
     description: The relative order of the script execution in case the event has multiple scripts attached
     example: 2
-  created_at:
-    type: string
-    format: date-time
-    description: The date and time when the record was created
-    example: "2019-09-25T13:49:51+00:00"
-  updated_at:
-    type: string
-    format: date-time
-    description: The date and time when the record was last updated
-    example: "2019-09-25T13:52:04+00:00"
 required:
-  - id
-  - application_id
-  - user_id
   - name
   - source_code
   - run_as_user

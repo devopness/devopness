@@ -4,6 +4,22 @@ properties:
     type: integer
     description: The unique id of the given record
     example: 35678964
+  application_id:
+    type: integer
+    description: The unique id of the application that script is linked
+    example: 13129876
+  user_id:
+    type: integer
+    description: The unique id of the user that own the script
+    example: 86123953
+  name:
+    type: string
+    description: Name/short description of the script
+    example: Prepare for build project
+  source_code:
+    type: string
+    description: A command line or multiline bash script
+    example: echo "Configuring project..." && ./configure
   trigger_type:
     type: string
     description: The type of event that will trigger the script execution
@@ -34,11 +50,12 @@ properties:
     format: date-time
     description: The date and time when the record was last updated
     example: "2020-04-16T15:50:48+00:00"
-  script:
-    description: "The script record attached to the application deployment event"
-    $ref: "#/components/schemas/Script"
 required:
   - id
+  - application_id
+  - user_id
+  - name
+  - source_code
   - trigger_event
   - trigger_order
   - trigger_type

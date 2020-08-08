@@ -119,6 +119,13 @@
     $ref: ./endpoints/cronjobs/paths/projects-id-cronjobs.yaml
   get:
     $ref: ./endpoints/cronjobs/paths/projects-id-cronjobs-list.yaml
+/scripts/{script_id}:
+  put:
+    $ref: ./endpoints/scripts/paths/scripts-id-update.yaml
+  get:
+    $ref: ./endpoints/scripts/paths/scripts-id.yaml
+  delete:
+    $ref: ./endpoints/scripts/paths/scripts-id-delete.yaml
 /servers:
   get:
     $ref: ./endpoints/servers/paths/servers-list.yaml

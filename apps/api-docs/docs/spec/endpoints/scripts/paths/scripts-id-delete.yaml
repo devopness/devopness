@@ -1,0 +1,21 @@
+summary: Delete a script by ID
+operationId: deleteScript
+tags:
+  - Scripts
+parameters:
+  - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/authHeader'
+  - $ref: '#/components/parameters/contentTypeHeader'
+  - in: path
+    name: script_id
+    description: The id of the script
+    schema:
+      type: integer
+      minimum: 1
+    required: true
+    example: 1
+responses:
+  204:
+    $ref: '#/components/responses/NoContent'
+  404:
+    $ref: '#/components/responses/NotFound'

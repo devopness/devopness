@@ -1,0 +1,30 @@
+summary: Update an existing script
+operationId: updateScript
+tags:
+  - Scripts
+parameters:
+  - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/authHeader'
+  - $ref: '#/components/parameters/contentTypeHeader'
+  - in: path
+    name: script_id
+    schema:
+      type: integer
+      minimum: 1
+    required: true
+    description: The unique id of the script to be updated
+    example: 1
+requestBody:
+  description: A JSON object containing script data
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/ScriptUpdate'
+responses:
+  204:
+    $ref: '#/components/responses/NoContent'
+  404:
+    $ref: '#/components/responses/NotFound'
+  422:
+    $ref: '#/components/responses/ValidationError'
