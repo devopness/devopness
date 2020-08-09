@@ -8,11 +8,6 @@ properties:
     type: string
     description: The project's name
     example: 'my project'
-  type:
-    type: string
-    description: The type of the project, usually indicating the main technology, programming language or base framework
-    example: 'php-laravel'
-    nullable: true
   logo_image:
     type: string
     description: A base64 string representation of the logo image
