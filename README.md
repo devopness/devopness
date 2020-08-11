@@ -7,7 +7,7 @@
 
 The official Devopness SDK for JavaScript, available for browsers, mobile devices and `Node.js` backends.
 
-The `Devopness` SDK provides convenient access to the `Devopness` API from applications written in the JavaScript language. It includes a pre-defined set of classes for API resources and aims to make it easy and fun to consume `Devopness` API from web apps, Node.js apps, or mobile apps written in the JavaScript language.
+`Devopness` SDK provides convenient access to the `Devopness` API from applications written in the JavaScript language. It includes a pre-defined set of classes for API resources and aims to make it easy and fun to consume `Devopness` API from web apps, Node.js apps, or mobile apps written in the JavaScript language.
 
 ## About Devopness
 `Devopness` aims to drastically change the way software developers deploy applications and manage on-premise and cloud servers in a secure and performant fashion.
@@ -16,17 +16,12 @@ By streamlining essential DevOps practices we're making first class software dep
 
 ## Usage
 
-### Installation
-Use `npm` to install the Devopness SDK package as a dependency of your project:
+### Install/Upgrade
+Use your favourite package manager to install Devopness SDK as a dependency of your project:
 ```
-npm install @devopness/sdk-js@latest
+npm install @devopness/sdk-js
 ```
 
-### Upgrade
-To upgrade the Devopness SDK npm package to the latest version, add the `@latest` suffix to the package name:
-```
-npm install @devopness/sdk-js@latest
-```
 ### Initializing
 
 To initialize the usage of Devopness SDK just import it and create a new instance of `DevopnessApiClient` class.
