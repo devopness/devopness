@@ -5,6 +5,7 @@ import { DeploymentService } from './services/DeploymentService'
 import { EnvironmentService } from './services/EnvironmentService';
 import { NetworkRuleService } from './services/NetworkRuleService';
 import { ProjectService } from './services/ProjectService';
+import { ScriptService } from './services/ScriptService';
 import { ServerService } from './services/ServerService';
 import { ServiceService } from './services/ServiceService';
 import { SourceProviderService } from './services/SourceProviderService'
@@ -16,6 +17,7 @@ import { StaticService } from './services/StaticService';
 import { ActionsApiService } from './api/generated/apis/actions-api';
 import { SocialAccountService } from './services/SocialAccountService';
 import { LogService } from './services/LogService';
+import { VariableService } from './services/VariableService';
 
 export class DevopnessApiClient {
   actions: ActionsApiService;
@@ -27,6 +29,7 @@ export class DevopnessApiClient {
   logs: LogService;
   networkRules: NetworkRuleService;
   projects: ProjectService;
+  scripts: ScriptService;
   servers: ServerService;
   services: ServiceService;
   socialAccounts: SocialAccountService;
@@ -35,6 +38,7 @@ export class DevopnessApiClient {
   sslCertificates: SslCertificateService;
   static: StaticService;
   users: UserService;
+  variables: VariableService;
 
   constructor(options?: ConfigurationOptions) {
     ApiBaseService.configuration = new Configuration(options || {});
@@ -51,6 +55,7 @@ export class DevopnessApiClient {
     this.logs = new LogService();
     this.networkRules = new NetworkRuleService();
     this.projects = new ProjectService();
+    this.scripts = new ScriptService();
     this.servers = new ServerService();
     this.services = new ServiceService();
     this.socialAccounts = new SocialAccountService();
@@ -59,6 +64,7 @@ export class DevopnessApiClient {
     this.sslCertificates = new SslCertificateService();
     this.static = new StaticService();
     this.users = new UserService();
+    this.variables = new VariableService();
   }
 
   public get accessToken(): string {
