@@ -152,3 +152,5 @@ UserRefreshTokenCreate:
   $ref: ./endpoints/users/schemas/user-refresh-token-create.yaml
 UserTokens:
   $ref: ./endpoints/users/schemas/user-tokens.yaml
+VariableUpdate:
+  $ref: ./endpoints/variables/schemas/variable-update.yaml

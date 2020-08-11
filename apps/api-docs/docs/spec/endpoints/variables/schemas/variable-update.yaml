@@ -1,0 +1,39 @@
+type: object
+properties:
+  application_id:
+    type: integer
+    description: The id of the application to be linked
+    example: 9471
+  key:
+    type: string
+    description: The unique key used to identify the variable on the target
+    example: 'APP_URL'
+  value:
+    type: string
+    description: The value to be assigned to this variable when deployed to its target
+    example: 'https://staging.devopness.com'
+  description:
+    type: string
+    description: A text describing the variable, provided by the end user
+    example: 'Sample variable description'
+  target:
+    type: string
+    description: The target defining how the variable key/value pair will be deployed
+    enum: [app-config-file, deployment-script, shared-script, nginx-block-http-before, nginx-block-http-after, nginx-block-server, os-env-var, php-cli, php-web]
+    example: 'app-config-file'
+  type:
+    type: string
+    description: The type of the key/value pair
+    enum: [variable, file]
+    example: 'variable'
+  hidden:
+    type: boolean
+    default: false
+    description: Indicates if the variable value should be visible or not in the deployment logs
+required:
+  - application_id
+  - key
+  - value
+  - target
+  - type
+  - hidden

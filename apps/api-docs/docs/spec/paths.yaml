@@ -221,3 +221,10 @@
 /users/refresh-token:
   post:
     $ref: ./endpoints/users/paths/users-refresh-token.yaml
+/variables/{variable_id}:
+  put:
+    $ref: ./endpoints/variables/paths/variables-id-update.yaml
+  get:
+    $ref: ./endpoints/variables/paths/variables-id.yaml
+  delete:
+    $ref: ./endpoints/variables/paths/variables-id-delete.yaml

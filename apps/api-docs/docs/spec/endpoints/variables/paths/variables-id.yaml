@@ -1,0 +1,25 @@
+summary: Get a variable by ID
+operationId: getVariable
+tags:
+  - Variables
+parameters:
+  - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/authHeader'
+  - $ref: '#/components/parameters/contentTypeHeader'
+  - in: path
+    name: variable_id
+    description: The unique id of the variable
+    required: true
+    schema:
+      type: integer
+      minimum: 1
+    example: 1
+responses:
+  200:
+    description: Ok
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ApplicationVariable'
+  404:
+    $ref: '#/components/responses/NotFound'
