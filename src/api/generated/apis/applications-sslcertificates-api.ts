@@ -37,4 +37,17 @@ export class ApplicationsSSLCertificatesApiService extends ApiBaseService {
         const response = await this.post <SslCertificate, SslCertificateCreate>(`/applications/{application_id}/ssl-certificates`.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))), sslCertificateCreate);
         return new ApiResponse(response);
     }
+
+    /**
+     * 
+     * @summary Returns a list of SSL certificates issued to an application
+     * @param {number} applicationId Unique ID of the application to retrieve SSL Certificates from
+     */
+    public async listApplicationSslCertificates(applicationId: number): Promise<ApiResponse<Array<SslCertificate>>> {
+        if (applicationId === null || applicationId === undefined) {
+            throw new ArgumentNullException('applicationId', 'listApplicationSslCertificates');
+        }
+        const response = await this.get <Array<SslCertificate>>(`/applications/{application_id}/ssl-certificates`.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))));
+        return new ApiResponse(response);
+    }
 }

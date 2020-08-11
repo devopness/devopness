@@ -493,6 +493,47 @@
             "$ref": "#/components/responses/NotFound"
           }
         }
+      },
+      "get": {
+        "summary": "Returns a list of SSL certificates issued to an application",
+        "operationId": "listApplicationSslCertificates",
+        "tags": [
+          "Applications - SSL Certificates"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "application_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Unique ID of the application to retrieve SSL Certificates from"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SslCertificates"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/applications/{application_id}/variables": {
@@ -6935,6 +6976,12 @@
           "issuer",
           "type"
         ]
+      },
+      "SslCertificates": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/SslCertificate"
+        }
       },
       "User": {
         "type": "object",
