@@ -6,7 +6,7 @@
     "x-logo": {
       "url": "https://staging.devopness.com/26f9f5be5cd326a0ad0cc4f4ed65129b.png"
     },
-    "description": "Devopness API - Painless essential DevOps to everyone\n\n# Authentication\n\n<!-- ReDoc-Inject: <security-definitions> -->"
+    "description": "Devopness API - Painless essential DevOps to everyone\n"
   },
   "servers": [
     {
