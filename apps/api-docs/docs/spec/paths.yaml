@@ -24,6 +24,8 @@
 /applications/{application_id}/ssl-certificates:
   post:
     $ref: ./endpoints/applications/paths/applications-id-ssl-certificates.yaml
+  get:
+    $ref: ./endpoints/applications/paths/applications-id-ssl-certificates-list.yaml
 /applications/{application_id}/variables:
   post:
     $ref: ./endpoints/applications/paths/applications-id-variables.yaml

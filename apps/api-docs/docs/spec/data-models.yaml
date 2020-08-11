@@ -144,6 +144,8 @@ SslCertificate:
   $ref: ./endpoints/ssl-certificates/schemas/ssl-certificate.yaml
 SslCertificateCreate:
   $ref: ./endpoints/ssl-certificates/schemas/ssl-certificate-create.yaml
+SslCertificates:
+  $ref: ./endpoints/ssl-certificates/schemas/ssl-certificate-list.yaml
 User:
   $ref: ./endpoints/users/schemas/user.yaml
 UserCreate:
