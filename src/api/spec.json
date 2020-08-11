@@ -2262,6 +2262,140 @@
         }
       }
     },
+    "/scripts/{script_id}": {
+      "put": {
+        "summary": "Update an existing script",
+        "operationId": "updateScript",
+        "tags": [
+          "Scripts"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "script_id",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "The unique id of the script to be updated",
+            "example": 1
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing script data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ScriptUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          }
+        }
+      },
+      "get": {
+        "summary": "Get a script by ID",
+        "operationId": "getScript",
+        "tags": [
+          "Scripts"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "script_id",
+            "description": "The unique id of the script",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Script"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a script by ID",
+        "operationId": "deleteScript",
+        "tags": [
+          "Scripts"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "script_id",
+            "description": "The id of the script",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "example": 1
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
     "/servers": {
       "get": {
         "summary": "Return a list of all servers belonging to current user",
@@ -3733,6 +3867,140 @@
           }
         }
       }
+    },
+    "/variables/{variable_id}": {
+      "put": {
+        "summary": "Update an existing variable",
+        "operationId": "updateVariable",
+        "tags": [
+          "Variables"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "variable_id",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "The unique id of the variable to be updated",
+            "example": 1
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing variable data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VariableUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          }
+        }
+      },
+      "get": {
+        "summary": "Get a variable by ID",
+        "operationId": "getVariable",
+        "tags": [
+          "Variables"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "variable_id",
+            "description": "The unique id of the variable",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationVariable"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a variable by ID",
+        "operationId": "deleteVariable",
+        "tags": [
+          "Variables"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "variable_id",
+            "description": "The id of the variable",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "example": 1
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
     }
   },
   "tags": [
@@ -3817,6 +4085,9 @@
     },
     {
       "name": "Projects - SSH Keys"
+    },
+    {
+      "name": "Scripts"
     },
     {
       "name": "Servers"
@@ -4381,6 +4652,26 @@
             "description": "The unique id of the given record",
             "example": 35678964
           },
+          "application_id": {
+            "type": "integer",
+            "description": "The unique id of the application that script is linked",
+            "example": 13129876
+          },
+          "user_id": {
+            "type": "integer",
+            "description": "The unique id of the user that own the script",
+            "example": 86123953
+          },
+          "name": {
+            "type": "string",
+            "description": "Name/short description of the script",
+            "example": "Prepare for build project"
+          },
+          "source_code": {
+            "type": "string",
+            "description": "A command line or multiline bash script",
+            "example": "echo \"Configuring project...\" && ./configure"
+          },
           "trigger_type": {
             "type": "string",
             "description": "The type of event that will trigger the script execution",
@@ -4417,14 +4708,14 @@
             "format": "date-time",
             "description": "The date and time when the record was last updated",
             "example": "2020-04-16T15:50:48+00:00"
-          },
-          "script": {
-            "description": "The script record attached to the application deployment event",
-            "$ref": "#/components/schemas/Script"
           }
         },
         "required": [
           "id",
+          "application_id",
+          "user_id",
+          "name",
+          "source_code",
           "trigger_event",
           "trigger_order",
           "trigger_type"
@@ -4433,10 +4724,15 @@
       "ApplicationScriptCreate": {
         "type": "object",
         "properties": {
-          "script_id": {
-            "type": "integer",
-            "description": "Id of an existing script to be attached to an application event",
-            "example": 57
+          "name": {
+            "type": "string",
+            "description": "Name/short description of the script",
+            "example": "Prepare for build project"
+          },
+          "source_code": {
+            "type": "string",
+            "description": "A command line or multiline bash script",
+            "example": "echo \"Configuring project...\" && ./configure"
           },
           "trigger_type": {
             "type": "string",
@@ -4465,7 +4761,8 @@
           }
         },
         "required": [
-          "script_id",
+          "name",
+          "source_code",
           "trigger_event",
           "trigger_order",
           "trigger_type"
@@ -5660,12 +5957,6 @@
             "description": "The project's name",
             "example": "my project"
           },
-          "type": {
-            "type": "string",
-            "description": "The type of the project, usually indicating the main technology, programming language or base framework",
-            "example": "php-laravel",
-            "nullable": true
-          },
           "logo_image": {
             "type": "string",
             "description": "A base64 string representation of the logo image",
@@ -5711,12 +6002,6 @@
             "description": "The project's name",
             "example": "my project"
           },
-          "type": {
-            "type": "string",
-            "description": "The type of the project, usually indicating the main technology, programming language or base framework",
-            "example": "php-laravel",
-            "nullable": true
-          },
           "logo_image": {
             "type": "string",
             "description": "A base64 string representation of the logo image",
@@ -5745,12 +6030,6 @@
             "type": "string",
             "description": "The project's name",
             "example": "my project"
-          },
-          "type": {
-            "type": "string",
-            "description": "The type of the project, usually indicating the main technology, programming language or base framework",
-            "example": "php-laravel",
-            "nullable": true
           },
           "logo_image": {
             "type": "string",
@@ -5838,6 +6117,16 @@
             "description": "The Id of the given script",
             "example": 19876
           },
+          "application_id": {
+            "type": "integer",
+            "description": "The id of the application to be linked",
+            "example": 9471
+          },
+          "user_id": {
+            "type": "integer",
+            "description": "The id of the user that own the script",
+            "example": 984123
+          },
           "name": {
             "type": "string",
             "description": "Name/short description of the script",
@@ -5853,18 +6142,117 @@
             "description": "The name of the Unix user on behalf of which the script will be executed",
             "example": "devopness"
           },
-          "auto_generated": {
-            "default": false,
-            "type": "boolean",
-            "description": "Indicates if the script was auto_generated by `devopness` itself"
+          "trigger_type": {
+            "type": "string",
+            "description": "The type of event that will trigger the script execution",
+            "enum": [
+              "before",
+              "after"
+            ],
+            "example": "after"
+          },
+          "trigger_event": {
+            "type": "string",
+            "description": "The application deployment event to which the script is attached",
+            "enum": [
+              "get-new-release",
+              "install-dependencies",
+              "activate-new-release",
+              "remove-old-releases"
+            ],
+            "example": "install-dependencies"
+          },
+          "trigger_order": {
+            "type": "integer",
+            "description": "The relative order of the script execution in case the event has multiple scripts attached",
+            "example": 2
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25T13:49:51+00:00"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25T13:52:04+00:00"
           }
         },
         "required": [
           "id",
+          "application_id",
+          "user_id",
           "name",
           "source_code",
           "run_as_user",
-          "auto_generated"
+          "trigger_type",
+          "trigger_event",
+          "trigger_order"
+        ]
+      },
+      "ScriptUpdate": {
+        "type": "object",
+        "properties": {
+          "application_id": {
+            "type": "integer",
+            "description": "The id of the application to be linked",
+            "example": 9471
+          },
+          "type": {
+            "type": "string",
+            "description": "The type of the script",
+            "example": "deployment-step"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name/short description of the script",
+            "example": "Extra step before build app"
+          },
+          "source_code": {
+            "type": "string",
+            "description": "A command line or multiline bash script",
+            "example": "echo 'Deploy with devopness is a breeze!' | tee -a /tmp/build-started.log"
+          },
+          "run_as_user": {
+            "type": "string",
+            "description": "The name of the Unix user on behalf of which the script will be executed",
+            "example": "devopness"
+          },
+          "trigger_type": {
+            "type": "string",
+            "description": "The type of event that will trigger the script execution",
+            "enum": [
+              "before",
+              "after"
+            ],
+            "example": "after"
+          },
+          "trigger_event": {
+            "type": "string",
+            "description": "The application deployment event to which the script is attached",
+            "enum": [
+              "get-new-release",
+              "install-dependencies",
+              "activate-new-release",
+              "remove-old-releases"
+            ],
+            "example": "install-dependencies"
+          },
+          "trigger_order": {
+            "type": "integer",
+            "description": "The relative order of the script execution in case the event has multiple scripts attached",
+            "example": 2
+          }
+        },
+        "required": [
+          "name",
+          "source_code",
+          "run_as_user",
+          "trigger_type",
+          "trigger_event",
+          "trigger_order"
         ]
       },
       "Server": {
@@ -6663,6 +7051,69 @@
         "required": [
           "access_token",
           "refresh_token"
+        ]
+      },
+      "VariableUpdate": {
+        "type": "object",
+        "properties": {
+          "application_id": {
+            "type": "integer",
+            "description": "The id of the application to be linked",
+            "example": 9471
+          },
+          "key": {
+            "type": "string",
+            "description": "The unique key used to identify the variable on the target",
+            "example": "APP_URL"
+          },
+          "value": {
+            "type": "string",
+            "description": "The value to be assigned to this variable when deployed to its target",
+            "example": "https://staging.devopness.com"
+          },
+          "description": {
+            "type": "string",
+            "description": "A text describing the variable, provided by the end user",
+            "example": "Sample variable description"
+          },
+          "target": {
+            "type": "string",
+            "description": "The target defining how the variable key/value pair will be deployed",
+            "enum": [
+              "app-config-file",
+              "deployment-script",
+              "shared-script",
+              "nginx-block-http-before",
+              "nginx-block-http-after",
+              "nginx-block-server",
+              "os-env-var",
+              "php-cli",
+              "php-web"
+            ],
+            "example": "app-config-file"
+          },
+          "type": {
+            "type": "string",
+            "description": "The type of the key/value pair",
+            "enum": [
+              "variable",
+              "file"
+            ],
+            "example": "variable"
+          },
+          "hidden": {
+            "type": "boolean",
+            "default": false,
+            "description": "Indicates if the variable value should be visible or not in the deployment logs"
+          }
+        },
+        "required": [
+          "application_id",
+          "key",
+          "value",
+          "target",
+          "type",
+          "hidden"
         ]
       }
     },

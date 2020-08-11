@@ -12,7 +12,6 @@
  */
 
 
-import { Script } from './script';
 
 /**
  * 
@@ -26,6 +25,30 @@ export interface ApplicationScript {
      * @memberof ApplicationScript
      */
     id: number;
+    /**
+     * The unique id of the application that script is linked
+     * @type {number}
+     * @memberof ApplicationScript
+     */
+    application_id: number;
+    /**
+     * The unique id of the user that own the script
+     * @type {number}
+     * @memberof ApplicationScript
+     */
+    user_id: number;
+    /**
+     * Name/short description of the script
+     * @type {string}
+     * @memberof ApplicationScript
+     */
+    name: string;
+    /**
+     * A command line or multiline bash script
+     * @type {string}
+     * @memberof ApplicationScript
+     */
+    source_code: string;
     /**
      * The type of event that will trigger the script execution
      * @type {string}
@@ -56,12 +79,6 @@ export interface ApplicationScript {
      * @memberof ApplicationScript
      */
     updated_at?: string;
-    /**
-     * 
-     * @type {Script}
-     * @memberof ApplicationScript
-     */
-    script?: Script;
 }
 
 /**

@@ -26,12 +26,6 @@ export interface ProjectCreate {
      */
     name: string;
     /**
-     * The type of the project, usually indicating the main technology, programming language or base framework
-     * @type {string}
-     * @memberof ProjectCreate
-     */
-    type?: string | null;
-    /**
      * A base64 string representation of the logo image
      * @type {string}
      * @memberof ProjectCreate

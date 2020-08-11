@@ -16,82 +16,64 @@
 /**
  * 
  * @export
- * @interface Script
+ * @interface ScriptUpdate
  */
-export interface Script {
-    /**
-     * The Id of the given script
-     * @type {number}
-     * @memberof Script
-     */
-    id: number;
+export interface ScriptUpdate {
     /**
      * The id of the application to be linked
      * @type {number}
-     * @memberof Script
+     * @memberof ScriptUpdate
      */
-    application_id: number;
+    application_id?: number;
     /**
-     * The id of the user that own the script
-     * @type {number}
-     * @memberof Script
+     * The type of the script
+     * @type {string}
+     * @memberof ScriptUpdate
      */
-    user_id: number;
+    type?: string;
     /**
      * Name/short description of the script
      * @type {string}
-     * @memberof Script
+     * @memberof ScriptUpdate
      */
     name: string;
     /**
      * A command line or multiline bash script
      * @type {string}
-     * @memberof Script
+     * @memberof ScriptUpdate
      */
     source_code: string;
     /**
      * The name of the Unix user on behalf of which the script will be executed
      * @type {string}
-     * @memberof Script
+     * @memberof ScriptUpdate
      */
     run_as_user: string;
     /**
      * The type of event that will trigger the script execution
      * @type {string}
-     * @memberof Script
+     * @memberof ScriptUpdate
      */
-    trigger_type: ScriptTriggerTypeEnum;
+    trigger_type: ScriptUpdateTriggerTypeEnum;
     /**
      * The application deployment event to which the script is attached
      * @type {string}
-     * @memberof Script
+     * @memberof ScriptUpdate
      */
-    trigger_event: ScriptTriggerEventEnum;
+    trigger_event: ScriptUpdateTriggerEventEnum;
     /**
      * The relative order of the script execution in case the event has multiple scripts attached
      * @type {number}
-     * @memberof Script
+     * @memberof ScriptUpdate
      */
     trigger_order: number;
-    /**
-     * The date and time when the record was created
-     * @type {string}
-     * @memberof Script
-     */
-    created_at?: string;
-    /**
-     * The date and time when the record was last updated
-     * @type {string}
-     * @memberof Script
-     */
-    updated_at?: string;
 }
 
 /**
     * @export
     * @enum {string}
     */
-export enum ScriptTriggerTypeEnum {
+export enum ScriptUpdateTriggerTypeEnum {
     Before = 'before',
     After = 'after'
 }
@@ -99,7 +81,7 @@ export enum ScriptTriggerTypeEnum {
     * @export
     * @enum {string}
     */
-export enum ScriptTriggerEventEnum {
+export enum ScriptUpdateTriggerEventEnum {
     GetNewRelease = 'get-new-release',
     InstallDependencies = 'install-dependencies',
     ActivateNewRelease = 'activate-new-release',
