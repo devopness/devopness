@@ -16,64 +16,58 @@
 /**
  * 
  * @export
- * @interface ApplicationVariableCreate
+ * @interface VariableUpdate
  */
-export interface ApplicationVariableCreate {
+export interface VariableUpdate {
+    /**
+     * The id of the application to be linked
+     * @type {number}
+     * @memberof VariableUpdate
+     */
+    application_id: number;
     /**
      * The unique key used to identify the variable on the target
      * @type {string}
-     * @memberof ApplicationVariableCreate
+     * @memberof VariableUpdate
      */
     key: string;
     /**
      * The value to be assigned to this variable when deployed to its target
      * @type {string}
-     * @memberof ApplicationVariableCreate
+     * @memberof VariableUpdate
      */
     value: string;
     /**
      * A text describing the variable, provided by the end user
      * @type {string}
-     * @memberof ApplicationVariableCreate
+     * @memberof VariableUpdate
      */
     description?: string;
     /**
      * The target defining how the variable key/value pair will be deployed
      * @type {string}
-     * @memberof ApplicationVariableCreate
+     * @memberof VariableUpdate
      */
-    target: ApplicationVariableCreateTargetEnum;
+    target: VariableUpdateTargetEnum;
     /**
      * The type of the key/value pair
      * @type {string}
-     * @memberof ApplicationVariableCreate
+     * @memberof VariableUpdate
      */
-    type: ApplicationVariableCreateTypeEnum;
+    type: VariableUpdateTypeEnum;
     /**
      * Indicates if the variable value should be visible or not in the deployment logs
      * @type {boolean}
-     * @memberof ApplicationVariableCreate
+     * @memberof VariableUpdate
      */
     hidden: boolean;
-    /**
-     * The date and time when the record was created
-     * @type {string}
-     * @memberof ApplicationVariableCreate
-     */
-    created_at?: string;
-    /**
-     * The date and time when the record was last updated
-     * @type {string}
-     * @memberof ApplicationVariableCreate
-     */
-    updated_at?: string;
 }
 
 /**
     * @export
     * @enum {string}
     */
-export enum ApplicationVariableCreateTargetEnum {
+export enum VariableUpdateTargetEnum {
     AppConfigFile = 'app-config-file',
     DeploymentScript = 'deployment-script',
     SharedScript = 'shared-script',
@@ -88,7 +82,7 @@ export enum ApplicationVariableCreateTargetEnum {
     * @export
     * @enum {string}
     */
-export enum ApplicationVariableCreateTypeEnum {
+export enum VariableUpdateTypeEnum {
     Variable = 'variable',
     File = 'file'
 }

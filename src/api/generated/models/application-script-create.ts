@@ -1,7 +1,7 @@
 /* eslint-disable */
 /**
  * devopness API
- * Devopness API - Painless essential DevOps to everyone 
+ * Devopness API - Painless essential DevOps to everyone  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
  *
  * The version of the OpenAPI document: latest
  * 
@@ -20,11 +20,17 @@
  */
 export interface ApplicationScriptCreate {
     /**
-     * Id of an existing script to be attached to an application event
-     * @type {number}
+     * Name/short description of the script
+     * @type {string}
      * @memberof ApplicationScriptCreate
      */
-    script_id: number;
+    name: string;
+    /**
+     * A command line or multiline bash script
+     * @type {string}
+     * @memberof ApplicationScriptCreate
+     */
+    source_code: string;
     /**
      * The type of event that will trigger the script execution
      * @type {string}
