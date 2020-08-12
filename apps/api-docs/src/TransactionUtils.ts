@@ -62,6 +62,10 @@ export default class TransactionUtils {
             }
             this.log(`${tag} '${transaction.fullPath}' => '${path}'`)
             transaction.fullPath = path;
+
+            // dredd uses `transaction.id` in its logging
+            // as it carries the `transaction.fullPath`, we need to rebuild it
+            transaction.id = `${transaction.request.method} (${transaction.expected.statusCode}) ${path}`
         }
     }
     

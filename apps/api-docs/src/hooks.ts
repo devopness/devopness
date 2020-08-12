@@ -10,7 +10,7 @@
 import hooks, { Transaction, TransactionHook } from 'hooks';
 import { v1, v4 } from 'uuid';
 
-import { UserCredentials, UserTokens, isFixtureKey, isFixtureListKey, Identifiable } from './fixtureTypes';
+import { UserCredentials, UserTokens, isFixtureKey, Identifiable } from './fixtureTypes';
 import FixtureStore  from './FixtureStore';
 import TransactionUtils from './TransactionUtils';
 import TransactionSpec from './TransactionSpec';
@@ -62,7 +62,10 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     transactions.forEach((transaction: Transaction, index: number) => {
         const transactionSpec = transactionNameToSpec[transaction.name];
         if (transactionSpec) {
-            hooks.before(transaction.name, (_: Transaction) => hooks.log(`>> (${index}) ${transactionSpec.slug}`));
+            hooks.before(transaction.name, (_: Transaction) => {
+                hooks.log(``)
+                hooks.log(`>> ${index} :: ${transactionSpec.slug}`)
+            });
 
             // TODO: test on (`/environments/${environment_id}/servers/${server_id}/link`)
             hooks.before(transaction.name, utils.writeFixtureIdsInTransactionPath(transactionSpec.pathInputs));
@@ -78,14 +81,28 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     });
 
     // skip all transactions after first failure
+    let failedTransaction: Transaction | null = null;
     hooks.afterEach((transaction: Transaction) => {
         if (!transaction.skip && !transaction.test.valid) {
+            hooks.log(`:: failed, skipping all following transactions`)
+            failedTransaction = transaction;
             let i = transactions.indexOf(transaction) + 1;
             for (; i < transactions.length; i++) {
                 transactions[i].skip = true;
             }
         }
     });
+    hooks.afterAll((transactions: Transaction[], done: () => void) => {
+        if (failedTransaction) {
+            const transactionSpec = transactionNameToSpec[failedTransaction.name];
+            if (transactionSpec) {
+                const index = transactions.indexOf(failedTransaction)
+                hooks.log(``)
+                hooks.log(`:: failed on >> ${index} :: ${transactionSpec.slug}`)
+            }
+        }
+        done();
+    })
 
     // request headers
     hooks.beforeEach(utils.setTransactionRequestAuthHeaderWithFixture('user_tokens'));
