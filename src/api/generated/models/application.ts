@@ -13,7 +13,9 @@
 
 
 import { Environment } from './environment';
-import { SocialAccount } from './social-account';
+import { Server } from './server';
+import { SourceProvider } from './source-provider';
+import { SslCertificate } from './ssl-certificate';
 
 /**
  * 
@@ -45,12 +47,6 @@ export interface Application {
      * @memberof Application
      */
     domain_name?: string;
-    /**
-     * 
-     * @type {SocialAccount}
-     * @memberof Application
-     */
-    source_provider?: SocialAccount;
     /**
      * The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed.
      * @type {string}
@@ -160,17 +156,29 @@ export interface Application {
      */
     environments: Array<Environment>;
     /**
+     * 
+     * @type {Array<Server>}
+     * @memberof Application
+     */
+    servers?: Array<Server>;
+    /**
+     * 
+     * @type {SourceProvider}
+     * @memberof Application
+     */
+    source_provider?: SourceProvider;
+    /**
+     * 
+     * @type {Array<SslCertificate>}
+     * @memberof Application
+     */
+    ssl_certificates?: Array<SslCertificate>;
+    /**
      * Current status of deploying to remote servers the current application
      * @type {string}
      * @memberof Application
      */
     status?: ApplicationStatusEnum;
-    /**
-     * Numeric ID of the source provider account where the repository is hosted. Required when the `repository` field is informed.
-     * @type {number}
-     * @memberof Application
-     */
-    source_provider_id?: number;
     /**
      * The date and time when the record was created
      * @type {string}
