@@ -1,22 +1,21 @@
-summary: Get details of a single Source Code provider
-operationId: getSourceProvider
+summary: Create a new source provider linked to the current user's profile
+operationId: addSourceProvider
 tags:
   - Source Providers
 parameters:
   - $ref: '#/components/parameters/acceptHeader'
   - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/contentTypeHeader'
-  - in: path
-    name: source_provider_id
-    example: 567
-    schema:
-      type: integer
-      minimum: 3
-    required: true
-    description: Unique ID of the provider to be retrieved
+requestBody:
+  description: A JSON object containing source provider callback data
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/SourceProviderCreate'
 responses:
-  200:
-    description: 'Ok'
+  201:
+    description: 'Created'
     content:
       application/json:
         schema:

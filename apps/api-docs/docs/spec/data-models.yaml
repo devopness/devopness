@@ -134,6 +134,10 @@ SocialAccounts:
   $ref: ./endpoints/social-accounts/schemas/social-account-list.yaml
 SocialAccountStatus:
   $ref: ./endpoints/social-accounts/schemas/social-account-status.yaml
+SourceProvider:
+  $ref: ./endpoints/source-providers/schemas/source-provider.yaml
+SourceProviderCreate:
+  $ref: ./endpoints/source-providers/schemas/source-provider-create.yaml
 SshKey:
   $ref: ./endpoints/ssh-keys/schemas/ssh-key.yaml
 SshKeyCreate:

@@ -179,6 +179,8 @@
 /source-providers:
   get:
     $ref: ./endpoints/source-providers/paths/source-providers-list.yaml
+  post:
+    $ref: ./endpoints/source-providers/paths/source-providers.yaml
 /source-providers/{source_provider_id}:
   get:
     $ref: ./endpoints/source-providers/paths/source-providers-id.yaml
