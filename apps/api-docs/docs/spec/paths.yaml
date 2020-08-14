@@ -16,7 +16,7 @@
     $ref: ./endpoints/applications/paths/applications-id-deployments.yaml
   get:
     $ref: ./endpoints/applications/paths/applications-id-deployments-list.yaml
-/application/{application_id}/scripts:
+/applications/{application_id}/scripts:
   post:
     $ref: ./endpoints/applications/paths/applications-id-scripts.yaml
   get:
