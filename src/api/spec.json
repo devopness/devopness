@@ -3320,50 +3320,6 @@
             "$ref": "#/components/responses/NotFound"
           }
         }
-      },
-      "post": {
-        "summary": "Create a new source provider linked to the current user's profile",
-        "operationId": "addSourceProvider",
-        "tags": [
-          "Source Providers"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          }
-        ],
-        "requestBody": {
-          "description": "A JSON object containing source provider callback data",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SourceProviderCreate"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SourceProvider"
-                }
-              }
-            }
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          }
-        }
       }
     },
     "/source-providers/{source_provider_id}": {
