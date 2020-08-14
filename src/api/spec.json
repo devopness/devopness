@@ -3320,6 +3320,50 @@
             "$ref": "#/components/responses/NotFound"
           }
         }
+      },
+      "post": {
+        "summary": "Create a new source provider linked to the current user's profile",
+        "operationId": "addSourceProvider",
+        "tags": [
+          "Source Providers"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing source provider callback data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SourceProviderCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SourceProvider"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
       }
     },
     "/source-providers/{source_provider_id}": {
@@ -4430,10 +4474,6 @@
             "description": "The domain or sub-domain through which the application deployed with these settings will be accessible. It can be a naked domain or any subdomain. If app has domain names `testing.my-app.com`, `staging.my-app.com` and `www.my-app.com` a possible good candidate for the application name would be the \"naked\" domain `my-app.com`",
             "example": "test.my-app.co.uk"
           },
-          "source_provider": {
-            "description": "The source provider from where the application source code repository has been retrieved",
-            "$ref": "#/components/schemas/SocialAccount"
-          },
           "repository": {
             "description": "The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed.",
             "type": "string",
@@ -4525,6 +4565,18 @@
               "$ref": "#/components/schemas/Environment"
             }
           },
+          "servers": {
+            "description": "The list of servers to which the application has been deployed to",
+            "$ref": "#/components/schemas/Servers"
+          },
+          "source_provider": {
+            "description": "The source provider from where the application source code repository has been retrieved",
+            "$ref": "#/components/schemas/SourceProvider"
+          },
+          "ssl_certificates": {
+            "description": "The list of SSL certificates issued to the application",
+            "$ref": "#/components/schemas/SslCertificates"
+          },
           "status": {
             "type": "string",
             "description": "Current status of deploying to remote servers the current application",
@@ -4536,10 +4588,6 @@
               "failed"
             ],
             "example": "completed"
-          },
-          "source_provider_id": {
-            "type": "integer",
-            "description": "Numeric ID of the source provider account where the repository is hosted. Required when the `repository` field is informed."
           },
           "created_at": {
             "type": "string",
