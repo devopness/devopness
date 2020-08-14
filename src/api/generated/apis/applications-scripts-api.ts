@@ -35,7 +35,7 @@ export class ApplicationsScriptsApiService extends ApiBaseService {
         if (applicationScriptCreate === null || applicationScriptCreate === undefined) {
             throw new ArgumentNullException('applicationScriptCreate', 'addScriptToApplication');
         }
-        const response = await this.post <Array<ApplicationScript>, ApplicationScriptCreate>(`/application/{application_id}/scripts`.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))), applicationScriptCreate);
+        const response = await this.post <Array<ApplicationScript>, ApplicationScriptCreate>(`/applications/{application_id}/scripts`.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))), applicationScriptCreate);
         return new ApiResponse(response);
     }
 
@@ -48,7 +48,7 @@ export class ApplicationsScriptsApiService extends ApiBaseService {
         if (applicationId === null || applicationId === undefined) {
             throw new ArgumentNullException('applicationId', 'listApplicationScripts');
         }
-        const response = await this.get <Array<ApplicationScript>>(`/application/{application_id}/scripts`.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))));
+        const response = await this.get <Array<ApplicationScript>>(`/applications/{application_id}/scripts`.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))));
         return new ApiResponse(response);
     }
 }

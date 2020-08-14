@@ -337,7 +337,7 @@
         }
       }
     },
-    "/application/{application_id}/scripts": {
+    "/applications/{application_id}/scripts": {
       "post": {
         "summary": "Add script to application as a deployment step",
         "operationId": "addScriptToApplication",
