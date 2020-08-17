@@ -207,9 +207,15 @@
 /users:
   post:
     $ref: ./endpoints/users/paths/users.yaml
-/users/activate:
+/users/account/resend-verification:
+  post:
+    $ref: ./endpoints/users/paths/users-account-resend-verification.yaml
+/users/account/verify:
   get:
-    $ref: ./endpoints/users/paths/activate.yaml
+    $ref: ./endpoints/users/paths/users-account-verify.yaml
+/users/account/verify/{user_id}/{activation_hash}:
+  get:
+    $ref: ./endpoints/users/paths/users-account-verify-id-hash.yaml
 /users/login:
   post:
     $ref: ./endpoints/users/paths/login.yaml

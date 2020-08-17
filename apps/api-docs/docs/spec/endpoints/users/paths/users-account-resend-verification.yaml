@@ -1,0 +1,13 @@
+summary: Resend the verification email to current user
+operationId: resendUserVerification
+tags:
+  - Users
+parameters:
+  - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/authHeader'
+  - $ref: '#/components/parameters/contentTypeHeader'
+responses:
+  202:
+    $ref: '#/components/responses/Accepted'
+  204:
+    $ref: '#/components/responses/NoContent'

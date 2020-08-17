@@ -1,3 +1,5 @@
+AccountVerify:
+  $ref: ./endpoints/users/schemas/user-verify.yaml
 Action:
   $ref: ./endpoints/actions/schemas/action.yaml
 Actions:

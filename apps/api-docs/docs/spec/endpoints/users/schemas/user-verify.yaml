@@ -1,0 +1,12 @@
+type: object
+properties:
+  status:
+    type: boolean
+    description: The current activation status of the account
+    example: false
+  message:
+    type: string
+    description: Message describing the status of the account
+    example: Your email has not been verified, please verify your email address.
+required:
+  - status

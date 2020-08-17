@@ -6,6 +6,8 @@ Ok: # HTTP Status Code: 200
         type: object
 Created: # HTTP Status Code: 201
   description: Created
+Accepted: # HTTP Status Code: 202
+  description: Accepted
 NoContent: # HTTP Status Code: 204
   description: No Content
 Unauthenticated: # HTTP Status Code: 401
