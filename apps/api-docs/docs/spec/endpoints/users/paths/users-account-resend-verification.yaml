@@ -6,6 +6,13 @@ parameters:
   - $ref: '#/components/parameters/acceptHeader'
   - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/contentTypeHeader'
+requestBody:
+  description: A JSON object containing list of additional parameters
+  required: false
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/ExtraBodyParams'
 responses:
   202:
     $ref: '#/components/responses/Accepted'

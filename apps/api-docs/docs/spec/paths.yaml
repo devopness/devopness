@@ -228,6 +228,12 @@
 /users/me:
   get:
     $ref: ./endpoints/users/paths/users-current.yaml
+/users/password/reset:
+  post:
+    $ref: ./endpoints/users/paths/users-password-reset.yaml
+/users/password/send-reset-link:
+  post:
+    $ref: ./endpoints/users/paths/users-password-send-reset-link.yaml
 /users/refresh-token:
   post:
     $ref: ./endpoints/users/paths/users-refresh-token.yaml

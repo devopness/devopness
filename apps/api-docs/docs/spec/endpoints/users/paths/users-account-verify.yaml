@@ -12,4 +12,4 @@ responses:
     content:
       application/json:
         schema:
-          $ref: '#/components/schemas/AccountVerify'
+          $ref: '#/components/schemas/UserAccountVerify'

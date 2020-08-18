@@ -1,5 +1,3 @@
-AccountVerify:
-  $ref: ./endpoints/users/schemas/user-verify.yaml
 Action:
   $ref: ./endpoints/actions/schemas/action.yaml
 Actions:
@@ -154,8 +152,14 @@ SslCertificates:
   $ref: ./endpoints/ssl-certificates/schemas/ssl-certificate-list.yaml
 User:
   $ref: ./endpoints/users/schemas/user.yaml
+UserAccountVerify:
+  $ref: ./endpoints/users/schemas/user-account-verify.yaml
 UserCreate:
   $ref: ./endpoints/users/schemas/user-create.yaml
+UserPasswordReset:
+  $ref: ./endpoints/users/schemas/user-password-reset.yaml
+UserPasswordSendResetLink:
+  $ref: ./endpoints/users/schemas/user-password-send-reset-link.yaml
 UserRefreshTokenCreate:
   $ref: ./endpoints/users/schemas/user-refresh-token-create.yaml
 UserTokens:
