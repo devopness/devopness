@@ -98,6 +98,16 @@ properties:
   servers:
     description: "The list of servers to which the application has been deployed to"
     $ref: '#/components/schemas/Servers'
+  last_deployments:
+    description: Latest deployment created to application and the more recent completed deployment
+    type: object
+    properties:
+      latest:
+        description: More recent deployment created to application
+        $ref: '#/components/schemas/ApplicationLatestDeployment'
+      live:
+        description: More recent deployment that has been successfully completed
+        $ref: '#/components/schemas/ApplicationLatestDeployment'
   source_provider:
     description: "The source provider from where the application source code repository has been retrieved"
     $ref: '#/components/schemas/SourceProvider'
