@@ -17,6 +17,7 @@ properties:
     format: url
     description: A URL path to the project's logo image
     example: https://example.com/projects-beautiful-logo.png
+    nullable: true
   ssh_keys:
     description: "The list of SSH keys added to the project"
     type: array

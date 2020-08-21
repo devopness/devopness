@@ -30,6 +30,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         'replaceLinkedServers201',
         'unlinkServerFromEnvironment204',
         'connectServer200',
+        'addSshKeyToProject201'
     ];
 
     // get transaction specs and build maps
@@ -104,7 +105,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         done();
     })
 
-    // request headers
+    //// request headers
     hooks.beforeEach(utils.setTransactionRequestAuthHeaderWithFixture('user_tokens'));
     hooks.beforeEach(utils.setTransactionRequestJsonHeaders);
 
@@ -112,19 +113,22 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     const before = (id: string, cb: TransactionHook) => hooks.before(transactionSlugToName[id], cb);
     const after = (id: string, cb: TransactionHook) => hooks.after(transactionSlugToName[id], cb);
 
-    // users
+    //// users
     before('addUser201', (transaction: Transaction) => {
         // randomize user, as db state won't be clean
         const credentials = { email: `${v1()}@api-test.devopness`, password: v4() }
         transaction.request.body = JSON.stringify(credentials);
-        fixtures.put('user_credentials', credentials);
+
+        // use a predefined user fixture instead of the user we just created
+        fixtures.put('user_credentials', {email: 'test@test.com', password: 'testes'})
     });
 
     before('login200', utils.setTransactionRequestBodyToFixture<UserCredentials>('user_credentials'));
+
     before('refreshToken200', utils.setTransactionRequestBodyToFixture<UserTokens>('user_tokens'));
     after('logout204', (transaction: Transaction) => { if (transaction.test.valid) { fixtures.delete('user_tokens'); } });
 
-    // servers
+    //// servers
     before('addServerToProject201', (transaction: Transaction) => {
         const tag = `[fake-server]`
         if (transaction.request.body) {
@@ -143,10 +147,25 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         }
     })
 
-    // projects
+    //// projects
+    const randomizeName = (body: any) => {
+        body['name'] = `test-project-${new Date().getTime()}`
+    };
+    before('addProject201', utils.rewriteTransactionRequestBody(randomizeName));
+    before('updateProject204', utils.rewriteTransactionRequestBody(randomizeName));
+
     before('addApplicationToProject201', utils.rewriteTransactionRequestBody((body: any) => {
         body['entrypoint'] = 'index.html'
     }))
+
+    //// social accounts
+    before('addSocialAccount201', (transaction: Transaction) => {
+        transaction.skip = true;
+        fixtures.put('social_account', { id: '11' });
+    })
+    before('deleteSocialAccount204', (transaction: Transaction) => {
+        transaction.skip = true;
+    })
 
     done();
 })

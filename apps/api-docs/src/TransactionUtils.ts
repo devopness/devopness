@@ -1,7 +1,6 @@
 import { Transaction, TransactionHook } from 'hooks';
 import { set } from 'lodash';
 
-
 import { FixtureKey, Fixture, Identifiable, UserTokens, FixtureDependency } from './fixtureTypes';
 import FixtureStore from './FixtureStore';
 
