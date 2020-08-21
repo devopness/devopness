@@ -12,6 +12,7 @@
  */
 
 
+import { ApplicationLastDeployments } from './application-last-deployments';
 import { Environment } from './environment';
 import { Server } from './server';
 import { SourceProvider } from './source-provider';
@@ -161,6 +162,12 @@ export interface Application {
      * @memberof Application
      */
     servers?: Array<Server>;
+    /**
+     * 
+     * @type {ApplicationLastDeployments}
+     * @memberof Application
+     */
+    last_deployments?: ApplicationLastDeployments;
     /**
      * 
      * @type {SourceProvider}
