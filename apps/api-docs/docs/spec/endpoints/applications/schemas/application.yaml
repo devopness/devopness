@@ -104,10 +104,10 @@ properties:
     properties:
       latest:
         description: More recent deployment created to application
-        $ref: '#/components/schemas/ApplicationLatestDeployment'
+        $ref: '#/components/schemas/Deployment'
       live:
         description: More recent deployment that has been successfully completed
-        $ref: '#/components/schemas/ApplicationLatestDeployment'
+        $ref: '#/components/schemas/Deployment'
   source_provider:
     description: "The source provider from where the application source code repository has been retrieved"
     $ref: '#/components/schemas/SourceProvider'

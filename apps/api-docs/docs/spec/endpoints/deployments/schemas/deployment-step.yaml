@@ -11,7 +11,7 @@ properties:
   status:
     type: string
     description: Current status of the deployment step
-    enum: ['pending', 'in-progress', 'cancelled', 'successful', 'failed']
+    enum: ['pending', 'in-progress', 'cancelled', 'completed', 'failed']
     example: 'failed'
   started_at:
     type: string
