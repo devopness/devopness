@@ -43,7 +43,7 @@ export interface Project {
      * @type {string}
      * @memberof Project
      */
-    logo_url?: string;
+    logo_url?: string | null;
     /**
      * The list of SSH keys added to the project
      * @type {Array<SshKey>}
