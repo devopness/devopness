@@ -8,7 +8,6 @@ export * from './application';
 export * from './application-create';
 export * from './application-deployment';
 export * from './application-last-deployments';
-export * from './application-latest-deployment';
 export * from './application-script';
 export * from './application-script-create';
 export * from './application-variable';

@@ -12,7 +12,7 @@
  */
 
 
-import { ApplicationLatestDeployment } from './application-latest-deployment';
+import { Deployment } from './deployment';
 
 /**
  * Latest deployment created to application and the more recent completed deployment
@@ -22,15 +22,15 @@ import { ApplicationLatestDeployment } from './application-latest-deployment';
 export interface ApplicationLastDeployments {
     /**
      * 
-     * @type {ApplicationLatestDeployment}
+     * @type {Deployment}
      * @memberof ApplicationLastDeployments
      */
-    latest?: ApplicationLatestDeployment;
+    latest?: Deployment;
     /**
      * 
-     * @type {ApplicationLatestDeployment}
+     * @type {Deployment}
      * @memberof ApplicationLastDeployments
      */
-    live?: ApplicationLatestDeployment;
+    live?: Deployment;
 }
 

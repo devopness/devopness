@@ -4716,11 +4716,11 @@
             "properties": {
               "latest": {
                 "description": "More recent deployment created to application",
-                "$ref": "#/components/schemas/ApplicationLatestDeployment"
+                "$ref": "#/components/schemas/Deployment"
               },
               "live": {
                 "description": "More recent deployment that has been successfully completed",
-                "$ref": "#/components/schemas/ApplicationLatestDeployment"
+                "$ref": "#/components/schemas/Deployment"
               }
             }
           },
@@ -4930,100 +4930,6 @@
         "required": [
           "type",
           "branch"
-        ]
-      },
-      "ApplicationLatestDeployment": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "description": "The unique id of the given record",
-            "example": 93457689064
-          },
-          "application_id": {
-            "type": "integer",
-            "description": "The unique id of the application that own the deployment",
-            "example": 83791234
-          },
-          "status": {
-            "type": "string",
-            "description": "Current status of the deployment",
-            "enum": [
-              "pending",
-              "in-progress",
-              "cancelled",
-              "successful",
-              "failed"
-            ],
-            "example": "successful"
-          },
-          "type": {
-            "type": "string",
-            "description": "The deployment type",
-            "enum": [
-              "deploy",
-              "redeploy",
-              "rollback"
-            ],
-            "example": "deploy"
-          },
-          "source": {
-            "type": "string",
-            "description": "Source/channel from which the deployment has been triggered",
-            "enum": [
-              "manual",
-              "git-push",
-              "scheduled"
-            ],
-            "example": "manual"
-          },
-          "current_step": {
-            "type": "integer",
-            "description": "The latest step number that be triggered",
-            "example": 1
-          },
-          "total_steps": {
-            "type": "integer",
-            "description": "The total number of steps to be triggered",
-            "example": 3
-          },
-          "triggered_by_user": {
-            "$ref": "#/components/schemas/User"
-          },
-          "started_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the action started to be executed (left the `pending/waiting` status)",
-            "example": "2019-09-25T15:50:48+00:00"
-          },
-          "completed_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the action has finished execution",
-            "example": "2019-09-25T13:52:04+00:00"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the record was created",
-            "example": "2019-09-25T15:50:48+00:00"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the record was last updated",
-            "example": "2019-09-25T13:52:04+00:00"
-          }
-        },
-        "required": [
-          "id",
-          "application_id",
-          "status",
-          "type",
-          "source",
-          "current_step",
-          "total_steps",
-          "triggered_by_user"
         ]
       },
       "ApplicationScript": {
@@ -5518,10 +5424,10 @@
               "pending",
               "in-progress",
               "cancelled",
-              "successful",
+              "completed",
               "failed"
             ],
-            "example": "successful"
+            "example": "completed"
           },
           "type": {
             "type": "string",
@@ -5708,7 +5614,7 @@
               "pending",
               "in-progress",
               "cancelled",
-              "successful",
+              "completed",
               "failed"
             ],
             "example": "failed"

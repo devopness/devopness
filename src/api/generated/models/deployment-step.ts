@@ -59,7 +59,7 @@ export enum DeploymentStepStatusEnum {
     Pending = 'pending',
     InProgress = 'in-progress',
     Cancelled = 'cancelled',
-    Successful = 'successful',
+    Completed = 'completed',
     Failed = 'failed'
 }
 
