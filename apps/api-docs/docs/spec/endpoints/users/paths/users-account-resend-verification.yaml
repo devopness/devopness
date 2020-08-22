@@ -1,20 +1,21 @@
-summary: Resend the verification email to current user
+summary: Resend the verification email
 operationId: resendUserVerification
 tags:
   - Users
 parameters:
   - $ref: '#/components/parameters/acceptHeader'
-  - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/contentTypeHeader'
 requestBody:
-  description: A JSON object containing list of additional parameters
-  required: false
+  description: A JSON object containing the email to resend the verification link
+  required: true
   content:
     application/json:
       schema:
-        $ref: '#/components/schemas/ExtraBodyParams'
+        $ref: '#/components/schemas/UserAccountResendVerification'
 responses:
   202:
     $ref: '#/components/responses/Accepted'
   204:
     $ref: '#/components/responses/NoContent'
+  404:
+    $ref: '#/components/responses/NotFound'

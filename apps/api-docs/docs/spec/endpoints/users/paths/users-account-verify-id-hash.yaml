@@ -1,10 +1,9 @@
-summary: Activate the current user account
+summary: Activate the user account
 operationId: activateUser
 tags:
   - Users
 parameters:
   - $ref: '#/components/parameters/acceptHeader'
-  - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/contentTypeHeader'
   - in: path
     name: user_id

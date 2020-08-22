@@ -152,6 +152,8 @@ SslCertificates:
   $ref: ./endpoints/ssl-certificates/schemas/ssl-certificate-list.yaml
 User:
   $ref: ./endpoints/users/schemas/user.yaml
+UserAccountResendVerification:
+  $ref: ./endpoints/users/schemas/user-account-resend-verification.yaml
 UserAccountVerify:
   $ref: ./endpoints/users/schemas/user-account-verify.yaml
 UserCreate:
