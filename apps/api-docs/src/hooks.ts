@@ -55,7 +55,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         hooks.log(`${i}  \t  ${slug}:  (${inputs.join(', ')}) -> (${outputs.join(', ')})`);
     }
     */
-    const numTests = 77;
+    const numTests = 80;
     hooks.log(`running ${numTests}/${transactions.length} transactions`);
     utils.selectTransactionsByName(transactions, txOrder.slice(0, numTests).map(k => transactionSlugToName[k]));
 
@@ -77,6 +77,13 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
             if (transactionSpec.slug.includes('Project')) {
                 const removeLogoImage = (body: any) => { delete body['logo_image']; }
                 hooks.before(transaction.name, utils.rewriteTransactionRequestBody(removeLogoImage));
+            }
+            // 204 routes are not expected to return anything
+            // but OpenAPI v2 specs don't allow for different `produces: <content-type>`
+            // entries to be specified for each status code.
+            // removing the 'content-type' expectation for 204 transactions fixes the issue
+            if (transaction.expected.statusCode == 204) {
+                delete transaction.expected.headers['Content-Type']
             }
         }
     });

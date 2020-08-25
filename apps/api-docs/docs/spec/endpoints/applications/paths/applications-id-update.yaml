@@ -20,7 +20,7 @@ requestBody:
   content:
     application/json:
       schema:
-        $ref: '#/components/schemas/Application'
+        $ref: '#/components/schemas/ApplicationUpdate'
 responses:
   204:
     $ref: '#/components/responses/NoContent'

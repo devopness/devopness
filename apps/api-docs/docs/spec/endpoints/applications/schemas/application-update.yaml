@@ -22,14 +22,6 @@ properties:
     description: The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed.
     type: string
     example: "devopness/devopness-web-site"
-  repository_name:
-    description: The name part of a repository full name (`repository_owner/repository_name`)
-    type: string
-    example: "devopness"
-  repository_owner:
-    description: The owner part of a repository full name (`repository_owner/repository_name`)
-    type: string
-    example: "devopness-web-site"
   default_branch:
     type: string
     description: The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed.
@@ -70,12 +62,11 @@ properties:
       1) `File`: if it's a simple file name/path a web app will be served using the entrypoint value as its index file. Example: `index.html`
 
       2) `Command`: if a command line instruction is provided as the entrypoint value, it will be handled as the start up command that initalizes the application. It will be assumed that the user is an advanced user that knows what she/he is doing, therefore the command specified here will be run - as is - everytime the application needs to be started.
-    example: "`index.html`, `index.php`, `server.php`, `default.htm`, `node server.js`, `yarn start`, `npm run production`, `docker run -d -P --name my_container_name my_image_name`, `php artisan serve –-host=192.168.2.20 --port=8000`"
+    example: "`docker run -d -P --name my_container_name my_image_name`"
   listening_address:
     description: Required for CGI|FastCGI|SCGI|WSGI based applications or `docker` containerized applications. It tells `devopness` the private address at which the application listens to external calls. The address can be an IP:PORT, HOSTNAME:PORT or unix:PATH
     type: string
     example: "`unix:/tmp/backend3`, `http://127.0.0.1:8000`, `127.0.0.1:3000`, `http://localhost`"
-    nullable: true
   deployments_keep:
     type: integer
     description: The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers. OR The number of deployment artifacts to be retained in the user's servers, making it easier and faster to rollback to previoius versions
@@ -88,52 +79,10 @@ properties:
     description: Indicates if at deployment time Devopness should execute package manager commands to install dependencies used in production mode
     type: boolean
     example: true
-  project_id:
-    type: integer
-    description: Numeric ID of the project to which the application belongs to
   environments:
-    description: "The list of environments to which the application is linked to"
-    type: array
-    items:
-      $ref: '#/components/schemas/Environment'
-  servers:
-    description: "The list of servers to which the application has been deployed to"
-    $ref: '#/components/schemas/Servers'
-  last_deployments:
-    description: Latest deployment created to application and the more recent completed deployment
-    type: object
-    properties:
-      latest:
-        description: More recent deployment created to application
-        $ref: '#/components/schemas/Deployment'
-      live:
-        description: More recent deployment that has been successfully completed
-        $ref: '#/components/schemas/Deployment'
-  source_provider:
-    description: "The source provider from where the application source code repository has been retrieved"
-    $ref: '#/components/schemas/SourceProvider'
-  ssl_certificates:
-    description: "The list of SSL certificates issued to the application"
-    $ref: '#/components/schemas/SslCertificates'
-  status:
-    type: string
-    description: Current status of deploying to remote servers the current application
-    enum: ["pending", "in-progress", "cancelled", "completed", "failed"]
-    example: "completed"
-  created_at:
-    type: string
-    format: date-time
-    description: The date and time when the record was created
-    example: '2019-09-25T15:50:48+00:00'
-  updated_at:
-    type: string
-    format: date-time
-    description: The date and time when the record was last updated
-    example: '2019-09-25T13:52:04+00:00'
+    $ref: '#/components/schemas/EnvironmentLinks'
 required:
   - id
-  - project_id
-  - environments
   - type
   - name
   - framework

@@ -12,6 +12,8 @@ Application:
   $ref: ./endpoints/applications/schemas/application.yaml
 ApplicationCreate:
   $ref: ./endpoints/applications/schemas/application-create.yaml
+ApplicationUpdate:
+  $ref: ./endpoints/applications/schemas/application-update.yaml
 ApplicationDeployment:
   $ref: ./endpoints/applications/schemas/application-deployment.yaml
 ApplicationScript:
