@@ -16,6 +16,7 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { Application } from '../../generated/models';
+import { ApplicationUpdate } from '../../generated/models';
 
 /**
  * ApplicationsApiService - Auto-generated
@@ -51,16 +52,16 @@ export class ApplicationsApiService extends ApiBaseService {
      * 
      * @summary Update an existing application
      * @param {number} applicationId Numeric ID of the application to be updated
-     * @param {Application} application A JSON object containing application data
+     * @param {ApplicationUpdate} applicationUpdate A JSON object containing application data
      */
-    public async updateApplication(applicationId: number, application: Application): Promise<ApiResponse<void>> {
+    public async updateApplication(applicationId: number, applicationUpdate: ApplicationUpdate): Promise<ApiResponse<void>> {
         if (applicationId === null || applicationId === undefined) {
             throw new ArgumentNullException('applicationId', 'updateApplication');
         }
-        if (application === null || application === undefined) {
-            throw new ArgumentNullException('application', 'updateApplication');
+        if (applicationUpdate === null || applicationUpdate === undefined) {
+            throw new ArgumentNullException('applicationUpdate', 'updateApplication');
         }
-        const response = await this.put <void, Application>(`/applications/{application_id}`.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))), application);
+        const response = await this.put <void, ApplicationUpdate>(`/applications/{application_id}`.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))), applicationUpdate);
         return new ApiResponse(response);
     }
 }

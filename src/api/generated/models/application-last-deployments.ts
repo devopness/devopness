@@ -25,12 +25,12 @@ export interface ApplicationLastDeployments {
      * @type {Deployment}
      * @memberof ApplicationLastDeployments
      */
-    latest?: Deployment;
+    latest?: Deployment | null;
     /**
      * 
      * @type {Deployment}
      * @memberof ApplicationLastDeployments
      */
-    live?: Deployment;
+    live?: Deployment | null;
 }
 
