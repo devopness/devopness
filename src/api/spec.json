@@ -4474,18 +4474,29 @@
             "description": "The current action step being executed",
             "example": 2
           },
+          "current_step_code": {
+            "type": "string",
+            "description": "The code of the current step",
+            "example": "echo 'running' >> ~/test.log"
+          },
           "current_step_message": {
             "type": "string",
             "description": "A message describing the current step being executed",
-            "example": "Step 2 of 5"
+            "example": "Step 2 of 5: echo 'running' >> ~/test.log"
           },
-          "resource_entity": {
-            "type": "string",
-            "description": "Name of the resource_entity who the actions is related to",
-            "example": "server"
+          "resource_type": {
+            "$ref": "#/components/schemas/ResourceType",
+            "description": "Name of the entity who the actions is related to"
+          },
+          "resource_id": {
+            "type": "integer",
+            "description": "The unique id of the resource",
+            "example": 1839123
           },
           "triggered_by": {
-            "$ref": "#/components/schemas/User"
+            "type": "integer",
+            "description": "The user id that has triggered the action",
+            "example": 1
           },
           "started_at": {
             "type": "string",
@@ -4533,19 +4544,21 @@
       "ActionType": {
         "type": "string",
         "enum": [
-          "authorization",
-          "connect",
-          "control",
-          "cronjob",
-          "deployment",
-          "firewall",
-          "launch",
-          "schedule",
-          "service",
-          "setup",
-          "ssl_certificate"
+          "add",
+          "remove",
+          "deploy",
+          "redeploy",
+          "rollback",
+          "install",
+          "uninstall",
+          "reload",
+          "restart",
+          "start",
+          "stop",
+          "enable",
+          "disable"
         ],
-        "example": "deployment"
+        "example": "deploy"
       },
       "ApiError": {
         "type": "object",
@@ -6511,6 +6524,21 @@
             "$ref": "#/components/schemas/Commit"
           }
         }
+      },
+      "ResourceType": {
+        "type": "string",
+        "enum": [
+          "application",
+          "cronjob",
+          "daemon",
+          "deployment",
+          "network-rule",
+          "server",
+          "service",
+          "ssh-key",
+          "ssl-certificate"
+        ],
+        "example": "deployment"
       },
       "Script": {
         "type": "object",

@@ -18,20 +18,16 @@
  * @export
  * @enum {string}
  */
-export enum ActionType {
-    Add = 'add',
-    Remove = 'remove',
-    Deploy = 'deploy',
-    Redeploy = 'redeploy',
-    Rollback = 'rollback',
-    Install = 'install',
-    Uninstall = 'uninstall',
-    Reload = 'reload',
-    Restart = 'restart',
-    Start = 'start',
-    Stop = 'stop',
-    Enable = 'enable',
-    Disable = 'disable'
+export enum ResourceType {
+    Application = 'application',
+    Cronjob = 'cronjob',
+    Daemon = 'daemon',
+    Deployment = 'deployment',
+    NetworkRule = 'network-rule',
+    Server = 'server',
+    Service = 'service',
+    SshKey = 'ssh-key',
+    SslCertificate = 'ssl-certificate'
 }
 
 
