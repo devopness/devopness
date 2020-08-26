@@ -14,8 +14,8 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { Daemon } from '../../generated/models';
 import { ExtraBodyParams } from '../../generated/models';
-import { Process } from '../../generated/models';
 
 /**
  * DaemonsApiService - Auto-generated
@@ -24,40 +24,40 @@ export class DaemonsApiService extends ApiBaseService {
     /**
      * 
      * @summary Delete a given Background process
-     * @param {number} processId Numeric ID of the process to be deleted
+     * @param {number} daemonId Numeric ID of the daemon to be deleted
      */
-    public async deleteDaemon(processId: number): Promise<ApiResponse<void>> {
-        if (processId === null || processId === undefined) {
-            throw new ArgumentNullException('processId', 'deleteDaemon');
+    public async deleteDaemon(daemonId: number): Promise<ApiResponse<void>> {
+        if (daemonId === null || daemonId === undefined) {
+            throw new ArgumentNullException('daemonId', 'deleteDaemon');
         }
-        const response = await this.delete <void>(`/daemons/{process_id}`.replace(`{${"process_id"}}`, encodeURIComponent(String(processId))));
+        const response = await this.delete <void>(`/daemons/{daemon_id}`.replace(`{${"daemon_id"}}`, encodeURIComponent(String(daemonId))));
         return new ApiResponse(response);
     }
 
     /**
      * 
      * @summary Get a background process by ID
-     * @param {number} processId Numeric ID of the process to get
+     * @param {number} daemonId Numeric ID of the daemon to get
      */
-    public async getDaemon(processId: number): Promise<ApiResponse<Process>> {
-        if (processId === null || processId === undefined) {
-            throw new ArgumentNullException('processId', 'getDaemon');
+    public async getDaemon(daemonId: number): Promise<ApiResponse<Daemon>> {
+        if (daemonId === null || daemonId === undefined) {
+            throw new ArgumentNullException('daemonId', 'getDaemon');
         }
-        const response = await this.get <Process>(`/daemons/{process_id}`.replace(`{${"process_id"}}`, encodeURIComponent(String(processId))));
+        const response = await this.get <Daemon>(`/daemons/{daemon_id}`.replace(`{${"daemon_id"}}`, encodeURIComponent(String(daemonId))));
         return new ApiResponse(response);
     }
 
     /**
      * 
      * @summary Restart a background process
-     * @param {number} processId Numeric ID of the process to restart
+     * @param {number} daemonId Numeric ID of the daemon to restart
      * @param {ExtraBodyParams} [extraBodyParams] A JSON object containing list of additional parameters
      */
-    public async restartDaemon(processId: number, extraBodyParams?: ExtraBodyParams): Promise<ApiResponse<void>> {
-        if (processId === null || processId === undefined) {
-            throw new ArgumentNullException('processId', 'restartDaemon');
+    public async restartDaemon(daemonId: number, extraBodyParams?: ExtraBodyParams): Promise<ApiResponse<void>> {
+        if (daemonId === null || daemonId === undefined) {
+            throw new ArgumentNullException('daemonId', 'restartDaemon');
         }
-        const response = await this.post <void, ExtraBodyParams>(`/daemons/{process_id}/restart`.replace(`{${"process_id"}}`, encodeURIComponent(String(processId))), extraBodyParams);
+        const response = await this.post <void, ExtraBodyParams>(`/daemons/{daemon_id}/restart`.replace(`{${"daemon_id"}}`, encodeURIComponent(String(daemonId))), extraBodyParams);
         return new ApiResponse(response);
     }
 }
