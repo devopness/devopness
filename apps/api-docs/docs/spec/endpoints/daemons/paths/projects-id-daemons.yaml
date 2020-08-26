@@ -1,4 +1,4 @@
-summary: Add a background process to the given project
+summary: Add a daemon to the given project
 operationId: addDaemonToProject
 tags:
   - Projects - Daemons
@@ -15,18 +15,18 @@ parameters:
     required: true
     description: The project numeric Id
 requestBody:
-  description: A JSON object containing backgroud process data
+  description: A JSON object containing daemon data
   required: true
   content:
     application/json:
       schema:
-        $ref: '#/components/schemas/ProcessCreate'
+        $ref: '#/components/schemas/DaemonCreate'
 responses:
   201:
     description: 'Created'
     content:
       application/json:
         schema:
-          $ref: '#/components/schemas/Process'
+          $ref: '#/components/schemas/Daemon'
   422:
     $ref: '#/components/responses/ValidationError'

@@ -58,14 +58,14 @@
     $ref: ./endpoints/network-rules/paths/network-rules-id-delete.yaml
   get:
     $ref: ./endpoints/network-rules/paths/network-rules-id.yaml
-/daemons/{process_id}:
+/daemons/{daemon_id}:
   delete:
-    $ref: ./endpoints/processes/paths/processes-id-delete.yaml
+    $ref: ./endpoints/daemons/paths/daemons-id-delete.yaml
   get:
-    $ref: ./endpoints/processes/paths/processes-id.yaml
-/daemons/{process_id}/restart:
+    $ref: ./endpoints/daemons/paths/daemons-id.yaml
+/daemons/{daemon_id}/restart:
   post:
-    $ref: ./endpoints/processes/paths/processes-id-restart.yaml
+    $ref: ./endpoints/daemons/paths/daemons-id-restart.yaml
 /projects:
   post:
     $ref: ./endpoints/projects/paths/projects.yaml
@@ -98,9 +98,9 @@
     $ref: ./endpoints/projects/paths/projects-id-network-rules-list.yaml
 /projects/{project_id}/daemons:
   post:
-    $ref: ./endpoints/processes/paths/projects-id-processes.yaml
+    $ref: ./endpoints/daemons/paths/projects-id-daemons.yaml
   get:
-    $ref: ./endpoints/processes/paths/projects-id-processes-list.yaml
+    $ref: ./endpoints/daemons/paths/projects-id-daemons-list.yaml
 /projects/{project_id}/servers:
   post:
     $ref: ./endpoints/projects/paths/projects-id-servers.yaml

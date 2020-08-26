@@ -1,23 +1,25 @@
-summary: 'Returns a list of all processes belonging to a project'
-operationId: listProjectDaemons
+summary: Get a background process by ID
+operationId: getDaemon
 tags:
-  - Projects - Daemons
+  - Daemons
 parameters:
   - $ref: '#/components/parameters/acceptHeader'
   - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/contentTypeHeader'
   - in: path
-    name: project_id
+    name: daemon_id
     example: 1
     schema:
       type: integer
       minimum: 1
     required: true
-    description: Numeric ID of the project to get processes from
+    description: Numeric ID of the daemon to get
 responses:
   200:
     description: 'Ok'
     content:
       application/json:
         schema:
-          $ref: '#/components/schemas/Processes'
+          $ref: '#/components/schemas/Daemon'
+  404:
+    $ref: '#/components/responses/NotFound'

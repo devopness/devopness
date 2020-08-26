@@ -7,13 +7,13 @@ parameters:
   - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/contentTypeHeader'
   - in: path
-    name: process_id
+    name: daemon_id
     example: 1
     schema:
       type: integer
       minimum: 1
     required: true
-    description: Numeric ID of the process to restart
+    description: Numeric ID of the daemon to restart
 requestBody:
   description: A JSON object containing list of additional parameters
   required: false

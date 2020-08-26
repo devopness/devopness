@@ -86,12 +86,12 @@ NetworkRuleCreate:
   $ref: ./endpoints/network-rules/schemas/network-rule-create.yaml
 NetworkRules:
   $ref: ./endpoints/network-rules/schemas/network-rule-list.yaml
-Process:
-  $ref: ./endpoints/processes/schemas/process.yaml
-ProcessCreate:
-  $ref: ./endpoints/processes/schemas/process-create.yaml
-Processes:
-  $ref: ./endpoints/processes/schemas/process-list.yaml
+Daemon:
+  $ref: ./endpoints/daemons/schemas/daemon.yaml
+DaemonCreate:
+  $ref: ./endpoints/daemons/schemas/daemon-create.yaml
+Daemons:
+  $ref: ./endpoints/daemons/schemas/daemon-list.yaml
 Project:
   $ref: ./endpoints/projects/schemas/project.yaml
 ProjectCreate:
