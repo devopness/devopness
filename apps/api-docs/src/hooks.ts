@@ -123,11 +123,16 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     //// users
     before('addUser201', (transaction: Transaction) => {
         // randomize user, as db state won't be clean
-        const credentials = { email: `${v1()}@api-test.devopness`, password: v4() }
-        transaction.request.body = JSON.stringify(credentials);
+        const randomCredentials = { email: `${v1()}@api-test.devopness`, password: v4() }
+        transaction.request.body = JSON.stringify(randomCredentials);
 
         // use a predefined user fixture instead of the user we just created
-        fixtures.put('user_credentials', {email: 'test@test.com', password: 'testes'})
+        const usePredefinedCredentials = true;
+        if (usePredefinedCredentials) {
+            fixtures.put('user_credentials', {email: 'test@test.com', password: 'testes'})
+        } else {
+            fixtures.put('user_credentials', randomCredentials)
+        }
     });
 
     before('login200', utils.setTransactionRequestBodyToFixture<UserCredentials>('user_credentials'));
