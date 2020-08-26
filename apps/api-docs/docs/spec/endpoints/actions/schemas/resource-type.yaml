@@ -5,7 +5,6 @@ enum:
     "cronjob",
     "daemon",
     "deployment",
-    "environment-item",
     "network-rule",
     "server",
     "service",

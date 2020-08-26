@@ -37,6 +37,10 @@ properties:
   resource_type:
     $ref: '#/components/schemas/ResourceType'
     description: Name of the entity who the actions is related to
+  resource_id:
+    type: integer
+    description: The unique id of the resource
+    example: 1839123
   triggered_by:
     type: integer
     description: The user id that has triggered the action

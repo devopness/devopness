@@ -3,7 +3,6 @@ enum:
   [
     "add",
     "remove",
-    "restart",
     "deploy",
     "redeploy",
     "rollback",
