@@ -26,16 +26,21 @@ properties:
     maximum: 127
     description: The current action step being executed
     example: 2
+  current_step_code:
+    type: string
+    description: The code of the current step
+    example: "echo 'running' >> ~/test.log"
   current_step_message:
     type: string
     description: A message describing the current step being executed
-    example: Step 2 of 5
-  resource_entity:
-    type: string
-    description: Name of the resource_entity who the actions is related to
-    example: "server"
+    example: "Step 2 of 5: echo 'running' >> ~/test.log"
+  resource_type:
+    $ref: '#/components/schemas/ResourceType'
+    description: Name of the entity who the actions is related to
   triggered_by:
-    $ref: '#/components/schemas/User'
+    type: integer
+    description: The user id that has triggered the action
+    example: 1
   started_at:
     type: string
     format: date-time
