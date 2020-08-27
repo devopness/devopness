@@ -1,0 +1,5 @@
+type: object
+properties:
+  frequencies:
+    description: The supported time frequencies to trigger a cronjob
+    $ref: '#/components/schemas/CronJobFrequencies'

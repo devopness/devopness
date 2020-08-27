@@ -12,6 +12,8 @@ Application:
   $ref: ./endpoints/applications/schemas/application.yaml
 ApplicationCreate:
   $ref: ./endpoints/applications/schemas/application-create.yaml
+ApplicationOptions:
+  $ref: ./endpoints/static/schemas/application-options.yaml
 ApplicationUpdate:
   $ref: ./endpoints/applications/schemas/application-update.yaml
 ApplicationDeployment:
@@ -38,6 +40,12 @@ CronJob:
   $ref: ./endpoints/cronjobs/schemas/cronjob.yaml
 CronJobCreate:
   $ref: ./endpoints/cronjobs/schemas/cronjob-create.yaml
+CronJobFrequency:
+  $ref: ./endpoints/static/schemas/cronjob-frequency.yaml
+CronJobFrequencies:
+  $ref: ./endpoints/static/schemas/cronjob-frequency-list.yaml
+CronJobOptions:
+  $ref: ./endpoints/static/schemas/cronjob-options.yaml
 CronJobs:
   $ref: ./endpoints/cronjobs/schemas/cronjob-list.yaml
 Deployment:
@@ -56,6 +64,12 @@ Environment:
   $ref: ./endpoints/environments/schemas/environment.yaml
 EnvironmentCreate:
   $ref: ./endpoints/environments/schemas/environment-create.yaml
+EnvironmentOptions:
+  $ref: ./endpoints/static/schemas/environment-options.yaml
+EnvironmentOptionTypes:
+  $ref: ./endpoints/static/schemas/environment-type-list.yaml
+EnvironmentOptionType:
+  $ref: ./endpoints/static/schemas/environment-type.yaml
 EnvironmentUpdate:
   $ref: ./endpoints/environments/schemas/environment-update.yaml
 EnvironmentLinkItem:

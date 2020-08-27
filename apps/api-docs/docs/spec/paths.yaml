@@ -196,9 +196,15 @@
     $ref: ./endpoints/ssl-certificates/paths/ssl-certificates-id.yaml
   delete:
     $ref: ./endpoints/ssl-certificates/paths/ssl-certificates-id-delete.yaml
-/static/language-runtimes:
+/static/applications:
   get:
-    $ref: ./endpoints/static/paths/language-runtimes-list.yaml
+    $ref: ./endpoints/static/paths/applications-list.yaml
+/static/cronjobs:
+  get:
+    $ref: ./endpoints/static/paths/cronjobs-list.yaml
+/static/environments:
+  get:
+    $ref: ./endpoints/static/paths/environments-list.yaml
 /cron-jobs/{cron_job_id}:
   delete:
     $ref: ./endpoints/cronjobs/paths/cronjobs-id-delete.yaml

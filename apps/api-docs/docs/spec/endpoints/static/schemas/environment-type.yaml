@@ -1,0 +1,14 @@
+type: object
+properties:
+  value:
+    type: string
+    description: The internal name of the environment
+    example: development
+  displayable:
+    type: string
+    description: The formatted name to be displayed in user interfaces
+    example: Development
+  hint:
+    type: string
+    description: Text describing the environment purpose
+    example: Environment used for dev testing

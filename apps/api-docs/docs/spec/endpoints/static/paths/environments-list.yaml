@@ -1,0 +1,15 @@
+summary: Lists options of the environments
+operationId: listEnvironmentOptions
+tags:
+  - Static Data
+parameters:
+  - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/authHeader'
+  - $ref: '#/components/parameters/contentTypeHeader'
+responses:
+  200:
+    description: 'Ok'
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/EnvironmentOptions'
