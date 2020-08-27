@@ -3,7 +3,7 @@
 [![MIT License](https://img.shields.io/badge/license-MIT_License-green.svg?style=flat-square)](https://github.com/devopness/devopness-sdk-js/blob/master/LICENSE)
 ![CI](https://github.com/devopness/sdk-js/workflows/CI/badge.svg)
 
-[![NPM](https://nodei.co/npm/sdk-js.png?downloads=true&stars=true)](https://nodei.co/npm/@devopness/sdk-js/)
+[![NPM](https://nodei.co/npm/@devopness/sdk-js.png?downloads=true&stars=true)](https://nodei.co/npm/@devopness/sdk-js/)
 
 The official Devopness SDK for JavaScript, available for browsers, mobile devices and `Node.js` backends.
 
