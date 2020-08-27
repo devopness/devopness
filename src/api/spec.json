@@ -3571,10 +3571,10 @@
         }
       }
     },
-    "/static/language-runtimes": {
+    "/static/applications": {
       "get": {
-        "summary": "List supported language runtimes and respective frameworks",
-        "operationId": "listLanguageRuntimes",
+        "summary": "Lists options of the applications",
+        "operationId": "listApplicationOptions",
         "tags": [
           "Static Data"
         ],
@@ -3595,7 +3595,71 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LanguageRuntimes"
+                  "$ref": "#/components/schemas/ApplicationOptions"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/static/cronjobs": {
+      "get": {
+        "summary": "Lists options of the cronjobs",
+        "operationId": "listCronJobOptions",
+        "tags": [
+          "Static Data"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CronJobOptions"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/static/environments": {
+      "get": {
+        "summary": "Lists options of the environments",
+        "operationId": "listEnvironmentOptions",
+        "tags": [
+          "Static Data"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EnvironmentOptions"
                 }
               }
             }
@@ -4902,6 +4966,15 @@
           "default_branch"
         ]
       },
+      "ApplicationOptions": {
+        "type": "object",
+        "properties": {
+          "language_runtimes": {
+            "description": "Supported language runtimes and respective frameworks",
+            "$ref": "#/components/schemas/LanguageRuntimes"
+          }
+        }
+      },
       "ApplicationUpdate": {
         "type": "object",
         "properties": {
@@ -5529,6 +5602,41 @@
           "run_as_user"
         ]
       },
+      "CronJobFrequency": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "Frequency pattern to trigger the cronjob",
+            "example": "0 0 1 * *"
+          },
+          "displayable": {
+            "type": "string",
+            "description": "Displayable text version of the frequency",
+            "example": "Monthly"
+          },
+          "hint": {
+            "type": "string",
+            "description": "Text hint describing the frequency",
+            "example": "Run once a month at midnight on the first day of month"
+          }
+        }
+      },
+      "CronJobFrequencies": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/CronJobFrequency"
+        }
+      },
+      "CronJobOptions": {
+        "type": "object",
+        "properties": {
+          "frequencies": {
+            "description": "The supported time frequencies to trigger a cronjob",
+            "$ref": "#/components/schemas/CronJobFrequencies"
+          }
+        }
+      },
       "CronJobs": {
         "type": "array",
         "items": {
@@ -5820,6 +5928,41 @@
           "name",
           "type"
         ]
+      },
+      "EnvironmentOptions": {
+        "type": "object",
+        "properties": {
+          "types": {
+            "description": "The supported environments types",
+            "$ref": "#/components/schemas/EnvironmentOptionTypes"
+          }
+        }
+      },
+      "EnvironmentOptionTypes": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/EnvironmentOptionType"
+        }
+      },
+      "EnvironmentOptionType": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "The internal name of the environment",
+            "example": "development"
+          },
+          "displayable": {
+            "type": "string",
+            "description": "The formatted name to be displayed in user interfaces",
+            "example": "Development"
+          },
+          "hint": {
+            "type": "string",
+            "description": "Text describing the environment purpose",
+            "example": "Environment used for dev testing"
+          }
+        }
       },
       "EnvironmentUpdate": {
         "type": "object",
