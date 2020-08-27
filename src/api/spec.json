@@ -5471,6 +5471,9 @@
             ],
             "example": "completed"
           },
+          "created_by_user": {
+            "$ref": "#/components/schemas/User"
+          },
           "created_at": {
             "type": "string",
             "format": "date-time",
@@ -6145,6 +6148,9 @@
               "failed"
             ],
             "example": "completed"
+          },
+          "created_by_user": {
+            "$ref": "#/components/schemas/User"
           },
           "created_at": {
             "type": "string",

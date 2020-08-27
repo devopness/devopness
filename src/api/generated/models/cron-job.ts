@@ -12,6 +12,7 @@
  */
 
 
+import { User } from './user';
 
 /**
  * 
@@ -67,6 +68,12 @@ export interface CronJob {
      * @memberof CronJob
      */
     status?: CronJobStatusEnum;
+    /**
+     * 
+     * @type {User}
+     * @memberof CronJob
+     */
+    created_by_user?: User;
     /**
      * The date and time when the record was created
      * @type {string}

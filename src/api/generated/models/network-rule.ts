@@ -12,6 +12,7 @@
  */
 
 
+import { User } from './user';
 
 /**
  * 
@@ -73,6 +74,12 @@ export interface NetworkRule {
      * @memberof NetworkRule
      */
     status?: NetworkRuleStatusEnum;
+    /**
+     * 
+     * @type {User}
+     * @memberof NetworkRule
+     */
+    created_by_user?: User;
     /**
      * The date and time when the record was created
      * @type {string}
