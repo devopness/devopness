@@ -7,7 +7,7 @@
 
 The official Devopness SDK for JavaScript, available for browsers, mobile devices and `Node.js` backends.
 
-`Devopness` SDK provides convenient access to the `Devopness` API from applications written in the JavaScript language. It includes a pre-defined set of classes for API resources and aims to make it easy and fun to consume `Devopness` API from web apps, Node.js apps, or mobile apps written in the JavaScript language.
+Devopness SDK includes a pre-defined set of classes that provide convenient access to Devopness platform data. This SDK aims to make it easy and fun to consume Devopness API resources from web, Node.js or mobile apps written in the JavaScript programming language.
 
 ## About Devopness
 `Devopness` aims to drastically change the way software developers deploy applications and manage on-premise and cloud servers in a secure and performant fashion.
