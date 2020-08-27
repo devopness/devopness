@@ -14,7 +14,7 @@
 
 import { ActionStatus } from './action-status';
 import { ActionType } from './action-type';
-import { User } from './user';
+import { ResourceType } from './resource-type';
 
 /**
  * 
@@ -59,23 +59,35 @@ export interface Action {
      */
     current_step?: number;
     /**
+     * The code of the current step
+     * @type {string}
+     * @memberof Action
+     */
+    current_step_code?: string;
+    /**
      * A message describing the current step being executed
      * @type {string}
      * @memberof Action
      */
     current_step_message?: string;
     /**
-     * Name of the resource_entity who the actions is related to
-     * @type {string}
-     * @memberof Action
-     */
-    resource_entity?: string;
-    /**
      * 
-     * @type {User}
+     * @type {ResourceType}
      * @memberof Action
      */
-    triggered_by?: User;
+    resource_type?: ResourceType;
+    /**
+     * The unique id of the resource
+     * @type {number}
+     * @memberof Action
+     */
+    resource_id?: number;
+    /**
+     * The user id that has triggered the action
+     * @type {number}
+     * @memberof Action
+     */
+    triggered_by?: number;
     /**
      * The date and time when the action started to be executed (left the `pending/waiting` status)
      * @type {string}
