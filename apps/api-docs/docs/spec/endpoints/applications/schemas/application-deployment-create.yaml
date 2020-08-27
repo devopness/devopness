@@ -1,0 +1,11 @@
+type: object
+properties:
+  type:
+    type: string
+    example: deploy
+  branch:
+    type: string
+    example: master
+  hash:
+    type: string
+    example: 7ff09b0f2ed07625222f689d1afc29aa322b03a2

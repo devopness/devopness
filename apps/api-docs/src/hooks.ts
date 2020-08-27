@@ -55,7 +55,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         hooks.log(`${i}  \t  ${slug}:  (${inputs.join(', ')}) -> (${outputs.join(', ')})`);
     }
     */
-    const numTests = 80;
+    const numTests = 82;
     hooks.log(`running ${numTests}/${transactions.length} transactions`);
     utils.selectTransactionsByName(transactions, txOrder.slice(0, numTests).map(k => transactionSlugToName[k]));
 

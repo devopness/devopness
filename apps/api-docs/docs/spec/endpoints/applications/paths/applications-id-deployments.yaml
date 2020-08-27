@@ -15,12 +15,12 @@ parameters:
     required: true
     description: Numeric ID of the application to be deployed
 requestBody:
-  description: A JSON object containing list of additional parameters
+  description: A JSON object containing deployment parameters
   required: false
   content:
     application/json:
       schema:
-        $ref: '#/components/schemas/ExtraBodyParams'
+        $ref: '#/components/schemas/ApplicationDeploymentCreate'
 responses:
   201:
     description: 'Created'

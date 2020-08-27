@@ -21,7 +21,7 @@ properties:
   repository:
     description: The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed.
     type: string
-    example: "devopness/devopness-web-site"
+    example: "devopness-api-tests/tester"
   default_branch:
     type: string
     description: The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed.

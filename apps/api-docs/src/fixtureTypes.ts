@@ -36,6 +36,9 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
         { path: 'project_id', fixture: 'project', field: 'id' },
         { path: 'environments[0].id', fixture: 'environment', field: 'id' } ,
     ],
+    'application_deploy': [
+        { path: 'environments[0].id', fixture: 'environment', field: 'id' } ,
+    ],
     'cron_job': [],
     'cron_job_create': [
         { path: 'environments[0].id', fixture: 'environment', field: 'id' } ,

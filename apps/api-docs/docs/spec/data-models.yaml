@@ -16,6 +16,8 @@ ApplicationOptions:
   $ref: ./endpoints/static/schemas/application-options.yaml
 ApplicationUpdate:
   $ref: ./endpoints/applications/schemas/application-update.yaml
+ApplicationDeploymentCreate:
+  $ref: ./endpoints/applications/schemas/application-deployment-create.yaml
 ApplicationDeployment:
   $ref: ./endpoints/applications/schemas/application-deployment.yaml
 ApplicationScript:
