@@ -41,6 +41,8 @@ properties:
     description: Current status of deploying to remote servers the current network rule
     enum: ["pending", "in-progress", "cancelled", "completed", "failed"]
     example: "completed"
+  created_by_user:
+    $ref: '#/components/schemas/User'
   created_at:
     type: string
     format: date-time
