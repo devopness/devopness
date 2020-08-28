@@ -10,7 +10,6 @@ properties:
     example: 4567890
   status:
     $ref: '#/components/schemas/ActionStatus'
-    description: The action current status
   type:
     $ref: '#/components/schemas/ActionType'
     description: The action type

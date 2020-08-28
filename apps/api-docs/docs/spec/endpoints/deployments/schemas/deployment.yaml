@@ -6,10 +6,7 @@ properties:
     description: The unique id of the given record
     example: 93457689064
   status:
-    type: string
-    description: Current status of the deployment
-    enum: ['pending', 'in-progress', 'cancelled', 'completed', 'failed']
-    example: 'completed'
+    $ref: '#/components/schemas/ActionStatus'
   type:
     type: string
     description: The deployment type

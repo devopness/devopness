@@ -9,10 +9,7 @@ properties:
     description: The step name
     example: 'Install dependencies'
   status:
-    type: string
-    description: Current status of the deployment step
-    enum: ['pending', 'in-progress', 'cancelled', 'completed', 'failed']
-    example: 'failed'
+    $ref: '#/components/schemas/ActionStatus'
   started_at:
     type: string
     format: date-time

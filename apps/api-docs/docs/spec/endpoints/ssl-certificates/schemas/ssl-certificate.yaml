@@ -34,10 +34,7 @@ properties:
     description: The contents of the certificate provided by the Certification Authority, when the certificate has not being automatically issued through `devopness`
     example: "-----BEGIN CERTIFICATE-----MIIGdDCCBVygAwIBAgISAy66cNIj ..."
   status:
-    type: string
-    description: Current status of deploying to remote servers the current certificate
-    enum: ["pending", "in-progress", "cancelled", "completed", "failed"]
-    example: "completed"
+    $ref: '#/components/schemas/ActionStatus'
   active:
     type: boolean
     description: Tells if the certificate is active for all linked servers and applications

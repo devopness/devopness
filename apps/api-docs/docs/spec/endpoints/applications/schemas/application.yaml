@@ -120,10 +120,7 @@ properties:
     description: "The list of SSL certificates issued to the application"
     $ref: '#/components/schemas/SslCertificates'
   status:
-    type: string
-    description: Current status of deploying to remote servers the current application
-    enum: ["pending", "in-progress", "cancelled", "completed", "failed"]
-    example: "completed"
+    $ref: '#/components/schemas/ActionStatus'
   created_at:
     type: string
     format: date-time

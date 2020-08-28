@@ -37,10 +37,7 @@ properties:
     example: MySQL Community Server
     nullable: true
   status:
-    type: string
-    description: Current status of deploying to remote servers the current service
-    enum: ["pending", "in-progress", "cancelled", "completed", "failed"]
-    example: "completed"
+    $ref: '#/components/schemas/ActionStatus'
   # started_at:
   #   type: string
   #   format: date-time
