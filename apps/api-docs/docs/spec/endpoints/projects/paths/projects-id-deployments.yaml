@@ -22,7 +22,11 @@ requestBody:
       schema:
         $ref: '#/components/schemas/DeploymentCreate'
 responses:
-  201:
-    $ref: '#/components/responses/Created'
+  200:
+    description: 'Ok'
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Deployments'
   422:
     $ref: '#/components/responses/ValidationError'

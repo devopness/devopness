@@ -15,11 +15,7 @@ parameters:
     required: true
     description: Numeric ID of the application to be deleted
 responses:
-  200:
+  204:
     description: 'Ok'
-    content:
-      application/json:
-        schema:
-          $ref: '#/components/schemas/Application'
   404:
     $ref: '#/components/responses/NotFound'

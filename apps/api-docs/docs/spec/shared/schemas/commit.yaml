@@ -10,7 +10,7 @@ properties:
     example: "Good developers always add messages to their commits"
   committed_at:
     type: string
-    format: date-time
+    # format: date-time
     description: The date and time when the commit has been submitted
     example: '2019-09-25T15:50:48+00:00'
   provider:
@@ -33,7 +33,7 @@ properties:
     example: "https://github.com/myusername/myrepo"
   author_email:
     type: string
-    format: email
+    # format: email
     description: The e-mail of the commit's author
   author_name:
     type: string

@@ -12,11 +12,11 @@ properties:
   branch:
     type: string
     description: The name of the branch from which the source code should be retrieved and deployed
-    example: 'feature/deployment-api-endpoints-and-docs-long-name'
+    example: 'master'
   hash:
     type: string
     description: The commit's full hash that uniquely identify a commit. Required when re-deploying
-    example: '4a03b9d21edeef8434c45818594a5d72027c14e7'
+    example: '7ff09b0f2ed07625222f689d1afc29aa322b03a2'
 required:
   - id
   - name

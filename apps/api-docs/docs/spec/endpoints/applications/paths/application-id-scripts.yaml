@@ -27,7 +27,7 @@ responses:
     content:
       application/json:
         schema:
-          $ref: '#/components/schemas/ApplicationScripts'
+          $ref: '#/components/schemas/ApplicationScript'
   404:
     $ref: "#/components/responses/NotFound"
   422:

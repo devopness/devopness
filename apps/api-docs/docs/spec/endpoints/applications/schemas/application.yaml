@@ -22,14 +22,17 @@ properties:
     description: The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed.
     type: string
     example: "devopness-api-tests/tester"
+    nullable: true
   repository_name:
     description: The name part of a repository full name (`repository_owner/repository_name`)
     type: string
     example: "devopness"
+    nullable: true
   repository_owner:
     description: The owner part of a repository full name (`repository_owner/repository_name`)
     type: string
     example: "devopness-api-tests"
+    nullable: true
   default_branch:
     type: string
     description: The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed.
@@ -46,6 +49,7 @@ properties:
     description: The language runtime engine version to be used to execute this application on the deployed servers
     type: string
     example: "19.03.2"
+    nullable: true
   framework:
     type: string
     description: The base framework on top of which the application has been implemented - it might have impact on the steps to be performed during application deployment
