@@ -48,7 +48,7 @@
   post:
     $ref: ./endpoints/environments/paths/environments-id-servers-id-link.yaml
 /environments/{environment_id}/servers/{server_id}/unlink:
-  post:
+  delete:
     $ref: ./endpoints/environments/paths/environments-id-servers-id-unlink.yaml
 /logs/deployments/{deployment_id}/steps/{deployment_step_id}:
   get:

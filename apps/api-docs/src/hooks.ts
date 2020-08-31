@@ -10,6 +10,7 @@
 import hooks, { Transaction, TransactionHook } from 'hooks';
 import { v1, v4 } from 'uuid';
 
+import DevopnessAPI from './DevopnessAPI';
 import { UserCredentials, UserTokens, isFixtureKey, Identifiable } from './fixtureTypes';
 import FixtureStore  from './FixtureStore';
 import TransactionUtils from './TransactionUtils';
@@ -28,7 +29,6 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     // skip some transactions
     const skipTransactions = [
         'replaceLinkedServers201',
-        'unlinkServerFromEnvironment204',
         'connectServer200',
         'addSshKeyToProject201',
         'addSslCertificateToApplication201'
@@ -56,7 +56,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         hooks.log(`${i}  \t  ${slug}:  (${inputs.join(', ')}) -> (${outputs.join(', ')})`);
     }
     */
-    const numTests = 97;
+    const numTests = 100;
     hooks.log(`running ${numTests}/${transactions.length} transactions`);
     utils.selectTransactionsByName(transactions, txOrder.slice(0, numTests).map(k => transactionSlugToName[k]));
 
@@ -178,6 +178,23 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     })
     before('deleteSocialAccount204', (transaction: Transaction) => {
         transaction.skip = true;
+    })
+
+    //// applications
+    // delete the leftover default application using manual API calls
+    after('deleteApplication204', (transaction: Transaction) => {
+        const authToken = fixtures.get<UserTokens>('user_tokens');
+        const project = fixtures.get<Identifiable>('project');
+        if (authToken && authToken.access_token && project) {
+            const host = transaction.host;
+            const api = new DevopnessAPI(host, authToken.access_token, hooks.log);
+            const appIDs = api.listProjectApplications(project.id);
+            if (appIDs.length > 0) {
+                const success = api.deleteApplication(appIDs[0]);
+                if (!success) {
+                }
+            }
+        }
     })
 
     done();

@@ -8,7 +8,6 @@
   },
   "scripts": {
     "build": "npm run api-docs",
-    "test": "npm run api-test",
     "tsc": "tsc",
     "api-build-spec": "npm run tsc && node ./build/buildApiSpec.js && swagger-cli validate docs/build/api-docs-output.yaml",
     "api-convert-spec-to-dredd": "api-spec-converter --from=openapi_3 --to=swagger_2 --syntax=yaml --order=alpha docs/build/api-docs-output.yaml > docs/build/api-docs-output-v2.yaml",
@@ -28,20 +27,19 @@
   },
   "homepage": "https://docs.devopness.com/",
   "devDependencies": {
+    "@types/lodash": "^4.14.159",
     "@types/js-yaml": "^3.12.4",
     "@types/toposort": "^2.0.3",
     "@types/uuid": "^8.0.1",
     "api-spec-converter": "^2.11.1",
     "dredd": "^13.1.1",
+    "lodash": "^4.17.19",
     "openapi-types": "^1.3.5",
     "redoc-cli": "^0.9.10",
     "swagger-cli": "^4.0.4",
+    "sync-request": "^6.1.0",
     "toposort": "^2.0.2",
     "typescript": "^3.9.7",
     "uuid": "^8.3.0"
-  },
-  "dependencies": {
-    "@types/lodash": "^4.14.159",
-    "lodash": "^4.17.19"
   }
 }

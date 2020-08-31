@@ -36,6 +36,7 @@ export default class TransactionGraph {
     constructor(transactionSpecs: TransactionSpec[], log: LogFunction) {
         this.log = log;
 
+        // TODO: extract these from here
         // user_credentials and user_tokens are handled differently than other fixtures, so add them manually to the graph
         const initialFixtureTransactionGraph: FixtureTransactionGraph = {
             fixtureTransactionInputs: { 
@@ -113,6 +114,14 @@ export default class TransactionGraph {
                 }
             }
         }
+
+        // TODO: extract these from here
+        this.addEdge('deleteNetworkRule204', 'unlinkServerFromEnvironment204')
+        this.addEdge('deleteDaemon204', 'unlinkServerFromEnvironment204')
+        this.addEdge('deleteService204', 'unlinkServerFromEnvironment204')
+        this.addEdge('deleteCronJob204', 'unlinkServerFromEnvironment204')
+        this.addEdge('deleteApplication204', 'unlinkServerFromEnvironment204')
+        this.addEdge('unlinkServerFromEnvironment204', 'deleteEnvironment204')
 
         // second pass: add edges connecting fixture dependencies
         for (const fixture in fixtureTransactionInputs) {
