@@ -14,7 +14,9 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
-import { LanguageRuntime } from '../../generated/models';
+import { ApplicationOptions } from '../../generated/models';
+import { CronJobOptions } from '../../generated/models';
+import { EnvironmentOptions } from '../../generated/models';
 
 /**
  * StaticDataApiService - Auto-generated
@@ -22,10 +24,28 @@ import { LanguageRuntime } from '../../generated/models';
 export class StaticDataApiService extends ApiBaseService {
     /**
      * 
-     * @summary List supported language runtimes and respective frameworks
+     * @summary Lists options of the applications
      */
-    public async listLanguageRuntimes(): Promise<ApiResponse<Array<LanguageRuntime>>> {
-        const response = await this.get <Array<LanguageRuntime>>(`/static/language-runtimes`);
+    public async listApplicationOptions(): Promise<ApiResponse<ApplicationOptions>> {
+        const response = await this.get <ApplicationOptions>(`/static/applications`);
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Lists options of the cronjobs
+     */
+    public async listCronJobOptions(): Promise<ApiResponse<CronJobOptions>> {
+        const response = await this.get <CronJobOptions>(`/static/cronjobs`);
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Lists options of the environments
+     */
+    public async listEnvironmentOptions(): Promise<ApiResponse<EnvironmentOptions>> {
+        const response = await this.get <EnvironmentOptions>(`/static/environments`);
         return new ApiResponse(response);
     }
 }
