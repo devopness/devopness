@@ -5,7 +5,8 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "lib": [
-      "ES2015"
+      "ES2015",
+      "DOM"
     ],
     "allowJs": false,
     "declaration": true,
