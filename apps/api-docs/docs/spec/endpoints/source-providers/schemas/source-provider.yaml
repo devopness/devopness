@@ -6,15 +6,9 @@ properties:
     description: The unique id of the given record
     example: 964
   displayable_name:
-    type: string
-    description: A formatted version of the `provider` field value, aligned with the provider's name branding
-    enum: ['Bitbucket', 'GitHub', 'GitLab']
-    example: 'GitHub'
+    $ref: '#/components/schemas/SourceProviderDisplayableName'
   provider:
-    type: string
-    description: The name of the Source Authentication provider
-    enum: ['bitbucket', 'github', 'gitlab']
-    example: 'bitbucket'
+    $ref: '#/components/schemas/SourceProviderName'
   provider_user_nickname:
     type: string
     description: The nickname of the user on the Source Authentication provider

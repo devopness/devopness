@@ -1,0 +1,4 @@
+type: string
+description: "The level of validation applied when issuing the certificate. This can be one out of the three validation levels conforming to public key certificates standards: `DV (Domain Validation)`, `OV (Organization validation)` or `EV (Extended Validation)`"
+enum: ["DV", "OV", "EV"]
+example: "DV"

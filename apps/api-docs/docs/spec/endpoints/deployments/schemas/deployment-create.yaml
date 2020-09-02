@@ -1,10 +1,7 @@
 type: object
 properties:
   type:
-    type: string
-    description: The type of the deployment being triggred
-    enum: [deploy, redeploy, rollback]
-    example: 'deploy'
+    $ref: '#/components/schemas/DeploymentType'
   applications:
     description: "The list of applications to be deployed together"
     type: array

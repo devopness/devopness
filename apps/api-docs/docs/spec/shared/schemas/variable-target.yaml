@@ -1,0 +1,4 @@
+type: string
+description: The target defining how the variable key/value pair will be deployed
+enum: [app-config-file, deployment-script, shared-script, nginx-block-http-before, nginx-block-http-after, nginx-block-server, os-env-var, php-cli, php-web]
+example: 'app-config-file'

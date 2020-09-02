@@ -9,27 +9,9 @@ properties:
     default: false
     description: Indicates if the service is marked for start automatically on operating system boot
   initial_state:
-    type: string
-    default: 'started'
-    description: The expected initial state of the service after installed
-    enum: [started, stopped]
-    example: 'stopped'
+    $ref: '#/components/schemas/ServiceInitialState'
   action:
-    type: string
-    description: The action to be executed for the given service
-    enum:
-      [
-        status,
-        start,
-        stop,
-        reload,
-        restart,
-        enable,
-        disable,
-        install,
-        uninstall,
-      ]
-    example: "active"
+    $ref: '#/components/schemas/ServiceAction'
   servers:
     description: The list of IDs of servers to which the service action must be performed
     type: array

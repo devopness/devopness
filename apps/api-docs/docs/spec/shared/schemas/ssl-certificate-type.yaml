@@ -1,0 +1,4 @@
+type: string
+description: The certificate type, indicating its scope
+enum: ["single-domain", "multi-domain", "wildcard"]
+example: "single-domain"

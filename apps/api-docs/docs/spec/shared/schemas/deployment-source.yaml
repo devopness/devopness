@@ -1,0 +1,4 @@
+type: string
+description: Source/channel from which the deployment has been triggered
+enum: ['manual', 'git-push', 'scheduled']
+example: 'manual'

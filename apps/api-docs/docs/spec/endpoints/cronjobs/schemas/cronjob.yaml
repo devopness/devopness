@@ -17,10 +17,7 @@ properties:
     description: A cron expression consisting of Minute, Hour, Day of Month, Month and Day of Week subexpressions
     example: "0 0 * * *"
   pattern_human_readable:
-    type: string
-    description: A translation of the cron expression to a readable string indicating its execution frequency.
-    enum: ["Every Minute", "Hourly", "Daily", "Weekly", "Monthly", "Yearly"]
-    example: "Every Minute"
+    $ref: '#/components/schemas/CronJobPattern'
   run_as_user:
     type: string
     description: The name of the Unix user on behalf of which the cron job will be executed

@@ -13,15 +13,9 @@ properties:
     description: A text describing the variable, provided by the end user
     example: 'Sample variable description'
   target:
-    type: string
-    description: The target defining how the variable key/value pair will be deployed
-    enum: [app-config-file, deployment-script, shared-script, nginx-block-http-before, nginx-block-http-after, nginx-block-server, os-env-var, php-cli, php-web]
-    example: 'app-config-file'
+    $ref: '#/components/schemas/VariableTarget'
   type:
-    type: string
-    description: The type of the key/value pair
-    enum: [variable, file]
-    example: 'variable'
+    $ref: '#/components/schemas/VariableType'
   hidden:
     type: boolean
     default: false

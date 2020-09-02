@@ -11,20 +11,11 @@ properties:
     items:
       type: string
   issuer:
-    type: string
-    description: The entity or certification authority (CA) who issued the certificate
-    enum: ["custom", "lets-encrypt"]
-    example: "custom"
+    $ref: '#/components/schemas/SslCertificateIssuer'
   type:
-    type: string
-    description: The certificate type, indicating its scope
-    enum: ["single-domain", "multi-domain", "wildcard"]
-    example: "single-domain"
+    $ref: '#/components/schemas/SslCertificateType'
   validation_level:
-    type: string
-    description: "The level of validation applied when issuing the certificate. This can be one out of the three validation levels conforming to public key certificates standards: `DV (Domain Validation)`, `OV (Organization validation)` or `EV (Extended Validation)`"
-    enum: ["DV", "OV", "EV"]
-    example: "DV"
+    $ref: '#/components/schemas/SslCertificateValidationLevel'
   custom_private_key:
     type: string
     description: The private key provided by the Certification Authority, when the certificate has not being automatically issued through `devopness`

@@ -14,10 +14,7 @@ properties:
     description: The date and time when the commit has been submitted
     example: '2019-09-25T15:50:48.000000Z'
   provider:
-    type: string
-    description: The source provider where the commit has been retrieved from
-    enum: ['bitbucket', 'github', 'gitlab']
-    example: 'github'
+    $ref: '#/components/schemas/SourceProviderName'
   repository:
     type: string
     description: The full name of the repository (`owner/repository`) to which the commit belongs to

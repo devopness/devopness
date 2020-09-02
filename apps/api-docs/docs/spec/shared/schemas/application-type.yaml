@@ -1,0 +1,4 @@
+type: string
+description: The application's type, which will mainly define if it is publicly accessible through a web domain or not
+enum: ["web", "non-web"]
+example: 'web'

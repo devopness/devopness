@@ -1,0 +1,4 @@
+type: string
+description: A formatted version of the `provider` field value, aligned with the provider's name branding
+enum: ['Bitbucket', 'Facebook', 'GitHub', 'GitLab', 'Google', 'LinkedIn']
+example: 'GitHub'

@@ -1,0 +1,4 @@
+type: string
+description: The entity or certification authority (CA) who issued the certificate
+enum: ["custom", "lets-encrypt"]
+example: "custom"

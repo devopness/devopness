@@ -1,0 +1,4 @@
+type: string
+description: The type of the deployment
+enum: [deploy, redeploy, rollback]
+example: 'deploy'

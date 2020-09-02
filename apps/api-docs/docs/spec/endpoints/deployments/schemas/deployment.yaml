@@ -8,15 +8,9 @@ properties:
   status:
     $ref: '#/components/schemas/ActionStatus'
   type:
-    type: string
-    description: The deployment type
-    enum: [deploy, redeploy, rollback]
-    example: 'deploy'
+    $ref: '#/components/schemas/DeploymentType'
   source:
-    type: string
-    description: Source/channel from which the deployment has been triggered
-    enum: ['manual', 'git-push', 'scheduled']
-    example: 'manual'
+    $ref: '#/components/schemas/DeploymentSource'
   started_at:
     type: string
     format: date-time

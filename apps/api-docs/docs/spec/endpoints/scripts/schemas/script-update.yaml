@@ -21,21 +21,9 @@ properties:
     description: The name of the Unix user on behalf of which the script will be executed
     example: devopness
   trigger_type:
-    type: string
-    description: The type of event that will trigger the script execution
-    enum: [before, after]
-    example: "after"
+    $ref: '#/components/schemas/TriggerType'
   trigger_event:
-    type: string
-    description: The application deployment event to which the script is attached
-    enum:
-      [
-        get-new-release,
-        install-dependencies,
-        activate-new-release,
-        remove-old-releases,
-      ]
-    example: "install-dependencies"
+    $ref: '#/components/schemas/TriggerEvent'
   trigger_order:
     type: integer
     description: The relative order of the script execution in case the event has multiple scripts attached

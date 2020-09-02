@@ -1,10 +1,7 @@
 type: object
 properties:
   type:
-    type: string
-    description: The type of the deployment being triggered
-    enum: [deploy, redeploy, rollback]
-    example: 'deploy'
+    $ref: '#/components/schemas/DeploymentType'
   hash:
     type: string
     description: The commit's full hash that uniquely identify a commit. Required when re-deploying

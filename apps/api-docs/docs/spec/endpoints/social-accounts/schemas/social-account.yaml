@@ -5,15 +5,9 @@ properties:
     description: The unique id of the given record
     example: 964
   displayable_name:
-    type: string
-    description: A formatted version of the `provider` field value, aligned with the provider's name branding
-    enum: ['Bitbucket', 'Facebook', 'GitHub', 'GitLab', 'Google', 'LinkedIn']
-    example: 'GitHub'
+    $ref: '#/components/schemas/SocialAccountDisplayableName'
   provider:
-    type: string
-    description: The name of the Social Authentication provider
-    enum: ['bitbucket', 'facebook', 'github', 'gitlab', 'google', 'linkedin']
-    example: 'bitbucket'
+    $ref: '#/components/schemas/SocialAccountProvider'
   provider_user_nickname:
     type: string
     description: The nickname of the user on the Social Authentication provider

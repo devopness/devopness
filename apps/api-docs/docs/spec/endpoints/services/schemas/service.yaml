@@ -26,11 +26,7 @@ properties:
     default: false
     description: Indicates if the service is marked for start automatically on operating system boot
   initial_state:
-    type: string
-    default: 'started'
-    description: The expected initial state of the service after installed
-    enum: [started, stopped]
-    example: 'stopped'
+    $ref: '#/components/schemas/ServiceInitialState'
   description:
     type: string
     description: A text describing the service, provided by the service author

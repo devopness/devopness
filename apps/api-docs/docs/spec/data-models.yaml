@@ -26,6 +26,8 @@ ApplicationScriptCreate:
   $ref: ./endpoints/applications/schemas/application-script-create.yaml
 ApplicationScripts:
   $ref: ./endpoints/applications/schemas/application-script-list.yaml
+ApplicationType:
+  $ref: ./shared/schemas/application-type.yaml
 ApplicationVariable:
   $ref: ./endpoints/applications/schemas/application-variable.yaml
 ApplicationVariableCreate:
@@ -48,6 +50,8 @@ CronJobFrequencies:
   $ref: ./endpoints/static/schemas/cronjob-frequency-list.yaml
 CronJobOptions:
   $ref: ./endpoints/static/schemas/cronjob-options.yaml
+CronJobPattern:
+  $ref: ./shared/schemas/cronjob-pattern.yaml
 CronJobs:
   $ref: ./endpoints/cronjobs/schemas/cronjob-list.yaml
 Deployment:
@@ -60,8 +64,12 @@ DeploymentCreateServer:
   $ref: ./endpoints/deployments/schemas/deployment-create-server.yaml
 Deployments:
   $ref: ./endpoints/deployments/schemas/deployment-list.yaml
+DeploymentSource:
+  $ref: ./shared/schemas/deployment-source.yaml
 DeploymentStep:
   $ref: ./endpoints/deployments/schemas/deployment-step.yaml
+DeploymentType:
+  $ref: ./shared/schemas/deployment-type.yaml
 Environment:
   $ref: ./endpoints/environments/schemas/environment.yaml
 EnvironmentCreate:
@@ -100,8 +108,12 @@ NetworkRule:
   $ref: ./endpoints/network-rules/schemas/network-rule.yaml
 NetworkRuleCreate:
   $ref: ./endpoints/network-rules/schemas/network-rule-create.yaml
+NetworkRuleProtocol:
+  $ref: ./shared/schemas/network-rule-protocol.yaml
 NetworkRules:
   $ref: ./endpoints/network-rules/schemas/network-rule-list.yaml
+NetworkRuleType:
+  $ref: ./shared/schemas/network-rule-type.yaml
 Daemon:
   $ref: ./endpoints/daemons/schemas/daemon.yaml
 DaemonCreate:
@@ -142,14 +154,24 @@ Servers:
   $ref: ./endpoints/servers/schemas/server-list.yaml
 Service:
   $ref: ./endpoints/services/schemas/service.yaml
+ServiceAction:
+  $ref: ./shared/schemas/service-action.yaml
 ServiceCreate:
   $ref: ./endpoints/services/schemas/service-create.yaml
+ServiceInitialState:
+  $ref: ./shared/schemas/service-initial-state.yaml
+ServiceName:
+  $ref: ./shared/schemas/service-name.yaml
 Services:
   $ref: ./endpoints/services/schemas/service-list.yaml
 SocialAccount:
   $ref: ./endpoints/social-accounts/schemas/social-account.yaml
 SocialAccountCreate:
   $ref: ./endpoints/social-accounts/schemas/social-account-create.yaml
+SocialAccountDisplayableName:
+  $ref: ./shared/schemas/social-account-displayable-name.yaml
+SocialAccountProvider:
+  $ref: ./shared/schemas/social-account-provider.yaml
 SocialAccounts:
   $ref: ./endpoints/social-accounts/schemas/social-account-list.yaml
 SocialAccountStatus:
@@ -158,6 +180,10 @@ SourceProvider:
   $ref: ./endpoints/source-providers/schemas/source-provider.yaml
 SourceProviderCreate:
   $ref: ./endpoints/source-providers/schemas/source-provider-create.yaml
+SourceProviderDisplayableName:
+  $ref: ./shared/schemas/source-provider-displayable-name.yaml
+SourceProviderName:
+  $ref: ./shared/schemas/source-provider-name.yaml
 SshKey:
   $ref: ./endpoints/ssh-keys/schemas/ssh-key.yaml
 SshKeyCreate:
@@ -168,8 +194,18 @@ SslCertificate:
   $ref: ./endpoints/ssl-certificates/schemas/ssl-certificate.yaml
 SslCertificateCreate:
   $ref: ./endpoints/ssl-certificates/schemas/ssl-certificate-create.yaml
+SslCertificateIssuer:
+  $ref: ./shared/schemas/ssl-certificate-issuer.yaml
 SslCertificates:
   $ref: ./endpoints/ssl-certificates/schemas/ssl-certificate-list.yaml
+SslCertificateType:
+  $ref: ./shared/schemas/ssl-certificate-type.yaml
+SslCertificateValidationLevel:
+  $ref: ./shared/schemas/ssl-certificate-validation-level.yaml
+TriggerEvent:
+  $ref: ./shared/schemas/trigger-event.yaml
+TriggerType:
+  $ref: ./shared/schemas/trigger-type.yaml
 User:
   $ref: ./endpoints/users/schemas/user.yaml
 UserAccountResendVerification:
@@ -186,5 +222,9 @@ UserRefreshTokenCreate:
   $ref: ./endpoints/users/schemas/user-refresh-token-create.yaml
 UserTokens:
   $ref: ./endpoints/users/schemas/user-tokens.yaml
+VariableTarget:
+  $ref: ./shared/schemas/variable-target.yaml
+VariableType:
+  $ref: ./shared/schemas/variable-type.yaml
 VariableUpdate:
   $ref: ./endpoints/variables/schemas/variable-update.yaml

@@ -9,15 +9,9 @@ properties:
     description: The rule's name/description/reminder
     example: HTTPS|SSH|"Opening MySQL port so desktop apps can access it remotely"
   type:
-    type: string
-    description: The type of network traffic to which this rule will be applied
-    enum: ['inbound', 'outbound']
-    example: 'inbound'
+    $ref: '#/components/schemas/NetworkRuleType'
   protocol:
-    type: string
-    description: The network protocol to which this rule will be applied.
-    enum: ['any', 'tcp', 'udp']
-    example: 'any'
+    $ref: '#/components/schemas/NetworkRuleProtocol'
   ip_address_from:
     type: string
     format: ipv4
