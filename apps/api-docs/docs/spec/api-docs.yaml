@@ -36,9 +36,9 @@ tags:
       The `devopness` API is based on HTTPS requests and JSON responses, organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API has predictable resource-oriented URLs, accepts requests with [JSON-encoded](http://www.json.org/) bodies with arguments, returns [JSON-encoded](http://www.json.org/) responses, and uses standard HTTP response codes, authentication, and verbs.
 
       ## Date format
-      All dates in the API use UTC and are strings in the [ISO 8601 "combined date and time representation" format](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations), following the [RFC 3339](https://tools.ietf.org/html/rfc3339):
+      All dates in the API use UTC and are strings in the [ISO 8601 "combined date and time representation" format](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations):
       ```
-      2015-05-12T15:50:38+00:00
+      2015-05-12T15:50:38.000000Z
       ```
 
       ## Errors
