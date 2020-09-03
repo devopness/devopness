@@ -26,19 +26,33 @@ const utils = new TransactionUtils(fixtures, hooks.log);
 
 // all setup code for the tests run inside this beforeAll hook
 hooks.beforeAll((transactions: Transaction[], done: () => void) => {
-    // skip some transactions
-    const skipTransactions = [
+    // transactions listed here aren't included in the execution plan
+    const preSkiplist = [
         'replaceLinkedServers201',
         'connectServer200',
+        // make all ssh_key routes unreachable
         'addSshKeyToProject201',
-        'addSslCertificateToApplication201'
+        // make all ssl_certificate routes unreachable
+        'addSslCertificateToApplication201',
+    ];
+    // transactions listed here are skipped with a `before` hook
+    const postSkiplist = [
+        // social_account
+        'addSocialAccount201', 
+        'getSocialAccount200', 'getSocialAccountStatusByName200',
+        'deleteSocialAccount204', 
+        // source_provider
+        'addSourceProvider201',
+        'getSourceProvider200',
+        'listSourceProviders200', 'listSourceProviders200', 
+        'deleteSourceProvider204',
     ];
 
     // get transaction specs and build maps
     const transactionSpecs: TransactionSpec[] = [];
     transactions.forEach((tx: Transaction) => {
         const spec = new TransactionSpec(tx, hooks.log);
-        if (!skipTransactions.includes(spec.slug)) {
+        if (!preSkiplist.includes(spec.slug)) {
             transactionSlugToName[spec.slug] = tx.name;
             transactionNameToSpec[tx.name] = spec;
             transactionSpecs.push(spec);
@@ -47,18 +61,32 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
 
     // build transaction graph to find running order
     const graph = new TransactionGraph(transactionSpecs, hooks.log);
-    const txOrder = graph.topologicalSort();
+    const executionPlan = graph.topologicalSort();
+
+    // shorthand methods for adding hooks by transaction slug
+    const before = (id: string, cb: TransactionHook) => hooks.before(transactionSlugToName[id], cb);
+    const after = (id: string, cb: TransactionHook) => hooks.after(transactionSlugToName[id], cb);
+    
+    // apply the post-skiplist
+    postSkiplist.forEach((slug: string) => {
+        before(slug, (transaction: Transaction) => {
+            transaction.skip = true;
+        })
+    })
+
     // uncomment the snippet below to display the planned transaction order
     /*
-    for (const i in txOrder) {
-        const slug = txOrder[i];
+    for (const i in executionPlan) {
+        const slug = executionPlan[i];
         const [inputs, outputs] = graph.edges(slug);
         hooks.log(`${i}  \t  ${slug}:  (${inputs.join(', ')}) -> (${outputs.join(', ')})`);
     }
     */
-    const numTests = 100;
+
+    // limit the number of transactions in the execution plan for development purposes
+    const numTests = 110;
     hooks.log(`running ${numTests}/${transactions.length} transactions`);
-    utils.selectTransactionsByName(transactions, txOrder.slice(0, numTests).map(k => transactionSlugToName[k]));
+    utils.selectTransactionsByName(transactions, executionPlan.slice(0, numTests).map(k => transactionSlugToName[k]));
 
     // attach graph inferred hooks
     transactions.forEach((transaction: Transaction, index: number) => {
@@ -113,13 +141,9 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         done();
     })
 
-    //// request headers
+    // request headers
     hooks.beforeEach(utils.setTransactionRequestAuthHeaderWithFixture('user_tokens'));
     hooks.beforeEach(utils.setTransactionRequestJsonHeaders);
-
-    //// shorthand methods for adding hooks by transaction slug
-    const before = (id: string, cb: TransactionHook) => hooks.before(transactionSlugToName[id], cb);
-    const after = (id: string, cb: TransactionHook) => hooks.after(transactionSlugToName[id], cb);
 
     //// users
     before('addUser201', (transaction: Transaction) => {
@@ -172,13 +196,8 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     }))
 
     //// social accounts
-    before('addSocialAccount201', (transaction: Transaction) => {
-        transaction.skip = true;
-        fixtures.put('social_account', { id: '11' });
-    })
-    before('deleteSocialAccount204', (transaction: Transaction) => {
-        transaction.skip = true;
-    })
+    // static social_account/source_provider fixture, needed by many other routes
+    fixtures.put('social_account', { id: '11' });
 
     //// applications
     // delete the leftover default application using manual API calls

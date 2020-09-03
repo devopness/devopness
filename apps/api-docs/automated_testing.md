@@ -106,3 +106,15 @@ If the route is still not being executed properly after the basic setup, refer t
 - Ensure that the request payload format in the OpenAPI spec satisfies the server validation returned on error responses.
 ### Is the return value correct?
 - Ensure that the response payload format in the OpenAPI spec satisfies the payload returned by the server.
+
+## Skipped transactions
+Some transactions may show up as `skipped` in dredd logs. The origin of those skips is one of the following:
+### Non-2xx transactions
+Dredd automatically skips non-2xx transactions. The automated process described here doesn't cover unscessuful route responses.
+### Unreachable transactions
+Transactions that can't have their dependencies satisfied in the dependency graph are considered unreachable and are skipped.
+For more details about unreachable transactions, refer to the subsection "2. Transaction adjacency list" of the "Overview" section of this document.
+### Manually skipped transactions
+Transactions can be manually skipped either before or after the execution planning, through separate skiplists:
+* Pre-planning skiplist: transactions included here aren't added to the dependency graph, and may induce other skips by making dependent transactions unreachable. These are also not included in the transaction count.
+* Post-planning skiplist: skips transactions present in the execution plan, in "runtime". This might cause "missing fixture" errors if incorrectly used.
