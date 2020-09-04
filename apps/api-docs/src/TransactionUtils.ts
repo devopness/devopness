@@ -18,7 +18,7 @@ export default class TransactionUtils {
 
     // define which transactions will be ran and in which order
     // inspired by https://github.com/apiaryio/dredd/issues/456
-    selectTransactionsByName(transactions: Transaction[], slugs: string[]) {
+    applyExecutionPlan(transactions: Transaction[], slugs: string[]) {
         let keep = [];
         for (const transaction of transactions) {
             const idx = slugs.indexOf(transaction.name);

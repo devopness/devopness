@@ -46,6 +46,13 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         'getSourceProvider200',
         'listSourceProviders200', 'listSourceProviders200', 
         'deleteSourceProvider204',
+        // repository
+        'getRepository200',
+        'listRepositories200',
+        // email-dependant user transactions
+        'activateUser204',
+        'resetUserPassword200',
+        'sendUserPasswordResetLink200',
     ];
 
     // get transaction specs and build maps
@@ -83,10 +90,8 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     }
     */
 
-    // limit the number of transactions in the execution plan for development purposes
-    const numTests = 110;
-    hooks.log(`running ${numTests}/${transactions.length} transactions`);
-    utils.selectTransactionsByName(transactions, executionPlan.slice(0, numTests).map(k => transactionSlugToName[k]));
+    // apply execution plan
+    utils.applyExecutionPlan(transactions, executionPlan.map(k => transactionSlugToName[k]));
 
     // attach graph inferred hooks
     transactions.forEach((transaction: Transaction, index: number) => {
@@ -195,7 +200,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         body['entrypoint'] = 'index.html'
     }))
 
-    //// social accounts
+    //// social accounts and source providers
     // static social_account/source_provider fixture, needed by many other routes
     fixtures.put('social_account', { id: '11' });
 

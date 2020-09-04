@@ -101,6 +101,7 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     'user_credentials': [],
     'user_tokens': [],
     'user': [],
+    'variable': [],
 };
 
 // keyof in TS 2.9 is a string | number
