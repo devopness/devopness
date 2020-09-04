@@ -142,6 +142,10 @@ ScriptUpdate:
   $ref: ./endpoints/scripts/schemas/script-update.yaml
 Server:
   $ref: ./endpoints/servers/schemas/server.yaml
+ServerAction:
+  $ref: ./endpoints/actions/schemas/server-action.yaml
+ServerActions:
+  $ref: ./endpoints/actions/schemas/server-action-list.yaml
 ServerBlueprint:
   $ref: ./endpoints/servers/schemas/server-blueprint.yaml
 ServerCommands:

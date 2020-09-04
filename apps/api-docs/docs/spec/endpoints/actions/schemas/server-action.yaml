@@ -1,23 +1,28 @@
 type: object
+description: An object representing the action dispatched to a specific server
 properties:
-  id:
+  server_id:
     type: integer
-    description: The Id of the given action
-    example: 567819876
+    description: The Id of the server on which the action must be performed
+    example: 4567890
   status:
     $ref: '#/components/schemas/ActionStatus'
-  type:
-    $ref: '#/components/schemas/ActionType'
-    description: The action type
-  resource_type:
-    $ref: '#/components/schemas/ResourceType'
-    description: Name of the entity who the actions is related to
-  resource_id:
+  total_steps:
     type: integer
-    description: The unique id of the resource
-    example: 1839123
-  servers:
-    $ref: '#/components/schemas/ServerActions'
+    minimum: 0
+    maximum: 127
+    description: The total number of steps to complete the action
+    example: 5
+  current_step:
+    type: integer
+    minimum: 0
+    maximum: 127
+    description: The current action step being executed
+    example: 2
+  current_step_message:
+    type: string
+    description: A message describing the current step being executed
+    example: "Step 2 of 5: echo 'running' >> ~/test.log"
   started_at:
     type: string
     format: date-time
