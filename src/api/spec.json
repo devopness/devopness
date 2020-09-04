@@ -223,15 +223,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Application"
-                }
-              }
-            }
+          "204": {
+            "description": "Ok"
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
@@ -269,12 +262,12 @@
           }
         ],
         "requestBody": {
-          "description": "A JSON object containing list of additional parameters",
+          "description": "A JSON object containing deployment parameters",
           "required": false,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ExtraBodyParams"
+                "$ref": "#/components/schemas/ApplicationDeploymentCreate"
               }
             }
           }
@@ -383,7 +376,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ApplicationScripts"
+                  "$ref": "#/components/schemas/ApplicationScript"
                 }
               }
             }
@@ -923,7 +916,7 @@
       }
     },
     "/environments/{environment_id}/servers/{server_id}/unlink": {
-      "post": {
+      "delete": {
         "summary": "Unlink/Remove a server from an environment",
         "operationId": "unlinkServerFromEnvironment",
         "tags": [
@@ -962,17 +955,6 @@
             "description": "Unique ID of the server to unlink"
           }
         ],
-        "requestBody": {
-          "description": "A JSON object containing environment server unlink optional parameters",
-          "required": false,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/EnvironmentLinkItem"
-              }
-            }
-          }
-        },
         "responses": {
           "204": {
             "$ref": "#/components/responses/NoContent"
@@ -1567,8 +1549,15 @@
           }
         },
         "responses": {
-          "201": {
-            "$ref": "#/components/responses/Created"
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Deployments"
+                }
+              }
+            }
           },
           "422": {
             "$ref": "#/components/responses/ValidationError"
@@ -4337,7 +4326,7 @@
   "tags": [
     {
       "name": "API Reference",
-      "description": "This page contains the documentation on how to use `devopness` through API calls.\n> Note: This documentation is not complete, so for missing parts or inaccurate API description please\n>\n> reach out to `devopness` API team.\n\n## Introduction\ndevopness's API exposes all `devopness` features via a standardized programmatic interface. Through devopness API a registered Devopness user can perform every operation you can do on https://www.devopness.com web interfaces and mobile apps.\n\n## Getting started\nAll you need to obtain a token and start consuming this API is a valid email/password registered with devopness.com.\n\n\nThe `devopness` API is based on HTTPS requests and JSON responses, organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API has predictable resource-oriented URLs, accepts requests with [JSON-encoded](http://www.json.org/) bodies with arguments, returns [JSON-encoded](http://www.json.org/) responses, and uses standard HTTP response codes, authentication, and verbs.\n\n## Date format\nAll dates in the API use UTC and are strings in the [ISO 8601 \"combined date and time representation\" format](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations), following the [RFC 3339](https://tools.ietf.org/html/rfc3339):\n```\n2015-05-12T15:50:38+00:00\n```\n\n## Errors\nThe devopness API uses standard HTTP status codes to indicate the success or failure of an API call. In general: Codes in the `2xx` range indicate success. Codes in the `4xx` range indicate an error that failed given the information provided (e.g., a required parameter was omitted). Codes in the `5xx` range indicate an error on the API servers and are very rare.\n\nThe body of the error response is a JSON in the following format:\n\n```\n{\n  \"message\": \"The given request data was invalid\"\n  \"errors\": { // Optional errors object, returned only when there are detailed error message to be shared\n      \"field_1\": [\n          \"Optional error message related to field_1\"\n      ],\n      \"field_2\": [\n          \"Optional error message related to field_2\"\n      ],\n  }\n}\n```\n\n## Responses\nWhen a request is successful, a response body will typically be sent back in the form of a JSON object.\nException to this rule is when a DELETE request is processed, which will result in a successful HTTP 204 status and an empty response body.\n\n### Response codes\nResponse codes indicate success or failure of request processing.\nStatus codes from the `2xx` range indicate that request has been accepted.\nIf the returned code is from the `4xx` or `5xx` range then it reveals either problem with the request or unability to process data.\nSee below for a list of HTTP Status codes used by `devopness` API:\n\n| Status Code   | Description   |\n| -------------:|---------------|\n| 200           | Ok - The request was successful\n| 201           | Created - The request was successful and a new resource has been created as a result\n| 202           | Accepted - The request has been received but not yet completely processed\n| 204           | No content - The request was successful. There is no content to return, but the headers may be useful\n| 400           | Bad Request - The server could not understand the request due to invalid syntax\n| 401           | Unauthenticated - It is usally caused by using wrong or expired credentials\n| 403           | Forbidden/Unauthorized - The used credentials do not allow access to the resource\n| 404           | Not Found - The server cannot find the requested resource\n| 405           | Method not allowed - The request method has been disabled and cannot be used\n| 409           | Conflict - The current request conflicts with the current state of the server\n| 415           | Unsupported Media Type - The request's `Content-Type` or `Accept` headers are not set to a valid format\n| 422           | Unprocessable Entity - The request was unable to be processed due to validation errors\n| 429           | Too many requests - The client exceeded the requests limit in a window of time\n| 500           | Internal Server Error. Please contact the `devopness` team\n\n## Routes and Endpoints\nA route is a URI which can be mapped to different HTTP methods. The mapping of an individual HTTP method to a route is known as an endpoint. `devopness` API exposes, as much as posible, well standardized endpoints with resources and segments leading the path to access the desired resource data.\n\nEach resource mentioned in an endpoint segment has its name written in the plural form, as we are always referencing a collection of objects, that might or might not be filtered by a single ID or extra query string parameters.\n\n### Resources and nested resources endpoints\nBasically there are two types of endpoints used in `devopness` API:\n1) Resource endpoints:\n\n**Pattern:**\n\n`/collection/{resource_id}/[{action}]`\n\n**Examples:**\n\n| HTTP Method   | Example                            | Purpose       |\n| -------------:|------------------------------------|---------------|\n| POST          | /projects                          | Create new item\n| GET           | /social-accounts                   | List all items\n| GET           | /social-accounts/{account}/status  | Perform a custom action (`status`) for a single item\n| GET           | /cron-jobs/{id}                    | Get a single item by id\n| PUT           | /applications/{id}                 | Modify an item\n| DELETE        | /daemons/{id}                      | Remove an item permanently\n\n2) Nested resources endpoints:\n\nNested resources are used when there is a clear hierarchy between the parent resource and the subresource, or for convenience to make it easy and predcitable on how to filter subresources belonging to a parent resource.\nIn `devopness` API design we strive to avoid nesting resources more than 1 level deep + one action related to the child resource or to the relationship between parent and child.\n\n**Pattern:**\n\n`/parent-collection/{parent_id}/{child-collection}/{child_id}/[{action}]`\n\n**Examples:**\n\n| HTTP Method   | Example                        | Purpose       |\n| -------------:|--------------------------------|---------------|\n| GET           | /projects/{id}/servers         | List all items belonging/linked to the parent resource\n| POST          | /projects/{id}/servers         | Create a new subresource item and link it to the parent object\n| POST          | /parent/{id}/child/{id}/link   | Create a relationship between parent and child object when both items already existed but were not linked.\n| DELETE        | /parent/{id}/child/{id}/unlink | Remove the relationship between parent and child resources, without deleting any item\n\n## Expanding objects\n`TO DO:` define the rules for object expansion and document it here\n"
+      "description": "This page contains the documentation on how to use `devopness` through API calls.\n> Note: This documentation is not complete, so for missing parts or inaccurate API description please\n>\n> reach out to `devopness` API team.\n\n## Introduction\ndevopness's API exposes all `devopness` features via a standardized programmatic interface. Through devopness API a registered Devopness user can perform every operation you can do on https://www.devopness.com web interfaces and mobile apps.\n\n## Getting started\nAll you need to obtain a token and start consuming this API is a valid email/password registered with devopness.com.\n\n\nThe `devopness` API is based on HTTPS requests and JSON responses, organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API has predictable resource-oriented URLs, accepts requests with [JSON-encoded](http://www.json.org/) bodies with arguments, returns [JSON-encoded](http://www.json.org/) responses, and uses standard HTTP response codes, authentication, and verbs.\n\n## Date format\nAll dates in the API use UTC and are strings in the [ISO 8601 \"combined date and time representation\" format](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations):\n```\n2015-05-12T15:50:38.000000Z\n```\n\n## Errors\nThe devopness API uses standard HTTP status codes to indicate the success or failure of an API call. In general: Codes in the `2xx` range indicate success. Codes in the `4xx` range indicate an error that failed given the information provided (e.g., a required parameter was omitted). Codes in the `5xx` range indicate an error on the API servers and are very rare.\n\nThe body of the error response is a JSON in the following format:\n\n```\n{\n  \"message\": \"The given request data was invalid\"\n  \"errors\": { // Optional errors object, returned only when there are detailed error message to be shared\n      \"field_1\": [\n          \"Optional error message related to field_1\"\n      ],\n      \"field_2\": [\n          \"Optional error message related to field_2\"\n      ],\n  }\n}\n```\n\n## Responses\nWhen a request is successful, a response body will typically be sent back in the form of a JSON object.\nException to this rule is when a DELETE request is processed, which will result in a successful HTTP 204 status and an empty response body.\n\n### Response codes\nResponse codes indicate success or failure of request processing.\nStatus codes from the `2xx` range indicate that request has been accepted.\nIf the returned code is from the `4xx` or `5xx` range then it reveals either problem with the request or unability to process data.\nSee below for a list of HTTP Status codes used by `devopness` API:\n\n| Status Code   | Description   |\n| -------------:|---------------|\n| 200           | Ok - The request was successful\n| 201           | Created - The request was successful and a new resource has been created as a result\n| 202           | Accepted - The request has been received but not yet completely processed\n| 204           | No content - The request was successful. There is no content to return, but the headers may be useful\n| 400           | Bad Request - The server could not understand the request due to invalid syntax\n| 401           | Unauthenticated - It is usally caused by using wrong or expired credentials\n| 403           | Forbidden/Unauthorized - The used credentials do not allow access to the resource\n| 404           | Not Found - The server cannot find the requested resource\n| 405           | Method not allowed - The request method has been disabled and cannot be used\n| 409           | Conflict - The current request conflicts with the current state of the server\n| 415           | Unsupported Media Type - The request's `Content-Type` or `Accept` headers are not set to a valid format\n| 422           | Unprocessable Entity - The request was unable to be processed due to validation errors\n| 429           | Too many requests - The client exceeded the requests limit in a window of time\n| 500           | Internal Server Error. Please contact the `devopness` team\n\n## Routes and Endpoints\nA route is a URI which can be mapped to different HTTP methods. The mapping of an individual HTTP method to a route is known as an endpoint. `devopness` API exposes, as much as posible, well standardized endpoints with resources and segments leading the path to access the desired resource data.\n\nEach resource mentioned in an endpoint segment has its name written in the plural form, as we are always referencing a collection of objects, that might or might not be filtered by a single ID or extra query string parameters.\n\n### Resources and nested resources endpoints\nBasically there are two types of endpoints used in `devopness` API:\n1) Resource endpoints:\n\n**Pattern:**\n\n`/collection/{resource_id}/[{action}]`\n\n**Examples:**\n\n| HTTP Method   | Example                            | Purpose       |\n| -------------:|------------------------------------|---------------|\n| POST          | /projects                          | Create new item\n| GET           | /social-accounts                   | List all items\n| GET           | /social-accounts/{account}/status  | Perform a custom action (`status`) for a single item\n| GET           | /cron-jobs/{id}                    | Get a single item by id\n| PUT           | /applications/{id}                 | Modify an item\n| DELETE        | /daemons/{id}                      | Remove an item permanently\n\n2) Nested resources endpoints:\n\nNested resources are used when there is a clear hierarchy between the parent resource and the subresource, or for convenience to make it easy and predcitable on how to filter subresources belonging to a parent resource.\nIn `devopness` API design we strive to avoid nesting resources more than 1 level deep + one action related to the child resource or to the relationship between parent and child.\n\n**Pattern:**\n\n`/parent-collection/{parent_id}/{child-collection}/{child_id}/[{action}]`\n\n**Examples:**\n\n| HTTP Method   | Example                        | Purpose       |\n| -------------:|--------------------------------|---------------|\n| GET           | /projects/{id}/servers         | List all items belonging/linked to the parent resource\n| POST          | /projects/{id}/servers         | Create a new subresource item and link it to the parent object\n| POST          | /parent/{id}/child/{id}/link   | Create a relationship between parent and child object when both items already existed but were not linked.\n| DELETE        | /parent/{id}/child/{id}/unlink | Remove the relationship between parent and child resources, without deleting any item\n\n## Expanding objects\n`TO DO:` define the rules for object expansion and document it here\n"
     },
     {
       "name": "Static Data",
@@ -4511,42 +4500,12 @@
             "description": "The Id of the given action",
             "example": 567819876
           },
-          "server_id": {
-            "type": "integer",
-            "description": "The Id of the server on which the action must be performed",
-            "example": 4567890
-          },
           "status": {
-            "$ref": "#/components/schemas/ActionStatus",
-            "description": "The action current status"
+            "$ref": "#/components/schemas/ActionStatus"
           },
           "type": {
             "$ref": "#/components/schemas/ActionType",
             "description": "The action type"
-          },
-          "total_steps": {
-            "type": "integer",
-            "minimum": 0,
-            "maximum": 127,
-            "description": "The total number of steps to complete the action",
-            "example": 5
-          },
-          "current_step": {
-            "type": "integer",
-            "minimum": 0,
-            "maximum": 127,
-            "description": "The current action step being executed",
-            "example": 2
-          },
-          "current_step_code": {
-            "type": "string",
-            "description": "The code of the current step",
-            "example": "echo 'running' >> ~/test.log"
-          },
-          "current_step_message": {
-            "type": "string",
-            "description": "A message describing the current step being executed",
-            "example": "Step 2 of 5: echo 'running' >> ~/test.log"
           },
           "resource_type": {
             "$ref": "#/components/schemas/ResourceType",
@@ -4557,34 +4516,32 @@
             "description": "The unique id of the resource",
             "example": 1839123
           },
-          "triggered_by": {
-            "type": "integer",
-            "description": "The user id that has triggered the action",
-            "example": 1
+          "servers": {
+            "$ref": "#/components/schemas/ServerActions"
           },
           "started_at": {
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the action started to be executed (left the `pending/waiting` status)",
-            "example": "2019-09-25T15:50:48+00:00"
+            "example": "2019-09-25T15:50:48.000000Z"
           },
           "completed_at": {
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the action has finished execution",
-            "example": "2019-09-25T13:52:04+00:00"
+            "example": "2019-09-25T13:52:04.000000Z"
           },
           "created_at": {
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was created",
-            "example": "2019-09-25T15:50:48+00:00"
+            "example": "2019-09-25T15:50:48.000000Z"
           },
           "updated_at": {
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was last updated",
-            "example": "2019-09-25T13:52:04+00:00"
+            "example": "2019-09-25T13:52:04.000000Z"
           }
         }
       },
@@ -4595,11 +4552,11 @@
         }
       },
       "ActionStatus": {
+        "description": "Current item status",
         "type": "string",
         "enum": [
           "pending",
           "in-progress",
-          "cancelled",
           "completed",
           "failed"
         ],
@@ -4670,13 +4627,7 @@
             "example": 445678964
           },
           "type": {
-            "type": "string",
-            "description": "The application's type, which will mainly define if it is publicly accessible through a web domain or not",
-            "enum": [
-              "web",
-              "non-web"
-            ],
-            "example": "web"
+            "$ref": "#/components/schemas/ApplicationType"
           },
           "name": {
             "type": "string",
@@ -4692,17 +4643,20 @@
           "repository": {
             "description": "The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed.",
             "type": "string",
-            "example": "devopness/devopness-web-site"
+            "example": "devopness-api-tests/tester",
+            "nullable": true
           },
           "repository_name": {
             "description": "The name part of a repository full name (`repository_owner/repository_name`)",
             "type": "string",
-            "example": "devopness"
+            "example": "devopness",
+            "nullable": true
           },
           "repository_owner": {
             "description": "The owner part of a repository full name (`repository_owner/repository_name`)",
             "type": "string",
-            "example": "devopness-web-site"
+            "example": "devopness-api-tests",
+            "nullable": true
           },
           "default_branch": {
             "type": "string",
@@ -4722,7 +4676,8 @@
           "engine_version": {
             "description": "The language runtime engine version to be used to execute this application on the deployed servers",
             "type": "string",
-            "example": "19.03.2"
+            "example": "19.03.2",
+            "nullable": true
           },
           "framework": {
             "type": "string",
@@ -4808,28 +4763,19 @@
             "$ref": "#/components/schemas/SslCertificates"
           },
           "status": {
-            "type": "string",
-            "description": "Current status of deploying to remote servers the current application",
-            "enum": [
-              "pending",
-              "in-progress",
-              "cancelled",
-              "completed",
-              "failed"
-            ],
-            "example": "completed"
+            "$ref": "#/components/schemas/ActionStatus"
           },
           "created_at": {
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was created",
-            "example": "2019-09-25T15:50:48+00:00"
+            "example": "2019-09-25T15:50:48.000000Z"
           },
           "updated_at": {
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was last updated",
-            "example": "2019-09-25T13:52:04+00:00"
+            "example": "2019-09-25T13:52:04.000000Z"
           }
         },
         "required": [
@@ -4852,13 +4798,7 @@
             "description": "Numeric ID of the source provider account where the repository is hosted. Required when the `repository` field is informed."
           },
           "type": {
-            "type": "string",
-            "description": "The application's type, which will mainly define if it is publicly accessible through a web domain or not",
-            "enum": [
-              "web",
-              "non-web"
-            ],
-            "example": "web"
+            "$ref": "#/components/schemas/ApplicationType"
           },
           "name": {
             "type": "string",
@@ -4874,7 +4814,7 @@
           "repository": {
             "description": "The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed.",
             "type": "string",
-            "example": "devopness/devopness-web-site"
+            "example": "devopness-api-tests/tester"
           },
           "default_branch": {
             "type": "string",
@@ -4984,13 +4924,7 @@
             "example": 445678964
           },
           "type": {
-            "type": "string",
-            "description": "The application's type, which will mainly define if it is publicly accessible through a web domain or not",
-            "enum": [
-              "web",
-              "non-web"
-            ],
-            "example": "web"
+            "$ref": "#/components/schemas/ApplicationType"
           },
           "name": {
             "type": "string",
@@ -5006,7 +4940,7 @@
           "repository": {
             "description": "The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed.",
             "type": "string",
-            "example": "devopness/devopness-web-site"
+            "example": "devopness-api-tests/tester"
           },
           "default_branch": {
             "type": "string",
@@ -5087,23 +5021,28 @@
           "default_branch"
         ]
       },
-      "ApplicationDeployment": {
+      "ApplicationDeploymentCreate": {
         "type": "object",
         "properties": {
           "type": {
             "type": "string",
-            "description": "The type of the deployment being triggered",
-            "enum": [
-              "deploy",
-              "redeploy",
-              "rollback"
-            ],
             "example": "deploy"
           },
           "branch": {
             "type": "string",
-            "description": "The name of the branch from which the source code should be retrieved and deployed",
-            "example": "feature/deployment-api-endpoints-and-docs-long-name"
+            "example": "master"
+          },
+          "hash": {
+            "type": "string",
+            "example": "7ff09b0f2ed07625222f689d1afc29aa322b03a2"
+          }
+        }
+      },
+      "ApplicationDeployment": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/DeploymentType"
           },
           "hash": {
             "type": "string",
@@ -5114,18 +5053,17 @@
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was created",
-            "example": "2019-09-25T15:50:48+00:00"
+            "example": "2019-09-25T15:50:48.000000Z"
           },
           "updated_at": {
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was last updated",
-            "example": "2019-09-25T13:52:04+00:00"
+            "example": "2019-09-25T13:52:04.000000Z"
           }
         },
         "required": [
-          "type",
-          "branch"
+          "type"
         ]
       },
       "ApplicationScript": {
@@ -5157,24 +5095,10 @@
             "example": "echo \"Configuring project...\" && ./configure"
           },
           "trigger_type": {
-            "type": "string",
-            "description": "The type of event that will trigger the script execution",
-            "enum": [
-              "before",
-              "after"
-            ],
-            "example": "after"
+            "$ref": "#/components/schemas/TriggerType"
           },
           "trigger_event": {
-            "type": "string",
-            "description": "The application deployment event to which the script is attached",
-            "enum": [
-              "get-new-release",
-              "install-dependencies",
-              "activate-new-release",
-              "remove-old-releases"
-            ],
-            "example": "install-dependencies"
+            "$ref": "#/components/schemas/TriggerEvent"
           },
           "trigger_order": {
             "type": "integer",
@@ -5185,13 +5109,13 @@
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was created",
-            "example": "2020-04-16T15:50:48+00:00"
+            "example": "2020-04-16T15:50:48.000000Z"
           },
           "updated_at": {
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was last updated",
-            "example": "2020-04-16T15:50:48+00:00"
+            "example": "2020-04-16T15:50:48.000000Z"
           }
         },
         "required": [
@@ -5219,24 +5143,10 @@
             "example": "echo \"Configuring project...\" && ./configure"
           },
           "trigger_type": {
-            "type": "string",
-            "description": "The type of event that will trigger the script execution",
-            "enum": [
-              "before",
-              "after"
-            ],
-            "example": "after"
+            "$ref": "#/components/schemas/TriggerType"
           },
           "trigger_event": {
-            "type": "string",
-            "description": "The application deployment event to which the script is attached",
-            "enum": [
-              "get-new-release",
-              "install-dependencies",
-              "activate-new-release",
-              "remove-old-releases"
-            ],
-            "example": "install-dependencies"
+            "$ref": "#/components/schemas/TriggerEvent"
           },
           "trigger_order": {
             "type": "integer",
@@ -5257,6 +5167,15 @@
         "items": {
           "$ref": "#/components/schemas/ApplicationScript"
         }
+      },
+      "ApplicationType": {
+        "type": "string",
+        "description": "The application's type, which will mainly define if it is publicly accessible through a web domain or not",
+        "enum": [
+          "web",
+          "non-web"
+        ],
+        "example": "web"
       },
       "ApplicationVariable": {
         "type": "object",
@@ -5282,29 +5201,10 @@
             "example": "Sample variable description"
           },
           "target": {
-            "type": "string",
-            "description": "The target defining how the variable key/value pair will be deployed",
-            "enum": [
-              "app-config-file",
-              "deployment-script",
-              "shared-script",
-              "nginx-block-http-before",
-              "nginx-block-http-after",
-              "nginx-block-server",
-              "os-env-var",
-              "php-cli",
-              "php-web"
-            ],
-            "example": "app-config-file"
+            "$ref": "#/components/schemas/VariableTarget"
           },
           "type": {
-            "type": "string",
-            "description": "The type of the key/value pair",
-            "enum": [
-              "variable",
-              "file"
-            ],
-            "example": "variable"
+            "$ref": "#/components/schemas/VariableType"
           },
           "hidden": {
             "type": "boolean",
@@ -5315,13 +5215,13 @@
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was created",
-            "example": "2020-04-16T15:50:48+00:00"
+            "example": "2020-04-16T15:50:48.000000Z"
           },
           "updated_at": {
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was last updated",
-            "example": "2020-04-16T15:50:48+00:00"
+            "example": "2020-04-16T15:50:48.000000Z"
           }
         },
         "required": [
@@ -5350,29 +5250,10 @@
             "example": "Sample variable description"
           },
           "target": {
-            "type": "string",
-            "description": "The target defining how the variable key/value pair will be deployed",
-            "enum": [
-              "app-config-file",
-              "deployment-script",
-              "shared-script",
-              "nginx-block-http-before",
-              "nginx-block-http-after",
-              "nginx-block-server",
-              "os-env-var",
-              "php-cli",
-              "php-web"
-            ],
-            "example": "app-config-file"
+            "$ref": "#/components/schemas/VariableTarget"
           },
           "type": {
-            "type": "string",
-            "description": "The type of the key/value pair",
-            "enum": [
-              "variable",
-              "file"
-            ],
-            "example": "variable"
+            "$ref": "#/components/schemas/VariableType"
           },
           "hidden": {
             "type": "boolean",
@@ -5383,13 +5264,13 @@
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was created",
-            "example": "2020-04-16T15:50:48+00:00"
+            "example": "2020-04-16T15:50:48.000000Z"
           },
           "updated_at": {
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was last updated",
-            "example": "2020-04-16T15:50:48+00:00"
+            "example": "2020-04-16T15:50:48.000000Z"
           }
         },
         "required": [
@@ -5444,19 +5325,11 @@
           },
           "committed_at": {
             "type": "string",
-            "format": "date-time",
             "description": "The date and time when the commit has been submitted",
-            "example": "2019-09-25T15:50:48+00:00"
+            "example": "2019-09-25T15:50:48.000000Z"
           },
           "provider": {
-            "type": "string",
-            "description": "The source provider where the commit has been retrieved from",
-            "enum": [
-              "bitbucket",
-              "github",
-              "gitlab"
-            ],
-            "example": "github"
+            "$ref": "#/components/schemas/SourceProviderName"
           },
           "repository": {
             "type": "string",
@@ -5476,7 +5349,6 @@
           },
           "author_email": {
             "type": "string",
-            "format": "email",
             "description": "The e-mail of the commit's author"
           },
           "author_name": {
@@ -5510,17 +5382,7 @@
             "example": "0 0 * * *"
           },
           "pattern_human_readable": {
-            "type": "string",
-            "description": "A translation of the cron expression to a readable string indicating its execution frequency.",
-            "enum": [
-              "Every Minute",
-              "Hourly",
-              "Daily",
-              "Weekly",
-              "Monthly",
-              "Yearly"
-            ],
-            "example": "Every Minute"
+            "$ref": "#/components/schemas/CronJobPattern"
           },
           "run_as_user": {
             "type": "string",
@@ -5533,16 +5395,7 @@
             "description": "Indicates if the cron job was auto_generated by `devopness` itself"
           },
           "status": {
-            "type": "string",
-            "description": "Current status of deploying to remote servers the current cron job",
-            "enum": [
-              "pending",
-              "in-progress",
-              "cancelled",
-              "completed",
-              "failed"
-            ],
-            "example": "completed"
+            "$ref": "#/components/schemas/ActionStatus"
           },
           "created_by_user": {
             "$ref": "#/components/schemas/User"
@@ -5551,13 +5404,13 @@
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was created",
-            "example": "2019-09-25T15:50:48+00:00"
+            "example": "2019-09-25T15:50:48.000000Z"
           },
           "updated_at": {
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was last updated",
-            "example": "2019-09-25T13:52:04+00:00"
+            "example": "2019-09-25T13:52:04.000000Z"
           }
         },
         "required": [
@@ -5637,6 +5490,19 @@
           }
         }
       },
+      "CronJobPattern": {
+        "type": "string",
+        "description": "A translation of the cron expression to a readable string indicating its execution frequency.",
+        "enum": [
+          "Every Minute",
+          "Hourly",
+          "Daily",
+          "Weekly",
+          "Monthly",
+          "Yearly"
+        ],
+        "example": "Every Minute"
+      },
       "CronJobs": {
         "type": "array",
         "items": {
@@ -5653,48 +5519,27 @@
             "example": 93457689064
           },
           "status": {
-            "type": "string",
-            "description": "Current status of the deployment",
-            "enum": [
-              "pending",
-              "in-progress",
-              "cancelled",
-              "completed",
-              "failed"
-            ],
-            "example": "completed"
+            "$ref": "#/components/schemas/ActionStatus"
           },
           "type": {
-            "type": "string",
-            "description": "The deployment type",
-            "enum": [
-              "deploy",
-              "redeploy",
-              "rollback"
-            ],
-            "example": "deploy"
+            "$ref": "#/components/schemas/DeploymentType"
           },
           "source": {
-            "type": "string",
-            "description": "Source/channel from which the deployment has been triggered",
-            "enum": [
-              "manual",
-              "git-push",
-              "scheduled"
-            ],
-            "example": "manual"
+            "$ref": "#/components/schemas/DeploymentSource"
           },
           "started_at": {
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the action started to be executed (left the `pending/waiting` status)",
-            "example": "2019-09-25T15:50:48+00:00"
+            "example": "2019-09-25T15:50:48.000000Z",
+            "nullable": true
           },
           "completed_at": {
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the action has finished execution",
-            "example": "2019-09-25T13:52:04+00:00"
+            "example": "2019-09-25T13:52:04.000000Z",
+            "nullable": true
           },
           "actions": {
             "description": "The list of actions related to the deployment",
@@ -5720,13 +5565,15 @@
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was created",
-            "example": "2019-09-25T15:50:48+00:00"
+            "example": "2019-09-25T15:50:48.000000Z",
+            "nullable": true
           },
           "updated_at": {
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was last updated",
-            "example": "2019-09-25T13:52:04+00:00"
+            "example": "2019-09-25T13:52:04.000000Z",
+            "nullable": true
           }
         },
         "required": [
@@ -5742,14 +5589,7 @@
         "type": "object",
         "properties": {
           "type": {
-            "type": "string",
-            "description": "The type of the deployment being triggred",
-            "enum": [
-              "deploy",
-              "redeploy",
-              "rollback"
-            ],
-            "example": "deploy"
+            "$ref": "#/components/schemas/DeploymentType"
           },
           "applications": {
             "description": "The list of applications to be deployed together",
@@ -5764,6 +5604,9 @@
             "items": {
               "$ref": "#/components/schemas/DeploymentCreateServer"
             }
+          },
+          "environments": {
+            "$ref": "#/components/schemas/EnvironmentLinks"
           }
         },
         "required": [
@@ -5789,12 +5632,12 @@
           "branch": {
             "type": "string",
             "description": "The name of the branch from which the source code should be retrieved and deployed",
-            "example": "feature/deployment-api-endpoints-and-docs-long-name"
+            "example": "master"
           },
           "hash": {
             "type": "string",
             "description": "The commit's full hash that uniquely identify a commit. Required when re-deploying",
-            "example": "4a03b9d21edeef8434c45818594a5d72027c14e7"
+            "example": "7ff09b0f2ed07625222f689d1afc29aa322b03a2"
           }
         },
         "required": [
@@ -5829,6 +5672,16 @@
           "$ref": "#/components/schemas/Deployment"
         }
       },
+      "DeploymentSource": {
+        "type": "string",
+        "description": "Source/channel from which the deployment has been triggered",
+        "enum": [
+          "manual",
+          "git-push",
+          "scheduled"
+        ],
+        "example": "manual"
+      },
       "DeploymentStep": {
         "type": "object",
         "properties": {
@@ -5843,28 +5696,21 @@
             "example": "Install dependencies"
           },
           "status": {
-            "type": "string",
-            "description": "Current status of the deployment step",
-            "enum": [
-              "pending",
-              "in-progress",
-              "cancelled",
-              "completed",
-              "failed"
-            ],
-            "example": "failed"
+            "$ref": "#/components/schemas/ActionStatus"
           },
           "started_at": {
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the step started to be executed (left the `pending/waiting` status)",
-            "example": "2019-09-25T15:50:48+00:00"
+            "example": "2019-09-25T15:50:48.000000Z",
+            "nullable": true
           },
           "completed_at": {
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the step has finished execution",
-            "example": "2019-09-25T13:52:04+00:00"
+            "example": "2019-09-25T13:52:04.000000Z",
+            "nullable": true
           }
         },
         "required": [
@@ -5872,6 +5718,16 @@
           "order",
           "status"
         ]
+      },
+      "DeploymentType": {
+        "type": "string",
+        "description": "The type of the deployment",
+        "enum": [
+          "deploy",
+          "redeploy",
+          "rollback"
+        ],
+        "example": "deploy"
       },
       "Environment": {
         "type": "object",
@@ -5897,13 +5753,13 @@
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was created",
-            "example": "2019-09-25T15:50:48+00:00"
+            "example": "2019-09-25T15:50:48.000000Z"
           },
           "updated_at": {
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was last updated",
-            "example": "2019-09-25T13:52:04+00:00"
+            "example": "2019-09-25T13:52:04.000000Z"
           }
         },
         "required": [
@@ -6112,79 +5968,76 @@
           },
           "defaults": {
             "description": "Default values that apply to apps created in devopness using this framework",
-            "type": "array",
-            "items": {
-              "properties": {
-                "default_branch": {
-                  "type": "string",
-                  "description": "The version control branch that, by default, will be retrieved and deployed. This might be overriden by client apps API calls when actually triggering a new deployment.",
-                  "example": "develop"
-                },
-                "push_to_deploy": {
-                  "description": "Indicates if push to deploy webhooks are enabled for this application/environment, if so code will be deployed when commited to the default_branch",
-                  "type": "boolean",
-                  "example": false
-                },
-                "programming_language": {
-                  "type": "string",
-                  "description": "The predominant programming language used in the application source code",
-                  "example": "php"
-                },
-                "engine_version": {
-                  "description": "The language runtime engine version to be used to execute this application code on the deployed servers",
-                  "type": "string",
-                  "example": "19.03.2"
-                },
-                "framework": {
-                  "type": "string",
-                  "description": "The base framework on top of which the application has been implemented - if any",
-                  "example": "drupal"
-                },
-                "app_directory": {
-                  "type": "string",
-                  "description": "The physical path of the application code/artifacts on the deployed servers",
-                  "example": "/var/www/my-app"
-                },
-                "root_directory": {
-                  "type": "string",
-                  "description": "The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository.",
-                  "example": "/ or /src or /lib/src or /code or /app"
-                },
-                "public_directory": {
-                  "type": "string",
-                  "description": "The relative web directory where publicly accessible assets are located and the web content should be served from",
-                  "example": "/public"
-                },
-                "entrypoint": {
-                  "type": "string",
-                  "description": "The entrypoint tells devopness how an application should be started and has basically two forms:\n\n1) `File`: if it's a simple file name/path an web app will be served using the entrypoint value as its index file. Example: `index.html`\n\n2) `Command`: if a command line instruction is provided as the entrypoint value, it will be handled as the start up command that initalizes the application. It will be assumed that the user is an advanced user that knows what she/he is doing, therefore the command specified here will be run - as is - everytime the application needs to be started.\n",
-                  "example": "`index.html`, `index.php`, `server.php`, `default.htm`, `node server.js`, `yarn start`, `npm run production`, `docker run -d -P --name my_container_name my_image_name`, `php artisan serve –-host=192.168.2.20 --port=8000`"
-                },
-                "listening_address": {
-                  "description": "Useful, for instance, when deploying `docker` containerized applications. If the application is not initialized by `devopness` itself, the user should inform the address at which the application listens to external calls. The address can be an IP, IP:PORT, HOSTNAME, HOSTNAME:PORT or unix:PATH",
-                  "type": "string",
-                  "example": "`unix:/tmp/backend3`, `http://127.0.0.1:8000`, `127.0.0.1:3000`, `http://localhost`"
-                },
-                "build_command": {
-                  "description": "The optional command that should be executed once during deployment to build the source code and get the application in a ready state.",
-                  "type": "string",
-                  "example": "`docker build -t my_image_name .`, `yarn build`, `jekyll build`, `python build.py`"
-                },
-                "deployments_keep": {
-                  "type": "integer",
-                  "description": "The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers",
-                  "example": 4
-                },
-                "install_dependencies_dev": {
-                  "description": "Indicates if at deployment time we should execute package manager command to install dependencies used in development mode",
-                  "type": "boolean",
-                  "example": false
-                },
-                "install_dependencies_prod": {
-                  "description": "Indicates if at deployment time we should execute package manager command to install dependencies used in production mode",
-                  "type": "boolean",
-                  "example": true
-                }
+            "properties": {
+              "default_branch": {
+                "type": "string",
+                "description": "The version control branch that, by default, will be retrieved and deployed. This might be overriden by client apps API calls when actually triggering a new deployment.",
+                "example": "develop"
+              },
+              "push_to_deploy": {
+                "description": "Indicates if push to deploy webhooks are enabled for this application/environment, if so code will be deployed when commited to the default_branch",
+                "type": "boolean",
+                "example": false
+              },
+              "programming_language": {
+                "type": "string",
+                "description": "The predominant programming language used in the application source code",
+                "example": "php"
+              },
+              "engine_version": {
+                "description": "The language runtime engine version to be used to execute this application code on the deployed servers",
+                "type": "string",
+                "example": "19.03.2"
+              },
+              "framework": {
+                "type": "string",
+                "description": "The base framework on top of which the application has been implemented - if any",
+                "example": "drupal"
+              },
+              "app_directory": {
+                "type": "string",
+                "description": "The physical path of the application code/artifacts on the deployed servers",
+                "example": "/var/www/my-app"
+              },
+              "root_directory": {
+                "type": "string",
+                "description": "The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository.",
+                "example": "/ or /src or /lib/src or /code or /app"
+              },
+              "public_directory": {
+                "type": "string",
+                "description": "The relative web directory where publicly accessible assets are located and the web content should be served from",
+                "example": "/public"
+              },
+              "entrypoint": {
+                "type": "string",
+                "description": "The entrypoint tells devopness how an application should be started and has basically two forms:\n\n1) `File`: if it's a simple file name/path an web app will be served using the entrypoint value as its index file. Example: `index.html`\n\n2) `Command`: if a command line instruction is provided as the entrypoint value, it will be handled as the start up command that initalizes the application. It will be assumed that the user is an advanced user that knows what she/he is doing, therefore the command specified here will be run - as is - everytime the application needs to be started.\n",
+                "example": "`index.html`, `index.php`, `server.php`, `default.htm`, `node server.js`, `yarn start`, `npm run production`, `docker run -d -P --name my_container_name my_image_name`, `php artisan serve –-host=192.168.2.20 --port=8000`"
+              },
+              "listening_address": {
+                "description": "Useful, for instance, when deploying `docker` containerized applications. If the application is not initialized by `devopness` itself, the user should inform the address at which the application listens to external calls. The address can be an IP, IP:PORT, HOSTNAME, HOSTNAME:PORT or unix:PATH",
+                "type": "string",
+                "example": "`unix:/tmp/backend3`, `http://127.0.0.1:8000`, `127.0.0.1:3000`, `http://localhost`"
+              },
+              "build_command": {
+                "description": "The optional command that should be executed once during deployment to build the source code and get the application in a ready state.",
+                "type": "string",
+                "example": "`docker build -t my_image_name .`, `yarn build`, `jekyll build`, `python build.py`"
+              },
+              "deployments_keep": {
+                "type": "integer",
+                "description": "The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers",
+                "example": 4
+              },
+              "install_dependencies_dev": {
+                "description": "Indicates if at deployment time we should execute package manager command to install dependencies used in development mode",
+                "type": "boolean",
+                "example": false
+              },
+              "install_dependencies_prod": {
+                "description": "Indicates if at deployment time we should execute package manager command to install dependencies used in production mode",
+                "type": "boolean",
+                "example": true
               }
             }
           }
@@ -6240,23 +6093,10 @@
             "example": "HTTPS|SSH|\"Opening MySQL port so desktop apps can access it remotely\""
           },
           "type": {
-            "type": "string",
-            "description": "The type of network traffic to which this rule will be applied",
-            "enum": [
-              "inbound",
-              "outbound"
-            ],
-            "example": "inbound"
+            "$ref": "#/components/schemas/NetworkRuleType"
           },
           "protocol": {
-            "type": "string",
-            "description": "The network protocol to which this rule will be applied.",
-            "enum": [
-              "any",
-              "tcp",
-              "udp"
-            ],
-            "example": "any"
+            "$ref": "#/components/schemas/NetworkRuleProtocol"
           },
           "ip_address_from": {
             "type": "string",
@@ -6281,16 +6121,7 @@
             "example": 7654
           },
           "status": {
-            "type": "string",
-            "description": "Current status of deploying to remote servers the current network rule",
-            "enum": [
-              "pending",
-              "in-progress",
-              "cancelled",
-              "completed",
-              "failed"
-            ],
-            "example": "completed"
+            "$ref": "#/components/schemas/ActionStatus"
           },
           "created_by_user": {
             "$ref": "#/components/schemas/User"
@@ -6299,13 +6130,13 @@
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was created",
-            "example": "2019-09-25T15:50:48+00:00"
+            "example": "2019-09-25T15:50:48.000000Z"
           },
           "updated_at": {
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was last updated",
-            "example": "2019-09-25T13:52:04+00:00"
+            "example": "2019-09-25T13:52:04.000000Z"
           }
         },
         "required": [
@@ -6326,23 +6157,10 @@
             "example": "HTTPS|SSH|\"Open MySQL port for remote access\""
           },
           "type": {
-            "type": "string",
-            "description": "The type of network traffic to which this rule will be applied",
-            "enum": [
-              "inbound",
-              "outbound"
-            ],
-            "example": "inbound"
+            "$ref": "#/components/schemas/NetworkRuleType"
           },
           "protocol": {
-            "type": "string",
-            "description": "The network protocol to which this rule will be applied.",
-            "enum": [
-              "any",
-              "tcp",
-              "udp"
-            ],
-            "example": "any"
+            "$ref": "#/components/schemas/NetworkRuleProtocol"
           },
           "ip_address_from": {
             "type": "string",
@@ -6380,11 +6198,30 @@
           "port_to"
         ]
       },
+      "NetworkRuleProtocol": {
+        "type": "string",
+        "description": "The network protocol to which this rule is applied.",
+        "enum": [
+          "any",
+          "tcp",
+          "udp"
+        ],
+        "example": "any"
+      },
       "NetworkRules": {
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/NetworkRule"
         }
+      },
+      "NetworkRuleType": {
+        "type": "string",
+        "description": "The type of network traffic to which this rule is applied",
+        "enum": [
+          "inbound",
+          "outbound"
+        ],
+        "example": "inbound"
       },
       "Daemon": {
         "type": "object",
@@ -6425,28 +6262,19 @@
             "description": "Indicates if the command was auto_generated by `devopness` itself"
           },
           "status": {
-            "type": "string",
-            "description": "Current status of deploying to remote servers the current daemon process",
-            "enum": [
-              "pending",
-              "in-progress",
-              "cancelled",
-              "completed",
-              "failed"
-            ],
-            "example": "completed"
+            "$ref": "#/components/schemas/ActionStatus"
           },
           "created_at": {
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was created",
-            "example": "2019-09-25T15:50:48+00:00"
+            "example": "2019-09-25T15:50:48.000000Z"
           },
           "updated_at": {
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was last updated",
-            "example": "2019-09-25T13:52:04+00:00"
+            "example": "2019-09-25T13:52:04.000000Z"
           }
         },
         "required": [
@@ -6723,24 +6551,10 @@
             "example": "devopness"
           },
           "trigger_type": {
-            "type": "string",
-            "description": "The type of event that will trigger the script execution",
-            "enum": [
-              "before",
-              "after"
-            ],
-            "example": "after"
+            "$ref": "#/components/schemas/TriggerType"
           },
           "trigger_event": {
-            "type": "string",
-            "description": "The application deployment event to which the script is attached",
-            "enum": [
-              "get-new-release",
-              "install-dependencies",
-              "activate-new-release",
-              "remove-old-releases"
-            ],
-            "example": "install-dependencies"
+            "$ref": "#/components/schemas/TriggerEvent"
           },
           "trigger_order": {
             "type": "integer",
@@ -6751,13 +6565,13 @@
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was created",
-            "example": "2019-09-25T13:49:51+00:00"
+            "example": "2019-09-25T13:49:51.000000Z"
           },
           "updated_at": {
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was last updated",
-            "example": "2019-09-25T13:52:04+00:00"
+            "example": "2019-09-25T13:52:04.000000Z"
           }
         },
         "required": [
@@ -6801,24 +6615,10 @@
             "example": "devopness"
           },
           "trigger_type": {
-            "type": "string",
-            "description": "The type of event that will trigger the script execution",
-            "enum": [
-              "before",
-              "after"
-            ],
-            "example": "after"
+            "$ref": "#/components/schemas/TriggerType"
           },
           "trigger_event": {
-            "type": "string",
-            "description": "The application deployment event to which the script is attached",
-            "enum": [
-              "get-new-release",
-              "install-dependencies",
-              "activate-new-release",
-              "remove-old-releases"
-            ],
-            "example": "install-dependencies"
+            "$ref": "#/components/schemas/TriggerEvent"
           },
           "trigger_order": {
             "type": "integer",
@@ -6891,6 +6691,70 @@
           "user_id",
           "active"
         ]
+      },
+      "ServerAction": {
+        "type": "object",
+        "description": "An object representing the action dispatched to a specific server",
+        "properties": {
+          "server_id": {
+            "type": "integer",
+            "description": "The Id of the server on which the action must be performed",
+            "example": 4567890
+          },
+          "status": {
+            "$ref": "#/components/schemas/ActionStatus"
+          },
+          "total_steps": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 127,
+            "description": "The total number of steps to complete the action",
+            "example": 5
+          },
+          "current_step": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 127,
+            "description": "The current action step being executed",
+            "example": 2
+          },
+          "current_step_message": {
+            "type": "string",
+            "description": "A message describing the current step being executed",
+            "example": "Step 2 of 5: echo 'running' >> ~/test.log"
+          },
+          "started_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the action started to be executed (left the `pending/waiting` status)",
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "completed_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the action has finished execution",
+            "example": "2019-09-25T13:52:04.000000Z"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25T13:52:04.000000Z"
+          }
+        }
+      },
+      "ServerActions": {
+        "type": "array",
+        "description": "List of actions dispatched to servers",
+        "items": {
+          "$ref": "#/components/schemas/ServerAction"
+        }
       },
       "ServerBlueprint": {
         "type": "object",
@@ -7026,14 +6890,7 @@
             "description": "Indicates if the service is marked for start automatically on operating system boot"
           },
           "initial_state": {
-            "type": "string",
-            "default": "started",
-            "description": "The expected initial state of the service after installed",
-            "enum": [
-              "started",
-              "stopped"
-            ],
-            "example": "stopped"
+            "$ref": "#/components/schemas/ServiceInitialState"
           },
           "description": {
             "type": "string",
@@ -7042,28 +6899,19 @@
             "nullable": true
           },
           "status": {
-            "type": "string",
-            "description": "Current status of deploying to remote servers the current service",
-            "enum": [
-              "pending",
-              "in-progress",
-              "cancelled",
-              "completed",
-              "failed"
-            ],
-            "example": "completed"
+            "$ref": "#/components/schemas/ActionStatus"
           },
           "created_at": {
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was created",
-            "example": "2020-04-16T15:50:48+00:00"
+            "example": "2020-04-16T15:50:48.000000Z"
           },
           "updated_at": {
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was last updated",
-            "example": "2020-04-16T15:50:48+00:00"
+            "example": "2020-04-16T15:50:48.000000Z"
           }
         },
         "required": [
@@ -7076,18 +6924,27 @@
           "updated_at"
         ]
       },
+      "ServiceAction": {
+        "type": "string",
+        "description": "The action to be executed for the given service",
+        "enum": [
+          "status",
+          "start",
+          "stop",
+          "reload",
+          "restart",
+          "enable",
+          "disable",
+          "install",
+          "uninstall"
+        ],
+        "example": "active"
+      },
       "ServiceCreate": {
         "type": "object",
         "properties": {
           "name": {
-            "type": "string",
-            "description": "The name of a supported service",
-            "enum": [
-              "mysql",
-              "nginx",
-              "redis"
-            ],
-            "example": "mysql"
+            "$ref": "#/components/schemas/ServiceName"
           },
           "auto_start": {
             "type": "boolean",
@@ -7095,14 +6952,7 @@
             "description": "Indicates if the service is marked for start automatically on operating system boot"
           },
           "initial_state": {
-            "type": "string",
-            "default": "started",
-            "description": "The expected initial state of the service after installed",
-            "enum": [
-              "started",
-              "stopped"
-            ],
-            "example": "stopped"
+            "$ref": "#/components/schemas/ServiceInitialState"
           },
           "environments": {
             "$ref": "#/components/schemas/EnvironmentLinks"
@@ -7113,6 +6963,26 @@
           "auto_start",
           "initial_state"
         ]
+      },
+      "ServiceInitialState": {
+        "type": "string",
+        "default": "started",
+        "description": "The expected initial state of the service after installed",
+        "enum": [
+          "started",
+          "stopped"
+        ],
+        "example": "stopped"
+      },
+      "ServiceName": {
+        "type": "string",
+        "description": "The name of the service",
+        "enum": [
+          "mysql",
+          "nginx",
+          "redis"
+        ],
+        "example": "mysql"
       },
       "Services": {
         "type": "array",
@@ -7129,30 +6999,10 @@
             "example": 964
           },
           "displayable_name": {
-            "type": "string",
-            "description": "A formatted version of the `provider` field value, aligned with the provider's name branding",
-            "enum": [
-              "Bitbucket",
-              "Facebook",
-              "GitHub",
-              "GitLab",
-              "Google",
-              "LinkedIn"
-            ],
-            "example": "GitHub"
+            "$ref": "#/components/schemas/SocialAccountDisplayableName"
           },
           "provider": {
-            "type": "string",
-            "description": "The name of the Social Authentication provider",
-            "enum": [
-              "bitbucket",
-              "facebook",
-              "github",
-              "gitlab",
-              "google",
-              "linkedin"
-            ],
-            "example": "bitbucket"
+            "$ref": "#/components/schemas/SocialAccountProvider"
           },
           "provider_user_nickname": {
             "type": "string",
@@ -7172,13 +7022,13 @@
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was created",
-            "example": "2019-09-25T15:50:48+00:00"
+            "example": "2019-09-25T15:50:48.000000Z"
           },
           "updated_at": {
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was last updated",
-            "example": "2019-09-25T13:52:04+00:00"
+            "example": "2019-09-25T13:52:04.000000Z"
           }
         },
         "required": [
@@ -7191,17 +7041,7 @@
         "type": "object",
         "properties": {
           "provider": {
-            "type": "string",
-            "description": "The name of the Social Authentication provider",
-            "enum": [
-              "bitbucket",
-              "facebook",
-              "github",
-              "gitlab",
-              "google",
-              "linkedin"
-            ],
-            "example": "bitbucket"
+            "$ref": "#/components/schemas/SocialAccountProvider"
           },
           "callback_code": {
             "type": "string",
@@ -7214,6 +7054,32 @@
           "callback_code"
         ]
       },
+      "SocialAccountDisplayableName": {
+        "type": "string",
+        "description": "A formatted version of the `provider` field value, aligned with the provider's name branding",
+        "enum": [
+          "Bitbucket",
+          "Facebook",
+          "GitHub",
+          "GitLab",
+          "Google",
+          "LinkedIn"
+        ],
+        "example": "GitHub"
+      },
+      "SocialAccountProvider": {
+        "type": "string",
+        "description": "The name of the Social Authentication provider",
+        "enum": [
+          "bitbucket",
+          "facebook",
+          "github",
+          "gitlab",
+          "google",
+          "linkedin"
+        ],
+        "example": "bitbucket"
+      },
       "SocialAccounts": {
         "type": "array",
         "items": {
@@ -7224,17 +7090,7 @@
         "type": "object",
         "properties": {
           "provider": {
-            "type": "string",
-            "description": "The name of the Social Authentication provider",
-            "enum": [
-              "bitbucket",
-              "facebook",
-              "github",
-              "gitlab",
-              "google",
-              "linkedin"
-            ],
-            "example": "bitbucket"
+            "$ref": "#/components/schemas/SocialAccountProvider"
           },
           "connected": {
             "type": "boolean",
@@ -7250,6 +7106,7 @@
       },
       "SourceProvider": {
         "type": "object",
+        "nullable": true,
         "properties": {
           "id": {
             "type": "integer",
@@ -7257,24 +7114,10 @@
             "example": 964
           },
           "displayable_name": {
-            "type": "string",
-            "description": "A formatted version of the `provider` field value, aligned with the provider's name branding",
-            "enum": [
-              "Bitbucket",
-              "GitHub",
-              "GitLab"
-            ],
-            "example": "GitHub"
+            "$ref": "#/components/schemas/SourceProviderDisplayableName"
           },
           "provider": {
-            "type": "string",
-            "description": "The name of the Source Authentication provider",
-            "enum": [
-              "bitbucket",
-              "github",
-              "gitlab"
-            ],
-            "example": "bitbucket"
+            "$ref": "#/components/schemas/SourceProviderName"
           },
           "provider_user_nickname": {
             "type": "string",
@@ -7290,13 +7133,13 @@
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was created",
-            "example": "2019-09-25T15:50:48+00:00"
+            "example": "2019-09-25T15:50:48.000000Z"
           },
           "updated_at": {
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was last updated",
-            "example": "2019-09-25T13:52:04+00:00"
+            "example": "2019-09-25T13:52:04.000000Z"
           }
         },
         "required": [
@@ -7309,14 +7152,7 @@
         "type": "object",
         "properties": {
           "provider": {
-            "type": "string",
-            "description": "The name of the Source Authentication provider",
-            "enum": [
-              "bitbucket",
-              "github",
-              "gitlab"
-            ],
-            "example": "bitbucket"
+            "$ref": "#/components/schemas/SourceProviderName"
           },
           "callback_code": {
             "type": "string",
@@ -7328,6 +7164,26 @@
           "provider",
           "callback_code"
         ]
+      },
+      "SourceProviderDisplayableName": {
+        "type": "string",
+        "description": "A formatted version of the `provider` field value, aligned with the provider's name branding",
+        "enum": [
+          "Bitbucket",
+          "GitHub",
+          "GitLab"
+        ],
+        "example": "GitHub"
+      },
+      "SourceProviderName": {
+        "type": "string",
+        "description": "The name of the Source Authentication provider",
+        "enum": [
+          "bitbucket",
+          "github",
+          "gitlab"
+        ],
+        "example": "bitbucket"
       },
       "SshKey": {
         "type": "object",
@@ -7358,16 +7214,7 @@
             "example": "f1:59:d6:c4:55:97:06:94:e3:f2:82:de:46:e5:27:39"
           },
           "status": {
-            "type": "string",
-            "description": "Current status of deploying to remote servers the current key",
-            "enum": [
-              "pending",
-              "in-progress",
-              "cancelled",
-              "completed",
-              "failed"
-            ],
-            "example": "completed"
+            "$ref": "#/components/schemas/ActionStatus"
           }
         },
         "required": [
@@ -7433,33 +7280,13 @@
             }
           },
           "issuer": {
-            "type": "string",
-            "description": "The entity or certification authority (CA) who issued the certificate",
-            "enum": [
-              "custom",
-              "lets-encrypt"
-            ],
-            "example": "custom"
+            "$ref": "#/components/schemas/SslCertificateIssuer"
           },
           "type": {
-            "type": "string",
-            "description": "The certificate type, indicating its scope",
-            "enum": [
-              "single-domain",
-              "multi-domain",
-              "wildcard"
-            ],
-            "example": "single-domain"
+            "$ref": "#/components/schemas/SslCertificateType"
           },
           "validation_level": {
-            "type": "string",
-            "description": "The level of validation applied when issuing the certificate. This can be one out of the three validation levels conforming to public key certificates standards: `DV (Domain Validation)`, `OV (Organization validation)` or `EV (Extended Validation)`",
-            "enum": [
-              "DV",
-              "OV",
-              "EV"
-            ],
-            "example": "DV"
+            "$ref": "#/components/schemas/SslCertificateValidationLevel"
           },
           "custom_private_key": {
             "type": "string",
@@ -7472,16 +7299,7 @@
             "example": "-----BEGIN CERTIFICATE-----MIIGdDCCBVygAwIBAgISAy66cNIj ..."
           },
           "status": {
-            "type": "string",
-            "description": "Current status of deploying to remote servers the current certificate",
-            "enum": [
-              "pending",
-              "in-progress",
-              "cancelled",
-              "completed",
-              "failed"
-            ],
-            "example": "completed"
+            "$ref": "#/components/schemas/ActionStatus"
           },
           "active": {
             "type": "boolean",
@@ -7508,13 +7326,13 @@
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was created",
-            "example": "2020-04-16T15:50:48+00:00"
+            "example": "2020-04-16T15:50:48.000000Z"
           },
           "updated_at": {
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was last updated",
-            "example": "2020-04-16T15:50:48+00:00"
+            "example": "2020-04-16T15:50:48.000000Z"
           }
         },
         "required": [
@@ -7548,33 +7366,13 @@
             }
           },
           "issuer": {
-            "type": "string",
-            "description": "The entity or certification authority (CA) who issued the certificate",
-            "enum": [
-              "custom",
-              "lets-encrypt"
-            ],
-            "example": "custom"
+            "$ref": "#/components/schemas/SslCertificateIssuer"
           },
           "type": {
-            "type": "string",
-            "description": "The certificate type, indicating its scope",
-            "enum": [
-              "single-domain",
-              "multi-domain",
-              "wildcard"
-            ],
-            "example": "single-domain"
+            "$ref": "#/components/schemas/SslCertificateType"
           },
           "validation_level": {
-            "type": "string",
-            "description": "The level of validation applied when issuing the certificate. This can be one out of the three validation levels conforming to public key certificates standards: `DV (Domain Validation)`, `OV (Organization validation)` or `EV (Extended Validation)`",
-            "enum": [
-              "DV",
-              "OV",
-              "EV"
-            ],
-            "example": "DV"
+            "$ref": "#/components/schemas/SslCertificateValidationLevel"
           },
           "custom_private_key": {
             "type": "string",
@@ -7597,11 +7395,60 @@
           "type"
         ]
       },
+      "SslCertificateIssuer": {
+        "type": "string",
+        "description": "The entity or certification authority (CA) who issued the certificate",
+        "enum": [
+          "custom",
+          "lets-encrypt"
+        ],
+        "example": "custom"
+      },
       "SslCertificates": {
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/SslCertificate"
         }
+      },
+      "SslCertificateType": {
+        "type": "string",
+        "description": "The certificate type, indicating its scope",
+        "enum": [
+          "single-domain",
+          "multi-domain",
+          "wildcard"
+        ],
+        "example": "single-domain"
+      },
+      "SslCertificateValidationLevel": {
+        "type": "string",
+        "description": "The level of validation applied when issuing the certificate. This can be one out of the three validation levels conforming to public key certificates standards: `DV (Domain Validation)`, `OV (Organization validation)` or `EV (Extended Validation)`",
+        "enum": [
+          "DV",
+          "OV",
+          "EV"
+        ],
+        "example": "DV"
+      },
+      "TriggerEvent": {
+        "type": "string",
+        "description": "The application deployment event to which it's attached",
+        "enum": [
+          "get-new-release",
+          "install-dependencies",
+          "activate-new-release",
+          "remove-old-releases"
+        ],
+        "example": "install-dependencies"
+      },
+      "TriggerType": {
+        "type": "string",
+        "description": "The type of event that will trigger it",
+        "enum": [
+          "before",
+          "after"
+        ],
+        "example": "after"
       },
       "User": {
         "type": "object",
@@ -7630,13 +7477,13 @@
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was created",
-            "example": "2019-09-25T15:50:48+00:00"
+            "example": "2019-09-25T15:50:48.000000Z"
           },
           "updated_at": {
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the record was last updated",
-            "example": "2019-09-25T13:52:04+00:00"
+            "example": "2019-09-25T13:52:04.000000Z"
           },
           "social_accounts": {
             "description": "The list of social accounts (source providers + login providers) connected to the user",
@@ -7795,6 +7642,31 @@
           "refresh_token"
         ]
       },
+      "VariableTarget": {
+        "type": "string",
+        "description": "The target defining how the variable key/value pair will be deployed",
+        "enum": [
+          "app-config-file",
+          "deployment-script",
+          "shared-script",
+          "nginx-block-http-before",
+          "nginx-block-http-after",
+          "nginx-block-server",
+          "os-env-var",
+          "php-cli",
+          "php-web"
+        ],
+        "example": "app-config-file"
+      },
+      "VariableType": {
+        "type": "string",
+        "description": "The type of the key/value pair",
+        "enum": [
+          "variable",
+          "file"
+        ],
+        "example": "variable"
+      },
       "VariableUpdate": {
         "type": "object",
         "properties": {
@@ -7819,29 +7691,10 @@
             "example": "Sample variable description"
           },
           "target": {
-            "type": "string",
-            "description": "The target defining how the variable key/value pair will be deployed",
-            "enum": [
-              "app-config-file",
-              "deployment-script",
-              "shared-script",
-              "nginx-block-http-before",
-              "nginx-block-http-after",
-              "nginx-block-server",
-              "os-env-var",
-              "php-cli",
-              "php-web"
-            ],
-            "example": "app-config-file"
+            "$ref": "#/components/schemas/VariableTarget"
           },
           "type": {
-            "type": "string",
-            "description": "The type of the key/value pair",
-            "enum": [
-              "variable",
-              "file"
-            ],
-            "example": "variable"
+            "$ref": "#/components/schemas/VariableType"
           },
           "hidden": {
             "type": "boolean",

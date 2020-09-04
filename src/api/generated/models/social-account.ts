@@ -12,6 +12,8 @@
  */
 
 
+import { SocialAccountDisplayableName } from './social-account-displayable-name';
+import { SocialAccountProvider } from './social-account-provider';
 
 /**
  * 
@@ -26,17 +28,17 @@ export interface SocialAccount {
      */
     id: number;
     /**
-     * A formatted version of the `provider` field value, aligned with the provider\'s name branding
-     * @type {string}
+     * 
+     * @type {SocialAccountDisplayableName}
      * @memberof SocialAccount
      */
-    displayable_name?: SocialAccountDisplayableNameEnum;
+    displayable_name?: SocialAccountDisplayableName;
     /**
-     * The name of the Social Authentication provider
-     * @type {string}
+     * 
+     * @type {SocialAccountProvider}
      * @memberof SocialAccount
      */
-    provider: SocialAccountProviderEnum;
+    provider: SocialAccountProvider;
     /**
      * The nickname of the user on the Social Authentication provider
      * @type {string}
@@ -68,30 +70,4 @@ export interface SocialAccount {
      */
     updated_at?: string;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum SocialAccountDisplayableNameEnum {
-    Bitbucket = 'Bitbucket',
-    Facebook = 'Facebook',
-    GitHub = 'GitHub',
-    GitLab = 'GitLab',
-    Google = 'Google',
-    LinkedIn = 'LinkedIn'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum SocialAccountProviderEnum {
-    Bitbucket = 'bitbucket',
-    Facebook = 'facebook',
-    Github = 'github',
-    Gitlab = 'gitlab',
-    Google = 'google',
-    Linkedin = 'linkedin'
-}
-
 

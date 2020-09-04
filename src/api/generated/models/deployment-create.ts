@@ -14,6 +14,8 @@
 
 import { DeploymentCreateApplication } from './deployment-create-application';
 import { DeploymentCreateServer } from './deployment-create-server';
+import { DeploymentType } from './deployment-type';
+import { EnvironmentLinkItem } from './environment-link-item';
 
 /**
  * 
@@ -22,11 +24,11 @@ import { DeploymentCreateServer } from './deployment-create-server';
  */
 export interface DeploymentCreate {
     /**
-     * The type of the deployment being triggred
-     * @type {string}
+     * 
+     * @type {DeploymentType}
      * @memberof DeploymentCreate
      */
-    type: DeploymentCreateTypeEnum;
+    type: DeploymentType;
     /**
      * The list of applications to be deployed together
      * @type {Array<DeploymentCreateApplication>}
@@ -39,16 +41,11 @@ export interface DeploymentCreate {
      * @memberof DeploymentCreate
      */
     servers: Array<DeploymentCreateServer>;
+    /**
+     * 
+     * @type {Array<EnvironmentLinkItem>}
+     * @memberof DeploymentCreate
+     */
+    environments?: Array<EnvironmentLinkItem>;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum DeploymentCreateTypeEnum {
-    Deploy = 'deploy',
-    Redeploy = 'redeploy',
-    Rollback = 'rollback'
-}
-
 

@@ -14,15 +14,13 @@
 
 
 /**
- * Current item status
+ * The expected initial state of the service after installed
  * @export
  * @enum {string}
  */
-export enum ActionStatus {
-    Pending = 'pending',
-    InProgress = 'in-progress',
-    Completed = 'completed',
-    Failed = 'failed'
+export enum ServiceInitialState {
+    Started = 'started',
+    Stopped = 'stopped'
 }
 
 

@@ -12,6 +12,10 @@
  */
 
 
+import { ActionStatus } from './action-status';
+import { SslCertificateIssuer } from './ssl-certificate-issuer';
+import { SslCertificateType } from './ssl-certificate-type';
+import { SslCertificateValidationLevel } from './ssl-certificate-validation-level';
 
 /**
  * 
@@ -32,23 +36,23 @@ export interface SslCertificate {
      */
     domains: Array<string>;
     /**
-     * The entity or certification authority (CA) who issued the certificate
-     * @type {string}
+     * 
+     * @type {SslCertificateIssuer}
      * @memberof SslCertificate
      */
-    issuer: SslCertificateIssuerEnum;
+    issuer: SslCertificateIssuer;
     /**
-     * The certificate type, indicating its scope
-     * @type {string}
+     * 
+     * @type {SslCertificateType}
      * @memberof SslCertificate
      */
-    type: SslCertificateTypeEnum;
+    type: SslCertificateType;
     /**
-     * The level of validation applied when issuing the certificate. This can be one out of the three validation levels conforming to public key certificates standards: `DV (Domain Validation)`, `OV (Organization validation)` or `EV (Extended Validation)`
-     * @type {string}
+     * 
+     * @type {SslCertificateValidationLevel}
      * @memberof SslCertificate
      */
-    validation_level: SslCertificateValidationLevelEnum;
+    validation_level: SslCertificateValidationLevel;
     /**
      * The private key provided by the Certification Authority, when the certificate has not being automatically issued through `devopness`
      * @type {string}
@@ -62,11 +66,11 @@ export interface SslCertificate {
      */
     custom_certificate?: string;
     /**
-     * Current status of deploying to remote servers the current certificate
-     * @type {string}
+     * 
+     * @type {ActionStatus}
      * @memberof SslCertificate
      */
-    status: SslCertificateStatusEnum;
+    status: ActionStatus;
     /**
      * Tells if the certificate is active for all linked servers and applications
      * @type {boolean}
@@ -104,43 +108,4 @@ export interface SslCertificate {
      */
     updated_at?: string;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum SslCertificateIssuerEnum {
-    Custom = 'custom',
-    LetsEncrypt = 'lets-encrypt'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum SslCertificateTypeEnum {
-    SingleDomain = 'single-domain',
-    MultiDomain = 'multi-domain',
-    Wildcard = 'wildcard'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum SslCertificateValidationLevelEnum {
-    DV = 'DV',
-    OV = 'OV',
-    EV = 'EV'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum SslCertificateStatusEnum {
-    Pending = 'pending',
-    InProgress = 'in-progress',
-    Cancelled = 'cancelled',
-    Completed = 'completed',
-    Failed = 'failed'
-}
-
 

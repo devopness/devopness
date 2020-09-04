@@ -12,6 +12,8 @@
  */
 
 
+import { TriggerEvent } from './trigger-event';
+import { TriggerType } from './trigger-type';
 
 /**
  * 
@@ -50,17 +52,17 @@ export interface ApplicationScript {
      */
     source_code: string;
     /**
-     * The type of event that will trigger the script execution
-     * @type {string}
+     * 
+     * @type {TriggerType}
      * @memberof ApplicationScript
      */
-    trigger_type: ApplicationScriptTriggerTypeEnum;
+    trigger_type: TriggerType;
     /**
-     * The application deployment event to which the script is attached
-     * @type {string}
+     * 
+     * @type {TriggerEvent}
      * @memberof ApplicationScript
      */
-    trigger_event: ApplicationScriptTriggerEventEnum;
+    trigger_event: TriggerEvent;
     /**
      * The relative order of the script execution in case the event has multiple scripts attached
      * @type {number}
@@ -80,24 +82,4 @@ export interface ApplicationScript {
      */
     updated_at?: string;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum ApplicationScriptTriggerTypeEnum {
-    Before = 'before',
-    After = 'after'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum ApplicationScriptTriggerEventEnum {
-    GetNewRelease = 'get-new-release',
-    InstallDependencies = 'install-dependencies',
-    ActivateNewRelease = 'activate-new-release',
-    RemoveOldReleases = 'remove-old-releases'
-}
-
 

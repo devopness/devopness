@@ -12,7 +12,9 @@
  */
 
 
+import { ActionStatus } from './action-status';
 import { ApplicationLastDeployments } from './application-last-deployments';
+import { ApplicationType } from './application-type';
 import { Environment } from './environment';
 import { Server } from './server';
 import { SourceProvider } from './source-provider';
@@ -31,11 +33,11 @@ export interface Application {
      */
     id: number;
     /**
-     * The application\'s type, which will mainly define if it is publicly accessible through a web domain or not
-     * @type {string}
+     * 
+     * @type {ApplicationType}
      * @memberof Application
      */
-    type: ApplicationTypeEnum;
+    type: ApplicationType;
     /**
      * The application\'s unique name
      * @type {string}
@@ -53,19 +55,19 @@ export interface Application {
      * @type {string}
      * @memberof Application
      */
-    repository?: string;
+    repository?: string | null;
     /**
      * The name part of a repository full name (`repository_owner/repository_name`)
      * @type {string}
      * @memberof Application
      */
-    repository_name?: string;
+    repository_name?: string | null;
     /**
      * The owner part of a repository full name (`repository_owner/repository_name`)
      * @type {string}
      * @memberof Application
      */
-    repository_owner?: string;
+    repository_owner?: string | null;
     /**
      * The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed.
      * @type {string}
@@ -89,7 +91,7 @@ export interface Application {
      * @type {string}
      * @memberof Application
      */
-    engine_version?: string;
+    engine_version?: string | null;
     /**
      * The base framework on top of which the application has been implemented - it might have impact on the steps to be performed during application deployment
      * @type {string}
@@ -173,7 +175,7 @@ export interface Application {
      * @type {SourceProvider}
      * @memberof Application
      */
-    source_provider?: SourceProvider;
+    source_provider?: SourceProvider | null;
     /**
      * 
      * @type {Array<SslCertificate>}
@@ -181,11 +183,11 @@ export interface Application {
      */
     ssl_certificates?: Array<SslCertificate>;
     /**
-     * Current status of deploying to remote servers the current application
-     * @type {string}
+     * 
+     * @type {ActionStatus}
      * @memberof Application
      */
-    status?: ApplicationStatusEnum;
+    status?: ActionStatus;
     /**
      * The date and time when the record was created
      * @type {string}
@@ -199,25 +201,4 @@ export interface Application {
      */
     updated_at?: string;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum ApplicationTypeEnum {
-    Web = 'web',
-    NonWeb = 'non-web'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum ApplicationStatusEnum {
-    Pending = 'pending',
-    InProgress = 'in-progress',
-    Cancelled = 'cancelled',
-    Completed = 'completed',
-    Failed = 'failed'
-}
-
 

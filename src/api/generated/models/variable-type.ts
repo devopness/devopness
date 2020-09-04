@@ -14,15 +14,13 @@
 
 
 /**
- * Current item status
+ * The type of the key/value pair
  * @export
  * @enum {string}
  */
-export enum ActionStatus {
-    Pending = 'pending',
-    InProgress = 'in-progress',
-    Completed = 'completed',
-    Failed = 'failed'
+export enum VariableType {
+    Variable = 'variable',
+    File = 'file'
 }
 
 

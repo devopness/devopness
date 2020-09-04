@@ -12,6 +12,8 @@
  */
 
 
+import { ActionStatus } from './action-status';
+import { ServiceInitialState } from './service-initial-state';
 
 /**
  * 
@@ -56,11 +58,11 @@ export interface Service {
      */
     auto_start: boolean;
     /**
-     * The expected initial state of the service after installed
-     * @type {string}
+     * 
+     * @type {ServiceInitialState}
      * @memberof Service
      */
-    initial_state: ServiceInitialStateEnum;
+    initial_state: ServiceInitialState;
     /**
      * A text describing the service, provided by the service author
      * @type {string}
@@ -68,11 +70,11 @@ export interface Service {
      */
     description?: string | null;
     /**
-     * Current status of deploying to remote servers the current service
-     * @type {string}
+     * 
+     * @type {ActionStatus}
      * @memberof Service
      */
-    status?: ServiceStatusEnum;
+    status?: ActionStatus;
     /**
      * The date and time when the record was created
      * @type {string}
@@ -86,25 +88,4 @@ export interface Service {
      */
     updated_at: string;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum ServiceInitialStateEnum {
-    Started = 'started',
-    Stopped = 'stopped'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum ServiceStatusEnum {
-    Pending = 'pending',
-    InProgress = 'in-progress',
-    Cancelled = 'cancelled',
-    Completed = 'completed',
-    Failed = 'failed'
-}
-
 

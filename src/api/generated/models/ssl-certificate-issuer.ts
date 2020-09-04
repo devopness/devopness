@@ -14,15 +14,13 @@
 
 
 /**
- * Current item status
+ * The entity or certification authority (CA) who issued the certificate
  * @export
  * @enum {string}
  */
-export enum ActionStatus {
-    Pending = 'pending',
-    InProgress = 'in-progress',
-    Completed = 'completed',
-    Failed = 'failed'
+export enum SslCertificateIssuer {
+    Custom = 'custom',
+    LetsEncrypt = 'lets-encrypt'
 }
 
 

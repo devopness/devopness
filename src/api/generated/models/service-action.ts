@@ -14,15 +14,20 @@
 
 
 /**
- * Current item status
+ * The action to be executed for the given service
  * @export
  * @enum {string}
  */
-export enum ActionStatus {
-    Pending = 'pending',
-    InProgress = 'in-progress',
-    Completed = 'completed',
-    Failed = 'failed'
+export enum ServiceAction {
+    Status = 'status',
+    Start = 'start',
+    Stop = 'stop',
+    Reload = 'reload',
+    Restart = 'restart',
+    Enable = 'enable',
+    Disable = 'disable',
+    Install = 'install',
+    Uninstall = 'uninstall'
 }
 
 

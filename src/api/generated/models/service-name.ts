@@ -14,15 +14,14 @@
 
 
 /**
- * Current item status
+ * The name of the service
  * @export
  * @enum {string}
  */
-export enum ActionStatus {
-    Pending = 'pending',
-    InProgress = 'in-progress',
-    Completed = 'completed',
-    Failed = 'failed'
+export enum ServiceName {
+    Mysql = 'mysql',
+    Nginx = 'nginx',
+    Redis = 'redis'
 }
 
 

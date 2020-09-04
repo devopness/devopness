@@ -14,15 +14,13 @@
 
 
 /**
- * Current item status
+ * The type of network traffic to which this rule is applied
  * @export
  * @enum {string}
  */
-export enum ActionStatus {
-    Pending = 'pending',
-    InProgress = 'in-progress',
-    Completed = 'completed',
-    Failed = 'failed'
+export enum NetworkRuleType {
+    Inbound = 'inbound',
+    Outbound = 'outbound'
 }
 
 

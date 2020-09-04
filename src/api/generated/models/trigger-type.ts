@@ -14,15 +14,13 @@
 
 
 /**
- * Current item status
+ * The type of event that will trigger it
  * @export
  * @enum {string}
  */
-export enum ActionStatus {
-    Pending = 'pending',
-    InProgress = 'in-progress',
-    Completed = 'completed',
-    Failed = 'failed'
+export enum TriggerType {
+    Before = 'before',
+    After = 'after'
 }
 
 

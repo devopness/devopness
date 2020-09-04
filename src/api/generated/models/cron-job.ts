@@ -12,6 +12,8 @@
  */
 
 
+import { ActionStatus } from './action-status';
+import { CronJobPattern } from './cron-job-pattern';
 import { User } from './user';
 
 /**
@@ -45,11 +47,11 @@ export interface CronJob {
      */
     pattern: string;
     /**
-     * A translation of the cron expression to a readable string indicating its execution frequency.
-     * @type {string}
+     * 
+     * @type {CronJobPattern}
      * @memberof CronJob
      */
-    pattern_human_readable?: CronJobPatternHumanReadableEnum;
+    pattern_human_readable?: CronJobPattern;
     /**
      * The name of the Unix user on behalf of which the cron job will be executed
      * @type {string}
@@ -63,11 +65,11 @@ export interface CronJob {
      */
     auto_generated?: boolean;
     /**
-     * Current status of deploying to remote servers the current cron job
-     * @type {string}
+     * 
+     * @type {ActionStatus}
      * @memberof CronJob
      */
-    status?: CronJobStatusEnum;
+    status?: ActionStatus;
     /**
      * 
      * @type {User}
@@ -87,29 +89,4 @@ export interface CronJob {
      */
     updated_at?: string;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum CronJobPatternHumanReadableEnum {
-    EveryMinute = 'Every Minute',
-    Hourly = 'Hourly',
-    Daily = 'Daily',
-    Weekly = 'Weekly',
-    Monthly = 'Monthly',
-    Yearly = 'Yearly'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum CronJobStatusEnum {
-    Pending = 'pending',
-    InProgress = 'in-progress',
-    Cancelled = 'cancelled',
-    Completed = 'completed',
-    Failed = 'failed'
-}
-
 

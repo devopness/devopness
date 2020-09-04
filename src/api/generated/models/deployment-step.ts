@@ -12,6 +12,7 @@
  */
 
 
+import { ActionStatus } from './action-status';
 
 /**
  * 
@@ -32,35 +33,22 @@ export interface DeploymentStep {
      */
     name: string;
     /**
-     * Current status of the deployment step
-     * @type {string}
+     * 
+     * @type {ActionStatus}
      * @memberof DeploymentStep
      */
-    status: DeploymentStepStatusEnum;
+    status: ActionStatus;
     /**
      * The date and time when the step started to be executed (left the `pending/waiting` status)
      * @type {string}
      * @memberof DeploymentStep
      */
-    started_at?: string;
+    started_at?: string | null;
     /**
      * The date and time when the step has finished execution
      * @type {string}
      * @memberof DeploymentStep
      */
-    completed_at?: string;
+    completed_at?: string | null;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum DeploymentStepStatusEnum {
-    Pending = 'pending',
-    InProgress = 'in-progress',
-    Cancelled = 'cancelled',
-    Completed = 'completed',
-    Failed = 'failed'
-}
-
 

@@ -12,6 +12,8 @@
  */
 
 
+import { SourceProviderDisplayableName } from './source-provider-displayable-name';
+import { SourceProviderName } from './source-provider-name';
 
 /**
  * 
@@ -26,17 +28,17 @@ export interface SourceProvider {
      */
     id: number;
     /**
-     * A formatted version of the `provider` field value, aligned with the provider\'s name branding
-     * @type {string}
+     * 
+     * @type {SourceProviderDisplayableName}
      * @memberof SourceProvider
      */
-    displayable_name?: SourceProviderDisplayableNameEnum;
+    displayable_name?: SourceProviderDisplayableName;
     /**
-     * The name of the Source Authentication provider
-     * @type {string}
+     * 
+     * @type {SourceProviderName}
      * @memberof SourceProvider
      */
-    provider: SourceProviderProviderEnum;
+    provider: SourceProviderName;
     /**
      * The nickname of the user on the Source Authentication provider
      * @type {string}
@@ -62,24 +64,4 @@ export interface SourceProvider {
      */
     updated_at?: string;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum SourceProviderDisplayableNameEnum {
-    Bitbucket = 'Bitbucket',
-    GitHub = 'GitHub',
-    GitLab = 'GitLab'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum SourceProviderProviderEnum {
-    Bitbucket = 'bitbucket',
-    Github = 'github',
-    Gitlab = 'gitlab'
-}
-
 

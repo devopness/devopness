@@ -14,15 +14,14 @@
 
 
 /**
- * Current item status
+ * The network protocol to which this rule is applied.
  * @export
  * @enum {string}
  */
-export enum ActionStatus {
-    Pending = 'pending',
-    InProgress = 'in-progress',
-    Completed = 'completed',
-    Failed = 'failed'
+export enum NetworkRuleProtocol {
+    Any = 'any',
+    Tcp = 'tcp',
+    Udp = 'udp'
 }
 
 

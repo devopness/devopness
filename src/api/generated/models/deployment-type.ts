@@ -14,15 +14,14 @@
 
 
 /**
- * Current item status
+ * The type of the deployment
  * @export
  * @enum {string}
  */
-export enum ActionStatus {
-    Pending = 'pending',
-    InProgress = 'in-progress',
-    Completed = 'completed',
-    Failed = 'failed'
+export enum DeploymentType {
+    Deploy = 'deploy',
+    Redeploy = 'redeploy',
+    Rollback = 'rollback'
 }
 
 

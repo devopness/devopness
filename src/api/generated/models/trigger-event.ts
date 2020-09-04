@@ -14,15 +14,15 @@
 
 
 /**
- * Current item status
+ * The application deployment event to which it\'s attached
  * @export
  * @enum {string}
  */
-export enum ActionStatus {
-    Pending = 'pending',
-    InProgress = 'in-progress',
-    Completed = 'completed',
-    Failed = 'failed'
+export enum TriggerEvent {
+    GetNewRelease = 'get-new-release',
+    InstallDependencies = 'install-dependencies',
+    ActivateNewRelease = 'activate-new-release',
+    RemoveOldReleases = 'remove-old-releases'
 }
 
 

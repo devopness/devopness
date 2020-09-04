@@ -14,15 +14,14 @@
 
 
 /**
- * Current item status
+ * The certificate type, indicating its scope
  * @export
  * @enum {string}
  */
-export enum ActionStatus {
-    Pending = 'pending',
-    InProgress = 'in-progress',
-    Completed = 'completed',
-    Failed = 'failed'
+export enum SslCertificateType {
+    SingleDomain = 'single-domain',
+    MultiDomain = 'multi-domain',
+    Wildcard = 'wildcard'
 }
 
 

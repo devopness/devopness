@@ -27,11 +27,11 @@ export class ApplicationsApiService extends ApiBaseService {
      * @summary Delete a given application
      * @param {number} applicationId Numeric ID of the application to be deleted
      */
-    public async deleteApplication(applicationId: number): Promise<ApiResponse<Application>> {
+    public async deleteApplication(applicationId: number): Promise<ApiResponse<void>> {
         if (applicationId === null || applicationId === undefined) {
             throw new ArgumentNullException('applicationId', 'deleteApplication');
         }
-        const response = await this.delete <Application>(`/applications/{application_id}`.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))));
+        const response = await this.delete <void>(`/applications/{application_id}`.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))));
         return new ApiResponse(response);
     }
 

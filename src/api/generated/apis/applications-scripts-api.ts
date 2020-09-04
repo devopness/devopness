@@ -28,14 +28,14 @@ export class ApplicationsScriptsApiService extends ApiBaseService {
      * @param {number} applicationId Unique ID of the application to retrieve scripts from
      * @param {ApplicationScriptCreate} applicationScriptCreate A JSON object containing application script data
      */
-    public async addScriptToApplication(applicationId: number, applicationScriptCreate: ApplicationScriptCreate): Promise<ApiResponse<Array<ApplicationScript>>> {
+    public async addScriptToApplication(applicationId: number, applicationScriptCreate: ApplicationScriptCreate): Promise<ApiResponse<ApplicationScript>> {
         if (applicationId === null || applicationId === undefined) {
             throw new ArgumentNullException('applicationId', 'addScriptToApplication');
         }
         if (applicationScriptCreate === null || applicationScriptCreate === undefined) {
             throw new ArgumentNullException('applicationScriptCreate', 'addScriptToApplication');
         }
-        const response = await this.post <Array<ApplicationScript>, ApplicationScriptCreate>(`/applications/{application_id}/scripts`.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))), applicationScriptCreate);
+        const response = await this.post <ApplicationScript, ApplicationScriptCreate>(`/applications/{application_id}/scripts`.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))), applicationScriptCreate);
         return new ApiResponse(response);
     }
 

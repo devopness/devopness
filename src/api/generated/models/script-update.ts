@@ -12,6 +12,8 @@
  */
 
 
+import { TriggerEvent } from './trigger-event';
+import { TriggerType } from './trigger-type';
 
 /**
  * 
@@ -50,17 +52,17 @@ export interface ScriptUpdate {
      */
     run_as_user: string;
     /**
-     * The type of event that will trigger the script execution
-     * @type {string}
+     * 
+     * @type {TriggerType}
      * @memberof ScriptUpdate
      */
-    trigger_type: ScriptUpdateTriggerTypeEnum;
+    trigger_type: TriggerType;
     /**
-     * The application deployment event to which the script is attached
-     * @type {string}
+     * 
+     * @type {TriggerEvent}
      * @memberof ScriptUpdate
      */
-    trigger_event: ScriptUpdateTriggerEventEnum;
+    trigger_event: TriggerEvent;
     /**
      * The relative order of the script execution in case the event has multiple scripts attached
      * @type {number}
@@ -68,24 +70,4 @@ export interface ScriptUpdate {
      */
     trigger_order: number;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum ScriptUpdateTriggerTypeEnum {
-    Before = 'before',
-    After = 'after'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum ScriptUpdateTriggerEventEnum {
-    GetNewRelease = 'get-new-release',
-    InstallDependencies = 'install-dependencies',
-    ActivateNewRelease = 'activate-new-release',
-    RemoveOldReleases = 'remove-old-releases'
-}
-
 

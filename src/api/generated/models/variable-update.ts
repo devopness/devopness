@@ -12,6 +12,8 @@
  */
 
 
+import { VariableTarget } from './variable-target';
+import { VariableType } from './variable-type';
 
 /**
  * 
@@ -44,17 +46,17 @@ export interface VariableUpdate {
      */
     description?: string;
     /**
-     * The target defining how the variable key/value pair will be deployed
-     * @type {string}
+     * 
+     * @type {VariableTarget}
      * @memberof VariableUpdate
      */
-    target: VariableUpdateTargetEnum;
+    target: VariableTarget;
     /**
-     * The type of the key/value pair
-     * @type {string}
+     * 
+     * @type {VariableType}
      * @memberof VariableUpdate
      */
-    type: VariableUpdateTypeEnum;
+    type: VariableType;
     /**
      * Indicates if the variable value should be visible or not in the deployment logs
      * @type {boolean}
@@ -62,29 +64,4 @@ export interface VariableUpdate {
      */
     hidden: boolean;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum VariableUpdateTargetEnum {
-    AppConfigFile = 'app-config-file',
-    DeploymentScript = 'deployment-script',
-    SharedScript = 'shared-script',
-    NginxBlockHttpBefore = 'nginx-block-http-before',
-    NginxBlockHttpAfter = 'nginx-block-http-after',
-    NginxBlockServer = 'nginx-block-server',
-    OsEnvVar = 'os-env-var',
-    PhpCli = 'php-cli',
-    PhpWeb = 'php-web'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum VariableUpdateTypeEnum {
-    Variable = 'variable',
-    File = 'file'
-}
-
 

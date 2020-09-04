@@ -14,15 +14,17 @@
 
 
 /**
- * Current item status
+ * A formatted version of the `provider` field value, aligned with the provider\'s name branding
  * @export
  * @enum {string}
  */
-export enum ActionStatus {
-    Pending = 'pending',
-    InProgress = 'in-progress',
-    Completed = 'completed',
-    Failed = 'failed'
+export enum SocialAccountDisplayableName {
+    Bitbucket = 'Bitbucket',
+    Facebook = 'Facebook',
+    GitHub = 'GitHub',
+    GitLab = 'GitLab',
+    Google = 'Google',
+    LinkedIn = 'LinkedIn'
 }
 
 

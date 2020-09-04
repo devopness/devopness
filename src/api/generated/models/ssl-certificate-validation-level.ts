@@ -14,15 +14,14 @@
 
 
 /**
- * Current item status
+ * The level of validation applied when issuing the certificate. This can be one out of the three validation levels conforming to public key certificates standards: `DV (Domain Validation)`, `OV (Organization validation)` or `EV (Extended Validation)`
  * @export
  * @enum {string}
  */
-export enum ActionStatus {
-    Pending = 'pending',
-    InProgress = 'in-progress',
-    Completed = 'completed',
-    Failed = 'failed'
+export enum SslCertificateValidationLevel {
+    DV = 'DV',
+    OV = 'OV',
+    EV = 'EV'
 }
 
 

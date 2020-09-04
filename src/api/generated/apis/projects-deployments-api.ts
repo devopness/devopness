@@ -28,14 +28,14 @@ export class ProjectsDeploymentsApiService extends ApiBaseService {
      * @param {number} projectId Numeric ID of the project for which a deployment is being triggered
      * @param {DeploymentCreate} deploymentCreate A JSON object containing deployment data
      */
-    public async deployProjectApps(projectId: number, deploymentCreate: DeploymentCreate): Promise<ApiResponse<void>> {
+    public async deployProjectApps(projectId: number, deploymentCreate: DeploymentCreate): Promise<ApiResponse<Array<Deployment>>> {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'deployProjectApps');
         }
         if (deploymentCreate === null || deploymentCreate === undefined) {
             throw new ArgumentNullException('deploymentCreate', 'deployProjectApps');
         }
-        const response = await this.post <void, DeploymentCreate>(`/projects/{project_id}/deployments`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), deploymentCreate);
+        const response = await this.post <Array<Deployment>, DeploymentCreate>(`/projects/{project_id}/deployments`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), deploymentCreate);
         return new ApiResponse(response);
     }
 

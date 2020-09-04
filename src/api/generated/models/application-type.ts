@@ -14,15 +14,13 @@
 
 
 /**
- * Current item status
+ * The application\'s type, which will mainly define if it is publicly accessible through a web domain or not
  * @export
  * @enum {string}
  */
-export enum ActionStatus {
-    Pending = 'pending',
-    InProgress = 'in-progress',
-    Completed = 'completed',
-    Failed = 'failed'
+export enum ApplicationType {
+    Web = 'web',
+    NonWeb = 'non-web'
 }
 
 

@@ -12,6 +12,7 @@
  */
 
 
+import { ApplicationType } from './application-type';
 import { EnvironmentLinkItem } from './environment-link-item';
 
 /**
@@ -27,11 +28,11 @@ export interface ApplicationCreate {
      */
     source_provider_id: number;
     /**
-     * The application\'s type, which will mainly define if it is publicly accessible through a web domain or not
-     * @type {string}
+     * 
+     * @type {ApplicationType}
      * @memberof ApplicationCreate
      */
-    type: ApplicationCreateTypeEnum;
+    type: ApplicationType;
     /**
      * The application\'s unique name
      * @type {string}
@@ -147,14 +148,4 @@ export interface ApplicationCreate {
      */
     environments?: Array<EnvironmentLinkItem>;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum ApplicationCreateTypeEnum {
-    Web = 'web',
-    NonWeb = 'non-web'
-}
-
 

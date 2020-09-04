@@ -14,15 +14,14 @@
 
 
 /**
- * Current item status
+ * Source/channel from which the deployment has been triggered
  * @export
  * @enum {string}
  */
-export enum ActionStatus {
-    Pending = 'pending',
-    InProgress = 'in-progress',
-    Completed = 'completed',
-    Failed = 'failed'
+export enum DeploymentSource {
+    Manual = 'manual',
+    GitPush = 'git-push',
+    Scheduled = 'scheduled'
 }
 
 

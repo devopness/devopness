@@ -60,16 +60,15 @@ export class EnvironmentsServersApiService extends ApiBaseService {
      * @summary Unlink/Remove a server from an environment
      * @param {number} environmentId Unique ID of the environment
      * @param {number} serverId Unique ID of the server to unlink
-     * @param {EnvironmentLinkItem} [environmentLinkItem] A JSON object containing environment server unlink optional parameters
      */
-    public async unlinkServerFromEnvironment(environmentId: number, serverId: number, environmentLinkItem?: EnvironmentLinkItem): Promise<ApiResponse<void>> {
+    public async unlinkServerFromEnvironment(environmentId: number, serverId: number): Promise<ApiResponse<void>> {
         if (environmentId === null || environmentId === undefined) {
             throw new ArgumentNullException('environmentId', 'unlinkServerFromEnvironment');
         }
         if (serverId === null || serverId === undefined) {
             throw new ArgumentNullException('serverId', 'unlinkServerFromEnvironment');
         }
-        const response = await this.post <void, EnvironmentLinkItem>(`/environments/{environment_id}/servers/{server_id}/unlink`.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))).replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))), environmentLinkItem);
+        const response = await this.delete <void>(`/environments/{environment_id}/servers/{server_id}/unlink`.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))).replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))));
         return new ApiResponse(response);
     }
 }

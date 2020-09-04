@@ -12,6 +12,7 @@
  */
 
 
+import { ActionStatus } from './action-status';
 
 /**
  * 
@@ -62,11 +63,11 @@ export interface Daemon {
      */
     auto_generated?: boolean;
     /**
-     * Current status of deploying to remote servers the current daemon process
-     * @type {string}
+     * 
+     * @type {ActionStatus}
      * @memberof Daemon
      */
-    status?: DaemonStatusEnum;
+    status?: ActionStatus;
     /**
      * The date and time when the record was created
      * @type {string}
@@ -80,17 +81,4 @@ export interface Daemon {
      */
     updated_at?: string;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum DaemonStatusEnum {
-    Pending = 'pending',
-    InProgress = 'in-progress',
-    Cancelled = 'cancelled',
-    Completed = 'completed',
-    Failed = 'failed'
-}
-
 

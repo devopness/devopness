@@ -12,25 +12,30 @@
  */
 
 
-import { SourceProviderName } from './source-provider-name';
 
 /**
  * 
  * @export
- * @interface SourceProviderCreate
+ * @interface ApplicationDeploymentCreate
  */
-export interface SourceProviderCreate {
+export interface ApplicationDeploymentCreate {
     /**
      * 
-     * @type {SourceProviderName}
-     * @memberof SourceProviderCreate
-     */
-    provider: SourceProviderName;
-    /**
-     * The temporary code forwarded by the OAuth provider as a parameter to our callback URL
      * @type {string}
-     * @memberof SourceProviderCreate
+     * @memberof ApplicationDeploymentCreate
      */
-    callback_code: string;
+    type?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ApplicationDeploymentCreate
+     */
+    branch?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ApplicationDeploymentCreate
+     */
+    hash?: string;
 }
 

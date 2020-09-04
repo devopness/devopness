@@ -12,6 +12,9 @@
  */
 
 
+import { ActionStatus } from './action-status';
+import { NetworkRuleProtocol } from './network-rule-protocol';
+import { NetworkRuleType } from './network-rule-type';
 import { User } from './user';
 
 /**
@@ -33,17 +36,17 @@ export interface NetworkRule {
      */
     name: string;
     /**
-     * The type of network traffic to which this rule will be applied
-     * @type {string}
+     * 
+     * @type {NetworkRuleType}
      * @memberof NetworkRule
      */
-    type: NetworkRuleTypeEnum;
+    type: NetworkRuleType;
     /**
-     * The network protocol to which this rule will be applied.
-     * @type {string}
+     * 
+     * @type {NetworkRuleProtocol}
      * @memberof NetworkRule
      */
-    protocol: NetworkRuleProtocolEnum;
+    protocol: NetworkRuleProtocol;
     /**
      * Starting range of the public ipv4 or ipv6 addresses that can access this rule
      * @type {string}
@@ -69,11 +72,11 @@ export interface NetworkRule {
      */
     port_to: number;
     /**
-     * Current status of deploying to remote servers the current network rule
-     * @type {string}
+     * 
+     * @type {ActionStatus}
      * @memberof NetworkRule
      */
-    status?: NetworkRuleStatusEnum;
+    status?: ActionStatus;
     /**
      * 
      * @type {User}
@@ -93,34 +96,4 @@ export interface NetworkRule {
      */
     updated_at?: string;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum NetworkRuleTypeEnum {
-    Inbound = 'inbound',
-    Outbound = 'outbound'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum NetworkRuleProtocolEnum {
-    Any = 'any',
-    Tcp = 'tcp',
-    Udp = 'udp'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum NetworkRuleStatusEnum {
-    Pending = 'pending',
-    InProgress = 'in-progress',
-    Cancelled = 'cancelled',
-    Completed = 'completed',
-    Failed = 'failed'
-}
-
 

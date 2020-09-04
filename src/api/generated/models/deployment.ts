@@ -13,8 +13,11 @@
 
 
 import { Action } from './action';
+import { ActionStatus } from './action-status';
 import { Commit } from './commit';
+import { DeploymentSource } from './deployment-source';
 import { DeploymentStep } from './deployment-step';
+import { DeploymentType } from './deployment-type';
 import { User } from './user';
 
 /**
@@ -30,35 +33,35 @@ export interface Deployment {
      */
     id: number;
     /**
-     * Current status of the deployment
-     * @type {string}
+     * 
+     * @type {ActionStatus}
      * @memberof Deployment
      */
-    status: DeploymentStatusEnum;
+    status: ActionStatus;
     /**
-     * The deployment type
-     * @type {string}
+     * 
+     * @type {DeploymentType}
      * @memberof Deployment
      */
-    type: DeploymentTypeEnum;
+    type: DeploymentType;
     /**
-     * Source/channel from which the deployment has been triggered
-     * @type {string}
+     * 
+     * @type {DeploymentSource}
      * @memberof Deployment
      */
-    source: DeploymentSourceEnum;
+    source: DeploymentSource;
     /**
      * The date and time when the action started to be executed (left the `pending/waiting` status)
      * @type {string}
      * @memberof Deployment
      */
-    started_at?: string;
+    started_at?: string | null;
     /**
      * The date and time when the action has finished execution
      * @type {string}
      * @memberof Deployment
      */
-    completed_at?: string;
+    completed_at?: string | null;
     /**
      * The list of actions related to the deployment
      * @type {Array<Action>}
@@ -88,43 +91,12 @@ export interface Deployment {
      * @type {string}
      * @memberof Deployment
      */
-    created_at?: string;
+    created_at?: string | null;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof Deployment
      */
-    updated_at?: string;
+    updated_at?: string | null;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum DeploymentStatusEnum {
-    Pending = 'pending',
-    InProgress = 'in-progress',
-    Cancelled = 'cancelled',
-    Completed = 'completed',
-    Failed = 'failed'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum DeploymentTypeEnum {
-    Deploy = 'deploy',
-    Redeploy = 'redeploy',
-    Rollback = 'rollback'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum DeploymentSourceEnum {
-    Manual = 'manual',
-    GitPush = 'git-push',
-    Scheduled = 'scheduled'
-}
-
 

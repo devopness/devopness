@@ -13,74 +13,65 @@
 
 
 import { ActionStatus } from './action-status';
-import { ActionType } from './action-type';
-import { ResourceType } from './resource-type';
-import { ServerAction } from './server-action';
 
 /**
- * 
+ * An object representing the action dispatched to a specific server
  * @export
- * @interface Action
+ * @interface ServerAction
  */
-export interface Action {
+export interface ServerAction {
     /**
-     * The Id of the given action
+     * The Id of the server on which the action must be performed
      * @type {number}
-     * @memberof Action
+     * @memberof ServerAction
      */
-    id?: number;
+    server_id?: number;
     /**
      * 
      * @type {ActionStatus}
-     * @memberof Action
+     * @memberof ServerAction
      */
     status?: ActionStatus;
     /**
-     * 
-     * @type {ActionType}
-     * @memberof Action
-     */
-    type?: ActionType;
-    /**
-     * 
-     * @type {ResourceType}
-     * @memberof Action
-     */
-    resource_type?: ResourceType;
-    /**
-     * The unique id of the resource
+     * The total number of steps to complete the action
      * @type {number}
-     * @memberof Action
+     * @memberof ServerAction
      */
-    resource_id?: number;
+    total_steps?: number;
     /**
-     * List of actions dispatched to servers
-     * @type {Array<ServerAction>}
-     * @memberof Action
+     * The current action step being executed
+     * @type {number}
+     * @memberof ServerAction
      */
-    servers?: Array<ServerAction>;
+    current_step?: number;
+    /**
+     * A message describing the current step being executed
+     * @type {string}
+     * @memberof ServerAction
+     */
+    current_step_message?: string;
     /**
      * The date and time when the action started to be executed (left the `pending/waiting` status)
      * @type {string}
-     * @memberof Action
+     * @memberof ServerAction
      */
     started_at?: string;
     /**
      * The date and time when the action has finished execution
      * @type {string}
-     * @memberof Action
+     * @memberof ServerAction
      */
     completed_at?: string;
     /**
      * The date and time when the record was created
      * @type {string}
-     * @memberof Action
+     * @memberof ServerAction
      */
     created_at?: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
-     * @memberof Action
+     * @memberof ServerAction
      */
     updated_at?: string;
 }

@@ -14,15 +14,17 @@
 
 
 /**
- * Current item status
+ * A translation of the cron expression to a readable string indicating its execution frequency.
  * @export
  * @enum {string}
  */
-export enum ActionStatus {
-    Pending = 'pending',
-    InProgress = 'in-progress',
-    Completed = 'completed',
-    Failed = 'failed'
+export enum CronJobPattern {
+    EveryMinute = 'Every Minute',
+    Hourly = 'Hourly',
+    Daily = 'Daily',
+    Weekly = 'Weekly',
+    Monthly = 'Monthly',
+    Yearly = 'Yearly'
 }
 
 

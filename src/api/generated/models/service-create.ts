@@ -13,6 +13,8 @@
 
 
 import { EnvironmentLinkItem } from './environment-link-item';
+import { ServiceInitialState } from './service-initial-state';
+import { ServiceName } from './service-name';
 
 /**
  * 
@@ -21,11 +23,11 @@ import { EnvironmentLinkItem } from './environment-link-item';
  */
 export interface ServiceCreate {
     /**
-     * The name of a supported service
-     * @type {string}
+     * 
+     * @type {ServiceName}
      * @memberof ServiceCreate
      */
-    name: ServiceCreateNameEnum;
+    name: ServiceName;
     /**
      * Indicates if the service is marked for start automatically on operating system boot
      * @type {boolean}
@@ -33,11 +35,11 @@ export interface ServiceCreate {
      */
     auto_start: boolean;
     /**
-     * The expected initial state of the service after installed
-     * @type {string}
+     * 
+     * @type {ServiceInitialState}
      * @memberof ServiceCreate
      */
-    initial_state: ServiceCreateInitialStateEnum;
+    initial_state: ServiceInitialState;
     /**
      * 
      * @type {Array<EnvironmentLinkItem>}
@@ -45,23 +47,4 @@ export interface ServiceCreate {
      */
     environments?: Array<EnvironmentLinkItem>;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum ServiceCreateNameEnum {
-    Mysql = 'mysql',
-    Nginx = 'nginx',
-    Redis = 'redis'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum ServiceCreateInitialStateEnum {
-    Started = 'started',
-    Stopped = 'stopped'
-}
-
 

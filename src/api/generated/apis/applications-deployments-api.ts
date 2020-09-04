@@ -15,8 +15,8 @@ import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApplicationDeployment } from '../../generated/models';
+import { ApplicationDeploymentCreate } from '../../generated/models';
 import { Deployment } from '../../generated/models';
-import { ExtraBodyParams } from '../../generated/models';
 
 /**
  * ApplicationsDeploymentsApiService - Auto-generated
@@ -26,13 +26,13 @@ export class ApplicationsDeploymentsApiService extends ApiBaseService {
      * 
      * @summary Trigger a new deployment for current application
      * @param {number} applicationId Numeric ID of the application to be deployed
-     * @param {ExtraBodyParams} [extraBodyParams] A JSON object containing list of additional parameters
+     * @param {ApplicationDeploymentCreate} [applicationDeploymentCreate] A JSON object containing deployment parameters
      */
-    public async deployApplication(applicationId: number, extraBodyParams?: ExtraBodyParams): Promise<ApiResponse<ApplicationDeployment>> {
+    public async deployApplication(applicationId: number, applicationDeploymentCreate?: ApplicationDeploymentCreate): Promise<ApiResponse<ApplicationDeployment>> {
         if (applicationId === null || applicationId === undefined) {
             throw new ArgumentNullException('applicationId', 'deployApplication');
         }
-        const response = await this.post <ApplicationDeployment, ExtraBodyParams>(`/applications/{application_id}/deployments`.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))), extraBodyParams);
+        const response = await this.post <ApplicationDeployment, ApplicationDeploymentCreate>(`/applications/{application_id}/deployments`.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))), applicationDeploymentCreate);
         return new ApiResponse(response);
     }
 

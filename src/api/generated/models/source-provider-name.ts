@@ -14,15 +14,14 @@
 
 
 /**
- * Current item status
+ * The name of the Source Authentication provider
  * @export
  * @enum {string}
  */
-export enum ActionStatus {
-    Pending = 'pending',
-    InProgress = 'in-progress',
-    Completed = 'completed',
-    Failed = 'failed'
+export enum SourceProviderName {
+    Bitbucket = 'bitbucket',
+    Github = 'github',
+    Gitlab = 'gitlab'
 }
 
 

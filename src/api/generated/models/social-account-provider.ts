@@ -14,15 +14,17 @@
 
 
 /**
- * Current item status
+ * The name of the Social Authentication provider
  * @export
  * @enum {string}
  */
-export enum ActionStatus {
-    Pending = 'pending',
-    InProgress = 'in-progress',
-    Completed = 'completed',
-    Failed = 'failed'
+export enum SocialAccountProvider {
+    Bitbucket = 'bitbucket',
+    Facebook = 'facebook',
+    Github = 'github',
+    Gitlab = 'gitlab',
+    Google = 'google',
+    Linkedin = 'linkedin'
 }
 
 

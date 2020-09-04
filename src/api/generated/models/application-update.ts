@@ -12,6 +12,7 @@
  */
 
 
+import { ApplicationType } from './application-type';
 import { EnvironmentLinkItem } from './environment-link-item';
 
 /**
@@ -27,11 +28,11 @@ export interface ApplicationUpdate {
      */
     id: number;
     /**
-     * The application\'s type, which will mainly define if it is publicly accessible through a web domain or not
-     * @type {string}
+     * 
+     * @type {ApplicationType}
      * @memberof ApplicationUpdate
      */
-    type: ApplicationUpdateTypeEnum;
+    type: ApplicationType;
     /**
      * The application\'s unique name
      * @type {string}
@@ -135,14 +136,4 @@ export interface ApplicationUpdate {
      */
     environments?: Array<EnvironmentLinkItem>;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum ApplicationUpdateTypeEnum {
-    Web = 'web',
-    NonWeb = 'non-web'
-}
-
 

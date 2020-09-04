@@ -12,6 +12,8 @@
  */
 
 
+import { VariableTarget } from './variable-target';
+import { VariableType } from './variable-type';
 
 /**
  * 
@@ -38,17 +40,17 @@ export interface ApplicationVariableCreate {
      */
     description?: string;
     /**
-     * The target defining how the variable key/value pair will be deployed
-     * @type {string}
+     * 
+     * @type {VariableTarget}
      * @memberof ApplicationVariableCreate
      */
-    target: ApplicationVariableCreateTargetEnum;
+    target: VariableTarget;
     /**
-     * The type of the key/value pair
-     * @type {string}
+     * 
+     * @type {VariableType}
      * @memberof ApplicationVariableCreate
      */
-    type: ApplicationVariableCreateTypeEnum;
+    type: VariableType;
     /**
      * Indicates if the variable value should be visible or not in the deployment logs
      * @type {boolean}
@@ -68,29 +70,4 @@ export interface ApplicationVariableCreate {
      */
     updated_at?: string;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum ApplicationVariableCreateTargetEnum {
-    AppConfigFile = 'app-config-file',
-    DeploymentScript = 'deployment-script',
-    SharedScript = 'shared-script',
-    NginxBlockHttpBefore = 'nginx-block-http-before',
-    NginxBlockHttpAfter = 'nginx-block-http-after',
-    NginxBlockServer = 'nginx-block-server',
-    OsEnvVar = 'os-env-var',
-    PhpCli = 'php-cli',
-    PhpWeb = 'php-web'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum ApplicationVariableCreateTypeEnum {
-    Variable = 'variable',
-    File = 'file'
-}
-
 
