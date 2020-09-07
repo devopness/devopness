@@ -3,6 +3,7 @@ import toposort from 'toposort';
 
 import TransactionSpec from './TransactionSpec';
 import { fixtureKeyElement, isFixtureListKey, isFixtureKey, FixtureKey } from './fixtureTypes';
+import { initial } from 'lodash';
 
 type TransactionNode = string;
 type FixtureNode = string;
@@ -15,48 +16,46 @@ function fixtureTransactionGraphPush(map: FixtureToTransactionListMap, k: Fixtur
     map[k] = list;
 }
 
-// this represents a graph of transactions and fixtures, using fixture nodes as the referential
-interface FixtureTransactionGraph {
+// FixtureTransactionAdjacencyList represents a graph of transactions and fixtures, using fixture nodes as the referential
+export interface FixtureTransactionAdjacencyList {
     // maps fixtures to a list of transactions that take it as input
     fixtureTransactionInputs: FixtureToTransactionListMap
     // maps fixtures to a list of transactions that take it as output
     fixtureTransactionOutputs: FixtureToTransactionListMap
-    // maps fixtures to their delete transaction
-    fixtureDeleteTransactions: FixtureToTransactionListMap
+    // maps fixtures to their terminal transactions
+    fixtureTerminalTransactions: FixtureToTransactionListMap
 };
+export type TransactionAdjacencyList = [TransactionNode, TransactionNode][];
 
 type LogFunction = (...any: any[]) => void;
 
 // TransactionGraph represents a Directed Acyclical Graph (DAG) of transactions
 // and their dependencies through fixtures
 export default class TransactionGraph {
-    adjacencyList: [TransactionNode, TransactionNode][] = [];
+    transactionAdjacencyList: TransactionAdjacencyList = [];
     log: LogFunction;
 
-    constructor(transactionSpecs: TransactionSpec[], log: LogFunction) {
+    constructor(transactionSpecs: TransactionSpec[],
+        initialFixtureTransactionGraph: FixtureTransactionAdjacencyList,
+        initialTransactionAdjacencyList: TransactionAdjacencyList,
+        log: LogFunction) {
         this.log = log;
 
         // TODO: extract these from here
         // user_credentials and user_tokens are handled differently than other fixtures, so add them manually to the graph
-        const initialFixtureTransactionGraph: FixtureTransactionGraph = {
-            fixtureTransactionInputs: { 
-                'server': ['addApplicationToProject201'],
-                'user_credentials': ['login200'],
-            },
-            fixtureTransactionOutputs: { 'user_credentials': ['addUser201'], 'user_tokens': ['login200'] },
-            fixtureDeleteTransactions:  { 'user_tokens': ['logout204'] }
-        };
         const fixtureTransactionGraph = this.fixtureTransactionGraphFromTransactionSpecs(transactionSpecs, initialFixtureTransactionGraph);
+
+        this.transactionAdjacencyList = initialTransactionAdjacencyList;
         this.populateAdjacencyList(fixtureTransactionGraph);
     }
 
     addEdge(from: TransactionNode, to: TransactionNode) {
-        this.adjacencyList.push([from, to]);
+        this.transactionAdjacencyList.push([from, to]);
     }
 
     // get hidden nodes from fixtures in transaction specs, edges are transactions themselves
-    fixtureTransactionGraphFromTransactionSpecs(transactionSpecs: TransactionSpec[], initialGraph: FixtureTransactionGraph): FixtureTransactionGraph {
-        const { fixtureTransactionInputs, fixtureTransactionOutputs, fixtureDeleteTransactions } = initialGraph;
+    fixtureTransactionGraphFromTransactionSpecs(transactionSpecs: TransactionSpec[], initialGraph: FixtureTransactionAdjacencyList): FixtureTransactionAdjacencyList {
+        const { fixtureTransactionInputs, fixtureTransactionOutputs, fixtureTerminalTransactions: fixtureDeleteTransactions } = initialGraph;
         for (const txSpec of transactionSpecs) {
             // delete transactions are terminal nodes
             if (txSpec.method == "delete") {
@@ -88,7 +87,7 @@ export default class TransactionGraph {
                 fixtureTransactionGraphPush(fixtureTransactionInputs, 'user_tokens', txSpec.slug)
             }
         }
-        return { fixtureTransactionInputs, fixtureTransactionOutputs, fixtureDeleteTransactions };
+        return { fixtureTransactionInputs, fixtureTransactionOutputs, fixtureTerminalTransactions: fixtureDeleteTransactions };
     }
 
     // populates the fixture DAG adjacency list using the fixture transaction graph
@@ -97,8 +96,8 @@ export default class TransactionGraph {
     //       x - A - y - B - y - C
     // and transforms it into a TransactionGraph
     //       A - B - C
-    populateAdjacencyList(fixtureTransactionGraph: FixtureTransactionGraph) {
-        const { fixtureTransactionInputs, fixtureTransactionOutputs, fixtureDeleteTransactions } = fixtureTransactionGraph;
+    populateAdjacencyList(fixtureTransactionGraph: FixtureTransactionAdjacencyList) {
+        const { fixtureTransactionInputs, fixtureTransactionOutputs, fixtureTerminalTransactions: fixtureDeleteTransactions } = fixtureTransactionGraph;
 
         const unreachable: { [tx: string]: boolean } = {};
         // first pass: check for unreachable fixtures and find transactions that require them
@@ -114,14 +113,6 @@ export default class TransactionGraph {
                 }
             }
         }
-
-        // TODO: extract these from here
-        this.addEdge('deleteNetworkRule204', 'unlinkServerFromEnvironment204')
-        this.addEdge('deleteDaemon204', 'unlinkServerFromEnvironment204')
-        this.addEdge('deleteService204', 'unlinkServerFromEnvironment204')
-        this.addEdge('deleteCronJob204', 'unlinkServerFromEnvironment204')
-        this.addEdge('deleteApplication204', 'unlinkServerFromEnvironment204')
-        this.addEdge('unlinkServerFromEnvironment204', 'deleteEnvironment204')
 
         // second pass: add edges connecting fixture dependencies
         for (const fixture in fixtureTransactionInputs) {
@@ -161,7 +152,7 @@ export default class TransactionGraph {
 
     writeDotFile(filename: string) {
         let dot = "digraph devopness_api {";
-        for (const [a, b] of this.adjacencyList) {
+        for (const [a, b] of this.transactionAdjacencyList) {
             dot += `\n  ${a} -> ${b}`
         }
         dot += "\n}";
@@ -169,14 +160,14 @@ export default class TransactionGraph {
     }
 
     topologicalSort(): string[] {
-        return toposort(this.adjacencyList);
+        return toposort(this.transactionAdjacencyList);
     }
 
     edges(node: TransactionNode): [TransactionNode[], TransactionNode[]] {
         const inputs: TransactionNode[] = [];
         const outputs: TransactionNode[] = [];
 
-        for (const [a, b] of this.adjacencyList) {
+        for (const [a, b] of this.transactionAdjacencyList) {
             if (a == node) {
                 outputs.indexOf(b) == -1 ? outputs.push(b) : null;
             } else if (b == node) {

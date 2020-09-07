@@ -15,7 +15,7 @@ import { UserCredentials, UserTokens, isFixtureKey, Identifiable } from './fixtu
 import FixtureStore  from './FixtureStore';
 import TransactionUtils from './TransactionUtils';
 import TransactionSpec from './TransactionSpec';
-import TransactionGraph from './TransactionGraph';
+import TransactionGraph, { TransactionAdjacencyList, FixtureTransactionAdjacencyList } from './TransactionGraph';
 
 // transaction names can be obtained by running `npx dredd --names`
 const transactionSlugToName: { [id: string]: string } = {};
@@ -35,6 +35,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         // make all ssl_certificate routes unreachable
         'addSslCertificateToApplication201',
     ];
+
     // transactions listed here are skipped with a `before` hook
     const postSkiplist = [
         // social_account
@@ -55,10 +56,44 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         'sendUserPasswordResetLink200',
     ];
 
-    // get transaction specs and build maps
+    // initial fixture-transaction graph definitions
+    const initialFixtureTransactionAdjacencyList: FixtureTransactionAdjacencyList = {
+        fixtureTransactionInputs: { 
+            // adding an application requires a valid server
+            'server': ['addApplicationToProject201'],
+            // a `login` transaction requires user credentials
+            'user_credentials': ['login200'],
+        },
+        fixtureTransactionOutputs: { 
+            // user credentials are generated from a successful `addUser` transaction
+            'user_credentials': ['addUser201'], 
+            // user tokens are a result of a successful `login` transaction
+            'user_tokens': ['login200']
+        },
+        fixtureTerminalTransactions:  {
+            // a successful `logout` transaction destroys user tokens
+            'user_tokens': ['logout204']
+        }
+    };
+
+    // initial transaction graph definitions
+    const initialAdjacencyList: TransactionAdjacencyList = [
+        // unlinkServerFromEnvironment requires deleting the associated network rule, daemon, service, cron job and application
+        ['deleteNetworkRule204', 'unlinkServerFromEnvironment204'],
+        ['deleteDaemon204', 'unlinkServerFromEnvironment204'],
+        ['deleteService204', 'unlinkServerFromEnvironment204'],
+        ['deleteCronJob204', 'unlinkServerFromEnvironment204'],
+        ['deleteApplication204', 'unlinkServerFromEnvironment204'],
+        // deleteEnvironment requires an environment without linked servers
+        ['unlinkServerFromEnvironment204', 'deleteEnvironment204']
+    ]
+
+    // extract transaction specs and other metadata; apply 
     const transactionSpecs: TransactionSpec[] = [];
     transactions.forEach((tx: Transaction) => {
         const spec = new TransactionSpec(tx, hooks.log);
+
+        // apply pre-skiplist
         if (!preSkiplist.includes(spec.slug)) {
             transactionSlugToName[spec.slug] = tx.name;
             transactionNameToSpec[tx.name] = spec;
@@ -66,15 +101,17 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         }
     });
 
-    // build transaction graph to find running order
-    const graph = new TransactionGraph(transactionSpecs, hooks.log);
+    // buld transaction graph from transaction specs and initial graph inputs
+    const graph = new TransactionGraph(transactionSpecs, initialFixtureTransactionAdjacencyList, initialAdjacencyList, hooks.log);
+
+    // calculate execution plan from dependency graph
     const executionPlan = graph.topologicalSort();
 
     // shorthand methods for adding hooks by transaction slug
     const before = (id: string, cb: TransactionHook) => hooks.before(transactionSlugToName[id], cb);
     const after = (id: string, cb: TransactionHook) => hooks.after(transactionSlugToName[id], cb);
     
-    // apply the post-skiplist
+    // apply post-skiplist
     postSkiplist.forEach((slug: string) => {
         before(slug, (transaction: Transaction) => {
             transaction.skip = true;
@@ -134,6 +171,8 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
             }
         }
     });
+
+    // append additional details about failing transaction to logs
     hooks.afterAll((transactions: Transaction[], done: () => void) => {
         if (failedTransaction) {
             const transactionSpec = transactionNameToSpec[failedTransaction.name];
@@ -146,7 +185,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         done();
     })
 
-    // request headers
+    //// request headers
     hooks.beforeEach(utils.setTransactionRequestAuthHeaderWithFixture('user_tokens'));
     hooks.beforeEach(utils.setTransactionRequestJsonHeaders);
 

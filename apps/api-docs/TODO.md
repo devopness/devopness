@@ -1,6 +1,5 @@
 # TODO
 ## Automated tests
-- [ ] extract initial transaction graph and fixture-transaction graph from graph-building logic.
 - [ ] drop manual requests and `DevopnessAPI.ts` module: find a way to deal with the dangling default application in new projects.
 - [ ] remove dependency on pre-configured user account with existing source provider:
   - [ ] link source provider programatically through hooks.
@@ -18,3 +17,4 @@
 - [ ] enable `respository` tests: dependant on `source_provider`.
 - [ ] enable `users` tests: `activateUser204`, `sendUserPasswordResetLink200` and `resetUserPassword200` require email validation mocking logic.
 - [ ] run 404 transactions: proof-of-concept running over clean-slate user accounts
+- [X] extract initial transaction graph and fixture-transaction graph from graph-building logic.
