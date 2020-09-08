@@ -18,8 +18,12 @@ By streamlining essential DevOps practices we're making first class software dep
 
 ### Install/Upgrade
 Use your favourite package manager to install Devopness SDK as a dependency of your project:
-```
+```bash
+# Using npm
 npm install @devopness/sdk-js
+
+# Using yarn
+yarn add @devopness/sdk-js
 ```
 
 ### Initializing
@@ -32,6 +36,11 @@ Here is a generic simple example that can be used from `Node.js`, `TypeScript` o
 import { DevopnessApiClient } from '@devopness/sdk-js'
 const devopnessApi = new DevopnessApiClient();
 ```
+
+The instance of `DevopnessApiClient` has properties to all services provided by the API.
+The name of the methods at services is the same as operation name in the documentation of the
+Devopness API. You can consult the URL of a endpoint to see the operation name. For instance
+the URL to endpoint `POST /users/login` in the documentation is: `/#operation/login`
 
 ### Authenticating
 
@@ -47,6 +56,8 @@ async function authenticate(email, pass) {
 // invoke the authentication method
 authenticate('user@email.com', 'secret-password');
 ```
+
+In the example above, `userTokens` is a instance of `ApiResponse` and the `data` property has the data requested from the API. See [ApiResponse.ts](https://github.com/devopness/devopness-sdk-js/blob/master/src/common/ApiResponse.ts) for reference.
 
 ### Invoking authentication protected endpoints
 Once an authentication token is set, any protected endpoint can be invoked.
@@ -70,6 +81,6 @@ getUserProfile();
 
 ### TypeScript support
 This package includes TypeScript declarations for every method.
-TypeScript versions >= 3.1 are supported.
+TypeScript versions `>= 3.8` are supported.
 
 Some methods in `Devopness SDK JavaScript` accept and return objects from the Devopness API. The type declarations for these objects will always track the latest version of the API. Therefore, if you'e using the latest version of this package you can rely on the Devopness API documentation for checking the input and return types of each API endpoint.
