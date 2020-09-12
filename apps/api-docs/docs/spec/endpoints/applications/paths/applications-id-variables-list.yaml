@@ -20,4 +20,4 @@ responses:
     content:
       application/json:
         schema:
-          $ref: '#/components/schemas/ApplicationVariables'
+          $ref: '#/components/schemas/Variables'

@@ -78,6 +78,10 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     'script': [
         { path: 'application_id', fixture: 'application', field: 'id' }
     ],
+    'script_update': [
+        { path: 'id', fixture: 'script', field: 'id' },
+        { path: 'application_id', fixture: 'application', field: 'id' }
+    ],
     'server': [],
     'server_create': [
         // server_create can't have an environemnt.id,
@@ -102,6 +106,11 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     'user_tokens': [],
     'user': [],
     'variable': [],
+    // 'variable_create': [],
+    'variable_update': [
+        { path: 'application_id', fixture: 'application', field: 'id' },
+        { path: 'id', fixture: 'variable', field: 'id' }
+    ],
 };
 
 // keyof in TS 2.9 is a string | number
@@ -123,10 +132,12 @@ const fixtureListKeys = {
     'daemons': 'daemon',
     'projects': 'project',
     'repositories': 'repository',
+    'scripts': 'script',
     'servers': 'server',
     'services': 'service',
     'social_accounts': 'social_account',
     'ssh_keys': 'ssh_key',
+    'variables': 'variable',
 }
 export type FixtureListKey = keyof typeof fixtureListKeys;
 export function isFixtureListKey(val: string | any[]): val is FixtureListKey {

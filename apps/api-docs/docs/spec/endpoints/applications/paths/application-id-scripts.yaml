@@ -20,14 +20,14 @@ requestBody:
   content:
     application/json:
       schema:
-        $ref: '#/components/schemas/ApplicationScriptCreate'
+        $ref: '#/components/schemas/ScriptCreate'
 responses:
   201:
     description: 'Created'
     content:
       application/json:
         schema:
-          $ref: '#/components/schemas/ApplicationScript'
+          $ref: '#/components/schemas/Script'
   404:
     $ref: "#/components/responses/NotFound"
   422:

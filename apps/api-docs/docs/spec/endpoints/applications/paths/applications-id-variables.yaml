@@ -20,13 +20,13 @@ requestBody:
   content:
     application/json:
       schema:
-        $ref: "#/components/schemas/ApplicationVariableCreate"
+        $ref: "#/components/schemas/VariableCreate"
 responses:
   201:
     description: 'Created'
     content:
       application/json:
         schema:
-          $ref: "#/components/schemas/ApplicationVariable"
+          $ref: "#/components/schemas/Variable"
   404:
     $ref: "#/components/responses/NotFound"

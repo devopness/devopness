@@ -20,4 +20,4 @@ responses:
     content:
       application/json:
         schema:
-          $ref: '#/components/schemas/ApplicationScripts'
+          $ref: '#/components/schemas/Scripts'

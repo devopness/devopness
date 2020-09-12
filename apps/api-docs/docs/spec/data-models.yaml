@@ -20,20 +20,8 @@ ApplicationDeploymentCreate:
   $ref: ./endpoints/applications/schemas/application-deployment-create.yaml
 ApplicationDeployment:
   $ref: ./endpoints/applications/schemas/application-deployment.yaml
-ApplicationScript:
-  $ref: ./endpoints/applications/schemas/application-script.yaml
-ApplicationScriptCreate:
-  $ref: ./endpoints/applications/schemas/application-script-create.yaml
-ApplicationScripts:
-  $ref: ./endpoints/applications/schemas/application-script-list.yaml
 ApplicationType:
   $ref: ./shared/schemas/application-type.yaml
-ApplicationVariable:
-  $ref: ./endpoints/applications/schemas/application-variable.yaml
-ApplicationVariableCreate:
-  $ref: ./endpoints/applications/schemas/application-variable-create.yaml
-ApplicationVariables:
-  $ref: ./endpoints/applications/schemas/application-variable-list.yaml
 Applications:
   $ref: ./endpoints/applications/schemas/application-list.yaml
 BlueprintItem:
@@ -138,6 +126,10 @@ ResourceType:
   $ref: ./endpoints/actions/schemas/resource-type.yaml
 Script:
   $ref: ./endpoints/scripts/schemas/script.yaml
+Scripts:
+  $ref: ./endpoints/scripts/schemas/script-list.yaml
+ScriptCreate:
+  $ref: ./endpoints/scripts/schemas/script-create.yaml
 ScriptUpdate:
   $ref: ./endpoints/scripts/schemas/script-update.yaml
 Server:
@@ -226,6 +218,12 @@ UserRefreshTokenCreate:
   $ref: ./endpoints/users/schemas/user-refresh-token-create.yaml
 UserTokens:
   $ref: ./endpoints/users/schemas/user-tokens.yaml
+Variable:
+  $ref: ./endpoints/variables/schemas/variable.yaml
+Variables:
+  $ref: ./endpoints/variables/schemas/variable-list.yaml
+VariableCreate:
+  $ref: ./endpoints/variables/schemas/variable-create.yaml
 VariableTarget:
   $ref: ./shared/schemas/variable-target.yaml
 VariableType:

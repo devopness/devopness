@@ -78,6 +78,9 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
 
     // initial transaction graph definitions
     const initialAdjacencyList: TransactionAdjacencyList = [
+        // variable tests should run before deleteApplication
+        ['deleteVariable204', 'deleteApplication204'],
+        ['deleteScript204', 'deleteApplication204'],
         // unlinkServerFromEnvironment requires deleting the associated network rule, daemon, service, cron job and application
         ['deleteNetworkRule204', 'unlinkServerFromEnvironment204'],
         ['deleteDaemon204', 'unlinkServerFromEnvironment204'],
@@ -255,6 +258,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
             if (appIDs.length > 0) {
                 const success = api.deleteApplication(appIDs[0]);
                 if (!success) {
+                    // TODO: treat errors here
                 }
             }
         }
