@@ -29,7 +29,10 @@ export class CronJobsApiService extends ApiBaseService {
         if (cronJobId === null || cronJobId === undefined) {
             throw new ArgumentNullException('cronJobId', 'deleteCronJob');
         }
-        const response = await this.delete <void>(`/cron-jobs/{cron_job_id}`.replace(`{${"cron_job_id"}}`, encodeURIComponent(String(cronJobId))));
+        const queryString = [].join('&');
+        const requestUrl = '/cron-jobs/{cron_job_id}' + (queryString? `?${queryString}` : '');
+
+        const response = await this.delete <void>(requestUrl.replace(`{${"cron_job_id"}}`, encodeURIComponent(String(cronJobId))));
         return new ApiResponse(response);
     }
 
@@ -42,7 +45,10 @@ export class CronJobsApiService extends ApiBaseService {
         if (cronJobId === null || cronJobId === undefined) {
             throw new ArgumentNullException('cronJobId', 'getCronJob');
         }
-        const response = await this.get <CronJob>(`/cron-jobs/{cron_job_id}`.replace(`{${"cron_job_id"}}`, encodeURIComponent(String(cronJobId))));
+        const queryString = [].join('&');
+        const requestUrl = '/cron-jobs/{cron_job_id}' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <CronJob>(requestUrl.replace(`{${"cron_job_id"}}`, encodeURIComponent(String(cronJobId))));
         return new ApiResponse(response);
     }
 }

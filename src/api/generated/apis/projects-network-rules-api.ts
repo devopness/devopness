@@ -35,7 +35,10 @@ export class ProjectsNetworkRulesApiService extends ApiBaseService {
         if (networkRuleCreate === null || networkRuleCreate === undefined) {
             throw new ArgumentNullException('networkRuleCreate', 'addNetworkRuleToProject');
         }
-        const response = await this.post <NetworkRule, NetworkRuleCreate>(`/projects/{project_id}/network-rules`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), networkRuleCreate);
+        const queryString = [].join('&');
+        const requestUrl = '/projects/{project_id}/network-rules' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <NetworkRule, NetworkRuleCreate>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), networkRuleCreate);
         return new ApiResponse(response);
     }
 
@@ -48,7 +51,10 @@ export class ProjectsNetworkRulesApiService extends ApiBaseService {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'listProjectNetworkRules');
         }
-        const response = await this.get <Array<NetworkRule>>(`/projects/{project_id}/network-rules`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
+        const queryString = [].join('&');
+        const requestUrl = '/projects/{project_id}/network-rules' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <Array<NetworkRule>>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
         return new ApiResponse(response);
     }
 }

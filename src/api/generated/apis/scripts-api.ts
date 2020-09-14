@@ -31,7 +31,10 @@ export class ScriptsApiService extends ApiBaseService {
         if (scriptId === null || scriptId === undefined) {
             throw new ArgumentNullException('scriptId', 'deleteScript');
         }
-        const response = await this.delete <void>(`/scripts/{script_id}`.replace(`{${"script_id"}}`, encodeURIComponent(String(scriptId))));
+        const queryString = [].join('&');
+        const requestUrl = '/scripts/{script_id}' + (queryString? `?${queryString}` : '');
+
+        const response = await this.delete <void>(requestUrl.replace(`{${"script_id"}}`, encodeURIComponent(String(scriptId))));
         return new ApiResponse(response);
     }
 
@@ -44,7 +47,10 @@ export class ScriptsApiService extends ApiBaseService {
         if (scriptId === null || scriptId === undefined) {
             throw new ArgumentNullException('scriptId', 'getScript');
         }
-        const response = await this.get <Script>(`/scripts/{script_id}`.replace(`{${"script_id"}}`, encodeURIComponent(String(scriptId))));
+        const queryString = [].join('&');
+        const requestUrl = '/scripts/{script_id}' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <Script>(requestUrl.replace(`{${"script_id"}}`, encodeURIComponent(String(scriptId))));
         return new ApiResponse(response);
     }
 
@@ -61,7 +67,10 @@ export class ScriptsApiService extends ApiBaseService {
         if (scriptUpdate === null || scriptUpdate === undefined) {
             throw new ArgumentNullException('scriptUpdate', 'updateScript');
         }
-        const response = await this.put <void, ScriptUpdate>(`/scripts/{script_id}`.replace(`{${"script_id"}}`, encodeURIComponent(String(scriptId))), scriptUpdate);
+        const queryString = [].join('&');
+        const requestUrl = '/scripts/{script_id}' + (queryString? `?${queryString}` : '');
+
+        const response = await this.put <void, ScriptUpdate>(requestUrl.replace(`{${"script_id"}}`, encodeURIComponent(String(scriptId))), scriptUpdate);
         return new ApiResponse(response);
     }
 }

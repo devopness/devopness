@@ -29,7 +29,10 @@ export class ActionsApiService extends ApiBaseService {
         if (actionId === null || actionId === undefined) {
             throw new ArgumentNullException('actionId', 'getAction');
         }
-        const response = await this.get <Action>(`/actions/{action_id}`.replace(`{${"action_id"}}`, encodeURIComponent(String(actionId))));
+        const queryString = [].join('&');
+        const requestUrl = '/actions/{action_id}' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <Action>(requestUrl.replace(`{${"action_id"}}`, encodeURIComponent(String(actionId))));
         return new ApiResponse(response);
     }
 
@@ -38,7 +41,10 @@ export class ActionsApiService extends ApiBaseService {
      * @summary Return a list of all actions belonging to current user
      */
     public async listActions(): Promise<ApiResponse<Array<Action>>> {
-        const response = await this.get <Array<Action>>(`/actions`);
+        const queryString = [].join('&');
+        const requestUrl = '/actions' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <Array<Action>>(requestUrl);
         return new ApiResponse(response);
     }
 }

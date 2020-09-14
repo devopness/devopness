@@ -29,7 +29,10 @@ export class DeploymentsApiService extends ApiBaseService {
         if (deploymentId === null || deploymentId === undefined) {
             throw new ArgumentNullException('deploymentId', 'getDeployment');
         }
-        const response = await this.get <Deployment>(`/deployments/{deployment_id}`.replace(`{${"deployment_id"}}`, encodeURIComponent(String(deploymentId))));
+        const queryString = [].join('&');
+        const requestUrl = '/deployments/{deployment_id}' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <Deployment>(requestUrl.replace(`{${"deployment_id"}}`, encodeURIComponent(String(deploymentId))));
         return new ApiResponse(response);
     }
 }

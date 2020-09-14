@@ -27,7 +27,10 @@ export class StaticDataApiService extends ApiBaseService {
      * @summary Lists options of the applications
      */
     public async listApplicationOptions(): Promise<ApiResponse<ApplicationOptions>> {
-        const response = await this.get <ApplicationOptions>(`/static/applications`);
+        const queryString = [].join('&');
+        const requestUrl = '/static/applications' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <ApplicationOptions>(requestUrl);
         return new ApiResponse(response);
     }
 
@@ -36,7 +39,10 @@ export class StaticDataApiService extends ApiBaseService {
      * @summary Lists options of the cronjobs
      */
     public async listCronJobOptions(): Promise<ApiResponse<CronJobOptions>> {
-        const response = await this.get <CronJobOptions>(`/static/cronjobs`);
+        const queryString = [].join('&');
+        const requestUrl = '/static/cronjobs' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <CronJobOptions>(requestUrl);
         return new ApiResponse(response);
     }
 
@@ -45,7 +51,10 @@ export class StaticDataApiService extends ApiBaseService {
      * @summary Lists options of the environments
      */
     public async listEnvironmentOptions(): Promise<ApiResponse<EnvironmentOptions>> {
-        const response = await this.get <EnvironmentOptions>(`/static/environments`);
+        const queryString = [].join('&');
+        const requestUrl = '/static/environments' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <EnvironmentOptions>(requestUrl);
         return new ApiResponse(response);
     }
 }
