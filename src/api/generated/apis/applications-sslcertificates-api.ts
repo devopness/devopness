@@ -34,7 +34,9 @@ export class ApplicationsSSLCertificatesApiService extends ApiBaseService {
         if (sslCertificateCreate === null || sslCertificateCreate === undefined) {
             throw new ArgumentNullException('sslCertificateCreate', 'addSslCertificateToApplication');
         }
-        const response = await this.post <SslCertificate, SslCertificateCreate>(`/applications/{application_id}/ssl-certificates`.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))), sslCertificateCreate);
+        const queryString = [].join('&');
+
+        const response = await this.post <SslCertificate, SslCertificateCreate>(`/applications/{application_id}/ssl-certificates?${queryString}`.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))), sslCertificateCreate);
         return new ApiResponse(response);
     }
 
@@ -47,7 +49,9 @@ export class ApplicationsSSLCertificatesApiService extends ApiBaseService {
         if (applicationId === null || applicationId === undefined) {
             throw new ArgumentNullException('applicationId', 'listApplicationSslCertificates');
         }
-        const response = await this.get <Array<SslCertificate>>(`/applications/{application_id}/ssl-certificates`.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))));
+        const queryString = [].join('&');
+
+        const response = await this.get <Array<SslCertificate>>(`/applications/{application_id}/ssl-certificates?${queryString}`.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))));
         return new ApiResponse(response);
     }
 }

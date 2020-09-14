@@ -32,7 +32,9 @@ export class ApplicationsDeploymentsApiService extends ApiBaseService {
         if (applicationId === null || applicationId === undefined) {
             throw new ArgumentNullException('applicationId', 'deployApplication');
         }
-        const response = await this.post <ApplicationDeployment, ApplicationDeploymentCreate>(`/applications/{application_id}/deployments`.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))), applicationDeploymentCreate);
+        const queryString = [].join('&');
+
+        const response = await this.post <ApplicationDeployment, ApplicationDeploymentCreate>(`/applications/{application_id}/deployments?${queryString}`.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))), applicationDeploymentCreate);
         return new ApiResponse(response);
     }
 
@@ -45,7 +47,9 @@ export class ApplicationsDeploymentsApiService extends ApiBaseService {
         if (applicationId === null || applicationId === undefined) {
             throw new ArgumentNullException('applicationId', 'listApplicationDeployments');
         }
-        const response = await this.get <Array<Deployment>>(`/applications/{application_id}/deployments`.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))));
+        const queryString = [].join('&');
+
+        const response = await this.get <Array<Deployment>>(`/applications/{application_id}/deployments?${queryString}`.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))));
         return new ApiResponse(response);
     }
 }

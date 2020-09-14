@@ -38,7 +38,9 @@ export class ServersApiService extends ApiBaseService {
         if (activationToken === null || activationToken === undefined) {
             throw new ArgumentNullException('activationToken', 'connectServer');
         }
-        const response = await this.post <ServerConnect, ExtraBodyParams>(`/servers/{server_id}/connect/{activation_token}`.replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))).replace(`{${"activation_token"}}`, encodeURIComponent(String(activationToken))), extraBodyParams);
+        const queryString = [].join('&');
+
+        const response = await this.post <ServerConnect, ExtraBodyParams>(`/servers/{server_id}/connect/{activation_token}?${queryString}`.replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))).replace(`{${"activation_token"}}`, encodeURIComponent(String(activationToken))), extraBodyParams);
         return new ApiResponse(response);
     }
 
@@ -51,7 +53,9 @@ export class ServersApiService extends ApiBaseService {
         if (serverId === null || serverId === undefined) {
             throw new ArgumentNullException('serverId', 'getServer');
         }
-        const response = await this.get <Server>(`/servers/{server_id}`.replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))));
+        const queryString = [].join('&');
+
+        const response = await this.get <Server>(`/servers/{server_id}?${queryString}`.replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))));
         return new ApiResponse(response);
     }
 
@@ -64,7 +68,9 @@ export class ServersApiService extends ApiBaseService {
         if (serverId === null || serverId === undefined) {
             throw new ArgumentNullException('serverId', 'getServerCommands');
         }
-        const response = await this.get <ServerCommands>(`/servers/{server_id}/commands`.replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))));
+        const queryString = [].join('&');
+
+        const response = await this.get <ServerCommands>(`/servers/{server_id}/commands?${queryString}`.replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))));
         return new ApiResponse(response);
     }
 
@@ -73,7 +79,9 @@ export class ServersApiService extends ApiBaseService {
      * @summary Return a list of all servers belonging to current user
      */
     public async listServers(): Promise<ApiResponse<Array<Server>>> {
-        const response = await this.get <Array<Server>>(`/servers`);
+        const queryString = [].join('&');
+
+        const response = await this.get <Array<Server>>(`/servers?${queryString}`);
         return new ApiResponse(response);
     }
 }

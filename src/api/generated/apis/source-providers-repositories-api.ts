@@ -37,7 +37,9 @@ export class SourceProvidersRepositoriesApiService extends ApiBaseService {
         if (repositoryName === null || repositoryName === undefined) {
             throw new ArgumentNullException('repositoryName', 'getRepository');
         }
-        const response = await this.get <Repository>(`/source-providers/{source_provider_id}/repositories/{repository_owner}/{repository_name}`.replace(`{${"source_provider_id"}}`, encodeURIComponent(String(sourceProviderId))).replace(`{${"repository_owner"}}`, encodeURIComponent(String(repositoryOwner))).replace(`{${"repository_name"}}`, encodeURIComponent(String(repositoryName))));
+        const queryString = [].join('&');
+
+        const response = await this.get <Repository>(`/source-providers/{source_provider_id}/repositories/{repository_owner}/{repository_name}?${queryString}`.replace(`{${"source_provider_id"}}`, encodeURIComponent(String(sourceProviderId))).replace(`{${"repository_owner"}}`, encodeURIComponent(String(repositoryOwner))).replace(`{${"repository_name"}}`, encodeURIComponent(String(repositoryName))));
         return new ApiResponse(response);
     }
 
@@ -50,7 +52,9 @@ export class SourceProvidersRepositoriesApiService extends ApiBaseService {
         if (sourceProviderId === null || sourceProviderId === undefined) {
             throw new ArgumentNullException('sourceProviderId', 'listRepositories');
         }
-        const response = await this.get <Array<Repository>>(`/source-providers/{source_provider_id}/repositories`.replace(`{${"source_provider_id"}}`, encodeURIComponent(String(sourceProviderId))));
+        const queryString = [].join('&');
+
+        const response = await this.get <Array<Repository>>(`/source-providers/{source_provider_id}/repositories?${queryString}`.replace(`{${"source_provider_id"}}`, encodeURIComponent(String(sourceProviderId))));
         return new ApiResponse(response);
     }
 }

@@ -35,7 +35,9 @@ export class ProjectsApplicationsApiService extends ApiBaseService {
         if (applicationCreate === null || applicationCreate === undefined) {
             throw new ArgumentNullException('applicationCreate', 'addApplicationToProject');
         }
-        const response = await this.post <Application, ApplicationCreate>(`/projects/{project_id}/applications`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), applicationCreate);
+        const queryString = [].join('&');
+
+        const response = await this.post <Application, ApplicationCreate>(`/projects/{project_id}/applications?${queryString}`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), applicationCreate);
         return new ApiResponse(response);
     }
 
@@ -48,7 +50,9 @@ export class ProjectsApplicationsApiService extends ApiBaseService {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'listProjectApplications');
         }
-        const response = await this.get <Array<Application>>(`/projects/{project_id}/applications`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
+        const queryString = [].join('&');
+
+        const response = await this.get <Array<Application>>(`/projects/{project_id}/applications?${queryString}`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
         return new ApiResponse(response);
     }
 }

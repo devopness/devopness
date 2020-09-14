@@ -30,7 +30,9 @@ export class DaemonsApiService extends ApiBaseService {
         if (daemonId === null || daemonId === undefined) {
             throw new ArgumentNullException('daemonId', 'deleteDaemon');
         }
-        const response = await this.delete <void>(`/daemons/{daemon_id}`.replace(`{${"daemon_id"}}`, encodeURIComponent(String(daemonId))));
+        const queryString = [].join('&');
+
+        const response = await this.delete <void>(`/daemons/{daemon_id}?${queryString}`.replace(`{${"daemon_id"}}`, encodeURIComponent(String(daemonId))));
         return new ApiResponse(response);
     }
 
@@ -43,7 +45,9 @@ export class DaemonsApiService extends ApiBaseService {
         if (daemonId === null || daemonId === undefined) {
             throw new ArgumentNullException('daemonId', 'getDaemon');
         }
-        const response = await this.get <Daemon>(`/daemons/{daemon_id}`.replace(`{${"daemon_id"}}`, encodeURIComponent(String(daemonId))));
+        const queryString = [].join('&');
+
+        const response = await this.get <Daemon>(`/daemons/{daemon_id}?${queryString}`.replace(`{${"daemon_id"}}`, encodeURIComponent(String(daemonId))));
         return new ApiResponse(response);
     }
 
@@ -57,7 +61,9 @@ export class DaemonsApiService extends ApiBaseService {
         if (daemonId === null || daemonId === undefined) {
             throw new ArgumentNullException('daemonId', 'restartDaemon');
         }
-        const response = await this.post <void, ExtraBodyParams>(`/daemons/{daemon_id}/restart`.replace(`{${"daemon_id"}}`, encodeURIComponent(String(daemonId))), extraBodyParams);
+        const queryString = [].join('&');
+
+        const response = await this.post <void, ExtraBodyParams>(`/daemons/{daemon_id}/restart?${queryString}`.replace(`{${"daemon_id"}}`, encodeURIComponent(String(daemonId))), extraBodyParams);
         return new ApiResponse(response);
     }
 }

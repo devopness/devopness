@@ -31,7 +31,9 @@ export class VariablesApiService extends ApiBaseService {
         if (variableId === null || variableId === undefined) {
             throw new ArgumentNullException('variableId', 'deleteVariable');
         }
-        const response = await this.delete <void>(`/variables/{variable_id}`.replace(`{${"variable_id"}}`, encodeURIComponent(String(variableId))));
+        const queryString = [].join('&');
+
+        const response = await this.delete <void>(`/variables/{variable_id}?${queryString}`.replace(`{${"variable_id"}}`, encodeURIComponent(String(variableId))));
         return new ApiResponse(response);
     }
 
@@ -44,7 +46,9 @@ export class VariablesApiService extends ApiBaseService {
         if (variableId === null || variableId === undefined) {
             throw new ArgumentNullException('variableId', 'getVariable');
         }
-        const response = await this.get <ApplicationVariable>(`/variables/{variable_id}`.replace(`{${"variable_id"}}`, encodeURIComponent(String(variableId))));
+        const queryString = [].join('&');
+
+        const response = await this.get <ApplicationVariable>(`/variables/{variable_id}?${queryString}`.replace(`{${"variable_id"}}`, encodeURIComponent(String(variableId))));
         return new ApiResponse(response);
     }
 
@@ -61,7 +65,9 @@ export class VariablesApiService extends ApiBaseService {
         if (variableUpdate === null || variableUpdate === undefined) {
             throw new ArgumentNullException('variableUpdate', 'updateVariable');
         }
-        const response = await this.put <void, VariableUpdate>(`/variables/{variable_id}`.replace(`{${"variable_id"}}`, encodeURIComponent(String(variableId))), variableUpdate);
+        const queryString = [].join('&');
+
+        const response = await this.put <void, VariableUpdate>(`/variables/{variable_id}?${queryString}`.replace(`{${"variable_id"}}`, encodeURIComponent(String(variableId))), variableUpdate);
         return new ApiResponse(response);
     }
 }

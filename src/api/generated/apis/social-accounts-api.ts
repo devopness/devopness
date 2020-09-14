@@ -31,7 +31,9 @@ export class SocialAccountsApiService extends ApiBaseService {
         if (socialAccountCreate === null || socialAccountCreate === undefined) {
             throw new ArgumentNullException('socialAccountCreate', 'addSocialAccount');
         }
-        const response = await this.post <SocialAccount, SocialAccountCreate>(`/social-accounts`, socialAccountCreate);
+        const queryString = [].join('&');
+
+        const response = await this.post <SocialAccount, SocialAccountCreate>(`/social-accounts?${queryString}`, socialAccountCreate);
         return new ApiResponse(response);
     }
 
@@ -44,7 +46,9 @@ export class SocialAccountsApiService extends ApiBaseService {
         if (socialAccountId === null || socialAccountId === undefined) {
             throw new ArgumentNullException('socialAccountId', 'deleteSocialAccount');
         }
-        const response = await this.delete <void>(`/social-accounts/{social_account_id}`.replace(`{${"social_account_id"}}`, encodeURIComponent(String(socialAccountId))));
+        const queryString = [].join('&');
+
+        const response = await this.delete <void>(`/social-accounts/{social_account_id}?${queryString}`.replace(`{${"social_account_id"}}`, encodeURIComponent(String(socialAccountId))));
         return new ApiResponse(response);
     }
 
@@ -57,7 +61,9 @@ export class SocialAccountsApiService extends ApiBaseService {
         if (socialAccountId === null || socialAccountId === undefined) {
             throw new ArgumentNullException('socialAccountId', 'getSocialAccount');
         }
-        const response = await this.get <SocialAccount>(`/social-accounts/{social_account_id}`.replace(`{${"social_account_id"}}`, encodeURIComponent(String(socialAccountId))));
+        const queryString = [].join('&');
+
+        const response = await this.get <SocialAccount>(`/social-accounts/{social_account_id}?${queryString}`.replace(`{${"social_account_id"}}`, encodeURIComponent(String(socialAccountId))));
         return new ApiResponse(response);
     }
 
@@ -70,7 +76,9 @@ export class SocialAccountsApiService extends ApiBaseService {
         if (socialAccountProviderName === null || socialAccountProviderName === undefined) {
             throw new ArgumentNullException('socialAccountProviderName', 'getSocialAccountStatusByName');
         }
-        const response = await this.get <SocialAccountStatus>(`/social-accounts/{social_account_provider_name}/status`.replace(`{${"social_account_provider_name"}}`, encodeURIComponent(String(socialAccountProviderName))));
+        const queryString = [].join('&');
+
+        const response = await this.get <SocialAccountStatus>(`/social-accounts/{social_account_provider_name}/status?${queryString}`.replace(`{${"social_account_provider_name"}}`, encodeURIComponent(String(socialAccountProviderName))));
         return new ApiResponse(response);
     }
 
@@ -79,7 +87,9 @@ export class SocialAccountsApiService extends ApiBaseService {
      * @summary Return a list of all social accounts belonging to current user
      */
     public async listSocialAccounts(): Promise<ApiResponse<Array<SocialAccount>>> {
-        const response = await this.get <Array<SocialAccount>>(`/social-accounts`);
+        const queryString = [].join('&');
+
+        const response = await this.get <Array<SocialAccount>>(`/social-accounts?${queryString}`);
         return new ApiResponse(response);
     }
 }

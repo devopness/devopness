@@ -30,7 +30,9 @@ export class SourceProvidersApiService extends ApiBaseService {
         if (sourceProviderCreate === null || sourceProviderCreate === undefined) {
             throw new ArgumentNullException('sourceProviderCreate', 'addSourceProvider');
         }
-        const response = await this.post <SourceProvider, SourceProviderCreate>(`/source-providers`, sourceProviderCreate);
+        const queryString = [].join('&');
+
+        const response = await this.post <SourceProvider, SourceProviderCreate>(`/source-providers?${queryString}`, sourceProviderCreate);
         return new ApiResponse(response);
     }
 
@@ -43,7 +45,9 @@ export class SourceProvidersApiService extends ApiBaseService {
         if (sourceProviderId === null || sourceProviderId === undefined) {
             throw new ArgumentNullException('sourceProviderId', 'deleteSourceProvider');
         }
-        const response = await this.delete <void>(`/source-providers/{source_provider_id}`.replace(`{${"source_provider_id"}}`, encodeURIComponent(String(sourceProviderId))));
+        const queryString = [].join('&');
+
+        const response = await this.delete <void>(`/source-providers/{source_provider_id}?${queryString}`.replace(`{${"source_provider_id"}}`, encodeURIComponent(String(sourceProviderId))));
         return new ApiResponse(response);
     }
 
@@ -56,7 +60,9 @@ export class SourceProvidersApiService extends ApiBaseService {
         if (sourceProviderId === null || sourceProviderId === undefined) {
             throw new ArgumentNullException('sourceProviderId', 'getSourceProvider');
         }
-        const response = await this.get <SourceProvider>(`/source-providers/{source_provider_id}`.replace(`{${"source_provider_id"}}`, encodeURIComponent(String(sourceProviderId))));
+        const queryString = [].join('&');
+
+        const response = await this.get <SourceProvider>(`/source-providers/{source_provider_id}?${queryString}`.replace(`{${"source_provider_id"}}`, encodeURIComponent(String(sourceProviderId))));
         return new ApiResponse(response);
     }
 
@@ -65,7 +71,9 @@ export class SourceProvidersApiService extends ApiBaseService {
      * @summary Return a list of all source code providers linked to current user
      */
     public async listSourceProviders(): Promise<ApiResponse<SourceProvider>> {
-        const response = await this.get <SourceProvider>(`/source-providers`);
+        const queryString = [].join('&');
+
+        const response = await this.get <SourceProvider>(`/source-providers?${queryString}`);
         return new ApiResponse(response);
     }
 }

@@ -29,7 +29,9 @@ export class SSHKeysApiService extends ApiBaseService {
         if (sshKeyId === null || sshKeyId === undefined) {
             throw new ArgumentNullException('sshKeyId', 'deleteSshKey');
         }
-        const response = await this.delete <void>(`/ssh-keys/{ssh_key_id}`.replace(`{${"ssh_key_id"}}`, encodeURIComponent(String(sshKeyId))));
+        const queryString = [].join('&');
+
+        const response = await this.delete <void>(`/ssh-keys/{ssh_key_id}?${queryString}`.replace(`{${"ssh_key_id"}}`, encodeURIComponent(String(sshKeyId))));
         return new ApiResponse(response);
     }
 
@@ -42,7 +44,9 @@ export class SSHKeysApiService extends ApiBaseService {
         if (sshKeyId === null || sshKeyId === undefined) {
             throw new ArgumentNullException('sshKeyId', 'getSshKey');
         }
-        const response = await this.get <SshKey>(`/ssh-keys/{ssh_key_id}`.replace(`{${"ssh_key_id"}}`, encodeURIComponent(String(sshKeyId))));
+        const queryString = [].join('&');
+
+        const response = await this.get <SshKey>(`/ssh-keys/{ssh_key_id}?${queryString}`.replace(`{${"ssh_key_id"}}`, encodeURIComponent(String(sshKeyId))));
         return new ApiResponse(response);
     }
 }
