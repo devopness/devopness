@@ -36,8 +36,9 @@ export class ApplicationsScriptsApiService extends ApiBaseService {
             throw new ArgumentNullException('applicationScriptCreate', 'addScriptToApplication');
         }
         const queryString = [].join('&');
+        const requestUrl = '/applications/{application_id}/scripts' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <ApplicationScript, ApplicationScriptCreate>(`/applications/{application_id}/scripts?${queryString}`.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))), applicationScriptCreate);
+        const response = await this.post <ApplicationScript, ApplicationScriptCreate>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))), applicationScriptCreate);
         return new ApiResponse(response);
     }
 
@@ -51,8 +52,9 @@ export class ApplicationsScriptsApiService extends ApiBaseService {
             throw new ArgumentNullException('applicationId', 'listApplicationScripts');
         }
         const queryString = [].join('&');
+        const requestUrl = '/applications/{application_id}/scripts' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<ApplicationScript>>(`/applications/{application_id}/scripts?${queryString}`.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))));
+        const response = await this.get <Array<ApplicationScript>>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))));
         return new ApiResponse(response);
     }
 }

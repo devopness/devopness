@@ -35,8 +35,9 @@ export class ApplicationsVariablesApiService extends ApiBaseService {
             throw new ArgumentNullException('applicationVariableCreate', 'addVariableToApplication');
         }
         const queryString = [].join('&');
+        const requestUrl = '/applications/{application_id}/variables' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <ApplicationVariable, ApplicationVariableCreate>(`/applications/{application_id}/variables?${queryString}`.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))), applicationVariableCreate);
+        const response = await this.post <ApplicationVariable, ApplicationVariableCreate>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))), applicationVariableCreate);
         return new ApiResponse(response);
     }
 
@@ -50,8 +51,9 @@ export class ApplicationsVariablesApiService extends ApiBaseService {
             throw new ArgumentNullException('applicationId', 'listApplicationVariables');
         }
         const queryString = [].join('&');
+        const requestUrl = '/applications/{application_id}/variables' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<ApplicationVariable>>(`/applications/{application_id}/variables?${queryString}`.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))));
+        const response = await this.get <Array<ApplicationVariable>>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))));
         return new ApiResponse(response);
     }
 }

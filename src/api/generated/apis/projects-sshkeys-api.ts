@@ -36,8 +36,9 @@ export class ProjectsSSHKeysApiService extends ApiBaseService {
             throw new ArgumentNullException('sshKeyCreate', 'addSshKeyToProject');
         }
         const queryString = [].join('&');
+        const requestUrl = '/projects/{project_id}/ssh-keys' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <SshKey, SshKeyCreate>(`/projects/{project_id}/ssh-keys?${queryString}`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), sshKeyCreate);
+        const response = await this.post <SshKey, SshKeyCreate>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), sshKeyCreate);
         return new ApiResponse(response);
     }
 
@@ -51,8 +52,9 @@ export class ProjectsSSHKeysApiService extends ApiBaseService {
             throw new ArgumentNullException('projectId', 'listProjectSshKeys');
         }
         const queryString = [].join('&');
+        const requestUrl = '/projects/{project_id}/ssh-keys' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<SshKey>>(`/projects/{project_id}/ssh-keys?${queryString}`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
+        const response = await this.get <Array<SshKey>>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
         return new ApiResponse(response);
     }
 }

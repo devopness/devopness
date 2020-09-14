@@ -36,8 +36,9 @@ export class ProjectsServersApiService extends ApiBaseService {
             throw new ArgumentNullException('serverCreate', 'addServerToProject');
         }
         const queryString = [].join('&');
+        const requestUrl = '/projects/{project_id}/servers' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <Server, ServerCreate>(`/projects/{project_id}/servers?${queryString}`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), serverCreate);
+        const response = await this.post <Server, ServerCreate>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), serverCreate);
         return new ApiResponse(response);
     }
 
@@ -51,8 +52,9 @@ export class ProjectsServersApiService extends ApiBaseService {
             throw new ArgumentNullException('projectId', 'listProjectServers');
         }
         const queryString = [].join('&');
+        const requestUrl = '/projects/{project_id}/servers' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<Server>>(`/projects/{project_id}/servers?${queryString}`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
+        const response = await this.get <Array<Server>>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
         return new ApiResponse(response);
     }
 }

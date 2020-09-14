@@ -30,8 +30,9 @@ export class CronJobsApiService extends ApiBaseService {
             throw new ArgumentNullException('cronJobId', 'deleteCronJob');
         }
         const queryString = [].join('&');
+        const requestUrl = '/cron-jobs/{cron_job_id}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.delete <void>(`/cron-jobs/{cron_job_id}?${queryString}`.replace(`{${"cron_job_id"}}`, encodeURIComponent(String(cronJobId))));
+        const response = await this.delete <void>(requestUrl.replace(`{${"cron_job_id"}}`, encodeURIComponent(String(cronJobId))));
         return new ApiResponse(response);
     }
 
@@ -45,8 +46,9 @@ export class CronJobsApiService extends ApiBaseService {
             throw new ArgumentNullException('cronJobId', 'getCronJob');
         }
         const queryString = [].join('&');
+        const requestUrl = '/cron-jobs/{cron_job_id}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <CronJob>(`/cron-jobs/{cron_job_id}?${queryString}`.replace(`{${"cron_job_id"}}`, encodeURIComponent(String(cronJobId))));
+        const response = await this.get <CronJob>(requestUrl.replace(`{${"cron_job_id"}}`, encodeURIComponent(String(cronJobId))));
         return new ApiResponse(response);
     }
 }

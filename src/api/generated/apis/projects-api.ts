@@ -33,8 +33,9 @@ export class ProjectsApiService extends ApiBaseService {
             throw new ArgumentNullException('projectCreate', 'addProject');
         }
         const queryString = [].join('&');
+        const requestUrl = '/projects' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <Project, ProjectCreate>(`/projects?${queryString}`, projectCreate);
+        const response = await this.post <Project, ProjectCreate>(requestUrl, projectCreate);
         return new ApiResponse(response);
     }
 
@@ -48,8 +49,9 @@ export class ProjectsApiService extends ApiBaseService {
             throw new ArgumentNullException('projectId', 'getProject');
         }
         const queryString = [].join('&');
+        const requestUrl = '/projects/{project_id}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Project>(`/projects/{project_id}?${queryString}`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
+        const response = await this.get <Project>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
         return new ApiResponse(response);
     }
 
@@ -59,8 +61,9 @@ export class ProjectsApiService extends ApiBaseService {
      */
     public async listProjects(): Promise<ApiResponse<Array<Project>>> {
         const queryString = [].join('&');
+        const requestUrl = '/projects' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<Project>>(`/projects?${queryString}`);
+        const response = await this.get <Array<Project>>(requestUrl);
         return new ApiResponse(response);
     }
 
@@ -78,8 +81,9 @@ export class ProjectsApiService extends ApiBaseService {
             throw new ArgumentNullException('projectUpdate', 'updateProject');
         }
         const queryString = [].join('&');
+        const requestUrl = '/projects/{project_id}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.put <void, ProjectUpdate>(`/projects/{project_id}?${queryString}`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), projectUpdate);
+        const response = await this.put <void, ProjectUpdate>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), projectUpdate);
         return new ApiResponse(response);
     }
 }

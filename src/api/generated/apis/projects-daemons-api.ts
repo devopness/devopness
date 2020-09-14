@@ -36,8 +36,9 @@ export class ProjectsDaemonsApiService extends ApiBaseService {
             throw new ArgumentNullException('daemonCreate', 'addDaemonToProject');
         }
         const queryString = [].join('&');
+        const requestUrl = '/projects/{project_id}/daemons' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <Daemon, DaemonCreate>(`/projects/{project_id}/daemons?${queryString}`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), daemonCreate);
+        const response = await this.post <Daemon, DaemonCreate>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), daemonCreate);
         return new ApiResponse(response);
     }
 
@@ -51,8 +52,9 @@ export class ProjectsDaemonsApiService extends ApiBaseService {
             throw new ArgumentNullException('projectId', 'listProjectDaemons');
         }
         const queryString = [].join('&');
+        const requestUrl = '/projects/{project_id}/daemons' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<Daemon>>(`/projects/{project_id}/daemons?${queryString}`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
+        const response = await this.get <Array<Daemon>>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
         return new ApiResponse(response);
     }
 }

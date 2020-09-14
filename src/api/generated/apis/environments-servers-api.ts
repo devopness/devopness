@@ -35,8 +35,9 @@ export class EnvironmentsServersApiService extends ApiBaseService {
             throw new ArgumentNullException('serverId', 'linkServerToEnvironment');
         }
         const queryString = [].join('&');
+        const requestUrl = '/environments/{environment_id}/servers/{server_id}/link' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <void, EnvironmentLinkItem>(`/environments/{environment_id}/servers/{server_id}/link?${queryString}`.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))).replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))), environmentLinkItem);
+        const response = await this.post <void, EnvironmentLinkItem>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))).replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))), environmentLinkItem);
         return new ApiResponse(response);
     }
 
@@ -54,8 +55,9 @@ export class EnvironmentsServersApiService extends ApiBaseService {
             throw new ArgumentNullException('environmentLinkItem', 'replaceLinkedServers');
         }
         const queryString = [].join('&');
+        const requestUrl = '/environments/{environment_id}/servers/replace-linked-servers' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <void, EnvironmentLinkItem>(`/environments/{environment_id}/servers/replace-linked-servers?${queryString}`.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))), environmentLinkItem);
+        const response = await this.post <void, EnvironmentLinkItem>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))), environmentLinkItem);
         return new ApiResponse(response);
     }
 
@@ -73,8 +75,9 @@ export class EnvironmentsServersApiService extends ApiBaseService {
             throw new ArgumentNullException('serverId', 'unlinkServerFromEnvironment');
         }
         const queryString = [].join('&');
+        const requestUrl = '/environments/{environment_id}/servers/{server_id}/unlink' + (queryString? `?${queryString}` : '');
 
-        const response = await this.delete <void>(`/environments/{environment_id}/servers/{server_id}/unlink?${queryString}`.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))).replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))));
+        const response = await this.delete <void>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))).replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))));
         return new ApiResponse(response);
     }
 }

@@ -34,8 +34,9 @@ export class LogsApiService extends ApiBaseService {
             throw new ArgumentNullException('deploymentStepId', 'getDeploymentStepLog');
         }
         const queryString = [].join('&');
+        const requestUrl = '/logs/deployments/{deployment_id}/steps/{deployment_step_id}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Log>(`/logs/deployments/{deployment_id}/steps/{deployment_step_id}?${queryString}`.replace(`{${"deployment_id"}}`, encodeURIComponent(String(deploymentId))).replace(`{${"deployment_step_id"}}`, encodeURIComponent(String(deploymentStepId))));
+        const response = await this.get <Log>(requestUrl.replace(`{${"deployment_id"}}`, encodeURIComponent(String(deploymentId))).replace(`{${"deployment_step_id"}}`, encodeURIComponent(String(deploymentStepId))));
         return new ApiResponse(response);
     }
 }

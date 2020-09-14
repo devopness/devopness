@@ -51,8 +51,9 @@ export class UsersApiService extends ApiBaseService {
             throw new ArgumentNullException('signature', 'activateUser');
         }
         const queryString = [`expires=${ expires }`,`signature=${ signature }`,].join('&');
+        const requestUrl = '/users/account/verify/{user_id}/{activation_hash}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <void>(`/users/account/verify/{user_id}/{activation_hash}?${queryString}`.replace(`{${"user_id"}}`, encodeURIComponent(String(userId))).replace(`{${"activation_hash"}}`, encodeURIComponent(String(activationHash))));
+        const response = await this.get <void>(requestUrl.replace(`{${"user_id"}}`, encodeURIComponent(String(userId))).replace(`{${"activation_hash"}}`, encodeURIComponent(String(activationHash))));
         return new ApiResponse(response);
     }
 
@@ -66,8 +67,9 @@ export class UsersApiService extends ApiBaseService {
             throw new ArgumentNullException('userCreate', 'addUser');
         }
         const queryString = [].join('&');
+        const requestUrl = '/users' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <void, UserCreate>(`/users?${queryString}`, userCreate);
+        const response = await this.post <void, UserCreate>(requestUrl, userCreate);
         return new ApiResponse(response);
     }
 
@@ -77,8 +79,9 @@ export class UsersApiService extends ApiBaseService {
      */
     public async getCurrentUser(): Promise<ApiResponse<User>> {
         const queryString = [].join('&');
+        const requestUrl = '/users/me' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <User>(`/users/me?${queryString}`);
+        const response = await this.get <User>(requestUrl);
         return new ApiResponse(response);
     }
 
@@ -92,8 +95,9 @@ export class UsersApiService extends ApiBaseService {
             throw new ArgumentNullException('userId', 'getUser');
         }
         const queryString = [].join('&');
+        const requestUrl = '/users/{user_id}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <User>(`/users/{user_id}?${queryString}`.replace(`{${"user_id"}}`, encodeURIComponent(String(userId))));
+        const response = await this.get <User>(requestUrl.replace(`{${"user_id"}}`, encodeURIComponent(String(userId))));
         return new ApiResponse(response);
     }
 
@@ -107,8 +111,9 @@ export class UsersApiService extends ApiBaseService {
             throw new ArgumentNullException('loginCredentials', 'login');
         }
         const queryString = [].join('&');
+        const requestUrl = '/users/login' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <UserTokens, LoginCredentials>(`/users/login?${queryString}`, loginCredentials);
+        const response = await this.post <UserTokens, LoginCredentials>(requestUrl, loginCredentials);
         return new ApiResponse(response);
     }
 
@@ -118,8 +123,9 @@ export class UsersApiService extends ApiBaseService {
      */
     public async logout(): Promise<ApiResponse<void>> {
         const queryString = [].join('&');
+        const requestUrl = '/users/logout' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <void>(`/users/logout?${queryString}`);
+        const response = await this.get <void>(requestUrl);
         return new ApiResponse(response);
     }
 
@@ -133,8 +139,9 @@ export class UsersApiService extends ApiBaseService {
             throw new ArgumentNullException('userRefreshTokenCreate', 'refreshToken');
         }
         const queryString = [].join('&');
+        const requestUrl = '/users/refresh-token' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <UserTokens, UserRefreshTokenCreate>(`/users/refresh-token?${queryString}`, userRefreshTokenCreate);
+        const response = await this.post <UserTokens, UserRefreshTokenCreate>(requestUrl, userRefreshTokenCreate);
         return new ApiResponse(response);
     }
 
@@ -148,8 +155,9 @@ export class UsersApiService extends ApiBaseService {
             throw new ArgumentNullException('userAccountResendVerification', 'resendUserVerification');
         }
         const queryString = [].join('&');
+        const requestUrl = '/users/account/resend-verification' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <void, UserAccountResendVerification>(`/users/account/resend-verification?${queryString}`, userAccountResendVerification);
+        const response = await this.post <void, UserAccountResendVerification>(requestUrl, userAccountResendVerification);
         return new ApiResponse(response);
     }
 
@@ -163,8 +171,9 @@ export class UsersApiService extends ApiBaseService {
             throw new ArgumentNullException('userPasswordReset', 'resetUserPassword');
         }
         const queryString = [].join('&');
+        const requestUrl = '/users/password/reset' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <object, UserPasswordReset>(`/users/password/reset?${queryString}`, userPasswordReset);
+        const response = await this.post <object, UserPasswordReset>(requestUrl, userPasswordReset);
         return new ApiResponse(response);
     }
 
@@ -178,8 +187,9 @@ export class UsersApiService extends ApiBaseService {
             throw new ArgumentNullException('userPasswordSendResetLink', 'sendUserPasswordResetLink');
         }
         const queryString = [].join('&');
+        const requestUrl = '/users/password/send-reset-link' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <object, UserPasswordSendResetLink>(`/users/password/send-reset-link?${queryString}`, userPasswordSendResetLink);
+        const response = await this.post <object, UserPasswordSendResetLink>(requestUrl, userPasswordSendResetLink);
         return new ApiResponse(response);
     }
 
@@ -189,8 +199,9 @@ export class UsersApiService extends ApiBaseService {
      */
     public async verifyUser(): Promise<ApiResponse<UserAccountVerify>> {
         const queryString = [].join('&');
+        const requestUrl = '/users/account/verify' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <UserAccountVerify>(`/users/account/verify?${queryString}`);
+        const response = await this.get <UserAccountVerify>(requestUrl);
         return new ApiResponse(response);
     }
 }

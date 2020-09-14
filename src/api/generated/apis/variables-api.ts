@@ -32,8 +32,9 @@ export class VariablesApiService extends ApiBaseService {
             throw new ArgumentNullException('variableId', 'deleteVariable');
         }
         const queryString = [].join('&');
+        const requestUrl = '/variables/{variable_id}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.delete <void>(`/variables/{variable_id}?${queryString}`.replace(`{${"variable_id"}}`, encodeURIComponent(String(variableId))));
+        const response = await this.delete <void>(requestUrl.replace(`{${"variable_id"}}`, encodeURIComponent(String(variableId))));
         return new ApiResponse(response);
     }
 
@@ -47,8 +48,9 @@ export class VariablesApiService extends ApiBaseService {
             throw new ArgumentNullException('variableId', 'getVariable');
         }
         const queryString = [].join('&');
+        const requestUrl = '/variables/{variable_id}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <ApplicationVariable>(`/variables/{variable_id}?${queryString}`.replace(`{${"variable_id"}}`, encodeURIComponent(String(variableId))));
+        const response = await this.get <ApplicationVariable>(requestUrl.replace(`{${"variable_id"}}`, encodeURIComponent(String(variableId))));
         return new ApiResponse(response);
     }
 
@@ -66,8 +68,9 @@ export class VariablesApiService extends ApiBaseService {
             throw new ArgumentNullException('variableUpdate', 'updateVariable');
         }
         const queryString = [].join('&');
+        const requestUrl = '/variables/{variable_id}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.put <void, VariableUpdate>(`/variables/{variable_id}?${queryString}`.replace(`{${"variable_id"}}`, encodeURIComponent(String(variableId))), variableUpdate);
+        const response = await this.put <void, VariableUpdate>(requestUrl.replace(`{${"variable_id"}}`, encodeURIComponent(String(variableId))), variableUpdate);
         return new ApiResponse(response);
     }
 }

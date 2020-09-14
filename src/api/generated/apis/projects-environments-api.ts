@@ -36,8 +36,9 @@ export class ProjectsEnvironmentsApiService extends ApiBaseService {
             throw new ArgumentNullException('environmentCreate', 'addEnvironmentToProject');
         }
         const queryString = [].join('&');
+        const requestUrl = '/projects/{project_id}/environments' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <Environment, EnvironmentCreate>(`/projects/{project_id}/environments?${queryString}`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), environmentCreate);
+        const response = await this.post <Environment, EnvironmentCreate>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), environmentCreate);
         return new ApiResponse(response);
     }
 
@@ -51,8 +52,9 @@ export class ProjectsEnvironmentsApiService extends ApiBaseService {
             throw new ArgumentNullException('projectId', 'listProjectEnvironments');
         }
         const queryString = [].join('&');
+        const requestUrl = '/projects/{project_id}/environments' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<Environment>>(`/projects/{project_id}/environments?${queryString}`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
+        const response = await this.get <Array<Environment>>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
         return new ApiResponse(response);
     }
 }

@@ -30,8 +30,9 @@ export class ActionsApiService extends ApiBaseService {
             throw new ArgumentNullException('actionId', 'getAction');
         }
         const queryString = [].join('&');
+        const requestUrl = '/actions/{action_id}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Action>(`/actions/{action_id}?${queryString}`.replace(`{${"action_id"}}`, encodeURIComponent(String(actionId))));
+        const response = await this.get <Action>(requestUrl.replace(`{${"action_id"}}`, encodeURIComponent(String(actionId))));
         return new ApiResponse(response);
     }
 
@@ -41,8 +42,9 @@ export class ActionsApiService extends ApiBaseService {
      */
     public async listActions(): Promise<ApiResponse<Array<Action>>> {
         const queryString = [].join('&');
+        const requestUrl = '/actions' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<Action>>(`/actions?${queryString}`);
+        const response = await this.get <Array<Action>>(requestUrl);
         return new ApiResponse(response);
     }
 }

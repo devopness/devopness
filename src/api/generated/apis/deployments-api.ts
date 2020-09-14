@@ -30,8 +30,9 @@ export class DeploymentsApiService extends ApiBaseService {
             throw new ArgumentNullException('deploymentId', 'getDeployment');
         }
         const queryString = [].join('&');
+        const requestUrl = '/deployments/{deployment_id}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Deployment>(`/deployments/{deployment_id}?${queryString}`.replace(`{${"deployment_id"}}`, encodeURIComponent(String(deploymentId))));
+        const response = await this.get <Deployment>(requestUrl.replace(`{${"deployment_id"}}`, encodeURIComponent(String(deploymentId))));
         return new ApiResponse(response);
     }
 }

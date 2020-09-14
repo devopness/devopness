@@ -30,8 +30,9 @@ export class SSLCertificatesApiService extends ApiBaseService {
             throw new ArgumentNullException('sslCertificateId', 'deleteSslCertificate');
         }
         const queryString = [].join('&');
+        const requestUrl = '/ssl-certificates/{ssl_certificate_id}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.delete <void>(`/ssl-certificates/{ssl_certificate_id}?${queryString}`.replace(`{${"ssl_certificate_id"}}`, encodeURIComponent(String(sslCertificateId))));
+        const response = await this.delete <void>(requestUrl.replace(`{${"ssl_certificate_id"}}`, encodeURIComponent(String(sslCertificateId))));
         return new ApiResponse(response);
     }
 
@@ -45,8 +46,9 @@ export class SSLCertificatesApiService extends ApiBaseService {
             throw new ArgumentNullException('sslCertificateId', 'getSslCertificate');
         }
         const queryString = [].join('&');
+        const requestUrl = '/ssl-certificates/{ssl_certificate_id}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <SslCertificate>(`/ssl-certificates/{ssl_certificate_id}?${queryString}`.replace(`{${"ssl_certificate_id"}}`, encodeURIComponent(String(sslCertificateId))));
+        const response = await this.get <SslCertificate>(requestUrl.replace(`{${"ssl_certificate_id"}}`, encodeURIComponent(String(sslCertificateId))));
         return new ApiResponse(response);
     }
 }

@@ -28,8 +28,9 @@ export class StaticDataApiService extends ApiBaseService {
      */
     public async listApplicationOptions(): Promise<ApiResponse<ApplicationOptions>> {
         const queryString = [].join('&');
+        const requestUrl = '/static/applications' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <ApplicationOptions>(`/static/applications?${queryString}`);
+        const response = await this.get <ApplicationOptions>(requestUrl);
         return new ApiResponse(response);
     }
 
@@ -39,8 +40,9 @@ export class StaticDataApiService extends ApiBaseService {
      */
     public async listCronJobOptions(): Promise<ApiResponse<CronJobOptions>> {
         const queryString = [].join('&');
+        const requestUrl = '/static/cronjobs' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <CronJobOptions>(`/static/cronjobs?${queryString}`);
+        const response = await this.get <CronJobOptions>(requestUrl);
         return new ApiResponse(response);
     }
 
@@ -50,8 +52,9 @@ export class StaticDataApiService extends ApiBaseService {
      */
     public async listEnvironmentOptions(): Promise<ApiResponse<EnvironmentOptions>> {
         const queryString = [].join('&');
+        const requestUrl = '/static/environments' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <EnvironmentOptions>(`/static/environments?${queryString}`);
+        const response = await this.get <EnvironmentOptions>(requestUrl);
         return new ApiResponse(response);
     }
 }

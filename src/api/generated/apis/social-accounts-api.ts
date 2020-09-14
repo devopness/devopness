@@ -32,8 +32,9 @@ export class SocialAccountsApiService extends ApiBaseService {
             throw new ArgumentNullException('socialAccountCreate', 'addSocialAccount');
         }
         const queryString = [].join('&');
+        const requestUrl = '/social-accounts' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <SocialAccount, SocialAccountCreate>(`/social-accounts?${queryString}`, socialAccountCreate);
+        const response = await this.post <SocialAccount, SocialAccountCreate>(requestUrl, socialAccountCreate);
         return new ApiResponse(response);
     }
 
@@ -47,8 +48,9 @@ export class SocialAccountsApiService extends ApiBaseService {
             throw new ArgumentNullException('socialAccountId', 'deleteSocialAccount');
         }
         const queryString = [].join('&');
+        const requestUrl = '/social-accounts/{social_account_id}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.delete <void>(`/social-accounts/{social_account_id}?${queryString}`.replace(`{${"social_account_id"}}`, encodeURIComponent(String(socialAccountId))));
+        const response = await this.delete <void>(requestUrl.replace(`{${"social_account_id"}}`, encodeURIComponent(String(socialAccountId))));
         return new ApiResponse(response);
     }
 
@@ -62,8 +64,9 @@ export class SocialAccountsApiService extends ApiBaseService {
             throw new ArgumentNullException('socialAccountId', 'getSocialAccount');
         }
         const queryString = [].join('&');
+        const requestUrl = '/social-accounts/{social_account_id}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <SocialAccount>(`/social-accounts/{social_account_id}?${queryString}`.replace(`{${"social_account_id"}}`, encodeURIComponent(String(socialAccountId))));
+        const response = await this.get <SocialAccount>(requestUrl.replace(`{${"social_account_id"}}`, encodeURIComponent(String(socialAccountId))));
         return new ApiResponse(response);
     }
 
@@ -77,8 +80,9 @@ export class SocialAccountsApiService extends ApiBaseService {
             throw new ArgumentNullException('socialAccountProviderName', 'getSocialAccountStatusByName');
         }
         const queryString = [].join('&');
+        const requestUrl = '/social-accounts/{social_account_provider_name}/status' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <SocialAccountStatus>(`/social-accounts/{social_account_provider_name}/status?${queryString}`.replace(`{${"social_account_provider_name"}}`, encodeURIComponent(String(socialAccountProviderName))));
+        const response = await this.get <SocialAccountStatus>(requestUrl.replace(`{${"social_account_provider_name"}}`, encodeURIComponent(String(socialAccountProviderName))));
         return new ApiResponse(response);
     }
 
@@ -88,8 +92,9 @@ export class SocialAccountsApiService extends ApiBaseService {
      */
     public async listSocialAccounts(): Promise<ApiResponse<Array<SocialAccount>>> {
         const queryString = [].join('&');
+        const requestUrl = '/social-accounts' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<SocialAccount>>(`/social-accounts?${queryString}`);
+        const response = await this.get <Array<SocialAccount>>(requestUrl);
         return new ApiResponse(response);
     }
 }

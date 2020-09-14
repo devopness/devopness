@@ -32,8 +32,9 @@ export class ApplicationsApiService extends ApiBaseService {
             throw new ArgumentNullException('applicationId', 'deleteApplication');
         }
         const queryString = [].join('&');
+        const requestUrl = '/applications/{application_id}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.delete <void>(`/applications/{application_id}?${queryString}`.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))));
+        const response = await this.delete <void>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))));
         return new ApiResponse(response);
     }
 
@@ -47,8 +48,9 @@ export class ApplicationsApiService extends ApiBaseService {
             throw new ArgumentNullException('applicationId', 'getApplication');
         }
         const queryString = [].join('&');
+        const requestUrl = '/applications/{application_id}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Application>(`/applications/{application_id}?${queryString}`.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))));
+        const response = await this.get <Application>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))));
         return new ApiResponse(response);
     }
 
@@ -66,8 +68,9 @@ export class ApplicationsApiService extends ApiBaseService {
             throw new ArgumentNullException('applicationUpdate', 'updateApplication');
         }
         const queryString = [].join('&');
+        const requestUrl = '/applications/{application_id}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.put <void, ApplicationUpdate>(`/applications/{application_id}?${queryString}`.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))), applicationUpdate);
+        const response = await this.put <void, ApplicationUpdate>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))), applicationUpdate);
         return new ApiResponse(response);
     }
 }

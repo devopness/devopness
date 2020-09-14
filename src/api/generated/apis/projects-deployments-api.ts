@@ -36,8 +36,9 @@ export class ProjectsDeploymentsApiService extends ApiBaseService {
             throw new ArgumentNullException('deploymentCreate', 'deployProjectApps');
         }
         const queryString = [].join('&');
+        const requestUrl = '/projects/{project_id}/deployments' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <Array<Deployment>, DeploymentCreate>(`/projects/{project_id}/deployments?${queryString}`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), deploymentCreate);
+        const response = await this.post <Array<Deployment>, DeploymentCreate>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), deploymentCreate);
         return new ApiResponse(response);
     }
 
@@ -51,8 +52,9 @@ export class ProjectsDeploymentsApiService extends ApiBaseService {
             throw new ArgumentNullException('projectId', 'listProjectDeployments');
         }
         const queryString = [].join('&');
+        const requestUrl = '/projects/{project_id}/deployments' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<Deployment>>(`/projects/{project_id}/deployments?${queryString}`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
+        const response = await this.get <Array<Deployment>>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
         return new ApiResponse(response);
     }
 }

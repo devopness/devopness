@@ -38,8 +38,9 @@ export class SourceProvidersRepositoriesApiService extends ApiBaseService {
             throw new ArgumentNullException('repositoryName', 'getRepository');
         }
         const queryString = [].join('&');
+        const requestUrl = '/source-providers/{source_provider_id}/repositories/{repository_owner}/{repository_name}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Repository>(`/source-providers/{source_provider_id}/repositories/{repository_owner}/{repository_name}?${queryString}`.replace(`{${"source_provider_id"}}`, encodeURIComponent(String(sourceProviderId))).replace(`{${"repository_owner"}}`, encodeURIComponent(String(repositoryOwner))).replace(`{${"repository_name"}}`, encodeURIComponent(String(repositoryName))));
+        const response = await this.get <Repository>(requestUrl.replace(`{${"source_provider_id"}}`, encodeURIComponent(String(sourceProviderId))).replace(`{${"repository_owner"}}`, encodeURIComponent(String(repositoryOwner))).replace(`{${"repository_name"}}`, encodeURIComponent(String(repositoryName))));
         return new ApiResponse(response);
     }
 
@@ -53,8 +54,9 @@ export class SourceProvidersRepositoriesApiService extends ApiBaseService {
             throw new ArgumentNullException('sourceProviderId', 'listRepositories');
         }
         const queryString = [].join('&');
+        const requestUrl = '/source-providers/{source_provider_id}/repositories' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<Repository>>(`/source-providers/{source_provider_id}/repositories?${queryString}`.replace(`{${"source_provider_id"}}`, encodeURIComponent(String(sourceProviderId))));
+        const response = await this.get <Array<Repository>>(requestUrl.replace(`{${"source_provider_id"}}`, encodeURIComponent(String(sourceProviderId))));
         return new ApiResponse(response);
     }
 }
