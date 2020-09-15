@@ -5,9 +5,7 @@ properties:
     description: Frequency pattern to trigger the cronjob
     example: '0 0 1 * *'
   displayable:
-    type: string
-    description: Displayable text version of the frequency
-    example: Monthly
+    $ref: '#/components/schemas/CronJobPattern'
   hint:
     type: string
     description: Text hint describing the frequency
