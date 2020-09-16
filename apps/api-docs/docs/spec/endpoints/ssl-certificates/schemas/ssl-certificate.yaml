@@ -29,10 +29,6 @@ properties:
   active:
     type: boolean
     description: Tells if the certificate is active for all linked servers and applications
-  user_id:
-    type: integer
-    description: The unique id of the user to which this record belongs to
-    example: 123
   expires_at:
     type: string
     format: date-time
@@ -53,6 +49,11 @@ properties:
     format: date-time
     description: The date and time when the record was last updated
     example: "2020-04-16T15:50:48.000000Z"
+  servers:
+    description: The list of linked servers
+    $ref: '#/components/schemas/Servers'
+  created_by_user:
+    $ref: '#/components/schemas/User'
 required:
   - id
   - domains
