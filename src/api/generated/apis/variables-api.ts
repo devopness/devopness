@@ -15,7 +15,7 @@ import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
-import { ApplicationVariable } from '../../generated/models';
+import { Variable } from '../../generated/models';
 import { VariableUpdate } from '../../generated/models';
 
 /**
@@ -43,14 +43,14 @@ export class VariablesApiService extends ApiBaseService {
      * @summary Get a variable by ID
      * @param {number} variableId The unique id of the variable
      */
-    public async getVariable(variableId: number): Promise<ApiResponse<ApplicationVariable>> {
+    public async getVariable(variableId: number): Promise<ApiResponse<Variable>> {
         if (variableId === null || variableId === undefined) {
             throw new ArgumentNullException('variableId', 'getVariable');
         }
         const queryString = [].join('&');
         const requestUrl = '/variables/{variable_id}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <ApplicationVariable>(requestUrl.replace(`{${"variable_id"}}`, encodeURIComponent(String(variableId))));
+        const response = await this.get <Variable>(requestUrl.replace(`{${"variable_id"}}`, encodeURIComponent(String(variableId))));
         return new ApiResponse(response);
     }
 

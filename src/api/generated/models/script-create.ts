@@ -18,37 +18,37 @@ import { TriggerType } from './trigger-type';
 /**
  * 
  * @export
- * @interface ApplicationScriptCreate
+ * @interface ScriptCreate
  */
-export interface ApplicationScriptCreate {
+export interface ScriptCreate {
     /**
      * Name/short description of the script
      * @type {string}
-     * @memberof ApplicationScriptCreate
+     * @memberof ScriptCreate
      */
     name: string;
     /**
      * A command line or multiline bash script
      * @type {string}
-     * @memberof ApplicationScriptCreate
+     * @memberof ScriptCreate
      */
     source_code: string;
     /**
      * 
      * @type {TriggerType}
-     * @memberof ApplicationScriptCreate
+     * @memberof ScriptCreate
      */
     trigger_type: TriggerType;
     /**
      * 
      * @type {TriggerEvent}
-     * @memberof ApplicationScriptCreate
+     * @memberof ScriptCreate
      */
     trigger_event: TriggerEvent;
     /**
      * The relative order of the script execution in case the event has multiple scripts attached to it
      * @type {number}
-     * @memberof ApplicationScriptCreate
+     * @memberof ScriptCreate
      */
     trigger_order: number;
 }

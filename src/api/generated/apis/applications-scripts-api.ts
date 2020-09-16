@@ -15,8 +15,8 @@ import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
-import { ApplicationScript } from '../../generated/models';
-import { ApplicationScriptCreate } from '../../generated/models';
+import { Script } from '../../generated/models';
+import { ScriptCreate } from '../../generated/models';
 
 /**
  * ApplicationsScriptsApiService - Auto-generated
@@ -26,19 +26,19 @@ export class ApplicationsScriptsApiService extends ApiBaseService {
      * 
      * @summary Add script to application as a deployment step
      * @param {number} applicationId Unique ID of the application to retrieve scripts from
-     * @param {ApplicationScriptCreate} applicationScriptCreate A JSON object containing application script data
+     * @param {ScriptCreate} scriptCreate A JSON object containing application script data
      */
-    public async addScriptToApplication(applicationId: number, applicationScriptCreate: ApplicationScriptCreate): Promise<ApiResponse<ApplicationScript>> {
+    public async addScriptToApplication(applicationId: number, scriptCreate: ScriptCreate): Promise<ApiResponse<Script>> {
         if (applicationId === null || applicationId === undefined) {
             throw new ArgumentNullException('applicationId', 'addScriptToApplication');
         }
-        if (applicationScriptCreate === null || applicationScriptCreate === undefined) {
-            throw new ArgumentNullException('applicationScriptCreate', 'addScriptToApplication');
+        if (scriptCreate === null || scriptCreate === undefined) {
+            throw new ArgumentNullException('scriptCreate', 'addScriptToApplication');
         }
         const queryString = [].join('&');
         const requestUrl = '/applications/{application_id}/scripts' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <ApplicationScript, ApplicationScriptCreate>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))), applicationScriptCreate);
+        const response = await this.post <Script, ScriptCreate>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))), scriptCreate);
         return new ApiResponse(response);
     }
 
@@ -47,14 +47,14 @@ export class ApplicationsScriptsApiService extends ApiBaseService {
      * @summary List scripts to be executed as custom deployment steps of an application
      * @param {number} applicationId Unique ID of the application to retrieve scripts from
      */
-    public async listApplicationScripts(applicationId: number): Promise<ApiResponse<Array<ApplicationScript>>> {
+    public async listApplicationScripts(applicationId: number): Promise<ApiResponse<Array<Script>>> {
         if (applicationId === null || applicationId === undefined) {
             throw new ArgumentNullException('applicationId', 'listApplicationScripts');
         }
         const queryString = [].join('&');
         const requestUrl = '/applications/{application_id}/scripts' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<ApplicationScript>>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))));
+        const response = await this.get <Array<Script>>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))));
         return new ApiResponse(response);
     }
 }

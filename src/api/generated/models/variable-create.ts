@@ -18,56 +18,44 @@ import { VariableType } from './variable-type';
 /**
  * 
  * @export
- * @interface ApplicationVariableCreate
+ * @interface VariableCreate
  */
-export interface ApplicationVariableCreate {
+export interface VariableCreate {
     /**
      * The unique key used to identify the variable on the target
      * @type {string}
-     * @memberof ApplicationVariableCreate
+     * @memberof VariableCreate
      */
     key: string;
     /**
      * The value to be assigned to this variable when deployed to its target
      * @type {string}
-     * @memberof ApplicationVariableCreate
+     * @memberof VariableCreate
      */
     value: string;
     /**
      * A text describing the variable, provided by the end user
      * @type {string}
-     * @memberof ApplicationVariableCreate
+     * @memberof VariableCreate
      */
     description?: string;
     /**
      * 
      * @type {VariableTarget}
-     * @memberof ApplicationVariableCreate
+     * @memberof VariableCreate
      */
     target: VariableTarget;
     /**
      * 
      * @type {VariableType}
-     * @memberof ApplicationVariableCreate
+     * @memberof VariableCreate
      */
     type: VariableType;
     /**
      * Indicates if the variable value should be visible or not in the deployment logs
      * @type {boolean}
-     * @memberof ApplicationVariableCreate
+     * @memberof VariableCreate
      */
     hidden: boolean;
-    /**
-     * The date and time when the record was created
-     * @type {string}
-     * @memberof ApplicationVariableCreate
-     */
-    created_at?: string;
-    /**
-     * The date and time when the record was last updated
-     * @type {string}
-     * @memberof ApplicationVariableCreate
-     */
-    updated_at?: string;
 }
 

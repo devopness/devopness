@@ -365,7 +365,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ApplicationScriptCreate"
+                "$ref": "#/components/schemas/ScriptCreate"
               }
             }
           }
@@ -376,7 +376,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ApplicationScript"
+                  "$ref": "#/components/schemas/Script"
                 }
               }
             }
@@ -423,7 +423,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ApplicationScripts"
+                  "$ref": "#/components/schemas/Scripts"
                 }
               }
             }
@@ -564,7 +564,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ApplicationVariableCreate"
+                "$ref": "#/components/schemas/VariableCreate"
               }
             }
           }
@@ -575,7 +575,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ApplicationVariable"
+                  "$ref": "#/components/schemas/Variable"
                 }
               }
             }
@@ -619,7 +619,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ApplicationVariables"
+                  "$ref": "#/components/schemas/Variables"
                 }
               }
             }
@@ -955,6 +955,17 @@
             "description": "Unique ID of the server to unlink"
           }
         ],
+        "requestBody": {
+          "description": "A JSON object containing environment server unlink optional parameters",
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EnvironmentLinkItem"
+              }
+            }
+          }
+        },
         "responses": {
           "204": {
             "$ref": "#/components/responses/NoContent"
@@ -4274,7 +4285,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ApplicationVariable"
+                  "$ref": "#/components/schemas/Variable"
                 }
               }
             }
@@ -5066,108 +5077,6 @@
           "type"
         ]
       },
-      "ApplicationScript": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "description": "The unique id of the given record",
-            "example": 35678964
-          },
-          "application_id": {
-            "type": "integer",
-            "description": "The unique id of the application that script is linked",
-            "example": 13129876
-          },
-          "user_id": {
-            "type": "integer",
-            "description": "The unique id of the user that own the script",
-            "example": 86123953
-          },
-          "name": {
-            "type": "string",
-            "description": "Name/short description of the script",
-            "example": "Prepare for build project"
-          },
-          "source_code": {
-            "type": "string",
-            "description": "A command line or multiline bash script",
-            "example": "echo \"Configuring project...\" && ./configure"
-          },
-          "trigger_type": {
-            "$ref": "#/components/schemas/TriggerType"
-          },
-          "trigger_event": {
-            "$ref": "#/components/schemas/TriggerEvent"
-          },
-          "trigger_order": {
-            "type": "integer",
-            "description": "The relative order of the script execution in case the event has multiple scripts attached",
-            "example": 2
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the record was created",
-            "example": "2020-04-16T15:50:48.000000Z"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the record was last updated",
-            "example": "2020-04-16T15:50:48.000000Z"
-          }
-        },
-        "required": [
-          "id",
-          "application_id",
-          "user_id",
-          "name",
-          "source_code",
-          "trigger_event",
-          "trigger_order",
-          "trigger_type"
-        ]
-      },
-      "ApplicationScriptCreate": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name/short description of the script",
-            "example": "Prepare for build project"
-          },
-          "source_code": {
-            "type": "string",
-            "description": "A command line or multiline bash script",
-            "example": "echo \"Configuring project...\" && ./configure"
-          },
-          "trigger_type": {
-            "$ref": "#/components/schemas/TriggerType"
-          },
-          "trigger_event": {
-            "$ref": "#/components/schemas/TriggerEvent"
-          },
-          "trigger_order": {
-            "type": "integer",
-            "description": "The relative order of the script execution in case the event has multiple scripts attached to it",
-            "example": 2
-          }
-        },
-        "required": [
-          "name",
-          "source_code",
-          "trigger_event",
-          "trigger_order",
-          "trigger_type"
-        ]
-      },
-      "ApplicationScripts": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ApplicationScript"
-        }
-      },
       "ApplicationType": {
         "type": "string",
         "description": "The application's type, which will mainly define if it is publicly accessible through a web domain or not",
@@ -5176,116 +5085,6 @@
           "non-web"
         ],
         "example": "web"
-      },
-      "ApplicationVariable": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "description": "The unique id of the given record",
-            "example": 415678964
-          },
-          "key": {
-            "type": "string",
-            "description": "The unique key used to identify the variable on the target",
-            "example": "APP_URL"
-          },
-          "value": {
-            "type": "string",
-            "description": "The value to be assigned to this variable when deployed to its target",
-            "example": "https://staging.devopness.com"
-          },
-          "description": {
-            "type": "string",
-            "description": "A text describing the variable, provided by the end user",
-            "example": "Sample variable description"
-          },
-          "target": {
-            "$ref": "#/components/schemas/VariableTarget"
-          },
-          "type": {
-            "$ref": "#/components/schemas/VariableType"
-          },
-          "hidden": {
-            "type": "boolean",
-            "default": false,
-            "description": "Indicates if the variable value should be visible or not in the deployment logs"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the record was created",
-            "example": "2020-04-16T15:50:48.000000Z"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the record was last updated",
-            "example": "2020-04-16T15:50:48.000000Z"
-          }
-        },
-        "required": [
-          "key",
-          "value",
-          "target",
-          "type"
-        ]
-      },
-      "ApplicationVariableCreate": {
-        "type": "object",
-        "properties": {
-          "key": {
-            "type": "string",
-            "description": "The unique key used to identify the variable on the target",
-            "example": "APP_URL"
-          },
-          "value": {
-            "type": "string",
-            "description": "The value to be assigned to this variable when deployed to its target",
-            "example": "https://staging.devopness.com"
-          },
-          "description": {
-            "type": "string",
-            "description": "A text describing the variable, provided by the end user",
-            "example": "Sample variable description"
-          },
-          "target": {
-            "$ref": "#/components/schemas/VariableTarget"
-          },
-          "type": {
-            "$ref": "#/components/schemas/VariableType"
-          },
-          "hidden": {
-            "type": "boolean",
-            "default": false,
-            "description": "Indicates if the variable value should be visible or not in the deployment logs"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the record was created",
-            "example": "2020-04-16T15:50:48.000000Z"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the record was last updated",
-            "example": "2020-04-16T15:50:48.000000Z"
-          }
-        },
-        "required": [
-          "key",
-          "value",
-          "hidden",
-          "target",
-          "type"
-        ]
-      },
-      "ApplicationVariables": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ApplicationVariable"
-        }
       },
       "Applications": {
         "type": "array",
@@ -5464,9 +5263,7 @@
             "example": "0 0 1 * *"
           },
           "displayable": {
-            "type": "string",
-            "description": "Displayable text version of the frequency",
-            "example": "Monthly"
+            "$ref": "#/components/schemas/CronJobPattern"
           },
           "hint": {
             "type": "string",
@@ -5497,6 +5294,7 @@
           "Every Minute",
           "Hourly",
           "Daily",
+          "Twice a day",
           "Weekly",
           "Monthly",
           "Yearly"
@@ -6586,6 +6384,45 @@
           "trigger_order"
         ]
       },
+      "Scripts": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Script"
+        }
+      },
+      "ScriptCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name/short description of the script",
+            "example": "Prepare for build project"
+          },
+          "source_code": {
+            "type": "string",
+            "description": "A command line or multiline bash script",
+            "example": "echo \"Configuring project...\" && ./configure"
+          },
+          "trigger_type": {
+            "$ref": "#/components/schemas/TriggerType"
+          },
+          "trigger_event": {
+            "$ref": "#/components/schemas/TriggerEvent"
+          },
+          "trigger_order": {
+            "type": "integer",
+            "description": "The relative order of the script execution in case the event has multiple scripts attached to it",
+            "example": 2
+          }
+        },
+        "required": [
+          "name",
+          "source_code",
+          "trigger_event",
+          "trigger_order",
+          "trigger_type"
+        ]
+      },
       "ScriptUpdate": {
         "type": "object",
         "properties": {
@@ -7640,6 +7477,104 @@
         "required": [
           "access_token",
           "refresh_token"
+        ]
+      },
+      "Variable": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The unique id of the given record",
+            "example": 415678964
+          },
+          "key": {
+            "type": "string",
+            "description": "The unique key used to identify the variable on the target",
+            "example": "APP_URL"
+          },
+          "value": {
+            "type": "string",
+            "description": "The value to be assigned to this variable when deployed to its target",
+            "example": "https://staging.devopness.com"
+          },
+          "description": {
+            "type": "string",
+            "description": "A text describing the variable, provided by the end user",
+            "example": "Sample variable description"
+          },
+          "target": {
+            "$ref": "#/components/schemas/VariableTarget"
+          },
+          "type": {
+            "$ref": "#/components/schemas/VariableType"
+          },
+          "hidden": {
+            "type": "boolean",
+            "default": false,
+            "description": "Indicates if the variable value should be visible or not in the deployment logs"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2020-04-16T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2020-04-16T15:50:48.000000Z"
+          }
+        },
+        "required": [
+          "key",
+          "value",
+          "target",
+          "type"
+        ]
+      },
+      "Variables": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Variable"
+        }
+      },
+      "VariableCreate": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "The unique key used to identify the variable on the target",
+            "example": "APP_URL"
+          },
+          "value": {
+            "type": "string",
+            "description": "The value to be assigned to this variable when deployed to its target",
+            "example": "https://staging.devopness.com"
+          },
+          "description": {
+            "type": "string",
+            "description": "A text describing the variable, provided by the end user",
+            "example": "Sample variable description"
+          },
+          "target": {
+            "$ref": "#/components/schemas/VariableTarget"
+          },
+          "type": {
+            "$ref": "#/components/schemas/VariableType"
+          },
+          "hidden": {
+            "type": "boolean",
+            "default": false,
+            "description": "Indicates if the variable value should be visible or not in the deployment logs"
+          }
+        },
+        "required": [
+          "key",
+          "value",
+          "hidden",
+          "target",
+          "type"
         ]
       },
       "VariableTarget": {
