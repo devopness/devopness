@@ -22,6 +22,7 @@ export enum CronJobPattern {
     EveryMinute = 'Every Minute',
     Hourly = 'Hourly',
     Daily = 'Daily',
+    TwiceADay = 'Twice a day',
     Weekly = 'Weekly',
     Monthly = 'Monthly',
     Yearly = 'Yearly'

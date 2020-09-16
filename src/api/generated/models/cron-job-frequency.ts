@@ -12,6 +12,7 @@
  */
 
 
+import { CronJobPattern } from './cron-job-pattern';
 
 /**
  * 
@@ -26,11 +27,11 @@ export interface CronJobFrequency {
      */
     value?: string;
     /**
-     * Displayable text version of the frequency
-     * @type {string}
+     * 
+     * @type {CronJobPattern}
      * @memberof CronJobFrequency
      */
-    displayable?: string;
+    displayable?: CronJobPattern;
     /**
      * Text hint describing the frequency
      * @type {string}
