@@ -955,17 +955,6 @@
             "description": "Unique ID of the server to unlink"
           }
         ],
-        "requestBody": {
-          "description": "A JSON object containing environment server unlink optional parameters",
-          "required": false,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/EnvironmentLinkItem"
-              }
-            }
-          }
-        },
         "responses": {
           "204": {
             "$ref": "#/components/responses/NoContent"
