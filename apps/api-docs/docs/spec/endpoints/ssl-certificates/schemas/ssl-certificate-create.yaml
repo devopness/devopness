@@ -14,12 +14,12 @@ properties:
     $ref: '#/components/schemas/SslCertificateValidationLevel'
   custom_private_key:
     type: string
-    description: The private key provided by the Certification Authority, when the certificate has not being automatically issued through `devopness`
+    description: The private key provided by the Certification Authority, when the certificate has not been automatically issued through `devopness`
     example: >-
       -----BEGIN RSA PRIVATE KEY-----
       Proc-Type: 4,ENCRYPTED
       DEK-Info: DES-EDE3-CBC,4E262401F693044C
-      
+
       jyoAdQaTKnfNDNfqAZR7hZsNNXoMXmspJp0h0eb7Gc2FyaX1iS70VeUWVlGkPfG/
       lp7cPvvUO36pTaU0kLOWdG8FGHRIblO8v4f9E2/eD7VgNLJ4W8tP0rff3d18M32B
       jfG/Mg90Gsew3XXlLo5eVO+3xbuGhKcZ1p6RVa5vdEOr1Pk/huyvH6HLsXCEOSS+
@@ -48,7 +48,7 @@ properties:
       -----END RSA PRIVATE KEY-----
   custom_certificate:
     type: string
-    description: The contents of the certificate provided by the Certification Authority, when the certificate has not being automatically issued through `devopness`
+    description: The contents of the certificate provided by the Certification Authority, when the certificate has not been automatically issued through `devopness`
     example: >-
       -----BEGIN RSA PRIVATE KEY-----
       MIIEpAIBAAKCAQEA1DFNCpE0TTSuZNPRYivpH92uFyptmNL0bY8KpnVTzUR/G3vr

@@ -18,11 +18,11 @@ properties:
     $ref: '#/components/schemas/SslCertificateValidationLevel'
   custom_private_key:
     type: string
-    description: The private key provided by the Certification Authority, when the certificate has not being automatically issued through `devopness`
+    description: The private key provided by the Certification Authority, when the certificate has not been automatically issued through `devopness`
     example: "-----BEGIN RSA PRIVATE KEY-----MIIJKQIBAAKCAgEA6AUEbdJa ..."
   custom_certificate:
     type: string
-    description: The contents of the certificate provided by the Certification Authority, when the certificate has not being automatically issued through `devopness`
+    description: The contents of the certificate provided by the Certification Authority, when the certificate has not been automatically issued through `devopness`
     example: "-----BEGIN CERTIFICATE-----MIIGdDCCBVygAwIBAgISAy66cNIj ..."
   status:
     $ref: '#/components/schemas/ActionStatus'
