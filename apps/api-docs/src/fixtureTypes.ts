@@ -102,6 +102,7 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
         { path: 'environments[0].servers[0]', fixture: 'server', field: 'id' }
     ],
     'ssl_certificate': [],
+    'ssl_certificate_create': [],
     'user_credentials': [],
     'user_tokens': [],
     'user': [],

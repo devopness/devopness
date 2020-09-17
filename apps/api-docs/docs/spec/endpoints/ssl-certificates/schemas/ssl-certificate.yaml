@@ -33,12 +33,14 @@ properties:
     type: string
     format: date-time
     description: The date and time when this certificate will no longer be valid, down to minute precision
-    example: "2029-08-07 06:05"
+    example: "2020-04-16T15:50:48.000000Z"
+    nullable: true
   last_renewed_at:
     type: string
     format: date-time
     description: The date and time when this certificate was renewed for the last time
-    example: "2029-08-07 06:05"
+    example: "2020-04-16T15:50:48.000000Z"
+    nullable: true
   created_at:
     type: string
     format: date-time

@@ -32,8 +32,6 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         'connectServer200',
         // make all ssh_key routes unreachable
         'addSshKeyToProject201',
-        // make all ssl_certificate routes unreachable
-        'addSslCertificateToApplication201',
     ];
 
     // transactions listed here are skipped with a `before` hook
