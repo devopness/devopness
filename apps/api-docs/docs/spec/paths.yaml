@@ -82,8 +82,6 @@
   get:
     $ref: ./endpoints/applications/paths/projects-id-applications-list.yaml
 /projects/{project_id}/deployments:
-  post:
-    $ref: ./endpoints/projects/paths/projects-id-deployments.yaml
   get:
     $ref: ./endpoints/projects/paths/projects-id-deployments-list.yaml
 /projects/{project_id}/environments:

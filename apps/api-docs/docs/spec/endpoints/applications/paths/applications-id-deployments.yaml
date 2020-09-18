@@ -20,13 +20,13 @@ requestBody:
   content:
     application/json:
       schema:
-        $ref: '#/components/schemas/ApplicationDeploymentCreate'
+        $ref: '#/components/schemas/DeploymentCreate'
 responses:
   201:
     description: 'Created'
     content:
       application/json:
         schema:
-          $ref: '#/components/schemas/ApplicationDeployment'
+          $ref: '#/components/schemas/Deployment'
   404:
     $ref: '#/components/responses/NotFound'

@@ -2,19 +2,9 @@ type: object
 properties:
   type:
     $ref: '#/components/schemas/DeploymentType'
-  applications:
-    description: "The list of applications to be deployed together"
-    type: array
-    items:
-      $ref: '#/components/schemas/DeploymentCreateApplication'
-  servers:
-    description: "The list of servers to which all `applications` will be deployed to"
-    type: array
-    items:
-      $ref: '#/components/schemas/DeploymentCreateServer'
-  environments:
-    $ref: '#/components/schemas/EnvironmentLinks'
-required:
-  - type
-  - applications
-  - servers
+  branch:
+    type: string
+    example: master
+  hash:
+    type: string
+    example: 7ff09b0f2ed07625222f689d1afc29aa322b03a2
