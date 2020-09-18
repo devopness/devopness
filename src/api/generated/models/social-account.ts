@@ -12,6 +12,8 @@
  */
 
 
+import { SocialAccountDisplayableName } from './social-account-displayable-name';
+import { SocialAccountProvider } from './social-account-provider';
 
 /**
  * 
@@ -20,17 +22,29 @@
  */
 export interface SocialAccount {
     /**
-     * The name of the Social Authentication provider
-     * @type {string}
+     * The unique id of the given record
+     * @type {number}
      * @memberof SocialAccount
      */
-    provider?: SocialAccountProviderEnum;
+    id: number;
     /**
-     * The name of the user on the Social Authentication provider
+     * 
+     * @type {SocialAccountDisplayableName}
+     * @memberof SocialAccount
+     */
+    displayable_name?: SocialAccountDisplayableName;
+    /**
+     * 
+     * @type {SocialAccountProvider}
+     * @memberof SocialAccount
+     */
+    provider: SocialAccountProvider;
+    /**
+     * The nickname of the user on the Social Authentication provider
      * @type {string}
      * @memberof SocialAccount
      */
-    provider_user_name?: string;
+    provider_user_nickname: string;
     /**
      * Tells if the social account provider is a Source Code Provider/Version Control System. e.g. false for Facebook, true for Github
      * @type {boolean}
@@ -56,19 +70,4 @@ export interface SocialAccount {
      */
     updated_at?: string;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum SocialAccountProviderEnum {
-    Bitbucket = 'bitbucket',
-    Facebook = 'facebook',
-    Github = 'github',
-    Gitlab = 'gitlab',
-    Google = 'google',
-    Linkedin = 'linkedin'
-}
-
-
 

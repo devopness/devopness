@@ -40,4 +40,3 @@ export interface RepositoryBranch {
     commit?: Commit;
 }
 
-

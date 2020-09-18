@@ -13,6 +13,9 @@
 
 
 import { EnvironmentLinkItem } from './environment-link-item';
+import { SslCertificateIssuer } from './ssl-certificate-issuer';
+import { SslCertificateType } from './ssl-certificate-type';
+import { SslCertificateValidationLevel } from './ssl-certificate-validation-level';
 
 /**
  * 
@@ -33,23 +36,23 @@ export interface SslCertificateCreate {
      */
     domains: Array<string>;
     /**
-     * The entity or certification authority (CA) who issued the certificate
-     * @type {string}
+     * 
+     * @type {SslCertificateIssuer}
      * @memberof SslCertificateCreate
      */
-    issuer: SslCertificateCreateIssuerEnum;
+    issuer: SslCertificateIssuer;
     /**
-     * The certificate type, indicating its scope
-     * @type {string}
+     * 
+     * @type {SslCertificateType}
      * @memberof SslCertificateCreate
      */
-    type: SslCertificateCreateTypeEnum;
+    type: SslCertificateType;
     /**
-     * The level of validation applied when issuing the certificate. This can be one out of the three validation levels conforming to public key certificates standards: `DV (Domain Validation)`, `OV (Organization validation)` or `EV (Extended Validation)`
-     * @type {string}
+     * 
+     * @type {SslCertificateValidationLevel}
      * @memberof SslCertificateCreate
      */
-    validation_level?: SslCertificateCreateValidationLevelEnum;
+    validation_level?: SslCertificateValidationLevel;
     /**
      * The private key provided by the Certification Authority, when the certificate has not being automatically issued through `devopness`
      * @type {string}
@@ -69,33 +72,4 @@ export interface SslCertificateCreate {
      */
     environments?: Array<EnvironmentLinkItem>;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum SslCertificateCreateIssuerEnum {
-    Custom = 'custom',
-    LetsEncrypt = 'lets-encrypt'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum SslCertificateCreateTypeEnum {
-    SingleDomain = 'single-domain',
-    MultiDomain = 'multi-domain',
-    Wildcard = 'wildcard'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum SslCertificateCreateValidationLevelEnum {
-    DV = 'DV',
-    OV = 'OV',
-    EV = 'EV'
-}
-
-
 

@@ -27,4 +27,3 @@ export interface Log {
     output: string;
 }
 
-

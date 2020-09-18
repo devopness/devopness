@@ -27,4 +27,3 @@ export interface UserRefreshTokenCreate {
     refresh_token: string;
 }
 
-

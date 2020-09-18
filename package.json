@@ -1,6 +1,9 @@
 {
-  "name": "devopness-sdk-js",
-  "version": "0.1.9",
+  "name": "@devopness/sdk-js",
+  "version": "0.0.0-development",
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "Devopness API JS/TS SDK - Painless essential DevOps to everyone",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -9,12 +12,17 @@
   ],
   "scripts": {
     "build": "rm -R ./dist || true && npm run lint && tsc",
-    "build-api-models": "openapi-generator generate --template-dir ./src/api/generator/templates --skip-validate-spec --minimal-update -i http://127.0.0.1:9090/spec.json -g typescript-axios -o ./src/api -p withSeparateModelsAndApi=true --api-package generated/apis --model-package generated/models --additional-properties supportsES6=false && npm run replace-tslint-disable-directive-with-eslint && npm run build",
-    "replace-tslint-disable-directive-with-eslint": "find ./src/api -type f -name '*.ts' -exec sed -i '' 's/\\/\\/ tslint:disable/\\/\\* eslint-disable \\*\\//g' {} +",
+    "build-api-models": "rm -R ./src/api/generated || true && JAVA_OPTS=\"${JAVA_OPTS} -Dlog.level=warn\" openapi-generator generate --template-dir ./src/api/generator/templates --skip-validate-spec --minimal-update -i ./src/api/spec.json -g typescript-axios -o ./src/api -p withSeparateModelsAndApi=true --api-package generated/apis --model-package generated/models --additional-properties supportsES6=false && npm run build",
     "lint": "eslint . --ext .ts",
-    "prepublishOnly": "npm test && npm run lint && npm version patch",
+    "prepublishOnly": "npm test",
     "prepare": "npm run build",
-    "preversion": "npm run lint"
+    "preversion": "npm run lint",
+    "test": "jest"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run build"
+    }
   },
   "repository": {
     "type": "git",
@@ -31,23 +39,33 @@
   ],
   "author": "Devopness (https://www.devopness.com)",
   "license": "MIT",
+  "release": {
+    "branches": [
+      "master"
+    ]
+  },
   "bugs": {
     "url": "https://github.com/devopness/devopness-sdk-js/issues"
   },
   "homepage": "https://github.com/devopness/devopness-sdk-js#readme",
   "devDependencies": {
     "@openapitools/openapi-generator-cli": "^1.0.13-4.3.1",
-    "@typescript-eslint/eslint-plugin": "^2.33.0",
-    "@typescript-eslint/parser": "^2.33.0",
-    "eslint": "^6.8.0",
-    "eslint-config-standard-with-typescript": "^16.0.0",
+    "@types/jest": "^26.0.3",
+    "@typescript-eslint/eslint-plugin": "^4.0.0",
+    "@typescript-eslint/parser": "^3.0.2",
+    "axios-mock-adapter": "^1.18.1",
+    "eslint": "^7.1.0",
+    "eslint-config-standard-with-typescript": "^18.0.2",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
-    "typescript": "^3.8.3"
+    "husky": "^4.2.5",
+    "jest": "^26.0.1",
+    "ts-jest": "^26.0.0",
+    "typescript": "^4.0.2"
   },
   "dependencies": {
-    "axios": "^0.19.2"
+    "axios": "^0.20.0"
   }
 }

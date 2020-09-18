@@ -12,6 +12,7 @@
  */
 
 
+import { SocialAccountProvider } from './social-account-provider';
 
 /**
  * 
@@ -20,11 +21,11 @@
  */
 export interface SocialAccountStatus {
     /**
-     * The name of the Social Authentication provider
-     * @type {string}
+     * 
+     * @type {SocialAccountProvider}
      * @memberof SocialAccountStatus
      */
-    provider?: SocialAccountStatusProviderEnum;
+    provider?: SocialAccountProvider;
     /**
      * Tells if the provider is already connected to the current user\'s account
      * @type {boolean}
@@ -38,19 +39,4 @@ export interface SocialAccountStatus {
      */
     connect_url?: string;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum SocialAccountStatusProviderEnum {
-    Bitbucket = 'bitbucket',
-    Facebook = 'facebook',
-    Github = 'github',
-    Gitlab = 'gitlab',
-    Google = 'google',
-    Linkedin = 'linkedin'
-}
-
-
 

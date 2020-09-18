@@ -22,6 +22,12 @@ import { Environment } from './environment';
  */
 export interface Server {
     /**
+     * The unique id of the given record
+     * @type {number}
+     * @memberof Server
+     */
+    id: number;
+    /**
      * The server\'s hostname
      * @type {string}
      * @memberof Server
@@ -64,5 +70,4 @@ export interface Server {
      */
     environments?: Array<Environment>;
 }
-
 

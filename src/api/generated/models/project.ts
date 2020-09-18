@@ -21,17 +21,17 @@ import { SshKey } from './ssh-key';
  */
 export interface Project {
     /**
+     * The unique id of the given record
+     * @type {number}
+     * @memberof Project
+     */
+    id?: number;
+    /**
      * The project\'s name
      * @type {string}
      * @memberof Project
      */
     name: string;
-    /**
-     * The type of the project, usually indicating the main technology, programming language or base framework
-     * @type {string}
-     * @memberof Project
-     */
-    type?: string;
     /**
      * A base64 string representation of the logo image
      * @type {string}
@@ -43,7 +43,7 @@ export interface Project {
      * @type {string}
      * @memberof Project
      */
-    logo_url?: string;
+    logo_url?: string | null;
     /**
      * The list of SSH keys added to the project
      * @type {Array<SshKey>}
@@ -57,5 +57,4 @@ export interface Project {
      */
     os_users?: Array<object>;
 }
-
 

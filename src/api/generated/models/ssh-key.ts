@@ -12,6 +12,7 @@
  */
 
 
+import { ActionStatus } from './action-status';
 
 /**
  * 
@@ -30,7 +31,7 @@ export interface SshKey {
      * @type {string}
      * @memberof SshKey
      */
-    name?: string;
+    name: string;
     /**
      * The Id of the user to which the SSH key belongs to
      * @type {number}
@@ -50,24 +51,10 @@ export interface SshKey {
      */
     fingerprint?: string;
     /**
-     * Current status of deploying to remote servers the current key
-     * @type {string}
+     * 
+     * @type {ActionStatus}
      * @memberof SshKey
      */
-    status?: SshKeyStatusEnum;
+    status?: ActionStatus;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum SshKeyStatusEnum {
-    Pending = 'pending',
-    InProgress = 'in-progress',
-    Cancelled = 'cancelled',
-    Completed = 'completed',
-    Failed = 'failed'
-}
-
-
 

@@ -33,10 +33,9 @@ export interface LanguageRuntimeFramework {
     displayable_name?: string;
     /**
      * Default values that apply to apps created in devopness using this framework
-     * @type {Array<object>}
+     * @type {object}
      * @memberof LanguageRuntimeFramework
      */
-    defaults?: Array<object>;
+    defaults?: object;
 }
-
 

@@ -12,8 +12,11 @@
  */
 
 import { ApiBaseService } from "../../../services/ApiBaseService";
+import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { ApiError } from '../../generated/models';
 import { SshKey } from '../../generated/models';
+import { SshKeyCreate } from '../../generated/models';
 
 /**
  * ProjectsSSHKeysApiService - Auto-generated
@@ -23,17 +26,20 @@ export class ProjectsSSHKeysApiService extends ApiBaseService {
      * 
      * @summary Create a SSH key and link it to the given project
      * @param {number} projectId The project numeric Id
-     * @param {SshKey} sshKey A JSON object containing SSH key data
+     * @param {SshKeyCreate} sshKeyCreate A JSON object containing SSH key data
      */
-    public async addSshKeyToProject(projectId: number, sshKey: SshKey): Promise<SshKey> {
+    public async addSshKeyToProject(projectId: number, sshKeyCreate: SshKeyCreate): Promise<ApiResponse<SshKey>> {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'addSshKeyToProject');
         }
-        if (sshKey === null || sshKey === undefined) {
-            throw new ArgumentNullException('sshKey', 'addSshKeyToProject');
+        if (sshKeyCreate === null || sshKeyCreate === undefined) {
+            throw new ArgumentNullException('sshKeyCreate', 'addSshKeyToProject');
         }
-        const response = await this.post <SshKey, SshKey>(`/projects/{project_id}/ssh-keys`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), sshKey);
-        return response.data;
+        const queryString = [].join('&');
+        const requestUrl = '/projects/{project_id}/ssh-keys' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <SshKey, SshKeyCreate>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), sshKeyCreate);
+        return new ApiResponse(response);
     }
 
     /**
@@ -41,11 +47,14 @@ export class ProjectsSSHKeysApiService extends ApiBaseService {
      * @summary Return a list of all SSH keys added to a project
      * @param {number} projectId The project numeric Id
      */
-    public async listProjectSshKeys(projectId: number): Promise<Array<SshKey>> {
+    public async listProjectSshKeys(projectId: number): Promise<ApiResponse<Array<SshKey>>> {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'listProjectSshKeys');
         }
-        const response = await this.get <Array<SshKey>>(`/projects/{project_id}/ssh-keys`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
-        return response.data;
+        const queryString = [].join('&');
+        const requestUrl = '/projects/{project_id}/ssh-keys' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <Array<SshKey>>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
+        return new ApiResponse(response);
     }
 }

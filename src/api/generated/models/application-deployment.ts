@@ -12,6 +12,7 @@
  */
 
 
+import { DeploymentType } from './deployment-type';
 
 /**
  * 
@@ -20,34 +21,28 @@
  */
 export interface ApplicationDeployment {
     /**
-     * The type of the deployment being triggered
-     * @type {string}
+     * 
+     * @type {DeploymentType}
      * @memberof ApplicationDeployment
      */
-    type: ApplicationDeploymentTypeEnum;
-    /**
-     * The name of the branch from which the source code should be retrieved and deployed
-     * @type {string}
-     * @memberof ApplicationDeployment
-     */
-    branch: string;
+    type: DeploymentType;
     /**
      * The commit\'s full hash that uniquely identify a commit. Required when re-deploying
      * @type {string}
      * @memberof ApplicationDeployment
      */
     hash?: string;
+    /**
+     * The date and time when the record was created
+     * @type {string}
+     * @memberof ApplicationDeployment
+     */
+    created_at?: string;
+    /**
+     * The date and time when the record was last updated
+     * @type {string}
+     * @memberof ApplicationDeployment
+     */
+    updated_at?: string;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum ApplicationDeploymentTypeEnum {
-    Deploy = 'deploy',
-    Redeploy = 'redeploy',
-    Rollback = 'rollback'
-}
-
-
 

@@ -12,6 +12,7 @@
  */
 
 
+import { SourceProviderName } from './source-provider-name';
 
 /**
  * 
@@ -38,11 +39,11 @@ export interface Commit {
      */
     committed_at?: string;
     /**
-     * The source provider where the commit has been retrieved from
-     * @type {string}
+     * 
+     * @type {SourceProviderName}
      * @memberof Commit
      */
-    provider?: CommitProviderEnum;
+    provider?: SourceProviderName;
     /**
      * The full name of the repository (`owner/repository`) to which the commit belongs to
      * @type {string}
@@ -74,16 +75,4 @@ export interface Commit {
      */
     author_name?: string;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum CommitProviderEnum {
-    Bitbucket = 'bitbucket',
-    Github = 'github',
-    Gitlab = 'gitlab'
-}
-
-
 

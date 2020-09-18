@@ -12,7 +12,9 @@
  */
 
 import { ApiBaseService } from "../../../services/ApiBaseService";
+import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { ApiError } from '../../generated/models';
 import { Environment } from '../../generated/models';
 import { EnvironmentCreate } from '../../generated/models';
 
@@ -26,15 +28,18 @@ export class ProjectsEnvironmentsApiService extends ApiBaseService {
      * @param {number} projectId Numeric ID of the project to which an environment will be added
      * @param {EnvironmentCreate} environmentCreate A JSON object containing environment data
      */
-    public async addEnvironmentToProject(projectId: number, environmentCreate: EnvironmentCreate): Promise<void> {
+    public async addEnvironmentToProject(projectId: number, environmentCreate: EnvironmentCreate): Promise<ApiResponse<Environment>> {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'addEnvironmentToProject');
         }
         if (environmentCreate === null || environmentCreate === undefined) {
             throw new ArgumentNullException('environmentCreate', 'addEnvironmentToProject');
         }
-        const response = await this.post <void, EnvironmentCreate>(`/projects/{project_id}/environments`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), environmentCreate);
-        return response.data;
+        const queryString = [].join('&');
+        const requestUrl = '/projects/{project_id}/environments' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <Environment, EnvironmentCreate>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), environmentCreate);
+        return new ApiResponse(response);
     }
 
     /**
@@ -42,11 +47,14 @@ export class ProjectsEnvironmentsApiService extends ApiBaseService {
      * @summary Returns a list of all environments belonging to a project
      * @param {number} projectId Numeric ID of the project to get environments from
      */
-    public async listProjectEnvironments(projectId: number): Promise<Array<Environment>> {
+    public async listProjectEnvironments(projectId: number): Promise<ApiResponse<Array<Environment>>> {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'listProjectEnvironments');
         }
-        const response = await this.get <Array<Environment>>(`/projects/{project_id}/environments`.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
-        return response.data;
+        const queryString = [].join('&');
+        const requestUrl = '/projects/{project_id}/environments' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <Array<Environment>>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
+        return new ApiResponse(response);
     }
 }

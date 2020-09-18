@@ -20,23 +20,22 @@
  */
 export interface EnvironmentLinkItem {
     /**
-     * The environment\'s unique id
+     * Environment\'s unique id
      * @type {number}
      * @memberof EnvironmentLinkItem
      */
-    id?: number;
+    id: number;
     /**
-     * The environment\'s name
+     * Environment\'s name
      * @type {string}
      * @memberof EnvironmentLinkItem
      */
-    name?: string;
+    name?: string | null;
     /**
-     * The list of IDs of servers to which the action must be performed
+     * A list of server IDs to which the item link/unlink operations must be performed
      * @type {Array<number>}
      * @memberof EnvironmentLinkItem
      */
     servers: Array<number>;
 }
-
 

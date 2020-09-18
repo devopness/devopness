@@ -1,16 +1,18 @@
 import { ProjectsApiService } from '../api/generated/apis/projects-api';
+import { ProjectsApplicationsApiService } from '../api/generated/apis/projects-applications-api';
+import { ProjectsCronJobsApiService } from '../api/generated/apis/projects-cron-jobs-api';
+import { ProjectsDeploymentsApiService } from '../api/generated/apis/projects-deployments-api';
 import { ProjectsEnvironmentsApiService } from '../api/generated/apis/projects-environments-api';
 import { ProjectsNetworkRulesApiService } from '../api/generated/apis/projects-network-rules-api';
 import { ProjectsServersApiService } from '../api/generated/apis/projects-servers-api';
 import { ProjectsServicesApiService } from '../api/generated/apis/projects-services-api';
 import { ProjectsSSHKeysApiService } from '../api/generated/apis/projects-sshkeys-api';
-import { ProjectsDeploymentsApiService } from '../api/generated/apis/projects-deployments-api';
-import { ProjectsCronjobsScheduledTasksApiService } from '../api/generated/apis/projects-cronjobs-scheduled-tasks-api';
-import { ProjectsDaemonsProcessesApiService } from '../api/generated/apis/projects-daemons-processes-api';
+import { ProjectsDaemonsApiService } from '../api/generated/apis/projects-daemons-api';
 
 export class ProjectService extends ProjectsApiService {
-    public cronjobs = new ProjectsCronjobsScheduledTasksApiService();
-    public daemons = new ProjectsDaemonsProcessesApiService();
+    public applications = new ProjectsApplicationsApiService();
+    public cronjobs = new ProjectsCronJobsApiService();
+    public daemons = new ProjectsDaemonsApiService();
     public deployments = new ProjectsDeploymentsApiService();
     public environments = new ProjectsEnvironmentsApiService();
     public networkRules = new ProjectsNetworkRulesApiService()

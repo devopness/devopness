@@ -12,6 +12,7 @@
  */
 
 
+import { SocialAccountProvider } from './social-account-provider';
 
 /**
  * 
@@ -20,11 +21,11 @@
  */
 export interface SocialAccountCreate {
     /**
-     * The name of the Social Authentication provider
-     * @type {string}
+     * 
+     * @type {SocialAccountProvider}
      * @memberof SocialAccountCreate
      */
-    provider: SocialAccountCreateProviderEnum;
+    provider: SocialAccountProvider;
     /**
      * The temporary code forwarded by the OAuth provider as a parameter to our callback URL
      * @type {string}
@@ -32,19 +33,4 @@ export interface SocialAccountCreate {
      */
     callback_code: string;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum SocialAccountCreateProviderEnum {
-    Bitbucket = 'bitbucket',
-    Facebook = 'facebook',
-    Github = 'github',
-    Gitlab = 'gitlab',
-    Google = 'google',
-    Linkedin = 'linkedin'
-}
-
-
 

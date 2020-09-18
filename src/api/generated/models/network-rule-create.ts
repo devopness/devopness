@@ -12,6 +12,9 @@
  */
 
 
+import { EnvironmentLinkItem } from './environment-link-item';
+import { NetworkRuleProtocol } from './network-rule-protocol';
+import { NetworkRuleType } from './network-rule-type';
 
 /**
  * 
@@ -26,17 +29,17 @@ export interface NetworkRuleCreate {
      */
     name: string;
     /**
-     * The type of network traffic to which this rule will be applied
-     * @type {string}
+     * 
+     * @type {NetworkRuleType}
      * @memberof NetworkRuleCreate
      */
-    type: NetworkRuleCreateTypeEnum;
+    type: NetworkRuleType;
     /**
-     * The network protocol to which this rule will be applied.
-     * @type {string}
+     * 
+     * @type {NetworkRuleProtocol}
      * @memberof NetworkRuleCreate
      */
-    protocol: NetworkRuleCreateProtocolEnum;
+    protocol: NetworkRuleProtocol;
     /**
      * Starting range of the public ipv4 or ipv6 addresses that can access this rule
      * @type {string}
@@ -61,25 +64,11 @@ export interface NetworkRuleCreate {
      * @memberof NetworkRuleCreate
      */
     port_to: number;
+    /**
+     * 
+     * @type {Array<EnvironmentLinkItem>}
+     * @memberof NetworkRuleCreate
+     */
+    environments?: Array<EnvironmentLinkItem>;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum NetworkRuleCreateTypeEnum {
-    Inbound = 'inbound',
-    Outbound = 'outbound'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum NetworkRuleCreateProtocolEnum {
-    Any = 'any',
-    Tcp = 'tcp',
-    Udp = 'udp'
-}
-
-
 

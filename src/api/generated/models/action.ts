@@ -12,6 +12,10 @@
  */
 
 
+import { ActionStatus } from './action-status';
+import { ActionType } from './action-type';
+import { ResourceType } from './resource-type';
+import { ServerAction } from './server-action';
 
 /**
  * 
@@ -20,41 +24,41 @@
  */
 export interface Action {
     /**
-     * The current status of the action
-     * @type {string}
-     * @memberof Action
-     */
-    status?: ActionStatusEnum;
-    /**
-     * The action type
-     * @type {string}
-     * @memberof Action
-     */
-    type?: ActionTypeEnum;
-    /**
-     * The total number of steps to complete the action
+     * The Id of the given action
      * @type {number}
      * @memberof Action
      */
-    total_steps?: number;
+    id?: number;
     /**
-     * The current action step being executed
+     * 
+     * @type {ActionStatus}
+     * @memberof Action
+     */
+    status?: ActionStatus;
+    /**
+     * 
+     * @type {ActionType}
+     * @memberof Action
+     */
+    type?: ActionType;
+    /**
+     * 
+     * @type {ResourceType}
+     * @memberof Action
+     */
+    resource_type?: ResourceType;
+    /**
+     * The unique id of the resource
      * @type {number}
      * @memberof Action
      */
-    current_step?: number;
+    resource_id?: number;
     /**
-     * A message describing the current step being executed
-     * @type {string}
+     * List of actions dispatched to servers
+     * @type {Array<ServerAction>}
      * @memberof Action
      */
-    current_step_message?: string;
-    /**
-     * A memo/text with full action output log - when available
-     * @type {string}
-     * @memberof Action
-     */
-    output?: string;
+    servers?: Array<ServerAction>;
     /**
      * The date and time when the action started to be executed (left the `pending/waiting` status)
      * @type {string}
@@ -67,31 +71,17 @@ export interface Action {
      * @memberof Action
      */
     completed_at?: string;
+    /**
+     * The date and time when the record was created
+     * @type {string}
+     * @memberof Action
+     */
+    created_at?: string;
+    /**
+     * The date and time when the record was last updated
+     * @type {string}
+     * @memberof Action
+     */
+    updated_at?: string;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum ActionStatusEnum {
-    Pending = 'pending',
-    InProgress = 'in-progress',
-    Cancelled = 'cancelled',
-    Completed = 'completed',
-    Failed = 'failed'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum ActionTypeEnum {
-    Create = 'create',
-    Launch = 'launch',
-    Setup = 'setup',
-    Deploy = 'deploy',
-    Remove = 'remove',
-    Connect = 'connect'
-}
-
-
 

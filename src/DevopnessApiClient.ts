@@ -1,37 +1,70 @@
 import { ApiBaseService, ConfigurationOptions, Configuration } from './services/ApiBaseService';
+import { ApplicationService } from './services/ApplicationService';
+import { DaemonService } from './services/DaemonService';
+import { DeploymentService } from './services/DeploymentService'
+import { EnvironmentService } from './services/EnvironmentService';
+import { NetworkRuleService } from './services/NetworkRuleService';
 import { ProjectService } from './services/ProjectService';
+import { ScriptService } from './services/ScriptService';
+import { ServerService } from './services/ServerService';
+import { ServiceService } from './services/ServiceService';
+import { SourceProviderService } from './services/SourceProviderService'
+import { SshKeyService } from './services/SshKeyService';
+import { SslCertificateService } from './services/SslCertificateService';
 import { UserService } from './services/UserService';
+import { CronJobService } from './services/CronJobService';
+import { StaticService } from './services/StaticService';
+import { ActionsApiService } from './api/generated/apis/actions-api';
+import { SocialAccountService } from './services/SocialAccountService';
+import { LogService } from './services/LogService';
+import { VariableService } from './services/VariableService';
 
 export class DevopnessApiClient {
-  public projects: ProjectService;
-  public users: UserService;
+  actions: ActionsApiService;
+  applications: ApplicationService;
+  cronjobs: CronJobService;
+  daemons: DaemonService;
+  deployments: DeploymentService;
+  environments: EnvironmentService;
+  logs: LogService;
+  networkRules: NetworkRuleService;
+  projects: ProjectService;
+  scripts: ScriptService;
+  servers: ServerService;
+  services: ServiceService;
+  socialAccounts: SocialAccountService;
+  sourceProviders: SourceProviderService;
+  sshKeys: SshKeyService;
+  sslCertificates: SslCertificateService;
+  static: StaticService;
+  users: UserService;
+  variables: VariableService;
 
-  /**
-   * @todo provide a global onError event? How to make it easy to clients to interact with
-   * this SDK without being dependant themselves on AxiosResponse types?
-   * We should be the only ones concerned about axios and moving from
-   * Axios to another HTTP library should not affect the consumers
-   * of this SDK
-   */
+  constructor(options?: ConfigurationOptions) {
+    ApiBaseService.configuration = new Configuration(options || {});
 
-  constructor(options: ConfigurationOptions) {
-    if (options === undefined) {
-      throw new Error('API services cannot be initialized: Configuration options must be provided');
-    }
-
-    if (options.baseUrl == undefined || options.baseUrl == '') {
-      throw new Error('API services cannot be initialized: base URL must be provided');
-    }
-
-    ApiBaseService.configuration = new Configuration(options);
-
-    // we'd better initialize the services explicitly, instead of auto initialize them on property
-    // declaration in the beginning of the class, cause some (or all) of them might need constructor
-    // parameters. Furthermore, we ensure all assertions for required parameters (like the
-    // above check for `baseUrl`) are quickly returned to the end user before spending
-    // time loading extra resources
+    // we initialize the services explicitly, instead of auto initialize them on property declaration in the beginning of the class,
+    // cause some (or all) of them depend on `ApiBaseService.configuration` property be set. Furthermore, we ensure all assertions
+    // for non provided required parameters are quickly returned to the end user before spending time loading extra resources
+    this.actions = new ActionsApiService();
+    this.applications = new ApplicationService();
+    this.cronjobs = new CronJobService();
+    this.daemons = new DaemonService();
+    this.deployments = new DeploymentService();
+    this.environments = new EnvironmentService();
+    this.logs = new LogService();
+    this.networkRules = new NetworkRuleService();
     this.projects = new ProjectService();
+    this.scripts = new ScriptService();
+    this.servers = new ServerService();
+    this.services = new ServiceService();
+    this.socialAccounts = new SocialAccountService();
+    this.sourceProviders = new SourceProviderService();
+    this.sshKeys = new SshKeyService();
+    this.sslCertificates = new SslCertificateService();
+    this.static = new StaticService();
     this.users = new UserService();
+    this.variables = new VariableService();
   }
 
   public get accessToken(): string {
