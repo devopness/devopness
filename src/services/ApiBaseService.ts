@@ -135,7 +135,7 @@ export class ApiBaseService {
         return this.api.delete<T, R>(endpoint);
     }
 
-    protected get<T, R = AxiosResponse<T>>(endpoint: string): Promise<R> {
-        return this.api.get<T, R>(endpoint);
+    protected get<T, R = AxiosResponse<T>>(endpoint: string, config?: AxiosRequestConfig): Promise<R> {
+        return this.api.get<T, R>(endpoint, config);
     }
 }
