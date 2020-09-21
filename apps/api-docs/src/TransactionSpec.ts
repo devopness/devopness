@@ -27,8 +27,9 @@ function parseHTTPMethod(method: DreddHTTPMethod): HTTPMethod | null {
 
 export default class TransactionSpec {
     slug: string;
-    bodyInput: FixtureDependency[];
+    bodyInputDependencies: FixtureDependency[];
     pathInputs: FixtureKey[];
+    pathInputDependencies: { [id: string]: FixtureDependency[] };
     output: FixtureKey | FixtureListKey | null;
     requiresAuth: boolean;
     method: HTTPMethod;
@@ -63,7 +64,7 @@ export default class TransactionSpec {
         this.method = method;
         this.slug = `${operationSpec.operationId}${statusCode}`;
         this.output = this.outputFromResponseSpec(responseSpec);
-        [this.pathInputs, this.bodyInput] = this.inputsFromOperationSpec(operationSpec);
+        [this.pathInputs, this.pathInputDependencies, this.bodyInputDependencies] = this.inputsFromOperationSpec(operationSpec);
     }
 
     operationSpecHasAuthorizationHeaderParam(operationSpec: OpenAPIV2.OperationObject): boolean {
@@ -109,9 +110,10 @@ export default class TransactionSpec {
         return null;
     }
 
-    inputsFromOperationSpec(operationSpec: OpenAPIV2.OperationObject): [FixtureKey[], FixtureDependency[]] {
+    inputsFromOperationSpec(operationSpec: OpenAPIV2.OperationObject): [FixtureKey[], { [id: string]: FixtureDependency[] }, FixtureDependency[]] {
         const inputs: FixtureKey[] = [];
-        let body: FixtureDependency[] = [];
+        let inputDeps: { [id: string]: FixtureDependency[] } = {};
+        let bodyDeps: FixtureDependency[] = [];
         const parametersSpec = operationSpec.parameters;
 
         if (parametersSpec) {
@@ -120,7 +122,12 @@ export default class TransactionSpec {
                 if (paramSpec.in == 'path' && paramSpec.name.match(/[a-z_]+_id/)) {
                     const paramName = paramSpec.name.replace('_id', '');
                     if (isFixtureKey(paramName)) {
-                        inputs.push(paramName);
+                        const deps = fixtureDependencies(paramName);
+                        if (deps.length > 0) {
+                            inputDeps[paramName] = deps;
+                        } else {
+                            inputs.push(paramName);
+                        }
                     } else {
                         this.log(`[inputsFromOperationSpec] '${paramName}' is not a valid fixture key`);
                     }
@@ -133,13 +140,13 @@ export default class TransactionSpec {
                         if (deps.length == 0) {
                             this.log(`[inputsFromOperationSpec] body inputs should have FixtureDependencies, got FixtureKey '${bodyFixture}'`);
                         } else {
-                            body = deps;
+                            bodyDeps = deps;
                         }
                     }
                 }
             }
         }
-        return [inputs, body];
+        return [inputs, inputDeps, bodyDeps];
     }
 
     ignoreSchemas = ['api_error', 'log'];

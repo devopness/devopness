@@ -2,8 +2,7 @@ import fs from 'fs';
 import toposort from 'toposort';
 
 import TransactionSpec from './TransactionSpec';
-import { fixtureKeyElement, isFixtureListKey, isFixtureKey, FixtureKey } from './fixtureTypes';
-import { initial } from 'lodash';
+import { fixtureKeyElement, isFixtureListKey, FixtureKey } from './fixtureTypes';
 
 type TransactionNode = string;
 type FixtureNode = string;
@@ -61,7 +60,10 @@ export default class TransactionGraph {
             if (txSpec.method == "delete") {
                 // delete transactions should have only one input, but let's iterate anyways
                 for (const input of txSpec.pathInputs) {
-                   fixtureTransactionGraphPush(fixtureDeleteTransactions, fixtureKeyElement(input), txSpec.slug);
+                    fixtureTransactionGraphPush(fixtureDeleteTransactions, fixtureKeyElement(input), txSpec.slug);
+                }
+                for (const inputDep in txSpec.pathInputDependencies) {
+                    fixtureTransactionGraphPush(fixtureDeleteTransactions, fixtureKeyElement(inputDep), txSpec.slug);
                 }
             } else {
                 if (txSpec.output) {                    
@@ -77,9 +79,15 @@ export default class TransactionGraph {
                 for (const input of txSpec.pathInputs) {
                     fixtureTransactionGraphPush(fixtureTransactionInputs, input, txSpec.slug);
                 }
-                if (txSpec.bodyInput) {
-                    txSpec.bodyInput.map(d => d.fixture).forEach((input: FixtureKey) => 
+                if (txSpec.bodyInputDependencies) {
+                    txSpec.bodyInputDependencies.map(d => d.fixture).forEach((input: FixtureKey) => 
                         fixtureTransactionGraphPush(fixtureTransactionInputs, input, txSpec.slug));
+                }
+                if (txSpec.pathInputDependencies) {
+                    for (const key in txSpec.pathInputDependencies) {
+                        txSpec.pathInputDependencies[key].map(d => d.fixture).forEach((input: FixtureKey) => 
+                            fixtureTransactionGraphPush(fixtureTransactionInputs, input, txSpec.slug));
+                    }
                 }
             }
             // auth requires a `user_tokens` fixture
@@ -138,7 +146,7 @@ export default class TransactionGraph {
                 }
             }
             // delete transactions depend on fixtures output by other transactions
-            for (const del in fixtureDeleteTransactions[fixture] || []) {
+            for (const del of fixtureDeleteTransactions[fixture] || []) {
                 if (!unreachable[del]) {
                     for (const output of fixtureTransactionOutputs[fixture] || []) {
                         if (!unreachable[output]) {

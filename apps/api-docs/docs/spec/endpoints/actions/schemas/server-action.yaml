@@ -12,12 +12,14 @@ properties:
     minimum: 0
     maximum: 127
     description: The total number of steps to complete the action
+    nullable: true
     example: 5
   current_step:
     type: integer
     minimum: 0
     maximum: 127
     description: The current action step being executed
+    nullable: true
     example: 2
   current_step_message:
     type: string
@@ -27,11 +29,13 @@ properties:
     type: string
     format: date-time
     description: The date and time when the action started to be executed (left the `pending/waiting` status)
+    nullable: true
     example: "2019-09-25T15:50:48.000000Z"
   completed_at:
     type: string
     format: date-time
     description: The date and time when the action has finished execution
+    nullable: true
     example: "2019-09-25T13:52:04.000000Z"
   created_at:
     type: string

@@ -1,5 +1,5 @@
 import { Transaction, TransactionHook } from 'hooks';
-import { set } from 'lodash';
+import { get, set } from 'lodash';
 
 import { FixtureKey, Fixture, Identifiable, UserTokens, FixtureDependency } from './fixtureTypes';
 import FixtureStore from './FixtureStore';
@@ -42,10 +42,10 @@ export default class TransactionUtils {
     }
     
     // replaces `${fixtureKey}_id` with ${fixture.id} in transaction request path
-    writeFixtureIdsInTransactionPath<T extends Identifiable>(keys: FixtureKey[]): TransactionHook {
+    writeFixtureIdsInTransactionPath<T extends Identifiable>(keys: FixtureKey[], dependencies: { [id: string]: FixtureDependency[] }): TransactionHook {
         return (transaction: Transaction) => {
             if (transaction.skip) return;
-            if (keys.length == 0) return;
+            if (keys.length == 0 && Object.keys(dependencies).length == 0) return;
 
             let path = transaction.origin.resourceName;
             const tag = `[writeFixtureIdsInTransactionPath]`;
@@ -57,6 +57,27 @@ export default class TransactionUtils {
                     this.log(`${tag} transaction '${transaction.id}' requires '${key}' fixture`)
                     transaction.fail = true;
                     break;
+                }
+            }
+            for (const key in dependencies) {
+                const deps = dependencies[key];
+                const depId = deps.find((dep) => dep.path === 'id');
+                if (depId) {
+                    const fixture = this.fixtureStore.get(depId.fixture);
+                    if (fixture) {
+                        const value = get(fixture, depId.field);
+                        if (value) {
+                            path = path.replace(`{${key}_id}`, value);
+                        } else {
+                            this.log(`${tag} transaction '${transaction.id}' requires ${depId.fixture}.${depId.field} to exist`)
+                            transaction.fail = true;
+                            break;
+                        }
+                    } else {
+                        this.log(`${tag} transaction '${transaction.id}' requires '${key}' fixture`)
+                        transaction.fail = true;
+                        break;
+                    }
                 }
             }
             this.log(`${tag} '${transaction.fullPath}' => '${path}'`)

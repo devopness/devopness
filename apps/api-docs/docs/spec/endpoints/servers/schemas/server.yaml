@@ -25,10 +25,7 @@ properties:
     type: boolean
     description: Tells if the server is active or not
   actions:
-    description: "The list of actions related to the server"
-    type: array
-    items:
-      $ref: '#/components/schemas/Action'
+    $ref: '#/components/schemas/Actions'
   environments:
     description: "The list of environments to which the server is linked to"
     type: array

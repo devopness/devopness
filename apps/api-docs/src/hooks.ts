@@ -66,7 +66,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
             // user credentials are generated from a successful `addUser` transaction
             'user_credentials': ['addUser201'], 
             // user tokens are a result of a successful `login` transaction
-            'user_tokens': ['login200']
+            'user_tokens': ['login200'],
         },
         fixtureTerminalTransactions:  {
             // a successful `logout` transaction destroys user tokens
@@ -109,8 +109,12 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     const executionPlan = graph.topologicalSort();
 
     // shorthand methods for adding hooks by transaction slug
-    const before = (id: string, cb: TransactionHook) => hooks.before(transactionSlugToName[id], cb);
-    const after = (id: string, cb: TransactionHook) => hooks.after(transactionSlugToName[id], cb);
+    const executeIfTransactionNotSkipped = (cb: TransactionHook) => (transaction:Transaction) => {
+        if (transaction.skip) return;
+        cb(transaction);
+    }
+    const before = (id: string, cb: TransactionHook) => hooks.before(transactionSlugToName[id], executeIfTransactionNotSkipped(cb));
+    const after = (id: string, cb: TransactionHook) => hooks.after(transactionSlugToName[id], executeIfTransactionNotSkipped(cb));
     
     // apply post-skiplist
     postSkiplist.forEach((slug: string) => {
@@ -141,8 +145,8 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
             });
 
             // TODO: test on (`/environments/${environment_id}/servers/${server_id}/link`)
-            hooks.before(transaction.name, utils.writeFixtureIdsInTransactionPath(transactionSpec.pathInputs));
-            hooks.before(transaction.name, utils.applyTransactionRequestBodyFixtureDependencies(transactionSpec.bodyInput));
+            hooks.before(transaction.name, utils.writeFixtureIdsInTransactionPath(transactionSpec.pathInputs, transactionSpec.pathInputDependencies));
+            hooks.before(transaction.name, utils.applyTransactionRequestBodyFixtureDependencies(transactionSpec.bodyInputDependencies));
             if (transactionSpec.output && isFixtureKey(transactionSpec.output)) {
                 hooks.after(transaction.name, utils.storeTransactionResult(transactionSpec.output));
             }

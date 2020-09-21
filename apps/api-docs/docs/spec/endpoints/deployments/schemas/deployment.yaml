@@ -24,10 +24,7 @@ properties:
     example: '2019-09-25T13:52:04.000000Z'
     nullable: true
   actions:
-    description: "The list of actions related to the deployment"
-    type: array
-    items:
-      $ref: '#/components/schemas/Action'
+    $ref: '#/components/schemas/Actions'
   commit:
     $ref: '#/components/schemas/Commit'
   steps:
