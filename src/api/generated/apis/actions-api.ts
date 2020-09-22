@@ -39,9 +39,11 @@ export class ActionsApiService extends ApiBaseService {
     /**
      * 
      * @summary Return a list of all actions belonging to current user
+     * @param {number} [page] Number of the page to be retrieved
+     * @param {number} [perPage] Number of items returned per page
      */
-    public async listActions(): Promise<ApiResponse<Array<Action>>> {
-        const queryString = [].join('&');
+    public async listActions(page?: number, perPage?: number): Promise<ApiResponse<Array<Action>>> {
+        const queryString = [`page=${ page }`,`per_page=${ perPage }`,].join('&');
         const requestUrl = '/actions' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Array<Action>>(requestUrl);

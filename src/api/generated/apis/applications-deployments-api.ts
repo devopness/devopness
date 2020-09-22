@@ -42,12 +42,14 @@ export class ApplicationsDeploymentsApiService extends ApiBaseService {
      * 
      * @summary Returns a list of all deployments belonging to an application
      * @param {number} applicationId Numeric ID of the application to get deployments from
+     * @param {number} [page] Number of the page to be retrieved
+     * @param {number} [perPage] Number of items returned per page
      */
-    public async listApplicationDeployments(applicationId: number): Promise<ApiResponse<Array<Deployment>>> {
+    public async listApplicationDeployments(applicationId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<Deployment>>> {
         if (applicationId === null || applicationId === undefined) {
             throw new ArgumentNullException('applicationId', 'listApplicationDeployments');
         }
-        const queryString = [].join('&');
+        const queryString = [`page=${ page }`,`per_page=${ perPage }`,].join('&');
         const requestUrl = '/applications/{application_id}/deployments' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Array<Deployment>>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))));

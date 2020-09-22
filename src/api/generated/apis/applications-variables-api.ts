@@ -45,12 +45,14 @@ export class ApplicationsVariablesApiService extends ApiBaseService {
      * 
      * @summary Returns a list of variables belonging to an application
      * @param {number} applicationId Unique ID of the application to retrieve variables from
+     * @param {number} [page] Number of the page to be retrieved
+     * @param {number} [perPage] Number of items returned per page
      */
-    public async listApplicationVariables(applicationId: number): Promise<ApiResponse<Array<Variable>>> {
+    public async listApplicationVariables(applicationId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<Variable>>> {
         if (applicationId === null || applicationId === undefined) {
             throw new ArgumentNullException('applicationId', 'listApplicationVariables');
         }
-        const queryString = [].join('&');
+        const queryString = [`page=${ page }`,`per_page=${ perPage }`,].join('&');
         const requestUrl = '/applications/{application_id}/variables' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Array<Variable>>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))));

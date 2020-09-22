@@ -58,9 +58,11 @@ export class ProjectsApiService extends ApiBaseService {
     /**
      * 
      * @summary Returns a list of all projects belonging to current user
+     * @param {number} [page] Number of the page to be retrieved
+     * @param {number} [perPage] Number of items returned per page
      */
-    public async listProjects(): Promise<ApiResponse<Array<Project>>> {
-        const queryString = [].join('&');
+    public async listProjects(page?: number, perPage?: number): Promise<ApiResponse<Array<Project>>> {
+        const queryString = [`page=${ page }`,`per_page=${ perPage }`,].join('&');
         const requestUrl = '/projects' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Array<Project>>(requestUrl);

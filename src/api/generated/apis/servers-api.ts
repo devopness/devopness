@@ -80,9 +80,11 @@ export class ServersApiService extends ApiBaseService {
     /**
      * 
      * @summary Return a list of all servers belonging to current user
+     * @param {number} [page] Number of the page to be retrieved
+     * @param {number} [perPage] Number of items returned per page
      */
-    public async listServers(): Promise<ApiResponse<Array<Server>>> {
-        const queryString = [].join('&');
+    public async listServers(page?: number, perPage?: number): Promise<ApiResponse<Array<Server>>> {
+        const queryString = [`page=${ page }`,`per_page=${ perPage }`,].join('&');
         const requestUrl = '/servers' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Array<Server>>(requestUrl);

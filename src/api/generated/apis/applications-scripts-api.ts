@@ -46,12 +46,14 @@ export class ApplicationsScriptsApiService extends ApiBaseService {
      * 
      * @summary List scripts to be executed as custom deployment steps of an application
      * @param {number} applicationId Unique ID of the application to retrieve scripts from
+     * @param {number} [page] Number of the page to be retrieved
+     * @param {number} [perPage] Number of items returned per page
      */
-    public async listApplicationScripts(applicationId: number): Promise<ApiResponse<Array<Script>>> {
+    public async listApplicationScripts(applicationId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<Script>>> {
         if (applicationId === null || applicationId === undefined) {
             throw new ArgumentNullException('applicationId', 'listApplicationScripts');
         }
-        const queryString = [].join('&');
+        const queryString = [`page=${ page }`,`per_page=${ perPage }`,].join('&');
         const requestUrl = '/applications/{application_id}/scripts' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Array<Script>>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))));
