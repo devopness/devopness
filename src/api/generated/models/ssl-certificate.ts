@@ -13,9 +13,11 @@
 
 
 import { ActionStatus } from './action-status';
+import { Server } from './server';
 import { SslCertificateIssuer } from './ssl-certificate-issuer';
 import { SslCertificateType } from './ssl-certificate-type';
 import { SslCertificateValidationLevel } from './ssl-certificate-validation-level';
+import { User } from './user';
 
 /**
  * 
@@ -54,13 +56,13 @@ export interface SslCertificate {
      */
     validation_level: SslCertificateValidationLevel;
     /**
-     * The private key provided by the Certification Authority, when the certificate has not being automatically issued through `devopness`
+     * The private key provided by the Certification Authority, when the certificate has not been automatically issued through `devopness`
      * @type {string}
      * @memberof SslCertificate
      */
     custom_private_key?: string;
     /**
-     * The contents of the certificate provided by the Certification Authority, when the certificate has not being automatically issued through `devopness`
+     * The contents of the certificate provided by the Certification Authority, when the certificate has not been automatically issued through `devopness`
      * @type {string}
      * @memberof SslCertificate
      */
@@ -78,23 +80,17 @@ export interface SslCertificate {
      */
     active: boolean;
     /**
-     * The unique id of the user to which this record belongs to
-     * @type {number}
-     * @memberof SslCertificate
-     */
-    user_id?: number;
-    /**
      * The date and time when this certificate will no longer be valid, down to minute precision
      * @type {string}
      * @memberof SslCertificate
      */
-    expires_at?: string;
+    expires_at?: string | null;
     /**
      * The date and time when this certificate was renewed for the last time
      * @type {string}
      * @memberof SslCertificate
      */
-    last_renewed_at?: string;
+    last_renewed_at?: string | null;
     /**
      * The date and time when the record was created
      * @type {string}
@@ -107,5 +103,17 @@ export interface SslCertificate {
      * @memberof SslCertificate
      */
     updated_at?: string;
+    /**
+     * 
+     * @type {Array<Server>}
+     * @memberof SslCertificate
+     */
+    servers?: Array<Server>;
+    /**
+     * 
+     * @type {User}
+     * @memberof SslCertificate
+     */
+    created_by_user?: User;
 }
 

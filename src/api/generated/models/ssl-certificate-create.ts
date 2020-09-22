@@ -12,7 +12,6 @@
  */
 
 
-import { EnvironmentLinkItem } from './environment-link-item';
 import { SslCertificateIssuer } from './ssl-certificate-issuer';
 import { SslCertificateType } from './ssl-certificate-type';
 import { SslCertificateValidationLevel } from './ssl-certificate-validation-level';
@@ -23,12 +22,6 @@ import { SslCertificateValidationLevel } from './ssl-certificate-validation-leve
  * @interface SslCertificateCreate
  */
 export interface SslCertificateCreate {
-    /**
-     * The Id of the environment to which the settings apply to
-     * @type {number}
-     * @memberof SslCertificateCreate
-     */
-    environment_id: number;
     /**
      * The list of domain names to which the SSL certificate refers to
      * @type {Array<string>}
@@ -54,22 +47,16 @@ export interface SslCertificateCreate {
      */
     validation_level?: SslCertificateValidationLevel;
     /**
-     * The private key provided by the Certification Authority, when the certificate has not being automatically issued through `devopness`
+     * The private key provided by the Certification Authority, when the certificate has not been automatically issued through `devopness`
      * @type {string}
      * @memberof SslCertificateCreate
      */
     custom_private_key?: string;
     /**
-     * The contents of the certificate provided by the Certification Authority, when the certificate has not being automatically issued through `devopness`
+     * The contents of the certificate provided by the Certification Authority, when the certificate has not been automatically issued through `devopness`
      * @type {string}
      * @memberof SslCertificateCreate
      */
     custom_certificate?: string;
-    /**
-     * 
-     * @type {Array<EnvironmentLinkItem>}
-     * @memberof SslCertificateCreate
-     */
-    environments?: Array<EnvironmentLinkItem>;
 }
 
