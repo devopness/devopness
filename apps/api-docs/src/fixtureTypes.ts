@@ -43,9 +43,11 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     ],
     'cron_job': [],
     'cron_job_create': [
+        { path: 'project_id', fixture: 'project', field: 'id' } ,
         { path: 'environments[0].id', fixture: 'environment', field: 'id' } ,
-        { path: 'environments[0].servers[0]', fixture: 'server', field: 'id' }
-     ], 
+        { path: 'environments[0].servers[0]', fixture: 'server', field: 'id' },
+        { path: 'application_id', fixture: 'application', field: 'id' },
+     ],
     'deployment': [],
     'deployment_create': [
         { path: 'applications[0].id', fixture: 'application', field: 'id' },
@@ -71,8 +73,8 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     'daemon_create': [
         { path: 'environments[0].id', fixture: 'environment', field: 'id' } ,
         { path: 'environments[0].servers[0]', fixture: 'server', field: 'id' }
-     ], 
-    'project': [], 
+     ],
+    'project': [],
     'project_update': [
         { path: 'id', fixture: 'project', field: 'id' }
     ],
