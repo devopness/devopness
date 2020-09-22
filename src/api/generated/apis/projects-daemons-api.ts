@@ -46,12 +46,14 @@ export class ProjectsDaemonsApiService extends ApiBaseService {
      * 
      * @summary Returns a list of all daemons belonging to a project
      * @param {number} projectId Numeric ID of the project to get daemons from
+     * @param {number} [page] Number of the page to be retrieved
+     * @param {number} [perPage] Number of items returned per page
      */
-    public async listProjectDaemons(projectId: number): Promise<ApiResponse<Array<Daemon>>> {
+    public async listProjectDaemons(projectId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<Daemon>>> {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'listProjectDaemons');
         }
-        const queryString = [].join('&');
+        const queryString = [`page=${ page }`,`per_page=${ perPage }`,].join('&');
         const requestUrl = '/projects/{project_id}/daemons' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Array<Daemon>>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));

@@ -46,12 +46,14 @@ export class ProjectsServersApiService extends ApiBaseService {
      * 
      * @summary List all servers linked to a project
      * @param {number} projectId The project numeric Id
+     * @param {number} [page] Number of the page to be retrieved
+     * @param {number} [perPage] Number of items returned per page
      */
-    public async listProjectServers(projectId: number): Promise<ApiResponse<Array<Server>>> {
+    public async listProjectServers(projectId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<Server>>> {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'listProjectServers');
         }
-        const queryString = [].join('&');
+        const queryString = [`page=${ page }`,`per_page=${ perPage }`,].join('&');
         const requestUrl = '/projects/{project_id}/servers' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Array<Server>>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));

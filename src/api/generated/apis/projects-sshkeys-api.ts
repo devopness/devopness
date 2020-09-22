@@ -46,12 +46,14 @@ export class ProjectsSSHKeysApiService extends ApiBaseService {
      * 
      * @summary Return a list of all SSH keys added to a project
      * @param {number} projectId The project numeric Id
+     * @param {number} [page] Number of the page to be retrieved
+     * @param {number} [perPage] Number of items returned per page
      */
-    public async listProjectSshKeys(projectId: number): Promise<ApiResponse<Array<SshKey>>> {
+    public async listProjectSshKeys(projectId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<SshKey>>> {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'listProjectSshKeys');
         }
-        const queryString = [].join('&');
+        const queryString = [`page=${ page }`,`per_page=${ perPage }`,].join('&');
         const requestUrl = '/projects/{project_id}/ssh-keys' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Array<SshKey>>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));

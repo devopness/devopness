@@ -46,12 +46,14 @@ export class ProjectsNetworkRulesApiService extends ApiBaseService {
      * 
      * @summary Returns a list of all network rules that applies to a project
      * @param {number} projectId Numeric ID of the project to get network rules from
+     * @param {number} [page] Number of the page to be retrieved
+     * @param {number} [perPage] Number of items returned per page
      */
-    public async listProjectNetworkRules(projectId: number): Promise<ApiResponse<Array<NetworkRule>>> {
+    public async listProjectNetworkRules(projectId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<NetworkRule>>> {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'listProjectNetworkRules');
         }
-        const queryString = [].join('&');
+        const queryString = [`page=${ page }`,`per_page=${ perPage }`,].join('&');
         const requestUrl = '/projects/{project_id}/network-rules' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Array<NetworkRule>>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
