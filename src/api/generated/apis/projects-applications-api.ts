@@ -46,12 +46,14 @@ export class ProjectsApplicationsApiService extends ApiBaseService {
      * 
      * @summary Returns a list of all applications belonging to a project
      * @param {number} projectId Numeric ID of the project to get applications from
+     * @param {number} [page] Number of the page to be retrieved
+     * @param {number} [perPage] Number of items returned per page
      */
-    public async listProjectApplications(projectId: number): Promise<ApiResponse<Array<Application>>> {
+    public async listProjectApplications(projectId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<Application>>> {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'listProjectApplications');
         }
-        const queryString = [].join('&');
+        const queryString = [`page=${ page }`,`per_page=${ perPage }`,].join('&');
         const requestUrl = '/projects/{project_id}/applications' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Array<Application>>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));

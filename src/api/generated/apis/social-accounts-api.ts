@@ -89,9 +89,11 @@ export class SocialAccountsApiService extends ApiBaseService {
     /**
      * 
      * @summary Return a list of all social accounts belonging to current user
+     * @param {number} [page] Number of the page to be retrieved
+     * @param {number} [perPage] Number of items returned per page
      */
-    public async listSocialAccounts(): Promise<ApiResponse<Array<SocialAccount>>> {
-        const queryString = [].join('&');
+    public async listSocialAccounts(page?: number, perPage?: number): Promise<ApiResponse<Array<SocialAccount>>> {
+        const queryString = [`page=${ page }`,`per_page=${ perPage }`,].join('&');
         const requestUrl = '/social-accounts' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Array<SocialAccount>>(requestUrl);

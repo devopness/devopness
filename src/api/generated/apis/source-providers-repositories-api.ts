@@ -48,12 +48,14 @@ export class SourceProvidersRepositoriesApiService extends ApiBaseService {
      * 
      * @summary Return a list of all repositories belonging to a current user social provider account
      * @param {number} sourceProviderId Unique ID of the provider where the repository is hosted
+     * @param {number} [page] Number of the page to be retrieved
+     * @param {number} [perPage] Number of items returned per page
      */
-    public async listRepositories(sourceProviderId: number): Promise<ApiResponse<Array<Repository>>> {
+    public async listRepositories(sourceProviderId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<Repository>>> {
         if (sourceProviderId === null || sourceProviderId === undefined) {
             throw new ArgumentNullException('sourceProviderId', 'listRepositories');
         }
-        const queryString = [].join('&');
+        const queryString = [`page=${ page }`,`per_page=${ perPage }`,].join('&');
         const requestUrl = '/source-providers/{source_provider_id}/repositories' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Array<Repository>>(requestUrl.replace(`{${"source_provider_id"}}`, encodeURIComponent(String(sourceProviderId))));

@@ -45,12 +45,14 @@ export class ApplicationsSSLCertificatesApiService extends ApiBaseService {
      * 
      * @summary Returns a list of SSL certificates issued to an application
      * @param {number} applicationId Unique ID of the application to retrieve SSL Certificates from
+     * @param {number} [page] Number of the page to be retrieved
+     * @param {number} [perPage] Number of items returned per page
      */
-    public async listApplicationSslCertificates(applicationId: number): Promise<ApiResponse<Array<SslCertificate>>> {
+    public async listApplicationSslCertificates(applicationId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<SslCertificate>>> {
         if (applicationId === null || applicationId === undefined) {
             throw new ArgumentNullException('applicationId', 'listApplicationSslCertificates');
         }
-        const queryString = [].join('&');
+        const queryString = [`page=${ page }`,`per_page=${ perPage }`,].join('&');
         const requestUrl = '/applications/{application_id}/ssl-certificates' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Array<SslCertificate>>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))));

@@ -46,12 +46,14 @@ export class ProjectsCronJobsApiService extends ApiBaseService {
      * 
      * @summary Return a list of all Cron Jobs belonging to a project
      * @param {number} projectId Numeric ID of the project to get cron jobs from
+     * @param {number} [page] Number of the page to be retrieved
+     * @param {number} [perPage] Number of items returned per page
      */
-    public async listProjectCronJobs(projectId: number): Promise<ApiResponse<Array<CronJob>>> {
+    public async listProjectCronJobs(projectId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<CronJob>>> {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'listProjectCronJobs');
         }
-        const queryString = [].join('&');
+        const queryString = [`page=${ page }`,`per_page=${ perPage }`,].join('&');
         const requestUrl = '/projects/{project_id}/cron-jobs' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Array<CronJob>>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
