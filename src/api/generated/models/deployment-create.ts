@@ -12,10 +12,7 @@
  */
 
 
-import { DeploymentCreateApplication } from './deployment-create-application';
-import { DeploymentCreateServer } from './deployment-create-server';
 import { DeploymentType } from './deployment-type';
-import { EnvironmentLinkItem } from './environment-link-item';
 
 /**
  * 
@@ -28,24 +25,18 @@ export interface DeploymentCreate {
      * @type {DeploymentType}
      * @memberof DeploymentCreate
      */
-    type: DeploymentType;
-    /**
-     * The list of applications to be deployed together
-     * @type {Array<DeploymentCreateApplication>}
-     * @memberof DeploymentCreate
-     */
-    applications: Array<DeploymentCreateApplication>;
-    /**
-     * The list of servers to which all `applications` will be deployed to
-     * @type {Array<DeploymentCreateServer>}
-     * @memberof DeploymentCreate
-     */
-    servers: Array<DeploymentCreateServer>;
+    type?: DeploymentType;
     /**
      * 
-     * @type {Array<EnvironmentLinkItem>}
+     * @type {string}
      * @memberof DeploymentCreate
      */
-    environments?: Array<EnvironmentLinkItem>;
+    branch?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeploymentCreate
+     */
+    hash?: string;
 }
 

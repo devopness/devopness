@@ -63,7 +63,7 @@ export interface Deployment {
      */
     completed_at?: string | null;
     /**
-     * The list of actions related to the deployment
+     * The list of related actions
      * @type {Array<Action>}
      * @memberof Deployment
      */

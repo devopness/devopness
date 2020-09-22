@@ -14,9 +14,8 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
-import { ApplicationDeployment } from '../../generated/models';
-import { ApplicationDeploymentCreate } from '../../generated/models';
 import { Deployment } from '../../generated/models';
+import { DeploymentCreate } from '../../generated/models';
 
 /**
  * ApplicationsDeploymentsApiService - Auto-generated
@@ -26,16 +25,16 @@ export class ApplicationsDeploymentsApiService extends ApiBaseService {
      * 
      * @summary Trigger a new deployment for current application
      * @param {number} applicationId Numeric ID of the application to be deployed
-     * @param {ApplicationDeploymentCreate} [applicationDeploymentCreate] A JSON object containing deployment parameters
+     * @param {DeploymentCreate} [deploymentCreate] A JSON object containing deployment parameters
      */
-    public async deployApplication(applicationId: number, applicationDeploymentCreate?: ApplicationDeploymentCreate): Promise<ApiResponse<ApplicationDeployment>> {
+    public async deployApplication(applicationId: number, deploymentCreate?: DeploymentCreate): Promise<ApiResponse<Deployment>> {
         if (applicationId === null || applicationId === undefined) {
             throw new ArgumentNullException('applicationId', 'deployApplication');
         }
         const queryString = [].join('&');
         const requestUrl = '/applications/{application_id}/deployments' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <ApplicationDeployment, ApplicationDeploymentCreate>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))), applicationDeploymentCreate);
+        const response = await this.post <Deployment, DeploymentCreate>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))), deploymentCreate);
         return new ApiResponse(response);
     }
 
