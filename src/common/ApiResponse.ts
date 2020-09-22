@@ -17,6 +17,6 @@ export class ApiResponse<T>{
         this.data = axiosResp.data;
 
         const linkHeader = parseLinkHeader(axiosResp.headers?.link) as ApiLinks | null;
-        this.pageCount = Number(linkHeader?.last.page) || undefined;
+        this.pageCount = Number(linkHeader?.last?.page) || undefined;
     }
 }
