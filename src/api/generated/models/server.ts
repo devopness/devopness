@@ -58,7 +58,7 @@ export interface Server {
      */
     active: boolean;
     /**
-     * The list of actions related to the server
+     * The list of related actions
      * @type {Array<Action>}
      * @memberof Server
      */

@@ -12,6 +12,7 @@
  */
 
 
+import { Action } from './action';
 import { ActionStatus } from './action-status';
 import { ServiceInitialState } from './service-initial-state';
 
@@ -87,5 +88,11 @@ export interface Service {
      * @memberof Service
      */
     updated_at: string;
+    /**
+     * The list of related actions
+     * @type {Array<Action>}
+     * @memberof Service
+     */
+    actions?: Array<Action>;
 }
 

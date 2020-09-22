@@ -6,8 +6,6 @@ export * from './api-error-errors';
 export * from './api-error-errors-field-name';
 export * from './application';
 export * from './application-create';
-export * from './application-deployment';
-export * from './application-deployment-create';
 export * from './application-last-deployments';
 export * from './application-options';
 export * from './application-type';

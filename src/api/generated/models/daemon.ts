@@ -12,6 +12,7 @@
  */
 
 
+import { Action } from './action';
 import { ActionStatus } from './action-status';
 
 /**
@@ -68,6 +69,12 @@ export interface Daemon {
      * @memberof Daemon
      */
     status?: ActionStatus;
+    /**
+     * The list of related actions
+     * @type {Array<Action>}
+     * @memberof Daemon
+     */
+    actions?: Array<Action>;
     /**
      * The date and time when the record was created
      * @type {string}

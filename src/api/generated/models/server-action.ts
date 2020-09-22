@@ -37,13 +37,13 @@ export interface ServerAction {
      * @type {number}
      * @memberof ServerAction
      */
-    total_steps?: number;
+    total_steps?: number | null;
     /**
      * The current action step being executed
      * @type {number}
      * @memberof ServerAction
      */
-    current_step?: number;
+    current_step?: number | null;
     /**
      * A message describing the current step being executed
      * @type {string}
@@ -55,13 +55,13 @@ export interface ServerAction {
      * @type {string}
      * @memberof ServerAction
      */
-    started_at?: string;
+    started_at?: string | null;
     /**
      * The date and time when the action has finished execution
      * @type {string}
      * @memberof ServerAction
      */
-    completed_at?: string;
+    completed_at?: string | null;
     /**
      * The date and time when the record was created
      * @type {string}

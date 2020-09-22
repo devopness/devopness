@@ -12,6 +12,7 @@
  */
 
 
+import { Action } from './action';
 import { ActionStatus } from './action-status';
 import { CronJobPattern } from './cron-job-pattern';
 import { User } from './user';
@@ -70,6 +71,12 @@ export interface CronJob {
      * @memberof CronJob
      */
     status?: ActionStatus;
+    /**
+     * The list of related actions
+     * @type {Array<Action>}
+     * @memberof CronJob
+     */
+    actions?: Array<Action>;
     /**
      * 
      * @type {User}

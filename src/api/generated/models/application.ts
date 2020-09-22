@@ -12,6 +12,7 @@
  */
 
 
+import { Action } from './action';
 import { ActionStatus } from './action-status';
 import { ApplicationLastDeployments } from './application-last-deployments';
 import { ApplicationType } from './application-type';
@@ -200,5 +201,11 @@ export interface Application {
      * @memberof Application
      */
     updated_at?: string;
+    /**
+     * The list of related actions
+     * @type {Array<Action>}
+     * @memberof Application
+     */
+    actions?: Array<Action>;
 }
 

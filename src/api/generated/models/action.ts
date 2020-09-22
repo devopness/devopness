@@ -64,13 +64,13 @@ export interface Action {
      * @type {string}
      * @memberof Action
      */
-    started_at?: string;
+    started_at?: string | null;
     /**
      * The date and time when the action has finished execution
      * @type {string}
      * @memberof Action
      */
-    completed_at?: string;
+    completed_at?: string | null;
     /**
      * The date and time when the record was created
      * @type {string}

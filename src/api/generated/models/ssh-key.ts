@@ -12,6 +12,7 @@
  */
 
 
+import { Action } from './action';
 import { ActionStatus } from './action-status';
 
 /**
@@ -56,5 +57,11 @@ export interface SshKey {
      * @memberof SshKey
      */
     status?: ActionStatus;
+    /**
+     * The list of related actions
+     * @type {Array<Action>}
+     * @memberof SshKey
+     */
+    actions?: Array<Action>;
 }
 

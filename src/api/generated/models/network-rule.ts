@@ -12,6 +12,7 @@
  */
 
 
+import { Action } from './action';
 import { ActionStatus } from './action-status';
 import { NetworkRuleProtocol } from './network-rule-protocol';
 import { NetworkRuleType } from './network-rule-type';
@@ -77,6 +78,12 @@ export interface NetworkRule {
      * @memberof NetworkRule
      */
     status?: ActionStatus;
+    /**
+     * The list of related actions
+     * @type {Array<Action>}
+     * @memberof NetworkRule
+     */
+    actions?: Array<Action>;
     /**
      * 
      * @type {User}
