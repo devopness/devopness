@@ -1,5 +1,13 @@
 type: object
 properties:
+  project_id:
+    type: integer
+    description: Numeric ID of the project to which the cron job belongs to
+    example: 1742981
+  application_id:
+    type: integer
+    description: Numeric ID of the application to which the cron job belongs to
+    example: 7123941090
   name:
     type: string
     description: The name of the cron job
@@ -19,6 +27,7 @@ properties:
   environments:
     $ref: '#/components/schemas/EnvironmentLinks'
 required:
+  - project_id
   - name
   - command
   - pattern

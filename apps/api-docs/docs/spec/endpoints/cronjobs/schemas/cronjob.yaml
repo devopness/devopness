@@ -30,6 +30,8 @@ properties:
     $ref: '#/components/schemas/ActionStatus'
   actions:
     $ref: '#/components/schemas/Actions'
+  application:
+    $ref: '#/components/schemas/Application'
   created_by_user:
     $ref: '#/components/schemas/User'
   created_at:
