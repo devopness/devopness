@@ -129,6 +129,39 @@ tags:
       | POST          | /parent/{id}/child/{id}/link   | Create a relationship between parent and child object when both items already existed but were not linked.
       | DELETE        | /parent/{id}/child/{id}/unlink | Remove the relationship between parent and child resources, without deleting any item
 
+      ## Pagination
+      Requests that return multiple items are paginated by default. Specific pages can be requested setting the `page` parameter.
+      When `page` parameter is not present, the first page will be returned.
+      By default 20 items are returned per page. A custom page size up to 100 can be set with the `per_page` parameter.
+
+      Note: some endpoints ignore the `per_page` parameter, returning all results at once. e.g.: `/static/*` endpoints.
+
+      **Example:**
+
+      | HTTP Method | Path                                      |
+      |------------:|-------------------------------------------|
+      | GET         | /projects/{id}/servers?page=5&per_page=15 |
+
+      In the example above, we retrieve items of page `5` setting the size of `15` items per page.
+
+      ### Browsing paged results
+      The [Link header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Link)
+      in paged responses carry links to pages for navigation purpose. Devopness API adopts the [RFC 8288](https://tools.ietf.org/html/rfc8288) as the reference for our implementation of `Link` header contents.
+
+      Links to the `first`, `next`, `previous` and `last` pages are included such that API clients don't have to hardcode or construct any links.
+      The page links that may be present in the `Link` response header are listed below:
+
+      | Optional? | Example content                                             | Description   |
+      |-----------|:------------------------------------------------------------|---------------|
+      | **No**    | `<https://api.devopness.com/projects?page=1>; rel="first"`  | First page    |
+      | **No**    | `<https://api.devopness.com/projects?page=6>; rel="last"`   | Last page     |
+      | **Yes**   | `<https://api.devopness.com/projects?page=3>; rel="prev"`   | Previous page |
+      | **Yes**   | `<https://api.devopness.com/projects?page=5>; rel="next"`   | Next page     |
+
+      Optional links are not present if the currently requested page has no relative links to point to:
+        - Lack of a `previous` link in the response indicates the beginning of the collection
+        - Lack of a `next` link in the response indicates the end of the collection
+
       ## Expanding objects
       `TO DO:` define the rules for object expansion and document it here
   - name: Static Data

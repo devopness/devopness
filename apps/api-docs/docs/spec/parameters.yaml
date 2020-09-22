@@ -23,15 +23,22 @@ contentTypeHeader:
   description: application/json
 
 pageNumber:
+  in: query
   name: page
-  in: query
-  required: false
   schema:
     type: integer
+    minimum: 1
+  required: false
+  example: 1
+  description: Number of the page to be retrieved
 
-limit:
-  name: limit
+pageSize:
   in: query
-  required: false
+  name: per_page
   schema:
     type: integer
+    minimum: 1
+    maximum: 100
+  required: false
+  example: 25
+  description: Number of items returned per page
