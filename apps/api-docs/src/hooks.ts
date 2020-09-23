@@ -12,7 +12,7 @@ import { v1, v4 } from 'uuid';
 
 import DevopnessAPI from './DevopnessAPI';
 import { UserCredentials, UserTokens, isFixtureKey, Identifiable } from './fixtureTypes';
-import FixtureStore  from './FixtureStore';
+import FixtureStore from './FixtureStore';
 import TransactionUtils from './TransactionUtils';
 import TransactionSpec from './TransactionSpec';
 import TransactionGraph, { TransactionAdjacencyList, FixtureTransactionAdjacencyList } from './TransactionGraph';
@@ -30,21 +30,18 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     const preSkiplist = [
         'replaceLinkedServers201',
         'connectServer200',
-        // make all ssh_key routes unreachable
+        // make all ssh_key routes unreachable by skipping its generator route
         'addSshKeyToProject201',
+        // make all social_account routes unreachable by its skipping generator route
+        'addSocialAccount201',
     ];
 
     // transactions listed here are skipped with a `before` hook
     const postSkiplist = [
-        // social_account
-        'addSocialAccount201', 
-        'getSocialAccount200', 'getSocialAccountStatusByName200',
-        'deleteSocialAccount204', 
-        // source_provider
-        'addSourceProvider201',
-        'getSourceProvider200',
-        'listSourceProviders200', 'listSourceProviders200', 
+        // source_provider has a static fixture, so don't delete it
         'deleteSourceProvider204',
+        // social_account related
+        'getSocialAccountStatusByName200',
         // repository
         'getRepository200',
         'listRepositories200',
@@ -56,19 +53,19 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
 
     // initial fixture-transaction graph definitions
     const initialFixtureTransactionAdjacencyList: FixtureTransactionAdjacencyList = {
-        fixtureTransactionInputs: { 
+        fixtureTransactionInputs: {
             // adding an application requires a valid server
             'server': ['addApplicationToProject201'],
             // a `login` transaction requires user credentials
             'user_credentials': ['login200'],
         },
-        fixtureTransactionOutputs: { 
+        fixtureTransactionOutputs: {
             // user credentials are generated from a successful `addUser` transaction
-            'user_credentials': ['addUser201'], 
+            'user_credentials': ['addUser201'],
             // user tokens are a result of a successful `login` transaction
             'user_tokens': ['login200'],
         },
-        fixtureTerminalTransactions:  {
+        fixtureTerminalTransactions: {
             // a successful `logout` transaction destroys user tokens
             'user_tokens': ['logout204']
         }
@@ -109,13 +106,13 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     const executionPlan = graph.topologicalSort();
 
     // shorthand methods for adding hooks by transaction slug
-    const executeIfTransactionNotSkipped = (cb: TransactionHook) => (transaction:Transaction) => {
+    const executeIfTransactionNotSkipped = (cb: TransactionHook) => (transaction: Transaction) => {
         if (transaction.skip) return;
         cb(transaction);
     }
     const before = (id: string, cb: TransactionHook) => hooks.before(transactionSlugToName[id], executeIfTransactionNotSkipped(cb));
     const after = (id: string, cb: TransactionHook) => hooks.after(transactionSlugToName[id], executeIfTransactionNotSkipped(cb));
-    
+
     // apply post-skiplist
     postSkiplist.forEach((slug: string) => {
         before(slug, (transaction: Transaction) => {
@@ -203,7 +200,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         // use a predefined user fixture instead of the user we just created
         const usePredefinedCredentials = true;
         if (usePredefinedCredentials) {
-            fixtures.put('user_credentials', {email: 'test@test.com', password: 'testes'})
+            fixtures.put('user_credentials', { email: 'test@test.com', password: 'testes' })
         } else {
             fixtures.put('user_credentials', randomCredentials)
         }
@@ -227,7 +224,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
                     hooks.log(`${tag} rewrite path '${transaction.fullPath}' => '${path}'`);
                     transaction.fullPath = path;
                 } else {
-                    hooks.log(`${tag} transaction '${transaction.id}' requires 'project' fixture`)
+                    hooks.log(`${tag} transaction '${transaction.id}' requires 'project' fixture`);
                 }
             }
         }
@@ -244,9 +241,13 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         body['entrypoint'] = 'index.html'
     }))
 
-    //// social accounts and source providers
-    // static social_account/source_provider fixture, needed by many other routes
-    fixtures.put('social_account', { id: '11' });
+    //// source providers
+    // static source_provider fixture, needed by many other routes
+    before('addSourceProvider201', (transaction: Transaction) => {
+        hooks.log(`=> 'source_provider' (id=11)`)
+        fixtures.put('source_provider', { id: '11' });
+        transaction.skip = true;
+    })
 
     //// applications
     // delete the leftover default application using manual API calls

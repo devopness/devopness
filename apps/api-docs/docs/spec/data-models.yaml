@@ -176,6 +176,8 @@ SocialAccountStatus:
   $ref: ./endpoints/social-accounts/schemas/social-account-status.yaml
 SourceProvider:
   $ref: ./endpoints/source-providers/schemas/source-provider.yaml
+SourceProviders:
+  $ref: ./endpoints/source-providers/schemas/source-provider-list.yaml
 SourceProviderCreate:
   $ref: ./endpoints/source-providers/schemas/source-provider-create.yaml
 SourceProviderDisplayableName:

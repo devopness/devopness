@@ -3,15 +3,15 @@ operationId: listSourceProviders
 tags:
   - Source Providers
 parameters:
-  - $ref: '#/components/parameters/acceptHeader'
-  - $ref: '#/components/parameters/authHeader'
-  - $ref: '#/components/parameters/contentTypeHeader'
-  - $ref: '#/components/parameters/pageNumber'
-  - $ref: '#/components/parameters/pageSize'
+  - $ref: "#/components/parameters/acceptHeader"
+  - $ref: "#/components/parameters/authHeader"
+  - $ref: "#/components/parameters/contentTypeHeader"
+  - $ref: "#/components/parameters/pageNumber"
+  - $ref: "#/components/parameters/pageSize"
 responses:
   200:
-    description: 'Ok'
+    description: "Ok"
     content:
       application/json:
         schema:
-          $ref: '#/components/schemas/SourceProvider'
+          $ref: "#/components/schemas/SourceProviders"

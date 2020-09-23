@@ -17,7 +17,7 @@ export function isIdentifiable(obj: object): obj is Identifiable {
 }
 
 // FixtureDependency specifies how fields of fixtures depdend on other fixtures
-export type FixtureDependency = { path: string, fixture: FixtureKey, field: string}
+export type FixtureDependency = { path: string, fixture: FixtureKey, field: string }
 
 // fixture keys are written with underscores so they map directly to URL and JSON param names
 const fixtureKeys: { [str: string]: FixtureDependency[] } = {
@@ -28,26 +28,26 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     'application_environment': [],
     'application': [],
     'application_create': [
-        { path: 'source_provider_id', fixture: 'social_account', field: 'id'} ,
-        { path: 'environments[0].id', fixture: 'environment', field: 'id'} ,
-        { path: 'project_id', fixture: 'project', field: 'id'} ,
+        { path: 'source_provider_id', fixture: 'source_provider', field: 'id' },
+        { path: 'environments[0].id', fixture: 'environment', field: 'id' },
+        { path: 'project_id', fixture: 'project', field: 'id' },
     ],
     'application_update': [
         { path: 'id', fixture: 'application', field: 'id' },
-        { path: 'source_provider_id', fixture: 'social_account', field: 'id'} ,
+        { path: 'source_provider_id', fixture: 'source_provider', field: 'id' },
         { path: 'project_id', fixture: 'project', field: 'id' },
-        { path: 'environments[0].id', fixture: 'environment', field: 'id' } ,
+        { path: 'environments[0].id', fixture: 'environment', field: 'id' },
     ],
     'application_deploy': [
-        { path: 'environments[0].id', fixture: 'environment', field: 'id' } ,
+        { path: 'environments[0].id', fixture: 'environment', field: 'id' },
     ],
     'cron_job': [],
     'cron_job_create': [
-        { path: 'project_id', fixture: 'project', field: 'id' } ,
-        { path: 'environments[0].id', fixture: 'environment', field: 'id' } ,
+        { path: 'project_id', fixture: 'project', field: 'id' },
+        { path: 'environments[0].id', fixture: 'environment', field: 'id' },
         { path: 'environments[0].servers[0]', fixture: 'server', field: 'id' },
         { path: 'application_id', fixture: 'application', field: 'id' },
-     ],
+    ],
     'deployment': [],
     'deployment_create': [
         { path: 'applications[0].id', fixture: 'application', field: 'id' },
@@ -59,7 +59,7 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     'deployment_step': [],
     'environment': [],
     'environment_link_item': [
-        { path: 'id', fixture: 'environment', field: 'id'},
+        { path: 'id', fixture: 'environment', field: 'id' },
     ],
     'environment_update': [
         { path: 'id', fixture: 'environment', field: 'id' },
@@ -71,9 +71,9 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     ],
     'daemon': [],
     'daemon_create': [
-        { path: 'environments[0].id', fixture: 'environment', field: 'id' } ,
+        { path: 'environments[0].id', fixture: 'environment', field: 'id' },
         { path: 'environments[0].servers[0]', fixture: 'server', field: 'id' }
-     ],
+    ],
     'project': [],
     'project_update': [
         { path: 'id', fixture: 'project', field: 'id' }
