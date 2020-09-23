@@ -14,6 +14,8 @@
 
 import { Action } from './action';
 import { ActionStatus } from './action-status';
+import { Application } from './application';
+import { Project } from './project';
 
 /**
  * 
@@ -75,6 +77,18 @@ export interface Daemon {
      * @memberof Daemon
      */
     actions?: Array<Action>;
+    /**
+     * 
+     * @type {Project}
+     * @memberof Daemon
+     */
+    project?: Project;
+    /**
+     * 
+     * @type {Application}
+     * @memberof Daemon
+     */
+    application?: Application | null;
     /**
      * The date and time when the record was created
      * @type {string}

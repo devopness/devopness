@@ -130,6 +130,12 @@ export interface ApplicationUpdate {
      */
     install_dependencies_prod?: boolean;
     /**
+     * Indicates if the application requires a daemon to keep it alive
+     * @type {boolean}
+     * @memberof ApplicationUpdate
+     */
+    requires_daemon?: boolean;
+    /**
      * 
      * @type {Array<EnvironmentLinkItem>}
      * @memberof ApplicationUpdate
