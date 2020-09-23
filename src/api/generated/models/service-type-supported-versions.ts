@@ -14,15 +14,16 @@
 
 
 /**
- * The name of the service
+ * 
  * @export
- * @enum {string}
+ * @interface ServiceTypeSupportedVersions
  */
-export enum ServiceName {
-    Mysql = 'mysql',
-    Nginx = 'nginx',
-    Redis = 'redis',
-    Supervisor = 'supervisor'
+export interface ServiceTypeSupportedVersions {
+    /**
+     * The service\'s version that is supported
+     * @type {string}
+     * @memberof ServiceTypeSupportedVersions
+     */
+    version?: string;
 }
-
 
