@@ -12,17 +12,19 @@
  */
 
 
+import { ServiceType } from './service-type';
 
 /**
- * The name of the service
+ * 
  * @export
- * @enum {string}
+ * @interface ServiceOptions
  */
-export enum ServiceName {
-    Mysql = 'mysql',
-    Nginx = 'nginx',
-    Redis = 'redis',
-    Supervisor = 'supervisor'
+export interface ServiceOptions {
+    /**
+     * 
+     * @type {Array<ServiceType>}
+     * @memberof ServiceOptions
+     */
+    types?: Array<ServiceType>;
 }
-
 

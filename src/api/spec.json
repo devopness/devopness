@@ -3715,6 +3715,38 @@
         }
       }
     },
+    "/static/services": {
+      "get": {
+        "summary": "Lists options of the services",
+        "operationId": "listServiceOptions",
+        "tags": [
+          "Static Data"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceOptions"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/cron-jobs/{cron_job_id}": {
       "delete": {
         "summary": "Delete a given CronJob",
@@ -4689,6 +4721,7 @@
       },
       "Application": {
         "type": "object",
+        "nullable": true,
         "properties": {
           "id": {
             "type": "integer",
@@ -5215,6 +5248,9 @@
           "actions": {
             "$ref": "#/components/schemas/Actions"
           },
+          "application": {
+            "$ref": "#/components/schemas/Application"
+          },
           "created_by_user": {
             "$ref": "#/components/schemas/User"
           },
@@ -5242,6 +5278,16 @@
       "CronJobCreate": {
         "type": "object",
         "properties": {
+          "project_id": {
+            "type": "integer",
+            "description": "Numeric ID of the project to which the cron job belongs to",
+            "example": 1742981
+          },
+          "application_id": {
+            "type": "integer",
+            "description": "Numeric ID of the application to which the cron job belongs to",
+            "example": 7123941090
+          },
           "name": {
             "type": "string",
             "description": "The name of the cron job",
@@ -5267,6 +5313,7 @@
           }
         },
         "required": [
+          "project_id",
           "name",
           "command",
           "pattern",
@@ -6827,7 +6874,8 @@
         "enum": [
           "mysql",
           "nginx",
-          "redis"
+          "redis",
+          "supervisor"
         ],
         "example": "mysql"
       },
@@ -6835,6 +6883,52 @@
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/Service"
+        }
+      },
+      "ServiceOptions": {
+        "type": "object",
+        "properties": {
+          "types": {
+            "$ref": "#/components/schemas/ServiceTypes"
+          }
+        }
+      },
+      "ServiceType": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "$ref": "#/components/schemas/ServiceName"
+          },
+          "displayable": {
+            "type": "string",
+            "description": "Displayable version of the service name",
+            "example": "MySQL"
+          },
+          "hint": {
+            "type": "string",
+            "description": "Text describing the service",
+            "example": "MySQL Community Server"
+          },
+          "supported_versions": {
+            "type": "array",
+            "description": "List of service versions supported by Devopness",
+            "items": {
+              "type": "object",
+              "properties": {
+                "version": {
+                  "type": "string",
+                  "description": "The service's version that is supported",
+                  "example": "5.7"
+                }
+              }
+            }
+          }
+        }
+      },
+      "ServiceTypes": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/ServiceType"
         }
       },
       "SocialAccount": {
