@@ -79,6 +79,10 @@ properties:
     description: Indicates if at deployment time Devopness should execute package manager commands to install dependencies used in production mode
     type: boolean
     example: true
+  requires_daemon:
+    description: Indicates if the application requires a daemon to keep it alive
+    type: boolean
+    example: false
   project_id:
     type: integer
     description: Numeric ID of the project to which the application belongs to
@@ -94,3 +98,4 @@ required:
   - public_directory
   - entrypoint
   - default_branch
+  - requires_daemon

@@ -32,6 +32,10 @@ properties:
     $ref: '#/components/schemas/ActionStatus'
   actions:
     $ref: '#/components/schemas/Actions'
+  project:
+    $ref: '#/components/schemas/Project'
+  application:
+    $ref: '#/components/schemas/Application'
   created_at:
     type: string
     format: date-time
