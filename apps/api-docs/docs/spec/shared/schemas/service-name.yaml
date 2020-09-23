@@ -1,4 +1,4 @@
 type: string
 description: The name of the service
-enum: [mysql, nginx, redis]
+enum: [mysql, nginx, redis, supervisor]
 example: mysql

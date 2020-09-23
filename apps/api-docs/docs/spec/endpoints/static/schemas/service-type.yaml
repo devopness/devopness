@@ -1,0 +1,23 @@
+type: object
+properties:
+  value:
+    $ref: '#/components/schemas/ServiceName'
+  displayable:
+    type: string
+    description: Displayable version of the service name
+    example: MySQL
+  hint:
+    type: string
+    description: Text describing the service
+    example: MySQL Community Server
+  supported_versions:
+    type: array
+    description: List of service versions supported by Devopness
+    items:
+      type: object
+      properties:
+        version:
+          type: string
+          description: The service's version that is supported
+          example: '5.7'
+

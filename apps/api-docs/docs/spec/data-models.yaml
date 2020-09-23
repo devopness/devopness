@@ -156,6 +156,12 @@ ServiceName:
   $ref: ./shared/schemas/service-name.yaml
 Services:
   $ref: ./endpoints/services/schemas/service-list.yaml
+ServiceOptions:
+  $ref: ./endpoints/static/schemas/service-options.yaml
+ServiceType:
+  $ref: ./endpoints/static/schemas/service-type.yaml
+ServiceTypes:
+  $ref: ./endpoints/static/schemas/service-type-list.yaml
 SocialAccount:
   $ref: ./endpoints/social-accounts/schemas/social-account.yaml
 SocialAccountCreate:

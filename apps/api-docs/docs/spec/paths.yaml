@@ -203,6 +203,9 @@
 /static/environments:
   get:
     $ref: ./endpoints/static/paths/environments-list.yaml
+/static/services:
+  get:
+    $ref: ./endpoints/static/paths/services-list.yaml
 /cron-jobs/{cron_job_id}:
   delete:
     $ref: ./endpoints/cronjobs/paths/cronjobs-id-delete.yaml
