@@ -60,7 +60,7 @@ export interface Action {
      */
     servers?: Array<ServerAction>;
     /**
-     * The date and time when the action started to be executed (left the `pending/waiting` status)
+     * The date and time when the action started execution (i.e., left the `pending/queued` status)
      * @type {string}
      * @memberof Action
      */

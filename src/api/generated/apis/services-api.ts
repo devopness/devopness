@@ -121,4 +121,21 @@ export class ServicesApiService extends ApiBaseService {
         const response = await this.post <void, ExtraBodyParams>(requestUrl.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))), extraBodyParams);
         return new ApiResponse(response);
     }
+
+    /**
+     * Trigger a status update action for a service in all project servers asynchronously. To get the output of service status update action the endpoint [getServiceStatusLog](/#operation/getServiceStatusLog) should be invoked. 
+     * @summary Update status of a service
+     * @param {number} serviceId The unique id of the service
+     * @param {ExtraBodyParams} [extraBodyParams] A JSON object containing list of additional parameters
+     */
+    public async updateServiceStatus(serviceId: number, extraBodyParams?: ExtraBodyParams): Promise<ApiResponse<void>> {
+        if (serviceId === null || serviceId === undefined) {
+            throw new ArgumentNullException('serviceId', 'updateServiceStatus');
+        }
+        const queryString = [].join('&');
+        const requestUrl = '/services/{service_id}/update-status' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <void, ExtraBodyParams>(requestUrl.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))), extraBodyParams);
+        return new ApiResponse(response);
+    }
 }
