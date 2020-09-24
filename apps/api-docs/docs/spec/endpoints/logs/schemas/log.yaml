@@ -1,8 +1,9 @@
 type: object
 properties:
   output:
+    deprecated: true
     type: string
-    description: The full text output log of executed action
+    description: Please use `servers[i].steps[j].output` instead of this deprecated field that will soon be removed
     nullable: true
   servers:
     $ref: '#/components/schemas/ServerActionLogs'
