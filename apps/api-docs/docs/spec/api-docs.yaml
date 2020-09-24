@@ -60,34 +60,8 @@ tags:
       }
       ```
 
-      ## Responses
-      When a request is successful, a response body will typically be sent back in the form of a JSON object.
-      Exception to this rule is when a DELETE request is processed, which will result in a successful HTTP 204 status and an empty response body.
-
-      ### Response codes
-      Response codes indicate success or failure of request processing.
-      Status codes from the `2xx` range indicate that request has been accepted.
-      If the returned code is from the `4xx` or `5xx` range then it reveals either problem with the request or unability to process data.
-      See below for a list of HTTP Status codes used by `devopness` API:
-
-      | Status Code   | Description   |
-      | -------------:|---------------|
-      | 200           | Ok - The request was successful
-      | 201           | Created - The request was successful and a new resource has been created as a result
-      | 202           | Accepted - The request has been received but not yet completely processed
-      | 204           | No content - The request was successful. There is no content to return, but the headers may be useful
-      | 400           | Bad Request - The server could not understand the request due to invalid syntax
-      | 401           | Unauthenticated - It is usally caused by using wrong or expired credentials
-      | 403           | Forbidden/Unauthorized - The used credentials do not allow access to the resource
-      | 404           | Not Found - The server cannot find the requested resource
-      | 405           | Method not allowed - The request method has been disabled and cannot be used
-      | 409           | Conflict - The current request conflicts with the current state of the server
-      | 415           | Unsupported Media Type - The request's `Content-Type` or `Accept` headers are not set to a valid format
-      | 422           | Unprocessable Entity - The request was unable to be processed due to validation errors
-      | 429           | Too many requests - The client exceeded the requests limit in a window of time
-      | 500           | Internal Server Error. Please contact the `devopness` team
-
-      ## Routes and Endpoints
+      ## Requests
+      ### Routes and Endpoints
       A route is a URI which can be mapped to different HTTP methods. The mapping of an individual HTTP method to a route is known as an endpoint. `devopness` API exposes, as much as posible, well standardized endpoints with resources and segments leading the path to access the desired resource data.
 
       Each resource mentioned in an endpoint segment has its name written in the plural form, as we are always referencing a collection of objects, that might or might not be filtered by a single ID or extra query string parameters.
@@ -129,7 +103,34 @@ tags:
       | POST          | /parent/{id}/child/{id}/link   | Create a relationship between parent and child object when both items already existed but were not linked.
       | DELETE        | /parent/{id}/child/{id}/unlink | Remove the relationship between parent and child resources, without deleting any item
 
-      ## Pagination
+      ## Responses
+      When a request is successful, a response body will typically be sent back in the form of a JSON object.
+      Exception to this rule is when a DELETE request is processed, which will result in a successful HTTP 204 status and an empty response body.
+
+      ### Response codes
+      Response codes indicate success or failure of request processing.
+      Status codes from the `2xx` range indicate that request has been accepted.
+      If the returned code is from the `4xx` or `5xx` range then it reveals either problem with the request or unability to process data.
+      See below for a list of HTTP Status codes used by `devopness` API:
+
+      | Status Code   | Description   |
+      | -------------:|---------------|
+      | 200           | Ok - The request was successful
+      | 201           | Created - The request was successful and a new resource has been created as a result
+      | 202           | Accepted - The request has been received but not yet completely processed
+      | 204           | No content - The request was successful. There is no content to return, but the headers may be useful
+      | 400           | Bad Request - The server could not understand the request due to invalid syntax
+      | 401           | Unauthenticated - It is usally caused by using wrong or expired credentials
+      | 403           | Forbidden/Unauthorized - The used credentials do not allow access to the resource
+      | 404           | Not Found - The server cannot find the requested resource
+      | 405           | Method not allowed - The request method has been disabled and cannot be used
+      | 409           | Conflict - The current request conflicts with the current state of the server
+      | 415           | Unsupported Media Type - The request's `Content-Type` or `Accept` headers are not set to a valid format
+      | 422           | Unprocessable Entity - The request was unable to be processed due to validation errors
+      | 429           | Too many requests - The client exceeded the requests limit in a window of time
+      | 500           | Internal Server Error. Please contact the `devopness` team
+
+      ### Pagination
       Requests that return multiple items are paginated by default. Specific pages can be requested setting the `page` parameter.
       When `page` parameter is not present, the first page will be returned.
       By default 20 items are returned per page. A custom page size up to 100 can be set with the `per_page` parameter.
