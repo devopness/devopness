@@ -59,6 +59,9 @@
 /logs/service/{service_id}/restart:
   get:
     $ref: ./endpoints/logs/paths/logs-service-id-restart.yaml
+/logs/service/{service_id}/status:
+  get:
+    $ref: ./endpoints/logs/paths/logs-service-id-status.yaml
 /network-rules/{network_rule_id}:
   delete:
     $ref: ./endpoints/network-rules/paths/network-rules-id-delete.yaml
@@ -158,6 +161,9 @@
 /services/{service_id}/start:
   post:
     $ref: ./endpoints/services/paths/services-id-start.yaml
+/services/{service_id}/update-status:
+  post:
+    $ref: ./endpoints/services/paths/services-id-status-update.yaml
 /services/{service_id}/stop:
   post:
     $ref: ./endpoints/services/paths/services-id-stop.yaml

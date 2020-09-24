@@ -42,6 +42,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         'getActionLog200',
         'getDeploymentStepLog200',
         'getServiceRestartLog200',
+        'updateServiceStatus204',
     ];
 
     // transactions listed here are skipped with a `before` hook
