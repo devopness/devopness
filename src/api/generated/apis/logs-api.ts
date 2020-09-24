@@ -22,21 +22,69 @@ import { Log } from '../../generated/models';
 export class LogsApiService extends ApiBaseService {
     /**
      * 
-     * @summary Get log of a deployment step
-     * @param {number} deploymentId Numeric ID of the deployment to which the step belongs to
-     * @param {number} deploymentStepId Relative order number of the deployment step
+     * @summary Get action log
+     * @param {number} actionId Unique ID of the action to get logs from
      */
-    public async getDeploymentStepLog(deploymentId: number, deploymentStepId: number): Promise<ApiResponse<Log>> {
+    public async getActionLog(actionId: number): Promise<ApiResponse<Log>> {
+        if (actionId === null || actionId === undefined) {
+            throw new ArgumentNullException('actionId', 'getActionLog');
+        }
+        const queryString = [].join('&');
+        const requestUrl = '/logs/action/{action_id}' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <Log>(requestUrl.replace(`{${"action_id"}}`, encodeURIComponent(String(actionId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Get deployment step log
+     * @param {number} deploymentId Numeric ID of the deployment to which the step belongs to
+     * @param {number} deploymentStepOrder Relative order number of the deployment step
+     */
+    public async getDeploymentStepLog(deploymentId: number, deploymentStepOrder: number): Promise<ApiResponse<Log>> {
         if (deploymentId === null || deploymentId === undefined) {
             throw new ArgumentNullException('deploymentId', 'getDeploymentStepLog');
         }
-        if (deploymentStepId === null || deploymentStepId === undefined) {
-            throw new ArgumentNullException('deploymentStepId', 'getDeploymentStepLog');
+        if (deploymentStepOrder === null || deploymentStepOrder === undefined) {
+            throw new ArgumentNullException('deploymentStepOrder', 'getDeploymentStepLog');
         }
         const queryString = [].join('&');
-        const requestUrl = '/logs/deployments/{deployment_id}/steps/{deployment_step_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/logs/deployment/{deployment_id}/step/{deployment_step_order}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Log>(requestUrl.replace(`{${"deployment_id"}}`, encodeURIComponent(String(deploymentId))).replace(`{${"deployment_step_id"}}`, encodeURIComponent(String(deploymentStepId))));
+        const response = await this.get <Log>(requestUrl.replace(`{${"deployment_id"}}`, encodeURIComponent(String(deploymentId))).replace(`{${"deployment_step_order"}}`, encodeURIComponent(String(deploymentStepOrder))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Get service restart log
+     * @param {number} serviceId The unique id of the service
+     */
+    public async getServiceRestartLog(serviceId: number): Promise<ApiResponse<Log>> {
+        if (serviceId === null || serviceId === undefined) {
+            throw new ArgumentNullException('serviceId', 'getServiceRestartLog');
+        }
+        const queryString = [].join('&');
+        const requestUrl = '/logs/service/{service_id}/restart' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <Log>(requestUrl.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Get service status log
+     * @param {number} serviceId The unique id of the service
+     */
+    public async getServiceStatusLog(serviceId: number): Promise<ApiResponse<Log>> {
+        if (serviceId === null || serviceId === undefined) {
+            throw new ArgumentNullException('serviceId', 'getServiceStatusLog');
+        }
+        const queryString = [].join('&');
+        const requestUrl = '/logs/service/{service_id}/status' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <Log>(requestUrl.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))));
         return new ApiResponse(response);
     }
 }

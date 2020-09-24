@@ -54,6 +54,8 @@ export * from './script-create';
 export * from './script-update';
 export * from './server';
 export * from './server-action';
+export * from './server-action-log';
+export * from './server-action-log-step';
 export * from './server-blueprint';
 export * from './server-commands';
 export * from './server-connect';

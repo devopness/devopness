@@ -995,9 +995,54 @@
         }
       }
     },
-    "/logs/deployments/{deployment_id}/steps/{deployment_step_id}": {
+    "/logs/action/{action_id}": {
       "get": {
-        "summary": "Get log of a deployment step",
+        "summary": "Get action log",
+        "operationId": "getActionLog",
+        "tags": [
+          "Logs"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "action_id",
+            "example": 9139,
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "Unique ID of the action to get logs from"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Log"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/logs/deployment/{deployment_id}/step/{deployment_step_order}": {
+      "get": {
+        "summary": "Get deployment step log",
         "operationId": "getDeploymentStepLog",
         "tags": [
           "Logs"
@@ -1026,7 +1071,7 @@
           },
           {
             "in": "path",
-            "name": "deployment_step_id",
+            "name": "deployment_step_order",
             "example": 3,
             "schema": {
               "type": "integer",
@@ -1035,6 +1080,98 @@
             },
             "required": true,
             "description": "Relative order number of the deployment step"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Log"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/logs/service/{service_id}/restart": {
+      "get": {
+        "summary": "Get service restart log",
+        "operationId": "getServiceRestartLog",
+        "tags": [
+          "Logs"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "service_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "The unique id of the service"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Log"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/logs/service/{service_id}/status": {
+      "get": {
+        "summary": "Get service status log",
+        "operationId": "getServiceStatusLog",
+        "tags": [
+          "Logs"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "service_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "The unique id of the service"
           }
         ],
         "responses": {
@@ -2907,6 +3044,49 @@
         }
       }
     },
+    "/services/{service_id}/update-status": {
+      "post": {
+        "summary": "Update status of a service",
+        "description": "Trigger a status update action for a service in all project servers asynchronously. To get the output of service status update action the endpoint [getServiceStatusLog](/#operation/getServiceStatusLog) should be invoked.\n",
+        "operationId": "updateServiceStatus",
+        "tags": [
+          "Services"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "service_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "The unique id of the service"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
     "/services/{service_id}/stop": {
       "post": {
         "summary": "Stop a service",
@@ -3318,7 +3498,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SourceProvider"
+                  "$ref": "#/components/schemas/SourceProviders"
                 }
               }
             }
@@ -4417,7 +4597,7 @@
   "tags": [
     {
       "name": "API Reference",
-      "description": "This page contains the documentation on how to use `devopness` through API calls.\n> Note: This documentation is not complete, so for missing parts or inaccurate API description please\n>\n> reach out to `devopness` API team.\n\n## Introduction\ndevopness's API exposes all `devopness` features via a standardized programmatic interface. Through devopness API a registered Devopness user can perform every operation you can do on https://www.devopness.com web interfaces and mobile apps.\n\n## Getting started\nAll you need to obtain a token and start consuming this API is a valid email/password registered with devopness.com.\n\n\nThe `devopness` API is based on HTTPS requests and JSON responses, organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API has predictable resource-oriented URLs, accepts requests with [JSON-encoded](http://www.json.org/) bodies with arguments, returns [JSON-encoded](http://www.json.org/) responses, and uses standard HTTP response codes, authentication, and verbs.\n\n## Date format\nAll dates in the API use UTC and are strings in the [ISO 8601 \"combined date and time representation\" format](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations):\n```\n2015-05-12T15:50:38.000000Z\n```\n\n## Errors\nThe devopness API uses standard HTTP status codes to indicate the success or failure of an API call. In general: Codes in the `2xx` range indicate success. Codes in the `4xx` range indicate an error that failed given the information provided (e.g., a required parameter was omitted). Codes in the `5xx` range indicate an error on the API servers and are very rare.\n\nThe body of the error response is a JSON in the following format:\n\n```\n{\n  \"message\": \"The given request data was invalid\"\n  \"errors\": { // Optional errors object, returned only when there are detailed error message to be shared\n      \"field_1\": [\n          \"Optional error message related to field_1\"\n      ],\n      \"field_2\": [\n          \"Optional error message related to field_2\"\n      ],\n  }\n}\n```\n\n## Responses\nWhen a request is successful, a response body will typically be sent back in the form of a JSON object.\nException to this rule is when a DELETE request is processed, which will result in a successful HTTP 204 status and an empty response body.\n\n### Response codes\nResponse codes indicate success or failure of request processing.\nStatus codes from the `2xx` range indicate that request has been accepted.\nIf the returned code is from the `4xx` or `5xx` range then it reveals either problem with the request or unability to process data.\nSee below for a list of HTTP Status codes used by `devopness` API:\n\n| Status Code   | Description   |\n| -------------:|---------------|\n| 200           | Ok - The request was successful\n| 201           | Created - The request was successful and a new resource has been created as a result\n| 202           | Accepted - The request has been received but not yet completely processed\n| 204           | No content - The request was successful. There is no content to return, but the headers may be useful\n| 400           | Bad Request - The server could not understand the request due to invalid syntax\n| 401           | Unauthenticated - It is usally caused by using wrong or expired credentials\n| 403           | Forbidden/Unauthorized - The used credentials do not allow access to the resource\n| 404           | Not Found - The server cannot find the requested resource\n| 405           | Method not allowed - The request method has been disabled and cannot be used\n| 409           | Conflict - The current request conflicts with the current state of the server\n| 415           | Unsupported Media Type - The request's `Content-Type` or `Accept` headers are not set to a valid format\n| 422           | Unprocessable Entity - The request was unable to be processed due to validation errors\n| 429           | Too many requests - The client exceeded the requests limit in a window of time\n| 500           | Internal Server Error. Please contact the `devopness` team\n\n## Routes and Endpoints\nA route is a URI which can be mapped to different HTTP methods. The mapping of an individual HTTP method to a route is known as an endpoint. `devopness` API exposes, as much as posible, well standardized endpoints with resources and segments leading the path to access the desired resource data.\n\nEach resource mentioned in an endpoint segment has its name written in the plural form, as we are always referencing a collection of objects, that might or might not be filtered by a single ID or extra query string parameters.\n\n### Resources and nested resources endpoints\nBasically there are two types of endpoints used in `devopness` API:\n1) Resource endpoints:\n\n**Pattern:**\n\n`/collection/{resource_id}/[{action}]`\n\n**Examples:**\n\n| HTTP Method   | Example                            | Purpose       |\n| -------------:|------------------------------------|---------------|\n| POST          | /projects                          | Create new item\n| GET           | /social-accounts                   | List all items\n| GET           | /social-accounts/{account}/status  | Perform a custom action (`status`) for a single item\n| GET           | /cron-jobs/{id}                    | Get a single item by id\n| PUT           | /applications/{id}                 | Modify an item\n| DELETE        | /daemons/{id}                      | Remove an item permanently\n\n2) Nested resources endpoints:\n\nNested resources are used when there is a clear hierarchy between the parent resource and the subresource, or for convenience to make it easy and predcitable on how to filter subresources belonging to a parent resource.\nIn `devopness` API design we strive to avoid nesting resources more than 1 level deep + one action related to the child resource or to the relationship between parent and child.\n\n**Pattern:**\n\n`/parent-collection/{parent_id}/{child-collection}/{child_id}/[{action}]`\n\n**Examples:**\n\n| HTTP Method   | Example                        | Purpose       |\n| -------------:|--------------------------------|---------------|\n| GET           | /projects/{id}/servers         | List all items belonging/linked to the parent resource\n| POST          | /projects/{id}/servers         | Create a new subresource item and link it to the parent object\n| POST          | /parent/{id}/child/{id}/link   | Create a relationship between parent and child object when both items already existed but were not linked.\n| DELETE        | /parent/{id}/child/{id}/unlink | Remove the relationship between parent and child resources, without deleting any item\n\n## Pagination\nRequests that return multiple items are paginated by default. Specific pages can be requested setting the `page` parameter.\nWhen `page` parameter is not present, the first page will be returned.\nBy default 20 items are returned per page. A custom page size up to 100 can be set with the `per_page` parameter.\n\nNote: some endpoints ignore the `per_page` parameter, returning all results at once. e.g.: `/static/*` endpoints.\n\n**Example:**\n\n| HTTP Method | Path                                      |\n|------------:|-------------------------------------------|\n| GET         | /projects/{id}/servers?page=5&per_page=15 |\n\nIn the example above, we retrieve items of page `5` setting the size of `15` items per page.\n\n### Browsing paged results\nThe [Link header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Link)\nin paged responses carry links to pages for navigation purpose. Devopness API adopts the [RFC 8288](https://tools.ietf.org/html/rfc8288) as the reference for our implementation of `Link` header contents.\n\nLinks to the `first`, `next`, `previous` and `last` pages are included such that API clients don't have to hardcode or construct any links.\nThe page links that may be present in the `Link` response header are listed below:\n\n| Optional? | Example content                                             | Description   |\n|-----------|:------------------------------------------------------------|---------------|\n| **No**    | `<https://api.devopness.com/projects?page=1>; rel=\"first\"`  | First page    |\n| **No**    | `<https://api.devopness.com/projects?page=6>; rel=\"last\"`   | Last page     |\n| **Yes**   | `<https://api.devopness.com/projects?page=3>; rel=\"prev\"`   | Previous page |\n| **Yes**   | `<https://api.devopness.com/projects?page=5>; rel=\"next\"`   | Next page     |\n\nOptional links are not present if the currently requested page has no relative links to point to:\n  - Lack of a `previous` link in the response indicates the beginning of the collection\n  - Lack of a `next` link in the response indicates the end of the collection\n\n## Expanding objects\n`TO DO:` define the rules for object expansion and document it here\n"
+      "description": "This page contains the documentation on how to use `devopness` through API calls.\n> Note: This documentation is not complete, so for missing parts or inaccurate API description please\n>\n> reach out to `devopness` API team.\n\n## Introduction\ndevopness's API exposes all `devopness` features via a standardized programmatic interface. Through devopness API a registered Devopness user can perform every operation you can do on https://www.devopness.com web interfaces and mobile apps.\n\n## Getting started\nAll you need to obtain a token and start consuming this API is a valid email/password registered with devopness.com.\n\n\nThe `devopness` API is based on HTTPS requests and JSON responses, organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API has predictable resource-oriented URLs, accepts requests with [JSON-encoded](http://www.json.org/) bodies with arguments, returns [JSON-encoded](http://www.json.org/) responses, and uses standard HTTP response codes, authentication, and verbs.\n\n## Date format\nAll dates in the API use UTC and are strings in the [ISO 8601 \"combined date and time representation\" format](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations):\n```\n2015-05-12T15:50:38.000000Z\n```\n\n## Errors\nThe devopness API uses standard HTTP status codes to indicate the success or failure of an API call. In general: Codes in the `2xx` range indicate success. Codes in the `4xx` range indicate an error that failed given the information provided (e.g., a required parameter was omitted). Codes in the `5xx` range indicate an error on the API servers and are very rare.\n\nThe body of the error response is a JSON in the following format:\n\n```\n{\n  \"message\": \"The given request data was invalid\"\n  \"errors\": { // Optional errors object, returned only when there are detailed error message to be shared\n      \"field_1\": [\n          \"Optional error message related to field_1\"\n      ],\n      \"field_2\": [\n          \"Optional error message related to field_2\"\n      ],\n  }\n}\n```\n\n## Requests\n### Routes and Endpoints\nA route is a URI which can be mapped to different HTTP methods. The mapping of an individual HTTP method to a route is known as an endpoint. `devopness` API exposes, as much as posible, well standardized endpoints with resources and segments leading the path to access the desired resource data.\n\nEach resource mentioned in an endpoint segment has its name written in the plural form, as we are always referencing a collection of objects, that might or might not be filtered by a single ID or extra query string parameters.\n\n### Resources and nested resources endpoints\nBasically there are two types of endpoints used in `devopness` API:\n1) Resource endpoints:\n\n**Pattern:**\n\n`/collection/{resource_id}/[{action}]`\n\n**Examples:**\n\n| HTTP Method   | Example                            | Purpose       |\n| -------------:|------------------------------------|---------------|\n| POST          | /projects                          | Create new item\n| GET           | /social-accounts                   | List all items\n| GET           | /social-accounts/{account}/status  | Perform a custom action (`status`) for a single item\n| GET           | /cron-jobs/{id}                    | Get a single item by id\n| PUT           | /applications/{id}                 | Modify an item\n| DELETE        | /daemons/{id}                      | Remove an item permanently\n\n2) Nested resources endpoints:\n\nNested resources are used when there is a clear hierarchy between the parent resource and the subresource, or for convenience to make it easy and predcitable on how to filter subresources belonging to a parent resource.\nIn `devopness` API design we strive to avoid nesting resources more than 1 level deep + one action related to the child resource or to the relationship between parent and child.\n\n**Pattern:**\n\n`/parent-collection/{parent_id}/{child-collection}/{child_id}/[{action}]`\n\n**Examples:**\n\n| HTTP Method   | Example                        | Purpose       |\n| -------------:|--------------------------------|---------------|\n| GET           | /projects/{id}/servers         | List all items belonging/linked to the parent resource\n| POST          | /projects/{id}/servers         | Create a new subresource item and link it to the parent object\n| POST          | /parent/{id}/child/{id}/link   | Create a relationship between parent and child object when both items already existed but were not linked.\n| DELETE        | /parent/{id}/child/{id}/unlink | Remove the relationship between parent and child resources, without deleting any item\n\n## Responses\nWhen a request is successful, a response body will typically be sent back in the form of a JSON object.\nException to this rule is when a DELETE request is processed, which will result in a successful HTTP 204 status and an empty response body.\n\n### Response codes\nResponse codes indicate success or failure of request processing.\nStatus codes from the `2xx` range indicate that request has been accepted.\nIf the returned code is from the `4xx` or `5xx` range then it reveals either problem with the request or unability to process data.\nSee below for a list of HTTP Status codes used by `devopness` API:\n\n| Status Code   | Description   |\n| -------------:|---------------|\n| 200           | Ok - The request was successful\n| 201           | Created - The request was successful and a new resource has been created as a result\n| 202           | Accepted - The request has been received but not yet completely processed\n| 204           | No content - The request was successful. There is no content to return, but the headers may be useful\n| 400           | Bad Request - The server could not understand the request due to invalid syntax\n| 401           | Unauthenticated - It is usally caused by using wrong or expired credentials\n| 403           | Forbidden/Unauthorized - The used credentials do not allow access to the resource\n| 404           | Not Found - The server cannot find the requested resource\n| 405           | Method not allowed - The request method has been disabled and cannot be used\n| 409           | Conflict - The current request conflicts with the current state of the server\n| 415           | Unsupported Media Type - The request's `Content-Type` or `Accept` headers are not set to a valid format\n| 422           | Unprocessable Entity - The request was unable to be processed due to validation errors\n| 429           | Too many requests - The client exceeded the requests limit in a window of time\n| 500           | Internal Server Error. Please contact the `devopness` team\n\n### Pagination\nRequests that return multiple items are paginated by default. Specific pages can be requested setting the `page` parameter.\nWhen `page` parameter is not present, the first page will be returned.\nBy default 20 items are returned per page. A custom page size up to 100 can be set with the `per_page` parameter.\n\nNote: some endpoints ignore the `per_page` parameter, returning all results at once. e.g.: `/static/*` endpoints.\n\n**Example:**\n\n| HTTP Method | Path                                      |\n|------------:|-------------------------------------------|\n| GET         | /projects/{id}/servers?page=5&per_page=15 |\n\nIn the example above, we retrieve items of page `5` setting the size of `15` items per page.\n\n### Browsing paged results\nThe [Link header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Link)\nin paged responses carry links to pages for navigation purpose. Devopness API adopts the [RFC 8288](https://tools.ietf.org/html/rfc8288) as the reference for our implementation of `Link` header contents.\n\nLinks to the `first`, `next`, `previous` and `last` pages are included such that API clients don't have to hardcode or construct any links.\nThe page links that may be present in the `Link` response header are listed below:\n\n| Optional? | Example content                                             | Description   |\n|-----------|:------------------------------------------------------------|---------------|\n| **No**    | `<https://api.devopness.com/projects?page=1>; rel=\"first\"`  | First page    |\n| **No**    | `<https://api.devopness.com/projects?page=6>; rel=\"last\"`   | Last page     |\n| **Yes**   | `<https://api.devopness.com/projects?page=3>; rel=\"prev\"`   | Previous page |\n| **Yes**   | `<https://api.devopness.com/projects?page=5>; rel=\"next\"`   | Next page     |\n\nOptional links are not present if the currently requested page has no relative links to point to:\n  - Lack of a `previous` link in the response indicates the beginning of the collection\n  - Lack of a `next` link in the response indicates the end of the collection\n\n## Expanding objects\n`TO DO:` define the rules for object expansion and document it here\n"
     },
     {
       "name": "Static Data",
@@ -4620,7 +4800,7 @@
           "started_at": {
             "type": "string",
             "format": "date-time",
-            "description": "The date and time when the action started to be executed (left the `pending/waiting` status)",
+            "description": "The date and time when the action started execution (i.e., left the `pending/queued` status)",
             "example": "2019-09-25T15:50:48.000000Z",
             "nullable": true
           },
@@ -4827,6 +5007,11 @@
             "type": "boolean",
             "example": true
           },
+          "requires_daemon": {
+            "description": "Indicates if the application requires a daemon to keep it alive",
+            "type": "boolean",
+            "example": false
+          },
           "project_id": {
             "type": "integer",
             "description": "Numeric ID of the project to which the application belongs to"
@@ -5013,7 +5198,8 @@
           "framework",
           "public_directory",
           "entrypoint",
-          "default_branch"
+          "default_branch",
+          "requires_daemon"
         ]
       },
       "ApplicationOptions": {
@@ -5133,7 +5319,8 @@
           "framework",
           "programming_language",
           "public_directory",
-          "default_branch"
+          "default_branch",
+          "requires_daemon"
         ]
       },
       "ApplicationType": {
@@ -5404,7 +5591,7 @@
           "started_at": {
             "type": "string",
             "format": "date-time",
-            "description": "The date and time when the action started to be executed (left the `pending/waiting` status)",
+            "description": "The date and time when the action started execution (i.e., left the `pending/queued` status)",
             "example": "2019-09-25T15:50:48.000000Z",
             "nullable": true
           },
@@ -5557,7 +5744,7 @@
           "started_at": {
             "type": "string",
             "format": "date-time",
-            "description": "The date and time when the step started to be executed (left the `pending/waiting` status)",
+            "description": "The date and time when the step started execution (i.e., left the `pending/queued` status)",
             "example": "2019-09-25T15:50:48.000000Z",
             "nullable": true
           },
@@ -5909,12 +6096,18 @@
         "type": "object",
         "properties": {
           "output": {
+            "deprecated": true,
             "type": "string",
-            "description": "The full text output log of executed tasks"
+            "description": "Please use `servers[i].steps[j].output` instead of this deprecated field that will soon be removed",
+            "nullable": true
+          },
+          "servers": {
+            "$ref": "#/components/schemas/ServerActionLogs"
           }
         },
         "required": [
-          "output"
+          "output",
+          "servers"
         ]
       },
       "LoginCredentials": {
@@ -6631,7 +6824,7 @@
           "started_at": {
             "type": "string",
             "format": "date-time",
-            "description": "The date and time when the action started to be executed (left the `pending/waiting` status)",
+            "description": "The date and time when the action started execution (i.e., left the `pending/queued` status)",
             "nullable": true,
             "example": "2019-09-25T15:50:48.000000Z"
           },
@@ -6654,6 +6847,77 @@
             "description": "The date and time when the record was last updated",
             "example": "2019-09-25T13:52:04.000000Z"
           }
+        }
+      },
+      "ServerActionLog": {
+        "type": "object",
+        "nullable": true,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The unique id of the server",
+            "example": 9654123
+          },
+          "name": {
+            "type": "string",
+            "description": "The server's hostname",
+            "example": "web-srv-1"
+          },
+          "steps": {
+            "$ref": "#/components/schemas/ServerActionLogSteps"
+          }
+        }
+      },
+      "ServerActionLogs": {
+        "type": "array",
+        "minItems": 0,
+        "description": "List of logs from multiple servers",
+        "items": {
+          "$ref": "#/components/schemas/ServerActionLog"
+        }
+      },
+      "ServerActionLogStep": {
+        "type": "object",
+        "nullable": true,
+        "properties": {
+          "order": {
+            "type": "integer",
+            "description": "The execution order of the given step",
+            "example": 3
+          },
+          "started_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the step started execution (i.e., left the `pending/queued` status)",
+            "example": "2019-09-25T15:50:48.000000Z",
+            "nullable": true
+          },
+          "completed_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the step has finished execution",
+            "example": "2019-09-25T13:52:04.000000Z",
+            "nullable": true
+          },
+          "output": {
+            "type": "string",
+            "description": "The full text output log",
+            "nullable": true
+          }
+        },
+        "required": [
+          "order",
+          "started_at",
+          "completed_at",
+          "output"
+        ]
+      },
+      "ServerActionLogSteps": {
+        "type": "array",
+        "minItems": 0,
+        "description": "List of server action steps",
+        "items": {
+          "$ref": "#/components/schemas/ServerActionLogStep"
         }
       },
       "ServerActions": {
@@ -7104,6 +7368,12 @@
           "provider",
           "provider_user_nickname"
         ]
+      },
+      "SourceProviders": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/SourceProvider"
+        }
       },
       "SourceProviderCreate": {
         "type": "object",

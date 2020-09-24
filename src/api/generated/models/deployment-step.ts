@@ -39,7 +39,7 @@ export interface DeploymentStep {
      */
     status: ActionStatus;
     /**
-     * The date and time when the step started to be executed (left the `pending/waiting` status)
+     * The date and time when the step started execution (i.e., left the `pending/queued` status)
      * @type {string}
      * @memberof DeploymentStep
      */

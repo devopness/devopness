@@ -51,7 +51,7 @@ export interface ServerAction {
      */
     current_step_message?: string;
     /**
-     * The date and time when the action started to be executed (left the `pending/waiting` status)
+     * The date and time when the action started execution (i.e., left the `pending/queued` status)
      * @type {string}
      * @memberof ServerAction
      */

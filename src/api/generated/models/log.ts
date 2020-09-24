@@ -12,6 +12,7 @@
  */
 
 
+import { ServerActionLog } from './server-action-log';
 
 /**
  * 
@@ -20,10 +21,16 @@
  */
 export interface Log {
     /**
-     * The full text output log of executed tasks
+     * Please use `servers[i].steps[j].output` instead of this deprecated field that will soon be removed
      * @type {string}
      * @memberof Log
      */
-    output: string;
+    output: string | null;
+    /**
+     * List of logs from multiple servers
+     * @type {Array<ServerActionLog>}
+     * @memberof Log
+     */
+    servers: Array<ServerActionLog>;
 }
 
