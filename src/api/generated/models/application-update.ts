@@ -134,7 +134,7 @@ export interface ApplicationUpdate {
      * @type {boolean}
      * @memberof ApplicationUpdate
      */
-    requires_daemon?: boolean;
+    requires_daemon: boolean;
     /**
      * 
      * @type {Array<EnvironmentLinkItem>}

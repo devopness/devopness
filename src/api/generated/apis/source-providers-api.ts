@@ -75,11 +75,11 @@ export class SourceProvidersApiService extends ApiBaseService {
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */
-    public async listSourceProviders(page?: number, perPage?: number): Promise<ApiResponse<SourceProvider>> {
+    public async listSourceProviders(page?: number, perPage?: number): Promise<ApiResponse<Array<SourceProvider>>> {
         const queryString = [`page=${ page }`,`per_page=${ perPage }`,].join('&');
         const requestUrl = '/source-providers' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <SourceProvider>(requestUrl);
+        const response = await this.get <Array<SourceProvider>>(requestUrl);
         return new ApiResponse(response);
     }
 }

@@ -140,7 +140,7 @@ export interface ApplicationCreate {
      * @type {boolean}
      * @memberof ApplicationCreate
      */
-    requires_daemon?: boolean;
+    requires_daemon: boolean;
     /**
      * Numeric ID of the project to which the application belongs to
      * @type {number}

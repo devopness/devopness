@@ -148,6 +148,12 @@ export interface Application {
      */
     install_dependencies_prod?: boolean;
     /**
+     * Indicates if the application requires a daemon to keep it alive
+     * @type {boolean}
+     * @memberof Application
+     */
+    requires_daemon?: boolean;
+    /**
      * Numeric ID of the project to which the application belongs to
      * @type {number}
      * @memberof Application
