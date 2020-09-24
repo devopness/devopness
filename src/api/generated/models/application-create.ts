@@ -136,6 +136,12 @@ export interface ApplicationCreate {
      */
     install_dependencies_prod?: boolean;
     /**
+     * Indicates if the application requires a daemon to keep it alive
+     * @type {boolean}
+     * @memberof ApplicationCreate
+     */
+    requires_daemon?: boolean;
+    /**
      * Numeric ID of the project to which the application belongs to
      * @type {number}
      * @memberof ApplicationCreate
