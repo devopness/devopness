@@ -1,5 +1,5 @@
-summary: Get log of a deployment step
-operationId: getDeploymentStepLog
+summary: Get service restart log
+operationId: getServiceRestartLog
 tags:
   - Logs
 parameters:
@@ -7,23 +7,13 @@ parameters:
   - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/contentTypeHeader'
   - in: path
-    name: deployment_id
+    name: service_id
     example: 1
     schema:
       type: integer
       minimum: 1
-      maximum: 9999999999
     required: true
-    description: Numeric ID of the deployment to which the step belongs to
-  - in: path
-    name: deployment_step_id
-    example: 3
-    schema:
-      type: integer
-      minimum: 1
-      maximum: 12
-    required: true
-    description: Relative order number of the deployment step
+    description: The unique id of the service
 responses:
   200:
     description: 'Ok'

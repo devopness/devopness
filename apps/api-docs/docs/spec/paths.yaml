@@ -50,9 +50,15 @@
 /environments/{environment_id}/servers/{server_id}/unlink:
   delete:
     $ref: ./endpoints/environments/paths/environments-id-servers-id-unlink.yaml
-/logs/deployments/{deployment_id}/steps/{deployment_step_id}:
+/logs/action/{action_id}:
   get:
-    $ref: ./endpoints/logs/paths/logs-deployments-id-steps-id.yaml
+    $ref: ./endpoints/logs/paths/logs-action-id.yaml
+/logs/deployment/{deployment_id}/step/{deployment_step_order}:
+  get:
+    $ref: ./endpoints/logs/paths/logs-deployment-id-step-order.yaml
+/logs/service/{service_id}/restart:
+  get:
+    $ref: ./endpoints/logs/paths/logs-service-id-restart.yaml
 /network-rules/{network_rule_id}:
   delete:
     $ref: ./endpoints/network-rules/paths/network-rules-id-delete.yaml

@@ -28,7 +28,7 @@ properties:
   started_at:
     type: string
     format: date-time
-    description: The date and time when the action started to be executed (left the `pending/waiting` status)
+    description: The date and time when the action started execution (i.e., left the `pending/queued` status)
     nullable: true
     example: "2019-09-25T15:50:48.000000Z"
   completed_at:

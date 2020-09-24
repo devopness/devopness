@@ -1,0 +1,5 @@
+type: array
+minItems: 0
+description: List of logs from multiple servers
+items:
+  $ref: '#/components/schemas/ServerActionLog'

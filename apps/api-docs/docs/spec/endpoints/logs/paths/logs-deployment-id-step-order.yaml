@@ -1,0 +1,35 @@
+summary: Get deployment step log
+operationId: getDeploymentStepLog
+tags:
+  - Logs
+parameters:
+  - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/authHeader'
+  - $ref: '#/components/parameters/contentTypeHeader'
+  - in: path
+    name: deployment_id
+    example: 1
+    schema:
+      type: integer
+      minimum: 1
+      maximum: 9999999999
+    required: true
+    description: Numeric ID of the deployment to which the step belongs to
+  - in: path
+    name: deployment_step_order
+    example: 3
+    schema:
+      type: integer
+      minimum: 1
+      maximum: 12
+    required: true
+    description: Relative order number of the deployment step
+responses:
+  200:
+    description: 'Ok'
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Log'
+  404:
+    $ref: '#/components/responses/NotFound'

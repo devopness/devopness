@@ -1,0 +1,5 @@
+type: array
+minItems: 0
+description: List of server action steps
+items:
+  $ref: '#/components/schemas/ServerActionLogStep'

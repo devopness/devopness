@@ -1,15 +1,10 @@
 type: object
+nullable: true
 properties:
   order:
     type: integer
     description: The execution order of the given step
     example: 3
-  name:
-    type: string
-    description: The step name
-    example: 'Install dependencies'
-  status:
-    $ref: '#/components/schemas/ActionStatus'
   started_at:
     type: string
     format: date-time
@@ -22,7 +17,12 @@ properties:
     description: The date and time when the step has finished execution
     example: '2019-09-25T13:52:04.000000Z'
     nullable: true
+  output:
+    type: string
+    description: The full text output log
+    nullable: true
 required:
-  - name
   - order
-  - status
+  - started_at
+  - completed_at
+  - output

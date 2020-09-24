@@ -2,6 +2,10 @@ type: object
 properties:
   output:
     type: string
-    description: The full text output log of executed tasks
+    description: The full text output log of executed action
+    nullable: true
+  servers:
+    $ref: '#/components/schemas/ServerActionLogs'
 required:
   - output
+  - servers

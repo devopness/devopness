@@ -132,6 +132,14 @@ Server:
   $ref: ./endpoints/servers/schemas/server.yaml
 ServerAction:
   $ref: ./endpoints/actions/schemas/server-action.yaml
+ServerActionLog:
+  $ref: ./endpoints/logs/schemas/server-action-log.yaml
+ServerActionLogs:
+  $ref: ./endpoints/logs/schemas/server-action-log-list.yaml
+ServerActionLogStep:
+  $ref: ./endpoints/logs/schemas/server-action-log-step.yaml
+ServerActionLogSteps:
+  $ref: ./endpoints/logs/schemas/server-action-log-step-list.yaml
 ServerActions:
   $ref: ./endpoints/actions/schemas/server-action-list.yaml
 ServerBlueprint:
