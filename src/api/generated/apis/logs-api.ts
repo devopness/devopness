@@ -58,6 +58,22 @@ export class LogsApiService extends ApiBaseService {
 
     /**
      * 
+     * @summary Get service reload log
+     * @param {number} serviceId The unique id of the service
+     */
+    public async getServiceReloadLog(serviceId: number): Promise<ApiResponse<Log>> {
+        if (serviceId === null || serviceId === undefined) {
+            throw new ArgumentNullException('serviceId', 'getServiceReloadLog');
+        }
+        const queryString = [].join('&');
+        const requestUrl = '/logs/service/{service_id}/reload' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <Log>(requestUrl.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
      * @summary Get service restart log
      * @param {number} serviceId The unique id of the service
      */
