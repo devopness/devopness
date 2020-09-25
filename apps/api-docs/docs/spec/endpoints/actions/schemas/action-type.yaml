@@ -6,8 +6,6 @@ enum:
     "deploy",
     "redeploy",
     "rollback",
-    "install",
-    "uninstall",
     "reload",
     "restart",
     "start",

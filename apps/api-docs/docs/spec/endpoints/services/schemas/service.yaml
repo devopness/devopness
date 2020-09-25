@@ -51,6 +51,15 @@ properties:
     example: "2020-04-16T15:50:48.000000Z"
   actions:
     $ref: '#/components/schemas/Actions'
+  environments:
+    $ref: '#/components/schemas/Environments'
+  created_by_user:
+    $ref: '#/components/schemas/User'
+  project:
+    $ref: '#/components/schemas/Project'
+  servers:
+    $ref: '#/components/schemas/Servers'
+    
 required:
   - id
   - name
