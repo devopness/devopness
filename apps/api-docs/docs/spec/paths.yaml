@@ -56,6 +56,9 @@
 /logs/deployment/{deployment_id}/step/{deployment_step_order}:
   get:
     $ref: ./endpoints/logs/paths/logs-deployment-id-step-order.yaml
+/logs/service/{service_id}/reload:
+  get:
+    $ref: ./endpoints/logs/paths/logs-service-id-reload.yaml
 /logs/service/{service_id}/restart:
   get:
     $ref: ./endpoints/logs/paths/logs-service-id-restart.yaml

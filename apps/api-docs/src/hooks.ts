@@ -41,6 +41,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
          */
         'getActionLog200',
         'getDeploymentStepLog200',
+        'getServiceReloadLog200',
         'getServiceRestartLog200',
         'getServiceStatusLog200',
         'updateServiceStatus204',
