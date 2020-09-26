@@ -24,8 +24,6 @@ export enum ActionType {
     Deploy = 'deploy',
     Redeploy = 'redeploy',
     Rollback = 'rollback',
-    Install = 'install',
-    Uninstall = 'uninstall',
     Reload = 'reload',
     Restart = 'restart',
     Start = 'start',

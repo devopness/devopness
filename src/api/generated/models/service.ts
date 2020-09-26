@@ -14,7 +14,11 @@
 
 import { Action } from './action';
 import { ActionStatus } from './action-status';
+import { Environment } from './environment';
+import { Project } from './project';
+import { Server } from './server';
 import { ServiceInitialState } from './service-initial-state';
+import { User } from './user';
 
 /**
  * 
@@ -94,5 +98,29 @@ export interface Service {
      * @memberof Service
      */
     actions?: Array<Action>;
+    /**
+     * 
+     * @type {Array<Environment>}
+     * @memberof Service
+     */
+    environments?: Array<Environment>;
+    /**
+     * 
+     * @type {User}
+     * @memberof Service
+     */
+    created_by_user?: User;
+    /**
+     * 
+     * @type {Project}
+     * @memberof Service
+     */
+    project?: Project;
+    /**
+     * 
+     * @type {Array<Server>}
+     * @memberof Service
+     */
+    servers?: Array<Server>;
 }
 
