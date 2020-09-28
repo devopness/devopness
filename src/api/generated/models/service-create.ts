@@ -29,7 +29,7 @@ export interface ServiceCreate {
      */
     name: ServiceName;
     /**
-     * Indicates if the service is marked for start automatically on operating system boot
+     * Tells if the service should start automatically on operating system boot
      * @type {boolean}
      * @memberof ServiceCreate
      */
@@ -46,5 +46,11 @@ export interface ServiceCreate {
      * @memberof ServiceCreate
      */
     environments?: Array<EnvironmentLinkItem>;
+    /**
+     * The service version to be installed
+     * @type {string}
+     * @memberof ServiceCreate
+     */
+    version?: string;
 }
 

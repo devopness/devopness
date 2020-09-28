@@ -7277,18 +7277,24 @@
         "type": "object",
         "properties": {
           "name": {
-            "$ref": "#/components/schemas/ServiceName"
+            "$ref": "#/components/schemas/ServiceName",
+            "example": "mysql"
           },
           "auto_start": {
             "type": "boolean",
             "default": false,
-            "description": "Indicates if the service is marked for start automatically on operating system boot"
+            "description": "Tells if the service should start automatically on operating system boot"
           },
           "initial_state": {
             "$ref": "#/components/schemas/ServiceInitialState"
           },
           "environments": {
             "$ref": "#/components/schemas/EnvironmentLinks"
+          },
+          "version": {
+            "type": "string",
+            "description": "The service version to be installed",
+            "example": "5.7.29"
           }
         },
         "required": [
