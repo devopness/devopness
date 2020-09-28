@@ -90,6 +90,22 @@ export class LogsApiService extends ApiBaseService {
 
     /**
      * 
+     * @summary Get service start log
+     * @param {number} serviceId The unique id of the service
+     */
+    public async getServiceStartLog(serviceId: number): Promise<ApiResponse<Log>> {
+        if (serviceId === null || serviceId === undefined) {
+            throw new ArgumentNullException('serviceId', 'getServiceStartLog');
+        }
+        const queryString = [].join('&');
+        const requestUrl = '/logs/service/{service_id}/start' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <Log>(requestUrl.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
      * @summary Get service status log
      * @param {number} serviceId The unique id of the service
      */
@@ -99,6 +115,22 @@ export class LogsApiService extends ApiBaseService {
         }
         const queryString = [].join('&');
         const requestUrl = '/logs/service/{service_id}/status' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <Log>(requestUrl.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Get service stop log
+     * @param {number} serviceId The unique id of the service
+     */
+    public async getServiceStopLog(serviceId: number): Promise<ApiResponse<Log>> {
+        if (serviceId === null || serviceId === undefined) {
+            throw new ArgumentNullException('serviceId', 'getServiceStopLog');
+        }
+        const queryString = [].join('&');
+        const requestUrl = '/logs/service/{service_id}/stop' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Log>(requestUrl.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))));
         return new ApiResponse(response);
