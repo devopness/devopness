@@ -62,9 +62,15 @@
 /logs/service/{service_id}/restart:
   get:
     $ref: ./endpoints/logs/paths/logs-service-id-restart.yaml
+/logs/service/{service_id}/start:
+  get:
+    $ref: ./endpoints/logs/paths/logs-service-id-start.yaml
 /logs/service/{service_id}/status:
   get:
     $ref: ./endpoints/logs/paths/logs-service-id-status.yaml
+/logs/service/{service_id}/stop:
+  get:
+    $ref: ./endpoints/logs/paths/logs-service-id-stop.yaml
 /network-rules/{network_rule_id}:
   delete:
     $ref: ./endpoints/network-rules/paths/network-rules-id-delete.yaml
