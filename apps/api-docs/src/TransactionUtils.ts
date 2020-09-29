@@ -40,7 +40,7 @@ export default class TransactionUtils {
         transaction.request.headers['Content-Type'] = 'application/json';
         transaction.request.headers['Accept'] = 'application/json';
     }
-    
+
     // replaces `${fixtureKey}_id` with ${fixture.id} in transaction request path
     writeFixtureIdsInTransactionPath<T extends Identifiable>(keys: FixtureKey[], dependencies: { [id: string]: FixtureDependency[] }): TransactionHook {
         return (transaction: Transaction) => {
@@ -60,6 +60,14 @@ export default class TransactionUtils {
                 }
             }
             for (const key in dependencies) {
+                // if the necessary fixture is already resolved, use the stored version
+                const fixture = this.fixtureStore.get<T>(key);
+                if (fixture) {
+                    path = path.replace(`{${key}_id}`, fixture.id);
+                    continue;
+                }
+
+                // otherwise compose the fixture by applying the dependencies
                 const deps = dependencies[key];
                 const depId = deps.find((dep) => dep.path === 'id');
                 if (depId) {
@@ -74,7 +82,7 @@ export default class TransactionUtils {
                             break;
                         }
                     } else {
-                        this.log(`${tag} transaction '${transaction.id}' requires '${key}' fixture`)
+                        this.log(`${tag} transaction '${transaction.id}' requires '${depId.fixture}' fixture`)
                         transaction.fail = true;
                         break;
                     }
@@ -88,7 +96,7 @@ export default class TransactionUtils {
             transaction.id = `${transaction.request.method} (${transaction.expected.statusCode}) ${path}`
         }
     }
-    
+
     // grab the response body of a transaction and store it as a fixture
     storeTransactionResult<T extends Fixture>(key: FixtureKey): TransactionHook {
         return (transaction: Transaction) => {
@@ -107,7 +115,7 @@ export default class TransactionUtils {
             };
         };
     }
-    
+
     // attach auth header if request requires it
     setTransactionRequestAuthHeaderWithFixture(key: FixtureKey): TransactionHook {
         return (transaction: Transaction) => {
@@ -125,7 +133,7 @@ export default class TransactionUtils {
             }
         }
     }
-    
+
     // set the request body of a transaction to a fixture
     setTransactionRequestBodyToFixture<T extends Fixture>(key: FixtureKey): TransactionHook {
         return (transaction: Transaction) => {
@@ -139,7 +147,7 @@ export default class TransactionUtils {
             }
         }
     }
-   
+
     // parse transaction request body, applies `rewriteFn`, then stringifies serializes it again
     rewriteTransactionRequestBody(rewriteFn: (body: any) => any): TransactionHook {
         return (transaction: Transaction) => {
@@ -181,7 +189,7 @@ export default class TransactionUtils {
             }
         }
     }
- 
+
 
     // logs a transaction
     transactionLogger(): TransactionHook {

@@ -34,17 +34,6 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         'addSshKeyToProject201',
         // make all social_account routes unreachable by its skipping generator route
         'addSocialAccount201',
-
-        /**
-         * @todo: remove `/logs/*` routes from skipped transactions. Currently failing due to API return (correctly)
-         * an empty array of `"servers" : []` and model seems to not match this expectation.
-         */
-        'getActionLog200',
-        'getDeploymentStepLog200',
-        'getServiceReloadLog200',
-        'getServiceRestartLog200',
-        'getServiceStatusLog200',
-        'updateServiceStatus204',
     ];
 
     // transactions listed here are skipped with a `before` hook
@@ -91,7 +80,9 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         ['deleteCronJob204', 'unlinkServerFromEnvironment204'],
         ['deleteApplication204', 'unlinkServerFromEnvironment204'],
         // deleteEnvironment requires an environment without linked servers
-        ['unlinkServerFromEnvironment204', 'deleteEnvironment204']
+        ['unlinkServerFromEnvironment204', 'deleteEnvironment204'],
+        // actions are fetched from applications, so getApplication200 should run after deployApplication201
+        ['deployApplication201', 'getApplication200']
     ]
 
     // extract transaction specs and other metadata; apply
@@ -280,6 +271,15 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
             }
         }
     })
+
+    //// logs
+    before('getDeploymentStepLog200', (transaction: Transaction) => {
+        const rep = transaction.fullPath.replace("{deployment_step_order}", "0");
+        hooks.log(`[before:'getDeploymentStepLog200'] '${transaction.fullPath}' => '${rep}`);
+        transaction.fullPath = rep;
+    })
+
+
 
     done();
 })
