@@ -9,6 +9,7 @@ enum:
     "reload",
     "restart",
     "start",
+    "status",
     "stop",
     "enable",
     "disable"

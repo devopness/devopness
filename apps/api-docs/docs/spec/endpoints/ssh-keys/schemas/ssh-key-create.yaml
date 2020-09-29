@@ -8,10 +8,6 @@ properties:
     type: string
     description: The name entered by the user to uniquely identify the public SSH key
     example: 'my-laptop-ssh-key'
-  user_id:
-    type: integer
-    description: The Id of the user to which the SSH key belongs to
-    example: 123
   public_key:
     type: string
     description: The public SSH key to add to your `devopness` account and associate it to the given project
