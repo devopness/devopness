@@ -53,9 +53,6 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         'deleteSourceProvider204',
         // social_account related
         'getSocialAccountStatusByName200',
-        // repository
-        'getRepository200',
-        'listRepositories200',
         // email-dependant user transactions
         'activateUser204',
         'resetUserPassword200',
@@ -253,11 +250,17 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     }))
 
     //// source providers
-    // static source_provider fixture, needed by many other routes
+    // use a static source_provider fixture, associated manually to the static user account
+    const staticSourceProviderId = 11;
     before('addSourceProvider201', (transaction: Transaction) => {
-        hooks.log(`=> 'source_provider' (id=11)`)
-        fixtures.put('source_provider', { id: '11' });
+        hooks.log(`=> 'source_provider' (id=${staticSourceProviderId})`)
+        fixtures.put('source_provider', { id: `${staticSourceProviderId}` });
         transaction.skip = true;
+    })
+
+    //// repositories
+    before('getRepository200', (transaction: Transaction) => {
+        transaction.fullPath = `/source-providers/${staticSourceProviderId}/repositories/devopness-api-tests/tester`
     })
 
     //// applications
