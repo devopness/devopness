@@ -5056,6 +5056,11 @@
             "description": "The unique id of the given record",
             "example": 445678964
           },
+          "created_by": {
+            "type": "integer",
+            "description": "The id of the user who created the server and to whom the server belongs",
+            "example": 1
+          },
           "type": {
             "$ref": "#/components/schemas/ApplicationType"
           },
@@ -5200,6 +5205,9 @@
           "status": {
             "$ref": "#/components/schemas/ActionStatus"
           },
+          "created_by_user": {
+            "$ref": "#/components/schemas/User"
+          },
           "created_at": {
             "type": "string",
             "format": "date-time",
@@ -5218,6 +5226,7 @@
         },
         "required": [
           "id",
+          "created_by",
           "project_id",
           "environments",
           "type",
@@ -5939,6 +5948,9 @@
           },
           "servers": {
             "$ref": "#/components/schemas/Servers"
+          },
+          "created_by_user": {
+            "$ref": "#/components/schemas/User"
           },
           "created_at": {
             "type": "string",
@@ -6907,7 +6919,7 @@
             "description": "The network port to which the SSH daemon is listening to SSH connections on the server",
             "example": 22
           },
-          "user_id": {
+          "created_by": {
             "type": "integer",
             "description": "The id of the user who created the server and to whom the server belongs",
             "example": 1
@@ -6925,6 +6937,9 @@
             "items": {
               "$ref": "#/components/schemas/Environment"
             }
+          },
+          "created_by_user": {
+            "$ref": "#/components/schemas/User"
           }
         },
         "required": [
@@ -6932,7 +6947,7 @@
           "hostname",
           "ip_address",
           "ssh_port",
-          "user_id",
+          "created_by",
           "active"
         ]
       },
