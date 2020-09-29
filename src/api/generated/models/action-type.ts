@@ -27,6 +27,7 @@ export enum ActionType {
     Reload = 'reload',
     Restart = 'restart',
     Start = 'start',
+    Status = 'status',
     Stop = 'stop',
     Enable = 'enable',
     Disable = 'disable'
