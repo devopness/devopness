@@ -5003,6 +5003,7 @@
           "reload",
           "restart",
           "start",
+          "status",
           "stop",
           "enable",
           "disable"
@@ -7590,7 +7591,7 @@
             "description": "The name entered by the user to uniquely identify the public SSH key",
             "example": "my-laptop-ssh-key"
           },
-          "user_id": {
+          "created_by": {
             "type": "integer",
             "description": "The Id of the user to which the SSH key belongs to",
             "example": 123
@@ -7610,6 +7611,9 @@
           },
           "actions": {
             "$ref": "#/components/schemas/Actions"
+          },
+          "created_by_user": {
+            "$ref": "#/components/schemas/User"
           }
         },
         "required": [
@@ -7628,11 +7632,6 @@
             "type": "string",
             "description": "The name entered by the user to uniquely identify the public SSH key",
             "example": "my-laptop-ssh-key"
-          },
-          "user_id": {
-            "type": "integer",
-            "description": "The Id of the user to which the SSH key belongs to",
-            "example": 123
           },
           "public_key": {
             "type": "string",

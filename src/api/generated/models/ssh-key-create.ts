@@ -33,12 +33,6 @@ export interface SshKeyCreate {
      */
     name: string;
     /**
-     * The Id of the user to which the SSH key belongs to
-     * @type {number}
-     * @memberof SshKeyCreate
-     */
-    user_id?: number;
-    /**
      * The public SSH key to add to your `devopness` account and associate it to the given project
      * @type {string}
      * @memberof SshKeyCreate

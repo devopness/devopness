@@ -14,6 +14,7 @@
 
 import { Action } from './action';
 import { ActionStatus } from './action-status';
+import { User } from './user';
 
 /**
  * 
@@ -38,7 +39,7 @@ export interface SshKey {
      * @type {number}
      * @memberof SshKey
      */
-    user_id?: number;
+    created_by?: number;
     /**
      * The public SSH key to add to your `devopness` account and associate it to the given project
      * @type {string}
@@ -63,5 +64,11 @@ export interface SshKey {
      * @memberof SshKey
      */
     actions?: Array<Action>;
+    /**
+     * 
+     * @type {User}
+     * @memberof SshKey
+     */
+    created_by_user?: User;
 }
 
