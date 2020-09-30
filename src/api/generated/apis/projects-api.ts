@@ -32,7 +32,17 @@ export class ProjectsApiService extends ApiBaseService {
         if (projectCreate === null || projectCreate === undefined) {
             throw new ArgumentNullException('projectCreate', 'addProject');
         }
-        const queryString = [].join('&');
+        const queryParams = {  } as {[key: string]: any};
+        
+        let queryString = '';
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/projects' + (queryString? `?${queryString}` : '');
 
         const response = await this.post <Project, ProjectCreate>(requestUrl, projectCreate);
@@ -48,7 +58,17 @@ export class ProjectsApiService extends ApiBaseService {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'getProject');
         }
-        const queryString = [].join('&');
+        const queryParams = {  } as {[key: string]: any};
+        
+        let queryString = '';
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/projects/{project_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Project>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
@@ -62,7 +82,17 @@ export class ProjectsApiService extends ApiBaseService {
      * @param {number} [perPage] Number of items returned per page
      */
     public async listProjects(page?: number, perPage?: number): Promise<ApiResponse<Array<Project>>> {
-        const queryString = [`page=${ page }`,`per_page=${ perPage }`,].join('&');
+        const queryParams = { page:page,per_page:perPage, } as {[key: string]: any};
+        
+        let queryString = '';
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/projects' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Array<Project>>(requestUrl);
@@ -82,7 +112,17 @@ export class ProjectsApiService extends ApiBaseService {
         if (projectUpdate === null || projectUpdate === undefined) {
             throw new ArgumentNullException('projectUpdate', 'updateProject');
         }
-        const queryString = [].join('&');
+        const queryParams = {  } as {[key: string]: any};
+        
+        let queryString = '';
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/projects/{project_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.put <void, ProjectUpdate>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), projectUpdate);

@@ -35,7 +35,17 @@ export class ProjectsApplicationsApiService extends ApiBaseService {
         if (applicationCreate === null || applicationCreate === undefined) {
             throw new ArgumentNullException('applicationCreate', 'addApplicationToProject');
         }
-        const queryString = [].join('&');
+        const queryParams = {  } as {[key: string]: any};
+        
+        let queryString = '';
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/projects/{project_id}/applications' + (queryString? `?${queryString}` : '');
 
         const response = await this.post <Application, ApplicationCreate>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), applicationCreate);
@@ -53,7 +63,17 @@ export class ProjectsApplicationsApiService extends ApiBaseService {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'listProjectApplications');
         }
-        const queryString = [`page=${ page }`,`per_page=${ perPage }`,].join('&');
+        const queryParams = { page:page,per_page:perPage, } as {[key: string]: any};
+        
+        let queryString = '';
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/projects/{project_id}/applications' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Array<Application>>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));

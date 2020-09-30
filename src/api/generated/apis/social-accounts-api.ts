@@ -31,7 +31,17 @@ export class SocialAccountsApiService extends ApiBaseService {
         if (socialAccountCreate === null || socialAccountCreate === undefined) {
             throw new ArgumentNullException('socialAccountCreate', 'addSocialAccount');
         }
-        const queryString = [].join('&');
+        const queryParams = {  } as {[key: string]: any};
+        
+        let queryString = '';
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/social-accounts' + (queryString? `?${queryString}` : '');
 
         const response = await this.post <SocialAccount, SocialAccountCreate>(requestUrl, socialAccountCreate);
@@ -47,7 +57,17 @@ export class SocialAccountsApiService extends ApiBaseService {
         if (socialAccountId === null || socialAccountId === undefined) {
             throw new ArgumentNullException('socialAccountId', 'deleteSocialAccount');
         }
-        const queryString = [].join('&');
+        const queryParams = {  } as {[key: string]: any};
+        
+        let queryString = '';
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/social-accounts/{social_account_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.delete <void>(requestUrl.replace(`{${"social_account_id"}}`, encodeURIComponent(String(socialAccountId))));
@@ -63,7 +83,17 @@ export class SocialAccountsApiService extends ApiBaseService {
         if (socialAccountId === null || socialAccountId === undefined) {
             throw new ArgumentNullException('socialAccountId', 'getSocialAccount');
         }
-        const queryString = [].join('&');
+        const queryParams = {  } as {[key: string]: any};
+        
+        let queryString = '';
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/social-accounts/{social_account_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <SocialAccount>(requestUrl.replace(`{${"social_account_id"}}`, encodeURIComponent(String(socialAccountId))));
@@ -79,7 +109,17 @@ export class SocialAccountsApiService extends ApiBaseService {
         if (socialAccountProviderName === null || socialAccountProviderName === undefined) {
             throw new ArgumentNullException('socialAccountProviderName', 'getSocialAccountStatusByName');
         }
-        const queryString = [].join('&');
+        const queryParams = {  } as {[key: string]: any};
+        
+        let queryString = '';
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/social-accounts/{social_account_provider_name}/status' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <SocialAccountStatus>(requestUrl.replace(`{${"social_account_provider_name"}}`, encodeURIComponent(String(socialAccountProviderName))));
@@ -93,7 +133,17 @@ export class SocialAccountsApiService extends ApiBaseService {
      * @param {number} [perPage] Number of items returned per page
      */
     public async listSocialAccounts(page?: number, perPage?: number): Promise<ApiResponse<Array<SocialAccount>>> {
-        const queryString = [`page=${ page }`,`per_page=${ perPage }`,].join('&');
+        const queryParams = { page:page,per_page:perPage, } as {[key: string]: any};
+        
+        let queryString = '';
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/social-accounts' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Array<SocialAccount>>(requestUrl);

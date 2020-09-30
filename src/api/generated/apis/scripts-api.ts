@@ -31,7 +31,17 @@ export class ScriptsApiService extends ApiBaseService {
         if (scriptId === null || scriptId === undefined) {
             throw new ArgumentNullException('scriptId', 'deleteScript');
         }
-        const queryString = [].join('&');
+        const queryParams = {  } as {[key: string]: any};
+        
+        let queryString = '';
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/scripts/{script_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.delete <void>(requestUrl.replace(`{${"script_id"}}`, encodeURIComponent(String(scriptId))));
@@ -47,7 +57,17 @@ export class ScriptsApiService extends ApiBaseService {
         if (scriptId === null || scriptId === undefined) {
             throw new ArgumentNullException('scriptId', 'getScript');
         }
-        const queryString = [].join('&');
+        const queryParams = {  } as {[key: string]: any};
+        
+        let queryString = '';
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/scripts/{script_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Script>(requestUrl.replace(`{${"script_id"}}`, encodeURIComponent(String(scriptId))));
@@ -67,7 +87,17 @@ export class ScriptsApiService extends ApiBaseService {
         if (scriptUpdate === null || scriptUpdate === undefined) {
             throw new ArgumentNullException('scriptUpdate', 'updateScript');
         }
-        const queryString = [].join('&');
+        const queryParams = {  } as {[key: string]: any};
+        
+        let queryString = '';
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/scripts/{script_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.put <void, ScriptUpdate>(requestUrl.replace(`{${"script_id"}}`, encodeURIComponent(String(scriptId))), scriptUpdate);

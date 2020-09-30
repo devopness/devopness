@@ -28,7 +28,17 @@ export class StaticDataApiService extends ApiBaseService {
      * @summary Lists options of the applications
      */
     public async listApplicationOptions(): Promise<ApiResponse<ApplicationOptions>> {
-        const queryString = [].join('&');
+        const queryParams = {  } as {[key: string]: any};
+        
+        let queryString = '';
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/static/applications' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <ApplicationOptions>(requestUrl);
@@ -40,7 +50,17 @@ export class StaticDataApiService extends ApiBaseService {
      * @summary Lists options of the cronjobs
      */
     public async listCronJobOptions(): Promise<ApiResponse<CronJobOptions>> {
-        const queryString = [].join('&');
+        const queryParams = {  } as {[key: string]: any};
+        
+        let queryString = '';
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/static/cronjobs' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <CronJobOptions>(requestUrl);
@@ -52,7 +72,17 @@ export class StaticDataApiService extends ApiBaseService {
      * @summary Lists options of the environments
      */
     public async listEnvironmentOptions(): Promise<ApiResponse<EnvironmentOptions>> {
-        const queryString = [].join('&');
+        const queryParams = {  } as {[key: string]: any};
+        
+        let queryString = '';
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/static/environments' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <EnvironmentOptions>(requestUrl);
@@ -64,7 +94,17 @@ export class StaticDataApiService extends ApiBaseService {
      * @summary Lists options of the services
      */
     public async listServiceOptions(): Promise<ApiResponse<ServiceOptions>> {
-        const queryString = [].join('&');
+        const queryParams = {  } as {[key: string]: any};
+        
+        let queryString = '';
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/static/services' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <ServiceOptions>(requestUrl);

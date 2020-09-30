@@ -34,7 +34,17 @@ export class ApplicationsVariablesApiService extends ApiBaseService {
         if (variableCreate === null || variableCreate === undefined) {
             throw new ArgumentNullException('variableCreate', 'addVariableToApplication');
         }
-        const queryString = [].join('&');
+        const queryParams = {  } as {[key: string]: any};
+        
+        let queryString = '';
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/applications/{application_id}/variables' + (queryString? `?${queryString}` : '');
 
         const response = await this.post <Variable, VariableCreate>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))), variableCreate);
@@ -52,7 +62,17 @@ export class ApplicationsVariablesApiService extends ApiBaseService {
         if (applicationId === null || applicationId === undefined) {
             throw new ArgumentNullException('applicationId', 'listApplicationVariables');
         }
-        const queryString = [`page=${ page }`,`per_page=${ perPage }`,].join('&');
+        const queryParams = { page:page,per_page:perPage, } as {[key: string]: any};
+        
+        let queryString = '';
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/applications/{application_id}/variables' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Array<Variable>>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))));

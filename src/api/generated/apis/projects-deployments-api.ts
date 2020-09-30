@@ -31,7 +31,17 @@ export class ProjectsDeploymentsApiService extends ApiBaseService {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'listProjectDeployments');
         }
-        const queryString = [`page=${ page }`,`per_page=${ perPage }`,].join('&');
+        const queryParams = { page:page,per_page:perPage, } as {[key: string]: any};
+        
+        let queryString = '';
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/projects/{project_id}/deployments' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Array<Deployment>>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));

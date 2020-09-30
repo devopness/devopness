@@ -38,7 +38,17 @@ export class ServersApiService extends ApiBaseService {
         if (activationToken === null || activationToken === undefined) {
             throw new ArgumentNullException('activationToken', 'connectServer');
         }
-        const queryString = [].join('&');
+        const queryParams = {  } as {[key: string]: any};
+        
+        let queryString = '';
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/servers/{server_id}/connect/{activation_token}' + (queryString? `?${queryString}` : '');
 
         const response = await this.post <ServerConnect, ExtraBodyParams>(requestUrl.replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))).replace(`{${"activation_token"}}`, encodeURIComponent(String(activationToken))), extraBodyParams);
@@ -54,7 +64,17 @@ export class ServersApiService extends ApiBaseService {
         if (serverId === null || serverId === undefined) {
             throw new ArgumentNullException('serverId', 'getServer');
         }
-        const queryString = [].join('&');
+        const queryParams = {  } as {[key: string]: any};
+        
+        let queryString = '';
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/servers/{server_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Server>(requestUrl.replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))));
@@ -70,7 +90,17 @@ export class ServersApiService extends ApiBaseService {
         if (serverId === null || serverId === undefined) {
             throw new ArgumentNullException('serverId', 'getServerCommands');
         }
-        const queryString = [].join('&');
+        const queryParams = {  } as {[key: string]: any};
+        
+        let queryString = '';
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/servers/{server_id}/commands' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <ServerCommands>(requestUrl.replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))));
@@ -84,7 +114,17 @@ export class ServersApiService extends ApiBaseService {
      * @param {number} [perPage] Number of items returned per page
      */
     public async listServers(page?: number, perPage?: number): Promise<ApiResponse<Array<Server>>> {
-        const queryString = [`page=${ page }`,`per_page=${ perPage }`,].join('&');
+        const queryParams = { page:page,per_page:perPage, } as {[key: string]: any};
+        
+        let queryString = '';
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/servers' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Array<Server>>(requestUrl);

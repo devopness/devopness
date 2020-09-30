@@ -31,7 +31,17 @@ export class ApplicationsDeploymentsApiService extends ApiBaseService {
         if (applicationId === null || applicationId === undefined) {
             throw new ArgumentNullException('applicationId', 'deployApplication');
         }
-        const queryString = [].join('&');
+        const queryParams = {  } as {[key: string]: any};
+        
+        let queryString = '';
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/applications/{application_id}/deployments' + (queryString? `?${queryString}` : '');
 
         const response = await this.post <Deployment, DeploymentCreate>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))), deploymentCreate);
@@ -49,7 +59,17 @@ export class ApplicationsDeploymentsApiService extends ApiBaseService {
         if (applicationId === null || applicationId === undefined) {
             throw new ArgumentNullException('applicationId', 'listApplicationDeployments');
         }
-        const queryString = [`page=${ page }`,`per_page=${ perPage }`,].join('&');
+        const queryParams = { page:page,per_page:perPage, } as {[key: string]: any};
+        
+        let queryString = '';
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/applications/{application_id}/deployments' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Array<Deployment>>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))));

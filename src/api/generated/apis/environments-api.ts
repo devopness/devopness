@@ -30,7 +30,17 @@ export class EnvironmentsApiService extends ApiBaseService {
         if (environmentId === null || environmentId === undefined) {
             throw new ArgumentNullException('environmentId', 'deleteEnvironment');
         }
-        const queryString = [].join('&');
+        const queryParams = {  } as {[key: string]: any};
+        
+        let queryString = '';
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/environments/{environment_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.delete <void>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
@@ -46,7 +56,17 @@ export class EnvironmentsApiService extends ApiBaseService {
         if (environmentId === null || environmentId === undefined) {
             throw new ArgumentNullException('environmentId', 'getEnvironment');
         }
-        const queryString = [].join('&');
+        const queryParams = {  } as {[key: string]: any};
+        
+        let queryString = '';
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/environments/{environment_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Environment>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
@@ -66,7 +86,17 @@ export class EnvironmentsApiService extends ApiBaseService {
         if (environmentUpdate === null || environmentUpdate === undefined) {
             throw new ArgumentNullException('environmentUpdate', 'updateEnvironment');
         }
-        const queryString = [].join('&');
+        const queryParams = {  } as {[key: string]: any};
+        
+        let queryString = '';
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/environments/{environment_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.put <void, EnvironmentUpdate>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))), environmentUpdate);

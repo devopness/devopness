@@ -31,7 +31,17 @@ export class ApplicationsApiService extends ApiBaseService {
         if (applicationId === null || applicationId === undefined) {
             throw new ArgumentNullException('applicationId', 'deleteApplication');
         }
-        const queryString = [].join('&');
+        const queryParams = {  } as {[key: string]: any};
+        
+        let queryString = '';
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/applications/{application_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.delete <void>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))));
@@ -47,7 +57,17 @@ export class ApplicationsApiService extends ApiBaseService {
         if (applicationId === null || applicationId === undefined) {
             throw new ArgumentNullException('applicationId', 'getApplication');
         }
-        const queryString = [].join('&');
+        const queryParams = {  } as {[key: string]: any};
+        
+        let queryString = '';
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/applications/{application_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Application>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))));
@@ -67,7 +87,17 @@ export class ApplicationsApiService extends ApiBaseService {
         if (applicationUpdate === null || applicationUpdate === undefined) {
             throw new ArgumentNullException('applicationUpdate', 'updateApplication');
         }
-        const queryString = [].join('&');
+        const queryParams = {  } as {[key: string]: any};
+        
+        let queryString = '';
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/applications/{application_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.put <void, ApplicationUpdate>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))), applicationUpdate);

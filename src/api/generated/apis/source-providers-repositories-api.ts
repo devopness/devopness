@@ -37,7 +37,17 @@ export class SourceProvidersRepositoriesApiService extends ApiBaseService {
         if (repositoryName === null || repositoryName === undefined) {
             throw new ArgumentNullException('repositoryName', 'getRepository');
         }
-        const queryString = [].join('&');
+        const queryParams = {  } as {[key: string]: any};
+        
+        let queryString = '';
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/source-providers/{source_provider_id}/repositories/{repository_owner}/{repository_name}' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Repository>(requestUrl.replace(`{${"source_provider_id"}}`, encodeURIComponent(String(sourceProviderId))).replace(`{${"repository_owner"}}`, encodeURIComponent(String(repositoryOwner))).replace(`{${"repository_name"}}`, encodeURIComponent(String(repositoryName))));
@@ -55,7 +65,17 @@ export class SourceProvidersRepositoriesApiService extends ApiBaseService {
         if (sourceProviderId === null || sourceProviderId === undefined) {
             throw new ArgumentNullException('sourceProviderId', 'listRepositories');
         }
-        const queryString = [`page=${ page }`,`per_page=${ perPage }`,].join('&');
+        const queryParams = { page:page,per_page:perPage, } as {[key: string]: any};
+        
+        let queryString = '';
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/source-providers/{source_provider_id}/repositories' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Array<Repository>>(requestUrl.replace(`{${"source_provider_id"}}`, encodeURIComponent(String(sourceProviderId))));

@@ -31,7 +31,17 @@ export class VariablesApiService extends ApiBaseService {
         if (variableId === null || variableId === undefined) {
             throw new ArgumentNullException('variableId', 'deleteVariable');
         }
-        const queryString = [].join('&');
+        const queryParams = {  } as {[key: string]: any};
+        
+        let queryString = '';
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/variables/{variable_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.delete <void>(requestUrl.replace(`{${"variable_id"}}`, encodeURIComponent(String(variableId))));
@@ -47,7 +57,17 @@ export class VariablesApiService extends ApiBaseService {
         if (variableId === null || variableId === undefined) {
             throw new ArgumentNullException('variableId', 'getVariable');
         }
-        const queryString = [].join('&');
+        const queryParams = {  } as {[key: string]: any};
+        
+        let queryString = '';
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/variables/{variable_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Variable>(requestUrl.replace(`{${"variable_id"}}`, encodeURIComponent(String(variableId))));
@@ -67,7 +87,17 @@ export class VariablesApiService extends ApiBaseService {
         if (variableUpdate === null || variableUpdate === undefined) {
             throw new ArgumentNullException('variableUpdate', 'updateVariable');
         }
-        const queryString = [].join('&');
+        const queryParams = {  } as {[key: string]: any};
+        
+        let queryString = '';
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/variables/{variable_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.put <void, VariableUpdate>(requestUrl.replace(`{${"variable_id"}}`, encodeURIComponent(String(variableId))), variableUpdate);

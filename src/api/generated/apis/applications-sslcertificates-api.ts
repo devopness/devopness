@@ -34,7 +34,17 @@ export class ApplicationsSSLCertificatesApiService extends ApiBaseService {
         if (sslCertificateCreate === null || sslCertificateCreate === undefined) {
             throw new ArgumentNullException('sslCertificateCreate', 'addSslCertificateToApplication');
         }
-        const queryString = [].join('&');
+        const queryParams = {  } as {[key: string]: any};
+        
+        let queryString = '';
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/applications/{application_id}/ssl-certificates' + (queryString? `?${queryString}` : '');
 
         const response = await this.post <SslCertificate, SslCertificateCreate>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))), sslCertificateCreate);
@@ -52,7 +62,17 @@ export class ApplicationsSSLCertificatesApiService extends ApiBaseService {
         if (applicationId === null || applicationId === undefined) {
             throw new ArgumentNullException('applicationId', 'listApplicationSslCertificates');
         }
-        const queryString = [`page=${ page }`,`per_page=${ perPage }`,].join('&');
+        const queryParams = { page:page,per_page:perPage, } as {[key: string]: any};
+        
+        let queryString = '';
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/applications/{application_id}/ssl-certificates' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Array<SslCertificate>>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))));

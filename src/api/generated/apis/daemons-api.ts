@@ -30,7 +30,17 @@ export class DaemonsApiService extends ApiBaseService {
         if (daemonId === null || daemonId === undefined) {
             throw new ArgumentNullException('daemonId', 'deleteDaemon');
         }
-        const queryString = [].join('&');
+        const queryParams = {  } as {[key: string]: any};
+        
+        let queryString = '';
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/daemons/{daemon_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.delete <void>(requestUrl.replace(`{${"daemon_id"}}`, encodeURIComponent(String(daemonId))));
@@ -46,7 +56,17 @@ export class DaemonsApiService extends ApiBaseService {
         if (daemonId === null || daemonId === undefined) {
             throw new ArgumentNullException('daemonId', 'getDaemon');
         }
-        const queryString = [].join('&');
+        const queryParams = {  } as {[key: string]: any};
+        
+        let queryString = '';
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/daemons/{daemon_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Daemon>(requestUrl.replace(`{${"daemon_id"}}`, encodeURIComponent(String(daemonId))));
@@ -63,7 +83,17 @@ export class DaemonsApiService extends ApiBaseService {
         if (daemonId === null || daemonId === undefined) {
             throw new ArgumentNullException('daemonId', 'restartDaemon');
         }
-        const queryString = [].join('&');
+        const queryParams = {  } as {[key: string]: any};
+        
+        let queryString = '';
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/daemons/{daemon_id}/restart' + (queryString? `?${queryString}` : '');
 
         const response = await this.post <void, ExtraBodyParams>(requestUrl.replace(`{${"daemon_id"}}`, encodeURIComponent(String(daemonId))), extraBodyParams);

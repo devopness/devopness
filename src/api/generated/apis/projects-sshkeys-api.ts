@@ -35,7 +35,17 @@ export class ProjectsSSHKeysApiService extends ApiBaseService {
         if (sshKeyCreate === null || sshKeyCreate === undefined) {
             throw new ArgumentNullException('sshKeyCreate', 'addSshKeyToProject');
         }
-        const queryString = [].join('&');
+        const queryParams = {  } as {[key: string]: any};
+        
+        let queryString = '';
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/projects/{project_id}/ssh-keys' + (queryString? `?${queryString}` : '');
 
         const response = await this.post <SshKey, SshKeyCreate>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), sshKeyCreate);
@@ -53,7 +63,17 @@ export class ProjectsSSHKeysApiService extends ApiBaseService {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'listProjectSshKeys');
         }
-        const queryString = [`page=${ page }`,`per_page=${ perPage }`,].join('&');
+        const queryParams = { page:page,per_page:perPage, } as {[key: string]: any};
+        
+        let queryString = '';
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/projects/{project_id}/ssh-keys' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Array<SshKey>>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
