@@ -13,6 +13,8 @@ properties:
     description: The type of the deployment being triggered
   servers:
     $ref: '#/components/schemas/Servers'
+  created_by_user:
+    $ref: '#/components/schemas/User'
   created_at:
     type: string
     format: date-time

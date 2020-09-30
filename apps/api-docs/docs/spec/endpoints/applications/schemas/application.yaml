@@ -5,6 +5,10 @@ properties:
     type: integer
     description: The unique id of the given record
     example: 445678964
+  created_by:
+    type: integer
+    description: The id of the user who created the server and to whom the server belongs
+    example: 1
   type:
     $ref: '#/components/schemas/ApplicationType'
   name:
@@ -123,6 +127,8 @@ properties:
     $ref: '#/components/schemas/SslCertificates'
   status:
     $ref: '#/components/schemas/ActionStatus'
+  created_by_user:
+    $ref: '#/components/schemas/User'
   created_at:
     type: string
     format: date-time
@@ -137,6 +143,7 @@ properties:
     $ref: '#/components/schemas/Actions'
 required:
   - id
+  - created_by
   - project_id
   - environments
   - type
