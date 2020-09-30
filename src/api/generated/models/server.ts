@@ -14,6 +14,7 @@
 
 import { Action } from './action';
 import { Environment } from './environment';
+import { User } from './user';
 
 /**
  * 
@@ -50,7 +51,7 @@ export interface Server {
      * @type {number}
      * @memberof Server
      */
-    user_id: number;
+    created_by: number;
     /**
      * Tells if the server is active or not
      * @type {boolean}
@@ -69,5 +70,11 @@ export interface Server {
      * @memberof Server
      */
     environments?: Array<Environment>;
+    /**
+     * 
+     * @type {User}
+     * @memberof Server
+     */
+    created_by_user?: User;
 }
 

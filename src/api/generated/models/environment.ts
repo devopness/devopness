@@ -14,6 +14,7 @@
 
 import { EnvironmentType } from './environment-type';
 import { Server } from './server';
+import { User } from './user';
 
 /**
  * 
@@ -45,6 +46,12 @@ export interface Environment {
      * @memberof Environment
      */
     servers?: Array<Server>;
+    /**
+     * 
+     * @type {User}
+     * @memberof Environment
+     */
+    created_by_user?: User;
     /**
      * The date and time when the record was created
      * @type {string}
