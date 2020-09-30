@@ -20,6 +20,7 @@ import { Environment } from './environment';
 import { Server } from './server';
 import { SourceProvider } from './source-provider';
 import { SslCertificate } from './ssl-certificate';
+import { User } from './user';
 
 /**
  * 
@@ -33,6 +34,12 @@ export interface Application {
      * @memberof Application
      */
     id: number;
+    /**
+     * The id of the user who created the server and to whom the server belongs
+     * @type {number}
+     * @memberof Application
+     */
+    created_by: number;
     /**
      * 
      * @type {ApplicationType}
@@ -195,6 +202,12 @@ export interface Application {
      * @memberof Application
      */
     status?: ActionStatus;
+    /**
+     * 
+     * @type {User}
+     * @memberof Application
+     */
+    created_by_user?: User;
     /**
      * The date and time when the record was created
      * @type {string}
