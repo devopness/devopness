@@ -15,7 +15,6 @@ import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { Daemon } from '../../generated/models';
-import { ExtraBodyParams } from '../../generated/models';
 
 /**
  * DaemonsApiService - Auto-generated
@@ -57,16 +56,15 @@ export class DaemonsApiService extends ApiBaseService {
      * 
      * @summary Restart a background process
      * @param {number} daemonId Numeric ID of the daemon to restart
-     * @param {ExtraBodyParams} [extraBodyParams] A JSON object containing list of additional parameters
      */
-    public async restartDaemon(daemonId: number, extraBodyParams?: ExtraBodyParams): Promise<ApiResponse<void>> {
+    public async restartDaemon(daemonId: number): Promise<ApiResponse<void>> {
         if (daemonId === null || daemonId === undefined) {
             throw new ArgumentNullException('daemonId', 'restartDaemon');
         }
         const queryString = [].join('&');
         const requestUrl = '/daemons/{daemon_id}/restart' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <void, ExtraBodyParams>(requestUrl.replace(`{${"daemon_id"}}`, encodeURIComponent(String(daemonId))), extraBodyParams);
+        const response = await this.post <void>(requestUrl.replace(`{${"daemon_id"}}`, encodeURIComponent(String(daemonId))));
         return new ApiResponse(response);
     }
 }

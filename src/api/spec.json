@@ -1524,17 +1524,6 @@
             "description": "Numeric ID of the daemon to restart"
           }
         ],
-        "requestBody": {
-          "description": "A JSON object containing list of additional parameters",
-          "required": false,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ExtraBodyParams"
-              }
-            }
-          }
-        },
         "responses": {
           "204": {
             "description": "Ok"
@@ -2906,17 +2895,6 @@
             "description": "The server activation token"
           }
         ],
-        "requestBody": {
-          "description": "A JSON object containing list of additional parameters",
-          "required": false,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ExtraBodyParams"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
             "description": "Ok",
@@ -3052,17 +3030,6 @@
             "description": "The unique id of the service"
           }
         ],
-        "requestBody": {
-          "description": "A JSON object containing list of additional parameters",
-          "required": false,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ExtraBodyParams"
-              }
-            }
-          }
-        },
         "responses": {
           "204": {
             "$ref": "#/components/responses/NoContent"
@@ -3105,17 +3072,6 @@
             "description": "The unique id of the service"
           }
         ],
-        "requestBody": {
-          "description": "A JSON object containing list of additional parameters",
-          "required": false,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ExtraBodyParams"
-              }
-            }
-          }
-        },
         "responses": {
           "204": {
             "$ref": "#/components/responses/NoContent"
@@ -3158,17 +3114,6 @@
             "description": "The unique id of the service"
           }
         ],
-        "requestBody": {
-          "description": "A JSON object containing list of additional parameters",
-          "required": false,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ExtraBodyParams"
-              }
-            }
-          }
-        },
         "responses": {
           "204": {
             "$ref": "#/components/responses/NoContent"
@@ -3212,17 +3157,6 @@
             "description": "The unique id of the service"
           }
         ],
-        "requestBody": {
-          "description": "A JSON object containing list of additional parameters",
-          "required": false,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ExtraBodyParams"
-              }
-            }
-          }
-        },
         "responses": {
           "204": {
             "$ref": "#/components/responses/NoContent"
@@ -3265,17 +3199,6 @@
             "description": "The unique id of the service"
           }
         ],
-        "requestBody": {
-          "description": "A JSON object containing list of additional parameters",
-          "required": false,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ExtraBodyParams"
-              }
-            }
-          }
-        },
         "responses": {
           "204": {
             "$ref": "#/components/responses/NoContent"
@@ -6112,15 +6035,6 @@
         ],
         "description": "Environment's type",
         "example": "staging"
-      },
-      "ExtraBodyParams": {
-        "type": "object",
-        "properties": {
-          "params": {
-            "type": "string",
-            "description": "Optional free form list of additional parameters to forward to API operation"
-          }
-        }
       },
       "LanguageRuntime": {
         "type": "object",

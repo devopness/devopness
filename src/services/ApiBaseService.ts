@@ -123,7 +123,7 @@ export class ApiBaseService {
         return this.api.defaults.baseURL ? this.api.defaults.baseURL : "";
     }
 
-    protected async post<T, B, R = AxiosResponse<T>>(endpoint: string, data?: B): Promise<R> {
+    protected async post<T, B = undefined, R = AxiosResponse<T>>(endpoint: string, data?: B): Promise<R> {
         return this.api.post<T, R>(endpoint, data);
     }
 

@@ -15,7 +15,6 @@ import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
-import { ExtraBodyParams } from '../../generated/models';
 import { Server } from '../../generated/models';
 import { ServerCommands } from '../../generated/models';
 import { ServerConnect } from '../../generated/models';
@@ -29,9 +28,8 @@ export class ServersApiService extends ApiBaseService {
      * @summary Connect a server to devopness platform
      * @param {number} serverId The server numeric Id
      * @param {string} activationToken The server activation token
-     * @param {ExtraBodyParams} [extraBodyParams] A JSON object containing list of additional parameters
      */
-    public async connectServer(serverId: number, activationToken: string, extraBodyParams?: ExtraBodyParams): Promise<ApiResponse<ServerConnect>> {
+    public async connectServer(serverId: number, activationToken: string): Promise<ApiResponse<ServerConnect>> {
         if (serverId === null || serverId === undefined) {
             throw new ArgumentNullException('serverId', 'connectServer');
         }
@@ -41,7 +39,7 @@ export class ServersApiService extends ApiBaseService {
         const queryString = [].join('&');
         const requestUrl = '/servers/{server_id}/connect/{activation_token}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <ServerConnect, ExtraBodyParams>(requestUrl.replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))).replace(`{${"activation_token"}}`, encodeURIComponent(String(activationToken))), extraBodyParams);
+        const response = await this.post <ServerConnect>(requestUrl.replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))).replace(`{${"activation_token"}}`, encodeURIComponent(String(activationToken))));
         return new ApiResponse(response);
     }
 
