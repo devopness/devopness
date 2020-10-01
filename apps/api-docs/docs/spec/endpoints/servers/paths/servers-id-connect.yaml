@@ -22,13 +22,6 @@ parameters:
       minimum: 60
     required: true
     description: The server activation token
-requestBody:
-  description: A JSON object containing list of additional parameters
-  required: false
-  content:
-    application/json:
-      schema:
-        $ref: '#/components/schemas/ExtraBodyParams'
 responses:
   200:
     description: 'Ok'

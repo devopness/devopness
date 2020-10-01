@@ -1,5 +1,0 @@
-type: object
-properties:
-  params:
-    type: string
-    description: Optional free form list of additional parameters to forward to API operation

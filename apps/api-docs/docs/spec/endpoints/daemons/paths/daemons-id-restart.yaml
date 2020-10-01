@@ -14,13 +14,6 @@ parameters:
       minimum: 1
     required: true
     description: Numeric ID of the daemon to restart
-requestBody:
-  description: A JSON object containing list of additional parameters
-  required: false
-  content:
-    application/json:
-      schema:
-        $ref: '#/components/schemas/ExtraBodyParams'
 responses:
   204:
     description: 'Ok'
