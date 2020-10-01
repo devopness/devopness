@@ -34,16 +34,8 @@ export class ApplicationsSSLCertificatesApiService extends ApiBaseService {
         if (sslCertificateCreate === null || sslCertificateCreate === undefined) {
             throw new ArgumentNullException('sslCertificateCreate', 'addSslCertificateToApplication');
         }
-        const queryParams = {  } as {[key: string]: any};
         
         let queryString = '';
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
 
         const requestUrl = '/applications/{application_id}/ssl-certificates' + (queryString? `?${queryString}` : '');
 
@@ -62,9 +54,9 @@ export class ApplicationsSSLCertificatesApiService extends ApiBaseService {
         if (applicationId === null || applicationId === undefined) {
             throw new ArgumentNullException('applicationId', 'listApplicationSslCertificates');
         }
-        const queryParams = { page:page,per_page:perPage, } as {[key: string]: any};
         
         let queryString = '';
+        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {
             if (queryParams[key] === undefined || queryParams[key] === null) {
                 continue;

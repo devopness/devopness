@@ -35,16 +35,8 @@ export class ProjectsApplicationsApiService extends ApiBaseService {
         if (applicationCreate === null || applicationCreate === undefined) {
             throw new ArgumentNullException('applicationCreate', 'addApplicationToProject');
         }
-        const queryParams = {  } as {[key: string]: any};
         
         let queryString = '';
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
 
         const requestUrl = '/projects/{project_id}/applications' + (queryString? `?${queryString}` : '');
 
@@ -63,9 +55,9 @@ export class ProjectsApplicationsApiService extends ApiBaseService {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'listProjectApplications');
         }
-        const queryParams = { page:page,per_page:perPage, } as {[key: string]: any};
         
         let queryString = '';
+        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {
             if (queryParams[key] === undefined || queryParams[key] === null) {
                 continue;

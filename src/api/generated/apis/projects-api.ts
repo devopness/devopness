@@ -32,16 +32,8 @@ export class ProjectsApiService extends ApiBaseService {
         if (projectCreate === null || projectCreate === undefined) {
             throw new ArgumentNullException('projectCreate', 'addProject');
         }
-        const queryParams = {  } as {[key: string]: any};
         
         let queryString = '';
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
 
         const requestUrl = '/projects' + (queryString? `?${queryString}` : '');
 
@@ -58,16 +50,8 @@ export class ProjectsApiService extends ApiBaseService {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'getProject');
         }
-        const queryParams = {  } as {[key: string]: any};
         
         let queryString = '';
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
 
         const requestUrl = '/projects/{project_id}' + (queryString? `?${queryString}` : '');
 
@@ -82,9 +66,9 @@ export class ProjectsApiService extends ApiBaseService {
      * @param {number} [perPage] Number of items returned per page
      */
     public async listProjects(page?: number, perPage?: number): Promise<ApiResponse<Array<Project>>> {
-        const queryParams = { page:page,per_page:perPage, } as {[key: string]: any};
         
         let queryString = '';
+        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {
             if (queryParams[key] === undefined || queryParams[key] === null) {
                 continue;
@@ -112,16 +96,8 @@ export class ProjectsApiService extends ApiBaseService {
         if (projectUpdate === null || projectUpdate === undefined) {
             throw new ArgumentNullException('projectUpdate', 'updateProject');
         }
-        const queryParams = {  } as {[key: string]: any};
         
         let queryString = '';
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
 
         const requestUrl = '/projects/{project_id}' + (queryString? `?${queryString}` : '');
 

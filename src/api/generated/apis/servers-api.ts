@@ -38,16 +38,8 @@ export class ServersApiService extends ApiBaseService {
         if (activationToken === null || activationToken === undefined) {
             throw new ArgumentNullException('activationToken', 'connectServer');
         }
-        const queryParams = {  } as {[key: string]: any};
         
         let queryString = '';
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
 
         const requestUrl = '/servers/{server_id}/connect/{activation_token}' + (queryString? `?${queryString}` : '');
 
@@ -64,16 +56,8 @@ export class ServersApiService extends ApiBaseService {
         if (serverId === null || serverId === undefined) {
             throw new ArgumentNullException('serverId', 'getServer');
         }
-        const queryParams = {  } as {[key: string]: any};
         
         let queryString = '';
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
 
         const requestUrl = '/servers/{server_id}' + (queryString? `?${queryString}` : '');
 
@@ -90,16 +74,8 @@ export class ServersApiService extends ApiBaseService {
         if (serverId === null || serverId === undefined) {
             throw new ArgumentNullException('serverId', 'getServerCommands');
         }
-        const queryParams = {  } as {[key: string]: any};
         
         let queryString = '';
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
 
         const requestUrl = '/servers/{server_id}/commands' + (queryString? `?${queryString}` : '');
 
@@ -114,9 +90,9 @@ export class ServersApiService extends ApiBaseService {
      * @param {number} [perPage] Number of items returned per page
      */
     public async listServers(page?: number, perPage?: number): Promise<ApiResponse<Array<Server>>> {
-        const queryParams = { page:page,per_page:perPage, } as {[key: string]: any};
         
         let queryString = '';
+        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {
             if (queryParams[key] === undefined || queryParams[key] === null) {
                 continue;

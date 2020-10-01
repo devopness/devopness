@@ -31,9 +31,9 @@ export class ProjectsDeploymentsApiService extends ApiBaseService {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'listProjectDeployments');
         }
-        const queryParams = { page:page,per_page:perPage, } as {[key: string]: any};
         
         let queryString = '';
+        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {
             if (queryParams[key] === undefined || queryParams[key] === null) {
                 continue;

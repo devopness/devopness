@@ -30,16 +30,8 @@ export class SourceProvidersApiService extends ApiBaseService {
         if (sourceProviderCreate === null || sourceProviderCreate === undefined) {
             throw new ArgumentNullException('sourceProviderCreate', 'addSourceProvider');
         }
-        const queryParams = {  } as {[key: string]: any};
         
         let queryString = '';
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
 
         const requestUrl = '/source-providers' + (queryString? `?${queryString}` : '');
 
@@ -56,16 +48,8 @@ export class SourceProvidersApiService extends ApiBaseService {
         if (sourceProviderId === null || sourceProviderId === undefined) {
             throw new ArgumentNullException('sourceProviderId', 'deleteSourceProvider');
         }
-        const queryParams = {  } as {[key: string]: any};
         
         let queryString = '';
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
 
         const requestUrl = '/source-providers/{source_provider_id}' + (queryString? `?${queryString}` : '');
 
@@ -82,16 +66,8 @@ export class SourceProvidersApiService extends ApiBaseService {
         if (sourceProviderId === null || sourceProviderId === undefined) {
             throw new ArgumentNullException('sourceProviderId', 'getSourceProvider');
         }
-        const queryParams = {  } as {[key: string]: any};
         
         let queryString = '';
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
 
         const requestUrl = '/source-providers/{source_provider_id}' + (queryString? `?${queryString}` : '');
 
@@ -106,9 +82,9 @@ export class SourceProvidersApiService extends ApiBaseService {
      * @param {number} [perPage] Number of items returned per page
      */
     public async listSourceProviders(page?: number, perPage?: number): Promise<ApiResponse<Array<SourceProvider>>> {
-        const queryParams = { page:page,per_page:perPage, } as {[key: string]: any};
         
         let queryString = '';
+        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {
             if (queryParams[key] === undefined || queryParams[key] === null) {
                 continue;

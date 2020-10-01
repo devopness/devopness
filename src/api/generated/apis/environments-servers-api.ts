@@ -34,16 +34,8 @@ export class EnvironmentsServersApiService extends ApiBaseService {
         if (serverId === null || serverId === undefined) {
             throw new ArgumentNullException('serverId', 'linkServerToEnvironment');
         }
-        const queryParams = {  } as {[key: string]: any};
         
         let queryString = '';
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
 
         const requestUrl = '/environments/{environment_id}/servers/{server_id}/link' + (queryString? `?${queryString}` : '');
 
@@ -64,16 +56,8 @@ export class EnvironmentsServersApiService extends ApiBaseService {
         if (environmentLinkItem === null || environmentLinkItem === undefined) {
             throw new ArgumentNullException('environmentLinkItem', 'replaceLinkedServers');
         }
-        const queryParams = {  } as {[key: string]: any};
         
         let queryString = '';
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
 
         const requestUrl = '/environments/{environment_id}/servers/replace-linked-servers' + (queryString? `?${queryString}` : '');
 
@@ -94,16 +78,8 @@ export class EnvironmentsServersApiService extends ApiBaseService {
         if (serverId === null || serverId === undefined) {
             throw new ArgumentNullException('serverId', 'unlinkServerFromEnvironment');
         }
-        const queryParams = {  } as {[key: string]: any};
         
         let queryString = '';
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
 
         const requestUrl = '/environments/{environment_id}/servers/{server_id}/unlink' + (queryString? `?${queryString}` : '');
 

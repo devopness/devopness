@@ -29,16 +29,8 @@ export class DeploymentsApiService extends ApiBaseService {
         if (deploymentId === null || deploymentId === undefined) {
             throw new ArgumentNullException('deploymentId', 'getDeployment');
         }
-        const queryParams = {  } as {[key: string]: any};
         
         let queryString = '';
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
 
         const requestUrl = '/deployments/{deployment_id}' + (queryString? `?${queryString}` : '');
 

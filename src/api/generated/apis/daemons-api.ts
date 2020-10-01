@@ -30,16 +30,8 @@ export class DaemonsApiService extends ApiBaseService {
         if (daemonId === null || daemonId === undefined) {
             throw new ArgumentNullException('daemonId', 'deleteDaemon');
         }
-        const queryParams = {  } as {[key: string]: any};
         
         let queryString = '';
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
 
         const requestUrl = '/daemons/{daemon_id}' + (queryString? `?${queryString}` : '');
 
@@ -56,16 +48,8 @@ export class DaemonsApiService extends ApiBaseService {
         if (daemonId === null || daemonId === undefined) {
             throw new ArgumentNullException('daemonId', 'getDaemon');
         }
-        const queryParams = {  } as {[key: string]: any};
         
         let queryString = '';
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
 
         const requestUrl = '/daemons/{daemon_id}' + (queryString? `?${queryString}` : '');
 
@@ -83,16 +67,8 @@ export class DaemonsApiService extends ApiBaseService {
         if (daemonId === null || daemonId === undefined) {
             throw new ArgumentNullException('daemonId', 'restartDaemon');
         }
-        const queryParams = {  } as {[key: string]: any};
         
         let queryString = '';
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
 
         const requestUrl = '/daemons/{daemon_id}/restart' + (queryString? `?${queryString}` : '');
 

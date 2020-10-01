@@ -50,9 +50,9 @@ export class UsersApiService extends ApiBaseService {
         if (signature === null || signature === undefined) {
             throw new ArgumentNullException('signature', 'activateUser');
         }
-        const queryParams = { expires:expires,signature:signature, } as {[key: string]: any};
         
         let queryString = '';
+        const queryParams = { expires: expires, signature: signature, } as { [key: string]: any };
         for (const key in queryParams) {
             if (queryParams[key] === undefined || queryParams[key] === null) {
                 continue;
@@ -76,16 +76,8 @@ export class UsersApiService extends ApiBaseService {
         if (userCreate === null || userCreate === undefined) {
             throw new ArgumentNullException('userCreate', 'addUser');
         }
-        const queryParams = {  } as {[key: string]: any};
         
         let queryString = '';
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
 
         const requestUrl = '/users' + (queryString? `?${queryString}` : '');
 
@@ -98,16 +90,8 @@ export class UsersApiService extends ApiBaseService {
      * @summary Get details of the current user
      */
     public async getCurrentUser(): Promise<ApiResponse<User>> {
-        const queryParams = {  } as {[key: string]: any};
         
         let queryString = '';
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
 
         const requestUrl = '/users/me' + (queryString? `?${queryString}` : '');
 
@@ -124,16 +108,8 @@ export class UsersApiService extends ApiBaseService {
         if (userId === null || userId === undefined) {
             throw new ArgumentNullException('userId', 'getUser');
         }
-        const queryParams = {  } as {[key: string]: any};
         
         let queryString = '';
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
 
         const requestUrl = '/users/{user_id}' + (queryString? `?${queryString}` : '');
 
@@ -150,16 +126,8 @@ export class UsersApiService extends ApiBaseService {
         if (loginCredentials === null || loginCredentials === undefined) {
             throw new ArgumentNullException('loginCredentials', 'login');
         }
-        const queryParams = {  } as {[key: string]: any};
         
         let queryString = '';
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
 
         const requestUrl = '/users/login' + (queryString? `?${queryString}` : '');
 
@@ -172,16 +140,8 @@ export class UsersApiService extends ApiBaseService {
      * @summary Logout/revoke an existing token
      */
     public async logout(): Promise<ApiResponse<void>> {
-        const queryParams = {  } as {[key: string]: any};
         
         let queryString = '';
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
 
         const requestUrl = '/users/logout' + (queryString? `?${queryString}` : '');
 
@@ -198,16 +158,8 @@ export class UsersApiService extends ApiBaseService {
         if (userRefreshTokenCreate === null || userRefreshTokenCreate === undefined) {
             throw new ArgumentNullException('userRefreshTokenCreate', 'refreshToken');
         }
-        const queryParams = {  } as {[key: string]: any};
         
         let queryString = '';
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
 
         const requestUrl = '/users/refresh-token' + (queryString? `?${queryString}` : '');
 
@@ -224,16 +176,8 @@ export class UsersApiService extends ApiBaseService {
         if (userAccountResendVerification === null || userAccountResendVerification === undefined) {
             throw new ArgumentNullException('userAccountResendVerification', 'resendUserVerification');
         }
-        const queryParams = {  } as {[key: string]: any};
         
         let queryString = '';
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
 
         const requestUrl = '/users/account/resend-verification' + (queryString? `?${queryString}` : '');
 
@@ -250,16 +194,8 @@ export class UsersApiService extends ApiBaseService {
         if (userPasswordReset === null || userPasswordReset === undefined) {
             throw new ArgumentNullException('userPasswordReset', 'resetUserPassword');
         }
-        const queryParams = {  } as {[key: string]: any};
         
         let queryString = '';
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
 
         const requestUrl = '/users/password/reset' + (queryString? `?${queryString}` : '');
 
@@ -276,16 +212,8 @@ export class UsersApiService extends ApiBaseService {
         if (userPasswordSendResetLink === null || userPasswordSendResetLink === undefined) {
             throw new ArgumentNullException('userPasswordSendResetLink', 'sendUserPasswordResetLink');
         }
-        const queryParams = {  } as {[key: string]: any};
         
         let queryString = '';
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
 
         const requestUrl = '/users/password/send-reset-link' + (queryString? `?${queryString}` : '');
 
@@ -298,16 +226,8 @@ export class UsersApiService extends ApiBaseService {
      * @summary Get the information about the activation status of the current user
      */
     public async verifyUser(): Promise<ApiResponse<UserAccountVerify>> {
-        const queryParams = {  } as {[key: string]: any};
         
         let queryString = '';
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
 
         const requestUrl = '/users/account/verify' + (queryString? `?${queryString}` : '');
 

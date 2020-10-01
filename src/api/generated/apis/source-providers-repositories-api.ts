@@ -37,16 +37,8 @@ export class SourceProvidersRepositoriesApiService extends ApiBaseService {
         if (repositoryName === null || repositoryName === undefined) {
             throw new ArgumentNullException('repositoryName', 'getRepository');
         }
-        const queryParams = {  } as {[key: string]: any};
         
         let queryString = '';
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
 
         const requestUrl = '/source-providers/{source_provider_id}/repositories/{repository_owner}/{repository_name}' + (queryString? `?${queryString}` : '');
 
@@ -65,9 +57,9 @@ export class SourceProvidersRepositoriesApiService extends ApiBaseService {
         if (sourceProviderId === null || sourceProviderId === undefined) {
             throw new ArgumentNullException('sourceProviderId', 'listRepositories');
         }
-        const queryParams = { page:page,per_page:perPage, } as {[key: string]: any};
         
         let queryString = '';
+        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {
             if (queryParams[key] === undefined || queryParams[key] === null) {
                 continue;

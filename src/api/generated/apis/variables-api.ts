@@ -31,16 +31,8 @@ export class VariablesApiService extends ApiBaseService {
         if (variableId === null || variableId === undefined) {
             throw new ArgumentNullException('variableId', 'deleteVariable');
         }
-        const queryParams = {  } as {[key: string]: any};
         
         let queryString = '';
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
 
         const requestUrl = '/variables/{variable_id}' + (queryString? `?${queryString}` : '');
 
@@ -57,16 +49,8 @@ export class VariablesApiService extends ApiBaseService {
         if (variableId === null || variableId === undefined) {
             throw new ArgumentNullException('variableId', 'getVariable');
         }
-        const queryParams = {  } as {[key: string]: any};
         
         let queryString = '';
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
 
         const requestUrl = '/variables/{variable_id}' + (queryString? `?${queryString}` : '');
 
@@ -87,16 +71,8 @@ export class VariablesApiService extends ApiBaseService {
         if (variableUpdate === null || variableUpdate === undefined) {
             throw new ArgumentNullException('variableUpdate', 'updateVariable');
         }
-        const queryParams = {  } as {[key: string]: any};
         
         let queryString = '';
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
 
         const requestUrl = '/variables/{variable_id}' + (queryString? `?${queryString}` : '');
 

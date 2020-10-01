@@ -29,16 +29,8 @@ export class NetworkRulesApiService extends ApiBaseService {
         if (networkRuleId === null || networkRuleId === undefined) {
             throw new ArgumentNullException('networkRuleId', 'deleteNetworkRule');
         }
-        const queryParams = {  } as {[key: string]: any};
         
         let queryString = '';
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
 
         const requestUrl = '/network-rules/{network_rule_id}' + (queryString? `?${queryString}` : '');
 
@@ -55,16 +47,8 @@ export class NetworkRulesApiService extends ApiBaseService {
         if (networkRuleId === null || networkRuleId === undefined) {
             throw new ArgumentNullException('networkRuleId', 'getNetworkRule');
         }
-        const queryParams = {  } as {[key: string]: any};
         
         let queryString = '';
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
 
         const requestUrl = '/network-rules/{network_rule_id}' + (queryString? `?${queryString}` : '');
 

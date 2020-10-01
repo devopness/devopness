@@ -35,16 +35,8 @@ export class ProjectsSSHKeysApiService extends ApiBaseService {
         if (sshKeyCreate === null || sshKeyCreate === undefined) {
             throw new ArgumentNullException('sshKeyCreate', 'addSshKeyToProject');
         }
-        const queryParams = {  } as {[key: string]: any};
         
         let queryString = '';
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
 
         const requestUrl = '/projects/{project_id}/ssh-keys' + (queryString? `?${queryString}` : '');
 
@@ -63,9 +55,9 @@ export class ProjectsSSHKeysApiService extends ApiBaseService {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'listProjectSshKeys');
         }
-        const queryParams = { page:page,per_page:perPage, } as {[key: string]: any};
         
         let queryString = '';
+        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {
             if (queryParams[key] === undefined || queryParams[key] === null) {
                 continue;

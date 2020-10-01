@@ -31,16 +31,8 @@ export class SocialAccountsApiService extends ApiBaseService {
         if (socialAccountCreate === null || socialAccountCreate === undefined) {
             throw new ArgumentNullException('socialAccountCreate', 'addSocialAccount');
         }
-        const queryParams = {  } as {[key: string]: any};
         
         let queryString = '';
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
 
         const requestUrl = '/social-accounts' + (queryString? `?${queryString}` : '');
 
@@ -57,16 +49,8 @@ export class SocialAccountsApiService extends ApiBaseService {
         if (socialAccountId === null || socialAccountId === undefined) {
             throw new ArgumentNullException('socialAccountId', 'deleteSocialAccount');
         }
-        const queryParams = {  } as {[key: string]: any};
         
         let queryString = '';
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
 
         const requestUrl = '/social-accounts/{social_account_id}' + (queryString? `?${queryString}` : '');
 
@@ -83,16 +67,8 @@ export class SocialAccountsApiService extends ApiBaseService {
         if (socialAccountId === null || socialAccountId === undefined) {
             throw new ArgumentNullException('socialAccountId', 'getSocialAccount');
         }
-        const queryParams = {  } as {[key: string]: any};
         
         let queryString = '';
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
 
         const requestUrl = '/social-accounts/{social_account_id}' + (queryString? `?${queryString}` : '');
 
@@ -109,16 +85,8 @@ export class SocialAccountsApiService extends ApiBaseService {
         if (socialAccountProviderName === null || socialAccountProviderName === undefined) {
             throw new ArgumentNullException('socialAccountProviderName', 'getSocialAccountStatusByName');
         }
-        const queryParams = {  } as {[key: string]: any};
         
         let queryString = '';
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
 
         const requestUrl = '/social-accounts/{social_account_provider_name}/status' + (queryString? `?${queryString}` : '');
 
@@ -133,9 +101,9 @@ export class SocialAccountsApiService extends ApiBaseService {
      * @param {number} [perPage] Number of items returned per page
      */
     public async listSocialAccounts(page?: number, perPage?: number): Promise<ApiResponse<Array<SocialAccount>>> {
-        const queryParams = { page:page,per_page:perPage, } as {[key: string]: any};
         
         let queryString = '';
+        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {
             if (queryParams[key] === undefined || queryParams[key] === null) {
                 continue;

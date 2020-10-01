@@ -31,16 +31,8 @@ export class ScriptsApiService extends ApiBaseService {
         if (scriptId === null || scriptId === undefined) {
             throw new ArgumentNullException('scriptId', 'deleteScript');
         }
-        const queryParams = {  } as {[key: string]: any};
         
         let queryString = '';
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
 
         const requestUrl = '/scripts/{script_id}' + (queryString? `?${queryString}` : '');
 
@@ -57,16 +49,8 @@ export class ScriptsApiService extends ApiBaseService {
         if (scriptId === null || scriptId === undefined) {
             throw new ArgumentNullException('scriptId', 'getScript');
         }
-        const queryParams = {  } as {[key: string]: any};
         
         let queryString = '';
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
 
         const requestUrl = '/scripts/{script_id}' + (queryString? `?${queryString}` : '');
 
@@ -87,16 +71,8 @@ export class ScriptsApiService extends ApiBaseService {
         if (scriptUpdate === null || scriptUpdate === undefined) {
             throw new ArgumentNullException('scriptUpdate', 'updateScript');
         }
-        const queryParams = {  } as {[key: string]: any};
         
         let queryString = '';
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
 
         const requestUrl = '/scripts/{script_id}' + (queryString? `?${queryString}` : '');
 
