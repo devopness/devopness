@@ -35,7 +35,9 @@ export class ProjectsServersApiService extends ApiBaseService {
         if (serverCreate === null || serverCreate === undefined) {
             throw new ArgumentNullException('serverCreate', 'addServerToProject');
         }
-        const queryString = [].join('&');
+        
+        let queryString = '';
+
         const requestUrl = '/projects/{project_id}/servers' + (queryString? `?${queryString}` : '');
 
         const response = await this.post <Server, ServerCreate>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), serverCreate);
@@ -53,7 +55,17 @@ export class ProjectsServersApiService extends ApiBaseService {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'listProjectServers');
         }
-        const queryString = [`page=${ page }`,`per_page=${ perPage }`,].join('&');
+        
+        let queryString = '';
+        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/projects/{project_id}/servers' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Array<Server>>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));

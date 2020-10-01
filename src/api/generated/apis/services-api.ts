@@ -30,7 +30,9 @@ export class ServicesApiService extends ApiBaseService {
         if (serviceId === null || serviceId === undefined) {
             throw new ArgumentNullException('serviceId', 'deleteService');
         }
-        const queryString = [].join('&');
+        
+        let queryString = '';
+
         const requestUrl = '/services/{service_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.delete <void>(requestUrl.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))));
@@ -46,7 +48,9 @@ export class ServicesApiService extends ApiBaseService {
         if (serviceId === null || serviceId === undefined) {
             throw new ArgumentNullException('serviceId', 'getService');
         }
-        const queryString = [].join('&');
+        
+        let queryString = '';
+
         const requestUrl = '/services/{service_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Service>(requestUrl.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))));
@@ -62,7 +66,9 @@ export class ServicesApiService extends ApiBaseService {
         if (serviceId === null || serviceId === undefined) {
             throw new ArgumentNullException('serviceId', 'reloadService');
         }
-        const queryString = [].join('&');
+        
+        let queryString = '';
+
         const requestUrl = '/services/{service_id}/reload' + (queryString? `?${queryString}` : '');
 
         const response = await this.post <void>(requestUrl.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))));
@@ -78,7 +84,9 @@ export class ServicesApiService extends ApiBaseService {
         if (serviceId === null || serviceId === undefined) {
             throw new ArgumentNullException('serviceId', 'restartService');
         }
-        const queryString = [].join('&');
+        
+        let queryString = '';
+
         const requestUrl = '/services/{service_id}/restart' + (queryString? `?${queryString}` : '');
 
         const response = await this.post <void>(requestUrl.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))));
@@ -94,7 +102,9 @@ export class ServicesApiService extends ApiBaseService {
         if (serviceId === null || serviceId === undefined) {
             throw new ArgumentNullException('serviceId', 'startService');
         }
-        const queryString = [].join('&');
+        
+        let queryString = '';
+
         const requestUrl = '/services/{service_id}/start' + (queryString? `?${queryString}` : '');
 
         const response = await this.post <void>(requestUrl.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))));
@@ -110,7 +120,9 @@ export class ServicesApiService extends ApiBaseService {
         if (serviceId === null || serviceId === undefined) {
             throw new ArgumentNullException('serviceId', 'stopService');
         }
-        const queryString = [].join('&');
+        
+        let queryString = '';
+
         const requestUrl = '/services/{service_id}/stop' + (queryString? `?${queryString}` : '');
 
         const response = await this.post <void>(requestUrl.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))));
@@ -126,7 +138,9 @@ export class ServicesApiService extends ApiBaseService {
         if (serviceId === null || serviceId === undefined) {
             throw new ArgumentNullException('serviceId', 'updateServiceStatus');
         }
-        const queryString = [].join('&');
+        
+        let queryString = '';
+
         const requestUrl = '/services/{service_id}/update-status' + (queryString? `?${queryString}` : '');
 
         const response = await this.post <void>(requestUrl.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))));

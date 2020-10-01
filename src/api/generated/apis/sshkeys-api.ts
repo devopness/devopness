@@ -29,7 +29,9 @@ export class SSHKeysApiService extends ApiBaseService {
         if (sshKeyId === null || sshKeyId === undefined) {
             throw new ArgumentNullException('sshKeyId', 'deleteSshKey');
         }
-        const queryString = [].join('&');
+        
+        let queryString = '';
+
         const requestUrl = '/ssh-keys/{ssh_key_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.delete <void>(requestUrl.replace(`{${"ssh_key_id"}}`, encodeURIComponent(String(sshKeyId))));
@@ -45,7 +47,9 @@ export class SSHKeysApiService extends ApiBaseService {
         if (sshKeyId === null || sshKeyId === undefined) {
             throw new ArgumentNullException('sshKeyId', 'getSshKey');
         }
-        const queryString = [].join('&');
+        
+        let queryString = '';
+
         const requestUrl = '/ssh-keys/{ssh_key_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <SshKey>(requestUrl.replace(`{${"ssh_key_id"}}`, encodeURIComponent(String(sshKeyId))));

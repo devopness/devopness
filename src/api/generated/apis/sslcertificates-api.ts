@@ -29,7 +29,9 @@ export class SSLCertificatesApiService extends ApiBaseService {
         if (sslCertificateId === null || sslCertificateId === undefined) {
             throw new ArgumentNullException('sslCertificateId', 'deleteSslCertificate');
         }
-        const queryString = [].join('&');
+        
+        let queryString = '';
+
         const requestUrl = '/ssl-certificates/{ssl_certificate_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.delete <void>(requestUrl.replace(`{${"ssl_certificate_id"}}`, encodeURIComponent(String(sslCertificateId))));
@@ -45,7 +47,9 @@ export class SSLCertificatesApiService extends ApiBaseService {
         if (sslCertificateId === null || sslCertificateId === undefined) {
             throw new ArgumentNullException('sslCertificateId', 'getSslCertificate');
         }
-        const queryString = [].join('&');
+        
+        let queryString = '';
+
         const requestUrl = '/ssl-certificates/{ssl_certificate_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <SslCertificate>(requestUrl.replace(`{${"ssl_certificate_id"}}`, encodeURIComponent(String(sslCertificateId))));

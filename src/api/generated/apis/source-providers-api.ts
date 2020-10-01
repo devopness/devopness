@@ -30,7 +30,9 @@ export class SourceProvidersApiService extends ApiBaseService {
         if (sourceProviderCreate === null || sourceProviderCreate === undefined) {
             throw new ArgumentNullException('sourceProviderCreate', 'addSourceProvider');
         }
-        const queryString = [].join('&');
+        
+        let queryString = '';
+
         const requestUrl = '/source-providers' + (queryString? `?${queryString}` : '');
 
         const response = await this.post <SourceProvider, SourceProviderCreate>(requestUrl, sourceProviderCreate);
@@ -46,7 +48,9 @@ export class SourceProvidersApiService extends ApiBaseService {
         if (sourceProviderId === null || sourceProviderId === undefined) {
             throw new ArgumentNullException('sourceProviderId', 'deleteSourceProvider');
         }
-        const queryString = [].join('&');
+        
+        let queryString = '';
+
         const requestUrl = '/source-providers/{source_provider_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.delete <void>(requestUrl.replace(`{${"source_provider_id"}}`, encodeURIComponent(String(sourceProviderId))));
@@ -62,7 +66,9 @@ export class SourceProvidersApiService extends ApiBaseService {
         if (sourceProviderId === null || sourceProviderId === undefined) {
             throw new ArgumentNullException('sourceProviderId', 'getSourceProvider');
         }
-        const queryString = [].join('&');
+        
+        let queryString = '';
+
         const requestUrl = '/source-providers/{source_provider_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <SourceProvider>(requestUrl.replace(`{${"source_provider_id"}}`, encodeURIComponent(String(sourceProviderId))));
@@ -76,7 +82,17 @@ export class SourceProvidersApiService extends ApiBaseService {
      * @param {number} [perPage] Number of items returned per page
      */
     public async listSourceProviders(page?: number, perPage?: number): Promise<ApiResponse<Array<SourceProvider>>> {
-        const queryString = [`page=${ page }`,`per_page=${ perPage }`,].join('&');
+        
+        let queryString = '';
+        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/source-providers' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Array<SourceProvider>>(requestUrl);

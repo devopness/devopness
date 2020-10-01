@@ -44,7 +44,19 @@ export class {{classname}}Service extends ApiBaseService {
     {{/required}}
     {{/isHeaderParam}}
     {{/allParams}}
-        const queryString = [{{#queryParams}}`{{baseName}}=${ {{paramName}} }`,{{/queryParams}}].join('&');
+        
+        let queryString = '';
+    {{#hasQueryParams}}
+        const queryParams = { {{#queryParams}}{{baseName}}: {{paramName}}, {{/queryParams}}} as { [key: string]: any };
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+    {{/hasQueryParams}}
+
         const requestUrl = '{{{path}}}' + (queryString? `?${queryString}` : '');
 
         const response = await this.{{#lambda.lowercase}}{{httpMethod}} {{/lambda.lowercase}}<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}void{{/returnType}}{{#allParams}}{{^isHeaderParam}}{{#-last}}{{^isPrimitiveType}}, {{dataType}}{{/isPrimitiveType}}{{/-last}}{{/isHeaderParam}}{{/allParams}}>(requestUrl{{#pathParams}}.replace(`{${"{{baseName}}"}}`, encodeURIComponent(String({{paramName}}))){{/pathParams}}{{#allParams}}{{^isHeaderParam}}{{#-last}}{{^isPrimitiveType}}, {{paramName}}{{/isPrimitiveType}}{{/-last}}{{/isHeaderParam}}{{/allParams}});

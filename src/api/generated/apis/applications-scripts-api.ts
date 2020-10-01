@@ -35,7 +35,9 @@ export class ApplicationsScriptsApiService extends ApiBaseService {
         if (scriptCreate === null || scriptCreate === undefined) {
             throw new ArgumentNullException('scriptCreate', 'addScriptToApplication');
         }
-        const queryString = [].join('&');
+        
+        let queryString = '';
+
         const requestUrl = '/applications/{application_id}/scripts' + (queryString? `?${queryString}` : '');
 
         const response = await this.post <Script, ScriptCreate>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))), scriptCreate);
@@ -53,7 +55,17 @@ export class ApplicationsScriptsApiService extends ApiBaseService {
         if (applicationId === null || applicationId === undefined) {
             throw new ArgumentNullException('applicationId', 'listApplicationScripts');
         }
-        const queryString = [`page=${ page }`,`per_page=${ perPage }`,].join('&');
+        
+        let queryString = '';
+        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/applications/{application_id}/scripts' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Array<Script>>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))));

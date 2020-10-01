@@ -29,7 +29,9 @@ export class ActionsApiService extends ApiBaseService {
         if (actionId === null || actionId === undefined) {
             throw new ArgumentNullException('actionId', 'getAction');
         }
-        const queryString = [].join('&');
+        
+        let queryString = '';
+
         const requestUrl = '/actions/{action_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Action>(requestUrl.replace(`{${"action_id"}}`, encodeURIComponent(String(actionId))));
@@ -43,7 +45,17 @@ export class ActionsApiService extends ApiBaseService {
      * @param {number} [perPage] Number of items returned per page
      */
     public async listActions(page?: number, perPage?: number): Promise<ApiResponse<Array<Action>>> {
-        const queryString = [`page=${ page }`,`per_page=${ perPage }`,].join('&');
+        
+        let queryString = '';
+        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/actions' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Array<Action>>(requestUrl);

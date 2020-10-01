@@ -34,7 +34,9 @@ export class EnvironmentsServersApiService extends ApiBaseService {
         if (serverId === null || serverId === undefined) {
             throw new ArgumentNullException('serverId', 'linkServerToEnvironment');
         }
-        const queryString = [].join('&');
+        
+        let queryString = '';
+
         const requestUrl = '/environments/{environment_id}/servers/{server_id}/link' + (queryString? `?${queryString}` : '');
 
         const response = await this.post <void, EnvironmentLinkItem>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))).replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))), environmentLinkItem);
@@ -54,7 +56,9 @@ export class EnvironmentsServersApiService extends ApiBaseService {
         if (environmentLinkItem === null || environmentLinkItem === undefined) {
             throw new ArgumentNullException('environmentLinkItem', 'replaceLinkedServers');
         }
-        const queryString = [].join('&');
+        
+        let queryString = '';
+
         const requestUrl = '/environments/{environment_id}/servers/replace-linked-servers' + (queryString? `?${queryString}` : '');
 
         const response = await this.post <void, EnvironmentLinkItem>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))), environmentLinkItem);
@@ -74,7 +78,9 @@ export class EnvironmentsServersApiService extends ApiBaseService {
         if (serverId === null || serverId === undefined) {
             throw new ArgumentNullException('serverId', 'unlinkServerFromEnvironment');
         }
-        const queryString = [].join('&');
+        
+        let queryString = '';
+
         const requestUrl = '/environments/{environment_id}/servers/{server_id}/unlink' + (queryString? `?${queryString}` : '');
 
         const response = await this.delete <void>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))).replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))));

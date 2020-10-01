@@ -35,7 +35,9 @@ export class ProjectsDaemonsApiService extends ApiBaseService {
         if (daemonCreate === null || daemonCreate === undefined) {
             throw new ArgumentNullException('daemonCreate', 'addDaemonToProject');
         }
-        const queryString = [].join('&');
+        
+        let queryString = '';
+
         const requestUrl = '/projects/{project_id}/daemons' + (queryString? `?${queryString}` : '');
 
         const response = await this.post <Daemon, DaemonCreate>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), daemonCreate);
@@ -53,7 +55,17 @@ export class ProjectsDaemonsApiService extends ApiBaseService {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'listProjectDaemons');
         }
-        const queryString = [`page=${ page }`,`per_page=${ perPage }`,].join('&');
+        
+        let queryString = '';
+        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
         const requestUrl = '/projects/{project_id}/daemons' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Array<Daemon>>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));

@@ -29,7 +29,9 @@ export class LogsApiService extends ApiBaseService {
         if (actionId === null || actionId === undefined) {
             throw new ArgumentNullException('actionId', 'getActionLog');
         }
-        const queryString = [].join('&');
+        
+        let queryString = '';
+
         const requestUrl = '/logs/action/{action_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Log>(requestUrl.replace(`{${"action_id"}}`, encodeURIComponent(String(actionId))));
@@ -49,7 +51,9 @@ export class LogsApiService extends ApiBaseService {
         if (deploymentStepOrder === null || deploymentStepOrder === undefined) {
             throw new ArgumentNullException('deploymentStepOrder', 'getDeploymentStepLog');
         }
-        const queryString = [].join('&');
+        
+        let queryString = '';
+
         const requestUrl = '/logs/deployment/{deployment_id}/step/{deployment_step_order}' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Log>(requestUrl.replace(`{${"deployment_id"}}`, encodeURIComponent(String(deploymentId))).replace(`{${"deployment_step_order"}}`, encodeURIComponent(String(deploymentStepOrder))));
@@ -65,7 +69,9 @@ export class LogsApiService extends ApiBaseService {
         if (serviceId === null || serviceId === undefined) {
             throw new ArgumentNullException('serviceId', 'getServiceReloadLog');
         }
-        const queryString = [].join('&');
+        
+        let queryString = '';
+
         const requestUrl = '/logs/service/{service_id}/reload' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Log>(requestUrl.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))));
@@ -81,7 +87,9 @@ export class LogsApiService extends ApiBaseService {
         if (serviceId === null || serviceId === undefined) {
             throw new ArgumentNullException('serviceId', 'getServiceRestartLog');
         }
-        const queryString = [].join('&');
+        
+        let queryString = '';
+
         const requestUrl = '/logs/service/{service_id}/restart' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Log>(requestUrl.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))));
@@ -97,7 +105,9 @@ export class LogsApiService extends ApiBaseService {
         if (serviceId === null || serviceId === undefined) {
             throw new ArgumentNullException('serviceId', 'getServiceStartLog');
         }
-        const queryString = [].join('&');
+        
+        let queryString = '';
+
         const requestUrl = '/logs/service/{service_id}/start' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Log>(requestUrl.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))));
@@ -113,7 +123,9 @@ export class LogsApiService extends ApiBaseService {
         if (serviceId === null || serviceId === undefined) {
             throw new ArgumentNullException('serviceId', 'getServiceStatusLog');
         }
-        const queryString = [].join('&');
+        
+        let queryString = '';
+
         const requestUrl = '/logs/service/{service_id}/status' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Log>(requestUrl.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))));
@@ -129,7 +141,9 @@ export class LogsApiService extends ApiBaseService {
         if (serviceId === null || serviceId === undefined) {
             throw new ArgumentNullException('serviceId', 'getServiceStopLog');
         }
-        const queryString = [].join('&');
+        
+        let queryString = '';
+
         const requestUrl = '/logs/service/{service_id}/stop' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Log>(requestUrl.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))));
