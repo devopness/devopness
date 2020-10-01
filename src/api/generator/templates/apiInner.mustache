@@ -44,9 +44,10 @@ export class {{classname}}Service extends ApiBaseService {
     {{/required}}
     {{/isHeaderParam}}
     {{/allParams}}
-        const queryParams = { {{#queryParams}}{{baseName}}:{{paramName}},{{/queryParams}} } as {[key: string]: any};
         
         let queryString = '';
+    {{#hasQueryParams}}
+        const queryParams = { {{#queryParams}}{{baseName}}: {{paramName}}, {{/queryParams}}} as { [key: string]: any };
         for (const key in queryParams) {
             if (queryParams[key] === undefined || queryParams[key] === null) {
                 continue;
@@ -54,6 +55,7 @@ export class {{classname}}Service extends ApiBaseService {
 
             queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
         }
+    {{/hasQueryParams}}
 
         const requestUrl = '{{{path}}}' + (queryString? `?${queryString}` : '');
 
