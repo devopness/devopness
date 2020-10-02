@@ -1,12 +1,11 @@
 type: object
 properties:
-  providers:
+  provider:
     description: "`self-hosted` if connecting to an existing server instance. May also be a list of cloud providers to which the server spec will be used to launch instances."
-    type: array
-    items:
-      $ref: '#/components/schemas/BlueprintItem'
-  databases:
-    description: "The list of databases services that must be installed on the server"
+    enum: ['self-hosted']
+    example: 'self-hosted'
+  services:
+    description: "The list of services that must be installed on the server"
     type: array
     items:
       $ref: '#/components/schemas/BlueprintItem'
@@ -17,5 +16,10 @@ properties:
     items:
       $ref: '#/components/schemas/BlueprintItem'
     nullable: true
+  validate_web_public_access:
+    description: If `true`, create a landing page on the server to validate if has public access
+    type: boolean
+    example: true
 required:
-  - providers
+  - provider
+  - validate_web_public_access
