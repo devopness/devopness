@@ -1,12 +1,12 @@
 type: object
 properties:
-  output:
-    deprecated: true
+  updated_at:
     type: string
-    description: Please use `servers[i].steps[j].output` instead of this deprecated field that will soon be removed
+    format: date-time
+    description: The date and time when the requested log record was last updated
+    example: '2019-09-25T13:52:04.000000Z'
     nullable: true
   servers:
     $ref: '#/components/schemas/ServerActionLogs'
 required:
-  - output
   - servers
