@@ -30,8 +30,6 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     const preSkiplist = [
         'replaceLinkedServers201',
         'connectServer200',
-        // make all ssh_key routes unreachable by skipping its generator route
-        'addSshKeyToProject201',
         // make all social_account routes unreachable by its skipping generator route
         'addSocialAccount201',
     ];
@@ -73,7 +71,8 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         // variable tests should run before deleteApplication
         ['deleteVariable204', 'deleteApplication204'],
         ['deleteScript204', 'deleteApplication204'],
-        // unlinkServerFromEnvironment requires deleting the associated network rule, daemon, service, cron job and application
+        // unlinkServerFromEnvironment requires deleting the associated ssh key, network rule, daemon, service, cron job and application
+        ['deleteSshKey204', 'unlinkServerFromEnvironment204'],
         ['deleteNetworkRule204', 'unlinkServerFromEnvironment204'],
         ['deleteDaemon204', 'unlinkServerFromEnvironment204'],
         ['deleteService204', 'unlinkServerFromEnvironment204'],
