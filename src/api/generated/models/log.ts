@@ -21,11 +21,11 @@ import { ServerActionLog } from './server-action-log';
  */
 export interface Log {
     /**
-     * Please use `servers[i].steps[j].output` instead of this deprecated field that will soon be removed
+     * The date and time when the requested log record was last updated
      * @type {string}
      * @memberof Log
      */
-    output: string | null;
+    updated_at?: string | null;
     /**
      * List of logs from multiple servers
      * @type {Array<ServerActionLog>}

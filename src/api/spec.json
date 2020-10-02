@@ -6169,10 +6169,11 @@
       "Log": {
         "type": "object",
         "properties": {
-          "output": {
-            "deprecated": true,
+          "updated_at": {
             "type": "string",
-            "description": "Please use `servers[i].steps[j].output` instead of this deprecated field that will soon be removed",
+            "format": "date-time",
+            "description": "The date and time when the requested log record was last updated",
+            "example": "2019-09-25T13:52:04.000000Z",
             "nullable": true
           },
           "servers": {
@@ -6180,7 +6181,6 @@
           }
         },
         "required": [
-          "output",
           "servers"
         ]
       },
@@ -7007,15 +7007,15 @@
       "ServerBlueprint": {
         "type": "object",
         "properties": {
-          "providers": {
+          "provider": {
             "description": "`self-hosted` if connecting to an existing server instance. May also be a list of cloud providers to which the server spec will be used to launch instances.",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/BlueprintItem"
-            }
+            "enum": [
+              "self-hosted"
+            ],
+            "example": "self-hosted"
           },
-          "databases": {
-            "description": "The list of databases services that must be installed on the server",
+          "services": {
+            "description": "The list of services that must be installed on the server",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/BlueprintItem"
@@ -7029,10 +7029,16 @@
               "$ref": "#/components/schemas/BlueprintItem"
             },
             "nullable": true
+          },
+          "validate_web_public_access": {
+            "description": "If `true`, create a landing page on the server to validate if has public access",
+            "type": "boolean",
+            "example": true
           }
         },
         "required": [
-          "providers"
+          "provider",
+          "validate_web_public_access"
         ]
       },
       "ServerCommands": {

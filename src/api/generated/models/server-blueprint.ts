@@ -22,21 +22,36 @@ import { BlueprintItem } from './blueprint-item';
 export interface ServerBlueprint {
     /**
      * `self-hosted` if connecting to an existing server instance. May also be a list of cloud providers to which the server spec will be used to launch instances.
-     * @type {Array<BlueprintItem>}
+     * @type {string}
      * @memberof ServerBlueprint
      */
-    providers: Array<BlueprintItem>;
+    provider: ServerBlueprintProviderEnum;
     /**
-     * The list of databases services that must be installed on the server
+     * The list of services that must be installed on the server
      * @type {Array<BlueprintItem>}
      * @memberof ServerBlueprint
      */
-    databases?: Array<BlueprintItem> | null;
+    services?: Array<BlueprintItem> | null;
     /**
      * A list of tools that must be made available on the server
      * @type {Array<BlueprintItem>}
      * @memberof ServerBlueprint
      */
     tools?: Array<BlueprintItem> | null;
+    /**
+     * If `true`, create a landing page on the server to validate if has public access
+     * @type {boolean}
+     * @memberof ServerBlueprint
+     */
+    validate_web_public_access: boolean;
 }
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum ServerBlueprintProviderEnum {
+    SelfHosted = 'self-hosted'
+}
+
 
