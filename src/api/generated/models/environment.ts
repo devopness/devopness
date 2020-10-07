@@ -41,6 +41,12 @@ export interface Environment {
      */
     type: EnvironmentType;
     /**
+     * The human readable version of the type
+     * @type {string}
+     * @memberof Environment
+     */
+    type_human_readable?: string;
+    /**
      * 
      * @type {Array<Server>}
      * @memberof Environment

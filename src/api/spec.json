@@ -5869,6 +5869,11 @@
             "$ref": "#/components/schemas/EnvironmentType",
             "description": "The type of the deployment being triggered"
           },
+          "type_human_readable": {
+            "description": "The human readable version of the type",
+            "type": "string",
+            "example": "Staging"
+          },
           "servers": {
             "$ref": "#/components/schemas/Servers"
           },
