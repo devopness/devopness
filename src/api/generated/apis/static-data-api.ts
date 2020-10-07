@@ -17,6 +17,7 @@ import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApplicationOptions } from '../../generated/models';
 import { CronJobOptions } from '../../generated/models';
 import { EnvironmentOptions } from '../../generated/models';
+import { ServerOptions } from '../../generated/models';
 import { ServiceOptions } from '../../generated/models';
 
 /**
@@ -62,6 +63,20 @@ export class StaticDataApiService extends ApiBaseService {
         const requestUrl = '/static/environments' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <EnvironmentOptions>(requestUrl);
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Lists options of the servers
+     */
+    public async listServerOptions(): Promise<ApiResponse<ServerOptions>> {
+        
+        let queryString = '';
+
+        const requestUrl = '/static/servers' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <ServerOptions>(requestUrl);
         return new ApiResponse(response);
     }
 
