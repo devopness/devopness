@@ -1,0 +1,14 @@
+type: object
+properties:
+  id:
+    description: The unique id of the provider
+    type: integer
+    example: 1
+  acronym:
+    description: The name of the provider in acronym form
+    type: string
+    example: self-hosted
+  name:
+    description: The name of the provider
+    type: string
+    example: VPS/Self Hosted

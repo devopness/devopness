@@ -224,6 +224,9 @@
 /static/environments:
   get:
     $ref: ./endpoints/static/paths/environments-list.yaml
+/static/servers:
+  get:
+    $ref: ./endpoints/static/paths/servers-list.yaml
 /static/services:
   get:
     $ref: ./endpoints/static/paths/services-list.yaml

@@ -110,6 +110,10 @@ ProjectUpdate:
   $ref: ./endpoints/projects/schemas/project-update.yaml
 Projects:
   $ref: ./endpoints/projects/schemas/project-list.yaml
+Provider:
+  $ref: ./endpoints/static/schemas/provider.yaml
+Providers:
+  $ref: ./endpoints/static/schemas/provider-list.yaml
 Repositories:
   $ref: ./endpoints/repositories/schemas/repository-list.yaml
 Repository:
@@ -148,6 +152,8 @@ ServerConnect:
   $ref: ./endpoints/servers/schemas/server-connect.yaml
 ServerCreate:
   $ref: ./endpoints/servers/schemas/server-create.yaml
+ServerOptions:
+  $ref: ./endpoints/static/schemas/server-options.yaml
 Servers:
   $ref: ./endpoints/servers/schemas/server-list.yaml
 Service:
