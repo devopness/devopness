@@ -71,6 +71,18 @@ export interface Server {
      */
     environments?: Array<Environment>;
     /**
+     * The name of the server\'s provider.
+     * @type {string}
+     * @memberof Server
+     */
+    provider_name?: string;
+    /**
+     * The human readable version of the provider\'s name
+     * @type {string}
+     * @memberof Server
+     */
+    provider_name_human_readable?: string;
+    /**
      * 
      * @type {User}
      * @memberof Server
