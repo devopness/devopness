@@ -3,10 +3,11 @@ import YAML from 'js-yaml';
 import { OpenAPIV2 } from "openapi-types";
 
 import { Transaction, HTTPMethod as DreddHTTPMethod } from 'hooks';
-import { 
-    FixtureKey, isFixtureKey, 
+import {
+    FixtureKey, isFixtureKey,
     FixtureListKey, isFixtureListKey, FixtureDependency, fixtureDependencies,
 } from './fixtureTypes';
+import Logger from './Logger';
 
 const specCache: { [filename: string]: any } = {};
 
@@ -42,13 +43,11 @@ export default class TransactionSpec {
         return specCache[path];
     }
 
-    constructor(transaction: Transaction, log: LogFunction) {
-        this.log = log;
-
+    constructor(transaction: Transaction, logger: Logger) {
         const spec = this.readSpecFile(transaction.origin.filename) as OpenAPIV2.Document;
 
         const resourceName = transaction.origin.resourceName;
-        const method =  parseHTTPMethod(transaction.request.method);
+        const method = parseHTTPMethod(transaction.request.method);
         if (!method) {
             throw `Unsupported request method '${transaction.request.method}' transaction '${transaction.id}'`
         }
@@ -58,13 +57,30 @@ export default class TransactionSpec {
             throw `Failed to get operation spec for transaction '${transaction.id}'`
         }
         const statusCode = transaction.expected.statusCode;
+
+        this.slug = `${operationSpec.operationId}${statusCode}`;
+        this.log = (msg: string) => logger.log(this.slug, msg);
+
         const responseSpec = operationSpec.responses[statusCode];
 
+        this.log(`:: parsing ${this.slug}`);
         this.requiresAuth = this.operationSpecHasAuthorizationHeaderParam(operationSpec);
         this.method = method;
-        this.slug = `${operationSpec.operationId}${statusCode}`;
         this.output = this.outputFromResponseSpec(responseSpec);
         [this.pathInputs, this.pathInputDependencies, this.bodyInputDependencies] = this.inputsFromOperationSpec(operationSpec);
+
+        // log out inputs and outputs
+        const inputs = [
+            ...this.pathInputs,
+            ...Object.keys(this.pathInputDependencies),
+            ...this.bodyInputDependencies.map(dep => dep.fixture)
+        ];
+        if (inputs.length > 0) {
+            this.log(`[TransactionSpec] inputs: ${JSON.stringify([...new Set(inputs).values()])}`);
+        }
+        if (this.output) {
+            this.log(`[TransactionSpec] output: ${JSON.stringify(this.output)}`);
+        }
     }
 
     operationSpecHasAuthorizationHeaderParam(operationSpec: OpenAPIV2.OperationObject): boolean {
@@ -80,7 +96,7 @@ export default class TransactionSpec {
         return false;
     }
 
-    fixtureKeyFromSchemaRef(schemaRef: OpenAPIV2.ReferenceObject): FixtureKey | FixtureListKey | null {
+    fixtureKeyFromSchemaRef(schemaRef: OpenAPIV2.ReferenceObject, logTag: string): FixtureKey | FixtureListKey | null {
         if (schemaRef.$ref) {
             const schemaRefParts = schemaRef.$ref.split('/');
             let schemaName = schemaRefParts[schemaRefParts.length - 1];
@@ -93,10 +109,10 @@ export default class TransactionSpec {
             if (isFixtureKey(schemaName) || isFixtureListKey(schemaName)) {
                 return schemaName;
             } else if (!this.ignoreSchemas.includes(schemaName)) {
-                this.log(`[fixtureKeyFromSchemaRef] '${schemaName}' is not a valid fixture key`)
+                this.log(`[${logTag}] couldn't find FixtureKey '${schemaName}'`)
             }
         } else {
-            this.log(`[fixtureKeyFromSchemaRef] schema isn't a ref: ${JSON.stringify(schemaRef)}`)
+            this.log(`[${logTag}] schema isn't a ref: ${JSON.stringify(schemaRef)}`)
         }
         return null;
     }
@@ -129,12 +145,12 @@ export default class TransactionSpec {
                             inputs.push(paramName);
                         }
                     } else {
-                        this.log(`[inputsFromOperationSpec] '${paramName}' is not a valid fixture key`);
+                        this.log(`[inputsFromOperationSpec] couldn't find FixtureKey '${paramName}'`);
                     }
                 } else if (paramSpec.in == 'body') {
                     paramSpec = paramSpec as OpenAPIV2.InBodyParameterObject;
                     const schemaRef = paramSpec.schema as OpenAPIV2.ReferenceObject;
-                    const bodyFixture = this.fixtureKeyFromSchemaRef(schemaRef);
+                    const bodyFixture = this.fixtureKeyFromSchemaRef(schemaRef, 'inputsFromOperationSpec');
                     if (bodyFixture) {
                         const deps = fixtureDependencies(bodyFixture);
                         if (deps.length == 0) {
@@ -155,7 +171,7 @@ export default class TransactionSpec {
         // schema['$ref'] = '#/definitions/SchemaName'
         if (responseSpec.schema) {
             const schemaRef = responseSpec.schema as OpenAPIV2.ReferenceObject;
-            return this.fixtureKeyFromSchemaRef(schemaRef);
+            return this.fixtureKeyFromSchemaRef(schemaRef, 'outputFromResponseSpec');
         }
         return null;
     }

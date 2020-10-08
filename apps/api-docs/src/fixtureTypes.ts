@@ -88,12 +88,6 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
         { path: 'application_id', fixture: 'application', field: 'id' }
     ],
     'server': [],
-    'server_create': [
-        // server_create can't have an environemnt.id,
-        // otherwise a failure will happen on linkServerToEnvironment
-        // as the server will be already linked to the environment
-        // { path: 'environments[0].id', fixture: 'environment', field: 'id' }
-    ],
     'service': [],
     'service_create': [
         { path: 'environments[0].id', fixture: 'environment', field: 'id' },
@@ -107,7 +101,6 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
         { path: 'environments[0].servers[0]', fixture: 'server', field: 'id' }
     ],
     'ssl_certificate': [],
-    'ssl_certificate_create': [],
     'user_credentials': [],
     'user_tokens': [],
     'user': [],

@@ -1,4 +1,4 @@
-declare module 'hooks'{
+declare module 'hooks' {
   // from dredd/packages/dredd/lib/general.ts
   export enum HTTPMethod {
     CONNECT = 'CONNECT',
@@ -89,7 +89,7 @@ declare module 'hooks'{
   export type TransactionListHook = (transactions: Transaction[], done: () => void) => void;
 
   // check dredd/packages/dredd/lib/Hooks.js
-  export function before (name: string, hook: TransactionHook): void;
+  export function before(name: string, hook: TransactionHook): void;
   export function beforeValidation(name: string, hook: TransactionHook): void;
   export function after(name: string, hook: TransactionHook): void;
   export function beforeAll(hook: TransactionListHook): void;

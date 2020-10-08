@@ -1,12 +1,3 @@
-/**
- * @todo: assume an empty database before running this (i.e always run
- * `/db-reset` before running this script) ?
- *
- * @todo: implement basic `sign-up/login/logout` flow
- *
- * @todo: we can increment it by after sign-up and login create a project and a server inside a project,
- * assuming a default project environment for the server
- */
 import hooks, { Transaction, TransactionHook } from 'hooks';
 import { v1, v4 } from 'uuid';
 
@@ -15,14 +6,16 @@ import { UserCredentials, UserTokens, isFixtureKey, Identifiable } from './fixtu
 import FixtureStore from './FixtureStore';
 import TransactionUtils from './TransactionUtils';
 import TransactionSpec from './TransactionSpec';
-import TransactionGraph, { TransactionAdjacencyList, FixtureTransactionAdjacencyList } from './TransactionGraph';
+import TransactionGraph, { TransactionGraphEdge, FixtureTransactionAdjacencyList } from './TransactionGraph';
+import Logger from './Logger';
+import './extendTransactionWithSpec';
 
 // transaction names can be obtained by running `npx dredd --names`
 const transactionSlugToName: { [id: string]: string } = {};
-const transactionNameToSpec: { [id: string]: TransactionSpec } = {};
 
 const fixtures = new FixtureStore();
-const utils = new TransactionUtils(fixtures, hooks.log);
+const logger = new Logger(hooks.log);
+const utils = new TransactionUtils(fixtures, logger);
 
 // all setup code for the tests run inside this beforeAll hook
 hooks.beforeAll((transactions: Transaction[], done: () => void) => {
@@ -32,6 +25,8 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         'connectServer200',
         // make all social_account routes unreachable by its skipping generator route
         'addSocialAccount201',
+        // SSL certificates can only be added to applications that have a successful deployment
+        'addSslCertificateToApplication201',
     ];
 
     // transactions listed here are skipped with a `before` hook
@@ -67,7 +62,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     };
 
     // initial transaction graph definitions
-    const initialAdjacencyList: TransactionAdjacencyList = [
+    const initialAdjacencyList = new Set<TransactionGraphEdge>([
         // variable tests should run before deleteApplication
         ['deleteVariable204', 'deleteApplication204'],
         ['deleteScript204', 'deleteApplication204'],
@@ -82,18 +77,18 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         ['unlinkServerFromEnvironment204', 'deleteEnvironment204'],
         // actions are fetched from applications, so getApplication200 should run after deployApplication201
         ['deployApplication201', 'getApplication200']
-    ]
+    ]);
 
-    // extract transaction specs and other metadata; apply
+    // extract specs and attach them to transactions
     const transactionSpecs: TransactionSpec[] = [];
     transactions.forEach((tx: Transaction) => {
-        const spec = new TransactionSpec(tx, hooks.log);
+        tx.spec = new TransactionSpec(tx, logger);
+        hooks.log(``);
 
         // apply pre-skiplist
-        if (!preSkiplist.includes(spec.slug)) {
-            transactionSlugToName[spec.slug] = tx.name;
-            transactionNameToSpec[tx.name] = spec;
-            transactionSpecs.push(spec);
+        if (!preSkiplist.includes(tx.spec.slug)) {
+            transactionSlugToName[tx.spec.slug] = tx.name;
+            transactionSpecs.push(tx.spec);
         }
     });
 
@@ -118,34 +113,26 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         })
     })
 
-    // uncomment the snippet below to display the planned transaction order
-    /*
-    for (const i in executionPlan) {
-        const slug = executionPlan[i];
-        const [inputs, outputs] = graph.edges(slug);
-        hooks.log(`${i}  \t  ${slug}:  (${inputs.join(', ')}) -> (${outputs.join(', ')})`);
-    }
-    */
-
     // apply execution plan
     utils.applyExecutionPlan(transactions, executionPlan.map(k => transactionSlugToName[k]));
 
     // attach graph inferred hooks
     transactions.forEach((transaction: Transaction, index: number) => {
-        const transactionSpec = transactionNameToSpec[transaction.name];
-        if (transactionSpec) {
+        if (transaction.spec) {
             hooks.before(transaction.name, (_: Transaction) => {
-                hooks.log(``)
-                hooks.log(`>> ${index} :: ${transactionSpec.slug}`)
+                if (!failedTransaction) {
+                    hooks.log(``);
+                    const action = transaction.skip ? 'skipping' : 'running';
+                    logger.log(transaction.spec.slug, `${index} :: ${action} ${transaction.spec.slug}`);
+                }
             });
 
-            // TODO: test on (`/environments/${environment_id}/servers/${server_id}/link`)
-            hooks.before(transaction.name, utils.writeFixtureIdsInTransactionPath(transactionSpec.pathInputs, transactionSpec.pathInputDependencies));
-            hooks.before(transaction.name, utils.applyTransactionRequestBodyFixtureDependencies(transactionSpec.bodyInputDependencies));
-            if (transactionSpec.output && isFixtureKey(transactionSpec.output)) {
-                hooks.after(transaction.name, utils.storeTransactionResult(transactionSpec.output));
+            hooks.before(transaction.name, utils.writeFixtureIdsInTransactionPath());
+            hooks.before(transaction.name, utils.applyTransactionRequestBodyFixtureDependencies());
+            if (transaction.spec.output && isFixtureKey(transaction.spec.output)) {
+                hooks.after(transaction.name, utils.storeTransactionResult(transaction.spec.output));
             }
-            if (transactionSpec.slug.includes('Project')) {
+            if (transaction.spec.slug.includes('Project')) {
                 const removeLogoImage = (body: any) => { delete body['logo_image']; }
                 hooks.before(transaction.name, utils.rewriteTransactionRequestBody(removeLogoImage));
             }
@@ -174,13 +161,11 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
 
     // append additional details about failing transaction to logs
     hooks.afterAll((transactions: Transaction[], done: () => void) => {
-        if (failedTransaction) {
-            const transactionSpec = transactionNameToSpec[failedTransaction.name];
-            if (transactionSpec) {
-                const index = transactions.indexOf(failedTransaction)
-                hooks.log(``)
-                hooks.log(`:: failed on >> ${index} :: ${transactionSpec.slug}`)
-            }
+        if (failedTransaction && failedTransaction.spec) {
+            hooks.log(``);
+            hooks.log(`:: displaying hook logs of failed transaction...`);
+            logger.reLogEntriesWithKey(failedTransaction.spec.slug);
+            hooks.log(``);
         }
         done();
     })
@@ -255,18 +240,23 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
 
     //// applications
     // delete the leftover default application using manual API calls
+    const wait = (secs: number) => {
+        const waitTill = new Date(new Date().getTime() + secs * 1000);
+        while (waitTill > new Date()) { }
+    }
     after('deleteApplication204', (transaction: Transaction) => {
         const authToken = fixtures.get<UserTokens>('user_tokens');
         const project = fixtures.get<Identifiable>('project');
         if (authToken && authToken.access_token && project) {
             const host = transaction.host;
             const api = new DevopnessAPI(host, authToken.access_token, hooks.log);
-            const appIDs = api.listProjectApplications(project.id);
-            if (appIDs.length > 0) {
-                const success = api.deleteApplication(appIDs[0]);
+            const appIds = api.listProjectApplications(project.id);
+            for (const appId of appIds) {
+                const success = api.deleteApplication(appId);
                 if (!success) {
                     // TODO: treat errors here
                 }
+                wait(0.2);
             }
         }
     })

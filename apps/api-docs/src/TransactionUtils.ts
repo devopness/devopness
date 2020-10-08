@@ -3,17 +3,18 @@ import { get, set } from 'lodash';
 
 import { FixtureKey, Fixture, Identifiable, UserTokens, FixtureDependency } from './fixtureTypes';
 import FixtureStore from './FixtureStore';
-
-type LogFunction = (...any: any[]) => void;
+import Logger from './Logger';
+import TransactionSpec from './TransactionSpec';
+import './extendTransactionWithSpec';
 
 // encapsulate transaction util functions with keeps hook execution context (fixture store, logging function)
 export default class TransactionUtils {
     fixtureStore: FixtureStore;
-    log: LogFunction;
+    logger: Logger;
 
-    constructor(store: FixtureStore, log: LogFunction) {
+    constructor(store: FixtureStore, logger: Logger) {
         this.fixtureStore = store;
-        this.log = log;
+        this.logger = logger;
     }
 
     // define which transactions will be ran and in which order
@@ -42,33 +43,35 @@ export default class TransactionUtils {
     }
 
     // replaces `${fixtureKey}_id` with ${fixture.id} in transaction request path
-    writeFixtureIdsInTransactionPath<T extends Identifiable>(keys: FixtureKey[], dependencies: { [id: string]: FixtureDependency[] }): TransactionHook {
+    writeFixtureIdsInTransactionPath(): TransactionHook {
         return (transaction: Transaction) => {
             if (transaction.skip) return;
-            if (keys.length == 0 && Object.keys(dependencies).length == 0) return;
+
+            const { slug, pathInputs, pathInputDependencies } = transaction.spec;
+            if (pathInputs.length == 0 && Object.keys(pathInputDependencies).length == 0) return;
 
             let path = transaction.origin.resourceName;
             const tag = `[writeFixtureIdsInTransactionPath]`;
-            for (const key of keys) {
-                const fixture = this.fixtureStore.get<T>(key);
+            for (const key of pathInputs) {
+                const fixture = this.fixtureStore.get<Identifiable>(key);
                 if (fixture) {
                     path = path.replace(`{${key}_id}`, fixture.id);
                 } else {
-                    this.log(`${tag} transaction '${transaction.id}' requires '${key}' fixture`)
+                    this.logger.log(slug, `${tag} transaction '${transaction.id}' requires '${key}' fixture`);
                     transaction.fail = true;
                     break;
                 }
             }
-            for (const key in dependencies) {
+            for (const key in pathInputDependencies) {
                 // if the necessary fixture is already resolved, use the stored version
-                const fixture = this.fixtureStore.get<T>(key);
+                const fixture = this.fixtureStore.get<Identifiable>(key);
                 if (fixture) {
                     path = path.replace(`{${key}_id}`, fixture.id);
                     continue;
                 }
 
                 // otherwise compose the fixture by applying the dependencies
-                const deps = dependencies[key];
+                const deps = pathInputDependencies[key];
                 const depId = deps.find((dep) => dep.path === 'id');
                 if (depId) {
                     const fixture = this.fixtureStore.get(depId.fixture);
@@ -77,18 +80,20 @@ export default class TransactionUtils {
                         if (value) {
                             path = path.replace(`{${key}_id}`, value);
                         } else {
-                            this.log(`${tag} transaction '${transaction.id}' requires ${depId.fixture}.${depId.field} to exist`)
+                            this.logger.log(slug, `${tag} transaction '${transaction.id}' requires ${depId.fixture}.${depId.field} to exist`);
                             transaction.fail = true;
                             break;
                         }
                     } else {
-                        this.log(`${tag} transaction '${transaction.id}' requires '${depId.fixture}' fixture`)
+                        this.logger.log(slug, `${tag} transaction '${transaction.id}' requires '${depId.fixture}' fixture`);
                         transaction.fail = true;
                         break;
                     }
                 }
             }
-            this.log(`${tag} '${transaction.fullPath}' => '${path}'`)
+            if (!transaction.fail) {
+                this.logger.log(slug, `${tag} '${transaction.fullPath}' => '${path}'`);
+            }
             transaction.fullPath = path;
 
             // dredd uses `transaction.id` in its logging
@@ -106,10 +111,10 @@ export default class TransactionUtils {
                 const data = JSON.parse(transaction.real.body);
                 const typed = (data as T);
                 if (typed) {
-                    this.log(`${tag} => '${key}' (id=${data.id})`)
+                    this.logger.log(transaction.spec.slug, `${tag} => '${key}' (id=${data.id})`)
                     this.fixtureStore.put(key, data);
                 } else {
-                    this.log(`${tag} couldn't save fixture '${key}', wrong datatype: '${JSON.stringify(data)}'`);
+                    this.logger.log(transaction.spec.slug, `${tag} couldn't save fixture '${key}', wrong datatype: '${JSON.stringify(data)}'`);
                     transaction.fail = true;
                 }
             };
@@ -126,7 +131,8 @@ export default class TransactionUtils {
                     if (authToken && authToken.access_token) {
                         transaction.request.headers.Authorization = 'Bearer ' + authToken.access_token;
                     } else {
-                        this.log(`${transaction.id} [setTransactionRequestAuthHeaderWithFixture] requires 'authToken' fixture;`)
+                        this.logger.log(transaction.spec.slug,
+                            `${transaction.id} [setTransactionRequestAuthHeaderWithFixture] requires 'authToken' fixture`);
                         transaction.fail = true;
                     }
                 }
@@ -142,7 +148,7 @@ export default class TransactionUtils {
             if (fixture) {
                 transaction.request.body = JSON.stringify(fixture);
             } else {
-                this.log(`${transaction.id} [setTransactionRequestBodyToFixture] missing '${key}' fixture`);
+                this.logger.log(transaction.spec.slug, `${transaction.id} [setTransactionRequestBodyToFixture] missing '${key}' fixture`);
                 transaction.fail = true;
             }
         }
@@ -160,28 +166,30 @@ export default class TransactionUtils {
         }
     }
 
-    applyTransactionRequestBodyFixtureDependencies(dependencies: FixtureDependency[]): TransactionHook {
+    applyTransactionRequestBodyFixtureDependencies(): TransactionHook {
         return (transaction: Transaction) => {
             if (transaction.skip) return;
-            if (dependencies.length == 0) return;
+
+            const { slug, bodyInputDependencies } = transaction.spec;
+            if (bodyInputDependencies.length == 0) return;
 
             const tag = `[applyTransactionRequestBodyFixtureDependencies]`;
 
             if (transaction.request.body) {
                 const body = JSON.parse(transaction.request.body);
-                for (const dep of dependencies) {
+                for (const dep of bodyInputDependencies) {
                     const fixture: any = this.fixtureStore.get(dep.fixture);
                     if (fixture) {
                         const depData = fixture[dep.field];
                         if (depData) {
-                            this.log(`${tag} body.${dep.path}=${JSON.stringify(depData)}`)
+                            this.logger.log(slug, `${tag} body.${dep.path}=${JSON.stringify(depData)}`);
                             set(body, dep.path, depData);
                         } else {
-                            this.log(`${tag} fixture '${dep.fixture}' has no '${dep.field}' field`)
+                            this.logger.log(slug, `${tag} fixture '${dep.fixture}' has no '${dep.field}' field`);
                             transaction.fail = true;
                         }
                     } else {
-                        this.log(`${tag} missing '${dep.fixture}' fixture`)
+                        this.logger.log(slug, `${tag} missing '${dep.fixture}' fixture`);
                         transaction.fail = true;
                     }
                 }
@@ -192,9 +200,9 @@ export default class TransactionUtils {
 
 
     // logs a transaction
-    transactionLogger(): TransactionHook {
+    transactionLogger({ slug }: TransactionSpec): TransactionHook {
         return (transaction: Transaction) => {
-            this.log(JSON.stringify(transaction, null, 2));
+            this.logger.log(slug, JSON.stringify(transaction, null, 2));
         }
     }
 }

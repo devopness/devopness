@@ -24,21 +24,22 @@ export interface FixtureTransactionAdjacencyList {
     // maps fixtures to their terminal transactions
     fixtureTerminalTransactions: FixtureToTransactionListMap
 };
-export type TransactionAdjacencyList = [TransactionNode, TransactionNode][];
+export type TransactionGraphEdge = [TransactionNode, TransactionNode];
 
 type LogFunction = (...any: any[]) => void;
 
 // TransactionGraph represents a Directed Acyclical Graph (DAG) of transactions
 // and their dependencies through fixtures
 export default class TransactionGraph {
-    transactionAdjacencyList: TransactionAdjacencyList = [];
+    transactionAdjacencyList = new Set<TransactionGraphEdge>();
     log: LogFunction;
 
     constructor(transactionSpecs: TransactionSpec[],
         initialFixtureTransactionGraph: FixtureTransactionAdjacencyList,
-        initialTransactionAdjacencyList: TransactionAdjacencyList,
+        initialTransactionAdjacencyList: Set<TransactionGraphEdge>,
         log: LogFunction) {
         this.log = log;
+        this.log(`:: building transaction graph...`)
 
         // TODO: extract these from here
         // user_credentials and user_tokens are handled differently than other fixtures, so add them manually to the graph
@@ -46,10 +47,12 @@ export default class TransactionGraph {
 
         this.transactionAdjacencyList = initialTransactionAdjacencyList;
         this.populateAdjacencyList(fixtureTransactionGraph);
+
+        this.log(`got ${this.transactionAdjacencyList.size} edges`)
     }
 
     addEdge(from: TransactionNode, to: TransactionNode) {
-        this.transactionAdjacencyList.push([from, to]);
+        this.transactionAdjacencyList.add([from, to]);
     }
 
     // get hidden nodes from fixtures in transaction specs, edges are transactions themselves
@@ -66,7 +69,7 @@ export default class TransactionGraph {
                     fixtureTransactionGraphPush(fixtureDeleteTransactions, fixtureKeyElement(inputDep), txSpec.slug);
                 }
             } else {
-                if (txSpec.output) {                    
+                if (txSpec.output) {
                     // list fixtures outputs should be considered only to be inputs, as they don't _generate_ fixtures
                     if (isFixtureListKey(txSpec.output)) {
                         fixtureTransactionGraphPush(fixtureTransactionInputs, fixtureKeyElement(txSpec.output), txSpec.slug);
@@ -80,12 +83,12 @@ export default class TransactionGraph {
                     fixtureTransactionGraphPush(fixtureTransactionInputs, input, txSpec.slug);
                 }
                 if (txSpec.bodyInputDependencies) {
-                    txSpec.bodyInputDependencies.map(d => d.fixture).forEach((input: FixtureKey) => 
+                    txSpec.bodyInputDependencies.map(d => d.fixture).forEach((input: FixtureKey) =>
                         fixtureTransactionGraphPush(fixtureTransactionInputs, input, txSpec.slug));
                 }
                 if (txSpec.pathInputDependencies) {
                     for (const key in txSpec.pathInputDependencies) {
-                        txSpec.pathInputDependencies[key].map(d => d.fixture).forEach((input: FixtureKey) => 
+                        txSpec.pathInputDependencies[key].map(d => d.fixture).forEach((input: FixtureKey) =>
                             fixtureTransactionGraphPush(fixtureTransactionInputs, input, txSpec.slug));
                     }
                 }
@@ -168,7 +171,7 @@ export default class TransactionGraph {
     }
 
     topologicalSort(): string[] {
-        return toposort(this.transactionAdjacencyList);
+        return toposort([...this.transactionAdjacencyList.values()]);
     }
 
     edges(node: TransactionNode): [TransactionNode[], TransactionNode[]] {
