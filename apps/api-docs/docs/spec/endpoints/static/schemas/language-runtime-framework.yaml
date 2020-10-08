@@ -72,3 +72,7 @@ properties:
         description: Indicates if at deployment time we should execute package manager command to install dependencies used in production mode
         type: boolean
         example: true
+required:
+  - name
+  - name_human_readable
+  - defaults

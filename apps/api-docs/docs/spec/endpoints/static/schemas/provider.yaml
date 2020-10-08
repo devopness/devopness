@@ -12,3 +12,7 @@ properties:
     type: string
     description: Text describing what is the provider
     example: Personal or rented server
+required:
+  - value
+  - human_readable
+  - hint

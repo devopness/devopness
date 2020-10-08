@@ -3,3 +3,5 @@ properties:
   language_runtimes:
     description: Supported language runtimes and respective frameworks
     $ref: '#/components/schemas/LanguageRuntimes'
+required:
+  - language_runtimes

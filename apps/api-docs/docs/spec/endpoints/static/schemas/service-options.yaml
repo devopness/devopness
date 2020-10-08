@@ -2,3 +2,5 @@ type: object
 properties:
   types:
     $ref: '#/components/schemas/ServiceTypes'
+required:
+  - types

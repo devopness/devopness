@@ -12,3 +12,7 @@ properties:
     type: string
     description: Text describing the environment purpose
     example: Environment used for dev testing
+required:
+  - value
+  - human_readable
+  - hint

@@ -3,3 +3,5 @@ properties:
   types:
     description: The supported environments types
     $ref: '#/components/schemas/EnvironmentOptionTypes'
+required:
+  - types
