@@ -24,18 +24,18 @@ export interface LanguageRuntimeFramework {
      * @type {string}
      * @memberof LanguageRuntimeFramework
      */
-    name?: string;
+    name: string;
     /**
      * The formatted name to be displayed in user interfaces
      * @type {string}
      * @memberof LanguageRuntimeFramework
      */
-    displayable_name?: string;
+    name_human_readable: string;
     /**
      * Default values that apply to apps created in devopness using this framework
      * @type {object}
      * @memberof LanguageRuntimeFramework
      */
-    defaults?: object;
+    defaults: object;
 }
 

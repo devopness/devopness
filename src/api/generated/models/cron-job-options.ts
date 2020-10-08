@@ -25,6 +25,6 @@ export interface CronJobOptions {
      * @type {Array<CronJobFrequency>}
      * @memberof CronJobOptions
      */
-    frequencies?: Array<CronJobFrequency>;
+    frequencies: Array<CronJobFrequency>;
 }
 

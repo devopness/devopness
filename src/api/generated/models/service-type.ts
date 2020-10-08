@@ -26,24 +26,24 @@ export interface ServiceType {
      * @type {ServiceName}
      * @memberof ServiceType
      */
-    value?: ServiceName;
+    value: ServiceName;
     /**
      * Displayable version of the service name
      * @type {string}
      * @memberof ServiceType
      */
-    displayable?: string;
+    human_readable: string;
     /**
      * Text describing the service
      * @type {string}
      * @memberof ServiceType
      */
-    hint?: string;
+    hint: string;
     /**
      * List of service versions supported by Devopness
      * @type {Array<ServiceTypeSupportedVersions>}
      * @memberof ServiceType
      */
-    supported_versions?: Array<ServiceTypeSupportedVersions>;
+    supported_versions: Array<ServiceTypeSupportedVersions>;
 }
 
