@@ -5264,9 +5264,9 @@
             "example": "`index.html`, `index.php`, `server.php`, `default.htm`, `node server.js`, `yarn start`, `npm run production`, `docker run -d -P --name my_container_name my_image_name`, `php artisan serve –-host=192.168.2.20 --port=8000`"
           },
           "listening_address": {
-            "description": "Required for CGI|FastCGI|SCGI|WSGI based applications or `docker` containerized applications. It tells `devopness` the private address at which the application listens to external calls. The address can be an IP:PORT, HOSTNAME:PORT or unix:PATH",
+            "description": "Required for CGI|FastCGI|SCGI|WSGI based applications or `docker` containerized applications. It tells `devopness` the private address at which the application listens to external calls. The address has `http` or `https` protocol, an domain name or IP address, optional port and optional path. Or you can specify a UNIX-socket using `unix:` prefix after protocol.",
             "type": "string",
-            "example": "`unix:/tmp/backend3`, `http://127.0.0.1:8000`, `127.0.0.1:3000`, `http://localhost`"
+            "example": "`http://unix:/tmp/backend3`, `http://unix:/tmp/backend3:/my/path`, `http://127.0.0.1:8000`, `http://127.0.0.1:8000/my/path`, `https://localhost`"
           },
           "build_command": {
             "description": "The optional command that should be executed once during deployment to build the source code and get the application in a ready state.",
@@ -5399,9 +5399,9 @@
             "example": "`docker run -d -P --name my_container_name my_image_name`"
           },
           "listening_address": {
-            "description": "Required for CGI|FastCGI|SCGI|WSGI based applications or `docker` containerized applications. It tells `devopness` the private address at which the application listens to external calls. The address can be an IP:PORT, HOSTNAME:PORT or unix:PATH",
+            "description": "Required for CGI|FastCGI|SCGI|WSGI based applications or `docker` containerized applications. It tells `devopness` the private address at which the application listens to external calls. The address has `http` or `https` protocol, an domain name or IP address, optional port and optional path. Or you can specify a UNIX-socket using `unix:` prefix after protocol.",
             "type": "string",
-            "example": "`unix:/tmp/backend3`, `http://127.0.0.1:8000`, `127.0.0.1:3000`, `http://localhost`"
+            "example": "`http://unix:/tmp/backend3`, `http://unix:/tmp/backend3:/my/path`, `http://127.0.0.1:8000`, `http://127.0.0.1:8000/my/path`, `https://localhost`"
           },
           "deployments_keep": {
             "type": "integer",
