@@ -25,6 +25,6 @@ export interface ApplicationOptions {
      * @type {Array<LanguageRuntime>}
      * @memberof ApplicationOptions
      */
-    language_runtimes?: Array<LanguageRuntime>;
+    language_runtimes: Array<LanguageRuntime>;
 }
 

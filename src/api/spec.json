@@ -5321,7 +5321,10 @@
             "description": "Supported language runtimes and respective frameworks",
             "$ref": "#/components/schemas/LanguageRuntimes"
           }
-        }
+        },
+        "required": [
+          "language_runtimes"
+        ]
       },
       "ApplicationUpdate": {
         "type": "object",
@@ -5637,7 +5640,7 @@
             "description": "Frequency pattern to trigger the cronjob",
             "example": "0 0 1 * *"
           },
-          "displayable": {
+          "human_readable": {
             "$ref": "#/components/schemas/CronJobPattern"
           },
           "hint": {
@@ -5645,7 +5648,12 @@
             "description": "Text hint describing the frequency",
             "example": "Run once a month at midnight on the first day of month"
           }
-        }
+        },
+        "required": [
+          "value",
+          "human_readable",
+          "hint"
+        ]
       },
       "CronJobFrequencies": {
         "type": "array",
@@ -5660,7 +5668,10 @@
             "description": "The supported time frequencies to trigger a cronjob",
             "$ref": "#/components/schemas/CronJobFrequencies"
           }
-        }
+        },
+        "required": [
+          "frequencies"
+        ]
       },
       "CronJobPattern": {
         "type": "string",
@@ -5955,7 +5966,10 @@
             "description": "The supported environments types",
             "$ref": "#/components/schemas/EnvironmentOptionTypes"
           }
-        }
+        },
+        "required": [
+          "types"
+        ]
       },
       "EnvironmentOptionTypes": {
         "type": "array",
@@ -5971,7 +5985,7 @@
             "description": "The internal name of the environment",
             "example": "development"
           },
-          "displayable": {
+          "human_readable": {
             "type": "string",
             "description": "The formatted name to be displayed in user interfaces",
             "example": "Development"
@@ -5981,7 +5995,12 @@
             "description": "Text describing the environment purpose",
             "example": "Environment used for dev testing"
           }
-        }
+        },
+        "required": [
+          "value",
+          "human_readable",
+          "hint"
+        ]
       },
       "EnvironmentUpdate": {
         "type": "object",
@@ -6081,7 +6100,7 @@
             "description": "The internal name/code of the language runtime",
             "example": "nodejs"
           },
-          "displayable_name": {
+          "name_human_readable": {
             "type": "string",
             "description": "The formatted name to be displayed in user interfaces",
             "example": "Node.js"
@@ -6105,7 +6124,13 @@
               "$ref": "#/components/schemas/LanguageRuntimeFramework"
             }
           }
-        }
+        },
+        "required": [
+          "name",
+          "name_human_readable",
+          "engine_versions",
+          "frameworks"
+        ]
       },
       "LanguageRuntimeFramework": {
         "type": "object",
@@ -6115,7 +6140,7 @@
             "description": "The internal name/code of the language runtime",
             "example": "nodejs"
           },
-          "displayable_name": {
+          "name_human_readable": {
             "type": "string",
             "description": "The formatted name to be displayed in user interfaces",
             "example": "Node.js"
@@ -6195,7 +6220,12 @@
               }
             }
           }
-        }
+        },
+        "required": [
+          "name",
+          "name_human_readable",
+          "defaults"
+        ]
       },
       "LanguageRuntimes": {
         "type": "array",
@@ -6621,22 +6651,27 @@
       "Provider": {
         "type": "object",
         "properties": {
-          "id": {
-            "description": "The unique id of the provider",
-            "type": "integer",
-            "example": 1
-          },
-          "acronym": {
-            "description": "The name of the provider in acronym form",
+          "value": {
+            "description": "The name of the provider",
             "type": "string",
             "example": "self-hosted"
           },
-          "name": {
-            "description": "The name of the provider",
+          "human_readable": {
+            "description": "The formatted name of the provider",
             "type": "string",
             "example": "VPS/Self Hosted"
+          },
+          "hint": {
+            "type": "string",
+            "description": "Text describing what is the provider",
+            "example": "Personal or rented server"
           }
-        }
+        },
+        "required": [
+          "value",
+          "human_readable",
+          "hint"
+        ]
       },
       "Providers": {
         "type": "array",
@@ -7182,7 +7217,10 @@
           "providers": {
             "$ref": "#/components/schemas/Providers"
           }
-        }
+        },
+        "required": [
+          "providers"
+        ]
       },
       "Servers": {
         "type": "array",
@@ -7353,7 +7391,10 @@
           "types": {
             "$ref": "#/components/schemas/ServiceTypes"
           }
-        }
+        },
+        "required": [
+          "types"
+        ]
       },
       "ServiceType": {
         "type": "object",
@@ -7361,7 +7402,7 @@
           "value": {
             "$ref": "#/components/schemas/ServiceName"
           },
-          "displayable": {
+          "human_readable": {
             "type": "string",
             "description": "Displayable version of the service name",
             "example": "MySQL"
@@ -7385,7 +7426,13 @@
               }
             }
           }
-        }
+        },
+        "required": [
+          "value",
+          "human_readable",
+          "hint",
+          "supported_versions"
+        ]
       },
       "ServiceTypes": {
         "type": "array",

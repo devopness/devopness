@@ -20,22 +20,22 @@
  */
 export interface Provider {
     /**
-     * The unique id of the provider
-     * @type {number}
-     * @memberof Provider
-     */
-    id?: number;
-    /**
-     * The name of the provider in acronym form
-     * @type {string}
-     * @memberof Provider
-     */
-    acronym?: string;
-    /**
      * The name of the provider
      * @type {string}
      * @memberof Provider
      */
-    name?: string;
+    value: string;
+    /**
+     * The formatted name of the provider
+     * @type {string}
+     * @memberof Provider
+     */
+    human_readable: string;
+    /**
+     * Text describing what is the provider
+     * @type {string}
+     * @memberof Provider
+     */
+    hint: string;
 }
 

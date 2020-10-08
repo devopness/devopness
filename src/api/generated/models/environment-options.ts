@@ -25,6 +25,6 @@ export interface EnvironmentOptions {
      * @type {Array<EnvironmentOptionType>}
      * @memberof EnvironmentOptions
      */
-    types?: Array<EnvironmentOptionType>;
+    types: Array<EnvironmentOptionType>;
 }
 

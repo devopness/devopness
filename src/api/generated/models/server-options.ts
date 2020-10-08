@@ -25,6 +25,6 @@ export interface ServerOptions {
      * @type {Array<Provider>}
      * @memberof ServerOptions
      */
-    providers?: Array<Provider>;
+    providers: Array<Provider>;
 }
 

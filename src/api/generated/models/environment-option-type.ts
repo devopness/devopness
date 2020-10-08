@@ -24,18 +24,18 @@ export interface EnvironmentOptionType {
      * @type {string}
      * @memberof EnvironmentOptionType
      */
-    value?: string;
+    value: string;
     /**
      * The formatted name to be displayed in user interfaces
      * @type {string}
      * @memberof EnvironmentOptionType
      */
-    displayable?: string;
+    human_readable: string;
     /**
      * Text describing the environment purpose
      * @type {string}
      * @memberof EnvironmentOptionType
      */
-    hint?: string;
+    hint: string;
 }
 

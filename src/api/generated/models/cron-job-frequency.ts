@@ -25,18 +25,18 @@ export interface CronJobFrequency {
      * @type {string}
      * @memberof CronJobFrequency
      */
-    value?: string;
+    value: string;
     /**
      * 
      * @type {CronJobPattern}
      * @memberof CronJobFrequency
      */
-    displayable?: CronJobPattern;
+    human_readable: CronJobPattern;
     /**
      * Text hint describing the frequency
      * @type {string}
      * @memberof CronJobFrequency
      */
-    hint?: string;
+    hint: string;
 }
 
