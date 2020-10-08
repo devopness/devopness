@@ -4,7 +4,7 @@ properties:
     type: string
     description: The internal name of the environment
     example: development
-  displayable:
+  human_readable:
     type: string
     description: The formatted name to be displayed in user interfaces
     example: Development

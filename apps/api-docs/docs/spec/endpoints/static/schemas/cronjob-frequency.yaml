@@ -4,7 +4,7 @@ properties:
     type: string
     description: Frequency pattern to trigger the cronjob
     example: '0 0 1 * *'
-  displayable:
+  human_readable:
     $ref: '#/components/schemas/CronJobPattern'
   hint:
     type: string

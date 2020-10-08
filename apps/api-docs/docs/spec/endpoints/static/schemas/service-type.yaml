@@ -2,7 +2,7 @@ type: object
 properties:
   value:
     $ref: '#/components/schemas/ServiceName'
-  displayable:
+  human_readable:
     type: string
     description: Displayable version of the service name
     example: MySQL
