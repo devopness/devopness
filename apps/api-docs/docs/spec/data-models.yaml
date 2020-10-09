@@ -20,8 +20,6 @@ ApplicationType:
   $ref: ./shared/schemas/application-type.yaml
 Applications:
   $ref: ./endpoints/applications/schemas/application-list.yaml
-BlueprintItem:
-  $ref: ./shared/schemas/blueprint-item.yaml
 Commit:
   $ref: ./shared/schemas/commit.yaml
 CronJob:
