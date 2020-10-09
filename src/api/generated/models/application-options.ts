@@ -12,6 +12,7 @@
  */
 
 
+import { DeploymentDefaultStep } from './deployment-default-step';
 import { LanguageRuntime } from './language-runtime';
 
 /**
@@ -20,6 +21,12 @@ import { LanguageRuntime } from './language-runtime';
  * @interface ApplicationOptions
  */
 export interface ApplicationOptions {
+    /**
+     * 
+     * @type {Array<DeploymentDefaultStep>}
+     * @memberof ApplicationOptions
+     */
+    deployment_steps: Array<DeploymentDefaultStep>;
     /**
      * 
      * @type {Array<LanguageRuntime>}

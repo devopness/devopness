@@ -5095,9 +5095,9 @@
             "example": "`index.html`, `index.php`, `server.php`, `default.htm`, `node server.js`, `yarn start`, `npm run production`, `docker run -d -P --name my_container_name my_image_name`, `php artisan serve –-host=192.168.2.20 --port=8000`"
           },
           "listening_address": {
-            "description": "Required for CGI|FastCGI|SCGI|WSGI based applications or `docker` containerized applications. It tells `devopness` the private address at which the application listens to external calls. The address can be an IP:PORT, HOSTNAME:PORT or unix:PATH",
+            "description": "Required for CGI|FastCGI|SCGI|WSGI based applications or `docker` containerized applications. It tells `devopness` the private address at which the application listens to external calls. The address has `http` or `https` protocol, an domain name or IP address, optional port and optional path. Or you can specify a UNIX-socket using `unix:` prefix after protocol.",
             "type": "string",
-            "example": "`unix:/tmp/backend3`, `http://127.0.0.1:8000`, `127.0.0.1:3000`, `http://localhost`",
+            "example": "http://unix:/tmp/backend3:/my/path",
             "nullable": true
           },
           "deployments_keep": {
@@ -5266,7 +5266,7 @@
           "listening_address": {
             "description": "Required for CGI|FastCGI|SCGI|WSGI based applications or `docker` containerized applications. It tells `devopness` the private address at which the application listens to external calls. The address has `http` or `https` protocol, an domain name or IP address, optional port and optional path. Or you can specify a UNIX-socket using `unix:` prefix after protocol.",
             "type": "string",
-            "example": "`http://unix:/tmp/backend3`, `http://unix:/tmp/backend3:/my/path`, `http://127.0.0.1:8000`, `http://127.0.0.1:8000/my/path`, `https://localhost`"
+            "example": "http://unix:/tmp/backend3:/my/path"
           },
           "build_command": {
             "description": "The optional command that should be executed once during deployment to build the source code and get the application in a ready state.",
@@ -5317,12 +5317,17 @@
       "ApplicationOptions": {
         "type": "object",
         "properties": {
+          "deployment_steps": {
+            "description": "Default deployment steps that run when a deployment is triggered",
+            "$ref": "#/components/schemas/DeploymentDefaultSteps"
+          },
           "language_runtimes": {
             "description": "Supported language runtimes and respective frameworks",
             "$ref": "#/components/schemas/LanguageRuntimes"
           }
         },
         "required": [
+          "deployment_steps",
           "language_runtimes"
         ]
       },
@@ -5401,7 +5406,7 @@
           "listening_address": {
             "description": "Required for CGI|FastCGI|SCGI|WSGI based applications or `docker` containerized applications. It tells `devopness` the private address at which the application listens to external calls. The address has `http` or `https` protocol, an domain name or IP address, optional port and optional path. Or you can specify a UNIX-socket using `unix:` prefix after protocol.",
             "type": "string",
-            "example": "`http://unix:/tmp/backend3`, `http://unix:/tmp/backend3:/my/path`, `http://127.0.0.1:8000`, `http://127.0.0.1:8000/my/path`, `https://localhost`"
+            "example": "http://unix:/tmp/backend3:/my/path"
           },
           "deployments_keep": {
             "type": "integer",
@@ -5451,23 +5456,6 @@
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/Application"
-        }
-      },
-      "BlueprintItem": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "description": "The name of the dependency item",
-            "enum": [
-              "mysql",
-              "phpmyadmin",
-              "redis",
-              "aws",
-              "self-hosted"
-            ],
-            "example": "mysql"
-          }
         }
       },
       "Commit": {
@@ -5832,6 +5820,35 @@
           "hostname"
         ]
       },
+      "DeploymentDefaultStep": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "$ref": "#/components/schemas/TriggerEvent"
+          },
+          "human_readable": {
+            "description": "Formatted name of the event",
+            "type": "string",
+            "example": "Install dependencies"
+          },
+          "hint": {
+            "description": "Text describing when the event is triggered",
+            "type": "string",
+            "example": "Triggered on running a package manager to install repository dependencies"
+          }
+        },
+        "required": [
+          "value",
+          "human_readable",
+          "hint"
+        ]
+      },
+      "DeploymentDefaultSteps": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/DeploymentDefaultStep"
+        }
+      },
       "Deployments": {
         "type": "array",
         "items": {
@@ -6194,9 +6211,9 @@
                 "example": "`index.html`, `index.php`, `server.php`, `default.htm`, `node server.js`, `yarn start`, `npm run production`, `docker run -d -P --name my_container_name my_image_name`, `php artisan serve –-host=192.168.2.20 --port=8000`"
               },
               "listening_address": {
-                "description": "Useful, for instance, when deploying `docker` containerized applications. If the application is not initialized by `devopness` itself, the user should inform the address at which the application listens to external calls. The address can be an IP, IP:PORT, HOSTNAME, HOSTNAME:PORT or unix:PATH",
+                "description": "Required for CGI|FastCGI|SCGI|WSGI based applications or `docker` containerized applications. It tells `devopness` the private address at which the application listens to external calls. The address has `http` or `https` protocol, an domain name or IP address, optional port and optional path. Or you can specify a UNIX-socket using `unix:` prefix after protocol.",
                 "type": "string",
-                "example": "`unix:/tmp/backend3`, `http://127.0.0.1:8000`, `127.0.0.1:3000`, `http://localhost`"
+                "example": "http://unix:/tmp/backend3:/my/path"
               },
               "build_command": {
                 "description": "The optional command that should be executed once during deployment to build the source code and get the application in a ready state.",
@@ -7126,15 +7143,7 @@
             "description": "The list of services that must be installed on the server",
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/BlueprintItem"
-            },
-            "nullable": true
-          },
-          "tools": {
-            "description": "A list of tools that must be made available on the server",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/BlueprintItem"
+              "$ref": "#/components/schemas/ServiceName"
             },
             "nullable": true
           },
@@ -7885,6 +7894,7 @@
         "type": "string",
         "description": "The application deployment event to which it's attached",
         "enum": [
+          "check-app-environment",
           "get-new-release",
           "install-dependencies",
           "activate-new-release",

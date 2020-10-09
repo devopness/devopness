@@ -12,7 +12,7 @@
  */
 
 
-import { BlueprintItem } from './blueprint-item';
+import { ServiceName } from './service-name';
 
 /**
  * 
@@ -28,16 +28,10 @@ export interface ServerBlueprint {
     provider: ServerBlueprintProviderEnum;
     /**
      * The list of services that must be installed on the server
-     * @type {Array<BlueprintItem>}
+     * @type {Array<ServiceName>}
      * @memberof ServerBlueprint
      */
-    services?: Array<BlueprintItem> | null;
-    /**
-     * A list of tools that must be made available on the server
-     * @type {Array<BlueprintItem>}
-     * @memberof ServerBlueprint
-     */
-    tools?: Array<BlueprintItem> | null;
+    services?: Array<ServiceName> | null;
     /**
      * If `true`, create a landing page on the server to validate if has public access
      * @type {boolean}

@@ -19,6 +19,7 @@
  * @enum {string}
  */
 export enum TriggerEvent {
+    CheckAppEnvironment = 'check-app-environment',
     GetNewRelease = 'get-new-release',
     InstallDependencies = 'install-dependencies',
     ActivateNewRelease = 'activate-new-release',

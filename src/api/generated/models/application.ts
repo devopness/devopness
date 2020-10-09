@@ -131,7 +131,7 @@ export interface Application {
      */
     entrypoint?: string;
     /**
-     * Required for CGI|FastCGI|SCGI|WSGI based applications or `docker` containerized applications. It tells `devopness` the private address at which the application listens to external calls. The address can be an IP:PORT, HOSTNAME:PORT or unix:PATH
+     * Required for CGI|FastCGI|SCGI|WSGI based applications or `docker` containerized applications. It tells `devopness` the private address at which the application listens to external calls. The address has `http` or `https` protocol, an domain name or IP address, optional port and optional path. Or you can specify a UNIX-socket using `unix:` prefix after protocol.
      * @type {string}
      * @memberof Application
      */
