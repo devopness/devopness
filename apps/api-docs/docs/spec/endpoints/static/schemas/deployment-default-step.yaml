@@ -1,0 +1,16 @@
+type: object
+properties:
+  value:
+    $ref: '#/components/schemas/TriggerEvent'
+  human_readable:
+    description: Formatted name of the event
+    type: string
+    example: Install dependencies
+  hint:
+    description: Text describing when the event is triggered
+    type: string
+    example: Triggered on running a package manager to install repository dependencies
+required:
+  - value
+  - human_readable
+  - hint

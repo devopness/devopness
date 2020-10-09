@@ -1,4 +1,4 @@
 type: string
 description: The application deployment event to which it's attached
-enum:  [get-new-release, install-dependencies, activate-new-release, remove-old-releases]
+enum:  [check-app-environment, get-new-release, install-dependencies, activate-new-release, remove-old-releases]
 example: 'install-dependencies'

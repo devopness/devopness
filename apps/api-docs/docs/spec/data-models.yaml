@@ -46,6 +46,10 @@ DeploymentCreateApplication:
   $ref: ./endpoints/deployments/schemas/deployment-create-application.yaml
 DeploymentCreateServer:
   $ref: ./endpoints/deployments/schemas/deployment-create-server.yaml
+DeploymentDefaultStep:
+  $ref: ./endpoints/static/schemas/deployment-default-step.yaml
+DeploymentDefaultSteps:
+  $ref: ./endpoints/static/schemas/deployment-default-step-list.yaml
 Deployments:
   $ref: ./endpoints/deployments/schemas/deployment-list.yaml
 DeploymentSource:

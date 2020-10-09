@@ -1,7 +1,11 @@
 type: object
 properties:
+  deployment_steps:
+    description: Default deployment steps that run when a deployment is triggered
+    $ref: '#/components/schemas/DeploymentDefaultSteps'
   language_runtimes:
     description: Supported language runtimes and respective frameworks
     $ref: '#/components/schemas/LanguageRuntimes'
 required:
+  - deployment_steps
   - language_runtimes
