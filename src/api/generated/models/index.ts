@@ -23,6 +23,7 @@ export * from './deployment';
 export * from './deployment-create';
 export * from './deployment-create-application';
 export * from './deployment-create-server';
+export * from './deployment-default-step';
 export * from './deployment-source';
 export * from './deployment-step';
 export * from './deployment-type';

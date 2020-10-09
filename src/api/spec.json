@@ -5317,12 +5317,17 @@
       "ApplicationOptions": {
         "type": "object",
         "properties": {
+          "deployment_steps": {
+            "description": "Default deployment steps that is runned when deployment is triggered",
+            "$ref": "#/components/schemas/DeploymentDefaultSteps"
+          },
           "language_runtimes": {
             "description": "Supported language runtimes and respective frameworks",
             "$ref": "#/components/schemas/LanguageRuntimes"
           }
         },
         "required": [
+          "deployment_steps",
           "language_runtimes"
         ]
       },
@@ -5831,6 +5836,35 @@
           "id",
           "hostname"
         ]
+      },
+      "DeploymentDefaultStep": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "$ref": "#/components/schemas/TriggerEvent"
+          },
+          "human_readable": {
+            "description": "Formatted name of the event",
+            "type": "string",
+            "example": "Install dependencies"
+          },
+          "hint": {
+            "description": "Text describing when the event is triggered",
+            "type": "string",
+            "example": "Triggered on running a package manager to install repository dependencies"
+          }
+        },
+        "required": [
+          "value",
+          "human_readable",
+          "hint"
+        ]
+      },
+      "DeploymentDefaultSteps": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/DeploymentDefaultStep"
+        }
       },
       "Deployments": {
         "type": "array",
@@ -7885,6 +7919,7 @@
         "type": "string",
         "description": "The application deployment event to which it's attached",
         "enum": [
+          "check-pre-deployment-conditions",
           "get-new-release",
           "install-dependencies",
           "activate-new-release",
