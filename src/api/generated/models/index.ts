@@ -10,7 +10,6 @@ export * from './application-last-deployments';
 export * from './application-options';
 export * from './application-type';
 export * from './application-update';
-export * from './blueprint-item';
 export * from './commit';
 export * from './cron-job';
 export * from './cron-job-create';
