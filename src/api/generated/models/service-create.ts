@@ -33,13 +33,13 @@ export interface ServiceCreate {
      * @type {boolean}
      * @memberof ServiceCreate
      */
-    auto_start: boolean;
+    auto_start?: boolean;
     /**
      * 
      * @type {ServiceInitialState}
      * @memberof ServiceCreate
      */
-    initial_state: ServiceInitialState;
+    initial_state?: ServiceInitialState;
     /**
      * 
      * @type {Array<EnvironmentLinkItem>}

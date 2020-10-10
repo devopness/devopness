@@ -7362,9 +7362,7 @@
           }
         },
         "required": [
-          "name",
-          "auto_start",
-          "initial_state"
+          "name"
         ]
       },
       "ServiceInitialState": {
