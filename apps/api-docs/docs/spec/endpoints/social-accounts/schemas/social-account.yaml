@@ -4,13 +4,10 @@ properties:
     type: integer
     description: The unique id of the given record
     example: 964
-  name:
-    type: string
-    example: 'github'
-  name_human_readable:
-    $ref: '#/components/schemas/SocialAccountDisplayableName'
   provider:
     $ref: '#/components/schemas/SocialAccountProvider'
+  provider_human_readable:
+    $ref: '#/components/schemas/SocialAccountDisplayableName'
   provider_user_nickname:
     type: string
     description: The nickname of the user on the Social Authentication provider
