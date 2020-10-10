@@ -5,7 +5,10 @@ properties:
     type: integer
     description: The unique id of the given record
     example: 964
-  displayable_name:
+  name:
+    type: string
+    example: 'github'
+  name_human_readable:
     $ref: '#/components/schemas/SourceProviderDisplayableName'
   provider:
     $ref: '#/components/schemas/SourceProviderName'
