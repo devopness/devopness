@@ -17,5 +17,3 @@ properties:
     example: 5.7.29
 required:
   - name
-  - auto_start
-  - initial_state
