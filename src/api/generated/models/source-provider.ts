@@ -29,10 +29,16 @@ export interface SourceProvider {
     id: number;
     /**
      * 
+     * @type {string}
+     * @memberof SourceProvider
+     */
+    name?: string;
+    /**
+     * 
      * @type {SourceProviderDisplayableName}
      * @memberof SourceProvider
      */
-    displayable_name?: SourceProviderDisplayableName;
+    name_human_readable?: SourceProviderDisplayableName;
     /**
      * 
      * @type {SourceProviderName}

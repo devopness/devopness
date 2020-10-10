@@ -29,10 +29,16 @@ export interface SocialAccount {
     id: number;
     /**
      * 
+     * @type {string}
+     * @memberof SocialAccount
+     */
+    name?: string;
+    /**
+     * 
      * @type {SocialAccountDisplayableName}
      * @memberof SocialAccount
      */
-    displayable_name?: SocialAccountDisplayableName;
+    name_human_readable?: SocialAccountDisplayableName;
     /**
      * 
      * @type {SocialAccountProvider}

@@ -7457,7 +7457,11 @@
             "description": "The unique id of the given record",
             "example": 964
           },
-          "displayable_name": {
+          "name": {
+            "type": "string",
+            "example": "github"
+          },
+          "name_human_readable": {
             "$ref": "#/components/schemas/SocialAccountDisplayableName"
           },
           "provider": {
@@ -7537,7 +7541,7 @@
           "google",
           "linkedin"
         ],
-        "example": "bitbucket"
+        "example": "github"
       },
       "SocialAccounts": {
         "type": "array",
@@ -7572,7 +7576,11 @@
             "description": "The unique id of the given record",
             "example": 964
           },
-          "displayable_name": {
+          "name": {
+            "type": "string",
+            "example": "github"
+          },
+          "name_human_readable": {
             "$ref": "#/components/schemas/SourceProviderDisplayableName"
           },
           "provider": {
