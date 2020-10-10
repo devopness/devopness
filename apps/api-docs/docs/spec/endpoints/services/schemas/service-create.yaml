@@ -2,7 +2,7 @@ type: object
 properties:
   name:
     $ref: '#/components/schemas/ServiceName'
-    example: mysql
+    example: redis
   auto_start:
     type: boolean
     default: false

@@ -8,7 +8,7 @@ properties:
     type: string
     description: The service name
     example: mysql
-  displayable_name:
+  name_human_readable:
     type: string
     description: Formatted/human readable version of the service name
     example: MySQL
@@ -59,7 +59,7 @@ properties:
     $ref: '#/components/schemas/Project'
   servers:
     $ref: '#/components/schemas/Servers'
-    
+
 required:
   - id
   - name
