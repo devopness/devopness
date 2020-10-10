@@ -7457,15 +7457,11 @@
             "description": "The unique id of the given record",
             "example": 964
           },
-          "name": {
-            "type": "string",
-            "example": "github"
-          },
-          "name_human_readable": {
-            "$ref": "#/components/schemas/SocialAccountDisplayableName"
-          },
           "provider": {
             "$ref": "#/components/schemas/SocialAccountProvider"
+          },
+          "provider_human_readable": {
+            "$ref": "#/components/schemas/SocialAccountDisplayableName"
           },
           "provider_user_nickname": {
             "type": "string",
@@ -7576,15 +7572,11 @@
             "description": "The unique id of the given record",
             "example": 964
           },
-          "name": {
-            "type": "string",
-            "example": "github"
-          },
-          "name_human_readable": {
-            "$ref": "#/components/schemas/SourceProviderDisplayableName"
-          },
           "provider": {
             "$ref": "#/components/schemas/SourceProviderName"
+          },
+          "provider_human_readable": {
+            "$ref": "#/components/schemas/SourceProviderDisplayableName"
           },
           "provider_user_nickname": {
             "type": "string",
@@ -7650,7 +7642,7 @@
       },
       "SourceProviderName": {
         "type": "string",
-        "description": "The name of the Source Authentication provider",
+        "description": "The name of the source code provider",
         "enum": [
           "bitbucket",
           "github",

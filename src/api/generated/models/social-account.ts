@@ -29,22 +29,16 @@ export interface SocialAccount {
     id: number;
     /**
      * 
-     * @type {string}
+     * @type {SocialAccountProvider}
      * @memberof SocialAccount
      */
-    name?: string;
+    provider: SocialAccountProvider;
     /**
      * 
      * @type {SocialAccountDisplayableName}
      * @memberof SocialAccount
      */
-    name_human_readable?: SocialAccountDisplayableName;
-    /**
-     * 
-     * @type {SocialAccountProvider}
-     * @memberof SocialAccount
-     */
-    provider: SocialAccountProvider;
+    provider_human_readable?: SocialAccountDisplayableName;
     /**
      * The nickname of the user on the Social Authentication provider
      * @type {string}

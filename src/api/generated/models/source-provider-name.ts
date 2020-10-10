@@ -14,7 +14,7 @@
 
 
 /**
- * The name of the Source Authentication provider
+ * The name of the source code provider
  * @export
  * @enum {string}
  */

@@ -29,22 +29,16 @@ export interface SourceProvider {
     id: number;
     /**
      * 
-     * @type {string}
+     * @type {SourceProviderName}
      * @memberof SourceProvider
      */
-    name?: string;
+    provider: SourceProviderName;
     /**
      * 
      * @type {SourceProviderDisplayableName}
      * @memberof SourceProvider
      */
-    name_human_readable?: SourceProviderDisplayableName;
-    /**
-     * 
-     * @type {SourceProviderName}
-     * @memberof SourceProvider
-     */
-    provider: SourceProviderName;
+    provider_human_readable?: SourceProviderDisplayableName;
     /**
      * The nickname of the user on the Source Authentication provider
      * @type {string}
