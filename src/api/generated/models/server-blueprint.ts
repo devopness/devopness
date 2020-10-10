@@ -12,7 +12,7 @@
  */
 
 
-import { ServiceName } from './service-name';
+import { ServiceCreate } from './service-create';
 
 /**
  * 
@@ -28,10 +28,10 @@ export interface ServerBlueprint {
     provider: ServerBlueprintProviderEnum;
     /**
      * The list of services that must be installed on the server
-     * @type {Array<ServiceName>}
+     * @type {Array<ServiceCreate>}
      * @memberof ServerBlueprint
      */
-    services?: Array<ServiceName> | null;
+    services?: Array<ServiceCreate> | null;
     /**
      * If `true`, create a landing page on the server to validate if has public access
      * @type {boolean}

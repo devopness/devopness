@@ -7143,7 +7143,7 @@
             "description": "The list of services that must be installed on the server",
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ServiceName"
+              "$ref": "#/components/schemas/ServiceCreate"
             },
             "nullable": true
           },
@@ -7250,7 +7250,7 @@
             "description": "The service name",
             "example": "mysql"
           },
-          "displayable_name": {
+          "name_human_readable": {
             "type": "string",
             "description": "Formatted/human readable version of the service name",
             "example": "MySQL"
@@ -7342,7 +7342,7 @@
         "properties": {
           "name": {
             "$ref": "#/components/schemas/ServiceName",
-            "example": "mysql"
+            "example": "redis"
           },
           "auto_start": {
             "type": "boolean",
@@ -7379,7 +7379,7 @@
       },
       "ServiceName": {
         "type": "string",
-        "description": "The name of the service",
+        "description": "The name of a supported service",
         "enum": [
           "mysql",
           "nginx",

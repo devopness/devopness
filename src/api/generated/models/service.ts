@@ -43,7 +43,7 @@ export interface Service {
      * @type {string}
      * @memberof Service
      */
-    displayable_name?: string;
+    name_human_readable?: string;
     /**
      * The service current installed version
      * @type {string}

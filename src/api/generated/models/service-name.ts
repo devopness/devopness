@@ -14,7 +14,7 @@
 
 
 /**
- * The name of the service
+ * The name of a supported service
  * @export
  * @enum {string}
  */
