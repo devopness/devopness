@@ -140,8 +140,6 @@ properties:
     format: date-time
     description: The date and time when the record was last updated
     example: '2019-09-25T13:52:04.000000Z'
-  actions:
-    $ref: '#/components/schemas/Actions'
 required:
   - id
   - created_by

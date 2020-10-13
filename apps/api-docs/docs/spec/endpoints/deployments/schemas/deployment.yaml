@@ -23,8 +23,6 @@ properties:
     description: The date and time when the action has finished execution
     example: '2019-09-25T13:52:04.000000Z'
     nullable: true
-  actions:
-    $ref: '#/components/schemas/Actions'
   commit:
     $ref: '#/components/schemas/Commit'
   steps:

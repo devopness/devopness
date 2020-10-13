@@ -22,8 +22,6 @@ properties:
     example: "f1:59:d6:c4:55:97:06:94:e3:f2:82:de:46:e5:27:39"
   status:
     $ref: '#/components/schemas/ActionStatus'
-  actions:
-    $ref: '#/components/schemas/Actions'
   created_by_user:
     $ref: '#/components/schemas/User'
   # created_at:
