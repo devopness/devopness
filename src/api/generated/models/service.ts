@@ -93,12 +93,6 @@ export interface Service {
      */
     updated_at: string;
     /**
-     * The list of related actions
-     * @type {Array<Action>}
-     * @memberof Service
-     */
-    actions?: Array<Action>;
-    /**
      * 
      * @type {Array<Environment>}
      * @memberof Service
@@ -122,5 +116,11 @@ export interface Service {
      * @memberof Service
      */
     servers?: Array<Server>;
+    /**
+     * 
+     * @type {Action}
+     * @memberof Service
+     */
+    last_action?: Action | null;
 }
 

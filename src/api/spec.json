@@ -4876,6 +4876,7 @@
     "schemas": {
       "Action": {
         "type": "object",
+        "nullable": true,
         "properties": {
           "id": {
             "type": "integer",
@@ -5163,6 +5164,9 @@
           "created_by_user": {
             "$ref": "#/components/schemas/User"
           },
+          "last_action": {
+            "$ref": "#/components/schemas/Action"
+          },
           "created_at": {
             "type": "string",
             "format": "date-time",
@@ -5174,9 +5178,6 @@
             "format": "date-time",
             "description": "The date and time when the record was last updated",
             "example": "2019-09-25T13:52:04.000000Z"
-          },
-          "actions": {
-            "$ref": "#/components/schemas/Actions"
           }
         },
         "required": [
@@ -5545,14 +5546,14 @@
           "status": {
             "$ref": "#/components/schemas/ActionStatus"
           },
-          "actions": {
-            "$ref": "#/components/schemas/Actions"
-          },
           "application": {
             "$ref": "#/components/schemas/Application"
           },
           "created_by_user": {
             "$ref": "#/components/schemas/User"
+          },
+          "last_action": {
+            "$ref": "#/components/schemas/Action"
           },
           "created_at": {
             "type": "string",
@@ -5713,9 +5714,6 @@
             "example": "2019-09-25T13:52:04.000000Z",
             "nullable": true
           },
-          "actions": {
-            "$ref": "#/components/schemas/Actions"
-          },
           "commit": {
             "$ref": "#/components/schemas/Commit"
           },
@@ -5728,6 +5726,9 @@
           },
           "triggered_by_user": {
             "$ref": "#/components/schemas/User"
+          },
+          "last_action": {
+            "$ref": "#/components/schemas/Action"
           },
           "created_at": {
             "type": "string",
@@ -6330,11 +6331,11 @@
           "status": {
             "$ref": "#/components/schemas/ActionStatus"
           },
-          "actions": {
-            "$ref": "#/components/schemas/Actions"
-          },
           "created_by_user": {
             "$ref": "#/components/schemas/User"
+          },
+          "last_action": {
+            "$ref": "#/components/schemas/Action"
           },
           "created_at": {
             "type": "string",
@@ -6474,14 +6475,14 @@
           "status": {
             "$ref": "#/components/schemas/ActionStatus"
           },
-          "actions": {
-            "$ref": "#/components/schemas/Actions"
-          },
           "project": {
             "$ref": "#/components/schemas/Project"
           },
           "application": {
             "$ref": "#/components/schemas/Application"
+          },
+          "last_action": {
+            "$ref": "#/components/schemas/Action"
           },
           "created_at": {
             "type": "string",
@@ -6979,6 +6980,9 @@
           },
           "created_by_user": {
             "$ref": "#/components/schemas/User"
+          },
+          "last_action": {
+            "$ref": "#/components/schemas/Action"
           }
         },
         "required": [
@@ -7295,9 +7299,6 @@
             "description": "The date and time when the record was last updated",
             "example": "2020-04-16T15:50:48.000000Z"
           },
-          "actions": {
-            "$ref": "#/components/schemas/Actions"
-          },
           "environments": {
             "$ref": "#/components/schemas/Environments"
           },
@@ -7309,6 +7310,9 @@
           },
           "servers": {
             "$ref": "#/components/schemas/Servers"
+          },
+          "last_action": {
+            "$ref": "#/components/schemas/Action"
           }
         },
         "required": [
@@ -7679,11 +7683,11 @@
           "status": {
             "$ref": "#/components/schemas/ActionStatus"
           },
-          "actions": {
-            "$ref": "#/components/schemas/Actions"
-          },
           "created_by_user": {
             "$ref": "#/components/schemas/User"
+          },
+          "last_action": {
+            "$ref": "#/components/schemas/Action"
           }
         },
         "required": [
@@ -7801,6 +7805,9 @@
           },
           "created_by_user": {
             "$ref": "#/components/schemas/User"
+          },
+          "last_action": {
+            "$ref": "#/components/schemas/Action"
           }
         },
         "required": [

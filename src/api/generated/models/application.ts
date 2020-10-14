@@ -209,6 +209,12 @@ export interface Application {
      */
     created_by_user?: User;
     /**
+     * 
+     * @type {Action}
+     * @memberof Application
+     */
+    last_action?: Action | null;
+    /**
      * The date and time when the record was created
      * @type {string}
      * @memberof Application
@@ -220,11 +226,5 @@ export interface Application {
      * @memberof Application
      */
     updated_at?: string;
-    /**
-     * The list of related actions
-     * @type {Array<Action>}
-     * @memberof Application
-     */
-    actions?: Array<Action>;
 }
 

@@ -59,16 +59,16 @@ export interface SshKey {
      */
     status?: ActionStatus;
     /**
-     * The list of related actions
-     * @type {Array<Action>}
-     * @memberof SshKey
-     */
-    actions?: Array<Action>;
-    /**
      * 
      * @type {User}
      * @memberof SshKey
      */
     created_by_user?: User;
+    /**
+     * 
+     * @type {Action}
+     * @memberof SshKey
+     */
+    last_action?: Action | null;
 }
 

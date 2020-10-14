@@ -73,12 +73,6 @@ export interface CronJob {
      */
     status?: ActionStatus;
     /**
-     * The list of related actions
-     * @type {Array<Action>}
-     * @memberof CronJob
-     */
-    actions?: Array<Action>;
-    /**
      * 
      * @type {Application}
      * @memberof CronJob
@@ -90,6 +84,12 @@ export interface CronJob {
      * @memberof CronJob
      */
     created_by_user?: User;
+    /**
+     * 
+     * @type {Action}
+     * @memberof CronJob
+     */
+    last_action?: Action | null;
     /**
      * The date and time when the record was created
      * @type {string}
