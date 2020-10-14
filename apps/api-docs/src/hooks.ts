@@ -75,8 +75,6 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         ['deleteApplication204', 'unlinkServerFromEnvironment204'],
         // deleteEnvironment requires an environment without linked servers
         ['unlinkServerFromEnvironment204', 'deleteEnvironment204'],
-        // actions are fetched from applications, so getApplication200 should run after deployApplication201
-        ['deployApplication201', 'getApplication200']
     ]);
 
     // extract specs and attach them to transactions

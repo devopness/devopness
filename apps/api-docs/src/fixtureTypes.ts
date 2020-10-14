@@ -22,7 +22,7 @@ export type FixtureDependency = { path: string, fixture: FixtureKey, field: stri
 // fixture keys are written with underscores so they map directly to URL and JSON param names
 const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     'action': [
-        { path: 'id', fixture: 'application', field: 'actions[0].id' },
+        { path: 'id', fixture: 'cronjob', field: 'last_action.id' },
     ],
     'application_environment_variable': [],
     'application_environment': [],

@@ -32,6 +32,8 @@ properties:
     $ref: '#/components/schemas/Application'
   created_by_user:
     $ref: '#/components/schemas/User'
+  last_action:
+    $ref: '#/components/schemas/Action'
   created_at:
     type: string
     format: date-time

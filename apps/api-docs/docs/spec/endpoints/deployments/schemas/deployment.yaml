@@ -32,6 +32,8 @@ properties:
       $ref: '#/components/schemas/DeploymentStep'
   triggered_by_user:
     $ref: '#/components/schemas/User'
+  last_action:
+    $ref: '#/components/schemas/Action'
   created_at:
     type: string
     format: date-time

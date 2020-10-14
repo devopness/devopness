@@ -56,6 +56,8 @@ properties:
     $ref: '#/components/schemas/Servers'
   created_by_user:
     $ref: '#/components/schemas/User'
+  last_action:
+    $ref: '#/components/schemas/Action'
 required:
   - id
   - domains

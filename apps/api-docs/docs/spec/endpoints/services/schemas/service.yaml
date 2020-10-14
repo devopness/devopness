@@ -57,7 +57,8 @@ properties:
     $ref: '#/components/schemas/Project'
   servers:
     $ref: '#/components/schemas/Servers'
-
+  last_action:
+    $ref: '#/components/schemas/Action'
 required:
   - id
   - name
