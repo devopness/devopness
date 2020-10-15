@@ -30,6 +30,7 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     'application_create': [
         { path: 'source_provider_id', fixture: 'source_provider', field: 'id' },
         { path: 'environments[0].id', fixture: 'environment', field: 'id' },
+        { path: 'environments[0].servers[0]', fixture: 'server', field: 'id' },
         { path: 'project_id', fixture: 'project', field: 'id' },
     ],
     'application_update': [
@@ -87,7 +88,9 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
         { path: 'id', fixture: 'script', field: 'id' },
         { path: 'application_id', fixture: 'application', field: 'id' }
     ],
-    'server': [],
+    'server': [
+        { path: 'environment_id', fixture: 'environment', field: 'id' },
+    ],
     'service': [],
     'service_create': [
         { path: 'environments[0].id', fixture: 'environment', field: 'id' },
