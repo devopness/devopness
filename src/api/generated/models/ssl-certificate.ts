@@ -12,6 +12,7 @@
  */
 
 
+import { Action } from './action';
 import { ActionStatus } from './action-status';
 import { Server } from './server';
 import { SslCertificateIssuer } from './ssl-certificate-issuer';
@@ -115,5 +116,11 @@ export interface SslCertificate {
      * @memberof SslCertificate
      */
     created_by_user?: User;
+    /**
+     * 
+     * @type {Action}
+     * @memberof SslCertificate
+     */
+    last_action?: Action | null;
 }
 

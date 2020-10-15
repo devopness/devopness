@@ -63,12 +63,6 @@ export interface Deployment {
      */
     completed_at?: string | null;
     /**
-     * The list of related actions
-     * @type {Array<Action>}
-     * @memberof Deployment
-     */
-    actions?: Array<Action>;
-    /**
      * 
      * @type {Commit}
      * @memberof Deployment
@@ -86,6 +80,12 @@ export interface Deployment {
      * @memberof Deployment
      */
     triggered_by_user?: User;
+    /**
+     * 
+     * @type {Action}
+     * @memberof Deployment
+     */
+    last_action?: Action | null;
     /**
      * The date and time when the record was created
      * @type {string}

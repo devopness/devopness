@@ -88,5 +88,11 @@ export interface Server {
      * @memberof Server
      */
     created_by_user?: User;
+    /**
+     * 
+     * @type {Action}
+     * @memberof Server
+     */
+    last_action?: Action | null;
 }
 

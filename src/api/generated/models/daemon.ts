@@ -72,12 +72,6 @@ export interface Daemon {
      */
     status?: ActionStatus;
     /**
-     * The list of related actions
-     * @type {Array<Action>}
-     * @memberof Daemon
-     */
-    actions?: Array<Action>;
-    /**
      * 
      * @type {Project}
      * @memberof Daemon
@@ -89,6 +83,12 @@ export interface Daemon {
      * @memberof Daemon
      */
     application?: Application | null;
+    /**
+     * 
+     * @type {Action}
+     * @memberof Daemon
+     */
+    last_action?: Action | null;
     /**
      * The date and time when the record was created
      * @type {string}

@@ -79,17 +79,17 @@ export interface NetworkRule {
      */
     status?: ActionStatus;
     /**
-     * The list of related actions
-     * @type {Array<Action>}
-     * @memberof NetworkRule
-     */
-    actions?: Array<Action>;
-    /**
      * 
      * @type {User}
      * @memberof NetworkRule
      */
     created_by_user?: User;
+    /**
+     * 
+     * @type {Action}
+     * @memberof NetworkRule
+     */
+    last_action?: Action | null;
     /**
      * The date and time when the record was created
      * @type {string}
