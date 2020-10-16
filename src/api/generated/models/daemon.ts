@@ -13,7 +13,6 @@
 
 
 import { Action } from './action';
-import { ActionStatus } from './action-status';
 import { Application } from './application';
 import { Project } from './project';
 
@@ -65,12 +64,6 @@ export interface Daemon {
      * @memberof Daemon
      */
     auto_generated?: boolean;
-    /**
-     * 
-     * @type {ActionStatus}
-     * @memberof Daemon
-     */
-    status?: ActionStatus;
     /**
      * 
      * @type {Project}

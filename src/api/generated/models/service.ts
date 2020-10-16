@@ -13,7 +13,6 @@
 
 
 import { Action } from './action';
-import { ActionStatus } from './action-status';
 import { Environment } from './environment';
 import { Project } from './project';
 import { Server } from './server';
@@ -74,12 +73,6 @@ export interface Service {
      * @memberof Service
      */
     description?: string | null;
-    /**
-     * 
-     * @type {ActionStatus}
-     * @memberof Service
-     */
-    status?: ActionStatus;
     /**
      * The date and time when the record was created
      * @type {string}

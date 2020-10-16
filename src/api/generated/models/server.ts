@@ -13,6 +13,7 @@
 
 
 import { Action } from './action';
+import { ActionStatus } from './action-status';
 import { Environment } from './environment';
 import { User } from './user';
 
@@ -59,6 +60,12 @@ export interface Server {
      */
     active: boolean;
     /**
+     * 
+     * @type {ActionStatus}
+     * @memberof Server
+     */
+    status?: ActionStatus;
+    /**
      * The list of related actions
      * @type {Array<Action>}
      * @memberof Server
@@ -94,5 +101,17 @@ export interface Server {
      * @memberof Server
      */
     last_action?: Action | null;
+    /**
+     * The date and time when the record was created
+     * @type {string}
+     * @memberof Server
+     */
+    created_at?: string;
+    /**
+     * The date and time when the record was last updated
+     * @type {string}
+     * @memberof Server
+     */
+    updated_at?: string;
 }
 
