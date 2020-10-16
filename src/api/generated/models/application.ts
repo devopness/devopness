@@ -13,7 +13,6 @@
 
 
 import { Action } from './action';
-import { ActionStatus } from './action-status';
 import { ApplicationLastDeployments } from './application-last-deployments';
 import { ApplicationType } from './application-type';
 import { Environment } from './environment';
@@ -196,12 +195,6 @@ export interface Application {
      * @memberof Application
      */
     ssl_certificates?: Array<SslCertificate>;
-    /**
-     * 
-     * @type {ActionStatus}
-     * @memberof Application
-     */
-    status?: ActionStatus;
     /**
      * 
      * @type {User}

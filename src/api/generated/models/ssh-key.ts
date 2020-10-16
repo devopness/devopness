@@ -13,7 +13,6 @@
 
 
 import { Action } from './action';
-import { ActionStatus } from './action-status';
 import { User } from './user';
 
 /**
@@ -52,12 +51,6 @@ export interface SshKey {
      * @memberof SshKey
      */
     fingerprint?: string;
-    /**
-     * 
-     * @type {ActionStatus}
-     * @memberof SshKey
-     */
-    status?: ActionStatus;
     /**
      * 
      * @type {User}

@@ -13,7 +13,6 @@
 
 
 import { Action } from './action';
-import { ActionStatus } from './action-status';
 import { Application } from './application';
 import { CronJobPattern } from './cron-job-pattern';
 import { User } from './user';
@@ -66,12 +65,6 @@ export interface CronJob {
      * @memberof CronJob
      */
     auto_generated?: boolean;
-    /**
-     * 
-     * @type {ActionStatus}
-     * @memberof CronJob
-     */
-    status?: ActionStatus;
     /**
      * 
      * @type {Application}

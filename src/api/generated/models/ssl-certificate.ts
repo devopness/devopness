@@ -13,7 +13,6 @@
 
 
 import { Action } from './action';
-import { ActionStatus } from './action-status';
 import { Server } from './server';
 import { SslCertificateIssuer } from './ssl-certificate-issuer';
 import { SslCertificateType } from './ssl-certificate-type';
@@ -68,12 +67,6 @@ export interface SslCertificate {
      * @memberof SslCertificate
      */
     custom_certificate?: string;
-    /**
-     * 
-     * @type {ActionStatus}
-     * @memberof SslCertificate
-     */
-    status: ActionStatus;
     /**
      * Tells if the certificate is active for all linked servers and applications
      * @type {boolean}
