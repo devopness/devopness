@@ -30,8 +30,6 @@ properties:
     type: integer
     description: Ending range of network ports to be considered by this rule
     example: 7654
-  status:
-    $ref: '#/components/schemas/ActionStatus'
   created_by_user:
     $ref: '#/components/schemas/User'
   last_action:

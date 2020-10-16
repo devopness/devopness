@@ -24,8 +24,6 @@ properties:
     type: string
     description: The contents of the certificate provided by the Certification Authority, when the certificate has not been automatically issued through `devopness`
     example: "-----BEGIN CERTIFICATE-----MIIGdDCCBVygAwIBAgISAy66cNIj ..."
-  status:
-    $ref: '#/components/schemas/ActionStatus'
   active:
     type: boolean
     description: Tells if the certificate is active for all linked servers and applications
@@ -64,5 +62,4 @@ required:
   - issuer
   - type
   - validation_level
-  - status
   - active

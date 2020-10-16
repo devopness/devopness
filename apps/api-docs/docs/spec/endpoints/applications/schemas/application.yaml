@@ -126,8 +126,6 @@ properties:
   ssl_certificates:
     description: "The list of SSL certificates issued to the application"
     $ref: '#/components/schemas/SslCertificates'
-  status:
-    $ref: '#/components/schemas/ActionStatus'
   created_by_user:
     $ref: '#/components/schemas/User'
   last_action:
