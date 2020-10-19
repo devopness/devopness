@@ -38,6 +38,7 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
         { path: 'source_provider_id', fixture: 'source_provider', field: 'id' },
         { path: 'project_id', fixture: 'project', field: 'id' },
         { path: 'environments[0].id', fixture: 'environment', field: 'id' },
+        { path: 'environments[0].servers[0]', fixture: 'server', field: 'id' },
     ],
     'application_deploy': [
         { path: 'environments[0].id', fixture: 'environment', field: 'id' },

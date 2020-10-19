@@ -12,7 +12,7 @@ properties:
   servers:
     description: A list of server IDs to which the item link/unlink operations must be performed
     type: array
-    example: [54789, 235, 1089044]
+    example: [54789]
     items:
       type: integer
 required:
