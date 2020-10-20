@@ -22,21 +22,17 @@ export type FixtureDependency = { path: string, fixture: FixtureKey, field: stri
 // fixture keys are written with underscores so they map directly to URL and JSON param names
 const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     'action': [
-        { path: 'id', fixture: 'cronjob', field: 'last_action.id' },
+        { path: 'id', fixture: 'cron_job', field: 'last_action.id' },
     ],
     'application_environment_variable': [],
     'application_environment': [],
     'application': [],
     'application_create': [
-        { path: 'source_provider_id', fixture: 'source_provider', field: 'id' },
         { path: 'environments[0].id', fixture: 'environment', field: 'id' },
         { path: 'environments[0].servers[0]', fixture: 'server', field: 'id' },
-        { path: 'project_id', fixture: 'project', field: 'id' },
     ],
     'application_update': [
         { path: 'id', fixture: 'application', field: 'id' },
-        { path: 'source_provider_id', fixture: 'source_provider', field: 'id' },
-        { path: 'project_id', fixture: 'project', field: 'id' },
         { path: 'environments[0].id', fixture: 'environment', field: 'id' },
         { path: 'environments[0].servers[0]', fixture: 'server', field: 'id' },
     ],
@@ -45,10 +41,8 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     ],
     'cron_job': [],
     'cron_job_create': [
-        { path: 'project_id', fixture: 'project', field: 'id' },
         { path: 'environments[0].id', fixture: 'environment', field: 'id' },
         { path: 'environments[0].servers[0]', fixture: 'server', field: 'id' },
-        { path: 'application_id', fixture: 'application', field: 'id' },
     ],
     'deployment': [],
     'deployment_create': [
@@ -83,11 +77,9 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     'repository': [],
     'script': [],
     'script_create': [
-        { path: 'application_id', fixture: 'application', field: 'id' }
     ],
     'script_update': [
         { path: 'id', fixture: 'script', field: 'id' },
-        { path: 'application_id', fixture: 'application', field: 'id' }
     ],
     'server': [
         { path: 'environment_id', fixture: 'environment', field: 'id' },
@@ -109,9 +101,7 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     'user_tokens': [],
     'user': [],
     'variable': [],
-    // 'variable_create': [],
     'variable_update': [
-        { path: 'application_id', fixture: 'application', field: 'id' },
         { path: 'id', fixture: 'variable', field: 'id' }
     ],
 };
@@ -123,6 +113,11 @@ export function isFixtureKey(val: string | any[]): val is FixtureKey {
 }
 export function fixtureDependencies(key: FixtureKey): FixtureDependency[] {
     return fixtureKeys[key];
+}
+export function addFixtureDependency(key: FixtureKey, dep: FixtureDependency) {
+    const list = fixtureKeys[key] ? fixtureKeys[key] : [];
+    list.push(dep);
+    fixtureKeys[key] = list;
 }
 
 const fixtureListKeys = {

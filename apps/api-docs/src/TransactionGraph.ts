@@ -1,7 +1,7 @@
 import fs from 'fs';
+import { Transaction } from 'hooks';
 import toposort from 'toposort';
 
-import TransactionSpec from './TransactionSpec';
 import { fixtureKeyElement, isFixtureListKey, FixtureKey } from './fixtureTypes';
 
 type TransactionNode = string;
@@ -34,7 +34,7 @@ export default class TransactionGraph {
     transactionAdjacencyList = new Set<TransactionGraphEdge>();
     log: LogFunction;
 
-    constructor(transactionSpecs: TransactionSpec[],
+    constructor(transactions: Transaction[],
         initialFixtureTransactionGraph: FixtureTransactionAdjacencyList,
         initialTransactionAdjacencyList: Set<TransactionGraphEdge>,
         log: LogFunction) {
@@ -43,7 +43,7 @@ export default class TransactionGraph {
 
         // TODO: extract these from here
         // user_credentials and user_tokens are handled differently than other fixtures, so add them manually to the graph
-        const fixtureTransactionGraph = this.fixtureTransactionGraphFromTransactionSpecs(transactionSpecs, initialFixtureTransactionGraph);
+        const fixtureTransactionGraph = this.fixtureTransactionGraphFromTransactionList(transactions, initialFixtureTransactionGraph);
 
         this.transactionAdjacencyList = initialTransactionAdjacencyList;
         this.populateAdjacencyList(fixtureTransactionGraph);
@@ -56,46 +56,46 @@ export default class TransactionGraph {
     }
 
     // get hidden nodes from fixtures in transaction specs, edges are transactions themselves
-    fixtureTransactionGraphFromTransactionSpecs(transactionSpecs: TransactionSpec[], initialGraph: FixtureTransactionAdjacencyList): FixtureTransactionAdjacencyList {
+    fixtureTransactionGraphFromTransactionList(transactions: Transaction[], initialGraph: FixtureTransactionAdjacencyList): FixtureTransactionAdjacencyList {
         const { fixtureTransactionInputs, fixtureTransactionOutputs, fixtureTerminalTransactions: fixtureDeleteTransactions } = initialGraph;
-        for (const txSpec of transactionSpecs) {
+        for (const tx of transactions) {
             // delete transactions are terminal nodes
-            if (txSpec.method == "delete") {
+            if (tx.method == "delete") {
                 // delete transactions should have only one input, but let's iterate anyways
-                for (const input of txSpec.pathInputs) {
-                    fixtureTransactionGraphPush(fixtureDeleteTransactions, fixtureKeyElement(input), txSpec.slug);
+                for (const input of tx.pathInputs) {
+                    fixtureTransactionGraphPush(fixtureDeleteTransactions, fixtureKeyElement(input), tx.slug);
                 }
-                for (const inputDep in txSpec.pathInputDependencies) {
-                    fixtureTransactionGraphPush(fixtureDeleteTransactions, fixtureKeyElement(inputDep), txSpec.slug);
+                for (const inputDep in tx.pathInputDependencies) {
+                    fixtureTransactionGraphPush(fixtureDeleteTransactions, fixtureKeyElement(inputDep), tx.slug);
                 }
             } else {
-                if (txSpec.output) {
+                if (tx.output) {
                     // list fixtures outputs should be considered only to be inputs, as they don't _generate_ fixtures
-                    if (isFixtureListKey(txSpec.output)) {
-                        fixtureTransactionGraphPush(fixtureTransactionInputs, fixtureKeyElement(txSpec.output), txSpec.slug);
+                    if (isFixtureListKey(tx.output)) {
+                        fixtureTransactionGraphPush(fixtureTransactionInputs, fixtureKeyElement(tx.output), tx.slug);
                     }
                     // skip output on transactions that have same input and output types to avoid cycles
-                    else if (txSpec.pathInputs.indexOf(fixtureKeyElement(txSpec.output)) == -1) {
-                        fixtureTransactionGraphPush(fixtureTransactionOutputs, fixtureKeyElement(txSpec.output), txSpec.slug);
+                    else if (tx.pathInputs.indexOf(fixtureKeyElement(tx.output)) == -1) {
+                        fixtureTransactionGraphPush(fixtureTransactionOutputs, fixtureKeyElement(tx.output), tx.slug);
                     }
                 }
-                for (const input of txSpec.pathInputs) {
-                    fixtureTransactionGraphPush(fixtureTransactionInputs, input, txSpec.slug);
+                for (const input of tx.pathInputs) {
+                    fixtureTransactionGraphPush(fixtureTransactionInputs, input, tx.slug);
                 }
-                if (txSpec.bodyInputDependencies) {
-                    txSpec.bodyInputDependencies.map(d => d.fixture).forEach((input: FixtureKey) =>
-                        fixtureTransactionGraphPush(fixtureTransactionInputs, input, txSpec.slug));
+                if (tx.bodyInputDependencies) {
+                    tx.bodyInputDependencies.map(d => d.fixture).forEach((input: FixtureKey) =>
+                        fixtureTransactionGraphPush(fixtureTransactionInputs, input, tx.slug));
                 }
-                if (txSpec.pathInputDependencies) {
-                    for (const key in txSpec.pathInputDependencies) {
-                        txSpec.pathInputDependencies[key].map(d => d.fixture).forEach((input: FixtureKey) =>
-                            fixtureTransactionGraphPush(fixtureTransactionInputs, input, txSpec.slug));
+                if (tx.pathInputDependencies) {
+                    for (const key in tx.pathInputDependencies) {
+                        tx.pathInputDependencies[key].map(d => d.fixture).forEach((input: FixtureKey) =>
+                            fixtureTransactionGraphPush(fixtureTransactionInputs, input, tx.slug));
                     }
                 }
             }
             // auth requires a `user_tokens` fixture
-            if (txSpec.requiresAuth) {
-                fixtureTransactionGraphPush(fixtureTransactionInputs, 'user_tokens', txSpec.slug)
+            if (tx.requiresAuth) {
+                fixtureTransactionGraphPush(fixtureTransactionInputs, 'user_tokens', tx.slug)
             }
         }
         return { fixtureTransactionInputs, fixtureTransactionOutputs, fixtureTerminalTransactions: fixtureDeleteTransactions };
@@ -180,9 +180,9 @@ export default class TransactionGraph {
 
         for (const [a, b] of this.transactionAdjacencyList) {
             if (a == node) {
-                outputs.indexOf(b) == -1 ? outputs.push(b) : null;
+                outputs.includes(b) ? null : outputs.push(b);
             } else if (b == node) {
-                inputs.indexOf(a) == -1 ? inputs.push(a) : null;
+                inputs.includes(a) ? null : inputs.push(a);
             }
         }
 

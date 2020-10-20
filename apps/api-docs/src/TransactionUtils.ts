@@ -4,8 +4,7 @@ import { get, set } from 'lodash';
 import { FixtureKey, Fixture, Identifiable, UserTokens, FixtureDependency } from './fixtureTypes';
 import FixtureStore from './FixtureStore';
 import Logger from './Logger';
-import TransactionSpec from './TransactionSpec';
-import './extendTransactionWithSpec';
+import './augmentTransactionWithMetadata';
 
 // encapsulate transaction util functions with keeps hook execution context (fixture store, logging function)
 export default class TransactionUtils {
@@ -47,7 +46,7 @@ export default class TransactionUtils {
         return (transaction: Transaction) => {
             if (transaction.skip) return;
 
-            const { slug, pathInputs, pathInputDependencies } = transaction.spec;
+            const { slug, pathInputs, pathInputDependencies } = transaction;
             if (pathInputs.length == 0 && Object.keys(pathInputDependencies).length == 0) return;
 
             let path = transaction.origin.resourceName;
@@ -111,10 +110,10 @@ export default class TransactionUtils {
                 const data = JSON.parse(transaction.real.body);
                 const typed = (data as T);
                 if (typed) {
-                    this.logger.log(transaction.spec.slug, `${tag} => '${key}' (id=${data.id})`)
+                    this.logger.log(transaction.slug, `${tag} => '${key}' (id=${data.id})`)
                     this.fixtureStore.put(key, data);
                 } else {
-                    this.logger.log(transaction.spec.slug, `${tag} couldn't save fixture '${key}', wrong datatype: '${JSON.stringify(data)}'`);
+                    this.logger.log(transaction.slug, `${tag} couldn't save fixture '${key}', wrong datatype: '${JSON.stringify(data)}'`);
                     transaction.fail = true;
                 }
             };
@@ -131,7 +130,7 @@ export default class TransactionUtils {
                     if (authToken && authToken.access_token) {
                         transaction.request.headers.Authorization = 'Bearer ' + authToken.access_token;
                     } else {
-                        this.logger.log(transaction.spec.slug,
+                        this.logger.log(transaction.slug,
                             `${transaction.id} [setTransactionRequestAuthHeaderWithFixture] requires 'authToken' fixture`);
                         transaction.fail = true;
                     }
@@ -148,7 +147,7 @@ export default class TransactionUtils {
             if (fixture) {
                 transaction.request.body = JSON.stringify(fixture);
             } else {
-                this.logger.log(transaction.spec.slug, `${transaction.id} [setTransactionRequestBodyToFixture] missing '${key}' fixture`);
+                this.logger.log(transaction.slug, `${transaction.id} [setTransactionRequestBodyToFixture] missing '${key}' fixture`);
                 transaction.fail = true;
             }
         }
@@ -170,7 +169,7 @@ export default class TransactionUtils {
         return (transaction: Transaction) => {
             if (transaction.skip) return;
 
-            const { slug, bodyInputDependencies } = transaction.spec;
+            const { slug, bodyInputDependencies } = transaction;
             if (bodyInputDependencies.length == 0) return;
 
             const tag = `[applyTransactionRequestBodyFixtureDependencies]`;
@@ -182,8 +181,15 @@ export default class TransactionUtils {
                     if (fixture) {
                         const depData = fixture[dep.field];
                         if (depData) {
-                            this.logger.log(slug, `${tag} body.${dep.path}=${JSON.stringify(depData)}`);
-                            set(body, dep.path, depData);
+                            // if the last part of the replacement is a list indexing, replace the whole list instead
+                            if (dep.path.match(/.*\[[0-9]+\]$/)) {
+                                const directPath = dep.path.replace(/[[0-9]+\]$/, '');
+                                this.logger.log(slug, `${tag} body.${directPath}=${JSON.stringify([depData])}`);
+                                set(body, directPath, [depData]);
+                            } else {
+                                this.logger.log(slug, `${tag} body.${dep.path}=${JSON.stringify(depData)}`);
+                                set(body, dep.path, depData);
+                            }
                         } else {
                             this.logger.log(slug, `${tag} fixture '${dep.fixture}' has no '${dep.field}' field`);
                             transaction.fail = true;
@@ -200,9 +206,9 @@ export default class TransactionUtils {
 
 
     // logs a transaction
-    transactionLogger({ slug }: TransactionSpec): TransactionHook {
+    transactionLogger(): TransactionHook {
         return (transaction: Transaction) => {
-            this.logger.log(slug, JSON.stringify(transaction, null, 2));
+            this.logger.log(transaction.slug, JSON.stringify(transaction, null, 2));
         }
     }
 }

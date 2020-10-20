@@ -1,4 +1,7 @@
-export type LogFunction = (...any: any[]) => void;
+export type LogFunction = (msg: string) => void;
+export function attachTagToLogFunction(log: LogFunction, tag: string): LogFunction {
+    return (msg: string) => log(`[${tag}] ${msg}`);
+}
 
 export default class Logger {
     logFn: LogFunction;

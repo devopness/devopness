@@ -5,10 +5,10 @@ import DevopnessAPI from './DevopnessAPI';
 import { UserCredentials, UserTokens, isFixtureKey, Identifiable } from './fixtureTypes';
 import FixtureStore from './FixtureStore';
 import TransactionUtils from './TransactionUtils';
-import TransactionSpec from './TransactionSpec';
 import TransactionGraph, { TransactionGraphEdge, FixtureTransactionAdjacencyList } from './TransactionGraph';
 import Logger from './Logger';
-import './extendTransactionWithSpec';
+import './augmentTransactionWithMetadata';
+import OpenAPISpec from './OpenAPISpec';
 
 // transaction names can be obtained by running `npx dredd --names`
 const transactionSlugToName: { [id: string]: string } = {};
@@ -77,21 +77,30 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         ['unlinkServerFromEnvironment204', 'deleteEnvironment204'],
     ]);
 
+    let apiSpec = new OpenAPISpec(logger);
+
     // extract specs and attach them to transactions
-    const transactionSpecs: TransactionSpec[] = [];
     transactions.forEach((tx: Transaction) => {
-        tx.spec = new TransactionSpec(tx, logger);
+        apiSpec.loadYaml(tx.origin.filename);
+        apiSpec.attachTransactionMetadata(tx);
         hooks.log(``);
 
         // apply pre-skiplist
-        if (!preSkiplist.includes(tx.spec.slug)) {
-            transactionSlugToName[tx.spec.slug] = tx.name;
-            transactionSpecs.push(tx.spec);
+        if (!preSkiplist.includes(tx.slug)) {
+            transactionSlugToName[tx.slug] = tx.name;
         }
     });
 
+    // parse fixture dependencies from schema specs
+    apiSpec.extractFixtureDependenciesFromDefinitions();
+
     // buld transaction graph from transaction specs and initial graph inputs
-    const graph = new TransactionGraph(transactionSpecs, initialFixtureTransactionAdjacencyList, initialAdjacencyList, hooks.log);
+    const graph = new TransactionGraph(
+        transactions.filter(tx => !preSkiplist.includes(tx.slug)),
+        initialFixtureTransactionAdjacencyList,
+        initialAdjacencyList,
+        hooks.log
+    );
 
     // calculate execution plan from dependency graph
     const executionPlan = graph.topologicalSort();
@@ -116,31 +125,29 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
 
     // attach graph inferred hooks
     transactions.forEach((transaction: Transaction, index: number) => {
-        if (transaction.spec) {
-            hooks.before(transaction.name, (_: Transaction) => {
-                if (!failedTransaction) {
-                    hooks.log(``);
-                    const action = transaction.skip ? 'skipping' : 'running';
-                    logger.log(transaction.spec.slug, `${index} :: ${action} ${transaction.spec.slug}`);
-                }
-            });
+        hooks.before(transaction.name, (_: Transaction) => {
+            if (!failedTransaction) {
+                hooks.log(``);
+                const action = transaction.skip ? 'skipping' : 'running';
+                logger.log(transaction.slug, `${index} :: ${action} ${transaction.slug}`);
+            }
+        });
 
-            hooks.before(transaction.name, utils.writeFixtureIdsInTransactionPath());
-            hooks.before(transaction.name, utils.applyTransactionRequestBodyFixtureDependencies());
-            if (transaction.spec.output && isFixtureKey(transaction.spec.output)) {
-                hooks.after(transaction.name, utils.storeTransactionResult(transaction.spec.output));
-            }
-            if (transaction.spec.slug.includes('Project')) {
-                const removeLogoImage = (body: any) => { delete body['logo_image']; }
-                hooks.before(transaction.name, utils.rewriteTransactionRequestBody(removeLogoImage));
-            }
-            // 204 routes are not expected to return anything
-            // but OpenAPI v2 specs don't allow for different `produces: <content-type>`
-            // entries to be specified for each status code.
-            // removing the 'content-type' expectation for 204 transactions fixes the issue
-            if (transaction.expected.statusCode == 204) {
-                delete transaction.expected.headers['Content-Type']
-            }
+        hooks.before(transaction.name, utils.writeFixtureIdsInTransactionPath());
+        hooks.before(transaction.name, utils.applyTransactionRequestBodyFixtureDependencies());
+        if (transaction.output && isFixtureKey(transaction.output)) {
+            hooks.after(transaction.name, utils.storeTransactionResult(transaction.output));
+        }
+        if (transaction.slug.includes('Project')) {
+            const removeLogoImage = (body: any) => { delete body['logo_image']; }
+            hooks.before(transaction.name, utils.rewriteTransactionRequestBody(removeLogoImage));
+        }
+        // 204 routes are not expected to return anything
+        // but OpenAPI v2 specs don't allow for different `produces: <content-type>`
+        // entries to be specified for each status code.
+        // removing the 'content-type' expectation for 204 transactions fixes the issue
+        if (transaction.expected.statusCode == 204) {
+            delete transaction.expected.headers['Content-Type']
         }
     });
 
@@ -158,11 +165,11 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     });
 
     // append additional details about failing transaction to logs
-    hooks.afterAll((transactions: Transaction[], done: () => void) => {
-        if (failedTransaction && failedTransaction.spec) {
+    hooks.afterAll((_: Transaction[], done: () => void) => {
+        if (failedTransaction) {
             hooks.log(``);
             hooks.log(`:: displaying hook logs of failed transaction...`);
-            logger.reLogEntriesWithKey(failedTransaction.spec.slug);
+            logger.reLogEntriesWithKey(failedTransaction.slug);
             hooks.log(``);
         }
         done();
@@ -265,8 +272,6 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         hooks.log(`[before:'getDeploymentStepLog200'] '${transaction.fullPath}' => '${rep}`);
         transaction.fullPath = rep;
     })
-
-
 
     done();
 })

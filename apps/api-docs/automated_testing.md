@@ -25,8 +25,7 @@ The valid values for this type match the transaction inputs and outputs in the O
 * **Request body** input body schemas are defined as `FixtureDependency` types, which specify how other fixtures are composed to satisfy a dependency. The transaction inputs are then the set of all fixtures in the `FixtureDependency` array for a given `FixtureKey` specified in PascalCase in the `#/definitions/{FixtureKey}` form. These are stored in the `bodyInputs` field.
 * **Response body** output fixture schemas are specified in PascalCase in the `#/definitions/{FixtureKey}` form. Besides fixture keys, the response body can also hold values specifying a list of fixtures, which are encoded as a `FixtureListKey`. Stored in the `output` field.
 
-All this happens in the `TransactionSpec` class, which encapsulates transaction dependencies alongside some extra information:
-a transaction slug (or shorthand name), composed of `{operationId}{expectedStatusCode}`, and the HTTP request method.
+All this happens in the `OpenAPISpec` class, which extracts transaction dependencies alongside some extra information in a `TransactionMetadata` object: a transaction slug (or shorthand name), composed of `{operationId}{expectedStatusCode}`, and the HTTP request method.
 
 ### 2. Building transaction dependency graph
 The algorithm for building the transaction dependency adjacency list (the graph of dependencies between transactions) employs an intermediate structure, the fixture transaction graph.
@@ -34,7 +33,7 @@ This auxiliary graph is then folded into the final transaction graph on a separa
 
 #### Fixture-transaction graph
 The fixture-transaction graph is formed of two kinds of nodes, representing transactions and fixtures, and directed edges representing the fixture inputs and outputs required by transactions.
-The `TransactionGraph.fixtureTransactionGraphFromTransactionSpecs` method converts an array of `TransactionSpec` objects into a graph by creating a node per transaction, and connecting these to the fixtures specified in the spec.
+The `TransactionGraph.fixtureTransactionGraphFromTransactionSpecs` method converts an array of `TransactionMetadata` objects into a graph by creating a node per transaction, and connecting these to the fixtures specified in the spec.
 
 There are some corner cases: 
 * Transactions returning `FixtureListKey` types, such as `getApplications` or `getProjects`, are considered as only having a fixture input, instead of having fixture outputs. As these transactions don't create or modify fixtures, and require at least one fixture of the type to exist in the return value, they're inserted in the graph as only one edge: with one input fixture of the type of the element they return.
@@ -61,14 +60,14 @@ The set of constraints is the adjency list representing the acyclical directed g
 The transaction running order is then reorganized to match the topological sort using the `TransactionUtils.selectTransactionsByName` method.
 
 ### 4. Storing responses
-Transaction responses are stored by applying the `TransactionUtil.storeTransactionResult` method as an `after` hook for all transactions that have fixture outputs in their `TransactionSpec`.
+Transaction responses are stored by applying the `TransactionUtil.storeTransactionResult` method as an `after` hook for all transactions that have fixture outputs in their `TransactionMetadata`.
 Those fixtures are stored in a global `FixtureStore`, indexed by their `FixtureKey`.
 
 ### 5. Rewriting request parameters
 Request parameters are located in three distinct places: headers, URL path and body payload.
 
 #### Headers
-All transactions for which the `TransactionSpec.requiresAuth` variable is `true` have an `Authorization` header attached, with its value extracted from the `user_tokens` fixture.
+All transactions for which the `TransactionMetadata.requiresAuth` variable is `true` have an `Authorization` header attached, with its value extracted from the `user_tokens` fixture.
 This is done in `hooks.ts` using the `TransactionUtils.setTransactionRequestAuthHeaderWithFixture` method.
 
 #### URL path
