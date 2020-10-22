@@ -6186,10 +6186,10 @@
             "type": "boolean",
             "example": false
           },
-          "programming_language": {
-            "type": "string",
-            "description": "The predominant programming language used in the application source code",
-            "example": "php"
+          "requires_daemon": {
+            "description": "Indicates if the application requires a daemon to keep it alive",
+            "type": "boolean",
+            "example": false
           },
           "engine_version": {
             "description": "The language runtime engine version to be used to execute this application code on the deployed servers",
@@ -6200,11 +6200,6 @@
             "type": "string",
             "description": "The base framework on top of which the application has been implemented - if any",
             "example": "drupal"
-          },
-          "app_directory": {
-            "type": "string",
-            "description": "The physical path of the application code/artifacts on the deployed servers",
-            "example": "/var/www/my-app"
           },
           "root_directory": {
             "type": "string",

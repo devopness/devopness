@@ -32,11 +32,11 @@ export interface LanguageRuntimeFrameworkDefaults {
      */
     push_to_deploy?: boolean;
     /**
-     * The predominant programming language used in the application source code
-     * @type {string}
+     * Indicates if the application requires a daemon to keep it alive
+     * @type {boolean}
      * @memberof LanguageRuntimeFrameworkDefaults
      */
-    programming_language?: string;
+    requires_daemon?: boolean;
     /**
      * The language runtime engine version to be used to execute this application code on the deployed servers
      * @type {string}
@@ -49,12 +49,6 @@ export interface LanguageRuntimeFrameworkDefaults {
      * @memberof LanguageRuntimeFrameworkDefaults
      */
     framework?: string;
-    /**
-     * The physical path of the application code/artifacts on the deployed servers
-     * @type {string}
-     * @memberof LanguageRuntimeFrameworkDefaults
-     */
-    app_directory?: string;
     /**
      * The relative directory where package manager\'s manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository.
      * @type {string}
