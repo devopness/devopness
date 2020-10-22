@@ -12,6 +12,7 @@
  */
 
 
+import { LanguageRuntimeFrameworkDefaults } from './language-runtime-framework-defaults';
 
 /**
  * 
@@ -32,10 +33,10 @@ export interface LanguageRuntimeFramework {
      */
     name_human_readable: string;
     /**
-     * Default values that apply to apps created in devopness using this framework
-     * @type {object}
+     * 
+     * @type {LanguageRuntimeFrameworkDefaults}
      * @memberof LanguageRuntimeFramework
      */
-    defaults: object;
+    defaults: LanguageRuntimeFrameworkDefaults;
 }
 
