@@ -82,6 +82,8 @@ LanguageRuntime:
   $ref: ./endpoints/static/schemas/language-runtime.yaml
 LanguageRuntimeFramework:
   $ref: ./endpoints/static/schemas/language-runtime-framework.yaml
+LanguageRuntimeFrameworkDefaults:
+  $ref: ./endpoints/static/schemas/language-runtime-framework-defaults.yaml
 LanguageRuntimes:
   $ref: ./endpoints/static/schemas/language-runtime-list.yaml
 Log:

@@ -14,7 +14,7 @@ properties:
   name:
     type: string
     description: The application's unique name
-    example: "my awesome app"
+    example: "my-awesome-app"
   domain_name:
     type: string
     format: hostname
