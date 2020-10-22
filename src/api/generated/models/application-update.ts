@@ -82,12 +82,6 @@ export interface ApplicationUpdate {
      */
     framework: string;
     /**
-     * The physical path of the application code/artifacts on the deployed servers
-     * @type {string}
-     * @memberof ApplicationUpdate
-     */
-    app_directory?: string;
-    /**
      * The relative directory where package manager\'s manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository.
      * @type {string}
      * @memberof ApplicationUpdate
@@ -135,6 +129,18 @@ export interface ApplicationUpdate {
      * @memberof ApplicationUpdate
      */
     requires_daemon: boolean;
+    /**
+     * Numeric ID of the project to which the application belongs to
+     * @type {number}
+     * @memberof ApplicationUpdate
+     */
+    project_id?: number;
+    /**
+     * Numeric ID of the source provider account where the repository is hosted. Required when the `repository` field is informed.
+     * @type {number}
+     * @memberof ApplicationUpdate
+     */
+    source_provider_id?: number;
     /**
      * 
      * @type {Array<EnvironmentLinkItem>}

@@ -36,6 +36,7 @@ export * from './environment-type';
 export * from './environment-update';
 export * from './language-runtime';
 export * from './language-runtime-framework';
+export * from './language-runtime-framework-defaults';
 export * from './log';
 export * from './login-credentials';
 export * from './network-rule';

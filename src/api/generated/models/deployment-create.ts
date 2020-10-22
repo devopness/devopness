@@ -25,18 +25,24 @@ export interface DeploymentCreate {
      * @type {DeploymentType}
      * @memberof DeploymentCreate
      */
-    type?: DeploymentType;
+    type: DeploymentType;
     /**
      * 
      * @type {string}
      * @memberof DeploymentCreate
      */
-    branch?: string;
+    branch: string;
     /**
      * 
      * @type {string}
      * @memberof DeploymentCreate
      */
     hash?: string;
+    /**
+     * List of servers ids that the deploy will be triggered to
+     * @type {Array<number>}
+     * @memberof DeploymentCreate
+     */
+    servers?: Array<number>;
 }
 
