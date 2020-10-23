@@ -88,6 +88,7 @@ properties:
     $ref: "#/components/schemas/EnvironmentLinks"
 required:
   - id
+  - project_id
   - type
   - name
   - framework
