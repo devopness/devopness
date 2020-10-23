@@ -134,7 +134,7 @@ export interface ApplicationUpdate {
      * @type {number}
      * @memberof ApplicationUpdate
      */
-    project_id?: number;
+    project_id: number;
     /**
      * Numeric ID of the source provider account where the repository is hosted. Required when the `repository` field is informed.
      * @type {number}

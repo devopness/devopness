@@ -5425,6 +5425,7 @@
         },
         "required": [
           "id",
+          "project_id",
           "type",
           "name",
           "framework",
