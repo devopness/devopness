@@ -124,6 +124,8 @@ Repository:
   $ref: ./endpoints/repositories/schemas/repository.yaml
 RepositoryBranch:
   $ref: ./endpoints/repositories/schemas/repository-branch.yaml
+Resource:
+  $ref: ./endpoints/actions/schemas/resource.yaml
 ResourceType:
   $ref: ./endpoints/actions/schemas/resource-type.yaml
 Script:

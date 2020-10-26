@@ -1,0 +1,22 @@
+type: object
+description: Object containing the data of the resource and informations about it
+properties:
+  id:
+    type: integer
+    description: The unique id of the resource
+    example: 1839123
+  type:
+    $ref: '#/components/schemas/ResourceType'
+    description: Name of the entity who the actions is related to
+  type_human_readable:
+    type: string
+    description: Human readable version of the resource type
+    example: Deployment
+  data:
+    type: object
+    description: The resource data of type specified on `resource.type`
+required:
+  - id
+  - type
+  - type_human_readable
+  - data
