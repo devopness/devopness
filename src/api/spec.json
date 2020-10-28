@@ -883,6 +883,55 @@
         }
       }
     },
+    "/environments/{environment_id}/daemons": {
+      "get": {
+        "summary": "Returns a list of all daemons belonging to a environment",
+        "operationId": "listEnvironmentDaemons",
+        "tags": [
+          "Environments - Daemons"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "environment_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the environment to get daemons from"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Daemons"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/environments/{environment_id}/servers/replace-linked-servers": {
       "post": {
         "summary": "Replace all linked servers by new ones. Immediately deploying all changes to previously and newly linked servers",
@@ -4791,6 +4840,9 @@
     },
     {
       "name": "Environments - Cron Jobs"
+    },
+    {
+      "name": "Environments - Daemons"
     },
     {
       "name": "Environments - Servers"
