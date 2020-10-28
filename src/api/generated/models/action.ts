@@ -14,8 +14,9 @@
 
 import { ActionStatus } from './action-status';
 import { ActionType } from './action-type';
-import { ResourceType } from './resource-type';
+import { Resource } from './resource';
 import { ServerAction } from './server-action';
+import { User } from './user';
 
 /**
  * 
@@ -42,23 +43,29 @@ export interface Action {
      */
     type?: ActionType;
     /**
-     * 
-     * @type {ResourceType}
+     * Human readable version of the action type
+     * @type {string}
      * @memberof Action
      */
-    resource_type?: ResourceType;
-    /**
-     * The unique id of the resource
-     * @type {number}
-     * @memberof Action
-     */
-    resource_id?: number;
+    type_human_readable?: string;
     /**
      * List of actions dispatched to servers
      * @type {Array<ServerAction>}
      * @memberof Action
      */
     servers?: Array<ServerAction>;
+    /**
+     * 
+     * @type {Resource}
+     * @memberof Action
+     */
+    resource?: Resource;
+    /**
+     * 
+     * @type {User}
+     * @memberof Action
+     */
+    triggered_by_user?: User;
     /**
      * The date and time when the action started execution (i.e., left the `pending/queued` status)
      * @type {string}

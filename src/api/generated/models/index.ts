@@ -49,6 +49,7 @@ export * from './project-update';
 export * from './provider';
 export * from './repository';
 export * from './repository-branch';
+export * from './resource';
 export * from './resource-type';
 export * from './script';
 export * from './script-create';
