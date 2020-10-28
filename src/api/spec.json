@@ -5997,6 +5997,21 @@
           "servers": {
             "$ref": "#/components/schemas/Servers"
           },
+          "cron_jobs": {
+            "$ref": "#/components/schemas/CronJobs"
+          },
+          "daemons": {
+            "$ref": "#/components/schemas/Daemons"
+          },
+          "network_rules": {
+            "$ref": "#/components/schemas/NetworkRules"
+          },
+          "applications": {
+            "$ref": "#/components/schemas/Applications"
+          },
+          "services": {
+            "$ref": "#/components/schemas/Services"
+          },
           "created_by_user": {
             "$ref": "#/components/schemas/User"
           },
@@ -6822,6 +6837,7 @@
             "example": "Deployment"
           },
           "data": {
+            "nullable": true,
             "type": "object",
             "description": "The resource data of type specified on `resource.type`"
           }
@@ -6829,8 +6845,7 @@
         "required": [
           "id",
           "type",
-          "type_human_readable",
-          "data"
+          "type_human_readable"
         ]
       },
       "ResourceType": {
