@@ -12,8 +12,13 @@
  */
 
 
+import { Application } from './application';
+import { CronJob } from './cron-job';
+import { Daemon } from './daemon';
 import { EnvironmentType } from './environment-type';
+import { NetworkRule } from './network-rule';
 import { Server } from './server';
+import { Service } from './service';
 import { User } from './user';
 
 /**
@@ -52,6 +57,36 @@ export interface Environment {
      * @memberof Environment
      */
     servers?: Array<Server>;
+    /**
+     * 
+     * @type {Array<CronJob>}
+     * @memberof Environment
+     */
+    cron_jobs?: Array<CronJob>;
+    /**
+     * 
+     * @type {Array<Daemon>}
+     * @memberof Environment
+     */
+    daemons?: Array<Daemon>;
+    /**
+     * 
+     * @type {Array<NetworkRule>}
+     * @memberof Environment
+     */
+    network_rules?: Array<NetworkRule>;
+    /**
+     * 
+     * @type {Array<Application>}
+     * @memberof Environment
+     */
+    applications?: Array<Application>;
+    /**
+     * 
+     * @type {Array<Service>}
+     * @memberof Environment
+     */
+    services?: Array<Service>;
     /**
      * 
      * @type {User}

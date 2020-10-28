@@ -43,6 +43,6 @@ export interface Resource {
      * @type {object}
      * @memberof Resource
      */
-    data: object;
+    data?: object | null;
 }
 
