@@ -1,25 +1,44 @@
 // only fields that are accessed directly by hooks are required to be typed here
+
+/**
+ * Anything that contains an id field.
+ */
 export interface Identifiable {
     id: string
 }
+/**
+ * User login data.
+ */
 export type UserCredentials = {
     email: string
     password: string
 };
+/**
+ * JWT authorization tokens.
+ */
 export type UserTokens = {
     access_token: string
     refresh_token: string
 };
+/**
+ * Reqpresents API entities.
+ */
 export type Fixture = UserCredentials | UserTokens | Identifiable;
 
 export function isIdentifiable(obj: object): obj is Identifiable {
     return obj.hasOwnProperty('id');
 }
 
-// FixtureDependency specifies how fields of fixtures depdend on other fixtures
+/**
+ * Specifies dependencies between fixtures. Read as `obj[path] = fixture[field]`
+ */
 export type FixtureDependency = { path: string, fixture: FixtureKey, field: string }
 
-// fixture keys are written with underscores so they map directly to URL and JSON param names
+/**
+ * Maps a FixtureKey to a list of FixtureDependency, indicating how fixtures are composed.
+ * Should only be accessed by the helper methods `isFixtureKey`, `fixtureDependencies`, `addFixtureDependencies`.
+ * FixtureKey values are written with underscores so they map directly to Devopness URL params and JSON fields.
+ */
 const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     'action': [
         { path: 'id', fixture: 'cron_job', field: 'last_action.id' },
@@ -106,20 +125,39 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     ],
 };
 
-// keyof in TS 2.9 is a string | number
-export type FixtureKey = keyof typeof fixtureKeys & string;
+/**
+ * Keys of the `fixtureKey` map.
+ */
+export type FixtureKey = keyof typeof fixtureKeys & string;  // keyof in TS 2.9 is a string | number, so restrict it.
+/**
+ * Checks if a value is a valid FixtureKey.
+ * @param val Value to be checked
+ */
 export function isFixtureKey(val: string | any[]): val is FixtureKey {
     return typeof val == 'string' && fixtureKeys.hasOwnProperty(val);
 }
+/**
+ * Gets the FixtureDependencies list of a given FixtureKey.
+ * @param key key to be looked up
+ */
 export function fixtureDependencies(key: FixtureKey): FixtureDependency[] {
     return fixtureKeys[key];
 }
+/**
+ * Adds a new FixtureDependency to a FixtureKey.
+ * @param key Key of the fixture
+ * @param dep Specification of the fixture dependency
+ */
 export function addFixtureDependency(key: FixtureKey, dep: FixtureDependency) {
     const list = fixtureKeys[key] ? fixtureKeys[key] : [];
     list.push(dep);
     fixtureKeys[key] = list;
 }
 
+/**
+ * Maps plural forms to singular forms of fixture keys.
+ * Should only be accessed by the helper methods `isFixtureListKey`, `fixtureKeyElement`
+ */
 const fixtureListKeys = {
     'actions': 'action',
     'applications': 'application',
@@ -137,10 +175,21 @@ const fixtureListKeys = {
     'ssh_keys': 'ssh_key',
     'variables': 'variable',
 }
+/**
+ * Keys of the `fixtureListKeys` map.
+ */
 export type FixtureListKey = keyof typeof fixtureListKeys;
+/**
+ * Checks if a value is a valid FixtureListKey.
+ * @param val Value to be checked
+ */
 export function isFixtureListKey(val: string | any[]): val is FixtureListKey {
     return typeof val == 'string' && fixtureListKeys.hasOwnProperty(val);
 }
+/**
+ * Resolves a fixture key (singular) or list key (plural) to its singular form.
+ * @param key Plural or singular form
+ */
 export function fixtureKeyElement(key: FixtureKey | FixtureListKey): FixtureKey {
     return isFixtureKey(key) ? key : fixtureListKeys[key] as FixtureKey;
 }

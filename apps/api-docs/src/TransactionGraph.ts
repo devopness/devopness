@@ -1,6 +1,7 @@
 import fs from 'fs';
 import { Transaction } from 'hooks';
 import toposort from 'toposort';
+import { LogFunction } from './Logger';
 
 import { fixtureKeyElement, isFixtureListKey, FixtureKey } from './fixtureTypes';
 
@@ -15,25 +16,36 @@ function fixtureTransactionGraphPush(map: FixtureToTransactionListMap, k: Fixtur
     map[k] = list;
 }
 
-// FixtureTransactionAdjacencyList represents a graph of transactions and fixtures, using fixture nodes as the referential
+/**
+ * Represents a graph of transactions and fixtures, using fixture nodes as the referential.
+ */
 export interface FixtureTransactionAdjacencyList {
-    // maps fixtures to a list of transactions that take it as input
+    /** Maps fixtures to a list of transactions that take it as input */
     fixtureTransactionInputs: FixtureToTransactionListMap
-    // maps fixtures to a list of transactions that take it as output
+    /** Maps fixtures to a list of transactions that take it as output */
     fixtureTransactionOutputs: FixtureToTransactionListMap
-    // maps fixtures to their terminal transactions
+    /** Maps fixtures to their terminal transactions */
     fixtureTerminalTransactions: FixtureToTransactionListMap
 };
+/** 
+ * An edge between two nodes.
+ */
 export type TransactionGraphEdge = [TransactionNode, TransactionNode];
 
-type LogFunction = (...any: any[]) => void;
-
-// TransactionGraph represents a Directed Acyclical Graph (DAG) of transactions
-// and their dependencies through fixtures
+/**
+ *  Directed Acyclical Graph (DAG) of transaction and their dependencies through fixtures.
+ */
 export default class TransactionGraph {
     transactionAdjacencyList = new Set<TransactionGraphEdge>();
     log: LogFunction;
 
+    /**
+     * 
+     * @param transactions List of transactions that will compose the graph
+     * @param initialFixtureTransactionGraph Initial fixture-transaction graph
+     * @param initialTransactionAdjacencyList Initial edges of the transaction graph
+     * @param log Log function
+     */
     constructor(transactions: Transaction[],
         initialFixtureTransactionGraph: FixtureTransactionAdjacencyList,
         initialTransactionAdjacencyList: Set<TransactionGraphEdge>,
@@ -51,11 +63,20 @@ export default class TransactionGraph {
         this.log(`got ${this.transactionAdjacencyList.size} edges`)
     }
 
+    /**
+     * Adds an edge to the directed transaction graph.
+     * @param from Source node
+     * @param to Destination node
+     */
     addEdge(from: TransactionNode, to: TransactionNode) {
         this.transactionAdjacencyList.add([from, to]);
     }
 
-    // get hidden nodes from fixtures in transaction specs, edges are transactions themselves
+    /**
+     * Populates the graph representing the relationship between fixtures, which are dictated by transactions.
+     * @param transactions List of transactions to be processed
+     * @param initialGraph Initial adjacency list of the graph
+     */
     fixtureTransactionGraphFromTransactionList(transactions: Transaction[], initialGraph: FixtureTransactionAdjacencyList): FixtureTransactionAdjacencyList {
         const { fixtureTransactionInputs, fixtureTransactionOutputs, fixtureTerminalTransactions: fixtureDeleteTransactions } = initialGraph;
         for (const tx of transactions) {
@@ -101,12 +122,14 @@ export default class TransactionGraph {
         return { fixtureTransactionInputs, fixtureTransactionOutputs, fixtureTerminalTransactions: fixtureDeleteTransactions };
     }
 
-    // populates the fixture DAG adjacency list using the fixture transaction graph
-    // considering the fixtures (x, y) and transactions (A, B, C),
-    // this method takes a FixtureTransactionGraph:
-    //       x - A - y - B - y - C
-    // and transforms it into a TransactionGraph
-    //       A - B - C
+    /**
+     * Populates the fixture DAG adjacency list using the fixture transaction graph considering the fixtures (x, y) and transactions (A, B, C),
+     * Takes a `FixtureTransactionGraph`:
+     *       x - A - y - B - y - C
+     * and transforms it into a `TransactionGraph`
+     *       A - B - C
+     * @param fixtureTransactionGraph fixture-transaction graph to be converted
+     */
     populateAdjacencyList(fixtureTransactionGraph: FixtureTransactionAdjacencyList) {
         const { fixtureTransactionInputs, fixtureTransactionOutputs, fixtureTerminalTransactions: fixtureDeleteTransactions } = fixtureTransactionGraph;
 
@@ -161,6 +184,10 @@ export default class TransactionGraph {
         }
     }
 
+    /**
+     * Writes a graphviz .dot file representing the graph
+     * @param filename Path of output dot file
+     */
     writeDotFile(filename: string) {
         let dot = "digraph devopness_api {";
         for (const [a, b] of this.transactionAdjacencyList) {
@@ -170,10 +197,18 @@ export default class TransactionGraph {
         fs.writeFileSync(filename, dot);
     }
 
+    /**
+     * Performs topological sorting to the graph, returning a list of transaction slugs
+     * representing an order of transactions that satisfies their dependencies.
+     */
     topologicalSort(): string[] {
         return toposort([...this.transactionAdjacencyList.values()]);
     }
 
+    /**
+     * Returns the list of input and output edges to a node.
+     * @param node Target node
+     */
     edges(node: TransactionNode): [TransactionNode[], TransactionNode[]] {
         const inputs: TransactionNode[] = [];
         const outputs: TransactionNode[] = [];

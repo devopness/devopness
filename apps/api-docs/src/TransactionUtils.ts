@@ -1,12 +1,14 @@
 import { Transaction, TransactionHook } from 'hooks';
 import { get, set } from 'lodash';
 
-import { FixtureKey, Fixture, Identifiable, UserTokens, FixtureDependency } from './fixtureTypes';
+import { FixtureKey, Fixture, Identifiable, UserTokens } from './fixtureTypes';
 import FixtureStore from './FixtureStore';
 import Logger from './Logger';
 import './augmentTransactionWithMetadata';
 
-// encapsulate transaction util functions with keeps hook execution context (fixture store, logging function)
+/**
+ * Methods for managing dredd transactions and hook execution
+ */
 export default class TransactionUtils {
     fixtureStore: FixtureStore;
     logger: Logger;
@@ -16,8 +18,12 @@ export default class TransactionUtils {
         this.logger = logger;
     }
 
-    // define which transactions will be ran and in which order
-    // inspired by https://github.com/apiaryio/dredd/issues/456
+    /**
+     * Sets which transactions will be ran and their order.
+     * Inspired by https://github.com/apiaryio/dredd/issues/456
+     * @param transactions List of all transactions
+     * @param slugs Order of transactions that will be executed
+     */
     applyExecutionPlan(transactions: Transaction[], slugs: string[]) {
         let keep = [];
         for (const transaction of transactions) {
@@ -32,7 +38,10 @@ export default class TransactionUtils {
         }
     }
 
-    // ensures that a transaction request has content type and accept headers set to a json mimetype
+    /**
+     * Ensures that a transaction request has content type and accept headers set to a json mimetype.
+     * @param transaction Target Transaction
+     */
     setTransactionRequestJsonHeaders(transaction: Transaction) {
         if (!transaction.request.headers) {
             return;
@@ -41,7 +50,9 @@ export default class TransactionUtils {
         transaction.request.headers['Accept'] = 'application/json';
     }
 
-    // replaces `${fixtureKey}_id` with ${fixture.id} in transaction request path
+    /**
+     * Returns a `TransactionHook` that replaces `${fixtureKey}_id` with ${fixture.id} in transaction request path.
+     */
     writeFixtureIdsInTransactionPath(): TransactionHook {
         return (transaction: Transaction) => {
             if (transaction.skip) return;
@@ -101,7 +112,10 @@ export default class TransactionUtils {
         }
     }
 
-    // grab the response body of a transaction and store it as a fixture
+    /**
+     * Rerturns a `TransactionHook` that grabs the response body of a transaction and stores it as a fixture.
+     * @param key Key of the transaction result fixture
+     */
     storeTransactionResult<T extends Fixture>(key: FixtureKey): TransactionHook {
         return (transaction: Transaction) => {
             if (transaction.skip) return;
@@ -120,7 +134,10 @@ export default class TransactionUtils {
         };
     }
 
-    // attach auth header if request requires it
+    /**
+     * Returns a `TransactionHooks` that attaches a Berer Authorization token if a request requires it.
+     * @param key Key of the fixture containing the auth headers
+     */
     setTransactionRequestAuthHeaderWithFixture(key: FixtureKey): TransactionHook {
         return (transaction: Transaction) => {
             if (transaction.skip) return;
@@ -139,7 +156,10 @@ export default class TransactionUtils {
         }
     }
 
-    // set the request body of a transaction to a fixture
+    /**
+     * Returns a `TransactionHook` that sets the request body of a transaction to a fixture.
+     * @param key Key of the fixture
+     */
     setTransactionRequestBodyToFixture<T extends Fixture>(key: FixtureKey): TransactionHook {
         return (transaction: Transaction) => {
             if (transaction.skip) return;
@@ -153,7 +173,11 @@ export default class TransactionUtils {
         }
     }
 
-    // parse transaction request body, applies `rewriteFn`, then stringifies serializes it again
+    /**
+     * Returns a `TransactionHook` that rewrites the request body of a transaction.
+     * Parse transaction request body JSON, applies `rewriteFn`, then stringifies serializes it again
+     * @param rewriteFn Rewrite function
+     */
     rewriteTransactionRequestBody(rewriteFn: (body: any) => any): TransactionHook {
         return (transaction: Transaction) => {
             if (transaction.skip) return;
@@ -165,6 +189,10 @@ export default class TransactionUtils {
         }
     }
 
+    /**
+     * Returns a `TransactionHook` that resolves all fixture dependencies in a request body.
+     * Applies `TransactionDependency` rewriting rules in the body data, using data present in the fixture store.
+     */
     applyTransactionRequestBodyFixtureDependencies(): TransactionHook {
         return (transaction: Transaction) => {
             if (transaction.skip) return;
@@ -205,7 +233,9 @@ export default class TransactionUtils {
     }
 
 
-    // logs a transaction
+    /**
+     * Returns a `TransactionHook` that logs the transaction as pretty-printed JSON.
+     */
     transactionLogger(): TransactionHook {
         return (transaction: Transaction) => {
             this.logger.log(transaction.slug, JSON.stringify(transaction, null, 2));

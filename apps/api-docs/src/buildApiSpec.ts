@@ -4,6 +4,12 @@ import fs from 'fs';
 import path from 'path';
 import { OpenAPIV3 } from 'openapi-types';
 
+/**
+ * Reads an YAML file containing JSON References to other YAML files,
+ * resolves those references, and writes a single output YAML file.
+ * @param srcPath path of the entrypoint YAML input file
+ * @param destPath path of the output YAML file
+ */
 async function buildYamlSpec(srcPath: string, destPath: string) {
     const srcYaml = YAML.load(fs.readFileSync(srcPath).toString());
     const options = {

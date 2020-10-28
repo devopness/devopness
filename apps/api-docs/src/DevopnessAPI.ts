@@ -4,25 +4,44 @@ import { Identifiable } from './fixtureTypes';
 
 type LogFunction = (...any: any[]) => void;
 
+/**
+ * DevopnessAPI client with synchronous methods for issuing requests.
+ * Only implements a few endpoints.
+ */
 export default class DevopnessAPI {
     host: string;
     authToken: string;
     log: LogFunction;
 
+    /**
+     * @param host The devopness API host URL
+     * @param authToken Bearer token for request authorization
+     * @param log Logging function
+     */
     constructor(host: string, authToken: string, log: LogFunction) {
         this.authToken = authToken;
         this.log = log;
         this.host = host;
     }
 
-    apiRequest(method: HttpVerb, path: string, tag='[apiRequest]'): Response {
+    /**
+     * Performs a request to the devopness API.
+     * @param method HTTP method
+     * @param path path to API endpoint, without host
+     * @param tag optional log tag
+     */
+    apiRequest(method: HttpVerb, path: string, tag = '[apiRequest]'): Response {
         const url = `https://${this.host}${path}`;
-        const headers = { headers: { 'Authorization': `Bearer ${this.authToken}` }};
+        const headers = { headers: { 'Authorization': `Bearer ${this.authToken}` } };
         const res = request(method, url, headers);
         this.log(`${tag} ${method} ${path}:  ${res.statusCode}`)
         return res
     }
 
+    /**
+     * Gets all application IDs belonging to a project.
+     * @param projectId ID of the project to be queried
+     */
     listProjectApplications(projectId: string): string[] {
         const tag = '[listProjectApplications]';
         const res = this.apiRequest('GET', `/projects/${projectId}/applications`, tag);
@@ -34,9 +53,13 @@ export default class DevopnessAPI {
         return [];
     }
 
-    deleteApplication(id: string): boolean {
+    /**
+     * Deletes an application.
+     * @param applicationId ID of the application to be deleted
+     */
+    deleteApplication(applicationId: string): boolean {
         const tag = '[deleteApplication]';
-        const res = this.apiRequest('DELETE', `/applications/${id}`, tag);
+        const res = this.apiRequest('DELETE', `/applications/${applicationId}`, tag);
         if (res.statusCode == 204) {
             return true;
         }

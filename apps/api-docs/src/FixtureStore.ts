@@ -1,6 +1,8 @@
-import { Transaction, TransactionHook } from 'hooks';
 import { Fixture, FixtureKey } from './fixtureTypes'
 
+/**
+ * FixtureKey -> Fixture map with runtime type-checking of keys.
+ */
 export default class FixtureStore {
     store: { [key: string]: Fixture } = {};
 
@@ -10,25 +12,23 @@ export default class FixtureStore {
 
     get<T extends Fixture>(key: FixtureKey): T | null {
         if (!(key as FixtureKey)) {
-            // log(`invalid fixture key "${key}"`);
+            // invalid fixture key
             return null
         }
         const typed = this.store[key] as T;
         if (typed) {
             return typed;
         }
-        // log(`missing fixture "${key}"`);
+        // fixture not found
         return null;
     }
 
     put(key: FixtureKey, value: Fixture): Fixture {
-        // log(`storing fixture "${key}": ${JSON.stringify(value)}`);
         this.store[key] = value;
         return value;
     }
 
     delete(key: FixtureKey) {
-        // log(`deleting fixture "${key}"`);
         delete this.store[key];
     }
 };
