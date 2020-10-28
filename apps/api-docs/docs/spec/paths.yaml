@@ -41,6 +41,9 @@
     $ref: ./endpoints/environments/paths/environments-id-update.yaml
   get:
     $ref: ./endpoints/environments/paths/environments-id.yaml
+/environments/{environment_id}/cron-jobs:
+  get:
+    $ref: ./endpoints/cronjobs/paths/environments-id-cronjobs-list.yaml
 /environments/{environment_id}/servers/replace-linked-servers:
   post:
     $ref: ./endpoints/environments/paths/environments-id-servers-replace-linked-servers.yaml
