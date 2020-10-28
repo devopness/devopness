@@ -187,6 +187,7 @@ tags:
   - name: Environments
   - name: Environments - Applications
   - name: Environments - Cron Jobs
+  - name: Environments - Daemons
   - name: Environments - Servers
   - name: Logs
   - name: Network Rules

@@ -47,6 +47,9 @@
 /environments/{environment_id}/cron-jobs:
   get:
     $ref: ./endpoints/cronjobs/paths/environments-id-cronjobs-list.yaml
+/environments/{environment_id}/daemons:
+  get:
+    $ref: ./endpoints/daemons/paths/environments-id-daemons-list.yaml
 /environments/{environment_id}/servers/replace-linked-servers:
   post:
     $ref: ./endpoints/environments/paths/environments-id-servers-replace-linked-servers.yaml
