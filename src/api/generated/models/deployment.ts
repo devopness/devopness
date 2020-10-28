@@ -14,6 +14,7 @@
 
 import { Action } from './action';
 import { ActionStatus } from './action-status';
+import { Application } from './application';
 import { Commit } from './commit';
 import { DeploymentSource } from './deployment-source';
 import { DeploymentStep } from './deployment-step';
@@ -51,17 +52,11 @@ export interface Deployment {
      */
     source: DeploymentSource;
     /**
-     * The date and time when the action started execution (i.e., left the `pending/queued` status)
-     * @type {string}
+     * 
+     * @type {Application}
      * @memberof Deployment
      */
-    started_at?: string | null;
-    /**
-     * The date and time when the action has finished execution
-     * @type {string}
-     * @memberof Deployment
-     */
-    completed_at?: string | null;
+    application?: Application | null;
     /**
      * 
      * @type {Commit}
@@ -86,6 +81,18 @@ export interface Deployment {
      * @memberof Deployment
      */
     last_action?: Action | null;
+    /**
+     * The date and time when the action started execution (i.e., left the `pending/queued` status)
+     * @type {string}
+     * @memberof Deployment
+     */
+    started_at?: string | null;
+    /**
+     * The date and time when the action has finished execution
+     * @type {string}
+     * @memberof Deployment
+     */
+    completed_at?: string | null;
     /**
      * The date and time when the record was created
      * @type {string}

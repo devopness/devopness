@@ -5690,19 +5690,8 @@
           "source": {
             "$ref": "#/components/schemas/DeploymentSource"
           },
-          "started_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the action started execution (i.e., left the `pending/queued` status)",
-            "example": "2019-09-25T15:50:48.000000Z",
-            "nullable": true
-          },
-          "completed_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the action has finished execution",
-            "example": "2019-09-25T13:52:04.000000Z",
-            "nullable": true
+          "application": {
+            "$ref": "#/components/schemas/Application"
           },
           "commit": {
             "$ref": "#/components/schemas/Commit"
@@ -5719,6 +5708,20 @@
           },
           "last_action": {
             "$ref": "#/components/schemas/Action"
+          },
+          "started_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the action started execution (i.e., left the `pending/queued` status)",
+            "example": "2019-09-25T15:50:48.000000Z",
+            "nullable": true
+          },
+          "completed_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the action has finished execution",
+            "example": "2019-09-25T13:52:04.000000Z",
+            "nullable": true
           },
           "created_at": {
             "type": "string",
