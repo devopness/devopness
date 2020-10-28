@@ -17,6 +17,16 @@ properties:
     example: Staging
   servers:
     $ref: '#/components/schemas/Servers'
+  cron_jobs:
+    $ref: '#/components/schemas/CronJobs'
+  daemons:
+    $ref: '#/components/schemas/Daemons'
+  network_rules:
+    $ref: '#/components/schemas/NetworkRules'
+  applications:
+    $ref: '#/components/schemas/Applications'
+  services:
+    $ref: '#/components/schemas/Services'
   created_by_user:
     $ref: '#/components/schemas/User'
   created_at:

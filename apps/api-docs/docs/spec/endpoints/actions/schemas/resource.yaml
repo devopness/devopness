@@ -13,10 +13,10 @@ properties:
     description: Human readable version of the resource type
     example: Deployment
   data:
+    nullable: true
     type: object
     description: The resource data of type specified on `resource.type`
 required:
   - id
   - type
   - type_human_readable
-  - data
