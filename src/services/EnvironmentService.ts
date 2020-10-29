@@ -4,6 +4,7 @@ import { EnvironmentsCronJobsApiService } from '../api/generated/apis/environmen
 import { EnvironmentsDaemonsApiService } from '../api/generated/apis/environments-daemons-api';
 import { EnvironmentsNetworkRulesApiService } from '../api/generated/apis/environments-network-rules-api';
 import { EnvironmentsServersApiService } from '../api/generated/apis/environments-servers-api';
+import { EnvironmentsServicesApiService } from '../api/generated/apis/environments-services-api';
 import { EnvironmentsSSHKeysApiService } from '../api/generated/apis/environments-sshkeys-api';
 
 export class EnvironmentService extends EnvironmentsApiService {
@@ -12,5 +13,6 @@ export class EnvironmentService extends EnvironmentsApiService {
     public daemons = new EnvironmentsDaemonsApiService();
     public networkRules = new EnvironmentsNetworkRulesApiService();
     public servers = new EnvironmentsServersApiService();
+    public services = new EnvironmentsServicesApiService();
     public sshKeys = new EnvironmentsSSHKeysApiService();
 }
