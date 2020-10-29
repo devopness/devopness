@@ -981,6 +981,55 @@
         }
       }
     },
+    "/environments/{environment_id}/network-rules": {
+      "get": {
+        "summary": "Returns a list of all network rules belonging to a environment",
+        "operationId": "listEnvironmentNetworkRules",
+        "tags": [
+          "Environments - Network Rules"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "environment_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the environment to get network rules from"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NetworkRules"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/environments/{environment_id}/services": {
       "get": {
         "summary": "Returns a list of all services belonging to a environment",
@@ -4993,6 +5042,9 @@
     },
     {
       "name": "Environments - Daemons"
+    },
+    {
+      "name": "Environments - Network Rules"
     },
     {
       "name": "Environments - Servers"
