@@ -53,6 +53,9 @@
 /environments/{environment_id}/network-rules:
   get:
     $ref: ./endpoints/network-rules/paths/environments-id-network-rules-list.yaml
+/environments/{environment_id}/servers:
+  get:
+    $ref: ./endpoints/servers/paths/environments-id-servers-list.yaml
 /environments/{environment_id}/services:
   get:
     $ref: ./endpoints/services/paths/environments-id-services-list.yaml
