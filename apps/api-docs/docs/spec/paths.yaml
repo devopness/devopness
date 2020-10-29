@@ -56,6 +56,9 @@
 /environments/{environment_id}/services:
   get:
     $ref: ./endpoints/services/paths/environments-id-services-list.yaml
+/environments/{environment_id}/ssh-keys:
+  get:
+    $ref: ./endpoints/ssh-keys/paths/environments-id-ssh-keys-list.yaml
 /environments/{environment_id}/servers/replace-linked-servers:
   post:
     $ref: ./endpoints/environments/paths/environments-id-servers-replace-linked-servers.yaml

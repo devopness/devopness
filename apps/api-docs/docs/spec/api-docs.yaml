@@ -191,6 +191,7 @@ tags:
   - name: Environments - Network Rules
   - name: Environments - Servers
   - name: Environments - Services
+  - name: Environments - SSH Keys
   - name: Logs
   - name: Network Rules
   - name: Projects
