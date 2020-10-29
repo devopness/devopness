@@ -1030,6 +1030,55 @@
         }
       }
     },
+    "/environments/{environment_id}/ssh-keys": {
+      "get": {
+        "summary": "Returns a list of all SSH Keys belonging to a environment",
+        "operationId": "listEnvironmentSshKeys",
+        "tags": [
+          "Environments - SSH Keys"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "environment_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the environment to get SSH Keys from"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SshKeys"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/environments/{environment_id}/servers/replace-linked-servers": {
       "post": {
         "summary": "Replace all linked servers by new ones. Immediately deploying all changes to previously and newly linked servers",
@@ -4950,6 +4999,9 @@
     },
     {
       "name": "Environments - Servers"
+    },
+    {
+      "name": "Environments - SSH Keys"
     },
     {
       "name": "Logs"
