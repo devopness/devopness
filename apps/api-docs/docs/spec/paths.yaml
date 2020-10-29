@@ -50,6 +50,9 @@
 /environments/{environment_id}/daemons:
   get:
     $ref: ./endpoints/daemons/paths/environments-id-daemons-list.yaml
+/environments/{environment_id}/services:
+  get:
+    $ref: ./endpoints/services/paths/environments-id-services-list.yaml
 /environments/{environment_id}/servers/replace-linked-servers:
   post:
     $ref: ./endpoints/environments/paths/environments-id-servers-replace-linked-servers.yaml
