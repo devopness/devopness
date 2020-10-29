@@ -12,6 +12,13 @@
  */
 
 
+import { Application } from './application';
+import { CronJob } from './cron-job';
+import { Daemon } from './daemon';
+import { Environment } from './environment';
+import { NetworkRule } from './network-rule';
+import { Server } from './server';
+import { Service } from './service';
 import { SshKey } from './ssh-key';
 
 /**
@@ -26,6 +33,12 @@ export interface Project {
      * @memberof Project
      */
     id?: number;
+    /**
+     * The id of the user that own the project
+     * @type {number}
+     * @memberof Project
+     */
+    user_id?: number;
     /**
      * The project\'s name
      * @type {string}
@@ -56,5 +69,47 @@ export interface Project {
      * @memberof Project
      */
     os_users?: Array<object>;
+    /**
+     * 
+     * @type {Array<Application>}
+     * @memberof Project
+     */
+    applications?: Array<Application>;
+    /**
+     * 
+     * @type {Array<CronJob>}
+     * @memberof Project
+     */
+    cron_jobs?: Array<CronJob>;
+    /**
+     * 
+     * @type {Array<Environment>}
+     * @memberof Project
+     */
+    environments?: Array<Environment>;
+    /**
+     * 
+     * @type {Array<NetworkRule>}
+     * @memberof Project
+     */
+    network_rules?: Array<NetworkRule>;
+    /**
+     * 
+     * @type {Array<Daemon>}
+     * @memberof Project
+     */
+    daemons?: Array<Daemon>;
+    /**
+     * 
+     * @type {Array<Server>}
+     * @memberof Project
+     */
+    servers?: Array<Server>;
+    /**
+     * 
+     * @type {Array<Service>}
+     * @memberof Project
+     */
+    services?: Array<Service>;
 }
 

@@ -6785,6 +6785,11 @@
             "description": "The unique id of the given record",
             "example": 45678
           },
+          "user_id": {
+            "type": "integer",
+            "description": "The id of the user that own the project",
+            "example": 984123
+          },
           "name": {
             "type": "string",
             "description": "The project's name",
@@ -6822,6 +6827,27 @@
                 "name": "devopness"
               }
             }
+          },
+          "applications": {
+            "$ref": "#/components/schemas/Applications"
+          },
+          "cron_jobs": {
+            "$ref": "#/components/schemas/CronJobs"
+          },
+          "environments": {
+            "$ref": "#/components/schemas/Environments"
+          },
+          "network_rules": {
+            "$ref": "#/components/schemas/NetworkRules"
+          },
+          "daemons": {
+            "$ref": "#/components/schemas/Daemons"
+          },
+          "servers": {
+            "$ref": "#/components/schemas/Servers"
+          },
+          "services": {
+            "$ref": "#/components/schemas/Services"
           }
         },
         "required": [
