@@ -17,31 +17,31 @@ import { Language } from './language';
 /**
  * 
  * @export
- * @interface UserCreate
+ * @interface UserUpdate
  */
-export interface UserCreate {
+export interface UserUpdate {
+    /**
+     * The Id of the given user
+     * @type {number}
+     * @memberof UserUpdate
+     */
+    id: number;
     /**
      * The e-mail that will uniquely identify the user on the system and become its login credential
      * @type {string}
-     * @memberof UserCreate
+     * @memberof UserUpdate
      */
     email: string;
     /**
      * User\'s full name
      * @type {string}
-     * @memberof UserCreate
+     * @memberof UserUpdate
      */
     name: string;
     /**
-     * User\'s password
-     * @type {string}
-     * @memberof UserCreate
-     */
-    password: string;
-    /**
      * 
      * @type {Language}
-     * @memberof UserCreate
+     * @memberof UserUpdate
      */
     language?: Language | null;
 }

@@ -4745,6 +4745,54 @@
             "$ref": "#/components/responses/NotFound"
           }
         }
+      },
+      "put": {
+        "summary": "Update an existing user",
+        "operationId": "updateUser",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "user_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the user"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON containing user data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
       }
     },
     "/users/me": {
@@ -6017,7 +6065,7 @@
         "type": "string",
         "description": "A translation of the cron expression to a readable string indicating its execution frequency.",
         "enum": [
-          "Every Minute",
+          "Every minute",
           "Hourly",
           "Daily",
           "Twice a day",
@@ -6025,7 +6073,7 @@
           "Monthly",
           "Yearly"
         ],
-        "example": "Every Minute"
+        "example": "Every minute"
       },
       "CronJobs": {
         "type": "array",
@@ -6490,6 +6538,16 @@
         ],
         "description": "Environment's type",
         "example": "staging"
+      },
+      "Language": {
+        "type": "string",
+        "nullable": true,
+        "description": "The language used to show text given to user",
+        "enum": [
+          "en",
+          "pt"
+        ],
+        "example": "en"
       },
       "LanguageRuntime": {
         "type": "object",
@@ -8337,8 +8395,7 @@
           "check-app-environment",
           "get-new-release",
           "install-dependencies",
-          "activate-new-release",
-          "remove-old-releases"
+          "activate-new-release"
         ],
         "example": "install-dependencies"
       },
@@ -8369,6 +8426,9 @@
             "type": "string",
             "format": "email",
             "description": "The e-mail that will uniquely identify the user on the system and become its login credential"
+          },
+          "language": {
+            "$ref": "#/components/schemas/Language"
           },
           "active": {
             "type": "boolean",
@@ -8450,6 +8510,9 @@
             "format": "password",
             "minLength": 3,
             "maxLength": 50
+          },
+          "language": {
+            "$ref": "#/components/schemas/Language"
           }
         },
         "required": [
@@ -8541,6 +8604,35 @@
         "required": [
           "access_token",
           "refresh_token"
+        ]
+      },
+      "UserUpdate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The Id of the given user",
+            "example": 1
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "The e-mail that will uniquely identify the user on the system and become its login credential"
+          },
+          "name": {
+            "type": "string",
+            "description": "User's full name",
+            "minLength": 5,
+            "maxLength": 60
+          },
+          "language": {
+            "$ref": "#/components/schemas/Language"
+          }
+        },
+        "required": [
+          "id",
+          "email",
+          "name"
         ]
       },
       "Variable": {

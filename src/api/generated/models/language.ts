@@ -14,15 +14,13 @@
 
 
 /**
- * The application deployment event to which it\'s attached
+ * The language used to show text given to user
  * @export
  * @enum {string}
  */
-export enum TriggerEvent {
-    CheckAppEnvironment = 'check-app-environment',
-    GetNewRelease = 'get-new-release',
-    InstallDependencies = 'install-dependencies',
-    ActivateNewRelease = 'activate-new-release'
+export enum Language {
+    En = 'en',
+    Pt = 'pt'
 }
 
 

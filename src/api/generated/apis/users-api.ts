@@ -24,6 +24,7 @@ import { UserPasswordReset } from '../../generated/models';
 import { UserPasswordSendResetLink } from '../../generated/models';
 import { UserRefreshTokenCreate } from '../../generated/models';
 import { UserTokens } from '../../generated/models';
+import { UserUpdate } from '../../generated/models';
 
 /**
  * UsersApiService - Auto-generated
@@ -218,6 +219,28 @@ export class UsersApiService extends ApiBaseService {
         const requestUrl = '/users/password/send-reset-link' + (queryString? `?${queryString}` : '');
 
         const response = await this.post <object, UserPasswordSendResetLink>(requestUrl, userPasswordSendResetLink);
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Update an existing user
+     * @param {number} userId Numeric ID of the user
+     * @param {UserUpdate} userUpdate A JSON containing user data
+     */
+    public async updateUser(userId: number, userUpdate: UserUpdate): Promise<ApiResponse<void>> {
+        if (userId === null || userId === undefined) {
+            throw new ArgumentNullException('userId', 'updateUser');
+        }
+        if (userUpdate === null || userUpdate === undefined) {
+            throw new ArgumentNullException('userUpdate', 'updateUser');
+        }
+        
+        let queryString = '';
+
+        const requestUrl = '/users/{user_id}' + (queryString? `?${queryString}` : '');
+
+        const response = await this.put <void, UserUpdate>(requestUrl.replace(`{${"user_id"}}`, encodeURIComponent(String(userId))), userUpdate);
         return new ApiResponse(response);
     }
 
