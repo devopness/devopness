@@ -12,6 +12,7 @@
  */
 
 
+import { Language } from './language';
 import { SocialAccount } from './social-account';
 
 /**
@@ -38,6 +39,12 @@ export interface User {
      * @memberof User
      */
     email: string;
+    /**
+     * 
+     * @type {Language}
+     * @memberof User
+     */
+    language?: Language | null;
     /**
      * Tells if the user is active or not
      * @type {boolean}

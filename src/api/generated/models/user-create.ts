@@ -12,6 +12,7 @@
  */
 
 
+import { Language } from './language';
 
 /**
  * 
@@ -37,5 +38,11 @@ export interface UserCreate {
      * @memberof UserCreate
      */
     password: string;
+    /**
+     * 
+     * @type {Language}
+     * @memberof UserCreate
+     */
+    language?: Language | null;
 }
 
