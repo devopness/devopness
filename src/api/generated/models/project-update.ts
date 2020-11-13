@@ -24,7 +24,7 @@ export interface ProjectUpdate {
      * @type {number}
      * @memberof ProjectUpdate
      */
-    id?: number;
+    id: number;
     /**
      * The project\'s name
      * @type {string}

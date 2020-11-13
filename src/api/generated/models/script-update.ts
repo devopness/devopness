@@ -22,6 +22,12 @@ import { TriggerType } from './trigger-type';
  */
 export interface ScriptUpdate {
     /**
+     * Script\'s unique id
+     * @type {number}
+     * @memberof ScriptUpdate
+     */
+    id: number;
+    /**
      * The id of the application to be linked
      * @type {number}
      * @memberof ScriptUpdate

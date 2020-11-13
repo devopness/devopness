@@ -7115,6 +7115,7 @@
           }
         },
         "required": [
+          "id",
           "name"
         ]
       },
@@ -7367,6 +7368,11 @@
       "ScriptUpdate": {
         "type": "object",
         "properties": {
+          "id": {
+            "description": "Script's unique id",
+            "example": 867,
+            "type": "integer"
+          },
           "application_id": {
             "type": "integer",
             "description": "The id of the application to be linked",
@@ -7405,6 +7411,7 @@
           }
         },
         "required": [
+          "id",
           "name",
           "source_code",
           "run_as_user",
@@ -8761,6 +8768,11 @@
       "VariableUpdate": {
         "type": "object",
         "properties": {
+          "id": {
+            "description": "Variable's unique id",
+            "example": 867,
+            "type": "integer"
+          },
           "application_id": {
             "type": "integer",
             "description": "The id of the application to be linked",
@@ -8794,6 +8806,7 @@
           }
         },
         "required": [
+          "id",
           "application_id",
           "key",
           "value",
