@@ -1,0 +1,28 @@
+summary: Update an existing user
+operationId: updateUser
+tags:
+  - Users
+parameters:
+  - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/authHeader'
+  - $ref: '#/components/parameters/contentTypeHeader'
+  - in: path
+    name: user_id
+    example: 1
+    schema:
+      type: integer
+      minimum: 1
+    required: true
+    description: Numeric ID of the user
+requestBody:
+  description: A JSON containing user data
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/UserUpdate'
+responses:
+  204:
+    $ref: '#/components/responses/NoContent'
+  403:
+    $ref: '#/components/responses/Forbidden'

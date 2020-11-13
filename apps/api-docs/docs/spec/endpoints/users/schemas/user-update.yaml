@@ -1,5 +1,9 @@
 type: object
 properties:
+  id:
+    type: integer
+    description: The Id of the given user
+    example: 1
   email:
     type: string
     format: email
@@ -9,15 +13,9 @@ properties:
     description: User's full name
     minLength: 5
     maxLength: 60
-  password:
-    type: string
-    description: User's password
-    format: password
-    minLength: 3
-    maxLength: 50
   language:
     $ref: '#/components/schemas/Language'
 required:
+  - id
   - email
   - name
-  - password

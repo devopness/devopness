@@ -119,6 +119,11 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     'user_credentials': [],
     'user_tokens': [],
     'user': [],
+    "user_update": [
+        { path: 'id', fixture: 'user', field: 'id' },
+        { path: 'name', fixture: 'user_credentials', field: 'email' },
+        { path: 'email', fixture: 'user_credentials', field: 'email' },
+    ],
     'variable': [],
     'variable_update': [
         { path: 'id', fixture: 'variable', field: 'id' }

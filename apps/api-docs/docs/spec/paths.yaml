@@ -277,6 +277,8 @@
 /users/{user_id}:
   get:
     $ref: ./endpoints/users/paths/users-id.yaml
+  put:
+    $ref: ./endpoints/users/paths/users-id-update.yaml
 /users/me:
   get:
     $ref: ./endpoints/users/paths/users-current.yaml

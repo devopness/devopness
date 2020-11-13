@@ -1,0 +1,5 @@
+type: string
+nullable: true
+description: The language used to show text given to user
+enum: ['en', 'pt']
+example: 'en'

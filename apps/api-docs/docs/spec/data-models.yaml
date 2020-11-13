@@ -78,6 +78,8 @@ Environments:
   $ref: ./endpoints/environments/schemas/environment-list.yaml
 EnvironmentType:
   $ref: ./shared/schemas/environment-type.yaml
+Language:
+  $ref: ./shared/schemas/language.yaml
 LanguageRuntime:
   $ref: ./endpoints/static/schemas/language-runtime.yaml
 LanguageRuntimeFramework:
@@ -240,6 +242,8 @@ UserRefreshTokenCreate:
   $ref: ./endpoints/users/schemas/user-refresh-token-create.yaml
 UserTokens:
   $ref: ./endpoints/users/schemas/user-tokens.yaml
+UserUpdate:
+  $ref: ./endpoints/users/schemas/user-update.yaml
 Variable:
   $ref: ./endpoints/variables/schemas/variable.yaml
 Variables:
