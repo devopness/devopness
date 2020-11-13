@@ -19,7 +19,7 @@
  * @enum {string}
  */
 export enum CronJobPattern {
-    EveryMinute = 'Every Minute',
+    EveryMinute = 'Every minute',
     Hourly = 'Hourly',
     Daily = 'Daily',
     TwiceADay = 'Twice a day',

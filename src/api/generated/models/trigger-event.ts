@@ -22,8 +22,7 @@ export enum TriggerEvent {
     CheckAppEnvironment = 'check-app-environment',
     GetNewRelease = 'get-new-release',
     InstallDependencies = 'install-dependencies',
-    ActivateNewRelease = 'activate-new-release',
-    RemoveOldReleases = 'remove-old-releases'
+    ActivateNewRelease = 'activate-new-release'
 }
 
 
