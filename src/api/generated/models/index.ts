@@ -98,6 +98,7 @@ export * from './user-password-reset';
 export * from './user-password-send-reset-link';
 export * from './user-refresh-token-create';
 export * from './user-tokens';
+export * from './user-update';
 export * from './variable';
 export * from './variable-create';
 export * from './variable-target';
