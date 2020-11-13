@@ -22,6 +22,12 @@ import { VariableType } from './variable-type';
  */
 export interface VariableUpdate {
     /**
+     * Variable\'s unique id
+     * @type {number}
+     * @memberof VariableUpdate
+     */
+    id: number;
+    /**
      * The id of the application to be linked
      * @type {number}
      * @memberof VariableUpdate
