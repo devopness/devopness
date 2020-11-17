@@ -1,5 +1,9 @@
 type: object
 properties:
+  id:
+    description: Script's unique id
+    example: 867
+    type: integer
   application_id:
     type: integer
     description: The id of the application to be linked
@@ -29,6 +33,7 @@ properties:
     description: The relative order of the script execution in case the event has multiple scripts attached
     example: 2
 required:
+  - id
   - name
   - source_code
   - run_as_user

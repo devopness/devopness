@@ -1,5 +1,9 @@
 type: object
 properties:
+  id:
+    description: Variable's unique id
+    example: 867
+    type: integer
   application_id:
     type: integer
     description: The id of the application to be linked
@@ -25,6 +29,7 @@ properties:
     default: false
     description: Indicates if the variable value should be visible or not in the deployment logs
 required:
+  - id
   - application_id
   - key
   - value

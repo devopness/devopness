@@ -18,4 +18,5 @@ properties:
     description: A URL path to the project's logo image
     example: https://example.com/projects-beautiful-logo.png
 required:
+  - id
   - name
