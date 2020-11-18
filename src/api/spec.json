@@ -6382,6 +6382,18 @@
             "description": "The step name",
             "example": "Install dependencies"
           },
+          "script_name": {
+            "type": "string",
+            "nullable": true,
+            "description": "The name of the script linked to this step",
+            "example": "Run tests"
+          },
+          "script_code": {
+            "type": "string",
+            "nullable": true,
+            "description": "The source code of the script linked to this step",
+            "example": "php artisan test"
+          },
           "status": {
             "$ref": "#/components/schemas/ActionStatus"
           },
