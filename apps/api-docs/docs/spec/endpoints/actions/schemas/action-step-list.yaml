@@ -1,0 +1,4 @@
+description: "The list of action steps"
+type: array
+items:
+  $ref: '#/components/schemas/ActionStep'

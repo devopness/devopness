@@ -4,6 +4,10 @@ Actions:
   $ref: ./endpoints/actions/schemas/action-list.yaml
 ActionStatus:
   $ref: ./endpoints/actions/schemas/action-status.yaml
+ActionStep:
+  $ref: ./endpoints/actions/schemas/action-step.yaml
+ActionSteps:
+  $ref: ./endpoints/actions/schemas/action-step-list.yaml
 ActionType:
   $ref: ./endpoints/actions/schemas/action-type.yaml
 ApiError:
