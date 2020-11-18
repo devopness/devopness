@@ -5359,6 +5359,93 @@
         ],
         "example": "in-progress"
       },
+      "ActionStep": {
+        "type": "object",
+        "nullable": true,
+        "description": "Action step executed on server",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The unique id of the action step",
+            "example": 18931
+          },
+          "action_id": {
+            "type": "integer",
+            "description": "The unique id of the action linked to this step",
+            "example": 98412
+          },
+          "action_server_id": {
+            "type": "integer",
+            "description": "The unique id of the action server linked to this step",
+            "example": 65712
+          },
+          "server_id": {
+            "type": "integer",
+            "description": "The Id of the server on which the action must be performed",
+            "example": 4567890
+          },
+          "code": {
+            "type": "string",
+            "description": "The code that identify the action step task",
+            "example": "CRONJOB"
+          },
+          "order": {
+            "type": "integer",
+            "description": "The execution order of the given step",
+            "example": 3
+          },
+          "status": {
+            "$ref": "#/components/schemas/ActionStatus"
+          },
+          "output": {
+            "type": "string",
+            "description": "The full text output log",
+            "nullable": true
+          },
+          "started_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the action started execution (i.e., left the `pending/queued` status)",
+            "nullable": true,
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "completed_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the action has finished execution",
+            "nullable": true,
+            "example": "2019-09-25T13:52:04.000000Z"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25T13:52:04.000000Z"
+          }
+        },
+        "required": [
+          "id",
+          "action_id",
+          "action_server_id",
+          "server_id",
+          "code",
+          "order",
+          "status"
+        ]
+      },
+      "ActionSteps": {
+        "description": "The list of action steps",
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/ActionStep"
+        }
+      },
       "ActionType": {
         "type": "string",
         "enum": [
@@ -7525,17 +7612,15 @@
             "example": 5
           },
           "current_step": {
-            "type": "integer",
-            "minimum": 0,
-            "maximum": 127,
-            "description": "The current action step being executed",
-            "nullable": true,
-            "example": 2
+            "$ref": "#/components/schemas/ActionStep"
           },
           "current_step_message": {
             "type": "string",
             "description": "A message describing the current step being executed",
             "example": "Step 2 of 5: echo 'running' >> ~/test.log"
+          },
+          "steps": {
+            "$ref": "#/components/schemas/ActionSteps"
           },
           "started_at": {
             "type": "string",
