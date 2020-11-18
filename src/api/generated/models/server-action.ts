@@ -13,6 +13,7 @@
 
 
 import { ActionStatus } from './action-status';
+import { ActionStep } from './action-step';
 
 /**
  * An object representing the action dispatched to a specific server
@@ -39,17 +40,23 @@ export interface ServerAction {
      */
     total_steps?: number | null;
     /**
-     * The current action step being executed
-     * @type {number}
+     * 
+     * @type {ActionStep}
      * @memberof ServerAction
      */
-    current_step?: number | null;
+    current_step?: ActionStep | null;
     /**
      * A message describing the current step being executed
      * @type {string}
      * @memberof ServerAction
      */
     current_step_message?: string;
+    /**
+     * The list of action steps
+     * @type {Array<ActionStep>}
+     * @memberof ServerAction
+     */
+    steps?: Array<ActionStep>;
     /**
      * The date and time when the action started execution (i.e., left the `pending/queued` status)
      * @type {string}
