@@ -33,6 +33,18 @@ export interface DeploymentStep {
      */
     name: string;
     /**
+     * The name of the script linked to this step
+     * @type {string}
+     * @memberof DeploymentStep
+     */
+    script_name?: string | null;
+    /**
+     * The source code of the script linked to this step
+     * @type {string}
+     * @memberof DeploymentStep
+     */
+    script_code?: string | null;
+    /**
      * 
      * @type {ActionStatus}
      * @memberof DeploymentStep
