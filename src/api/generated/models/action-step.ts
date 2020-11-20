@@ -45,11 +45,11 @@ export interface ActionStep {
      */
     server_id: number;
     /**
-     * The code that identify the action step task
+     * Name of the action describing your purpose
      * @type {string}
      * @memberof ActionStep
      */
-    code: string;
+    name: string;
     /**
      * The execution order of the given step
      * @type {number}
@@ -62,12 +62,6 @@ export interface ActionStep {
      * @memberof ActionStep
      */
     status: ActionStatus;
-    /**
-     * The full text output log
-     * @type {string}
-     * @memberof ActionStep
-     */
-    output?: string | null;
     /**
      * The date and time when the action started execution (i.e., left the `pending/queued` status)
      * @type {string}

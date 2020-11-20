@@ -5384,10 +5384,10 @@
             "description": "The Id of the server on which the action must be performed",
             "example": 4567890
           },
-          "code": {
+          "name": {
             "type": "string",
-            "description": "The code that identify the action step task",
-            "example": "CRONJOB"
+            "description": "Name of the action describing your purpose",
+            "example": "Setting up cron job"
           },
           "order": {
             "type": "integer",
@@ -5396,11 +5396,6 @@
           },
           "status": {
             "$ref": "#/components/schemas/ActionStatus"
-          },
-          "output": {
-            "type": "string",
-            "description": "The full text output log",
-            "nullable": true
           },
           "started_at": {
             "type": "string",
@@ -5434,7 +5429,7 @@
           "action_id",
           "action_server_id",
           "server_id",
-          "code",
+          "name",
           "order",
           "status"
         ]
@@ -7625,11 +7620,6 @@
           },
           "current_step": {
             "$ref": "#/components/schemas/ActionStep"
-          },
-          "current_step_message": {
-            "type": "string",
-            "description": "A message describing the current step being executed",
-            "example": "Step 2 of 5: echo 'running' >> ~/test.log"
           },
           "steps": {
             "$ref": "#/components/schemas/ActionSteps"
