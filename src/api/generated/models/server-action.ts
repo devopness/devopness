@@ -46,12 +46,6 @@ export interface ServerAction {
      */
     current_step?: ActionStep | null;
     /**
-     * A message describing the current step being executed
-     * @type {string}
-     * @memberof ServerAction
-     */
-    current_step_message?: string;
-    /**
      * The list of action steps
      * @type {Array<ActionStep>}
      * @memberof ServerAction
