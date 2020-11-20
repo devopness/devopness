@@ -18,20 +18,16 @@ properties:
     type: integer
     description: The Id of the server on which the action must be performed
     example: 4567890
-  code:
+  name:
     type: string
-    description: The code that identify the action step task
-    example: CRONJOB
+    description: Name of the action describing your purpose
+    example: Setting up cron job
   order:
     type: integer
     description: The execution order of the given step
     example: 3
   status:
     $ref: '#/components/schemas/ActionStatus'
-  output:
-    type: string
-    description: The full text output log
-    nullable: true
   started_at:
     type: string
     format: date-time
@@ -59,6 +55,6 @@ required:
   - action_id
   - action_server_id
   - server_id
-  - code
+  - name
   - order
   - status

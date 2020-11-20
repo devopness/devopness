@@ -16,10 +16,6 @@ properties:
     example: 5
   current_step:
     $ref: '#/components/schemas/ActionStep'
-  current_step_message:
-    type: string
-    description: A message describing the current step being executed
-    example: "Step 2 of 5: echo 'running' >> ~/test.log"
   steps:
     $ref: '#/components/schemas/ActionSteps'
   started_at:
