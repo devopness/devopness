@@ -45,6 +45,7 @@ export * from './network-rule';
 export * from './network-rule-create';
 export * from './network-rule-protocol';
 export * from './network-rule-type';
+export * from './network-rule-update';
 export * from './project';
 export * from './project-create';
 export * from './project-update';
