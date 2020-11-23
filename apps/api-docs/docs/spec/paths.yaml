@@ -97,6 +97,8 @@
     $ref: ./endpoints/network-rules/paths/network-rules-id-delete.yaml
   get:
     $ref: ./endpoints/network-rules/paths/network-rules-id.yaml
+  put:
+    $ref: ./endpoints/network-rules/paths/network-rules-id-update.yaml
 /daemons/{daemon_id}:
   delete:
     $ref: ./endpoints/daemons/paths/daemons-id-delete.yaml

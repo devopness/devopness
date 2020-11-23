@@ -106,6 +106,8 @@ NetworkRules:
   $ref: ./endpoints/network-rules/schemas/network-rule-list.yaml
 NetworkRuleType:
   $ref: ./shared/schemas/network-rule-type.yaml
+NetworkRuleUpdate:
+  $ref: ./endpoints/network-rules/schemas/network-rule-update.yaml
 Daemon:
   $ref: ./endpoints/daemons/schemas/daemon.yaml
 DaemonCreate:

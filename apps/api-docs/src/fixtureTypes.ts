@@ -84,6 +84,11 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
         { path: 'environments[0].id', fixture: 'environment', field: 'id' },
         { path: 'environments[0].servers[0]', fixture: 'server', field: 'id' }
     ],
+    'network_rule_update': [
+        { path: 'id', fixture: 'network_rule', field: 'id' },
+        { path: 'environments[0].id', fixture: 'environment', field: 'id' },
+        { path: 'environments[0].servers[0]', fixture: 'server', field: 'id' }
+    ],
     'daemon': [],
     'daemon_create': [
         { path: 'environments[0].id', fixture: 'environment', field: 'id' },
