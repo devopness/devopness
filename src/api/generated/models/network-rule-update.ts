@@ -23,6 +23,12 @@ import { NetworkRuleType } from './network-rule-type';
  */
 export interface NetworkRuleUpdate {
     /**
+     * The unique id of the given record
+     * @type {number}
+     * @memberof NetworkRuleUpdate
+     */
+    id: number;
+    /**
      * The rule\'s name/description/reminder
      * @type {string}
      * @memberof NetworkRuleUpdate

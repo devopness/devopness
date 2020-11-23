@@ -7014,6 +7014,11 @@
       "NetworkRuleUpdate": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The unique id of the given record",
+            "example": 45678
+          },
           "name": {
             "type": "string",
             "description": "The rule's name/description/reminder",
@@ -7042,6 +7047,7 @@
           }
         },
         "required": [
+          "id",
           "name",
           "type",
           "protocol",
