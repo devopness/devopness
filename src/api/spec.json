@@ -1753,6 +1753,54 @@
             "$ref": "#/components/responses/NotFound"
           }
         }
+      },
+      "put": {
+        "summary": "Update an existing network rule",
+        "operationId": "updateNetworkRule",
+        "tags": [
+          "Network Rules"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "network_rule_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the rule to update"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing network rule data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NetworkRuleUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
       }
     },
     "/daemons/{daemon_id}": {
@@ -6962,6 +7010,44 @@
           "outbound"
         ],
         "example": "inbound"
+      },
+      "NetworkRuleUpdate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The rule's name/description/reminder",
+            "example": "HTTPS|SSH|\"Open MySQL port for remote access\""
+          },
+          "type": {
+            "$ref": "#/components/schemas/NetworkRuleType"
+          },
+          "protocol": {
+            "$ref": "#/components/schemas/NetworkRuleProtocol"
+          },
+          "ip_address_from": {
+            "type": "string",
+            "format": "ipv4",
+            "description": "Starting range of the public ipv4 or ipv6 addresses that can access this rule",
+            "example": "200.123.45.67"
+          },
+          "ip_address_to": {
+            "type": "string",
+            "format": "ipv4",
+            "description": "Ending range of the public ipv4 or ipv6 addresses that can access this rule",
+            "example": "200.123.45.99"
+          },
+          "environments": {
+            "$ref": "#/components/schemas/EnvironmentLinks"
+          }
+        },
+        "required": [
+          "name",
+          "type",
+          "protocol",
+          "ip_address_from",
+          "ip_address_to"
+        ]
       },
       "Daemon": {
         "type": "object",

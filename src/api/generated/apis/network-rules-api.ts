@@ -15,6 +15,7 @@ import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { NetworkRule } from '../../generated/models';
+import { NetworkRuleUpdate } from '../../generated/models';
 
 /**
  * NetworkRulesApiService - Auto-generated
@@ -53,6 +54,28 @@ export class NetworkRulesApiService extends ApiBaseService {
         const requestUrl = '/network-rules/{network_rule_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <NetworkRule>(requestUrl.replace(`{${"network_rule_id"}}`, encodeURIComponent(String(networkRuleId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Update an existing network rule
+     * @param {number} networkRuleId Numeric ID of the rule to update
+     * @param {NetworkRuleUpdate} networkRuleUpdate A JSON object containing network rule data
+     */
+    public async updateNetworkRule(networkRuleId: number, networkRuleUpdate: NetworkRuleUpdate): Promise<ApiResponse<void>> {
+        if (networkRuleId === null || networkRuleId === undefined) {
+            throw new ArgumentNullException('networkRuleId', 'updateNetworkRule');
+        }
+        if (networkRuleUpdate === null || networkRuleUpdate === undefined) {
+            throw new ArgumentNullException('networkRuleUpdate', 'updateNetworkRule');
+        }
+        
+        let queryString = '';
+
+        const requestUrl = '/network-rules/{network_rule_id}' + (queryString? `?${queryString}` : '');
+
+        const response = await this.put <void, NetworkRuleUpdate>(requestUrl.replace(`{${"network_rule_id"}}`, encodeURIComponent(String(networkRuleId))), networkRuleUpdate);
         return new ApiResponse(response);
     }
 }
