@@ -8,6 +8,10 @@ ActionStep:
   $ref: ./endpoints/actions/schemas/action-step.yaml
 ActionSteps:
   $ref: ./endpoints/actions/schemas/action-step-list.yaml
+ActionSummary:
+  $ref: ./endpoints/actions/schemas/action-summary.yaml
+ActionSummaryServer:
+  $ref: ./endpoints/actions/schemas/action-summary-server.yaml
 ActionType:
   $ref: ./endpoints/actions/schemas/action-type.yaml
 ApiError:

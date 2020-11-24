@@ -1,0 +1,6 @@
+type: object
+properties:
+  servers:
+    $ref: '#/components/schemas/ActionSummaryServer'
+required:
+  - servers
