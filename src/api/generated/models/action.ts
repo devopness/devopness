@@ -13,6 +13,7 @@
 
 
 import { ActionStatus } from './action-status';
+import { ActionSummary } from './action-summary';
 import { ActionType } from './action-type';
 import { Resource } from './resource';
 import { ServerAction } from './server-action';
@@ -48,6 +49,12 @@ export interface Action {
      * @memberof Action
      */
     type_human_readable?: string;
+    /**
+     * 
+     * @type {ActionSummary}
+     * @memberof Action
+     */
+    summary?: ActionSummary;
     /**
      * List of actions dispatched to servers
      * @type {Array<ServerAction>}

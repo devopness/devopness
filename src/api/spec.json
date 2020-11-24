@@ -5352,6 +5352,9 @@
             "description": "Human readable version of the action type",
             "example": "Deploy"
           },
+          "summary": {
+            "$ref": "#/components/schemas/ActionSummary"
+          },
           "servers": {
             "$ref": "#/components/schemas/ServerActions"
           },
@@ -5488,6 +5491,54 @@
         "items": {
           "$ref": "#/components/schemas/ActionStep"
         }
+      },
+      "ActionSummary": {
+        "type": "object",
+        "properties": {
+          "servers": {
+            "$ref": "#/components/schemas/ActionSummaryServer"
+          }
+        },
+        "required": [
+          "servers"
+        ]
+      },
+      "ActionSummaryServer": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "description": "The total number of server actions",
+            "example": 4
+          },
+          "pending": {
+            "type": "integer",
+            "description": "The number of server actions pending",
+            "example": 2
+          },
+          "in_progress": {
+            "type": "integer",
+            "description": "The number of server actions in progress",
+            "example": 1
+          },
+          "completed": {
+            "type": "integer",
+            "description": "The number of server actions completed",
+            "example": 1
+          },
+          "failed": {
+            "type": "integer",
+            "description": "The number of server actions failed",
+            "example": 0
+          }
+        },
+        "required": [
+          "count",
+          "pending",
+          "in_progress",
+          "completed",
+          "failed"
+        ]
       },
       "ActionType": {
         "type": "string",
