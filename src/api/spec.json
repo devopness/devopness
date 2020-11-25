@@ -6310,6 +6310,11 @@
       "CronJobUpdate": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The unique id of the given record",
+            "example": 45678
+          },
           "application_id": {
             "type": "integer",
             "description": "Numeric ID of the application to which the cron job belongs to",
@@ -6340,6 +6345,7 @@
           }
         },
         "required": [
+          "id",
           "name",
           "command",
           "pattern",

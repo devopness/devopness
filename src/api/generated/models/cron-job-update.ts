@@ -21,6 +21,12 @@ import { EnvironmentLinkItem } from './environment-link-item';
  */
 export interface CronJobUpdate {
     /**
+     * The unique id of the given record
+     * @type {number}
+     * @memberof CronJobUpdate
+     */
+    id: number;
+    /**
      * Numeric ID of the application to which the cron job belongs to
      * @type {number}
      * @memberof CronJobUpdate
