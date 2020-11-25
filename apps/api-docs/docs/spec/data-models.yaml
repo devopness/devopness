@@ -42,6 +42,8 @@ CronJobOptions:
   $ref: ./endpoints/static/schemas/cronjob-options.yaml
 CronJobPattern:
   $ref: ./shared/schemas/cronjob-pattern.yaml
+CronJobUpdate:
+  $ref: ./endpoints/cronjobs/schemas/cronjob-update.yaml
 CronJobs:
   $ref: ./endpoints/cronjobs/schemas/cronjob-list.yaml
 Deployment:

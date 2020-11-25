@@ -258,6 +258,8 @@
     $ref: ./endpoints/cronjobs/paths/cronjobs-id-delete.yaml
   get:
     $ref: ./endpoints/cronjobs/paths/cronjobs-id.yaml
+  put:
+    $ref: ./endpoints/cronjobs/paths/cronjobs-id-update.yaml
 /users:
   post:
     $ref: ./endpoints/users/paths/users.yaml
