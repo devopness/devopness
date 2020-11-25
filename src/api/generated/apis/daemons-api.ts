@@ -14,7 +14,9 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { ApiError } from '../../generated/models';
 import { Daemon } from '../../generated/models';
+import { DaemonUpdate } from '../../generated/models';
 
 /**
  * DaemonsApiService - Auto-generated
@@ -71,6 +73,28 @@ export class DaemonsApiService extends ApiBaseService {
         const requestUrl = '/daemons/{daemon_id}/restart' + (queryString? `?${queryString}` : '');
 
         const response = await this.post <void>(requestUrl.replace(`{${"daemon_id"}}`, encodeURIComponent(String(daemonId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Update an existing background process
+     * @param {number} daemonId Numeric ID of the daemon to update
+     * @param {DaemonUpdate} daemonUpdate A JSON object containing daemon data
+     */
+    public async updateDaemon(daemonId: number, daemonUpdate: DaemonUpdate): Promise<ApiResponse<void>> {
+        if (daemonId === null || daemonId === undefined) {
+            throw new ArgumentNullException('daemonId', 'updateDaemon');
+        }
+        if (daemonUpdate === null || daemonUpdate === undefined) {
+            throw new ArgumentNullException('daemonUpdate', 'updateDaemon');
+        }
+        
+        let queryString = '';
+
+        const requestUrl = '/daemons/{daemon_id}' + (queryString? `?${queryString}` : '');
+
+        const response = await this.put <void, DaemonUpdate>(requestUrl.replace(`{${"daemon_id"}}`, encodeURIComponent(String(daemonId))), daemonUpdate);
         return new ApiResponse(response);
     }
 }
