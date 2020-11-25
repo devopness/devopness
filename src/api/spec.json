@@ -6358,6 +6358,57 @@
         ],
         "example": "Every minute"
       },
+      "CronJobUpdate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The unique id of the given record",
+            "example": 45678
+          },
+          "application_id": {
+            "type": "integer",
+            "description": "Numeric ID of the application to which the cron job belongs to",
+            "example": 7123941090
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the cron job",
+            "example": "My cool cron job"
+          },
+          "command": {
+            "type": "string",
+            "description": "The command line to be executed when running the cron job",
+            "example": "echo 'devopness rocks!' | tee -a /tmp/task-output.log"
+          },
+          "pattern": {
+            "type": "string",
+            "description": "A cron expression consisting of Minute, Hour, Day of Month, Month and Day of Week subexpressions",
+            "example": "0 0 * * *"
+          },
+          "run_as_user": {
+            "type": "string",
+            "description": "The name of the system user on behalf of which the cron job will be executed",
+            "example": "root"
+          },
+          "environments": {
+            "$ref": "#/components/schemas/EnvironmentLinks"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "command",
+          "pattern",
+          "run_as_user"
+        ]
+      },
+      "CronJobs": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/CronJob"
+        }
+      },
       "Daemon": {
         "type": "object",
         "properties": {
