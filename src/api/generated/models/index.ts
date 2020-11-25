@@ -22,6 +22,7 @@ export * from './cron-job-pattern';
 export * from './cron-job-update';
 export * from './daemon';
 export * from './daemon-create';
+export * from './daemon-update';
 export * from './deployment';
 export * from './deployment-create';
 export * from './deployment-create-application';
