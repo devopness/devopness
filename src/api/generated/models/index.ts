@@ -19,6 +19,7 @@ export * from './cron-job-create';
 export * from './cron-job-frequency';
 export * from './cron-job-options';
 export * from './cron-job-pattern';
+export * from './cron-job-update';
 export * from './daemon';
 export * from './daemon-create';
 export * from './deployment';

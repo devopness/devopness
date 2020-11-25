@@ -14,7 +14,9 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { ApiError } from '../../generated/models';
 import { CronJob } from '../../generated/models';
+import { CronJobUpdate } from '../../generated/models';
 
 /**
  * CronJobsApiService - Auto-generated
@@ -53,6 +55,28 @@ export class CronJobsApiService extends ApiBaseService {
         const requestUrl = '/cron-jobs/{cron_job_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <CronJob>(requestUrl.replace(`{${"cron_job_id"}}`, encodeURIComponent(String(cronJobId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Update an existing cron job
+     * @param {number} cronJobId Numeric ID of the cron job to update
+     * @param {CronJobUpdate} cronJobUpdate A JSON object containing cron job data
+     */
+    public async updateCronJob(cronJobId: number, cronJobUpdate: CronJobUpdate): Promise<ApiResponse<void>> {
+        if (cronJobId === null || cronJobId === undefined) {
+            throw new ArgumentNullException('cronJobId', 'updateCronJob');
+        }
+        if (cronJobUpdate === null || cronJobUpdate === undefined) {
+            throw new ArgumentNullException('cronJobUpdate', 'updateCronJob');
+        }
+        
+        let queryString = '';
+
+        const requestUrl = '/cron-jobs/{cron_job_id}' + (queryString? `?${queryString}` : '');
+
+        const response = await this.put <void, CronJobUpdate>(requestUrl.replace(`{${"cron_job_id"}}`, encodeURIComponent(String(cronJobId))), cronJobUpdate);
         return new ApiResponse(response);
     }
 }

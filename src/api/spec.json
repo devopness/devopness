@@ -4503,6 +4503,57 @@
             "$ref": "#/components/responses/NotFound"
           }
         }
+      },
+      "put": {
+        "summary": "Update an existing cron job",
+        "operationId": "updateCronJob",
+        "tags": [
+          "Cron Jobs"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "cron_job_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the cron job to update"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing cron job data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CronJobUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
       }
     },
     "/users": {
@@ -6255,6 +6306,45 @@
           "Yearly"
         ],
         "example": "Every minute"
+      },
+      "CronJobUpdate": {
+        "type": "object",
+        "properties": {
+          "application_id": {
+            "type": "integer",
+            "description": "Numeric ID of the application to which the cron job belongs to",
+            "example": 7123941090
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the cron job",
+            "example": "My cool cron job"
+          },
+          "command": {
+            "type": "string",
+            "description": "The command line to be executed when running the cron job",
+            "example": "echo 'devopness rocks!' | tee -a /tmp/task-output.log"
+          },
+          "pattern": {
+            "type": "string",
+            "description": "A cron expression consisting of Minute, Hour, Day of Month, Month and Day of Week subexpressions",
+            "example": "0 0 * * *"
+          },
+          "run_as_user": {
+            "type": "string",
+            "description": "The name of the system user on behalf of which the cron job will be executed",
+            "example": "root"
+          },
+          "environments": {
+            "$ref": "#/components/schemas/EnvironmentLinks"
+          }
+        },
+        "required": [
+          "name",
+          "command",
+          "pattern",
+          "run_as_user"
+        ]
       },
       "CronJobs": {
         "type": "array",
