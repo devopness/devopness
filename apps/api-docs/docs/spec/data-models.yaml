@@ -46,6 +46,14 @@ CronJobUpdate:
   $ref: ./endpoints/cronjobs/schemas/cronjob-update.yaml
 CronJobs:
   $ref: ./endpoints/cronjobs/schemas/cronjob-list.yaml
+Daemon:
+  $ref: ./endpoints/daemons/schemas/daemon.yaml
+DaemonCreate:
+  $ref: ./endpoints/daemons/schemas/daemon-create.yaml
+DaemonUpdate:
+  $ref: ./endpoints/daemons/schemas/daemon-update.yaml
+Daemons:
+  $ref: ./endpoints/daemons/schemas/daemon-list.yaml
 Deployment:
   $ref: ./endpoints/deployments/schemas/deployment.yaml
 DeploymentCreate:
@@ -114,12 +122,6 @@ NetworkRuleType:
   $ref: ./shared/schemas/network-rule-type.yaml
 NetworkRuleUpdate:
   $ref: ./endpoints/network-rules/schemas/network-rule-update.yaml
-Daemon:
-  $ref: ./endpoints/daemons/schemas/daemon.yaml
-DaemonCreate:
-  $ref: ./endpoints/daemons/schemas/daemon-create.yaml
-Daemons:
-  $ref: ./endpoints/daemons/schemas/daemon-list.yaml
 Project:
   $ref: ./endpoints/projects/schemas/project.yaml
 ProjectCreate:

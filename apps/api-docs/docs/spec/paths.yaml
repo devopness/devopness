@@ -104,6 +104,8 @@
     $ref: ./endpoints/daemons/paths/daemons-id-delete.yaml
   get:
     $ref: ./endpoints/daemons/paths/daemons-id.yaml
+  put:
+    $ref: ./endpoints/daemons/paths/daemons-id-update.yaml
 /daemons/{daemon_id}/restart:
   post:
     $ref: ./endpoints/daemons/paths/daemons-id-restart.yaml
