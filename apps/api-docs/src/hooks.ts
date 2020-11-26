@@ -27,6 +27,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         'addSocialAccount201',
         // SSL certificates can only be added to applications that have a successful deployment
         'addSslCertificateToApplication201',
+        'updateServer204',
     ];
 
     // transactions listed here are skipped with a `before` hook

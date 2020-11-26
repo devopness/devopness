@@ -176,6 +176,8 @@ ServerCreate:
   $ref: ./endpoints/servers/schemas/server-create.yaml
 ServerOptions:
   $ref: ./endpoints/static/schemas/server-options.yaml
+ServerUpdate:
+  $ref: ./endpoints/servers/schemas/server-update.yaml
 Servers:
   $ref: ./endpoints/servers/schemas/server-list.yaml
 Service:

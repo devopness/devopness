@@ -175,6 +175,8 @@
 /servers/{server_id}:
   get:
     $ref: ./endpoints/servers/paths/servers-id.yaml
+  put:
+    $ref: ./endpoints/servers/paths/servers-id-update.yaml
 /servers/{server_id}/commands:
   get:
     $ref: ./endpoints/servers/paths/servers-id-commands.yaml
