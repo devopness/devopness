@@ -70,6 +70,7 @@ export * from './server-commands';
 export * from './server-connect';
 export * from './server-create';
 export * from './server-options';
+export * from './server-update';
 export * from './service';
 export * from './service-action';
 export * from './service-create';
