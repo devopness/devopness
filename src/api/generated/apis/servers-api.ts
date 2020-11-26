@@ -18,6 +18,7 @@ import { ApiError } from '../../generated/models';
 import { Server } from '../../generated/models';
 import { ServerCommands } from '../../generated/models';
 import { ServerConnect } from '../../generated/models';
+import { ServerUpdate } from '../../generated/models';
 
 /**
  * ServersApiService - Auto-generated
@@ -102,6 +103,28 @@ export class ServersApiService extends ApiBaseService {
         const requestUrl = '/servers' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Array<Server>>(requestUrl);
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Update an existing server
+     * @param {number} serverId Numeric ID of the server to update
+     * @param {ServerUpdate} serverUpdate A JSON object containing server data
+     */
+    public async updateServer(serverId: number, serverUpdate: ServerUpdate): Promise<ApiResponse<void>> {
+        if (serverId === null || serverId === undefined) {
+            throw new ArgumentNullException('serverId', 'updateServer');
+        }
+        if (serverUpdate === null || serverUpdate === undefined) {
+            throw new ArgumentNullException('serverUpdate', 'updateServer');
+        }
+        
+        let queryString = '';
+
+        const requestUrl = '/servers/{server_id}' + (queryString? `?${queryString}` : '');
+
+        const response = await this.put <void, ServerUpdate>(requestUrl.replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))), serverUpdate);
         return new ApiResponse(response);
     }
 }
