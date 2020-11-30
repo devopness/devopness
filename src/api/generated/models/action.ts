@@ -15,6 +15,7 @@
 import { ActionStatus } from './action-status';
 import { ActionSummary } from './action-summary';
 import { ActionType } from './action-type';
+import { Environment } from './environment';
 import { Resource } from './resource';
 import { ServerAction } from './server-action';
 import { User } from './user';
@@ -67,6 +68,12 @@ export interface Action {
      * @memberof Action
      */
     resource?: Resource;
+    /**
+     * 
+     * @type {Environment}
+     * @memberof Action
+     */
+    environment?: Environment;
     /**
      * 
      * @type {User}

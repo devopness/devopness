@@ -5532,6 +5532,9 @@
           "resource": {
             "$ref": "#/components/schemas/Resource"
           },
+          "environment": {
+            "$ref": "#/components/schemas/Environment"
+          },
           "triggered_by_user": {
             "$ref": "#/components/schemas/User"
           },
@@ -5992,7 +5995,7 @@
           "engine_version": {
             "description": "The language runtime engine version to be used to execute this application on the deployed servers",
             "type": "string",
-            "example": "19.03.2"
+            "example": "3.8"
           },
           "framework": {
             "type": "string",
@@ -6127,7 +6130,7 @@
           "engine_version": {
             "description": "The language runtime engine version to be used to execute this application on the deployed servers",
             "type": "string",
-            "example": "19.03.2"
+            "example": "3.8"
           },
           "framework": {
             "type": "string",
