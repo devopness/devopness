@@ -1386,6 +1386,71 @@
         }
       }
     },
+    "/logs/action/{action_id}/server/{server_id}/step/{action_step_order}": {
+      "get": {
+        "summary": "Get action step log",
+        "operationId": "getActionStepLog",
+        "tags": [
+          "Logs"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "action_id",
+            "example": 9139,
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "Unique ID of the action to get logs from"
+          },
+          {
+            "in": "path",
+            "name": "server_id",
+            "example": 95189123,
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "Unique ID of the server to get logs from"
+          },
+          {
+            "in": "path",
+            "name": "action_step_order",
+            "example": 2,
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "Step's order number to get the logs from"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActionStepLog"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
     "/logs/deployment/{deployment_id}/step/{deployment_step_order}": {
       "get": {
         "summary": "Get deployment step log",
@@ -5662,6 +5727,27 @@
         "items": {
           "$ref": "#/components/schemas/ActionStep"
         }
+      },
+      "ActionStepLog": {
+        "type": "object",
+        "properties": {
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the requested log record was last updated",
+            "example": "2019-09-25T13:52:04.000000Z",
+            "nullable": true
+          },
+          "server": {
+            "$ref": "#/components/schemas/Server"
+          },
+          "step": {
+            "$ref": "#/components/schemas/ServerActionLogStep"
+          }
+        },
+        "required": [
+          "updated_at"
+        ]
       },
       "ActionSummary": {
         "type": "object",

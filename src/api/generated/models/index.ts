@@ -1,6 +1,7 @@
 export * from './action';
 export * from './action-status';
 export * from './action-step';
+export * from './action-step-log';
 export * from './action-summary';
 export * from './action-summary-server';
 export * from './action-type';
