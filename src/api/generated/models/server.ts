@@ -15,6 +15,7 @@
 import { Action } from './action';
 import { ActionStatus } from './action-status';
 import { Environment } from './environment';
+import { ServerBlueprint } from './server-blueprint';
 import { User } from './user';
 
 /**
@@ -59,6 +60,12 @@ export interface Server {
      * @memberof Server
      */
     active: boolean;
+    /**
+     * 
+     * @type {ServerBlueprint}
+     * @memberof Server
+     */
+    blueprint?: ServerBlueprint;
     /**
      * 
      * @type {ActionStatus}
