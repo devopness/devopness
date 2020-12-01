@@ -74,6 +74,9 @@
 /logs/action/{action_id}:
   get:
     $ref: ./endpoints/logs/paths/logs-action-id.yaml
+/logs/action/{action_id}/server/{server_id}/step/{action_step_order}:
+  get:
+    $ref: ./endpoints/logs/paths/logs-action-id-server-id-step-order.yaml
 /logs/deployment/{deployment_id}/step/{deployment_step_order}:
   get:
     $ref: ./endpoints/logs/paths/logs-deployment-id-step-order.yaml

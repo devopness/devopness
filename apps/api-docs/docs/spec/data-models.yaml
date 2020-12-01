@@ -8,6 +8,8 @@ ActionStep:
   $ref: ./endpoints/actions/schemas/action-step.yaml
 ActionSteps:
   $ref: ./endpoints/actions/schemas/action-step-list.yaml
+ActionStepLog:
+  $ref: ./endpoints/logs/schemas/action-step-log.yaml
 ActionSummary:
   $ref: ./endpoints/actions/schemas/action-summary.yaml
 ActionSummaryServer:
