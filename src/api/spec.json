@@ -7957,6 +7957,9 @@
             "type": "boolean",
             "description": "Tells if the server is active or not"
           },
+          "blueprint": {
+            "$ref": "#/components/schemas/ServerBlueprint"
+          },
           "status": {
             "$ref": "#/components/schemas/ActionStatus"
           },
