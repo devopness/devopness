@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { ActionStepLog } from '../../generated/models';
 import { Log } from '../../generated/models';
 
 /**
@@ -35,6 +36,32 @@ export class LogsApiService extends ApiBaseService {
         const requestUrl = '/logs/action/{action_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Log>(requestUrl.replace(`{${"action_id"}}`, encodeURIComponent(String(actionId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Get action step log
+     * @param {number} actionId Unique ID of the action to get logs from
+     * @param {number} serverId Unique ID of the server to get logs from
+     * @param {number} actionStepOrder Step\&#39;s order number to get the logs from
+     */
+    public async getActionStepLog(actionId: number, serverId: number, actionStepOrder: number): Promise<ApiResponse<ActionStepLog>> {
+        if (actionId === null || actionId === undefined) {
+            throw new ArgumentNullException('actionId', 'getActionStepLog');
+        }
+        if (serverId === null || serverId === undefined) {
+            throw new ArgumentNullException('serverId', 'getActionStepLog');
+        }
+        if (actionStepOrder === null || actionStepOrder === undefined) {
+            throw new ArgumentNullException('actionStepOrder', 'getActionStepLog');
+        }
+        
+        let queryString = '';
+
+        const requestUrl = '/logs/action/{action_id}/server/{server_id}/step/{action_step_order}' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <ActionStepLog>(requestUrl.replace(`{${"action_id"}}`, encodeURIComponent(String(actionId))).replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))).replace(`{${"action_step_order"}}`, encodeURIComponent(String(actionStepOrder))));
         return new ApiResponse(response);
     }
 
