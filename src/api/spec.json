@@ -2040,6 +2040,17 @@
             "description": "Numeric ID of the daemon to restart"
           }
         ],
+        "requestBody": {
+          "description": "A JSON object containing the environment id",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EnvironmentIdRequest"
+              }
+            }
+          }
+        },
         "responses": {
           "204": {
             "description": "Ok"
@@ -3600,6 +3611,17 @@
             "description": "The unique id of the service"
           }
         ],
+        "requestBody": {
+          "description": "A JSON object containing the environment id",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EnvironmentIdRequest"
+              }
+            }
+          }
+        },
         "responses": {
           "204": {
             "$ref": "#/components/responses/NoContent"
@@ -3642,6 +3664,17 @@
             "description": "The unique id of the service"
           }
         ],
+        "requestBody": {
+          "description": "A JSON object containing the environment id",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EnvironmentIdRequest"
+              }
+            }
+          }
+        },
         "responses": {
           "204": {
             "$ref": "#/components/responses/NoContent"
@@ -3684,6 +3717,17 @@
             "description": "The unique id of the service"
           }
         ],
+        "requestBody": {
+          "description": "A JSON object containing the environment id",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EnvironmentIdRequest"
+              }
+            }
+          }
+        },
         "responses": {
           "204": {
             "$ref": "#/components/responses/NoContent"
@@ -3727,6 +3771,17 @@
             "description": "The unique id of the service"
           }
         ],
+        "requestBody": {
+          "description": "A JSON object containing the environment id",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EnvironmentIdRequest"
+              }
+            }
+          }
+        },
         "responses": {
           "204": {
             "$ref": "#/components/responses/NoContent"
@@ -3769,6 +3824,17 @@
             "description": "The unique id of the service"
           }
         ],
+        "requestBody": {
+          "description": "A JSON object containing the environment id",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EnvironmentIdRequest"
+              }
+            }
+          }
+        },
         "responses": {
           "204": {
             "$ref": "#/components/responses/NoContent"
@@ -7189,6 +7255,19 @@
         },
         "required": [
           "id"
+        ]
+      },
+      "EnvironmentIdRequest": {
+        "type": "object",
+        "properties": {
+          "environment_id": {
+            "type": "integer",
+            "description": "The unique environment id",
+            "example": 198421
+          }
+        },
+        "required": [
+          "environment_id"
         ]
       },
       "Environments": {

@@ -34,6 +34,7 @@ export * from './deployment-step';
 export * from './deployment-type';
 export * from './environment';
 export * from './environment-create';
+export * from './environment-id-request';
 export * from './environment-link-item';
 export * from './environment-link-server';
 export * from './environment-option-type';
