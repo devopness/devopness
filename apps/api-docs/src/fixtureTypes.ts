@@ -104,6 +104,9 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
         { path: 'environments[0].id', fixture: 'environment', field: 'id' },
         { path: 'environments[0].servers[0]', fixture: 'server', field: 'id' }
     ],
+    'daemon_restart': [
+        { path: 'environment_id', fixture: 'environment', field: 'id' },
+    ],
     'project': [],
     'project_update': [
         { path: 'id', fixture: 'project', field: 'id' }
@@ -127,6 +130,21 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     'service_create': [
         { path: 'environments[0].id', fixture: 'environment', field: 'id' },
         { path: 'environments[0].servers[0]', fixture: 'server', field: 'id' }
+    ],
+    'service_reload': [
+        { path: 'environment_id', fixture: 'environment', field: 'id' },
+    ],
+    'service_restart': [
+        { path: 'environment_id', fixture: 'environment', field: 'id' },
+    ],
+    'service_start': [
+        { path: 'environment_id', fixture: 'environment', field: 'id' },
+    ],
+    'service_status_update': [
+        { path: 'environment_id', fixture: 'environment', field: 'id' },
+    ],
+    'service_stop': [
+        { path: 'environment_id', fixture: 'environment', field: 'id' },
     ],
     'social_account': [],
     'source_provider': [],

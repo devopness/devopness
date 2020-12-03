@@ -54,7 +54,7 @@ declare module 'hooks' {
 
   export interface TransactionRequest {
     method: HTTPMethod;
-    url: string;
+    uri: string;
     body?: string;
     bodyEncoding?: BodyEncoding;
     headers?: Record<string, string>;

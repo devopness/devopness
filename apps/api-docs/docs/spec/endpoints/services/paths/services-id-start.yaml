@@ -14,6 +14,13 @@ parameters:
       minimum: 1
     required: true
     description: The unique id of the service
+requestBody:
+  description: A JSON object containing the environment id
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/ServiceStart'
 responses:
   204:
     $ref: '#/components/responses/NoContent'

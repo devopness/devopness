@@ -4,6 +4,7 @@ properties:
     description: "`self-hosted` if connecting to an existing server instance. May also be a list of cloud providers to which the server spec will be used to launch instances."
     enum: ['self-hosted']
     example: 'self-hosted'
+    nullable: true
   services:
     description: "The list of services that must be installed on the server"
     type: array

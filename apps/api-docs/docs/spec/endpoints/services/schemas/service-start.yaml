@@ -1,0 +1,8 @@
+type: object
+properties:
+  environment_id:
+    type: integer
+    description: The unique environment id
+    example: 198421
+required:
+  - environment_id

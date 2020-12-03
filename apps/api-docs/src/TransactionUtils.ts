@@ -104,6 +104,23 @@ export default class TransactionUtils {
             if (!transaction.fail) {
                 this.logger.log(slug, `${tag} '${transaction.fullPath}' => '${path}'`);
             }
+
+            // Replaces any other parameter in the URL by it's example value.
+            if (path.indexOf('{') >= 0) {
+                const examples = transaction.request.uri.split('/');
+                const params = path.split('/');
+                path = '';
+
+                for (let i = 1; i < params.length; i++) {
+                    if (params[i][0] != '{') {
+                        path += '/' + params[i];
+                        continue;
+                    }
+
+                    path += '/' + examples[i];
+                }
+            }
+
             transaction.fullPath = path;
 
             // dredd uses `transaction.id` in its logging

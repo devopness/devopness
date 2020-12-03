@@ -52,6 +52,8 @@ Daemon:
   $ref: ./endpoints/daemons/schemas/daemon.yaml
 DaemonCreate:
   $ref: ./endpoints/daemons/schemas/daemon-create.yaml
+DaemonRestart:
+  $ref: ./endpoints/daemons/schemas/daemon-restart.yaml
 DaemonUpdate:
   $ref: ./endpoints/daemons/schemas/daemon-update.yaml
 Daemons:
@@ -94,6 +96,8 @@ EnvironmentLinks:
   $ref: ./shared/schemas/environment-links.yaml
 EnvironmentLinkServer:
   $ref: ./shared/schemas/environment-link-server.yaml
+EnvironmentIdRequest:
+  $ref: ./shared/schemas/environment-id-request.yaml
 Environments:
   $ref: ./endpoints/environments/schemas/environment-list.yaml
 EnvironmentType:
@@ -196,6 +200,16 @@ Services:
   $ref: ./endpoints/services/schemas/service-list.yaml
 ServiceOptions:
   $ref: ./endpoints/static/schemas/service-options.yaml
+ServiceReload:
+  $ref: ./endpoints/services/schemas/service-reload.yaml
+ServiceRestart:
+  $ref: ./endpoints/services/schemas/service-restart.yaml
+ServiceStart:
+  $ref: ./endpoints/services/schemas/service-start.yaml
+ServiceStatusUpdate:
+  $ref: ./endpoints/services/schemas/service-status-update.yaml
+ServiceStop:
+  $ref: ./endpoints/services/schemas/service-stop.yaml
 ServiceType:
   $ref: ./endpoints/static/schemas/service-type.yaml
 ServiceTypes:
