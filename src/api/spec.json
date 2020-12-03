@@ -8319,7 +8319,8 @@
             "enum": [
               "self-hosted"
             ],
-            "example": "self-hosted"
+            "example": "self-hosted",
+            "nullable": true
           },
           "services": {
             "description": "The list of services that must be installed on the server",
