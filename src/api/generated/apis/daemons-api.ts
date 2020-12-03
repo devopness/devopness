@@ -16,6 +16,7 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { Daemon } from '../../generated/models';
+import { DaemonRestart } from '../../generated/models';
 import { DaemonUpdate } from '../../generated/models';
 
 /**
@@ -62,17 +63,21 @@ export class DaemonsApiService extends ApiBaseService {
      * 
      * @summary Restart a background process
      * @param {number} daemonId Numeric ID of the daemon to restart
+     * @param {DaemonRestart} daemonRestart A JSON object containing the environment id
      */
-    public async restartDaemon(daemonId: number): Promise<ApiResponse<void>> {
+    public async restartDaemon(daemonId: number, daemonRestart: DaemonRestart): Promise<ApiResponse<void>> {
         if (daemonId === null || daemonId === undefined) {
             throw new ArgumentNullException('daemonId', 'restartDaemon');
+        }
+        if (daemonRestart === null || daemonRestart === undefined) {
+            throw new ArgumentNullException('daemonRestart', 'restartDaemon');
         }
         
         let queryString = '';
 
         const requestUrl = '/daemons/{daemon_id}/restart' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <void>(requestUrl.replace(`{${"daemon_id"}}`, encodeURIComponent(String(daemonId))));
+        const response = await this.post <void, DaemonRestart>(requestUrl.replace(`{${"daemon_id"}}`, encodeURIComponent(String(daemonId))), daemonRestart);
         return new ApiResponse(response);
     }
 

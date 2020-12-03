@@ -16,6 +16,11 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { Service } from '../../generated/models';
+import { ServiceReload } from '../../generated/models';
+import { ServiceRestart } from '../../generated/models';
+import { ServiceStart } from '../../generated/models';
+import { ServiceStatusUpdate } from '../../generated/models';
+import { ServiceStop } from '../../generated/models';
 
 /**
  * ServicesApiService - Auto-generated
@@ -61,17 +66,21 @@ export class ServicesApiService extends ApiBaseService {
      * 
      * @summary Reload a service
      * @param {number} serviceId The unique id of the service
+     * @param {ServiceReload} serviceReload A JSON object containing the environment id
      */
-    public async reloadService(serviceId: number): Promise<ApiResponse<void>> {
+    public async reloadService(serviceId: number, serviceReload: ServiceReload): Promise<ApiResponse<void>> {
         if (serviceId === null || serviceId === undefined) {
             throw new ArgumentNullException('serviceId', 'reloadService');
+        }
+        if (serviceReload === null || serviceReload === undefined) {
+            throw new ArgumentNullException('serviceReload', 'reloadService');
         }
         
         let queryString = '';
 
         const requestUrl = '/services/{service_id}/reload' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <void>(requestUrl.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))));
+        const response = await this.post <void, ServiceReload>(requestUrl.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))), serviceReload);
         return new ApiResponse(response);
     }
 
@@ -79,17 +88,21 @@ export class ServicesApiService extends ApiBaseService {
      * 
      * @summary Restart a service
      * @param {number} serviceId The unique id of the service
+     * @param {ServiceRestart} serviceRestart A JSON object containing the environment id
      */
-    public async restartService(serviceId: number): Promise<ApiResponse<void>> {
+    public async restartService(serviceId: number, serviceRestart: ServiceRestart): Promise<ApiResponse<void>> {
         if (serviceId === null || serviceId === undefined) {
             throw new ArgumentNullException('serviceId', 'restartService');
+        }
+        if (serviceRestart === null || serviceRestart === undefined) {
+            throw new ArgumentNullException('serviceRestart', 'restartService');
         }
         
         let queryString = '';
 
         const requestUrl = '/services/{service_id}/restart' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <void>(requestUrl.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))));
+        const response = await this.post <void, ServiceRestart>(requestUrl.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))), serviceRestart);
         return new ApiResponse(response);
     }
 
@@ -97,17 +110,21 @@ export class ServicesApiService extends ApiBaseService {
      * 
      * @summary Start a service
      * @param {number} serviceId The unique id of the service
+     * @param {ServiceStart} serviceStart A JSON object containing the environment id
      */
-    public async startService(serviceId: number): Promise<ApiResponse<void>> {
+    public async startService(serviceId: number, serviceStart: ServiceStart): Promise<ApiResponse<void>> {
         if (serviceId === null || serviceId === undefined) {
             throw new ArgumentNullException('serviceId', 'startService');
+        }
+        if (serviceStart === null || serviceStart === undefined) {
+            throw new ArgumentNullException('serviceStart', 'startService');
         }
         
         let queryString = '';
 
         const requestUrl = '/services/{service_id}/start' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <void>(requestUrl.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))));
+        const response = await this.post <void, ServiceStart>(requestUrl.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))), serviceStart);
         return new ApiResponse(response);
     }
 
@@ -115,17 +132,21 @@ export class ServicesApiService extends ApiBaseService {
      * 
      * @summary Stop a service
      * @param {number} serviceId The unique id of the service
+     * @param {ServiceStop} serviceStop A JSON object containing the environment id
      */
-    public async stopService(serviceId: number): Promise<ApiResponse<void>> {
+    public async stopService(serviceId: number, serviceStop: ServiceStop): Promise<ApiResponse<void>> {
         if (serviceId === null || serviceId === undefined) {
             throw new ArgumentNullException('serviceId', 'stopService');
+        }
+        if (serviceStop === null || serviceStop === undefined) {
+            throw new ArgumentNullException('serviceStop', 'stopService');
         }
         
         let queryString = '';
 
         const requestUrl = '/services/{service_id}/stop' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <void>(requestUrl.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))));
+        const response = await this.post <void, ServiceStop>(requestUrl.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))), serviceStop);
         return new ApiResponse(response);
     }
 
@@ -133,17 +154,21 @@ export class ServicesApiService extends ApiBaseService {
      * Trigger a status update action for a service in all project servers asynchronously. To get the output of service status update action the endpoint [getServiceStatusLog](/#operation/getServiceStatusLog) should be invoked. 
      * @summary Update status of a service
      * @param {number} serviceId The unique id of the service
+     * @param {ServiceStatusUpdate} serviceStatusUpdate A JSON object containing the environment id
      */
-    public async updateServiceStatus(serviceId: number): Promise<ApiResponse<void>> {
+    public async updateServiceStatus(serviceId: number, serviceStatusUpdate: ServiceStatusUpdate): Promise<ApiResponse<void>> {
         if (serviceId === null || serviceId === undefined) {
             throw new ArgumentNullException('serviceId', 'updateServiceStatus');
+        }
+        if (serviceStatusUpdate === null || serviceStatusUpdate === undefined) {
+            throw new ArgumentNullException('serviceStatusUpdate', 'updateServiceStatus');
         }
         
         let queryString = '';
 
         const requestUrl = '/services/{service_id}/update-status' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <void>(requestUrl.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))));
+        const response = await this.post <void, ServiceStatusUpdate>(requestUrl.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))), serviceStatusUpdate);
         return new ApiResponse(response);
     }
 }
