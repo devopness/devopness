@@ -2046,7 +2046,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/EnvironmentIdRequest"
+                "$ref": "#/components/schemas/DaemonRestart"
               }
             }
           }
@@ -3617,7 +3617,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/EnvironmentIdRequest"
+                "$ref": "#/components/schemas/ServiceReload"
               }
             }
           }
@@ -3670,7 +3670,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/EnvironmentIdRequest"
+                "$ref": "#/components/schemas/ServiceRestart"
               }
             }
           }
@@ -3723,7 +3723,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/EnvironmentIdRequest"
+                "$ref": "#/components/schemas/ServiceStart"
               }
             }
           }
@@ -3777,7 +3777,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/EnvironmentIdRequest"
+                "$ref": "#/components/schemas/ServiceStatusUpdate"
               }
             }
           }
@@ -3830,7 +3830,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/EnvironmentIdRequest"
+                "$ref": "#/components/schemas/ServiceStop"
               }
             }
           }
@@ -6746,6 +6746,19 @@
           "working_directory"
         ]
       },
+      "DaemonRestart": {
+        "type": "object",
+        "properties": {
+          "environment_id": {
+            "type": "integer",
+            "description": "The unique environment id",
+            "example": 198421
+          }
+        },
+        "required": [
+          "environment_id"
+        ]
+      },
       "DaemonUpdate": {
         "type": "object",
         "properties": {
@@ -8607,6 +8620,71 @@
         },
         "required": [
           "types"
+        ]
+      },
+      "ServiceReload": {
+        "type": "object",
+        "properties": {
+          "environment_id": {
+            "type": "integer",
+            "description": "The unique environment id",
+            "example": 198421
+          }
+        },
+        "required": [
+          "environment_id"
+        ]
+      },
+      "ServiceRestart": {
+        "type": "object",
+        "properties": {
+          "environment_id": {
+            "type": "integer",
+            "description": "The unique environment id",
+            "example": 198421
+          }
+        },
+        "required": [
+          "environment_id"
+        ]
+      },
+      "ServiceStart": {
+        "type": "object",
+        "properties": {
+          "environment_id": {
+            "type": "integer",
+            "description": "The unique environment id",
+            "example": 198421
+          }
+        },
+        "required": [
+          "environment_id"
+        ]
+      },
+      "ServiceStatusUpdate": {
+        "type": "object",
+        "properties": {
+          "environment_id": {
+            "type": "integer",
+            "description": "The unique environment id",
+            "example": 198421
+          }
+        },
+        "required": [
+          "environment_id"
+        ]
+      },
+      "ServiceStop": {
+        "type": "object",
+        "properties": {
+          "environment_id": {
+            "type": "integer",
+            "description": "The unique environment id",
+            "example": 198421
+          }
+        },
+        "required": [
+          "environment_id"
         ]
       },
       "ServiceType": {
