@@ -19,6 +19,8 @@
 /applications/{application_id}/hooks:
   post:
     $ref: ./endpoints/hooks/paths/applications-id-hooks.yaml
+  get:
+    $ref: ./endpoints/hooks/paths/applications-id-hooks-list.yaml
 /applications/{application_id}/scripts:
   post:
     $ref: ./endpoints/applications/paths/applications-id-scripts.yaml

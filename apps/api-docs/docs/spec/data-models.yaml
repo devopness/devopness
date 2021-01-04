@@ -104,6 +104,8 @@ EnvironmentType:
   $ref: ./shared/schemas/environment-type.yaml
 Hook:
   $ref: ./endpoints/hooks/schemas/hook.yaml
+Hooks:
+  $ref: ./endpoints/hooks/schemas/hook-list.yaml
 HookCreate:
   $ref: ./endpoints/hooks/schemas/hook-create.yaml
 Language:

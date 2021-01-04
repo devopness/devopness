@@ -1,0 +1,25 @@
+summary: Returns a list of all hooks belonging to an application
+operationId: listApplicationHooks
+tags:
+  - Applications - Hooks
+parameters:
+  - $ref: "#/components/parameters/acceptHeader"
+  - $ref: "#/components/parameters/authHeader"
+  - $ref: "#/components/parameters/contentTypeHeader"
+  - in: path
+    name: application_id
+    example: 1
+    schema:
+      type: integer
+      minimum: 1
+    required: true
+    description: Unique id of the application
+responses:
+  200:
+    description: "Ok"
+    content:
+      application/json:
+        schema:
+          $ref: "#/components/schemas/Hooks"
+  403:
+    $ref: "#/components/responses/Forbidden"
