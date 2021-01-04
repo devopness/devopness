@@ -342,6 +342,110 @@
         }
       }
     },
+    "/applications/{application_id}/hooks": {
+      "post": {
+        "summary": "Add a hook to an application",
+        "operationId": "addHookToApplication",
+        "tags": [
+          "Applications - Hooks"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "application_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Unique id of the application"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing application hook data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HookCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Hook"
+                }
+              }
+            }
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "get": {
+        "summary": "Returns a list of all hooks belonging to an application",
+        "operationId": "listApplicationHooks",
+        "tags": [
+          "Applications - Hooks"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "application_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Unique id of the application"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Hooks"
+                }
+              }
+            }
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
+      }
+    },
     "/applications/{application_id}/scripts": {
       "post": {
         "summary": "Add script to application as a deployment step",
@@ -1337,6 +1441,93 @@
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/hooks/{hook_id}": {
+      "get": {
+        "summary": "Get a hook by Id",
+        "operationId": "getHook",
+        "tags": [
+          "Hooks"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "hook_id",
+            "example": "db3ca8c0-4977-11eb-9fbe-0242ac130003",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Unique ID of the hook to be retrieved"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Hook"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "post": {
+        "summary": "Trigger a hook associated action",
+        "operationId": "triggerHook",
+        "tags": [
+          "Hooks"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "hook_id",
+            "example": "db3ca8c0-4977-11eb-9fbe-0242ac130003",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Unique ID of the hook to be triggered"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "204": {
+            "description": "Ok"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
           }
         }
       }
@@ -5458,6 +5649,9 @@
       "name": "Applications - Deployments"
     },
     {
+      "name": "Applications - Hooks"
+    },
+    {
       "name": "Applications - Scripts"
     },
     {
@@ -5501,6 +5695,10 @@
     },
     {
       "name": "Environments - SSH Keys"
+    },
+    {
+      "name": "Hooks",
+      "description": "A hook is a simple way to integrate your Devopness workflow with external processes to trigger Devopness actions by sending a POST request to a public URL. By using hooks you can make Devopness react to events that happen in other applications and make sure your environment resources reflect changes applied in other services.\n"
     },
     {
       "name": "Logs"
@@ -7298,6 +7496,109 @@
         ],
         "description": "Environment's type",
         "example": "staging"
+      },
+      "Hook": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The Id of the given hook",
+            "example": "f1a61a4e-4d08-11eb-9481-0242ac130004"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name entered by the user (or auto-generated by `Devopness`) to uniquely identify the hook",
+            "example": "my-app deploy"
+          },
+          "requires_secret": {
+            "default": false,
+            "type": "boolean",
+            "description": "Tells if requests to this hook must only be accepted when a HTTP header is sent with a message authentication code ([HMAC](https://en.wikipedia.org/wiki/HMAC)) generated based on the secret provided by Devopness and shared by user with external sources"
+          },
+          "secret": {
+            "type": "string",
+            "description": "The secret generated by Devopness to be used to digitally sign incoming requests",
+            "example": "nWE5NR3Z5SQYRrEtbotmG0mcu0Lloc1zZb4esrWifOIpM33LPvkicJYiQSqW"
+          },
+          "secret_algorithm": {
+            "type": "string",
+            "description": "The cryptographic hash function to be used by Devopness when validating digitally signed incoming requests for hooks that require secret validation",
+            "example": "sha256"
+          },
+          "secret_header_name": {
+            "type": "string",
+            "description": "The name of the HTTP request header from which the request digital signature should be extracted",
+            "example": "X-Custom-Header"
+          },
+          "auto_generated": {
+            "default": false,
+            "type": "boolean",
+            "description": "Indicates if the record was auto_generated by `devopness` itself"
+          },
+          "created_by_user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25T13:52:04.000000Z"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "requires_secret",
+          "auto_generated",
+          "created_at",
+          "updated_at"
+        ]
+      },
+      "Hooks": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Hook"
+        }
+      },
+      "HookCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name entered by the user (or auto-generated by `Devopness`) to uniquely identify the hook",
+            "example": "my-app deploy"
+          },
+          "action_type": {
+            "$ref": "#/components/schemas/ActionType",
+            "description": "The action type triggered by hook"
+          },
+          "requires_secret": {
+            "default": false,
+            "type": "boolean",
+            "description": "Tells if requests to this hook must only be accepted when a HTTP header is sent with a message authentication code ([HMAC](https://en.wikipedia.org/wiki/HMAC)) generated based on the secret provided by Devopness and shared by user with external sources"
+          },
+          "secret_algorithm": {
+            "type": "string",
+            "description": "The cryptographic hash function to be used by Devopness when validating digitally signed incoming requests for hooks that require secret validation",
+            "example": "sha256"
+          },
+          "secret_header_name": {
+            "type": "string",
+            "description": "The name of the HTTP request header from which the request digital signature should be extracted",
+            "example": "X-Custom-Header"
+          }
+        },
+        "required": [
+          "name",
+          "action_type",
+          "requires_secret"
+        ]
       },
       "Language": {
         "type": "string",
