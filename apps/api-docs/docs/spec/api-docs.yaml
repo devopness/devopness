@@ -172,6 +172,7 @@ tags:
   - name: Actions
   - name: Applications
   - name: Applications - Deployments
+  - name: Applications - Hooks
   - name: Applications - Scripts
   - name: Applications - SSL Certificates
   - name: Applications - Variables
@@ -192,6 +193,9 @@ tags:
   - name: Environments - Servers
   - name: Environments - Services
   - name: Environments - SSH Keys
+  - name: Hooks
+    description: |
+      A hook is a simple way to integrate your Devopness workflow with external processes to trigger Devopness actions by sending a POST request to a public URL. By using hooks you can make Devopness react to events that happen in other applications and make sure your environment resources reflect changes applied in other services.
   - name: Logs
   - name: Network Rules
   - name: Projects

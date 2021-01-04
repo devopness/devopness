@@ -16,6 +16,9 @@
     $ref: ./endpoints/applications/paths/applications-id-deployments.yaml
   get:
     $ref: ./endpoints/applications/paths/applications-id-deployments-list.yaml
+/applications/{application_id}/hooks:
+  post:
+    $ref: ./endpoints/hooks/paths/applications-id-hooks.yaml
 /applications/{application_id}/scripts:
   post:
     $ref: ./endpoints/applications/paths/applications-id-scripts.yaml
@@ -71,6 +74,11 @@
 /environments/{environment_id}/servers/{server_id}/unlink:
   delete:
     $ref: ./endpoints/environments/paths/environments-id-servers-id-unlink.yaml
+/hooks/{hook_id}:
+  get:
+    $ref: ./endpoints/hooks/paths/hooks-id.yaml
+  post:
+    $ref: ./endpoints/hooks/paths/hooks-id-trigger.yaml
 /logs/action/{action_id}:
   get:
     $ref: ./endpoints/logs/paths/logs-action-id.yaml
