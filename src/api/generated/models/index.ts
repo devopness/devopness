@@ -42,6 +42,8 @@ export * from './environment-option-type';
 export * from './environment-options';
 export * from './environment-type';
 export * from './environment-update';
+export * from './hook';
+export * from './hook-create';
 export * from './language';
 export * from './language-runtime';
 export * from './language-runtime-framework';

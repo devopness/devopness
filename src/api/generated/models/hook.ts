@@ -47,6 +47,13 @@ export interface Hook {
      */
     secret?: string;
     /**
+
+     * The cryptographic hash function to be used by Devopness when validating digitally signed incoming requests for hooks that require secret validation
+     * @type {string}
+     * @memberof Hook
+     */
+    secret_algorithm?: string;
+    /**
      * The name of the HTTP request header from which the request digital signature should be extracted
      * @type {string}
      * @memberof Hook
@@ -78,6 +85,7 @@ export interface Hook {
     resource_id: number;
     /**
      * 
+
      * @type {User}
      * @memberof Hook
      */
