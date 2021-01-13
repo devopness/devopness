@@ -76,11 +76,29 @@
 /environments/{environment_id}/servers/{server_id}/unlink:
   delete:
     $ref: ./endpoints/environments/paths/environments-id-servers-id-unlink.yaml
-/hooks/{hook_id}:
+/hooks/incoming/{hook_id}:
   get:
-    $ref: ./endpoints/hooks/paths/hooks-id.yaml
+    $ref: ./endpoints/hooks/paths/hooks-incoming-id.yaml
   post:
-    $ref: ./endpoints/hooks/paths/hooks-id-trigger.yaml
+    $ref: ./endpoints/hooks/paths/hooks-incoming-id-trigger.yaml
+  put:
+    $ref: ./endpoints/hooks/paths/hooks-incoming-id-update.yaml
+/hooks/incoming/{hook_id}/requests:
+  get:
+    $ref: ./endpoints/hooks/paths/hooks-incoming-id-requests-list.yaml
+/hooks/outgoing:
+  post:
+    $ref: ./endpoints/hooks/paths/hooks-outgoing-create.yaml
+/hooks/outgoing/{hook_id}:
+  delete:
+    $ref: ./endpoints/hooks/paths/hooks-outgoing-id-delete.yaml
+  get:
+    $ref: ./endpoints/hooks/paths/hooks-outgoing-id.yaml
+  put:
+    $ref: ./endpoints/hooks/paths/hooks-outgoing-id-update.yaml
+/hook-requests/{hook_request_id}:
+  get:
+    $ref: ./endpoints/hook-requests/paths/hook-requests-id.yaml
 /logs/action/{action_id}:
   get:
     $ref: ./endpoints/logs/paths/logs-action-id.yaml

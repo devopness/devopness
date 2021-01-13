@@ -1,7 +1,7 @@
-summary: Get a hook by Id
-operationId: getHook
+summary: Get an incoming hook by Id
+operationId: getIncomingHook
 tags:
-  - Hooks
+  - Hooks - Incoming
 parameters:
   - $ref: "#/components/parameters/acceptHeader"
   - $ref: "#/components/parameters/authHeader"

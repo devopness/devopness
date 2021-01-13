@@ -1,7 +1,7 @@
-summary: Trigger a hook associated action
+summary: Trigger an incoming hook associated action
 operationId: triggerHook
 tags:
-  - Hooks
+  - Hooks - Incoming
 parameters:
   - $ref: "#/components/parameters/acceptHeader"
   - $ref: "#/components/parameters/contentTypeHeader"

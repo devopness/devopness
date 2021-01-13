@@ -28,6 +28,14 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         // SSL certificates can only be added to applications that have a successful deployment
         'addSslCertificateToApplication201',
         'updateServer204',
+        // A hook request is not created by the tests, so we don't have a valid hook_request_id
+        'getHookRequest200',
+        // The hook_id is of an incoming hook, so we get 404 on outgoing hook endpoints
+        'getOutgoingHook200',
+        'deleteOutgoingHook204',
+        // @todo: Resolves conflicts to trigger a hook on dev-api
+        'triggerHook201',
+        'triggerHook204',
     ];
 
     // transactions listed here are skipped with a `before` hook
@@ -67,6 +75,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         // variable tests should run before deleteApplication
         ['deleteVariable204', 'deleteApplication204'],
         ['deleteScript204', 'deleteApplication204'],
+        ['triggerHook204', 'deleteApplication204'],
         // unlinkServerFromEnvironment requires deleting the associated ssh key, network rule, daemon, service, cron job and application
         ['deleteSshKey204', 'unlinkServerFromEnvironment204'],
         ['deleteNetworkRule204', 'unlinkServerFromEnvironment204'],

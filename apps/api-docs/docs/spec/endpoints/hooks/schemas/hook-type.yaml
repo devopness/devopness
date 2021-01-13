@@ -1,0 +1,5 @@
+type: string
+description: The type of hook (incoming or outgoing)
+enum:
+  - in
+  - out

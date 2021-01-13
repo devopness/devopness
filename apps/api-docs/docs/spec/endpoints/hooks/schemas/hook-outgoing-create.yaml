@@ -1,0 +1,33 @@
+type: object
+properties:
+  name:
+    type: string
+    description: The name to uniquely identify the outgoing hook
+    example: "my-app deploy"
+  action_type:
+    $ref: '#/components/schemas/ActionType'
+    description: The action type that trigger the outgoing hook
+  resource_type:
+    $ref: '#/components/schemas/ResourceType'
+    description: The type of the resource that the outgoing hook belongs to
+  resource_id:
+    type: integer
+    description: The id of the resource that the outgoing hook belongs to
+    example: 950013827
+  target_url:
+    type: string
+    description: The URL that Devopness should send a request when the outgoing hook is triggered
+    example: https://simple-example.test/hook/12345
+  trigger_when:
+    type: array
+    items:
+      type: string
+    description: The list of action status when the hook must be triggered
+    example: ["in-progress", "completed", "failed"]
+required:
+  - name
+  - action_type
+  - resource_type
+  - resource_id
+  - target_url
+  - trigger_when
