@@ -12,6 +12,8 @@
  */
 
 
+import { ActionType } from './action-type';
+import { ResourceType } from './resource-type';
 import { User } from './user';
 
 /**
@@ -45,6 +47,7 @@ export interface Hook {
      */
     secret?: string;
     /**
+
      * The cryptographic hash function to be used by Devopness when validating digitally signed incoming requests for hooks that require secret validation
      * @type {string}
      * @memberof Hook
@@ -64,6 +67,25 @@ export interface Hook {
     auto_generated: boolean;
     /**
      * 
+     * @type {ActionType}
+     * @memberof Hook
+     */
+    action_type: ActionType;
+    /**
+     * 
+     * @type {ResourceType}
+     * @memberof Hook
+     */
+    resource_type: ResourceType;
+    /**
+     * The id of the related entity
+     * @type {number}
+     * @memberof Hook
+     */
+    resource_id: number;
+    /**
+     * 
+
      * @type {User}
      * @memberof Hook
      */
