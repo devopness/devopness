@@ -342,6 +342,110 @@
         }
       }
     },
+    "/applications/{application_id}/hooks": {
+      "post": {
+        "summary": "Add an incoming hook to an application",
+        "operationId": "addIncomingHookToApplication",
+        "tags": [
+          "Applications - Hooks"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "application_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Unique id of the application"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing application hook data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HookCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Hook"
+                }
+              }
+            }
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "get": {
+        "summary": "Returns a list of all incoming hooks belonging to an application",
+        "operationId": "listApplicationHooks",
+        "tags": [
+          "Applications - Hooks"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "application_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Unique id of the application"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Hooks"
+                }
+              }
+            }
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
+      }
+    },
     "/applications/{application_id}/scripts": {
       "post": {
         "summary": "Add script to application as a deployment step",
@@ -1334,6 +1438,419 @@
         "responses": {
           "204": {
             "$ref": "#/components/responses/NoContent"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/hooks/incoming/{hook_id}": {
+      "get": {
+        "summary": "Get an incoming hook by Id",
+        "operationId": "getIncomingHook",
+        "tags": [
+          "Hooks - Incoming"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "hook_id",
+            "example": "db3ca8c0-4977-11eb-9fbe-0242ac130003",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Unique ID of the hook to be retrieved"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Hook"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "post": {
+        "summary": "Trigger an incoming hook associated action",
+        "operationId": "triggerHook",
+        "tags": [
+          "Hooks - Incoming"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "hook_id",
+            "example": "db3ca8c0-4977-11eb-9fbe-0242ac130003",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Unique ID of the hook to be triggered"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "204": {
+            "description": "Ok"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update an existing incoming hook",
+        "operationId": "updateIncomingHook",
+        "tags": [
+          "Hooks - Incoming"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "hook_id",
+            "example": "db3ca8c0-4977-11eb-9fbe-0242ac130003",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Unique ID of the hook to be updated"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing incoming hook data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HookIncomingUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          }
+        }
+      }
+    },
+    "/hooks/incoming/{hook_id}/requests": {
+      "get": {
+        "summary": "Returns a list of all hook requests belonging to an incoming hook",
+        "operationId": "listIncomingHookRequests",
+        "tags": [
+          "Hooks - Incoming Requests"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "hook_id",
+            "example": "db3ca8c0-4977-11eb-9fbe-0242ac130003",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Unique ID of the hook to retrive request list"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HookRequests"
+                }
+              }
+            }
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
+      }
+    },
+    "/hooks/outgoing": {
+      "post": {
+        "summary": "Create an outgoing hook to a specific resource",
+        "operationId": "addOutgoinHook",
+        "tags": [
+          "Hooks - Outgoing"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing outgoing hook data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HookOutgoingCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Hook"
+                }
+              }
+            }
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/hooks/outgoing/{hook_id}": {
+      "delete": {
+        "summary": "Delete a given outgoing hook",
+        "operationId": "deleteOutgoingHook",
+        "tags": [
+          "Hooks - Outgoing"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "hook_id",
+            "example": "51921dfd-7544-4db1-b255-a226e5ea7033",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Unique ID of the outgoing hook to be deleted"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "get": {
+        "summary": "Get an outgoing hook by Id",
+        "operationId": "getOutgoingHook",
+        "tags": [
+          "Hooks - Outgoing"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "hook_id",
+            "example": "51921dfd-7544-4db1-b255-a226e5ea7033",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Unique ID of the outgoing hook to be retrieved"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Hook"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update an existing outgoing hook",
+        "operationId": "updateOutgoingHook",
+        "tags": [
+          "Hooks - Outgoing"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "hook_id",
+            "example": "51921dfd-7544-4db1-b255-a226e5ea7033",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Unique ID of the outgoing hook to be updated"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing outgoing hook data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HookOutgoingUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          }
+        }
+      }
+    },
+    "/hook-requests/{hook_request_id}": {
+      "get": {
+        "summary": "Get a hook request by id",
+        "operationId": "getHookRequest",
+        "tags": [
+          "Hook Requests"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "hook_request_id",
+            "example": "6fa16226-9dc4-4367-88aa-e689ad2bc580",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Unique ID of the hook request to be retrieved"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HookRequest"
+                }
+              }
+            }
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
@@ -5458,6 +5975,9 @@
       "name": "Applications - Deployments"
     },
     {
+      "name": "Applications - Hooks"
+    },
+    {
       "name": "Applications - Scripts"
     },
     {
@@ -5501,6 +6021,20 @@
     },
     {
       "name": "Environments - SSH Keys"
+    },
+    {
+      "name": "Hook Requests"
+    },
+    {
+      "name": "Hooks - Incoming",
+      "description": "A hook is a simple way to integrate your Devopness workflow with external processes to trigger Devopness actions by sending a POST request to a public URL. By using hooks you can make Devopness react to events that happen in other applications and make sure your environment resources reflect changes applied in other services.\n"
+    },
+    {
+      "name": "Hooks - Incoming Requests"
+    },
+    {
+      "name": "Hooks - Outgoing",
+      "description": "An outgoing hook is a webhook that trigger a request when an action of a resource has your state updated.\n"
     },
     {
       "name": "Logs"
@@ -6840,6 +7374,9 @@
           "commit": {
             "$ref": "#/components/schemas/Commit"
           },
+          "hook_request": {
+            "$ref": "#/components/schemas/HookRequest"
+          },
           "steps": {
             "description": "The steps that were meant to be executed when the deployment was triggered",
             "type": "array",
@@ -7298,6 +7835,394 @@
         ],
         "description": "Environment's type",
         "example": "staging"
+      },
+      "Hook": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The Id of the given hook",
+            "example": "f1a61a4e-4d08-11eb-9481-0242ac130004"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name entered by the user (or auto-generated by `Devopness`) to uniquely identify the hook",
+            "example": "my-app deploy"
+          },
+          "type": {
+            "$ref": "#/components/schemas/HookType"
+          },
+          "url": {
+            "type": "string",
+            "nullable": true,
+            "description": "The URL where the incoming hook must be triggered with a POST request",
+            "example": "https://api.devopness.com/hooks-incoming/f1a61a4e-4d08-11eb-9481-0242ac130004"
+          },
+          "target_url": {
+            "type": "string",
+            "nullable": true,
+            "description": "The target URL on outgoing hooks where Devopness should trigger a request",
+            "example": "https://simple-example.test/hook/12345"
+          },
+          "requires_secret": {
+            "default": false,
+            "type": "boolean",
+            "description": "Tells if requests to this hook must only be accepted when a HTTP header is sent with a message authentication code ([HMAC](https://en.wikipedia.org/wiki/HMAC)) generated based on the secret provided by Devopness and shared by user with external sources"
+          },
+          "secret": {
+            "type": "string",
+            "description": "The secret generated by Devopness to be used to digitally sign incoming requests",
+            "example": "nWE5NR3Z5SQYRrEtbotmG0mcu0Lloc1zZb4esrWifOIpM33LPvkicJYiQSqW"
+          },
+          "secret_header_name": {
+            "type": "string",
+            "nullable": true,
+            "description": "The name of the HTTP request header from which the request digital signature should be extracted",
+            "example": "X-Custom-Header"
+          },
+          "secret_algorithm": {
+            "type": "string",
+            "nullable": true,
+            "description": "The cryptographic hash function to be used by Devopness when validating digitally signed incoming requests for hooks that require secret validation",
+            "example": "sha256"
+          },
+          "verify_ssl": {
+            "type": "boolean",
+            "description": "Indicates if the Devopness must be verify the SSL certificate of the request",
+            "example": true
+          },
+          "trigger_when": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "description": "A list of action status when the outgoing hook should be triggered by Devopness",
+            "example": [
+              "in-progress",
+              "completed"
+            ]
+          },
+          "auto_generated": {
+            "default": false,
+            "type": "boolean",
+            "description": "Indicates if the record was auto_generated by `devopness` itself"
+          },
+          "action_type": {
+            "$ref": "#/components/schemas/ActionType",
+            "description": "The action type triggered by hook"
+          },
+          "resource": {
+            "$ref": "#/components/schemas/Resource"
+          },
+          "created_by_user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25T13:52:04.000000Z"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "type",
+          "secret",
+          "verify_ssl",
+          "trigger_when",
+          "action_type",
+          "resource",
+          "created_at",
+          "updated_at"
+        ]
+      },
+      "Hooks": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Hook"
+        }
+      },
+      "HookCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name entered by the user (or auto-generated by `Devopness`) to uniquely identify the hook",
+            "example": "my-app deploy"
+          },
+          "action_type": {
+            "$ref": "#/components/schemas/ActionType",
+            "description": "The action type triggered by hook"
+          },
+          "requires_secret": {
+            "default": false,
+            "type": "boolean",
+            "description": "Tells if requests to this hook must only be accepted when a HTTP header is sent with a message authentication code ([HMAC](https://en.wikipedia.org/wiki/HMAC)) generated based on the secret provided by Devopness and shared by user with external sources"
+          },
+          "secret_algorithm": {
+            "type": "string",
+            "description": "The cryptographic hash function to be used by Devopness when validating digitally signed incoming requests for hooks that require secret validation",
+            "example": "sha256"
+          },
+          "secret_header_name": {
+            "type": "string",
+            "description": "The name of the HTTP request header from which the request digital signature should be extracted",
+            "example": "X-Custom-Header"
+          }
+        },
+        "required": [
+          "name",
+          "action_type",
+          "requires_secret"
+        ]
+      },
+      "HookIncomingUpdate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name given to incoming hook",
+            "example": "My Incoming Hook"
+          },
+          "requires_secret": {
+            "type": "boolean",
+            "description": "Determines if the hook requires a secret to be triggered",
+            "example": true
+          },
+          "secret_algorithm": {
+            "type": "string",
+            "description": "The hash algorithm used to check payload integrity of the request",
+            "example": "sha256"
+          },
+          "secret_header_name": {
+            "type": "string",
+            "description": "The request header used to give the secret to Devopness",
+            "example": "X-My-Secret"
+          }
+        },
+        "required": [
+          "name",
+          "requires_secret"
+        ]
+      },
+      "HookOutgoingCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name to uniquely identify the outgoing hook",
+            "example": "my-app deploy"
+          },
+          "action_type": {
+            "$ref": "#/components/schemas/ActionType",
+            "description": "The action type that trigger the outgoing hook"
+          },
+          "resource_type": {
+            "$ref": "#/components/schemas/ResourceType",
+            "description": "The type of the resource that the outgoing hook belongs to"
+          },
+          "resource_id": {
+            "type": "integer",
+            "description": "The id of the resource that the outgoing hook belongs to",
+            "example": 950013827
+          },
+          "target_url": {
+            "type": "string",
+            "description": "The URL that Devopness should send a request when the outgoing hook is triggered",
+            "example": "https://simple-example.test/hook/12345"
+          },
+          "trigger_when": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The list of action status when the hook must be triggered",
+            "example": [
+              "in-progress",
+              "completed",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "action_type",
+          "resource_type",
+          "resource_id",
+          "target_url",
+          "trigger_when"
+        ]
+      },
+      "HookOutgoingUpdate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name to uniquely identify the outgoing hook",
+            "example": "my-app deploy"
+          },
+          "action_type": {
+            "$ref": "#/components/schemas/ActionType",
+            "description": "The action type that trigger the outgoing hook"
+          },
+          "resource_type": {
+            "$ref": "#/components/schemas/ResourceType",
+            "description": "The type of the resource that the outgoing hook belongs to"
+          },
+          "resource_id": {
+            "type": "integer",
+            "description": "The id of the resource that the outgoing hook belongs to",
+            "example": 950013827
+          },
+          "target_url": {
+            "type": "string",
+            "description": "The URL that Devopness should send a request when the outgoing hook is triggered",
+            "example": "https://simple-example.test/hook/12345"
+          },
+          "trigger_when": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The list of action status when the hook must be triggered",
+            "example": [
+              "in-progress",
+              "completed",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "action_type",
+          "resource_type",
+          "resource_id",
+          "target_url",
+          "trigger_when"
+        ]
+      },
+      "HookRequest": {
+        "type": "object",
+        "nullable": true,
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique UUID of the hook request",
+            "example": "6fa16226-9dc4-4367-88aa-e689ad2bc580"
+          },
+          "hook_id": {
+            "type": "string",
+            "description": "The UUID of the hook that the request belongs to",
+            "example": "f1a61a4e-4d08-11eb-9481-0242ac130004"
+          },
+          "action_id": {
+            "type": "integer",
+            "nullable": true,
+            "description": "The id of the action that the request belongs to",
+            "example": 1985239
+          },
+          "retry_of": {
+            "type": "string",
+            "nullable": true,
+            "description": "The UUID of the request that this request is a retry of",
+            "example": "002afd04-e3af-4dad-bf46-b2b25978482a"
+          },
+          "ip_address": {
+            "type": "string",
+            "description": "The IP address of the source that triggered the hook",
+            "example": "172.17.0.4"
+          },
+          "url": {
+            "type": "string",
+            "description": "Original URL used on the request",
+            "example": "https://api.devopness.com/hooks-incoming/f1a61a4e-4d08-11eb-9481-0242ac130004"
+          },
+          "request_headers": {
+            "type": "object",
+            "nullable": true,
+            "description": "The headers of the request",
+            "example": {
+              "Content-Type": "application/json",
+              "Accept": "application/json"
+            }
+          },
+          "request_body": {
+            "type": "object",
+            "nullable": true,
+            "description": "The body of the request",
+            "example": {
+              "message": "Hello World"
+            }
+          },
+          "response_status_code": {
+            "type": "integer",
+            "description": "The response status code",
+            "example": 200
+          },
+          "response_headers": {
+            "type": "object",
+            "nullable": true,
+            "description": "The headers of the response",
+            "example": {
+              "Content-Type": "application/json",
+              "Accept": "application/json"
+            }
+          },
+          "response_body": {
+            "type": "object",
+            "nullable": true,
+            "description": "The body of the response",
+            "example": {
+              "success": true
+            }
+          },
+          "hook": {
+            "$ref": "#/components/schemas/Hook"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25T15:50:48.000000Z",
+            "nullable": true
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25T13:52:04.000000Z",
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "hook_id",
+          "action_id",
+          "retry_of",
+          "ip_address"
+        ]
+      },
+      "HookRequests": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/HookRequest"
+        }
+      },
+      "HookType": {
+        "type": "string",
+        "description": "The type of hook (incoming or outgoing)",
+        "enum": [
+          "in",
+          "out"
+        ]
       },
       "Language": {
         "type": "string",

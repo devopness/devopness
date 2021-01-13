@@ -19,6 +19,7 @@ import { Commit } from './commit';
 import { DeploymentSource } from './deployment-source';
 import { DeploymentStep } from './deployment-step';
 import { DeploymentType } from './deployment-type';
+import { HookRequest } from './hook-request';
 import { User } from './user';
 
 /**
@@ -63,6 +64,12 @@ export interface Deployment {
      * @memberof Deployment
      */
     commit: Commit;
+    /**
+     * 
+     * @type {HookRequest}
+     * @memberof Deployment
+     */
+    hook_request?: HookRequest | null;
     /**
      * The steps that were meant to be executed when the deployment was triggered
      * @type {Array<DeploymentStep>}
