@@ -22,6 +22,12 @@ import { ResourceType } from './resource-type';
  */
 export interface HookOutgoingUpdate {
     /**
+     * Unique ID of the outgoing hook to be updated
+     * @type {string}
+     * @memberof HookOutgoingUpdate
+     */
+    id: string;
+    /**
      * The name to uniquely identify the outgoing hook
      * @type {string}
      * @memberof HookOutgoingUpdate

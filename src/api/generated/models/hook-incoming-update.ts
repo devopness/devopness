@@ -20,6 +20,12 @@
  */
 export interface HookIncomingUpdate {
     /**
+     * Unique ID of the hook to be updated
+     * @type {string}
+     * @memberof HookIncomingUpdate
+     */
+    id: string;
+    /**
      * The name given to incoming hook
      * @type {string}
      * @memberof HookIncomingUpdate

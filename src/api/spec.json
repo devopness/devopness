@@ -7937,7 +7937,6 @@
           "type",
           "secret",
           "verify_ssl",
-          "trigger_when",
           "action_type",
           "resource",
           "created_at",
@@ -7987,6 +7986,11 @@
       "HookIncomingUpdate": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique ID of the hook to be updated",
+            "example": "db3ca8c0-4977-11eb-9fbe-0242ac130003"
+          },
           "name": {
             "type": "string",
             "description": "The name given to incoming hook",
@@ -7995,7 +7999,7 @@
           "requires_secret": {
             "type": "boolean",
             "description": "Determines if the hook requires a secret to be triggered",
-            "example": true
+            "example": false
           },
           "secret_algorithm": {
             "type": "string",
@@ -8009,6 +8013,7 @@
           }
         },
         "required": [
+          "id",
           "name",
           "requires_secret"
         ]
@@ -8064,6 +8069,11 @@
       "HookOutgoingUpdate": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique ID of the outgoing hook to be updated",
+            "example": "51921dfd-7544-4db1-b255-a226e5ea7033"
+          },
           "name": {
             "type": "string",
             "description": "The name to uniquely identify the outgoing hook",
@@ -8101,6 +8111,7 @@
           }
         },
         "required": [
+          "id",
           "name",
           "action_type",
           "resource_type",
