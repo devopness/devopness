@@ -18,6 +18,9 @@ import { ActionsApiService } from './api/generated/apis/actions-api';
 import { SocialAccountService } from './services/SocialAccountService';
 import { LogService } from './services/LogService';
 import { VariableService } from './services/VariableService';
+import { HookIncomingService } from './services/HookIncomingService';
+import { HookOutgoingService } from './services/HookOutgoingService';
+import { HookRequestService } from './services/HookRequestService';
 
 export class DevopnessApiClient {
   actions: ActionsApiService;
@@ -26,8 +29,11 @@ export class DevopnessApiClient {
   daemons: DaemonService;
   deployments: DeploymentService;
   environments: EnvironmentService;
+  hookRequests: HookRequestService;
+  incomingHooks: HookIncomingService;
   logs: LogService;
   networkRules: NetworkRuleService;
+  outgoingHooks: HookOutgoingService;
   projects: ProjectService;
   scripts: ScriptService;
   servers: ServerService;
@@ -52,8 +58,11 @@ export class DevopnessApiClient {
     this.daemons = new DaemonService();
     this.deployments = new DeploymentService();
     this.environments = new EnvironmentService();
+    this.hookRequests = new HookRequestService();
+    this.incomingHooks = new HookIncomingService();
     this.logs = new LogService();
     this.networkRules = new NetworkRuleService();
+    this.outgoingHooks = new HookOutgoingService();
     this.projects = new ProjectService();
     this.scripts = new ScriptService();
     this.servers = new ServerService();

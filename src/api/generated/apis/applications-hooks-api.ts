@@ -24,16 +24,16 @@ import { HookCreate } from '../../generated/models';
 export class ApplicationsHooksApiService extends ApiBaseService {
     /**
      * 
-     * @summary Add a hook to an application
+     * @summary Add an incoming hook to an application
      * @param {number} applicationId Unique id of the application
      * @param {HookCreate} hookCreate A JSON object containing application hook data
      */
-    public async addHookToApplication(applicationId: number, hookCreate: HookCreate): Promise<ApiResponse<Hook>> {
+    public async addIncomingHookToApplication(applicationId: number, hookCreate: HookCreate): Promise<ApiResponse<Hook>> {
         if (applicationId === null || applicationId === undefined) {
-            throw new ArgumentNullException('applicationId', 'addHookToApplication');
+            throw new ArgumentNullException('applicationId', 'addIncomingHookToApplication');
         }
         if (hookCreate === null || hookCreate === undefined) {
-            throw new ArgumentNullException('hookCreate', 'addHookToApplication');
+            throw new ArgumentNullException('hookCreate', 'addIncomingHookToApplication');
         }
         
         let queryString = '';
@@ -46,7 +46,7 @@ export class ApplicationsHooksApiService extends ApiBaseService {
 
     /**
      * 
-     * @summary Returns a list of all hooks belonging to an application
+     * @summary Returns a list of all incoming hooks belonging to an application
      * @param {number} applicationId Unique id of the application
      */
     public async listApplicationHooks(applicationId: number): Promise<ApiResponse<Array<Hook>>> {
