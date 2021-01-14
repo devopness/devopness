@@ -1,4 +1,4 @@
-import { HookRequestsApiService } from '../api/generated/apis/hook-requests-api';
+import { HooksRequestsApiService } from '../api/generated/apis/hooks-requests-api';
 
-export class HookRequestService extends HookRequestsApiService {
+export class HookRequestService extends HooksRequestsApiService {
 }
