@@ -96,6 +96,9 @@
     $ref: ./endpoints/hooks/paths/hooks-outgoing-id.yaml
   put:
     $ref: ./endpoints/hooks/paths/hooks-outgoing-id-update.yaml
+/hooks/outgoing/{hook_id}/requests:
+  get:
+    $ref: ./endpoints/hooks/paths/hooks-outgoing-id-requests-list.yaml
 /hook-requests/{hook_request_id}:
   get:
     $ref: ./endpoints/hook-requests/paths/hook-requests-id.yaml

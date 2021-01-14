@@ -193,14 +193,13 @@ tags:
   - name: Environments - Servers
   - name: Environments - Services
   - name: Environments - SSH Keys
-  - name: Hook Requests
   - name: Hooks - Incoming
     description: |
       A hook is a simple way to integrate your Devopness workflow with external processes to trigger Devopness actions by sending a POST request to a public URL. By using hooks you can make Devopness react to events that happen in other applications and make sure your environment resources reflect changes applied in other services.
-  - name: Hooks - Incoming Requests
   - name: Hooks - Outgoing
     description: |
       An outgoing hook is a webhook that trigger a request when an action of a resource has your state updated.
+  - name: Hooks - Requests
   - name: Logs
   - name: Network Rules
   - name: Projects

@@ -1,7 +1,7 @@
 summary: Get a hook request by id
 operationId: getHookRequest
 tags:
-  - Hook Requests
+  - Hooks - Requests
 parameters:
   - $ref: "#/components/parameters/acceptHeader"
   - $ref: "#/components/parameters/authHeader"

@@ -33,6 +33,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         // The hook_id is of an incoming hook, so we get 404 on outgoing hook endpoints
         'getOutgoingHook200',
         'deleteOutgoingHook204',
+        'listOutgoingHookRequests200',
         // @todo: Resolves conflicts to trigger a hook on dev-api
         'triggerHook201',
         'triggerHook204',
