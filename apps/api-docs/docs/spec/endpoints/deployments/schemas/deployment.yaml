@@ -15,8 +15,6 @@ properties:
     $ref: '#/components/schemas/Application'
   commit:
     $ref: '#/components/schemas/Commit'
-  hook_request:
-    $ref: '#/components/schemas/HookRequest'
   steps:
     description: The steps that were meant to be executed when the deployment was triggered
     type: array

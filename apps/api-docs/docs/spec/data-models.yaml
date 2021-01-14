@@ -1,5 +1,7 @@
 Action:
   $ref: ./endpoints/actions/schemas/action.yaml
+ActionHookRequest:
+  $ref: ./endpoints/actions/schemas/action-hook-request.yaml
 Actions:
   $ref: ./endpoints/actions/schemas/action-list.yaml
 ActionStatus:

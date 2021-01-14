@@ -1,0 +1,7 @@
+type: object
+description: The incoming and outgoing hook request linked to this action
+properties:
+  incoming:
+    $ref: '#/components/schemas/HookRequest'
+  outgoing:
+    $ref: '#/components/schemas/HookRequest'
