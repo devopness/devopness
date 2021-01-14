@@ -12,6 +12,7 @@
  */
 
 
+import { ActionHookRequest } from './action-hook-request';
 import { ActionStatus } from './action-status';
 import { ActionSummary } from './action-summary';
 import { ActionType } from './action-type';
@@ -80,6 +81,12 @@ export interface Action {
      * @memberof Action
      */
     triggered_by_user?: User;
+    /**
+     * 
+     * @type {ActionHookRequest}
+     * @memberof Action
+     */
+    hook_requests?: ActionHookRequest;
     /**
      * The date and time when the action started execution (i.e., left the `pending/queued` status)
      * @type {string}
