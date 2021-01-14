@@ -6203,6 +6203,9 @@
           "triggered_by_user": {
             "$ref": "#/components/schemas/User"
           },
+          "hook_requests": {
+            "$ref": "#/components/schemas/ActionHookRequest"
+          },
           "started_at": {
             "type": "string",
             "format": "date-time",
@@ -6228,6 +6231,18 @@
             "format": "date-time",
             "description": "The date and time when the record was last updated",
             "example": "2019-09-25T13:52:04.000000Z"
+          }
+        }
+      },
+      "ActionHookRequest": {
+        "type": "object",
+        "description": "The incoming and outgoing hook request linked to this action",
+        "properties": {
+          "incoming": {
+            "$ref": "#/components/schemas/HookRequest"
+          },
+          "outgoing": {
+            "$ref": "#/components/schemas/HookRequest"
           }
         }
       },
@@ -7373,9 +7388,6 @@
           },
           "commit": {
             "$ref": "#/components/schemas/Commit"
-          },
-          "hook_request": {
-            "$ref": "#/components/schemas/HookRequest"
           },
           "steps": {
             "description": "The steps that were meant to be executed when the deployment was triggered",
