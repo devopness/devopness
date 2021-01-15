@@ -1446,6 +1446,42 @@
       }
     },
     "/hooks/incoming/{hook_id}": {
+      "delete": {
+        "summary": "Delete a given incoming hook",
+        "operationId": "deleteIncomingHook",
+        "tags": [
+          "Hooks - Incoming"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "hook_id",
+            "example": "db3ca8c0-4977-11eb-9fbe-0242ac130003",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Unique ID of the incoming hook to be deleted"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
       "get": {
         "summary": "Get an incoming hook by Id",
         "operationId": "getIncomingHook",

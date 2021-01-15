@@ -24,6 +24,24 @@ import { HookIncomingUpdate } from '../../generated/models';
 export class HooksIncomingApiService extends ApiBaseService {
     /**
      * 
+     * @summary Delete a given incoming hook
+     * @param {string} hookId Unique ID of the incoming hook to be deleted
+     */
+    public async deleteIncomingHook(hookId: string): Promise<ApiResponse<void>> {
+        if (hookId === null || hookId === undefined) {
+            throw new ArgumentNullException('hookId', 'deleteIncomingHook');
+        }
+        
+        let queryString = '';
+
+        const requestUrl = '/hooks/incoming/{hook_id}' + (queryString? `?${queryString}` : '');
+
+        const response = await this.delete <void>(requestUrl.replace(`{${"hook_id"}}`, encodeURIComponent(String(hookId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
      * @summary Get an incoming hook by Id
      * @param {string} hookId Unique ID of the hook to be retrieved
      */
