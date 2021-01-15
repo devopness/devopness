@@ -1590,7 +1590,7 @@
         "summary": "Returns a list of all hook requests belonging to an incoming hook",
         "operationId": "listIncomingHookRequests",
         "tags": [
-          "Hooks - Incoming Requests"
+          "Hooks - Requests"
         ],
         "parameters": [
           {
@@ -1610,7 +1610,7 @@
               "type": "string"
             },
             "required": true,
-            "description": "Unique ID of the hook to retrive request list"
+            "description": "Unique ID of the incoming hook to retrieve request list"
           }
         ],
         "responses": {
@@ -1813,12 +1813,57 @@
         }
       }
     },
+    "/hooks/outgoing/{hook_id}/requests": {
+      "get": {
+        "summary": "Returns a list of all hook requests belonging to an outgoing hook",
+        "operationId": "listOutgoingHookRequests",
+        "tags": [
+          "Hooks - Requests"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "hook_id",
+            "example": "db3ca8c0-4977-11eb-9fbe-0242ac130003",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Unique ID of the outgoing hook to retrieve request list"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HookRequests"
+                }
+              }
+            }
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
+      }
+    },
     "/hook-requests/{hook_request_id}": {
       "get": {
         "summary": "Get a hook request by id",
         "operationId": "getHookRequest",
         "tags": [
-          "Hook Requests"
+          "Hooks - Requests"
         ],
         "parameters": [
           {
@@ -6023,18 +6068,15 @@
       "name": "Environments - SSH Keys"
     },
     {
-      "name": "Hook Requests"
-    },
-    {
       "name": "Hooks - Incoming",
       "description": "A hook is a simple way to integrate your Devopness workflow with external processes to trigger Devopness actions by sending a POST request to a public URL. By using hooks you can make Devopness react to events that happen in other applications and make sure your environment resources reflect changes applied in other services.\n"
     },
     {
-      "name": "Hooks - Incoming Requests"
-    },
-    {
       "name": "Hooks - Outgoing",
       "description": "An outgoing hook is a webhook that trigger a request when an action of a resource has your state updated.\n"
+    },
+    {
+      "name": "Hooks - Requests"
     },
     {
       "name": "Logs"
