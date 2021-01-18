@@ -16,34 +16,11 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { Hook } from '../../generated/models';
-import { HookCreate } from '../../generated/models';
 
 /**
  * ApplicationsHooksApiService - Auto-generated
  */
 export class ApplicationsHooksApiService extends ApiBaseService {
-    /**
-     * 
-     * @summary Add an incoming hook to an application
-     * @param {number} applicationId Unique id of the application
-     * @param {HookCreate} hookCreate A JSON object containing application hook data
-     */
-    public async addIncomingHookToApplication(applicationId: number, hookCreate: HookCreate): Promise<ApiResponse<Hook>> {
-        if (applicationId === null || applicationId === undefined) {
-            throw new ArgumentNullException('applicationId', 'addIncomingHookToApplication');
-        }
-        if (hookCreate === null || hookCreate === undefined) {
-            throw new ArgumentNullException('hookCreate', 'addIncomingHookToApplication');
-        }
-        
-        let queryString = '';
-
-        const requestUrl = '/applications/{application_id}/hooks' + (queryString? `?${queryString}` : '');
-
-        const response = await this.post <Hook, HookCreate>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))), hookCreate);
-        return new ApiResponse(response);
-    }
-
     /**
      * 
      * @summary Returns a list of all incoming hooks belonging to an application
