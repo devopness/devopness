@@ -16,12 +16,31 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { Hook } from '../../generated/models';
+import { HookIncomingCreate } from '../../generated/models';
 import { HookIncomingUpdate } from '../../generated/models';
 
 /**
  * HooksIncomingApiService - Auto-generated
  */
 export class HooksIncomingApiService extends ApiBaseService {
+    /**
+     * 
+     * @summary Create an incoming hook to a specific resource
+     * @param {HookIncomingCreate} hookIncomingCreate A JSON object containing incoming hook data
+     */
+    public async addIncomingHook(hookIncomingCreate: HookIncomingCreate): Promise<ApiResponse<Hook>> {
+        if (hookIncomingCreate === null || hookIncomingCreate === undefined) {
+            throw new ArgumentNullException('hookIncomingCreate', 'addIncomingHook');
+        }
+        
+        let queryString = '';
+
+        const requestUrl = '/hooks/incoming' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <Hook, HookIncomingCreate>(requestUrl, hookIncomingCreate);
+        return new ApiResponse(response);
+    }
+
     /**
      * 
      * @summary Delete a given incoming hook
@@ -62,8 +81,9 @@ export class HooksIncomingApiService extends ApiBaseService {
      * 
      * @summary Trigger an incoming hook associated action
      * @param {string} hookId Unique ID of the hook to be triggered
+     * @param {object} [body] A JSON object containg hook variables
      */
-    public async triggerHook(hookId: string): Promise<ApiResponse<void>> {
+    public async triggerHook(hookId: string, body?: object): Promise<ApiResponse<void>> {
         if (hookId === null || hookId === undefined) {
             throw new ArgumentNullException('hookId', 'triggerHook');
         }

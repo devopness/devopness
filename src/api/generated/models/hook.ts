@@ -13,6 +13,7 @@
 
 
 import { ActionType } from './action-type';
+import { HookSetting } from './hook-setting';
 import { HookType } from './hook-type';
 import { Resource } from './resource';
 import { User } from './user';
@@ -113,6 +114,12 @@ export interface Hook {
      * @memberof Hook
      */
     created_by_user?: User;
+    /**
+     * 
+     * @type {HookSetting}
+     * @memberof Hook
+     */
+    settings?: HookSetting;
     /**
      * The date and time when the record was created
      * @type {string}
