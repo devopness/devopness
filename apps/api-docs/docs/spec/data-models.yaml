@@ -108,8 +108,10 @@ Hook:
   $ref: ./endpoints/hooks/schemas/hook.yaml
 Hooks:
   $ref: ./endpoints/hooks/schemas/hook-list.yaml
-HookCreate:
-  $ref: ./endpoints/hooks/schemas/hook-create.yaml
+HookIncomingCreate:
+  $ref: ./endpoints/hooks/schemas/hook-incoming-create.yaml
+HookIncomingTrigger:
+  $ref: ./endpoints/hooks/schemas/hook-incoming-trigger.yaml
 HookIncomingUpdate:
   $ref: ./endpoints/hooks/schemas/hook-incoming-update.yaml
 HookOutgoingCreate:
@@ -120,8 +122,16 @@ HookRequest:
   $ref: ./endpoints/hook-requests/schemas/hook-request.yaml
 HookRequests:
   $ref: ./endpoints/hook-requests/schemas/hook-request-list.yaml
+HookSetting:
+  $ref: ./endpoints/hooks/schemas/hook-setting.yaml
 HookType:
   $ref: ./endpoints/hooks/schemas/hook-type.yaml
+HookVariable:
+  $ref: ./endpoints/hooks/schemas/hook-variable.yaml
+HookVariables:
+  $ref: ./endpoints/hooks/schemas/hook-variable-list.yaml
+HookVariableType:
+  $ref: ./endpoints/hooks/schemas/hook-variable-type.yaml
 Language:
   $ref: ./shared/schemas/language.yaml
 LanguageRuntime:

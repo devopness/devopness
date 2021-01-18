@@ -85,9 +85,6 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
         { path: 'id', fixture: 'environment', field: 'id' },
     ],
     'hook': [],
-    'hook_create': [
-        { path: 'application_id', fixture: 'application', field: 'id' },
-    ],
     'hook_incoming_update': [
         { path: 'id', fixture: 'hook', field: 'id' },
     ],

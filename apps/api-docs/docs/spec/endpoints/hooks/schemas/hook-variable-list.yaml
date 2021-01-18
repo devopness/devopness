@@ -1,0 +1,4 @@
+type: array
+description: List of variables to incoming hook
+items:
+  $ref: '#/components/schemas/HookVariable'

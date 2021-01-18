@@ -1,26 +1,18 @@
-summary: Add an incoming hook to an application
-operationId: addIncomingHookToApplication
+summary: Create an incoming hook to a specific resource
+operationId: addIncomingHook
 tags:
-  - Applications - Hooks
+  - Hooks - Incoming
 parameters:
   - $ref: "#/components/parameters/acceptHeader"
   - $ref: "#/components/parameters/authHeader"
   - $ref: "#/components/parameters/contentTypeHeader"
-  - in: path
-    name: application_id
-    example: 1
-    schema:
-      type: integer
-      minimum: 1
-    required: true
-    description: Unique id of the application
 requestBody:
-  description: A JSON object containing application hook data
+  description: A JSON object containing incoming hook data
   required: true
   content:
     application/json:
       schema:
-        $ref: "#/components/schemas/HookCreate"
+        $ref: "#/components/schemas/HookIncomingCreate"
 responses:
   201:
     description: "Created"

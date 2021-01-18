@@ -1,0 +1,8 @@
+type: string
+description: The variable type
+enum:
+  - string
+  - integer
+  - array
+  - boolean
+example: integer

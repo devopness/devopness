@@ -34,6 +34,12 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         'getOutgoingHook200',
         'deleteOutgoingHook204',
         'listOutgoingHookRequests200',
+        // @todo: update HookVariable spec to be valid on create incoming hook
+        'addIncomingHook201',
+        'getIncomingHook200',
+        'deleteIncomingHook204',
+        'updateIncomingHook204',
+        'listIncomingHookRequests200',
         // @todo: Resolves conflicts to trigger a hook on dev-api
         'triggerHook201',
         'triggerHook204',

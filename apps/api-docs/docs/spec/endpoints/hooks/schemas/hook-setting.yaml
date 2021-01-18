@@ -1,0 +1,5 @@
+type: object
+description: Settings to a incoming hook
+properties:
+  variables:
+    $ref: '#/components/schemas/HookVariables'

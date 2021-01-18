@@ -12,6 +12,13 @@ parameters:
       type: string
     required: true
     description: Unique ID of the hook to be triggered
+requestBody:
+  description: A JSON object containg hook variables
+  required: false
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/HookIncomingTrigger'
 responses:
   201:
     description: "Created"

@@ -1,0 +1,4 @@
+type: object
+nullable: true
+example:
+  var_name: value

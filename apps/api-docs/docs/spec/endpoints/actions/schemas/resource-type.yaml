@@ -11,4 +11,4 @@ enum:
     "ssh-key",
     "ssl-certificate"
   ]
-example: deployment
+example: application
