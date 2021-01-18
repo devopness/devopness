@@ -77,6 +77,8 @@
   delete:
     $ref: ./endpoints/environments/paths/environments-id-servers-id-unlink.yaml
 /hooks/incoming/{hook_id}:
+  delete:
+    $ref: ./endpoints/hooks/paths/hooks-incoming-id-delete.yaml
   get:
     $ref: ./endpoints/hooks/paths/hooks-incoming-id.yaml
   post:
