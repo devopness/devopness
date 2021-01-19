@@ -3,40 +3,56 @@ nullable: true
 properties:
   id:
     type: integer
-    description: The unique id of the given record
-    example: 93457689064
+    description: The Id of the given action
+    example: 567819876
   status:
     $ref: '#/components/schemas/ActionStatus'
   type:
-    $ref: '#/components/schemas/DeploymentType'
-  source:
-    $ref: '#/components/schemas/DeploymentSource'
+    $ref: '#/components/schemas/ActionType'
+    description: The action type
+  type_human_readable:
+    type: string
+    description: Human readable version of the action type
+    example: Deploy
+  summary:
+    $ref: '#/components/schemas/ActionSummary'
+  servers:
+    $ref: '#/components/schemas/ServerActions'
+  resource:
+    $ref: '#/components/schemas/Resource'
+  environment:
+    $ref: '#/components/schemas/Environment'
+  triggered_by_user:
+    $ref: '#/components/schemas/User'
+  hook_requests:
+    $ref: '#/components/schemas/ActionHookRequest'
   started_at:
     type: string
     format: date-time
     description: The date and time when the action started execution (i.e., left the `pending/queued` status)
-    example: '2019-09-25T15:50:48.000000Z'
+    example: "2019-09-25T15:50:48.000000Z"
     nullable: true
   completed_at:
     type: string
     format: date-time
     description: The date and time when the action has finished execution
-    example: '2019-09-25T13:52:04.000000Z'
+    example: "2019-09-25T13:52:04.000000Z"
     nullable: true
   created_at:
     type: string
     format: date-time
     description: The date and time when the record was created
     example: '2019-09-25T15:50:48.000000Z'
-    nullable: true
   updated_at:
     type: string
     format: date-time
     description: The date and time when the record was last updated
     example: '2019-09-25T13:52:04.000000Z'
-    nullable: true
 required:
   - id
   - status
   - type
-  - source
+  - type_human_readable
+  - summary
+  - resource
+  - triggered_by_user

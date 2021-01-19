@@ -20,6 +20,6 @@ responses:
     content:
       application/json:
         schema:
-          $ref: '#/components/schemas/SshKey'
+          $ref: '#/components/schemas/SshKeyWithRelations'
   404:
     $ref: '#/components/responses/NotFound'

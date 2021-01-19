@@ -18,6 +18,8 @@ ActionSummaryServer:
   $ref: ./endpoints/actions/schemas/action-summary-server.yaml
 ActionType:
   $ref: ./endpoints/actions/schemas/action-type.yaml
+ActionWithRelations:
+  $ref: ./shared/schemas/models/action-with-relations.yaml
 ApiError:
   $ref: ./shared/schemas/api-error.yaml
 Application:
@@ -32,6 +34,8 @@ ApplicationType:
   $ref: ./shared/schemas/application-type.yaml
 Applications:
   $ref: ./endpoints/applications/schemas/application-list.yaml
+ApplicationWithRelations:
+  $ref: ./shared/schemas/models/application-with-relations.yaml
 Commit:
   $ref: ./shared/schemas/commit.yaml
 CronJob:
@@ -50,6 +54,8 @@ CronJobUpdate:
   $ref: ./endpoints/cronjobs/schemas/cronjob-update.yaml
 CronJobs:
   $ref: ./endpoints/cronjobs/schemas/cronjob-list.yaml
+CronJobWithRelations:
+  $ref: ./shared/schemas/models/cronjob-with-relations.yaml
 Daemon:
   $ref: ./endpoints/daemons/schemas/daemon.yaml
 DaemonCreate:
@@ -60,6 +66,8 @@ DaemonUpdate:
   $ref: ./endpoints/daemons/schemas/daemon-update.yaml
 Daemons:
   $ref: ./endpoints/daemons/schemas/daemon-list.yaml
+DaemonWithRelations:
+  $ref: ./shared/schemas/models/daemon-with-relations.yaml
 Deployment:
   $ref: ./endpoints/deployments/schemas/deployment.yaml
 DeploymentCreate:
@@ -80,6 +88,8 @@ DeploymentStep:
   $ref: ./endpoints/deployments/schemas/deployment-step.yaml
 DeploymentType:
   $ref: ./shared/schemas/deployment-type.yaml
+DeploymentWithRelations:
+  $ref: ./shared/schemas/models/deployment-with-relations.yaml
 Environment:
   $ref: ./endpoints/environments/schemas/environment.yaml
 EnvironmentCreate:
@@ -104,6 +114,8 @@ Environments:
   $ref: ./endpoints/environments/schemas/environment-list.yaml
 EnvironmentType:
   $ref: ./shared/schemas/environment-type.yaml
+EnvironmentWithRelations:
+  $ref: ./shared/schemas/models/environment-with-relations.yaml
 Hook:
   $ref: ./endpoints/hooks/schemas/hook.yaml
 Hooks:
@@ -122,6 +134,8 @@ HookRequest:
   $ref: ./endpoints/hook-requests/schemas/hook-request.yaml
 HookRequests:
   $ref: ./endpoints/hook-requests/schemas/hook-request-list.yaml
+HookRequestWithRelations:
+  $ref: ./shared/schemas/models/hook-request-with-relations.yaml
 HookSetting:
   $ref: ./endpoints/hooks/schemas/hook-setting.yaml
 HookType:
@@ -132,6 +146,8 @@ HookVariables:
   $ref: ./endpoints/hooks/schemas/hook-variable-list.yaml
 HookVariableType:
   $ref: ./endpoints/hooks/schemas/hook-variable-type.yaml
+HookWithRelations:
+  $ref: ./shared/schemas/models/hook-with-relations.yaml
 Language:
   $ref: ./shared/schemas/language.yaml
 LanguageRuntime:
@@ -158,6 +174,8 @@ NetworkRuleType:
   $ref: ./shared/schemas/network-rule-type.yaml
 NetworkRuleUpdate:
   $ref: ./endpoints/network-rules/schemas/network-rule-update.yaml
+NetworkRuleWithRelations:
+  $ref: ./shared/schemas/models/network-rule-with-relations.yaml
 Project:
   $ref: ./endpoints/projects/schemas/project.yaml
 ProjectCreate:
@@ -166,6 +184,8 @@ ProjectUpdate:
   $ref: ./endpoints/projects/schemas/project-update.yaml
 Projects:
   $ref: ./endpoints/projects/schemas/project-list.yaml
+ProjectWithRelations:
+  $ref: ./shared/schemas/models/project-with-relations.yaml
 Provider:
   $ref: ./endpoints/static/schemas/provider.yaml
 Providers:
@@ -216,6 +236,8 @@ ServerUpdate:
   $ref: ./endpoints/servers/schemas/server-update.yaml
 Servers:
   $ref: ./endpoints/servers/schemas/server-list.yaml
+ServerWithRelations:
+  $ref: ./shared/schemas/models/server-with-relations.yaml
 Service:
   $ref: ./endpoints/services/schemas/service.yaml
 ServiceAction:
@@ -244,6 +266,8 @@ ServiceType:
   $ref: ./endpoints/static/schemas/service-type.yaml
 ServiceTypes:
   $ref: ./endpoints/static/schemas/service-type-list.yaml
+ServiceWithRelations:
+  $ref: ./shared/schemas/models/service-with-relations.yaml
 SocialAccount:
   $ref: ./endpoints/social-accounts/schemas/social-account.yaml
 SocialAccountCreate:
@@ -272,6 +296,8 @@ SshKeyCreate:
   $ref: ./endpoints/ssh-keys/schemas/ssh-key-create.yaml
 SshKeys:
   $ref: ./endpoints/ssh-keys/schemas/ssh-key-list.yaml
+SshKeyWithRelations:
+  $ref: ./shared/schemas/models/ssh-key-with-relations.yaml
 SslCertificate:
   $ref: ./endpoints/ssl-certificates/schemas/ssl-certificate.yaml
 SslCertificateCreate:
@@ -284,6 +310,8 @@ SslCertificateType:
   $ref: ./shared/schemas/ssl-certificate-type.yaml
 SslCertificateValidationLevel:
   $ref: ./shared/schemas/ssl-certificate-validation-level.yaml
+SslCertificateWithRelations:
+  $ref: ./shared/schemas/models/ssl-certificate-with-relations.yaml
 TriggerEvent:
   $ref: ./shared/schemas/trigger-event.yaml
 TriggerType:
@@ -306,6 +334,8 @@ UserTokens:
   $ref: ./endpoints/users/schemas/user-tokens.yaml
 UserUpdate:
   $ref: ./endpoints/users/schemas/user-update.yaml
+UserWithRelations:
+  $ref: ./shared/schemas/models/user-with-relations.yaml
 Variable:
   $ref: ./endpoints/variables/schemas/variable.yaml
 Variables:

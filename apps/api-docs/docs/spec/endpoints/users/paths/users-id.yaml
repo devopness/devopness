@@ -20,7 +20,7 @@ responses:
     content:
       application/json:
         schema:
-          $ref: '#/components/schemas/User'
+          $ref: '#/components/schemas/UserWithRelations'
   403:
     $ref: '#/components/responses/Forbidden'
   404:

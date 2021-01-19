@@ -20,6 +20,6 @@ responses:
     content:
       application/json:
         schema:
-          $ref: '#/components/schemas/CronJob'
+          $ref: '#/components/schemas/CronJobWithRelations'
   404:
     $ref: '#/components/responses/NotFound'

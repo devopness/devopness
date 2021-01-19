@@ -19,6 +19,6 @@ responses:
     content:
       application/json:
         schema:
-          $ref: "#/components/schemas/Hook"
+          $ref: "#/components/schemas/HookWithRelations"
   404:
     $ref: "#/components/responses/NotFound"

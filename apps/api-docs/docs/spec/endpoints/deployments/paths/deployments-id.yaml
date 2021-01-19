@@ -20,6 +20,6 @@ responses:
     content:
       application/json:
         schema:
-          $ref: '#/components/schemas/Deployment'
+          $ref: '#/components/schemas/DeploymentWithRelations'
   404:
     $ref: '#/components/responses/NotFound'

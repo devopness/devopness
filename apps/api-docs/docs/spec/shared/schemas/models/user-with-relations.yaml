@@ -28,6 +28,11 @@ properties:
     format: date-time
     description: The date and time when the record was last updated
     example: '2019-09-25T13:52:04.000000Z'
+  social_accounts:
+    description: "The list of social accounts (source providers + login providers) connected to the user"
+    type: array
+    items:
+      $ref: '#/components/schemas/SocialAccount'
 required:
   - id
   - email

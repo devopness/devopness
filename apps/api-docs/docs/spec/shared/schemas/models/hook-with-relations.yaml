@@ -56,6 +56,10 @@ properties:
   action_type:
     $ref: '#/components/schemas/ActionType'
     description: The action type triggered by hook
+  resource:
+    $ref: '#/components/schemas/Resource'
+  created_by_user:
+    $ref: "#/components/schemas/User"
   settings:
     $ref: '#/components/schemas/HookSetting'
   created_at:
@@ -75,5 +79,6 @@ required:
   - secret
   - verify_ssl
   - action_type
+  - resource
   - created_at
   - updated_at

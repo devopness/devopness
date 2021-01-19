@@ -20,6 +20,10 @@ properties:
     type: string
     description: The hashed fingerprint of the public key
     example: "f1:59:d6:c4:55:97:06:94:e3:f2:82:de:46:e5:27:39"
+  created_by_user:
+    $ref: '#/components/schemas/User'
+  last_action:
+    $ref: '#/components/schemas/Action'
   # created_at:
   #   type: string
   #   format: date-time

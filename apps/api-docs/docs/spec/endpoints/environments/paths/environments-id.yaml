@@ -20,6 +20,6 @@ responses:
     content:
       application/json:
         schema:
-          $ref: '#/components/schemas/Environment'
+          $ref: '#/components/schemas/EnvironmentWithRelations'
   404:
     $ref: '#/components/responses/NotFound'
