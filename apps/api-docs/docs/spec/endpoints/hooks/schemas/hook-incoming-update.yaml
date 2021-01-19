@@ -20,6 +20,10 @@ properties:
     type: string
     description: The request header used to give the secret to Devopness
     example: X-My-Secret
+  active:
+    type: boolean
+    description: Determines if the hook is current active
+    example: true
 required:
   - id
   - name

@@ -11,6 +11,10 @@ properties:
   action_type:
     $ref: '#/components/schemas/ActionType'
     description: The action type that trigger the outgoing hook
+  active:
+    type: boolean
+    description: Determines if the hook is current active
+    example: true
   resource_type:
     $ref: '#/components/schemas/ResourceType'
     description: The type of the resource that the outgoing hook belongs to
