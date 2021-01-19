@@ -12,11 +12,8 @@
  */
 
 
-import { Action } from './action';
 import { ActionStatus } from './action-status';
-import { Environment } from './environment';
 import { ServerBlueprint } from './server-blueprint';
-import { User } from './user';
 
 /**
  * 
@@ -73,18 +70,6 @@ export interface Server {
      */
     status?: ActionStatus;
     /**
-     * The list of related actions
-     * @type {Array<Action>}
-     * @memberof Server
-     */
-    actions?: Array<Action>;
-    /**
-     * The list of environments to which the server is linked to
-     * @type {Array<Environment>}
-     * @memberof Server
-     */
-    environments?: Array<Environment>;
-    /**
      * The name of the server\'s provider.
      * @type {string}
      * @memberof Server
@@ -96,18 +81,6 @@ export interface Server {
      * @memberof Server
      */
     provider_name_human_readable?: string;
-    /**
-     * 
-     * @type {User}
-     * @memberof Server
-     */
-    created_by_user?: User;
-    /**
-     * 
-     * @type {Action}
-     * @memberof Server
-     */
-    last_action?: Action | null;
     /**
      * The date and time when the record was created
      * @type {string}

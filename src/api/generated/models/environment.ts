@@ -12,14 +12,7 @@
  */
 
 
-import { Application } from './application';
-import { CronJob } from './cron-job';
-import { Daemon } from './daemon';
 import { EnvironmentType } from './environment-type';
-import { NetworkRule } from './network-rule';
-import { Server } from './server';
-import { Service } from './service';
-import { User } from './user';
 
 /**
  * 
@@ -50,49 +43,7 @@ export interface Environment {
      * @type {string}
      * @memberof Environment
      */
-    type_human_readable?: string;
-    /**
-     * 
-     * @type {Array<Server>}
-     * @memberof Environment
-     */
-    servers?: Array<Server>;
-    /**
-     * 
-     * @type {Array<CronJob>}
-     * @memberof Environment
-     */
-    cron_jobs?: Array<CronJob>;
-    /**
-     * 
-     * @type {Array<Daemon>}
-     * @memberof Environment
-     */
-    daemons?: Array<Daemon>;
-    /**
-     * 
-     * @type {Array<NetworkRule>}
-     * @memberof Environment
-     */
-    network_rules?: Array<NetworkRule>;
-    /**
-     * 
-     * @type {Array<Application>}
-     * @memberof Environment
-     */
-    applications?: Array<Application>;
-    /**
-     * 
-     * @type {Array<Service>}
-     * @memberof Environment
-     */
-    services?: Array<Service>;
-    /**
-     * 
-     * @type {User}
-     * @memberof Environment
-     */
-    created_by_user?: User;
+    type_human_readable: string;
     /**
      * The date and time when the record was created
      * @type {string}

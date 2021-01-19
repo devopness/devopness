@@ -12,8 +12,6 @@
  */
 
 
-import { Action } from './action';
-import { User } from './user';
 
 /**
  * 
@@ -51,17 +49,5 @@ export interface SshKey {
      * @memberof SshKey
      */
     fingerprint?: string;
-    /**
-     * 
-     * @type {User}
-     * @memberof SshKey
-     */
-    created_by_user?: User;
-    /**
-     * 
-     * @type {Action}
-     * @memberof SshKey
-     */
-    last_action?: Action | null;
 }
 

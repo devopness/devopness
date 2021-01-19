@@ -12,10 +12,8 @@
  */
 
 
-import { Action } from './action';
 import { NetworkRuleProtocol } from './network-rule-protocol';
 import { NetworkRuleType } from './network-rule-type';
-import { User } from './user';
 
 /**
  * 
@@ -71,18 +69,6 @@ export interface NetworkRule {
      * @memberof NetworkRule
      */
     port_to: number;
-    /**
-     * 
-     * @type {User}
-     * @memberof NetworkRule
-     */
-    created_by_user?: User;
-    /**
-     * 
-     * @type {Action}
-     * @memberof NetworkRule
-     */
-    last_action?: Action | null;
     /**
      * The date and time when the record was created
      * @type {string}

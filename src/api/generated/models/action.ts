@@ -12,14 +12,9 @@
  */
 
 
-import { ActionHookRequest } from './action-hook-request';
 import { ActionStatus } from './action-status';
 import { ActionSummary } from './action-summary';
 import { ActionType } from './action-type';
-import { Environment } from './environment';
-import { Resource } from './resource';
-import { ServerAction } from './server-action';
-import { User } from './user';
 
 /**
  * 
@@ -32,61 +27,31 @@ export interface Action {
      * @type {number}
      * @memberof Action
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {ActionStatus}
      * @memberof Action
      */
-    status?: ActionStatus;
+    status: ActionStatus;
     /**
      * 
      * @type {ActionType}
      * @memberof Action
      */
-    type?: ActionType;
+    type: ActionType;
     /**
      * Human readable version of the action type
      * @type {string}
      * @memberof Action
      */
-    type_human_readable?: string;
+    type_human_readable: string;
     /**
      * 
      * @type {ActionSummary}
      * @memberof Action
      */
     summary?: ActionSummary;
-    /**
-     * List of actions dispatched to servers
-     * @type {Array<ServerAction>}
-     * @memberof Action
-     */
-    servers?: Array<ServerAction>;
-    /**
-     * 
-     * @type {Resource}
-     * @memberof Action
-     */
-    resource?: Resource;
-    /**
-     * 
-     * @type {Environment}
-     * @memberof Action
-     */
-    environment?: Environment;
-    /**
-     * 
-     * @type {User}
-     * @memberof Action
-     */
-    triggered_by_user?: User;
-    /**
-     * 
-     * @type {ActionHookRequest}
-     * @memberof Action
-     */
-    hook_requests?: ActionHookRequest;
     /**
      * The date and time when the action started execution (i.e., left the `pending/queued` status)
      * @type {string}

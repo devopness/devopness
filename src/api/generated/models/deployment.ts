@@ -12,14 +12,9 @@
  */
 
 
-import { Action } from './action';
 import { ActionStatus } from './action-status';
-import { Application } from './application';
-import { Commit } from './commit';
 import { DeploymentSource } from './deployment-source';
-import { DeploymentStep } from './deployment-step';
 import { DeploymentType } from './deployment-type';
-import { User } from './user';
 
 /**
  * 
@@ -51,36 +46,6 @@ export interface Deployment {
      * @memberof Deployment
      */
     source: DeploymentSource;
-    /**
-     * 
-     * @type {Application}
-     * @memberof Deployment
-     */
-    application?: Application | null;
-    /**
-     * 
-     * @type {Commit}
-     * @memberof Deployment
-     */
-    commit: Commit;
-    /**
-     * The steps that were meant to be executed when the deployment was triggered
-     * @type {Array<DeploymentStep>}
-     * @memberof Deployment
-     */
-    steps: Array<DeploymentStep>;
-    /**
-     * 
-     * @type {User}
-     * @memberof Deployment
-     */
-    triggered_by_user?: User;
-    /**
-     * 
-     * @type {Action}
-     * @memberof Deployment
-     */
-    last_action?: Action | null;
     /**
      * The date and time when the action started execution (i.e., left the `pending/queued` status)
      * @type {string}

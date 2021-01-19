@@ -12,10 +12,7 @@
  */
 
 
-import { Action } from './action';
-import { Application } from './application';
 import { CronJobPattern } from './cron-job-pattern';
-import { User } from './user';
 
 /**
  * 
@@ -52,7 +49,7 @@ export interface CronJob {
      * @type {CronJobPattern}
      * @memberof CronJob
      */
-    pattern_human_readable?: CronJobPattern;
+    pattern_human_readable: CronJobPattern;
     /**
      * The name of the Unix user on behalf of which the cron job will be executed
      * @type {string}
@@ -65,24 +62,6 @@ export interface CronJob {
      * @memberof CronJob
      */
     auto_generated?: boolean;
-    /**
-     * 
-     * @type {Application}
-     * @memberof CronJob
-     */
-    application?: Application | null;
-    /**
-     * 
-     * @type {User}
-     * @memberof CronJob
-     */
-    created_by_user?: User;
-    /**
-     * 
-     * @type {Action}
-     * @memberof CronJob
-     */
-    last_action?: Action | null;
     /**
      * The date and time when the record was created
      * @type {string}

@@ -15,8 +15,6 @@
 import { ActionType } from './action-type';
 import { HookSetting } from './hook-setting';
 import { HookType } from './hook-type';
-import { Resource } from './resource';
-import { User } from './user';
 
 /**
  * 
@@ -103,17 +101,11 @@ export interface Hook {
      */
     action_type: ActionType;
     /**
-     * 
-     * @type {Resource}
+     * Determines if the hook is current active
+     * @type {boolean}
      * @memberof Hook
      */
-    resource: Resource;
-    /**
-     * 
-     * @type {User}
-     * @memberof Hook
-     */
-    created_by_user?: User;
+    active?: boolean;
     /**
      * 
      * @type {HookSetting}

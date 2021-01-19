@@ -12,14 +12,7 @@
  */
 
 
-import { Action } from './action';
-import { ApplicationLastDeployments } from './application-last-deployments';
 import { ApplicationType } from './application-type';
-import { Environment } from './environment';
-import { Server } from './server';
-import { SourceProvider } from './source-provider';
-import { SslCertificate } from './ssl-certificate';
-import { User } from './user';
 
 /**
  * 
@@ -159,48 +152,6 @@ export interface Application {
      * @memberof Application
      */
     project_id: number;
-    /**
-     * The list of environments to which the application is linked to
-     * @type {Array<Environment>}
-     * @memberof Application
-     */
-    environments: Array<Environment>;
-    /**
-     * 
-     * @type {Array<Server>}
-     * @memberof Application
-     */
-    servers?: Array<Server>;
-    /**
-     * 
-     * @type {ApplicationLastDeployments}
-     * @memberof Application
-     */
-    last_deployments?: ApplicationLastDeployments;
-    /**
-     * 
-     * @type {SourceProvider}
-     * @memberof Application
-     */
-    source_provider?: SourceProvider | null;
-    /**
-     * 
-     * @type {Array<SslCertificate>}
-     * @memberof Application
-     */
-    ssl_certificates?: Array<SslCertificate>;
-    /**
-     * 
-     * @type {User}
-     * @memberof Application
-     */
-    created_by_user?: User;
-    /**
-     * 
-     * @type {Action}
-     * @memberof Application
-     */
-    last_action?: Action | null;
     /**
      * The date and time when the record was created
      * @type {string}

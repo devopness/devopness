@@ -12,14 +12,6 @@
  */
 
 
-import { Application } from './application';
-import { CronJob } from './cron-job';
-import { Daemon } from './daemon';
-import { Environment } from './environment';
-import { NetworkRule } from './network-rule';
-import { Server } from './server';
-import { Service } from './service';
-import { SshKey } from './ssh-key';
 
 /**
  * 
@@ -32,13 +24,13 @@ export interface Project {
      * @type {number}
      * @memberof Project
      */
-    id?: number;
+    id: number;
     /**
      * The id of the user that own the project
      * @type {number}
      * @memberof Project
      */
-    user_id?: number;
+    user_id: number;
     /**
      * The project\'s name
      * @type {string}
@@ -58,58 +50,10 @@ export interface Project {
      */
     logo_url?: string | null;
     /**
-     * The list of SSH keys added to the project
-     * @type {Array<SshKey>}
-     * @memberof Project
-     */
-    ssh_keys?: Array<SshKey>;
-    /**
      * The list of the operating system users found in all the servers linked to a project
      * @type {Array<object>}
      * @memberof Project
      */
     os_users?: Array<object>;
-    /**
-     * 
-     * @type {Array<Application>}
-     * @memberof Project
-     */
-    applications?: Array<Application>;
-    /**
-     * 
-     * @type {Array<CronJob>}
-     * @memberof Project
-     */
-    cron_jobs?: Array<CronJob>;
-    /**
-     * 
-     * @type {Array<Environment>}
-     * @memberof Project
-     */
-    environments?: Array<Environment>;
-    /**
-     * 
-     * @type {Array<NetworkRule>}
-     * @memberof Project
-     */
-    network_rules?: Array<NetworkRule>;
-    /**
-     * 
-     * @type {Array<Daemon>}
-     * @memberof Project
-     */
-    daemons?: Array<Daemon>;
-    /**
-     * 
-     * @type {Array<Server>}
-     * @memberof Project
-     */
-    servers?: Array<Server>;
-    /**
-     * 
-     * @type {Array<Service>}
-     * @memberof Project
-     */
-    services?: Array<Service>;
 }
 
