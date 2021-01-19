@@ -96,7 +96,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Action"
+                  "$ref": "#/components/schemas/ActionWithRelations"
                 }
               }
             }
@@ -142,7 +142,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Application"
+                  "$ref": "#/components/schemas/ApplicationWithRelations"
                 }
               }
             }
@@ -738,7 +738,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Deployment"
+                  "$ref": "#/components/schemas/DeploymentWithRelations"
                 }
               }
             }
@@ -872,7 +872,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Environment"
+                  "$ref": "#/components/schemas/EnvironmentWithRelations"
                 }
               }
             }
@@ -1506,7 +1506,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Hook"
+                  "$ref": "#/components/schemas/HookWithRelations"
                 }
               }
             }
@@ -1787,7 +1787,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Hook"
+                  "$ref": "#/components/schemas/HookWithRelations"
                 }
               }
             }
@@ -1930,7 +1930,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HookRequest"
+                  "$ref": "#/components/schemas/HookRequestWithRelations"
                 }
               }
             }
@@ -2412,7 +2412,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/NetworkRule"
+                  "$ref": "#/components/schemas/NetworkRuleWithRelations"
                 }
               }
             }
@@ -2546,7 +2546,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Daemon"
+                  "$ref": "#/components/schemas/DaemonWithRelations"
                 }
               }
             }
@@ -2778,7 +2778,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Project"
+                  "$ref": "#/components/schemas/ProjectWithRelations"
                 }
               }
             }
@@ -3925,7 +3925,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Server"
+                  "$ref": "#/components/schemas/ServerWithRelations"
                 }
               }
             }
@@ -4171,7 +4171,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Service"
+                  "$ref": "#/components/schemas/ServiceWithRelations"
                 }
               }
             }
@@ -4976,7 +4976,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SshKey"
+                  "$ref": "#/components/schemas/SshKeyWithRelations"
                 }
               }
             }
@@ -5059,7 +5059,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SslCertificate"
+                  "$ref": "#/components/schemas/SslCertificateWithRelations"
                 }
               }
             }
@@ -5339,7 +5339,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CronJob"
+                  "$ref": "#/components/schemas/CronJobWithRelations"
                 }
               }
             }
@@ -5680,7 +5680,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
+                  "$ref": "#/components/schemas/UserWithRelations"
                 }
               }
             }
@@ -6271,21 +6271,6 @@
           "summary": {
             "$ref": "#/components/schemas/ActionSummary"
           },
-          "servers": {
-            "$ref": "#/components/schemas/ServerActions"
-          },
-          "resource": {
-            "$ref": "#/components/schemas/Resource"
-          },
-          "environment": {
-            "$ref": "#/components/schemas/Environment"
-          },
-          "triggered_by_user": {
-            "$ref": "#/components/schemas/User"
-          },
-          "hook_requests": {
-            "$ref": "#/components/schemas/ActionHookRequest"
-          },
           "started_at": {
             "type": "string",
             "format": "date-time",
@@ -6312,7 +6297,13 @@
             "description": "The date and time when the record was last updated",
             "example": "2019-09-25T13:52:04.000000Z"
           }
-        }
+        },
+        "required": [
+          "id",
+          "status",
+          "type",
+          "type_human_readable"
+        ]
       },
       "ActionHookRequest": {
         "type": "object",
@@ -6513,6 +6504,82 @@
         ],
         "example": "deploy"
       },
+      "ActionWithRelations": {
+        "type": "object",
+        "nullable": true,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The Id of the given action",
+            "example": 567819876
+          },
+          "status": {
+            "$ref": "#/components/schemas/ActionStatus"
+          },
+          "type": {
+            "$ref": "#/components/schemas/ActionType",
+            "description": "The action type"
+          },
+          "type_human_readable": {
+            "type": "string",
+            "description": "Human readable version of the action type",
+            "example": "Deploy"
+          },
+          "summary": {
+            "$ref": "#/components/schemas/ActionSummary"
+          },
+          "servers": {
+            "$ref": "#/components/schemas/ServerActions"
+          },
+          "resource": {
+            "$ref": "#/components/schemas/Resource"
+          },
+          "environment": {
+            "$ref": "#/components/schemas/Environment"
+          },
+          "triggered_by_user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "hook_requests": {
+            "$ref": "#/components/schemas/ActionHookRequest"
+          },
+          "started_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the action started execution (i.e., left the `pending/queued` status)",
+            "example": "2019-09-25T15:50:48.000000Z",
+            "nullable": true
+          },
+          "completed_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the action has finished execution",
+            "example": "2019-09-25T13:52:04.000000Z",
+            "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25T13:52:04.000000Z"
+          }
+        },
+        "required": [
+          "id",
+          "status",
+          "type",
+          "type_human_readable",
+          "summary",
+          "resource",
+          "triggered_by_user"
+        ]
+      },
       "ApiError": {
         "type": "object",
         "properties": {
@@ -6667,45 +6734,6 @@
             "type": "integer",
             "description": "Numeric ID of the project to which the application belongs to"
           },
-          "environments": {
-            "description": "The list of environments to which the application is linked to",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Environment"
-            }
-          },
-          "servers": {
-            "description": "The list of servers to which the application has been deployed to",
-            "$ref": "#/components/schemas/Servers"
-          },
-          "last_deployments": {
-            "description": "Latest deployment created to application and the more recent completed deployment",
-            "type": "object",
-            "properties": {
-              "latest": {
-                "description": "More recent deployment created to application",
-                "$ref": "#/components/schemas/Deployment"
-              },
-              "live": {
-                "description": "More recent deployment that has been successfully completed",
-                "$ref": "#/components/schemas/Deployment"
-              }
-            }
-          },
-          "source_provider": {
-            "description": "The source provider from where the application source code repository has been retrieved",
-            "$ref": "#/components/schemas/SourceProvider"
-          },
-          "ssl_certificates": {
-            "description": "The list of SSL certificates issued to the application",
-            "$ref": "#/components/schemas/SslCertificates"
-          },
-          "created_by_user": {
-            "$ref": "#/components/schemas/User"
-          },
-          "last_action": {
-            "$ref": "#/components/schemas/Action"
-          },
           "created_at": {
             "type": "string",
             "format": "date-time",
@@ -6723,7 +6751,6 @@
           "id",
           "created_by",
           "project_id",
-          "environments",
           "type",
           "name",
           "framework",
@@ -6997,6 +7024,188 @@
           "$ref": "#/components/schemas/Application"
         }
       },
+      "ApplicationWithRelations": {
+        "type": "object",
+        "nullable": true,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The unique id of the given record",
+            "example": 445678964
+          },
+          "created_by": {
+            "type": "integer",
+            "description": "The id of the user who created the server and to whom the server belongs",
+            "example": 1
+          },
+          "type": {
+            "$ref": "#/components/schemas/ApplicationType"
+          },
+          "name": {
+            "type": "string",
+            "description": "The application's unique name",
+            "example": "my-awesome-app"
+          },
+          "domain_name": {
+            "type": "string",
+            "format": "hostname",
+            "description": "The domain or sub-domain through which the application deployed with these settings will be accessible. It can be a naked domain or any subdomain. If app has domain names `testing.my-app.com`, `staging.my-app.com` and `www.my-app.com` a possible good candidate for the application name would be the \"naked\" domain `my-app.com`",
+            "example": "test.my-app.co.uk"
+          },
+          "repository": {
+            "description": "The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed.",
+            "type": "string",
+            "example": "devopness-api-tests/tester",
+            "nullable": true
+          },
+          "repository_name": {
+            "description": "The name part of a repository full name (`repository_owner/repository_name`)",
+            "type": "string",
+            "example": "devopness",
+            "nullable": true
+          },
+          "repository_owner": {
+            "description": "The owner part of a repository full name (`repository_owner/repository_name`)",
+            "type": "string",
+            "example": "devopness-api-tests",
+            "nullable": true
+          },
+          "default_branch": {
+            "type": "string",
+            "description": "The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed.",
+            "example": "develop"
+          },
+          "push_to_deploy": {
+            "description": "Indicates if push to deploy webhooks are enabled for this application. If enabled an app deployment will be automatically triggered when new changes are commited to the `default_branch`",
+            "type": "boolean",
+            "example": false
+          },
+          "programming_language": {
+            "type": "string",
+            "description": "The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`.",
+            "example": "python"
+          },
+          "engine_version": {
+            "description": "The language runtime engine version to be used to execute this application on the deployed servers",
+            "type": "string",
+            "example": "19.03.2",
+            "nullable": true
+          },
+          "framework": {
+            "type": "string",
+            "description": "The base framework on top of which the application has been implemented - it might have impact on the steps to be performed during application deployment",
+            "example": "drupal"
+          },
+          "root_directory": {
+            "type": "string",
+            "description": "The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository.",
+            "example": "/ or /src or /lib/src or /code or /app"
+          },
+          "public_directory": {
+            "type": "string",
+            "description": "The relative web directory where publicly accessible assets are located and the web content should be served from",
+            "example": "/public"
+          },
+          "entrypoint": {
+            "type": "string",
+            "description": "The entrypoint tells devopness how an application should be started and has basically two forms:\n\n1) `File`: if it's a simple file name/path a web app will be served using the entrypoint value as its index file. Example: `index.html`\n\n2) `Command`: if a command line instruction is provided as the entrypoint value, it will be handled as the start up command that initalizes the application. It will be assumed that the user is an advanced user that knows what she/he is doing, therefore the command specified here will be run - as is - everytime the application needs to be started.\n",
+            "example": "`index.html`, `index.php`, `server.php`, `default.htm`, `node server.js`, `yarn start`, `npm run production`, `docker run -d -P --name my_container_name my_image_name`, `php artisan serve –-host=192.168.2.20 --port=8000`"
+          },
+          "listening_address": {
+            "description": "Required for CGI|FastCGI|SCGI|WSGI based applications or `docker` containerized applications. It tells `devopness` the private address at which the application listens to external calls. The address has `http` or `https` protocol, an domain name or IP address, optional port and optional path. Or you can specify a UNIX-socket using `unix:` prefix after protocol.",
+            "type": "string",
+            "example": "http://unix:/tmp/backend3:/my/path",
+            "nullable": true
+          },
+          "deployments_keep": {
+            "type": "integer",
+            "description": "The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers. OR The number of deployment artifacts to be retained in the user's servers, making it easier and faster to rollback to previoius versions",
+            "example": 4
+          },
+          "install_dependencies_dev": {
+            "description": "Indicates if at deployment time Devopness should execute package manager commands to install dependencies used in development mode",
+            "type": "boolean",
+            "example": false
+          },
+          "install_dependencies_prod": {
+            "description": "Indicates if at deployment time Devopness should execute package manager commands to install dependencies used in production mode",
+            "type": "boolean",
+            "example": true
+          },
+          "requires_daemon": {
+            "description": "Indicates if the application requires a daemon to keep it alive",
+            "type": "boolean",
+            "example": false
+          },
+          "project_id": {
+            "type": "integer",
+            "description": "Numeric ID of the project to which the application belongs to"
+          },
+          "environments": {
+            "description": "The list of environments to which the application is linked to",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Environment"
+            }
+          },
+          "servers": {
+            "description": "The list of servers to which the application has been deployed to",
+            "$ref": "#/components/schemas/Servers"
+          },
+          "last_deployments": {
+            "description": "Latest deployment created to application and the more recent completed deployment",
+            "type": "object",
+            "properties": {
+              "latest": {
+                "description": "More recent deployment created to application",
+                "$ref": "#/components/schemas/Deployment"
+              },
+              "live": {
+                "description": "More recent deployment that has been successfully completed",
+                "$ref": "#/components/schemas/Deployment"
+              }
+            }
+          },
+          "source_provider": {
+            "description": "The source provider from where the application source code repository has been retrieved",
+            "$ref": "#/components/schemas/SourceProvider"
+          },
+          "ssl_certificates": {
+            "description": "The list of SSL certificates issued to the application",
+            "$ref": "#/components/schemas/SslCertificates"
+          },
+          "created_by_user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "last_action": {
+            "$ref": "#/components/schemas/Action"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25T13:52:04.000000Z"
+          }
+        },
+        "required": [
+          "id",
+          "created_by",
+          "project_id",
+          "environments",
+          "type",
+          "name",
+          "framework",
+          "programming_language",
+          "public_directory",
+          "default_branch"
+        ]
+      },
       "Commit": {
         "type": "object",
         "properties": {
@@ -7081,15 +7290,6 @@
             "type": "boolean",
             "description": "Indicates if the cron job was auto_generated by `devopness` itself"
           },
-          "application": {
-            "$ref": "#/components/schemas/Application"
-          },
-          "created_by_user": {
-            "$ref": "#/components/schemas/User"
-          },
-          "last_action": {
-            "$ref": "#/components/schemas/Action"
-          },
           "created_at": {
             "type": "string",
             "format": "date-time",
@@ -7108,6 +7308,7 @@
           "command",
           "name",
           "pattern",
+          "pattern_human_readable",
           "run_as_user"
         ]
       },
@@ -7262,6 +7463,73 @@
           "$ref": "#/components/schemas/CronJob"
         }
       },
+      "CronJobWithRelations": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The Id of the given cron job",
+            "example": 19876
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the cron job",
+            "example": "My cool cron job"
+          },
+          "command": {
+            "type": "string",
+            "description": "The command line to be executed when running the cron job",
+            "example": "echo 'devopness rocks!' | tee -a /tmp/task-output.log"
+          },
+          "pattern": {
+            "type": "string",
+            "description": "A cron expression consisting of Minute, Hour, Day of Month, Month and Day of Week subexpressions",
+            "example": "0 0 * * *"
+          },
+          "pattern_human_readable": {
+            "$ref": "#/components/schemas/CronJobPattern"
+          },
+          "run_as_user": {
+            "type": "string",
+            "description": "The name of the Unix user on behalf of which the cron job will be executed",
+            "example": "root"
+          },
+          "auto_generated": {
+            "default": false,
+            "type": "boolean",
+            "description": "Indicates if the cron job was auto_generated by `devopness` itself"
+          },
+          "application": {
+            "$ref": "#/components/schemas/Application"
+          },
+          "created_by_user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "last_action": {
+            "$ref": "#/components/schemas/Action"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25T13:52:04.000000Z"
+          }
+        },
+        "required": [
+          "id",
+          "command",
+          "name",
+          "pattern",
+          "pattern_human_readable",
+          "run_as_user"
+        ]
+      },
       "Daemon": {
         "type": "object",
         "properties": {
@@ -7299,15 +7567,6 @@
             "default": false,
             "type": "boolean",
             "description": "Indicates if the command was auto_generated by `devopness` itself"
-          },
-          "project": {
-            "$ref": "#/components/schemas/Project"
-          },
-          "application": {
-            "$ref": "#/components/schemas/Application"
-          },
-          "last_action": {
-            "$ref": "#/components/schemas/Action"
           },
           "created_at": {
             "type": "string",
@@ -7445,6 +7704,74 @@
           "$ref": "#/components/schemas/Daemon"
         }
       },
+      "DaemonWithRelations": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The Id of the given daemon",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "description": "The name entered by the user (or auto-generated by `devopness`) to uniquely identify the daemon",
+            "example": "my-app"
+          },
+          "command": {
+            "type": "string",
+            "description": "The command line to be executed to start the daemon",
+            "example": "/usr/bin/example --parameter=%(ENV_VAR_TO_GET_PARAM_VALUE_FROM)s"
+          },
+          "working_directory": {
+            "type": "string",
+            "description": "The working directory where the daemon will be relative to when performing disk i/o",
+            "example": "/path/to/your/app"
+          },
+          "process_count": {
+            "type": "integer",
+            "description": "The number of daemon process instances of the program to run simultaneously",
+            "example": 3
+          },
+          "run_as_user": {
+            "type": "string",
+            "description": "The name of the Unix user on behalf of which the daemon will run",
+            "example": "root"
+          },
+          "auto_generated": {
+            "default": false,
+            "type": "boolean",
+            "description": "Indicates if the command was auto_generated by `devopness` itself"
+          },
+          "project": {
+            "$ref": "#/components/schemas/Project"
+          },
+          "application": {
+            "$ref": "#/components/schemas/Application"
+          },
+          "last_action": {
+            "$ref": "#/components/schemas/Action"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25T13:52:04.000000Z"
+          }
+        },
+        "required": [
+          "command",
+          "name",
+          "process_count",
+          "run_as_user",
+          "working_directory"
+        ]
+      },
       "Deployment": {
         "type": "object",
         "nullable": true,
@@ -7462,25 +7789,6 @@
           },
           "source": {
             "$ref": "#/components/schemas/DeploymentSource"
-          },
-          "application": {
-            "$ref": "#/components/schemas/Application"
-          },
-          "commit": {
-            "$ref": "#/components/schemas/Commit"
-          },
-          "steps": {
-            "description": "The steps that were meant to be executed when the deployment was triggered",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/DeploymentStep"
-            }
-          },
-          "triggered_by_user": {
-            "$ref": "#/components/schemas/User"
-          },
-          "last_action": {
-            "$ref": "#/components/schemas/Action"
           },
           "started_at": {
             "type": "string",
@@ -7515,9 +7823,7 @@
           "id",
           "status",
           "type",
-          "source",
-          "commit",
-          "steps"
+          "source"
         ]
       },
       "DeploymentCreate": {
@@ -7705,6 +8011,81 @@
         ],
         "example": "deploy"
       },
+      "DeploymentWithRelations": {
+        "type": "object",
+        "nullable": true,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The unique id of the given record",
+            "example": 93457689064
+          },
+          "status": {
+            "$ref": "#/components/schemas/ActionStatus"
+          },
+          "type": {
+            "$ref": "#/components/schemas/DeploymentType"
+          },
+          "source": {
+            "$ref": "#/components/schemas/DeploymentSource"
+          },
+          "application": {
+            "$ref": "#/components/schemas/Application"
+          },
+          "commit": {
+            "$ref": "#/components/schemas/Commit"
+          },
+          "steps": {
+            "description": "The steps that were meant to be executed when the deployment was triggered",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeploymentStep"
+            }
+          },
+          "triggered_by_user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "last_action": {
+            "$ref": "#/components/schemas/Action"
+          },
+          "started_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the action started execution (i.e., left the `pending/queued` status)",
+            "example": "2019-09-25T15:50:48.000000Z",
+            "nullable": true
+          },
+          "completed_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the action has finished execution",
+            "example": "2019-09-25T13:52:04.000000Z",
+            "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25T15:50:48.000000Z",
+            "nullable": true
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25T13:52:04.000000Z",
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "status",
+          "type",
+          "source",
+          "commit",
+          "steps"
+        ]
+      },
       "Environment": {
         "type": "object",
         "properties": {
@@ -7727,27 +8108,6 @@
             "type": "string",
             "example": "Staging"
           },
-          "servers": {
-            "$ref": "#/components/schemas/Servers"
-          },
-          "cron_jobs": {
-            "$ref": "#/components/schemas/CronJobs"
-          },
-          "daemons": {
-            "$ref": "#/components/schemas/Daemons"
-          },
-          "network_rules": {
-            "$ref": "#/components/schemas/NetworkRules"
-          },
-          "applications": {
-            "$ref": "#/components/schemas/Applications"
-          },
-          "services": {
-            "$ref": "#/components/schemas/Services"
-          },
-          "created_by_user": {
-            "$ref": "#/components/schemas/User"
-          },
           "created_at": {
             "type": "string",
             "format": "date-time",
@@ -7764,7 +8124,8 @@
         "required": [
           "id",
           "name",
-          "type"
+          "type",
+          "type_human_readable"
         ]
       },
       "EnvironmentCreate": {
@@ -7928,6 +8289,68 @@
         "description": "Environment's type",
         "example": "staging"
       },
+      "EnvironmentWithRelations": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique id of the given record",
+            "example": 16523
+          },
+          "name": {
+            "type": "string",
+            "description": "Environment's name",
+            "example": "produção"
+          },
+          "type": {
+            "$ref": "#/components/schemas/EnvironmentType",
+            "description": "The type of the deployment being triggered"
+          },
+          "type_human_readable": {
+            "description": "The human readable version of the type",
+            "type": "string",
+            "example": "Staging"
+          },
+          "servers": {
+            "$ref": "#/components/schemas/Servers"
+          },
+          "cron_jobs": {
+            "$ref": "#/components/schemas/CronJobs"
+          },
+          "daemons": {
+            "$ref": "#/components/schemas/Daemons"
+          },
+          "network_rules": {
+            "$ref": "#/components/schemas/NetworkRules"
+          },
+          "applications": {
+            "$ref": "#/components/schemas/Applications"
+          },
+          "services": {
+            "$ref": "#/components/schemas/Services"
+          },
+          "created_by_user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25T13:52:04.000000Z"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "type"
+        ]
+      },
       "Hook": {
         "type": "object",
         "properties": {
@@ -8004,11 +8427,10 @@
             "$ref": "#/components/schemas/ActionType",
             "description": "The action type triggered by hook"
           },
-          "resource": {
-            "$ref": "#/components/schemas/Resource"
-          },
-          "created_by_user": {
-            "$ref": "#/components/schemas/User"
+          "active": {
+            "type": "boolean",
+            "description": "Determines if the hook is current active",
+            "example": true
           },
           "settings": {
             "$ref": "#/components/schemas/HookSetting"
@@ -8033,7 +8455,6 @@
           "secret",
           "verify_ssl",
           "action_type",
-          "resource",
           "created_at",
           "updated_at"
         ]
@@ -8064,6 +8485,11 @@
           "action_type": {
             "$ref": "#/components/schemas/ActionType",
             "description": "The action type triggered by hook"
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Determines if the hook is current active",
+            "example": true
           },
           "requires_secret": {
             "default": false,
@@ -8126,6 +8552,11 @@
             "type": "string",
             "description": "The request header used to give the secret to Devopness",
             "example": "X-My-Secret"
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Determines if the hook is current active",
+            "example": true
           }
         },
         "required": [
@@ -8145,6 +8576,11 @@
           "action_type": {
             "$ref": "#/components/schemas/ActionType",
             "description": "The action type that trigger the outgoing hook"
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Determines if the hook is current active",
+            "example": true
           },
           "resource_type": {
             "$ref": "#/components/schemas/ResourceType",
@@ -8198,6 +8634,11 @@
           "action_type": {
             "$ref": "#/components/schemas/ActionType",
             "description": "The action type that trigger the outgoing hook"
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Determines if the hook is current active",
+            "example": true
           },
           "resource_type": {
             "$ref": "#/components/schemas/ResourceType",
@@ -8311,9 +8752,6 @@
               "success": true
             }
           },
-          "hook": {
-            "$ref": "#/components/schemas/Hook"
-          },
           "created_at": {
             "type": "string",
             "format": "date-time",
@@ -8342,6 +8780,107 @@
         "items": {
           "$ref": "#/components/schemas/HookRequest"
         }
+      },
+      "HookRequestWithRelations": {
+        "type": "object",
+        "nullable": true,
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique UUID of the hook request",
+            "example": "6fa16226-9dc4-4367-88aa-e689ad2bc580"
+          },
+          "hook_id": {
+            "type": "string",
+            "description": "The UUID of the hook that the request belongs to",
+            "example": "f1a61a4e-4d08-11eb-9481-0242ac130004"
+          },
+          "action_id": {
+            "type": "integer",
+            "nullable": true,
+            "description": "The id of the action that the request belongs to",
+            "example": 1985239
+          },
+          "retry_of": {
+            "type": "string",
+            "nullable": true,
+            "description": "The UUID of the request that this request is a retry of",
+            "example": "002afd04-e3af-4dad-bf46-b2b25978482a"
+          },
+          "ip_address": {
+            "type": "string",
+            "description": "The IP address of the source that triggered the hook",
+            "example": "172.17.0.4"
+          },
+          "url": {
+            "type": "string",
+            "description": "Original URL used on the request",
+            "example": "https://api.devopness.com/hooks-incoming/f1a61a4e-4d08-11eb-9481-0242ac130004"
+          },
+          "request_headers": {
+            "type": "object",
+            "nullable": true,
+            "description": "The headers of the request",
+            "example": {
+              "Content-Type": "application/json",
+              "Accept": "application/json"
+            }
+          },
+          "request_body": {
+            "type": "object",
+            "nullable": true,
+            "description": "The body of the request",
+            "example": {
+              "message": "Hello World"
+            }
+          },
+          "response_status_code": {
+            "type": "integer",
+            "description": "The response status code",
+            "example": 200
+          },
+          "response_headers": {
+            "type": "object",
+            "nullable": true,
+            "description": "The headers of the response",
+            "example": {
+              "Content-Type": "application/json",
+              "Accept": "application/json"
+            }
+          },
+          "response_body": {
+            "type": "object",
+            "nullable": true,
+            "description": "The body of the response",
+            "example": {
+              "success": true
+            }
+          },
+          "hook": {
+            "$ref": "#/components/schemas/Hook"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25T15:50:48.000000Z",
+            "nullable": true
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25T13:52:04.000000Z",
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "hook_id",
+          "action_id",
+          "retry_of",
+          "ip_address"
+        ]
       },
       "HookSetting": {
         "type": "object",
@@ -8437,6 +8976,121 @@
           "boolean"
         ],
         "example": "integer"
+      },
+      "HookWithRelations": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The Id of the given hook",
+            "example": "f1a61a4e-4d08-11eb-9481-0242ac130004"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name entered by the user (or auto-generated by `Devopness`) to uniquely identify the hook",
+            "example": "my-app deploy"
+          },
+          "type": {
+            "$ref": "#/components/schemas/HookType"
+          },
+          "url": {
+            "type": "string",
+            "nullable": true,
+            "description": "The URL where the incoming hook must be triggered with a POST request",
+            "example": "https://api.devopness.com/hooks-incoming/f1a61a4e-4d08-11eb-9481-0242ac130004"
+          },
+          "target_url": {
+            "type": "string",
+            "nullable": true,
+            "description": "The target URL on outgoing hooks where Devopness should trigger a request",
+            "example": "https://simple-example.test/hook/12345"
+          },
+          "requires_secret": {
+            "default": false,
+            "type": "boolean",
+            "description": "Tells if requests to this hook must only be accepted when a HTTP header is sent with a message authentication code ([HMAC](https://en.wikipedia.org/wiki/HMAC)) generated based on the secret provided by Devopness and shared by user with external sources"
+          },
+          "secret": {
+            "type": "string",
+            "description": "The secret generated by Devopness to be used to digitally sign incoming requests",
+            "example": "nWE5NR3Z5SQYRrEtbotmG0mcu0Lloc1zZb4esrWifOIpM33LPvkicJYiQSqW"
+          },
+          "secret_header_name": {
+            "type": "string",
+            "nullable": true,
+            "description": "The name of the HTTP request header from which the request digital signature should be extracted",
+            "example": "X-Custom-Header"
+          },
+          "secret_algorithm": {
+            "type": "string",
+            "nullable": true,
+            "description": "The cryptographic hash function to be used by Devopness when validating digitally signed incoming requests for hooks that require secret validation",
+            "example": "sha256"
+          },
+          "verify_ssl": {
+            "type": "boolean",
+            "description": "Indicates if the Devopness must be verify the SSL certificate of the request",
+            "example": true
+          },
+          "trigger_when": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "description": "A list of action status when the outgoing hook should be triggered by Devopness",
+            "example": [
+              "in-progress",
+              "completed"
+            ]
+          },
+          "auto_generated": {
+            "default": false,
+            "type": "boolean",
+            "description": "Indicates if the record was auto_generated by `devopness` itself"
+          },
+          "action_type": {
+            "$ref": "#/components/schemas/ActionType",
+            "description": "The action type triggered by hook"
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Determines if the hook is current active",
+            "example": true
+          },
+          "resource": {
+            "$ref": "#/components/schemas/Resource"
+          },
+          "created_by_user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "settings": {
+            "$ref": "#/components/schemas/HookSetting"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25T13:52:04.000000Z"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "type",
+          "secret",
+          "verify_ssl",
+          "action_type",
+          "resource",
+          "created_at",
+          "updated_at"
+        ]
       },
       "Language": {
         "type": "string",
@@ -8665,12 +9319,6 @@
             "description": "Ending range of network ports to be considered by this rule",
             "example": 7654
           },
-          "created_by_user": {
-            "$ref": "#/components/schemas/User"
-          },
-          "last_action": {
-            "$ref": "#/components/schemas/Action"
-          },
           "created_at": {
             "type": "string",
             "format": "date-time",
@@ -8812,7 +9460,187 @@
           "ip_address_to"
         ]
       },
+      "NetworkRuleWithRelations": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The unique id of the given record",
+            "example": 967864
+          },
+          "name": {
+            "type": "string",
+            "description": "The rule's name/description/reminder",
+            "example": "HTTPS|SSH|\"Opening MySQL port so desktop apps can access it remotely\""
+          },
+          "type": {
+            "$ref": "#/components/schemas/NetworkRuleType"
+          },
+          "protocol": {
+            "$ref": "#/components/schemas/NetworkRuleProtocol"
+          },
+          "ip_address_from": {
+            "type": "string",
+            "format": "ipv4",
+            "description": "Starting range of the public ipv4 or ipv6 addresses that can access this rule",
+            "example": "200.123.45.67"
+          },
+          "ip_address_to": {
+            "type": "string",
+            "format": "ipv4",
+            "description": "Ending range of the public ipv4 or ipv6 addresses that can access this rule",
+            "example": "200.123.45.99"
+          },
+          "port_from": {
+            "type": "integer",
+            "description": "Starting range of network ports to be considered by this rule",
+            "example": 6123
+          },
+          "port_to": {
+            "type": "integer",
+            "description": "Ending range of network ports to be considered by this rule",
+            "example": 7654
+          },
+          "created_by_user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "last_action": {
+            "$ref": "#/components/schemas/Action"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25T13:52:04.000000Z"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "type",
+          "protocol",
+          "port_from",
+          "port_to"
+        ]
+      },
       "Project": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The unique id of the given record",
+            "example": 45678
+          },
+          "user_id": {
+            "type": "integer",
+            "description": "The id of the user that own the project",
+            "example": 984123
+          },
+          "name": {
+            "type": "string",
+            "description": "The project's name",
+            "example": "my project"
+          },
+          "logo_image": {
+            "type": "string",
+            "description": "A base64 string representation of the logo image",
+            "example": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACA.../AgwAgJqsE2/7ccAAAAAASUVORK5CYII="
+          },
+          "logo_url": {
+            "type": "string",
+            "format": "url",
+            "description": "A URL path to the project's logo image",
+            "example": "https://example.com/projects-beautiful-logo.png",
+            "nullable": true
+          },
+          "os_users": {
+            "description": "The list of the operating system users found in all the servers linked to a project",
+            "type": "array",
+            "items": {
+              "properties": {
+                "name": {
+                  "type": "string"
+                }
+              },
+              "example": {
+                "name": "devopness"
+              }
+            }
+          }
+        },
+        "required": [
+          "id",
+          "user_id",
+          "name"
+        ]
+      },
+      "ProjectCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The project's name",
+            "example": "my project"
+          },
+          "logo_image": {
+            "type": "string",
+            "description": "A base64 string representation of the logo image",
+            "example": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACA.../AgwAgJqsE2/7ccAAAAAASUVORK5CYII="
+          },
+          "logo_url": {
+            "type": "string",
+            "format": "url",
+            "description": "A URL path to the project's logo image",
+            "example": "https://example.com/projects-beautiful-logo.png"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "ProjectUpdate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The unique id of the given record",
+            "example": 45678
+          },
+          "name": {
+            "type": "string",
+            "description": "The project's name",
+            "example": "my project"
+          },
+          "logo_image": {
+            "type": "string",
+            "description": "A base64 string representation of the logo image",
+            "example": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACA.../AgwAgJqsE2/7ccAAAAAASUVORK5CYII="
+          },
+          "logo_url": {
+            "type": "string",
+            "format": "url",
+            "description": "A URL path to the project's logo image",
+            "example": "https://example.com/projects-beautiful-logo.png"
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ]
+      },
+      "Projects": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Project"
+        }
+      },
+      "ProjectWithRelations": {
         "type": "object",
         "properties": {
           "id": {
@@ -8886,68 +9714,10 @@
           }
         },
         "required": [
-          "name"
-        ]
-      },
-      "ProjectCreate": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "description": "The project's name",
-            "example": "my project"
-          },
-          "logo_image": {
-            "type": "string",
-            "description": "A base64 string representation of the logo image",
-            "example": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACA.../AgwAgJqsE2/7ccAAAAAASUVORK5CYII="
-          },
-          "logo_url": {
-            "type": "string",
-            "format": "url",
-            "description": "A URL path to the project's logo image",
-            "example": "https://example.com/projects-beautiful-logo.png"
-          }
-        },
-        "required": [
-          "name"
-        ]
-      },
-      "ProjectUpdate": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "description": "The unique id of the given record",
-            "example": 45678
-          },
-          "name": {
-            "type": "string",
-            "description": "The project's name",
-            "example": "my project"
-          },
-          "logo_image": {
-            "type": "string",
-            "description": "A base64 string representation of the logo image",
-            "example": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACA.../AgwAgJqsE2/7ccAAAAAASUVORK5CYII="
-          },
-          "logo_url": {
-            "type": "string",
-            "format": "url",
-            "description": "A URL path to the project's logo image",
-            "example": "https://example.com/projects-beautiful-logo.png"
-          }
-        },
-        "required": [
           "id",
+          "user_id",
           "name"
         ]
-      },
-      "Projects": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Project"
-        }
       },
       "Provider": {
         "type": "object",
@@ -9283,16 +10053,6 @@
           "status": {
             "$ref": "#/components/schemas/ActionStatus"
           },
-          "actions": {
-            "$ref": "#/components/schemas/Actions"
-          },
-          "environments": {
-            "description": "The list of environments to which the server is linked to",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Environment"
-            }
-          },
           "provider_name": {
             "description": "The name of the server's provider.",
             "type": "string",
@@ -9302,12 +10062,6 @@
             "description": "The human readable version of the provider's name",
             "type": "string",
             "example": "VPS/Self Hosted"
-          },
-          "created_by_user": {
-            "$ref": "#/components/schemas/User"
-          },
-          "last_action": {
-            "$ref": "#/components/schemas/Action"
           },
           "created_at": {
             "type": "string",
@@ -9598,6 +10352,93 @@
           "$ref": "#/components/schemas/Server"
         }
       },
+      "ServerWithRelations": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The unique id of the given record",
+            "example": 9654123
+          },
+          "hostname": {
+            "type": "string",
+            "description": "The server's hostname",
+            "example": "web-srv-1"
+          },
+          "ip_address": {
+            "type": "string",
+            "format": "ipv4",
+            "description": "Public ipv4 address for server access",
+            "example": "200.123.45.67"
+          },
+          "ssh_port": {
+            "type": "integer",
+            "description": "The network port to which the SSH daemon is listening to SSH connections on the server",
+            "example": 22
+          },
+          "created_by": {
+            "type": "integer",
+            "description": "The id of the user who created the server and to whom the server belongs",
+            "example": 1
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Tells if the server is active or not"
+          },
+          "blueprint": {
+            "$ref": "#/components/schemas/ServerBlueprint"
+          },
+          "status": {
+            "$ref": "#/components/schemas/ActionStatus"
+          },
+          "actions": {
+            "$ref": "#/components/schemas/Actions"
+          },
+          "environments": {
+            "description": "The list of environments to which the server is linked to",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Environment"
+            }
+          },
+          "provider_name": {
+            "description": "The name of the server's provider.",
+            "type": "string",
+            "example": "self-hosted"
+          },
+          "provider_name_human_readable": {
+            "description": "The human readable version of the provider's name",
+            "type": "string",
+            "example": "VPS/Self Hosted"
+          },
+          "created_by_user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "last_action": {
+            "$ref": "#/components/schemas/Action"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25T13:52:04.000000Z"
+          }
+        },
+        "required": [
+          "id",
+          "hostname",
+          "ip_address",
+          "ssh_port",
+          "created_by",
+          "active"
+        ]
+      },
       "Service": {
         "type": "object",
         "properties": {
@@ -9652,21 +10493,6 @@
             "format": "date-time",
             "description": "The date and time when the record was last updated",
             "example": "2020-04-16T15:50:48.000000Z"
-          },
-          "environments": {
-            "$ref": "#/components/schemas/Environments"
-          },
-          "created_by_user": {
-            "$ref": "#/components/schemas/User"
-          },
-          "project": {
-            "$ref": "#/components/schemas/Project"
-          },
-          "servers": {
-            "$ref": "#/components/schemas/Servers"
-          },
-          "last_action": {
-            "$ref": "#/components/schemas/Action"
           }
         },
         "required": [
@@ -9869,6 +10695,87 @@
         "items": {
           "$ref": "#/components/schemas/ServiceType"
         }
+      },
+      "ServiceWithRelations": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The unique id of the given record",
+            "example": 652674
+          },
+          "name": {
+            "type": "string",
+            "description": "The service name",
+            "example": "mysql"
+          },
+          "name_human_readable": {
+            "type": "string",
+            "description": "Formatted/human readable version of the service name",
+            "example": "MySQL"
+          },
+          "version": {
+            "type": "string",
+            "description": "The service current installed version",
+            "example": "5.7.29",
+            "nullable": true
+          },
+          "auto_generated": {
+            "type": "boolean",
+            "default": false,
+            "description": "Indicates if the service was auto_generated by `devopness` itself"
+          },
+          "auto_start": {
+            "type": "boolean",
+            "default": false,
+            "description": "Indicates if the service is marked for start automatically on operating system boot"
+          },
+          "initial_state": {
+            "$ref": "#/components/schemas/ServiceInitialState"
+          },
+          "description": {
+            "type": "string",
+            "description": "A text describing the service, provided by the service author",
+            "example": "MySQL Community Server",
+            "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2020-04-16T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2020-04-16T15:50:48.000000Z"
+          },
+          "environments": {
+            "$ref": "#/components/schemas/Environments"
+          },
+          "created_by_user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "project": {
+            "$ref": "#/components/schemas/Project"
+          },
+          "servers": {
+            "$ref": "#/components/schemas/Servers"
+          },
+          "last_action": {
+            "$ref": "#/components/schemas/Action"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "auto_generated",
+          "auto_start",
+          "initial_state",
+          "created_at",
+          "updated_at"
+        ]
       },
       "SocialAccount": {
         "type": "object",
@@ -10098,12 +11005,6 @@
             "type": "string",
             "description": "The hashed fingerprint of the public key",
             "example": "f1:59:d6:c4:55:97:06:94:e3:f2:82:de:46:e5:27:39"
-          },
-          "created_by_user": {
-            "$ref": "#/components/schemas/User"
-          },
-          "last_action": {
-            "$ref": "#/components/schemas/Action"
           }
         },
         "required": [
@@ -10143,7 +11044,200 @@
           "$ref": "#/components/schemas/SshKey"
         }
       },
+      "SshKeyWithRelations": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The Id of the given SSH public key",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "description": "The name entered by the user to uniquely identify the public SSH key",
+            "example": "my-laptop-ssh-key"
+          },
+          "created_by": {
+            "type": "integer",
+            "description": "The Id of the user to which the SSH key belongs to",
+            "example": 123
+          },
+          "public_key": {
+            "type": "string",
+            "description": "The public SSH key to add to your `devopness` account and associate it to the given project",
+            "example": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCu2g54rOA/7OhsILhFncrBAaPe8K0mZilMQugwGpiqQY89Xx0rhcZ/HS2rvmJnGC0nATxOZFsZLfjInpHhq+Y5WumTO0GUrkF215t4QavEU6UMd7VC+mqm2mm4WP+9zkcSSCzy7ZQ1Tuig6IWAB90FNqD7tXRFAqAjlC1LW8V+Efw9AO2mROglpxnoHuH8ZN0a/LQBi5iyeqOLuKZzgUWv4nEIqyYYGslDS1eru2aINwCNahDljXM7f7LcrHlhv5c4y5WSdEYlxSdQQh/ijDcuIIZEv27ivYoY1fse24b2MqD2XdHJpSb1GLnOI76t7+MSmDow3BtSxUNqW0rIUqObFxlMVx9oozHjnn3FkFee+qhQ/9knA7+V9Z7M6SJzDwcGqzJXEpuX/E4AHV04vEI4+RV2vNLhPsHZ2DDQ1fm3ZUtXnWXcIwsLC9WNFdiCOL+WyIYKieQ/CiWfDDIp0xlho83HMp79+BJ4ceFRP/PAdee+TltbtoJR00Ezf8b2nFU="
+          },
+          "fingerprint": {
+            "type": "string",
+            "description": "The hashed fingerprint of the public key",
+            "example": "f1:59:d6:c4:55:97:06:94:e3:f2:82:de:46:e5:27:39"
+          },
+          "created_by_user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "last_action": {
+            "$ref": "#/components/schemas/Action"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
       "SslCertificate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The unique id of the given record",
+            "example": 6789
+          },
+          "domains": {
+            "description": "The list of domain names to which the SSL certificate refers to",
+            "type": "array",
+            "example": [
+              "my-subdomain.example.com",
+              "example.com",
+              "*.example.com"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "issuer": {
+            "$ref": "#/components/schemas/SslCertificateIssuer"
+          },
+          "type": {
+            "$ref": "#/components/schemas/SslCertificateType"
+          },
+          "validation_level": {
+            "$ref": "#/components/schemas/SslCertificateValidationLevel"
+          },
+          "custom_private_key": {
+            "type": "string",
+            "description": "The private key provided by the Certification Authority, when the certificate has not been automatically issued through `devopness`",
+            "example": "-----BEGIN RSA PRIVATE KEY-----MIIJKQIBAAKCAgEA6AUEbdJa ..."
+          },
+          "custom_certificate": {
+            "type": "string",
+            "description": "The contents of the certificate provided by the Certification Authority, when the certificate has not been automatically issued through `devopness`",
+            "example": "-----BEGIN CERTIFICATE-----MIIGdDCCBVygAwIBAgISAy66cNIj ..."
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Tells if the certificate is active for all linked servers and applications"
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when this certificate will no longer be valid, down to minute precision",
+            "example": "2020-04-16T15:50:48.000000Z",
+            "nullable": true
+          },
+          "last_renewed_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when this certificate was renewed for the last time",
+            "example": "2020-04-16T15:50:48.000000Z",
+            "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2020-04-16T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2020-04-16T15:50:48.000000Z"
+          }
+        },
+        "required": [
+          "id",
+          "domains",
+          "issuer",
+          "type",
+          "validation_level",
+          "active"
+        ]
+      },
+      "SslCertificateCreate": {
+        "type": "object",
+        "properties": {
+          "domains": {
+            "description": "The list of domain names to which the SSL certificate refers to",
+            "type": "array",
+            "example": [
+              "my-subdomain.example.com",
+              "example.com"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "issuer": {
+            "$ref": "#/components/schemas/SslCertificateIssuer"
+          },
+          "type": {
+            "$ref": "#/components/schemas/SslCertificateType"
+          },
+          "validation_level": {
+            "$ref": "#/components/schemas/SslCertificateValidationLevel"
+          },
+          "custom_private_key": {
+            "type": "string",
+            "description": "The private key provided by the Certification Authority, when the certificate has not been automatically issued through `devopness`",
+            "example": "-----BEGIN RSA PRIVATE KEY----- Proc-Type: 4,ENCRYPTED DEK-Info: DES-EDE3-CBC,4E262401F693044C\njyoAdQaTKnfNDNfqAZR7hZsNNXoMXmspJp0h0eb7Gc2FyaX1iS70VeUWVlGkPfG/ lp7cPvvUO36pTaU0kLOWdG8FGHRIblO8v4f9E2/eD7VgNLJ4W8tP0rff3d18M32B jfG/Mg90Gsew3XXlLo5eVO+3xbuGhKcZ1p6RVa5vdEOr1Pk/huyvH6HLsXCEOSS+ 6NF/nVRqP8VAlSFF58QQIz7hQsfyOr8EVzdW4RNlygaUgWDCGa/CCwR6NgGcRyRj M3R1R36KUWubxmPHj21EB1XO4H4LF15eE0ZjBXfRUllWdaWONU26HOlld4Y8HhMf tVCt7LeavMuh0tVRmKCrj3fbxRCgc1mRM58EEhYbbFkj0jZzWmbVUB6xegwGCyLH LSb/HuC9WI7xKsNXIkm9O0Gso+EZ75Feex8DGVX407kiAQtJ/Kdh8Lo8Hv0bDby9 IuSpfJszDn5eB9K3k112SOz1LPfQJB8m/o94MmnaFACX5Usc0yy5CmN/3iCEnnVj i2po86njYaqiN2NeAXY07bkp+U2paVfs+crpXkboegy/IO0qWizU3x2GgOxB/6Sg BzqqDNb8yiVjctcr7puIjJfMCe4QR4gAeaMphlK1Y8EeABdTGLsFF7Rxf/2Bn6WS Kd7EW8bF5UqnSM18h9GSbMoZMSBpZF6YGA45lzgKEPlhJqNhBhUgtOz17RocnwnC 7Sl7XFIJZWG9kgVY1bLzD/0hKN3TzTdAzSlFW2dybKdz+te5LSPuI7GjwSi14PPN r/YoTMcpn4EYxiUq/IVaKQkDc5ZE1qKe9etiLQPIp/L7hN3zFgd6UPqAB6vRweJa tS5g1bl24Il/a5yt9i7TgbxyrpY3ZmU5g0WKoz1/WFvO4s49RC9Jgih1ShO5u+CG aV4A80+TMbROuWx35P7y3ZjmUH/y9XU8gKdRo6BgZrBfK0QgIq/JzN7Zca6Z3oss nW8B2g9KTK9JqIKSfhq5Udfyfmtipe6EidpDwHXTMWDNey42CAMH/IOj5Pq5rUwb LW4VOnk4RIVwyGtms3qHRUuki6VBSpy75ROkfHe5v/3RaNqd+2VrzvsGyk3R7ek6 dQbe8J5AUK2/hUYI7UOP6hkQ/jvET+R2DVkqHQoGgGH5XO+7efc60oZuz7qh8khH m2gMmP+6LsSUYAEG743FQFu1BOrFdQPrF7/3Zmx64fPpqp1lVWpqHY0EoDZYfzYw TD2WxeMRFNY4+l1HiKxZOaO+4Q82vOW7fMs8YSH6uDTmTy78R28gTenv/r4kiFQg bey+ghK5msxMFV6Dy9vIrD20D4qknBjl/8Qt73hUaRrRSFaakp0Tq2myg6fzpbQ8 3d/Yx3tZeRnjufh/PrAp+9wdNT5sotuNflXjSiPQ7VDGuSLu4InTu2j/bgcHfqDf 0vRd5GQRcWcVDUwXY5xR7hOoot/Ej/F045rtg2pIG0ALdpfOY0NB5HDVaKY9lvWQ DNL5iY1cxjSK1fjN5qpy1JV7ZHGHoCogBac9SOtBkf+tJPEKu2eF/kIQOCp0iqSg 3ke/l7xYSrusjiEwzIjN+XTsdlcQzMk8OJb7/+Y+SZGqMmlTIemip+L/ybeXETEL -----END RSA PRIVATE KEY-----"
+          },
+          "custom_certificate": {
+            "type": "string",
+            "description": "The contents of the certificate provided by the Certification Authority, when the certificate has not been automatically issued through `devopness`",
+            "example": "-----BEGIN RSA PRIVATE KEY----- MIIEpAIBAAKCAQEA1DFNCpE0TTSuZNPRYivpH92uFyptmNL0bY8KpnVTzUR/G3vr e5Iua0OuCB9sW0JB1MCoYndHjeSt6NtJ0zDcbT/i+c0LyWqhx4YfsyUhPtYUBOy4 tnDsG9dzFe+PWomxVPERFwVk5a7CflHlbtqadxdhHTBGU34XUk3lGs+YjQarj5OV vbk5sAIkrXYF2hDFn0I2NY7I47sB2CvHqMlXfrawSWMSA0XZhO6g0Fp9AzEw23xf U/oxbTyShyOiwq6fBv/lviqacJTrF4b078qCKUhAW0bDhhk6Oz9NOQlAGV90ISVY Y5vKn0Jpgmi6G+Btsk0+Y626RTAi6bDw6B0QJwIDAQABAoIBAQCS+XsVgLIrb/wD lrwHNccJ7XByV08GdcgcQuHrnoTnPzSTguf+9af1YDGhKrLRGzmh9bgsS9ZiMC1N hubBw6xKd9/tittJLfTU0NAQM/2tGndPWfAvXlQMjNUIMqCm44zS+w8NVQ0oEj5h ZLR4bi5jouv/Xbq4hjP9LDsusPBHbT4HqkM/7jlydV/0L38b+Gpo1bsweVjhSv7w nAfmmiDiV7TmoldJNl/dG69bmSgJzza5ywKSBQQkdGpGYsYK1Y8On8mBgS36wvAN p1rtxV+/Bdg74e5oWuLygHJeR1DnvE0uswcA9ln2KTsLAcw1JESWflWdAGeFTgbp jdU40X5BAoGBAPVRzVx2sSuFQ4Y7QhVvH36/A5HYO1u9JTal8RNebjz+UXMtNFzX 6qsUih5JD60EloZUIgtOhyXw+NdRdyKTUdkuwszldDBvLKIVHmZb9tx46l5C39xf 1O6vIO6mY0l/OlPsg0MNXv73PJllYycXylfFsX1jqCZulCdncEzrYprXAoGBAN1u SKNPe3/pfaZA8HAqvrX6g0N0OwWvQ9muQl8BlVzRzdsdsrfEHCMJ8qJcp5WhpYwg RnyB1jhsjLx9rzpTL9OXwHDII8oo1WqbNW0EGLBYaktXZ9lGUIDBAmdgrxqZTba9 t5r7aUCSYgA6dI2S/SNRxquEbRfq1cwpbQ2RBVsxAoGAFSr81Gitevrhy7hbSGwx RIeI8FG/NXhJuMBy39/7FSpArvaMmSJMbny0Ok7FmoFV17t0wJMDGGQFpNazt/kM S/g7+OAnuXIuYMH/wIdY8sdAOef9Vw+x2PKlndIfqRzgVJOI9AU4WDnPMdFMz/e+ jvpRCWfK/531DL1hNFHvTTsCgYA+T2xtWE5+fiv3fsqqJb0o5GfPsYNyZBGJzfmr Vny7c+ajxEWoZK0uRvxaKAyYlLZLKkHrg3XOxu0LlaqblREeT9O9aPR5TOhRaX+t P7va0+aFcQEuKRU6RhXxFUnxCDbQN67VE+5YV1jwi4KE3FoTeE2ZslgopNKo8vdX G/oP4QKBgQClfgjKf0Vj7wsq1wYJiVQ7it8jZtgB5nv1DQsWoK8OoydzaM0HTWR4 DCdSRb+LB6CfwFiBcZGvGFNNewDZc1X/lKXZ+uuFffCKcwP7f7PYgm3lXIa20KUK ktcbPcfeN0sof3+Mb+NDzLTwL+8bU+8S8AYu5M3JFxBCyzWrldvRrA== -----END RSA PRIVATE KEY-----"
+          }
+        },
+        "required": [
+          "domains",
+          "issuer",
+          "type"
+        ]
+      },
+      "SslCertificateIssuer": {
+        "type": "string",
+        "description": "The entity or certification authority (CA) who issued the certificate",
+        "enum": [
+          "custom",
+          "lets-encrypt"
+        ],
+        "example": "custom"
+      },
+      "SslCertificates": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/SslCertificate"
+        }
+      },
+      "SslCertificateType": {
+        "type": "string",
+        "description": "The certificate type, indicating its scope",
+        "enum": [
+          "single-domain",
+          "multi-domain",
+          "wildcard"
+        ],
+        "example": "single-domain"
+      },
+      "SslCertificateValidationLevel": {
+        "type": "string",
+        "description": "The level of validation applied when issuing the certificate. This can be one out of the three validation levels conforming to public key certificates standards: `DV (Domain Validation)`, `OV (Organization validation)` or `EV (Extended Validation)`",
+        "enum": [
+          "DV",
+          "OV",
+          "EV"
+        ],
+        "example": "DV"
+      },
+      "SslCertificateWithRelations": {
         "type": "object",
         "properties": {
           "id": {
@@ -10232,81 +11326,6 @@
           "active"
         ]
       },
-      "SslCertificateCreate": {
-        "type": "object",
-        "properties": {
-          "domains": {
-            "description": "The list of domain names to which the SSL certificate refers to",
-            "type": "array",
-            "example": [
-              "my-subdomain.example.com",
-              "example.com"
-            ],
-            "items": {
-              "type": "string"
-            }
-          },
-          "issuer": {
-            "$ref": "#/components/schemas/SslCertificateIssuer"
-          },
-          "type": {
-            "$ref": "#/components/schemas/SslCertificateType"
-          },
-          "validation_level": {
-            "$ref": "#/components/schemas/SslCertificateValidationLevel"
-          },
-          "custom_private_key": {
-            "type": "string",
-            "description": "The private key provided by the Certification Authority, when the certificate has not been automatically issued through `devopness`",
-            "example": "-----BEGIN RSA PRIVATE KEY----- Proc-Type: 4,ENCRYPTED DEK-Info: DES-EDE3-CBC,4E262401F693044C\njyoAdQaTKnfNDNfqAZR7hZsNNXoMXmspJp0h0eb7Gc2FyaX1iS70VeUWVlGkPfG/ lp7cPvvUO36pTaU0kLOWdG8FGHRIblO8v4f9E2/eD7VgNLJ4W8tP0rff3d18M32B jfG/Mg90Gsew3XXlLo5eVO+3xbuGhKcZ1p6RVa5vdEOr1Pk/huyvH6HLsXCEOSS+ 6NF/nVRqP8VAlSFF58QQIz7hQsfyOr8EVzdW4RNlygaUgWDCGa/CCwR6NgGcRyRj M3R1R36KUWubxmPHj21EB1XO4H4LF15eE0ZjBXfRUllWdaWONU26HOlld4Y8HhMf tVCt7LeavMuh0tVRmKCrj3fbxRCgc1mRM58EEhYbbFkj0jZzWmbVUB6xegwGCyLH LSb/HuC9WI7xKsNXIkm9O0Gso+EZ75Feex8DGVX407kiAQtJ/Kdh8Lo8Hv0bDby9 IuSpfJszDn5eB9K3k112SOz1LPfQJB8m/o94MmnaFACX5Usc0yy5CmN/3iCEnnVj i2po86njYaqiN2NeAXY07bkp+U2paVfs+crpXkboegy/IO0qWizU3x2GgOxB/6Sg BzqqDNb8yiVjctcr7puIjJfMCe4QR4gAeaMphlK1Y8EeABdTGLsFF7Rxf/2Bn6WS Kd7EW8bF5UqnSM18h9GSbMoZMSBpZF6YGA45lzgKEPlhJqNhBhUgtOz17RocnwnC 7Sl7XFIJZWG9kgVY1bLzD/0hKN3TzTdAzSlFW2dybKdz+te5LSPuI7GjwSi14PPN r/YoTMcpn4EYxiUq/IVaKQkDc5ZE1qKe9etiLQPIp/L7hN3zFgd6UPqAB6vRweJa tS5g1bl24Il/a5yt9i7TgbxyrpY3ZmU5g0WKoz1/WFvO4s49RC9Jgih1ShO5u+CG aV4A80+TMbROuWx35P7y3ZjmUH/y9XU8gKdRo6BgZrBfK0QgIq/JzN7Zca6Z3oss nW8B2g9KTK9JqIKSfhq5Udfyfmtipe6EidpDwHXTMWDNey42CAMH/IOj5Pq5rUwb LW4VOnk4RIVwyGtms3qHRUuki6VBSpy75ROkfHe5v/3RaNqd+2VrzvsGyk3R7ek6 dQbe8J5AUK2/hUYI7UOP6hkQ/jvET+R2DVkqHQoGgGH5XO+7efc60oZuz7qh8khH m2gMmP+6LsSUYAEG743FQFu1BOrFdQPrF7/3Zmx64fPpqp1lVWpqHY0EoDZYfzYw TD2WxeMRFNY4+l1HiKxZOaO+4Q82vOW7fMs8YSH6uDTmTy78R28gTenv/r4kiFQg bey+ghK5msxMFV6Dy9vIrD20D4qknBjl/8Qt73hUaRrRSFaakp0Tq2myg6fzpbQ8 3d/Yx3tZeRnjufh/PrAp+9wdNT5sotuNflXjSiPQ7VDGuSLu4InTu2j/bgcHfqDf 0vRd5GQRcWcVDUwXY5xR7hOoot/Ej/F045rtg2pIG0ALdpfOY0NB5HDVaKY9lvWQ DNL5iY1cxjSK1fjN5qpy1JV7ZHGHoCogBac9SOtBkf+tJPEKu2eF/kIQOCp0iqSg 3ke/l7xYSrusjiEwzIjN+XTsdlcQzMk8OJb7/+Y+SZGqMmlTIemip+L/ybeXETEL -----END RSA PRIVATE KEY-----"
-          },
-          "custom_certificate": {
-            "type": "string",
-            "description": "The contents of the certificate provided by the Certification Authority, when the certificate has not been automatically issued through `devopness`",
-            "example": "-----BEGIN RSA PRIVATE KEY----- MIIEpAIBAAKCAQEA1DFNCpE0TTSuZNPRYivpH92uFyptmNL0bY8KpnVTzUR/G3vr e5Iua0OuCB9sW0JB1MCoYndHjeSt6NtJ0zDcbT/i+c0LyWqhx4YfsyUhPtYUBOy4 tnDsG9dzFe+PWomxVPERFwVk5a7CflHlbtqadxdhHTBGU34XUk3lGs+YjQarj5OV vbk5sAIkrXYF2hDFn0I2NY7I47sB2CvHqMlXfrawSWMSA0XZhO6g0Fp9AzEw23xf U/oxbTyShyOiwq6fBv/lviqacJTrF4b078qCKUhAW0bDhhk6Oz9NOQlAGV90ISVY Y5vKn0Jpgmi6G+Btsk0+Y626RTAi6bDw6B0QJwIDAQABAoIBAQCS+XsVgLIrb/wD lrwHNccJ7XByV08GdcgcQuHrnoTnPzSTguf+9af1YDGhKrLRGzmh9bgsS9ZiMC1N hubBw6xKd9/tittJLfTU0NAQM/2tGndPWfAvXlQMjNUIMqCm44zS+w8NVQ0oEj5h ZLR4bi5jouv/Xbq4hjP9LDsusPBHbT4HqkM/7jlydV/0L38b+Gpo1bsweVjhSv7w nAfmmiDiV7TmoldJNl/dG69bmSgJzza5ywKSBQQkdGpGYsYK1Y8On8mBgS36wvAN p1rtxV+/Bdg74e5oWuLygHJeR1DnvE0uswcA9ln2KTsLAcw1JESWflWdAGeFTgbp jdU40X5BAoGBAPVRzVx2sSuFQ4Y7QhVvH36/A5HYO1u9JTal8RNebjz+UXMtNFzX 6qsUih5JD60EloZUIgtOhyXw+NdRdyKTUdkuwszldDBvLKIVHmZb9tx46l5C39xf 1O6vIO6mY0l/OlPsg0MNXv73PJllYycXylfFsX1jqCZulCdncEzrYprXAoGBAN1u SKNPe3/pfaZA8HAqvrX6g0N0OwWvQ9muQl8BlVzRzdsdsrfEHCMJ8qJcp5WhpYwg RnyB1jhsjLx9rzpTL9OXwHDII8oo1WqbNW0EGLBYaktXZ9lGUIDBAmdgrxqZTba9 t5r7aUCSYgA6dI2S/SNRxquEbRfq1cwpbQ2RBVsxAoGAFSr81Gitevrhy7hbSGwx RIeI8FG/NXhJuMBy39/7FSpArvaMmSJMbny0Ok7FmoFV17t0wJMDGGQFpNazt/kM S/g7+OAnuXIuYMH/wIdY8sdAOef9Vw+x2PKlndIfqRzgVJOI9AU4WDnPMdFMz/e+ jvpRCWfK/531DL1hNFHvTTsCgYA+T2xtWE5+fiv3fsqqJb0o5GfPsYNyZBGJzfmr Vny7c+ajxEWoZK0uRvxaKAyYlLZLKkHrg3XOxu0LlaqblREeT9O9aPR5TOhRaX+t P7va0+aFcQEuKRU6RhXxFUnxCDbQN67VE+5YV1jwi4KE3FoTeE2ZslgopNKo8vdX G/oP4QKBgQClfgjKf0Vj7wsq1wYJiVQ7it8jZtgB5nv1DQsWoK8OoydzaM0HTWR4 DCdSRb+LB6CfwFiBcZGvGFNNewDZc1X/lKXZ+uuFffCKcwP7f7PYgm3lXIa20KUK ktcbPcfeN0sof3+Mb+NDzLTwL+8bU+8S8AYu5M3JFxBCyzWrldvRrA== -----END RSA PRIVATE KEY-----"
-          }
-        },
-        "required": [
-          "domains",
-          "issuer",
-          "type"
-        ]
-      },
-      "SslCertificateIssuer": {
-        "type": "string",
-        "description": "The entity or certification authority (CA) who issued the certificate",
-        "enum": [
-          "custom",
-          "lets-encrypt"
-        ],
-        "example": "custom"
-      },
-      "SslCertificates": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/SslCertificate"
-        }
-      },
-      "SslCertificateType": {
-        "type": "string",
-        "description": "The certificate type, indicating its scope",
-        "enum": [
-          "single-domain",
-          "multi-domain",
-          "wildcard"
-        ],
-        "example": "single-domain"
-      },
-      "SslCertificateValidationLevel": {
-        "type": "string",
-        "description": "The level of validation applied when issuing the certificate. This can be one out of the three validation levels conforming to public key certificates standards: `DV (Domain Validation)`, `OV (Organization validation)` or `EV (Extended Validation)`",
-        "enum": [
-          "DV",
-          "OV",
-          "EV"
-        ],
-        "example": "DV"
-      },
       "TriggerEvent": {
         "type": "string",
         "description": "The application deployment event to which it's attached",
@@ -10364,16 +11383,10 @@
             "format": "date-time",
             "description": "The date and time when the record was last updated",
             "example": "2019-09-25T13:52:04.000000Z"
-          },
-          "social_accounts": {
-            "description": "The list of social accounts (source providers + login providers) connected to the user",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SocialAccount"
-            }
           }
         },
         "required": [
+          "id",
           "email",
           "name"
         ]
@@ -10546,6 +11559,58 @@
           },
           "language": {
             "$ref": "#/components/schemas/Language"
+          }
+        },
+        "required": [
+          "id",
+          "email",
+          "name"
+        ]
+      },
+      "UserWithRelations": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The Id of the given user",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "description": "User's full name",
+            "minLength": 5,
+            "maxLength": 60
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "The e-mail that will uniquely identify the user on the system and become its login credential"
+          },
+          "language": {
+            "$ref": "#/components/schemas/Language"
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Tells if the user is active or not"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25T13:52:04.000000Z"
+          },
+          "social_accounts": {
+            "description": "The list of social accounts (source providers + login providers) connected to the user",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SocialAccount"
+            }
           }
         },
         "required": [

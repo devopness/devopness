@@ -17,19 +17,19 @@ import { Deployment } from './deployment';
 /**
  * Latest deployment created to application and the more recent completed deployment
  * @export
- * @interface ApplicationLastDeployments
+ * @interface ApplicationWithRelationsLastDeployments
  */
-export interface ApplicationLastDeployments {
+export interface ApplicationWithRelationsLastDeployments {
     /**
      * 
      * @type {Deployment}
-     * @memberof ApplicationLastDeployments
+     * @memberof ApplicationWithRelationsLastDeployments
      */
     latest?: Deployment | null;
     /**
      * 
      * @type {Deployment}
-     * @memberof ApplicationLastDeployments
+     * @memberof ApplicationWithRelationsLastDeployments
      */
     live?: Deployment | null;
 }
