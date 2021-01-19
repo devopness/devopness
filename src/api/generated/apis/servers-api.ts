@@ -19,6 +19,7 @@ import { Server } from '../../generated/models';
 import { ServerCommands } from '../../generated/models';
 import { ServerConnect } from '../../generated/models';
 import { ServerUpdate } from '../../generated/models';
+import { ServerWithRelations } from '../../generated/models';
 
 /**
  * ServersApiService - Auto-generated
@@ -51,7 +52,7 @@ export class ServersApiService extends ApiBaseService {
      * @summary Get a server by ID
      * @param {number} serverId Numeric ID of the server to get
      */
-    public async getServer(serverId: number): Promise<ApiResponse<Server>> {
+    public async getServer(serverId: number): Promise<ApiResponse<ServerWithRelations>> {
         if (serverId === null || serverId === undefined) {
             throw new ArgumentNullException('serverId', 'getServer');
         }
@@ -60,7 +61,7 @@ export class ServersApiService extends ApiBaseService {
 
         const requestUrl = '/servers/{server_id}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Server>(requestUrl.replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))));
+        const response = await this.get <ServerWithRelations>(requestUrl.replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))));
         return new ApiResponse(response);
     }
 

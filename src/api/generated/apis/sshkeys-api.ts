@@ -14,7 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
-import { SshKey } from '../../generated/models';
+import { SshKeyWithRelations } from '../../generated/models';
 
 /**
  * SSHKeysApiService - Auto-generated
@@ -43,7 +43,7 @@ export class SSHKeysApiService extends ApiBaseService {
      * @summary Get a SSH key by ID
      * @param {number} sshKeyId Numeric ID of the SSH key to get
      */
-    public async getSshKey(sshKeyId: number): Promise<ApiResponse<SshKey>> {
+    public async getSshKey(sshKeyId: number): Promise<ApiResponse<SshKeyWithRelations>> {
         if (sshKeyId === null || sshKeyId === undefined) {
             throw new ArgumentNullException('sshKeyId', 'getSshKey');
         }
@@ -52,7 +52,7 @@ export class SSHKeysApiService extends ApiBaseService {
 
         const requestUrl = '/ssh-keys/{ssh_key_id}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <SshKey>(requestUrl.replace(`{${"ssh_key_id"}}`, encodeURIComponent(String(sshKeyId))));
+        const response = await this.get <SshKeyWithRelations>(requestUrl.replace(`{${"ssh_key_id"}}`, encodeURIComponent(String(sshKeyId))));
         return new ApiResponse(response);
     }
 }

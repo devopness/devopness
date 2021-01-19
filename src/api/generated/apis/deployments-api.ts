@@ -14,7 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
-import { Deployment } from '../../generated/models';
+import { DeploymentWithRelations } from '../../generated/models';
 
 /**
  * DeploymentsApiService - Auto-generated
@@ -25,7 +25,7 @@ export class DeploymentsApiService extends ApiBaseService {
      * @summary Get a deployment by ID
      * @param {number} deploymentId Numeric ID of the deployment to get
      */
-    public async getDeployment(deploymentId: number): Promise<ApiResponse<Deployment>> {
+    public async getDeployment(deploymentId: number): Promise<ApiResponse<DeploymentWithRelations>> {
         if (deploymentId === null || deploymentId === undefined) {
             throw new ArgumentNullException('deploymentId', 'getDeployment');
         }
@@ -34,7 +34,7 @@ export class DeploymentsApiService extends ApiBaseService {
 
         const requestUrl = '/deployments/{deployment_id}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Deployment>(requestUrl.replace(`{${"deployment_id"}}`, encodeURIComponent(String(deploymentId))));
+        const response = await this.get <DeploymentWithRelations>(requestUrl.replace(`{${"deployment_id"}}`, encodeURIComponent(String(deploymentId))));
         return new ApiResponse(response);
     }
 }

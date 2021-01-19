@@ -15,8 +15,8 @@ import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
-import { CronJob } from '../../generated/models';
 import { CronJobUpdate } from '../../generated/models';
+import { CronJobWithRelations } from '../../generated/models';
 
 /**
  * CronJobsApiService - Auto-generated
@@ -45,7 +45,7 @@ export class CronJobsApiService extends ApiBaseService {
      * @summary Get a CronJob by ID
      * @param {number} cronJobId Numeric ID of the cron job to get
      */
-    public async getCronJob(cronJobId: number): Promise<ApiResponse<CronJob>> {
+    public async getCronJob(cronJobId: number): Promise<ApiResponse<CronJobWithRelations>> {
         if (cronJobId === null || cronJobId === undefined) {
             throw new ArgumentNullException('cronJobId', 'getCronJob');
         }
@@ -54,7 +54,7 @@ export class CronJobsApiService extends ApiBaseService {
 
         const requestUrl = '/cron-jobs/{cron_job_id}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <CronJob>(requestUrl.replace(`{${"cron_job_id"}}`, encodeURIComponent(String(cronJobId))));
+        const response = await this.get <CronJobWithRelations>(requestUrl.replace(`{${"cron_job_id"}}`, encodeURIComponent(String(cronJobId))));
         return new ApiResponse(response);
     }
 

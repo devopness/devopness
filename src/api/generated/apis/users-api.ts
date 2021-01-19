@@ -25,6 +25,7 @@ import { UserPasswordSendResetLink } from '../../generated/models';
 import { UserRefreshTokenCreate } from '../../generated/models';
 import { UserTokens } from '../../generated/models';
 import { UserUpdate } from '../../generated/models';
+import { UserWithRelations } from '../../generated/models';
 
 /**
  * UsersApiService - Auto-generated
@@ -105,7 +106,7 @@ export class UsersApiService extends ApiBaseService {
      * @summary Get a user by ID
      * @param {number} userId Numeric ID of the user to be retrieved
      */
-    public async getUser(userId: number): Promise<ApiResponse<User>> {
+    public async getUser(userId: number): Promise<ApiResponse<UserWithRelations>> {
         if (userId === null || userId === undefined) {
             throw new ArgumentNullException('userId', 'getUser');
         }
@@ -114,7 +115,7 @@ export class UsersApiService extends ApiBaseService {
 
         const requestUrl = '/users/{user_id}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <User>(requestUrl.replace(`{${"user_id"}}`, encodeURIComponent(String(userId))));
+        const response = await this.get <UserWithRelations>(requestUrl.replace(`{${"user_id"}}`, encodeURIComponent(String(userId))));
         return new ApiResponse(response);
     }
 

@@ -15,12 +15,12 @@ import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
-import { Service } from '../../generated/models';
 import { ServiceReload } from '../../generated/models';
 import { ServiceRestart } from '../../generated/models';
 import { ServiceStart } from '../../generated/models';
 import { ServiceStatusUpdate } from '../../generated/models';
 import { ServiceStop } from '../../generated/models';
+import { ServiceWithRelations } from '../../generated/models';
 
 /**
  * ServicesApiService - Auto-generated
@@ -49,7 +49,7 @@ export class ServicesApiService extends ApiBaseService {
      * @summary Get details of a single service
      * @param {number} serviceId Unique ID of the service to get
      */
-    public async getService(serviceId: number): Promise<ApiResponse<Service>> {
+    public async getService(serviceId: number): Promise<ApiResponse<ServiceWithRelations>> {
         if (serviceId === null || serviceId === undefined) {
             throw new ArgumentNullException('serviceId', 'getService');
         }
@@ -58,7 +58,7 @@ export class ServicesApiService extends ApiBaseService {
 
         const requestUrl = '/services/{service_id}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Service>(requestUrl.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))));
+        const response = await this.get <ServiceWithRelations>(requestUrl.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))));
         return new ApiResponse(response);
     }
 

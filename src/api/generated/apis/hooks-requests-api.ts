@@ -16,6 +16,7 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { HookRequest } from '../../generated/models';
+import { HookRequestWithRelations } from '../../generated/models';
 
 /**
  * HooksRequestsApiService - Auto-generated
@@ -26,7 +27,7 @@ export class HooksRequestsApiService extends ApiBaseService {
      * @summary Get a hook request by id
      * @param {string} hookRequestId Unique ID of the hook request to be retrieved
      */
-    public async getHookRequest(hookRequestId: string): Promise<ApiResponse<HookRequest>> {
+    public async getHookRequest(hookRequestId: string): Promise<ApiResponse<HookRequestWithRelations>> {
         if (hookRequestId === null || hookRequestId === undefined) {
             throw new ArgumentNullException('hookRequestId', 'getHookRequest');
         }
@@ -35,7 +36,7 @@ export class HooksRequestsApiService extends ApiBaseService {
 
         const requestUrl = '/hook-requests/{hook_request_id}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <HookRequest>(requestUrl.replace(`{${"hook_request_id"}}`, encodeURIComponent(String(hookRequestId))));
+        const response = await this.get <HookRequestWithRelations>(requestUrl.replace(`{${"hook_request_id"}}`, encodeURIComponent(String(hookRequestId))));
         return new ApiResponse(response);
     }
 

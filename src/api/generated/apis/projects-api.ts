@@ -18,6 +18,7 @@ import { ApiError } from '../../generated/models';
 import { Project } from '../../generated/models';
 import { ProjectCreate } from '../../generated/models';
 import { ProjectUpdate } from '../../generated/models';
+import { ProjectWithRelations } from '../../generated/models';
 
 /**
  * ProjectsApiService - Auto-generated
@@ -46,7 +47,7 @@ export class ProjectsApiService extends ApiBaseService {
      * @summary Get a project by ID
      * @param {number} projectId Numeric ID of the project to get
      */
-    public async getProject(projectId: number): Promise<ApiResponse<Project>> {
+    public async getProject(projectId: number): Promise<ApiResponse<ProjectWithRelations>> {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'getProject');
         }
@@ -55,7 +56,7 @@ export class ProjectsApiService extends ApiBaseService {
 
         const requestUrl = '/projects/{project_id}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Project>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
+        const response = await this.get <ProjectWithRelations>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
         return new ApiResponse(response);
     }
 

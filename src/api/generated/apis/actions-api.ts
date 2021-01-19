@@ -15,6 +15,7 @@ import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { Action } from '../../generated/models';
+import { ActionWithRelations } from '../../generated/models';
 
 /**
  * ActionsApiService - Auto-generated
@@ -25,7 +26,7 @@ export class ActionsApiService extends ApiBaseService {
      * @summary Get an action by ID
      * @param {number} actionId Numeric ID of the action to be retrieved
      */
-    public async getAction(actionId: number): Promise<ApiResponse<Action>> {
+    public async getAction(actionId: number): Promise<ApiResponse<ActionWithRelations>> {
         if (actionId === null || actionId === undefined) {
             throw new ArgumentNullException('actionId', 'getAction');
         }
@@ -34,7 +35,7 @@ export class ActionsApiService extends ApiBaseService {
 
         const requestUrl = '/actions/{action_id}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Action>(requestUrl.replace(`{${"action_id"}}`, encodeURIComponent(String(actionId))));
+        const response = await this.get <ActionWithRelations>(requestUrl.replace(`{${"action_id"}}`, encodeURIComponent(String(actionId))));
         return new ApiResponse(response);
     }
 
