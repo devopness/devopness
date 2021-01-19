@@ -47,6 +47,12 @@ export interface HookIncomingCreate {
      */
     action_type: ActionType;
     /**
+     * Determines if the hook is current active
+     * @type {boolean}
+     * @memberof HookIncomingCreate
+     */
+    active?: boolean;
+    /**
      * Tells if requests to this hook must only be accepted when a HTTP header is sent with a message authentication code ([HMAC](https://en.wikipedia.org/wiki/HMAC)) generated based on the secret provided by Devopness and shared by user with external sources
      * @type {boolean}
      * @memberof HookIncomingCreate
