@@ -14,7 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
-import { SslCertificateWithRelations } from '../../generated/models';
+import { SslCertificate } from '../../generated/models';
 
 /**
  * SSLCertificatesApiService - Auto-generated
@@ -43,7 +43,7 @@ export class SSLCertificatesApiService extends ApiBaseService {
      * @summary Get details of a single SSL certificate
      * @param {number} sslCertificateId Unique ID of the item to be retrieved
      */
-    public async getSslCertificate(sslCertificateId: number): Promise<ApiResponse<SslCertificateWithRelations>> {
+    public async getSslCertificate(sslCertificateId: number): Promise<ApiResponse<SslCertificate>> {
         if (sslCertificateId === null || sslCertificateId === undefined) {
             throw new ArgumentNullException('sslCertificateId', 'getSslCertificate');
         }
@@ -52,7 +52,7 @@ export class SSLCertificatesApiService extends ApiBaseService {
 
         const requestUrl = '/ssl-certificates/{ssl_certificate_id}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <SslCertificateWithRelations>(requestUrl.replace(`{${"ssl_certificate_id"}}`, encodeURIComponent(String(sslCertificateId))));
+        const response = await this.get <SslCertificate>(requestUrl.replace(`{${"ssl_certificate_id"}}`, encodeURIComponent(String(sslCertificateId))));
         return new ApiResponse(response);
     }
 }

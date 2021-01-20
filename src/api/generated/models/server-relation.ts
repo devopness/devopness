@@ -12,112 +12,78 @@
  */
 
 
-import { Action } from './action';
 import { ActionStatus } from './action-status';
-import { Environment } from './environment';
-import { ServerBlueprint } from './server-blueprint';
-import { User } from './user';
 
 /**
  * 
  * @export
- * @interface ServerWithRelations
+ * @interface ServerRelation
  */
-export interface ServerWithRelations {
+export interface ServerRelation {
     /**
      * The unique id of the given record
      * @type {number}
-     * @memberof ServerWithRelations
+     * @memberof ServerRelation
      */
     id: number;
     /**
      * The server\'s hostname
      * @type {string}
-     * @memberof ServerWithRelations
+     * @memberof ServerRelation
      */
     hostname: string;
     /**
      * Public ipv4 address for server access
      * @type {string}
-     * @memberof ServerWithRelations
+     * @memberof ServerRelation
      */
     ip_address: string;
     /**
      * The network port to which the SSH daemon is listening to SSH connections on the server
      * @type {number}
-     * @memberof ServerWithRelations
+     * @memberof ServerRelation
      */
     ssh_port: number;
     /**
      * The id of the user who created the server and to whom the server belongs
      * @type {number}
-     * @memberof ServerWithRelations
+     * @memberof ServerRelation
      */
     created_by: number;
     /**
      * Tells if the server is active or not
      * @type {boolean}
-     * @memberof ServerWithRelations
+     * @memberof ServerRelation
      */
     active: boolean;
     /**
      * 
-     * @type {ServerBlueprint}
-     * @memberof ServerWithRelations
-     */
-    blueprint?: ServerBlueprint;
-    /**
-     * 
      * @type {ActionStatus}
-     * @memberof ServerWithRelations
+     * @memberof ServerRelation
      */
     status?: ActionStatus;
     /**
-     * The list of related actions
-     * @type {Array<Action>}
-     * @memberof ServerWithRelations
-     */
-    actions?: Array<Action>;
-    /**
-     * The list of environments to which the server is linked to
-     * @type {Array<Environment>}
-     * @memberof ServerWithRelations
-     */
-    environments?: Array<Environment>;
-    /**
      * The name of the server\'s provider.
      * @type {string}
-     * @memberof ServerWithRelations
+     * @memberof ServerRelation
      */
     provider_name?: string;
     /**
      * The human readable version of the provider\'s name
      * @type {string}
-     * @memberof ServerWithRelations
+     * @memberof ServerRelation
      */
     provider_name_human_readable?: string;
     /**
-     * 
-     * @type {User}
-     * @memberof ServerWithRelations
-     */
-    created_by_user?: User;
-    /**
-     * 
-     * @type {Action}
-     * @memberof ServerWithRelations
-     */
-    last_action?: Action | null;
-    /**
      * The date and time when the record was created
      * @type {string}
-     * @memberof ServerWithRelations
+     * @memberof ServerRelation
      */
     created_at?: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
-     * @memberof ServerWithRelations
+     * @memberof ServerRelation
      */
     updated_at?: string;
 }

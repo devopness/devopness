@@ -12,103 +12,68 @@
  */
 
 
-import { ActionHookRequest } from './action-hook-request';
 import { ActionStatus } from './action-status';
 import { ActionSummary } from './action-summary';
 import { ActionType } from './action-type';
-import { Environment } from './environment';
-import { Resource } from './resource';
-import { ServerAction } from './server-action';
-import { User } from './user';
 
 /**
  * 
  * @export
- * @interface ActionWithRelations
+ * @interface ActionRelation
  */
-export interface ActionWithRelations {
+export interface ActionRelation {
     /**
      * The Id of the given action
      * @type {number}
-     * @memberof ActionWithRelations
+     * @memberof ActionRelation
      */
     id: number;
     /**
      * 
      * @type {ActionStatus}
-     * @memberof ActionWithRelations
+     * @memberof ActionRelation
      */
     status: ActionStatus;
     /**
      * 
      * @type {ActionType}
-     * @memberof ActionWithRelations
+     * @memberof ActionRelation
      */
     type: ActionType;
     /**
      * Human readable version of the action type
      * @type {string}
-     * @memberof ActionWithRelations
+     * @memberof ActionRelation
      */
     type_human_readable: string;
     /**
      * 
      * @type {ActionSummary}
-     * @memberof ActionWithRelations
+     * @memberof ActionRelation
      */
-    summary: ActionSummary;
-    /**
-     * List of actions dispatched to servers
-     * @type {Array<ServerAction>}
-     * @memberof ActionWithRelations
-     */
-    servers?: Array<ServerAction>;
-    /**
-     * 
-     * @type {Resource}
-     * @memberof ActionWithRelations
-     */
-    resource: Resource;
-    /**
-     * 
-     * @type {Environment}
-     * @memberof ActionWithRelations
-     */
-    environment?: Environment;
-    /**
-     * 
-     * @type {User}
-     * @memberof ActionWithRelations
-     */
-    triggered_by_user: User;
-    /**
-     * 
-     * @type {ActionHookRequest}
-     * @memberof ActionWithRelations
-     */
-    hook_requests?: ActionHookRequest;
+    summary?: ActionSummary;
     /**
      * The date and time when the action started execution (i.e., left the `pending/queued` status)
      * @type {string}
-     * @memberof ActionWithRelations
+     * @memberof ActionRelation
      */
     started_at?: string | null;
     /**
      * The date and time when the action has finished execution
      * @type {string}
-     * @memberof ActionWithRelations
+     * @memberof ActionRelation
      */
     completed_at?: string | null;
     /**
      * The date and time when the record was created
      * @type {string}
-     * @memberof ActionWithRelations
+     * @memberof ActionRelation
      */
     created_at?: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
-     * @memberof ActionWithRelations
+     * @memberof ActionRelation
      */
     updated_at?: string;
 }

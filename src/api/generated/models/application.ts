@@ -12,7 +12,14 @@
  */
 
 
+import { ActionRelation } from './action-relation';
+import { ApplicationLastDeployments } from './application-last-deployments';
 import { ApplicationType } from './application-type';
+import { EnvironmentRelation } from './environment-relation';
+import { ServerRelation } from './server-relation';
+import { SourceProvider } from './source-provider';
+import { SslCertificateRelation } from './ssl-certificate-relation';
+import { UserRelation } from './user-relation';
 
 /**
  * 
@@ -152,6 +159,48 @@ export interface Application {
      * @memberof Application
      */
     project_id: number;
+    /**
+     * The list of environments to which the application is linked to
+     * @type {Array<EnvironmentRelation>}
+     * @memberof Application
+     */
+    environments: Array<EnvironmentRelation>;
+    /**
+     * 
+     * @type {Array<ServerRelation>}
+     * @memberof Application
+     */
+    servers?: Array<ServerRelation>;
+    /**
+     * 
+     * @type {ApplicationLastDeployments}
+     * @memberof Application
+     */
+    last_deployments?: ApplicationLastDeployments;
+    /**
+     * 
+     * @type {SourceProvider}
+     * @memberof Application
+     */
+    source_provider?: SourceProvider | null;
+    /**
+     * 
+     * @type {Array<SslCertificateRelation>}
+     * @memberof Application
+     */
+    ssl_certificates?: Array<SslCertificateRelation>;
+    /**
+     * 
+     * @type {UserRelation}
+     * @memberof Application
+     */
+    created_by_user?: UserRelation;
+    /**
+     * 
+     * @type {ActionRelation}
+     * @memberof Application
+     */
+    last_action?: ActionRelation | null;
     /**
      * The date and time when the record was created
      * @type {string}

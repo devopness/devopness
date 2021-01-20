@@ -12,9 +12,12 @@
  */
 
 
+import { ActionRelation } from './action-relation';
+import { ServerRelation } from './server-relation';
 import { SslCertificateIssuer } from './ssl-certificate-issuer';
 import { SslCertificateType } from './ssl-certificate-type';
 import { SslCertificateValidationLevel } from './ssl-certificate-validation-level';
+import { UserRelation } from './user-relation';
 
 /**
  * 
@@ -94,5 +97,23 @@ export interface SslCertificate {
      * @memberof SslCertificate
      */
     updated_at?: string;
+    /**
+     * 
+     * @type {Array<ServerRelation>}
+     * @memberof SslCertificate
+     */
+    servers?: Array<ServerRelation>;
+    /**
+     * 
+     * @type {UserRelation}
+     * @memberof SslCertificate
+     */
+    created_by_user?: UserRelation;
+    /**
+     * 
+     * @type {ActionRelation}
+     * @memberof SslCertificate
+     */
+    last_action?: ActionRelation | null;
 }
 

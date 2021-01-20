@@ -14,7 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
-import { NetworkRule } from '../../generated/models';
+import { NetworkRuleRelation } from '../../generated/models';
 
 /**
  * EnvironmentsNetworkRulesApiService - Auto-generated
@@ -27,7 +27,7 @@ export class EnvironmentsNetworkRulesApiService extends ApiBaseService {
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */
-    public async listEnvironmentNetworkRules(environmentId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<NetworkRule>>> {
+    public async listEnvironmentNetworkRules(environmentId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<NetworkRuleRelation>>> {
         if (environmentId === null || environmentId === undefined) {
             throw new ArgumentNullException('environmentId', 'listEnvironmentNetworkRules');
         }
@@ -44,7 +44,7 @@ export class EnvironmentsNetworkRulesApiService extends ApiBaseService {
 
         const requestUrl = '/environments/{environment_id}/network-rules' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<NetworkRule>>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
+        const response = await this.get <Array<NetworkRuleRelation>>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
         return new ApiResponse(response);
     }
 }

@@ -15,6 +15,8 @@
 import { ActionType } from './action-type';
 import { HookSetting } from './hook-setting';
 import { HookType } from './hook-type';
+import { Resource } from './resource';
+import { UserRelation } from './user-relation';
 
 /**
  * 
@@ -106,6 +108,18 @@ export interface Hook {
      * @memberof Hook
      */
     active?: boolean;
+    /**
+     * 
+     * @type {Resource}
+     * @memberof Hook
+     */
+    resource: Resource;
+    /**
+     * 
+     * @type {UserRelation}
+     * @memberof Hook
+     */
+    created_by_user?: UserRelation;
     /**
      * 
      * @type {HookSetting}

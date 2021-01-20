@@ -14,7 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
-import { Deployment } from '../../generated/models';
+import { DeploymentRelation } from '../../generated/models';
 
 /**
  * ProjectsDeploymentsApiService - Auto-generated
@@ -27,7 +27,7 @@ export class ProjectsDeploymentsApiService extends ApiBaseService {
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */
-    public async listProjectDeployments(projectId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<Deployment>>> {
+    public async listProjectDeployments(projectId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<DeploymentRelation>>> {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'listProjectDeployments');
         }
@@ -44,7 +44,7 @@ export class ProjectsDeploymentsApiService extends ApiBaseService {
 
         const requestUrl = '/projects/{project_id}/deployments' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<Deployment>>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
+        const response = await this.get <Array<DeploymentRelation>>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
         return new ApiResponse(response);
     }
 }

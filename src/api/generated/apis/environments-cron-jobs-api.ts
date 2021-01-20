@@ -14,7 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
-import { CronJob } from '../../generated/models';
+import { CronJobRelation } from '../../generated/models';
 
 /**
  * EnvironmentsCronJobsApiService - Auto-generated
@@ -27,7 +27,7 @@ export class EnvironmentsCronJobsApiService extends ApiBaseService {
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */
-    public async listEnvironmentCronJobs(environmentId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<CronJob>>> {
+    public async listEnvironmentCronJobs(environmentId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<CronJobRelation>>> {
         if (environmentId === null || environmentId === undefined) {
             throw new ArgumentNullException('environmentId', 'listEnvironmentCronJobs');
         }
@@ -44,7 +44,7 @@ export class EnvironmentsCronJobsApiService extends ApiBaseService {
 
         const requestUrl = '/environments/{environment_id}/cron-jobs' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<CronJob>>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
+        const response = await this.get <Array<CronJobRelation>>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
         return new ApiResponse(response);
     }
 }

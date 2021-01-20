@@ -12,87 +12,73 @@
  */
 
 
-import { Action } from './action';
 import { NetworkRuleProtocol } from './network-rule-protocol';
 import { NetworkRuleType } from './network-rule-type';
-import { User } from './user';
 
 /**
  * 
  * @export
- * @interface NetworkRuleWithRelations
+ * @interface NetworkRuleRelation
  */
-export interface NetworkRuleWithRelations {
+export interface NetworkRuleRelation {
     /**
      * The unique id of the given record
      * @type {number}
-     * @memberof NetworkRuleWithRelations
+     * @memberof NetworkRuleRelation
      */
     id: number;
     /**
      * The rule\'s name/description/reminder
      * @type {string}
-     * @memberof NetworkRuleWithRelations
+     * @memberof NetworkRuleRelation
      */
     name: string;
     /**
      * 
      * @type {NetworkRuleType}
-     * @memberof NetworkRuleWithRelations
+     * @memberof NetworkRuleRelation
      */
     type: NetworkRuleType;
     /**
      * 
      * @type {NetworkRuleProtocol}
-     * @memberof NetworkRuleWithRelations
+     * @memberof NetworkRuleRelation
      */
     protocol: NetworkRuleProtocol;
     /**
      * Starting range of the public ipv4 or ipv6 addresses that can access this rule
      * @type {string}
-     * @memberof NetworkRuleWithRelations
+     * @memberof NetworkRuleRelation
      */
     ip_address_from?: string;
     /**
      * Ending range of the public ipv4 or ipv6 addresses that can access this rule
      * @type {string}
-     * @memberof NetworkRuleWithRelations
+     * @memberof NetworkRuleRelation
      */
     ip_address_to?: string;
     /**
      * Starting range of network ports to be considered by this rule
      * @type {number}
-     * @memberof NetworkRuleWithRelations
+     * @memberof NetworkRuleRelation
      */
     port_from: number;
     /**
      * Ending range of network ports to be considered by this rule
      * @type {number}
-     * @memberof NetworkRuleWithRelations
+     * @memberof NetworkRuleRelation
      */
     port_to: number;
     /**
-     * 
-     * @type {User}
-     * @memberof NetworkRuleWithRelations
-     */
-    created_by_user?: User;
-    /**
-     * 
-     * @type {Action}
-     * @memberof NetworkRuleWithRelations
-     */
-    last_action?: Action | null;
-    /**
      * The date and time when the record was created
      * @type {string}
-     * @memberof NetworkRuleWithRelations
+     * @memberof NetworkRuleRelation
      */
     created_at?: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
-     * @memberof NetworkRuleWithRelations
+     * @memberof NetworkRuleRelation
      */
     updated_at?: string;
 }

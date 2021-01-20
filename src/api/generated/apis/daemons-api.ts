@@ -15,9 +15,9 @@ import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
+import { Daemon } from '../../generated/models';
 import { DaemonRestart } from '../../generated/models';
 import { DaemonUpdate } from '../../generated/models';
-import { DaemonWithRelations } from '../../generated/models';
 
 /**
  * DaemonsApiService - Auto-generated
@@ -46,7 +46,7 @@ export class DaemonsApiService extends ApiBaseService {
      * @summary Get a background process by ID
      * @param {number} daemonId Numeric ID of the daemon to get
      */
-    public async getDaemon(daemonId: number): Promise<ApiResponse<DaemonWithRelations>> {
+    public async getDaemon(daemonId: number): Promise<ApiResponse<Daemon>> {
         if (daemonId === null || daemonId === undefined) {
             throw new ArgumentNullException('daemonId', 'getDaemon');
         }
@@ -55,7 +55,7 @@ export class DaemonsApiService extends ApiBaseService {
 
         const requestUrl = '/daemons/{daemon_id}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <DaemonWithRelations>(requestUrl.replace(`{${"daemon_id"}}`, encodeURIComponent(String(daemonId))));
+        const response = await this.get <Daemon>(requestUrl.replace(`{${"daemon_id"}}`, encodeURIComponent(String(daemonId))));
         return new ApiResponse(response);
     }
 

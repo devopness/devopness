@@ -12,8 +12,11 @@
  */
 
 
+import { ActionRelation } from './action-relation';
 import { ActionStatus } from './action-status';
+import { EnvironmentRelation } from './environment-relation';
 import { ServerBlueprint } from './server-blueprint';
+import { UserRelation } from './user-relation';
 
 /**
  * 
@@ -70,6 +73,18 @@ export interface Server {
      */
     status?: ActionStatus;
     /**
+     * The list of related actions
+     * @type {Array<ActionRelation>}
+     * @memberof Server
+     */
+    actions?: Array<ActionRelation>;
+    /**
+     * The list of environments to which the server is linked to
+     * @type {Array<EnvironmentRelation>}
+     * @memberof Server
+     */
+    environments?: Array<EnvironmentRelation>;
+    /**
      * The name of the server\'s provider.
      * @type {string}
      * @memberof Server
@@ -81,6 +96,18 @@ export interface Server {
      * @memberof Server
      */
     provider_name_human_readable?: string;
+    /**
+     * 
+     * @type {UserRelation}
+     * @memberof Server
+     */
+    created_by_user?: UserRelation;
+    /**
+     * 
+     * @type {ActionRelation}
+     * @memberof Server
+     */
+    last_action?: ActionRelation | null;
     /**
      * The date and time when the record was created
      * @type {string}

@@ -12,6 +12,14 @@
  */
 
 
+import { ApplicationRelation } from './application-relation';
+import { CronJobRelation } from './cron-job-relation';
+import { DaemonRelation } from './daemon-relation';
+import { EnvironmentRelation } from './environment-relation';
+import { NetworkRuleRelation } from './network-rule-relation';
+import { ServerRelation } from './server-relation';
+import { ServiceRelation } from './service-relation';
+import { SshKeyRelation } from './ssh-key-relation';
 
 /**
  * 
@@ -50,10 +58,58 @@ export interface Project {
      */
     logo_url?: string | null;
     /**
+     * The list of SSH keys added to the project
+     * @type {Array<SshKeyRelation>}
+     * @memberof Project
+     */
+    ssh_keys?: Array<SshKeyRelation>;
+    /**
      * The list of the operating system users found in all the servers linked to a project
      * @type {Array<object>}
      * @memberof Project
      */
     os_users?: Array<object>;
+    /**
+     * 
+     * @type {Array<ApplicationRelation>}
+     * @memberof Project
+     */
+    applications?: Array<ApplicationRelation>;
+    /**
+     * 
+     * @type {Array<CronJobRelation>}
+     * @memberof Project
+     */
+    cron_jobs?: Array<CronJobRelation>;
+    /**
+     * 
+     * @type {Array<EnvironmentRelation>}
+     * @memberof Project
+     */
+    environments?: Array<EnvironmentRelation>;
+    /**
+     * 
+     * @type {Array<NetworkRuleRelation>}
+     * @memberof Project
+     */
+    network_rules?: Array<NetworkRuleRelation>;
+    /**
+     * 
+     * @type {Array<DaemonRelation>}
+     * @memberof Project
+     */
+    daemons?: Array<DaemonRelation>;
+    /**
+     * 
+     * @type {Array<ServerRelation>}
+     * @memberof Project
+     */
+    servers?: Array<ServerRelation>;
+    /**
+     * 
+     * @type {Array<ServiceRelation>}
+     * @memberof Project
+     */
+    services?: Array<ServiceRelation>;
 }
 

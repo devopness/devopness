@@ -12,7 +12,10 @@
  */
 
 
+import { ActionRelation } from './action-relation';
+import { ApplicationRelation } from './application-relation';
 import { CronJobPattern } from './cron-job-pattern';
+import { UserRelation } from './user-relation';
 
 /**
  * 
@@ -62,6 +65,24 @@ export interface CronJob {
      * @memberof CronJob
      */
     auto_generated?: boolean;
+    /**
+     * 
+     * @type {ApplicationRelation}
+     * @memberof CronJob
+     */
+    application?: ApplicationRelation | null;
+    /**
+     * 
+     * @type {UserRelation}
+     * @memberof CronJob
+     */
+    created_by_user?: UserRelation;
+    /**
+     * 
+     * @type {ActionRelation}
+     * @memberof CronJob
+     */
+    last_action?: ActionRelation | null;
     /**
      * The date and time when the record was created
      * @type {string}

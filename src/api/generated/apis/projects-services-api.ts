@@ -17,6 +17,7 @@ import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { Service } from '../../generated/models';
 import { ServiceCreate } from '../../generated/models';
+import { ServiceRelation } from '../../generated/models';
 
 /**
  * ProjectsServicesApiService - Auto-generated
@@ -51,7 +52,7 @@ export class ProjectsServicesApiService extends ApiBaseService {
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */
-    public async listProjectServices(projectId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<Service>>> {
+    public async listProjectServices(projectId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<ServiceRelation>>> {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'listProjectServices');
         }
@@ -68,7 +69,7 @@ export class ProjectsServicesApiService extends ApiBaseService {
 
         const requestUrl = '/projects/{project_id}/services' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<Service>>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
+        const response = await this.get <Array<ServiceRelation>>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
         return new ApiResponse(response);
     }
 }

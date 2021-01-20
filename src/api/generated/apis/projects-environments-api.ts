@@ -17,6 +17,7 @@ import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { Environment } from '../../generated/models';
 import { EnvironmentCreate } from '../../generated/models';
+import { EnvironmentRelation } from '../../generated/models';
 
 /**
  * ProjectsEnvironmentsApiService - Auto-generated
@@ -51,7 +52,7 @@ export class ProjectsEnvironmentsApiService extends ApiBaseService {
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */
-    public async listProjectEnvironments(projectId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<Environment>>> {
+    public async listProjectEnvironments(projectId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<EnvironmentRelation>>> {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'listProjectEnvironments');
         }
@@ -68,7 +69,7 @@ export class ProjectsEnvironmentsApiService extends ApiBaseService {
 
         const requestUrl = '/projects/{project_id}/environments' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<Environment>>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
+        const response = await this.get <Array<EnvironmentRelation>>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
         return new ApiResponse(response);
     }
 }

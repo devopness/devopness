@@ -17,6 +17,7 @@ import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { NetworkRule } from '../../generated/models';
 import { NetworkRuleCreate } from '../../generated/models';
+import { NetworkRuleRelation } from '../../generated/models';
 
 /**
  * ProjectsNetworkRulesApiService - Auto-generated
@@ -51,7 +52,7 @@ export class ProjectsNetworkRulesApiService extends ApiBaseService {
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */
-    public async listProjectNetworkRules(projectId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<NetworkRule>>> {
+    public async listProjectNetworkRules(projectId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<NetworkRuleRelation>>> {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'listProjectNetworkRules');
         }
@@ -68,7 +69,7 @@ export class ProjectsNetworkRulesApiService extends ApiBaseService {
 
         const requestUrl = '/projects/{project_id}/network-rules' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<NetworkRule>>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
+        const response = await this.get <Array<NetworkRuleRelation>>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
         return new ApiResponse(response);
     }
 }

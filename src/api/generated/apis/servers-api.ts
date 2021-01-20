@@ -18,8 +18,8 @@ import { ApiError } from '../../generated/models';
 import { Server } from '../../generated/models';
 import { ServerCommands } from '../../generated/models';
 import { ServerConnect } from '../../generated/models';
+import { ServerRelation } from '../../generated/models';
 import { ServerUpdate } from '../../generated/models';
-import { ServerWithRelations } from '../../generated/models';
 
 /**
  * ServersApiService - Auto-generated
@@ -52,7 +52,7 @@ export class ServersApiService extends ApiBaseService {
      * @summary Get a server by ID
      * @param {number} serverId Numeric ID of the server to get
      */
-    public async getServer(serverId: number): Promise<ApiResponse<ServerWithRelations>> {
+    public async getServer(serverId: number): Promise<ApiResponse<Server>> {
         if (serverId === null || serverId === undefined) {
             throw new ArgumentNullException('serverId', 'getServer');
         }
@@ -61,7 +61,7 @@ export class ServersApiService extends ApiBaseService {
 
         const requestUrl = '/servers/{server_id}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <ServerWithRelations>(requestUrl.replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))));
+        const response = await this.get <Server>(requestUrl.replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))));
         return new ApiResponse(response);
     }
 
@@ -89,7 +89,7 @@ export class ServersApiService extends ApiBaseService {
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */
-    public async listServers(page?: number, perPage?: number): Promise<ApiResponse<Array<Server>>> {
+    public async listServers(page?: number, perPage?: number): Promise<ApiResponse<Array<ServerRelation>>> {
         
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
@@ -103,7 +103,7 @@ export class ServersApiService extends ApiBaseService {
 
         const requestUrl = '/servers' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<Server>>(requestUrl);
+        const response = await this.get <Array<ServerRelation>>(requestUrl);
         return new ApiResponse(response);
     }
 

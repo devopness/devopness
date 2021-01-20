@@ -17,6 +17,7 @@ import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { SshKey } from '../../generated/models';
 import { SshKeyCreate } from '../../generated/models';
+import { SshKeyRelation } from '../../generated/models';
 
 /**
  * ProjectsSSHKeysApiService - Auto-generated
@@ -51,7 +52,7 @@ export class ProjectsSSHKeysApiService extends ApiBaseService {
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */
-    public async listProjectSshKeys(projectId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<SshKey>>> {
+    public async listProjectSshKeys(projectId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<SshKeyRelation>>> {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'listProjectSshKeys');
         }
@@ -68,7 +69,7 @@ export class ProjectsSSHKeysApiService extends ApiBaseService {
 
         const requestUrl = '/projects/{project_id}/ssh-keys' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<SshKey>>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
+        const response = await this.get <Array<SshKeyRelation>>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
         return new ApiResponse(response);
     }
 }

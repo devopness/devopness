@@ -12,7 +12,12 @@
  */
 
 
+import { ActionRelation } from './action-relation';
+import { EnvironmentRelation } from './environment-relation';
+import { ProjectRelation } from './project-relation';
+import { ServerRelation } from './server-relation';
 import { ServiceInitialState } from './service-initial-state';
+import { UserRelation } from './user-relation';
 
 /**
  * 
@@ -80,5 +85,35 @@ export interface Service {
      * @memberof Service
      */
     updated_at: string;
+    /**
+     * 
+     * @type {Array<EnvironmentRelation>}
+     * @memberof Service
+     */
+    environments?: Array<EnvironmentRelation>;
+    /**
+     * 
+     * @type {UserRelation}
+     * @memberof Service
+     */
+    created_by_user?: UserRelation;
+    /**
+     * 
+     * @type {ProjectRelation}
+     * @memberof Service
+     */
+    project?: ProjectRelation;
+    /**
+     * 
+     * @type {Array<ServerRelation>}
+     * @memberof Service
+     */
+    servers?: Array<ServerRelation>;
+    /**
+     * 
+     * @type {ActionRelation}
+     * @memberof Service
+     */
+    last_action?: ActionRelation | null;
 }
 

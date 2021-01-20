@@ -12,7 +12,14 @@
  */
 
 
+import { ApplicationRelation } from './application-relation';
+import { CronJobRelation } from './cron-job-relation';
+import { DaemonRelation } from './daemon-relation';
 import { EnvironmentType } from './environment-type';
+import { NetworkRuleRelation } from './network-rule-relation';
+import { ServerRelation } from './server-relation';
+import { ServiceRelation } from './service-relation';
+import { UserRelation } from './user-relation';
 
 /**
  * 
@@ -43,7 +50,49 @@ export interface Environment {
      * @type {string}
      * @memberof Environment
      */
-    type_human_readable: string;
+    type_human_readable?: string;
+    /**
+     * 
+     * @type {Array<ServerRelation>}
+     * @memberof Environment
+     */
+    servers?: Array<ServerRelation>;
+    /**
+     * 
+     * @type {Array<CronJobRelation>}
+     * @memberof Environment
+     */
+    cron_jobs?: Array<CronJobRelation>;
+    /**
+     * 
+     * @type {Array<DaemonRelation>}
+     * @memberof Environment
+     */
+    daemons?: Array<DaemonRelation>;
+    /**
+     * 
+     * @type {Array<NetworkRuleRelation>}
+     * @memberof Environment
+     */
+    network_rules?: Array<NetworkRuleRelation>;
+    /**
+     * 
+     * @type {Array<ApplicationRelation>}
+     * @memberof Environment
+     */
+    applications?: Array<ApplicationRelation>;
+    /**
+     * 
+     * @type {Array<ServiceRelation>}
+     * @memberof Environment
+     */
+    services?: Array<ServiceRelation>;
+    /**
+     * 
+     * @type {UserRelation}
+     * @memberof Environment
+     */
+    created_by_user?: UserRelation;
     /**
      * The date and time when the record was created
      * @type {string}

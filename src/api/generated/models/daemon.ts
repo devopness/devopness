@@ -12,6 +12,9 @@
  */
 
 
+import { ActionRelation } from './action-relation';
+import { ApplicationRelation } from './application-relation';
+import { ProjectRelation } from './project-relation';
 
 /**
  * 
@@ -61,6 +64,24 @@ export interface Daemon {
      * @memberof Daemon
      */
     auto_generated?: boolean;
+    /**
+     * 
+     * @type {ProjectRelation}
+     * @memberof Daemon
+     */
+    project?: ProjectRelation;
+    /**
+     * 
+     * @type {ApplicationRelation}
+     * @memberof Daemon
+     */
+    application?: ApplicationRelation | null;
+    /**
+     * 
+     * @type {ActionRelation}
+     * @memberof Daemon
+     */
+    last_action?: ActionRelation | null;
     /**
      * The date and time when the record was created
      * @type {string}

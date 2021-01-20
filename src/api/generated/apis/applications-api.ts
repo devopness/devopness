@@ -15,8 +15,8 @@ import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
+import { Application } from '../../generated/models';
 import { ApplicationUpdate } from '../../generated/models';
-import { ApplicationWithRelations } from '../../generated/models';
 
 /**
  * ApplicationsApiService - Auto-generated
@@ -45,7 +45,7 @@ export class ApplicationsApiService extends ApiBaseService {
      * @summary Get an application by ID
      * @param {number} applicationId Numeric ID of the application to get
      */
-    public async getApplication(applicationId: number): Promise<ApiResponse<ApplicationWithRelations>> {
+    public async getApplication(applicationId: number): Promise<ApiResponse<Application>> {
         if (applicationId === null || applicationId === undefined) {
             throw new ArgumentNullException('applicationId', 'getApplication');
         }
@@ -54,7 +54,7 @@ export class ApplicationsApiService extends ApiBaseService {
 
         const requestUrl = '/applications/{application_id}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <ApplicationWithRelations>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))));
+        const response = await this.get <Application>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))));
         return new ApiResponse(response);
     }
 

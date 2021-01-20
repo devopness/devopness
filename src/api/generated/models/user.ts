@@ -13,6 +13,7 @@
 
 
 import { Language } from './language';
+import { SocialAccount } from './social-account';
 
 /**
  * 
@@ -62,5 +63,11 @@ export interface User {
      * @memberof User
      */
     updated_at?: string;
+    /**
+     * The list of social accounts (source providers + login providers) connected to the user
+     * @type {Array<SocialAccount>}
+     * @memberof User
+     */
+    social_accounts?: Array<SocialAccount>;
 }
 

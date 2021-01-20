@@ -14,7 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
-import { Service } from '../../generated/models';
+import { ServiceRelation } from '../../generated/models';
 
 /**
  * EnvironmentsServicesApiService - Auto-generated
@@ -27,7 +27,7 @@ export class EnvironmentsServicesApiService extends ApiBaseService {
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */
-    public async listEnvironmentServices(environmentId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<Service>>> {
+    public async listEnvironmentServices(environmentId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<ServiceRelation>>> {
         if (environmentId === null || environmentId === undefined) {
             throw new ArgumentNullException('environmentId', 'listEnvironmentServices');
         }
@@ -44,7 +44,7 @@ export class EnvironmentsServicesApiService extends ApiBaseService {
 
         const requestUrl = '/environments/{environment_id}/services' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<Service>>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
+        const response = await this.get <Array<ServiceRelation>>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
         return new ApiResponse(response);
     }
 }

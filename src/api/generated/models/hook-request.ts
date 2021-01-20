@@ -12,6 +12,7 @@
  */
 
 
+import { HookRelation } from './hook-relation';
 
 /**
  * 
@@ -85,6 +86,12 @@ export interface HookRequest {
      * @memberof HookRequest
      */
     response_body?: object | null;
+    /**
+     * 
+     * @type {HookRelation}
+     * @memberof HookRequest
+     */
+    hook?: HookRelation;
     /**
      * The date and time when the record was created
      * @type {string}

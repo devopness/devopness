@@ -12,7 +12,7 @@
  */
 
 
-import { HookRequest } from './hook-request';
+import { HookRequestRelation } from './hook-request-relation';
 
 /**
  * The incoming and outgoing hook request linked to this action
@@ -22,15 +22,15 @@ import { HookRequest } from './hook-request';
 export interface ActionHookRequest {
     /**
      * 
-     * @type {HookRequest}
+     * @type {HookRequestRelation}
      * @memberof ActionHookRequest
      */
-    incoming?: HookRequest | null;
+    incoming?: HookRequestRelation | null;
     /**
      * 
-     * @type {HookRequest}
+     * @type {HookRequestRelation}
      * @memberof ActionHookRequest
      */
-    outgoing?: HookRequest | null;
+    outgoing?: HookRequestRelation | null;
 }
 

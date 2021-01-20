@@ -12,6 +12,8 @@
  */
 
 
+import { ActionRelation } from './action-relation';
+import { UserRelation } from './user-relation';
 
 /**
  * 
@@ -49,5 +51,17 @@ export interface SshKey {
      * @memberof SshKey
      */
     fingerprint?: string;
+    /**
+     * 
+     * @type {UserRelation}
+     * @memberof SshKey
+     */
+    created_by_user?: UserRelation;
+    /**
+     * 
+     * @type {ActionRelation}
+     * @memberof SshKey
+     */
+    last_action?: ActionRelation | null;
 }
 

@@ -12,108 +12,87 @@
  */
 
 
-import { Action } from './action';
-import { Server } from './server';
 import { SslCertificateIssuer } from './ssl-certificate-issuer';
 import { SslCertificateType } from './ssl-certificate-type';
 import { SslCertificateValidationLevel } from './ssl-certificate-validation-level';
-import { User } from './user';
 
 /**
  * 
  * @export
- * @interface SslCertificateWithRelations
+ * @interface SslCertificateRelation
  */
-export interface SslCertificateWithRelations {
+export interface SslCertificateRelation {
     /**
      * The unique id of the given record
      * @type {number}
-     * @memberof SslCertificateWithRelations
+     * @memberof SslCertificateRelation
      */
     id: number;
     /**
      * The list of domain names to which the SSL certificate refers to
      * @type {Array<string>}
-     * @memberof SslCertificateWithRelations
+     * @memberof SslCertificateRelation
      */
     domains: Array<string>;
     /**
      * 
      * @type {SslCertificateIssuer}
-     * @memberof SslCertificateWithRelations
+     * @memberof SslCertificateRelation
      */
     issuer: SslCertificateIssuer;
     /**
      * 
      * @type {SslCertificateType}
-     * @memberof SslCertificateWithRelations
+     * @memberof SslCertificateRelation
      */
     type: SslCertificateType;
     /**
      * 
      * @type {SslCertificateValidationLevel}
-     * @memberof SslCertificateWithRelations
+     * @memberof SslCertificateRelation
      */
     validation_level: SslCertificateValidationLevel;
     /**
      * The private key provided by the Certification Authority, when the certificate has not been automatically issued through `devopness`
      * @type {string}
-     * @memberof SslCertificateWithRelations
+     * @memberof SslCertificateRelation
      */
     custom_private_key?: string;
     /**
      * The contents of the certificate provided by the Certification Authority, when the certificate has not been automatically issued through `devopness`
      * @type {string}
-     * @memberof SslCertificateWithRelations
+     * @memberof SslCertificateRelation
      */
     custom_certificate?: string;
     /**
      * Tells if the certificate is active for all linked servers and applications
      * @type {boolean}
-     * @memberof SslCertificateWithRelations
+     * @memberof SslCertificateRelation
      */
     active: boolean;
     /**
      * The date and time when this certificate will no longer be valid, down to minute precision
      * @type {string}
-     * @memberof SslCertificateWithRelations
+     * @memberof SslCertificateRelation
      */
     expires_at?: string | null;
     /**
      * The date and time when this certificate was renewed for the last time
      * @type {string}
-     * @memberof SslCertificateWithRelations
+     * @memberof SslCertificateRelation
      */
     last_renewed_at?: string | null;
     /**
      * The date and time when the record was created
      * @type {string}
-     * @memberof SslCertificateWithRelations
+     * @memberof SslCertificateRelation
      */
     created_at?: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
-     * @memberof SslCertificateWithRelations
+     * @memberof SslCertificateRelation
      */
     updated_at?: string;
-    /**
-     * 
-     * @type {Array<Server>}
-     * @memberof SslCertificateWithRelations
-     */
-    servers?: Array<Server>;
-    /**
-     * 
-     * @type {User}
-     * @memberof SslCertificateWithRelations
-     */
-    created_by_user?: User;
-    /**
-     * 
-     * @type {Action}
-     * @memberof SslCertificateWithRelations
-     */
-    last_action?: Action | null;
 }
 

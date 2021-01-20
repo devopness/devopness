@@ -15,8 +15,8 @@ import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
+import { NetworkRule } from '../../generated/models';
 import { NetworkRuleUpdate } from '../../generated/models';
-import { NetworkRuleWithRelations } from '../../generated/models';
 
 /**
  * NetworkRulesApiService - Auto-generated
@@ -45,7 +45,7 @@ export class NetworkRulesApiService extends ApiBaseService {
      * @summary Get a network rule by ID
      * @param {number} networkRuleId Numeric ID of the rule to get
      */
-    public async getNetworkRule(networkRuleId: number): Promise<ApiResponse<NetworkRuleWithRelations>> {
+    public async getNetworkRule(networkRuleId: number): Promise<ApiResponse<NetworkRule>> {
         if (networkRuleId === null || networkRuleId === undefined) {
             throw new ArgumentNullException('networkRuleId', 'getNetworkRule');
         }
@@ -54,7 +54,7 @@ export class NetworkRulesApiService extends ApiBaseService {
 
         const requestUrl = '/network-rules/{network_rule_id}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <NetworkRuleWithRelations>(requestUrl.replace(`{${"network_rule_id"}}`, encodeURIComponent(String(networkRuleId))));
+        const response = await this.get <NetworkRule>(requestUrl.replace(`{${"network_rule_id"}}`, encodeURIComponent(String(networkRuleId))));
         return new ApiResponse(response);
     }
 

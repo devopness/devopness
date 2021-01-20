@@ -12,25 +12,25 @@
  */
 
 
-import { Deployment } from './deployment';
+import { DeploymentRelation } from './deployment-relation';
 
 /**
  * Latest deployment created to application and the more recent completed deployment
  * @export
- * @interface ApplicationWithRelationsLastDeployments
+ * @interface ApplicationLastDeployments
  */
-export interface ApplicationWithRelationsLastDeployments {
+export interface ApplicationLastDeployments {
     /**
      * 
-     * @type {Deployment}
-     * @memberof ApplicationWithRelationsLastDeployments
+     * @type {DeploymentRelation}
+     * @memberof ApplicationLastDeployments
      */
-    latest?: Deployment | null;
+    latest?: DeploymentRelation | null;
     /**
      * 
-     * @type {Deployment}
-     * @memberof ApplicationWithRelationsLastDeployments
+     * @type {DeploymentRelation}
+     * @memberof ApplicationLastDeployments
      */
-    live?: Deployment | null;
+    live?: DeploymentRelation | null;
 }
 
