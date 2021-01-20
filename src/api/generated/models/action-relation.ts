@@ -12,103 +12,68 @@
  */
 
 
-import { ActionHookRequest } from './action-hook-request';
 import { ActionStatus } from './action-status';
 import { ActionSummary } from './action-summary';
 import { ActionType } from './action-type';
-import { EnvironmentRelation } from './environment-relation';
-import { Resource } from './resource';
-import { ServerAction } from './server-action';
-import { UserRelation } from './user-relation';
 
 /**
  * 
  * @export
- * @interface Action
+ * @interface ActionRelation
  */
-export interface Action {
+export interface ActionRelation {
     /**
      * The Id of the given action
      * @type {number}
-     * @memberof Action
+     * @memberof ActionRelation
      */
     id: number;
     /**
      * 
      * @type {ActionStatus}
-     * @memberof Action
+     * @memberof ActionRelation
      */
     status: ActionStatus;
     /**
      * 
      * @type {ActionType}
-     * @memberof Action
+     * @memberof ActionRelation
      */
     type: ActionType;
     /**
      * Human readable version of the action type
      * @type {string}
-     * @memberof Action
+     * @memberof ActionRelation
      */
     type_human_readable: string;
     /**
      * 
      * @type {ActionSummary}
-     * @memberof Action
+     * @memberof ActionRelation
      */
-    summary: ActionSummary;
-    /**
-     * List of actions dispatched to servers
-     * @type {Array<ServerAction>}
-     * @memberof Action
-     */
-    servers?: Array<ServerAction>;
-    /**
-     * 
-     * @type {Resource}
-     * @memberof Action
-     */
-    resource: Resource;
-    /**
-     * 
-     * @type {EnvironmentRelation}
-     * @memberof Action
-     */
-    environment?: EnvironmentRelation;
-    /**
-     * 
-     * @type {UserRelation}
-     * @memberof Action
-     */
-    triggered_by_user: UserRelation;
-    /**
-     * 
-     * @type {ActionHookRequest}
-     * @memberof Action
-     */
-    hook_requests?: ActionHookRequest;
+    summary?: ActionSummary;
     /**
      * The date and time when the action started execution (i.e., left the `pending/queued` status)
      * @type {string}
-     * @memberof Action
+     * @memberof ActionRelation
      */
     started_at?: string | null;
     /**
      * The date and time when the action has finished execution
      * @type {string}
-     * @memberof Action
+     * @memberof ActionRelation
      */
     completed_at?: string | null;
     /**
      * The date and time when the record was created
      * @type {string}
-     * @memberof Action
+     * @memberof ActionRelation
      */
     created_at?: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
-     * @memberof Action
+     * @memberof ActionRelation
      */
     updated_at?: string;
 }

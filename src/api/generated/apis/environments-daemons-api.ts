@@ -14,7 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
-import { Daemon } from '../../generated/models';
+import { DaemonRelation } from '../../generated/models';
 
 /**
  * EnvironmentsDaemonsApiService - Auto-generated
@@ -27,7 +27,7 @@ export class EnvironmentsDaemonsApiService extends ApiBaseService {
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */
-    public async listEnvironmentDaemons(environmentId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<Daemon>>> {
+    public async listEnvironmentDaemons(environmentId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<DaemonRelation>>> {
         if (environmentId === null || environmentId === undefined) {
             throw new ArgumentNullException('environmentId', 'listEnvironmentDaemons');
         }
@@ -44,7 +44,7 @@ export class EnvironmentsDaemonsApiService extends ApiBaseService {
 
         const requestUrl = '/environments/{environment_id}/daemons' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<Daemon>>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
+        const response = await this.get <Array<DaemonRelation>>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
         return new ApiResponse(response);
     }
 }

@@ -17,6 +17,7 @@ import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { Daemon } from '../../generated/models';
 import { DaemonCreate } from '../../generated/models';
+import { DaemonRelation } from '../../generated/models';
 
 /**
  * ProjectsDaemonsApiService - Auto-generated
@@ -51,7 +52,7 @@ export class ProjectsDaemonsApiService extends ApiBaseService {
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */
-    public async listProjectDaemons(projectId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<Daemon>>> {
+    public async listProjectDaemons(projectId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<DaemonRelation>>> {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'listProjectDaemons');
         }
@@ -68,7 +69,7 @@ export class ProjectsDaemonsApiService extends ApiBaseService {
 
         const requestUrl = '/projects/{project_id}/daemons' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<Daemon>>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
+        const response = await this.get <Array<DaemonRelation>>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
         return new ApiResponse(response);
     }
 }

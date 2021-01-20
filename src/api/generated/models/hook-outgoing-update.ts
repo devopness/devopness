@@ -40,6 +40,12 @@ export interface HookOutgoingUpdate {
      */
     action_type: ActionType;
     /**
+     * Determines if the hook is current active
+     * @type {boolean}
+     * @memberof HookOutgoingUpdate
+     */
+    active?: boolean;
+    /**
      * 
      * @type {ResourceType}
      * @memberof HookOutgoingUpdate

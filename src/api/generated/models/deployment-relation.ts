@@ -12,97 +12,62 @@
  */
 
 
-import { ActionRelation } from './action-relation';
 import { ActionStatus } from './action-status';
-import { ApplicationRelation } from './application-relation';
-import { Commit } from './commit';
 import { DeploymentSource } from './deployment-source';
-import { DeploymentStep } from './deployment-step';
 import { DeploymentType } from './deployment-type';
-import { UserRelation } from './user-relation';
 
 /**
  * 
  * @export
- * @interface Deployment
+ * @interface DeploymentRelation
  */
-export interface Deployment {
+export interface DeploymentRelation {
     /**
      * The unique id of the given record
      * @type {number}
-     * @memberof Deployment
+     * @memberof DeploymentRelation
      */
     id: number;
     /**
      * 
      * @type {ActionStatus}
-     * @memberof Deployment
+     * @memberof DeploymentRelation
      */
     status: ActionStatus;
     /**
      * 
      * @type {DeploymentType}
-     * @memberof Deployment
+     * @memberof DeploymentRelation
      */
     type: DeploymentType;
     /**
      * 
      * @type {DeploymentSource}
-     * @memberof Deployment
+     * @memberof DeploymentRelation
      */
     source: DeploymentSource;
     /**
-     * 
-     * @type {ApplicationRelation}
-     * @memberof Deployment
-     */
-    application?: ApplicationRelation | null;
-    /**
-     * 
-     * @type {Commit}
-     * @memberof Deployment
-     */
-    commit: Commit;
-    /**
-     * The steps that were meant to be executed when the deployment was triggered
-     * @type {Array<DeploymentStep>}
-     * @memberof Deployment
-     */
-    steps: Array<DeploymentStep>;
-    /**
-     * 
-     * @type {UserRelation}
-     * @memberof Deployment
-     */
-    triggered_by_user?: UserRelation;
-    /**
-     * 
-     * @type {ActionRelation}
-     * @memberof Deployment
-     */
-    last_action?: ActionRelation | null;
-    /**
      * The date and time when the action started execution (i.e., left the `pending/queued` status)
      * @type {string}
-     * @memberof Deployment
+     * @memberof DeploymentRelation
      */
     started_at?: string | null;
     /**
      * The date and time when the action has finished execution
      * @type {string}
-     * @memberof Deployment
+     * @memberof DeploymentRelation
      */
     completed_at?: string | null;
     /**
      * The date and time when the record was created
      * @type {string}
-     * @memberof Deployment
+     * @memberof DeploymentRelation
      */
     created_at?: string | null;
     /**
      * The date and time when the record was last updated
      * @type {string}
-     * @memberof Deployment
+     * @memberof DeploymentRelation
      */
     updated_at?: string | null;
 }

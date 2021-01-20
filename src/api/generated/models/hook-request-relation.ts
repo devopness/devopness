@@ -12,96 +12,89 @@
  */
 
 
-import { HookRelation } from './hook-relation';
 
 /**
  * 
  * @export
- * @interface HookRequest
+ * @interface HookRequestRelation
  */
-export interface HookRequest {
+export interface HookRequestRelation {
     /**
      * The unique UUID of the hook request
      * @type {string}
-     * @memberof HookRequest
+     * @memberof HookRequestRelation
      */
     id: string;
     /**
      * The UUID of the hook that the request belongs to
      * @type {string}
-     * @memberof HookRequest
+     * @memberof HookRequestRelation
      */
     hook_id: string;
     /**
      * The id of the action that the request belongs to
      * @type {number}
-     * @memberof HookRequest
+     * @memberof HookRequestRelation
      */
     action_id: number | null;
     /**
      * The UUID of the request that this request is a retry of
      * @type {string}
-     * @memberof HookRequest
+     * @memberof HookRequestRelation
      */
     retry_of: string | null;
     /**
      * The IP address of the source that triggered the hook
      * @type {string}
-     * @memberof HookRequest
+     * @memberof HookRequestRelation
      */
     ip_address: string;
     /**
      * Original URL used on the request
      * @type {string}
-     * @memberof HookRequest
+     * @memberof HookRequestRelation
      */
     url?: string;
     /**
      * The headers of the request
      * @type {object}
-     * @memberof HookRequest
+     * @memberof HookRequestRelation
      */
     request_headers?: object | null;
     /**
      * The body of the request
      * @type {object}
-     * @memberof HookRequest
+     * @memberof HookRequestRelation
      */
     request_body?: object | null;
     /**
      * The response status code
      * @type {number}
-     * @memberof HookRequest
+     * @memberof HookRequestRelation
      */
     response_status_code?: number;
     /**
      * The headers of the response
      * @type {object}
-     * @memberof HookRequest
+     * @memberof HookRequestRelation
      */
     response_headers?: object | null;
     /**
      * The body of the response
      * @type {object}
-     * @memberof HookRequest
+     * @memberof HookRequestRelation
      */
     response_body?: object | null;
     /**
-     * 
-     * @type {HookRelation}
-     * @memberof HookRequest
-     */
-    hook?: HookRelation;
-    /**
      * The date and time when the record was created
      * @type {string}
-     * @memberof HookRequest
+     * @memberof HookRequestRelation
      */
     created_at?: string | null;
     /**
      * The date and time when the record was last updated
      * @type {string}
-     * @memberof HookRequest
+     * @memberof HookRequestRelation
      */
     updated_at?: string | null;
 }

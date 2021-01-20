@@ -17,6 +17,7 @@ import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { Project } from '../../generated/models';
 import { ProjectCreate } from '../../generated/models';
+import { ProjectRelation } from '../../generated/models';
 import { ProjectUpdate } from '../../generated/models';
 
 /**
@@ -65,7 +66,7 @@ export class ProjectsApiService extends ApiBaseService {
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */
-    public async listProjects(page?: number, perPage?: number): Promise<ApiResponse<Array<Project>>> {
+    public async listProjects(page?: number, perPage?: number): Promise<ApiResponse<Array<ProjectRelation>>> {
         
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
@@ -79,7 +80,7 @@ export class ProjectsApiService extends ApiBaseService {
 
         const requestUrl = '/projects' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<Project>>(requestUrl);
+        const response = await this.get <Array<ProjectRelation>>(requestUrl);
         return new ApiResponse(response);
     }
 

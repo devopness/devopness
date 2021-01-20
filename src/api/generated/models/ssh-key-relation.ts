@@ -12,56 +12,42 @@
  */
 
 
-import { ActionRelation } from './action-relation';
-import { UserRelation } from './user-relation';
 
 /**
  * 
  * @export
- * @interface SshKey
+ * @interface SshKeyRelation
  */
-export interface SshKey {
+export interface SshKeyRelation {
     /**
      * The Id of the given SSH public key
      * @type {number}
-     * @memberof SshKey
+     * @memberof SshKeyRelation
      */
     id?: number;
     /**
      * The name entered by the user to uniquely identify the public SSH key
      * @type {string}
-     * @memberof SshKey
+     * @memberof SshKeyRelation
      */
     name: string;
     /**
      * The Id of the user to which the SSH key belongs to
      * @type {number}
-     * @memberof SshKey
+     * @memberof SshKeyRelation
      */
     created_by?: number;
     /**
      * The public SSH key to add to your `devopness` account and associate it to the given project
      * @type {string}
-     * @memberof SshKey
+     * @memberof SshKeyRelation
      */
     public_key?: string;
     /**
      * The hashed fingerprint of the public key
      * @type {string}
-     * @memberof SshKey
+     * @memberof SshKeyRelation
      */
     fingerprint?: string;
-    /**
-     * 
-     * @type {UserRelation}
-     * @memberof SshKey
-     */
-    created_by_user?: UserRelation;
-    /**
-     * 
-     * @type {ActionRelation}
-     * @memberof SshKey
-     */
-    last_action?: ActionRelation | null;
 }
 

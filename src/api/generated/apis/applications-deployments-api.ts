@@ -16,6 +16,7 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { Deployment } from '../../generated/models';
 import { DeploymentCreate } from '../../generated/models';
+import { DeploymentRelation } from '../../generated/models';
 
 /**
  * ApplicationsDeploymentsApiService - Auto-generated
@@ -47,7 +48,7 @@ export class ApplicationsDeploymentsApiService extends ApiBaseService {
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */
-    public async listApplicationDeployments(applicationId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<Deployment>>> {
+    public async listApplicationDeployments(applicationId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<DeploymentRelation>>> {
         if (applicationId === null || applicationId === undefined) {
             throw new ArgumentNullException('applicationId', 'listApplicationDeployments');
         }
@@ -64,7 +65,7 @@ export class ApplicationsDeploymentsApiService extends ApiBaseService {
 
         const requestUrl = '/applications/{application_id}/deployments' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<Deployment>>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))));
+        const response = await this.get <Array<DeploymentRelation>>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))));
         return new ApiResponse(response);
     }
 }

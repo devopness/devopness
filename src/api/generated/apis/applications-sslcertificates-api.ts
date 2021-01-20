@@ -16,6 +16,7 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { SslCertificate } from '../../generated/models';
 import { SslCertificateCreate } from '../../generated/models';
+import { SslCertificateRelation } from '../../generated/models';
 
 /**
  * ApplicationsSSLCertificatesApiService - Auto-generated
@@ -50,7 +51,7 @@ export class ApplicationsSSLCertificatesApiService extends ApiBaseService {
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */
-    public async listApplicationSslCertificates(applicationId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<SslCertificate>>> {
+    public async listApplicationSslCertificates(applicationId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<SslCertificateRelation>>> {
         if (applicationId === null || applicationId === undefined) {
             throw new ArgumentNullException('applicationId', 'listApplicationSslCertificates');
         }
@@ -67,7 +68,7 @@ export class ApplicationsSSLCertificatesApiService extends ApiBaseService {
 
         const requestUrl = '/applications/{application_id}/ssl-certificates' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<SslCertificate>>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))));
+        const response = await this.get <Array<SslCertificateRelation>>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))));
         return new ApiResponse(response);
     }
 }

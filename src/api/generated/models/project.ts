@@ -12,14 +12,14 @@
  */
 
 
-import { Application } from './application';
-import { CronJob } from './cron-job';
-import { Daemon } from './daemon';
-import { Environment } from './environment';
-import { NetworkRule } from './network-rule';
-import { Server } from './server';
-import { Service } from './service';
-import { SshKey } from './ssh-key';
+import { ApplicationRelation } from './application-relation';
+import { CronJobRelation } from './cron-job-relation';
+import { DaemonRelation } from './daemon-relation';
+import { EnvironmentRelation } from './environment-relation';
+import { NetworkRuleRelation } from './network-rule-relation';
+import { ServerRelation } from './server-relation';
+import { ServiceRelation } from './service-relation';
+import { SshKeyRelation } from './ssh-key-relation';
 
 /**
  * 
@@ -32,13 +32,13 @@ export interface Project {
      * @type {number}
      * @memberof Project
      */
-    id?: number;
+    id: number;
     /**
      * The id of the user that own the project
      * @type {number}
      * @memberof Project
      */
-    user_id?: number;
+    user_id: number;
     /**
      * The project\'s name
      * @type {string}
@@ -59,10 +59,10 @@ export interface Project {
     logo_url?: string | null;
     /**
      * The list of SSH keys added to the project
-     * @type {Array<SshKey>}
+     * @type {Array<SshKeyRelation>}
      * @memberof Project
      */
-    ssh_keys?: Array<SshKey>;
+    ssh_keys?: Array<SshKeyRelation>;
     /**
      * The list of the operating system users found in all the servers linked to a project
      * @type {Array<object>}
@@ -71,45 +71,45 @@ export interface Project {
     os_users?: Array<object>;
     /**
      * 
-     * @type {Array<Application>}
+     * @type {Array<ApplicationRelation>}
      * @memberof Project
      */
-    applications?: Array<Application>;
+    applications?: Array<ApplicationRelation>;
     /**
      * 
-     * @type {Array<CronJob>}
+     * @type {Array<CronJobRelation>}
      * @memberof Project
      */
-    cron_jobs?: Array<CronJob>;
+    cron_jobs?: Array<CronJobRelation>;
     /**
      * 
-     * @type {Array<Environment>}
+     * @type {Array<EnvironmentRelation>}
      * @memberof Project
      */
-    environments?: Array<Environment>;
+    environments?: Array<EnvironmentRelation>;
     /**
      * 
-     * @type {Array<NetworkRule>}
+     * @type {Array<NetworkRuleRelation>}
      * @memberof Project
      */
-    network_rules?: Array<NetworkRule>;
+    network_rules?: Array<NetworkRuleRelation>;
     /**
      * 
-     * @type {Array<Daemon>}
+     * @type {Array<DaemonRelation>}
      * @memberof Project
      */
-    daemons?: Array<Daemon>;
+    daemons?: Array<DaemonRelation>;
     /**
      * 
-     * @type {Array<Server>}
+     * @type {Array<ServerRelation>}
      * @memberof Project
      */
-    servers?: Array<Server>;
+    servers?: Array<ServerRelation>;
     /**
      * 
-     * @type {Array<Service>}
+     * @type {Array<ServiceRelation>}
      * @memberof Project
      */
-    services?: Array<Service>;
+    services?: Array<ServiceRelation>;
 }
 

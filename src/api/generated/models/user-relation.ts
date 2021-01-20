@@ -13,61 +13,54 @@
 
 
 import { Language } from './language';
-import { SocialAccount } from './social-account';
 
 /**
  * 
  * @export
- * @interface User
+ * @interface UserRelation
  */
-export interface User {
+export interface UserRelation {
     /**
      * The Id of the given user
      * @type {number}
-     * @memberof User
+     * @memberof UserRelation
      */
     id: number;
     /**
      * User\'s full name
      * @type {string}
-     * @memberof User
+     * @memberof UserRelation
      */
     name: string;
     /**
      * The e-mail that will uniquely identify the user on the system and become its login credential
      * @type {string}
-     * @memberof User
+     * @memberof UserRelation
      */
     email: string;
     /**
      * 
      * @type {Language}
-     * @memberof User
+     * @memberof UserRelation
      */
     language?: Language | null;
     /**
      * Tells if the user is active or not
      * @type {boolean}
-     * @memberof User
+     * @memberof UserRelation
      */
     active?: boolean;
     /**
      * The date and time when the record was created
      * @type {string}
-     * @memberof User
+     * @memberof UserRelation
      */
     created_at?: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
-     * @memberof User
+     * @memberof UserRelation
      */
     updated_at?: string;
-    /**
-     * The list of social accounts (source providers + login providers) connected to the user
-     * @type {Array<SocialAccount>}
-     * @memberof User
-     */
-    social_accounts?: Array<SocialAccount>;
 }
 

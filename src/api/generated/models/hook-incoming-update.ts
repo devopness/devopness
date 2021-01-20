@@ -49,5 +49,11 @@ export interface HookIncomingUpdate {
      * @memberof HookIncomingUpdate
      */
     secret_header_name?: string;
+    /**
+     * Determines if the hook is current active
+     * @type {boolean}
+     * @memberof HookIncomingUpdate
+     */
+    active?: boolean;
 }
 

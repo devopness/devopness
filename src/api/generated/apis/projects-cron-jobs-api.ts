@@ -17,6 +17,7 @@ import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { CronJob } from '../../generated/models';
 import { CronJobCreate } from '../../generated/models';
+import { CronJobRelation } from '../../generated/models';
 
 /**
  * ProjectsCronJobsApiService - Auto-generated
@@ -51,7 +52,7 @@ export class ProjectsCronJobsApiService extends ApiBaseService {
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */
-    public async listProjectCronJobs(projectId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<CronJob>>> {
+    public async listProjectCronJobs(projectId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<CronJobRelation>>> {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'listProjectCronJobs');
         }
@@ -68,7 +69,7 @@ export class ProjectsCronJobsApiService extends ApiBaseService {
 
         const requestUrl = '/projects/{project_id}/cron-jobs' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<CronJob>>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
+        const response = await this.get <Array<CronJobRelation>>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
         return new ApiResponse(response);
     }
 }

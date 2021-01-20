@@ -12,14 +12,14 @@
  */
 
 
-import { Application } from './application';
-import { CronJob } from './cron-job';
-import { Daemon } from './daemon';
+import { ApplicationRelation } from './application-relation';
+import { CronJobRelation } from './cron-job-relation';
+import { DaemonRelation } from './daemon-relation';
 import { EnvironmentType } from './environment-type';
-import { NetworkRule } from './network-rule';
-import { Server } from './server';
-import { Service } from './service';
-import { User } from './user';
+import { NetworkRuleRelation } from './network-rule-relation';
+import { ServerRelation } from './server-relation';
+import { ServiceRelation } from './service-relation';
+import { UserRelation } from './user-relation';
 
 /**
  * 
@@ -53,46 +53,46 @@ export interface Environment {
     type_human_readable?: string;
     /**
      * 
-     * @type {Array<Server>}
+     * @type {Array<ServerRelation>}
      * @memberof Environment
      */
-    servers?: Array<Server>;
+    servers?: Array<ServerRelation>;
     /**
      * 
-     * @type {Array<CronJob>}
+     * @type {Array<CronJobRelation>}
      * @memberof Environment
      */
-    cron_jobs?: Array<CronJob>;
+    cron_jobs?: Array<CronJobRelation>;
     /**
      * 
-     * @type {Array<Daemon>}
+     * @type {Array<DaemonRelation>}
      * @memberof Environment
      */
-    daemons?: Array<Daemon>;
+    daemons?: Array<DaemonRelation>;
     /**
      * 
-     * @type {Array<NetworkRule>}
+     * @type {Array<NetworkRuleRelation>}
      * @memberof Environment
      */
-    network_rules?: Array<NetworkRule>;
+    network_rules?: Array<NetworkRuleRelation>;
     /**
      * 
-     * @type {Array<Application>}
+     * @type {Array<ApplicationRelation>}
      * @memberof Environment
      */
-    applications?: Array<Application>;
+    applications?: Array<ApplicationRelation>;
     /**
      * 
-     * @type {Array<Service>}
+     * @type {Array<ServiceRelation>}
      * @memberof Environment
      */
-    services?: Array<Service>;
+    services?: Array<ServiceRelation>;
     /**
      * 
-     * @type {User}
+     * @type {UserRelation}
      * @memberof Environment
      */
-    created_by_user?: User;
+    created_by_user?: UserRelation;
     /**
      * The date and time when the record was created
      * @type {string}
