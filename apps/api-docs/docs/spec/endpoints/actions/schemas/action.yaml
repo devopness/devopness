@@ -16,6 +16,16 @@ properties:
     example: Deploy
   summary:
     $ref: '#/components/schemas/ActionSummary'
+  servers:
+    $ref: '#/components/schemas/ServerActions'
+  resource:
+    $ref: '#/components/schemas/Resource'
+  environment:
+    $ref: '#/components/schemas/EnvironmentRelation'
+  triggered_by_user:
+    $ref: '#/components/schemas/UserRelation'
+  hook_requests:
+    $ref: '#/components/schemas/ActionHookRequest'
   started_at:
     type: string
     format: date-time
@@ -43,3 +53,6 @@ required:
   - status
   - type
   - type_human_readable
+  - summary
+  - resource
+  - triggered_by_user

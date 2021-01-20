@@ -15,6 +15,20 @@ properties:
     description: The human readable version of the type
     type: string
     example: Staging
+  servers:
+    $ref: '#/components/schemas/Servers'
+  cron_jobs:
+    $ref: '#/components/schemas/CronJobs'
+  daemons:
+    $ref: '#/components/schemas/Daemons'
+  network_rules:
+    $ref: '#/components/schemas/NetworkRules'
+  applications:
+    $ref: '#/components/schemas/Applications'
+  services:
+    $ref: '#/components/schemas/Services'
+  created_by_user:
+    $ref: '#/components/schemas/UserRelation'
   created_at:
     type: string
     format: date-time
@@ -29,4 +43,3 @@ required:
   - id
   - name
   - type
-  - type_human_readable

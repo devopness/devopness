@@ -57,6 +57,8 @@ properties:
     description: The body of the response
     example:
       success: true
+  hook:
+    $ref: '#/components/schemas/HookRelation'
   created_at:
     type: string
     format: date-time

@@ -60,10 +60,6 @@ properties:
     type: boolean
     description: Determines if the hook is current active
     example: true
-  resource:
-    $ref: '#/components/schemas/Resource'
-  created_by_user:
-    $ref: "#/components/schemas/User"
   settings:
     $ref: '#/components/schemas/HookSetting'
   created_at:
@@ -83,6 +79,5 @@ required:
   - secret
   - verify_ssl
   - action_type
-  - resource
   - created_at
   - updated_at

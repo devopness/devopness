@@ -20,6 +20,6 @@ responses:
     content:
       application/json:
         schema:
-          $ref: "#/components/schemas/SslCertificateWithRelations"
+          $ref: "#/components/schemas/SslCertificate"
   404:
     $ref: "#/components/responses/NotFound"

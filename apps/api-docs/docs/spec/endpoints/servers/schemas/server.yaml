@@ -28,6 +28,13 @@ properties:
     $ref: '#/components/schemas/ServerBlueprint'
   status:
     $ref: '#/components/schemas/ActionStatus'
+  actions:
+    $ref: "#/components/schemas/Actions"
+  environments:
+    description: "The list of environments to which the server is linked to"
+    type: array
+    items:
+      $ref: "#/components/schemas/EnvironmentRelation"
   provider_name:
     description: The name of the server's provider.
     type: string
@@ -36,6 +43,10 @@ properties:
     description: The human readable version of the provider's name
     type: string
     example: VPS/Self Hosted
+  created_by_user:
+    $ref: "#/components/schemas/UserRelation"
+  last_action:
+    $ref: '#/components/schemas/ActionRelation'
   created_at:
     type: string
     format: date-time

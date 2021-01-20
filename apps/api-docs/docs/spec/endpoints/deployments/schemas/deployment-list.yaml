@@ -1,3 +1,3 @@
 type: array
 items:
-  $ref: '#/components/schemas/Deployment'
+  $ref: '#/components/schemas/DeploymentRelation'

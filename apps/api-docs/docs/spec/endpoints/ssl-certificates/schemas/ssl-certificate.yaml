@@ -49,6 +49,13 @@ properties:
     format: date-time
     description: The date and time when the record was last updated
     example: "2020-04-16T15:50:48.000000Z"
+  servers:
+    description: The list of linked servers
+    $ref: '#/components/schemas/Servers'
+  created_by_user:
+    $ref: '#/components/schemas/UserRelation'
+  last_action:
+    $ref: '#/components/schemas/ActionRelation'
 required:
   - id
   - domains

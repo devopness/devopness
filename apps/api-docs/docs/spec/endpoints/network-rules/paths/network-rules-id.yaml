@@ -20,6 +20,6 @@ responses:
     content:
       application/json:
         schema:
-          $ref: '#/components/schemas/NetworkRuleWithRelations'
+          $ref: '#/components/schemas/NetworkRule'
   404:
     $ref: '#/components/responses/NotFound'

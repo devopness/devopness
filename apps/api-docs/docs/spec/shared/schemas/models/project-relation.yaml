@@ -22,11 +22,6 @@ properties:
     description: A URL path to the project's logo image
     example: https://example.com/projects-beautiful-logo.png
     nullable: true
-  ssh_keys:
-    description: "The list of SSH keys added to the project"
-    type: array
-    items:
-      $ref: '#/components/schemas/SshKey'
   os_users:
     description: "The list of the operating system users found in all the servers linked to a project"
     type: array
@@ -36,20 +31,6 @@ properties:
           type: string
       example:
         name: devopness
-  applications:
-    $ref: '#/components/schemas/Applications'
-  cron_jobs:
-    $ref: '#/components/schemas/CronJobs'
-  environments:
-    $ref: '#/components/schemas/Environments'
-  network_rules:
-    $ref: '#/components/schemas/NetworkRules'
-  daemons:
-    $ref: '#/components/schemas/Daemons'
-  servers:
-    $ref: '#/components/schemas/Servers'
-  services:
-    $ref: '#/components/schemas/Services'
 required:
   - id
   - user_id

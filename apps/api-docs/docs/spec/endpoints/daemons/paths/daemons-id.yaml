@@ -20,6 +20,6 @@ responses:
     content:
       application/json:
         schema:
-          $ref: '#/components/schemas/DaemonWithRelations'
+          $ref: '#/components/schemas/Daemon'
   404:
     $ref: '#/components/responses/NotFound'
