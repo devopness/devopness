@@ -11,6 +11,17 @@ properties:
     $ref: '#/components/schemas/DeploymentType'
   source:
     $ref: '#/components/schemas/DeploymentSource'
+  commit:
+    $ref: '#/components/schemas/Commit'
+  steps:
+    description: The steps that were meant to be executed when the deployment was triggered
+    type: array
+    items:
+      $ref: '#/components/schemas/DeploymentStep'
+  triggered_by_user:
+    $ref: '#/components/schemas/UserRelation'
+  last_action:
+    $ref: '#/components/schemas/ActionRelation'
   started_at:
     type: string
     format: date-time
@@ -40,3 +51,5 @@ required:
   - status
   - type
   - source
+  - commit
+  - steps
