@@ -56,35 +56,11 @@ export interface HookRequestRelation {
      */
     url?: string;
     /**
-     * The headers of the request
-     * @type {object}
-     * @memberof HookRequestRelation
-     */
-    request_headers?: object | null;
-    /**
-     * The body of the request
-     * @type {object}
-     * @memberof HookRequestRelation
-     */
-    request_body?: object | null;
-    /**
      * The response status code
      * @type {number}
      * @memberof HookRequestRelation
      */
     response_status_code?: number;
-    /**
-     * The headers of the response
-     * @type {object}
-     * @memberof HookRequestRelation
-     */
-    response_headers?: object | null;
-    /**
-     * The body of the response
-     * @type {object}
-     * @memberof HookRequestRelation
-     */
-    response_body?: object | null;
     /**
      * The date and time when the record was created
      * @type {string}
