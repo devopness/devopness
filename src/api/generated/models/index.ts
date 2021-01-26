@@ -18,6 +18,8 @@ export * from './application-relation';
 export * from './application-type';
 export * from './application-update';
 export * from './commit';
+export * from './credential';
+export * from './credential-create';
 export * from './cron-job';
 export * from './cron-job-create';
 export * from './cron-job-frequency';
