@@ -14,6 +14,7 @@
 
 import { EnvironmentLinkServer } from './environment-link-server';
 import { ServerBlueprint } from './server-blueprint';
+import { ServerProvisionSettings } from './server-provision-settings';
 
 /**
  * 
@@ -51,5 +52,11 @@ export interface ServerCreate {
      * @memberof ServerCreate
      */
     environments?: Array<EnvironmentLinkServer>;
+    /**
+     * 
+     * @type {ServerProvisionSettings}
+     * @memberof ServerCreate
+     */
+    provision_settings?: ServerProvisionSettings;
 }
 
