@@ -19,6 +19,8 @@ properties:
     type: array
     items:
       $ref: '#/components/schemas/EnvironmentLinkServer'
+  provision_settings:
+    $ref: '#/components/schemas/ServerProvisionSettings'
 required:
   - blueprint
   - hostname

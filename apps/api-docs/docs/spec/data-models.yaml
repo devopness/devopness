@@ -238,6 +238,8 @@ ServerCreate:
   $ref: ./endpoints/servers/schemas/server-create.yaml
 ServerOptions:
   $ref: ./endpoints/static/schemas/server-options.yaml
+ServerProvisionSettings:
+  $ref: ./endpoints/servers/schemas/server-provision-settings.yaml
 ServerUpdate:
   $ref: ./endpoints/servers/schemas/server-update.yaml
 Servers:
