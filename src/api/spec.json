@@ -703,6 +703,134 @@
         }
       }
     },
+    "/credentials": {
+      "post": {
+        "summary": "Add a cloud provider credential",
+        "operationId": "addCredential",
+        "tags": [
+          "Cloud Providers"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing credential data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CredentialCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Credential"
+                }
+              }
+            }
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          }
+        }
+      },
+      "get": {
+        "summary": "List cloud provider credentials",
+        "operationId": "listCredentials",
+        "tags": [
+          "Cloud Providers"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Credentials"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/credentials/{credential_id}": {
+      "get": {
+        "summary": "Get a cloud provider credential by ID",
+        "operationId": "getCredential",
+        "tags": [
+          "Cloud Providers"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "credential_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the credential to get"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Credential"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
     "/deployments/{deployment_id}": {
       "get": {
         "summary": "Get a deployment by ID",
@@ -6071,6 +6199,9 @@
       "description": "Throughout the `devopness` documentation the term `SSL Certificate` refers to a public key certificate adhering to `X.509` standard. While TLS is the protocol more used nowadays for web encryption, for historical reasons web encryption is often referred to simply as SSL. A SSL Certificate managed by `devopness` might be used as an HTTPS/SSL/TLS and other internet protocols to establish encrypted connections between client apps (e.g. browsers) and the web application servers managed through `devopness`, but it's not limited to be used for authenticating server's identity.\n"
     },
     {
+      "name": "Cloud Providers"
+    },
+    {
       "name": "Cron Jobs",
       "description": "A cronjob is a scheduled command to be set on one or more project servers to ensure a given routine will be executed on time. Cronjobs are useful for creating periodic and recurring tasks, like running backups or sending emails. Cronjobs can also schedule individual tasks for a specific time, such as if you want to schedule a job for a low activity period.\n"
     },
@@ -7252,6 +7383,90 @@
             "description": "The name of the commit's author",
             "example": "feature/some-branch"
           }
+        }
+      },
+      "Credential": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The unique cloud provider credential id",
+            "example": 364910054
+          },
+          "provider_id": {
+            "type": "integer",
+            "description": "The provider that this credential belongs to",
+            "example": 3
+          },
+          "created_by": {
+            "type": "integer",
+            "description": "The user id that created the credential",
+            "example": 697031704
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the credential",
+            "example": "My credential of AWS cloud provider"
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Determines if the credential is current activated",
+            "example": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25T13:52:04.000000Z"
+          }
+        },
+        "required": [
+          "id",
+          "provider_id",
+          "created_by",
+          "name"
+        ]
+      },
+      "CredentialCreate": {
+        "type": "object",
+        "properties": {
+          "provider_id": {
+            "type": "integer",
+            "description": "The provider that this credential belongs to",
+            "example": 3
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the credential",
+            "example": "My credential of AWS cloud provider"
+          },
+          "key": {
+            "type": "string",
+            "description": "The key used to authenticate on cloud provider",
+            "example": "3dlxAUgbuTJY0AitQMAFHd6JadVRw3rGml"
+          },
+          "secret": {
+            "type": "string",
+            "description": "The secret used on AWS providers",
+            "example": "my-secret"
+          }
+        },
+        "required": [
+          "provider_id",
+          "name",
+          "key"
+        ]
+      },
+      "Credentials": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Credential"
         }
       },
       "CronJob": {

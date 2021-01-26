@@ -21,10 +21,12 @@ import { VariableService } from './services/VariableService';
 import { HookIncomingService } from './services/HookIncomingService';
 import { HookOutgoingService } from './services/HookOutgoingService';
 import { HookRequestService } from './services/HookRequestService';
+import { CloudProviderService } from './services/CloudProviderService';
 
 export class DevopnessApiClient {
   actions: ActionsApiService;
   applications: ApplicationService;
+  cloudProviders: CloudProviderService;
   cronjobs: CronJobService;
   daemons: DaemonService;
   deployments: DeploymentService;
@@ -54,6 +56,7 @@ export class DevopnessApiClient {
     // for non provided required parameters are quickly returned to the end user before spending time loading extra resources
     this.actions = new ActionsApiService();
     this.applications = new ApplicationService();
+    this.cloudProviders = new CloudProviderService();
     this.cronjobs = new CronJobService();
     this.daemons = new DaemonService();
     this.deployments = new DeploymentService();
