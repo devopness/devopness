@@ -8845,44 +8845,10 @@
             "description": "Original URL used on the request",
             "example": "https://api.devopness.com/hooks-incoming/f1a61a4e-4d08-11eb-9481-0242ac130004"
           },
-          "request_headers": {
-            "type": "object",
-            "nullable": true,
-            "description": "The headers of the request",
-            "example": {
-              "Content-Type": "application/json",
-              "Accept": "application/json"
-            }
-          },
-          "request_body": {
-            "type": "object",
-            "nullable": true,
-            "description": "The body of the request",
-            "example": {
-              "message": "Hello World"
-            }
-          },
           "response_status_code": {
             "type": "integer",
             "description": "The response status code",
             "example": 200
-          },
-          "response_headers": {
-            "type": "object",
-            "nullable": true,
-            "description": "The headers of the response",
-            "example": {
-              "Content-Type": "application/json",
-              "Accept": "application/json"
-            }
-          },
-          "response_body": {
-            "type": "object",
-            "nullable": true,
-            "description": "The body of the response",
-            "example": {
-              "success": true
-            }
           },
           "created_at": {
             "type": "string",
