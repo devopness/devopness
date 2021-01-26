@@ -10515,6 +10515,9 @@
             "items": {
               "$ref": "#/components/schemas/EnvironmentLinkServer"
             }
+          },
+          "provision_settings": {
+            "$ref": "#/components/schemas/ServerProvisionSettings"
           }
         },
         "required": [
@@ -10533,6 +10536,38 @@
         },
         "required": [
           "providers"
+        ]
+      },
+      "ServerProvisionSettings": {
+        "type": "object",
+        "description": "Configuration used to launch cloud instance",
+        "properties": {
+          "credential_id": {
+            "type": "integer",
+            "description": "The unique id of the cloud provider credential to be used on connect to cloud provider",
+            "example": 8430015757
+          },
+          "instance_type": {
+            "type": "string",
+            "description": "The instance type to be launched on the cloud provider",
+            "example": "a1.medium"
+          },
+          "region": {
+            "type": "string",
+            "description": "Datacenter region where the cloud instance will be launched",
+            "example": "us-east-1"
+          },
+          "storage_size": {
+            "type": "integer",
+            "description": "The storage's size of the cloud instance",
+            "example": 32
+          }
+        },
+        "required": [
+          "credential_id",
+          "instance_type",
+          "region",
+          "storage_size"
         ]
       },
       "ServerUpdate": {

@@ -96,6 +96,7 @@ export * from './server-commands';
 export * from './server-connect';
 export * from './server-create';
 export * from './server-options';
+export * from './server-provision-settings';
 export * from './server-relation';
 export * from './server-update';
 export * from './service';
