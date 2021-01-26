@@ -178,6 +178,7 @@ tags:
   - name: Applications - Variables
     description: |
       Throughout the `devopness` documentation the term `SSL Certificate` refers to a public key certificate adhering to `X.509` standard. While TLS is the protocol more used nowadays for web encryption, for historical reasons web encryption is often referred to simply as SSL. A SSL Certificate managed by `devopness` might be used as an HTTPS/SSL/TLS and other internet protocols to establish encrypted connections between client apps (e.g. browsers) and the web application servers managed through `devopness`, but it's not limited to be used for authenticating server's identity.
+  - name: Cloud Providers
   - name: Cron Jobs
     description: |
       A cronjob is a scheduled command to be set on one or more project servers to ensure a given routine will be executed on time. Cronjobs are useful for creating periodic and recurring tasks, like running backups or sending emails. Cronjobs can also schedule individual tasks for a specific time, such as if you want to schedule a job for a low activity period.

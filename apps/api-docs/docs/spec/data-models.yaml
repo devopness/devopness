@@ -38,6 +38,12 @@ ApplicationRelation:
   $ref: ./shared/schemas/models/application-relation.yaml
 Commit:
   $ref: ./shared/schemas/commit.yaml
+Credential:
+  $ref: ./endpoints/credentials/schemas/credential.yaml
+CredentialCreate:
+  $ref: ./endpoints/credentials/schemas/credential-create.yaml
+Credentials:
+  $ref: ./endpoints/credentials/schemas/credential-list.yaml
 CronJob:
   $ref: ./endpoints/cronjobs/schemas/cronjob.yaml
 CronJobCreate:
