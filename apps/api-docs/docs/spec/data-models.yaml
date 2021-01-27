@@ -196,6 +196,10 @@ Provider:
   $ref: ./endpoints/static/schemas/provider.yaml
 Providers:
   $ref: ./endpoints/static/schemas/provider-list.yaml
+ProviderRegion:
+  $ref: ./endpoints/static/schemas/provider-region.yaml
+ProviderRegions:
+  $ref: ./endpoints/static/schemas/provider-region-list.yaml
 Repositories:
   $ref: ./endpoints/repositories/schemas/repository-list.yaml
 Repository:
@@ -238,6 +242,8 @@ ServerCreate:
   $ref: ./endpoints/servers/schemas/server-create.yaml
 ServerOptions:
   $ref: ./endpoints/static/schemas/server-options.yaml
+ServerProvider:
+  $ref: ./endpoints/servers/schemas/server-provider.yaml
 ServerProvisionSettings:
   $ref: ./endpoints/servers/schemas/server-provision-settings.yaml
 ServerUpdate:

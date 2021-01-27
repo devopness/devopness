@@ -1,0 +1,18 @@
+type: object
+properties:
+  value:
+    description: The code name of the region
+    type: string
+    example: us-east-1
+  human_readable:
+    description: The formatted name of the region
+    type: string
+    example: "us-east-1: US East (N. Virginia)"
+  hint:
+    type: string
+    description: Text describing the region
+    example: "us-east-1: US East (N. Virginia)"
+required:
+  - value
+  - human_readable
+  - hint

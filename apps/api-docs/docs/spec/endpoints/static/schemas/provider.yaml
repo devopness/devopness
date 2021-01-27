@@ -3,16 +3,19 @@ properties:
   value:
     description: The name of the provider
     type: string
-    example: self-hosted
+    example: aws
   human_readable:
     description: The formatted name of the provider
     type: string
-    example: VPS/Self Hosted
+    example: Amazon Web Services
   hint:
     type: string
     description: Text describing what is the provider
-    example: Personal or rented server
+    example: Cloud Server provided by Amazon Web Services
+  regions:
+    $ref: '#/components/schemas/ProviderRegions'
 required:
   - value
   - human_readable
   - hint
+  - regions
