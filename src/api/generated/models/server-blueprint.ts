@@ -12,6 +12,7 @@
  */
 
 
+import { ServerProvider } from './server-provider';
 import { ServiceCreate } from './service-create';
 
 /**
@@ -21,11 +22,11 @@ import { ServiceCreate } from './service-create';
  */
 export interface ServerBlueprint {
     /**
-     * `self-hosted` if connecting to an existing server instance. May also be a list of cloud providers to which the server spec will be used to launch instances.
-     * @type {string}
+     * 
+     * @type {ServerProvider}
      * @memberof ServerBlueprint
      */
-    provider: ServerBlueprintProviderEnum;
+    provider: ServerProvider;
     /**
      * The list of services that must be installed on the server
      * @type {Array<ServiceCreate>}
@@ -39,13 +40,4 @@ export interface ServerBlueprint {
      */
     validate_web_public_access: boolean;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum ServerBlueprintProviderEnum {
-    SelfHosted = 'self-hosted'
-}
-
 

@@ -9924,17 +9924,52 @@
           "value": {
             "description": "The name of the provider",
             "type": "string",
-            "example": "self-hosted"
+            "example": "aws"
           },
           "human_readable": {
             "description": "The formatted name of the provider",
             "type": "string",
-            "example": "VPS/Self Hosted"
+            "example": "Amazon Web Services"
           },
           "hint": {
             "type": "string",
             "description": "Text describing what is the provider",
-            "example": "Personal or rented server"
+            "example": "Cloud Server provided by Amazon Web Services"
+          },
+          "regions": {
+            "$ref": "#/components/schemas/ProviderRegions"
+          }
+        },
+        "required": [
+          "value",
+          "human_readable",
+          "hint",
+          "regions"
+        ]
+      },
+      "Providers": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Provider"
+        }
+      },
+      "ProviderRegion": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "description": "The code name of the region",
+            "type": "string",
+            "example": "us-east-1"
+          },
+          "human_readable": {
+            "description": "The formatted name of the region",
+            "type": "string",
+            "example": "us-east-1: US East (N. Virginia)"
+          },
+          "hint": {
+            "type": "string",
+            "description": "Text describing the region",
+            "example": "us-east-1: US East (N. Virginia)"
           }
         },
         "required": [
@@ -9943,10 +9978,10 @@
           "hint"
         ]
       },
-      "Providers": {
+      "ProviderRegions": {
         "type": "array",
         "items": {
-          "$ref": "#/components/schemas/Provider"
+          "$ref": "#/components/schemas/ProviderRegion"
         }
       },
       "Repositories": {
@@ -10436,12 +10471,7 @@
         "type": "object",
         "properties": {
           "provider": {
-            "description": "`self-hosted` if connecting to an existing server instance. May also be a list of cloud providers to which the server spec will be used to launch instances.",
-            "enum": [
-              "self-hosted"
-            ],
-            "example": "self-hosted",
-            "nullable": true
+            "$ref": "#/components/schemas/ServerProvider"
           },
           "services": {
             "description": "The list of services that must be installed on the server",
@@ -10536,6 +10566,15 @@
         },
         "required": [
           "providers"
+        ]
+      },
+      "ServerProvider": {
+        "type": "string",
+        "description": "`self-hosted` if connecting to an existing server instance. May also be a list of cloud providers to which the server spec will be used to launch instances.",
+        "enum": [
+          "self-hosted",
+          "aws",
+          "digital-ocean"
         ]
       },
       "ServerProvisionSettings": {
