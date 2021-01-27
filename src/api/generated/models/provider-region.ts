@@ -12,37 +12,30 @@
  */
 
 
-import { ProviderRegion } from './provider-region';
 
 /**
  * 
  * @export
- * @interface Provider
+ * @interface ProviderRegion
  */
-export interface Provider {
+export interface ProviderRegion {
     /**
-     * The name of the provider
+     * The code name of the region
      * @type {string}
-     * @memberof Provider
+     * @memberof ProviderRegion
      */
     value: string;
     /**
-     * The formatted name of the provider
+     * The formatted name of the region
      * @type {string}
-     * @memberof Provider
+     * @memberof ProviderRegion
      */
     human_readable: string;
     /**
-     * Text describing what is the provider
+     * Text describing the region
      * @type {string}
-     * @memberof Provider
+     * @memberof ProviderRegion
      */
     hint: string;
-    /**
-     * 
-     * @type {Array<ProviderRegion>}
-     * @memberof Provider
-     */
-    regions: Array<ProviderRegion>;
 }
 
