@@ -18,7 +18,7 @@ test('ApiResponse has the correct pageCount value', () => {
     expect(response.pageCount).toBe(expectedPageCount);
 });
 
-test('ApiResponse do not fail if no Link header present', () => {
+test('ApiResponse do not fail if no header is present', () => {
     const axiosResponse = {
         data: null,
         status: 200,
@@ -27,6 +27,7 @@ test('ApiResponse do not fail if no Link header present', () => {
 
     const response = new ApiResponse<null>(axiosResponse);
 
+    expect(response.actionId).toBe(undefined);
     expect(response.pageCount).toBe(undefined);
 });
 
@@ -42,4 +43,29 @@ test('If no have last link, expect undefined pageCount', () => {
     const response = new ApiResponse<null>(axiosResponse);
 
     expect(response.pageCount).toBe(undefined);
+});
+
+test('ApiResponse do not fail if headers is undefined', () => {
+    const axiosResponse = {
+        data: null,
+        status: 200,
+    } as AxiosResponse<null>;
+
+    const response = new ApiResponse<null>(axiosResponse);
+
+    expect(response).toBeDefined();
+});
+
+test('ApiResponse has the correct action id value', () => {
+    const axiosResponse = {
+        data: null,
+        status: 200,
+        headers: {
+            'X-Devopness-Action-Id': 54321,
+        },
+    } as AxiosResponse<null>;
+
+    const response = new ApiResponse<null>(axiosResponse);
+
+    expect(response.actionId).toBe(54321);
 });
