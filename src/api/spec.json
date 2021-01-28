@@ -10074,6 +10074,52 @@
           "port_to"
         ]
       },
+      "OperatingSystem": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "The name of the operating system",
+            "example": "ubuntu"
+          },
+          "human_readable": {
+            "type": "string",
+            "description": "The formatted name of the operating system",
+            "example": "Ubuntu"
+          },
+          "hint": {
+            "type": "string",
+            "description": "Text describing the operating system",
+            "example": "Ubuntu"
+          },
+          "supported_versions": {
+            "type": "array",
+            "description": "List of operating system versions supported by Devopness",
+            "items": {
+              "type": "object",
+              "properties": {
+                "version": {
+                  "type": "string",
+                  "description": "The system's version that is supported",
+                  "example": "18"
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "value",
+          "human_readable",
+          "hint",
+          "supported_versions"
+        ]
+      },
+      "OperatingSystems": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/OperatingSystem"
+        }
+      },
       "Project": {
         "type": "object",
         "properties": {
@@ -10908,10 +10954,14 @@
         "properties": {
           "providers": {
             "$ref": "#/components/schemas/Providers"
+          },
+          "os": {
+            "$ref": "#/components/schemas/OperatingSystems"
           }
         },
         "required": [
-          "providers"
+          "providers",
+          "os"
         ]
       },
       "ServerProvider": {
