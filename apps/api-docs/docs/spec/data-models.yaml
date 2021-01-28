@@ -182,6 +182,10 @@ NetworkRuleUpdate:
   $ref: ./endpoints/network-rules/schemas/network-rule-update.yaml
 NetworkRuleRelation:
   $ref: ./shared/schemas/models/network-rule-relation.yaml
+OperatingSystem:
+  $ref: ./endpoints/static/schemas/operating-system.yaml
+OperatingSystems:
+  $ref: ./endpoints/static/schemas/operating-system-list.yaml
 Project:
   $ref: ./endpoints/projects/schemas/project.yaml
 ProjectCreate:
