@@ -15,6 +15,9 @@
 import { ActionRelation } from './action-relation';
 import { ApplicationRelation } from './application-relation';
 import { CronJobPattern } from './cron-job-pattern';
+import { EnvironmentRelation } from './environment-relation';
+import { ProjectRelation } from './project-relation';
+import { ServerRelation } from './server-relation';
 import { UserRelation } from './user-relation';
 
 /**
@@ -64,13 +67,19 @@ export interface CronJob {
      * @type {boolean}
      * @memberof CronJob
      */
-    auto_generated?: boolean;
+    auto_generated: boolean;
     /**
      * 
      * @type {ApplicationRelation}
      * @memberof CronJob
      */
     application?: ApplicationRelation | null;
+    /**
+     * 
+     * @type {Array<EnvironmentRelation>}
+     * @memberof CronJob
+     */
+    environments?: Array<EnvironmentRelation>;
     /**
      * 
      * @type {UserRelation}
@@ -83,6 +92,18 @@ export interface CronJob {
      * @memberof CronJob
      */
     last_action?: ActionRelation | null;
+    /**
+     * 
+     * @type {ProjectRelation}
+     * @memberof CronJob
+     */
+    project?: ProjectRelation;
+    /**
+     * 
+     * @type {Array<ServerRelation>}
+     * @memberof CronJob
+     */
+    servers?: Array<ServerRelation>;
     /**
      * The date and time when the record was created
      * @type {string}

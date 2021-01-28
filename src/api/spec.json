@@ -50,6 +50,14 @@
         "responses": {
           "200": {
             "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -281,6 +289,14 @@
         "responses": {
           "201": {
             "description": "Created",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action id of the resource"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -331,6 +347,14 @@
         "responses": {
           "200": {
             "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -374,6 +398,14 @@
         "responses": {
           "200": {
             "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -484,6 +516,14 @@
         "responses": {
           "200": {
             "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -538,6 +578,14 @@
         "responses": {
           "201": {
             "description": "Created",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action id of the resource"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -588,6 +636,14 @@
         "responses": {
           "200": {
             "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -692,6 +748,14 @@
         "responses": {
           "200": {
             "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -774,6 +838,14 @@
         "responses": {
           "200": {
             "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -1049,6 +1121,14 @@
         "responses": {
           "200": {
             "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -1098,6 +1178,14 @@
         "responses": {
           "200": {
             "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -1147,6 +1235,14 @@
         "responses": {
           "200": {
             "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -1196,6 +1292,14 @@
         "responses": {
           "200": {
             "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -1245,6 +1349,14 @@
         "responses": {
           "200": {
             "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -1294,6 +1406,14 @@
         "responses": {
           "200": {
             "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -1343,6 +1463,14 @@
         "responses": {
           "200": {
             "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -1681,10 +1809,10 @@
         },
         "responses": {
           "201": {
-            "description": "Created"
+            "$ref": "#/components/responses/CreatedDispatchAction"
           },
           "204": {
-            "description": "Ok"
+            "$ref": "#/components/responses/NoContentDispatchAction"
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
@@ -1782,6 +1910,14 @@
         "responses": {
           "200": {
             "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -2010,6 +2146,14 @@
         "responses": {
           "200": {
             "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -2499,7 +2643,7 @@
         ],
         "responses": {
           "204": {
-            "$ref": "#/components/responses/NoContent"
+            "$ref": "#/components/responses/NoContentDispatchAction"
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
@@ -2591,7 +2735,7 @@
         },
         "responses": {
           "204": {
-            "$ref": "#/components/responses/NoContent"
+            "$ref": "#/components/responses/NoContentDispatchAction"
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
@@ -2633,7 +2777,7 @@
         ],
         "responses": {
           "204": {
-            "$ref": "#/components/responses/NoContent"
+            "$ref": "#/components/responses/NoContentDispatchAction"
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
@@ -2725,7 +2869,7 @@
         },
         "responses": {
           "204": {
-            "$ref": "#/components/responses/NoContent"
+            "$ref": "#/components/responses/NoContentDispatchAction"
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
@@ -2781,7 +2925,7 @@
         },
         "responses": {
           "204": {
-            "description": "Ok"
+            "$ref": "#/components/responses/NoContentDispatchAction"
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
@@ -3058,6 +3202,14 @@
         "responses": {
           "200": {
             "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -3107,6 +3259,14 @@
         "responses": {
           "200": {
             "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -3211,6 +3371,14 @@
         "responses": {
           "200": {
             "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -3265,6 +3433,14 @@
         "responses": {
           "201": {
             "description": "Created",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action id of the resource"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -3315,6 +3491,14 @@
         "responses": {
           "200": {
             "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -3369,6 +3553,14 @@
         "responses": {
           "201": {
             "description": "Created",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action id of the resource"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -3419,6 +3611,14 @@
         "responses": {
           "200": {
             "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -3523,6 +3723,14 @@
         "responses": {
           "200": {
             "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -3577,6 +3785,14 @@
         "responses": {
           "201": {
             "description": "Created",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action id of the resource"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -3627,6 +3843,14 @@
         "responses": {
           "200": {
             "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -3681,6 +3905,14 @@
         "responses": {
           "201": {
             "description": "Created",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action id of the resource"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -3731,6 +3963,14 @@
         "responses": {
           "200": {
             "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -3785,6 +4025,14 @@
         "responses": {
           "201": {
             "description": "Created",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action id of the resource"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -3835,6 +4083,14 @@
         "responses": {
           "200": {
             "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -4007,6 +4263,14 @@
         "responses": {
           "200": {
             "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -4207,6 +4471,14 @@
         "responses": {
           "200": {
             "description": "Ok",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action id of the resource"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -4258,7 +4530,7 @@
         ],
         "responses": {
           "204": {
-            "$ref": "#/components/responses/NoContent"
+            "$ref": "#/components/responses/NoContentDispatchAction"
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
@@ -4352,7 +4624,7 @@
         },
         "responses": {
           "204": {
-            "$ref": "#/components/responses/NoContent"
+            "$ref": "#/components/responses/NoContentDispatchAction"
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
@@ -4405,7 +4677,7 @@
         },
         "responses": {
           "204": {
-            "$ref": "#/components/responses/NoContent"
+            "$ref": "#/components/responses/NoContentDispatchAction"
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
@@ -4458,7 +4730,7 @@
         },
         "responses": {
           "204": {
-            "$ref": "#/components/responses/NoContent"
+            "$ref": "#/components/responses/NoContentDispatchAction"
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
@@ -4512,7 +4784,7 @@
         },
         "responses": {
           "204": {
-            "$ref": "#/components/responses/NoContent"
+            "$ref": "#/components/responses/NoContentDispatchAction"
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
@@ -4565,7 +4837,7 @@
         },
         "responses": {
           "204": {
-            "$ref": "#/components/responses/NoContent"
+            "$ref": "#/components/responses/NoContentDispatchAction"
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
@@ -4647,6 +4919,14 @@
         "responses": {
           "200": {
             "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -4825,6 +5105,14 @@
         "responses": {
           "200": {
             "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -4931,6 +5219,14 @@
         "responses": {
           "200": {
             "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -5144,7 +5440,7 @@
         ],
         "responses": {
           "204": {
-            "$ref": "#/components/responses/NoContent"
+            "$ref": "#/components/responses/NoContentDispatchAction"
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
@@ -5227,7 +5523,7 @@
         ],
         "responses": {
           "204": {
-            "$ref": "#/components/responses/NoContent"
+            "$ref": "#/components/responses/NoContentDispatchAction"
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
@@ -5256,6 +5552,14 @@
         "responses": {
           "200": {
             "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -5288,6 +5592,14 @@
         "responses": {
           "200": {
             "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -5320,6 +5632,14 @@
         "responses": {
           "200": {
             "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -5352,6 +5672,14 @@
         "responses": {
           "200": {
             "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -5384,6 +5712,14 @@
         "responses": {
           "200": {
             "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -5426,7 +5762,7 @@
         ],
         "responses": {
           "204": {
-            "$ref": "#/components/responses/NoContent"
+            "$ref": "#/components/responses/NoContentDispatchAction"
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
@@ -5518,7 +5854,7 @@
         },
         "responses": {
           "204": {
-            "$ref": "#/components/responses/NoContent"
+            "$ref": "#/components/responses/NoContentDispatchAction"
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
@@ -7508,11 +7844,20 @@
           "application": {
             "$ref": "#/components/schemas/ApplicationRelation"
           },
+          "environments": {
+            "$ref": "#/components/schemas/Environments"
+          },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
           },
           "last_action": {
             "$ref": "#/components/schemas/ActionRelation"
+          },
+          "project": {
+            "$ref": "#/components/schemas/ProjectRelation"
+          },
+          "servers": {
+            "$ref": "#/components/schemas/Servers"
           },
           "created_at": {
             "type": "string",
@@ -7533,7 +7878,8 @@
           "name",
           "pattern",
           "pattern_human_readable",
-          "run_as_user"
+          "run_as_user",
+          "auto_generated"
         ]
       },
       "CronJobCreate": {
@@ -12077,11 +12423,33 @@
       "Created": {
         "description": "Created"
       },
+      "CreatedDispatchAction": {
+        "description": "Created",
+        "headers": {
+          "X-Devopness-Action-Id": {
+            "schema": {
+              "type": "integer"
+            },
+            "description": "The dispatched action id of the resource"
+          }
+        }
+      },
       "Accepted": {
         "description": "Accepted"
       },
       "NoContent": {
         "description": "No Content"
+      },
+      "NoContentDispatchAction": {
+        "description": "No Content",
+        "headers": {
+          "X-Devopness-Action-Id": {
+            "schema": {
+              "type": "integer"
+            },
+            "description": "The dispatched action id of the resource"
+          }
+        }
       },
       "Unauthenticated": {
         "description": "Unauthenticated",
