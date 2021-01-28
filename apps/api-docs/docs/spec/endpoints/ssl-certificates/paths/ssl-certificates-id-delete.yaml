@@ -16,6 +16,6 @@ parameters:
     description: The unique id of the record to be deleted
 responses:
   204:
-    $ref: "#/components/responses/NoContent"
+    $ref: "#/components/responses/NoContentDispatchAction"
   404:
     $ref: "#/components/responses/NotFound"

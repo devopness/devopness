@@ -16,6 +16,6 @@ parameters:
     description: Numeric ID of the rule to be deleted
 responses:
   204:
-    $ref: '#/components/responses/NoContent'
+    $ref: '#/components/responses/NoContentDispatchAction'
   404:
     $ref: '#/components/responses/NotFound'

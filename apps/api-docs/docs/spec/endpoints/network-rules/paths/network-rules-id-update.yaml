@@ -23,7 +23,7 @@ requestBody:
         $ref: '#/components/schemas/NetworkRuleUpdate'
 responses:
   204:
-    $ref: '#/components/responses/NoContent'
+    $ref: '#/components/responses/NoContentDispatchAction'
   404:
     $ref: '#/components/responses/NotFound'
   422:

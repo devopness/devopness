@@ -6,10 +6,24 @@ Ok: # HTTP Status Code: 200
         type: object
 Created: # HTTP Status Code: 201
   description: Created
+CreatedDispatchAction: # HTTP Status Code: 201
+  description: Created
+  headers:
+    X-Devopness-Action-Id:
+      schema:
+        type: integer
+      description: The dispatched action id of the resource
 Accepted: # HTTP Status Code: 202
   description: Accepted
 NoContent: # HTTP Status Code: 204
   description: No Content
+NoContentDispatchAction: # HTTP Status Code: 204
+  description: No Content
+  headers:
+    X-Devopness-Action-Id:
+      schema:
+        type: integer
+      description: The dispatched action id of the resource
 Unauthenticated: # HTTP Status Code: 401
   description: Unauthenticated
   content:

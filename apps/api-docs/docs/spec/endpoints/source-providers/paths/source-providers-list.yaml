@@ -11,6 +11,11 @@ parameters:
 responses:
   200:
     description: "Ok"
+    headers:
+      Link:
+        schema:
+          type: string
+        description: Link header with `first`, `last`, `previous` and `next` page's links
     content:
       application/json:
         schema:

@@ -24,6 +24,11 @@ requestBody:
 responses:
   201:
     description: 'Created'
+    headers:
+      X-Devopness-Action-Id:
+        schema:
+          type: integer
+        description: The dispatched action id of the resource
     content:
       application/json:
         schema:

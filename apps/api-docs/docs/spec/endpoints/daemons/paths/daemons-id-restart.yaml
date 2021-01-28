@@ -23,6 +23,6 @@ requestBody:
         $ref: '#/components/schemas/DaemonRestart'
 responses:
   204:
-    description: 'Ok'
+    $ref: '#/components/responses/NoContentDispatchAction'
   404:
     $ref: '#/components/responses/NotFound'

@@ -25,6 +25,11 @@ parameters:
 responses:
   200:
     description: 'Ok'
+    headers:
+      X-Devopness-Action-Id:
+        schema:
+          type: integer
+        description: The dispatched action id of the resource
     content:
       application/json:
         schema:

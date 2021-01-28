@@ -23,7 +23,7 @@ requestBody:
         $ref: '#/components/schemas/ServiceStop'
 responses:
   204:
-    $ref: '#/components/responses/NoContent'
+    $ref: '#/components/responses/NoContentDispatchAction'
   403:
     $ref: '#/components/responses/Forbidden'
   404:

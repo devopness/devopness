@@ -21,9 +21,9 @@ requestBody:
         $ref: '#/components/schemas/HookIncomingTrigger'
 responses:
   201:
-    description: "Created"
+    $ref: "#/components/responses/CreatedDispatchAction"
   204:
-    description: "Ok"
+    $ref: "#/components/responses/NoContentDispatchAction"
   403:
     $ref: "#/components/responses/Forbidden"
   404:
