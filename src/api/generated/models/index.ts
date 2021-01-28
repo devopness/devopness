@@ -75,6 +75,8 @@ export * from './network-rule-protocol';
 export * from './network-rule-relation';
 export * from './network-rule-type';
 export * from './network-rule-update';
+export * from './operating-system';
+export * from './operating-system-supported-versions';
 export * from './project';
 export * from './project-create';
 export * from './project-relation';
