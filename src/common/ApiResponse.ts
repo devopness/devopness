@@ -8,6 +8,7 @@ interface ApiLinks {
 }
 
 export class ApiResponse<T>{
+    actionId?: number;
     data: T;
     pageCount?: number;
     status: number;
@@ -16,7 +17,10 @@ export class ApiResponse<T>{
         this.status = axiosResp.status;
         this.data = axiosResp.data;
 
-        const linkHeader = parseLinkHeader(axiosResp.headers?.link) as ApiLinks | null;
-        this.pageCount = Number(linkHeader?.last?.page) || undefined;
+        if (axiosResp.headers) {
+            const linkHeader = parseLinkHeader(axiosResp.headers?.link) as ApiLinks | null;
+            this.pageCount = Number(linkHeader?.last?.page) || undefined;
+            this.actionId = axiosResp.headers['X-Devopness-Action-Id'];
+        }
     }
 }
