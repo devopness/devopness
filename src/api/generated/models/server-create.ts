@@ -57,6 +57,6 @@ export interface ServerCreate {
      * @type {ServerProvisionSettings}
      * @memberof ServerCreate
      */
-    provision_settings?: ServerProvisionSettings;
+    provision_settings: ServerProvisionSettings;
 }
 

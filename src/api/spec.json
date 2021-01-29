@@ -7721,6 +7721,54 @@
           }
         }
       },
+      "CloudAwsEc2Settings": {
+        "type": "object",
+        "properties": {
+          "instance_type": {
+            "type": "string",
+            "description": "The instance type to be launched on the cloud provider",
+            "example": "a1.medium"
+          },
+          "region": {
+            "type": "string",
+            "description": "Datacenter region where the cloud instance will be launched",
+            "example": "us-east-1"
+          },
+          "storage_size": {
+            "type": "integer",
+            "description": "The storage's size of the cloud instance",
+            "example": 32
+          },
+          "os": {
+            "$ref": "#/components/schemas/CloudOs"
+          }
+        },
+        "required": [
+          "region",
+          "instance_type",
+          "storage_size",
+          "os"
+        ]
+      },
+      "CloudOs": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The operating system's name",
+            "example": "ubuntu"
+          },
+          "version": {
+            "type": "string",
+            "description": "The version of the operating system",
+            "example": "18"
+          }
+        },
+        "required": [
+          "name",
+          "version"
+        ]
+      },
       "Credential": {
         "type": "object",
         "properties": {
@@ -10862,9 +10910,6 @@
       "ServerBlueprint": {
         "type": "object",
         "properties": {
-          "provider": {
-            "$ref": "#/components/schemas/ServerProvider"
-          },
           "services": {
             "description": "The list of services that must be installed on the server",
             "type": "array",
@@ -10880,7 +10925,6 @@
           }
         },
         "required": [
-          "provider",
           "validate_web_public_access"
         ]
       },
@@ -10908,6 +10952,30 @@
         },
         "required": [
           "message"
+        ]
+      },
+      "ServerCloudService": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "$ref": "#/components/schemas/ServerCloudServiceName"
+          },
+          "settings": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CloudAwsEc2Settings"
+              }
+            ],
+            "description": "The configurations used to cloud service"
+          }
+        }
+      },
+      "ServerCloudServiceName": {
+        "type": "string",
+        "description": "The name of the cloud service used to provide the cloud instance",
+        "example": "ec2",
+        "enum": [
+          "ec2"
         ]
       },
       "ServerCreate": {
@@ -10946,7 +11014,8 @@
           "blueprint",
           "hostname",
           "ip_address",
-          "ssh_port"
+          "ssh_port",
+          "provision_settings"
         ]
       },
       "ServerOptions": {
@@ -10977,33 +11046,20 @@
         "type": "object",
         "description": "Configuration used to launch cloud instance",
         "properties": {
+          "self_hosted": {
+            "type": "boolean",
+            "description": "Determines if the server is `self-hosted` or from a cloud service",
+            "example": false
+          },
           "credential_id": {
             "type": "integer",
             "description": "The unique id of the cloud provider credential to be used on connect to cloud provider",
             "example": 8430015757
           },
-          "instance_type": {
-            "type": "string",
-            "description": "The instance type to be launched on the cloud provider",
-            "example": "a1.medium"
-          },
-          "region": {
-            "type": "string",
-            "description": "Datacenter region where the cloud instance will be launched",
-            "example": "us-east-1"
-          },
-          "storage_size": {
-            "type": "integer",
-            "description": "The storage's size of the cloud instance",
-            "example": 32
+          "cloud_service": {
+            "$ref": "#/components/schemas/ServerCloudService"
           }
-        },
-        "required": [
-          "credential_id",
-          "instance_type",
-          "region",
-          "storage_size"
-        ]
+        }
       },
       "ServerUpdate": {
         "type": "object",

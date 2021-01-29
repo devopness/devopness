@@ -12,6 +12,7 @@
  */
 
 
+import { ServerCloudService } from './server-cloud-service';
 
 /**
  * Configuration used to launch cloud instance
@@ -20,28 +21,22 @@
  */
 export interface ServerProvisionSettings {
     /**
+     * Determines if the server is `self-hosted` or from a cloud service
+     * @type {boolean}
+     * @memberof ServerProvisionSettings
+     */
+    self_hosted?: boolean;
+    /**
      * The unique id of the cloud provider credential to be used on connect to cloud provider
      * @type {number}
      * @memberof ServerProvisionSettings
      */
-    credential_id: number;
+    credential_id?: number;
     /**
-     * The instance type to be launched on the cloud provider
-     * @type {string}
+     * 
+     * @type {ServerCloudService}
      * @memberof ServerProvisionSettings
      */
-    instance_type: string;
-    /**
-     * Datacenter region where the cloud instance will be launched
-     * @type {string}
-     * @memberof ServerProvisionSettings
-     */
-    region: string;
-    /**
-     * The storage\'s size of the cloud instance
-     * @type {number}
-     * @memberof ServerProvisionSettings
-     */
-    storage_size: number;
+    cloud_service?: ServerCloudService;
 }
 

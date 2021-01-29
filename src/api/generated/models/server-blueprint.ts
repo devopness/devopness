@@ -12,7 +12,6 @@
  */
 
 
-import { ServerProvider } from './server-provider';
 import { ServiceCreate } from './service-create';
 
 /**
@@ -21,12 +20,6 @@ import { ServiceCreate } from './service-create';
  * @interface ServerBlueprint
  */
 export interface ServerBlueprint {
-    /**
-     * 
-     * @type {ServerProvider}
-     * @memberof ServerBlueprint
-     */
-    provider: ServerProvider;
     /**
      * The list of services that must be installed on the server
      * @type {Array<ServiceCreate>}
