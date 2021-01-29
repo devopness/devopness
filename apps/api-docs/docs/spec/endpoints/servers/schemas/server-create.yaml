@@ -26,3 +26,4 @@ required:
   - hostname
   - ip_address
   - ssh_port
+  - provision_settings

@@ -1,0 +1,21 @@
+type: object
+properties:
+  instance_type:
+    type: string
+    description: The instance type to be launched on the cloud provider
+    example: a1.medium
+  region:
+    type: string
+    description: Datacenter region where the cloud instance will be launched
+    example: us-east-1
+  storage_size:
+    type: integer
+    description: The storage's size of the cloud instance
+    example: 32
+  os:
+    $ref: '#/components/schemas/CloudOs'
+required:
+  - region
+  - instance_type
+  - storage_size
+  - os

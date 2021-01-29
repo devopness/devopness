@@ -1,7 +1,5 @@
 type: object
 properties:
-  provider:
-    $ref: '#/components/schemas/ServerProvider'
   services:
     description: "The list of services that must be installed on the server"
     type: array
@@ -13,5 +11,4 @@ properties:
     type: boolean
     example: true
 required:
-  - provider
   - validate_web_public_access
