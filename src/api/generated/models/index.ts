@@ -17,7 +17,7 @@ export * from './application-options';
 export * from './application-relation';
 export * from './application-type';
 export * from './application-update';
-export * from './cloud-ec2-settings';
+export * from './cloud-aws-ec2-settings';
 export * from './cloud-os';
 export * from './commit';
 export * from './credential';

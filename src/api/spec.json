@@ -7721,7 +7721,7 @@
           }
         }
       },
-      "CloudEC2Settings": {
+      "CloudAwsEc2Settings": {
         "type": "object",
         "properties": {
           "instance_type": {
@@ -7740,7 +7740,7 @@
             "example": 32
           },
           "os": {
-            "$ref": "#/components/schemas/CloudOS"
+            "$ref": "#/components/schemas/CloudOs"
           }
         },
         "required": [
@@ -7750,7 +7750,7 @@
           "os"
         ]
       },
-      "CloudOS": {
+      "CloudOs": {
         "type": "object",
         "properties": {
           "name": {
@@ -10963,7 +10963,7 @@
           "settings": {
             "anyOf": [
               {
-                "$ref": "#/components/schemas/CloudEC2Settings"
+                "$ref": "#/components/schemas/CloudAwsEc2Settings"
               }
             ],
             "description": "The configurations used to cloud service"

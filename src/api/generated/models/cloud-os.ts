@@ -16,19 +16,19 @@
 /**
  * 
  * @export
- * @interface CloudOS
+ * @interface CloudOs
  */
-export interface CloudOS {
+export interface CloudOs {
     /**
      * The operating system\'s name
      * @type {string}
-     * @memberof CloudOS
+     * @memberof CloudOs
      */
     name: string;
     /**
      * The version of the operating system
      * @type {string}
-     * @memberof CloudOS
+     * @memberof CloudOs
      */
     version: string;
 }

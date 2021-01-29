@@ -12,37 +12,37 @@
  */
 
 
-import { CloudOS } from './cloud-os';
+import { CloudOs } from './cloud-os';
 
 /**
  * 
  * @export
- * @interface CloudEC2Settings
+ * @interface CloudAwsEc2Settings
  */
-export interface CloudEC2Settings {
+export interface CloudAwsEc2Settings {
     /**
      * The instance type to be launched on the cloud provider
      * @type {string}
-     * @memberof CloudEC2Settings
+     * @memberof CloudAwsEc2Settings
      */
     instance_type: string;
     /**
      * Datacenter region where the cloud instance will be launched
      * @type {string}
-     * @memberof CloudEC2Settings
+     * @memberof CloudAwsEc2Settings
      */
     region: string;
     /**
      * The storage\'s size of the cloud instance
      * @type {number}
-     * @memberof CloudEC2Settings
+     * @memberof CloudAwsEc2Settings
      */
     storage_size: number;
     /**
      * 
-     * @type {CloudOS}
-     * @memberof CloudEC2Settings
+     * @type {CloudOs}
+     * @memberof CloudAwsEc2Settings
      */
-    os: CloudOS;
+    os: CloudOs;
 }
 

@@ -12,7 +12,7 @@
  */
 
 
-import { CloudEC2Settings } from './cloud-ec2-settings';
+import { CloudAwsEc2Settings } from './cloud-aws-ec2-settings';
 import { ServerCloudServiceName } from './server-cloud-service-name';
 
 /**
@@ -29,9 +29,9 @@ export interface ServerCloudService {
     name?: ServerCloudServiceName;
     /**
      * The configurations used to cloud service
-     * @type {CloudEC2Settings}
+     * @type {CloudAwsEc2Settings}
      * @memberof ServerCloudService
      */
-    settings?: CloudEC2Settings;
+    settings?: CloudAwsEc2Settings;
 }
 
