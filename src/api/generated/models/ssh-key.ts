@@ -63,5 +63,17 @@ export interface SshKey {
      * @memberof SshKey
      */
     last_action?: ActionRelation | null;
+    /**
+     * The date and time when the record was created
+     * @type {string}
+     * @memberof SshKey
+     */
+    created_at?: string;
+    /**
+     * The date and time when the record was last updated
+     * @type {string}
+     * @memberof SshKey
+     */
+    updated_at?: string;
 }
 
