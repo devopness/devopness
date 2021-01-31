@@ -7,7 +7,7 @@ properties:
   name:
     type: string
     description: The name entered by the user to uniquely identify the public SSH key
-    example: 'my-laptop-ssh-key'
+    example: "my-laptop-ssh-key"
   created_by:
     type: integer
     description: The Id of the user to which the SSH key belongs to
@@ -21,19 +21,19 @@ properties:
     description: The hashed fingerprint of the public key
     example: "f1:59:d6:c4:55:97:06:94:e3:f2:82:de:46:e5:27:39"
   created_by_user:
-    $ref: '#/components/schemas/UserRelation'
+    $ref: "#/components/schemas/UserRelation"
   last_action:
-    $ref: '#/components/schemas/ActionRelation'
-  # created_at:
-  #   type: string
-  #   format: date-time
-  #   description: The date and time when the record was created
-  #   example: '2019-09-25T15:50:48.000000Z'
-  # updated_at:
-  #   type: string
-  #   format: date-time
-  #   description: The date and time when the record was last updated
-  #   example: '2019-09-25T13:52:04.000000Z'
+    $ref: "#/components/schemas/ActionRelation"
+  created_at:
+    type: string
+    format: date-time
+    description: The date and time when the record was created
+    example: "2019-09-25T15:50:48.000000Z"
+  updated_at:
+    type: string
+    format: date-time
+    description: The date and time when the record was last updated
+    example: "2019-09-25T13:52:04.000000Z"
 required:
   - name
 #  - public_key # TO DO: define a separate `ssh-key-create.yaml` schema. Se projects or users for references
