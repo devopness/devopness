@@ -42,6 +42,24 @@ export class CloudProvidersApiService extends ApiBaseService {
 
     /**
      * 
+     * @summary Delete a given cloud provider credential
+     * @param {number} credentialId Numeric ID of the cloud provider credential to be deleted
+     */
+    public async deleteCredential(credentialId: number): Promise<ApiResponse<void>> {
+        if (credentialId === null || credentialId === undefined) {
+            throw new ArgumentNullException('credentialId', 'deleteCredential');
+        }
+        
+        let queryString = '';
+
+        const requestUrl = '/credentials/{credential_id}' + (queryString? `?${queryString}` : '');
+
+        const response = await this.delete <void>(requestUrl.replace(`{${"credential_id"}}`, encodeURIComponent(String(credentialId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
      * @summary Get a cloud provider credential by ID
      * @param {number} credentialId Numeric ID of the credential to get
      */

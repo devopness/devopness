@@ -858,6 +858,43 @@
       }
     },
     "/credentials/{credential_id}": {
+      "delete": {
+        "summary": "Delete a given cloud provider credential",
+        "operationId": "deleteCredential",
+        "tags": [
+          "Cloud Providers"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "credential_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the cloud provider credential to be deleted"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
       "get": {
         "summary": "Get a cloud provider credential by ID",
         "operationId": "getCredential",
