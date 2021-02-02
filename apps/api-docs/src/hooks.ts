@@ -43,6 +43,11 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         // @todo: Resolves conflicts to trigger a hook on dev-api
         'triggerHook201',
         'triggerHook204',
+        // @todo: fake-server route could force create a credential so we would at least be able to validate GET, PUT and DELETE for /credentials endpoints
+        'addCredential201',
+        'deleteCredential204',
+        'getCredential200',
+        'listCredentials200',
     ];
 
     // transactions listed here are skipped with a `before` hook

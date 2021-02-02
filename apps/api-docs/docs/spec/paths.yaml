@@ -40,6 +40,8 @@
   get:
     $ref: ./endpoints/credentials/paths/credentials-list.yaml
 /credentials/{credential_id}:
+  delete:
+    $ref: ./endpoints/credentials/paths/credentials-id-delete.yaml
   get:
     $ref: ./endpoints/credentials/paths/credentials-id.yaml
 /deployments/{deployment_id}:
