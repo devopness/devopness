@@ -26,7 +26,13 @@ export interface SshKey {
      * @type {number}
      * @memberof SshKey
      */
-    id?: number;
+    id: number;
+    /**
+     * The project id that the SSH public key belongs to
+     * @type {number}
+     * @memberof SshKey
+     */
+    project_id?: number;
     /**
      * The name entered by the user to uniquely identify the public SSH key
      * @type {string}
@@ -40,17 +46,11 @@ export interface SshKey {
      */
     created_by?: number;
     /**
-     * The public SSH key to add to your `devopness` account and associate it to the given project
-     * @type {string}
-     * @memberof SshKey
-     */
-    public_key?: string;
-    /**
      * The hashed fingerprint of the public key
      * @type {string}
      * @memberof SshKey
      */
-    fingerprint?: string;
+    fingerprint: string;
     /**
      * 
      * @type {UserRelation}

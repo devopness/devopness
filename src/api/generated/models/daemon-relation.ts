@@ -12,6 +12,7 @@
  */
 
 
+import { ActionRelation } from './action-relation';
 
 /**
  * 
@@ -61,6 +62,12 @@ export interface DaemonRelation {
      * @memberof DaemonRelation
      */
     auto_generated?: boolean;
+    /**
+     * 
+     * @type {ActionRelation}
+     * @memberof DaemonRelation
+     */
+    last_action?: ActionRelation | null;
     /**
      * The date and time when the record was created
      * @type {string}

@@ -12,6 +12,7 @@
  */
 
 
+import { ActionRelation } from './action-relation';
 import { SslCertificateIssuer } from './ssl-certificate-issuer';
 import { SslCertificateType } from './ssl-certificate-type';
 import { SslCertificateValidationLevel } from './ssl-certificate-validation-level';
@@ -82,6 +83,12 @@ export interface SslCertificateRelation {
      * @memberof SslCertificateRelation
      */
     last_renewed_at?: string | null;
+    /**
+     * 
+     * @type {ActionRelation}
+     * @memberof SslCertificateRelation
+     */
+    last_action?: ActionRelation | null;
     /**
      * The date and time when the record was created
      * @type {string}

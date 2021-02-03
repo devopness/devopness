@@ -19,6 +19,7 @@ import { EnvironmentType } from './environment-type';
 import { NetworkRuleRelation } from './network-rule-relation';
 import { ServerRelation } from './server-relation';
 import { ServiceRelation } from './service-relation';
+import { SshKeyRelation } from './ssh-key-relation';
 import { UserRelation } from './user-relation';
 
 /**
@@ -50,7 +51,7 @@ export interface Environment {
      * @type {string}
      * @memberof Environment
      */
-    type_human_readable?: string;
+    type_human_readable: string;
     /**
      * 
      * @type {Array<ServerRelation>}
@@ -87,6 +88,12 @@ export interface Environment {
      * @memberof Environment
      */
     services?: Array<ServiceRelation>;
+    /**
+     * 
+     * @type {Array<SshKeyRelation>}
+     * @memberof Environment
+     */
+    ssh_keys?: Array<SshKeyRelation>;
     /**
      * 
      * @type {UserRelation}
