@@ -8790,6 +8790,9 @@
           "services": {
             "$ref": "#/components/schemas/Services"
           },
+          "ssh_keys": {
+            "$ref": "#/components/schemas/SshKeys"
+          },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
           },
@@ -8809,7 +8812,8 @@
         "required": [
           "id",
           "name",
-          "type"
+          "type",
+          "type_human_readable"
         ]
       },
       "EnvironmentCreate": {
@@ -11745,6 +11749,11 @@
             "description": "The Id of the given SSH public key",
             "example": 1
           },
+          "project_id": {
+            "type": "integer",
+            "description": "The project id that the SSH public key belongs to",
+            "example": 67423019
+          },
           "name": {
             "type": "string",
             "description": "The name entered by the user to uniquely identify the public SSH key",
@@ -11754,11 +11763,6 @@
             "type": "integer",
             "description": "The Id of the user to which the SSH key belongs to",
             "example": 123
-          },
-          "public_key": {
-            "type": "string",
-            "description": "The public SSH key to add to your `devopness` account and associate it to the given project",
-            "example": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCu2g54rOA/7OhsILhFncrBAaPe8K0mZilMQugwGpiqQY89Xx0rhcZ/HS2rvmJnGC0nATxOZFsZLfjInpHhq+Y5WumTO0GUrkF215t4QavEU6UMd7VC+mqm2mm4WP+9zkcSSCzy7ZQ1Tuig6IWAB90FNqD7tXRFAqAjlC1LW8V+Efw9AO2mROglpxnoHuH8ZN0a/LQBi5iyeqOLuKZzgUWv4nEIqyYYGslDS1eru2aINwCNahDljXM7f7LcrHlhv5c4y5WSdEYlxSdQQh/ijDcuIIZEv27ivYoY1fse24b2MqD2XdHJpSb1GLnOI76t7+MSmDow3BtSxUNqW0rIUqObFxlMVx9oozHjnn3FkFee+qhQ/9knA7+V9Z7M6SJzDwcGqzJXEpuX/E4AHV04vEI4+RV2vNLhPsHZ2DDQ1fm3ZUtXnWXcIwsLC9WNFdiCOL+WyIYKieQ/CiWfDDIp0xlho83HMp79+BJ4ceFRP/PAdee+TltbtoJR00Ezf8b2nFU="
           },
           "fingerprint": {
             "type": "string",
@@ -11785,7 +11789,9 @@
           }
         },
         "required": [
-          "name"
+          "id",
+          "name",
+          "fingerprint"
         ]
       },
       "SshKeyCreate": {
@@ -11829,6 +11835,11 @@
             "description": "The Id of the given SSH public key",
             "example": 1
           },
+          "project_id": {
+            "type": "integer",
+            "description": "The project id that the SSH public key belongs to",
+            "example": 67423019
+          },
           "name": {
             "type": "string",
             "description": "The name entered by the user to uniquely identify the public SSH key",
@@ -11839,19 +11850,31 @@
             "description": "The Id of the user to which the SSH key belongs to",
             "example": 123
           },
-          "public_key": {
-            "type": "string",
-            "description": "The public SSH key to add to your `devopness` account and associate it to the given project",
-            "example": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCu2g54rOA/7OhsILhFncrBAaPe8K0mZilMQugwGpiqQY89Xx0rhcZ/HS2rvmJnGC0nATxOZFsZLfjInpHhq+Y5WumTO0GUrkF215t4QavEU6UMd7VC+mqm2mm4WP+9zkcSSCzy7ZQ1Tuig6IWAB90FNqD7tXRFAqAjlC1LW8V+Efw9AO2mROglpxnoHuH8ZN0a/LQBi5iyeqOLuKZzgUWv4nEIqyYYGslDS1eru2aINwCNahDljXM7f7LcrHlhv5c4y5WSdEYlxSdQQh/ijDcuIIZEv27ivYoY1fse24b2MqD2XdHJpSb1GLnOI76t7+MSmDow3BtSxUNqW0rIUqObFxlMVx9oozHjnn3FkFee+qhQ/9knA7+V9Z7M6SJzDwcGqzJXEpuX/E4AHV04vEI4+RV2vNLhPsHZ2DDQ1fm3ZUtXnWXcIwsLC9WNFdiCOL+WyIYKieQ/CiWfDDIp0xlho83HMp79+BJ4ceFRP/PAdee+TltbtoJR00Ezf8b2nFU="
-          },
           "fingerprint": {
             "type": "string",
             "description": "The hashed fingerprint of the public key",
             "example": "f1:59:d6:c4:55:97:06:94:e3:f2:82:de:46:e5:27:39"
+          },
+          "last_action": {
+            "$ref": "#/components/schemas/ActionRelation"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25T13:52:04.000000Z"
           }
         },
         "required": [
-          "name"
+          "id",
+          "name",
+          "fingerprint"
         ]
       },
       "SslCertificate": {
