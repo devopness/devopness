@@ -12,6 +12,7 @@
  */
 
 
+import { ActionRelation } from './action-relation';
 import { CronJobPattern } from './cron-job-pattern';
 
 /**
@@ -62,6 +63,12 @@ export interface CronJobRelation {
      * @memberof CronJobRelation
      */
     auto_generated?: boolean;
+    /**
+     * 
+     * @type {ActionRelation}
+     * @memberof CronJobRelation
+     */
+    last_action?: ActionRelation | null;
     /**
      * The date and time when the record was created
      * @type {string}

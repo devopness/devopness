@@ -12,6 +12,7 @@
  */
 
 
+import { ActionRelation } from './action-relation';
 import { ApplicationType } from './application-type';
 
 /**
@@ -152,6 +153,12 @@ export interface ApplicationRelation {
      * @memberof ApplicationRelation
      */
     project_id: number;
+    /**
+     * 
+     * @type {ActionRelation}
+     * @memberof ApplicationRelation
+     */
+    last_action?: ActionRelation | null;
     /**
      * The date and time when the record was created
      * @type {string}

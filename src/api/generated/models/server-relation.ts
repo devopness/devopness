@@ -12,6 +12,7 @@
  */
 
 
+import { ActionRelation } from './action-relation';
 import { ActionStatus } from './action-status';
 
 /**
@@ -74,6 +75,12 @@ export interface ServerRelation {
      * @memberof ServerRelation
      */
     provider_name_human_readable?: string;
+    /**
+     * 
+     * @type {ActionRelation}
+     * @memberof ServerRelation
+     */
+    last_action?: ActionRelation | null;
     /**
      * The date and time when the record was created
      * @type {string}

@@ -12,6 +12,7 @@
  */
 
 
+import { ActionRelation } from './action-relation';
 import { ServiceInitialState } from './service-initial-state';
 
 /**
@@ -68,6 +69,12 @@ export interface ServiceRelation {
      * @memberof ServiceRelation
      */
     description?: string | null;
+    /**
+     * 
+     * @type {ActionRelation}
+     * @memberof ServiceRelation
+     */
+    last_action?: ActionRelation | null;
     /**
      * The date and time when the record was created
      * @type {string}
