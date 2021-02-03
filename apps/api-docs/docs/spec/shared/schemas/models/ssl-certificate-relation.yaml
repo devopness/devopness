@@ -39,6 +39,8 @@ properties:
     description: The date and time when this certificate was renewed for the last time
     example: "2020-04-16T15:50:48.000000Z"
     nullable: true
+  last_action:
+    $ref: '#/components/schemas/ActionRelation'
   created_at:
     type: string
     format: date-time

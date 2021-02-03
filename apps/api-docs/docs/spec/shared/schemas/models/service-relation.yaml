@@ -32,6 +32,8 @@ properties:
     description: A text describing the service, provided by the service author
     example: MySQL Community Server
     nullable: true
+  last_action:
+    $ref: '#/components/schemas/ActionRelation'
   # started_at:
   #   type: string
   #   format: date-time

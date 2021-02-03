@@ -30,6 +30,8 @@ properties:
     type: integer
     description: Ending range of network ports to be considered by this rule
     example: 7654
+  last_action:
+    $ref: '#/components/schemas/ActionRelation'
   created_at:
     type: string
     format: date-time

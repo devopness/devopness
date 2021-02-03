@@ -98,6 +98,8 @@ properties:
   project_id:
     type: integer
     description: Numeric ID of the project to which the application belongs to
+  last_action:
+    $ref: '#/components/schemas/ActionRelation'
   created_at:
     type: string
     format: date-time
