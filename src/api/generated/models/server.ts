@@ -31,6 +31,12 @@ export interface Server {
      */
     id: number;
     /**
+     * The server\'s name
+     * @type {string}
+     * @memberof Server
+     */
+    name: string;
+    /**
      * The server\'s hostname
      * @type {string}
      * @memberof Server

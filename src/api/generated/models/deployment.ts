@@ -34,6 +34,12 @@ export interface Deployment {
      */
     id: number;
     /**
+     * The application\'s name that the deployment belongs to
+     * @type {string}
+     * @memberof Deployment
+     */
+    name: string;
+    /**
      * 
      * @type {ActionStatus}
      * @memberof Deployment

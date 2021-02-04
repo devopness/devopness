@@ -28,6 +28,12 @@ export interface ServerRelation {
      */
     id: number;
     /**
+     * The server\'s name
+     * @type {string}
+     * @memberof ServerRelation
+     */
+    name: string;
+    /**
      * The server\'s hostname
      * @type {string}
      * @memberof ServerRelation
