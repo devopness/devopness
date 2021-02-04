@@ -17,6 +17,7 @@ import { ActionStatus } from './action-status';
 import { ActionSummary } from './action-summary';
 import { ActionType } from './action-type';
 import { EnvironmentRelation } from './environment-relation';
+import { ProjectRelation } from './project-relation';
 import { Resource } from './resource';
 import { ServerAction } from './server-action';
 import { UserRelation } from './user-relation';
@@ -81,6 +82,12 @@ export interface Action {
      * @memberof Action
      */
     triggered_by_user: UserRelation;
+    /**
+     * 
+     * @type {ProjectRelation}
+     * @memberof Action
+     */
+    project?: ProjectRelation;
     /**
      * 
      * @type {ActionHookRequest}

@@ -6787,6 +6787,9 @@
           "triggered_by_user": {
             "$ref": "#/components/schemas/UserRelation"
           },
+          "project": {
+            "$ref": "#/components/schemas/ProjectRelation"
+          },
           "hook_requests": {
             "$ref": "#/components/schemas/ActionHookRequest"
           },
