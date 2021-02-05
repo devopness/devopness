@@ -4,7 +4,7 @@ properties:
     description: "The list of services that must be installed on the server"
     type: array
     items:
-      $ref: '#/components/schemas/ServiceCreate'
+      $ref: '#/components/schemas/BlueprintService'
     nullable: true
   validate_web_public_access:
     description: If `true`, create a landing page on the server to validate if has public access

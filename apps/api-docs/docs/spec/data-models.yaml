@@ -36,6 +36,8 @@ Applications:
   $ref: ./endpoints/applications/schemas/application-list.yaml
 ApplicationRelation:
   $ref: ./shared/schemas/models/application-relation.yaml
+BlueprintService:
+  $ref: ./endpoints/servers/schemas/blueprint-service.yaml
 Commit:
   $ref: ./shared/schemas/commit.yaml
 CloudAwsEc2Settings:

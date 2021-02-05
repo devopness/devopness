@@ -1,6 +1,6 @@
 type: object
 properties:
-  name:
+  type:
     $ref: '#/components/schemas/ServiceName'
     example: redis
   auto_start:
@@ -16,4 +16,4 @@ properties:
     description: The service version to be installed
     example: 5.7.29
 required:
-  - name
+  - type

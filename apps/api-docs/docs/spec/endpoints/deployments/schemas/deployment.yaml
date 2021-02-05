@@ -54,7 +54,6 @@ properties:
     nullable: true
 required:
   - id
-  - name
   - status
   - type
   - source

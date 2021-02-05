@@ -1,9 +1,7 @@
 type: object
 properties:
-  name:
-    type: string
-    description: The service name
-    example: mysql
+  type:
+    $ref: '#/components/schemas/ServiceName'
   auto_start:
     type: boolean
     default: false
@@ -19,5 +17,5 @@ properties:
       type: integer
       example: [1, 2, 3]
 required:
-  - name
+  - type
   - action
