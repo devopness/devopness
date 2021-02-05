@@ -32,17 +32,23 @@ export interface Service {
      */
     id: number;
     /**
-     * The service name
+     * The human readable service name
      * @type {string}
      * @memberof Service
      */
     name: string;
     /**
-     * Formatted/human readable version of the service name
+     * The service type
      * @type {string}
      * @memberof Service
      */
-    name_human_readable?: string;
+    type: string;
+    /**
+     * Formatted/human readable version of the service type
+     * @type {string}
+     * @memberof Service
+     */
+    type_human_readable: string;
     /**
      * The service current installed version
      * @type {string}
