@@ -6,11 +6,15 @@ properties:
     example: 652674
   name:
     type: string
-    description: The service name
-    example: mysql
-  name_human_readable:
+    description: The human readable service name
+    example: MySQL
+  type:
     type: string
-    description: Formatted/human readable version of the service name
+    description: The service type
+    example: mysql
+  type_human_readable:
+    type: string
+    description: Formatted/human readable version of the service type
     example: MySQL
   version:
     type: string
@@ -60,6 +64,8 @@ properties:
 required:
   - id
   - name
+  - type
+  - type_human_readable
   - auto_generated
   - auto_start
   - initial_state

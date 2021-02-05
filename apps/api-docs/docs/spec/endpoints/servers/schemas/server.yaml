@@ -4,6 +4,10 @@ properties:
     type: integer
     description: The unique id of the given record
     example: 9654123
+  name:
+    type: string
+    description: The server's name
+    example: web-srv-1
   hostname:
     type: string
     description: The server's hostname
@@ -59,6 +63,7 @@ properties:
     example: '2019-09-25T13:52:04.000000Z'
 required:
   - id
+  - name
   - hostname
   - ip_address
   - ssh_port
