@@ -28,6 +28,12 @@ export interface ServerAction {
      */
     server_id?: number;
     /**
+     * The name of the server on which the action must be performed
+     * @type {string}
+     * @memberof ServerAction
+     */
+    server_name?: string;
+    /**
      * 
      * @type {ActionStatus}
      * @memberof ServerAction
