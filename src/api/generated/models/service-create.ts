@@ -27,7 +27,7 @@ export interface ServiceCreate {
      * @type {ServiceName}
      * @memberof ServiceCreate
      */
-    name: ServiceName;
+    type: ServiceName;
     /**
      * Tells if the service should start automatically on operating system boot
      * @type {boolean}

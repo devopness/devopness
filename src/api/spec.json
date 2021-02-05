@@ -7716,6 +7716,14 @@
           "default_branch"
         ]
       },
+      "BlueprintService": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "$ref": "#/components/schemas/ServiceName"
+          }
+        }
+      },
       "Commit": {
         "type": "object",
         "properties": {
@@ -8503,7 +8511,6 @@
         },
         "required": [
           "id",
-          "name",
           "status",
           "type",
           "source",
@@ -10982,7 +10989,7 @@
             "description": "The list of services that must be installed on the server",
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ServiceCreate"
+              "$ref": "#/components/schemas/BlueprintService"
             },
             "nullable": true
           },
@@ -11345,7 +11352,7 @@
       "ServiceCreate": {
         "type": "object",
         "properties": {
-          "name": {
+          "type": {
             "$ref": "#/components/schemas/ServiceName",
             "example": "redis"
           },
@@ -11367,7 +11374,7 @@
           }
         },
         "required": [
-          "name"
+          "type"
         ]
       },
       "ServiceInitialState": {

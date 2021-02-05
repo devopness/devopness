@@ -38,7 +38,7 @@ export interface Deployment {
      * @type {string}
      * @memberof Deployment
      */
-    name: string;
+    name?: string;
     /**
      * 
      * @type {ActionStatus}
