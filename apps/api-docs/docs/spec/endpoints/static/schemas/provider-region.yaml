@@ -12,7 +12,10 @@ properties:
     type: string
     description: Text describing the region
     example: "us-east-1: US East (N. Virginia)"
+  available_instances:
+    $ref: '#/components/schemas/CloudInstances'
 required:
   - value
   - human_readable
   - hint
+  - available_instances

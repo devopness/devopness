@@ -42,8 +42,16 @@ Commit:
   $ref: ./shared/schemas/commit.yaml
 CloudAwsEc2Settings:
   $ref: ./endpoints/servers/schemas/cloud-settings/cloud-aws-ec2-settings.yaml
+CloudInstance:
+  $ref: ./endpoints/static/schemas/cloud-instance.yaml
+CloudInstances:
+  $ref: ./endpoints/static/schemas/cloud-instance-list.yaml
 CloudOs:
   $ref: ./endpoints/servers/schemas/cloud-settings/cloud-os.yaml
+CloudService:
+  $ref: ./endpoints/static/schemas/cloud-service.yaml
+CloudServices:
+  $ref: ./endpoints/static/schemas/cloud-service-list.yaml
 Credential:
   $ref: ./endpoints/credentials/schemas/credential.yaml
 CredentialCreate:

@@ -12,10 +12,10 @@ properties:
     type: string
     description: Text describing what is the provider
     example: Cloud Server provided by Amazon Web Services
-  regions:
-    $ref: '#/components/schemas/ProviderRegions'
+  cloud_services:
+    $ref: '#/components/schemas/CloudServices'
 required:
   - value
   - human_readable
   - hint
-  - regions
+  - cloud_services
