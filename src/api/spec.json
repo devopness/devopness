@@ -7801,6 +7801,73 @@
           "os"
         ]
       },
+      "CloudInstance": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the cloud instance",
+            "example": "m5.large"
+          },
+          "type": {
+            "type": "string",
+            "description": "The type of the cloud instance",
+            "example": "m5"
+          },
+          "family": {
+            "type": "string",
+            "description": "The family to which the instance belongs",
+            "example": "Memory Optimized"
+          },
+          "default_disk_size": {
+            "type": "integer",
+            "description": "The default disk size (in GB) used to instance",
+            "example": 25
+          },
+          "price_hourly": {
+            "type": "string",
+            "description": "The price per hour of the instance",
+            "example": "0.09600"
+          },
+          "price_monthly": {
+            "type": "string",
+            "description": "The price per month of the instance",
+            "example": "70.28"
+          },
+          "price_currency": {
+            "type": "string",
+            "description": "The currency of the prices",
+            "example": "USD"
+          },
+          "vcpus": {
+            "type": "string",
+            "description": "The number of virtual CPU of the instance",
+            "example": 2
+          },
+          "memory": {
+            "type": "string",
+            "description": "The RAM memory size (in MB) of the instance",
+            "example": "8192.00"
+          }
+        },
+        "required": [
+          "name",
+          "type",
+          "family",
+          "default_disk_size",
+          "price_hourly",
+          "price_monthly",
+          "price_currency",
+          "vcpus",
+          "memory"
+        ]
+      },
+      "CloudInstances": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/CloudInstance"
+        }
+      },
       "CloudOs": {
         "type": "object",
         "properties": {
@@ -7819,6 +7886,35 @@
           "name",
           "version"
         ]
+      },
+      "CloudService": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "The acronym name of the cloud service",
+            "example": "ec2"
+          },
+          "name": {
+            "type": "string",
+            "description": "The full name of the cloud service",
+            "example": "Amazon Elastic Compute Cloud"
+          },
+          "regions": {
+            "$ref": "#/components/schemas/ProviderRegions"
+          }
+        },
+        "required": [
+          "code",
+          "name",
+          "regions"
+        ]
+      },
+      "CloudServices": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/CloudService"
+        }
       },
       "Credential": {
         "type": "object",
@@ -10445,15 +10541,15 @@
             "description": "Text describing what is the provider",
             "example": "Cloud Server provided by Amazon Web Services"
           },
-          "regions": {
-            "$ref": "#/components/schemas/ProviderRegions"
+          "cloud_services": {
+            "$ref": "#/components/schemas/CloudServices"
           }
         },
         "required": [
           "value",
           "human_readable",
           "hint",
-          "regions"
+          "cloud_services"
         ]
       },
       "Providers": {
@@ -10479,12 +10575,16 @@
             "type": "string",
             "description": "Text describing the region",
             "example": "us-east-1: US East (N. Virginia)"
+          },
+          "available_instances": {
+            "$ref": "#/components/schemas/CloudInstances"
           }
         },
         "required": [
           "value",
           "human_readable",
-          "hint"
+          "hint",
+          "available_instances"
         ]
       },
       "ProviderRegions": {
