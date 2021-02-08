@@ -12,7 +12,7 @@
  */
 
 
-import { ProviderRegion } from './provider-region';
+import { CloudService } from './cloud-service';
 
 /**
  * 
@@ -40,9 +40,9 @@ export interface Provider {
     hint: string;
     /**
      * 
-     * @type {Array<ProviderRegion>}
+     * @type {Array<CloudService>}
      * @memberof Provider
      */
-    regions: Array<ProviderRegion>;
+    cloud_services: Array<CloudService>;
 }
 

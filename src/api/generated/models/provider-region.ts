@@ -12,6 +12,7 @@
  */
 
 
+import { CloudInstance } from './cloud-instance';
 
 /**
  * 
@@ -37,5 +38,11 @@ export interface ProviderRegion {
      * @memberof ProviderRegion
      */
     hint: string;
+    /**
+     * 
+     * @type {Array<CloudInstance>}
+     * @memberof ProviderRegion
+     */
+    available_instances: Array<CloudInstance>;
 }
 
