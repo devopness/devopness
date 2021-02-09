@@ -7969,6 +7969,9 @@
             "description": "Determines if the credential is current activated",
             "example": true
           },
+          "provider": {
+            "$ref": "#/components/schemas/CloudProvider"
+          },
           "created_at": {
             "type": "string",
             "format": "date-time",

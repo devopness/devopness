@@ -12,6 +12,7 @@
  */
 
 
+import { CloudProvider } from './cloud-provider';
 
 /**
  * 
@@ -49,6 +50,12 @@ export interface Credential {
      * @memberof Credential
      */
     active?: boolean;
+    /**
+     * 
+     * @type {CloudProvider}
+     * @memberof Credential
+     */
+    provider?: CloudProvider;
     /**
      * The date and time when the record was created
      * @type {string}
