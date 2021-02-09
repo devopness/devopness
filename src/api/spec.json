@@ -7887,6 +7887,31 @@
           "version"
         ]
       },
+      "CloudProvider": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The unique id of the cloud provider",
+            "example": 2
+          },
+          "acronym": {
+            "type": "string",
+            "description": "The acronym of the cloud provider",
+            "example": "aws"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the cloud provider",
+            "example": "Amazon Web Services"
+          }
+        },
+        "required": [
+          "id",
+          "acronym",
+          "name"
+        ]
+      },
       "CloudService": {
         "type": "object",
         "properties": {

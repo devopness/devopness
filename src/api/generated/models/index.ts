@@ -21,6 +21,7 @@ export * from './blueprint-service';
 export * from './cloud-aws-ec2-settings';
 export * from './cloud-instance';
 export * from './cloud-os';
+export * from './cloud-provider';
 export * from './cloud-service';
 export * from './commit';
 export * from './credential';
