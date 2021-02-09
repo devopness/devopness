@@ -48,6 +48,8 @@ CloudInstances:
   $ref: ./endpoints/static/schemas/cloud-instance-list.yaml
 CloudOs:
   $ref: ./endpoints/servers/schemas/cloud-settings/cloud-os.yaml
+CloudProvider:
+  $ref: ./endpoints/credentials/schemas/cloud-provider.yaml
 CloudService:
   $ref: ./endpoints/static/schemas/cloud-service.yaml
 CloudServices:
