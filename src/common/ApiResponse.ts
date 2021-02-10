@@ -20,7 +20,8 @@ export class ApiResponse<T>{
         if (axiosResp.headers) {
             const linkHeader = parseLinkHeader(axiosResp.headers?.link) as ApiLinks | null;
             this.pageCount = Number(linkHeader?.last?.page) || undefined;
-            this.actionId = axiosResp.headers['X-Devopness-Action-Id'];
+            // axios headers are intentionally lower cased, as per https://github.com/axios/axios/issues/413
+            this.actionId = axiosResp.headers['x-devopness-action-id'];
         }
     }
 }

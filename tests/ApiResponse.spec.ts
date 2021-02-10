@@ -61,7 +61,7 @@ test('ApiResponse has the correct action id value', () => {
         data: null,
         status: 200,
         headers: {
-            'X-Devopness-Action-Id': 54321,
+            'x-devopness-action-id': 54321,
         },
     } as AxiosResponse<null>;
 
