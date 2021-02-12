@@ -7902,12 +7902,16 @@
           },
           "regions": {
             "$ref": "#/components/schemas/ProviderRegions"
+          },
+          "os": {
+            "$ref": "#/components/schemas/OperatingSystems"
           }
         },
         "required": [
           "code",
           "name",
-          "regions"
+          "regions",
+          "os"
         ]
       },
       "CloudServices": {
@@ -11203,14 +11207,10 @@
         "properties": {
           "providers": {
             "$ref": "#/components/schemas/Providers"
-          },
-          "os": {
-            "$ref": "#/components/schemas/OperatingSystems"
           }
         },
         "required": [
-          "providers",
-          "os"
+          "providers"
         ]
       },
       "ServerProvider": {

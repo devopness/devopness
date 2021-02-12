@@ -12,7 +12,6 @@
  */
 
 
-import { OperatingSystem } from './operating-system';
 import { Provider } from './provider';
 
 /**
@@ -27,11 +26,5 @@ export interface ServerOptions {
      * @memberof ServerOptions
      */
     providers: Array<Provider>;
-    /**
-     * 
-     * @type {Array<OperatingSystem>}
-     * @memberof ServerOptions
-     */
-    os: Array<OperatingSystem>;
 }
 

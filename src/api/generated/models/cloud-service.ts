@@ -12,6 +12,7 @@
  */
 
 
+import { OperatingSystem } from './operating-system';
 import { ProviderRegion } from './provider-region';
 
 /**
@@ -38,5 +39,11 @@ export interface CloudService {
      * @memberof CloudService
      */
     regions: Array<ProviderRegion>;
+    /**
+     * 
+     * @type {Array<OperatingSystem>}
+     * @memberof CloudService
+     */
+    os: Array<OperatingSystem>;
 }
 
