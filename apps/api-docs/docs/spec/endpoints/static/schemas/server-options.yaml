@@ -2,8 +2,5 @@ type: object
 properties:
   providers:
     $ref: '#/components/schemas/Providers'
-  os:
-    $ref: '#/components/schemas/OperatingSystems'
 required:
   - providers
-  - os

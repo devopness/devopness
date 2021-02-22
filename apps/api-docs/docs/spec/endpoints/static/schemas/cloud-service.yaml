@@ -10,7 +10,10 @@ properties:
     example: Amazon Elastic Compute Cloud
   regions:
     $ref: '#/components/schemas/ProviderRegions'
+  os:
+    $ref: '#/components/schemas/OperatingSystems'
 required:
   - code
   - name
   - regions
+  - os
