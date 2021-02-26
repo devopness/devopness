@@ -8299,6 +8299,9 @@
           "last_action": {
             "$ref": "#/components/schemas/ActionRelation"
           },
+          "application": {
+            "$ref": "#/components/schemas/ApplicationRelation"
+          },
           "created_at": {
             "type": "string",
             "format": "date-time",
