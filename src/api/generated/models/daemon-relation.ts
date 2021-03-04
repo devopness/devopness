@@ -13,6 +13,7 @@
 
 
 import { ActionRelation } from './action-relation';
+import { ApplicationRelation } from './application-relation';
 
 /**
  * 
@@ -68,6 +69,12 @@ export interface DaemonRelation {
      * @memberof DaemonRelation
      */
     last_action?: ActionRelation | null;
+    /**
+     * 
+     * @type {ApplicationRelation}
+     * @memberof DaemonRelation
+     */
+    application?: ApplicationRelation | null;
     /**
      * The date and time when the record was created
      * @type {string}
