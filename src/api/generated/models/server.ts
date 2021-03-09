@@ -15,6 +15,7 @@
 import { ActionRelation } from './action-relation';
 import { ActionStatus } from './action-status';
 import { EnvironmentRelation } from './environment-relation';
+import { ProjectRelation } from './project-relation';
 import { ServerBlueprint } from './server-blueprint';
 import { UserRelation } from './user-relation';
 
@@ -90,6 +91,12 @@ export interface Server {
      * @memberof Server
      */
     environments?: Array<EnvironmentRelation>;
+    /**
+     * 
+     * @type {ProjectRelation}
+     * @memberof Server
+     */
+    project?: ProjectRelation;
     /**
      * The name of the server\'s provider.
      * @type {string}
