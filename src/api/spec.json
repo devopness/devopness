@@ -10949,6 +10949,9 @@
               "$ref": "#/components/schemas/EnvironmentRelation"
             }
           },
+          "project": {
+            "$ref": "#/components/schemas/ProjectRelation"
+          },
           "provider_name": {
             "description": "The name of the server's provider.",
             "type": "string",
