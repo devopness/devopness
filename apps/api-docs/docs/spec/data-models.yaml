@@ -42,6 +42,8 @@ Commit:
   $ref: ./shared/schemas/commit.yaml
 CloudAwsEc2Settings:
   $ref: ./endpoints/servers/schemas/cloud-settings/cloud-aws-ec2-settings.yaml
+CloudDigitalOceanDropletSettings:
+  $ref: ./endpoints/servers/schemas/cloud-settings/cloud-digital-ocean-droplet-settings.yaml
 CloudInstance:
   $ref: ./endpoints/static/schemas/cloud-instance.yaml
 CloudInstances:

@@ -5,4 +5,5 @@ properties:
   settings:
     anyOf:
       - $ref: '#/components/schemas/CloudAwsEc2Settings'
+      - $ref: '#/components/schemas/CloudDigitalOceanDropletSettings'
     description: The configurations used to cloud service

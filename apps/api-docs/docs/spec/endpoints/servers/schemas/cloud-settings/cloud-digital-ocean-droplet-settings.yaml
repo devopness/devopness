@@ -1,0 +1,16 @@
+type: object
+properties:
+  instance_type:
+    type: string
+    description: The instance type to be launched on the cloud provider
+    example: s-1vcpu-1gb
+  region:
+    type: string
+    description: Datacenter region where the cloud instance will be launched
+    example: nyc1
+  os:
+    $ref: '#/components/schemas/CloudOs'
+required:
+  - instance_type
+  - region
+  - os
