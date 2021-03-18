@@ -33,13 +33,13 @@ export interface ServerCreate {
      * @type {string}
      * @memberof ServerCreate
      */
-    ip_address: string;
+    ip_address?: string;
     /**
      * The network port to which the SSH daemon is listening to SSH connections on the server
      * @type {number}
      * @memberof ServerCreate
      */
-    ssh_port: number;
+    ssh_port?: number;
     /**
      * 
      * @type {ServerBlueprint}

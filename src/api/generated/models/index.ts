@@ -19,6 +19,7 @@ export * from './application-type';
 export * from './application-update';
 export * from './blueprint-service';
 export * from './cloud-aws-ec2-settings';
+export * from './cloud-digital-ocean-droplet-settings';
 export * from './cloud-instance';
 export * from './cloud-os';
 export * from './cloud-provider';

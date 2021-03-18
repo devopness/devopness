@@ -13,6 +13,7 @@
 
 
 import { CloudAwsEc2Settings } from './cloud-aws-ec2-settings';
+import { CloudDigitalOceanDropletSettings } from './cloud-digital-ocean-droplet-settings';
 import { ServerCloudServiceName } from './server-cloud-service-name';
 
 /**
@@ -29,9 +30,9 @@ export interface ServerCloudService {
     name?: ServerCloudServiceName;
     /**
      * The configurations used to cloud service
-     * @type {CloudAwsEc2Settings}
+     * @type {CloudAwsEc2Settings | CloudDigitalOceanDropletSettings}
      * @memberof ServerCloudService
      */
-    settings?: CloudAwsEc2Settings;
+    settings?: CloudAwsEc2Settings | CloudDigitalOceanDropletSettings;
 }
 
