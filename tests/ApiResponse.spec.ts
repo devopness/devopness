@@ -28,10 +28,10 @@ test('ApiResponse do not fail if no header is present', () => {
     const response = new ApiResponse<null>(axiosResponse);
 
     expect(response.actionId).toBe(undefined);
-    expect(response.pageCount).toBe(undefined);
+    expect(response.pageCount).toBe(1);
 });
 
-test('If no have last link, expect undefined pageCount', () => {
+test('If no have last link, expect pageCount to be 1', () => {
     const axiosResponse = {
         data: null,
         status: 200,
@@ -42,7 +42,7 @@ test('If no have last link, expect undefined pageCount', () => {
 
     const response = new ApiResponse<null>(axiosResponse);
 
-    expect(response.pageCount).toBe(undefined);
+    expect(response.pageCount).toBe(1);
 });
 
 test('ApiResponse do not fail if headers is undefined', () => {

@@ -19,6 +19,7 @@
  * @enum {string}
  */
 export enum ServerCloudServiceName {
+    Droplet = 'droplet',
     Ec2 = 'ec2'
 }
 
