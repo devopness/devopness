@@ -34,7 +34,7 @@
     "@types/uuid": "^8.0.1",
     "api-spec-converter": "^2.11.1",
     "dredd": "^13.1.1",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "openapi-types": "^1.3.5",
     "redoc-cli": "^0.9.10",
     "swagger-cli": "^4.0.4",
