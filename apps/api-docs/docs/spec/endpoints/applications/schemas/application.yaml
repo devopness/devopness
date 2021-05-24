@@ -7,7 +7,7 @@ properties:
     example: 445678964
   created_by:
     type: integer
-    description: The id of the user who created the server and to whom the server belongs
+    description: The id of the user who created the application and to whom the application belongs
     example: 1
   type:
     $ref: '#/components/schemas/ApplicationType'

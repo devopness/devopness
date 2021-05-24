@@ -63,6 +63,11 @@
 /environments/{environment_id}/daemons:
   get:
     $ref: ./endpoints/daemons/paths/environments-id-daemons-list.yaml
+/environments/{environment_id}/invitations:
+  get:
+    $ref: ./endpoints/invitations/paths/environments-id-invitations-list.yaml
+  post:
+    $ref: ./endpoints/invitations/paths/environments-id-invitations.yaml
 /environments/{environment_id}/network-rules:
   get:
     $ref: ./endpoints/network-rules/paths/environments-id-network-rules-list.yaml
@@ -84,6 +89,11 @@
 /environments/{environment_id}/servers/{server_id}/unlink:
   delete:
     $ref: ./endpoints/environments/paths/environments-id-servers-id-unlink.yaml
+/environments/{environment_id}/teams:
+  get:
+    $ref: ./endpoints/teams/paths/environments-id-teams-list.yaml
+  post:
+    $ref: ./endpoints/teams/paths/environments-id-teams.yaml
 /hooks/incoming:
   post:
     $ref: ./endpoints/hooks/paths/hooks-incoming-create.yaml
@@ -115,6 +125,9 @@
 /hook-requests/{hook_request_id}:
   get:
     $ref: ./endpoints/hook-requests/paths/hook-requests-id.yaml
+/invitations/{invitation_id}/accept/{token}:
+  post:
+    $ref: ./endpoints/invitations/paths/invitations-id-accept-token.yaml
 /logs/action/{action_id}:
   get:
     $ref: ./endpoints/logs/paths/logs-action-id.yaml
@@ -311,6 +324,9 @@
     $ref: ./endpoints/cronjobs/paths/cronjobs-id.yaml
   put:
     $ref: ./endpoints/cronjobs/paths/cronjobs-id-update.yaml
+/teams/{team_id}:
+  get:
+    $ref: ./endpoints/teams/paths/teams-id.yaml
 /users:
   post:
     $ref: ./endpoints/users/paths/users.yaml

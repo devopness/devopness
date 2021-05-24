@@ -172,6 +172,14 @@ HookVariableType:
   $ref: ./endpoints/hooks/schemas/hook-variable-type.yaml
 HookRelation:
   $ref: ./shared/schemas/models/hook-relation.yaml
+Invitation:
+  $ref: ./endpoints/invitations/schemas/invitation.yaml
+Invitations:
+  $ref: ./endpoints/invitations/schemas/invitation-list.yaml
+InvitationCreate:
+  $ref: ./endpoints/invitations/schemas/invitation-create.yaml
+InvitationStatus:
+  $ref: ./endpoints/invitations/schemas/invitation-status.yaml
 Language:
   $ref: ./shared/schemas/language.yaml
 LanguageRuntime:
@@ -352,12 +360,22 @@ SslCertificateValidationLevel:
   $ref: ./shared/schemas/ssl-certificate-validation-level.yaml
 SslCertificateRelation:
   $ref: ./shared/schemas/models/ssl-certificate-relation.yaml
+Team:
+  $ref: ./endpoints/teams/schemas/team.yaml
+Teams:
+  $ref: ./endpoints/teams/schemas/team-list.yaml
+TeamCreate:
+  $ref: ./endpoints/teams/schemas/team-create.yaml
+TeamRelation:
+  $ref: ./shared/schemas/models/team-relation.yaml
 TriggerEvent:
   $ref: ./shared/schemas/trigger-event.yaml
 TriggerType:
   $ref: ./shared/schemas/trigger-type.yaml
 User:
   $ref: ./endpoints/users/schemas/user.yaml
+Users:
+  $ref: ./endpoints/users/schemas/user-list.yaml
 UserAccountResendVerification:
   $ref: ./endpoints/users/schemas/user-account-resend-verification.yaml
 UserAccountVerify:

@@ -1,0 +1,68 @@
+type: object
+properties:
+  id:
+    type: string
+    description: The unique UUID of the given invitation
+    example: e57996b5-3cf3-4cae-a925-e2e2ada52732
+  created_by:
+    type: integer
+    description: The ID of the user who created the invitation
+    example: 197613
+  status:
+    $ref: '#/components/schemas/InvitationStatus'
+  team_id:
+    type: integer
+    description: The team ID to which the user has been invited
+    example: 5494132
+  user_id:
+    type: integer
+    description: The user's ID that has been invited to team
+    example: 316479
+  role:
+    type: string
+    description: The role to be assigned to the invited user after the invitation is accepted
+    example: member
+  email:
+    type: string
+    description: The email of the user that has been invited to team
+    example: invited.user@email.com
+  token:
+    type: string
+    description: The invitation token
+    example: XCuN00ZVffTHFCu5z3CzAK3YwzSuCPocN0cCFURO
+  accepted_from_ip:
+    type: string
+    nullable: true
+    description: The IP of the user who accepted the invitation
+    example: '172.17.0.24'
+  expires_at:
+    type: string
+    format: date-time
+    description: The date and time when the invitation will expire
+    example: '2019-09-26T15:50:48.000000Z'
+  accepted_at:
+    type: string
+    format: date-time
+    nullable: true
+    description: The date and time when the invitation was accepted
+    example: '2019-09-26T13:22:37.000000Z'
+  created_at:
+    type: string
+    format: date-time
+    description: The date and time when the record was created
+    example: '2019-09-25T15:50:48.000000Z'
+  updated_at:
+    type: string
+    format: date-time
+    description: The date and time when the record was last updated
+    example: '2019-09-25T13:52:04.000000Z'
+required:
+  - id
+  - created_by
+  - status
+  - team_id
+  - user_id
+  - role
+  - email
+  - token
+  - accepted_from_ip

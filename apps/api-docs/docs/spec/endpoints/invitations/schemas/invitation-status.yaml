@@ -1,0 +1,7 @@
+type: string
+description: The status of the invitation
+example: accepted
+enum:
+  - accepted
+  - expired
+  - pending
