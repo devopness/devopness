@@ -36,7 +36,7 @@ export interface TeamRelation {
      * @type {string}
      * @memberof TeamRelation
      */
-    photo_url: string;
+    photo_url: string | null;
     /**
      * The date and time when the record was created
      * @type {string}

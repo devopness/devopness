@@ -10252,23 +10252,8 @@
             "description": "The unique UUID of the given invitation",
             "example": "e57996b5-3cf3-4cae-a925-e2e2ada52732"
           },
-          "created_by": {
-            "type": "integer",
-            "description": "The ID of the user who created the invitation",
-            "example": 197613
-          },
           "status": {
             "$ref": "#/components/schemas/InvitationStatus"
-          },
-          "team_id": {
-            "type": "integer",
-            "description": "The team ID to which the user has been invited",
-            "example": 5494132
-          },
-          "user_id": {
-            "type": "integer",
-            "description": "The user's ID that has been invited to team",
-            "example": 316479
           },
           "role": {
             "type": "string",
@@ -10280,16 +10265,20 @@
             "description": "The email of the user that has been invited to team",
             "example": "invited.user@email.com"
           },
-          "token": {
-            "type": "string",
-            "description": "The invitation token",
-            "example": "XCuN00ZVffTHFCu5z3CzAK3YwzSuCPocN0cCFURO"
-          },
           "accepted_from_ip": {
             "type": "string",
             "nullable": true,
             "description": "The IP of the user who accepted the invitation",
             "example": "172.17.0.24"
+          },
+          "created_by_user": {
+            "$ref": "#/components/schemas/UserRelation"
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserRelation"
+          },
+          "team": {
+            "$ref": "#/components/schemas/TeamRelation"
           },
           "expires_at": {
             "type": "string",
@@ -10319,14 +10308,9 @@
         },
         "required": [
           "id",
-          "created_by",
           "status",
-          "team_id",
-          "user_id",
           "role",
-          "email",
-          "token",
-          "accepted_from_ip"
+          "email"
         ]
       },
       "Invitations": {
@@ -12808,6 +12792,7 @@
           },
           "photo_url": {
             "type": "string",
+            "nullable": true,
             "description": "The URL to team's image",
             "example": "https://example.com/images/my_team.png"
           },
@@ -12884,6 +12869,7 @@
           },
           "photo_url": {
             "type": "string",
+            "nullable": true,
             "description": "The URL to team's image",
             "example": "https://example.com/images/my_team.png"
           },

@@ -39,7 +39,7 @@ export interface Team {
      * @type {string}
      * @memberof Team
      */
-    photo_url: string;
+    photo_url: string | null;
     /**
      * 
      * @type {EnvironmentRelation}

@@ -13,6 +13,8 @@
 
 
 import { InvitationStatus } from './invitation-status';
+import { TeamRelation } from './team-relation';
+import { UserRelation } from './user-relation';
 
 /**
  * 
@@ -27,29 +29,11 @@ export interface Invitation {
      */
     id: string;
     /**
-     * The ID of the user who created the invitation
-     * @type {number}
-     * @memberof Invitation
-     */
-    created_by: number;
-    /**
      * 
      * @type {InvitationStatus}
      * @memberof Invitation
      */
     status: InvitationStatus;
-    /**
-     * The team ID to which the user has been invited
-     * @type {number}
-     * @memberof Invitation
-     */
-    team_id: number;
-    /**
-     * The user\'s ID that has been invited to team
-     * @type {number}
-     * @memberof Invitation
-     */
-    user_id: number;
     /**
      * The role to be assigned to the invited user after the invitation is accepted
      * @type {string}
@@ -63,17 +47,29 @@ export interface Invitation {
      */
     email: string;
     /**
-     * The invitation token
-     * @type {string}
-     * @memberof Invitation
-     */
-    token: string;
-    /**
      * The IP of the user who accepted the invitation
      * @type {string}
      * @memberof Invitation
      */
-    accepted_from_ip: string | null;
+    accepted_from_ip?: string | null;
+    /**
+     * 
+     * @type {UserRelation}
+     * @memberof Invitation
+     */
+    created_by_user?: UserRelation;
+    /**
+     * 
+     * @type {UserRelation}
+     * @memberof Invitation
+     */
+    user?: UserRelation;
+    /**
+     * 
+     * @type {TeamRelation}
+     * @memberof Invitation
+     */
+    team?: TeamRelation;
     /**
      * The date and time when the invitation will expire
      * @type {string}
