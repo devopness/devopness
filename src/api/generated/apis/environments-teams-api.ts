@@ -25,7 +25,7 @@ import { TeamRelation } from '../../generated/models';
 export class EnvironmentsTeamsApiService extends ApiBaseService {
     /**
      * 
-     * @summary Creates a team to the given environment
+     * @summary Creates a team and link it to the given environment
      * @param {number} environmentId The numeric environment ID
      * @param {TeamCreate} teamCreate A JSON object containing team data
      */
@@ -47,7 +47,7 @@ export class EnvironmentsTeamsApiService extends ApiBaseService {
 
     /**
      * 
-     * @summary Returns a list of all teams belonging to a environment
+     * @summary Returns a list of all teams belonging to an environment
      * @param {number} environmentId Numeric ID of the environment to get teams from
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page

@@ -1293,7 +1293,7 @@
     },
     "/environments/{environment_id}/invitations": {
       "get": {
-        "summary": "Returns a list of all invitations belonging to a environment",
+        "summary": "Returns a list of all invitations belonging to an environment",
         "operationId": "listEnvironmentInvitations",
         "tags": [
           "Environments - Invitations"
@@ -1348,7 +1348,7 @@
         }
       },
       "post": {
-        "summary": "Send invitation to user email to participate to project's environment",
+        "summary": "Send invitation to user email to participate to a project's environment",
         "operationId": "sendInvitation",
         "tags": [
           "Environments - Invitations"
@@ -1372,7 +1372,7 @@
               "minimum": 1
             },
             "required": true,
-            "description": "Numeric ID of the environment to invite the user"
+            "description": "Numeric ID of the environment to invite a user"
           }
         ],
         "requestBody": {
@@ -1797,7 +1797,7 @@
     },
     "/environments/{environment_id}/teams": {
       "get": {
-        "summary": "Returns a list of all teams belonging to a environment",
+        "summary": "Returns a list of all teams belonging to an environment",
         "operationId": "listEnvironmentTeams",
         "tags": [
           "Environments - Teams"
@@ -1852,7 +1852,7 @@
         }
       },
       "post": {
-        "summary": "Creates a team to the given environment",
+        "summary": "Creates a team and link it to the given environment",
         "operationId": "addTeamToEnvironment",
         "tags": [
           "Environments - Teams"
@@ -7471,7 +7471,7 @@
           },
           "created_by": {
             "type": "integer",
-            "description": "The id of the user who created the server and to whom the server belongs",
+            "description": "The id of the user who created the application and to whom the application belongs",
             "example": 1
           },
           "type": {
@@ -10254,7 +10254,7 @@
           },
           "created_by": {
             "type": "integer",
-            "description": "The ID of the user that has been created the invitation",
+            "description": "The ID of the user who created the invitation",
             "example": 197613
           },
           "status": {
@@ -10272,7 +10272,7 @@
           },
           "role": {
             "type": "string",
-            "description": "The role where the invited user will be added on accept the invitation",
+            "description": "The role to be assigned to the invited user after the invitation is accepted",
             "example": "member"
           },
           "email": {
@@ -10288,20 +10288,20 @@
           "accepted_from_ip": {
             "type": "string",
             "nullable": true,
-            "description": "The IP of the user that has been accepted the invitation",
+            "description": "The IP of the user who accepted the invitation",
             "example": "172.17.0.24"
           },
           "expires_at": {
             "type": "string",
             "format": "date-time",
-            "description": "The date and time when the invitation will be expired",
+            "description": "The date and time when the invitation will expire",
             "example": "2019-09-26T15:50:48.000000Z"
           },
           "accepted_at": {
             "type": "string",
             "format": "date-time",
             "nullable": true,
-            "description": "The date and time when the invitation has been accepted",
+            "description": "The date and time when the invitation was accepted",
             "example": "2019-09-26T13:22:37.000000Z"
           },
           "created_at": {

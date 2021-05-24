@@ -24,7 +24,7 @@ import { InvitationCreate } from '../../generated/models';
 export class EnvironmentsInvitationsApiService extends ApiBaseService {
     /**
      * 
-     * @summary Returns a list of all invitations belonging to a environment
+     * @summary Returns a list of all invitations belonging to an environment
      * @param {number} environmentId Numeric ID of the environment to get invitations from
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
@@ -52,8 +52,8 @@ export class EnvironmentsInvitationsApiService extends ApiBaseService {
 
     /**
      * 
-     * @summary Send invitation to user email to participate to project\'s environment
-     * @param {number} environmentId Numeric ID of the environment to invite the user
+     * @summary Send invitation to user email to participate to a project\'s environment
+     * @param {number} environmentId Numeric ID of the environment to invite a user
      * @param {InvitationCreate} invitationCreate A JSON object containing the email to send the invitation
      */
     public async sendInvitation(environmentId: number, invitationCreate: InvitationCreate): Promise<ApiResponse<Invitation>> {

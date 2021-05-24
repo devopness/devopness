@@ -27,7 +27,7 @@ export interface Invitation {
      */
     id: string;
     /**
-     * The ID of the user that has been created the invitation
+     * The ID of the user who created the invitation
      * @type {number}
      * @memberof Invitation
      */
@@ -51,7 +51,7 @@ export interface Invitation {
      */
     user_id: number;
     /**
-     * The role where the invited user will be added on accept the invitation
+     * The role to be assigned to the invited user after the invitation is accepted
      * @type {string}
      * @memberof Invitation
      */
@@ -69,19 +69,19 @@ export interface Invitation {
      */
     token: string;
     /**
-     * The IP of the user that has been accepted the invitation
+     * The IP of the user who accepted the invitation
      * @type {string}
      * @memberof Invitation
      */
     accepted_from_ip: string | null;
     /**
-     * The date and time when the invitation will be expired
+     * The date and time when the invitation will expire
      * @type {string}
      * @memberof Invitation
      */
     expires_at?: string;
     /**
-     * The date and time when the invitation has been accepted
+     * The date and time when the invitation was accepted
      * @type {string}
      * @memberof Invitation
      */
