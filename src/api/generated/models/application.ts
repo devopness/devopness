@@ -34,7 +34,7 @@ export interface Application {
      */
     id: number;
     /**
-     * The id of the user who created the server and to whom the server belongs
+     * The id of the user who created the application and to whom the application belongs
      * @type {number}
      * @memberof Application
      */

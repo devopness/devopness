@@ -1291,6 +1291,121 @@
         }
       }
     },
+    "/environments/{environment_id}/invitations": {
+      "get": {
+        "summary": "Returns a list of all invitations belonging to an environment",
+        "operationId": "listEnvironmentInvitations",
+        "tags": [
+          "Environments - Invitations"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "environment_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the environment to get invitations from"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Invitations"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Send invitation to user email to participate to a project's environment",
+        "operationId": "sendInvitation",
+        "tags": [
+          "Environments - Invitations"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "environment_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the environment to invite a user"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing the email to send the invitation",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvitationCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Invitation"
+                }
+              }
+            }
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          }
+        }
+      }
+    },
     "/environments/{environment_id}/network-rules": {
       "get": {
         "summary": "Returns a list of all network rules belonging to a environment",
@@ -1676,6 +1791,118 @@
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/environments/{environment_id}/teams": {
+      "get": {
+        "summary": "Returns a list of all teams belonging to an environment",
+        "operationId": "listEnvironmentTeams",
+        "tags": [
+          "Environments - Teams"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "environment_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the environment to get teams from"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Teams"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates a team and link it to the given environment",
+        "operationId": "addTeamToEnvironment",
+        "tags": [
+          "Environments - Teams"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "environment_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "The numeric environment ID"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing team data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TeamCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Team"
+                }
+              }
+            }
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
           }
         }
       }
@@ -2246,6 +2473,54 @@
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/invitations/{invitation_id}/accept/{token}": {
+      "post": {
+        "summary": "Accept the invitation of the given UUID",
+        "operationId": "acceptInvitation",
+        "tags": [
+          "Invitations"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "invitation_id",
+            "example": "e57996b5-3cf3-4cae-a925-e2e2ada52732",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "UUID of the invitation to be accepted"
+          },
+          {
+            "in": "path",
+            "name": "token",
+            "example": "XCuN00ZVffTHFCu5z3CzAK3YwzSuCPocN0cCFURO",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The token of the invitation to be accepted"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
           }
         }
       }
@@ -5905,6 +6180,55 @@
         }
       }
     },
+    "/teams/{team_id}": {
+      "get": {
+        "summary": "Get a team by ID",
+        "operationId": "getTeam",
+        "tags": [
+          "Teams"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "team_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the team to be retrieved"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Team"
+                }
+              }
+            }
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
     "/users": {
       "post": {
         "summary": "Sign up/register a new user",
@@ -6598,6 +6922,9 @@
       "name": "Environments - Daemons"
     },
     {
+      "name": "Environments - Invitations"
+    },
+    {
       "name": "Environments - Network Rules"
     },
     {
@@ -6610,6 +6937,9 @@
       "name": "Environments - SSH Keys"
     },
     {
+      "name": "Environments - Teams"
+    },
+    {
       "name": "Hooks - Incoming",
       "description": "A hook is a simple way to integrate your Devopness workflow with external processes to trigger Devopness actions by sending a POST request to a public URL. By using hooks you can make Devopness react to events that happen in other applications and make sure your environment resources reflect changes applied in other services.\n"
     },
@@ -6619,6 +6949,9 @@
     },
     {
       "name": "Hooks - Requests"
+    },
+    {
+      "name": "Invitations"
     },
     {
       "name": "Logs"
@@ -6684,6 +7017,9 @@
     {
       "name": "SSL Certificates",
       "description": "Throughout the `devopness` documentation the term `SSL Certificate` refers to a public key certificate adhering to `X.509` standard. While TLS is the protocol more used nowadays for web encryption, for historical reasons web encryption is often referred to simply as SSL. A SSL Certificate managed by `devopness` might be used as an HTTPS/SSL/TLS and other internet protocols to establish encrypted connections between client apps (e.g. browsers) and the web application servers managed through `devopness`, but it's not limited to be used for authenticating server's identity.\n"
+    },
+    {
+      "name": "Teams"
     },
     {
       "name": "Users"
@@ -7135,7 +7471,7 @@
           },
           "created_by": {
             "type": "integer",
-            "description": "The id of the user who created the server and to whom the server belongs",
+            "description": "The id of the user who created the application and to whom the application belongs",
             "example": 1
           },
           "type": {
@@ -9908,6 +10244,104 @@
           "updated_at"
         ]
       },
+      "Invitation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique UUID of the given invitation",
+            "example": "e57996b5-3cf3-4cae-a925-e2e2ada52732"
+          },
+          "status": {
+            "$ref": "#/components/schemas/InvitationStatus"
+          },
+          "role": {
+            "type": "string",
+            "description": "The role to be assigned to the invited user after the invitation is accepted",
+            "example": "member"
+          },
+          "email": {
+            "type": "string",
+            "description": "The email of the user that has been invited to team",
+            "example": "invited.user@email.com"
+          },
+          "accepted_from_ip": {
+            "type": "string",
+            "nullable": true,
+            "description": "The IP of the user who accepted the invitation",
+            "example": "172.17.0.24"
+          },
+          "created_by_user": {
+            "$ref": "#/components/schemas/UserRelation"
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserRelation"
+          },
+          "team": {
+            "$ref": "#/components/schemas/TeamRelation"
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the invitation will expire",
+            "example": "2019-09-26T15:50:48.000000Z"
+          },
+          "accepted_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "description": "The date and time when the invitation was accepted",
+            "example": "2019-09-26T13:22:37.000000Z"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25T13:52:04.000000Z"
+          }
+        },
+        "required": [
+          "id",
+          "status",
+          "role",
+          "email"
+        ]
+      },
+      "Invitations": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Invitation"
+        }
+      },
+      "InvitationCreate": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "The user email to send the invitation",
+            "example": "invited.user@email.com"
+          }
+        },
+        "required": [
+          "email"
+        ]
+      },
+      "InvitationStatus": {
+        "type": "string",
+        "description": "The status of the invitation",
+        "example": "accepted",
+        "enum": [
+          "accepted",
+          "expired",
+          "pending"
+        ]
+      },
       "Language": {
         "type": "string",
         "nullable": true,
@@ -12343,6 +12777,121 @@
           "active"
         ]
       },
+      "Team": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The unique id of the given team",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the given team",
+            "example": "Development Team"
+          },
+          "photo_url": {
+            "type": "string",
+            "nullable": true,
+            "description": "The URL to team's image",
+            "example": "https://example.com/images/my_team.png"
+          },
+          "environment": {
+            "$ref": "#/components/schemas/EnvironmentRelation"
+          },
+          "project": {
+            "$ref": "#/components/schemas/ProjectRelation"
+          },
+          "users": {
+            "$ref": "#/components/schemas/Users"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25T13:52:04.000000Z"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "photo_url"
+        ]
+      },
+      "Teams": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/TeamRelation"
+        }
+      },
+      "TeamCreate": {
+        "type": "object",
+        "properties": {
+          "project_id": {
+            "type": "string",
+            "description": "The ID of the project where the team will be created",
+            "example": 64871301
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the team",
+            "example": "Development Team"
+          },
+          "photo_url": {
+            "type": "string",
+            "description": "The URL to team's image",
+            "example": "https://example.com/images/my_team.png"
+          }
+        },
+        "required": [
+          "project_id",
+          "name"
+        ]
+      },
+      "TeamRelation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The unique id of the given team",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the given team",
+            "example": "Development Team"
+          },
+          "photo_url": {
+            "type": "string",
+            "nullable": true,
+            "description": "The URL to team's image",
+            "example": "https://example.com/images/my_team.png"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25T13:52:04.000000Z"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "photo_url"
+        ]
+      },
       "TriggerEvent": {
         "type": "string",
         "description": "The application deployment event to which it's attached",
@@ -12414,6 +12963,13 @@
           "email",
           "name"
         ]
+      },
+      "Users": {
+        "description": "The list of users",
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/UserRelation"
+        }
       },
       "UserAccountResendVerification": {
         "type": "object",

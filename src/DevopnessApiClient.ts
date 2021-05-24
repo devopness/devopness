@@ -22,6 +22,8 @@ import { HookIncomingService } from './services/HookIncomingService';
 import { HookOutgoingService } from './services/HookOutgoingService';
 import { HookRequestService } from './services/HookRequestService';
 import { CloudProviderService } from './services/CloudProviderService';
+import { InvitationService } from './services/InvitationService';
+import { TeamService } from './services/TeamService';
 
 export class DevopnessApiClient {
   actions: ActionsApiService;
@@ -33,6 +35,7 @@ export class DevopnessApiClient {
   environments: EnvironmentService;
   hookRequests: HookRequestService;
   incomingHooks: HookIncomingService;
+  invitations: InvitationService;
   logs: LogService;
   networkRules: NetworkRuleService;
   outgoingHooks: HookOutgoingService;
@@ -45,6 +48,7 @@ export class DevopnessApiClient {
   sshKeys: SshKeyService;
   sslCertificates: SslCertificateService;
   static: StaticService;
+  teams: TeamService;
   users: UserService;
   variables: VariableService;
 
@@ -63,6 +67,7 @@ export class DevopnessApiClient {
     this.environments = new EnvironmentService();
     this.hookRequests = new HookRequestService();
     this.incomingHooks = new HookIncomingService();
+    this.invitations = new InvitationService();
     this.logs = new LogService();
     this.networkRules = new NetworkRuleService();
     this.outgoingHooks = new HookOutgoingService();
@@ -75,6 +80,7 @@ export class DevopnessApiClient {
     this.sshKeys = new SshKeyService();
     this.sslCertificates = new SslCertificateService();
     this.static = new StaticService();
+    this.teams = new TeamService();
     this.users = new UserService();
     this.variables = new VariableService();
   }
