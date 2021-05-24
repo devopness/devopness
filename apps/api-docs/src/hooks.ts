@@ -48,6 +48,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         'deleteCredential204',
         'getCredential200',
         'listCredentials200',
+        'acceptInvitation204',
     ];
 
     // transactions listed here are skipped with a `before` hook
@@ -294,6 +295,11 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         hooks.log(`[before:'getDeploymentStepLog200'] '${transaction.fullPath}' => '${rep}`);
         transaction.fullPath = rep;
     })
+
+    //// teams
+    before('addTeamToEnvironment201', utils.rewriteTransactionRequestBody((body: any) => {
+        body['name'] = `team-${new Date().getTime()}`;
+    }));
 
     done();
 })

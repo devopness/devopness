@@ -10,6 +10,7 @@ properties:
     example: Development Team
   photo_url:
     type: string
+    nullable: true
     description: The URL to team's image
     example: https://example.com/images/my_team.png
   environment:

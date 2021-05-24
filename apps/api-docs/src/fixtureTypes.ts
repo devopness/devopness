@@ -92,6 +92,9 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     'hook_outgoing_update': [
         { path: 'id', fixture: 'hook_outgoing_create', field: 'id' },
     ],
+    'invitation_create': [
+        { path: 'environment_id', fixture: 'environment', field: 'id' },
+    ],
     'network_rule': [],
     'network_rule_create': [
         { path: 'environments[0].id', fixture: 'environment', field: 'id' },
@@ -162,6 +165,10 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
         { path: 'environments[0].servers[0]', fixture: 'server', field: 'id' }
     ],
     'ssl_certificate': [],
+    'team_create': [
+        { path: 'environment_id', fixture: 'environment', field: 'id' },
+        { path: 'project_id', fixture: 'project', field: 'id' },
+    ],
     'user_credentials': [],
     'user_tokens': [],
     'user': [],
