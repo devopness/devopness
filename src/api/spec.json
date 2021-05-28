@@ -2479,7 +2479,7 @@
     },
     "/invitations/{invitation_id}/accept/{token}": {
       "post": {
-        "summary": "Accept the invitation of the given UUID",
+        "summary": "Accept a pending invitation",
         "operationId": "acceptInvitation",
         "tags": [
           "Invitations"
@@ -6229,6 +6229,225 @@
         }
       }
     },
+    "/teams/{team_id}/invitations": {
+      "get": {
+        "summary": "Returns a list of pending invitations belonging to a team",
+        "operationId": "listTeamInvitations",
+        "tags": [
+          "Teams - Invitations"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "team_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the team to get pending invitations from"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Invitations"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/teams/{team_id}/members": {
+      "get": {
+        "summary": "Returns a list of all members belonging to a team",
+        "operationId": "listTeamMembers",
+        "tags": [
+          "Teams - Members"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "team_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the team to get members from"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Members"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/teams/{team_id}/members/{member_id}": {
+      "delete": {
+        "summary": "Delete a given team member",
+        "operationId": "deleteTeamMember",
+        "tags": [
+          "Teams - Members"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "team_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the team"
+          },
+          {
+            "in": "path",
+            "name": "member_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the member to be deleted"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "get": {
+        "summary": "Get a member of team by ID",
+        "operationId": "getTeamMember",
+        "tags": [
+          "Teams - Members"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "team_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the team"
+          },
+          {
+            "in": "path",
+            "name": "member_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the member to be retrieved"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Member"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
     "/users": {
       "post": {
         "summary": "Sign up/register a new user",
@@ -7020,6 +7239,12 @@
     },
     {
       "name": "Teams"
+    },
+    {
+      "name": "Teams - Invitations"
+    },
+    {
+      "name": "Teams - Members"
     },
     {
       "name": "Users"
@@ -10526,6 +10751,50 @@
         "required": [
           "email",
           "password"
+        ]
+      },
+      "Member": {
+        "type": "object",
+        "properties": {
+          "role": {
+            "type": "string",
+            "description": "The role of the member on team",
+            "example": "member"
+          },
+          "team": {
+            "$ref": "#/components/schemas/TeamRelation"
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserRelation"
+          }
+        },
+        "required": [
+          "role",
+          "team",
+          "user"
+        ]
+      },
+      "Members": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/MemberRelation"
+        }
+      },
+      "MemberRelation": {
+        "type": "object",
+        "properties": {
+          "role": {
+            "type": "string",
+            "description": "The role of the member on team",
+            "example": "member"
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserRelation"
+          }
+        },
+        "required": [
+          "role",
+          "user"
         ]
       },
       "NetworkRule": {

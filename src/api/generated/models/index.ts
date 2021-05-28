@@ -79,6 +79,8 @@ export * from './language-runtime-framework';
 export * from './language-runtime-framework-defaults';
 export * from './log';
 export * from './login-credentials';
+export * from './member';
+export * from './member-relation';
 export * from './network-rule';
 export * from './network-rule-create';
 export * from './network-rule-protocol';
