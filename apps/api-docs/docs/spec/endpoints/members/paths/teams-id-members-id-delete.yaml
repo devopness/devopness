@@ -1,0 +1,29 @@
+summary: Delete a given team member
+operationId: deleteTeamMember
+tags:
+  - Teams - Members
+parameters:
+  - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/authHeader'
+  - $ref: '#/components/parameters/contentTypeHeader'
+  - in: path
+    name: team_id
+    example: 1
+    schema:
+      type: integer
+      minimum: 1
+    required: true
+    description: Numeric ID of the team
+  - in: path
+    name: member_id
+    example: 1
+    schema:
+      type: integer
+      minimum: 1
+    required: true
+    description: Numeric ID of the member to be deleted
+responses:
+  204:
+    $ref: '#/components/responses/NoContent'
+  404:
+    $ref: '#/components/responses/NotFound'

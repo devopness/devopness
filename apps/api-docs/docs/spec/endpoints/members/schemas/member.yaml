@@ -1,0 +1,14 @@
+type: object
+properties:
+  role:
+    type: string
+    description: The role of the member on team
+    example: member
+  team:
+    $ref: '#/components/schemas/TeamRelation'
+  user:
+    $ref: '#/components/schemas/UserRelation'
+required:
+  - role
+  - team
+  - user

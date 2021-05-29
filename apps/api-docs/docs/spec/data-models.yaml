@@ -194,6 +194,12 @@ Log:
   $ref: ./endpoints/logs/schemas/log.yaml
 LoginCredentials:
   $ref: ./endpoints/users/schemas/login-credentials.yaml
+Member:
+  $ref: ./endpoints/members/schemas/member.yaml
+Members:
+  $ref: ./endpoints/members/schemas/member-list.yaml
+MemberRelation:
+  $ref: ./shared/schemas/models/member-relation.yaml
 NetworkRule:
   $ref: ./endpoints/network-rules/schemas/network-rule.yaml
 NetworkRuleCreate:

@@ -1,4 +1,4 @@
-summary: Accept the invitation of the given UUID
+summary: Accept a pending invitation
 operationId: acceptInvitation
 tags:
   - Invitations

@@ -327,6 +327,17 @@
 /teams/{team_id}:
   get:
     $ref: ./endpoints/teams/paths/teams-id.yaml
+/teams/{team_id}/invitations:
+  get:
+    $ref: ./endpoints/invitations/paths/teams-id-invitations-list.yaml
+/teams/{team_id}/members:
+  get:
+    $ref: ./endpoints/members/paths/teams-id-members-list.yaml
+/teams/{team_id}/members/{member_id}:
+  delete:
+    $ref: ./endpoints/members/paths/teams-id-members-id-delete.yaml
+  get:
+    $ref: ./endpoints/members/paths/teams-id-members-id.yaml
 /users:
   post:
     $ref: ./endpoints/users/paths/users.yaml

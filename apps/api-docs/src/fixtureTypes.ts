@@ -95,6 +95,9 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     'invitation_create': [
         { path: 'environment_id', fixture: 'environment', field: 'id' },
     ],
+    'member': [
+        { path: 'team_id', fixture: 'team', field: 'id' },
+    ],
     'network_rule': [],
     'network_rule_create': [
         { path: 'environments[0].id', fixture: 'environment', field: 'id' },
