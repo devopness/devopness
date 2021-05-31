@@ -22,7 +22,7 @@ import { ApiError } from '../../generated/models';
 export class InvitationsApiService extends ApiBaseService {
     /**
      * 
-     * @summary Accept the invitation of the given UUID
+     * @summary Accept a pending invitation
      * @param {string} invitationId UUID of the invitation to be accepted
      * @param {string} token The token of the invitation to be accepted
      */
