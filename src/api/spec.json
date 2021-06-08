@@ -10480,6 +10480,11 @@
           "status": {
             "$ref": "#/components/schemas/InvitationStatus"
           },
+          "status_human_readable": {
+            "type": "string",
+            "description": "Human readable version of the invitation status",
+            "example": "Pending invitation"
+          },
           "role": {
             "type": "string",
             "description": "The role to be assigned to the invited user after the invitation is accepted",
