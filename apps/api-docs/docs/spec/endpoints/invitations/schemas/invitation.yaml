@@ -6,6 +6,10 @@ properties:
     example: e57996b5-3cf3-4cae-a925-e2e2ada52732
   status:
     $ref: '#/components/schemas/InvitationStatus'
+  status_human_readable:
+    type: string
+    description: Human readable version of the invitation status
+    example: Pending invitation
   role:
     type: string
     description: The role to be assigned to the invited user after the invitation is accepted
