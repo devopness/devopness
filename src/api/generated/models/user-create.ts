@@ -12,7 +12,6 @@
  */
 
 
-import { Language } from './language';
 
 /**
  * 
@@ -26,23 +25,5 @@ export interface UserCreate {
      * @memberof UserCreate
      */
     email: string;
-    /**
-     * User\'s full name
-     * @type {string}
-     * @memberof UserCreate
-     */
-    name: string;
-    /**
-     * User\'s password
-     * @type {string}
-     * @memberof UserCreate
-     */
-    password: string;
-    /**
-     * 
-     * @type {Language}
-     * @memberof UserCreate
-     */
-    language?: Language | null;
 }
 
