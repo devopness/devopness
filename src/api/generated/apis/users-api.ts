@@ -23,6 +23,7 @@ import { UserCreate } from '../../generated/models';
 import { UserPasswordReset } from '../../generated/models';
 import { UserPasswordSendResetLink } from '../../generated/models';
 import { UserRefreshTokenCreate } from '../../generated/models';
+import { UserSetup } from '../../generated/models';
 import { UserTokens } from '../../generated/models';
 import { UserUpdate } from '../../generated/models';
 
@@ -219,6 +220,24 @@ export class UsersApiService extends ApiBaseService {
         const requestUrl = '/users/password/send-reset-link' + (queryString? `?${queryString}` : '');
 
         const response = await this.post <object, UserPasswordSendResetLink>(requestUrl, userPasswordSendResetLink);
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Setup user account
+     * @param {UserSetup} userSetup A JSON object containing user account data
+     */
+    public async setupUser(userSetup: UserSetup): Promise<ApiResponse<void>> {
+        if (userSetup === null || userSetup === undefined) {
+            throw new ArgumentNullException('userSetup', 'setupUser');
+        }
+        
+        let queryString = '';
+
+        const requestUrl = '/users/account/setup' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <void, UserSetup>(requestUrl, userSetup);
         return new ApiResponse(response);
     }
 

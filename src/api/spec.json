@@ -6523,6 +6523,45 @@
         }
       }
     },
+    "/users/account/setup": {
+      "post": {
+        "summary": "Setup user account",
+        "operationId": "setupUser",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing user account data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserSetup"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          }
+        }
+      }
+    },
     "/users/account/verify": {
       "get": {
         "summary": "Get the information about the activation status of the current user",
@@ -13356,6 +13395,37 @@
         },
         "required": [
           "refresh_token"
+        ]
+      },
+      "UserSetup": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "The email of the user's account",
+            "example": "my-email@devopness.com"
+          },
+          "token": {
+            "type": "string",
+            "description": "The security token of the account",
+            "example": "MTRiMGVmMzM5NDQzODJjZjY1NzE4ZTAzMjlkYTRjYjcwMDVkMmU1OTQxZmRl"
+          },
+          "name": {
+            "type": "string",
+            "description": "The new user name to account",
+            "example": "My Name"
+          },
+          "password": {
+            "type": "string",
+            "description": "The new password to account",
+            "example": "my-password"
+          }
+        },
+        "required": [
+          "email",
+          "token",
+          "name",
+          "password"
         ]
       },
       "UserTokens": {
