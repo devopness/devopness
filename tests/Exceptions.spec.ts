@@ -41,7 +41,7 @@ test("ApiError message must contain a prefix so consumers know it's been raised 
         await (apiClient.users.getCurrentUser());
     } catch (e) {
         expect(e).toBeInstanceOf(ApiError)
-        expect(e.message).toBe('API Response: Request failed with status code 403');
+        expect(e.message).toBe('Request failed with status code 403');
     }
 });
 
