@@ -35,6 +35,12 @@ export interface Invitation {
      */
     status: InvitationStatus;
     /**
+     * Human readable version of the invitation status
+     * @type {string}
+     * @memberof Invitation
+     */
+    status_human_readable?: string;
+    /**
      * The role to be assigned to the invited user after the invitation is accepted
      * @type {string}
      * @memberof Invitation
