@@ -20,11 +20,6 @@
     "preversion": "npm run lint",
     "test": "jest"
   },
-  "husky": {
-    "hooks": {
-      "pre-push": "npm run build"
-    }
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/devopness/devopness-sdk-js.git"
