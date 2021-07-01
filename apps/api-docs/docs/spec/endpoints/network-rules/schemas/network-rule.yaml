@@ -51,3 +51,5 @@ required:
   - protocol
   - port_from
   - port_to
+  - created_by_user
+  - last_action

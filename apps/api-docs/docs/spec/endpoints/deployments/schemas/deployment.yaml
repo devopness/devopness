@@ -57,5 +57,8 @@ required:
   - status
   - type
   - source
+  - application
   - commit
   - steps
+  - triggered_by_user
+  - last_action

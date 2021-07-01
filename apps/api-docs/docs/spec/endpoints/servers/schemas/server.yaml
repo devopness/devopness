@@ -71,3 +71,9 @@ required:
   - ssh_port
   - created_by
   - active
+  - blueprint
+  - actions
+  - environments
+  - project
+  - created_by_user
+  - last_action

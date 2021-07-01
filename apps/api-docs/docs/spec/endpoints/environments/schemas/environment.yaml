@@ -46,3 +46,11 @@ required:
   - name
   - type
   - type_human_readable
+  - servers
+  - cron_jobs
+  - daemons
+  - network_rules
+  - applications
+  - services
+  - ssh_keys
+  - created_by_user

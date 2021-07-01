@@ -50,3 +50,6 @@ required:
   - process_count
   - run_as_user
   - working_directory
+  - project
+  - application
+  - last_action

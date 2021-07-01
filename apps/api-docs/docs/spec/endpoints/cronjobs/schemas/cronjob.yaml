@@ -56,3 +56,9 @@ required:
   - pattern_human_readable
   - run_as_user
   - auto_generated
+  - application
+  - environments
+  - created_by_user
+  - last_action
+  - project
+  - servers

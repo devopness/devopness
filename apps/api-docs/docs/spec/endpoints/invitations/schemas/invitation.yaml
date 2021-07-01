@@ -55,3 +55,6 @@ required:
   - status
   - role
   - email
+  - created_by_user
+  - user
+  - team

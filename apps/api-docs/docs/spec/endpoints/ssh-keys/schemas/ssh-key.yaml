@@ -38,3 +38,5 @@ required:
   - id
   - name
   - fingerprint
+  - created_by_user
+  - last_action

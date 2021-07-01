@@ -54,3 +54,10 @@ required:
   - id
   - user_id
   - name
+  - applications
+  - cron_jobs
+  - environments
+  - network_rules
+  - daemons
+  - servers
+  - services

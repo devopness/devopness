@@ -33,3 +33,6 @@ required:
   - id
   - name
   - photo_url
+  - environment
+  - project
+  - users

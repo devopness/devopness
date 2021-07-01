@@ -63,3 +63,6 @@ required:
   - type
   - validation_level
   - active
+  - servers
+  - created_by_user
+  - last_action

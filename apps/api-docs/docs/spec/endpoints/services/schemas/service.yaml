@@ -36,6 +36,16 @@ properties:
     description: A text describing the service, provided by the service author
     example: MySQL Community Server
     nullable: true
+  environments:
+    $ref: '#/components/schemas/Environments'
+  created_by_user:
+    $ref: '#/components/schemas/UserRelation'
+  project:
+    $ref: '#/components/schemas/ProjectRelation'
+  servers:
+    $ref: '#/components/schemas/Servers'
+  last_action:
+    $ref: '#/components/schemas/ActionRelation'
   # started_at:
   #   type: string
   #   format: date-time
@@ -51,16 +61,6 @@ properties:
     format: date-time
     description: The date and time when the record was last updated
     example: "2020-04-16T15:50:48.000000Z"
-  environments:
-    $ref: '#/components/schemas/Environments'
-  created_by_user:
-    $ref: '#/components/schemas/UserRelation'
-  project:
-    $ref: '#/components/schemas/ProjectRelation'
-  servers:
-    $ref: '#/components/schemas/Servers'
-  last_action:
-    $ref: '#/components/schemas/ActionRelation'
 required:
   - id
   - name
@@ -69,5 +69,10 @@ required:
   - auto_generated
   - auto_start
   - initial_state
+  - environments
+  - created_by_user
+  - project
+  - servers
+  - last_action
   - created_at
   - updated_at
