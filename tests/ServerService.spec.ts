@@ -9,6 +9,8 @@ test('convertToHostname() util method', () => {
         [' Espaço no início melhor ignorar---varioshifens_tb', 'espaco-no-inicio-melhor-ignorar-varioshifens-tb'],
         ['-- test --', 'test'],
         ['long     space', 'long-space'],
+        ['\u00F1', 'n'],
+        ['\u006E\u0303', 'n'],
     ];
 
     for (let [input, expectedOutput] of list) {
