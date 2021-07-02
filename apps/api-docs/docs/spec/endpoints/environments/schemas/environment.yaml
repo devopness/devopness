@@ -29,6 +29,8 @@ properties:
     $ref: '#/components/schemas/Services'
   ssh_keys:
     $ref: '#/components/schemas/SshKeys'
+  teams:
+    $ref: '#/components/schemas/Teams'
   created_by_user:
     $ref: '#/components/schemas/UserRelation'
   created_at:
@@ -53,4 +55,5 @@ required:
   - applications
   - services
   - ssh_keys
+  - teams
   - created_by_user
