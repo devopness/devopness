@@ -45,19 +45,19 @@ export interface Team {
      * @type {EnvironmentRelation}
      * @memberof Team
      */
-    environment?: EnvironmentRelation;
+    environment: EnvironmentRelation;
     /**
      * 
      * @type {ProjectRelation}
      * @memberof Team
      */
-    project?: ProjectRelation;
+    project: ProjectRelation;
     /**
      * The list of users
      * @type {Array<UserRelation>}
      * @memberof Team
      */
-    users?: Array<UserRelation>;
+    users: Array<UserRelation>;
     /**
      * The date and time when the record was created
      * @type {string}
