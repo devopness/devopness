@@ -20,6 +20,7 @@ import { NetworkRuleRelation } from './network-rule-relation';
 import { ServerRelation } from './server-relation';
 import { ServiceRelation } from './service-relation';
 import { SshKeyRelation } from './ssh-key-relation';
+import { TeamRelation } from './team-relation';
 import { UserRelation } from './user-relation';
 
 /**
@@ -57,49 +58,55 @@ export interface Environment {
      * @type {Array<ServerRelation>}
      * @memberof Environment
      */
-    servers?: Array<ServerRelation>;
+    servers: Array<ServerRelation>;
     /**
      * 
      * @type {Array<CronJobRelation>}
      * @memberof Environment
      */
-    cron_jobs?: Array<CronJobRelation>;
+    cron_jobs: Array<CronJobRelation>;
     /**
      * 
      * @type {Array<DaemonRelation>}
      * @memberof Environment
      */
-    daemons?: Array<DaemonRelation>;
+    daemons: Array<DaemonRelation>;
     /**
      * 
      * @type {Array<NetworkRuleRelation>}
      * @memberof Environment
      */
-    network_rules?: Array<NetworkRuleRelation>;
+    network_rules: Array<NetworkRuleRelation>;
     /**
      * 
      * @type {Array<ApplicationRelation>}
      * @memberof Environment
      */
-    applications?: Array<ApplicationRelation>;
+    applications: Array<ApplicationRelation>;
     /**
      * 
      * @type {Array<ServiceRelation>}
      * @memberof Environment
      */
-    services?: Array<ServiceRelation>;
+    services: Array<ServiceRelation>;
     /**
      * 
      * @type {Array<SshKeyRelation>}
      * @memberof Environment
      */
-    ssh_keys?: Array<SshKeyRelation>;
+    ssh_keys: Array<SshKeyRelation>;
+    /**
+     * 
+     * @type {Array<TeamRelation>}
+     * @memberof Environment
+     */
+    teams: Array<TeamRelation>;
     /**
      * 
      * @type {UserRelation}
      * @memberof Environment
      */
-    created_by_user?: UserRelation;
+    created_by_user: UserRelation;
     /**
      * The date and time when the record was created
      * @type {string}
