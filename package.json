@@ -57,7 +57,7 @@
     "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-standard": "^5.0.0",
     "husky": "^7.0.0",
-    "jest": "^26.0.1",
+    "jest": "^27.0.6",
     "ts-jest": "^26.0.0",
     "typedoc": "^0.21.2",
     "typescript": "^4.0.2"
