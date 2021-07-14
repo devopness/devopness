@@ -16,32 +16,38 @@
 /**
  * 
  * @export
- * @interface UserSetup
+ * @interface UserAccountActivate
  */
-export interface UserSetup {
+export interface UserAccountActivate {
     /**
      * The email of the user\'s account
      * @type {string}
-     * @memberof UserSetup
+     * @memberof UserAccountActivate
      */
     email: string;
     /**
      * The security token of the account
      * @type {string}
-     * @memberof UserSetup
+     * @memberof UserAccountActivate
      */
     token: string;
     /**
      * The new user name to account
      * @type {string}
-     * @memberof UserSetup
+     * @memberof UserAccountActivate
      */
     name: string;
     /**
      * The new password to account
      * @type {string}
-     * @memberof UserSetup
+     * @memberof UserAccountActivate
      */
     password: string;
+    /**
+     * The new password again
+     * @type {string}
+     * @memberof UserAccountActivate
+     */
+    password_confirmation: string;
 }
 
