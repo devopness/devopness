@@ -767,6 +767,62 @@
         }
       }
     },
+    "/cloud-providers/{cloud_provider_acronym}/credentials": {
+      "get": {
+        "summary": "List credentials of the given cloud provider",
+        "operationId": "listCloudProviderCredentials",
+        "tags": [
+          "Cloud Providers"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "cloud_provider_acronym",
+            "example": "aws",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Cloud provider acronym to get credentials from"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Credentials"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/credentials": {
       "post": {
         "summary": "Add a cloud provider credential",
@@ -6878,9 +6934,6 @@
             "$ref": "#/components/parameters/acceptHeader"
           },
           {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
             "$ref": "#/components/parameters/contentTypeHeader"
           }
         ],
@@ -8536,11 +8589,6 @@
             "type": "integer",
             "description": "The unique cloud provider credential id",
             "example": 364910054
-          },
-          "provider_id": {
-            "type": "integer",
-            "description": "The provider that this credential belongs to",
-            "example": 3
           },
           "created_by": {
             "type": "integer",

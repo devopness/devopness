@@ -78,6 +78,34 @@ export class CloudProvidersApiService extends ApiBaseService {
 
     /**
      * 
+     * @summary List credentials of the given cloud provider
+     * @param {string} cloudProviderAcronym Cloud provider acronym to get credentials from
+     * @param {number} [page] Number of the page to be retrieved
+     * @param {number} [perPage] Number of items returned per page
+     */
+    public async listCloudProviderCredentials(cloudProviderAcronym: string, page?: number, perPage?: number): Promise<ApiResponse<Array<Credential>>> {
+        if (cloudProviderAcronym === null || cloudProviderAcronym === undefined) {
+            throw new ArgumentNullException('cloudProviderAcronym', 'listCloudProviderCredentials');
+        }
+        
+        let queryString = '';
+        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
+        const requestUrl = '/cloud-providers/{cloud_provider_acronym}/credentials' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <Array<Credential>>(requestUrl.replace(`{${"cloud_provider_acronym"}}`, encodeURIComponent(String(cloudProviderAcronym))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
      * @summary List cloud provider credentials
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
