@@ -43,11 +43,5 @@ export interface UserAccountActivate {
      * @memberof UserAccountActivate
      */
     password: string;
-    /**
-     * The new password again
-     * @type {string}
-     * @memberof UserAccountActivate
-     */
-    password_confirmation: string;
 }
 
