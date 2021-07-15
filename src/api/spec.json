@@ -8546,7 +8546,6 @@
         },
         "required": [
           "id",
-          "provider_id",
           "created_by",
           "name"
         ]
@@ -10788,12 +10787,14 @@
             "$ref": "#/components/schemas/NetworkRuleProtocol"
           },
           "ip_address_from": {
+            "nullable": true,
             "type": "string",
             "format": "ipv4",
             "description": "Starting range of the public ipv4 or ipv6 addresses that can access this rule",
             "example": "200.123.45.67"
           },
           "ip_address_to": {
+            "nullable": true,
             "type": "string",
             "format": "ipv4",
             "description": "Ending range of the public ipv4 or ipv6 addresses that can access this rule",
@@ -10852,12 +10853,14 @@
             "$ref": "#/components/schemas/NetworkRuleProtocol"
           },
           "ip_address_from": {
+            "nullable": true,
             "type": "string",
             "format": "ipv4",
             "description": "Starting range of the public ipv4 or ipv6 addresses that can access this rule",
             "example": "200.123.45.67"
           },
           "ip_address_to": {
+            "nullable": true,
             "type": "string",
             "format": "ipv4",
             "description": "Ending range of the public ipv4 or ipv6 addresses that can access this rule",
@@ -10976,12 +10979,14 @@
             "$ref": "#/components/schemas/NetworkRuleProtocol"
           },
           "ip_address_from": {
+            "nullable": true,
             "type": "string",
             "format": "ipv4",
             "description": "Starting range of the public ipv4 or ipv6 addresses that can access this rule",
             "example": "200.123.45.67"
           },
           "ip_address_to": {
+            "nullable": true,
             "type": "string",
             "format": "ipv4",
             "description": "Ending range of the public ipv4 or ipv6 addresses that can access this rule",
@@ -13233,19 +13238,13 @@
             "type": "string",
             "description": "The new password to account",
             "example": "my-password"
-          },
-          "password_confirmation": {
-            "type": "string",
-            "description": "The new password again",
-            "example": "my-password"
           }
         },
         "required": [
           "email",
           "token",
           "name",
-          "password",
-          "password_confirmation"
+          "password"
         ]
       },
       "UserAccountResendVerification": {

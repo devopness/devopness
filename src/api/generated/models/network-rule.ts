@@ -52,13 +52,13 @@ export interface NetworkRule {
      * @type {string}
      * @memberof NetworkRule
      */
-    ip_address_from?: string;
+    ip_address_from?: string | null;
     /**
      * Ending range of the public ipv4 or ipv6 addresses that can access this rule
      * @type {string}
      * @memberof NetworkRule
      */
-    ip_address_to?: string;
+    ip_address_to?: string | null;
     /**
      * Starting range of network ports to be considered by this rule
      * @type {number}
