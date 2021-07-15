@@ -382,6 +382,8 @@ User:
   $ref: ./endpoints/users/schemas/user.yaml
 Users:
   $ref: ./endpoints/users/schemas/user-list.yaml
+UserAccountActivate:
+  $ref: ./endpoints/users/schemas/user-account-activate.yaml
 UserAccountResendVerification:
   $ref: ./endpoints/users/schemas/user-account-resend-verification.yaml
 UserAccountVerify:

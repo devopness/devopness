@@ -350,9 +350,8 @@
 /users/account/verify:
   get:
     $ref: ./endpoints/users/paths/users-account-verify.yaml
-/users/account/verify/{user_id}/{activation_hash}:
-  get:
-    $ref: ./endpoints/users/paths/users-account-verify-id-hash.yaml
+  post:
+    $ref: ./endpoints/users/paths/users-account-verify-activate.yaml
 /users/login:
   post:
     $ref: ./endpoints/users/paths/login.yaml
