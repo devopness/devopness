@@ -13,16 +13,12 @@
   "scripts": {
     "build": "rm -Rf ./dist && npm run lint && tsc",
     "build-api-models": "rm -Rf ./src/api/generated && JAVA_OPTS=\"${JAVA_OPTS} -Dlog.level=warn\" openapi-generator-cli generate && npm run build",
+    "docs": "typedoc",
     "lint": "eslint . --ext .ts",
     "prepublishOnly": "npm test",
     "prepare": "npm run build",
     "preversion": "npm run lint",
     "test": "jest"
-  },
-  "husky": {
-    "hooks": {
-      "pre-push": "npm run build"
-    }
   },
   "repository": {
     "type": "git",
@@ -52,17 +48,18 @@
     "@openapitools/openapi-generator-cli": "^2.0.2",
     "@types/jest": "^26.0.3",
     "@typescript-eslint/eslint-plugin": "^4.0.0",
-    "@typescript-eslint/parser": "^3.0.2",
+    "@typescript-eslint/parser": "^4.28.1",
     "axios-mock-adapter": "^1.18.1",
     "eslint": "^7.1.0",
-    "eslint-config-standard-with-typescript": "^18.0.2",
+    "eslint-config-standard-with-typescript": "^20.0.0",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-standard": "^5.0.0",
-    "husky": "^6.0.0",
-    "jest": "^26.0.1",
-    "ts-jest": "^26.0.0",
+    "husky": "^7.0.0",
+    "jest": "^27.0.6",
+    "ts-jest": "^27.0.3",
+    "typedoc": "^0.21.2",
     "typescript": "^4.0.2"
   },
   "dependencies": {

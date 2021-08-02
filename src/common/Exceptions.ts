@@ -52,16 +52,7 @@ export class ApiError<T> extends SdkError {
         }
     }
 
-    private getFormattedMessage(message?: string): string {
-        // we adopt the `Response` prefix instead of `Error` here cause most returned messages are validation/security related
-        // messages that prevent damage to be caused to user's data and it's not exactly and exception.
-        // A real error, e.g. HTTP 5xx status codes, will be absolutely rare. Real errors like
-        // NetworkError are handled in their own Error classes in this file.
-        const SDK_ERROR_MESSAGE_PREFIX = 'API Response';
-        return `${SDK_ERROR_MESSAGE_PREFIX}: ${message}`;
-    }
-
     private setMessage(message: string): void {
-        this.message = this.getFormattedMessage(message);
+        this.message = message;
     }
 }

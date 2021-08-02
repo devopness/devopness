@@ -1,0 +1,10 @@
+{
+  "out": "docs",
+  "entryPoints": [
+    "src/index.ts",
+    "src/services"
+  ],
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "hideGenerator": true
+}

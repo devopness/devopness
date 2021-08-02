@@ -9506,6 +9506,9 @@
           "ssh_keys": {
             "$ref": "#/components/schemas/SshKeys"
           },
+          "teams": {
+            "$ref": "#/components/schemas/Teams"
+          },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
           },
@@ -9526,7 +9529,16 @@
           "id",
           "name",
           "type",
-          "type_human_readable"
+          "type_human_readable",
+          "servers",
+          "cron_jobs",
+          "daemons",
+          "network_rules",
+          "applications",
+          "services",
+          "ssh_keys",
+          "teams",
+          "created_by_user"
         ]
       },
       "EnvironmentCreate": {
@@ -10449,6 +10461,11 @@
           },
           "status": {
             "$ref": "#/components/schemas/InvitationStatus"
+          },
+          "status_human_readable": {
+            "type": "string",
+            "description": "Human readable version of the invitation status",
+            "example": "Pending invitation"
           },
           "role": {
             "type": "string",
@@ -13066,7 +13083,10 @@
         "required": [
           "id",
           "name",
-          "photo_url"
+          "photo_url",
+          "environment",
+          "project",
+          "users"
         ]
       },
       "Teams": {
