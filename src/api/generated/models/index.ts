@@ -155,6 +155,7 @@ export * from './team-relation';
 export * from './trigger-event';
 export * from './trigger-type';
 export * from './user';
+export * from './user-account-activate';
 export * from './user-account-resend-verification';
 export * from './user-account-verify';
 export * from './user-create';
