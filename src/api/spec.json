@@ -8477,7 +8477,7 @@
             "example": "USD"
           },
           "vcpus": {
-            "type": "string",
+            "type": "integer",
             "description": "The number of virtual CPU of the instance",
             "example": 2
           },
@@ -8623,7 +8623,6 @@
         },
         "required": [
           "id",
-          "provider_id",
           "created_by",
           "name"
         ]
