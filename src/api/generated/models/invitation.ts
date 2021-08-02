@@ -63,19 +63,19 @@ export interface Invitation {
      * @type {UserRelation}
      * @memberof Invitation
      */
-    created_by_user?: UserRelation;
+    created_by_user: UserRelation;
     /**
      * 
      * @type {UserRelation}
      * @memberof Invitation
      */
-    user?: UserRelation;
+    user: UserRelation;
     /**
      * 
      * @type {TeamRelation}
      * @memberof Invitation
      */
-    team?: TeamRelation;
+    team: TeamRelation;
     /**
      * The date and time when the invitation will expire
      * @type {string}

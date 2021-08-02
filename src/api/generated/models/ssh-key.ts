@@ -56,13 +56,13 @@ export interface SshKey {
      * @type {UserRelation}
      * @memberof SshKey
      */
-    created_by_user?: UserRelation;
+    created_by_user: UserRelation;
     /**
      * 
      * @type {ActionRelation}
      * @memberof SshKey
      */
-    last_action?: ActionRelation | null;
+    last_action: ActionRelation | null;
     /**
      * The date and time when the record was created
      * @type {string}

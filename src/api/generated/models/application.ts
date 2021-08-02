@@ -170,31 +170,31 @@ export interface Application {
      * @type {Array<ServerRelation>}
      * @memberof Application
      */
-    servers?: Array<ServerRelation>;
+    servers: Array<ServerRelation>;
     /**
      * 
      * @type {ApplicationLastDeployments}
      * @memberof Application
      */
-    last_deployments?: ApplicationLastDeployments;
+    last_deployments: ApplicationLastDeployments;
     /**
      * 
      * @type {SourceProvider}
      * @memberof Application
      */
-    source_provider?: SourceProvider | null;
+    source_provider: SourceProvider | null;
     /**
      * 
      * @type {Array<SslCertificateRelation>}
      * @memberof Application
      */
-    ssl_certificates?: Array<SslCertificateRelation>;
+    ssl_certificates: Array<SslCertificateRelation>;
     /**
      * 
      * @type {UserRelation}
      * @memberof Application
      */
-    created_by_user?: UserRelation;
+    created_by_user: UserRelation;
     /**
      * 
      * @type {ActionRelation}

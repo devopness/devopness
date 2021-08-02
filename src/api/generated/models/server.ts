@@ -72,7 +72,7 @@ export interface Server {
      * @type {ServerBlueprint}
      * @memberof Server
      */
-    blueprint?: ServerBlueprint;
+    blueprint: ServerBlueprint;
     /**
      * 
      * @type {ActionStatus}
@@ -84,19 +84,19 @@ export interface Server {
      * @type {Array<ActionRelation>}
      * @memberof Server
      */
-    actions?: Array<ActionRelation>;
+    actions: Array<ActionRelation>;
     /**
      * The list of environments to which the server is linked to
      * @type {Array<EnvironmentRelation>}
      * @memberof Server
      */
-    environments?: Array<EnvironmentRelation>;
+    environments: Array<EnvironmentRelation>;
     /**
      * 
      * @type {ProjectRelation}
      * @memberof Server
      */
-    project?: ProjectRelation;
+    project: ProjectRelation;
     /**
      * The name of the server\'s provider.
      * @type {string}
@@ -114,13 +114,13 @@ export interface Server {
      * @type {UserRelation}
      * @memberof Server
      */
-    created_by_user?: UserRelation;
+    created_by_user: UserRelation;
     /**
      * 
      * @type {ActionRelation}
      * @memberof Server
      */
-    last_action?: ActionRelation | null;
+    last_action: ActionRelation | null;
     /**
      * The date and time when the record was created
      * @type {string}

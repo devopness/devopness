@@ -102,18 +102,18 @@ export interface SslCertificate {
      * @type {Array<ServerRelation>}
      * @memberof SslCertificate
      */
-    servers?: Array<ServerRelation>;
+    servers: Array<ServerRelation>;
     /**
      * 
      * @type {UserRelation}
      * @memberof SslCertificate
      */
-    created_by_user?: UserRelation;
+    created_by_user: UserRelation;
     /**
      * 
      * @type {ActionRelation}
      * @memberof SslCertificate
      */
-    last_action?: ActionRelation | null;
+    last_action: ActionRelation | null;
 }
 

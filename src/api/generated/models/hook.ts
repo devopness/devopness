@@ -119,7 +119,7 @@ export interface Hook {
      * @type {UserRelation}
      * @memberof Hook
      */
-    created_by_user?: UserRelation;
+    created_by_user: UserRelation;
     /**
      * 
      * @type {HookSetting}

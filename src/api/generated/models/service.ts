@@ -80,6 +80,36 @@ export interface Service {
      */
     description?: string | null;
     /**
+     * 
+     * @type {Array<EnvironmentRelation>}
+     * @memberof Service
+     */
+    environments: Array<EnvironmentRelation>;
+    /**
+     * 
+     * @type {UserRelation}
+     * @memberof Service
+     */
+    created_by_user: UserRelation;
+    /**
+     * 
+     * @type {ProjectRelation}
+     * @memberof Service
+     */
+    project: ProjectRelation;
+    /**
+     * 
+     * @type {Array<ServerRelation>}
+     * @memberof Service
+     */
+    servers: Array<ServerRelation>;
+    /**
+     * 
+     * @type {ActionRelation}
+     * @memberof Service
+     */
+    last_action: ActionRelation | null;
+    /**
      * The date and time when the record was created
      * @type {string}
      * @memberof Service
@@ -91,35 +121,5 @@ export interface Service {
      * @memberof Service
      */
     updated_at: string;
-    /**
-     * 
-     * @type {Array<EnvironmentRelation>}
-     * @memberof Service
-     */
-    environments?: Array<EnvironmentRelation>;
-    /**
-     * 
-     * @type {UserRelation}
-     * @memberof Service
-     */
-    created_by_user?: UserRelation;
-    /**
-     * 
-     * @type {ProjectRelation}
-     * @memberof Service
-     */
-    project?: ProjectRelation;
-    /**
-     * 
-     * @type {Array<ServerRelation>}
-     * @memberof Service
-     */
-    servers?: Array<ServerRelation>;
-    /**
-     * 
-     * @type {ActionRelation}
-     * @memberof Service
-     */
-    last_action?: ActionRelation | null;
 }
 
