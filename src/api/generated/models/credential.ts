@@ -27,12 +27,6 @@ export interface Credential {
      */
     id: number;
     /**
-     * The provider that this credential belongs to
-     * @type {number}
-     * @memberof Credential
-     */
-    provider_id: number;
-    /**
      * The user id that created the credential
      * @type {number}
      * @memberof Credential

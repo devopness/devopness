@@ -63,10 +63,10 @@ export interface CloudInstance {
     price_currency: string;
     /**
      * The number of virtual CPU of the instance
-     * @type {string}
+     * @type {number}
      * @memberof CloudInstance
      */
-    vcpus: string;
+    vcpus: number;
     /**
      * The RAM memory size (in MB) of the instance
      * @type {string}
