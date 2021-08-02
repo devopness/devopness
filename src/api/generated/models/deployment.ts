@@ -62,7 +62,7 @@ export interface Deployment {
      * @type {ApplicationRelation}
      * @memberof Deployment
      */
-    application?: ApplicationRelation | null;
+    application: ApplicationRelation | null;
     /**
      * 
      * @type {Commit}
@@ -80,13 +80,13 @@ export interface Deployment {
      * @type {UserRelation}
      * @memberof Deployment
      */
-    triggered_by_user?: UserRelation;
+    triggered_by_user: UserRelation;
     /**
      * 
      * @type {ActionRelation}
      * @memberof Deployment
      */
-    last_action?: ActionRelation | null;
+    last_action: ActionRelation | null;
     /**
      * The date and time when the action started execution (i.e., left the `pending/queued` status)
      * @type {string}

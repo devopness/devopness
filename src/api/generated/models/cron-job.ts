@@ -73,37 +73,37 @@ export interface CronJob {
      * @type {ApplicationRelation}
      * @memberof CronJob
      */
-    application?: ApplicationRelation | null;
+    application: ApplicationRelation | null;
     /**
      * 
      * @type {Array<EnvironmentRelation>}
      * @memberof CronJob
      */
-    environments?: Array<EnvironmentRelation>;
+    environments: Array<EnvironmentRelation>;
     /**
      * 
      * @type {UserRelation}
      * @memberof CronJob
      */
-    created_by_user?: UserRelation;
+    created_by_user: UserRelation;
     /**
      * 
      * @type {ActionRelation}
      * @memberof CronJob
      */
-    last_action?: ActionRelation | null;
+    last_action: ActionRelation | null;
     /**
      * 
      * @type {ProjectRelation}
      * @memberof CronJob
      */
-    project?: ProjectRelation;
+    project: ProjectRelation;
     /**
      * 
      * @type {Array<ServerRelation>}
      * @memberof CronJob
      */
-    servers?: Array<ServerRelation>;
+    servers: Array<ServerRelation>;
     /**
      * The date and time when the record was created
      * @type {string}

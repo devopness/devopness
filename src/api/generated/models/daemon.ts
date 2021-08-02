@@ -69,19 +69,19 @@ export interface Daemon {
      * @type {ProjectRelation}
      * @memberof Daemon
      */
-    project?: ProjectRelation;
+    project: ProjectRelation;
     /**
      * 
      * @type {ApplicationRelation}
      * @memberof Daemon
      */
-    application?: ApplicationRelation | null;
+    application: ApplicationRelation | null;
     /**
      * 
      * @type {ActionRelation}
      * @memberof Daemon
      */
-    last_action?: ActionRelation | null;
+    last_action: ActionRelation | null;
     /**
      * The date and time when the record was created
      * @type {string}

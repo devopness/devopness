@@ -76,13 +76,13 @@ export interface NetworkRule {
      * @type {UserRelation}
      * @memberof NetworkRule
      */
-    created_by_user?: UserRelation;
+    created_by_user: UserRelation;
     /**
      * 
      * @type {ActionRelation}
      * @memberof NetworkRule
      */
-    last_action?: ActionRelation | null;
+    last_action: ActionRelation | null;
     /**
      * The date and time when the record was created
      * @type {string}

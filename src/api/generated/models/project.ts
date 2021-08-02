@@ -74,42 +74,42 @@ export interface Project {
      * @type {Array<ApplicationRelation>}
      * @memberof Project
      */
-    applications?: Array<ApplicationRelation>;
+    applications: Array<ApplicationRelation>;
     /**
      * 
      * @type {Array<CronJobRelation>}
      * @memberof Project
      */
-    cron_jobs?: Array<CronJobRelation>;
+    cron_jobs: Array<CronJobRelation>;
     /**
      * 
      * @type {Array<EnvironmentRelation>}
      * @memberof Project
      */
-    environments?: Array<EnvironmentRelation>;
+    environments: Array<EnvironmentRelation>;
     /**
      * 
      * @type {Array<NetworkRuleRelation>}
      * @memberof Project
      */
-    network_rules?: Array<NetworkRuleRelation>;
+    network_rules: Array<NetworkRuleRelation>;
     /**
      * 
      * @type {Array<DaemonRelation>}
      * @memberof Project
      */
-    daemons?: Array<DaemonRelation>;
+    daemons: Array<DaemonRelation>;
     /**
      * 
      * @type {Array<ServerRelation>}
      * @memberof Project
      */
-    servers?: Array<ServerRelation>;
+    servers: Array<ServerRelation>;
     /**
      * 
      * @type {Array<ServiceRelation>}
      * @memberof Project
      */
-    services?: Array<ServiceRelation>;
+    services: Array<ServiceRelation>;
 }
 

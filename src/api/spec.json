@@ -7888,7 +7888,12 @@
           "framework",
           "programming_language",
           "public_directory",
-          "default_branch"
+          "default_branch",
+          "servers",
+          "last_deployments",
+          "source_provider",
+          "ssl_certificates",
+          "created_by_user"
         ]
       },
       "ApplicationCreate": {
@@ -8708,7 +8713,13 @@
           "pattern",
           "pattern_human_readable",
           "run_as_user",
-          "auto_generated"
+          "auto_generated",
+          "application",
+          "environments",
+          "created_by_user",
+          "last_action",
+          "project",
+          "servers"
         ]
       },
       "CronJobCreate": {
@@ -8991,7 +9002,10 @@
           "name",
           "process_count",
           "run_as_user",
-          "working_directory"
+          "working_directory",
+          "project",
+          "application",
+          "last_action"
         ]
       },
       "DaemonCreate": {
@@ -9250,8 +9264,11 @@
           "status",
           "type",
           "source",
+          "application",
           "commit",
-          "steps"
+          "steps",
+          "triggered_by_user",
+          "last_action"
         ]
       },
       "DeploymentCreate": {
@@ -9903,6 +9920,7 @@
           "verify_ssl",
           "action_type",
           "resource",
+          "created_by_user",
           "created_at",
           "updated_at"
         ]
@@ -10570,7 +10588,10 @@
           "id",
           "status",
           "role",
-          "email"
+          "email",
+          "created_by_user",
+          "user",
+          "team"
         ]
       },
       "Invitations": {
@@ -10900,7 +10921,9 @@
           "type",
           "protocol",
           "port_from",
-          "port_to"
+          "port_to",
+          "created_by_user",
+          "last_action"
         ]
       },
       "NetworkRuleCreate": {
@@ -11214,7 +11237,14 @@
         "required": [
           "id",
           "user_id",
-          "name"
+          "name",
+          "applications",
+          "cron_jobs",
+          "environments",
+          "network_rules",
+          "daemons",
+          "servers",
+          "services"
         ]
       },
       "ProjectCreate": {
@@ -11755,7 +11785,13 @@
           "ip_address",
           "ssh_port",
           "created_by",
-          "active"
+          "active",
+          "blueprint",
+          "actions",
+          "environments",
+          "project",
+          "created_by_user",
+          "last_action"
         ]
       },
       "ServerAction": {
@@ -12204,18 +12240,6 @@
             "example": "MySQL Community Server",
             "nullable": true
           },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the record was created",
-            "example": "2020-04-16T15:50:48.000000Z"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the record was last updated",
-            "example": "2020-04-16T15:50:48.000000Z"
-          },
           "environments": {
             "$ref": "#/components/schemas/Environments"
           },
@@ -12230,6 +12254,18 @@
           },
           "last_action": {
             "$ref": "#/components/schemas/ActionRelation"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2020-04-16T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2020-04-16T15:50:48.000000Z"
           }
         },
         "required": [
@@ -12240,6 +12276,11 @@
           "auto_generated",
           "auto_start",
           "initial_state",
+          "environments",
+          "created_by_user",
+          "project",
+          "servers",
+          "last_action",
           "created_at",
           "updated_at"
         ]
@@ -12755,7 +12796,9 @@
         "required": [
           "id",
           "name",
-          "fingerprint"
+          "fingerprint",
+          "created_by_user",
+          "last_action"
         ]
       },
       "SshKeyCreate": {
@@ -12927,7 +12970,10 @@
           "issuer",
           "type",
           "validation_level",
-          "active"
+          "active",
+          "servers",
+          "created_by_user",
+          "last_action"
         ]
       },
       "SslCertificateCreate": {
