@@ -21,10 +21,10 @@
 export interface CredentialCreate {
     /**
      * The provider that this credential belongs to
-     * @type {number}
+     * @type {string}
      * @memberof CredentialCreate
      */
-    provider_id: number;
+    provider_name: string;
     /**
      * The name of the credential
      * @type {string}
