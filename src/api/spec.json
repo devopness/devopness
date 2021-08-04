@@ -8525,6 +8525,107 @@
           "name"
         ]
       },
+      "CloudProviderProperty": {
+        "type": "object",
+        "description": "Cloud provider setting's property",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the property",
+            "example": "access_key"
+          },
+          "name_human_readable": {
+            "type": "string",
+            "description": "Human readable version of the property's name",
+            "example": "Access Key"
+          },
+          "default_value": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "boolean"
+              }
+            ],
+            "nullable": true,
+            "description": "Default property's value",
+            "example": "default_access_key"
+          },
+          "sensitive": {
+            "type": "boolean",
+            "description": "Defines if the property data is a sensitive content",
+            "example": false
+          },
+          "validation": {
+            "$ref": "#/components/schemas/CloudProviderPropertyValidation"
+          }
+        },
+        "required": [
+          "name",
+          "name_human_readable",
+          "default_value",
+          "sensitive",
+          "validation"
+        ]
+      },
+      "CloudProviderPropertyType": {
+        "type": "string",
+        "enum": [
+          "string",
+          "integer",
+          "boolean"
+        ]
+      },
+      "CloudProviderPropertyValidation": {
+        "type": "object",
+        "properties": {
+          "required": {
+            "type": "boolean",
+            "description": "Defines if the property is required",
+            "example": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/CloudProviderPropertyType"
+          },
+          "min": {
+            "type": "integer",
+            "description": "Defines the minimum size (if string) or minimum value (if integer) to property.",
+            "example": 10
+          },
+          "max": {
+            "type": "integer",
+            "description": "Defines the maximum size (if string) or maximum value (if integer) to property.",
+            "example": 30
+          },
+          "allowed_values": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of allowed values to property. Empty if anyone value is allowed."
+          }
+        },
+        "required": [
+          "required",
+          "type",
+          "min",
+          "max",
+          "allowed_values"
+        ]
+      },
+      "CloudProviderSettings": {
+        "type": "object",
+        "description": "Settings of the cloud provider",
+        "properties": {
+          "property_name": {
+            "$ref": "#/components/schemas/CloudProviderProperty"
+          }
+        }
+      },
       "CloudService": {
         "type": "object",
         "properties": {
@@ -11376,15 +11477,25 @@
             "description": "Text describing what is the provider",
             "example": "Cloud Server provided by Amazon Web Services"
           },
+          "logo_url": {
+            "type": "string",
+            "description": "The provider logo's URL.",
+            "example": "https://assets.devopness.com/images/icons/cloud-providers/aws.svg"
+          },
           "cloud_services": {
             "$ref": "#/components/schemas/CloudServices"
+          },
+          "settings": {
+            "$ref": "#/components/schemas/CloudProviderSettings"
           }
         },
         "required": [
           "value",
           "human_readable",
           "hint",
-          "cloud_services"
+          "logo_url",
+          "cloud_services",
+          "settings"
         ]
       },
       "Providers": {
