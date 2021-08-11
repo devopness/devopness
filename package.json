@@ -46,7 +46,7 @@
   "homepage": "https://github.com/devopness/devopness-sdk-js#readme",
   "devDependencies": {
     "@openapitools/openapi-generator-cli": "^2.0.2",
-    "@types/jest": "^26.0.3",
+    "@types/jest": "^27.0.0",
     "@typescript-eslint/eslint-plugin": "^4.0.0",
     "@typescript-eslint/parser": "^4.28.1",
     "axios-mock-adapter": "^1.18.1",
