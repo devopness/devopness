@@ -26,7 +26,6 @@ export * from './cloud-provider';
 export * from './cloud-provider-property';
 export * from './cloud-provider-property-type';
 export * from './cloud-provider-property-validation';
-export * from './cloud-provider-settings';
 export * from './cloud-service';
 export * from './commit';
 export * from './credential';

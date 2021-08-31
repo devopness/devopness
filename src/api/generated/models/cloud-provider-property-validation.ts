@@ -33,19 +33,19 @@ export interface CloudProviderPropertyValidation {
      */
     type: CloudProviderPropertyType;
     /**
-     * Defines the minimum size (if string) or minimum value (if integer) to property.
+     * The minimum allowed property value. For properties of type `string` the validation checks the length of the property value
      * @type {number}
      * @memberof CloudProviderPropertyValidation
      */
     min: number;
     /**
-     * Defines the maximum size (if string) or maximum value (if integer) to property.
+     * The maximum allowed property value. For properties of type `string` the validation checks the length of the property value
      * @type {number}
      * @memberof CloudProviderPropertyValidation
      */
     max: number;
     /**
-     * List of allowed values to property. Empty if anyone value is allowed.
+     * List of allowed values for the property. If empty, any value is allowed
      * @type {Array<string>}
      * @memberof CloudProviderPropertyValidation
      */

@@ -12,7 +12,7 @@
  */
 
 
-import { CloudProviderSettings } from './cloud-provider-settings';
+import { CloudProviderProperty } from './cloud-provider-property';
 import { CloudService } from './cloud-service';
 
 /**
@@ -40,7 +40,7 @@ export interface Provider {
      */
     hint: string;
     /**
-     * The provider logo\'s URL.
+     * The provider\'s logo URL.
      * @type {string}
      * @memberof Provider
      */
@@ -52,10 +52,10 @@ export interface Provider {
      */
     cloud_services: Array<CloudService>;
     /**
-     * 
-     * @type {CloudProviderSettings}
+     * Settings of the cloud provider
+     * @type {Array<CloudProviderProperty>}
      * @memberof Provider
      */
-    settings: CloudProviderSettings;
+    settings: Array<CloudProviderProperty>;
 }
 
