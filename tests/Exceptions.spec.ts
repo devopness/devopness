@@ -39,7 +39,7 @@ test("ApiError message must contain a prefix so consumers know it's been raised 
     reqMock.onGet('/users/me').replyOnce(403, {});
     try {
         await (apiClient.users.getCurrentUser());
-    } catch (e) {
+    } catch (e: any) {
         expect(e).toBeInstanceOf(ApiError)
         expect(e.message).toBe('Request failed with status code 403');
     }
@@ -50,7 +50,7 @@ test("NetworkError message must contain a prefix so consumers know it's been rai
     reqMock.onGet('/users/me').timeoutOnce();
     try {
         await (apiClient.users.getCurrentUser());
-    } catch (e) {
+    } catch (e: any) {
         expect(e).toBeInstanceOf(NetworkError)
         expect(e.message).toContain('Devopness SDK Network Error - timeout of ');
     }
