@@ -1,0 +1,4 @@
+type: array
+description: Settings of the cloud provider
+items:
+  $ref: '#/components/schemas/CloudProviderProperty'

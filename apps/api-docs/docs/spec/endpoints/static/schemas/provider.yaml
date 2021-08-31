@@ -12,10 +12,18 @@ properties:
     type: string
     description: Text describing what is the provider
     example: Cloud Server provided by Amazon Web Services
+  logo_url:
+    type: string
+    description: The provider's logo URL.
+    example: https://assets.devopness.com/images/icons/cloud-providers/aws.svg
   cloud_services:
     $ref: '#/components/schemas/CloudServices'
+  settings:
+    $ref: '#/components/schemas/CloudProviderSettings'
 required:
   - value
   - human_readable
   - hint
+  - logo_url
   - cloud_services
+  - settings

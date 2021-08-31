@@ -52,6 +52,14 @@ CloudOs:
   $ref: ./endpoints/servers/schemas/cloud-settings/cloud-os.yaml
 CloudProvider:
   $ref: ./endpoints/credentials/schemas/cloud-provider.yaml
+CloudProviderProperty:
+  $ref: ./endpoints/static/schemas/cloud-provider-property.yaml
+CloudProviderPropertyType:
+  $ref: ./endpoints/static/schemas/cloud-provider-property-type.yaml
+CloudProviderPropertyValidation:
+  $ref: ./endpoints/static/schemas/cloud-provider-property-validation.yaml
+CloudProviderSettings:
+  $ref: ./endpoints/static/schemas/cloud-provider-settings.yaml
 CloudService:
   $ref: ./endpoints/static/schemas/cloud-service.yaml
 CloudServices:
