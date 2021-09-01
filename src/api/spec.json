@@ -8525,6 +8525,105 @@
           "name"
         ]
       },
+      "CloudProviderProperty": {
+        "type": "object",
+        "description": "Cloud provider setting's property",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the property",
+            "example": "access_key"
+          },
+          "name_human_readable": {
+            "type": "string",
+            "description": "Human readable version of the property's name",
+            "example": "Access Key"
+          },
+          "default_value": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "boolean"
+              }
+            ],
+            "nullable": true,
+            "description": "Default property's value",
+            "example": "default_access_key"
+          },
+          "sensitive": {
+            "type": "boolean",
+            "description": "Defines if the property data is a sensitive content",
+            "example": false
+          },
+          "validation": {
+            "$ref": "#/components/schemas/CloudProviderPropertyValidation"
+          }
+        },
+        "required": [
+          "name",
+          "name_human_readable",
+          "default_value",
+          "sensitive",
+          "validation"
+        ]
+      },
+      "CloudProviderPropertyType": {
+        "type": "string",
+        "enum": [
+          "string",
+          "integer",
+          "boolean"
+        ]
+      },
+      "CloudProviderPropertyValidation": {
+        "type": "object",
+        "properties": {
+          "required": {
+            "type": "boolean",
+            "description": "Defines if the property is required",
+            "example": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/CloudProviderPropertyType"
+          },
+          "min": {
+            "type": "integer",
+            "description": "The minimum allowed property value. For properties of type `string` the validation checks the length of the property value",
+            "example": 10
+          },
+          "max": {
+            "type": "integer",
+            "description": "The maximum allowed property value. For properties of type `string` the validation checks the length of the property value",
+            "example": 30
+          },
+          "allowed_values": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of allowed values for the property. If empty, any value is allowed"
+          }
+        },
+        "required": [
+          "required",
+          "type",
+          "min",
+          "max",
+          "allowed_values"
+        ]
+      },
+      "CloudProviderSettings": {
+        "type": "array",
+        "description": "Settings of the cloud provider",
+        "items": {
+          "$ref": "#/components/schemas/CloudProviderProperty"
+        }
+      },
       "CloudService": {
         "type": "object",
         "properties": {
@@ -8606,31 +8705,31 @@
       "CredentialCreate": {
         "type": "object",
         "properties": {
-          "provider_id": {
-            "type": "integer",
-            "description": "The provider that this credential belongs to",
-            "example": 3
+          "provider_name": {
+            "type": "string",
+            "description": "The provider to which this credential belongs to",
+            "example": "aws"
           },
           "name": {
             "type": "string",
-            "description": "The name of the credential",
-            "example": "My credential of AWS cloud provider"
+            "description": "A name to uniquely identify this cloud provider credential",
+            "example": "AWS production account"
           },
-          "key": {
+          "access_key": {
             "type": "string",
             "description": "The key used to authenticate on cloud provider",
             "example": "3dlxAUgbuTJY0AitQMAFHd6JadVRw3rGml"
           },
           "secret": {
             "type": "string",
-            "description": "The secret used on AWS providers",
+            "description": "The secret used to authenticate on this cloud provider",
             "example": "my-secret"
           }
         },
         "required": [
-          "provider_id",
+          "provider_name",
           "name",
-          "key"
+          "access_key"
         ]
       },
       "Credentials": {
@@ -11376,15 +11475,25 @@
             "description": "Text describing what is the provider",
             "example": "Cloud Server provided by Amazon Web Services"
           },
+          "logo_url": {
+            "type": "string",
+            "description": "The provider's logo URL.",
+            "example": "https://assets.devopness.com/images/icons/cloud-providers/aws.svg"
+          },
           "cloud_services": {
             "$ref": "#/components/schemas/CloudServices"
+          },
+          "settings": {
+            "$ref": "#/components/schemas/CloudProviderSettings"
           }
         },
         "required": [
           "value",
           "human_readable",
           "hint",
-          "cloud_services"
+          "logo_url",
+          "cloud_services",
+          "settings"
         ]
       },
       "Providers": {

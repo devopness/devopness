@@ -20,13 +20,13 @@
  */
 export interface CredentialCreate {
     /**
-     * The provider that this credential belongs to
-     * @type {number}
+     * The provider to which this credential belongs to
+     * @type {string}
      * @memberof CredentialCreate
      */
-    provider_id: number;
+    provider_name: string;
     /**
-     * The name of the credential
+     * A name to uniquely identify this cloud provider credential
      * @type {string}
      * @memberof CredentialCreate
      */
@@ -36,9 +36,9 @@ export interface CredentialCreate {
      * @type {string}
      * @memberof CredentialCreate
      */
-    key: string;
+    access_key: string;
     /**
-     * The secret used on AWS providers
+     * The secret used to authenticate on this cloud provider
      * @type {string}
      * @memberof CredentialCreate
      */
