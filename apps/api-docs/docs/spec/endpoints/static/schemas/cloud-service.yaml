@@ -2,16 +2,16 @@ type: object
 properties:
   code:
     type: string
-    description: The acronym name of the cloud service
+    description: The code that uniquely identify this cloud service
     example: ec2
   name:
     type: string
     description: The full name of the cloud service
     example: Amazon Elastic Compute Cloud
   regions:
-    $ref: '#/components/schemas/ProviderRegions'
+    $ref: "#/components/schemas/ProviderRegions"
   os:
-    $ref: '#/components/schemas/OperatingSystems'
+    $ref: "#/components/schemas/OperatingSystems"
 required:
   - code
   - name

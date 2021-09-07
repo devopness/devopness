@@ -34,7 +34,7 @@
     $ref: ./endpoints/applications/paths/applications-id-variables.yaml
   get:
     $ref: ./endpoints/applications/paths/applications-id-variables-list.yaml
-/cloud-providers/{cloud_provider_acronym}/credentials:
+/cloud-providers/{cloud_provider_code}/credentials:
   get:
     $ref: ./endpoints/cloud-providers/paths/cloud-providers-credentials-list.yaml
 /credentials:
@@ -282,8 +282,8 @@
 /source-providers/{source_provider_id}/repositories:
   get:
     $ref: ./endpoints/repositories/paths/repositories-list.yaml
-/source-providers/{source_provider_id}/repositories/{repository_owner}/{repository_name}:
-  get:
+? /source-providers/{source_provider_id}/repositories/{repository_owner}/{repository_name}
+: get:
     $ref: ./endpoints/repositories/paths/repositories-id.yaml
 /source-providers:
   get:

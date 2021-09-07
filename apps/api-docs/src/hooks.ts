@@ -46,8 +46,6 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         // @todo: fake-server route could force create a credential so we would at least be able to validate GET, PUT and DELETE for /credentials endpoints
         'addCredential201',
         'deleteCredential204',
-        'getCredential200',
-        'listCredentials200',
         'acceptInvitation204',
     ];
 
