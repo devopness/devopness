@@ -767,7 +767,7 @@
         }
       }
     },
-    "/cloud-providers/{cloud_provider_acronym}/credentials": {
+    "/cloud-providers/{cloud_provider_code}/credentials": {
       "get": {
         "summary": "List credentials of the given cloud provider",
         "operationId": "listCloudProviderCredentials",
@@ -792,13 +792,13 @@
           },
           {
             "in": "path",
-            "name": "cloud_provider_acronym",
+            "name": "cloud_provider_code",
             "example": "aws",
             "schema": {
               "type": "string"
             },
             "required": true,
-            "description": "Cloud provider acronym to get credentials from"
+            "description": "Code of the cloud provider to get credentials from"
           }
         ],
         "responses": {
@@ -8503,14 +8503,14 @@
       "CloudProvider": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "description": "The unique id of the cloud provider",
-            "example": 2
-          },
-          "acronym": {
+          "code": {
             "type": "string",
-            "description": "The acronym of the cloud provider",
+            "description": "The code that uniquely identify a cloud provider",
+            "example": "aws|digital-ocean"
+          },
+          "logo_url": {
+            "type": "string",
+            "description": "A URL path to the provider's logo image",
             "example": "aws"
           },
           "name": {
@@ -8520,8 +8520,8 @@
           }
         },
         "required": [
-          "id",
-          "acronym",
+          "code",
+          "logo_url",
           "name"
         ]
       },
@@ -8629,7 +8629,7 @@
         "properties": {
           "code": {
             "type": "string",
-            "description": "The acronym name of the cloud service",
+            "description": "The code that uniquely identify this cloud service",
             "example": "ec2"
           },
           "name": {
