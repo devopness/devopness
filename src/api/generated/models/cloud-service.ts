@@ -22,7 +22,7 @@ import { ProviderRegion } from './provider-region';
  */
 export interface CloudService {
     /**
-     * The acronym name of the cloud service
+     * The code that uniquely identify this cloud service
      * @type {string}
      * @memberof CloudService
      */

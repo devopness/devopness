@@ -20,17 +20,17 @@
  */
 export interface CloudProvider {
     /**
-     * The unique id of the cloud provider
-     * @type {number}
-     * @memberof CloudProvider
-     */
-    id: number;
-    /**
-     * The acronym of the cloud provider
+     * The code that uniquely identify a cloud provider
      * @type {string}
      * @memberof CloudProvider
      */
-    acronym: string;
+    code: string;
+    /**
+     * A URL path to the provider\'s logo image
+     * @type {string}
+     * @memberof CloudProvider
+     */
+    logo_url: string;
     /**
      * The name of the cloud provider
      * @type {string}

@@ -79,13 +79,13 @@ export class CloudProvidersApiService extends ApiBaseService {
     /**
      * 
      * @summary List credentials of the given cloud provider
-     * @param {string} cloudProviderAcronym Cloud provider acronym to get credentials from
+     * @param {string} cloudProviderCode Code of the cloud provider to get credentials from
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */
-    public async listCloudProviderCredentials(cloudProviderAcronym: string, page?: number, perPage?: number): Promise<ApiResponse<Array<Credential>>> {
-        if (cloudProviderAcronym === null || cloudProviderAcronym === undefined) {
-            throw new ArgumentNullException('cloudProviderAcronym', 'listCloudProviderCredentials');
+    public async listCloudProviderCredentials(cloudProviderCode: string, page?: number, perPage?: number): Promise<ApiResponse<Array<Credential>>> {
+        if (cloudProviderCode === null || cloudProviderCode === undefined) {
+            throw new ArgumentNullException('cloudProviderCode', 'listCloudProviderCredentials');
         }
         
         let queryString = '';
@@ -98,9 +98,9 @@ export class CloudProvidersApiService extends ApiBaseService {
             queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
         }
 
-        const requestUrl = '/cloud-providers/{cloud_provider_acronym}/credentials' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/cloud-providers/{cloud_provider_code}/credentials' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<Credential>>(requestUrl.replace(`{${"cloud_provider_acronym"}}`, encodeURIComponent(String(cloudProviderAcronym))));
+        const response = await this.get <Array<Credential>>(requestUrl.replace(`{${"cloud_provider_code"}}`, encodeURIComponent(String(cloudProviderCode))));
         return new ApiResponse(response);
     }
 
