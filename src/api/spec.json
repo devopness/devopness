@@ -6531,8 +6531,8 @@
           }
         },
         "responses": {
-          "201": {
-            "$ref": "#/components/responses/Created"
+          "202": {
+            "$ref": "#/components/responses/AcceptedWithMessage"
           },
           "422": {
             "$ref": "#/components/responses/ValidationError"
@@ -11638,6 +11638,19 @@
         ],
         "example": "application"
       },
+      "ResponseMessage": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Message with informations about the response",
+            "example": "Successful"
+          }
+        },
+        "required": [
+          "message"
+        ]
+      },
       "Script": {
         "type": "object",
         "properties": {
@@ -13874,6 +13887,16 @@
       },
       "Accepted": {
         "description": "Accepted"
+      },
+      "AcceptedWithMessage": {
+        "description": "Accepted",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ResponseMessage"
+            }
+          }
+        }
       },
       "NoContent": {
         "description": "No Content"

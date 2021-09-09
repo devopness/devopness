@@ -16,6 +16,7 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { LoginCredentials } from '../../generated/models';
+import { ResponseMessage } from '../../generated/models';
 import { User } from '../../generated/models';
 import { UserAccountActivate } from '../../generated/models';
 import { UserAccountResendVerification } from '../../generated/models';
@@ -54,7 +55,7 @@ export class UsersApiService extends ApiBaseService {
      * @summary Sign up/register a new user
      * @param {UserCreate} userCreate A JSON object containing user essential data
      */
-    public async addUser(userCreate: UserCreate): Promise<ApiResponse<void>> {
+    public async addUser(userCreate: UserCreate): Promise<ApiResponse<ResponseMessage>> {
         if (userCreate === null || userCreate === undefined) {
             throw new ArgumentNullException('userCreate', 'addUser');
         }
@@ -63,7 +64,7 @@ export class UsersApiService extends ApiBaseService {
 
         const requestUrl = '/users' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <void, UserCreate>(requestUrl, userCreate);
+        const response = await this.post <ResponseMessage, UserCreate>(requestUrl, userCreate);
         return new ApiResponse(response);
     }
 
