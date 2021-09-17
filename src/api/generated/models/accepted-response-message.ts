@@ -16,13 +16,13 @@
 /**
  * 
  * @export
- * @interface ResponseMessage
+ * @interface AcceptedResponseMessage
  */
-export interface ResponseMessage {
+export interface AcceptedResponseMessage {
     /**
-     * Message with informations about the response
+     * Message with information about the response
      * @type {string}
-     * @memberof ResponseMessage
+     * @memberof AcceptedResponseMessage
      */
     message: string;
 }

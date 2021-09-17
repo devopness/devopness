@@ -7336,6 +7336,19 @@
       }
     },
     "schemas": {
+      "AcceptedResponseMessage": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Message with information about the response",
+            "example": "Successful"
+          }
+        },
+        "required": [
+          "message"
+        ]
+      },
       "Action": {
         "type": "object",
         "nullable": true,
@@ -11638,19 +11651,6 @@
         ],
         "example": "application"
       },
-      "ResponseMessage": {
-        "type": "object",
-        "properties": {
-          "message": {
-            "type": "string",
-            "description": "Message with informations about the response",
-            "example": "Successful"
-          }
-        },
-        "required": [
-          "message"
-        ]
-      },
       "Script": {
         "type": "object",
         "properties": {
@@ -13893,7 +13893,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/ResponseMessage"
+              "$ref": "#/components/schemas/AcceptedResponseMessage"
             }
           }
         }

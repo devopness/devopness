@@ -1,3 +1,4 @@
+export * from './accepted-response-message';
 export * from './action';
 export * from './action-hook-request';
 export * from './action-relation';
@@ -102,7 +103,6 @@ export * from './repository';
 export * from './repository-branch';
 export * from './resource';
 export * from './resource-type';
-export * from './response-message';
 export * from './script';
 export * from './script-create';
 export * from './script-update';
