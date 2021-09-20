@@ -1,3 +1,5 @@
+AcceptedResponseMessage:
+  $ref: ./shared/schemas/accepted-response-message.yaml
 Action:
   $ref: ./endpoints/actions/schemas/action.yaml
 ActionHookRequest:

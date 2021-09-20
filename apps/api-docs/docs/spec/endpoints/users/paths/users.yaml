@@ -13,7 +13,7 @@ requestBody:
       schema:
         $ref: '#/components/schemas/UserCreate'
 responses:
-  201:
-    $ref: '#/components/responses/Created'
+  202:
+    $ref: '#/components/responses/AcceptedWithMessage'
   422:
     $ref: '#/components/responses/ValidationError'

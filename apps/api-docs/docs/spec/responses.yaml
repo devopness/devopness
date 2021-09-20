@@ -15,6 +15,13 @@ CreatedDispatchAction: # HTTP Status Code: 201
       description: The dispatched action id of the resource
 Accepted: # HTTP Status Code: 202
   description: Accepted
+AcceptedWithMessage: # HTTP Status Code: 202
+  description: Accepted
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/AcceptedResponseMessage'
+
 NoContent: # HTTP Status Code: 204
   description: No Content
 NoContentDispatchAction: # HTTP Status Code: 204

@@ -1,0 +1,8 @@
+type: object
+properties:
+  message:
+    type: string
+    description: Message with information about the response
+    example: Successful
+required:
+  - message

@@ -71,7 +71,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         },
         fixtureTransactionOutputs: {
             // user credentials are generated from a successful `addUser` transaction
-            'user_credentials': ['addUser201'],
+            'user_credentials': ['addUser202'],
             // user tokens are a result of a successful `login` transaction
             'user_tokens': ['login200'],
         },
@@ -201,7 +201,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     hooks.beforeEach(utils.setTransactionRequestJsonHeaders);
 
     //// users
-    before('addUser201', (transaction: Transaction) => {
+    before('addUser202', (transaction: Transaction) => {
         // randomize user, as db state won't be clean
         const randomCredentials = { email: `${v1()}@api-test.devopness`, password: v4() }
         transaction.request.body = JSON.stringify(randomCredentials);
