@@ -13,6 +13,8 @@
 
 
 import { ActionRelation } from './action-relation';
+import { EnvironmentRelation } from './environment-relation';
+import { ServerRelation } from './server-relation';
 import { UserRelation } from './user-relation';
 
 /**
@@ -57,6 +59,18 @@ export interface SshKey {
      * @memberof SshKey
      */
     created_by_user: UserRelation;
+    /**
+     * 
+     * @type {Array<EnvironmentRelation>}
+     * @memberof SshKey
+     */
+    environments: Array<EnvironmentRelation>;
+    /**
+     * 
+     * @type {Array<ServerRelation>}
+     * @memberof SshKey
+     */
+    servers: Array<ServerRelation>;
     /**
      * 
      * @type {ActionRelation}
