@@ -13,8 +13,10 @@
 
 
 import { ActionRelation } from './action-relation';
+import { EnvironmentRelation } from './environment-relation';
 import { NetworkRuleProtocol } from './network-rule-protocol';
 import { NetworkRuleType } from './network-rule-type';
+import { ServerRelation } from './server-relation';
 import { UserRelation } from './user-relation';
 
 /**
@@ -77,6 +79,18 @@ export interface NetworkRule {
      * @memberof NetworkRule
      */
     created_by_user: UserRelation;
+    /**
+     * 
+     * @type {Array<EnvironmentRelation>}
+     * @memberof NetworkRule
+     */
+    environments: Array<EnvironmentRelation>;
+    /**
+     * 
+     * @type {Array<ServerRelation>}
+     * @memberof NetworkRule
+     */
+    servers: Array<ServerRelation>;
     /**
      * 
      * @type {ActionRelation}

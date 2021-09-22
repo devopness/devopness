@@ -11011,6 +11011,12 @@
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
           },
+          "environments": {
+            "$ref": "#/components/schemas/Environments"
+          },
+          "servers": {
+            "$ref": "#/components/schemas/Servers"
+          },
           "last_action": {
             "$ref": "#/components/schemas/ActionRelation"
           },
@@ -11035,6 +11041,8 @@
           "port_from",
           "port_to",
           "created_by_user",
+          "environments",
+          "servers",
           "last_action"
         ]
       },
