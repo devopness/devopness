@@ -12,6 +12,7 @@
  */
 
 
+import { ActionListItem } from './action-list-item';
 import { ActionRelation } from './action-relation';
 import { ActionStatus } from './action-status';
 import { EnvironmentRelation } from './environment-relation';
@@ -81,10 +82,10 @@ export interface Server {
     status?: ActionStatus;
     /**
      * The list of related actions
-     * @type {Array<ActionRelation>}
+     * @type {Array<ActionListItem>}
      * @memberof Server
      */
-    actions: Array<ActionRelation>;
+    actions: Array<ActionListItem>;
     /**
      * The list of environments to which the server is linked to
      * @type {Array<EnvironmentRelation>}

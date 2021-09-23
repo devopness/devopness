@@ -15,7 +15,7 @@ import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { Action } from '../../generated/models';
-import { ActionRelation } from '../../generated/models';
+import { ActionListItem } from '../../generated/models';
 
 /**
  * ActionsApiService - Auto-generated
@@ -45,7 +45,7 @@ export class ActionsApiService extends ApiBaseService {
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */
-    public async listActions(page?: number, perPage?: number): Promise<ApiResponse<Array<ActionRelation>>> {
+    public async listActions(page?: number, perPage?: number): Promise<ApiResponse<Array<ActionListItem>>> {
         
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
@@ -59,7 +59,7 @@ export class ActionsApiService extends ApiBaseService {
 
         const requestUrl = '/actions' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<ActionRelation>>(requestUrl);
+        const response = await this.get <Array<ActionListItem>>(requestUrl);
         return new ApiResponse(response);
     }
 }

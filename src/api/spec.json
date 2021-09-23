@@ -7444,7 +7444,25 @@
         "description": "The list of related actions",
         "type": "array",
         "items": {
-          "$ref": "#/components/schemas/ActionRelation"
+          "$ref": "#/components/schemas/ActionListItem"
+        }
+      },
+      "ActionListItem": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ActionRelation"
+          },
+          {
+            "$ref": "#/components/schemas/ActionListItemParams"
+          }
+        ]
+      },
+      "ActionListItemParams": {
+        "type": "object",
+        "properties": {
+          "servers": {
+            "$ref": "#/components/schemas/ServerActions"
+          }
         }
       },
       "ActionStatus": {
