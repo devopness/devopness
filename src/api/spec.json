@@ -9110,6 +9110,7 @@
           }
         },
         "required": [
+          "id",
           "command",
           "name",
           "process_count",
@@ -9293,6 +9294,7 @@
           }
         },
         "required": [
+          "id",
           "command",
           "name",
           "process_count",
