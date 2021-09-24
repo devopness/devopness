@@ -10,7 +10,7 @@ info:
 servers:
   - url: http://devopness-api.local
     description: Local Dev server
-  - url: https://test-api.devopness.com
+  - url: https://staging-api.devopness.com
     description: Staging server
   - url: https://api.devopness.com
     description: Production server
