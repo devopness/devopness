@@ -32,6 +32,10 @@ properties:
     $ref: '#/components/schemas/ProjectRelation'
   application:
     $ref: '#/components/schemas/ApplicationRelation'
+  environments:
+    $ref: '#/components/schemas/Environments'
+  servers:
+    $ref: '#/components/schemas/Servers'
   last_action:
     $ref: '#/components/schemas/ActionRelation'
   created_at:
@@ -52,4 +56,6 @@ required:
   - working_directory
   - project
   - application
+  - environments
+  - servers
   - last_action
