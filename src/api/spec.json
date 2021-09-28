@@ -7444,7 +7444,25 @@
         "description": "The list of related actions",
         "type": "array",
         "items": {
-          "$ref": "#/components/schemas/ActionRelation"
+          "$ref": "#/components/schemas/ActionListItem"
+        }
+      },
+      "ActionListItem": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ActionRelation"
+          },
+          {
+            "$ref": "#/components/schemas/ActionListItemParams"
+          }
+        ]
+      },
+      "ActionListItemParams": {
+        "type": "object",
+        "properties": {
+          "servers": {
+            "$ref": "#/components/schemas/ServerActions"
+          }
         }
       },
       "ActionStatus": {
@@ -7648,6 +7666,9 @@
             "description": "Human readable version of the action type",
             "example": "Deploy"
           },
+          "resource": {
+            "$ref": "#/components/schemas/Resource"
+          },
           "summary": {
             "$ref": "#/components/schemas/ActionSummary"
           },
@@ -7682,7 +7703,8 @@
           "id",
           "status",
           "type",
-          "type_human_readable"
+          "type_human_readable",
+          "resource"
         ]
       },
       "ApiError": {
@@ -9116,6 +9138,7 @@
           }
         },
         "required": [
+          "id",
           "command",
           "name",
           "process_count",
@@ -9301,6 +9324,7 @@
           }
         },
         "required": [
+          "id",
           "command",
           "name",
           "process_count",
@@ -11641,9 +11665,38 @@
             "example": "Deployment"
           },
           "data": {
-            "nullable": true,
             "type": "object",
-            "description": "The resource data of type specified on `resource.type`"
+            "nullable": true,
+            "description": "The resource data of type specified on `resource.type`",
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ApplicationRelation"
+              },
+              {
+                "$ref": "#/components/schemas/CronJobRelation"
+              },
+              {
+                "$ref": "#/components/schemas/DaemonRelation"
+              },
+              {
+                "$ref": "#/components/schemas/DeploymentRelation"
+              },
+              {
+                "$ref": "#/components/schemas/NetworkRuleRelation"
+              },
+              {
+                "$ref": "#/components/schemas/ServerRelation"
+              },
+              {
+                "$ref": "#/components/schemas/ServiceRelation"
+              },
+              {
+                "$ref": "#/components/schemas/SshKeyRelation"
+              },
+              {
+                "$ref": "#/components/schemas/SslCertificateRelation"
+              }
+            ]
           }
         },
         "required": [

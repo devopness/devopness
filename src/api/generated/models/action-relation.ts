@@ -15,6 +15,7 @@
 import { ActionStatus } from './action-status';
 import { ActionSummary } from './action-summary';
 import { ActionType } from './action-type';
+import { Resource } from './resource';
 
 /**
  * 
@@ -46,6 +47,12 @@ export interface ActionRelation {
      * @memberof ActionRelation
      */
     type_human_readable: string;
+    /**
+     * 
+     * @type {Resource}
+     * @memberof ActionRelation
+     */
+    resource: Resource;
     /**
      * 
      * @type {ActionSummary}
