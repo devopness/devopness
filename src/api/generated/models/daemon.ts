@@ -14,7 +14,9 @@
 
 import { ActionRelation } from './action-relation';
 import { ApplicationRelation } from './application-relation';
+import { EnvironmentRelation } from './environment-relation';
 import { ProjectRelation } from './project-relation';
+import { ServerRelation } from './server-relation';
 
 /**
  * 
@@ -76,6 +78,18 @@ export interface Daemon {
      * @memberof Daemon
      */
     application: ApplicationRelation | null;
+    /**
+     * 
+     * @type {Array<EnvironmentRelation>}
+     * @memberof Daemon
+     */
+    environments: Array<EnvironmentRelation>;
+    /**
+     * 
+     * @type {Array<ServerRelation>}
+     * @memberof Daemon
+     */
+    servers: Array<ServerRelation>;
     /**
      * 
      * @type {ActionRelation}
