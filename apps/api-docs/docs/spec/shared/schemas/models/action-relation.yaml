@@ -14,6 +14,8 @@ properties:
     type: string
     description: Human readable version of the action type
     example: Deploy
+  resource:
+    $ref: '#/components/schemas/Resource'
   summary:
     $ref: '#/components/schemas/ActionSummary'
   started_at:
@@ -43,3 +45,4 @@ required:
   - status
   - type
   - type_human_readable
+  - resource

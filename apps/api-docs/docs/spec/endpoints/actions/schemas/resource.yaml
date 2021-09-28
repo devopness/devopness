@@ -13,9 +13,19 @@ properties:
     description: Human readable version of the resource type
     example: Deployment
   data:
-    nullable: true
     type: object
+    nullable: true
     description: The resource data of type specified on `resource.type`
+    anyOf:
+      - $ref: '#/components/schemas/ApplicationRelation'
+      - $ref: '#/components/schemas/CronJobRelation'
+      - $ref: '#/components/schemas/DaemonRelation'
+      - $ref: '#/components/schemas/DeploymentRelation'
+      - $ref: '#/components/schemas/NetworkRuleRelation'
+      - $ref: '#/components/schemas/ServerRelation'
+      - $ref: '#/components/schemas/ServiceRelation'
+      - $ref: '#/components/schemas/SshKeyRelation'
+      - $ref: '#/components/schemas/SslCertificateRelation'
 required:
   - id
   - type

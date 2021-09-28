@@ -6,6 +6,10 @@ ActionHookRequest:
   $ref: ./endpoints/actions/schemas/action-hook-request.yaml
 Actions:
   $ref: ./endpoints/actions/schemas/action-list.yaml
+ActionListItem:
+  $ref: ./endpoints/actions/schemas/action-list-item.yaml
+ActionListItemParams:
+  $ref: ./endpoints/actions/schemas/action-list-item-params.yaml
 ActionStatus:
   $ref: ./endpoints/actions/schemas/action-status.yaml
 ActionStep:
