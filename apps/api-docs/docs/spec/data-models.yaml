@@ -366,6 +366,8 @@ SshKeys:
   $ref: ./endpoints/ssh-keys/schemas/ssh-key-list.yaml
 SshKeyRelation:
   $ref: ./shared/schemas/models/ssh-key-relation.yaml
+SshKeyUpdate:
+  $ref: ./endpoints/ssh-keys/schemas/ssh-key-update.yaml
 SslCertificate:
   $ref: ./endpoints/ssl-certificates/schemas/ssl-certificate.yaml
 SslCertificateCreate:

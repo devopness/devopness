@@ -300,6 +300,8 @@
     $ref: ./endpoints/ssh-keys/paths/ssh-keys-id.yaml
   delete:
     $ref: ./endpoints/ssh-keys/paths/ssh-keys-id-delete.yaml
+  put:
+    $ref: ./endpoints/ssh-keys/paths/ssh-keys-id-update.yaml
 /ssl-certificates/{ssl_certificate_id}:
   get:
     $ref: ./endpoints/ssl-certificates/paths/ssl-certificates-id.yaml
