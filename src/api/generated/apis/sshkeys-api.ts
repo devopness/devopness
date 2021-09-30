@@ -14,7 +14,9 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { ApiError } from '../../generated/models';
 import { SshKey } from '../../generated/models';
+import { SshKeyUpdate } from '../../generated/models';
 
 /**
  * SSHKeysApiService - Auto-generated
@@ -53,6 +55,28 @@ export class SSHKeysApiService extends ApiBaseService {
         const requestUrl = '/ssh-keys/{ssh_key_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <SshKey>(requestUrl.replace(`{${"ssh_key_id"}}`, encodeURIComponent(String(sshKeyId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Update an existing SSH key
+     * @param {number} sshKeyId Numeric ID of the SSH key to be updated
+     * @param {SshKeyUpdate} sshKeyUpdate A JSON object containing SSH key data
+     */
+    public async updateSshKey(sshKeyId: number, sshKeyUpdate: SshKeyUpdate): Promise<ApiResponse<void>> {
+        if (sshKeyId === null || sshKeyId === undefined) {
+            throw new ArgumentNullException('sshKeyId', 'updateSshKey');
+        }
+        if (sshKeyUpdate === null || sshKeyUpdate === undefined) {
+            throw new ArgumentNullException('sshKeyUpdate', 'updateSshKey');
+        }
+        
+        let queryString = '';
+
+        const requestUrl = '/ssh-keys/{ssh_key_id}' + (queryString? `?${queryString}` : '');
+
+        const response = await this.put <void, SshKeyUpdate>(requestUrl.replace(`{${"ssh_key_id"}}`, encodeURIComponent(String(sshKeyId))), sshKeyUpdate);
         return new ApiResponse(response);
     }
 }
