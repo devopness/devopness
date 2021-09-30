@@ -33,6 +33,12 @@ export interface DeploymentRelation {
      */
     id: number;
     /**
+     * The application\'s name that the deployment belongs to
+     * @type {string}
+     * @memberof DeploymentRelation
+     */
+    name: string;
+    /**
      * 
      * @type {ActionStatus}
      * @memberof DeploymentRelation
