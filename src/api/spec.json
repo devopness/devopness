@@ -13195,6 +13195,11 @@
               "type": "string"
             }
           },
+          "name": {
+            "type": "string",
+            "description": "The name given to SSL certificate",
+            "example": "my-subdomain.example.com"
+          },
           "issuer": {
             "$ref": "#/components/schemas/SslCertificateIssuer"
           },
@@ -13258,6 +13263,7 @@
         "required": [
           "id",
           "domains",
+          "name",
           "issuer",
           "type",
           "validation_level",
@@ -13362,6 +13368,11 @@
               "type": "string"
             }
           },
+          "name": {
+            "type": "string",
+            "description": "The name given to SSL certificate",
+            "example": "my-subdomain.example.com"
+          },
           "issuer": {
             "$ref": "#/components/schemas/SslCertificateIssuer"
           },
@@ -13418,6 +13429,7 @@
         "required": [
           "id",
           "domains",
+          "name",
           "issuer",
           "type",
           "validation_level",
