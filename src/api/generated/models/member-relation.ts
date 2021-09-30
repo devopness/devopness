@@ -27,6 +27,18 @@ export interface MemberRelation {
      */
     role: string;
     /**
+     * The date and time when the record was created
+     * @type {string}
+     * @memberof MemberRelation
+     */
+    created_at?: string;
+    /**
+     * The date and time when the record was last updated
+     * @type {string}
+     * @memberof MemberRelation
+     */
+    updated_at?: string;
+    /**
      * 
      * @type {UserRelation}
      * @memberof MemberRelation
