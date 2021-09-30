@@ -149,6 +149,7 @@ export * from './source-provider-name';
 export * from './ssh-key';
 export * from './ssh-key-create';
 export * from './ssh-key-relation';
+export * from './ssh-key-update';
 export * from './ssl-certificate';
 export * from './ssl-certificate-create';
 export * from './ssl-certificate-issuer';

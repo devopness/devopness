@@ -14,7 +14,7 @@
       "description": "Local Dev server"
     },
     {
-      "url": "https://test-api.devopness.com",
+      "url": "https://staging-api.devopness.com",
       "description": "Staging server"
     },
     {
@@ -5814,6 +5814,57 @@
             "$ref": "#/components/responses/NotFound"
           }
         }
+      },
+      "put": {
+        "summary": "Update an existing SSH key",
+        "operationId": "updateSshKey",
+        "tags": [
+          "SSH Keys"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "ssh_key_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the SSH key to be updated"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing SSH key data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SshKeyUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          }
+        }
       }
     },
     "/ssl-certificates/{ssl_certificate_id}": {
@@ -10988,6 +11039,18 @@
             "description": "The role of the member on team",
             "example": "member"
           },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2021-09-23T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2021-09-23T13:52:04.000000Z"
+          },
           "user": {
             "$ref": "#/components/schemas/UserRelation"
           }
@@ -13081,6 +13144,28 @@
           "id",
           "name",
           "fingerprint"
+        ]
+      },
+      "SshKeyUpdate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The Id of the SSH key",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "description": "The name entered by the user to uniquely identify the public SSH key",
+            "example": "my-laptop-ssh-key"
+          },
+          "environments": {
+            "$ref": "#/components/schemas/EnvironmentLinks"
+          }
+        },
+        "required": [
+          "id",
+          "name"
         ]
       },
       "SslCertificate": {
