@@ -5,6 +5,10 @@ properties:
     type: integer
     description: The unique id of the given record
     example: 93457689064
+  name:
+    type: string
+    description: The application's name that the deployment belongs to
+    example: my-awesome-app
   status:
     $ref: '#/components/schemas/ActionStatus'
   type:
@@ -48,6 +52,7 @@ properties:
     nullable: true
 required:
   - id
+  - name
   - status
   - type
   - source
