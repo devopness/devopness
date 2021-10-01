@@ -47,6 +47,8 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         'addCredential201',
         'deleteCredential204',
         'acceptInvitation204',
+        // We do not create the member when the team is created, therefore we cannot retrieve a team member by its ID.
+        'getTeamMember200',
     ];
 
     // transactions listed here are skipped with a `before` hook

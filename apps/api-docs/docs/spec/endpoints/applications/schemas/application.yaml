@@ -148,7 +148,6 @@ required:
   - public_directory
   - default_branch
   - servers
-  - last_deployments
   - source_provider
   - ssl_certificates
   - created_by_user
