@@ -38,6 +38,12 @@ export interface SslCertificate {
      */
     domains: Array<string>;
     /**
+     * The name given to SSL certificate
+     * @type {string}
+     * @memberof SslCertificate
+     */
+    name: string;
+    /**
      * 
      * @type {SslCertificateIssuer}
      * @memberof SslCertificate

@@ -9456,6 +9456,7 @@
         },
         "required": [
           "id",
+          "name",
           "status",
           "type",
           "source",
@@ -9660,6 +9661,11 @@
             "description": "The unique id of the given record",
             "example": 93457689064
           },
+          "name": {
+            "type": "string",
+            "description": "The application's name that the deployment belongs to",
+            "example": "my-awesome-app"
+          },
           "status": {
             "$ref": "#/components/schemas/ActionStatus"
           },
@@ -9716,6 +9722,7 @@
         },
         "required": [
           "id",
+          "name",
           "status",
           "type",
           "source",
@@ -13188,6 +13195,11 @@
               "type": "string"
             }
           },
+          "name": {
+            "type": "string",
+            "description": "The name given to SSL certificate",
+            "example": "my-subdomain.example.com"
+          },
           "issuer": {
             "$ref": "#/components/schemas/SslCertificateIssuer"
           },
@@ -13251,6 +13263,7 @@
         "required": [
           "id",
           "domains",
+          "name",
           "issuer",
           "type",
           "validation_level",
@@ -13355,6 +13368,11 @@
               "type": "string"
             }
           },
+          "name": {
+            "type": "string",
+            "description": "The name given to SSL certificate",
+            "example": "my-subdomain.example.com"
+          },
           "issuer": {
             "$ref": "#/components/schemas/SslCertificateIssuer"
           },
@@ -13411,6 +13429,7 @@
         "required": [
           "id",
           "domains",
+          "name",
           "issuer",
           "type",
           "validation_level",
