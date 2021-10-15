@@ -1,4 +1,4 @@
-summary: 'Returns a list of all projects belonging to current user'
+summary: 'Returns a list of all projects the current user has access to'
 operationId: listProjects
 tags:
   - Projects
