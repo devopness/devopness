@@ -77,6 +77,9 @@ export class ApiBaseService {
     private setupAxiosRequestInterceptors(): void {
         this.api.interceptors.request.use(
             (config: AxiosRequestConfig) => {
+                if (!config.headers) {
+                    config.headers = {};
+                }
                 if (ApiBaseService._accessToken) {
                     config.headers.Authorization = `Bearer ${ApiBaseService._accessToken}`;
                 } else {
