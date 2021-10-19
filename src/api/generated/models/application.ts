@@ -176,7 +176,7 @@ export interface Application {
      * @type {ApplicationLastDeployments}
      * @memberof Application
      */
-    last_deployments: ApplicationLastDeployments;
+    last_deployments?: ApplicationLastDeployments;
     /**
      * 
      * @type {SourceProvider}
