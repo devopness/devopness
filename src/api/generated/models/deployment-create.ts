@@ -27,13 +27,13 @@ export interface DeploymentCreate {
      */
     type: DeploymentType;
     /**
-     * 
+     * The name of the branch from which the application source code will be retrieved and deployed. This parameter is ignored when `hash` is provided.
      * @type {string}
      * @memberof DeploymentCreate
      */
     branch: string;
     /**
-     * 
+     * The commit hash from which the application source code will be retrieved and deployed. When provided `branch` parameter is ignored
      * @type {string}
      * @memberof DeploymentCreate
      */

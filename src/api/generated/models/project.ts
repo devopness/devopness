@@ -20,6 +20,7 @@ import { NetworkRuleRelation } from './network-rule-relation';
 import { ServerRelation } from './server-relation';
 import { ServiceRelation } from './service-relation';
 import { SshKeyRelation } from './ssh-key-relation';
+import { UserRelation } from './user-relation';
 
 /**
  * 
@@ -75,6 +76,12 @@ export interface Project {
      * @memberof Project
      */
     applications: Array<ApplicationRelation>;
+    /**
+     * 
+     * @type {UserRelation}
+     * @memberof Project
+     */
+    created_by_user?: UserRelation;
     /**
      * 
      * @type {Array<CronJobRelation>}

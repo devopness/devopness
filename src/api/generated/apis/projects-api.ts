@@ -62,7 +62,7 @@ export class ProjectsApiService extends ApiBaseService {
 
     /**
      * 
-     * @summary Returns a list of all projects belonging to current user
+     * @summary Returns a list of all projects the current user has access to
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */
