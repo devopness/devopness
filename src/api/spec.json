@@ -3347,7 +3347,7 @@
         }
       },
       "get": {
-        "summary": "Returns a list of all projects belonging to current user",
+        "summary": "Returns a list of all projects the current user has access to",
         "operationId": "listProjects",
         "tags": [
           "Projects"
@@ -7976,7 +7976,6 @@
           "public_directory",
           "default_branch",
           "servers",
-          "last_deployments",
           "source_provider",
           "ssl_certificates",
           "created_by_user"
@@ -9475,10 +9474,12 @@
           },
           "branch": {
             "type": "string",
+            "description": "The name of the branch from which the application source code will be retrieved and deployed. This parameter is ignored when `hash` is provided.",
             "example": "master"
           },
           "hash": {
             "type": "string",
+            "description": "The commit hash from which the application source code will be retrieved and deployed. When provided `branch` parameter is ignored",
             "example": "7ff09b0f2ed07625222f689d1afc29aa322b03a2"
           },
           "servers": {
@@ -11078,7 +11079,7 @@
           "name": {
             "type": "string",
             "description": "The rule's name/description/reminder",
-            "example": "HTTPS|SSH|\"Opening MySQL port so desktop apps can access it remotely\""
+            "example": "Opening MySQL port so desktop apps can access it remotely"
           },
           "type": {
             "$ref": "#/components/schemas/NetworkRuleType"
@@ -11154,7 +11155,7 @@
           "name": {
             "type": "string",
             "description": "The rule's name/description/reminder",
-            "example": "HTTPS|SSH|\"Open MySQL port for remote access\""
+            "example": "Open MySQL port for remote access"
           },
           "type": {
             "$ref": "#/components/schemas/NetworkRuleType"
@@ -11236,7 +11237,7 @@
           "name": {
             "type": "string",
             "description": "The rule's name/description/reminder",
-            "example": "HTTPS|SSH|\"Open MySQL port for remote access\""
+            "example": "Open MySQL port for remote access"
           },
           "type": {
             "$ref": "#/components/schemas/NetworkRuleType"
@@ -11280,7 +11281,7 @@
           "name": {
             "type": "string",
             "description": "The rule's name/description/reminder",
-            "example": "HTTPS|SSH|\"Opening MySQL port so desktop apps can access it remotely\""
+            "example": "Opening MySQL port so desktop apps can access it remotely"
           },
           "type": {
             "$ref": "#/components/schemas/NetworkRuleType"
@@ -11437,6 +11438,9 @@
           "applications": {
             "$ref": "#/components/schemas/Applications"
           },
+          "created_by_user": {
+            "$ref": "#/components/schemas/UserRelation"
+          },
           "cron_jobs": {
             "$ref": "#/components/schemas/CronJobs"
           },
@@ -11572,6 +11576,9 @@
                 "name": "devopness"
               }
             }
+          },
+          "created_by_user": {
+            "$ref": "#/components/schemas/UserRelation"
           }
         },
         "required": [

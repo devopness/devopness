@@ -12,6 +12,7 @@
  */
 
 
+import { UserRelation } from './user-relation';
 
 /**
  * 
@@ -55,5 +56,11 @@ export interface ProjectRelation {
      * @memberof ProjectRelation
      */
     os_users?: Array<object>;
+    /**
+     * 
+     * @type {UserRelation}
+     * @memberof ProjectRelation
+     */
+    created_by_user?: UserRelation;
 }
 
