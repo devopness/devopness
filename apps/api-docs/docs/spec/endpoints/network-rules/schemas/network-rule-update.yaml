@@ -7,7 +7,7 @@ properties:
   name:
     type: string
     description: The rule's name/description/reminder
-    example: HTTPS|SSH|"Open MySQL port for remote access"
+    example: Open MySQL port for remote access
   type:
     $ref: '#/components/schemas/NetworkRuleType'
   protocol:
