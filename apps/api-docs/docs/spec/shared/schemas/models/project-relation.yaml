@@ -31,6 +31,8 @@ properties:
           type: string
       example:
         name: devopness
+  created_by_user:
+    $ref: "#/components/schemas/UserRelation"
 required:
   - id
   - user_id

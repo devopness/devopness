@@ -38,6 +38,8 @@ properties:
         name: devopness
   applications:
     $ref: '#/components/schemas/Applications'
+  created_by_user:
+    $ref: "#/components/schemas/UserRelation"
   cron_jobs:
     $ref: '#/components/schemas/CronJobs'
   environments:
