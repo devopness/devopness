@@ -21,6 +21,7 @@ import { ServiceRestart } from '../../generated/models';
 import { ServiceStart } from '../../generated/models';
 import { ServiceStatusUpdate } from '../../generated/models';
 import { ServiceStop } from '../../generated/models';
+import { ServiceUpdate } from '../../generated/models';
 
 /**
  * ServicesApiService - Auto-generated
@@ -147,6 +148,28 @@ export class ServicesApiService extends ApiBaseService {
         const requestUrl = '/services/{service_id}/stop' + (queryString? `?${queryString}` : '');
 
         const response = await this.post <void, ServiceStop>(requestUrl.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))), serviceStop);
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Update an existing service
+     * @param {number} serviceId The unique id of the service
+     * @param {ServiceUpdate} serviceUpdate A JSON object containing service data
+     */
+    public async updateService(serviceId: number, serviceUpdate: ServiceUpdate): Promise<ApiResponse<void>> {
+        if (serviceId === null || serviceId === undefined) {
+            throw new ArgumentNullException('serviceId', 'updateService');
+        }
+        if (serviceUpdate === null || serviceUpdate === undefined) {
+            throw new ArgumentNullException('serviceUpdate', 'updateService');
+        }
+        
+        let queryString = '';
+
+        const requestUrl = '/services/{service_id}' + (queryString? `?${queryString}` : '');
+
+        const response = await this.put <void, ServiceUpdate>(requestUrl.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))), serviceUpdate);
         return new ApiResponse(response);
     }
 
