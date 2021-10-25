@@ -161,6 +161,11 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     'service_stop': [
         { path: 'environment_id', fixture: 'environment', field: 'id' },
     ],
+    'service_update': [
+        { path: 'id', fixture: 'service', field: 'id' },
+        { path: 'environments[0].id', fixture: 'environment', field: 'id' },
+        { path: 'environments[0].servers[0]', fixture: 'server', field: 'id' },
+    ],
     'social_account': [],
     'source_provider': [],
     'ssh_key': [],

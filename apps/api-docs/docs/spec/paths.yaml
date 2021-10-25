@@ -251,6 +251,8 @@
     $ref: ./endpoints/services/paths/services-id-delete.yaml
   get:
     $ref: ./endpoints/services/paths/services-id.yaml
+  put:
+    $ref: ./endpoints/services/paths/services-id-update.yaml
 /services/{service_id}/reload:
   post:
     $ref: ./endpoints/services/paths/services-id-reload.yaml

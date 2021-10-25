@@ -330,6 +330,8 @@ ServiceStatusUpdate:
   $ref: ./endpoints/services/schemas/service-status-update.yaml
 ServiceStop:
   $ref: ./endpoints/services/schemas/service-stop.yaml
+ServiceUpdate:
+  $ref: ./endpoints/services/schemas/service-update.yaml
 ServiceType:
   $ref: ./endpoints/static/schemas/service-type.yaml
 ServiceTypes:
