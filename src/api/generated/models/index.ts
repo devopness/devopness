@@ -137,6 +137,7 @@ export * from './service-status-update';
 export * from './service-stop';
 export * from './service-type';
 export * from './service-type-supported-versions';
+export * from './service-update';
 export * from './social-account';
 export * from './social-account-create';
 export * from './social-account-displayable-name';
