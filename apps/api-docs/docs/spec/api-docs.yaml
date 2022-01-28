@@ -23,8 +23,7 @@ tags:
     description: |
       This page contains the documentation on how to use `devopness` through API calls.
       > Note: This documentation is not complete, so for missing parts or inaccurate API description please
-      >
-      > reach out to `devopness` API team.
+      > reach out to the `devopness` API team.
 
       ## Introduction
       devopness's API exposes all `devopness` features via a standardized programmatic interface. Through devopness API a registered Devopness user can perform every operation you can do on https://www.devopness.com web interfaces and mobile apps.
@@ -87,7 +86,7 @@ tags:
 
       2) Nested resources endpoints:
 
-      Nested resources are used when there is a clear hierarchy between the parent resource and the subresource, or for convenience to make it easy and predcitable on how to filter subresources belonging to a parent resource.
+      Nested resources are used when there is a clear hierarchy between the parent resource and the subresource, or for convenience, to make it easy and predictable to filter subresources belonging to a parent resource.
       In `devopness` API design we strive to avoid nesting resources more than 1 level deep + one action related to the child resource or to the relationship between parent and child.
 
       **Pattern:**
@@ -110,7 +109,7 @@ tags:
       ### Response codes
       Response codes indicate success or failure of request processing.
       Status codes from the `2xx` range indicate that request has been accepted.
-      If the returned code is from the `4xx` or `5xx` range then it reveals either problem with the request or unability to process data.
+      If the returned code is from the `4xx` or `5xx` range then it reveals either problem with the request or inability to process data.
       See below for a list of HTTP Status codes used by `devopness` API:
 
       | Status Code   | Description   |
