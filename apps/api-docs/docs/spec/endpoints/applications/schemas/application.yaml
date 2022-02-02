@@ -40,7 +40,7 @@ properties:
     description: The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed.
     example: 'develop'
   push_to_deploy:
-    description: Indicates if push to deploy webhooks are enabled for this application. If enabled an app deployment will be automatically triggered when new changes are commited to the `default_branch`
+    description: Indicates if push to deploy webhooks are enabled for this application. If enabled an app deployment will be automatically triggered when new changes are committed to the `default_branch`
     type: boolean
     example: false
   programming_language:
@@ -71,7 +71,7 @@ properties:
 
       1) `File`: if it's a simple file name/path a web app will be served using the entrypoint value as its index file. Example: `index.html`
 
-      2) `Command`: if a command line instruction is provided as the entrypoint value, it will be handled as the start up command that initalizes the application. It will be assumed that the user is an advanced user that knows what she/he is doing, therefore the command specified here will be run - as is - everytime the application needs to be started.
+      2) `Command`: if a command line instruction is provided as the entrypoint value, it will be handled as the start up command that initializes the application. It will be assumed that the user is an advanced user that knows what she/he is doing, therefore the command specified here will be run - as is - every time the application needs to be started.
     example: "`index.html`, `index.php`, `server.php`, `default.htm`, `node server.js`, `yarn start`, `npm run production`, `docker run -d -P --name my_container_name my_image_name`, `php artisan serve –-host=192.168.2.20 --port=8000`"
   listening_address:
     description: Required for CGI|FastCGI|SCGI|WSGI based applications or `docker` containerized applications. It tells `devopness` the private address at which the application listens to external calls.
@@ -81,7 +81,7 @@ properties:
     nullable: true
   deployments_keep:
     type: integer
-    description: The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers. OR The number of deployment artifacts to be retained in the user's servers, making it easier and faster to rollback to previoius versions
+    description: The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers. OR The number of deployment artifacts to be retained in the user's servers, making it easier and faster to rollback to previous versions
     example: 4
   install_dependencies_dev:
     description: Indicates if at deployment time Devopness should execute package manager commands to install dependencies used in development mode

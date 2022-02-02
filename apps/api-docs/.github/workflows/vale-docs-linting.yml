@@ -1,0 +1,19 @@
+name: Vale Docs Linting
+on:
+  push:
+    paths:
+      - 'docs/spec/endpoints/applications/schemas/*'
+      - 'docs/spec/endpoints/cronjobs/schemas/*'
+
+jobs:
+  prose:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        ref: ${{ github.event.pull_request.head.ref }}
+
+    - name: Run Vale linter
+      run:
+        docker run -v $(pwd):/docs-vale-action -w /docs-vale-action jdkato/vale:v2.11.2 docs/spec/endpoints/applications/schemas/ docs/spec/endpoints/cronjobs/schemas/
