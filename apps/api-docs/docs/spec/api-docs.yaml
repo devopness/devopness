@@ -3,7 +3,7 @@ info:
   version: "latest"
   title: devopness API
   x-logo:
-    url: https://staging.devopness.com/26f9f5be5cd326a0ad0cc4f4ed65129b.png
+    url: https://assets.devopness.com/images/logo_devopness_complete.png
   description: |
     Devopness API - Painless essential DevOps to everyone
 
