@@ -258,6 +258,10 @@ RepositoryBranch:
   $ref: ./endpoints/repositories/schemas/repository-branch.yaml
 Resource:
   $ref: ./endpoints/actions/schemas/resource.yaml
+ResourceEvent:
+  $ref: ./endpoints/resource-events/schemas/resource-event.yaml
+ResourceEvents:
+  $ref: ./endpoints/resource-events/schemas/resource-event-list.yaml
 ResourceType:
   $ref: ./endpoints/actions/schemas/resource-type.yaml
 Script:

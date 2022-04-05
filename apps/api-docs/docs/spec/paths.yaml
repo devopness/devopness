@@ -225,6 +225,9 @@
     $ref: ./endpoints/cronjobs/paths/projects-id-cronjobs.yaml
   get:
     $ref: ./endpoints/cronjobs/paths/projects-id-cronjobs-list.yaml
+/events/resource/{resource_type}/{resource_id}:
+  get:
+    $ref: ./endpoints/resource-events/paths/resource-events-list.yaml
 /scripts/{script_id}:
   put:
     $ref: ./endpoints/scripts/paths/scripts-id-update.yaml

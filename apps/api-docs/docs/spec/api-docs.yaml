@@ -219,6 +219,7 @@ tags:
   - name: Projects - Servers
   - name: Projects - Services
   - name: Projects - SSH Keys
+  - name: Resource Events
   - name: Scripts
   - name: Servers
   - name: Services

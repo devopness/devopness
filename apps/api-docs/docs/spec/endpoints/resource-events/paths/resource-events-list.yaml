@@ -1,0 +1,37 @@
+summary: 'Return a list of all events belonging to a resource'
+operationId: listResourceEvents
+tags:
+  - Resource Events
+parameters:
+  - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/authHeader'
+  - $ref: '#/components/parameters/contentTypeHeader'
+  - $ref: '#/components/parameters/pageNumber'
+  - $ref: '#/components/parameters/pageSize'
+  - in: path
+    name: resource_type
+    example: service
+    schema:
+      type: string
+    required: true
+    description: The type of resource that's being searched
+  - in: path
+    name: resource_id
+    example: 1
+    schema:
+      type: integer
+      minimum: 1
+    required: true
+    description: Unique ID of the resource that's being searched
+responses:
+  200:
+    description: 'Ok'
+    headers:
+      Link:
+        schema:
+          type: string
+        description: Link header with `first`, `last`, `previous` and `next` page's links
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ResourceEvents'
