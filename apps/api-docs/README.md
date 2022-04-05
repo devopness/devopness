@@ -44,3 +44,13 @@ The rules listed below use the *object* and *entity* terminology. The former rep
 - **Payload schema references** should have the `#/components/schemas/{ObjectType}` form. This applies for both request body parameters and response body values. For example: `#/components/schemas/DeploymentStep` refers to a `DeploymentStep` object, describing a "Deployment Step" entity.
 - **Payload parameters to routes that create or update entities** have a suffix that indicates the operation made on the entity: either `-Create` or `-Update`. This can be observed in the "Project" entity: the `addProject` route has a `ProjectCreate` object as parameter, which includes only fields used when creating a server; the `updateProject` route takes a `ProjectUpdate` parameter, which only contains fields that can be updated by the user; the `getProject` route returns a `Project` object, which contains all the visible fields for a "Project" entity. Very often, those schemas can be reused through [OpenAPI schema inheritance](https://swagger.io/docs/specification/data-models/inheritance-and-polymorphism/).
 - **The operationId of a route** should refer to what operation is being made on which entities. Some good examples are: the `linkServerToEnvironment` route links a "Server" to an "Environment"; the `addServerToProject` routes add a "Server" to a "Project"; the `addProject` route creates a "Project".
+
+## How to add a new endpoint to the documentation
+1. In `/docs/spec/endpoints`, add the new entity's directory with subdirectories `/paths` and `/schemas`.
+2. In the `/paths` subdirectory, add the new operation's `yaml` file, with its name mirroring the operation.
+	1. In the operation's file, set the `summary`, `operationId`, `tags`, `parameters`, `responses` and, if needed, `requestBody` fields.
+3. In the `/schemas` subdirectory, add the new object's `yaml` file with the fields `type`, `properties` and `required`.
+	1. If the operation returns a list, also add a file for it with the fields `type` and `items`.
+4. In `/docs/spec/data-models.yaml`, add the reference to the new object and, if needed, the return list.
+5. In `/docs/spec/paths.yaml`, add the endpoint's path and the reference to the new operation.
+6. In `/docs/spec/api-docs.yaml`, add the new endpoint's tag to the alphabetical list in `tags`.
