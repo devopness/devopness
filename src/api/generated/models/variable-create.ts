@@ -22,13 +22,13 @@ import { VariableType } from './variable-type';
  */
 export interface VariableCreate {
     /**
-     * The unique key used to identify the variable on the target
+     * The unique key used to identify the variable on the target. When variable is of type `file`, this is the relative path to the file within the application directory. 
      * @type {string}
      * @memberof VariableCreate
      */
     key: string;
     /**
-     * The value to be assigned to this variable when deployed to its target
+     * The value to be assigned to this variable when deployed to its target. When variable is of type `file`, this is the file content. 
      * @type {string}
      * @memberof VariableCreate
      */

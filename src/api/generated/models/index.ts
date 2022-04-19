@@ -104,6 +104,7 @@ export * from './provider-region';
 export * from './repository';
 export * from './repository-branch';
 export * from './resource';
+export * from './resource-event';
 export * from './resource-type';
 export * from './script';
 export * from './script-create';

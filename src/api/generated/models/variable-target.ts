@@ -19,15 +19,7 @@
  * @enum {string}
  */
 export enum VariableTarget {
-    AppConfigFile = 'app-config-file',
-    DeploymentScript = 'deployment-script',
-    SharedScript = 'shared-script',
-    NginxBlockHttpBefore = 'nginx-block-http-before',
-    NginxBlockHttpAfter = 'nginx-block-http-after',
-    NginxBlockServer = 'nginx-block-server',
-    OsEnvVar = 'os-env-var',
-    PhpCli = 'php-cli',
-    PhpWeb = 'php-web'
+    ResourceConfigFile = 'resource-config-file'
 }
 
 
