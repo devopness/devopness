@@ -4,7 +4,7 @@
     "version": "latest",
     "title": "devopness API",
     "x-logo": {
-      "url": "https://staging.devopness.com/26f9f5be5cd326a0ad0cc4f4ed65129b.png"
+      "url": "https://assets.devopness.com/images/logo_devopness_complete.png"
     },
     "description": "Devopness API - Painless essential DevOps to everyone\n"
   },
@@ -4470,6 +4470,73 @@
         }
       }
     },
+    "/events/resource/{resource_type}/{resource_id}": {
+      "get": {
+        "summary": "Return a list of all events belonging to a resource",
+        "operationId": "listResourceEvents",
+        "tags": [
+          "Resource Events"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "resource_type",
+            "example": "service",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The type of resource that's being searched"
+          },
+          {
+            "in": "path",
+            "name": "resource_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Unique ID of the resource that's being searched"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceEvents"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/scripts/{script_id}": {
       "put": {
         "summary": "Update an existing script",
@@ -7215,7 +7282,7 @@
   "tags": [
     {
       "name": "API Reference",
-      "description": "This page contains the documentation on how to use `devopness` through API calls.\n> Note: This documentation is not complete, so for missing parts or inaccurate API description please\n>\n> reach out to `devopness` API team.\n\n## Introduction\ndevopness's API exposes all `devopness` features via a standardized programmatic interface. Through devopness API a registered Devopness user can perform every operation you can do on https://www.devopness.com web interfaces and mobile apps.\n\n## Getting started\nAll you need to obtain a token and start consuming this API is a valid email/password registered with devopness.com.\n\n\nThe `devopness` API is based on HTTPS requests and JSON responses, organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API has predictable resource-oriented URLs, accepts requests with [JSON-encoded](http://www.json.org/) bodies with arguments, returns [JSON-encoded](http://www.json.org/) responses, and uses standard HTTP response codes, authentication, and verbs.\n\n## Date format\nAll dates in the API use UTC and are strings in the [ISO 8601 \"combined date and time representation\" format](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations):\n```\n2015-05-12T15:50:38.000000Z\n```\n\n## Errors\nThe devopness API uses standard HTTP status codes to indicate the success or failure of an API call. In general: Codes in the `2xx` range indicate success. Codes in the `4xx` range indicate an error that failed given the information provided (e.g., a required parameter was omitted). Codes in the `5xx` range indicate an error on the API servers and are very rare.\n\nThe body of the error response is a JSON in the following format:\n\n```\n{\n  \"message\": \"The given request data was invalid\"\n  \"errors\": { // Optional errors object, returned only when there are detailed error message to be shared\n      \"field_1\": [\n          \"Optional error message related to field_1\"\n      ],\n      \"field_2\": [\n          \"Optional error message related to field_2\"\n      ],\n  }\n}\n```\n\n## Requests\n### Routes and Endpoints\nA route is a URI which can be mapped to different HTTP methods. The mapping of an individual HTTP method to a route is known as an endpoint. `devopness` API exposes, as much as posible, well standardized endpoints with resources and segments leading the path to access the desired resource data.\n\nEach resource mentioned in an endpoint segment has its name written in the plural form, as we are always referencing a collection of objects, that might or might not be filtered by a single ID or extra query string parameters.\n\n### Resources and nested resources endpoints\nBasically there are two types of endpoints used in `devopness` API:\n1) Resource endpoints:\n\n**Pattern:**\n\n`/collection/{resource_id}/[{action}]`\n\n**Examples:**\n\n| HTTP Method   | Example                            | Purpose       |\n| -------------:|------------------------------------|---------------|\n| POST          | /projects                          | Create new item\n| GET           | /social-accounts                   | List all items\n| GET           | /social-accounts/{account}/status  | Perform a custom action (`status`) for a single item\n| GET           | /cron-jobs/{id}                    | Get a single item by id\n| PUT           | /applications/{id}                 | Modify an item\n| DELETE        | /daemons/{id}                      | Remove an item permanently\n\n2) Nested resources endpoints:\n\nNested resources are used when there is a clear hierarchy between the parent resource and the subresource, or for convenience to make it easy and predcitable on how to filter subresources belonging to a parent resource.\nIn `devopness` API design we strive to avoid nesting resources more than 1 level deep + one action related to the child resource or to the relationship between parent and child.\n\n**Pattern:**\n\n`/parent-collection/{parent_id}/{child-collection}/{child_id}/[{action}]`\n\n**Examples:**\n\n| HTTP Method   | Example                        | Purpose       |\n| -------------:|--------------------------------|---------------|\n| GET           | /projects/{id}/servers         | List all items belonging/linked to the parent resource\n| POST          | /projects/{id}/servers         | Create a new subresource item and link it to the parent object\n| POST          | /parent/{id}/child/{id}/link   | Create a relationship between parent and child object when both items already existed but were not linked.\n| DELETE        | /parent/{id}/child/{id}/unlink | Remove the relationship between parent and child resources, without deleting any item\n\n## Responses\nWhen a request is successful, a response body will typically be sent back in the form of a JSON object.\nException to this rule is when a DELETE request is processed, which will result in a successful HTTP 204 status and an empty response body.\n\n### Response codes\nResponse codes indicate success or failure of request processing.\nStatus codes from the `2xx` range indicate that request has been accepted.\nIf the returned code is from the `4xx` or `5xx` range then it reveals either problem with the request or unability to process data.\nSee below for a list of HTTP Status codes used by `devopness` API:\n\n| Status Code   | Description   |\n| -------------:|---------------|\n| 200           | Ok - The request was successful\n| 201           | Created - The request was successful and a new resource has been created as a result\n| 202           | Accepted - The request has been received but not yet completely processed\n| 204           | No content - The request was successful. There is no content to return, but the headers may be useful\n| 400           | Bad Request - The server could not understand the request due to invalid syntax\n| 401           | Unauthenticated - It is usally caused by using wrong or expired credentials\n| 403           | Forbidden/Unauthorized - The used credentials do not allow access to the resource\n| 404           | Not Found - The server cannot find the requested resource\n| 405           | Method not allowed - The request method has been disabled and cannot be used\n| 409           | Conflict - The current request conflicts with the current state of the server\n| 415           | Unsupported Media Type - The request's `Content-Type` or `Accept` headers are not set to a valid format\n| 422           | Unprocessable Entity - The request was unable to be processed due to validation errors\n| 429           | Too many requests - The client exceeded the requests limit in a window of time\n| 500           | Internal Server Error. Please contact the `devopness` team\n\n### Pagination\nRequests that return multiple items are paginated by default. Specific pages can be requested setting the `page` parameter.\nWhen `page` parameter is not present, the first page will be returned.\nBy default 20 items are returned per page. A custom page size up to 100 can be set with the `per_page` parameter.\n\nNote: some endpoints ignore the `per_page` parameter, returning all results at once. e.g.: `/static/*` endpoints.\n\n**Example:**\n\n| HTTP Method | Path                                      |\n|------------:|-------------------------------------------|\n| GET         | /projects/{id}/servers?page=5&per_page=15 |\n\nIn the example above, we retrieve items of page `5` setting the size of `15` items per page.\n\n### Browsing paged results\nThe [Link header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Link)\nin paged responses carry links to pages for navigation purpose. Devopness API adopts the [RFC 8288](https://tools.ietf.org/html/rfc8288) as the reference for our implementation of `Link` header contents.\n\nLinks to the `first`, `next`, `previous` and `last` pages are included such that API clients don't have to hardcode or construct any links.\nThe page links that may be present in the `Link` response header are listed below:\n\n| Optional? | Example content                                             | Description   |\n|-----------|:------------------------------------------------------------|---------------|\n| **No**    | `<https://api.devopness.com/projects?page=1>; rel=\"first\"`  | First page    |\n| **No**    | `<https://api.devopness.com/projects?page=6>; rel=\"last\"`   | Last page     |\n| **Yes**   | `<https://api.devopness.com/projects?page=3>; rel=\"prev\"`   | Previous page |\n| **Yes**   | `<https://api.devopness.com/projects?page=5>; rel=\"next\"`   | Next page     |\n\nOptional links are not present if the currently requested page has no relative links to point to:\n  - Lack of a `previous` link in the response indicates the beginning of the collection\n  - Lack of a `next` link in the response indicates the end of the collection\n\n## Expanding objects\n`TO DO:` define the rules for object expansion and document it here\n"
+      "description": "This page contains the documentation on how to use `devopness` through API calls.\n> Note: This documentation is not complete, so for missing parts or inaccurate API description please\n> reach out to the `devopness` API team.\n\n## Introduction\ndevopness's API exposes all `devopness` features via a standardized programmatic interface. Through devopness API a registered Devopness user can perform every operation you can do on https://www.devopness.com web interfaces and mobile apps.\n\n## Getting started\nAll you need to obtain a token and start consuming this API is a valid email/password registered with devopness.com.\n\n\nThe `devopness` API is based on HTTPS requests and JSON responses, organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API has predictable resource-oriented URLs, accepts requests with [JSON-encoded](http://www.json.org/) bodies with arguments, returns [JSON-encoded](http://www.json.org/) responses, and uses standard HTTP response codes, authentication, and verbs.\n\n## Date format\nAll dates in the API use UTC and are strings in the [ISO 8601 \"combined date and time representation\" format](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations):\n```\n2015-05-12T15:50:38.000000Z\n```\n\n## Errors\nThe devopness API uses standard HTTP status codes to indicate the success or failure of an API call. In general: Codes in the `2xx` range indicate success. Codes in the `4xx` range indicate an error that failed given the information provided (e.g., a required parameter was omitted). Codes in the `5xx` range indicate an error on the API servers and are very rare.\n\nThe body of the error response is a JSON in the following format:\n\n```\n{\n  \"message\": \"The given request data was invalid\"\n  \"errors\": { // Optional errors object, returned only when there are detailed error message to be shared\n      \"field_1\": [\n          \"Optional error message related to field_1\"\n      ],\n      \"field_2\": [\n          \"Optional error message related to field_2\"\n      ],\n  }\n}\n```\n\n## Requests\n### Routes and Endpoints\nA route is a URI which can be mapped to different HTTP methods. The mapping of an individual HTTP method to a route is known as an endpoint. `devopness` API exposes, as much as posible, well standardized endpoints with resources and segments leading the path to access the desired resource data.\n\nEach resource mentioned in an endpoint segment has its name written in the plural form, as we are always referencing a collection of objects, that might or might not be filtered by a single ID or extra query string parameters.\n\n### Resources and nested resources endpoints\nBasically there are two types of endpoints used in `devopness` API:\n1) Resource endpoints:\n\n**Pattern:**\n\n`/collection/{resource_id}/[{action}]`\n\n**Examples:**\n\n| HTTP Method   | Example                            | Purpose       |\n| -------------:|------------------------------------|---------------|\n| POST          | /projects                          | Create new item\n| GET           | /social-accounts                   | List all items\n| GET           | /social-accounts/{account}/status  | Perform a custom action (`status`) for a single item\n| GET           | /cron-jobs/{id}                    | Get a single item by id\n| PUT           | /applications/{id}                 | Modify an item\n| DELETE        | /daemons/{id}                      | Remove an item permanently\n\n2) Nested resources endpoints:\n\nNested resources are used when there is a clear hierarchy between the parent resource and the subresource, or for convenience, to make it easy and predictable to filter subresources belonging to a parent resource.\nIn `devopness` API design we strive to avoid nesting resources more than 1 level deep + one action related to the child resource or to the relationship between parent and child.\n\n**Pattern:**\n\n`/parent-collection/{parent_id}/{child-collection}/{child_id}/[{action}]`\n\n**Examples:**\n\n| HTTP Method   | Example                        | Purpose       |\n| -------------:|--------------------------------|---------------|\n| GET           | /projects/{id}/servers         | List all items belonging/linked to the parent resource\n| POST          | /projects/{id}/servers         | Create a new subresource item and link it to the parent object\n| POST          | /parent/{id}/child/{id}/link   | Create a relationship between parent and child object when both items already existed but were not linked.\n| DELETE        | /parent/{id}/child/{id}/unlink | Remove the relationship between parent and child resources, without deleting any item\n\n## Responses\nWhen a request is successful, a response body will typically be sent back in the form of a JSON object.\nException to this rule is when a DELETE request is processed, which will result in a successful HTTP 204 status and an empty response body.\n\n### Response codes\nResponse codes indicate success or failure of request processing.\nStatus codes from the `2xx` range indicate that request has been accepted.\nIf the returned code is from the `4xx` or `5xx` range then it reveals either problem with the request or inability to process data.\nSee below for a list of HTTP Status codes used by `devopness` API:\n\n| Status Code   | Description   |\n| -------------:|---------------|\n| 200           | Ok - The request was successful\n| 201           | Created - The request was successful and a new resource has been created as a result\n| 202           | Accepted - The request has been received but not yet completely processed\n| 204           | No content - The request was successful. There is no content to return, but the headers may be useful\n| 400           | Bad Request - The server could not understand the request due to invalid syntax\n| 401           | Unauthenticated - It is usally caused by using wrong or expired credentials\n| 403           | Forbidden/Unauthorized - The used credentials do not allow access to the resource\n| 404           | Not Found - The server cannot find the requested resource\n| 405           | Method not allowed - The request method has been disabled and cannot be used\n| 409           | Conflict - The current request conflicts with the current state of the server\n| 415           | Unsupported Media Type - The request's `Content-Type` or `Accept` headers are not set to a valid format\n| 422           | Unprocessable Entity - The request was unable to be processed due to validation errors\n| 429           | Too many requests - The client exceeded the requests limit in a window of time\n| 500           | Internal Server Error. Please contact the `devopness` team\n\n### Pagination\nRequests that return multiple items are paginated by default. Specific pages can be requested setting the `page` parameter.\nWhen `page` parameter is not present, the first page will be returned.\nBy default 20 items are returned per page. A custom page size up to 100 can be set with the `per_page` parameter.\n\nNote: some endpoints ignore the `per_page` parameter, returning all results at once. e.g.: `/static/*` endpoints.\n\n**Example:**\n\n| HTTP Method | Path                                      |\n|------------:|-------------------------------------------|\n| GET         | /projects/{id}/servers?page=5&per_page=15 |\n\nIn the example above, we retrieve items of page `5` setting the size of `15` items per page.\n\n### Browsing paged results\nThe [Link header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Link)\nin paged responses carry links to pages for navigation purpose. Devopness API adopts the [RFC 8288](https://tools.ietf.org/html/rfc8288) as the reference for our implementation of `Link` header contents.\n\nLinks to the `first`, `next`, `previous` and `last` pages are included such that API clients don't have to hardcode or construct any links.\nThe page links that may be present in the `Link` response header are listed below:\n\n| Optional? | Example content                                             | Description   |\n|-----------|:------------------------------------------------------------|---------------|\n| **No**    | `<https://api.devopness.com/projects?page=1>; rel=\"first\"`  | First page    |\n| **No**    | `<https://api.devopness.com/projects?page=6>; rel=\"last\"`   | Last page     |\n| **Yes**   | `<https://api.devopness.com/projects?page=3>; rel=\"prev\"`   | Previous page |\n| **Yes**   | `<https://api.devopness.com/projects?page=5>; rel=\"next\"`   | Next page     |\n\nOptional links are not present if the currently requested page has no relative links to point to:\n  - Lack of a `previous` link in the response indicates the beginning of the collection\n  - Lack of a `next` link in the response indicates the end of the collection\n\n## Expanding objects\n`TO DO:` define the rules for object expansion and document it here\n"
     },
     {
       "name": "Static Data",
@@ -7338,6 +7405,9 @@
     },
     {
       "name": "Projects - SSH Keys"
+    },
+    {
+      "name": "Resource Events"
     },
     {
       "name": "Scripts"
@@ -7901,7 +7971,7 @@
             "example": "develop"
           },
           "push_to_deploy": {
-            "description": "Indicates if push to deploy webhooks are enabled for this application. If enabled an app deployment will be automatically triggered when new changes are commited to the `default_branch`",
+            "description": "Indicates if push to deploy webhooks are enabled for this application. If enabled an app deployment will be automatically triggered when new changes are committed to the `default_branch`",
             "type": "boolean",
             "example": false
           },
@@ -7933,7 +8003,7 @@
           },
           "entrypoint": {
             "type": "string",
-            "description": "The entrypoint tells devopness how an application should be started and has basically two forms:\n\n1) `File`: if it's a simple file name/path a web app will be served using the entrypoint value as its index file. Example: `index.html`\n\n2) `Command`: if a command line instruction is provided as the entrypoint value, it will be handled as the start up command that initalizes the application. It will be assumed that the user is an advanced user that knows what she/he is doing, therefore the command specified here will be run - as is - everytime the application needs to be started.\n",
+            "description": "The entrypoint tells devopness how an application should be started and has basically two forms:\n\n1) `File`: if it's a simple file name/path a web app will be served using the entrypoint value as its index file. Example: `index.html`\n\n2) `Command`: if a command line instruction is provided as the entrypoint value, it will be handled as the start up command that initializes the application. It will be assumed that the user is an advanced user that knows what she/he is doing, therefore the command specified here will be run - as is - every time the application needs to be started.\n",
             "example": "`index.html`, `index.php`, `server.php`, `default.htm`, `node server.js`, `yarn start`, `npm run production`, `docker run -d -P --name my_container_name my_image_name`, `php artisan serve –-host=192.168.2.20 --port=8000`"
           },
           "listening_address": {
@@ -7944,7 +8014,7 @@
           },
           "deployments_keep": {
             "type": "integer",
-            "description": "The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers. OR The number of deployment artifacts to be retained in the user's servers, making it easier and faster to rollback to previoius versions",
+            "description": "The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers. OR The number of deployment artifacts to be retained in the user's servers, making it easier and faster to rollback to previous versions",
             "example": 4
           },
           "install_dependencies_dev": {
@@ -8067,7 +8137,7 @@
             "example": "develop"
           },
           "push_to_deploy": {
-            "description": "Indicates if push to deploy webhooks are enabled for this application. If enabled an app deployment will be automatically triggered when new changes are commited to the `default_branch`",
+            "description": "Indicates if push to deploy webhooks are enabled for this application. If enabled an app deployment will be automatically triggered when new changes are committed to the `default_branch`",
             "type": "boolean",
             "example": false
           },
@@ -8098,7 +8168,7 @@
           },
           "entrypoint": {
             "type": "string",
-            "description": "The entrypoint tells devopness how an application should be started and has basically two forms:\n\n1) `File`: if it's a simple file name/path a web app will be served using the entrypoint value as its index file. Example: `index.html`\n\n2) `Command`: if a command line instruction is provided as the entrypoint value, it will be handled as the start up command that initalizes the application. It will be assumed that the user is an advanced user that knows what she/he is doing, therefore the command specified here will be run - as is - everytime the application needs to be started.\n",
+            "description": "The entrypoint tells devopness how an application should be started and has basically two forms:\n\n1) `File`: if it's a simple file name/path a web app will be served using the entrypoint value as its index file. Example: `index.html`\n\n2) `Command`: if a command line instruction is provided as the entrypoint value, it will be handled as the start up command that initializes the application. It will be assumed that the user is an advanced user that knows what she/he is doing, therefore the command specified here will be run - as is - every time the application needs to be started.\n",
             "example": "`index.html`, `index.php`, `server.php`, `default.htm`, `node server.js`, `yarn start`, `npm run production`, `docker run -d -P --name my_container_name my_image_name`, `php artisan serve –-host=192.168.2.20 --port=8000`"
           },
           "listening_address": {
@@ -8113,7 +8183,7 @@
           },
           "deployments_keep": {
             "type": "integer",
-            "description": "The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers. OR The number of deployment artifacts to be retained in the user's servers, making it easier and faster to rollback to previoius versions",
+            "description": "The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers. OR The number of deployment artifacts to be retained in the user's servers, making it easier and faster to rollback to previous versions",
             "example": 4
           },
           "install_dependencies_dev": {
@@ -8202,7 +8272,7 @@
             "example": "develop"
           },
           "push_to_deploy": {
-            "description": "Indicates if push to deploy webhooks are enabled for this application. If enabled an app deployment will be automatically triggered when new changes are commited to the `default_branch`",
+            "description": "Indicates if push to deploy webhooks are enabled for this application. If enabled an app deployment will be automatically triggered when new changes are committed to the `default_branch`",
             "type": "boolean",
             "example": false
           },
@@ -8233,7 +8303,7 @@
           },
           "entrypoint": {
             "type": "string",
-            "description": "The entrypoint tells devopness how an application should be started and has basically two forms:\n\n1) `File`: if it's a simple file name/path a web app will be served using the entrypoint value as its index file. Example: `index.html`\n\n2) `Command`: if a command line instruction is provided as the entrypoint value, it will be handled as the start up command that initalizes the application. It will be assumed that the user is an advanced user that knows what she/he is doing, therefore the command specified here will be run - as is - everytime the application needs to be started.\n",
+            "description": "The entrypoint tells devopness how an application should be started and has basically two forms:\n\n1) `File`: if it's a simple file name/path, a web app will be served using the entrypoint value as its index file. Example: `index.html`\n\n2) `Command`: if a command line instruction is provided as the entrypoint value, it will be handled as the start up command that initializes the application. It will be assumed that the user is an advanced user that knows what she/he is doing, therefore the command specified here will be run - as is - every time the application needs to be started.\n",
             "example": "`docker run -d -P --name my_container_name my_image_name`"
           },
           "listening_address": {
@@ -8243,7 +8313,7 @@
           },
           "deployments_keep": {
             "type": "integer",
-            "description": "The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers. OR The number of deployment artifacts to be retained in the user's servers, making it easier and faster to rollback to previoius versions",
+            "description": "The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers. OR The number of deployment artifacts to be retained in the user's servers, making it easier and faster to rollback to previous versions",
             "example": 4
           },
           "install_dependencies_dev": {
@@ -11836,6 +11906,69 @@
           "type_human_readable"
         ]
       },
+      "ResourceEvent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The unique id of the event",
+            "example": 652674
+          },
+          "type": {
+            "type": "string",
+            "description": "The event type",
+            "example": "testtype"
+          },
+          "resource_type": {
+            "type": "string",
+            "description": "The type of the resource that triggered the event",
+            "example": "Service"
+          },
+          "resource_id": {
+            "type": "integer",
+            "description": "The id of the resource that triggered the event",
+            "example": 652674
+          },
+          "message": {
+            "type": "string",
+            "description": "Text describing the event's origin and output",
+            "example": "Test message",
+            "nullable": true
+          },
+          "triggered_by": {
+            "type": "integer",
+            "description": "ID of the user who triggered the event",
+            "example": 2,
+            "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2020-04-16T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2020-04-16T15:50:48.000000Z"
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "resource_type",
+          "resource_id",
+          "created_at",
+          "updated_at"
+        ]
+      },
+      "ResourceEvents": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/ResourceEvent"
+        }
+      },
       "ResourceType": {
         "type": "string",
         "enum": [
@@ -14010,12 +14143,13 @@
         "properties": {
           "key": {
             "type": "string",
-            "description": "The unique key used to identify the variable on the target",
+            "description": "The unique key used to identify the variable on the target.\nWhen variable is of type `file`, this is the relative path\nto the file within the application directory.\n",
             "example": "APP_URL"
           },
           "value": {
             "type": "string",
-            "description": "The value to be assigned to this variable when deployed to its target",
+            "maxLength": 21504,
+            "description": "The value to be assigned to this variable when deployed to its target.\nWhen variable is of type `file`, this is the file content.\n",
             "example": "https://staging.devopness.com"
           },
           "description": {
@@ -14047,26 +14181,17 @@
         "type": "string",
         "description": "The target defining how the variable key/value pair will be deployed",
         "enum": [
-          "app-config-file",
-          "deployment-script",
-          "shared-script",
-          "nginx-block-http-before",
-          "nginx-block-http-after",
-          "nginx-block-server",
-          "os-env-var",
-          "php-cli",
-          "php-web"
+          "resource-config-file"
         ],
-        "example": "app-config-file"
+        "example": "resource-config-file"
       },
       "VariableType": {
         "type": "string",
         "description": "The type of the key/value pair",
         "enum": [
-          "variable",
           "file"
         ],
-        "example": "variable"
+        "example": "file"
       },
       "VariableUpdate": {
         "type": "object",
