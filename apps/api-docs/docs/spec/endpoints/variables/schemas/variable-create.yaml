@@ -2,11 +2,17 @@ type: object
 properties:
   key:
     type: string
-    description: The unique key used to identify the variable on the target
+    description: |
+      The unique key used to identify the variable on the target.
+      When variable is of type `file`, this is the relative path
+      to the file within the application directory.
     example: 'APP_URL'
   value:
     type: string
-    description: The value to be assigned to this variable when deployed to its target
+    maxLength: 21504
+    description: |
+      The value to be assigned to this variable when deployed to its target.
+      When variable is of type `file`, this is the file content.
     example: 'https://staging.devopness.com'
   description:
     type: string

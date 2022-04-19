@@ -1,4 +1,5 @@
 type: string
 description: The type of the key/value pair
-enum: [variable, file]
-example: 'variable'
+enum:
+  - file
+example: 'file'
