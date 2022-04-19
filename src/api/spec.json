@@ -14191,7 +14191,7 @@
         "enum": [
           "file"
         ],
-        "example": "variable"
+        "example": "file"
       },
       "VariableUpdate": {
         "type": "object",
