@@ -28,12 +28,6 @@ export interface VariableUpdate {
      */
     id: number;
     /**
-     * The id of the application to be linked
-     * @type {number}
-     * @memberof VariableUpdate
-     */
-    application_id: number;
-    /**
      * The unique key used to identify the variable on the target
      * @type {string}
      * @memberof VariableUpdate
