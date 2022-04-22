@@ -4,10 +4,6 @@ properties:
     description: Variable's unique id
     example: 867
     type: integer
-  application_id:
-    type: integer
-    description: The id of the application to be linked
-    example: 9471
   key:
     type: string
     description: The unique key used to identify the variable on the target
@@ -30,7 +26,6 @@ properties:
     description: Indicates if the variable value should be visible or not in the deployment logs
 required:
   - id
-  - application_id
   - key
   - value
   - target
