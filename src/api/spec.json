@@ -14201,11 +14201,6 @@
             "example": 867,
             "type": "integer"
           },
-          "application_id": {
-            "type": "integer",
-            "description": "The id of the application to be linked",
-            "example": 9471
-          },
           "key": {
             "type": "string",
             "description": "The unique key used to identify the variable on the target",
@@ -14235,7 +14230,6 @@
         },
         "required": [
           "id",
-          "application_id",
           "key",
           "value",
           "target",
