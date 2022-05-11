@@ -1,20 +1,20 @@
-summary: 'Return a list of all events belonging to a resource'
+summary: "Return a list of all events belonging to a resource"
 operationId: listResourceEvents
 tags:
   - Resource Events
 parameters:
-  - $ref: '#/components/parameters/acceptHeader'
-  - $ref: '#/components/parameters/authHeader'
-  - $ref: '#/components/parameters/contentTypeHeader'
-  - $ref: '#/components/parameters/pageNumber'
-  - $ref: '#/components/parameters/pageSize'
+  - $ref: "#/components/parameters/acceptHeader"
+  - $ref: "#/components/parameters/authHeader"
+  - $ref: "#/components/parameters/contentTypeHeader"
+  - $ref: "#/components/parameters/pageNumber"
+  - $ref: "#/components/parameters/pageSize"
   - in: path
     name: resource_type
     example: service
     schema:
       type: string
     required: true
-    description: The type of resource that's being searched
+    description: The resource type to get related events
   - in: path
     name: resource_id
     example: 1
@@ -25,7 +25,7 @@ parameters:
     description: Unique ID of the resource that's being searched
 responses:
   200:
-    description: 'Ok'
+    description: "Ok"
     headers:
       Link:
         schema:
@@ -34,4 +34,4 @@ responses:
     content:
       application/json:
         schema:
-          $ref: '#/components/schemas/ResourceEvents'
+          $ref: "#/components/schemas/ResourceEvents"
