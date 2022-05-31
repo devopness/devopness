@@ -1,4 +1,5 @@
-type: array
+type: object
 description: Settings of the cloud provider
-items:
-  $ref: '#/components/schemas/CloudProviderProperty'
+properties:
+  credential:
+    $ref: '#/components/schemas/CloudProviderCredential'

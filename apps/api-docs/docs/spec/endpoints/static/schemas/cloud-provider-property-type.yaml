@@ -1,5 +1,6 @@
 type: string
 enum:
   - string
+  - text
   - integer
   - boolean

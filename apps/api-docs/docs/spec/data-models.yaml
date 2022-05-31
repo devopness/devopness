@@ -58,6 +58,8 @@ CloudOs:
   $ref: ./endpoints/servers/schemas/cloud-settings/cloud-os.yaml
 CloudProvider:
   $ref: ./endpoints/credentials/schemas/cloud-provider.yaml
+CloudProviderCredential:
+  $ref: ./endpoints/static/schemas/cloud-provider-credential.yaml
 CloudProviderProperty:
   $ref: ./endpoints/static/schemas/cloud-provider-property.yaml
 CloudProviderPropertyType:
@@ -72,6 +74,14 @@ CloudServices:
   $ref: ./endpoints/static/schemas/cloud-service-list.yaml
 Credential:
   $ref: ./endpoints/credentials/schemas/credential.yaml
+CredentialAws:
+  $ref: ./endpoints/credentials/schemas/credentials/credential-aws.yaml
+CredentialDigitalOcean:
+  $ref: ./endpoints/credentials/schemas/credentials/credential-digital-ocean.yaml
+CredentialGoogleCloud:
+  $ref: ./endpoints/credentials/schemas/credentials/credential-google-cloud.yaml
+CredentialSetting:
+  $ref: ./endpoints/credentials/schemas/credential-setting.yaml
 CredentialCreate:
   $ref: ./endpoints/credentials/schemas/credential-create.yaml
 Credentials:
