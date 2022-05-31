@@ -8991,7 +8991,7 @@
       "CredentialCreate": {
         "type": "object",
         "properties": {
-          "provider_name": {
+          "provider_code": {
             "type": "string",
             "description": "The provider to which this credential belongs to",
             "example": "aws"
@@ -9006,7 +9006,7 @@
           }
         },
         "required": [
-          "provider_name",
+          "provider_code",
           "name",
           "settings"
         ]
