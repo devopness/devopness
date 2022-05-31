@@ -23,7 +23,7 @@ export class ResourceEventsApiService extends ApiBaseService {
     /**
      * 
      * @summary Return a list of all events belonging to a resource
-     * @param {string} resourceType The type of resource that\&#39;s being searched
+     * @param {string} resourceType The resource type to get related events
      * @param {number} resourceId Unique ID of the resource that\&#39;s being searched
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
@@ -46,7 +46,7 @@ export class ResourceEventsApiService extends ApiBaseService {
             queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
         }
 
-        const requestUrl = '/events/resource/{resource_type}/{resource_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/events/{resource_type}/{resource_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Array<ResourceEvent>>(requestUrl.replace(`{${"resource_type"}}`, encodeURIComponent(String(resourceType))).replace(`{${"resource_id"}}`, encodeURIComponent(String(resourceId))));
         return new ApiResponse(response);

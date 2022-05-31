@@ -14,16 +14,16 @@
 
 
 /**
- * The name of a supported service
+ * 
  * @export
- * @enum {string}
+ * @interface CredentialDigitalOcean
  */
-export enum ServiceName {
-    Docker = 'docker',
-    Mysql = 'mysql',
-    Nginx = 'nginx',
-    Redis = 'redis',
-    Supervisor = 'supervisor'
+export interface CredentialDigitalOcean {
+    /**
+     * The API token used to authenticate to DigitalOcean
+     * @type {string}
+     * @memberof CredentialDigitalOcean
+     */
+    api_token: string;
 }
-
 

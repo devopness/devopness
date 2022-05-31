@@ -14,16 +14,16 @@
 
 
 /**
- * The name of a supported service
+ * 
  * @export
- * @enum {string}
+ * @interface CredentialGoogleCloud
  */
-export enum ServiceName {
-    Docker = 'docker',
-    Mysql = 'mysql',
-    Nginx = 'nginx',
-    Redis = 'redis',
-    Supervisor = 'supervisor'
+export interface CredentialGoogleCloud {
+    /**
+     * The JSON key to service account of Google Cloud provider.
+     * @type {string}
+     * @memberof CredentialGoogleCloud
+     */
+    service_account_key: string;
 }
-
 

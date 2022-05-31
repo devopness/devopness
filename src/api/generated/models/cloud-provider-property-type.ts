@@ -20,6 +20,7 @@
  */
 export enum CloudProviderPropertyType {
     String = 'string',
+    Text = 'text',
     Integer = 'integer',
     Boolean = 'boolean'
 }
