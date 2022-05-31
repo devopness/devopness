@@ -16,13 +16,14 @@
 /**
  * 
  * @export
- * @enum {string}
+ * @interface CredentialGoogleCloud
  */
-export enum CloudProviderPropertyType {
-    String = 'string',
-    Text = 'text',
-    Integer = 'integer',
-    Boolean = 'boolean'
+export interface CredentialGoogleCloud {
+    /**
+     * The JSON key to service account of Google Cloud provider.
+     * @type {string}
+     * @memberof CredentialGoogleCloud
+     */
+    service_account_key: string;
 }
-
 

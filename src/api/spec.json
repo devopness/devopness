@@ -4470,7 +4470,7 @@
         }
       }
     },
-    "/events/resource/{resource_type}/{resource_id}": {
+    "/events/{resource_type}/{resource_id}": {
       "get": {
         "summary": "Return a list of all events belonging to a resource",
         "operationId": "listResourceEvents",
@@ -4501,7 +4501,7 @@
               "type": "string"
             },
             "required": true,
-            "description": "The type of resource that's being searched"
+            "description": "The resource type to get related events"
           },
           {
             "in": "path",
@@ -8715,12 +8715,12 @@
           "code": {
             "type": "string",
             "description": "The code that uniquely identify a cloud provider",
-            "example": "aws|digital-ocean"
+            "example": "aws|digital-ocean|gcp"
           },
           "logo_url": {
             "type": "string",
             "description": "A URL path to the provider's logo image",
-            "example": "aws"
+            "example": "https://example.com/images/aws-logo.png"
           },
           "name": {
             "type": "string",
@@ -8733,6 +8733,13 @@
           "logo_url",
           "name"
         ]
+      },
+      "CloudProviderCredential": {
+        "type": "array",
+        "description": "Settings of the cloud provider credential",
+        "items": {
+          "$ref": "#/components/schemas/CloudProviderProperty"
+        }
       },
       "CloudProviderProperty": {
         "type": "object",
@@ -8785,6 +8792,7 @@
         "type": "string",
         "enum": [
           "string",
+          "text",
           "integer",
           "boolean"
         ]
@@ -8827,10 +8835,12 @@
         ]
       },
       "CloudProviderSettings": {
-        "type": "array",
+        "type": "object",
         "description": "Settings of the cloud provider",
-        "items": {
-          "$ref": "#/components/schemas/CloudProviderProperty"
+        "properties": {
+          "credential": {
+            "$ref": "#/components/schemas/CloudProviderCredential"
+          }
         }
       },
       "CloudService": {
@@ -8911,6 +8921,73 @@
           "name"
         ]
       },
+      "CredentialAws": {
+        "type": "object",
+        "properties": {
+          "access_key": {
+            "type": "string",
+            "description": "The key used to authenticate on AWS cloud provider",
+            "example": "3dlxAUgbuTJY0AitQMAFHd6JadVRw3rGml"
+          },
+          "secret": {
+            "type": "string",
+            "description": "The secret used to authenticate on AWS cloud provider",
+            "example": "my-secret"
+          }
+        },
+        "required": [
+          "access_key",
+          "secret"
+        ]
+      },
+      "CredentialDigitalOcean": {
+        "type": "object",
+        "properties": {
+          "api_token": {
+            "type": "string",
+            "description": "The API token used to authenticate to DigitalOcean",
+            "example": "dop_v1_65f82e89e52a9109320868fd84cf9d5610958bd9d839ef3c30b70e43aa4e453e"
+          }
+        },
+        "required": [
+          "api_token"
+        ]
+      },
+      "CredentialGoogleCloud": {
+        "type": "object",
+        "properties": {
+          "service_account_key": {
+            "type": "string",
+            "description": "The JSON key to service account of Google Cloud provider.",
+            "example": "{\n  \"type\": \"service_account\",\n  \"project_id\": \"project-name-12345\",\n  \"private_key_id\": \"91612c57c42a125c7cdfa788f9ac659006721731\",\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\\nf5RDfS3aRzGyjcKsRLqQfpDWalRVgTWgpMhZwmdoZPkWFi3EPw1BmM\\n-----END PRIVATE KEY-----\\n\",\n  \"client_email\": \"account-12345@project-name-12345.iam.gserviceaccount.com\",\n  \"client_id\": \"764123001245678971239\",\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n  \"client_x509_cert_url\": \"https://www.googleapis.com/robot/v1/metadata/x509/account-12345%40project-name-12345.iam.gserviceaccount.com\"\n}\n"
+          }
+        },
+        "required": [
+          "service_account_key"
+        ]
+      },
+      "CredentialSetting": {
+        "type": "object",
+        "properties": {
+          "credential": {
+            "description": "Cloud provider credential",
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CredentialAws"
+              },
+              {
+                "$ref": "#/components/schemas/CredentialDigitalOcean"
+              },
+              {
+                "$ref": "#/components/schemas/CredentialGoogleCloud"
+              }
+            ]
+          }
+        },
+        "required": [
+          "credential"
+        ]
+      },
       "CredentialCreate": {
         "type": "object",
         "properties": {
@@ -8924,21 +9001,14 @@
             "description": "A name to uniquely identify this cloud provider credential",
             "example": "AWS production account"
           },
-          "access_key": {
-            "type": "string",
-            "description": "The key used to authenticate on cloud provider",
-            "example": "3dlxAUgbuTJY0AitQMAFHd6JadVRw3rGml"
-          },
-          "secret": {
-            "type": "string",
-            "description": "The secret used to authenticate on this cloud provider",
-            "example": "my-secret"
+          "settings": {
+            "$ref": "#/components/schemas/CredentialSetting"
           }
         },
         "required": [
           "provider_name",
           "name",
-          "access_key"
+          "settings"
         ]
       },
       "Credentials": {
@@ -12798,6 +12868,7 @@
         "type": "string",
         "description": "The name of a supported service",
         "enum": [
+          "docker",
           "mysql",
           "nginx",
           "redis",

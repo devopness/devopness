@@ -12,6 +12,7 @@
  */
 
 
+import { CredentialSetting } from './credential-setting';
 
 /**
  * 
@@ -32,16 +33,10 @@ export interface CredentialCreate {
      */
     name: string;
     /**
-     * The key used to authenticate on cloud provider
-     * @type {string}
+     * 
+     * @type {CredentialSetting}
      * @memberof CredentialCreate
      */
-    access_key: string;
-    /**
-     * The secret used to authenticate on this cloud provider
-     * @type {string}
-     * @memberof CredentialCreate
-     */
-    secret?: string;
+    settings: CredentialSetting;
 }
 

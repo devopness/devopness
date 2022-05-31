@@ -16,13 +16,14 @@
 /**
  * 
  * @export
- * @enum {string}
+ * @interface CredentialDigitalOcean
  */
-export enum CloudProviderPropertyType {
-    String = 'string',
-    Text = 'text',
-    Integer = 'integer',
-    Boolean = 'boolean'
+export interface CredentialDigitalOcean {
+    /**
+     * The API token used to authenticate to DigitalOcean
+     * @type {string}
+     * @memberof CredentialDigitalOcean
+     */
+    api_token: string;
 }
-
 
