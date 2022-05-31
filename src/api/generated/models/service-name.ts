@@ -19,6 +19,7 @@
  * @enum {string}
  */
 export enum ServiceName {
+    Docker = 'docker',
     Mysql = 'mysql',
     Nginx = 'nginx',
     Redis = 'redis',
