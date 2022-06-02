@@ -1,0 +1,5 @@
+type: string
+description: Source/channel from which the deployment has been triggered
+enum:
+  - hook
+  - manual

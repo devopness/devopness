@@ -130,6 +130,8 @@ DeploymentDefaultSteps:
   $ref: ./endpoints/static/schemas/deployment-default-step-list.yaml
 Deployments:
   $ref: ./endpoints/deployments/schemas/deployment-list.yaml
+DeploymentOrigin:
+  $ref: ./shared/schemas/deployment-origin.yaml
 DeploymentSource:
   $ref: ./shared/schemas/deployment-source.yaml
 DeploymentStep:
