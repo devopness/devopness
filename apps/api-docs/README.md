@@ -36,6 +36,8 @@ npm run build
 ```
 
 ### Generate docs and initialize a local server
+By default, the server listens on port 9090, as defined by the `api-docs-serve` npm script in [package.json](package.json).
+
 ```shell
 npm run api-docs-serve
 ```
