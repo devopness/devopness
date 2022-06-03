@@ -4,3 +4,4 @@ example: ec2
 enum:
   - droplet
   - ec2
+  - gcp-gce

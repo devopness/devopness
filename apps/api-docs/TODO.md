@@ -22,6 +22,7 @@
 - [ ] enable `users` tests: `activateUser204`, `sendUserPasswordResetLink200` and `resetUserPassword200` require email validation mocking logic.
 ## Improvements/research
 - [ ] run 404 transactions: proof-of-concept running over clean-slate user accounts
+
 ## Dredd source hacks
 - [ ] `hooks.log` with multiple log levels
 - [ ] read CLI arguments, allow dredd `--list-only` to run without hooks.
