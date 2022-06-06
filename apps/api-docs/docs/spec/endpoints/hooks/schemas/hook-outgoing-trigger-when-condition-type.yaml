@@ -1,0 +1,6 @@
+type: string
+description: |
+  Type of the outgoing hook condition.
+  * `action_status` - Validate action status for outgoing hooks.
+enum:
+  - action_status

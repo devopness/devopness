@@ -188,6 +188,20 @@ HookRequestRelation:
   $ref: ./shared/schemas/models/hook-request-relation.yaml
 HookSetting:
   $ref: ./endpoints/hooks/schemas/hook-setting.yaml
+HookIncomingTriggerWhen:
+  $ref: ./endpoints/hooks/schemas/hook-incoming-trigger-when.yaml
+HookIncomingTriggerWhenCondition:
+  $ref: ./endpoints/hooks/schemas/hook-incoming-trigger-when-condition.yaml
+HookIncomingTriggerWhenConditionType:
+  $ref: ./endpoints/hooks/schemas/hook-incoming-trigger-when-condition-type.yaml
+HookOutgoingTriggerWhen:
+  $ref: ./endpoints/hooks/schemas/hook-outgoing-trigger-when.yaml
+HookOutgoingTriggerWhenActionStatus:
+  $ref: ./endpoints/hooks/schemas/hook-outgoing-trigger-when-action-status.yaml
+HookOutgoingTriggerWhenCondition:
+  $ref: ./endpoints/hooks/schemas/hook-outgoing-trigger-when-condition.yaml
+HookOutgoingTriggerWhenConditionType:
+  $ref: ./endpoints/hooks/schemas/hook-outgoing-trigger-when-condition-type.yaml
 HookType:
   $ref: ./endpoints/hooks/schemas/hook-type.yaml
 HookVariable:

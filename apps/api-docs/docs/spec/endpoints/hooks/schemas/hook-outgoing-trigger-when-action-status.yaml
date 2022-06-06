@@ -1,0 +1,5 @@
+type: string
+enum:
+  - in-progress
+  - completed
+  - failed

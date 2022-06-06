@@ -27,11 +27,7 @@ properties:
     description: The URL that Devopness should send a request when the outgoing hook is triggered
     example: https://simple-example.test/hook/12345
   trigger_when:
-    type: array
-    items:
-      type: string
-    description: The list of action status when the hook must be triggered
-    example: ["in-progress", "completed", "failed"]
+    $ref: '#/components/schemas/HookOutgoingTriggerWhen'
 required:
   - id
   - name
