@@ -13,6 +13,7 @@
 
 
 import { ActionType } from './action-type';
+import { HookOutgoingTriggerWhenCondition } from './hook-outgoing-trigger-when-condition';
 import { ResourceType } from './resource-type';
 
 /**
@@ -64,10 +65,10 @@ export interface HookOutgoingUpdate {
      */
     target_url: string;
     /**
-     * The list of action status when the hook must be triggered
-     * @type {Array<string>}
+     * Conditions that must be met to trigger the hook.
+     * @type {Array<HookOutgoingTriggerWhenCondition>}
      * @memberof HookOutgoingUpdate
      */
-    trigger_when: Array<string>;
+    trigger_when: Array<HookOutgoingTriggerWhenCondition>;
 }
 
