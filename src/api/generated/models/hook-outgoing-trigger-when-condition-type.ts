@@ -14,12 +14,11 @@
 
 
 /**
- * Type of the hook condition. * `request_body` - Validate request body for incoming hooks. * `action_status` - Validate action status for outgoing hooks. 
+ * Type of the outgoing hook condition. * `action_status` - Validate action status for outgoing hooks. 
  * @export
  * @enum {string}
  */
-export enum HookTriggerWhenConditionType {
-    RequestBody = 'request_body',
+export enum HookOutgoingTriggerWhenConditionType {
     ActionStatus = 'action_status'
 }
 

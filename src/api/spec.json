@@ -10300,7 +10300,18 @@
             "example": true
           },
           "trigger_when": {
-            "$ref": "#/components/schemas/HookTriggerWhen"
+            "type": "array",
+            "description": "Conditions that must be met to trigger the hook.",
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/HookIncomingTriggerWhenCondition"
+                },
+                {
+                  "$ref": "#/components/schemas/HookOutgoingTriggerWhenCondition"
+                }
+              ]
+            }
           },
           "auto_generated": {
             "default": false,
@@ -10399,7 +10410,7 @@
             "example": "X-Custom-Header"
           },
           "trigger_when": {
-            "$ref": "#/components/schemas/HookTriggerWhen"
+            "$ref": "#/components/schemas/HookIncomingTriggerWhen"
           },
           "settings": {
             "$ref": "#/components/schemas/HookSetting"
@@ -10492,7 +10503,7 @@
             "example": "https://simple-example.test/hook/12345"
           },
           "trigger_when": {
-            "$ref": "#/components/schemas/HookTriggerWhen"
+            "$ref": "#/components/schemas/HookOutgoingTriggerWhen"
           }
         },
         "required": [
@@ -10541,16 +10552,7 @@
             "example": "https://simple-example.test/hook/12345"
           },
           "trigger_when": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "The list of action status when the hook must be triggered",
-            "example": [
-              "in-progress",
-              "completed",
-              "failed"
-            ]
+            "$ref": "#/components/schemas/HookOutgoingTriggerWhen"
           }
         },
         "required": [
@@ -10743,14 +10745,14 @@
           }
         }
       },
-      "HookTriggerWhen": {
+      "HookIncomingTriggerWhen": {
         "type": "array",
         "description": "Conditions that must be met to trigger the hook.",
         "items": {
-          "$ref": "#/components/schemas/HookTriggerWhenCondition"
+          "$ref": "#/components/schemas/HookIncomingTriggerWhenCondition"
         }
       },
-      "HookTriggerWhenCondition": {
+      "HookIncomingTriggerWhenCondition": {
         "type": "object",
         "properties": {
           "name": {
@@ -10759,7 +10761,7 @@
             "example": "Check pullrequest author"
           },
           "type": {
-            "$ref": "#/components/schemas/HookTriggerWhenConditionType"
+            "$ref": "#/components/schemas/HookIncomingTriggerWhenConditionType"
           },
           "path": {
             "type": "string",
@@ -10794,14 +10796,60 @@
         },
         "required": [
           "type",
+          "path",
           "accepted_values"
         ]
       },
-      "HookTriggerWhenConditionType": {
+      "HookIncomingTriggerWhenConditionType": {
         "type": "string",
-        "description": "Type of the hook condition.\n* `request_body` - Validate request body for incoming hooks.\n* `action_status` - Validate action status for outgoing hooks.\n",
+        "description": "Type of the incoming hook condition.\n* `request_body` - Validate request body for incoming hooks.\n",
         "enum": [
-          "request_body",
+          "request_body"
+        ]
+      },
+      "HookOutgoingTriggerWhen": {
+        "type": "array",
+        "description": "Conditions that must be met to trigger the hook.",
+        "items": {
+          "$ref": "#/components/schemas/HookOutgoingTriggerWhenCondition"
+        }
+      },
+      "HookOutgoingTriggerWhenActionStatus": {
+        "type": "string",
+        "enum": [
+          "in-progress",
+          "completed",
+          "failed"
+        ]
+      },
+      "HookOutgoingTriggerWhenCondition": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/HookOutgoingTriggerWhenConditionType"
+          },
+          "accepted_values": {
+            "type": "array",
+            "description": "An list of accepted values to checked field.",
+            "items": {
+              "$ref": "#/components/schemas/HookOutgoingTriggerWhenActionStatus"
+            },
+            "example": [
+              "in-progress",
+              "completed",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "type",
+          "accepted_values"
+        ]
+      },
+      "HookOutgoingTriggerWhenConditionType": {
+        "type": "string",
+        "description": "Type of the outgoing hook condition.\n* `action_status` - Validate action status for outgoing hooks.\n",
+        "enum": [
           "action_status"
         ]
       },
@@ -10952,7 +11000,18 @@
             "example": true
           },
           "trigger_when": {
-            "$ref": "#/components/schemas/HookTriggerWhen"
+            "type": "array",
+            "description": "Conditions that must be met to trigger the hook.",
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/HookIncomingTriggerWhenCondition"
+                },
+                {
+                  "$ref": "#/components/schemas/HookOutgoingTriggerWhenCondition"
+                }
+              ]
+            }
           },
           "auto_generated": {
             "default": false,
