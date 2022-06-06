@@ -20,7 +20,8 @@
  */
 export enum ServerCloudServiceName {
     Droplet = 'droplet',
-    Ec2 = 'ec2'
+    Ec2 = 'ec2',
+    GcpGce = 'gcp-gce'
 }
 
 

@@ -26,7 +26,7 @@ export interface CloudService {
      * @type {string}
      * @memberof CloudService
      */
-    code: string;
+    code: CloudServiceCodeEnum;
     /**
      * The full name of the cloud service
      * @type {string}
@@ -46,4 +46,15 @@ export interface CloudService {
      */
     os: Array<OperatingSystem>;
 }
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum CloudServiceCodeEnum {
+    Ec2 = 'ec2',
+    Droplet = 'droplet',
+    GcpGce = 'gcp-gce'
+}
+
 

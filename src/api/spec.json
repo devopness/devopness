@@ -8848,6 +8848,11 @@
         "properties": {
           "code": {
             "type": "string",
+            "enum": [
+              "ec2",
+              "droplet",
+              "gcp-gce"
+            ],
             "description": "The code that uniquely identify this cloud service",
             "example": "ec2"
           },
@@ -12668,7 +12673,8 @@
         "example": "ec2",
         "enum": [
           "droplet",
-          "ec2"
+          "ec2",
+          "gcp-gce"
         ]
       },
       "ServerCreate": {
