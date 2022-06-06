@@ -10300,16 +10300,7 @@
             "example": true
           },
           "trigger_when": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "nullable": true,
-            "description": "A list of action status when the outgoing hook should be triggered by Devopness",
-            "example": [
-              "in-progress",
-              "completed"
-            ]
+            "$ref": "#/components/schemas/HookTriggerWhen"
           },
           "auto_generated": {
             "default": false,
@@ -10407,6 +10398,9 @@
             "description": "The name of the HTTP request header from which the request digital signature should be extracted",
             "example": "X-Custom-Header"
           },
+          "trigger_when": {
+            "$ref": "#/components/schemas/HookTriggerWhen"
+          },
           "settings": {
             "$ref": "#/components/schemas/HookSetting"
           }
@@ -10498,16 +10492,7 @@
             "example": "https://simple-example.test/hook/12345"
           },
           "trigger_when": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "The list of action status when the hook must be triggered",
-            "example": [
-              "in-progress",
-              "completed",
-              "failed"
-            ]
+            "$ref": "#/components/schemas/HookTriggerWhen"
           }
         },
         "required": [
@@ -10758,6 +10743,68 @@
           }
         }
       },
+      "HookTriggerWhen": {
+        "type": "array",
+        "description": "Conditions that must be met to trigger the hook.",
+        "items": {
+          "$ref": "#/components/schemas/HookTriggerWhenCondition"
+        }
+      },
+      "HookTriggerWhenCondition": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the condition",
+            "example": "Check pullrequest author"
+          },
+          "type": {
+            "$ref": "#/components/schemas/HookTriggerWhenConditionType"
+          },
+          "path": {
+            "type": "string",
+            "description": "A dot-notation path of the request body where the value will be checked.",
+            "example": "pullrequest.author.nickname"
+          },
+          "accepted_values": {
+            "type": "array",
+            "description": "An list of accepted values to checked field.",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "string",
+                  "nullable": true
+                }
+              ]
+            },
+            "example": [
+              "myuser123",
+              "bu_nick456"
+            ]
+          }
+        },
+        "required": [
+          "type",
+          "accepted_values"
+        ]
+      },
+      "HookTriggerWhenConditionType": {
+        "type": "string",
+        "description": "Type of the hook condition.\n* `request_body` - Validate request body for incoming hooks.\n* `action_status` - Validate action status for outgoing hooks.\n",
+        "enum": [
+          "request_body",
+          "action_status"
+        ]
+      },
       "HookType": {
         "type": "string",
         "description": "The type of hook (incoming or outgoing)",
@@ -10774,6 +10821,11 @@
             "type": "string",
             "description": "The name of the variable",
             "example": "environment_id"
+          },
+          "path": {
+            "type": "string",
+            "description": "A `dot-notation` path used to retrieve the variable's value. If not defined the `name` will be used instead.\n",
+            "example": "data.environment.id"
           },
           "type": {
             "$ref": "#/components/schemas/HookVariableType"
@@ -10900,16 +10952,7 @@
             "example": true
           },
           "trigger_when": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "nullable": true,
-            "description": "A list of action status when the outgoing hook should be triggered by Devopness",
-            "example": [
-              "in-progress",
-              "completed"
-            ]
+            "$ref": "#/components/schemas/HookTriggerWhen"
           },
           "auto_generated": {
             "default": false,
