@@ -14,6 +14,7 @@
 
 import { ActionType } from './action-type';
 import { HookSetting } from './hook-setting';
+import { HookTriggerWhenCondition } from './hook-trigger-when-condition';
 import { ResourceType } from './resource-type';
 
 /**
@@ -70,6 +71,12 @@ export interface HookIncomingCreate {
      * @memberof HookIncomingCreate
      */
     secret_header_name?: string;
+    /**
+     * Conditions that must be met to trigger the hook.
+     * @type {Array<HookTriggerWhenCondition>}
+     * @memberof HookIncomingCreate
+     */
+    trigger_when?: Array<HookTriggerWhenCondition>;
     /**
      * 
      * @type {HookSetting}

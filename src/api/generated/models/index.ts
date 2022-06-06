@@ -79,6 +79,8 @@ export * from './hook-relation';
 export * from './hook-request';
 export * from './hook-request-relation';
 export * from './hook-setting';
+export * from './hook-trigger-when-condition';
+export * from './hook-trigger-when-condition-type';
 export * from './hook-type';
 export * from './hook-variable';
 export * from './hook-variable-type';
