@@ -9778,15 +9778,53 @@
           "$ref": "#/components/schemas/DeploymentRelation"
         }
       },
-      "DeploymentSource": {
+      "DeploymentOrigin": {
         "type": "string",
         "description": "Source/channel from which the deployment has been triggered",
         "enum": [
-          "manual",
-          "git-push",
-          "scheduled"
-        ],
-        "example": "manual"
+          "hook",
+          "manual"
+        ]
+      },
+      "DeploymentSource": {
+        "type": "object",
+        "description": "Deployment source information",
+        "properties": {
+          "origin": {
+            "$ref": "#/components/schemas/DeploymentOrigin"
+          },
+          "ip_address": {
+            "type": "string",
+            "nullable": true,
+            "description": "The IP address from the deployment has been triggered",
+            "example": "172.17.0.5"
+          },
+          "hook_id": {
+            "type": "integer",
+            "nullable": true,
+            "description": "The hook that has been triggered the deployment",
+            "example": 9752
+          },
+          "hook_request_id": {
+            "type": "integer",
+            "nullable": true,
+            "description": "The hook request's ID that have triggered the deployment",
+            "example": 716385
+          },
+          "pull_request_id": {
+            "type": "integer",
+            "nullable": true,
+            "description": "The pull request that have triggered the deployment",
+            "example": 296
+          }
+        },
+        "required": [
+          "origin",
+          "ip_address",
+          "hook_id",
+          "hook_request_id",
+          "pull_request_id"
+        ]
       },
       "DeploymentStep": {
         "type": "object",

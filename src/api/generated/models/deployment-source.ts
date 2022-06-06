@@ -12,16 +12,43 @@
  */
 
 
+import { DeploymentOrigin } from './deployment-origin';
 
 /**
- * Source/channel from which the deployment has been triggered
+ * Deployment source information
  * @export
- * @enum {string}
+ * @interface DeploymentSource
  */
-export enum DeploymentSource {
-    Manual = 'manual',
-    GitPush = 'git-push',
-    Scheduled = 'scheduled'
+export interface DeploymentSource {
+    /**
+     * 
+     * @type {DeploymentOrigin}
+     * @memberof DeploymentSource
+     */
+    origin: DeploymentOrigin;
+    /**
+     * The IP address from the deployment has been triggered
+     * @type {string}
+     * @memberof DeploymentSource
+     */
+    ip_address: string | null;
+    /**
+     * The hook that has been triggered the deployment
+     * @type {number}
+     * @memberof DeploymentSource
+     */
+    hook_id: number | null;
+    /**
+     * The hook request\'s ID that have triggered the deployment
+     * @type {number}
+     * @memberof DeploymentSource
+     */
+    hook_request_id: number | null;
+    /**
+     * The pull request that have triggered the deployment
+     * @type {number}
+     * @memberof DeploymentSource
+     */
+    pull_request_id: number | null;
 }
-
 

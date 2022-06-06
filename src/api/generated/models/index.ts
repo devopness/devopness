@@ -55,6 +55,7 @@ export * from './deployment-create';
 export * from './deployment-create-application';
 export * from './deployment-create-server';
 export * from './deployment-default-step';
+export * from './deployment-origin';
 export * from './deployment-relation';
 export * from './deployment-source';
 export * from './deployment-step';
