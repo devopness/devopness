@@ -14,14 +14,13 @@
 
 
 /**
- * The name of the cloud service used to provide the cloud instance
+ * Source/channel from which the deployment has been triggered
  * @export
  * @enum {string}
  */
-export enum ServerCloudServiceName {
-    Droplet = 'droplet',
-    Ec2 = 'ec2',
-    GcpGce = 'gcp-gce'
+export enum DeploymentOrigin {
+    Hook = 'hook',
+    Manual = 'manual'
 }
 
 

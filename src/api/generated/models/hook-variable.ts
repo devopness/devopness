@@ -27,6 +27,12 @@ export interface HookVariable {
      */
     name: string;
     /**
+     * A `dot-notation` path used to retrieve the variable\'s value. If not defined the `name` will be used instead. 
+     * @type {string}
+     * @memberof HookVariable
+     */
+    path?: string;
+    /**
      * 
      * @type {HookVariableType}
      * @memberof HookVariable
