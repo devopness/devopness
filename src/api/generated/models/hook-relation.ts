@@ -13,9 +13,10 @@
 
 
 import { ActionType } from './action-type';
+import { HookIncomingSetting } from './hook-incoming-setting';
 import { HookIncomingTriggerWhenCondition } from './hook-incoming-trigger-when-condition';
+import { HookOutgoingSetting } from './hook-outgoing-setting';
 import { HookOutgoingTriggerWhenCondition } from './hook-outgoing-trigger-when-condition';
-import { HookSetting } from './hook-setting';
 import { HookType } from './hook-type';
 
 /**
@@ -110,10 +111,10 @@ export interface HookRelation {
     active?: boolean;
     /**
      * 
-     * @type {HookSetting}
+     * @type {HookIncomingSetting | HookOutgoingSetting}
      * @memberof HookRelation
      */
-    settings?: HookSetting;
+    settings?: HookIncomingSetting | HookOutgoingSetting;
     /**
      * The date and time when the record was created
      * @type {string}

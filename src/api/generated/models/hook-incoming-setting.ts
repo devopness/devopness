@@ -15,15 +15,15 @@
 import { HookVariable } from './hook-variable';
 
 /**
- * Settings to a incoming hook
+ * Settings to an incoming hook
  * @export
- * @interface HookSetting
+ * @interface HookIncomingSetting
  */
-export interface HookSetting {
+export interface HookIncomingSetting {
     /**
      * List of variables to incoming hook
      * @type {Array<HookVariable>}
-     * @memberof HookSetting
+     * @memberof HookIncomingSetting
      */
     variables?: Array<HookVariable>;
 }

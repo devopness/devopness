@@ -13,6 +13,7 @@
 
 
 import { ActionType } from './action-type';
+import { HookOutgoingSetting } from './hook-outgoing-setting';
 import { HookOutgoingTriggerWhenCondition } from './hook-outgoing-trigger-when-condition';
 import { ResourceType } from './resource-type';
 
@@ -64,5 +65,11 @@ export interface HookOutgoingCreate {
      * @memberof HookOutgoingCreate
      */
     trigger_when: Array<HookOutgoingTriggerWhenCondition>;
+    /**
+     * 
+     * @type {HookOutgoingSetting}
+     * @memberof HookOutgoingCreate
+     */
+    settings?: HookOutgoingSetting;
 }
 
