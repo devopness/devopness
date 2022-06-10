@@ -2,6 +2,48 @@ summary: Create an outgoing hook to a specific resource
 operationId: addOutgoinHook
 tags:
   - Hooks - Outgoing
+description: |
+  The fields `target_url`, `settings.request_body` and `settings.request_headers` accept
+  variables that will be expanded when the hook is triggered. The syntax to use variables
+  are using dot-notation inside `{{` and `}}` tags, for example:
+
+  ```json
+  {
+    "settings": {
+      "request_headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ application.source_provider.access_token }}"
+        }
+      ]
+    }
+  }
+  ```
+
+  Where `{{ application.source_provider.access_token }}` will be expanded to access token of
+  the application related to outgoing hook by `resource_type` and `resource_id` fields.
+
+  The valid resources that can be accesed by variables are:
+  * `action` - The action that have triggered the hook. The fields are the same returned
+    by the [GET /actions/{id}](#operation/getAction) endpoint,
+    e.g.: `{{ action.status }}`
+  * `hook`   - The outgoing hook itself. The fields are the same returned by the
+    [GET /hooks/outgoing/{id}](#operation/getOutgoingHook) endpoint,
+    e.g.: `{{ hook.secret }}`
+  * `user`   - The user that triggered the hook. The fields are the same returned by
+    the [GET /users/{id}](#operation/getUser) endpoint, e.g.: `{{ user.name }}`
+
+  And the resource related to outgoing hook is also accessible by variables using it's
+  resource name. For instance an outgoing hook related to a daemon can get the
+  daemon's command using: `{{ daemon.command }}`
+
+  If the resource is an application, the deployment resource is also accessible by
+  variables. For instance `{{ deployment.source.pull_request_id }}` to get the
+  pull request source information of the deployment.
+
+  **Note**: usually sub-resources relations of a resource are not accessible on outgoing hooks variables. For instance
+  the `{{ daemon.project.name }}` is **not** a valid variable.
+  An exception to this rule is the `application` resource that has the `source_provider` sub-resource that exposes the additional `access_token` field, which is not public by default.
 parameters:
   - $ref: "#/components/parameters/acceptHeader"
   - $ref: "#/components/parameters/authHeader"
@@ -19,7 +61,7 @@ responses:
     content:
       application/json:
         schema:
-          $ref: "#/components/schemas/Hook"
+          $ref: "#/components/schemas/HookOutgoing"
   403:
     $ref: "#/components/responses/Forbidden"
   404:

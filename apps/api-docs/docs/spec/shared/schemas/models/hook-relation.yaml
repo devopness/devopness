@@ -61,7 +61,9 @@ properties:
     description: Determines if the hook is current active
     example: true
   settings:
-    $ref: '#/components/schemas/HookSetting'
+    oneOf:
+      - $ref: '#/components/schemas/HookIncomingSetting'
+      - $ref: '#/components/schemas/HookOutgoingSetting'
   created_at:
     type: string
     format: date-time

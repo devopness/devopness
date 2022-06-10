@@ -10,16 +10,6 @@ properties:
     example: "my-app deploy"
   type:
     $ref: '#/components/schemas/HookType'
-  url:
-    type: string
-    nullable: true
-    description: The URL where the incoming hook must be triggered with a POST request
-    example: "https://api.devopness.com/hooks-incoming/f1a61a4e-4d08-11eb-9481-0242ac130004"
-  target_url:
-    type: string
-    nullable: true
-    description: The target URL on outgoing hooks where Devopness should trigger a request
-    example: "https://simple-example.test/hook/12345"
   requires_secret:
     default: false
     type: boolean
@@ -42,13 +32,6 @@ properties:
     type: boolean
     description: Indicates if the Devopness must be verify the SSL certificate of the request
     example: true
-  trigger_when:
-    type: array
-    description: Conditions that must be met to trigger the hook.
-    items:
-      oneOf:
-        - $ref: '#/components/schemas/HookIncomingTriggerWhenCondition'
-        - $ref: '#/components/schemas/HookOutgoingTriggerWhenCondition'
   auto_generated:
     default: false
     type: boolean
@@ -64,8 +47,6 @@ properties:
     $ref: '#/components/schemas/Resource'
   created_by_user:
     $ref: "#/components/schemas/UserRelation"
-  settings:
-    $ref: '#/components/schemas/HookSetting'
   created_at:
     type: string
     format: date-time
@@ -84,6 +65,5 @@ required:
   - verify_ssl
   - action_type
   - resource
-  - created_by_user
   - created_at
   - updated_at

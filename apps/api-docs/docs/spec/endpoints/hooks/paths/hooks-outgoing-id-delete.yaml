@@ -7,7 +7,7 @@ parameters:
   - $ref: "#/components/parameters/authHeader"
   - $ref: "#/components/parameters/contentTypeHeader"
   - in: path
-    name: hook_id
+    name: hook_outgoing_id
     example: "51921dfd-7544-4db1-b255-a226e5ea7033"
     schema:
       type: string

@@ -170,30 +170,30 @@ Hook:
   $ref: ./endpoints/hooks/schemas/hook.yaml
 Hooks:
   $ref: ./endpoints/hooks/schemas/hook-list.yaml
+HookIncoming:
+  $ref: ./endpoints/hooks/schemas/hook-incoming.yaml
 HookIncomingCreate:
   $ref: ./endpoints/hooks/schemas/hook-incoming-create.yaml
+HookIncomingSetting:
+  $ref: ./endpoints/hooks/schemas/hook-incoming-setting.yaml
 HookIncomingTrigger:
   $ref: ./endpoints/hooks/schemas/hook-incoming-trigger.yaml
-HookIncomingUpdate:
-  $ref: ./endpoints/hooks/schemas/hook-incoming-update.yaml
-HookOutgoingCreate:
-  $ref: ./endpoints/hooks/schemas/hook-outgoing-create.yaml
-HookOutgoingUpdate:
-  $ref: ./endpoints/hooks/schemas/hook-outgoing-update.yaml
-HookRequest:
-  $ref: ./endpoints/hook-requests/schemas/hook-request.yaml
-HookRequests:
-  $ref: ./endpoints/hook-requests/schemas/hook-request-list.yaml
-HookRequestRelation:
-  $ref: ./shared/schemas/models/hook-request-relation.yaml
-HookSetting:
-  $ref: ./endpoints/hooks/schemas/hook-setting.yaml
 HookIncomingTriggerWhen:
   $ref: ./endpoints/hooks/schemas/hook-incoming-trigger-when.yaml
 HookIncomingTriggerWhenCondition:
   $ref: ./endpoints/hooks/schemas/hook-incoming-trigger-when-condition.yaml
 HookIncomingTriggerWhenConditionType:
   $ref: ./endpoints/hooks/schemas/hook-incoming-trigger-when-condition-type.yaml
+HookIncomingUpdate:
+  $ref: ./endpoints/hooks/schemas/hook-incoming-update.yaml
+HookOutgoing:
+  $ref: ./endpoints/hooks/schemas/hook-outgoing.yaml
+HookOutgoingCreate:
+  $ref: ./endpoints/hooks/schemas/hook-outgoing-create.yaml
+HookOutgoingRequestHeader:
+  $ref: ./endpoints/hooks/schemas/hook-outgoing-request-header.yaml
+HookOutgoingSetting:
+  $ref: ./endpoints/hooks/schemas/hook-outgoing-setting.yaml
 HookOutgoingTriggerWhen:
   $ref: ./endpoints/hooks/schemas/hook-outgoing-trigger-when.yaml
 HookOutgoingTriggerWhenActionStatus:
@@ -202,12 +202,18 @@ HookOutgoingTriggerWhenCondition:
   $ref: ./endpoints/hooks/schemas/hook-outgoing-trigger-when-condition.yaml
 HookOutgoingTriggerWhenConditionType:
   $ref: ./endpoints/hooks/schemas/hook-outgoing-trigger-when-condition-type.yaml
+HookOutgoingUpdate:
+  $ref: ./endpoints/hooks/schemas/hook-outgoing-update.yaml
+HookRequest:
+  $ref: ./endpoints/hook-requests/schemas/hook-request.yaml
+HookRequests:
+  $ref: ./endpoints/hook-requests/schemas/hook-request-list.yaml
+HookRequestRelation:
+  $ref: ./shared/schemas/models/hook-request-relation.yaml
 HookType:
   $ref: ./endpoints/hooks/schemas/hook-type.yaml
 HookVariable:
   $ref: ./endpoints/hooks/schemas/hook-variable.yaml
-HookVariables:
-  $ref: ./endpoints/hooks/schemas/hook-variable-list.yaml
 HookVariableType:
   $ref: ./endpoints/hooks/schemas/hook-variable-type.yaml
 HookRelation:

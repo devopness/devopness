@@ -30,16 +30,6 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         'updateServer204',
         // A hook request is not created by the tests, so we don't have a valid hook_request_id
         'getHookRequest200',
-        // The hook_id is of an incoming hook, so we get 404 on outgoing hook endpoints
-        'getOutgoingHook200',
-        'deleteOutgoingHook204',
-        'listOutgoingHookRequests200',
-        // @todo: update HookVariable spec to be valid on create incoming hook
-        'addIncomingHook201',
-        'getIncomingHook200',
-        'deleteIncomingHook204',
-        'updateIncomingHook204',
-        'listIncomingHookRequests200',
         // @todo: Resolves conflicts to trigger a hook on dev-api
         'triggerHook201',
         'triggerHook204',
@@ -98,6 +88,8 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         ['deleteApplication204', 'unlinkServerFromEnvironment204'],
         // deleteEnvironment requires an environment without linked servers
         ['unlinkServerFromEnvironment204', 'deleteEnvironment204'],
+        ['deleteOutgoingHook204', 'deleteEnvironment204'],
+        ['deleteIncomingHook204', 'deleteEnvironment204'],
     ]);
 
     let apiSpec = new OpenAPISpec(logger);

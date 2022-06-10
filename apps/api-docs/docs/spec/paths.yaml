@@ -100,7 +100,7 @@
 /hooks/incoming:
   post:
     $ref: ./endpoints/hooks/paths/hooks-incoming-create.yaml
-/hooks/incoming/{hook_id}:
+/hooks/incoming/{hook_incoming_id}:
   delete:
     $ref: ./endpoints/hooks/paths/hooks-incoming-id-delete.yaml
   get:
@@ -109,20 +109,20 @@
     $ref: ./endpoints/hooks/paths/hooks-incoming-id-trigger.yaml
   put:
     $ref: ./endpoints/hooks/paths/hooks-incoming-id-update.yaml
-/hooks/incoming/{hook_id}/requests:
+/hooks/incoming/{hook_incoming_id}/requests:
   get:
     $ref: ./endpoints/hooks/paths/hooks-incoming-id-requests-list.yaml
 /hooks/outgoing:
   post:
     $ref: ./endpoints/hooks/paths/hooks-outgoing-create.yaml
-/hooks/outgoing/{hook_id}:
+/hooks/outgoing/{hook_outgoing_id}:
   delete:
     $ref: ./endpoints/hooks/paths/hooks-outgoing-id-delete.yaml
   get:
     $ref: ./endpoints/hooks/paths/hooks-outgoing-id.yaml
   put:
     $ref: ./endpoints/hooks/paths/hooks-outgoing-id-update.yaml
-/hooks/outgoing/{hook_id}/requests:
+/hooks/outgoing/{hook_outgoing_id}/requests:
   get:
     $ref: ./endpoints/hooks/paths/hooks-outgoing-id-requests-list.yaml
 /hook-requests/{hook_request_id}:

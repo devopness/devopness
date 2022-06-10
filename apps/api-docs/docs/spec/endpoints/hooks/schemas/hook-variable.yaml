@@ -18,21 +18,21 @@ properties:
     description: Defines if the variable is required
     example: false
   default_value:
-    anyOf:
+    oneOf:
       - type: string
-      - type: integer
+      - type: number
       - type: boolean
       - type: array
         items:
-          anyOf:
+          oneOf:
             - type: string
-            - type: integer
+            - type: number
             - type: boolean
             - type: object
           nullable: true
     nullable: true
     description: Optional variable assumes the default value if it's not given on the request to trigger the hook
-    example: 197563
+    example: null
 required:
   - name
   - type

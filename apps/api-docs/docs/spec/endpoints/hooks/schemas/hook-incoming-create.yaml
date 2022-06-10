@@ -33,7 +33,7 @@ properties:
   trigger_when:
     $ref: '#/components/schemas/HookIncomingTriggerWhen'
   settings:
-    $ref: '#/components/schemas/HookSetting'
+    $ref: '#/components/schemas/HookIncomingSetting'
 required:
   - name
   - resource_type

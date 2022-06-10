@@ -19,7 +19,7 @@ responses:
     content:
       application/json:
         schema:
-          $ref: "#/components/schemas/Hook"
+          $ref: "#/components/schemas/HookIncoming"
   403:
     $ref: "#/components/responses/Forbidden"
   404:

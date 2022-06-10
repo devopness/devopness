@@ -28,6 +28,8 @@ properties:
     example: https://simple-example.test/hook/12345
   trigger_when:
     $ref: '#/components/schemas/HookOutgoingTriggerWhen'
+  settings:
+    $ref: '#/components/schemas/HookOutgoingSetting'
 required:
   - id
   - name
