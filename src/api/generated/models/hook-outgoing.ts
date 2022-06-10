@@ -14,7 +14,7 @@
 
 import { ActionType } from './action-type';
 import { Hook } from './hook';
-import { HookOutgoingAllOf } from './hook-outgoing-all-of';
+import { HookOutgoingParams } from './hook-outgoing-params';
 import { HookOutgoingSetting } from './hook-outgoing-setting';
 import { HookOutgoingTriggerWhenCondition } from './hook-outgoing-trigger-when-condition';
 import { HookType } from './hook-type';
@@ -25,6 +25,6 @@ import { UserRelation } from './user-relation';
  * @type HookOutgoing
  * @export
  */
-export type HookOutgoing = Hook & HookOutgoingAllOf;
+export type HookOutgoing = Hook & HookOutgoingParams;
 
 

@@ -10350,30 +10350,7 @@
             "$ref": "#/components/schemas/Hook"
           },
           {
-            "type": "object",
-            "properties": {
-              "url": {
-                "type": "string",
-                "nullable": true,
-                "description": "The URL where the incoming hook must be triggered with a POST request",
-                "example": "https://api.devopness.com/hooks-incoming/f1a61a4e-4d08-11eb-9481-0242ac130004"
-              },
-              "trigger_when": {
-                "type": "array",
-                "description": "Conditions that must be met to trigger the hook.",
-                "items": {
-                  "$ref": "#/components/schemas/HookIncomingTriggerWhenCondition"
-                }
-              },
-              "settings": {
-                "$ref": "#/components/schemas/HookIncomingSetting"
-              }
-            },
-            "required": [
-              "url",
-              "trigger_when",
-              "settings"
-            ]
+            "$ref": "#/components/schemas/HookIncomingParams"
           }
         ]
       },
@@ -10431,6 +10408,32 @@
           "resource_id",
           "action_type",
           "requires_secret"
+        ]
+      },
+      "HookIncomingParams": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "nullable": true,
+            "description": "The URL where the incoming hook must be triggered with a POST request",
+            "example": "https://api.devopness.com/hooks-incoming/f1a61a4e-4d08-11eb-9481-0242ac130004"
+          },
+          "trigger_when": {
+            "type": "array",
+            "description": "Conditions that must be met to trigger the hook.",
+            "items": {
+              "$ref": "#/components/schemas/HookIncomingTriggerWhenCondition"
+            }
+          },
+          "settings": {
+            "$ref": "#/components/schemas/HookIncomingSetting"
+          }
+        },
+        "required": [
+          "url",
+          "trigger_when",
+          "settings"
         ]
       },
       "HookIncomingSetting": {
@@ -10567,30 +10570,7 @@
             "$ref": "#/components/schemas/Hook"
           },
           {
-            "type": "object",
-            "properties": {
-              "target_url": {
-                "type": "string",
-                "nullable": true,
-                "description": "The target URL on outgoing hooks where Devopness should trigger a request",
-                "example": "https://simple-example.test/hook/12345"
-              },
-              "trigger_when": {
-                "type": "array",
-                "description": "Conditions that must be met to trigger the hook.",
-                "items": {
-                  "$ref": "#/components/schemas/HookOutgoingTriggerWhenCondition"
-                }
-              },
-              "settings": {
-                "$ref": "#/components/schemas/HookOutgoingSetting"
-              }
-            },
-            "required": [
-              "target_url",
-              "trigger_when",
-              "settings"
-            ]
+            "$ref": "#/components/schemas/HookOutgoingParams"
           }
         ]
       },
@@ -10639,6 +10619,32 @@
           "resource_id",
           "target_url",
           "trigger_when"
+        ]
+      },
+      "HookOutgoingParams": {
+        "type": "object",
+        "properties": {
+          "target_url": {
+            "type": "string",
+            "nullable": true,
+            "description": "The target URL on outgoing hooks where Devopness should trigger a request",
+            "example": "https://simple-example.test/hook/12345"
+          },
+          "trigger_when": {
+            "type": "array",
+            "description": "Conditions that must be met to trigger the hook.",
+            "items": {
+              "$ref": "#/components/schemas/HookOutgoingTriggerWhenCondition"
+            }
+          },
+          "settings": {
+            "$ref": "#/components/schemas/HookOutgoingSetting"
+          }
+        },
+        "required": [
+          "target_url",
+          "trigger_when",
+          "settings"
         ]
       },
       "HookOutgoingRequestHeader": {

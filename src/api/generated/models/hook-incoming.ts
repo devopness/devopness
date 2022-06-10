@@ -14,7 +14,7 @@
 
 import { ActionType } from './action-type';
 import { Hook } from './hook';
-import { HookIncomingAllOf } from './hook-incoming-all-of';
+import { HookIncomingParams } from './hook-incoming-params';
 import { HookIncomingSetting } from './hook-incoming-setting';
 import { HookIncomingTriggerWhenCondition } from './hook-incoming-trigger-when-condition';
 import { HookType } from './hook-type';
@@ -25,6 +25,6 @@ import { UserRelation } from './user-relation';
  * @type HookIncoming
  * @export
  */
-export type HookIncoming = Hook & HookIncomingAllOf;
+export type HookIncoming = Hook & HookIncomingParams;
 
 

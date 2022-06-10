@@ -18,25 +18,25 @@ import { HookIncomingTriggerWhenCondition } from './hook-incoming-trigger-when-c
 /**
  * 
  * @export
- * @interface HookIncomingAllOf
+ * @interface HookIncomingParams
  */
-export interface HookIncomingAllOf {
+export interface HookIncomingParams {
     /**
      * The URL where the incoming hook must be triggered with a POST request
      * @type {string}
-     * @memberof HookIncomingAllOf
+     * @memberof HookIncomingParams
      */
     url: string | null;
     /**
      * Conditions that must be met to trigger the hook.
      * @type {Array<HookIncomingTriggerWhenCondition>}
-     * @memberof HookIncomingAllOf
+     * @memberof HookIncomingParams
      */
     trigger_when: Array<HookIncomingTriggerWhenCondition>;
     /**
      * 
      * @type {HookIncomingSetting}
-     * @memberof HookIncomingAllOf
+     * @memberof HookIncomingParams
      */
     settings: HookIncomingSetting;
 }

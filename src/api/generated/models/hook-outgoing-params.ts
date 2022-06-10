@@ -18,25 +18,25 @@ import { HookOutgoingTriggerWhenCondition } from './hook-outgoing-trigger-when-c
 /**
  * 
  * @export
- * @interface HookOutgoingAllOf
+ * @interface HookOutgoingParams
  */
-export interface HookOutgoingAllOf {
+export interface HookOutgoingParams {
     /**
      * The target URL on outgoing hooks where Devopness should trigger a request
      * @type {string}
-     * @memberof HookOutgoingAllOf
+     * @memberof HookOutgoingParams
      */
     target_url: string | null;
     /**
      * Conditions that must be met to trigger the hook.
      * @type {Array<HookOutgoingTriggerWhenCondition>}
-     * @memberof HookOutgoingAllOf
+     * @memberof HookOutgoingParams
      */
     trigger_when: Array<HookOutgoingTriggerWhenCondition>;
     /**
      * 
      * @type {HookOutgoingSetting}
-     * @memberof HookOutgoingAllOf
+     * @memberof HookOutgoingParams
      */
     settings: HookOutgoingSetting;
 }
