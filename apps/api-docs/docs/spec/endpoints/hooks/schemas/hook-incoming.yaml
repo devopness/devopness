@@ -1,20 +1,3 @@
 allOf:
 - $ref: '#/components/schemas/Hook'
-- type: object
-  properties:
-    url:
-      type: string
-      nullable: true
-      description: The URL where the incoming hook must be triggered with a POST request
-      example: "https://api.devopness.com/hooks-incoming/f1a61a4e-4d08-11eb-9481-0242ac130004"
-    trigger_when:
-      type: array
-      description: Conditions that must be met to trigger the hook.
-      items:
-        $ref: '#/components/schemas/HookIncomingTriggerWhenCondition'
-    settings:
-      $ref: '#/components/schemas/HookIncomingSetting'
-  required:
-    - url
-    - trigger_when
-    - settings
+- $ref: '#/components/schemas/HookIncomingParams'

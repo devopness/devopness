@@ -174,6 +174,8 @@ HookIncoming:
   $ref: ./endpoints/hooks/schemas/hook-incoming.yaml
 HookIncomingCreate:
   $ref: ./endpoints/hooks/schemas/hook-incoming-create.yaml
+HookIncomingParams:
+  $ref: ./endpoints/hooks/schemas/hook-incoming-params.yaml
 HookIncomingSetting:
   $ref: ./endpoints/hooks/schemas/hook-incoming-setting.yaml
 HookIncomingTrigger:
@@ -190,6 +192,8 @@ HookOutgoing:
   $ref: ./endpoints/hooks/schemas/hook-outgoing.yaml
 HookOutgoingCreate:
   $ref: ./endpoints/hooks/schemas/hook-outgoing-create.yaml
+HookOutgoingParams:
+  $ref: ./endpoints/hooks/schemas/hook-outgoing-params.yaml
 HookOutgoingRequestHeader:
   $ref: ./endpoints/hooks/schemas/hook-outgoing-request-header.yaml
 HookOutgoingSetting:
