@@ -43,36 +43,36 @@ export class HooksRequestsApiService extends ApiBaseService {
     /**
      * 
      * @summary Returns a list of all hook requests belonging to an incoming hook
-     * @param {string} hookId Unique ID of the incoming hook to retrieve request list
+     * @param {string} hookIncomingId Unique ID of the incoming hook to retrieve request list
      */
-    public async listIncomingHookRequests(hookId: string): Promise<ApiResponse<Array<HookRequestRelation>>> {
-        if (hookId === null || hookId === undefined) {
-            throw new ArgumentNullException('hookId', 'listIncomingHookRequests');
+    public async listIncomingHookRequests(hookIncomingId: string): Promise<ApiResponse<Array<HookRequestRelation>>> {
+        if (hookIncomingId === null || hookIncomingId === undefined) {
+            throw new ArgumentNullException('hookIncomingId', 'listIncomingHookRequests');
         }
         
         let queryString = '';
 
-        const requestUrl = '/hooks/incoming/{hook_id}/requests' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/hooks/incoming/{hook_incoming_id}/requests' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<HookRequestRelation>>(requestUrl.replace(`{${"hook_id"}}`, encodeURIComponent(String(hookId))));
+        const response = await this.get <Array<HookRequestRelation>>(requestUrl.replace(`{${"hook_incoming_id"}}`, encodeURIComponent(String(hookIncomingId))));
         return new ApiResponse(response);
     }
 
     /**
      * 
      * @summary Returns a list of all hook requests belonging to an outgoing hook
-     * @param {string} hookId Unique ID of the outgoing hook to retrieve request list
+     * @param {string} hookOutgoingId Unique ID of the outgoing hook to retrieve request list
      */
-    public async listOutgoingHookRequests(hookId: string): Promise<ApiResponse<Array<HookRequestRelation>>> {
-        if (hookId === null || hookId === undefined) {
-            throw new ArgumentNullException('hookId', 'listOutgoingHookRequests');
+    public async listOutgoingHookRequests(hookOutgoingId: string): Promise<ApiResponse<Array<HookRequestRelation>>> {
+        if (hookOutgoingId === null || hookOutgoingId === undefined) {
+            throw new ArgumentNullException('hookOutgoingId', 'listOutgoingHookRequests');
         }
         
         let queryString = '';
 
-        const requestUrl = '/hooks/outgoing/{hook_id}/requests' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/hooks/outgoing/{hook_outgoing_id}/requests' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<HookRequestRelation>>(requestUrl.replace(`{${"hook_id"}}`, encodeURIComponent(String(hookId))));
+        const response = await this.get <Array<HookRequestRelation>>(requestUrl.replace(`{${"hook_outgoing_id"}}`, encodeURIComponent(String(hookOutgoingId))));
         return new ApiResponse(response);
     }
 }
