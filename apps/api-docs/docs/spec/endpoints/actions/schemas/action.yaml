@@ -16,6 +16,10 @@ properties:
     example: Deploy
   summary:
     $ref: '#/components/schemas/ActionSummary'
+  url_web_permalink:
+    type: string
+    description: The permalink URL to the action details on Devopness web app
+    example: "https://devopness.com/actions/1"
   servers:
     $ref: '#/components/schemas/ServerActions'
   resource:
@@ -56,5 +60,6 @@ required:
   - type
   - type_human_readable
   - summary
+  - url_web_permalink
   - resource
   - triggered_by_user
