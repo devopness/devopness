@@ -59,6 +59,12 @@ export interface Action {
      */
     summary: ActionSummary;
     /**
+     * The permalink URL to the action details on Devopness web app
+     * @type {string}
+     * @memberof Action
+     */
+    url_web_permalink: string;
+    /**
      * List of actions dispatched to servers
      * @type {Array<ServerAction>}
      * @memberof Action
