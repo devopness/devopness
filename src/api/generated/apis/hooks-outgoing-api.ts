@@ -15,7 +15,7 @@ import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
-import { Hook } from '../../generated/models';
+import { HookOutgoing } from '../../generated/models';
 import { HookOutgoingCreate } from '../../generated/models';
 import { HookOutgoingUpdate } from '../../generated/models';
 
@@ -24,11 +24,11 @@ import { HookOutgoingUpdate } from '../../generated/models';
  */
 export class HooksOutgoingApiService extends ApiBaseService {
     /**
-     * 
+     * The fields `target_url`, `settings.request_body` and `settings.request_headers` accept variables that will be expanded when the hook is triggered. The syntax to use variables are using dot-notation inside `{{` and `}}` tags, for example:  ```json {   \"settings\": {     \"request_headers\": [       {         \"name\": \"Authorization\",         \"value\": \"Bearer {{ application.source_provider.access_token }}\"       }     ]   } } ```  Where `{{ application.source_provider.access_token }}` will be expanded to access token of the application related to outgoing hook by `resource_type` and `resource_id` fields.  The valid resources that can be accesed by variables are: * `action` - The action that have triggered the hook. The fields are the same returned   by the [GET /actions/{id}](#operation/getAction) endpoint,   e.g.: `{{ action.status }}` * `hook`   - The outgoing hook itself. The fields are the same returned by the   [GET /hooks/outgoing/{id}](#operation/getOutgoingHook) endpoint,   e.g.: `{{ hook.secret }}` * `user`   - The user that triggered the hook. The fields are the same returned by   the [GET /users/{id}](#operation/getUser) endpoint, e.g.: `{{ user.name }}`  And the resource related to outgoing hook is also accessible by variables using it\'s resource name. For instance an outgoing hook related to a daemon can get the daemon\'s command using: `{{ daemon.command }}`  If the resource is an application, the deployment resource is also accessible by variables. For instance `{{ deployment.source.pull_request_id }}` to get the pull request source information of the deployment.  **Note**: usually sub-resources relations of a resource are not accessible on outgoing hooks variables. For instance the `{{ daemon.project.name }}` is **not** a valid variable. An exception to this rule is the `application` resource that has the `source_provider` sub-resource that exposes the additional `access_token` field, which is not public by default. 
      * @summary Create an outgoing hook to a specific resource
      * @param {HookOutgoingCreate} hookOutgoingCreate A JSON object containing outgoing hook data
      */
-    public async addOutgoinHook(hookOutgoingCreate: HookOutgoingCreate): Promise<ApiResponse<Hook>> {
+    public async addOutgoinHook(hookOutgoingCreate: HookOutgoingCreate): Promise<ApiResponse<HookOutgoing>> {
         if (hookOutgoingCreate === null || hookOutgoingCreate === undefined) {
             throw new ArgumentNullException('hookOutgoingCreate', 'addOutgoinHook');
         }
@@ -37,55 +37,55 @@ export class HooksOutgoingApiService extends ApiBaseService {
 
         const requestUrl = '/hooks/outgoing' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <Hook, HookOutgoingCreate>(requestUrl, hookOutgoingCreate);
+        const response = await this.post <HookOutgoing, HookOutgoingCreate>(requestUrl, hookOutgoingCreate);
         return new ApiResponse(response);
     }
 
     /**
      * 
      * @summary Delete a given outgoing hook
-     * @param {string} hookId Unique ID of the outgoing hook to be deleted
+     * @param {string} hookOutgoingId Unique ID of the outgoing hook to be deleted
      */
-    public async deleteOutgoingHook(hookId: string): Promise<ApiResponse<void>> {
-        if (hookId === null || hookId === undefined) {
-            throw new ArgumentNullException('hookId', 'deleteOutgoingHook');
+    public async deleteOutgoingHook(hookOutgoingId: string): Promise<ApiResponse<void>> {
+        if (hookOutgoingId === null || hookOutgoingId === undefined) {
+            throw new ArgumentNullException('hookOutgoingId', 'deleteOutgoingHook');
         }
         
         let queryString = '';
 
-        const requestUrl = '/hooks/outgoing/{hook_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/hooks/outgoing/{hook_outgoing_id}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.delete <void>(requestUrl.replace(`{${"hook_id"}}`, encodeURIComponent(String(hookId))));
+        const response = await this.delete <void>(requestUrl.replace(`{${"hook_outgoing_id"}}`, encodeURIComponent(String(hookOutgoingId))));
         return new ApiResponse(response);
     }
 
     /**
      * 
      * @summary Get an outgoing hook by Id
-     * @param {string} hookId Unique ID of the outgoing hook to be retrieved
+     * @param {string} hookOutgoingId Unique ID of the outgoing hook to be retrieved
      */
-    public async getOutgoingHook(hookId: string): Promise<ApiResponse<Hook>> {
-        if (hookId === null || hookId === undefined) {
-            throw new ArgumentNullException('hookId', 'getOutgoingHook');
+    public async getOutgoingHook(hookOutgoingId: string): Promise<ApiResponse<HookOutgoing>> {
+        if (hookOutgoingId === null || hookOutgoingId === undefined) {
+            throw new ArgumentNullException('hookOutgoingId', 'getOutgoingHook');
         }
         
         let queryString = '';
 
-        const requestUrl = '/hooks/outgoing/{hook_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/hooks/outgoing/{hook_outgoing_id}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Hook>(requestUrl.replace(`{${"hook_id"}}`, encodeURIComponent(String(hookId))));
+        const response = await this.get <HookOutgoing>(requestUrl.replace(`{${"hook_outgoing_id"}}`, encodeURIComponent(String(hookOutgoingId))));
         return new ApiResponse(response);
     }
 
     /**
      * 
      * @summary Update an existing outgoing hook
-     * @param {string} hookId Unique ID of the outgoing hook to be updated
+     * @param {string} hookOutgoingId Unique ID of the outgoing hook to be updated
      * @param {HookOutgoingUpdate} hookOutgoingUpdate A JSON object containing outgoing hook data
      */
-    public async updateOutgoingHook(hookId: string, hookOutgoingUpdate: HookOutgoingUpdate): Promise<ApiResponse<void>> {
-        if (hookId === null || hookId === undefined) {
-            throw new ArgumentNullException('hookId', 'updateOutgoingHook');
+    public async updateOutgoingHook(hookOutgoingId: string, hookOutgoingUpdate: HookOutgoingUpdate): Promise<ApiResponse<void>> {
+        if (hookOutgoingId === null || hookOutgoingId === undefined) {
+            throw new ArgumentNullException('hookOutgoingId', 'updateOutgoingHook');
         }
         if (hookOutgoingUpdate === null || hookOutgoingUpdate === undefined) {
             throw new ArgumentNullException('hookOutgoingUpdate', 'updateOutgoingHook');
@@ -93,9 +93,9 @@ export class HooksOutgoingApiService extends ApiBaseService {
         
         let queryString = '';
 
-        const requestUrl = '/hooks/outgoing/{hook_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/hooks/outgoing/{hook_outgoing_id}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.put <void, HookOutgoingUpdate>(requestUrl.replace(`{${"hook_id"}}`, encodeURIComponent(String(hookId))), hookOutgoingUpdate);
+        const response = await this.put <void, HookOutgoingUpdate>(requestUrl.replace(`{${"hook_outgoing_id"}}`, encodeURIComponent(String(hookOutgoingId))), hookOutgoingUpdate);
         return new ApiResponse(response);
     }
 }

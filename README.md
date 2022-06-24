@@ -78,7 +78,6 @@ async function getUserProfile() {
 getUserProfile();
 ```
 
-
 ### TypeScript support
 This package includes TypeScript declarations for every method.
 TypeScript versions `>= 3.8` are supported.

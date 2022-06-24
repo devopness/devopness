@@ -13,8 +13,8 @@
 
 
 import { ActionType } from './action-type';
+import { HookIncomingSetting } from './hook-incoming-setting';
 import { HookIncomingTriggerWhenCondition } from './hook-incoming-trigger-when-condition';
-import { HookSetting } from './hook-setting';
 import { ResourceType } from './resource-type';
 
 /**
@@ -79,9 +79,9 @@ export interface HookIncomingCreate {
     trigger_when?: Array<HookIncomingTriggerWhenCondition>;
     /**
      * 
-     * @type {HookSetting}
+     * @type {HookIncomingSetting}
      * @memberof HookIncomingCreate
      */
-    settings?: HookSetting;
+    settings?: HookIncomingSetting;
 }
 

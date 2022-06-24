@@ -12,6 +12,8 @@
  */
 
 
+import { HookIncomingSetting } from './hook-incoming-setting';
+import { HookIncomingTriggerWhenCondition } from './hook-incoming-trigger-when-condition';
 
 /**
  * 
@@ -55,5 +57,17 @@ export interface HookIncomingUpdate {
      * @memberof HookIncomingUpdate
      */
     active?: boolean;
+    /**
+     * Conditions that must be met to trigger the hook.
+     * @type {Array<HookIncomingTriggerWhenCondition>}
+     * @memberof HookIncomingUpdate
+     */
+    trigger_when?: Array<HookIncomingTriggerWhenCondition>;
+    /**
+     * 
+     * @type {HookIncomingSetting}
+     * @memberof HookIncomingUpdate
+     */
+    settings?: HookIncomingSetting;
 }
 

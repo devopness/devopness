@@ -1998,7 +1998,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Hook"
+                  "$ref": "#/components/schemas/HookIncoming"
                 }
               }
             }
@@ -2012,7 +2012,7 @@
         }
       }
     },
-    "/hooks/incoming/{hook_id}": {
+    "/hooks/incoming/{hook_incoming_id}": {
       "delete": {
         "summary": "Delete a given incoming hook",
         "operationId": "deleteIncomingHook",
@@ -2031,7 +2031,7 @@
           },
           {
             "in": "path",
-            "name": "hook_id",
+            "name": "hook_incoming_id",
             "example": "db3ca8c0-4977-11eb-9fbe-0242ac130003",
             "schema": {
               "type": "string"
@@ -2067,7 +2067,7 @@
           },
           {
             "in": "path",
-            "name": "hook_id",
+            "name": "hook_incoming_id",
             "example": "db3ca8c0-4977-11eb-9fbe-0242ac130003",
             "schema": {
               "type": "string"
@@ -2082,7 +2082,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Hook"
+                  "$ref": "#/components/schemas/HookIncoming"
                 }
               }
             }
@@ -2107,7 +2107,7 @@
           },
           {
             "in": "path",
-            "name": "hook_id",
+            "name": "hook_incoming_id",
             "example": "db3ca8c0-4977-11eb-9fbe-0242ac130003",
             "schema": {
               "type": "string"
@@ -2163,7 +2163,7 @@
           },
           {
             "in": "path",
-            "name": "hook_id",
+            "name": "hook_incoming_id",
             "example": "db3ca8c0-4977-11eb-9fbe-0242ac130003",
             "schema": {
               "type": "string"
@@ -2199,7 +2199,7 @@
         }
       }
     },
-    "/hooks/incoming/{hook_id}/requests": {
+    "/hooks/incoming/{hook_incoming_id}/requests": {
       "get": {
         "summary": "Returns a list of all hook requests belonging to an incoming hook",
         "operationId": "listIncomingHookRequests",
@@ -2218,7 +2218,7 @@
           },
           {
             "in": "path",
-            "name": "hook_id",
+            "name": "hook_incoming_id",
             "example": "db3ca8c0-4977-11eb-9fbe-0242ac130003",
             "schema": {
               "type": "string"
@@ -2259,6 +2259,7 @@
         "tags": [
           "Hooks - Outgoing"
         ],
+        "description": "The fields `target_url`, `settings.request_body` and `settings.request_headers` accept\nvariables that will be expanded when the hook is triggered. The syntax to use variables\nare using dot-notation inside `{{` and `}}` tags, for example:\n\n```json\n{\n  \"settings\": {\n    \"request_headers\": [\n      {\n        \"name\": \"Authorization\",\n        \"value\": \"Bearer {{ application.source_provider.access_token }}\"\n      }\n    ]\n  }\n}\n```\n\nWhere `{{ application.source_provider.access_token }}` will be expanded to access token of\nthe application related to outgoing hook by `resource_type` and `resource_id` fields.\n\nThe valid resources that can be accesed by variables are:\n* `action` - The action that have triggered the hook. The fields are the same returned\n  by the [GET /actions/{id}](#operation/getAction) endpoint,\n  e.g.: `{{ action.status }}`\n* `hook`   - The outgoing hook itself. The fields are the same returned by the\n  [GET /hooks/outgoing/{id}](#operation/getOutgoingHook) endpoint,\n  e.g.: `{{ hook.secret }}`\n* `user`   - The user that triggered the hook. The fields are the same returned by\n  the [GET /users/{id}](#operation/getUser) endpoint, e.g.: `{{ user.name }}`\n\nAnd the resource related to outgoing hook is also accessible by variables using it's\nresource name. For instance an outgoing hook related to a daemon can get the\ndaemon's command using: `{{ daemon.command }}`\n\nIf the resource is an application, the deployment resource is also accessible by\nvariables. For instance `{{ deployment.source.pull_request_id }}` to get the\npull request source information of the deployment.\n\n**Note**: usually sub-resources relations of a resource are not accessible on outgoing hooks variables. For instance\nthe `{{ daemon.project.name }}` is **not** a valid variable.\nAn exception to this rule is the `application` resource that has the `source_provider` sub-resource that exposes the additional `access_token` field, which is not public by default.\n",
         "parameters": [
           {
             "$ref": "#/components/parameters/acceptHeader"
@@ -2287,7 +2288,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Hook"
+                  "$ref": "#/components/schemas/HookOutgoing"
                 }
               }
             }
@@ -2301,7 +2302,7 @@
         }
       }
     },
-    "/hooks/outgoing/{hook_id}": {
+    "/hooks/outgoing/{hook_outgoing_id}": {
       "delete": {
         "summary": "Delete a given outgoing hook",
         "operationId": "deleteOutgoingHook",
@@ -2320,7 +2321,7 @@
           },
           {
             "in": "path",
-            "name": "hook_id",
+            "name": "hook_outgoing_id",
             "example": "51921dfd-7544-4db1-b255-a226e5ea7033",
             "schema": {
               "type": "string"
@@ -2356,7 +2357,7 @@
           },
           {
             "in": "path",
-            "name": "hook_id",
+            "name": "hook_outgoing_id",
             "example": "51921dfd-7544-4db1-b255-a226e5ea7033",
             "schema": {
               "type": "string"
@@ -2371,7 +2372,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Hook"
+                  "$ref": "#/components/schemas/HookOutgoing"
                 }
               }
             }
@@ -2399,7 +2400,7 @@
           },
           {
             "in": "path",
-            "name": "hook_id",
+            "name": "hook_outgoing_id",
             "example": "51921dfd-7544-4db1-b255-a226e5ea7033",
             "schema": {
               "type": "string"
@@ -2435,7 +2436,7 @@
         }
       }
     },
-    "/hooks/outgoing/{hook_id}/requests": {
+    "/hooks/outgoing/{hook_outgoing_id}/requests": {
       "get": {
         "summary": "Returns a list of all hook requests belonging to an outgoing hook",
         "operationId": "listOutgoingHookRequests",
@@ -2454,7 +2455,7 @@
           },
           {
             "in": "path",
-            "name": "hook_id",
+            "name": "hook_outgoing_id",
             "example": "db3ca8c0-4977-11eb-9fbe-0242ac130003",
             "schema": {
               "type": "string"
@@ -7548,6 +7549,11 @@
           "summary": {
             "$ref": "#/components/schemas/ActionSummary"
           },
+          "url_web_permalink": {
+            "type": "string",
+            "description": "The permalink URL to the action details on Devopness web app",
+            "example": "https://devopness.com/actions/1"
+          },
           "servers": {
             "$ref": "#/components/schemas/ServerActions"
           },
@@ -7599,6 +7605,7 @@
           "type",
           "type_human_readable",
           "summary",
+          "url_web_permalink",
           "resource",
           "triggered_by_user"
         ]
@@ -10265,18 +10272,6 @@
           "type": {
             "$ref": "#/components/schemas/HookType"
           },
-          "url": {
-            "type": "string",
-            "nullable": true,
-            "description": "The URL where the incoming hook must be triggered with a POST request",
-            "example": "https://api.devopness.com/hooks-incoming/f1a61a4e-4d08-11eb-9481-0242ac130004"
-          },
-          "target_url": {
-            "type": "string",
-            "nullable": true,
-            "description": "The target URL on outgoing hooks where Devopness should trigger a request",
-            "example": "https://simple-example.test/hook/12345"
-          },
           "requires_secret": {
             "default": false,
             "type": "boolean",
@@ -10304,20 +10299,6 @@
             "description": "Indicates if the Devopness must be verify the SSL certificate of the request",
             "example": true
           },
-          "trigger_when": {
-            "type": "array",
-            "description": "Conditions that must be met to trigger the hook.",
-            "items": {
-              "oneOf": [
-                {
-                  "$ref": "#/components/schemas/HookIncomingTriggerWhenCondition"
-                },
-                {
-                  "$ref": "#/components/schemas/HookOutgoingTriggerWhenCondition"
-                }
-              ]
-            }
-          },
           "auto_generated": {
             "default": false,
             "type": "boolean",
@@ -10337,9 +10318,6 @@
           },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
-          },
-          "settings": {
-            "$ref": "#/components/schemas/HookSetting"
           },
           "created_at": {
             "type": "string",
@@ -10362,7 +10340,6 @@
           "verify_ssl",
           "action_type",
           "resource",
-          "created_by_user",
           "created_at",
           "updated_at"
         ]
@@ -10372,6 +10349,16 @@
         "items": {
           "$ref": "#/components/schemas/HookRelation"
         }
+      },
+      "HookIncoming": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Hook"
+          },
+          {
+            "$ref": "#/components/schemas/HookIncomingParams"
+          }
+        ]
       },
       "HookIncomingCreate": {
         "type": "object",
@@ -10418,7 +10405,7 @@
             "$ref": "#/components/schemas/HookIncomingTriggerWhen"
           },
           "settings": {
-            "$ref": "#/components/schemas/HookSetting"
+            "$ref": "#/components/schemas/HookIncomingSetting"
           }
         },
         "required": [
@@ -10429,12 +10416,113 @@
           "requires_secret"
         ]
       },
+      "HookIncomingParams": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "nullable": true,
+            "description": "The URL where the incoming hook must be triggered with a POST request",
+            "example": "https://api.devopness.com/hooks-incoming/f1a61a4e-4d08-11eb-9481-0242ac130004"
+          },
+          "trigger_when": {
+            "type": "array",
+            "description": "Conditions that must be met to trigger the hook.",
+            "items": {
+              "$ref": "#/components/schemas/HookIncomingTriggerWhenCondition"
+            }
+          },
+          "settings": {
+            "$ref": "#/components/schemas/HookIncomingSetting"
+          }
+        },
+        "required": [
+          "url",
+          "trigger_when",
+          "settings"
+        ]
+      },
+      "HookIncomingSetting": {
+        "type": "object",
+        "description": "Settings to an incoming hook",
+        "properties": {
+          "variables": {
+            "type": "array",
+            "description": "List of variables to incoming hook",
+            "items": {
+              "$ref": "#/components/schemas/HookVariable"
+            }
+          }
+        }
+      },
       "HookIncomingTrigger": {
         "type": "object",
         "nullable": true,
         "example": {
           "var_name": "value"
         }
+      },
+      "HookIncomingTriggerWhen": {
+        "type": "array",
+        "description": "Conditions that must be met to trigger the hook.",
+        "items": {
+          "$ref": "#/components/schemas/HookIncomingTriggerWhenCondition"
+        }
+      },
+      "HookIncomingTriggerWhenCondition": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the condition",
+            "example": "Check pullrequest author"
+          },
+          "type": {
+            "$ref": "#/components/schemas/HookIncomingTriggerWhenConditionType"
+          },
+          "path": {
+            "type": "string",
+            "description": "A dot-notation path of the request body where the value will be checked.",
+            "example": "pullrequest.author.nickname"
+          },
+          "accepted_values": {
+            "type": "array",
+            "description": "An list of accepted values to checked field.",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "string",
+                  "nullable": true
+                }
+              ]
+            },
+            "example": [
+              "myuser123",
+              "bu_nick456"
+            ]
+          }
+        },
+        "required": [
+          "type",
+          "path",
+          "accepted_values"
+        ]
+      },
+      "HookIncomingTriggerWhenConditionType": {
+        "type": "string",
+        "description": "Type of the incoming hook condition.\n* `request_body` - Validate request body for incoming hooks.\n",
+        "enum": [
+          "request_body"
+        ]
       },
       "HookIncomingUpdate": {
         "type": "object",
@@ -10468,12 +10556,28 @@
             "type": "boolean",
             "description": "Determines if the hook is current active",
             "example": true
+          },
+          "trigger_when": {
+            "$ref": "#/components/schemas/HookIncomingTriggerWhen"
+          },
+          "settings": {
+            "$ref": "#/components/schemas/HookIncomingSetting"
           }
         },
         "required": [
           "id",
           "name",
           "requires_secret"
+        ]
+      },
+      "HookOutgoing": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Hook"
+          },
+          {
+            "$ref": "#/components/schemas/HookOutgoingParams"
+          }
         ]
       },
       "HookOutgoingCreate": {
@@ -10509,6 +10613,9 @@
           },
           "trigger_when": {
             "$ref": "#/components/schemas/HookOutgoingTriggerWhen"
+          },
+          "settings": {
+            "$ref": "#/components/schemas/HookOutgoingSetting"
           }
         },
         "required": [
@@ -10518,6 +10625,130 @@
           "resource_id",
           "target_url",
           "trigger_when"
+        ]
+      },
+      "HookOutgoingParams": {
+        "type": "object",
+        "properties": {
+          "target_url": {
+            "type": "string",
+            "nullable": true,
+            "description": "The target URL on outgoing hooks where Devopness should trigger a request",
+            "example": "https://simple-example.test/hook/12345"
+          },
+          "trigger_when": {
+            "type": "array",
+            "description": "Conditions that must be met to trigger the hook.",
+            "items": {
+              "$ref": "#/components/schemas/HookOutgoingTriggerWhenCondition"
+            }
+          },
+          "settings": {
+            "$ref": "#/components/schemas/HookOutgoingSetting"
+          }
+        },
+        "required": [
+          "target_url",
+          "trigger_when",
+          "settings"
+        ]
+      },
+      "HookOutgoingRequestHeader": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 256,
+            "description": "Name of the HTTP header.",
+            "example": "Authorization"
+          },
+          "value": {
+            "type": "string",
+            "maxLength": 4096,
+            "description": "Value of the HTTP header.",
+            "example": "Bearer {{ application.source_provider.access_token }}"
+          }
+        },
+        "required": [
+          "name",
+          "value"
+        ]
+      },
+      "HookOutgoingSetting": {
+        "type": "object",
+        "description": "Settings to an outgoing hook",
+        "properties": {
+          "request_headers": {
+            "type": "array",
+            "description": "List of outgoing hook request headers",
+            "items": {
+              "$ref": "#/components/schemas/HookOutgoingRequestHeader"
+            }
+          },
+          "request_body": {
+            "description": "The request body that should be send to target URL",
+            "example": "{\"content\": \"any-text\"}",
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            ]
+          }
+        }
+      },
+      "HookOutgoingTriggerWhen": {
+        "type": "array",
+        "description": "Conditions that must be met to trigger the hook.",
+        "items": {
+          "$ref": "#/components/schemas/HookOutgoingTriggerWhenCondition"
+        }
+      },
+      "HookOutgoingTriggerWhenActionStatus": {
+        "type": "string",
+        "enum": [
+          "in-progress",
+          "completed",
+          "failed"
+        ]
+      },
+      "HookOutgoingTriggerWhenCondition": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/HookOutgoingTriggerWhenConditionType"
+          },
+          "accepted_values": {
+            "type": "array",
+            "description": "An list of accepted values to checked field.",
+            "items": {
+              "$ref": "#/components/schemas/HookOutgoingTriggerWhenActionStatus"
+            },
+            "example": [
+              "in-progress",
+              "completed",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "type",
+          "accepted_values"
+        ]
+      },
+      "HookOutgoingTriggerWhenConditionType": {
+        "type": "string",
+        "description": "Type of the outgoing hook condition.\n* `action_status` - Validate action status for outgoing hooks.\n",
+        "enum": [
+          "action_status"
         ]
       },
       "HookOutgoingUpdate": {
@@ -10558,6 +10789,9 @@
           },
           "trigger_when": {
             "$ref": "#/components/schemas/HookOutgoingTriggerWhen"
+          },
+          "settings": {
+            "$ref": "#/components/schemas/HookOutgoingSetting"
           }
         },
         "required": [
@@ -10741,123 +10975,6 @@
           "ip_address"
         ]
       },
-      "HookSetting": {
-        "type": "object",
-        "description": "Settings to a incoming hook",
-        "properties": {
-          "variables": {
-            "$ref": "#/components/schemas/HookVariables"
-          }
-        }
-      },
-      "HookIncomingTriggerWhen": {
-        "type": "array",
-        "description": "Conditions that must be met to trigger the hook.",
-        "items": {
-          "$ref": "#/components/schemas/HookIncomingTriggerWhenCondition"
-        }
-      },
-      "HookIncomingTriggerWhenCondition": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name of the condition",
-            "example": "Check pullrequest author"
-          },
-          "type": {
-            "$ref": "#/components/schemas/HookIncomingTriggerWhenConditionType"
-          },
-          "path": {
-            "type": "string",
-            "description": "A dot-notation path of the request body where the value will be checked.",
-            "example": "pullrequest.author.nickname"
-          },
-          "accepted_values": {
-            "type": "array",
-            "description": "An list of accepted values to checked field.",
-            "items": {
-              "anyOf": [
-                {
-                  "type": "boolean"
-                },
-                {
-                  "type": "integer"
-                },
-                {
-                  "type": "number"
-                },
-                {
-                  "type": "string",
-                  "nullable": true
-                }
-              ]
-            },
-            "example": [
-              "myuser123",
-              "bu_nick456"
-            ]
-          }
-        },
-        "required": [
-          "type",
-          "path",
-          "accepted_values"
-        ]
-      },
-      "HookIncomingTriggerWhenConditionType": {
-        "type": "string",
-        "description": "Type of the incoming hook condition.\n* `request_body` - Validate request body for incoming hooks.\n",
-        "enum": [
-          "request_body"
-        ]
-      },
-      "HookOutgoingTriggerWhen": {
-        "type": "array",
-        "description": "Conditions that must be met to trigger the hook.",
-        "items": {
-          "$ref": "#/components/schemas/HookOutgoingTriggerWhenCondition"
-        }
-      },
-      "HookOutgoingTriggerWhenActionStatus": {
-        "type": "string",
-        "enum": [
-          "in-progress",
-          "completed",
-          "failed"
-        ]
-      },
-      "HookOutgoingTriggerWhenCondition": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "$ref": "#/components/schemas/HookOutgoingTriggerWhenConditionType"
-          },
-          "accepted_values": {
-            "type": "array",
-            "description": "An list of accepted values to checked field.",
-            "items": {
-              "$ref": "#/components/schemas/HookOutgoingTriggerWhenActionStatus"
-            },
-            "example": [
-              "in-progress",
-              "completed",
-              "failed"
-            ]
-          }
-        },
-        "required": [
-          "type",
-          "accepted_values"
-        ]
-      },
-      "HookOutgoingTriggerWhenConditionType": {
-        "type": "string",
-        "description": "Type of the outgoing hook condition.\n* `action_status` - Validate action status for outgoing hooks.\n",
-        "enum": [
-          "action_status"
-        ]
-      },
       "HookType": {
         "type": "string",
         "description": "The type of hook (incoming or outgoing)",
@@ -10889,12 +11006,12 @@
             "example": false
           },
           "default_value": {
-            "anyOf": [
+            "oneOf": [
               {
                 "type": "string"
               },
               {
-                "type": "integer"
+                "type": "number"
               },
               {
                 "type": "boolean"
@@ -10902,12 +11019,12 @@
               {
                 "type": "array",
                 "items": {
-                  "anyOf": [
+                  "oneOf": [
                     {
                       "type": "string"
                     },
                     {
-                      "type": "integer"
+                      "type": "number"
                     },
                     {
                       "type": "boolean"
@@ -10922,7 +11039,7 @@
             ],
             "nullable": true,
             "description": "Optional variable assumes the default value if it's not given on the request to trigger the hook",
-            "example": 197563
+            "example": null
           }
         },
         "required": [
@@ -10930,13 +11047,6 @@
           "type",
           "required"
         ]
-      },
-      "HookVariables": {
-        "type": "array",
-        "description": "List of variables to incoming hook",
-        "items": {
-          "$ref": "#/components/schemas/HookVariable"
-        }
       },
       "HookVariableType": {
         "type": "string",
@@ -11033,7 +11143,14 @@
             "example": true
           },
           "settings": {
-            "$ref": "#/components/schemas/HookSetting"
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/HookIncomingSetting"
+              },
+              {
+                "$ref": "#/components/schemas/HookOutgoingSetting"
+              }
+            ]
           },
           "created_at": {
             "type": "string",
