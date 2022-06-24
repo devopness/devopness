@@ -52,8 +52,8 @@ export interface CloudService {
     * @enum {string}
     */
 export enum CloudServiceCodeEnum {
-    Ec2 = 'ec2',
-    Droplet = 'droplet',
+    AwsEc2 = 'aws-ec2',
+    DigitaloceanDroplet = 'digitalocean-droplet',
     GcpGce = 'gcp-gce'
 }
 
