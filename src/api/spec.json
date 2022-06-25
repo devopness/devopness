@@ -8856,12 +8856,12 @@
           "code": {
             "type": "string",
             "enum": [
-              "ec2",
-              "droplet",
+              "aws-ec2",
+              "digitalocean-droplet",
               "gcp-gce"
             ],
             "description": "The code that uniquely identify this cloud service",
-            "example": "ec2"
+            "example": "aws-ec2"
           },
           "name": {
             "type": "string",
@@ -12787,10 +12787,10 @@
       "ServerCloudServiceName": {
         "type": "string",
         "description": "The name of the cloud service used to provide the cloud instance",
-        "example": "ec2",
+        "example": "aws-ec2",
         "enum": [
-          "droplet",
-          "ec2",
+          "digitalocean-droplet",
+          "aws-ec2",
           "gcp-gce"
         ]
       },
