@@ -103,5 +103,5 @@ dist
 # TernJS port file
 .tern-port
 
-# Documentation
-/docs
+# Auto-generated documentation
+docs-sdk-js
