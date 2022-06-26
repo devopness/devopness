@@ -19,8 +19,8 @@
  * @enum {string}
  */
 export enum ServerCloudServiceName {
-    Droplet = 'droplet',
-    Ec2 = 'ec2',
+    DigitaloceanDroplet = 'digitalocean-droplet',
+    AwsEc2 = 'aws-ec2',
     GcpGce = 'gcp-gce'
 }
 
