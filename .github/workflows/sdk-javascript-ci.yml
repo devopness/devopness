@@ -1,19 +1,23 @@
-name: CI
+name: SDK JavaScript - CI
 on: # rebuild any PRs and main branch changes
   pull_request:
   push:
     branches:
       - master
 
+defaults:
+  run:
+    working-directory: packages/sdks/javascript
+
 jobs:
   build:
-    name: Build on node ${{ matrix.node }} and ${{ matrix.os }}
+    name: Build SDK-JS on Node.js ${{ matrix.node }} and ${{ matrix.os }}
 
     runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
-        node: [12]
+        node: [16]
         os: [ubuntu-latest]
 
     steps:
@@ -25,12 +29,12 @@ jobs:
           registry-url: https://registry.npmjs.org
       - name: install
         run: npm install
-        
+
       - name: lint
         run: npm run lint
-        
+
       - name: build
         run: npm run build
-        
+
       - name: test
         run: npm test
