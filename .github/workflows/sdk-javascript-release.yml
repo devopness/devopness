@@ -1,4 +1,4 @@
-name: Release
+name: SDK JavaScript - Release
 on:
   push:
     branches:
