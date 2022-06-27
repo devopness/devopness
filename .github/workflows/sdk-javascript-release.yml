@@ -2,8 +2,12 @@ name: SDK JavaScript - Release
 on:
   push:
     branches:
-      - master
+      - main
       - "*.x" # maintenance releases
+
+defaults:
+  run:
+    working-directory: packages/sdks/javascript
 
 jobs:
   release:
