@@ -1,5 +1,5 @@
 [![MIT License](https://img.shields.io/badge/license-MIT_License-green.svg?style=flat-square)](https://github.com/devopness/devopness/blob/master/LICENSE)
-![CI](https://github.com/devopness/sdk-js/workflows/CI/badge.svg)
+[![SDK JavaScript - CI](https://github.com/devopness/devopness/actions/workflows/sdk-javascript-ci.yml/badge.svg)](https://github.com/devopness/devopness/actions/workflows/sdk-javascript-ci.yml)
 
 # Devopness - Official open-source repository
 
