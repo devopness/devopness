@@ -29,7 +29,7 @@ export class ApiBaseService {
     private static SDK_VERSION = '0.0.0-development';
 
     private defaultAxiosSettings: AxiosRequestConfig = {
-        timeout: 30000,
+        timeout: 300000,
         responseType: 'json',
         headers: {
             common: {
