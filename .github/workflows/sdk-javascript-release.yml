@@ -1,6 +1,8 @@
 name: SDK JavaScript - Release
 on:
   push:
+    paths:
+      - packages/sdks/javascript/**
     branches:
       - main
       - "*.x" # maintenance releases
