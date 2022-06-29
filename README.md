@@ -18,5 +18,10 @@ See the [issue backlog](https://github.com/devopness/devopness/issues) for a lis
 
 ## 📂 <a id="repo"></a>Repo Structure
 
-The repository has the following packages (sub projects):
+This repository has the following sub-projects:
+### Packages
 - [sdk-javascript](packages/sdks/javascript) - The official Devopness SDK for JavaScript
+
+## 📜 <a id="license"></a>License
+
+All repository contents are licensed under the terms of the [MIT License](https://github.com/devopness/devopness/blob/master/LICENSE) unless otherwise specified in the `LICENSE` file at each package's root.
