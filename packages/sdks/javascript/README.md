@@ -1,18 +1,10 @@
 # Devopness SDK - JavaScript
 
-[![MIT License](https://img.shields.io/badge/license-MIT_License-green.svg?style=flat-square)](https://github.com/devopness/devopness-sdk-js/blob/master/LICENSE)
-![CI](https://github.com/devopness/sdk-js/workflows/CI/badge.svg)
-
 [![NPM](https://nodei.co/npm/@devopness/sdk-js.png?downloads=true&stars=true)](https://nodei.co/npm/@devopness/sdk-js/)
 
 The official Devopness SDK for JavaScript, available for browsers, mobile devices and `Node.js` backends.
 
 Devopness SDK includes a pre-defined set of classes that provide convenient access to Devopness platform data. This SDK aims to make it easy and fun to consume Devopness API resources from web, Node.js or mobile apps written in the JavaScript programming language.
-
-## About Devopness
-`Devopness` aims to drastically change the way software developers deploy applications and manage on-premise and cloud servers in a secure and performant fashion.
-
-By streamlining essential DevOps practices we're making first class software deployment and server management tools accessible and affordable to every developer in the world.
 
 ## Usage
 
@@ -57,7 +49,7 @@ async function authenticate(email, pass) {
 authenticate('user@email.com', 'secret-password');
 ```
 
-In the example above, `userTokens` is a instance of `ApiResponse` and the `data` property has the data requested from the API. See [ApiResponse.ts](https://github.com/devopness/devopness-sdk-js/blob/master/src/common/ApiResponse.ts) for reference.
+In the example above, `userTokens` is a instance of `ApiResponse` and the `data` property has the data requested from the API. See [ApiResponse.ts](https://github.com/devopness/devopness/blob/master/src/common/ApiResponse.ts) for reference.
 
 ### Invoking authentication protected endpoints
 Once an authentication token is set, any protected endpoint can be invoked.
@@ -88,7 +80,7 @@ Some methods in `Devopness SDK JavaScript` accept and return objects from the De
 To build and test the SDK locally, follow these steps:
 1. Clone de repository
 ```
-git clone https://github.com/devopness/devopness-sdk-js.git
+git clone https://github.com/devopness/devopness.git
 ```
 2. Install missing dependencies
 
