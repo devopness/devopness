@@ -115,6 +115,155 @@
         }
       }
     },
+    "/actions/{resource_type}/{resource_id}": {
+      "get": {
+        "summary": "List resource actions",
+        "operationId": "listResourceActions",
+        "tags": [
+          "Actions"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "resource_type",
+            "example": "service",
+            "schema": {
+              "type": "string"
+            },
+            "required": "true",
+            "description": "The resource type to get related actions"
+          },
+          {
+            "in": "path",
+            "name": "resource_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": "true",
+            "description": "Unique ID of the resource that's being searched"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Actions"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/actions/{resource_type}/{resource_id}/{action_type}": {
+      "get": {
+        "summary": "List resource actions of an action type",
+        "operationId": "listResourceActionsOfResourceTypeActionType",
+        "tags": [
+          "Actions"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "resource_type",
+            "example": "service",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The resource type to get related actions"
+          },
+          {
+            "in": "path",
+            "name": "resource_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Unique ID of the resource that's being searched"
+          },
+          {
+            "in": "path",
+            "name": "action_type",
+            "schema": {
+              "$ref": "#/components/schemas/ActionType"
+            },
+            "required": true,
+            "description": "The action type"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Actions"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
     "/applications/{application_id}": {
       "get": {
         "summary": "Get an application by ID",
