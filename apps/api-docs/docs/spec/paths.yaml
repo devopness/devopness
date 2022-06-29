@@ -4,6 +4,15 @@
 /actions/{action_id}:
   get:
     $ref: ./endpoints/actions/paths/actions-id.yaml
+/actions/{action_id}/retry:
+  post:
+    $ref: ./endpoints/actions/paths/actions-id-retry.yaml
+/actions/{resource_type}/{resource_id}:
+  get:
+    $ref: ./endpoints/actions/paths/action-list-resource-type-id.yaml
+/actions/{resource_type}/{resource_id}/{action_type}:
+  get:
+    $ref: ./endpoints/actions/paths/action-list-resource-type-id-action-type.yaml
 /applications/{application_id}:
   get:
     $ref: ./endpoints/applications/paths/applications-id.yaml
@@ -97,6 +106,9 @@
     $ref: ./endpoints/teams/paths/environments-id-teams-list.yaml
   post:
     $ref: ./endpoints/teams/paths/environments-id-teams.yaml
+/environments/{environment_id}/actions/{resource_type}:
+  get:
+    $ref: ./endpoints/environments/paths/action-list-environment-id-resource-type.yaml
 /hooks/incoming:
   post:
     $ref: ./endpoints/hooks/paths/hooks-incoming-create.yaml
@@ -225,6 +237,12 @@
     $ref: ./endpoints/cronjobs/paths/projects-id-cronjobs.yaml
   get:
     $ref: ./endpoints/cronjobs/paths/projects-id-cronjobs-list.yaml
+/projects/{project_id}/actions/{resource_type}:
+  get:
+    $ref: ./endpoints/projects/paths/action-list-project-id-resource-type.yaml
+/projects/{project_id}/actions/{resource_type}/{action_type}:
+  get:
+    $ref: ./endpoints/projects/paths/action-list-project-id-resource-type-action-type.yaml
 /events/{resource_type}/{resource_id}:
   get:
     $ref: ./endpoints/resource-events/paths/resource-events-list.yaml
