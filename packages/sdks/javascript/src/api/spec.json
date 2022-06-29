@@ -203,7 +203,7 @@
               "minimum": 1
             },
             "required": "true",
-            "description": "Unique ID of the resource that's being searched"
+            "description": "Unique ID of the resource that is being searched"
           }
         ],
         "responses": {
@@ -273,7 +273,7 @@
               "minimum": 1
             },
             "required": true,
-            "description": "Unique ID of the resource that's being searched"
+            "description": "Unique ID of the resource that is being searched"
           },
           {
             "in": "path",
@@ -4927,7 +4927,7 @@
               "minimum": 1
             },
             "required": true,
-            "description": "Unique ID of the resource that's being searched"
+            "description": "Unique ID of the resource that is being searched"
           }
         ],
         "responses": {
