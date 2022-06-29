@@ -2158,6 +2158,76 @@
         }
       }
     },
+    "/environments/{environment_id}/actions/{resource_type}": {
+      "get": {
+        "summary": "List environment actions of a resource type",
+        "operationId": "listEnvironmentActionsOfResourceType",
+        "tags": [
+          "Environments - Actions"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "environment_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Unique ID of the environment to get"
+          },
+          {
+            "in": "path",
+            "name": "resource_type",
+            "example": "service",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The resource type to get related actions"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Actions"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
     "/hooks/incoming": {
       "post": {
         "summary": "Create an incoming hook to a specific resource",
