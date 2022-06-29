@@ -131,4 +131,22 @@ export class ActionsApiService extends ApiBaseService {
         const response = await this.get <Array<ActionListItem>>(requestUrl.replace(`{${"resource_type"}}`, encodeURIComponent(String(resourceType))).replace(`{${"resource_id"}}`, encodeURIComponent(String(resourceId))).replace(`{${"action_type"}}`, encodeURIComponent(String(actionType))));
         return new ApiResponse(response);
     }
+
+    /**
+     * 
+     * @summary Retry an action
+     * @param {number} actionId Numeric ID of the action to be retried
+     */
+    public async retryAction(actionId: number): Promise<ApiResponse<Action>> {
+        if (actionId === null || actionId === undefined) {
+            throw new ArgumentNullException('actionId', 'retryAction');
+        }
+        
+        let queryString = '';
+
+        const requestUrl = '/actions/{action_id}/retry' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <Action>(requestUrl.replace(`{${"action_id"}}`, encodeURIComponent(String(actionId))));
+        return new ApiResponse(response);
+    }
 }
