@@ -1,9 +1,8 @@
 name: "Lint PR"
 
 on:
-  pull_request:
+  pull_request_target:
     # triggers on `pull_request_target` as this is a fork-based repository
-    # pull_request_target:
     types:
       - opened
       - edited
