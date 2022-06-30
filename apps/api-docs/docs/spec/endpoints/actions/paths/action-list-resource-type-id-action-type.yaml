@@ -1,7 +1,7 @@
 summary: List resource actions of an action type
 operationId: listResourceActionsOfResourceTypeActionType
 tags:
-  - Actions
+  - Actions - Resources
 parameters:
   - $ref: '#/components/parameters/acceptHeader'
   - $ref: '#/components/parameters/authHeader'

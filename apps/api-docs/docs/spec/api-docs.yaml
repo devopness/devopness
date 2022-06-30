@@ -169,6 +169,7 @@ tags:
       Client API applications might need to retrieve possible accepted values to fulfill their forms and allow end users to pick values from a list of valid data.
       All static data that need to be used through `devopness` API client applications is provided through the `/static/*` endpoints.
   - name: Actions
+  - name: Actions - Resources
   - name: Applications
   - name: Applications - Deployments
   - name: Applications - Hooks
@@ -240,6 +241,106 @@ tags:
   - name: Teams - Invitations
   - name: Teams - Members
   - name: Users
+
+x-tagGroups:
+  - name: API
+    tags:
+      - API Reference
+  - name: Static Data
+    tags:
+      - Static Data
+  - name: Actions
+    tags:
+      - Actions
+      - Actions - Resources
+  - name: Applications
+    tags:
+      - Applications
+      - Applications - Deployments
+      - Applications - Hooks
+      - Applications - Scripts
+      - Applications - SSL Certificates
+      - Applications - Variables
+  - name: Cloud Providers
+    tags:
+      - Cloud Providers
+  - name: Cron Jobs
+    tags:
+      - Cron Jobs
+  - name: Daemons
+    tags:
+      - Daemons
+  - name: Deployments
+    tags:
+      - Deployments
+  - name: Environments
+    tags:
+      - Environments
+      - Environments - Actions
+      - Environments - Applications
+      - Environments - Cron Jobs
+      - Environments - Daemons
+      - Environments - Invitations
+      - Environments - Network Rules
+      - Environments - Servers
+      - Environments - Services
+      - Environments - SSH Keys
+      - Environments - Teams
+  - name: Hooks
+    tags:
+        - Hooks - Incoming
+        - Hooks - Outgoing
+        - Hooks - Requests
+  - name: Logs
+    tags:
+      - Logs
+  - name: Network Rules
+    tags:
+      - Network Rules
+  - name: Projects
+    tags:
+      - Projects
+      - Projects - Actions
+      - Projects - Applications
+      - Projects - Cron Jobs
+      - Projects - Daemons
+      - Projects - Deployments
+      - Projects - Environments
+      - Projects - Network Rules
+      - Projects - Servers
+      - Projects - Services
+      - Projects - SSH Keys
+  - name: Resource Events
+    tags:
+      - Resource Events
+  - name: Scripts
+    tags:
+      - Scripts
+  - name: Servers
+    tags:
+      - Servers
+  - name: Services
+    tags:
+      - Services
+  - name: Source Providers
+    tags:
+      - Source Providers
+      - Source Providers - Repositories
+  - name: SSH Keys
+    tags:
+      - SSH Keys
+  - name: SSL Certificates
+    tags:
+      - SSL Certificates
+  - name: Teams
+    tags:
+      - Teams
+      - Teams - Invitations
+      - Teams - Members
+      - Invitations
+  - name: Users
+    tags:
+      - Users
 
 components:
   securitySchemes:
