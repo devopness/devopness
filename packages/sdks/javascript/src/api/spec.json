@@ -115,6 +115,201 @@
         }
       }
     },
+    "/actions/{action_id}/retry": {
+      "post": {
+        "summary": "Retry an action",
+        "operationId": "retryAction",
+        "tags": [
+          "Actions"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "action_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the action to be retried"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Action"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/actions/{resource_type}/{resource_id}": {
+      "get": {
+        "summary": "List resource actions",
+        "operationId": "listResourceActions",
+        "tags": [
+          "Actions"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "resource_type",
+            "example": "service",
+            "schema": {
+              "type": "string"
+            },
+            "required": "true",
+            "description": "The resource type to get related actions"
+          },
+          {
+            "in": "path",
+            "name": "resource_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": "true",
+            "description": "Unique ID of the resource that is being searched"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Actions"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/actions/{resource_type}/{resource_id}/{action_type}": {
+      "get": {
+        "summary": "List resource actions of an action type",
+        "operationId": "listResourceActionsOfResourceTypeActionType",
+        "tags": [
+          "Actions"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "resource_type",
+            "example": "service",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The resource type to get related actions"
+          },
+          {
+            "in": "path",
+            "name": "resource_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Unique ID of the resource that is being searched"
+          },
+          {
+            "in": "path",
+            "name": "action_type",
+            "schema": {
+              "$ref": "#/components/schemas/ActionType"
+            },
+            "required": true,
+            "description": "The action type"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Actions"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
     "/applications/{application_id}": {
       "get": {
         "summary": "Get an application by ID",
@@ -1959,6 +2154,76 @@
           },
           "422": {
             "$ref": "#/components/responses/ValidationError"
+          }
+        }
+      }
+    },
+    "/environments/{environment_id}/actions/{resource_type}": {
+      "get": {
+        "summary": "List environment actions of a resource type",
+        "operationId": "listEnvironmentActionsOfResourceType",
+        "tags": [
+          "Environments - Actions"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "environment_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Unique ID of the environment to get"
+          },
+          {
+            "in": "path",
+            "name": "resource_type",
+            "example": "service",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The resource type to get related actions"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Actions"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
           }
         }
       }
@@ -4471,6 +4736,155 @@
         }
       }
     },
+    "/projects/{project_id}/actions/{resource_type}": {
+      "get": {
+        "summary": "List resource actions of a resource type",
+        "operationId": "listProjectActionsOfResourceType",
+        "tags": [
+          "Projects - Actions"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Unique ID of the project to get"
+          },
+          {
+            "in": "path",
+            "name": "resource_type",
+            "example": "service",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The resource type to get related actions"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Actions"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/actions/{resource_type}/{action_type}": {
+      "get": {
+        "summary": "List project actions of a resource type and action type",
+        "operationId": "listProjectActionsOfResourceTypeActionType",
+        "tags": [
+          "Projects - Actions"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Unique ID of the project to get"
+          },
+          {
+            "in": "path",
+            "name": "resource_type",
+            "example": "service",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The resource type to get related actions"
+          },
+          {
+            "in": "path",
+            "name": "action_type",
+            "schema": {
+              "$ref": "#/components/schemas/ActionType"
+            },
+            "required": true,
+            "description": "The action type"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Actions"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
     "/events/{resource_type}/{resource_id}": {
       "get": {
         "summary": "Return a list of all events belonging to a resource",
@@ -4513,7 +4927,7 @@
               "minimum": 1
             },
             "required": true,
-            "description": "Unique ID of the resource that's being searched"
+            "description": "Unique ID of the resource that is being searched"
           }
         ],
         "responses": {

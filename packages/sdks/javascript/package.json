@@ -37,7 +37,7 @@
   "license": "MIT",
   "release": {
     "branches": [
-      "master"
+      "main"
     ]
   },
   "bugs": {

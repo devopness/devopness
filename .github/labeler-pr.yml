@@ -1,0 +1,17 @@
+repo:
+  - "*"
+
+ci:
+  - ".github/**/*"
+
+applications:
+  - applications/**/*
+
+packages:
+  - packages/**/*
+
+sdk:
+  - packages/sdks/**/*
+
+sdk-javascript:
+  - packages/sdks/javascript/**/*

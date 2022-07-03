@@ -1,9 +1,10 @@
 name: "Lint PR"
 
 on:
-  pull_request:
+  pull_request_target:
     # triggers on `pull_request_target` as this is a fork-based repository
-    # pull_request_target:
+    # for security reasons, `npm` or other code execution jobs must not
+    # be executed on this workflow
     types:
       - opened
       - edited
