@@ -1,6 +1,6 @@
 ---
 title: Remove a Cloud Provider Credential
-intro: When your Cloud Provider Credentials are rotated or you don;t need to support a given cloud provider account you can remove from Devopness the credentials that are no longer being used.
+intro: When your Cloud Provider Credentials are rotated or you don't need to support a given cloud provider account you can remove from Devopness the credentials that are no longer being used.
 links:
     overview:
     quickstart:
