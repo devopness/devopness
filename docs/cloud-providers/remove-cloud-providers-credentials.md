@@ -12,7 +12,7 @@ links:
     featured:
 ---
 
-# Add a Cloud Provider Credential
+# Remove a Cloud Provider Credential
 1. In the upper-right corner of any page, click your profile icon then click `Cloud Providers`
     - A list of existing Cloud Providers Credentials will be displayed
 2. In the list of Cloud Provider Creentials find the credential you want to remove and click `DETAILS`
