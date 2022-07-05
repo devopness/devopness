@@ -26,6 +26,8 @@ properties:
     $ref: '#/components/schemas/Resource'
   environment:
     $ref: '#/components/schemas/EnvironmentRelation'
+  triggered_from:
+    $ref: '#/components/schemas/ActionTriggeredFrom'
   triggered_by_user:
     $ref: '#/components/schemas/UserRelation'
   project:
@@ -62,4 +64,4 @@ required:
   - summary
   - url_web_permalink
   - resource
-  - triggered_by_user
+  - triggered_from

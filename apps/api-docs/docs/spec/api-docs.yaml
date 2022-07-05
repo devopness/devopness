@@ -185,7 +185,6 @@ tags:
   - name: Daemons
     description: |
       The terms `process`, `background process` and `daemon` may be used interchangeably in the `devopness` API documentation to denote the same thing: i.e., a computer process that runs behind the scenes without user intervention, detached from TTY (teletype/terminal type) and having no associated console or controlling terminal, therefore prevented from receiving `SIGHUP` on shell termination.
-  - name: Deployments
   - name: Environments
   - name: Environments - Actions
   - name: Environments - Applications
@@ -216,7 +215,6 @@ tags:
   - name: Projects - Daemons
     description: |
       The terms `process`, `background process` and `daemon` may be used interchangeably in the `devopness` API documentation to denote the same thing: i.e., a computer process that runs behind the scenes without user intervention, detached from TTY (teletype/terminal type) and having no associated console or controlling terminal, therefore prevented from receiving `SIGHUP` on shell termination.
-  - name: Projects - Deployments
   - name: Projects - Environments
   - name: Projects - Network Rules
   - name: Projects - Servers
@@ -270,9 +268,6 @@ x-tagGroups:
   - name: Daemons
     tags:
       - Daemons
-  - name: Deployments
-    tags:
-      - Deployments
   - name: Environments
     tags:
       - Environments
@@ -304,7 +299,6 @@ x-tagGroups:
       - Projects - Applications
       - Projects - Cron Jobs
       - Projects - Daemons
-      - Projects - Deployments
       - Projects - Environments
       - Projects - Network Rules
       - Projects - Servers

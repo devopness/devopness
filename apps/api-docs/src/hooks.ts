@@ -281,13 +281,6 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         }
     })
 
-    //// logs
-    before('getDeploymentStepLog200', (transaction: Transaction) => {
-        const rep = transaction.fullPath.replace("{deployment_step_order}", "0");
-        hooks.log(`[before:'getDeploymentStepLog200'] '${transaction.fullPath}' => '${rep}`);
-        transaction.fullPath = rep;
-    })
-
     //// teams
     before('addTeamToEnvironment201', utils.rewriteTransactionRequestBody((body: any) => {
         body['name'] = `team-${new Date().getTime()}`;

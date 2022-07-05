@@ -8,7 +8,6 @@
 - [ ] enable `source_provider` and `social_account` tests: verify.
 - [ ] enable `respository` tests: dependant on `source_provider`.
 - [ ] enable `ssl_certificate` tests: skip until upcoming enviroment ID refactor.
-- [ ] enable `deployment_step` tests: upcoming refactor in `getDeploymentStepLog`
 ## Folder structure
 - [ ] redefine split schema and endpoint folders
 ## Static user account

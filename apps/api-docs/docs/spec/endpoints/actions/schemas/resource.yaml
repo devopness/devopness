@@ -11,7 +11,7 @@ properties:
   type_human_readable:
     type: string
     description: Human readable version of the resource type
-    example: Deployment
+    example: Application
   data:
     type: object
     nullable: true
@@ -20,7 +20,6 @@ properties:
       - $ref: '#/components/schemas/ApplicationRelation'
       - $ref: '#/components/schemas/CronJobRelation'
       - $ref: '#/components/schemas/DaemonRelation'
-      - $ref: '#/components/schemas/DeploymentRelation'
       - $ref: '#/components/schemas/NetworkRuleRelation'
       - $ref: '#/components/schemas/ServerRelation'
       - $ref: '#/components/schemas/ServiceRelation'

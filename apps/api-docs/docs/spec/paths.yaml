@@ -23,8 +23,6 @@
 /applications/{application_id}/deployments:
   post:
     $ref: ./endpoints/applications/paths/applications-id-deployments.yaml
-  get:
-    $ref: ./endpoints/applications/paths/applications-id-deployments-list.yaml
 /applications/{application_id}/hooks:
   get:
     $ref: ./endpoints/hooks/paths/applications-id-hooks-list.yaml
@@ -56,9 +54,6 @@
     $ref: ./endpoints/credentials/paths/credentials-id-delete.yaml
   get:
     $ref: ./endpoints/credentials/paths/credentials-id.yaml
-/deployments/{deployment_id}:
-  get:
-    $ref: ./endpoints/deployments/paths/deployments-id.yaml
 /environments/{environment_id}:
   delete:
     $ref: ./endpoints/environments/paths/environments-id-delete.yaml
@@ -149,9 +144,6 @@
 /logs/action/{action_id}/server/{server_id}/step/{action_step_order}:
   get:
     $ref: ./endpoints/logs/paths/logs-action-id-server-id-step-order.yaml
-/logs/deployment/{deployment_id}/step/{deployment_step_order}:
-  get:
-    $ref: ./endpoints/logs/paths/logs-deployment-id-step-order.yaml
 /logs/service/{service_id}/reload:
   get:
     $ref: ./endpoints/logs/paths/logs-service-id-reload.yaml
@@ -199,9 +191,6 @@
     $ref: ./endpoints/applications/paths/projects-id-applications.yaml
   get:
     $ref: ./endpoints/applications/paths/projects-id-applications-list.yaml
-/projects/{project_id}/deployments:
-  get:
-    $ref: ./endpoints/projects/paths/projects-id-deployments-list.yaml
 /projects/{project_id}/environments:
   post:
     $ref: ./endpoints/projects/paths/projects-id-environments.yaml

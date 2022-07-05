@@ -15,7 +15,7 @@ properties:
   version:
     type: string
     description: The service current installed version
-    example: 5.7.29
+    example: 5.7
     nullable: true
   auto_generated:
     type: boolean

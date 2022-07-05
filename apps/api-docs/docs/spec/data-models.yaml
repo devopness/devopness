@@ -22,6 +22,10 @@ ActionSummary:
   $ref: ./endpoints/actions/schemas/action-summary.yaml
 ActionSummaryServer:
   $ref: ./endpoints/actions/schemas/action-summary-server.yaml
+ActionTriggeredFrom:
+  $ref: ./endpoints/actions/schemas/action-triggered-from.yaml
+ActionTriggerType:
+  $ref: ./endpoints/actions/schemas/action-trigger-type.yaml
 ActionType:
   $ref: ./endpoints/actions/schemas/action-type.yaml
 ActionRelation:
@@ -32,6 +36,8 @@ Application:
   $ref: ./endpoints/applications/schemas/application.yaml
 ApplicationCreate:
   $ref: ./endpoints/applications/schemas/application-create.yaml
+ApplicationDeployment:
+  $ref: ./endpoints/applications/schemas/application-deployment.yaml
 ApplicationOptions:
   $ref: ./endpoints/static/schemas/application-options.yaml
 ApplicationUpdate:
@@ -116,30 +122,16 @@ Daemons:
   $ref: ./endpoints/daemons/schemas/daemon-list.yaml
 DaemonRelation:
   $ref: ./shared/schemas/models/daemon-relation.yaml
-Deployment:
-  $ref: ./endpoints/deployments/schemas/deployment.yaml
-DeploymentCreate:
-  $ref: ./endpoints/deployments/schemas/deployment-create.yaml
-DeploymentCreateApplication:
-  $ref: ./endpoints/deployments/schemas/deployment-create-application.yaml
-DeploymentCreateServer:
-  $ref: ./endpoints/deployments/schemas/deployment-create-server.yaml
 DeploymentDefaultStep:
   $ref: ./endpoints/static/schemas/deployment-default-step.yaml
 DeploymentDefaultSteps:
   $ref: ./endpoints/static/schemas/deployment-default-step-list.yaml
-Deployments:
-  $ref: ./endpoints/deployments/schemas/deployment-list.yaml
 DeploymentOrigin:
   $ref: ./shared/schemas/deployment-origin.yaml
 DeploymentSource:
   $ref: ./shared/schemas/deployment-source.yaml
-DeploymentStep:
-  $ref: ./endpoints/deployments/schemas/deployment-step.yaml
 DeploymentType:
   $ref: ./shared/schemas/deployment-type.yaml
-DeploymentRelation:
-  $ref: ./shared/schemas/models/deployment-relation.yaml
 Environment:
   $ref: ./endpoints/environments/schemas/environment.yaml
 EnvironmentCreate:
