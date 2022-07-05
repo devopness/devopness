@@ -12,6 +12,7 @@
  */
 
 
+import { ResourceType } from './resource-type';
 import { TriggerEvent } from './trigger-event';
 import { TriggerType } from './trigger-type';
 
@@ -28,17 +29,23 @@ export interface Script {
      */
     id: number;
     /**
-     * The id of the application to be linked
+     * 
+     * @type {ResourceType}
+     * @memberof Script
+     */
+    resource_type: ResourceType;
+    /**
+     * The id of the linked resource
      * @type {number}
      * @memberof Script
      */
-    application_id: number;
+    resource_id: number;
     /**
      * The id of the user that own the script
      * @type {number}
      * @memberof Script
      */
-    user_id: number;
+    created_by: number;
     /**
      * Name/short description of the script
      * @type {string}
@@ -50,7 +57,7 @@ export interface Script {
      * @type {string}
      * @memberof Script
      */
-    source_code: string;
+    command: string;
     /**
      * The name of the Unix user on behalf of which the script will be executed
      * @type {string}

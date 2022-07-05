@@ -25,7 +25,7 @@ export interface ActionTriggeredFrom {
      * @type {string}
      * @memberof ActionTriggeredFrom
      */
-    origin: string;
+    origin: string | null;
     /**
      * 
      * @type {ActionTriggerType}

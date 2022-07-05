@@ -8161,6 +8161,7 @@
         "properties": {
           "origin": {
             "type": "string",
+            "nullable": true,
             "description": "The HTTP origin of the request that have been dispatched the action.",
             "example": "https://devopness.com"
           },
@@ -12473,12 +12474,15 @@
             "description": "The Id of the given script",
             "example": 19876
           },
-          "application_id": {
+          "resource_type": {
+            "$ref": "#/components/schemas/ResourceType"
+          },
+          "resource_id": {
             "type": "integer",
-            "description": "The id of the application to be linked",
+            "description": "The id of the linked resource",
             "example": 9471
           },
-          "user_id": {
+          "created_by": {
             "type": "integer",
             "description": "The id of the user that own the script",
             "example": 984123
@@ -12488,7 +12492,7 @@
             "description": "Name/short description of the script",
             "example": "Extra step before build app"
           },
-          "source_code": {
+          "command": {
             "type": "string",
             "description": "A command line or multiline bash script",
             "example": "echo 'Deploy with devopness is a breeze!' | tee -a /tmp/build-started.log"
@@ -12524,10 +12528,11 @@
         },
         "required": [
           "id",
-          "application_id",
-          "user_id",
+          "resource_type",
+          "resource_id",
+          "created_by",
           "name",
-          "source_code",
+          "command",
           "run_as_user",
           "trigger_type",
           "trigger_event",
