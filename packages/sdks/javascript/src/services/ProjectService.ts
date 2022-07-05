@@ -1,7 +1,6 @@
 import { ProjectsApiService } from '../api/generated/apis/projects-api';
 import { ProjectsApplicationsApiService } from '../api/generated/apis/projects-applications-api';
 import { ProjectsCronJobsApiService } from '../api/generated/apis/projects-cron-jobs-api';
-import { ProjectsDeploymentsApiService } from '../api/generated/apis/projects-deployments-api';
 import { ProjectsEnvironmentsApiService } from '../api/generated/apis/projects-environments-api';
 import { ProjectsNetworkRulesApiService } from '../api/generated/apis/projects-network-rules-api';
 import { ProjectsServersApiService } from '../api/generated/apis/projects-servers-api';
@@ -13,7 +12,6 @@ export class ProjectService extends ProjectsApiService {
     public applications = new ProjectsApplicationsApiService();
     public cronjobs = new ProjectsCronJobsApiService();
     public daemons = new ProjectsDaemonsApiService();
-    public deployments = new ProjectsDeploymentsApiService();
     public environments = new ProjectsEnvironmentsApiService();
     public networkRules = new ProjectsNetworkRulesApiService()
     public servers = new ProjectsServersApiService()

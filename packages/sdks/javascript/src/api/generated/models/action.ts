@@ -15,6 +15,7 @@
 import { ActionHookRequest } from './action-hook-request';
 import { ActionStatus } from './action-status';
 import { ActionSummary } from './action-summary';
+import { ActionTriggeredFrom } from './action-triggered-from';
 import { ActionType } from './action-type';
 import { EnvironmentRelation } from './environment-relation';
 import { ProjectRelation } from './project-relation';
@@ -84,10 +85,16 @@ export interface Action {
     environment?: EnvironmentRelation;
     /**
      * 
+     * @type {ActionTriggeredFrom}
+     * @memberof Action
+     */
+    triggered_from: ActionTriggeredFrom;
+    /**
+     * 
      * @type {UserRelation}
      * @memberof Action
      */
-    triggered_by_user: UserRelation;
+    triggered_by_user?: UserRelation;
     /**
      * 
      * @type {ProjectRelation}

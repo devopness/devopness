@@ -1,7 +1,6 @@
 import { ApiBaseService, ConfigurationOptions, Configuration } from './services/ApiBaseService';
 import { ApplicationService } from './services/ApplicationService';
 import { DaemonService } from './services/DaemonService';
-import { DeploymentService } from './services/DeploymentService'
 import { EnvironmentService } from './services/EnvironmentService';
 import { NetworkRuleService } from './services/NetworkRuleService';
 import { ProjectService } from './services/ProjectService';
@@ -32,7 +31,6 @@ export class DevopnessApiClient {
   cloudProviders: CloudProviderService;
   cronjobs: CronJobService;
   daemons: DaemonService;
-  deployments: DeploymentService;
   environments: EnvironmentService;
   hookRequests: HookRequestService;
   incomingHooks: HookIncomingService;
@@ -65,7 +63,6 @@ export class DevopnessApiClient {
     this.cloudProviders = new CloudProviderService();
     this.cronjobs = new CronJobService();
     this.daemons = new DaemonService();
-    this.deployments = new DeploymentService();
     this.environments = new EnvironmentService();
     this.hookRequests = new HookRequestService();
     this.incomingHooks = new HookIncomingService();

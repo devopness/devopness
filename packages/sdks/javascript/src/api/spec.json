@@ -166,7 +166,7 @@
         "summary": "List resource actions",
         "operationId": "listResourceActions",
         "tags": [
-          "Actions"
+          "Actions - Resources"
         ],
         "parameters": [
           {
@@ -191,7 +191,7 @@
             "schema": {
               "type": "string"
             },
-            "required": "true",
+            "required": true,
             "description": "The resource type to get related actions"
           },
           {
@@ -202,8 +202,8 @@
               "type": "integer",
               "minimum": 1
             },
-            "required": "true",
-            "description": "Unique ID of the resource that is being searched"
+            "required": true,
+            "description": "Unique ID of the resource that's being searched"
           }
         ],
         "responses": {
@@ -236,7 +236,7 @@
         "summary": "List resource actions of an action type",
         "operationId": "listResourceActionsOfResourceTypeActionType",
         "tags": [
-          "Actions"
+          "Actions - Resources"
         ],
         "parameters": [
           {
@@ -273,7 +273,7 @@
               "minimum": 1
             },
             "required": true,
-            "description": "Unique ID of the resource that is being searched"
+            "description": "Unique ID of the resource that's being searched"
           },
           {
             "in": "path",
@@ -476,87 +476,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/DeploymentCreate"
+                "$ref": "#/components/schemas/ApplicationDeployment"
               }
             }
           }
         },
         "responses": {
-          "201": {
-            "description": "Created",
-            "headers": {
-              "X-Devopness-Action-Id": {
-                "schema": {
-                  "type": "integer"
-                },
-                "description": "The dispatched action id of the resource"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Deployment"
-                }
-              }
-            }
+          "204": {
+            "$ref": "#/components/responses/NoContentDispatchAction"
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
-          }
-        }
-      },
-      "get": {
-        "summary": "Returns a list of all deployments belonging to an application",
-        "operationId": "listApplicationDeployments",
-        "tags": [
-          "Applications - Deployments"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "$ref": "#/components/parameters/pageNumber"
-          },
-          {
-            "$ref": "#/components/parameters/pageSize"
-          },
-          {
-            "in": "path",
-            "name": "application_id",
-            "example": 1,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "required": true,
-            "description": "Numeric ID of the application to get deployments from"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "headers": {
-              "Link": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Deployments"
-                }
-              }
-            }
           }
         }
       }
@@ -1181,52 +1111,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Credential"
-                }
-              }
-            }
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          }
-        }
-      }
-    },
-    "/deployments/{deployment_id}": {
-      "get": {
-        "summary": "Get a deployment by ID",
-        "operationId": "getDeployment",
-        "tags": [
-          "Deployments"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "deployment_id",
-            "example": 1,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "required": true,
-            "description": "Numeric ID of the deployment to get"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Deployment"
                 }
               }
             }
@@ -2957,65 +2841,6 @@
         }
       }
     },
-    "/logs/deployment/{deployment_id}/step/{deployment_step_order}": {
-      "get": {
-        "summary": "Get deployment step log",
-        "operationId": "getDeploymentStepLog",
-        "tags": [
-          "Logs"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "deployment_id",
-            "example": 1,
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 9999999999
-            },
-            "required": true,
-            "description": "Numeric ID of the deployment to which the step belongs to"
-          },
-          {
-            "in": "path",
-            "name": "deployment_step_order",
-            "example": 3,
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 12
-            },
-            "required": true,
-            "description": "Relative order number of the deployment step"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Log"
-                }
-              }
-            }
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          }
-        }
-      }
-    },
     "/logs/service/{service_id}/reload": {
       "get": {
         "summary": "Get service reload log",
@@ -3848,63 +3673,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Applications"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/projects/{project_id}/deployments": {
-      "get": {
-        "summary": "Returns a list of all deployments belonging to a project",
-        "operationId": "listProjectDeployments",
-        "tags": [
-          "Projects - Deployments"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "$ref": "#/components/parameters/pageNumber"
-          },
-          {
-            "$ref": "#/components/parameters/pageSize"
-          },
-          {
-            "in": "path",
-            "name": "project_id",
-            "example": 1,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "required": true,
-            "description": "Numeric ID of the project to get deployments from"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "headers": {
-              "Link": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Deployments"
                 }
               }
             }
@@ -4927,7 +4695,7 @@
               "minimum": 1
             },
             "required": true,
-            "description": "Unique ID of the resource that is being searched"
+            "description": "Unique ID of the resource that's being searched"
           }
         ],
         "responses": {
@@ -7707,6 +7475,9 @@
       "name": "Actions"
     },
     {
+      "name": "Actions - Resources"
+    },
+    {
       "name": "Applications"
     },
     {
@@ -7737,10 +7508,10 @@
       "description": "The terms `process`, `background process` and `daemon` may be used interchangeably in the `devopness` API documentation to denote the same thing: i.e., a computer process that runs behind the scenes without user intervention, detached from TTY (teletype/terminal type) and having no associated console or controlling terminal, therefore prevented from receiving `SIGHUP` on shell termination.\n"
     },
     {
-      "name": "Deployments"
+      "name": "Environments"
     },
     {
-      "name": "Environments"
+      "name": "Environments - Actions"
     },
     {
       "name": "Environments - Applications"
@@ -7793,6 +7564,9 @@
       "name": "Projects"
     },
     {
+      "name": "Projects - Actions"
+    },
+    {
       "name": "Projects - Applications"
     },
     {
@@ -7802,9 +7576,6 @@
     {
       "name": "Projects - Daemons",
       "description": "The terms `process`, `background process` and `daemon` may be used interchangeably in the `devopness` API documentation to denote the same thing: i.e., a computer process that runs behind the scenes without user intervention, detached from TTY (teletype/terminal type) and having no associated console or controlling terminal, therefore prevented from receiving `SIGHUP` on shell termination.\n"
-    },
-    {
-      "name": "Projects - Deployments"
     },
     {
       "name": "Projects - Environments"
@@ -7862,6 +7633,165 @@
     },
     {
       "name": "Users"
+    }
+  ],
+  "x-tagGroups": [
+    {
+      "name": "API",
+      "tags": [
+        "API Reference"
+      ]
+    },
+    {
+      "name": "Static Data",
+      "tags": [
+        "Static Data"
+      ]
+    },
+    {
+      "name": "Actions",
+      "tags": [
+        "Actions",
+        "Actions - Resources"
+      ]
+    },
+    {
+      "name": "Applications",
+      "tags": [
+        "Applications",
+        "Applications - Deployments",
+        "Applications - Hooks",
+        "Applications - Scripts",
+        "Applications - SSL Certificates",
+        "Applications - Variables"
+      ]
+    },
+    {
+      "name": "Cloud Providers",
+      "tags": [
+        "Cloud Providers"
+      ]
+    },
+    {
+      "name": "Cron Jobs",
+      "tags": [
+        "Cron Jobs"
+      ]
+    },
+    {
+      "name": "Daemons",
+      "tags": [
+        "Daemons"
+      ]
+    },
+    {
+      "name": "Environments",
+      "tags": [
+        "Environments",
+        "Environments - Actions",
+        "Environments - Applications",
+        "Environments - Cron Jobs",
+        "Environments - Daemons",
+        "Environments - Invitations",
+        "Environments - Network Rules",
+        "Environments - Servers",
+        "Environments - Services",
+        "Environments - SSH Keys",
+        "Environments - Teams"
+      ]
+    },
+    {
+      "name": "Hooks",
+      "tags": [
+        "Hooks - Incoming",
+        "Hooks - Outgoing",
+        "Hooks - Requests"
+      ]
+    },
+    {
+      "name": "Logs",
+      "tags": [
+        "Logs"
+      ]
+    },
+    {
+      "name": "Network Rules",
+      "tags": [
+        "Network Rules"
+      ]
+    },
+    {
+      "name": "Projects",
+      "tags": [
+        "Projects",
+        "Projects - Actions",
+        "Projects - Applications",
+        "Projects - Cron Jobs",
+        "Projects - Daemons",
+        "Projects - Environments",
+        "Projects - Network Rules",
+        "Projects - Servers",
+        "Projects - Services",
+        "Projects - SSH Keys"
+      ]
+    },
+    {
+      "name": "Resource Events",
+      "tags": [
+        "Resource Events"
+      ]
+    },
+    {
+      "name": "Scripts",
+      "tags": [
+        "Scripts"
+      ]
+    },
+    {
+      "name": "Servers",
+      "tags": [
+        "Servers"
+      ]
+    },
+    {
+      "name": "Services",
+      "tags": [
+        "Services"
+      ]
+    },
+    {
+      "name": "Source Providers",
+      "tags": [
+        "Source Providers",
+        "Source Providers - Repositories"
+      ]
+    },
+    {
+      "name": "SSH Keys",
+      "tags": [
+        "SSH Keys"
+      ]
+    },
+    {
+      "name": "SSL Certificates",
+      "tags": [
+        "SSL Certificates"
+      ]
+    },
+    {
+      "name": "Teams",
+      "tags": [
+        "Teams",
+        "Teams - Invitations",
+        "Teams - Members",
+        "Invitations"
+      ]
+    },
+    {
+      "name": "Users",
+      "tags": [
+        "Users"
+      ]
     }
   ],
   "components": {
@@ -7977,6 +7907,9 @@
           "environment": {
             "$ref": "#/components/schemas/EnvironmentRelation"
           },
+          "triggered_from": {
+            "$ref": "#/components/schemas/ActionTriggeredFrom"
+          },
           "triggered_by_user": {
             "$ref": "#/components/schemas/UserRelation"
           },
@@ -8021,7 +7954,7 @@
           "summary",
           "url_web_permalink",
           "resource",
-          "triggered_by_user"
+          "triggered_from"
         ]
       },
       "ActionHookRequest": {
@@ -8221,6 +8154,80 @@
           "in_progress",
           "completed",
           "failed"
+        ]
+      },
+      "ActionTriggeredFrom": {
+        "type": "object",
+        "properties": {
+          "origin": {
+            "type": "string",
+            "nullable": true,
+            "description": "The HTTP origin of the request that have been dispatched the action.",
+            "example": "https://devopness.com"
+          },
+          "trigger_type": {
+            "$ref": "#/components/schemas/ActionTriggerType"
+          },
+          "name": {
+            "type": "string",
+            "description": "The hook or user name that have been triggered the action.",
+            "example": "User Name"
+          },
+          "email": {
+            "type": "string",
+            "nullable": true,
+            "description": "The user's email if the action have been manually triggered.",
+            "example": "user@example.com"
+          },
+          "ip_address": {
+            "type": "string",
+            "description": "The IP address of the request origin.",
+            "example": "172.17.0.9"
+          },
+          "user_id": {
+            "type": "integer",
+            "nullable": true,
+            "description": "The user's ID if the action have been manually triggered.",
+            "example": 794613284672
+          },
+          "hook_id": {
+            "type": "integer",
+            "nullable": true,
+            "description": "The hook's ID if the action have been triggered by a hook.",
+            "example": 4678912
+          },
+          "hook_request_id": {
+            "type": "integer",
+            "nullable": true,
+            "description": "The hook request's ID if the action have been triggered by a hook.",
+            "example": 98756123796
+          },
+          "pull_request_id": {
+            "type": "integer",
+            "nullable": true,
+            "description": "The value defined has pull request ID on triggering a deployment.",
+            "example": 237
+          }
+        },
+        "required": [
+          "origin",
+          "trigger_type",
+          "name",
+          "email",
+          "ip_address",
+          "user_id",
+          "hook_id",
+          "hook_request_id",
+          "pull_request_id"
+        ]
+      },
+      "ActionTriggerType": {
+        "type": "string",
+        "example": "manual",
+        "description": "* `hook`: the action have been triggered by an `incoming hook`.\n* `manual`: the action have been manually triggered.\n",
+        "enum": [
+          "hook",
+          "manual"
         ]
       },
       "ActionType": {
@@ -8474,11 +8481,11 @@
             "properties": {
               "latest": {
                 "description": "More recent deployment created to application",
-                "$ref": "#/components/schemas/DeploymentRelation"
+                "$ref": "#/components/schemas/Action"
               },
               "live": {
                 "description": "More recent deployment that has been successfully completed",
-                "$ref": "#/components/schemas/DeploymentRelation"
+                "$ref": "#/components/schemas/Action"
               }
             }
           },
@@ -8641,6 +8648,38 @@
           "entrypoint",
           "default_branch",
           "requires_daemon"
+        ]
+      },
+      "ApplicationDeployment": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/DeploymentType"
+          },
+          "branch": {
+            "type": "string",
+            "description": "The name of the branch from which the application source code will be retrieved and deployed. This parameter is ignored when `hash` is provided.",
+            "example": "master"
+          },
+          "hash": {
+            "type": "string",
+            "description": "The commit hash from which the application source code will be retrieved and deployed. When provided `branch` parameter is ignored",
+            "example": "7ff09b0f2ed07625222f689d1afc29aa322b03a2"
+          },
+          "servers": {
+            "type": "array",
+            "description": "List of servers ids that the deploy will be triggered to",
+            "example": [
+              4321
+            ],
+            "items": {
+              "type": "integer"
+            }
+          }
+        },
+        "required": [
+          "type",
+          "branch"
         ]
       },
       "ApplicationOptions": {
@@ -10002,173 +10041,6 @@
           "working_directory"
         ]
       },
-      "Deployment": {
-        "type": "object",
-        "nullable": true,
-        "properties": {
-          "id": {
-            "type": "integer",
-            "description": "The unique id of the given record",
-            "example": 93457689064
-          },
-          "name": {
-            "type": "string",
-            "description": "The application's name that the deployment belongs to",
-            "example": "my-awesome-app"
-          },
-          "status": {
-            "$ref": "#/components/schemas/ActionStatus"
-          },
-          "type": {
-            "$ref": "#/components/schemas/DeploymentType"
-          },
-          "source": {
-            "$ref": "#/components/schemas/DeploymentSource"
-          },
-          "application": {
-            "$ref": "#/components/schemas/ApplicationRelation"
-          },
-          "commit": {
-            "$ref": "#/components/schemas/Commit"
-          },
-          "steps": {
-            "description": "The steps that were meant to be executed when the deployment was triggered",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/DeploymentStep"
-            }
-          },
-          "triggered_by_user": {
-            "$ref": "#/components/schemas/UserRelation"
-          },
-          "last_action": {
-            "$ref": "#/components/schemas/ActionRelation"
-          },
-          "started_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the action started execution (i.e., left the `pending/queued` status)",
-            "example": "2019-09-25T15:50:48.000000Z",
-            "nullable": true
-          },
-          "completed_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the action has finished execution",
-            "example": "2019-09-25T13:52:04.000000Z",
-            "nullable": true
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the record was created",
-            "example": "2019-09-25T15:50:48.000000Z",
-            "nullable": true
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the record was last updated",
-            "example": "2019-09-25T13:52:04.000000Z",
-            "nullable": true
-          }
-        },
-        "required": [
-          "id",
-          "name",
-          "status",
-          "type",
-          "source",
-          "application",
-          "commit",
-          "steps",
-          "triggered_by_user",
-          "last_action"
-        ]
-      },
-      "DeploymentCreate": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "$ref": "#/components/schemas/DeploymentType"
-          },
-          "branch": {
-            "type": "string",
-            "description": "The name of the branch from which the application source code will be retrieved and deployed. This parameter is ignored when `hash` is provided.",
-            "example": "master"
-          },
-          "hash": {
-            "type": "string",
-            "description": "The commit hash from which the application source code will be retrieved and deployed. When provided `branch` parameter is ignored",
-            "example": "7ff09b0f2ed07625222f689d1afc29aa322b03a2"
-          },
-          "servers": {
-            "type": "array",
-            "description": "List of servers ids that the deploy will be triggered to",
-            "example": [
-              4321
-            ],
-            "items": {
-              "type": "integer"
-            }
-          }
-        },
-        "required": [
-          "type",
-          "branch"
-        ]
-      },
-      "DeploymentCreateApplication": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "integer",
-            "description": "Numeric ID of the application",
-            "example": 123
-          },
-          "name": {
-            "type": "string",
-            "description": "The applications's name",
-            "example": "my-awesome.app"
-          },
-          "branch": {
-            "type": "string",
-            "description": "The name of the branch from which the source code should be retrieved and deployed",
-            "example": "master"
-          },
-          "hash": {
-            "type": "string",
-            "description": "The commit's full hash that uniquely identify a commit. Required when re-deploying",
-            "example": "7ff09b0f2ed07625222f689d1afc29aa322b03a2"
-          }
-        },
-        "required": [
-          "id",
-          "name",
-          "branch"
-        ]
-      },
-      "DeploymentCreateServer": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "integer",
-            "description": "Numeric ID of the server",
-            "example": 123
-          },
-          "hostname": {
-            "type": "string",
-            "description": "The server's hostname",
-            "example": "web-srv-1"
-          }
-        },
-        "required": [
-          "id",
-          "hostname"
-        ]
-      },
       "DeploymentDefaultStep": {
         "type": "object",
         "properties": {
@@ -10196,12 +10068,6 @@
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/DeploymentDefaultStep"
-        }
-      },
-      "Deployments": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/DeploymentRelation"
         }
       },
       "DeploymentOrigin": {
@@ -10252,55 +10118,6 @@
           "pull_request_id"
         ]
       },
-      "DeploymentStep": {
-        "type": "object",
-        "properties": {
-          "order": {
-            "type": "integer",
-            "description": "The execution order of the given step",
-            "example": 3
-          },
-          "name": {
-            "type": "string",
-            "description": "The step name",
-            "example": "Install dependencies"
-          },
-          "script_name": {
-            "type": "string",
-            "nullable": true,
-            "description": "The name of the script linked to this step",
-            "example": "Run tests"
-          },
-          "script_code": {
-            "type": "string",
-            "nullable": true,
-            "description": "The source code of the script linked to this step",
-            "example": "php artisan test"
-          },
-          "status": {
-            "$ref": "#/components/schemas/ActionStatus"
-          },
-          "started_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the step started execution (i.e., left the `pending/queued` status)",
-            "example": "2019-09-25T15:50:48.000000Z",
-            "nullable": true
-          },
-          "completed_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the step has finished execution",
-            "example": "2019-09-25T13:52:04.000000Z",
-            "nullable": true
-          }
-        },
-        "required": [
-          "name",
-          "order",
-          "status"
-        ]
-      },
       "DeploymentType": {
         "type": "string",
         "description": "The type of the deployment",
@@ -10310,84 +10127,6 @@
           "rollback"
         ],
         "example": "deploy"
-      },
-      "DeploymentRelation": {
-        "type": "object",
-        "nullable": true,
-        "properties": {
-          "id": {
-            "type": "integer",
-            "description": "The unique id of the given record",
-            "example": 93457689064
-          },
-          "name": {
-            "type": "string",
-            "description": "The application's name that the deployment belongs to",
-            "example": "my-awesome-app"
-          },
-          "status": {
-            "$ref": "#/components/schemas/ActionStatus"
-          },
-          "type": {
-            "$ref": "#/components/schemas/DeploymentType"
-          },
-          "source": {
-            "$ref": "#/components/schemas/DeploymentSource"
-          },
-          "commit": {
-            "$ref": "#/components/schemas/Commit"
-          },
-          "steps": {
-            "description": "The steps that were meant to be executed when the deployment was triggered",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/DeploymentStep"
-            }
-          },
-          "triggered_by_user": {
-            "$ref": "#/components/schemas/UserRelation"
-          },
-          "last_action": {
-            "$ref": "#/components/schemas/ActionRelation"
-          },
-          "started_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the action started execution (i.e., left the `pending/queued` status)",
-            "example": "2019-09-25T15:50:48.000000Z",
-            "nullable": true
-          },
-          "completed_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the action has finished execution",
-            "example": "2019-09-25T13:52:04.000000Z",
-            "nullable": true
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the record was created",
-            "example": "2019-09-25T15:50:48.000000Z",
-            "nullable": true
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the record was last updated",
-            "example": "2019-09-25T13:52:04.000000Z",
-            "nullable": true
-          }
-        },
-        "required": [
-          "id",
-          "name",
-          "status",
-          "type",
-          "source",
-          "commit",
-          "steps"
-        ]
       },
       "Environment": {
         "type": "object",
@@ -12609,7 +12348,7 @@
           "type_human_readable": {
             "type": "string",
             "description": "Human readable version of the resource type",
-            "example": "Deployment"
+            "example": "Application"
           },
           "data": {
             "type": "object",
@@ -12624,9 +12363,6 @@
               },
               {
                 "$ref": "#/components/schemas/DaemonRelation"
-              },
-              {
-                "$ref": "#/components/schemas/DeploymentRelation"
               },
               {
                 "$ref": "#/components/schemas/NetworkRuleRelation"
@@ -12738,12 +12474,15 @@
             "description": "The Id of the given script",
             "example": 19876
           },
-          "application_id": {
+          "resource_type": {
+            "$ref": "#/components/schemas/ResourceType"
+          },
+          "resource_id": {
             "type": "integer",
-            "description": "The id of the application to be linked",
+            "description": "The id of the linked resource",
             "example": 9471
           },
-          "user_id": {
+          "created_by": {
             "type": "integer",
             "description": "The id of the user that own the script",
             "example": 984123
@@ -12753,7 +12492,7 @@
             "description": "Name/short description of the script",
             "example": "Extra step before build app"
           },
-          "source_code": {
+          "command": {
             "type": "string",
             "description": "A command line or multiline bash script",
             "example": "echo 'Deploy with devopness is a breeze!' | tee -a /tmp/build-started.log"
@@ -12789,10 +12528,11 @@
         },
         "required": [
           "id",
-          "application_id",
-          "user_id",
+          "resource_type",
+          "resource_id",
+          "created_by",
           "name",
-          "source_code",
+          "command",
           "run_as_user",
           "trigger_type",
           "trigger_event",
@@ -13420,7 +13160,7 @@
           "version": {
             "type": "string",
             "description": "The service current installed version",
-            "example": "5.7.29",
+            "example": 5.7,
             "nullable": true
           },
           "auto_generated": {
@@ -13524,7 +13264,7 @@
           "version": {
             "type": "string",
             "description": "The service version to be installed",
-            "example": "5.7.29"
+            "example": 5.7
           }
         },
         "required": [
@@ -13717,7 +13457,7 @@
           "version": {
             "type": "string",
             "description": "The service current installed version",
-            "example": "5.7.29",
+            "example": 5.7,
             "nullable": true
           },
           "auto_generated": {

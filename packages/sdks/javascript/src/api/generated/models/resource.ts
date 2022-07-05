@@ -15,7 +15,6 @@
 import { ApplicationRelation } from './application-relation';
 import { CronJobRelation } from './cron-job-relation';
 import { DaemonRelation } from './daemon-relation';
-import { DeploymentRelation } from './deployment-relation';
 import { NetworkRuleRelation } from './network-rule-relation';
 import { ResourceType } from './resource-type';
 import { ServerRelation } from './server-relation';
@@ -49,9 +48,9 @@ export interface Resource {
     type_human_readable: string;
     /**
      * The resource data of type specified on `resource.type`
-     * @type {ApplicationRelation | CronJobRelation | DaemonRelation | DeploymentRelation | NetworkRuleRelation | ServerRelation | ServiceRelation | SshKeyRelation | SslCertificateRelation}
+     * @type {ApplicationRelation | CronJobRelation | DaemonRelation | NetworkRuleRelation | ServerRelation | ServiceRelation | SshKeyRelation | SslCertificateRelation}
      * @memberof Resource
      */
-    data?: ApplicationRelation | CronJobRelation | DaemonRelation | DeploymentRelation | NetworkRuleRelation | ServerRelation | ServiceRelation | SshKeyRelation | SslCertificateRelation | null;
+    data?: ApplicationRelation | CronJobRelation | DaemonRelation | NetworkRuleRelation | ServerRelation | ServiceRelation | SshKeyRelation | SslCertificateRelation | null;
 }
 

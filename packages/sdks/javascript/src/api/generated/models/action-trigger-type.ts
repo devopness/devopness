@@ -14,22 +14,13 @@
 
 
 /**
- * 
+ * * `hook`: the action have been triggered by an `incoming hook`. * `manual`: the action have been manually triggered. 
  * @export
- * @interface DeploymentCreateServer
+ * @enum {string}
  */
-export interface DeploymentCreateServer {
-    /**
-     * Numeric ID of the server
-     * @type {number}
-     * @memberof DeploymentCreateServer
-     */
-    id: number;
-    /**
-     * The server\'s hostname
-     * @type {string}
-     * @memberof DeploymentCreateServer
-     */
-    hostname: string;
+export enum ActionTriggerType {
+    Hook = 'hook',
+    Manual = 'manual'
 }
+
 
