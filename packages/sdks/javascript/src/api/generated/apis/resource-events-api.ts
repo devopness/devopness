@@ -24,7 +24,7 @@ export class ResourceEventsApiService extends ApiBaseService {
      * 
      * @summary Return a list of all events belonging to a resource
      * @param {string} resourceType The resource type to get related events
-     * @param {number} resourceId Unique ID of the resource that is being searched
+     * @param {number} resourceId Unique ID of the resource that\&#39;s being searched
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */

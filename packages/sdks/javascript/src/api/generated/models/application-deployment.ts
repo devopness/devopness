@@ -17,31 +17,31 @@ import { DeploymentType } from './deployment-type';
 /**
  * 
  * @export
- * @interface DeploymentCreate
+ * @interface ApplicationDeployment
  */
-export interface DeploymentCreate {
+export interface ApplicationDeployment {
     /**
      * 
      * @type {DeploymentType}
-     * @memberof DeploymentCreate
+     * @memberof ApplicationDeployment
      */
     type: DeploymentType;
     /**
      * The name of the branch from which the application source code will be retrieved and deployed. This parameter is ignored when `hash` is provided.
      * @type {string}
-     * @memberof DeploymentCreate
+     * @memberof ApplicationDeployment
      */
     branch: string;
     /**
      * The commit hash from which the application source code will be retrieved and deployed. When provided `branch` parameter is ignored
      * @type {string}
-     * @memberof DeploymentCreate
+     * @memberof ApplicationDeployment
      */
     hash?: string;
     /**
      * List of servers ids that the deploy will be triggered to
      * @type {Array<number>}
-     * @memberof DeploymentCreate
+     * @memberof ApplicationDeployment
      */
     servers?: Array<number>;
 }

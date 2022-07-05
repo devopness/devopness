@@ -67,28 +67,6 @@ export class LogsApiService extends ApiBaseService {
 
     /**
      * 
-     * @summary Get deployment step log
-     * @param {number} deploymentId Numeric ID of the deployment to which the step belongs to
-     * @param {number} deploymentStepOrder Relative order number of the deployment step
-     */
-    public async getDeploymentStepLog(deploymentId: number, deploymentStepOrder: number): Promise<ApiResponse<Log>> {
-        if (deploymentId === null || deploymentId === undefined) {
-            throw new ArgumentNullException('deploymentId', 'getDeploymentStepLog');
-        }
-        if (deploymentStepOrder === null || deploymentStepOrder === undefined) {
-            throw new ArgumentNullException('deploymentStepOrder', 'getDeploymentStepLog');
-        }
-        
-        let queryString = '';
-
-        const requestUrl = '/logs/deployment/{deployment_id}/step/{deployment_step_order}' + (queryString? `?${queryString}` : '');
-
-        const response = await this.get <Log>(requestUrl.replace(`{${"deployment_id"}}`, encodeURIComponent(String(deploymentId))).replace(`{${"deployment_step_order"}}`, encodeURIComponent(String(deploymentStepOrder))));
-        return new ApiResponse(response);
-    }
-
-    /**
-     * 
      * @summary Get service reload log
      * @param {number} serviceId The unique id of the service
      */
