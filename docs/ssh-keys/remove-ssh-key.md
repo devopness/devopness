@@ -7,7 +7,7 @@ links:
     next:
     guides:
     related:
-        - /docs/ssh-keys/add-ssh-key.md
+        - /docs/ssh-keys/add-ssh-key
     featured:
 ---
 

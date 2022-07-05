@@ -19,10 +19,6 @@ links:
 4. On the upper-right corner of the list click the `ADD SSH KEY` button
 5. Provide a name to the `SSH Key` being added. For example, "Company Laptop"
 6. Paste in your public key
->Note: the public key has to be issued using one of the following cryptography algorithms: RSA, DSA, DSS
->> the above note is an example of extra info that should not be added to documentation, as API validation rules
->> and support to extra ssh key types might change, and we should not need to update the docs when that happens
->> as the API error messages + the Devopness Web app forms should be clear enough to guide the user
 7. Click `NEXT`
 8. Follow the prompts to complete the configuration of the new `SSH Key`
 9. Click `CONFIRM`
