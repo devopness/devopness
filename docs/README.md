@@ -19,4 +19,4 @@ That will help the reader to understand each step without pressure, then breath,
 1. Do not go too deep into business rules that are already validated and communicated by the API
 as Devopness product is built with an API-first approach. We strive for keeping API responses and validation messages easily understood by machines and humans alike, there's no need to repeat ourselves in the docs explaining which field values are valid or not.
 It is Devopness API responsibility to communicate the validation rules to the end users in a clear way, so that should not require extra documentation to explain API messages.
-- We might, however, want to produce `Overview` or `Deep dive` articles to conceptually guide users through complex use cases, but that falls beyond the traditional use cases step by step approach.
+- We might, however, want to produce `Overview` or `Deep dive` articles to conceptually give users detailed explanation on specific topics that fall beyond the more common use-case-based step by step.
