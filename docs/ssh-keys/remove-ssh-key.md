@@ -1,5 +1,6 @@
 ---
 title: Remove an SSH key
+	intro: Sometimes you may need to remove an SSH key related to a former member of your team or to a machine that is no longer available. Remove these SSH keys to ensure your servers remain only accessible by trusted sources.
 links:
     overview:
     quickstart:
