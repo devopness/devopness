@@ -8,7 +8,7 @@ Make sure all files created in this folder adhere to the following basic rules:
 
 # Documentation guidelines
 ## What to document?
-We should document use cases that will help our users on achieve success on their tasks while using Devopness platform.
+We should document use cases that will help our users successfully achieve their goals while using Devopness platform.
 
 ## How to document?
 Step by step. Each step should be clear, with a short sentence.
