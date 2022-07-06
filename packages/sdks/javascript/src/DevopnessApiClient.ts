@@ -13,7 +13,6 @@ import { SslCertificateService } from './services/SslCertificateService';
 import { UserService } from './services/UserService';
 import { CronJobService } from './services/CronJobService';
 import { StaticService } from './services/StaticService';
-import { ActionsApiService } from './api/generated/apis/actions-api';
 import { SocialAccountService } from './services/SocialAccountService';
 import { LogService } from './services/LogService';
 import { VariableService } from './services/VariableService';
@@ -24,9 +23,10 @@ import { CloudProviderService } from './services/CloudProviderService';
 import { InvitationService } from './services/InvitationService';
 import { TeamService } from './services/TeamService';
 import { ResourceEventService } from './services/ResourceEventService';
+import { ActionService } from './services/ActionService';
 
 export class DevopnessApiClient {
-  actions: ActionsApiService;
+  actions: ActionService;
   applications: ApplicationService;
   cloudProviders: CloudProviderService;
   cronjobs: CronJobService;
@@ -58,7 +58,7 @@ export class DevopnessApiClient {
     // we initialize the services explicitly, instead of auto initialize them on property declaration in the beginning of the class,
     // cause some (or all) of them depend on `ApiBaseService.configuration` property be set. Furthermore, we ensure all assertions
     // for non provided required parameters are quickly returned to the end user before spending time loading extra resources
-    this.actions = new ActionsApiService();
+    this.actions = new ActionService();
     this.applications = new ApplicationService();
     this.cloudProviders = new CloudProviderService();
     this.cronjobs = new CronJobService();

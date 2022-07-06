@@ -7898,6 +7898,9 @@
             "description": "The permalink URL to the action details on Devopness web app",
             "example": "https://devopness.com/actions/1"
           },
+          "action_data": {
+            "$ref": "#/components/schemas/ActionData"
+          },
           "servers": {
             "$ref": "#/components/schemas/ServerActions"
           },
@@ -7953,8 +7956,162 @@
           "type_human_readable",
           "summary",
           "url_web_permalink",
+          "action_data",
           "resource",
           "triggered_from"
+        ]
+      },
+      "ActionData": {
+        "description": "Data related to action resource.",
+        "nullable": true,
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/ActionDeploymentData"
+          }
+        ]
+      },
+      "ActionDeploymentCommit": {
+        "type": "object",
+        "description": "Informations about the commit used on this deployment",
+        "properties": {
+          "source_provider_id": {
+            "type": "integer",
+            "description": "The ID of the source provider",
+            "example": 4687921
+          },
+          "provider": {
+            "type": "string",
+            "description": "The source provider's name",
+            "example": "github"
+          },
+          "repository": {
+            "type": "string",
+            "description": "The repository of the deployed application",
+            "example": "devopness/example"
+          },
+          "branch": {
+            "type": "string",
+            "description": "The branch used on deployment",
+            "example": "develop"
+          },
+          "hash": {
+            "type": "string",
+            "description": "The commit hash used on deployment",
+            "example": "d433e4622fde4b59a48586ed94082e2d76e855c1"
+          },
+          "message": {
+            "type": "string",
+            "description": "The commit message",
+            "example": "fix: some bug"
+          },
+          "author_name": {
+            "type": "string",
+            "description": "The author of the commit",
+            "example": "Author Name"
+          },
+          "author_email": {
+            "type": "string",
+            "description": "The commit author's email",
+            "example": "email@example.com"
+          },
+          "committed_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the commit was created",
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "url": {
+            "type": "string",
+            "description": "The commit URL on the source provider",
+            "example": "https://source-provider.com/commit/d433e4622fde4b59a48586ed94082e2d76e855c1"
+          },
+          "clone_url": {
+            "type": "string",
+            "description": "The URL to clone the repository on the specific commit",
+            "example": "https://source-provider.com/commit/d433e4622fde4b59a48586ed94082e2d76e855c1.git"
+          },
+          "download_url": {
+            "type": "string",
+            "description": "The URL to download the commit source code",
+            "example": "https://source-provider.com/commit/d433e4622fde4b59a48586ed94082e2d76e855c1.tar.gz"
+          }
+        },
+        "required": [
+          "source_provider_id",
+          "provider",
+          "repository",
+          "branch",
+          "hash",
+          "message",
+          "author_name",
+          "author_email",
+          "committed_at",
+          "url",
+          "clone_url",
+          "download_url"
+        ]
+      },
+      "ActionDeploymentContent": {
+        "type": "object",
+        "properties": {
+          "provider_id": {
+            "type": "integer",
+            "description": "The ID of the source provider",
+            "example": 4687921
+          },
+          "provider_name": {
+            "type": "string",
+            "description": "The source provider's name",
+            "example": "github"
+          },
+          "type": {
+            "$ref": "#/components/schemas/DeploymentType"
+          },
+          "repository": {
+            "type": "string",
+            "description": "The repository of the deployed application",
+            "example": "devopness/example"
+          },
+          "branch": {
+            "type": "string",
+            "description": "The branch used on deployment",
+            "example": "develop"
+          },
+          "hash": {
+            "type": "string",
+            "nullable": true,
+            "description": "The commit hash defined to be used on deployment",
+            "example": "d433e4622fde4b59a48586ed94082e2d76e855c1"
+          }
+        },
+        "required": [
+          "provider_id",
+          "provider_name",
+          "type",
+          "repository",
+          "branch",
+          "hash"
+        ]
+      },
+      "ActionDeploymentData": {
+        "type": "object",
+        "properties": {
+          "release_name": {
+            "type": "string",
+            "description": "The name generated to release created by this deployment",
+            "example": "2022-07-05-13-25-38"
+          },
+          "commit": {
+            "$ref": "#/components/schemas/ActionDeploymentCommit"
+          },
+          "deployment": {
+            "$ref": "#/components/schemas/ActionDeploymentContent"
+          }
+        },
+        "required": [
+          "release_name",
+          "commit",
+          "deployment"
         ]
       },
       "ActionHookRequest": {

@@ -12,6 +12,7 @@
  */
 
 
+import { ActionData } from './action-data';
 import { ActionHookRequest } from './action-hook-request';
 import { ActionStatus } from './action-status';
 import { ActionSummary } from './action-summary';
@@ -65,6 +66,12 @@ export interface Action {
      * @memberof Action
      */
     url_web_permalink: string;
+    /**
+     * 
+     * @type {ActionData}
+     * @memberof Action
+     */
+    action_data: ActionData | null;
     /**
      * List of actions dispatched to servers
      * @type {Array<ServerAction>}
