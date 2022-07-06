@@ -37,7 +37,7 @@ properties:
   # started_at:
   #   type: string
   #   format: date-time
-  #   description: The date and time when the service was started and wheng the uptime is calculated from
+  #   description: The date and time when the service was started and when the uptime is calculated from
   #   example: "2019-04-05 09:32:56"
   created_at:
     type: string

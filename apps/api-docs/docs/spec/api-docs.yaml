@@ -251,6 +251,8 @@ x-tagGroups:
     tags:
       - Actions
       - Actions - Resources
+      - Environments - Actions
+      - Projects - Actions
   - name: Applications
     tags:
       - Applications
@@ -259,28 +261,29 @@ x-tagGroups:
       - Applications - Scripts
       - Applications - SSL Certificates
       - Applications - Variables
+      - Environments - Applications
+      - Projects - Applications
   - name: Cloud Providers
     tags:
       - Cloud Providers
   - name: Cron Jobs
     tags:
       - Cron Jobs
+      - Environments - Cron Jobs
+      - Projects - Cron Jobs
   - name: Daemons
     tags:
       - Daemons
+      - Environments - Daemons
+      - Projects - Daemons
+  - name: Deployments
+    tags:
+      - Deployments
+      - Projects - Deployments
   - name: Environments
     tags:
       - Environments
-      - Environments - Actions
-      - Environments - Applications
-      - Environments - Cron Jobs
-      - Environments - Daemons
-      - Environments - Invitations
-      - Environments - Network Rules
-      - Environments - Servers
-      - Environments - Services
-      - Environments - SSH Keys
-      - Environments - Teams
+      - Projects - Environments
   - name: Hooks
     tags:
         - Hooks - Incoming
@@ -292,18 +295,11 @@ x-tagGroups:
   - name: Network Rules
     tags:
       - Network Rules
+      - Environments - Network Rules
+      - Projects - Network Rules
   - name: Projects
     tags:
       - Projects
-      - Projects - Actions
-      - Projects - Applications
-      - Projects - Cron Jobs
-      - Projects - Daemons
-      - Projects - Environments
-      - Projects - Network Rules
-      - Projects - Servers
-      - Projects - Services
-      - Projects - SSH Keys
   - name: Resource Events
     tags:
       - Resource Events
@@ -313,9 +309,13 @@ x-tagGroups:
   - name: Servers
     tags:
       - Servers
+      - Environments - Servers
+      - Projects - Servers
   - name: Services
     tags:
       - Services
+      - Environments - Services
+      - Projects - Services
   - name: Source Providers
     tags:
       - Source Providers
@@ -323,6 +323,8 @@ x-tagGroups:
   - name: SSH Keys
     tags:
       - SSH Keys
+      - Environments - SSH Keys
+      - Projects - SSH Keys
   - name: SSL Certificates
     tags:
       - SSL Certificates
@@ -332,6 +334,8 @@ x-tagGroups:
       - Teams - Invitations
       - Teams - Members
       - Invitations
+      - Environments - Invitations
+      - Environments - Teams
   - name: Users
     tags:
       - Users
