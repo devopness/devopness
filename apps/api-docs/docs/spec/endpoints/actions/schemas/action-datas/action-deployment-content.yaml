@@ -1,0 +1,32 @@
+type: object
+properties:
+  provider_id:
+    type: integer
+    description: The ID of the source provider
+    example: 4687921
+  provider_name:
+    type: string
+    description: The source provider's name
+    example: github
+  type:
+    $ref: '#/components/schemas/DeploymentType'
+  repository:
+    type: string
+    description: The repository of the deployed application
+    example: devopness/example
+  branch:
+    type: string
+    description: The branch used on deployment
+    example: develop
+  hash:
+    type: string
+    nullable: true
+    description: The commit hash defined to be used on deployment
+    example: d433e4622fde4b59a48586ed94082e2d76e855c1
+required:
+  - provider_id
+  - provider_name
+  - type
+  - repository
+  - branch
+  - hash

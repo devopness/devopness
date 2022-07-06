@@ -1,0 +1,4 @@
+description: Data related to action resource.
+nullable: true
+oneOf:
+  - $ref: '#/components/schemas/ActionDeploymentData'

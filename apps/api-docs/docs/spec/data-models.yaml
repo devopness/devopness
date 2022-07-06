@@ -2,6 +2,14 @@ AcceptedResponseMessage:
   $ref: ./shared/schemas/accepted-response-message.yaml
 Action:
   $ref: ./endpoints/actions/schemas/action.yaml
+ActionData:
+  $ref: ./endpoints/actions/schemas/action-data.yaml
+ActionDeploymentCommit:
+  $ref: ./endpoints/actions/schemas/action-datas/action-deployment-commit.yaml
+ActionDeploymentContent:
+  $ref: ./endpoints/actions/schemas/action-datas/action-deployment-content.yaml
+ActionDeploymentData:
+  $ref: ./endpoints/actions/schemas/action-datas/action-deployment-data.yaml
 ActionHookRequest:
   $ref: ./endpoints/actions/schemas/action-hook-request.yaml
 Actions:

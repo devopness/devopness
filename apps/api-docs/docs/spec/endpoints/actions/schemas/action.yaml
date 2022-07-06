@@ -20,6 +20,8 @@ properties:
     type: string
     description: The permalink URL to the action details on Devopness web app
     example: "https://devopness.com/actions/1"
+  action_data:
+    $ref: '#/components/schemas/ActionData'
   servers:
     $ref: '#/components/schemas/ServerActions'
   resource:
@@ -63,5 +65,6 @@ required:
   - type_human_readable
   - summary
   - url_web_permalink
+  - action_data
   - resource
   - triggered_from
