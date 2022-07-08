@@ -32,8 +32,6 @@ properties:
     $ref: '#/components/schemas/ServerBlueprint'
   status:
     $ref: '#/components/schemas/ActionStatus'
-  actions:
-    $ref: "#/components/schemas/Actions"
   environments:
     description: "The list of environments to which the server is linked to"
     type: array
@@ -72,7 +70,6 @@ required:
   - created_by
   - active
   - blueprint
-  - actions
   - environments
   - project
   - created_by_user
