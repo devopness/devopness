@@ -1,0 +1,28 @@
+name: SDK JavaScript - Release
+on:
+  push:
+    paths:
+      - packages/sdks/javascript/**
+    branches:
+      - main
+      - "*.x" # maintenance releases
+
+defaults:
+  run:
+    working-directory: packages/sdks/javascript
+
+jobs:
+  release:
+    name: release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "16.x"
+      - run: npm ci
+      - run: npm run build
+      - run: npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
