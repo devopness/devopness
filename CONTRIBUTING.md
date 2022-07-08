@@ -27,7 +27,7 @@ If you want to submit a bug fix or new feature, make sure that all tests are pas
 
 - Keep git commit messages clear and appropriate. Ideally, follow commit conventions described below.
 - Push your changes to your topic branch in your fork of the repo.
-- Submit a pull request from your topic branch to the master branch in the `@devponess/sdk-js` repository.
+- Submit a pull request from your topic branch to the main branch in the `@devponess/sdk-js` repository.
 - Be sure to tag any issues your pull request is taking care of / contributing to. \* Adding "Closes #123" to a pull request description will auto close the issue once the pull request is merged in.
 - Ensure the pull request passes all `checks`. If not, please fix the code until you get a green check mark on the PR.
 
