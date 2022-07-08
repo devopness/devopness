@@ -20,7 +20,7 @@ yarn add @devopness/sdk-js
 
 ### Initializing
 
-To initialize the usage of Devopness SDK just import it and create a new instance of `DevopnessApiClient` class.
+To initialize the usage of Devopness SDK, just import it and create a new instance of `DevopnessApiClient` class.
 
 Here is a generic simple example that can be used from `Node.js`, `TypeScript` or `Javascript` applications:
 
@@ -30,8 +30,8 @@ const devopnessApi = new DevopnessApiClient();
 ```
 
 The instance of `DevopnessApiClient` has properties to all services provided by the API.
-The name of the methods at services is the same as operation name in the documentation of the
-Devopness API. You can consult the URL of a endpoint to see the operation name. For instance
+The name of the methods at services is the same as the operation name in the documentation of the
+Devopness API. You can consult the URL of an endpoint to see the operation name. For instance,
 the URL to endpoint `POST /users/login` in the documentation is: `/#operation/login`
 
 ### Authenticating
@@ -49,7 +49,7 @@ async function authenticate(email, pass) {
 authenticate('user@email.com', 'secret-password');
 ```
 
-In the example above, `userTokens` is a instance of `ApiResponse` and the `data` property has the data requested from the API. See [ApiResponse.ts](https://github.com/devopness/devopness/blob/master/src/common/ApiResponse.ts) for reference.
+In the example above, `userTokens` is an instance of `ApiResponse` and the `data` property has the data requested from the API. See [ApiResponse.ts](https://github.com/devopness/devopness/blob/master/src/common/ApiResponse.ts) for reference.
 
 ### Invoking authentication protected endpoints
 Once an authentication token is set, any protected endpoint can be invoked.
@@ -74,7 +74,7 @@ getUserProfile();
 This package includes TypeScript declarations for every method.
 TypeScript versions `>= 3.8` are supported.
 
-Some methods in `Devopness SDK JavaScript` accept and return objects from the Devopness API. The type declarations for these objects will always track the latest version of the API. Therefore, if you'e using the latest version of this package you can rely on the Devopness API documentation for checking the input and return types of each API endpoint.
+Some methods in `Devopness SDK JavaScript` accept and return objects from the Devopness API. The type declarations for these objects will always track the latest version of the API. Therefore, if you'e using the latest version of this package, you can rely on the Devopness API documentation for checking the input and return types of each API endpoint.
 
 ## Building and testing
 To build and test the SDK locally, follow these steps:
