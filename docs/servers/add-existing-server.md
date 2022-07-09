@@ -1,6 +1,6 @@
 ---
 title: Add an existing Server
-intro: If you have servers provisioned manually or by other processes you can still connect them to your Devopness account and take the most of the Devopness infrastructure management features.
+intro: If you have servers provisioned outside of your desired environment on Devopness, you can still connect them to your Devopness account and take the most of the Devopness infrastructure management features.
 links:
     overview:
     quickstart:
