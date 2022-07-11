@@ -29,4 +29,4 @@ links:
 12. Log into your server as the `root` user
 13. Paste the command that has been copied to the clipboard and run it
 14. A message will be displayed in the terminal window when the server is connected to Devopness
-15. Get back to Devopness and start managing your server! :)
+15. On Devopness, once the server is displayed as `Connected`, it's been added to the selected environment
