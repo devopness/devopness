@@ -7,6 +7,9 @@ ci:
 applications:
   - applications/**/*
 
+docs:
+  - docs/**/*
+
 packages:
   - packages/**/*
 
