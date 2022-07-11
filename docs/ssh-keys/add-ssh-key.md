@@ -15,7 +15,7 @@ links:
 # Add an SSH key
 1. On Devopness, navigate to a project then select an environment
 2. Find the `SSH Keys` card
-3. Click `View` in the `SSH Keys` card to see a list of existing SSH Keys
+3. Click `View` in the `SSH Keys` card to see a list of existing `SSH Keys`
 4. On the upper-right corner of the list click `ADD SSH KEY`
 5. Provide a name to the `SSH Key` being added. For example, "Company Laptop"
 6. Paste in your public key
