@@ -276,10 +276,6 @@ x-tagGroups:
       - Daemons
       - Environments - Daemons
       - Projects - Daemons
-  - name: Deployments
-    tags:
-      - Deployments
-      - Projects - Deployments
   - name: Environments
     tags:
       - Environments
