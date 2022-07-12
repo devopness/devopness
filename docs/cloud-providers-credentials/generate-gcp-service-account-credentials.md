@@ -20,4 +20,4 @@ links:
 4. Provide the `Cumpute Instance Admin (v1)` and `Service Account Manager` roles to your service account
 5. To your choosen service account, select the `Manage keys` option
 6. Select the `ADD KEY -> Create new key -> JSON`
-7. A JSON file containing your service account credentials will be downloaded, it's content will be used as input to Devopness Cloud Credentials form field
+7. A JSON file containing your service account credentials will be downloaded, use it's content as input on Devopness Cloud Credentials form field.
