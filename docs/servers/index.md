@@ -10,3 +10,6 @@ links:
     related:
     featured:
 ---
+
+- [Create a GCP server](./create-gcp-server.md)
+- [Add existing server](./add-existing-server.md)
