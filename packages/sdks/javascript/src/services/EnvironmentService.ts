@@ -1,4 +1,5 @@
 import { EnvironmentsApiService } from '../api/generated/apis/environments-api';
+import { EnvironmentsActionsApiService } from '../api/generated/apis/environments-actions-api';
 import { EnvironmentsApplicationsApiService } from '../api/generated/apis/environments-applications-api';
 import { EnvironmentsCronJobsApiService } from '../api/generated/apis/environments-cron-jobs-api';
 import { EnvironmentsDaemonsApiService } from '../api/generated/apis/environments-daemons-api';
@@ -10,6 +11,7 @@ import { EnvironmentsSSHKeysApiService } from '../api/generated/apis/environment
 import { EnvironmentsTeamsApiService } from '../api/generated/apis/environments-teams-api';
 
 export class EnvironmentService extends EnvironmentsApiService {
+    public actions = new EnvironmentsActionsApiService();
     public applications = new EnvironmentsApplicationsApiService();
     public cronjobs = new EnvironmentsCronJobsApiService();
     public daemons = new EnvironmentsDaemonsApiService();
