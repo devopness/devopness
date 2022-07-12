@@ -15,7 +15,7 @@ links:
 # Generate Service Account Credentials
 
 1. Access your GCP project or [create a new project on GCP](https://cloud.google.com/resource-manager/docs/creating-managing-projects) on Google Cloud console
-2. Select the `Service Accounts` option under `IAM & Admin` on the navigation menu
+2. On the navigation menu under `Service Accounts` select the `IAM & Admin` option 
 3. If you do not have a service account, follow [instructions on GCP docs to create a service account key](https://cloud.google.com/iam/docs/creating-managing-service-account-keys)
 4. Provide the `Cumpute Instance Admin (v1)` and `Service Account Manager` roles to your service account
 5. To your choosen service account, select the `Manage keys` option
