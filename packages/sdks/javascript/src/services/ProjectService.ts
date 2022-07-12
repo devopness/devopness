@@ -1,4 +1,5 @@
 import { ProjectsApiService } from '../api/generated/apis/projects-api';
+import { ProjectsActionsApiService } from '../api/generated/apis/projects-actions-api';
 import { ProjectsApplicationsApiService } from '../api/generated/apis/projects-applications-api';
 import { ProjectsCronJobsApiService } from '../api/generated/apis/projects-cron-jobs-api';
 import { ProjectsEnvironmentsApiService } from '../api/generated/apis/projects-environments-api';
@@ -9,6 +10,7 @@ import { ProjectsSSHKeysApiService } from '../api/generated/apis/projects-sshkey
 import { ProjectsDaemonsApiService } from '../api/generated/apis/projects-daemons-api';
 
 export class ProjectService extends ProjectsApiService {
+    public actions = new ProjectsActionsApiService();
     public applications = new ProjectsApplicationsApiService();
     public cronjobs = new ProjectsCronJobsApiService();
     public daemons = new ProjectsDaemonsApiService();
