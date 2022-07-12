@@ -11,5 +11,5 @@ links:
     featured:
 ---
 
-- [Create a GCP server](./create-gcp-server.md)
+- [Add a GCP server](./add-gcp-server.md)
 - [Add existing server](./add-existing-server.md)
