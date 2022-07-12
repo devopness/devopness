@@ -9,7 +9,6 @@ links:
     next:
     guides:
     related:
-        - /docs/cloud-providers/remove-cloud-providers-credentials
     featured:
 ---
 

@@ -9,7 +9,7 @@ links:
     guides:
     related:
     featured:
+    links:
+        - docs/servers/add-existing-server
+        - docs/servers/add-gcp-server
 ---
-
-- [Add a GCP server](./add-gcp-server.md)
-- [Add existing server](./add-existing-server.md)
