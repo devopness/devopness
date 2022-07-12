@@ -19,6 +19,5 @@ links:
 2. On the upper-right corner of the list, click `ADD CLOUD PROVIDER`
 3. Use the drop-down menu to choose a Cloud Provider
 4. Provide a name to your new `Cloud Provider Credential`. For example, "Company X cloud provider key"
-5. If you doesn't have your Cloud Provider credentials in hands, create it following the guides in: [Generating Cloud Providers Credentials](./credentials/index.md)
-6. Otherwise, just paste your credentials to the appropriate fields in the form
-7. Click `CONFIRM`
+5. Paste in your credentials to the appropriate fields in the form
+6. Click `CONFIRM`
