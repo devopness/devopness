@@ -1,6 +1,6 @@
 ---
 title: Add an Environment
-intro: Learn how to add environments to manage the different stages of your application lifecycle or control infrastructure resources and software versions for individual customers.
+intro: Add environments to manage the different stages of your application lifecycle or control infrastructure resources and software versions for individual customers.
 links:
     overview:
     quickstart:
