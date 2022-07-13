@@ -7,6 +7,8 @@ links:
     previous:
     next:
     guides:
+        - /docs/cloud-providers/add-cloud-providers-credentials
+        - /docs/cloud-providers/remove-cloud-providers-credentials
     related:
     featured:
 ---
