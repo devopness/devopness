@@ -3,13 +3,13 @@ title: Generate Google Service Account Credentials
 intro: In order to allow Devopness to manage Google Cloud resources for you, you need to provide us Service Account Credentials.
 links:
     overview:
-      - /docs/cloud-providers/credentials/index
+        - /docs/cloud-providers/credentials/index
     quickstart:
     previous:
     next:
+        - /docs/cloud-providers/add-cloud-providers-credentials
     guides:
     related:
-      - /docs/cloud-providers/add-cloud-providers-credentials
     featured:
 ---
 
