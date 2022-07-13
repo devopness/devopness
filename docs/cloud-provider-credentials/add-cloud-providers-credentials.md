@@ -9,7 +9,7 @@ links:
     next:
     guides:
     related:
-        - /docs/cloud-providers/remove-cloud-providers-credentials
+        - /docs/cloud-provider-credentials/remove-cloud-providers-credentials
     featured:
 ---
 
@@ -19,5 +19,6 @@ links:
 2. On the upper-right corner of the list, click `ADD CLOUD PROVIDER`
 3. Use the drop-down menu to choose a Cloud Provider
 4. Provide a name to your new `Cloud Provider Credential`. For example, "Company X cloud provider key"
-5. Paste in your credentials to the appropriate fields in the form
-6. Click `CONFIRM`
+5. Follow the [Obtain Cloud Provider Credentials](./obtain-cloud-providers-credentails.md) guide to get your choosen Cloud Provider credentials
+6. Paste in your credentials to the appropriate fields in the form
+7. Click `CONFIRM`

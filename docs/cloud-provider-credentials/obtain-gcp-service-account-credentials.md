@@ -1,19 +1,18 @@
 ---
-title: Generate Google Service Account Credentials
+title: Obtain Google Service Account Credentials
 intro: In order to allow Devopness to manage Google Cloud resources for you, you need to provide us Service Account Credentials.
 links:
     overview:
-        - /docs/cloud-providers/credentials/index
     quickstart:
     previous:
     next:
-        - /docs/cloud-providers/add-cloud-providers-credentials
+        - /docs/cloud-provider-credentials/add-cloud-providers-credentials
     guides:
     related:
     featured:
 ---
 
-# Generate Service Account Credentials
+# Obtain Service Account Credentials
 
 1. Access your GCP project or [create a new project on GCP](https://cloud.google.com/resource-manager/docs/creating-managing-projects) on Google Cloud console
 2. On the navigation menu under `Service Accounts` select the `IAM & Admin` option 
