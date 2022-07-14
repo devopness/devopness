@@ -1,5 +1,5 @@
 ---
-title: Obtain Cloud Provider Credentials
+title: Get Cloud Provider Credentials
 intro: Each Cloud Provider has its own way to grant credentials for Devopness to manage its resources.
 Here we describe how to get these credentials for each Cloud Provider.
 links:
@@ -15,6 +15,6 @@ links:
 ---
 
 # Obtain Cloud Provider Credentials
-1. If you wish to obtain `Google Cloud Platform` credentials, follow the [Obtain Google Service Account Credentials](./obtain-gcp-service-account-credentials.md) guide
+1. In order to get `Google Cloud Platform` credentials, follow the [Get Google Service Account Credentials](./get-gcp-service-account-credentials.md) guide
 
 <!--- TODO: add steps to other Cloud Providers -->
