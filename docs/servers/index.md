@@ -7,9 +7,8 @@ links:
     previous:
     next:
     guides:
-    related:
-    featured:
-    links:
         - docs/servers/add-existing-server
         - docs/servers/add-gcp-server
+    related:
+    featured:
 ---
