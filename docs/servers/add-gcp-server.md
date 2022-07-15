@@ -1,5 +1,5 @@
 ---
-title: Add a GCP Server
+title: Add a Server to GCP (Google Cloud Platform)
 intro: You can use your Devopness account to provision a server on Google Cloud Platform using Google Compute Engine
 and manage it through Devopness web application.
 links:
@@ -12,7 +12,7 @@ links:
     featured:
 ---
 
-# Add a Server to GCP
+# Add a Server to GCP (Google Cloud Platform)
 1. On Devopness, navigate to a project then select an environment
 2. If there's no other server in the selected environment, just click Add Server
 3. If a list of resource cards is displayed, find the Servers card and click View on it
