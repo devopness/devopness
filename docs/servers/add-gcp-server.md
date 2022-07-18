@@ -21,11 +21,10 @@ links:
 1. Select a GCP credential using the drop-down menu
     > If you dont have any GCP credentials listed, follow the [Add a Cloud Provider Credential](../cloud-provider-credentials/get-cloud-providers-credentails.md) guide before next step
 1. Click `NEXT`
-1. Select instance information:
-    - Select an avaliable region
-    - Select an avaliable instance type
-    - Fill the `Disk size` field with a value above 10GB
-    - Click `NEXT`
+1. Select an avaliable region using the drop-down menu
+1. Select an avaliable instance type using the drop-down menu
+1. Fill the `Disk size` field
+1. Click `NEXT`
 1. Provide your server name, OS and hostname and click `NEXT`
 1. Review server information and settings. If everything is correct, click `CONFIRM`
     > Use the PREVIOUS button to come back and change server informations if needed
