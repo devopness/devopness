@@ -10,7 +10,7 @@ links:
     guides:
         - /docs/cloud-provider-credentials/add-cloud-provider-credentials
         - /docs/cloud-provider-credentials/remove-cloud-provider-credentials
-        - /docs/cloud-provider-credentials/ontain-cloud-provider-credentials
+        - /docs/cloud-provider-credentials/get-gcp-service-account-credentials
     related:
     featured:
 ---
