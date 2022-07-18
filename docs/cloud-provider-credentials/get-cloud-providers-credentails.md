@@ -10,11 +10,11 @@ links:
     next:
     guides:
     related:
-        - /docs/cloud-provider-credentials/obtain-gcp-service-account-credentials
+        - /docs/cloud-provider-credentials/get-gcp-service-account-credentials
     featured:
 ---
 
-# Obtain Cloud Provider Credentials
+# Get Cloud Provider Credentials
 1. In order to get `Google Cloud Platform` credentials, follow the [Get Google Service Account Credentials](./get-gcp-service-account-credentials.md) guide
 
 <!--- TODO: add steps to other Cloud Providers -->
