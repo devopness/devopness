@@ -18,7 +18,7 @@ links:
 1. If a list of resource cards is displayed, find the Servers card and click View on it
 1. On the upper-right corner of the list click `ADD SERVER`
 1. Choose `Google Cloud Platform` as cloud provider
-1. Selecr your GCP credentials
+1. Select a GCP credential using the drop-down menu
 1. Click `NEXT`
 1. Select instance information:
     - Select an avaliable region
