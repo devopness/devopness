@@ -6,7 +6,11 @@ links:
     quickstart:
     previous:
     next:
+        - /docs/cloud-provider-credentials/add-cloud-provider-credentials
     guides:
+        - /docs/cloud-provider-credentials/add-cloud-provider-credentials
+        - /docs/cloud-provider-credentials/remove-cloud-provider-credentials
+        - /docs/cloud-provider-credentials/ontain-cloud-provider-credentials
     related:
     featured:
 ---

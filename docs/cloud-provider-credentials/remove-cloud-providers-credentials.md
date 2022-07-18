@@ -15,6 +15,6 @@ links:
 # Remove a Cloud Provider Credential
 1. In the upper-right corner of any page, click your profile icon then click `Cloud Providers`
     - A list of existing Cloud Providers Credentials will be displayed
-2. In the list of Cloud Provider Creentials find the credential you want to remove and click `DETAILS`
-3. On the upper-right corner of the key details view click `REMOVE`
-4. Follow the instructions in the delete form then click `DELETE`
+1. In the list of Cloud Provider Creentials find the credential you want to remove and click `DETAILS`
+1. On the upper-right corner of the key details view click `REMOVE`
+1. Follow the instructions in the delete form then click `DELETE`
