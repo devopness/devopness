@@ -19,6 +19,7 @@ links:
 1. On the upper-right corner of the list click `ADD SERVER`
 1. Choose `Google Cloud Platform` as cloud provider
 1. Select a GCP credential using the drop-down menu
+    > If you dont have any GCP credentials listed, follow the [Add a Cloud Provider Credential](../cloud-provider-credentials/get-cloud-providers-credentails.md) guide before next step
 1. Click `NEXT`
 1. Select instance information:
     - Select an avaliable region
