@@ -17,8 +17,8 @@ links:
 1. In the upper-right corner of any page, click your profile icon then click `Cloud Providers`
     - A list of existing Cloud Providers Credentials will be displayed
 2. On the upper-right corner of the list, click `ADD CLOUD PROVIDER`
-3. Use the drop-down menu to choose a Cloud Provider
+3. Use the drop-down menu to chose a Cloud Provider
 4. Provide a name to your new `Cloud Provider Credential`. For example, "Company X cloud provider key"
-5. Follow the [Get Cloud Provider Credentials](./get-cloud-providers-credentails.md) guide to get your choosen Cloud Provider credentials
+5. Follow the [Get Cloud Provider Credentials](./get-cloud-providers-credentails.md) guide to get your chosen Cloud Provider credentials
 6. Paste in your credentials to the appropriate fields in the form
 7. Click `CONFIRM`
