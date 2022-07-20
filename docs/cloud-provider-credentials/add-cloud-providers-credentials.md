@@ -1,7 +1,6 @@
 ---
 title: Add a Cloud Provider Credential
-intro: Devopness allows you to manage multiple Cloud Providers accounts from a single platform.
-Add Cloud Providers Credentials to your Devopness account to provision and manage cloud infrastructure resources with increased productivity.
+intro: Devopness allows you to manage multiple Cloud Providers accounts from a single platform. Add Cloud Providers Credentials to your Devopness account to provision and manage cloud infrastructure resources with increased productivity.
 links:
     overview:
     quickstart:
