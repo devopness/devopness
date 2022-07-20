@@ -1,7 +1,6 @@
 ---
 title: Add a Server to Google Cloud Platform (GCP)
-intro: Devopness allows you to provision a server on Google Cloud Platform using
-Google Compute Engine and manage it through Devopness.
+intro: Devopness allows you to provision a server on Google Cloud Platform using Google Compute Engine and manage it through Devopness.
 links:
     overview:
     quickstart:
