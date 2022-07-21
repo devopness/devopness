@@ -1,4 +1,4 @@
-summary: Returns a list of all incoming hooks belonging to an application
+summary: Returns a list of all hooks belonging to an application
 operationId: listApplicationHooks
 tags:
   - Applications - Hooks
