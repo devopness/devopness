@@ -15,6 +15,7 @@ import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApplicationOptions } from '../../generated/models';
+import { CloudProvider } from '../../generated/models';
 import { CronJobOptions } from '../../generated/models';
 import { EnvironmentOptions } from '../../generated/models';
 import { ServerOptions } from '../../generated/models';
@@ -35,6 +36,20 @@ export class StaticDataApiService extends ApiBaseService {
         const requestUrl = '/static/applications' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <ApplicationOptions>(requestUrl);
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Lists cloud providers
+     */
+    public async listCloudProviders(): Promise<ApiResponse<Array<CloudProvider>>> {
+        
+        let queryString = '';
+
+        const requestUrl = '/static/cloud-providers' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <Array<CloudProvider>>(requestUrl);
         return new ApiResponse(response);
     }
 

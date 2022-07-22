@@ -23,7 +23,7 @@ import { HookRelation } from '../../generated/models';
 export class ApplicationsHooksApiService extends ApiBaseService {
     /**
      * 
-     * @summary Returns a list of all incoming hooks belonging to an application
+     * @summary Returns a list of all hooks belonging to an application
      * @param {number} applicationId Unique id of the application
      */
     public async listApplicationHooks(applicationId: number): Promise<ApiResponse<Array<HookRelation>>> {
