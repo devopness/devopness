@@ -8,7 +8,7 @@ links:
     next:
     guides:
     related:
-        - /docs/cloud-providers/add-cloud-providers-credentials
+        - /docs/cloud-provider-credentials/add-cloud-providers-credentials
     featured:
 ---
 
