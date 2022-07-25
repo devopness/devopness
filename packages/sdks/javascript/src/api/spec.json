@@ -6294,6 +6294,46 @@
         }
       }
     },
+    "/static/cloud-providers": {
+      "get": {
+        "summary": "Lists cloud providers",
+        "operationId": "listCloudProviders",
+        "tags": [
+          "Static Data"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CloudProviders"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/static/cronjobs": {
       "get": {
         "summary": "Lists options of the cronjobs",
@@ -7652,7 +7692,9 @@
       "name": "Actions",
       "tags": [
         "Actions",
-        "Actions - Resources"
+        "Actions - Resources",
+        "Environments - Actions",
+        "Projects - Actions"
       ]
     },
     {
@@ -7663,7 +7705,9 @@
         "Applications - Hooks",
         "Applications - Scripts",
         "Applications - SSL Certificates",
-        "Applications - Variables"
+        "Applications - Variables",
+        "Environments - Applications",
+        "Projects - Applications"
       ]
     },
     {
@@ -7675,29 +7719,24 @@
     {
       "name": "Cron Jobs",
       "tags": [
-        "Cron Jobs"
+        "Cron Jobs",
+        "Environments - Cron Jobs",
+        "Projects - Cron Jobs"
       ]
     },
     {
       "name": "Daemons",
       "tags": [
-        "Daemons"
+        "Daemons",
+        "Environments - Daemons",
+        "Projects - Daemons"
       ]
     },
     {
       "name": "Environments",
       "tags": [
         "Environments",
-        "Environments - Actions",
-        "Environments - Applications",
-        "Environments - Cron Jobs",
-        "Environments - Daemons",
-        "Environments - Invitations",
-        "Environments - Network Rules",
-        "Environments - Servers",
-        "Environments - Services",
-        "Environments - SSH Keys",
-        "Environments - Teams"
+        "Projects - Environments"
       ]
     },
     {
@@ -7717,22 +7756,15 @@
     {
       "name": "Network Rules",
       "tags": [
-        "Network Rules"
+        "Network Rules",
+        "Environments - Network Rules",
+        "Projects - Network Rules"
       ]
     },
     {
       "name": "Projects",
       "tags": [
-        "Projects",
-        "Projects - Actions",
-        "Projects - Applications",
-        "Projects - Cron Jobs",
-        "Projects - Daemons",
-        "Projects - Environments",
-        "Projects - Network Rules",
-        "Projects - Servers",
-        "Projects - Services",
-        "Projects - SSH Keys"
+        "Projects"
       ]
     },
     {
@@ -7750,13 +7782,17 @@
     {
       "name": "Servers",
       "tags": [
-        "Servers"
+        "Servers",
+        "Environments - Servers",
+        "Projects - Servers"
       ]
     },
     {
       "name": "Services",
       "tags": [
-        "Services"
+        "Services",
+        "Environments - Services",
+        "Projects - Services"
       ]
     },
     {
@@ -7769,7 +7805,9 @@
     {
       "name": "SSH Keys",
       "tags": [
-        "SSH Keys"
+        "SSH Keys",
+        "Environments - SSH Keys",
+        "Projects - SSH Keys"
       ]
     },
     {
@@ -7784,7 +7822,9 @@
         "Teams",
         "Teams - Invitations",
         "Teams - Members",
-        "Invitations"
+        "Invitations",
+        "Environments - Invitations",
+        "Environments - Teams"
       ]
     },
     {
@@ -9330,26 +9370,43 @@
         "type": "object",
         "properties": {
           "code": {
+            "description": "Cloud provider code",
             "type": "string",
-            "description": "The code that uniquely identify a cloud provider",
-            "example": "aws|digital-ocean|gcp"
+            "example": "aws"
+          },
+          "name": {
+            "description": "Cloud provider name",
+            "type": "string",
+            "example": "Amazon Web Services"
+          },
+          "hint": {
+            "type": "string",
+            "description": "Text describing what is the provider",
+            "example": "Cloud Server provided by Amazon Web Services"
           },
           "logo_url": {
             "type": "string",
-            "description": "A URL path to the provider's logo image",
-            "example": "https://example.com/images/aws-logo.png"
+            "description": "The provider's logo URL.",
+            "example": "https://assets.devopness.com/images/icons/cloud-providers/aws.svg"
           },
-          "name": {
-            "type": "string",
-            "description": "The name of the cloud provider",
-            "example": "Amazon Web Services"
+          "cloud_services": {
+            "$ref": "#/components/schemas/CloudServices"
+          },
+          "settings": {
+            "$ref": "#/components/schemas/CloudProviderSettings"
           }
         },
         "required": [
           "code",
-          "logo_url",
-          "name"
+          "name",
+          "logo_url"
         ]
+      },
+      "CloudProviders": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/CloudProvider"
+        }
       },
       "CloudProviderCredential": {
         "type": "array",
@@ -9487,9 +9544,7 @@
         },
         "required": [
           "code",
-          "name",
-          "regions",
-          "os"
+          "name"
         ]
       },
       "CloudServices": {
@@ -12834,9 +12889,6 @@
           "status": {
             "$ref": "#/components/schemas/ActionStatus"
           },
-          "actions": {
-            "$ref": "#/components/schemas/Actions"
-          },
           "environments": {
             "description": "The list of environments to which the server is linked to",
             "type": "array",
@@ -12885,7 +12937,6 @@
           "created_by",
           "active",
           "blueprint",
-          "actions",
           "environments",
           "project",
           "created_by_user",

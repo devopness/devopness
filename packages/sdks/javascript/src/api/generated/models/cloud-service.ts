@@ -38,13 +38,13 @@ export interface CloudService {
      * @type {Array<ProviderRegion>}
      * @memberof CloudService
      */
-    regions: Array<ProviderRegion>;
+    regions?: Array<ProviderRegion>;
     /**
      * 
      * @type {Array<OperatingSystem>}
      * @memberof CloudService
      */
-    os: Array<OperatingSystem>;
+    os?: Array<OperatingSystem>;
 }
 
 /**

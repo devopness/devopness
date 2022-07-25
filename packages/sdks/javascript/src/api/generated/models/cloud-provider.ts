@@ -12,6 +12,8 @@
  */
 
 
+import { CloudProviderSettings } from './cloud-provider-settings';
+import { CloudService } from './cloud-service';
 
 /**
  * 
@@ -20,22 +22,40 @@
  */
 export interface CloudProvider {
     /**
-     * The code that uniquely identify a cloud provider
+     * Cloud provider code
      * @type {string}
      * @memberof CloudProvider
      */
     code: string;
     /**
-     * A URL path to the provider\'s logo image
+     * Cloud provider name
+     * @type {string}
+     * @memberof CloudProvider
+     */
+    name: string;
+    /**
+     * Text describing what is the provider
+     * @type {string}
+     * @memberof CloudProvider
+     */
+    hint?: string;
+    /**
+     * The provider\'s logo URL.
      * @type {string}
      * @memberof CloudProvider
      */
     logo_url: string;
     /**
-     * The name of the cloud provider
-     * @type {string}
+     * 
+     * @type {Array<CloudService>}
      * @memberof CloudProvider
      */
-    name: string;
+    cloud_services?: Array<CloudService>;
+    /**
+     * 
+     * @type {CloudProviderSettings}
+     * @memberof CloudProvider
+     */
+    settings?: CloudProviderSettings;
 }
 
