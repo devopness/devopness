@@ -322,6 +322,9 @@
 /static/applications:
   get:
     $ref: ./endpoints/static/paths/applications-list.yaml
+/static/cloud-providers:
+  get:
+    $ref: ./endpoints/static/paths/cloud-providers-list.yaml
 /static/cronjobs:
   get:
     $ref: ./endpoints/static/paths/cronjobs-list.yaml

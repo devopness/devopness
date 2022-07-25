@@ -71,7 +71,9 @@ CloudInstances:
 CloudOs:
   $ref: ./endpoints/servers/schemas/cloud-settings/cloud-os.yaml
 CloudProvider:
-  $ref: ./endpoints/credentials/schemas/cloud-provider.yaml
+  $ref: ./shared/schemas/cloud-provider.yaml
+CloudProviders:
+  $ref: ./endpoints/static/schemas/cloud-provider-list.yaml
 CloudProviderCredential:
   $ref: ./endpoints/static/schemas/cloud-provider-credential.yaml
 CloudProviderProperty:

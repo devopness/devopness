@@ -19,5 +19,3 @@ properties:
 required:
   - code
   - name
-  - regions
-  - os
