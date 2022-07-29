@@ -897,7 +897,7 @@
         "summary": "List credentials of the given cloud provider",
         "operationId": "listCloudProviderCredentials",
         "tags": [
-          "Cloud Providers - Credentials"
+          "Cloud Providers"
         ],
         "parameters": [
           {
@@ -953,7 +953,7 @@
         "summary": "Add a cloud provider credential",
         "operationId": "addCredential",
         "tags": [
-          "Cloud Providers - Credentials"
+          "Cloud Providers"
         ],
         "parameters": [
           {
@@ -997,7 +997,7 @@
         "summary": "List cloud provider credentials",
         "operationId": "listCredentials",
         "tags": [
-          "Cloud Providers - Credentials"
+          "Cloud Providers"
         ],
         "parameters": [
           {
@@ -1043,7 +1043,7 @@
         "summary": "Delete a given cloud provider credential",
         "operationId": "deleteCredential",
         "tags": [
-          "Cloud Providers - Credentials"
+          "Cloud Providers"
         ],
         "parameters": [
           {
@@ -1080,7 +1080,7 @@
         "summary": "Get a cloud provider credential by ID",
         "operationId": "getCredential",
         "tags": [
-          "Cloud Providers - Credentials"
+          "Cloud Providers"
         ],
         "parameters": [
           {
@@ -6334,100 +6334,6 @@
         }
       }
     },
-    "/static/cloud-provider-services/{service_code}": {
-      "get": {
-        "summary": "Get details of a single cloud provider service",
-        "operationId": "getCloudProviderService",
-        "tags": [
-          "Static Data"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "service_code",
-            "example": "aws-ec2",
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "description": "The unique id of the service"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CloudProviderService"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/static/cloud-provider-services/{service_code}/regions/{region_code}": {
-      "get": {
-        "summary": "Lists cloud provider service regions",
-        "operationId": "listCloudProviderServiceRegions",
-        "tags": [
-          "Static Data"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "service_code",
-            "example": "aws-ec2",
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "description": "The unique id of the service"
-          },
-          {
-            "in": "path",
-            "name": "region_code",
-            "example": "us-east-1",
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "description": "The unique id of the region"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CloudInstances"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/static/cronjobs": {
       "get": {
         "summary": "Lists options of the cronjobs",
@@ -6501,6 +6407,46 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/EnvironmentOptions"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/static/servers": {
+      "get": {
+        "summary": "Lists options of the servers",
+        "operationId": "listServerOptions",
+        "tags": [
+          "Static Data"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerOptions"
                 }
               }
             }
@@ -7591,7 +7537,7 @@
       "description": "Throughout the `devopness` documentation the term `SSL Certificate` refers to a public key certificate adhering to `X.509` standard. While TLS is the protocol more used nowadays for web encryption, for historical reasons web encryption is often referred to simply as SSL. A SSL Certificate managed by `devopness` might be used as an HTTPS/SSL/TLS and other internet protocols to establish encrypted connections between client apps (e.g. browsers) and the web application servers managed through `devopness`, but it's not limited to be used for authenticating server's identity.\n"
     },
     {
-      "name": "Cloud Providers - Credentials"
+      "name": "Cloud Providers"
     },
     {
       "name": "Cron Jobs",
@@ -7767,7 +7713,7 @@
     {
       "name": "Cloud Providers",
       "tags": [
-        "Cloud Providers - Credentials"
+        "Cloud Providers"
       ]
     },
     {
@@ -9444,7 +9390,7 @@
             "example": "https://assets.devopness.com/images/icons/cloud-providers/aws.svg"
           },
           "cloud_services": {
-            "$ref": "#/components/schemas/CloudProviderServices"
+            "$ref": "#/components/schemas/CloudServices"
           },
           "settings": {
             "$ref": "#/components/schemas/CloudProviderSettings"
@@ -9562,7 +9508,16 @@
           "allowed_values"
         ]
       },
-      "CloudProviderService": {
+      "CloudProviderSettings": {
+        "type": "object",
+        "description": "Settings of the cloud provider",
+        "properties": {
+          "credential": {
+            "$ref": "#/components/schemas/CloudProviderCredential"
+          }
+        }
+      },
+      "CloudService": {
         "type": "object",
         "properties": {
           "code": {
@@ -9581,7 +9536,7 @@
             "example": "Amazon Elastic Compute Cloud"
           },
           "regions": {
-            "$ref": "#/components/schemas/CloudProviderServiceRegions"
+            "$ref": "#/components/schemas/ProviderRegions"
           },
           "os": {
             "$ref": "#/components/schemas/OperatingSystems"
@@ -9592,50 +9547,10 @@
           "name"
         ]
       },
-      "CloudProviderServices": {
+      "CloudServices": {
         "type": "array",
         "items": {
-          "$ref": "#/components/schemas/CloudProviderService"
-        }
-      },
-      "CloudProviderServiceRegion": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "description": "The code name of the region",
-            "type": "string",
-            "example": "us-east-1"
-          },
-          "name": {
-            "description": "The formatted name of the region",
-            "type": "string",
-            "example": "us-east-1: US East (N. Virginia)"
-          },
-          "hint": {
-            "type": "string",
-            "description": "Text describing the region",
-            "example": "us-east-1: US East (N. Virginia)"
-          }
-        },
-        "required": [
-          "code",
-          "name",
-          "hint"
-        ]
-      },
-      "CloudProviderServiceRegions": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/CloudProviderServiceRegion"
-        }
-      },
-      "CloudProviderSettings": {
-        "type": "object",
-        "description": "Settings of the cloud provider",
-        "properties": {
-          "credential": {
-            "$ref": "#/components/schemas/CloudProviderCredential"
-          }
+          "$ref": "#/components/schemas/CloudService"
         }
       },
       "Credential": {
@@ -12247,16 +12162,6 @@
       "OperatingSystem": {
         "type": "object",
         "properties": {
-          "code": {
-            "type": "string",
-            "description": "The name of the operating system",
-            "example": "ubuntu"
-          },
-          "name": {
-            "type": "string",
-            "description": "The formatted name of the operating system",
-            "example": "Ubuntu"
-          },
           "value": {
             "type": "string",
             "description": "The name of the operating system",
@@ -12288,8 +12193,10 @@
           }
         },
         "required": [
-          "code",
-          "name"
+          "value",
+          "human_readable",
+          "hint",
+          "supported_versions"
         ]
       },
       "OperatingSystems": {
@@ -12500,6 +12407,86 @@
           "user_id",
           "name"
         ]
+      },
+      "Provider": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "description": "The name of the provider",
+            "type": "string",
+            "example": "aws"
+          },
+          "human_readable": {
+            "description": "The formatted name of the provider",
+            "type": "string",
+            "example": "Amazon Web Services"
+          },
+          "hint": {
+            "type": "string",
+            "description": "Text describing what is the provider",
+            "example": "Cloud Server provided by Amazon Web Services"
+          },
+          "logo_url": {
+            "type": "string",
+            "description": "The provider's logo URL.",
+            "example": "https://assets.devopness.com/images/icons/cloud-providers/aws.svg"
+          },
+          "cloud_services": {
+            "$ref": "#/components/schemas/CloudServices"
+          },
+          "settings": {
+            "$ref": "#/components/schemas/CloudProviderSettings"
+          }
+        },
+        "required": [
+          "value",
+          "human_readable",
+          "hint",
+          "logo_url",
+          "cloud_services",
+          "settings"
+        ]
+      },
+      "Providers": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Provider"
+        }
+      },
+      "ProviderRegion": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "description": "The code name of the region",
+            "type": "string",
+            "example": "us-east-1"
+          },
+          "human_readable": {
+            "description": "The formatted name of the region",
+            "type": "string",
+            "example": "us-east-1: US East (N. Virginia)"
+          },
+          "hint": {
+            "type": "string",
+            "description": "Text describing the region",
+            "example": "us-east-1: US East (N. Virginia)"
+          },
+          "available_instances": {
+            "$ref": "#/components/schemas/CloudInstances"
+          }
+        },
+        "required": [
+          "value",
+          "human_readable",
+          "hint",
+          "available_instances"
+        ]
+      },
+      "ProviderRegions": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/ProviderRegion"
+        }
       },
       "Repositories": {
         "type": "array",
@@ -13205,6 +13192,17 @@
           "blueprint",
           "hostname",
           "provision_settings"
+        ]
+      },
+      "ServerOptions": {
+        "type": "object",
+        "properties": {
+          "providers": {
+            "$ref": "#/components/schemas/Providers"
+          }
+        },
+        "required": [
+          "providers"
         ]
       },
       "ServerProvider": {

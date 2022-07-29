@@ -18,44 +18,44 @@ import { CloudService } from './cloud-service';
 /**
  * 
  * @export
- * @interface CloudProvider
+ * @interface Provider
  */
-export interface CloudProvider {
+export interface Provider {
     /**
-     * Cloud provider code
+     * The name of the provider
      * @type {string}
-     * @memberof CloudProvider
+     * @memberof Provider
      */
-    code: string;
+    value: string;
     /**
-     * Cloud provider name
+     * The formatted name of the provider
      * @type {string}
-     * @memberof CloudProvider
+     * @memberof Provider
      */
-    name: string;
+    human_readable: string;
     /**
      * Text describing what is the provider
      * @type {string}
-     * @memberof CloudProvider
+     * @memberof Provider
      */
-    hint?: string;
+    hint: string;
     /**
      * The provider\'s logo URL.
      * @type {string}
-     * @memberof CloudProvider
+     * @memberof Provider
      */
     logo_url: string;
     /**
      * 
      * @type {Array<CloudService>}
-     * @memberof CloudProvider
+     * @memberof Provider
      */
-    cloud_services?: Array<CloudService>;
+    cloud_services: Array<CloudService>;
     /**
      * 
      * @type {CloudProviderSettings}
-     * @memberof CloudProvider
+     * @memberof Provider
      */
-    settings?: CloudProviderSettings;
+    settings: CloudProviderSettings;
 }
 
