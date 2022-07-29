@@ -19,9 +19,9 @@ import { Credential } from '../../generated/models';
 import { CredentialCreate } from '../../generated/models';
 
 /**
- * CloudProvidersApiService - Auto-generated
+ * CloudProvidersCredentialsApiService - Auto-generated
  */
-export class CloudProvidersApiService extends ApiBaseService {
+export class CloudProvidersCredentialsApiService extends ApiBaseService {
     /**
      * 
      * @summary Add a cloud provider credential
