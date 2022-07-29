@@ -6,11 +6,11 @@ links:
     quickstart:
     previous:
     next:
-        - /docs/cloud-provider-credentials/add-cloud-provider-credentials
+        - /docs/cloud-provider-credentials/add-cloud-provider-credential
     guides:
-        - /docs/cloud-provider-credentials/add-cloud-provider-credentials
-        - /docs/cloud-provider-credentials/remove-cloud-provider-credentials
-        - /docs/cloud-provider-credentials/get-gcp-service-account-credentials
+        - /docs/cloud-provider-credentials/add-cloud-provider-credential
+        - /docs/cloud-provider-credentials/remove-cloud-provider-credential
+        - /docs/cloud-provider-credentials/get-gcp-service-account-credential
     related:
     featured:
 ---
