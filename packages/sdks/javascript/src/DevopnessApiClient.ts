@@ -19,7 +19,7 @@ import { VariableService } from './services/VariableService';
 import { HookIncomingService } from './services/HookIncomingService';
 import { HookOutgoingService } from './services/HookOutgoingService';
 import { HookRequestService } from './services/HookRequestService';
-import { CloudProviderService } from './services/CloudProviderService';
+import { CloudProviderCredentialService } from './services/CloudProviderCredentialService';
 import { InvitationService } from './services/InvitationService';
 import { TeamService } from './services/TeamService';
 import { ResourceEventService } from './services/ResourceEventService';
@@ -28,7 +28,7 @@ import { ActionService } from './services/ActionService';
 export class DevopnessApiClient {
   actions: ActionService;
   applications: ApplicationService;
-  cloudProviders: CloudProviderService;
+  cloudProviderCredentials: CloudProviderCredentialService;
   cronjobs: CronJobService;
   daemons: DaemonService;
   environments: EnvironmentService;
@@ -60,7 +60,7 @@ export class DevopnessApiClient {
     // for non provided required parameters are quickly returned to the end user before spending time loading extra resources
     this.actions = new ActionService();
     this.applications = new ApplicationService();
-    this.cloudProviders = new CloudProviderService();
+    this.cloudProviderCredentials = new CloudProviderCredentialService();
     this.cronjobs = new CronJobService();
     this.daemons = new DaemonService();
     this.environments = new EnvironmentService();
