@@ -43,7 +43,7 @@
     $ref: ./endpoints/applications/paths/applications-id-variables-list.yaml
 /cloud-providers/{cloud_provider_code}/credentials:
   get:
-    $ref: ./endpoints/cloud-providers/paths/cloud-providers-credentials-list.yaml
+    $ref: ./endpoints/cloud-providers/paths/cloud-provider-credentials-list.yaml
 /credentials:
   post:
     $ref: ./endpoints/credentials/paths/credentials-create.yaml
@@ -325,15 +325,18 @@
 /static/cloud-providers:
   get:
     $ref: ./endpoints/static/paths/cloud-providers-list.yaml
+/static/cloud-provider-services/{service_code}:
+  get:
+    $ref: ./endpoints/static/paths/cloud-provider-services-id.yaml
+/static/cloud-provider-services/{service_code}/regions/{region_code}:
+  get:
+    $ref: ./endpoints/static/paths/cloud-provider-service-regions-list.yaml
 /static/cronjobs:
   get:
     $ref: ./endpoints/static/paths/cronjobs-list.yaml
 /static/environments:
   get:
     $ref: ./endpoints/static/paths/environments-list.yaml
-/static/servers:
-  get:
-    $ref: ./endpoints/static/paths/servers-list.yaml
 /static/services:
   get:
     $ref: ./endpoints/static/paths/services-list.yaml

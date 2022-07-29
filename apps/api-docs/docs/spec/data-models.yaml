@@ -82,12 +82,16 @@ CloudProviderPropertyType:
   $ref: ./endpoints/static/schemas/cloud-provider-property-type.yaml
 CloudProviderPropertyValidation:
   $ref: ./endpoints/static/schemas/cloud-provider-property-validation.yaml
+CloudProviderService:
+  $ref: ./endpoints/static/schemas/cloud-provider-service.yaml
+CloudProviderServices:
+  $ref: ./endpoints/static/schemas/cloud-provider-service-list.yaml
+CloudProviderServiceRegion:
+  $ref: ./endpoints/static/schemas/cloud-provider-service-region.yaml
+CloudProviderServiceRegions:
+  $ref: ./endpoints/static/schemas/cloud-provider-service-region-list.yaml
 CloudProviderSettings:
   $ref: ./endpoints/static/schemas/cloud-provider-settings.yaml
-CloudService:
-  $ref: ./endpoints/static/schemas/cloud-service.yaml
-CloudServices:
-  $ref: ./endpoints/static/schemas/cloud-service-list.yaml
 Credential:
   $ref: ./endpoints/credentials/schemas/credential.yaml
 CredentialAws:
@@ -280,14 +284,6 @@ Projects:
   $ref: ./endpoints/projects/schemas/project-list.yaml
 ProjectRelation:
   $ref: ./shared/schemas/models/project-relation.yaml
-Provider:
-  $ref: ./endpoints/static/schemas/provider.yaml
-Providers:
-  $ref: ./endpoints/static/schemas/provider-list.yaml
-ProviderRegion:
-  $ref: ./endpoints/static/schemas/provider-region.yaml
-ProviderRegions:
-  $ref: ./endpoints/static/schemas/provider-region-list.yaml
 Repositories:
   $ref: ./endpoints/repositories/schemas/repository-list.yaml
 Repository:
@@ -336,8 +332,6 @@ ServerCloudServiceName:
   $ref: ./endpoints/servers/schemas/server-cloud-service-name.yaml
 ServerCreate:
   $ref: ./endpoints/servers/schemas/server-create.yaml
-ServerOptions:
-  $ref: ./endpoints/static/schemas/server-options.yaml
 ServerProvider:
   $ref: ./endpoints/servers/schemas/server-provider.yaml
 ServerProvisionSettings:

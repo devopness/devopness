@@ -17,9 +17,9 @@ properties:
     description: The provider's logo URL.
     example: https://assets.devopness.com/images/icons/cloud-providers/aws.svg
   cloud_services:
-    $ref: '#/components/schemas/CloudServices'
+    $ref: "#/components/schemas/CloudProviderServices"
   settings:
-    $ref: '#/components/schemas/CloudProviderSettings'
+    $ref: "#/components/schemas/CloudProviderSettings"
 required:
   - code
   - name

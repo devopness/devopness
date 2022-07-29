@@ -1,0 +1,22 @@
+summary: Get details of a single cloud provider service
+operationId: getCloudProviderService
+tags:
+  - Static Data
+parameters:
+  - $ref: "#/components/parameters/acceptHeader"
+  - $ref: "#/components/parameters/authHeader"
+  - $ref: "#/components/parameters/contentTypeHeader"
+  - in: path
+    name: service_code
+    example: aws-ec2
+    schema:
+      type: string
+    required: true
+    description: The unique id of the service
+responses:
+  200:
+    description: Ok
+    content:
+      application/json:
+        schema:
+          $ref: "#/components/schemas/CloudProviderService"

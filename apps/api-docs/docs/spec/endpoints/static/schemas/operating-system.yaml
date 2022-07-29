@@ -1,5 +1,13 @@
 type: object
 properties:
+  code:
+    type: string
+    description: The name of the operating system
+    example: ubuntu
+  name:
+    type: string
+    description: The formatted name of the operating system
+    example: Ubuntu
   value:
     type: string
     description: The name of the operating system
@@ -23,7 +31,5 @@ properties:
           description: The system's version that is supported
           example: '18'
 required:
-  - value
-  - human_readable
-  - hint
-  - supported_versions
+  - code
+  - name

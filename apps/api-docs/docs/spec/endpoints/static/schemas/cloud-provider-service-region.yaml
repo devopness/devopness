@@ -1,10 +1,10 @@
 type: object
 properties:
-  value:
+  code:
     description: The code name of the region
     type: string
     example: us-east-1
-  human_readable:
+  name:
     description: The formatted name of the region
     type: string
     example: "us-east-1: US East (N. Virginia)"
@@ -12,10 +12,7 @@ properties:
     type: string
     description: Text describing the region
     example: "us-east-1: US East (N. Virginia)"
-  available_instances:
-    $ref: '#/components/schemas/CloudInstances'
 required:
-  - value
-  - human_readable
+  - code
+  - name
   - hint
-  - available_instances
