@@ -18,7 +18,7 @@ links:
 1. On the upper-right corner of the list click `ADD SERVER`
 1. Choose `Amazon Web Services` as cloud provider
 1. Select an AWS credential using the drop-down menu
-    > If no credential is listed or you want to use a different one, please follow the [Add a Cloud Provider Credential](../cloud-provider-credentials/get-cloud-providers-credentails.md) guide
+    > If no credential is listed or you want to use a different one, please follow the [Add a Cloud Provider Credential](/docs/cloud-provider-credentials/add-cloud-provider-credential/) guide
 1. Click `NEXT`
 1. Select an avaliable region using the drop-down menu
 1. Select an avaliable instance type using the drop-down menu
