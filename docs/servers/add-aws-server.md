@@ -34,4 +34,4 @@ links:
     - On the Search box, enter “EC2” and select it from search results
     - In the upper-right corner select the region on which server was provisioned
     - Click `Instances`
-    - n `EC2` instance with the name provided on Devopness web interface will be listed
+    - A `EC2` instance with the name provided on Devopness web interface will be listed
