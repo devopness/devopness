@@ -12,37 +12,30 @@
  */
 
 
-import { CloudInstance } from './cloud-instance';
 
 /**
  * 
  * @export
- * @interface ProviderRegion
+ * @interface CloudProviderServiceRegion
  */
-export interface ProviderRegion {
+export interface CloudProviderServiceRegion {
     /**
      * The code name of the region
      * @type {string}
-     * @memberof ProviderRegion
+     * @memberof CloudProviderServiceRegion
      */
-    value: string;
+    code: string;
     /**
      * The formatted name of the region
      * @type {string}
-     * @memberof ProviderRegion
+     * @memberof CloudProviderServiceRegion
      */
-    human_readable: string;
+    name: string;
     /**
      * Text describing the region
      * @type {string}
-     * @memberof ProviderRegion
+     * @memberof CloudProviderServiceRegion
      */
     hint: string;
-    /**
-     * 
-     * @type {Array<CloudInstance>}
-     * @memberof ProviderRegion
-     */
-    available_instances: Array<CloudInstance>;
 }
 

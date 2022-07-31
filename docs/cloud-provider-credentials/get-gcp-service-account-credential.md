@@ -6,7 +6,7 @@ links:
     quickstart:
     previous:
     next:
-        - /docs/cloud-provider-credentials/add-cloud-providers-credentials
+        - /docs/cloud-provider-credentials/add-cloud-provider-credential
     guides:
     related:
     featured:
@@ -26,7 +26,7 @@ links:
     - Otherwise, click `Enable` button
 1. Go back to [projects console](https://console.cloud.google.com/project)
 1. Having your project listed, click the three dot button on it and pick the `Settings` option
-1. On the left side menu under `IAM & Admin`, select the `Service Accounts` option 
+1. On the left side menu under `IAM & Admin`, select the `Service Accounts` option
 1. Make sure a service account named as `{{project-id}}-comput@developer.gserviceaccount.com` is listed
 1. If you do not have a service account, [create a new one](https://cloud.google.com/iam/docs/creating-managing-service-account-keys):
     - Click `+ CREATE SERVICE ACCOUNT` option bellow the search bar
@@ -35,16 +35,16 @@ links:
 1.. Having your service account listed, go to the `Actions` column, click the three dot menu on your service account and choose `Manage details` option
 1. Copy your service account email to your clipboard
 1. Bellow your service account name, go to the `PERMISSIONS` tab
-1. Make sure your service account has the `Compute Engine Service Agent` role 
+1. Make sure your service account has the `Compute Engine Service Agent` role
 1. If the service account doesn't have the `Compute Engine Service Agent` role, set it:
-    - Click `GRANT ACCESS` button 
+    - Click `GRANT ACCESS` button
     - Paste the service account email on the `New principals` field
     - Select the `Compute Engine Service Agent` option
     - Click `SAVE`
 1. On the left side menu under `IAM & Admin`, select the `IAM` option
 1. Having your service account listed, edit its roles:
     - Click the edit icon on yout service account
-    - Click `ADD ANOTHER ROLE` 
+    - Click `ADD ANOTHER ROLE`
     - Select the `Compute Instance Admin (v1)` role to this email
     - Click `SAVE`
 1. On the left side menu under `IAM & Admin`, select the `Service Accounts` option
