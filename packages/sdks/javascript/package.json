@@ -11,8 +11,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "rm -Rf ./dist && npm run lint && tsc",
-    "build-api-models": "rm -Rf ./src/api/generated && JAVA_OPTS=\"${JAVA_OPTS} -Dlog.level=warn\" openapi-generator-cli generate && npm run build",
+    "build": "rm-cli -r ./dist && npm run lint && tsc",
+    "build-api-models": "rm-cli -r ./src/api/generated && JAVA_OPTS=\"${JAVA_OPTS} -Dlog.level=warn\" openapi-generator-cli generate && npm run build",
     "docs": "typedoc",
     "lint": "eslint . --ext .ts",
     "prepublishOnly": "npm test",
@@ -62,6 +62,7 @@
   "dependencies": {
     "@types/parse-link-header": "^2.0.0",
     "axios": "^0.21.4",
-    "parse-link-header": "^2.0.0"
+    "parse-link-header": "^2.0.0",
+    "rm-cli": "^1.4.2"
   }
 }
