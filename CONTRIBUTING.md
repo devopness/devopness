@@ -15,7 +15,7 @@ By participating in this project you agree to abide by its terms.
 Before you create a new Issue:
 
 1. Please search existing issues to ensure the same issue hasn't been reported before and avoid opening a duplicate.
-2. If it is a bug report, include the steps needed to reproduce the issue and please create a reproducible test case on [codesandbox.io], [jsfiddle.net] or [runkit.com](https://runkit.com/). Example: https://runkit.com/gr2m/5aa034f1440b420012a6eebf
+2. If it is a bug report, include the steps needed to reproduce the issue and please create a reproducible test case on [codesandbox.io](https://codesandbox.io/), [jsfiddle.net](https://jsfiddle.net/) or [runkit.com](https://runkit.com/). Example: https://runkit.com/gr2m/5aa034f1440b420012a6eebf
 3. If it is a feature request, please share the motivation for the new feature and how you would implement it.
 4. Please include links to the corresponding GitHub documentation.
 
