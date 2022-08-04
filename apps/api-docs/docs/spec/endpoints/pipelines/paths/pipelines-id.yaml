@@ -1,0 +1,24 @@
+summary: Get a pipeline by ID
+operationId: getPipeline
+tags:
+  - Pipelines
+parameters:
+  - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/authHeader'
+  - $ref: '#/components/parameters/contentTypeHeader'
+  - in: path
+    name: pipeline_id
+    example: 323
+    schema:
+      type: integer
+    required: true
+    description: Unique ID of the pipeline to get information from
+responses:
+  200:
+    description: 'Ok'
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Pipeline'
+  404:
+    $ref: '#/components/responses/NotFound'

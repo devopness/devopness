@@ -100,6 +100,8 @@ properties:
     description: Numeric ID of the project to which the application belongs to
   last_action:
     $ref: '#/components/schemas/ActionRelation'
+  default_pipeline:
+    $ref: '#/components/schemas/ApplicationPipeline'
   created_at:
     type: string
     format: date-time

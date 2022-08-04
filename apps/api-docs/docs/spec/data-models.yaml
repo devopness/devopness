@@ -48,6 +48,8 @@ ApplicationDeployment:
   $ref: ./endpoints/applications/schemas/application-deployment.yaml
 ApplicationOptions:
   $ref: ./endpoints/static/schemas/application-options.yaml
+ApplicationPipeline:
+  $ref: ./endpoints/applications/schemas/application-pipeline.yaml
 ApplicationUpdate:
   $ref: ./endpoints/applications/schemas/application-update.yaml
 ApplicationType:
@@ -274,6 +276,12 @@ OperatingSystem:
   $ref: ./endpoints/static/schemas/operating-system.yaml
 OperatingSystems:
   $ref: ./endpoints/static/schemas/operating-system-list.yaml
+Pipeline:
+  $ref: ./endpoints/pipelines/schemas/pipeline.yaml
+Pipelines:
+  $ref: ./endpoints/pipelines/schemas/pipelines-list.yaml
+PipelineCreate:
+  $ref: ./endpoints/pipelines/schemas/pipeline-create.yaml
 Project:
   $ref: ./endpoints/projects/schemas/project.yaml
 ProjectCreate:

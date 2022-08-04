@@ -206,6 +206,7 @@ tags:
   - name: Invitations
   - name: Logs
   - name: Network Rules
+  - name: Pipelines
   - name: Projects
   - name: Projects - Actions
   - name: Projects - Applications
@@ -293,6 +294,10 @@ x-tagGroups:
       - Network Rules
       - Environments - Network Rules
       - Projects - Network Rules
+  - name: Pipelines
+    tags:
+      - Pipelines
+      - Pipelines - Resources
   - name: Projects
     tags:
       - Projects

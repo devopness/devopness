@@ -1,0 +1,27 @@
+summary: Update a pipeline by ID
+operationId: updatePipeline
+tags:
+  - Pipelines
+parameters:
+  - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/authHeader'
+  - $ref: '#/components/parameters/contentTypeHeader'
+  - in: path
+    name: pipeline_id
+    example: 3
+    schema:
+      type: integer
+    required: true
+    description: Unique ID of the pipeline to update information from
+requestBody:
+  description: A JSON object containing pipeline data
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/Pipeline'
+responses:
+  204:
+    $ref: '#/components/responses/NoContent'
+  422:
+    $ref: '#/components/responses/ValidationError'

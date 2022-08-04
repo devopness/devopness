@@ -176,6 +176,18 @@
 /daemons/{daemon_id}/restart:
   post:
     $ref: ./endpoints/daemons/paths/daemons-id-restart.yaml
+/pipelines/{pipeline_id}:
+  get:
+    $ref: ./endpoints/pipelines/paths/pipelines-id.yaml
+  put:
+    $ref: ./endpoints/pipelines/paths/pipelines-id-update.yaml
+  delete:
+    $ref: ./endpoints/pipelines/paths/pipelines-id-delete.yaml
+/pipelines/{resource_type}/{resource_id}:
+  post:
+    $ref: ./endpoints/pipelines/paths/pipelines-resource-id.yaml
+  get:
+    $ref: ./endpoints/pipelines/paths/pipelines-resource-id-list.yaml
 /projects:
   post:
     $ref: ./endpoints/projects/paths/projects.yaml

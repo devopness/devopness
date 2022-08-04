@@ -46,6 +46,7 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     'application_environment_variable': [],
     'application_environment': [],
     'application': [],
+    'application_pipeline': [],
     'application_create': [
         { path: 'environments[0].id', fixture: 'environment', field: 'id' },
         { path: 'environments[0].servers[0]', fixture: 'server', field: 'id' },
@@ -128,6 +129,13 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     ],
     'daemon_restart': [
         { path: 'environment_id', fixture: 'environment', field: 'id' },
+    ],
+    'pipeline': [],
+    'pipeline_create': [
+        { path: 'resource_id', fixture: 'application', field: 'id' },
+    ],
+    'pipeline_update': [
+        { path: 'id', fixture: 'pipeline', field: 'id' }
     ],
     'project': [],
     'project_update': [
@@ -246,6 +254,7 @@ const fixtureListKeys = {
     'environments': 'environment',
     'network_rules': 'network_rule',
     'daemons': 'daemon',
+    'pipelines': 'pipeline',
     'projects': 'project',
     'repositories': 'repository',
     'scripts': 'script',

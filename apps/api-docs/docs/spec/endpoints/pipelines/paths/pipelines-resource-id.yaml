@@ -1,0 +1,38 @@
+summary: 'Create a new pipeline to a resource'
+operationId: addPipeline
+tags:
+  - Pipelines - Resources
+parameters:
+  - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/authHeader'
+  - $ref: '#/components/parameters/contentTypeHeader'
+  - in: path
+    name: resource_type
+    example: application
+    schema:
+      type: string
+    required: true
+    description: Pipeline's resource type to create
+  - in: path
+    name: resource_id
+    example: 323
+    schema:
+      type: integer
+    required: true
+    description: Unique ID of the resource to create a pipeline
+requestBody:
+  description: A JSON object containing pipeline data
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/PipelineCreate'
+responses:
+  201:
+    description: "Created"
+    content:
+      application/json:
+        schema:
+          $ref: "#/components/schemas/Pipeline"
+  422:
+    $ref: '#/components/responses/ValidationError'

@@ -1,6 +1,0 @@
-type: object
-properties:
-  providers:
-    $ref: '#/components/schemas/Providers'
-required:
-  - providers
