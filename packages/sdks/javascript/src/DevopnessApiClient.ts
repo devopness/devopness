@@ -24,6 +24,7 @@ import { InvitationService } from './services/InvitationService';
 import { TeamService } from './services/TeamService';
 import { ResourceEventService } from './services/ResourceEventService';
 import { ActionService } from './services/ActionService';
+import { PipelineService } from './services/PipelineService';
 
 export class DevopnessApiClient {
   actions: ActionService;
@@ -38,6 +39,7 @@ export class DevopnessApiClient {
   logs: LogService;
   networkRules: NetworkRuleService;
   outgoingHooks: HookOutgoingService;
+  pipelines: PipelineService;
   projects: ProjectService;
   resourceEvents: ResourceEventService;
   scripts: ScriptService;
@@ -70,6 +72,7 @@ export class DevopnessApiClient {
     this.logs = new LogService();
     this.networkRules = new NetworkRuleService();
     this.outgoingHooks = new HookOutgoingService();
+    this.pipelines = new PipelineService();
     this.projects = new ProjectService();
     this.resourceEvents = new ResourceEventService();
     this.scripts = new ScriptService();

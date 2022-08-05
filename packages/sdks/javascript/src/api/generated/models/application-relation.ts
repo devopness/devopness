@@ -13,6 +13,7 @@
 
 
 import { ActionRelation } from './action-relation';
+import { ApplicationPipeline } from './application-pipeline';
 import { ApplicationType } from './application-type';
 
 /**
@@ -159,6 +160,12 @@ export interface ApplicationRelation {
      * @memberof ApplicationRelation
      */
     last_action?: ActionRelation | null;
+    /**
+     * 
+     * @type {ApplicationPipeline}
+     * @memberof ApplicationRelation
+     */
+    default_pipeline?: ApplicationPipeline | null;
     /**
      * The date and time when the record was created
      * @type {string}
