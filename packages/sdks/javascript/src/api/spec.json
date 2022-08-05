@@ -3392,6 +3392,264 @@
         }
       }
     },
+    "/pipelines/{pipeline_id}": {
+      "get": {
+        "summary": "Get a pipeline by ID",
+        "operationId": "getPipeline",
+        "tags": [
+          "Pipelines"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "pipeline_id",
+            "example": 323,
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "Unique ID of the pipeline to get information from"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pipeline"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a pipeline by ID",
+        "operationId": "updatePipeline",
+        "tags": [
+          "Pipelines"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "pipeline_id",
+            "example": 3,
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "Unique ID of the pipeline to update information from"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing pipeline data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Pipeline"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a pipeline by ID",
+        "operationId": "deletePipeline",
+        "tags": [
+          "Pipelines"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "pipeline_id",
+            "example": 323,
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "Unique ID of the pipeline to be deleted"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Ok"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/pipelines/{resource_type}/{resource_id}": {
+      "post": {
+        "summary": "Create a new pipeline to a resource",
+        "operationId": "addPipeline",
+        "tags": [
+          "Pipelines - Resources"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "resource_type",
+            "example": "application",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Pipeline's resource type to create"
+          },
+          {
+            "in": "path",
+            "name": "resource_id",
+            "example": 323,
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "Unique ID of the resource to create a pipeline"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing pipeline data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PipelineCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pipeline"
+                }
+              }
+            }
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          }
+        }
+      },
+      "get": {
+        "summary": "Returns a list of pipelines to a resource",
+        "operationId": "listPipelines",
+        "tags": [
+          "Pipelines - Resources"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "resource_type",
+            "example": "application",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Pipeline's resource type to get pipelines from"
+          },
+          {
+            "in": "path",
+            "name": "resource_id",
+            "example": 323,
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "Unique ID of the resource to get pipelines from"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pipelines"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/projects": {
       "post": {
         "summary": "Create a new project",
@@ -7655,6 +7913,9 @@
       "name": "Network Rules"
     },
     {
+      "name": "Pipelines"
+    },
+    {
       "name": "Projects"
     },
     {
@@ -7813,6 +8074,13 @@
         "Network Rules",
         "Environments - Network Rules",
         "Projects - Network Rules"
+      ]
+    },
+    {
+      "name": "Pipelines",
+      "tags": [
+        "Pipelines",
+        "Pipelines - Resources"
       ]
     },
     {
@@ -8765,6 +9033,9 @@
             "format": "date-time",
             "description": "The date and time when the record was last updated",
             "example": "2019-09-25T13:52:04.000000Z"
+          },
+          "default_pipeline": {
+            "$ref": "#/components/schemas/ApplicationPipeline"
           }
         },
         "required": [
@@ -8948,6 +9219,26 @@
         "required": [
           "deployment_steps",
           "language_runtimes"
+        ]
+      },
+      "ApplicationPipeline": {
+        "type": "object",
+        "nullable": true,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The unique id of the given record",
+            "example": 4578
+          },
+          "name": {
+            "type": "string",
+            "description": "The pipeline's name",
+            "example": "my pipeline"
+          }
+        },
+        "required": [
+          "id",
+          "name"
         ]
       },
       "ApplicationUpdate": {
@@ -9200,6 +9491,9 @@
           },
           "last_action": {
             "$ref": "#/components/schemas/ActionRelation"
+          },
+          "default_pipeline": {
+            "$ref": "#/components/schemas/ApplicationPipeline"
           },
           "created_at": {
             "type": "string",
@@ -12297,6 +12591,82 @@
         "items": {
           "$ref": "#/components/schemas/OperatingSystem"
         }
+      },
+      "Pipeline": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The unique id of the given record",
+            "example": 3
+          },
+          "name": {
+            "type": "string",
+            "description": "The pipeline's name",
+            "example": "my pipeline"
+          },
+          "resource_type": {
+            "type": "string",
+            "description": "The pipeline's resource type",
+            "example": "application"
+          },
+          "resource_id": {
+            "type": "integer",
+            "description": "The pipeline's resource id",
+            "example": 435
+          },
+          "project_id": {
+            "type": "integer",
+            "description": "The pipeline's project id",
+            "example": 94
+          },
+          "created_by": {
+            "type": "integer",
+            "description": "id of the user responsible for creating the pipeline",
+            "example": 23
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25T13:52:04.000000Z"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "resource_type",
+          "resource_id",
+          "project_id",
+          "created_by",
+          "updated_at",
+          "created_at"
+        ]
+      },
+      "Pipelines": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Pipeline"
+        }
+      },
+      "PipelineCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The pipeline's name",
+            "example": "my pipeline"
+          }
+        },
+        "required": [
+          "name"
+        ]
       },
       "Project": {
         "type": "object",

@@ -14,6 +14,7 @@
 
 import { ActionRelation } from './action-relation';
 import { ApplicationLastDeployments } from './application-last-deployments';
+import { ApplicationPipeline } from './application-pipeline';
 import { ApplicationType } from './application-type';
 import { EnvironmentRelation } from './environment-relation';
 import { ServerRelation } from './server-relation';
@@ -213,5 +214,11 @@ export interface Application {
      * @memberof Application
      */
     updated_at?: string;
+    /**
+     * 
+     * @type {ApplicationPipeline}
+     * @memberof Application
+     */
+    default_pipeline?: ApplicationPipeline | null;
 }
 
