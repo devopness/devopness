@@ -1,6 +1,6 @@
 ---
 title: Add an Application
-intro: Add applications to your Devopness infrastructure environments so they can be managed and deployed manually or through automated workflows
+intro: Add applications to your infrastructure environments so they can be managed and deployed directly by web interface or through automated workflows
 links:
     overview:
     quickstart:
