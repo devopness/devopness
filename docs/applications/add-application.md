@@ -22,4 +22,4 @@ links:
 1. Select the `Application Type`
 1. Provide a name to the application and click `NEXT`
 1. Follow the prompts to complete the configuration of the new `Application`
-9. Click `CONFIRM`
+1. Click `CONFIRM`
