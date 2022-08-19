@@ -3760,8 +3760,8 @@
         }
       },
       "delete": {
-        "summary": "Unlink a step to a pipeline",
-        "operationId": "unlinkStepToPipeline",
+        "summary": "Unlink a step from a pipeline",
+        "operationId": "unlinkStepFromPipeline",
         "tags": [
           "Pipelines - Steps"
         ],
