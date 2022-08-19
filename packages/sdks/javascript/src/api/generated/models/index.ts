@@ -119,6 +119,7 @@ export * from './pipeline';
 export * from './pipeline-create';
 export * from './pipeline-step';
 export * from './pipeline-step-create';
+export * from './pipeline-step-runner-name';
 export * from './project';
 export * from './project-create';
 export * from './project-relation';

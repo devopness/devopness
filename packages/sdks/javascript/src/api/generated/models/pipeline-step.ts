@@ -12,6 +12,7 @@
  */
 
 
+import { PipelineStepRunnerName } from './pipeline-step-runner-name';
 
 /**
  * 
@@ -44,11 +45,11 @@ export interface PipelineStep {
      */
     command: string;
     /**
-     * Name of the script runner that will run the script
-     * @type {string}
+     * 
+     * @type {PipelineStepRunnerName}
      * @memberof PipelineStep
      */
-    runner: PipelineStepRunnerEnum;
+    runner: PipelineStepRunnerName;
     /**
      * The name of the Unix user on behalf of which the script will be executed
      * @type {string}
@@ -74,16 +75,4 @@ export interface PipelineStep {
      */
     updated_at?: string;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum PipelineStepRunnerEnum {
-    Composer = 'composer',
-    Npm = 'npm',
-    Pip = 'pip',
-    Yarn = 'yarn'
-}
-
 

@@ -12856,15 +12856,7 @@
             "example": "echo 'Deploy with devopness is a breeze!' | tee -a /tmp/build-started.log"
           },
           "runner": {
-            "type": "string",
-            "description": "Name of the script runner that will run the script",
-            "example": "pip",
-            "enum": [
-              "composer",
-              "npm",
-              "pip",
-              "yarn"
-            ]
+            "$ref": "#/components/schemas/PipelineStepRunnerName"
           },
           "run_as_user": {
             "type": "string",
@@ -12913,15 +12905,7 @@
             "example": "echo 'Deploy with devopness is a breeze!' | tee -a /tmp/build-started.log"
           },
           "runner": {
-            "type": "string",
-            "description": "Name of the script runner that will run the script",
-            "example": "pip",
-            "enum": [
-              "composer",
-              "npm",
-              "pip",
-              "yarn"
-            ]
+            "$ref": "#/components/schemas/PipelineStepRunnerName"
           },
           "run_as_user": {
             "type": "string",
@@ -12933,6 +12917,17 @@
           "name",
           "command",
           "runner"
+        ]
+      },
+      "PipelineStepRunnerName": {
+        "type": "string",
+        "description": "Name of the script runner that will run the script",
+        "example": "pip",
+        "enum": [
+          "composer",
+          "npm",
+          "pip",
+          "yarn"
         ]
       },
       "Project": {
