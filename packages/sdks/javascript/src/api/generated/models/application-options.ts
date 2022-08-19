@@ -14,6 +14,7 @@
 
 import { DeploymentDefaultStep } from './deployment-default-step';
 import { LanguageRuntime } from './language-runtime';
+import { ScriptRunner } from './script-runner';
 
 /**
  * 
@@ -33,5 +34,11 @@ export interface ApplicationOptions {
      * @memberof ApplicationOptions
      */
     language_runtimes: Array<LanguageRuntime>;
+    /**
+     * 
+     * @type {Array<ScriptRunner>}
+     * @memberof ApplicationOptions
+     */
+    script_runners: Array<ScriptRunner>;
 }
 

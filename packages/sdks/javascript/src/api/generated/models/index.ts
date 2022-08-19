@@ -128,6 +128,7 @@ export * from './resource-event';
 export * from './resource-type';
 export * from './script';
 export * from './script-create';
+export * from './script-runner';
 export * from './script-update';
 export * from './server';
 export * from './server-action';
