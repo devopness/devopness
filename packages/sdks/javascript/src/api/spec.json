@@ -3650,6 +3650,164 @@
         }
       }
     },
+    "/pipelines/{pipeline_id}/steps": {
+      "post": {
+        "summary": "Creates a step for a pipeline",
+        "operationId": "createPipelineStep",
+        "tags": [
+          "Pipelines - Steps"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "pipeline_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Unique ID of the pipeline to add the step to"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing pipeline script data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PipelineStepCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipelineStep"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          }
+        }
+      }
+    },
+    "/pipelines/{pipeline_id}/steps/{step_id}": {
+      "post": {
+        "summary": "Link a step to a pipeline",
+        "operationId": "linkStepToPipeline",
+        "tags": [
+          "Pipelines - Steps"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "pipeline_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Unique ID of the pipeline"
+          },
+          {
+            "in": "path",
+            "name": "step_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Unique ID of the step to be linked"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Unlink a step to a pipeline",
+        "operationId": "unlinkStepToPipeline",
+        "tags": [
+          "Pipelines - Steps"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "pipeline_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Unique ID of the pipeline"
+          },
+          {
+            "in": "path",
+            "name": "step_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Unique ID of the step to be unlinked"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
     "/projects": {
       "post": {
         "summary": "Create a new project",
@@ -8080,7 +8238,8 @@
       "name": "Pipelines",
       "tags": [
         "Pipelines",
-        "Pipelines - Resources"
+        "Pipelines - Resources",
+        "Pipelines - Steps"
       ]
     },
     {
@@ -9214,11 +9373,16 @@
           "language_runtimes": {
             "description": "Supported language runtimes and respective frameworks",
             "$ref": "#/components/schemas/LanguageRuntimes"
+          },
+          "script_runners": {
+            "description": "Available script runners",
+            "$ref": "#/components/schemas/ScriptRunners"
           }
         },
         "required": [
           "deployment_steps",
-          "language_runtimes"
+          "language_runtimes",
+          "script_runners"
         ]
       },
       "ApplicationPipeline": {
@@ -12668,6 +12832,109 @@
           "name"
         ]
       },
+      "PipelineStep": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The Id of the given script",
+            "example": 19876
+          },
+          "created_by": {
+            "type": "integer",
+            "description": "The id of the user that own the script",
+            "example": 984123
+          },
+          "name": {
+            "type": "string",
+            "description": "Name/short description of the script",
+            "example": "Extra step before build app"
+          },
+          "command": {
+            "type": "string",
+            "description": "A command line or multiline bash script",
+            "example": "echo 'Deploy with devopness is a breeze!' | tee -a /tmp/build-started.log"
+          },
+          "runner": {
+            "type": "string",
+            "description": "Name of the script runner that will run the script",
+            "example": "pip",
+            "enum": [
+              "composer",
+              "npm",
+              "pip",
+              "yarn"
+            ]
+          },
+          "run_as_user": {
+            "type": "string",
+            "description": "The name of the Unix user on behalf of which the script will be executed",
+            "example": "devopness"
+          },
+          "trigger_order": {
+            "type": "integer",
+            "description": "The relative order of the script execution in case the event has multiple scripts attached",
+            "example": 2
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25T13:49:51.000000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25T13:52:04.000000Z"
+          }
+        },
+        "required": [
+          "id",
+          "created_by",
+          "name",
+          "command",
+          "runner",
+          "run_as_user",
+          "trigger_order"
+        ]
+      },
+      "PipelineStepCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name/short description of the script",
+            "example": "Extra step before build app"
+          },
+          "command": {
+            "type": "string",
+            "description": "A command line or multiline bash script",
+            "example": "echo 'Deploy with devopness is a breeze!' | tee -a /tmp/build-started.log"
+          },
+          "runner": {
+            "type": "string",
+            "description": "Name of the script runner that will run the script",
+            "example": "pip",
+            "enum": [
+              "composer",
+              "npm",
+              "pip",
+              "yarn"
+            ]
+          },
+          "run_as_user": {
+            "type": "string",
+            "description": "The name of the Unix user on behalf of which the script will be executed",
+            "example": "devopness"
+          }
+        },
+        "required": [
+          "name",
+          "command",
+          "runner"
+        ]
+      },
       "Project": {
         "type": "object",
         "properties": {
@@ -13227,6 +13494,37 @@
           "trigger_event",
           "trigger_order"
         ]
+      },
+      "ScriptRunner": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "How to call the runner in CLI",
+            "example": "composer"
+          },
+          "human_readable": {
+            "type": "string",
+            "description": "The formatted name of the runner",
+            "example": "Composer"
+          },
+          "hint": {
+            "type": "string",
+            "description": "A brief description about the runner",
+            "example": "Composer is a tool for dependency management in PHP"
+          }
+        },
+        "required": [
+          "value",
+          "human_readable",
+          "hint"
+        ]
+      },
+      "ScriptRunners": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/ScriptRunner"
+        }
       },
       "Server": {
         "type": "object",
