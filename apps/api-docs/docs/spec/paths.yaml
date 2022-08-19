@@ -188,6 +188,14 @@
     $ref: ./endpoints/pipelines/paths/pipelines-resource-id.yaml
   get:
     $ref: ./endpoints/pipelines/paths/pipelines-resource-id-list.yaml
+/pipelines/{pipeline_id}/steps:
+  post:
+    $ref: ./endpoints/pipelines/paths/pipelines-id-steps.yaml
+/pipelines/{pipeline_id}/steps/{step_id}:
+  post:
+    $ref: ./endpoints/pipelines/paths/pipelines-id-steps-id-link.yaml
+  delete:
+    $ref: ./endpoints/pipelines/paths/pipelines-id-steps-id-unlink.yaml
 /projects:
   post:
     $ref: ./endpoints/projects/paths/projects.yaml

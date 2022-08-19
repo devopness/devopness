@@ -298,6 +298,7 @@ x-tagGroups:
     tags:
       - Pipelines
       - Pipelines - Resources
+      - Pipelines - Steps
   - name: Projects
     tags:
       - Projects

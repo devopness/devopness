@@ -1,0 +1,29 @@
+summary: Unlink a step from a pipeline
+operationId: unlinkStepFromPipeline
+tags:
+  - Pipelines - Steps
+parameters:
+  - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/authHeader'
+  - $ref: '#/components/parameters/contentTypeHeader'
+  - in: path
+    name: pipeline_id
+    example: 1
+    schema:
+      type: integer
+      minimum: 1
+    required: true
+    description: Unique ID of the pipeline
+  - in: path
+    name: step_id
+    example: 1
+    schema:
+      type: integer
+      minimum: 1
+    required: true
+    description: Unique ID of the step to be unlinked
+responses:
+  204:
+    $ref: '#/components/responses/NoContent'
+  404:
+    $ref: '#/components/responses/NotFound'

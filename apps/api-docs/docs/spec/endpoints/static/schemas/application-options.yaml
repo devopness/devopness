@@ -6,6 +6,10 @@ properties:
   language_runtimes:
     description: Supported language runtimes and respective frameworks
     $ref: '#/components/schemas/LanguageRuntimes'
+  script_runners:
+    description: Available script runners
+    $ref: '#/components/schemas/ScriptRunners'
 required:
   - deployment_steps
   - language_runtimes
+  - script_runners

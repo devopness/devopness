@@ -130,7 +130,9 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     'daemon_restart': [
         { path: 'environment_id', fixture: 'environment', field: 'id' },
     ],
-    'pipeline': [],
+    'pipeline': [
+        { path: 'step_id', fixture: 'step', field: 'id'}
+    ],
     'pipeline_create': [
         { path: 'resource_id', fixture: 'application', field: 'id' },
     ],
@@ -255,6 +257,7 @@ const fixtureListKeys = {
     'network_rules': 'network_rule',
     'daemons': 'daemon',
     'pipelines': 'pipeline',
+    'steps': 'step',
     'projects': 'project',
     'repositories': 'repository',
     'scripts': 'script',

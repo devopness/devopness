@@ -282,6 +282,12 @@ Pipelines:
   $ref: ./endpoints/pipelines/schemas/pipelines-list.yaml
 PipelineCreate:
   $ref: ./endpoints/pipelines/schemas/pipeline-create.yaml
+PipelineStep:
+  $ref: ./endpoints/pipelines/schemas/pipeline-step.yaml
+PipelineStepCreate:
+  $ref: ./endpoints/pipelines/schemas/pipeline-step-create.yaml
+PipelineStepRunnerName:
+  $ref: ./shared/schemas/pipeline-step-runner-name.yaml
 Project:
   $ref: ./endpoints/projects/schemas/project.yaml
 ProjectCreate:
@@ -314,6 +320,10 @@ ScriptCreate:
   $ref: ./endpoints/scripts/schemas/script-create.yaml
 ScriptUpdate:
   $ref: ./endpoints/scripts/schemas/script-update.yaml
+ScriptRunner:
+  $ref: ./endpoints/static/schemas/script-runner.yaml
+ScriptRunners:
+  $ref: ./endpoints/static/schemas/script-runners-list.yaml
 Server:
   $ref: ./endpoints/servers/schemas/server.yaml
 ServerAction:
