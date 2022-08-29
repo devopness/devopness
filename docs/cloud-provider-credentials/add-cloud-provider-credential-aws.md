@@ -23,4 +23,4 @@ links:
 1. Click `Create access key`
 1. Read the instructions, click the `Show` link and then select and copy the `Secret access key`
 1. Make sure to keep your
-1. Having your `Access key ID` and `Secret access key`, add the credentials to Devopness by following the [Add a Cloud Provider Credential](../add-cloud-provider-credential.md) guide.
+1. Having your `Access key ID` and `Secret access key`, add the credentials to Devopness by following the [Add a Cloud Provider Credential](../add-cloud-provider-credential) guide.

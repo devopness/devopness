@@ -55,4 +55,4 @@ links:
     - Pick `JSON` key type
     - Click `CREATE`
 1. A JSON file containing your service account credentials will be downloaded, copy it's content to your clipboard
-1. Having your service account credentials, add the credentials to Devopness by following the [Add a Cloud Provider Credential](../add-cloud-provider-credential.md) guide.
+1. Having your service account credentials, add the credentials to Devopness by following the [Add a Cloud Provider Credential](../add-cloud-provider-credential) guide.
