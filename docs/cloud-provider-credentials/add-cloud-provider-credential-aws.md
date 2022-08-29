@@ -24,5 +24,5 @@ links:
 1. In the `Set Permissions` step click `Attach existing policies directly`
 1. Search and select the policies `AmazonEC2FullAccess` and `IAMReadOnlyAccess`
 1. Follow the prompts then click `Create user`
-1. Read the instructions and copy `Access key ID` and `Secret access key` (click the `Show` link if secret not visible)
-1. Having your `Access key ID` and `Secret access key`, add the credentials to Devopness by following the [Add a Cloud Provider Credential](../add-cloud-provider-credential) guide.
+1. Copy the values of `Access key ID` and `Secret access key`
+1. To add the copied credentials to Devopness see [Add a Cloud Provider Credential](../add-cloud-provider-credential)
