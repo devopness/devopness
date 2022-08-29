@@ -1,6 +1,6 @@
 ---
-title: Get Google Service Account Credentials
-intro: In order to allow Devopness to manage Google Cloud Platform (GCP) resources for you, you need to provide us Service Account Credentials.
+title: Add Google Cloud Platform Credential
+intro: In order to allow Devopness to manage Google Cloud Platform (GCP) resources on your behalf, Service Account key has to be provided.
 links:
     overview:
     quickstart:
@@ -55,4 +55,4 @@ links:
     - Pick `JSON` key type
     - Click `CREATE`
 1. A JSON file containing your service account credentials will be downloaded, copy it's content to your clipboard
-1. Having your service account credentials, follow the [Add a Cloud Provider Credential](./add-cloud-providers-credentials.md) guide.
+1. To add the copied credentials to Devopness see [Add a Cloud Provider Credential](../add-cloud-provider-credential)
