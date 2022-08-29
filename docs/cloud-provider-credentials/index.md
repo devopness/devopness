@@ -10,7 +10,9 @@ links:
     guides:
         - /docs/cloud-provider-credentials/add-cloud-provider-credential
         - /docs/cloud-provider-credentials/remove-cloud-provider-credential
-        - /docs/cloud-provider-credentials/get-gcp-service-account-credential
+        - /docs/cloud-provider-credentials/add-cloud-provider-credential-gcp
     related:
+        - /docs/cloud-provider-credentials/add-cloud-provider-credential-aws
+        - /docs/cloud-provider-credentials/add-cloud-provider-credential-gcp
     featured:
 ---
