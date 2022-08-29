@@ -14,13 +14,15 @@ links:
 
 # Get AWS Credentials
 
-1. Create a new user with programmatic access, following instructions on [AWS IAM documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html#id_users_create_console)
-> Tip: you might want to name the user as `devopness` to make it easier to track its activities in the future
-1. With the user already created, access [AWS IAM console](https://console.aws.amazon.com/iam/)
-1. Click `Users` on the left side menu under `Access management`
-1. Locate the existing user and click the value in the `User name` column
-1. Click the `Security credentials` tab
-1. Click `Create access key`
-1. Read the instructions, click the `Show` link and then select and copy the `Secret access key`
-1. Make sure to keep your
+1. Log in to AWS console and access [AWS IAM](https://docs.aws.amazon.com/iam/)
+1. In the navigation pane on the left side, choose `Users` and then choose `Add users`
+1. Type the user name for the new user
+    > Tip: you might want to name the user as `devopness` to make it easier to track its activities
+1. Check the option `Access key - Programmatic access`
+1. Uncheck the option `Password - AWS Management Console access`
+1. Click `Next: Permissions`
+1. In the `Set Permissions` step click `Attach existing policies directly`
+1. Search and select the policies `AmazonEC2FullAccess` and `IAMReadOnlyAccess`
+1. Follow the prompts then click `Create user`
+1. Read the instructions and copy `Access key ID` and `Secret access key` (click the `Show` link if secret not visible)
 1. Having your `Access key ID` and `Secret access key`, add the credentials to Devopness by following the [Add a Cloud Provider Credential](../add-cloud-provider-credential) guide.
