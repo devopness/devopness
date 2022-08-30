@@ -20,6 +20,7 @@
  */
 export enum PipelineStepRunnerName {
     Composer = 'composer',
+    Custom = 'custom',
     Npm = 'npm',
     Pip = 'pip',
     Yarn = 'yarn'

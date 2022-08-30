@@ -13012,6 +13012,7 @@
         "example": "pip",
         "enum": [
           "composer",
+          "custom",
           "npm",
           "pip",
           "yarn"
