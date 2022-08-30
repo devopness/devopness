@@ -12,7 +12,7 @@
  */
 
 
-import { Action } from './action';
+import { ApplicationLastDeployment } from './application-last-deployment';
 
 /**
  * Latest deployment created to application and the more recent completed deployment
@@ -22,15 +22,15 @@ import { Action } from './action';
 export interface ApplicationLastDeployments {
     /**
      * 
-     * @type {Action}
+     * @type {ApplicationLastDeployment}
      * @memberof ApplicationLastDeployments
      */
-    latest?: Action | null;
+    latest?: ApplicationLastDeployment | null;
     /**
      * 
-     * @type {Action}
+     * @type {ApplicationLastDeployment}
      * @memberof ApplicationLastDeployments
      */
-    live?: Action | null;
+    live?: ApplicationLastDeployment | null;
 }
 

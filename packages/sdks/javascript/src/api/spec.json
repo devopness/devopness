@@ -9159,11 +9159,11 @@
             "properties": {
               "latest": {
                 "description": "More recent deployment created to application",
-                "$ref": "#/components/schemas/Action"
+                "$ref": "#/components/schemas/ApplicationLastDeployment"
               },
               "live": {
                 "description": "More recent deployment that has been successfully completed",
-                "$ref": "#/components/schemas/Action"
+                "$ref": "#/components/schemas/ApplicationLastDeployment"
               }
             }
           },
@@ -9361,6 +9361,93 @@
         "required": [
           "type",
           "branch"
+        ]
+      },
+      "ApplicationLastDeployment": {
+        "type": "object",
+        "nullable": true,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The Id of the given action",
+            "example": 567819876
+          },
+          "status": {
+            "$ref": "#/components/schemas/ActionStatus"
+          },
+          "type": {
+            "$ref": "#/components/schemas/ActionType",
+            "description": "The action type"
+          },
+          "type_human_readable": {
+            "type": "string",
+            "description": "Human readable version of the action type",
+            "example": "Deploy"
+          },
+          "summary": {
+            "$ref": "#/components/schemas/ActionSummary"
+          },
+          "url_web_permalink": {
+            "type": "string",
+            "description": "The permalink URL to the action details on Devopness web app",
+            "example": "https://devopness.com/actions/1"
+          },
+          "action_data": {
+            "$ref": "#/components/schemas/ActionData"
+          },
+          "servers": {
+            "$ref": "#/components/schemas/ServerActions"
+          },
+          "environment": {
+            "$ref": "#/components/schemas/EnvironmentRelation"
+          },
+          "triggered_from": {
+            "$ref": "#/components/schemas/ActionTriggeredFrom"
+          },
+          "triggered_by_user": {
+            "$ref": "#/components/schemas/UserRelation"
+          },
+          "project": {
+            "$ref": "#/components/schemas/ProjectRelation"
+          },
+          "hook_requests": {
+            "$ref": "#/components/schemas/ActionHookRequest"
+          },
+          "started_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the action started execution (i.e., left the `pending/queued` status)",
+            "example": "2019-09-25T15:50:48.000000Z",
+            "nullable": true
+          },
+          "completed_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the action has finished execution",
+            "example": "2019-09-25T13:52:04.000000Z",
+            "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25T13:52:04.000000Z"
+          }
+        },
+        "required": [
+          "id",
+          "status",
+          "type",
+          "type_human_readable",
+          "url_web_permalink",
+          "action_data",
+          "triggered_from"
         ]
       },
       "ApplicationOptions": {
