@@ -1,4 +1,9 @@
 type: string
 description: Name of the script runner that will run the script
 example: "pip"
-enum: [ "composer", "npm", "pip", "yarn" ]
+enum:
+  - "composer"
+  - "custom"
+  - "npm"
+  - "pip"
+  - "yarn"
