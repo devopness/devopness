@@ -46,6 +46,8 @@ ApplicationCreate:
   $ref: ./endpoints/applications/schemas/application-create.yaml
 ApplicationDeployment:
   $ref: ./endpoints/applications/schemas/application-deployment.yaml
+ApplicationLastDeployment:
+  $ref: ./endpoints/applications/schemas/application-last-deployment.yaml
 ApplicationOptions:
   $ref: ./endpoints/static/schemas/application-options.yaml
 ApplicationPipeline:

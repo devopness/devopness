@@ -16,3 +16,5 @@ subexpressions
 tmp
 (?i)unix
 uk
+(?i)url
+.yaml
