@@ -1,0 +1,29 @@
+summary: Link team to a given environment
+operationId: linkTeamToEnvironment
+tags:
+  - Teams
+parameters:
+  - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/authHeader'
+  - $ref: '#/components/parameters/contentTypeHeader'
+  - in: path
+    name: environment_id
+    example: 1
+    schema:
+      type: integer
+      minimum: 1
+    required: true
+    description: Numeric ID of the environment to link
+  - in: path
+    name: team_id
+    example: 1
+    schema:
+      type: integer
+      minimum: 1
+    required: true
+    description: Numeric ID of the team to be linked
+responses:
+  204:
+    $ref: '#/components/responses/NoContent'
+  403:
+    $ref: '#/components/responses/Forbidden'

@@ -99,8 +99,11 @@
 /environments/{environment_id}/teams:
   get:
     $ref: ./endpoints/teams/paths/environments-id-teams-list.yaml
+/environments/{environment_id}/teams/{team_id}:
+  delete:
+    $ref: ./endpoints/teams/paths/environments-id-teams-id-delete.yaml
   post:
-    $ref: ./endpoints/teams/paths/environments-id-teams.yaml
+    $ref: ./endpoints/teams/paths/environments-id-teams-id.yaml
 /environments/{environment_id}/actions/{resource_type}:
   get:
     $ref: ./endpoints/environments/paths/action-list-environment-id-resource-type.yaml
@@ -206,11 +209,27 @@
     $ref: ./endpoints/projects/paths/projects-id.yaml
   put:
     $ref: ./endpoints/projects/paths/projects-id-update.yaml
+/projects/{project_id}/actions/{resource_type}:
+  get:
+    $ref: ./endpoints/projects/paths/action-list-project-id-resource-type.yaml
+/projects/{project_id}/actions/{resource_type}/{action_type}:
+  get:
+    $ref: ./endpoints/projects/paths/action-list-project-id-resource-type-action-type.yaml
 /projects/{project_id}/applications:
   post:
     $ref: ./endpoints/applications/paths/projects-id-applications.yaml
   get:
     $ref: ./endpoints/applications/paths/projects-id-applications-list.yaml
+/projects/{project_id}/cron-jobs:
+  post:
+    $ref: ./endpoints/cronjobs/paths/projects-id-cronjobs.yaml
+  get:
+    $ref: ./endpoints/cronjobs/paths/projects-id-cronjobs-list.yaml
+/projects/{project_id}/daemons:
+  post:
+    $ref: ./endpoints/daemons/paths/projects-id-daemons.yaml
+  get:
+    $ref: ./endpoints/daemons/paths/projects-id-daemons-list.yaml
 /projects/{project_id}/environments:
   post:
     $ref: ./endpoints/projects/paths/projects-id-environments.yaml
@@ -221,11 +240,6 @@
     $ref: ./endpoints/projects/paths/projects-id-network-rules.yaml
   get:
     $ref: ./endpoints/projects/paths/projects-id-network-rules-list.yaml
-/projects/{project_id}/daemons:
-  post:
-    $ref: ./endpoints/daemons/paths/projects-id-daemons.yaml
-  get:
-    $ref: ./endpoints/daemons/paths/projects-id-daemons-list.yaml
 /projects/{project_id}/servers:
   post:
     $ref: ./endpoints/projects/paths/projects-id-servers.yaml
@@ -241,17 +255,9 @@
     $ref: ./endpoints/projects/paths/projects-id-ssh-keys.yaml
   get:
     $ref: ./endpoints/projects/paths/projects-id-ssh-keys-list.yaml
-/projects/{project_id}/cron-jobs:
+/projects/{project_id}/teams:
   post:
-    $ref: ./endpoints/cronjobs/paths/projects-id-cronjobs.yaml
-  get:
-    $ref: ./endpoints/cronjobs/paths/projects-id-cronjobs-list.yaml
-/projects/{project_id}/actions/{resource_type}:
-  get:
-    $ref: ./endpoints/projects/paths/action-list-project-id-resource-type.yaml
-/projects/{project_id}/actions/{resource_type}/{action_type}:
-  get:
-    $ref: ./endpoints/projects/paths/action-list-project-id-resource-type-action-type.yaml
+    $ref: ./endpoints/teams/paths/projects-id-teams.yaml
 /events/{resource_type}/{resource_id}:
   get:
     $ref: ./endpoints/resource-events/paths/resource-events-list.yaml
@@ -368,8 +374,12 @@
   put:
     $ref: ./endpoints/cronjobs/paths/cronjobs-id-update.yaml
 /teams/{team_id}:
+  delete:
+    $ref: ./endpoints/teams/paths/teams-id-delete.yaml
   get:
     $ref: ./endpoints/teams/paths/teams-id.yaml
+  put:
+    $ref: ./endpoints/teams/paths/teams-id-update.yaml
 /teams/{team_id}/invitations:
   get:
     $ref: ./endpoints/invitations/paths/teams-id-invitations-list.yaml

@@ -1,19 +1,19 @@
-summary: Creates a team and link it to the given environment
-operationId: addTeamToEnvironment
+summary: Update an existing team
+operationId: updateTeam
 tags:
-  - Environments - Teams
+  - Teams
 parameters:
   - $ref: '#/components/parameters/acceptHeader'
   - $ref: '#/components/parameters/authHeader'
   - $ref: '#/components/parameters/contentTypeHeader'
   - in: path
-    name: environment_id
+    name: team_id
     example: 1
     schema:
       type: integer
       minimum: 1
     required: true
-    description: The numeric environment ID
+    description: Numeric ID of the team to be updated
 requestBody:
   description: A JSON object containing team data
   required: true
@@ -22,11 +22,9 @@ requestBody:
       schema:
         $ref: '#/components/schemas/TeamCreate'
 responses:
-  201:
-    description: 'Created'
-    content:
-      application/json:
-        schema:
-          $ref: '#/components/schemas/Team'
+  204:
+    $ref: '#/components/responses/NoContent'
+  403:
+    $ref: '#/components/responses/Forbidden'
   422:
     $ref: '#/components/responses/ValidationError'

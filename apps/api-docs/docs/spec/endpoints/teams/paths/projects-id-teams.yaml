@@ -1,0 +1,34 @@
+summary: Create a team to the given project
+operationId: addTeam
+tags:
+  - Projects - Teams
+parameters:
+  - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/authHeader'
+  - $ref: '#/components/parameters/contentTypeHeader'
+  - in: path
+    name: project_id
+    example: 1
+    schema:
+      type: integer
+      minimum: 1
+    required: true
+    description: The numeric project ID
+requestBody:
+  description: A JSON object containing team data
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/TeamCreate'
+responses:
+  201:
+    description: 'Created'
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Team'
+  403:
+    $ref: '#/components/responses/Forbidden'
+  422:
+    $ref: '#/components/responses/ValidationError'

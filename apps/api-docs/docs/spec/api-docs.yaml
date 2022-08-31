@@ -221,6 +221,7 @@ tags:
   - name: Projects - Servers
   - name: Projects - Services
   - name: Projects - SSH Keys
+  - name: Projects - Teams
   - name: Resource Events
   - name: Scripts
   - name: Servers
@@ -332,6 +333,7 @@ x-tagGroups:
       - SSL Certificates
   - name: Teams
     tags:
+      - Projects - Teams
       - Teams
       - Teams - Invitations
       - Teams - Members
