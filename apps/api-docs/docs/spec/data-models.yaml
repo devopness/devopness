@@ -318,6 +318,8 @@ Projects:
   $ref: ./endpoints/projects/schemas/project-list.yaml
 ProjectRelation:
   $ref: ./shared/schemas/models/project-relation.yaml
+RequiredPermissions:
+  $ref: ./endpoints/static/schemas/required-permissions.yaml
 Repositories:
   $ref: ./endpoints/repositories/schemas/repository-list.yaml
 Repository:

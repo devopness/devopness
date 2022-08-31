@@ -1,0 +1,6 @@
+type: array
+items:
+  type: string
+description: List of permissions the role must have before receiving this one
+example:
+  - application:read
