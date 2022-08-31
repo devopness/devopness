@@ -201,10 +201,12 @@
   post:
     $ref: ./endpoints/pipelines/paths/pipelines-id-steps.yaml
 /pipelines/{pipeline_id}/steps/{step_id}:
-  post:
-    $ref: ./endpoints/pipelines/paths/pipelines-id-steps-id-link.yaml
   delete:
     $ref: ./endpoints/pipelines/paths/pipelines-id-steps-id-unlink.yaml
+  post:
+    $ref: ./endpoints/pipelines/paths/pipelines-id-steps-id-link.yaml
+  put:
+    $ref: ./endpoints/pipelines/paths/pipelines-id-steps-id-update.yaml
 /projects:
   post:
     $ref: ./endpoints/projects/paths/projects.yaml

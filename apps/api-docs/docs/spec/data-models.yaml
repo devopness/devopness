@@ -308,6 +308,8 @@ PipelineStepCreate:
   $ref: ./endpoints/pipelines/schemas/pipeline-step-create.yaml
 PipelineStepRunnerName:
   $ref: ./shared/schemas/pipeline-step-runner-name.yaml
+PipelineStepUpdate:
+  $ref: ./endpoints/pipelines/schemas/pipeline-step-update.yaml
 Project:
   $ref: ./endpoints/projects/schemas/project.yaml
 ProjectCreate:

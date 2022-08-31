@@ -1,0 +1,36 @@
+summary: Update a pipeline step
+operationId: updatePipelineStep
+tags:
+  - Pipelines - Steps
+parameters:
+  - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/authHeader'
+  - $ref: '#/components/parameters/contentTypeHeader'
+  - in: path
+    name: pipeline_id
+    example: 3
+    schema:
+      type: integer
+    required: true
+    description: Unique ID of the pipeline
+  - in: path
+    name: step_id
+    example: 3
+    schema:
+      type: integer
+    required: true
+    description: Unique ID of the pipeline step to update information from
+requestBody:
+  description: A JSON object containing pipeline step data
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/PipelineStepUpdate'
+responses:
+  204:
+    $ref: '#/components/responses/NoContent'
+  403:
+    $ref: '#/components/responses/Forbidden'
+  422:
+    $ref: '#/components/responses/ValidationError'
