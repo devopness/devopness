@@ -12,55 +12,54 @@
  */
 
 
-import { ProjectRelation } from './project-relation';
-import { UserRelation } from './user-relation';
+import { Role } from './role';
 
 /**
  * 
  * @export
- * @interface Team
+ * @interface EnvironmentTeam
  */
-export interface Team {
+export interface EnvironmentTeam {
     /**
      * The unique id of the given team
      * @type {number}
-     * @memberof Team
+     * @memberof EnvironmentTeam
      */
     id: number;
     /**
      * The name of the given team
      * @type {string}
-     * @memberof Team
+     * @memberof EnvironmentTeam
      */
     name: string;
     /**
      * The URL to team\'s image
      * @type {string}
-     * @memberof Team
+     * @memberof EnvironmentTeam
      */
     photo_url: string | null;
     /**
-     * 
-     * @type {ProjectRelation}
-     * @memberof Team
+     * The unique id of the role used on this environment
+     * @type {number}
+     * @memberof EnvironmentTeam
      */
-    project: ProjectRelation;
+    role_id?: number;
     /**
-     * The list of users
-     * @type {Array<UserRelation>}
-     * @memberof Team
+     * 
+     * @type {Role}
+     * @memberof EnvironmentTeam
      */
-    users: Array<UserRelation>;
+    role: Role;
     /**
      * The date and time when the record was created
      * @type {string}
-     * @memberof Team
+     * @memberof EnvironmentTeam
      */
     created_at?: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
-     * @memberof Team
+     * @memberof EnvironmentTeam
      */
     updated_at?: string;
 }

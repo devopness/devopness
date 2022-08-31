@@ -16,20 +16,26 @@
 /**
  * 
  * @export
- * @interface TeamCreate
+ * @interface RoleCreate
  */
-export interface TeamCreate {
+export interface RoleCreate {
     /**
-     * The name of the team
+     * The role\'s name
      * @type {string}
-     * @memberof TeamCreate
+     * @memberof RoleCreate
      */
     name: string;
     /**
-     * The URL to team\'s image
+     * Description of this role
      * @type {string}
-     * @memberof TeamCreate
+     * @memberof RoleCreate
      */
-    photo_url?: string;
+    description?: string;
+    /**
+     * The list of permissions for this role
+     * @type {Array<string>}
+     * @memberof RoleCreate
+     */
+    permissions: Array<string>;
 }
 

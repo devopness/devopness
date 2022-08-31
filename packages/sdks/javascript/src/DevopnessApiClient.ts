@@ -25,6 +25,7 @@ import { TeamService } from './services/TeamService';
 import { ResourceEventService } from './services/ResourceEventService';
 import { ActionService } from './services/ActionService';
 import { PipelineService } from './services/PipelineService';
+import { RoleService } from './services/RoleService';
 
 export class DevopnessApiClient {
   actions: ActionService;
@@ -41,6 +42,7 @@ export class DevopnessApiClient {
   outgoingHooks: HookOutgoingService;
   pipelines: PipelineService;
   projects: ProjectService;
+  roles: RoleService;
   resourceEvents: ResourceEventService;
   scripts: ScriptService;
   servers: ServerService;
@@ -74,6 +76,7 @@ export class DevopnessApiClient {
     this.outgoingHooks = new HookOutgoingService();
     this.pipelines = new PipelineService();
     this.projects = new ProjectService();
+    this.roles = new RoleService();
     this.resourceEvents = new ResourceEventService();
     this.scripts = new ScriptService();
     this.servers = new ServerService();

@@ -41,12 +41,6 @@ export interface Invitation {
      */
     status_human_readable?: string;
     /**
-     * The role to be assigned to the invited user after the invitation is accepted
-     * @type {string}
-     * @memberof Invitation
-     */
-    role: string;
-    /**
      * The email of the user that has been invited to team
      * @type {string}
      * @memberof Invitation
