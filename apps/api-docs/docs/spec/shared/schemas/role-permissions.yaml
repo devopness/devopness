@@ -1,0 +1,5 @@
+type: array
+description: The list of permissions for this role
+example: ["application:read", "application:create", "server:read"]
+items:
+  type: string

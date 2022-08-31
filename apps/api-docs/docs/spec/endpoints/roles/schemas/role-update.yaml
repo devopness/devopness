@@ -1,0 +1,20 @@
+type: object
+properties:
+  id:
+    type: integer
+    description: The unique id of the given record
+    example: 45678
+  name:
+    type: string
+    description: The role's name
+    example: "admin"
+  description:
+    type: string
+    description: Description of this role
+    example: "Has total access to resources"
+  permissions:
+    $ref: "#/components/schemas/RolePermissions"
+required:
+  - id
+  - name
+  - permissions

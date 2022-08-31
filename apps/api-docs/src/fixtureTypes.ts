@@ -144,6 +144,10 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
         { path: 'id', fixture: 'project', field: 'id' }
     ],
     'repository': [],
+    'role': [],
+    'role_update': [
+        { path: 'id', fixture: 'role', field: 'id' },
+    ],
     'script': [],
     'script_create': [
     ],
@@ -260,6 +264,7 @@ const fixtureListKeys = {
     'steps': 'step',
     'projects': 'project',
     'repositories': 'repository',
+    'roles': 'role',
     'scripts': 'script',
     'servers': 'server',
     'services': 'service',

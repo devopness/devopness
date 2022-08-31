@@ -1,0 +1,21 @@
+summary: Delete a role
+operationId: deleteRole
+tags:
+  - Roles
+parameters:
+  - $ref: "#/components/parameters/acceptHeader"
+  - $ref: "#/components/parameters/authHeader"
+  - $ref: "#/components/parameters/contentTypeHeader"
+  - in: path
+    name: role_id
+    example: 1
+    schema:
+      type: integer
+      minimum: 1
+    required: true
+    description: Numeric ID of the role to delete
+responses:
+  204:
+    $ref: "#/components/responses/NoContent"
+  404:
+    $ref: "#/components/responses/NotFound"

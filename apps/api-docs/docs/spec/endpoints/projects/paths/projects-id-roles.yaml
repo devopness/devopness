@@ -1,0 +1,34 @@
+summary: Create a role to a given project
+operationId: addRoleToProject
+tags:
+  - Projects - Roles
+parameters:
+  - $ref: "#/components/parameters/acceptHeader"
+  - $ref: "#/components/parameters/authHeader"
+  - $ref: "#/components/parameters/contentTypeHeader"
+  - in: path
+    name: project_id
+    example: 1
+    schema:
+      type: integer
+      minimum: 1
+    required: true
+    description: The project numeric ID
+requestBody:
+  description: A JSON object containing server data
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: "#/components/schemas/RoleCreate"
+responses:
+  201:
+    description: "Created"
+    content:
+      application/json:
+        schema:
+          $ref: "#/components/schemas/Role"
+  422:
+    $ref: "#/components/responses/ValidationError"
+  403:
+    $ref: "#/components/responses/Forbidden"

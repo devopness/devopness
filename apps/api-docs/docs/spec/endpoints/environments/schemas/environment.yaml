@@ -33,6 +33,8 @@ properties:
     $ref: '#/components/schemas/Teams'
   created_by_user:
     $ref: '#/components/schemas/UserRelation'
+  current_user_permissions:
+    $ref: '#/components/schemas/RolePermissions'
   created_at:
     type: string
     format: date-time

@@ -278,6 +278,12 @@ OperatingSystem:
   $ref: ./endpoints/static/schemas/operating-system.yaml
 OperatingSystems:
   $ref: ./endpoints/static/schemas/operating-system-list.yaml
+Permission:
+  $ref: ./endpoints/static/schemas/permission.yaml
+Permissions:
+  $ref: ./endpoints/static/schemas/permissions-list.yaml
+PermissionPermissions:
+  $ref: ./endpoints/static/schemas/permission-permissions.yaml
 Pipeline:
   $ref: ./endpoints/pipelines/schemas/pipeline.yaml
 Pipelines:
@@ -314,6 +320,16 @@ ResourceEvents:
   $ref: ./endpoints/resource-events/schemas/resource-event-list.yaml
 ResourceType:
   $ref: ./endpoints/actions/schemas/resource-type.yaml
+Role:
+  $ref: ./endpoints/roles/schemas/role.yaml
+Roles:
+  $ref: ./endpoints/roles/schemas/role-list.yaml
+RoleCreate:
+  $ref: ./endpoints/roles/schemas/role-create.yaml
+RoleUpdate:
+  $ref: ./endpoints/roles/schemas/role-update.yaml
+RolePermissions:
+  $ref: ./shared/schemas/role-permissions.yaml
 Script:
   $ref: ./endpoints/scripts/schemas/script.yaml
 Scripts:

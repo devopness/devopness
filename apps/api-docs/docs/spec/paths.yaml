@@ -240,6 +240,11 @@
     $ref: ./endpoints/projects/paths/projects-id-network-rules.yaml
   get:
     $ref: ./endpoints/projects/paths/projects-id-network-rules-list.yaml
+/projects/{project_id}/roles:
+  post:
+    $ref: ./endpoints/projects/paths/projects-id-roles.yaml
+  get:
+    $ref: ./endpoints/projects/paths/projects-id-roles-list.yaml
 /projects/{project_id}/servers:
   post:
     $ref: ./endpoints/projects/paths/projects-id-servers.yaml
@@ -261,6 +266,13 @@
 /events/{resource_type}/{resource_id}:
   get:
     $ref: ./endpoints/resource-events/paths/resource-events-list.yaml
+/roles/{role_id}:
+  get:
+    $ref: ./endpoints/roles/paths/roles-id.yaml
+  put:
+    $ref: ./endpoints/roles/paths/roles-id-update.yaml
+  delete:
+    $ref: ./endpoints/roles/paths/roles-id-delete.yaml
 /scripts/{script_id}:
   put:
     $ref: ./endpoints/scripts/paths/scripts-id-update.yaml
@@ -363,6 +375,9 @@
 /static/environments:
   get:
     $ref: ./endpoints/static/paths/environments-list.yaml
+/static/permissions:
+  get:
+    $ref: ./endpoints/static/paths/permissions-list.yaml
 /static/services:
   get:
     $ref: ./endpoints/static/paths/services-list.yaml
