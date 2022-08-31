@@ -1,0 +1,8 @@
+type: object
+properties:
+  role_id:
+    type: integer
+    description: The role's ID to use for this team on environment
+    example: 123
+required:
+  - role_id

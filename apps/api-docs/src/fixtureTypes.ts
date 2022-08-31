@@ -81,6 +81,9 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     'environment_link_item': [
         { path: 'id', fixture: 'environment', field: 'id' },
     ],
+    'environment_team_link': [
+        { path: 'role_id', fixture: 'role', field: 'id' },
+    ],
     'environment_update': [
         { path: 'id', fixture: 'environment', field: 'id' },
     ],
@@ -131,7 +134,7 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
         { path: 'environment_id', fixture: 'environment', field: 'id' },
     ],
     'pipeline': [
-        { path: 'step_id', fixture: 'step', field: 'id'}
+        { path: 'step_id', fixture: 'step', field: 'id' }
     ],
     'pipeline_create': [
         { path: 'resource_id', fixture: 'application', field: 'id' },
@@ -202,7 +205,6 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     'ssl_certificate': [],
     'team': [],
     'team_create': [
-        { path: 'environment_id', fixture: 'environment', field: 'id' },
         { path: 'project_id', fixture: 'project', field: 'id' },
     ],
     'user_credentials': [],

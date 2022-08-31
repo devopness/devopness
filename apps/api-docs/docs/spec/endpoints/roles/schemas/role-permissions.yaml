@@ -1,0 +1,14 @@
+type: array
+description: The list of permissions
+items:
+  type: string
+example:
+  - application:create
+  - application:read
+  - application:update
+  - service:read
+  - ssh-key:read
+  - daemon:create
+  - daemon:read
+  - daemon:update
+  - daemon:delete

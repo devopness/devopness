@@ -10,10 +10,6 @@ properties:
     type: string
     description: Human readable version of the invitation status
     example: Pending invitation
-  role:
-    type: string
-    description: The role to be assigned to the invited user after the invitation is accepted
-    example: member
   email:
     type: string
     description: The email of the user that has been invited to team
@@ -53,7 +49,6 @@ properties:
 required:
   - id
   - status
-  - role
   - email
   - created_by_user
   - user

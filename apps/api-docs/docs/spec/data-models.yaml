@@ -154,12 +154,22 @@ Environment:
   $ref: ./endpoints/environments/schemas/environment.yaml
 EnvironmentCreate:
   $ref: ./endpoints/environments/schemas/environment-create.yaml
+EnvironmentMember:
+  $ref: ./endpoints/members/schemas/environment-member.yaml
+EnvironmentMemberProfile:
+  $ref: ./endpoints/members/schemas/environment-member-profile.yaml
+EnvironmentMembers:
+  $ref: ./endpoints/members/schemas/environment-member-list.yaml
 EnvironmentOptions:
   $ref: ./endpoints/static/schemas/environment-options.yaml
 EnvironmentOptionTypes:
   $ref: ./endpoints/static/schemas/environment-type-list.yaml
 EnvironmentOptionType:
   $ref: ./endpoints/static/schemas/environment-type.yaml
+EnvironmentTeam:
+  $ref: ./endpoints/teams/schemas/environment-team.yaml
+EnvironmentTeams:
+  $ref: ./endpoints/teams/schemas/environment-team-list.yaml
 EnvironmentUpdate:
   $ref: ./endpoints/environments/schemas/environment-update.yaml
 EnvironmentLinkItem:
@@ -172,6 +182,8 @@ EnvironmentIdRequest:
   $ref: ./shared/schemas/environment-id-request.yaml
 Environments:
   $ref: ./endpoints/environments/schemas/environment-list.yaml
+EnvironmentTeamLink:
+  $ref: /endpoints/teams/schemas/environment-team-link.yaml
 EnvironmentType:
   $ref: ./shared/schemas/environment-type.yaml
 EnvironmentRelation:

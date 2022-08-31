@@ -2,6 +2,10 @@ type: object
 properties:
   type:
     $ref: '#/components/schemas/DeploymentType'
+  pipeline_id:
+    type: integer
+    description: The pipeline's ID to use for deployment
+    example: 12345
   branch:
     type: string
     description: "The name of the branch from which the application source code will be retrieved and deployed. This parameter is ignored when `hash` is provided."

@@ -22,6 +22,13 @@ parameters:
       minimum: 1
     required: true
     description: Numeric ID of the team to be linked
+requestBody:
+  description: A JSON object containing the role ID
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/EnvironmentTeamLink'
 responses:
   204:
     $ref: '#/components/responses/NoContent'

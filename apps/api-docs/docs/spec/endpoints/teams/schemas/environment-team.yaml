@@ -13,10 +13,12 @@ properties:
     nullable: true
     description: The URL to team's image
     example: https://example.com/images/my_team.png
-  project:
-    $ref: '#/components/schemas/ProjectRelation'
-  users:
-    $ref: '#/components/schemas/Users'
+  role_id:
+    type: integer
+    description: The unique id of the role used on this environment
+    example: 973146
+  role:
+    $ref: '#/components/schemas/Role'
   created_at:
     type: string
     format: date-time
@@ -31,5 +33,4 @@ required:
   - id
   - name
   - photo_url
-  - project
-  - users
+  - role

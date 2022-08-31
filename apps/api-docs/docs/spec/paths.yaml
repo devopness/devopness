@@ -75,6 +75,12 @@
     $ref: ./endpoints/invitations/paths/environments-id-invitations-list.yaml
   post:
     $ref: ./endpoints/invitations/paths/environments-id-invitations.yaml
+/environments/{environment_id}/members:
+  get:
+    $ref: ./endpoints/members/paths/environments-id-members-list.yaml
+/environments/{environment_id}/members/{user_id}:
+  get:
+    $ref: ./endpoints/members/paths/environments-id-members-id.yaml
 /environments/{environment_id}/network-rules:
   get:
     $ref: ./endpoints/network-rules/paths/environments-id-network-rules-list.yaml
@@ -398,6 +404,8 @@
 /teams/{team_id}/invitations:
   get:
     $ref: ./endpoints/invitations/paths/teams-id-invitations-list.yaml
+  post:
+    $ref: ./endpoints/invitations/paths/teams-id-invitations.yaml
 /teams/{team_id}/members:
   get:
     $ref: ./endpoints/members/paths/teams-id-members-list.yaml
