@@ -1541,6 +1541,126 @@
         }
       }
     },
+    "/environments/{environment_id}/members": {
+      "get": {
+        "summary": "Returns a list of all members belonging to an environment",
+        "operationId": "listEnvironmentMembers",
+        "tags": [
+          "Environments - Members"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "environment_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the environment to get members from"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EnvironmentMembers"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/environments/{environment_id}/members/{user_id}": {
+      "get": {
+        "summary": "Returns the profile of a member on environment",
+        "operationId": "getEnvironmentMemberProfile",
+        "tags": [
+          "Environments - Members"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "environment_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the environment to get members from"
+          },
+          {
+            "in": "path",
+            "name": "user_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the user to get profile information"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EnvironmentMemberProfile"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
     "/environments/{environment_id}/network-rules": {
       "get": {
         "summary": "Returns a list of all network rules belonging to a environment",
@@ -1985,12 +2105,14 @@
             }
           }
         }
-      },
-      "post": {
-        "summary": "Creates a team and link it to the given environment",
-        "operationId": "addTeamToEnvironment",
+      }
+    },
+    "/environments/{environment_id}/teams/{team_id}": {
+      "delete": {
+        "summary": "Unlink team from the environment",
+        "operationId": "unlinkTeamFromEnvironment",
         "tags": [
-          "Environments - Teams"
+          "Teams"
         ],
         "parameters": [
           {
@@ -2011,33 +2133,85 @@
               "minimum": 1
             },
             "required": true,
-            "description": "The numeric environment ID"
+            "description": "Numeric ID of the environment to unlink"
+          },
+          {
+            "in": "path",
+            "name": "team_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the team to be unlinked"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
+      },
+      "post": {
+        "summary": "Link team to a given environment",
+        "operationId": "linkTeamToEnvironment",
+        "tags": [
+          "Teams"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "environment_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the environment to link"
+          },
+          {
+            "in": "path",
+            "name": "team_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the team to be linked"
           }
         ],
         "requestBody": {
-          "description": "A JSON object containing team data",
+          "description": "A JSON object containing the role ID",
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TeamCreate"
+                "$ref": "#/components/schemas/EnvironmentTeamLink"
               }
             }
           }
         },
         "responses": {
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Team"
-                }
-              }
-            }
+          "204": {
+            "$ref": "#/components/responses/NoContent"
           },
-          "422": {
-            "$ref": "#/components/responses/ValidationError"
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
           }
         }
       }
@@ -3711,54 +3885,6 @@
       }
     },
     "/pipelines/{pipeline_id}/steps/{step_id}": {
-      "delete": {
-        "summary": "Unlink a step from a pipeline",
-        "operationId": "unlinkStepFromPipeline",
-        "tags": [
-          "Pipelines - Steps"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "pipeline_id",
-            "example": 1,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "required": true,
-            "description": "Unique ID of the pipeline"
-          },
-          {
-            "in": "path",
-            "name": "step_id",
-            "example": 1,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "required": true,
-            "description": "Unique ID of the step to be unlinked"
-          }
-        ],
-        "responses": {
-          "204": {
-            "$ref": "#/components/responses/NoContent"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          }
-        }
-      },
       "post": {
         "summary": "Link a step to a pipeline",
         "operationId": "linkStepToPipeline",
@@ -3807,9 +3933,9 @@
           }
         }
       },
-      "put": {
-        "summary": "Update a pipeline step",
-        "operationId": "updatePipelineStep",
+      "delete": {
+        "summary": "Unlink a step from a pipeline",
+        "operationId": "unlinkStepFromPipeline",
         "tags": [
           "Pipelines - Steps"
         ],
@@ -3826,9 +3952,10 @@
           {
             "in": "path",
             "name": "pipeline_id",
-            "example": 3,
+            "example": 1,
             "schema": {
-              "type": "integer"
+              "type": "integer",
+              "minimum": 1
             },
             "required": true,
             "description": "Unique ID of the pipeline"
@@ -3836,31 +3963,21 @@
           {
             "in": "path",
             "name": "step_id",
-            "example": 3,
+            "example": 1,
             "schema": {
-              "type": "integer"
+              "type": "integer",
+              "minimum": 1
             },
             "required": true,
-            "description": "Unique ID of the pipeline step to update information from"
+            "description": "Unique ID of the step to be unlinked"
           }
         ],
-        "requestBody": {
-          "description": "A JSON object containing pipeline step data",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PipelineStepUpdate"
-              }
-            }
-          }
-        },
         "responses": {
           "204": {
             "$ref": "#/components/responses/NoContent"
           },
-          "422": {
-            "$ref": "#/components/responses/ValidationError"
+          "404": {
+            "$ref": "#/components/responses/NotFound"
           }
         }
       }
@@ -4041,6 +4158,155 @@
         }
       }
     },
+    "/projects/{project_id}/actions/{resource_type}": {
+      "get": {
+        "summary": "List resource actions of a resource type",
+        "operationId": "listProjectActionsOfResourceType",
+        "tags": [
+          "Projects - Actions"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Unique ID of the project to get"
+          },
+          {
+            "in": "path",
+            "name": "resource_type",
+            "example": "service",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The resource type to get related actions"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Actions"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/actions/{resource_type}/{action_type}": {
+      "get": {
+        "summary": "List project actions of a resource type and action type",
+        "operationId": "listProjectActionsOfResourceTypeActionType",
+        "tags": [
+          "Projects - Actions"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Unique ID of the project to get"
+          },
+          {
+            "in": "path",
+            "name": "resource_type",
+            "example": "service",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The resource type to get related actions"
+          },
+          {
+            "in": "path",
+            "name": "action_type",
+            "schema": {
+              "$ref": "#/components/schemas/ActionType"
+            },
+            "required": true,
+            "description": "The action type"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Actions"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
     "/projects/{project_id}/applications": {
       "post": {
         "summary": "Create a new application",
@@ -4146,6 +4412,246 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Applications"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/cron-jobs": {
+      "post": {
+        "summary": "Add a Cron Job to the given project",
+        "operationId": "addCronJobToProject",
+        "tags": [
+          "Projects - Cron Jobs"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "The project numeric Id"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing cron job data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CronJobCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action id of the resource"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CronJob"
+                }
+              }
+            }
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          }
+        }
+      },
+      "get": {
+        "summary": "Return a list of all Cron Jobs belonging to a project",
+        "operationId": "listProjectCronJobs",
+        "tags": [
+          "Projects - Cron Jobs"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the project to get cron jobs from"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CronJobs"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/daemons": {
+      "post": {
+        "summary": "Add a daemon to the given project",
+        "operationId": "addDaemonToProject",
+        "tags": [
+          "Projects - Daemons"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "The project numeric Id"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing daemon data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DaemonCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action id of the resource"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Daemon"
+                }
+              }
+            }
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          }
+        }
+      },
+      "get": {
+        "summary": "Returns a list of all daemons belonging to a project",
+        "operationId": "listProjectDaemons",
+        "tags": [
+          "Projects - Daemons"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the project to get daemons from"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Daemons"
                 }
               }
             }
@@ -4385,12 +4891,12 @@
         }
       }
     },
-    "/projects/{project_id}/daemons": {
+    "/projects/{project_id}/roles": {
       "post": {
-        "summary": "Add a daemon to the given project",
-        "operationId": "addDaemonToProject",
+        "summary": "Create a role to a given project",
+        "operationId": "addRoleToProject",
         "tags": [
-          "Projects - Daemons"
+          "Projects - Roles"
         ],
         "parameters": [
           {
@@ -4411,16 +4917,16 @@
               "minimum": 1
             },
             "required": true,
-            "description": "The project numeric Id"
+            "description": "The project numeric ID"
           }
         ],
         "requestBody": {
-          "description": "A JSON object containing daemon data",
+          "description": "A JSON object containing server data",
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/DaemonCreate"
+                "$ref": "#/components/schemas/RoleCreate"
               }
             }
           }
@@ -4428,21 +4934,16 @@
         "responses": {
           "201": {
             "description": "Created",
-            "headers": {
-              "X-Devopness-Action-Id": {
-                "schema": {
-                  "type": "integer"
-                },
-                "description": "The dispatched action id of the resource"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Daemon"
+                  "$ref": "#/components/schemas/Role"
                 }
               }
             }
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
           },
           "422": {
             "$ref": "#/components/responses/ValidationError"
@@ -4450,10 +4951,10 @@
         }
       },
       "get": {
-        "summary": "Returns a list of all daemons belonging to a project",
-        "operationId": "listProjectDaemons",
+        "summary": "List all roles from a project",
+        "operationId": "listProjectRoles",
         "tags": [
-          "Projects - Daemons"
+          "Projects - Roles"
         ],
         "parameters": [
           {
@@ -4466,12 +4967,6 @@
             "$ref": "#/components/parameters/contentTypeHeader"
           },
           {
-            "$ref": "#/components/parameters/pageNumber"
-          },
-          {
-            "$ref": "#/components/parameters/pageSize"
-          },
-          {
             "in": "path",
             "name": "project_id",
             "example": 1,
@@ -4480,24 +4975,16 @@
               "minimum": 1
             },
             "required": true,
-            "description": "Numeric ID of the project to get daemons from"
+            "description": "The project numeric ID"
           }
         ],
         "responses": {
           "200": {
             "description": "Ok",
-            "headers": {
-              "Link": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Daemons"
+                  "$ref": "#/components/schemas/Roles"
                 }
               }
             }
@@ -4857,12 +5344,12 @@
         }
       }
     },
-    "/projects/{project_id}/cron-jobs": {
+    "/projects/{project_id}/teams": {
       "post": {
-        "summary": "Add a Cron Job to the given project",
-        "operationId": "addCronJobToProject",
+        "summary": "Create a team to the given project",
+        "operationId": "addTeam",
         "tags": [
-          "Projects - Cron Jobs"
+          "Projects - Teams"
         ],
         "parameters": [
           {
@@ -4883,16 +5370,16 @@
               "minimum": 1
             },
             "required": true,
-            "description": "The project numeric Id"
+            "description": "The numeric project ID"
           }
         ],
         "requestBody": {
-          "description": "A JSON object containing cron job data",
+          "description": "A JSON object containing team data",
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CronJobCreate"
+                "$ref": "#/components/schemas/TeamCreate"
               }
             }
           }
@@ -4900,228 +5387,19 @@
         "responses": {
           "201": {
             "description": "Created",
-            "headers": {
-              "X-Devopness-Action-Id": {
-                "schema": {
-                  "type": "integer"
-                },
-                "description": "The dispatched action id of the resource"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CronJob"
+                  "$ref": "#/components/schemas/Team"
                 }
               }
             }
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
           },
           "422": {
             "$ref": "#/components/responses/ValidationError"
-          }
-        }
-      },
-      "get": {
-        "summary": "Return a list of all Cron Jobs belonging to a project",
-        "operationId": "listProjectCronJobs",
-        "tags": [
-          "Projects - Cron Jobs"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "$ref": "#/components/parameters/pageNumber"
-          },
-          {
-            "$ref": "#/components/parameters/pageSize"
-          },
-          {
-            "in": "path",
-            "name": "project_id",
-            "example": 1,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "required": true,
-            "description": "Numeric ID of the project to get cron jobs from"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "headers": {
-              "Link": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CronJobs"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/projects/{project_id}/actions/{resource_type}": {
-      "get": {
-        "summary": "List resource actions of a resource type",
-        "operationId": "listProjectActionsOfResourceType",
-        "tags": [
-          "Projects - Actions"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "$ref": "#/components/parameters/pageNumber"
-          },
-          {
-            "$ref": "#/components/parameters/pageSize"
-          },
-          {
-            "in": "path",
-            "name": "project_id",
-            "example": 1,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "required": true,
-            "description": "Unique ID of the project to get"
-          },
-          {
-            "in": "path",
-            "name": "resource_type",
-            "example": "service",
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "description": "The resource type to get related actions"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "headers": {
-              "Link": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Actions"
-                }
-              }
-            }
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          }
-        }
-      }
-    },
-    "/projects/{project_id}/actions/{resource_type}/{action_type}": {
-      "get": {
-        "summary": "List project actions of a resource type and action type",
-        "operationId": "listProjectActionsOfResourceTypeActionType",
-        "tags": [
-          "Projects - Actions"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "$ref": "#/components/parameters/pageNumber"
-          },
-          {
-            "$ref": "#/components/parameters/pageSize"
-          },
-          {
-            "in": "path",
-            "name": "project_id",
-            "example": 1,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "required": true,
-            "description": "Unique ID of the project to get"
-          },
-          {
-            "in": "path",
-            "name": "resource_type",
-            "example": "service",
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "description": "The resource type to get related actions"
-          },
-          {
-            "in": "path",
-            "name": "action_type",
-            "schema": {
-              "$ref": "#/components/schemas/ActionType"
-            },
-            "required": true,
-            "description": "The action type"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "headers": {
-              "Link": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Actions"
-                }
-              }
-            }
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
           }
         }
       }
@@ -5189,6 +5467,140 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/roles/{role_id}": {
+      "get": {
+        "summary": "Get a role",
+        "operationId": "getRole",
+        "tags": [
+          "Roles"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "role_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the role to get"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Role"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update an existing role",
+        "operationId": "updateRole",
+        "tags": [
+          "Roles"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "role_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the role to update"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing role data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RoleUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a role",
+        "operationId": "deleteRole",
+        "tags": [
+          "Roles"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "role_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the role to delete"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
           }
         }
       }
@@ -6981,6 +7393,38 @@
         }
       }
     },
+    "/static/permissions": {
+      "get": {
+        "summary": "Lists available permissions",
+        "operationId": "listPermissions",
+        "tags": [
+          "Static Data"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Permissions"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/static/services": {
       "get": {
         "summary": "Lists options of the services",
@@ -7159,6 +7603,43 @@
       }
     },
     "/teams/{team_id}": {
+      "delete": {
+        "summary": "Delete a given team",
+        "operationId": "deleteTeam",
+        "tags": [
+          "Teams"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "team_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the team to be deleted"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
       "get": {
         "summary": "Get a team by ID",
         "operationId": "getTeam",
@@ -7203,6 +7684,57 @@
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update an existing team",
+        "operationId": "updateTeam",
+        "tags": [
+          "Teams"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "team_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the team to be updated"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing team data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TeamCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
           }
         }
       }
@@ -7260,6 +7792,64 @@
                 }
               }
             }
+          }
+        }
+      },
+      "post": {
+        "summary": "Send invitation to user email to participate to a team",
+        "operationId": "sendTeamInvitation",
+        "tags": [
+          "Teams - Invitations"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "team_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Numeric ID of the team to invite an user"
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object containing the email to send the invitation",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvitationCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Invitation"
+                }
+              }
+            }
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
           }
         }
       }
@@ -8093,6 +8683,9 @@
       "name": "Environments - Invitations"
     },
     {
+      "name": "Environments - Members"
+    },
+    {
       "name": "Environments - Network Rules"
     },
     {
@@ -8154,6 +8747,9 @@
       "name": "Projects - Network Rules"
     },
     {
+      "name": "Projects - Roles"
+    },
+    {
       "name": "Projects - Servers"
     },
     {
@@ -8163,7 +8759,13 @@
       "name": "Projects - SSH Keys"
     },
     {
+      "name": "Projects - Teams"
+    },
+    {
       "name": "Resource Events"
+    },
+    {
+      "name": "Roles"
     },
     {
       "name": "Scripts"
@@ -8312,6 +8914,13 @@
       ]
     },
     {
+      "name": "Roles",
+      "tags": [
+        "Roles",
+        "Projects - Roles"
+      ]
+    },
+    {
       "name": "Scripts",
       "tags": [
         "Scripts"
@@ -8357,12 +8966,14 @@
     {
       "name": "Teams",
       "tags": [
+        "Projects - Teams",
         "Teams",
         "Teams - Invitations",
         "Teams - Members",
         "Invitations",
         "Environments - Invitations",
-        "Environments - Teams"
+        "Environments - Teams",
+        "Environments - Members"
       ]
     },
     {
@@ -9393,6 +10004,11 @@
         "properties": {
           "type": {
             "$ref": "#/components/schemas/DeploymentType"
+          },
+          "pipeline_id": {
+            "type": "integer",
+            "description": "The pipeline's ID to use for deployment",
+            "example": 12345
           },
           "branch": {
             "type": "string",
@@ -11076,6 +11692,9 @@
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
           },
+          "current_user_permissions": {
+            "$ref": "#/components/schemas/RolePermissions"
+          },
           "created_at": {
             "type": "string",
             "format": "date-time",
@@ -11122,6 +11741,73 @@
           "type"
         ]
       },
+      "EnvironmentMember": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The ID of the member",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "description": "Member's full name",
+            "example": "John Smith"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "Member's email",
+            "example": "member@example.com"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "email"
+        ]
+      },
+      "EnvironmentMemberProfile": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The ID of the member",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "description": "Member's full name",
+            "example": "John Smith"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "Member's email",
+            "example": "member@example.com"
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Tells if the user is active or not"
+          },
+          "teams": {
+            "$ref": "#/components/schemas/EnvironmentTeams"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "email",
+          "active",
+          "teams"
+        ]
+      },
+      "EnvironmentMembers": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/EnvironmentMember"
+        }
+      },
       "EnvironmentOptions": {
         "type": "object",
         "properties": {
@@ -11164,6 +11850,59 @@
           "human_readable",
           "hint"
         ]
+      },
+      "EnvironmentTeam": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The unique id of the given team",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the given team",
+            "example": "Development Team"
+          },
+          "photo_url": {
+            "type": "string",
+            "nullable": true,
+            "description": "The URL to team's image",
+            "example": "https://example.com/images/my_team.png"
+          },
+          "role_id": {
+            "type": "integer",
+            "description": "The unique id of the role used on this environment",
+            "example": 973146
+          },
+          "role": {
+            "$ref": "#/components/schemas/Role"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25T13:52:04.000000Z"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "photo_url",
+          "role"
+        ]
+      },
+      "EnvironmentTeams": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/EnvironmentTeam"
+        }
       },
       "EnvironmentUpdate": {
         "type": "object",
@@ -11255,6 +11994,19 @@
         "items": {
           "$ref": "#/components/schemas/EnvironmentRelation"
         }
+      },
+      "EnvironmentTeamLink": {
+        "type": "object",
+        "properties": {
+          "role_id": {
+            "type": "integer",
+            "description": "The role's ID to use for this team on environment",
+            "example": 123
+          }
+        },
+        "required": [
+          "role_id"
+        ]
       },
       "EnvironmentType": {
         "type": "string",
@@ -12244,11 +12996,6 @@
             "description": "Human readable version of the invitation status",
             "example": "Pending invitation"
           },
-          "role": {
-            "type": "string",
-            "description": "The role to be assigned to the invited user after the invitation is accepted",
-            "example": "member"
-          },
           "email": {
             "type": "string",
             "description": "The email of the user that has been invited to team",
@@ -12298,7 +13045,6 @@
         "required": [
           "id",
           "status",
-          "role",
           "email",
           "created_by_user",
           "user",
@@ -12900,6 +13646,67 @@
           "$ref": "#/components/schemas/OperatingSystem"
         }
       },
+      "Permission": {
+        "type": "object",
+        "properties": {
+          "resource_type": {
+            "type": "string",
+            "description": "The type of resource this permission affects",
+            "example": "application"
+          },
+          "human_readable": {
+            "type": "string",
+            "description": "Human readable resource name",
+            "example": "Application"
+          },
+          "permissions": {
+            "type": "array",
+            "description": "List of permissions available for this resource",
+            "items": {
+              "$ref": "#/components/schemas/PermissionPermissions"
+            }
+          }
+        },
+        "required": [
+          "resource_type",
+          "human_readable",
+          "permissions"
+        ]
+      },
+      "Permissions": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Permission"
+        }
+      },
+      "PermissionPermissions": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of permission",
+            "example": "create"
+          },
+          "human_readable": {
+            "type": "string",
+            "description": "Human readable permission name",
+            "example": "Add"
+          },
+          "hint": {
+            "type": "string",
+            "description": "Description of what a role is allowed to do with a resource if she has this permission",
+            "example": "Authorize to create new applications"
+          },
+          "required_permissions": {
+            "$ref": "#/components/schemas/RequiredPermissions"
+          }
+        },
+        "required": [
+          "name",
+          "human_readable",
+          "hint"
+        ]
+      },
       "Pipeline": {
         "type": "object",
         "properties": {
@@ -13073,40 +13880,6 @@
           "npm",
           "pip",
           "yarn"
-        ]
-      },
-      "PipelineStepUpdate": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name/short description of the script",
-            "example": "Extra step before build app"
-          },
-          "command": {
-            "type": "string",
-            "description": "A command line or multiline bash script",
-            "example": "echo 'Deploy with devopness is a breeze!' | tee -a /tmp/build-started.log"
-          },
-          "runner": {
-            "$ref": "#/components/schemas/PipelineStepRunnerName"
-          },
-          "run_as_user": {
-            "type": "string",
-            "description": "The name of the Unix user on behalf of which the script will be executed",
-            "example": "devopness"
-          },
-          "trigger_after": {
-            "type": "integer",
-            "minimum": 0,
-            "description": "Repositions the pipeline step after the step with the given `trigger_order`",
-            "example": 2000
-          }
-        },
-        "required": [
-          "name",
-          "command",
-          "runner"
         ]
       },
       "Project": {
@@ -13312,6 +14085,16 @@
           "name"
         ]
       },
+      "RequiredPermissions": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "List of permissions the role must have before receiving this one",
+        "example": [
+          "application:read"
+        ]
+      },
       "Repositories": {
         "type": "array",
         "items": {
@@ -13501,6 +14284,124 @@
           "ssl-certificate"
         ],
         "example": "application"
+      },
+      "Role": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The unique id of the given record",
+            "example": 45678
+          },
+          "project_id": {
+            "type": "integer",
+            "description": "The id of the project this role belongs to",
+            "example": 984123
+          },
+          "name": {
+            "type": "string",
+            "description": "The role's name",
+            "example": "admin"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of this role",
+            "example": "Has total access to resources",
+            "nullable": true
+          },
+          "permissions": {
+            "$ref": "#/components/schemas/RolePermissions"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25T13:52:04.000000Z"
+          }
+        },
+        "required": [
+          "id",
+          "project_id",
+          "name",
+          "description",
+          "permissions",
+          "created_at",
+          "updated_at"
+        ]
+      },
+      "Roles": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Role"
+        }
+      },
+      "RoleCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The role's name",
+            "example": "admin"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of this role",
+            "example": "Has total access to resources"
+          },
+          "permissions": {
+            "$ref": "#/components/schemas/RolePermissions"
+          }
+        },
+        "required": [
+          "name",
+          "permissions"
+        ]
+      },
+      "RoleUpdate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The unique id of the given record",
+            "example": 45678
+          },
+          "name": {
+            "type": "string",
+            "description": "The role's name",
+            "example": "admin"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of this role",
+            "example": "Has total access to resources"
+          },
+          "permissions": {
+            "$ref": "#/components/schemas/RolePermissions"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "permissions"
+        ]
+      },
+      "RolePermissions": {
+        "type": "array",
+        "description": "The list of permissions for this role",
+        "example": [
+          "application:read",
+          "application:create",
+          "server:read"
+        ],
+        "items": {
+          "type": "string"
+        }
       },
       "Script": {
         "type": "object",
@@ -15206,9 +16107,6 @@
             "description": "The URL to team's image",
             "example": "https://example.com/images/my_team.png"
           },
-          "environment": {
-            "$ref": "#/components/schemas/EnvironmentRelation"
-          },
           "project": {
             "$ref": "#/components/schemas/ProjectRelation"
           },
@@ -15232,7 +16130,6 @@
           "id",
           "name",
           "photo_url",
-          "environment",
           "project",
           "users"
         ]
@@ -15246,11 +16143,6 @@
       "TeamCreate": {
         "type": "object",
         "properties": {
-          "project_id": {
-            "type": "string",
-            "description": "The ID of the project where the team will be created",
-            "example": 64871301
-          },
           "name": {
             "type": "string",
             "description": "The name of the team",
@@ -15263,7 +16155,6 @@
           }
         },
         "required": [
-          "project_id",
           "name"
         ]
       },

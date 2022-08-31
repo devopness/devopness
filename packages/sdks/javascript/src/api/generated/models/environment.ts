@@ -108,6 +108,12 @@ export interface Environment {
      */
     created_by_user: UserRelation;
     /**
+     * The list of permissions for this role
+     * @type {Array<string>}
+     * @memberof Environment
+     */
+    current_user_permissions?: Array<string>;
+    /**
      * The date and time when the record was created
      * @type {string}
      * @memberof Environment

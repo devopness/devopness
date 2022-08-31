@@ -14,37 +14,12 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
-import { ApiError } from '../../generated/models';
-import { Team } from '../../generated/models';
-import { TeamCreate } from '../../generated/models';
 import { TeamRelation } from '../../generated/models';
 
 /**
  * EnvironmentsTeamsApiService - Auto-generated
  */
 export class EnvironmentsTeamsApiService extends ApiBaseService {
-    /**
-     * 
-     * @summary Creates a team and link it to the given environment
-     * @param {number} environmentId The numeric environment ID
-     * @param {TeamCreate} teamCreate A JSON object containing team data
-     */
-    public async addTeamToEnvironment(environmentId: number, teamCreate: TeamCreate): Promise<ApiResponse<Team>> {
-        if (environmentId === null || environmentId === undefined) {
-            throw new ArgumentNullException('environmentId', 'addTeamToEnvironment');
-        }
-        if (teamCreate === null || teamCreate === undefined) {
-            throw new ArgumentNullException('teamCreate', 'addTeamToEnvironment');
-        }
-        
-        let queryString = '';
-
-        const requestUrl = '/environments/{environment_id}/teams' + (queryString? `?${queryString}` : '');
-
-        const response = await this.post <Team, TeamCreate>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))), teamCreate);
-        return new ApiResponse(response);
-    }
-
     /**
      * 
      * @summary Returns a list of all teams belonging to an environment

@@ -27,6 +27,12 @@ export interface ApplicationDeployment {
      */
     type: DeploymentType;
     /**
+     * The pipeline\'s ID to use for deployment
+     * @type {number}
+     * @memberof ApplicationDeployment
+     */
+    pipeline_id?: number;
+    /**
      * The name of the branch from which the application source code will be retrieved and deployed. This parameter is ignored when `hash` is provided.
      * @type {string}
      * @memberof ApplicationDeployment

@@ -16,20 +16,26 @@
 /**
  * 
  * @export
- * @interface TeamCreate
+ * @interface EnvironmentMember
  */
-export interface TeamCreate {
+export interface EnvironmentMember {
     /**
-     * The name of the team
+     * The ID of the member
+     * @type {number}
+     * @memberof EnvironmentMember
+     */
+    id: number;
+    /**
+     * Member\'s full name
      * @type {string}
-     * @memberof TeamCreate
+     * @memberof EnvironmentMember
      */
     name: string;
     /**
-     * The URL to team\'s image
+     * Member\'s email
      * @type {string}
-     * @memberof TeamCreate
+     * @memberof EnvironmentMember
      */
-    photo_url?: string;
+    email: string;
 }
 

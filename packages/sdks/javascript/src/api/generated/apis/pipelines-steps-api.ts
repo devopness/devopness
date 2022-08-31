@@ -17,7 +17,6 @@ import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { PipelineStep } from '../../generated/models';
 import { PipelineStepCreate } from '../../generated/models';
-import { PipelineStepUpdate } from '../../generated/models';
 
 /**
  * PipelinesStepsApiService - Auto-generated
@@ -86,32 +85,6 @@ export class PipelinesStepsApiService extends ApiBaseService {
         const requestUrl = '/pipelines/{pipeline_id}/steps/{step_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.delete <void>(requestUrl.replace(`{${"pipeline_id"}}`, encodeURIComponent(String(pipelineId))).replace(`{${"step_id"}}`, encodeURIComponent(String(stepId))));
-        return new ApiResponse(response);
-    }
-
-    /**
-     * 
-     * @summary Update a pipeline step
-     * @param {number} pipelineId Unique ID of the pipeline
-     * @param {number} stepId Unique ID of the pipeline step to update information from
-     * @param {PipelineStepUpdate} pipelineStepUpdate A JSON object containing pipeline step data
-     */
-    public async updatePipelineStep(pipelineId: number, stepId: number, pipelineStepUpdate: PipelineStepUpdate): Promise<ApiResponse<void>> {
-        if (pipelineId === null || pipelineId === undefined) {
-            throw new ArgumentNullException('pipelineId', 'updatePipelineStep');
-        }
-        if (stepId === null || stepId === undefined) {
-            throw new ArgumentNullException('stepId', 'updatePipelineStep');
-        }
-        if (pipelineStepUpdate === null || pipelineStepUpdate === undefined) {
-            throw new ArgumentNullException('pipelineStepUpdate', 'updatePipelineStep');
-        }
-        
-        let queryString = '';
-
-        const requestUrl = '/pipelines/{pipeline_id}/steps/{step_id}' + (queryString? `?${queryString}` : '');
-
-        const response = await this.put <void, PipelineStepUpdate>(requestUrl.replace(`{${"pipeline_id"}}`, encodeURIComponent(String(pipelineId))).replace(`{${"step_id"}}`, encodeURIComponent(String(stepId))), pipelineStepUpdate);
         return new ApiResponse(response);
     }
 }

@@ -16,20 +16,14 @@
 /**
  * 
  * @export
- * @interface TeamCreate
+ * @interface EnvironmentTeamLink
  */
-export interface TeamCreate {
+export interface EnvironmentTeamLink {
     /**
-     * The name of the team
-     * @type {string}
-     * @memberof TeamCreate
+     * The role\'s ID to use for this team on environment
+     * @type {number}
+     * @memberof EnvironmentTeamLink
      */
-    name: string;
-    /**
-     * The URL to team\'s image
-     * @type {string}
-     * @memberof TeamCreate
-     */
-    photo_url?: string;
+    role_id: number;
 }
 

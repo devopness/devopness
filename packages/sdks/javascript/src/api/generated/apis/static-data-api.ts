@@ -20,6 +20,7 @@ import { CloudProvider } from '../../generated/models';
 import { CloudProviderService } from '../../generated/models';
 import { CronJobOptions } from '../../generated/models';
 import { EnvironmentOptions } from '../../generated/models';
+import { Permission } from '../../generated/models';
 import { ServiceOptions } from '../../generated/models';
 
 /**
@@ -119,6 +120,20 @@ export class StaticDataApiService extends ApiBaseService {
         const requestUrl = '/static/environments' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <EnvironmentOptions>(requestUrl);
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Lists available permissions
+     */
+    public async listPermissions(): Promise<ApiResponse<Array<Permission>>> {
+        
+        let queryString = '';
+
+        const requestUrl = '/static/permissions' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <Array<Permission>>(requestUrl);
         return new ApiResponse(response);
     }
 
