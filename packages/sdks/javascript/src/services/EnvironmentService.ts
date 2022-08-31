@@ -9,6 +9,7 @@ import { EnvironmentsServersApiService } from '../api/generated/apis/environment
 import { EnvironmentsServicesApiService } from '../api/generated/apis/environments-services-api';
 import { EnvironmentsSSHKeysApiService } from '../api/generated/apis/environments-sshkeys-api';
 import { EnvironmentsTeamsApiService } from '../api/generated/apis/environments-teams-api';
+import { EnvironmentsMembersApiService } from '../api/generated/apis/environments-members-api';
 
 export class EnvironmentService extends EnvironmentsApiService {
     public actions = new EnvironmentsActionsApiService();
@@ -16,6 +17,7 @@ export class EnvironmentService extends EnvironmentsApiService {
     public cronjobs = new EnvironmentsCronJobsApiService();
     public daemons = new EnvironmentsDaemonsApiService();
     public invitations = new EnvironmentsInvitationsApiService();
+    public members = new EnvironmentsMembersApiService();
     public networkRules = new EnvironmentsNetworkRulesApiService();
     public servers = new EnvironmentsServersApiService();
     public services = new EnvironmentsServicesApiService();

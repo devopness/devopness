@@ -8,6 +8,8 @@ import { ProjectsServersApiService } from '../api/generated/apis/projects-server
 import { ProjectsServicesApiService } from '../api/generated/apis/projects-services-api';
 import { ProjectsSSHKeysApiService } from '../api/generated/apis/projects-sshkeys-api';
 import { ProjectsDaemonsApiService } from '../api/generated/apis/projects-daemons-api';
+import { ProjectsRolesApiService } from '../api/generated/apis/projects-roles-api';
+import { ProjectsTeamsApiService } from '../api/generated/apis/projects-teams-api';
 
 export class ProjectService extends ProjectsApiService {
     public actions = new ProjectsActionsApiService();
@@ -15,8 +17,10 @@ export class ProjectService extends ProjectsApiService {
     public cronjobs = new ProjectsCronJobsApiService();
     public daemons = new ProjectsDaemonsApiService();
     public environments = new ProjectsEnvironmentsApiService();
-    public networkRules = new ProjectsNetworkRulesApiService()
-    public servers = new ProjectsServersApiService()
-    public services = new ProjectsServicesApiService()
-    public sshKeys = new ProjectsSSHKeysApiService()
+    public networkRules = new ProjectsNetworkRulesApiService();
+    public roles = new ProjectsRolesApiService();
+    public servers = new ProjectsServersApiService();
+    public services = new ProjectsServicesApiService();
+    public sshKeys = new ProjectsSSHKeysApiService();
+    public teams = new ProjectsTeamsApiService();
 }
