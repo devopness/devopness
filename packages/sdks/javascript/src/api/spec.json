@@ -5854,52 +5854,6 @@
         }
       }
     },
-    "/servers": {
-      "get": {
-        "summary": "Return a list of all servers belonging to current user",
-        "operationId": "listServers",
-        "tags": [
-          "Servers"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "$ref": "#/components/parameters/pageNumber"
-          },
-          {
-            "$ref": "#/components/parameters/pageSize"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "headers": {
-              "Link": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Servers"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/servers/{server_id}": {
       "get": {
         "summary": "Get a server by ID",

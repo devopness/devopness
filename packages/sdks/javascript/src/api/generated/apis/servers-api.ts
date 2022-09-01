@@ -18,7 +18,6 @@ import { ApiError } from '../../generated/models';
 import { Server } from '../../generated/models';
 import { ServerCommands } from '../../generated/models';
 import { ServerConnect } from '../../generated/models';
-import { ServerRelation } from '../../generated/models';
 import { ServerUpdate } from '../../generated/models';
 
 /**
@@ -80,30 +79,6 @@ export class ServersApiService extends ApiBaseService {
         const requestUrl = '/servers/{server_id}/commands' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <ServerCommands>(requestUrl.replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))));
-        return new ApiResponse(response);
-    }
-
-    /**
-     * 
-     * @summary Return a list of all servers belonging to current user
-     * @param {number} [page] Number of the page to be retrieved
-     * @param {number} [perPage] Number of items returned per page
-     */
-    public async listServers(page?: number, perPage?: number): Promise<ApiResponse<Array<ServerRelation>>> {
-        
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/servers' + (queryString? `?${queryString}` : '');
-
-        const response = await this.get <Array<ServerRelation>>(requestUrl);
         return new ApiResponse(response);
     }
 
