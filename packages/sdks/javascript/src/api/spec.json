@@ -3885,6 +3885,54 @@
       }
     },
     "/pipelines/{pipeline_id}/steps/{step_id}": {
+      "delete": {
+        "summary": "Unlink a step from a pipeline",
+        "operationId": "unlinkStepFromPipeline",
+        "tags": [
+          "Pipelines - Steps"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "pipeline_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Unique ID of the pipeline"
+          },
+          {
+            "in": "path",
+            "name": "step_id",
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": true,
+            "description": "Unique ID of the step to be unlinked"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
       "post": {
         "summary": "Link a step to a pipeline",
         "operationId": "linkStepToPipeline",
@@ -3933,9 +3981,9 @@
           }
         }
       },
-      "delete": {
-        "summary": "Unlink a step from a pipeline",
-        "operationId": "unlinkStepFromPipeline",
+      "put": {
+        "summary": "Update a pipeline step",
+        "operationId": "updatePipelineStep",
         "tags": [
           "Pipelines - Steps"
         ],
@@ -3952,10 +4000,9 @@
           {
             "in": "path",
             "name": "pipeline_id",
-            "example": 1,
+            "example": 3,
             "schema": {
-              "type": "integer",
-              "minimum": 1
+              "type": "integer"
             },
             "required": true,
             "description": "Unique ID of the pipeline"
@@ -3963,21 +4010,34 @@
           {
             "in": "path",
             "name": "step_id",
-            "example": 1,
+            "example": 3,
             "schema": {
-              "type": "integer",
-              "minimum": 1
+              "type": "integer"
             },
             "required": true,
-            "description": "Unique ID of the step to be unlinked"
+            "description": "Unique ID of the pipeline step to update information from"
           }
         ],
+        "requestBody": {
+          "description": "A JSON object containing pipeline step data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PipelineStepUpdate"
+              }
+            }
+          }
+        },
         "responses": {
           "204": {
             "$ref": "#/components/responses/NoContent"
           },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
           }
         }
       }
@@ -13880,6 +13940,40 @@
           "npm",
           "pip",
           "yarn"
+        ]
+      },
+      "PipelineStepUpdate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name/short description of the script",
+            "example": "Extra step before build app"
+          },
+          "command": {
+            "type": "string",
+            "description": "A command line or multiline bash script",
+            "example": "echo 'Deploy with devopness is a breeze!' | tee -a /tmp/build-started.log"
+          },
+          "runner": {
+            "$ref": "#/components/schemas/PipelineStepRunnerName"
+          },
+          "run_as_user": {
+            "type": "string",
+            "description": "The name of the Unix user on behalf of which the script will be executed",
+            "example": "devopness"
+          },
+          "trigger_after": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Repositions the pipeline step after the step with the given `trigger_order`",
+            "example": 2000
+          }
+        },
+        "required": [
+          "name",
+          "command",
+          "runner"
         ]
       },
       "Project": {
