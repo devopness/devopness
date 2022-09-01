@@ -17,6 +17,7 @@ import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { Team } from '../../generated/models';
 import { TeamCreate } from '../../generated/models';
+import { TeamRelation } from '../../generated/models';
 
 /**
  * ProjectsTeamsApiService - Auto-generated
@@ -41,6 +42,34 @@ export class ProjectsTeamsApiService extends ApiBaseService {
         const requestUrl = '/projects/{project_id}/teams' + (queryString? `?${queryString}` : '');
 
         const response = await this.post <Team, TeamCreate>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), teamCreate);
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Returns a list of all teams belonging to a project
+     * @param {number} projectId Numeric ID of the project to get teams from
+     * @param {number} [page] Number of the page to be retrieved
+     * @param {number} [perPage] Number of items returned per page
+     */
+    public async listProjectTeams(projectId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<TeamRelation>>> {
+        if (projectId === null || projectId === undefined) {
+            throw new ArgumentNullException('projectId', 'listProjectTeams');
+        }
+        
+        let queryString = '';
+        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
+        const requestUrl = '/projects/{project_id}/teams' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <Array<TeamRelation>>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
         return new ApiResponse(response);
     }
 }
