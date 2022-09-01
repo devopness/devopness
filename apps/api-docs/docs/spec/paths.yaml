@@ -290,9 +290,6 @@
     $ref: ./endpoints/scripts/paths/scripts-id.yaml
   delete:
     $ref: ./endpoints/scripts/paths/scripts-id-delete.yaml
-/servers:
-  get:
-    $ref: ./endpoints/servers/paths/servers-list.yaml
 /servers/{server_id}:
   get:
     $ref: ./endpoints/servers/paths/servers-id.yaml
