@@ -269,6 +269,8 @@
   get:
     $ref: ./endpoints/projects/paths/projects-id-ssh-keys-list.yaml
 /projects/{project_id}/teams:
+  get:
+    $ref: ./endpoints/teams/paths/projects-id-teams-list.yaml
   post:
     $ref: ./endpoints/teams/paths/projects-id-teams.yaml
 /events/{resource_type}/{resource_id}:
