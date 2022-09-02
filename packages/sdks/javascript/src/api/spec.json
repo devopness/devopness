@@ -13954,6 +13954,11 @@
       "PipelineStepUpdate": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The ID of the pipeline step",
+            "example": 19876
+          },
           "name": {
             "type": "string",
             "description": "Name/short description of the script",
@@ -13980,6 +13985,7 @@
           }
         },
         "required": [
+          "id",
           "name",
           "command",
           "runner"
