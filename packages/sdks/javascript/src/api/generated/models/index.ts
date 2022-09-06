@@ -140,7 +140,6 @@ export * from './resource-type';
 export * from './role';
 export * from './role-create';
 export * from './role-update';
-export * from './script';
 export * from './script-runner';
 export * from './server';
 export * from './server-action';
