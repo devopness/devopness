@@ -193,6 +193,7 @@ export * from './ssl-certificate-validation-level';
 export * from './team';
 export * from './team-create';
 export * from './team-relation';
+export * from './team-update';
 export * from './trigger-event';
 export * from './trigger-type';
 export * from './user';
