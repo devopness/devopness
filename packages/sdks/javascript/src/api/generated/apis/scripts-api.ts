@@ -14,32 +14,12 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
-import { ApiError } from '../../generated/models';
 import { Script } from '../../generated/models';
-import { ScriptUpdate } from '../../generated/models';
 
 /**
  * ScriptsApiService - Auto-generated
  */
 export class ScriptsApiService extends ApiBaseService {
-    /**
-     * 
-     * @summary Delete a script by ID
-     * @param {number} scriptId The id of the script
-     */
-    public async deleteScript(scriptId: number): Promise<ApiResponse<void>> {
-        if (scriptId === null || scriptId === undefined) {
-            throw new ArgumentNullException('scriptId', 'deleteScript');
-        }
-        
-        let queryString = '';
-
-        const requestUrl = '/scripts/{script_id}' + (queryString? `?${queryString}` : '');
-
-        const response = await this.delete <void>(requestUrl.replace(`{${"script_id"}}`, encodeURIComponent(String(scriptId))));
-        return new ApiResponse(response);
-    }
-
     /**
      * 
      * @summary Get a script by ID
@@ -55,28 +35,6 @@ export class ScriptsApiService extends ApiBaseService {
         const requestUrl = '/scripts/{script_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Script>(requestUrl.replace(`{${"script_id"}}`, encodeURIComponent(String(scriptId))));
-        return new ApiResponse(response);
-    }
-
-    /**
-     * 
-     * @summary Update an existing script
-     * @param {number} scriptId The unique id of the script to be updated
-     * @param {ScriptUpdate} scriptUpdate A JSON object containing script data
-     */
-    public async updateScript(scriptId: number, scriptUpdate: ScriptUpdate): Promise<ApiResponse<void>> {
-        if (scriptId === null || scriptId === undefined) {
-            throw new ArgumentNullException('scriptId', 'updateScript');
-        }
-        if (scriptUpdate === null || scriptUpdate === undefined) {
-            throw new ArgumentNullException('scriptUpdate', 'updateScript');
-        }
-        
-        let queryString = '';
-
-        const requestUrl = '/scripts/{script_id}' + (queryString? `?${queryString}` : '');
-
-        const response = await this.put <void, ScriptUpdate>(requestUrl.replace(`{${"script_id"}}`, encodeURIComponent(String(scriptId))), scriptUpdate);
         return new ApiResponse(response);
     }
 }

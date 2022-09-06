@@ -545,121 +545,6 @@
         }
       }
     },
-    "/applications/{application_id}/scripts": {
-      "post": {
-        "summary": "Add script to application as a deployment step",
-        "operationId": "addScriptToApplication",
-        "tags": [
-          "Applications - Scripts"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "application_id",
-            "example": 1,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "required": true,
-            "description": "Unique ID of the application to retrieve scripts from"
-          }
-        ],
-        "requestBody": {
-          "description": "A JSON object containing application script data",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ScriptCreate"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Script"
-                }
-              }
-            }
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          },
-          "422": {
-            "$ref": "#/components/responses/ValidationError"
-          }
-        }
-      },
-      "get": {
-        "summary": "List scripts to be executed as custom deployment steps of an application",
-        "operationId": "listApplicationScripts",
-        "tags": [
-          "Applications - Scripts"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "$ref": "#/components/parameters/pageNumber"
-          },
-          {
-            "$ref": "#/components/parameters/pageSize"
-          },
-          {
-            "in": "path",
-            "name": "application_id",
-            "example": 1,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "required": true,
-            "description": "Unique ID of the application to retrieve scripts from"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "headers": {
-              "Link": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Scripts"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/applications/{application_id}/ssl-certificates": {
       "post": {
         "summary": "Create a new SSL certificate linked to the current application",
@@ -5721,57 +5606,6 @@
       }
     },
     "/scripts/{script_id}": {
-      "put": {
-        "summary": "Update an existing script",
-        "operationId": "updateScript",
-        "tags": [
-          "Scripts"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "script_id",
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "required": true,
-            "description": "The unique id of the script to be updated",
-            "example": 1
-          }
-        ],
-        "requestBody": {
-          "description": "A JSON object containing script data",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ScriptUpdate"
-              }
-            }
-          }
-        },
-        "responses": {
-          "204": {
-            "$ref": "#/components/responses/NoContent"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          },
-          "422": {
-            "$ref": "#/components/responses/ValidationError"
-          }
-        }
-      },
       "get": {
         "summary": "Get a script by ID",
         "operationId": "getScript",
@@ -5810,43 +5644,6 @@
                 }
               }
             }
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          }
-        }
-      },
-      "delete": {
-        "summary": "Delete a script by ID",
-        "operationId": "deleteScript",
-        "tags": [
-          "Scripts"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "script_id",
-            "description": "The id of the script",
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "required": true,
-            "example": 1
-          }
-        ],
-        "responses": {
-          "204": {
-            "$ref": "#/components/responses/NoContent"
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
@@ -8713,9 +8510,6 @@
       "name": "Applications - Hooks"
     },
     {
-      "name": "Applications - Scripts"
-    },
-    {
       "name": "Applications - SSL Certificates"
     },
     {
@@ -8904,7 +8698,6 @@
         "Applications",
         "Applications - Deployments",
         "Applications - Hooks",
-        "Applications - Scripts",
         "Applications - SSL Certificates",
         "Applications - Variables",
         "Environments - Applications",
@@ -14579,100 +14372,6 @@
           "created_by",
           "name",
           "command",
-          "run_as_user",
-          "trigger_type",
-          "trigger_event",
-          "trigger_order"
-        ]
-      },
-      "Scripts": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Script"
-        }
-      },
-      "ScriptCreate": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name/short description of the script",
-            "example": "Prepare for build project"
-          },
-          "source_code": {
-            "type": "string",
-            "description": "A command line or multiline bash script",
-            "example": "echo \"Configuring project...\" && ./configure"
-          },
-          "trigger_type": {
-            "$ref": "#/components/schemas/TriggerType"
-          },
-          "trigger_event": {
-            "$ref": "#/components/schemas/TriggerEvent"
-          },
-          "trigger_order": {
-            "type": "integer",
-            "description": "The relative order of the script execution in case the event has multiple scripts attached to it",
-            "example": 2
-          }
-        },
-        "required": [
-          "name",
-          "source_code",
-          "trigger_event",
-          "trigger_order",
-          "trigger_type"
-        ]
-      },
-      "ScriptUpdate": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "description": "Script's unique id",
-            "example": 867,
-            "type": "integer"
-          },
-          "application_id": {
-            "type": "integer",
-            "description": "The id of the application to be linked",
-            "example": 9471
-          },
-          "type": {
-            "type": "string",
-            "description": "The type of the script",
-            "example": "deployment-step"
-          },
-          "name": {
-            "type": "string",
-            "description": "Name/short description of the script",
-            "example": "Extra step before build app"
-          },
-          "source_code": {
-            "type": "string",
-            "description": "A command line or multiline bash script",
-            "example": "echo 'Deploy with devopness is a breeze!' | tee -a /tmp/build-started.log"
-          },
-          "run_as_user": {
-            "type": "string",
-            "description": "The name of the Unix user on behalf of which the script will be executed",
-            "example": "devopness"
-          },
-          "trigger_type": {
-            "$ref": "#/components/schemas/TriggerType"
-          },
-          "trigger_event": {
-            "$ref": "#/components/schemas/TriggerEvent"
-          },
-          "trigger_order": {
-            "type": "integer",
-            "description": "The relative order of the script execution in case the event has multiple scripts attached",
-            "example": 2
-          }
-        },
-        "required": [
-          "id",
-          "name",
-          "source_code",
           "run_as_user",
           "trigger_type",
           "trigger_event",
