@@ -49,21 +49,21 @@ export class PipelinesStepsApiService extends ApiBaseService {
      * 
      * @summary Link a step to a pipeline
      * @param {number} pipelineId Unique ID of the pipeline
-     * @param {number} stepId Unique ID of the step to be linked
+     * @param {number} pipelineStepId Unique ID of the step to be linked
      */
-    public async linkStepToPipeline(pipelineId: number, stepId: number): Promise<ApiResponse<void>> {
+    public async linkStepToPipeline(pipelineId: number, pipelineStepId: number): Promise<ApiResponse<void>> {
         if (pipelineId === null || pipelineId === undefined) {
             throw new ArgumentNullException('pipelineId', 'linkStepToPipeline');
         }
-        if (stepId === null || stepId === undefined) {
-            throw new ArgumentNullException('stepId', 'linkStepToPipeline');
+        if (pipelineStepId === null || pipelineStepId === undefined) {
+            throw new ArgumentNullException('pipelineStepId', 'linkStepToPipeline');
         }
         
         let queryString = '';
 
-        const requestUrl = '/pipelines/{pipeline_id}/steps/{step_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/pipelines/{pipeline_id}/steps/{pipeline_step_id}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <void>(requestUrl.replace(`{${"pipeline_id"}}`, encodeURIComponent(String(pipelineId))).replace(`{${"step_id"}}`, encodeURIComponent(String(stepId))));
+        const response = await this.post <void>(requestUrl.replace(`{${"pipeline_id"}}`, encodeURIComponent(String(pipelineId))).replace(`{${"pipeline_step_id"}}`, encodeURIComponent(String(pipelineStepId))));
         return new ApiResponse(response);
     }
 
@@ -71,21 +71,21 @@ export class PipelinesStepsApiService extends ApiBaseService {
      * 
      * @summary Unlink a step from a pipeline
      * @param {number} pipelineId Unique ID of the pipeline
-     * @param {number} stepId Unique ID of the step to be unlinked
+     * @param {number} pipelineStepId Unique ID of the step to be unlinked
      */
-    public async unlinkStepFromPipeline(pipelineId: number, stepId: number): Promise<ApiResponse<void>> {
+    public async unlinkStepFromPipeline(pipelineId: number, pipelineStepId: number): Promise<ApiResponse<void>> {
         if (pipelineId === null || pipelineId === undefined) {
             throw new ArgumentNullException('pipelineId', 'unlinkStepFromPipeline');
         }
-        if (stepId === null || stepId === undefined) {
-            throw new ArgumentNullException('stepId', 'unlinkStepFromPipeline');
+        if (pipelineStepId === null || pipelineStepId === undefined) {
+            throw new ArgumentNullException('pipelineStepId', 'unlinkStepFromPipeline');
         }
         
         let queryString = '';
 
-        const requestUrl = '/pipelines/{pipeline_id}/steps/{step_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/pipelines/{pipeline_id}/steps/{pipeline_step_id}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.delete <void>(requestUrl.replace(`{${"pipeline_id"}}`, encodeURIComponent(String(pipelineId))).replace(`{${"step_id"}}`, encodeURIComponent(String(stepId))));
+        const response = await this.delete <void>(requestUrl.replace(`{${"pipeline_id"}}`, encodeURIComponent(String(pipelineId))).replace(`{${"pipeline_step_id"}}`, encodeURIComponent(String(pipelineStepId))));
         return new ApiResponse(response);
     }
 
@@ -93,15 +93,15 @@ export class PipelinesStepsApiService extends ApiBaseService {
      * 
      * @summary Update a pipeline step
      * @param {number} pipelineId Unique ID of the pipeline
-     * @param {number} stepId Unique ID of the pipeline step to update information from
+     * @param {number} pipelineStepId Unique ID of the pipeline step to update information from
      * @param {PipelineStepUpdate} pipelineStepUpdate A JSON object containing pipeline step data
      */
-    public async updatePipelineStep(pipelineId: number, stepId: number, pipelineStepUpdate: PipelineStepUpdate): Promise<ApiResponse<void>> {
+    public async updatePipelineStep(pipelineId: number, pipelineStepId: number, pipelineStepUpdate: PipelineStepUpdate): Promise<ApiResponse<void>> {
         if (pipelineId === null || pipelineId === undefined) {
             throw new ArgumentNullException('pipelineId', 'updatePipelineStep');
         }
-        if (stepId === null || stepId === undefined) {
-            throw new ArgumentNullException('stepId', 'updatePipelineStep');
+        if (pipelineStepId === null || pipelineStepId === undefined) {
+            throw new ArgumentNullException('pipelineStepId', 'updatePipelineStep');
         }
         if (pipelineStepUpdate === null || pipelineStepUpdate === undefined) {
             throw new ArgumentNullException('pipelineStepUpdate', 'updatePipelineStep');
@@ -109,9 +109,9 @@ export class PipelinesStepsApiService extends ApiBaseService {
         
         let queryString = '';
 
-        const requestUrl = '/pipelines/{pipeline_id}/steps/{step_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/pipelines/{pipeline_id}/steps/{pipeline_step_id}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.put <void, PipelineStepUpdate>(requestUrl.replace(`{${"pipeline_id"}}`, encodeURIComponent(String(pipelineId))).replace(`{${"step_id"}}`, encodeURIComponent(String(stepId))), pipelineStepUpdate);
+        const response = await this.put <void, PipelineStepUpdate>(requestUrl.replace(`{${"pipeline_id"}}`, encodeURIComponent(String(pipelineId))).replace(`{${"pipeline_step_id"}}`, encodeURIComponent(String(pipelineStepId))), pipelineStepUpdate);
         return new ApiResponse(response);
     }
 }
