@@ -3769,7 +3769,7 @@
         }
       }
     },
-    "/pipelines/{pipeline_id}/steps/{step_id}": {
+    "/pipelines/{pipeline_id}/steps/{pipeline_step_id}": {
       "delete": {
         "summary": "Unlink a step from a pipeline",
         "operationId": "unlinkStepFromPipeline",
@@ -3799,7 +3799,7 @@
           },
           {
             "in": "path",
-            "name": "step_id",
+            "name": "pipeline_step_id",
             "example": 1,
             "schema": {
               "type": "integer",
@@ -3847,7 +3847,7 @@
           },
           {
             "in": "path",
-            "name": "step_id",
+            "name": "pipeline_step_id",
             "example": 1,
             "schema": {
               "type": "integer",
@@ -3894,7 +3894,7 @@
           },
           {
             "in": "path",
-            "name": "step_id",
+            "name": "pipeline_step_id",
             "example": 3,
             "schema": {
               "type": "integer"
@@ -13547,6 +13547,9 @@
             "description": "id of the user responsible for creating the pipeline",
             "example": 23
           },
+          "steps": {
+            "$ref": "#/components/schemas/PipelineSteps"
+          },
           "created_at": {
             "type": "string",
             "format": "date-time",
@@ -13595,22 +13598,27 @@
         "properties": {
           "id": {
             "type": "integer",
-            "description": "The Id of the given script",
+            "description": "The pipeline step's ID",
             "example": 19876
           },
-          "created_by": {
+          "script_id": {
             "type": "integer",
-            "description": "The id of the user that own the script",
-            "example": 984123
+            "description": "The script's ID of this pipeline step",
+            "example": 9752
           },
           "name": {
             "type": "string",
-            "description": "Name/short description of the script",
+            "description": "Name of the pipeline step",
             "example": "Extra step before build app"
+          },
+          "type": {
+            "type": "string",
+            "description": "The pipeline step's type",
+            "example": "default-step"
           },
           "command": {
             "type": "string",
-            "description": "A command line or multiline bash script",
+            "description": "A command line or multiline bash pipeline step",
             "example": "echo 'Deploy with devopness is a breeze!' | tee -a /tmp/build-started.log"
           },
           "runner": {
@@ -13623,8 +13631,18 @@
           },
           "trigger_order": {
             "type": "integer",
-            "description": "The relative order of the script execution in case the event has multiple scripts attached",
+            "description": "The relative order of the pipeline step execution in case the event has multiple pipeline step attached",
             "example": 2
+          },
+          "is_auto_generated": {
+            "type": "boolean",
+            "description": "True if this step is auto-generated or false if this was created by the user",
+            "example": false
+          },
+          "is_default_step": {
+            "type": "boolean",
+            "description": "True if this step is a default step of the pipeline and cannot be updated/deleted",
+            "example": false
           },
           "created_at": {
             "type": "string",
@@ -13641,13 +13659,22 @@
         },
         "required": [
           "id",
-          "created_by",
+          "script_id",
           "name",
+          "type",
           "command",
           "runner",
           "run_as_user",
-          "trigger_order"
+          "trigger_order",
+          "is_auto_generated",
+          "is_default_step"
         ]
+      },
+      "PipelineSteps": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/PipelineStep"
+        }
       },
       "PipelineStepCreate": {
         "type": "object",
