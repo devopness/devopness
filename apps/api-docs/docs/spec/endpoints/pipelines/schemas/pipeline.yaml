@@ -24,6 +24,8 @@ properties:
     type: integer
     description: id of the user responsible for creating the pipeline
     example: 23
+  steps:
+    $ref: '#/components/schemas/PipelineSteps'
   created_at:
     type: string
     format: date-time

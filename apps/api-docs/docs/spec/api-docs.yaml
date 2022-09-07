@@ -173,7 +173,6 @@ tags:
   - name: Applications
   - name: Applications - Deployments
   - name: Applications - Hooks
-  - name: Applications - Scripts
   - name: Applications - SSL Certificates
   - name: Applications - Variables
     description: |
@@ -226,7 +225,6 @@ tags:
   - name: Projects - Teams
   - name: Resource Events
   - name: Roles
-  - name: Scripts
   - name: Servers
   - name: Services
   - name: Social Accounts
@@ -263,7 +261,6 @@ x-tagGroups:
       - Applications
       - Applications - Deployments
       - Applications - Hooks
-      - Applications - Scripts
       - Applications - SSL Certificates
       - Applications - Variables
       - Environments - Applications
@@ -313,9 +310,6 @@ x-tagGroups:
     tags:
       - Roles
       - Projects - Roles
-  - name: Scripts
-    tags:
-      - Scripts
   - name: Servers
     tags:
       - Servers

@@ -299,11 +299,13 @@ PermissionPermissions:
 Pipeline:
   $ref: ./endpoints/pipelines/schemas/pipeline.yaml
 Pipelines:
-  $ref: ./endpoints/pipelines/schemas/pipelines-list.yaml
+  $ref: ./endpoints/pipelines/schemas/pipeline-list.yaml
 PipelineCreate:
   $ref: ./endpoints/pipelines/schemas/pipeline-create.yaml
 PipelineStep:
   $ref: ./endpoints/pipelines/schemas/pipeline-step.yaml
+PipelineSteps:
+  $ref: ./endpoints/pipelines/schemas/pipeline-step-list.yaml
 PipelineStepCreate:
   $ref: ./endpoints/pipelines/schemas/pipeline-step-create.yaml
 PipelineStepRunnerName:
@@ -346,14 +348,6 @@ RoleUpdate:
   $ref: ./endpoints/roles/schemas/role-update.yaml
 RolePermissions:
   $ref: ./shared/schemas/role-permissions.yaml
-Script:
-  $ref: ./endpoints/scripts/schemas/script.yaml
-Scripts:
-  $ref: ./endpoints/scripts/schemas/script-list.yaml
-ScriptCreate:
-  $ref: ./endpoints/scripts/schemas/script-create.yaml
-ScriptUpdate:
-  $ref: ./endpoints/scripts/schemas/script-update.yaml
 ScriptRunner:
   $ref: ./endpoints/static/schemas/script-runner.yaml
 ScriptRunners:
@@ -480,6 +474,8 @@ TeamCreate:
   $ref: ./endpoints/teams/schemas/team-create.yaml
 TeamRelation:
   $ref: ./shared/schemas/models/team-relation.yaml
+TeamUpdate:
+  $ref: ./endpoints/teams/schemas/team-update.yaml
 TriggerEvent:
   $ref: ./shared/schemas/trigger-event.yaml
 TriggerType:

@@ -89,7 +89,6 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     const initialAdjacencyList = new Set<TransactionGraphEdge>([
         // variable tests should run before deleteApplication
         ['deleteVariable204', 'deleteApplication204'],
-        ['deleteScript204', 'deleteApplication204'],
         ['triggerHook204', 'deleteApplication204'],
         // unlinkServerFromEnvironment requires deleting the associated ssh key, network rule, daemon, service, cron job and application
         ['deleteSshKey204', 'unlinkServerFromEnvironment204'],
@@ -100,8 +99,11 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         ['deleteApplication204', 'unlinkServerFromEnvironment204'],
         // deleteEnvironment requires an environment without linked servers
         ['unlinkServerFromEnvironment204', 'deleteEnvironment204'],
+        ['deletePipeline204', 'deleteEnvironment204'],
         ['deleteOutgoingHook204', 'deleteEnvironment204'],
         ['deleteIncomingHook204', 'deleteEnvironment204'],
+        ['linkStepToPipeline204', 'unlinkStepFromPipeline204'],
+        ['unlinkStepFromPipeline204', 'deletePipeline204'],
     ]);
 
     let apiSpec = new OpenAPISpec(logger);

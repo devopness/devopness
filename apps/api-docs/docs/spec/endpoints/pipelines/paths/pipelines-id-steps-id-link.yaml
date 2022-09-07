@@ -15,7 +15,7 @@ parameters:
     required: true
     description: Unique ID of the pipeline
   - in: path
-    name: step_id
+    name: pipeline_step_id
     example: 1
     schema:
       type: integer

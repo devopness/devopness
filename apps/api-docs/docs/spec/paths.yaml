@@ -26,11 +26,6 @@
 /applications/{application_id}/hooks:
   get:
     $ref: ./endpoints/hooks/paths/applications-id-hooks-list.yaml
-/applications/{application_id}/scripts:
-  post:
-    $ref: ./endpoints/applications/paths/applications-id-scripts.yaml
-  get:
-    $ref: ./endpoints/applications/paths/applications-id-scripts-list.yaml
 /applications/{application_id}/ssl-certificates:
   post:
     $ref: ./endpoints/applications/paths/applications-id-ssl-certificates.yaml
@@ -200,7 +195,7 @@
 /pipelines/{pipeline_id}/steps:
   post:
     $ref: ./endpoints/pipelines/paths/pipelines-id-steps.yaml
-/pipelines/{pipeline_id}/steps/{step_id}:
+/pipelines/{pipeline_id}/steps/{pipeline_step_id}:
   delete:
     $ref: ./endpoints/pipelines/paths/pipelines-id-steps-id-unlink.yaml
   post:
@@ -283,13 +278,6 @@
     $ref: ./endpoints/roles/paths/roles-id-update.yaml
   delete:
     $ref: ./endpoints/roles/paths/roles-id-delete.yaml
-/scripts/{script_id}:
-  put:
-    $ref: ./endpoints/scripts/paths/scripts-id-update.yaml
-  get:
-    $ref: ./endpoints/scripts/paths/scripts-id.yaml
-  delete:
-    $ref: ./endpoints/scripts/paths/scripts-id-delete.yaml
 /servers/{server_id}:
   get:
     $ref: ./endpoints/servers/paths/servers-id.yaml
