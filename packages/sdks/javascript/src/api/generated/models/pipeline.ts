@@ -12,6 +12,7 @@
  */
 
 
+import { PipelineStep } from './pipeline-step';
 
 /**
  * 
@@ -55,6 +56,12 @@ export interface Pipeline {
      * @memberof Pipeline
      */
     created_by: number;
+    /**
+     * 
+     * @type {Array<PipelineStep>}
+     * @memberof Pipeline
+     */
+    steps?: Array<PipelineStep>;
     /**
      * The date and time when the record was created
      * @type {string}

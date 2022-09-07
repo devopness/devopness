@@ -4,7 +4,6 @@ import { DaemonService } from './services/DaemonService';
 import { EnvironmentService } from './services/EnvironmentService';
 import { NetworkRuleService } from './services/NetworkRuleService';
 import { ProjectService } from './services/ProjectService';
-import { ScriptService } from './services/ScriptService';
 import { ServerService } from './services/ServerService';
 import { ServiceService } from './services/ServiceService';
 import { SourceProviderService } from './services/SourceProviderService'
@@ -44,7 +43,6 @@ export class DevopnessApiClient {
   projects: ProjectService;
   roles: RoleService;
   resourceEvents: ResourceEventService;
-  scripts: ScriptService;
   servers: ServerService;
   services: ServiceService;
   socialAccounts: SocialAccountService;
@@ -78,7 +76,6 @@ export class DevopnessApiClient {
     this.projects = new ProjectService();
     this.roles = new RoleService();
     this.resourceEvents = new ResourceEventService();
-    this.scripts = new ScriptService();
     this.servers = new ServerService();
     this.services = new ServiceService();
     this.socialAccounts = new SocialAccountService();

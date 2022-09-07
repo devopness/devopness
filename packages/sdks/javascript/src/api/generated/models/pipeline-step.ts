@@ -21,25 +21,31 @@ import { PipelineStepRunnerName } from './pipeline-step-runner-name';
  */
 export interface PipelineStep {
     /**
-     * The Id of the given script
+     * The pipeline step\'s ID
      * @type {number}
      * @memberof PipelineStep
      */
     id: number;
     /**
-     * The id of the user that own the script
+     * The script\'s ID of this pipeline step
      * @type {number}
      * @memberof PipelineStep
      */
-    created_by: number;
+    script_id: number;
     /**
-     * Name/short description of the script
+     * Name of the pipeline step
      * @type {string}
      * @memberof PipelineStep
      */
     name: string;
     /**
-     * A command line or multiline bash script
+     * The pipeline step\'s type
+     * @type {string}
+     * @memberof PipelineStep
+     */
+    type: string;
+    /**
+     * A command line or multiline bash pipeline step
      * @type {string}
      * @memberof PipelineStep
      */
@@ -57,11 +63,23 @@ export interface PipelineStep {
      */
     run_as_user: string;
     /**
-     * The relative order of the script execution in case the event has multiple scripts attached
+     * The relative order of the pipeline step execution in case the event has multiple pipeline step attached
      * @type {number}
      * @memberof PipelineStep
      */
     trigger_order: number;
+    /**
+     * True if this step is auto-generated or false if this was created by the user
+     * @type {boolean}
+     * @memberof PipelineStep
+     */
+    is_auto_generated: boolean;
+    /**
+     * True if this step is a default step of the pipeline and cannot be updated/deleted
+     * @type {boolean}
+     * @memberof PipelineStep
+     */
+    is_default_step: boolean;
     /**
      * The date and time when the record was created
      * @type {string}

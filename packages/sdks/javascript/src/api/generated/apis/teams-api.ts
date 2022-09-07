@@ -17,7 +17,7 @@ import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { EnvironmentTeamLink } from '../../generated/models';
 import { Team } from '../../generated/models';
-import { TeamCreate } from '../../generated/models';
+import { TeamUpdate } from '../../generated/models';
 
 /**
  * TeamsApiService - Auto-generated
@@ -111,21 +111,21 @@ export class TeamsApiService extends ApiBaseService {
      * 
      * @summary Update an existing team
      * @param {number} teamId Numeric ID of the team to be updated
-     * @param {TeamCreate} teamCreate A JSON object containing team data
+     * @param {TeamUpdate} teamUpdate A JSON object containing team data
      */
-    public async updateTeam(teamId: number, teamCreate: TeamCreate): Promise<ApiResponse<void>> {
+    public async updateTeam(teamId: number, teamUpdate: TeamUpdate): Promise<ApiResponse<void>> {
         if (teamId === null || teamId === undefined) {
             throw new ArgumentNullException('teamId', 'updateTeam');
         }
-        if (teamCreate === null || teamCreate === undefined) {
-            throw new ArgumentNullException('teamCreate', 'updateTeam');
+        if (teamUpdate === null || teamUpdate === undefined) {
+            throw new ArgumentNullException('teamUpdate', 'updateTeam');
         }
         
         let queryString = '';
 
         const requestUrl = '/teams/{team_id}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.put <void, TeamCreate>(requestUrl.replace(`{${"team_id"}}`, encodeURIComponent(String(teamId))), teamCreate);
+        const response = await this.put <void, TeamUpdate>(requestUrl.replace(`{${"team_id"}}`, encodeURIComponent(String(teamId))), teamUpdate);
         return new ApiResponse(response);
     }
 }
