@@ -39,12 +39,6 @@ export interface EnvironmentTeam {
      */
     photo_url: string | null;
     /**
-     * The unique id of the role used on this environment
-     * @type {number}
-     * @memberof EnvironmentTeam
-     */
-    role_id?: number;
-    /**
      * 
      * @type {Role}
      * @memberof EnvironmentTeam

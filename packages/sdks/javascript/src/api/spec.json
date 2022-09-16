@@ -1311,121 +1311,6 @@
         }
       }
     },
-    "/environments/{environment_id}/invitations": {
-      "get": {
-        "summary": "Returns a list of all invitations belonging to an environment",
-        "operationId": "listEnvironmentInvitations",
-        "tags": [
-          "Environments - Invitations"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "$ref": "#/components/parameters/pageNumber"
-          },
-          {
-            "$ref": "#/components/parameters/pageSize"
-          },
-          {
-            "in": "path",
-            "name": "environment_id",
-            "example": 1,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "required": true,
-            "description": "Numeric ID of the environment to get invitations from"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "headers": {
-              "Link": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Invitations"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "summary": "Send invitation to user email to participate to a project's environment",
-        "operationId": "sendInvitation",
-        "tags": [
-          "Environments - Invitations"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "environment_id",
-            "example": 1,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "required": true,
-            "description": "Numeric ID of the environment to invite a user"
-          }
-        ],
-        "requestBody": {
-          "description": "A JSON object containing the email to send the invitation",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/InvitationCreate"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Invitation"
-                }
-              }
-            }
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "422": {
-            "$ref": "#/components/responses/ValidationError"
-          }
-        }
-      }
-    },
     "/environments/{environment_id}/members": {
       "get": {
         "summary": "Returns a list of all members belonging to an environment",
@@ -11676,11 +11561,6 @@
             "nullable": true,
             "description": "The URL to team's image",
             "example": "https://example.com/images/my_team.png"
-          },
-          "role_id": {
-            "type": "integer",
-            "description": "The unique id of the role used on this environment",
-            "example": 973146
           },
           "role": {
             "$ref": "#/components/schemas/Role"
