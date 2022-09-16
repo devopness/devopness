@@ -13,10 +13,6 @@ properties:
     nullable: true
     description: The URL to team's image
     example: https://example.com/images/my_team.png
-  role_id:
-    type: integer
-    description: The unique id of the role used on this environment
-    example: 973146
   role:
     $ref: '#/components/schemas/Role'
   created_at:

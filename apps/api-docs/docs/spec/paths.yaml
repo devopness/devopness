@@ -65,11 +65,6 @@
 /environments/{environment_id}/daemons:
   get:
     $ref: ./endpoints/daemons/paths/environments-id-daemons-list.yaml
-/environments/{environment_id}/invitations:
-  get:
-    $ref: ./endpoints/invitations/paths/environments-id-invitations-list.yaml
-  post:
-    $ref: ./endpoints/invitations/paths/environments-id-invitations.yaml
 /environments/{environment_id}/members:
   get:
     $ref: ./endpoints/members/paths/environments-id-members-list.yaml
