@@ -8,15 +8,17 @@
   },
   "scripts": {
     "build": "npm run api-docs && npm run ensure_index_file_is_on_size_limit",
-    "ensure_index_file_is_on_size_limit": "[ `du -h public/index.html | grep -oE '^[0-9]+'` -le 3 ]",
-    "tsc": "tsc",
     "api-build-spec": "npm run tsc && node ./build/buildApiSpec.js && swagger-cli validate docs/build/api-docs-output.yaml",
     "api-convert-spec-to-dredd": "api-spec-converter --from=openapi_3 --to=swagger_2 --syntax=yaml --order=alpha docs/build/api-docs-output.yaml > docs/build/api-docs-output-v2.yaml",
     "api-docs-export-page": "redoc-cli bundle docs/build/api-docs-output.yaml --title 'devopness API' --output public/index.html --cdn true -t docs/template.hbs",
-    "api-docs": "npm run api-build-spec && npm run api-convert-spec-to-dredd && npm run api-docs-export-page && npm run test && dredd",
     "api-docs-serve": "npm run api-docs && redoc-cli serve docs/build/api-docs-output.yaml --port 9090 --title 'Devopness API docs' -t docs/template.hbs",
+    "api-docs-zip-download": "aws s3 cp s3://devopness-api-docs/api-docs.zip ./docs/api-docs.zip",
+    "api-docs-zip-extract": "extract-zip ./docs/api-docs.zip $(pwd)/docs/spec",
+    "api-docs": "npm run api-build-spec && npm run api-convert-spec-to-dredd && npm run api-docs-export-page && npm run test",
     "api-test": "npm run tsc && npm run test && dredd",
-    "test": "jest"
+    "ensure_index_file_is_on_size_limit": "[ `du -h public/index.html | grep -oE '^[0-9]+'` -le 3 ]",
+    "test": "jest",
+    "tsc": "tsc"
   },
   "repository": {
     "type": "git",
@@ -36,6 +38,7 @@
     "@types/uuid": "^8.0.1",
     "api-spec-converter": "^2.11.1",
     "dredd": "^13.1.1",
+    "extract-zip": "^2.0.1",
     "jest": "^28.1.3",
     "lodash": "^4.17.21",
     "openapi-types": "^1.3.5",
@@ -45,7 +48,7 @@
     "sync-request": "^6.1.0",
     "toposort": "^2.0.2",
     "ts-jest": "^28.0.7",
-    "typescript": "^4.7.4",
+    "typescript": "^4.8.3",
     "uuid": "^8.3.0"
   }
 }
