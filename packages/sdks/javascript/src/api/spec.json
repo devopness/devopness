@@ -5057,7 +5057,10 @@
     "/projects/{project_id}/ssh-keys": {
       "post": {
         "summary": "Create a SSH key and link it to the given project",
-        "operationId": "addSshKeyToProject",
+        "operationId": "addSshKey",
+        "description": {
+          "$ref": "../spec/descriptions/add-ssh-key.md"
+        },
         "tags": [
           "Projects - SSH Keys"
         ],
@@ -5074,17 +5077,57 @@
           {
             "in": "path",
             "name": "project_id",
+            "description": "The ID of the project.",
             "example": 1,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "The project numeric Id"
+            }
           }
         ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SshKey"
+                }
+              }
+            },
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
         "requestBody": {
-          "description": "A JSON object containing SSH key data",
+          "description": "A JSON object containing the resource data",
           "required": true,
           "content": {
             "application/json": {
@@ -5092,29 +5135,6 @@
                 "$ref": "#/components/schemas/SshKeyCreate"
               }
             }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created",
-            "headers": {
-              "X-Devopness-Action-Id": {
-                "schema": {
-                  "type": "integer"
-                },
-                "description": "The dispatched action id of the resource"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SshKey"
-                }
-              }
-            }
-          },
-          "422": {
-            "$ref": "#/components/responses/ValidationError"
           }
         }
       },
@@ -6712,6 +6732,9 @@
       "put": {
         "summary": "Update an existing SSH key",
         "operationId": "updateSshKey",
+        "description": {
+          "$ref": "../spec/descriptions/update-ssh-key.md"
+        },
         "tags": [
           "SSH Keys"
         ],
@@ -6728,17 +6751,50 @@
           {
             "in": "path",
             "name": "ssh_key_id",
-            "example": 1,
+            "description": "The ID of the ssh key.",
+            "example": 3984,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "Numeric ID of the SSH key to be updated"
+            }
           }
         ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
         "requestBody": {
-          "description": "A JSON object containing SSH key data",
+          "description": "A JSON object containing the resource data",
           "required": true,
           "content": {
             "application/json": {
@@ -6746,17 +6802,6 @@
                 "$ref": "#/components/schemas/SshKeyUpdate"
               }
             }
-          }
-        },
-        "responses": {
-          "204": {
-            "$ref": "#/components/responses/NoContent"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "422": {
-            "$ref": "#/components/responses/ValidationError"
           }
         }
       }
@@ -15250,29 +15295,29 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "integer",
             "description": "The Id of the given SSH public key",
-            "example": 1
-          },
-          "project_id": {
             "type": "integer",
-            "description": "The project id that the SSH public key belongs to",
-            "example": 67423019
-          },
-          "name": {
-            "type": "string",
-            "description": "The name entered by the user to uniquely identify the public SSH key",
-            "example": "my-laptop-ssh-key"
+            "example": 643
           },
           "created_by": {
-            "type": "integer",
             "description": "The Id of the user to which the SSH key belongs to",
-            "example": 123
+            "type": "integer",
+            "example": 35131
+          },
+          "project_id": {
+            "description": "The project id that the SSH public key belongs to",
+            "type": "integer",
+            "example": 16642
+          },
+          "name": {
+            "description": "The name entered by the user to uniquely identify the public SSH key",
+            "type": "string",
+            "example": "my-ssh-key"
           },
           "fingerprint": {
-            "type": "string",
             "description": "The hashed fingerprint of the public key",
-            "example": "f1:59:d6:c4:55:97:06:94:e3:f2:82:de:46:e5:27:39"
+            "type": "string",
+            "example": "74:2a:d5:75:8a:9b:64:4c:21:18:54:3f:c5:0a:59:f0"
           },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
@@ -15287,45 +15332,42 @@
             "$ref": "#/components/schemas/ActionRelation"
           },
           "created_at": {
-            "type": "string",
-            "format": "date-time",
             "description": "The date and time when the record was created",
-            "example": "2019-09-25T15:50:48.000000Z"
+            "type": "string",
+            "example": "2022-09-26T15:30:31.000000Z"
           },
           "updated_at": {
-            "type": "string",
-            "format": "date-time",
             "description": "The date and time when the record was last updated",
-            "example": "2019-09-25T13:52:04.000000Z"
+            "type": "string",
+            "example": "2022-09-26T15:30:58.000000Z"
           }
         },
         "required": [
           "id",
+          "created_by",
+          "project_id",
           "name",
           "fingerprint",
           "created_by_user",
           "environments",
           "servers",
-          "last_action"
+          "last_action",
+          "created_at",
+          "updated_at"
         ]
       },
       "SshKeyCreate": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "description": "The Id of the given SSH public key",
-            "example": 1
-          },
           "name": {
-            "type": "string",
-            "description": "The name entered by the user to uniquely identify the public SSH key",
-            "example": "my-laptop-ssh-key"
+            "description": "The ssh key's name. Must not be greater than 60 characters.",
+            "example": "my-ssh-key",
+            "type": "string"
           },
           "public_key": {
-            "type": "string",
-            "description": "The public SSH key to add to your `devopness` account and associate it to the given project",
-            "example": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCu2g54rOA/7OhsILhFncrBAaPe8K0mZilMQugwGpiqQY89Xx0rhcZ/HS2rvmJnGC0nATxOZFsZLfjInpHhq+Y5WumTO0GUrkF215t4QavEU6UMd7VC+mqm2mm4WP+9zkcSSCzy7ZQ1Tuig6IWAB90FNqD7tXRFAqAjlC1LW8V+Efw9AO2mROglpxnoHuH8ZN0a/LQBi5iyeqOLuKZzgUWv4nEIqyYYGslDS1eru2aINwCNahDljXM7f7LcrHlhv5c4y5WSdEYlxSdQQh/ijDcuIIZEv27ivYoY1fse24b2MqD2XdHJpSb1GLnOI76t7+MSmDow3BtSxUNqW0rIUqObFxlMVx9oozHjnn3FkFee+qhQ/9knA7+V9Z7M6SJzDwcGqzJXEpuX/E4AHV04vEI4+RV2vNLhPsHZ2DDQ1fm3ZUtXnWXcIwsLC9WNFdiCOL+WyIYKieQ/CiWfDDIp0xlho83HMp79+BJ4ceFRP/PAdee+TltbtoJR00Ezf8b2nFU="
+            "description": "The public key of the ssh key.",
+            "example": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCAJGoD1B2m718Q6us8k7UbkjwDJQkusFZ1Yg+s13yuEfd+pfEnni1YfWxz67HPCGUYMtdUTnb7Fkc9xgPgj5Fkl6vhQv1mFbL/addJcV9bIYd4e29LMEsojiAyh99JDTtSXMkljlWYuf4ywALswCna2w+70WHSdoDD3p82THDdoB7p9hPXRzRLZVAzw7Y7is/8Sho4V1byXPxxRfTd5HSGqLqi0zdoef8iXZ2wg4uBJStbszu75oSijM9zHgQtUxE0CgQ1iaPHOg8Idxmg8BQoaYD2OmzwxjwW4wmKUZ5F/qOMknrwZ6iUqjqYFJaLZrj6ZMEZ2ydTuS3uNAQO7Zfb",
+            "type": "string"
           },
           "environments": {
             "$ref": "#/components/schemas/EnvironmentLinks"
@@ -15346,64 +15388,67 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "integer",
             "description": "The Id of the given SSH public key",
-            "example": 1
-          },
-          "project_id": {
             "type": "integer",
-            "description": "The project id that the SSH public key belongs to",
-            "example": 67423019
-          },
-          "name": {
-            "type": "string",
-            "description": "The name entered by the user to uniquely identify the public SSH key",
-            "example": "my-laptop-ssh-key"
+            "example": 644
           },
           "created_by": {
-            "type": "integer",
             "description": "The Id of the user to which the SSH key belongs to",
-            "example": 123
+            "type": "integer",
+            "example": 35201
+          },
+          "project_id": {
+            "description": "The project id that the SSH public key belongs to",
+            "type": "integer",
+            "example": 16675
+          },
+          "name": {
+            "description": "The name entered by the user to uniquely identify the public SSH key",
+            "type": "string",
+            "example": "my-ssh-key"
           },
           "fingerprint": {
-            "type": "string",
             "description": "The hashed fingerprint of the public key",
-            "example": "f1:59:d6:c4:55:97:06:94:e3:f2:82:de:46:e5:27:39"
+            "type": "string",
+            "example": "74:2a:d5:75:8a:9b:64:4c:21:18:54:3f:c5:0a:59:f0"
           },
           "last_action": {
             "$ref": "#/components/schemas/ActionRelation"
           },
           "created_at": {
-            "type": "string",
-            "format": "date-time",
             "description": "The date and time when the record was created",
-            "example": "2019-09-25T15:50:48.000000Z"
+            "type": "string",
+            "example": "2022-09-26T15:30:31.000000Z"
           },
           "updated_at": {
-            "type": "string",
-            "format": "date-time",
             "description": "The date and time when the record was last updated",
-            "example": "2019-09-25T13:52:04.000000Z"
+            "type": "string",
+            "example": "2022-09-26T15:30:58.000000Z"
           }
         },
         "required": [
           "id",
+          "created_by",
+          "project_id",
           "name",
-          "fingerprint"
+          "fingerprint",
+          "last_action",
+          "created_at",
+          "updated_at"
         ]
       },
       "SshKeyUpdate": {
         "type": "object",
         "properties": {
           "id": {
-            "type": "integer",
-            "description": "The Id of the SSH key",
-            "example": 1
+            "description": "The ssh key's ID.",
+            "example": 1,
+            "type": "integer"
           },
           "name": {
-            "type": "string",
-            "description": "The name entered by the user to uniquely identify the public SSH key",
-            "example": "my-laptop-ssh-key"
+            "description": "The ssh key's name. Must not be greater than 60 characters.",
+            "example": "my-ssh-key",
+            "type": "string"
           },
           "environments": {
             "$ref": "#/components/schemas/EnvironmentLinks"
