@@ -26,15 +26,15 @@ export class ProjectsSSHKeysApiService extends ApiBaseService {
     /**
      * 
      * @summary Create a SSH key and link it to the given project
-     * @param {number} projectId The project numeric Id
-     * @param {SshKeyCreate} sshKeyCreate A JSON object containing SSH key data
+     * @param {number} projectId The ID of the project.
+     * @param {SshKeyCreate} sshKeyCreate A JSON object containing the resource data
      */
-    public async addSshKeyToProject(projectId: number, sshKeyCreate: SshKeyCreate): Promise<ApiResponse<SshKey>> {
+    public async addSshKey(projectId: number, sshKeyCreate: SshKeyCreate): Promise<ApiResponse<SshKey>> {
         if (projectId === null || projectId === undefined) {
-            throw new ArgumentNullException('projectId', 'addSshKeyToProject');
+            throw new ArgumentNullException('projectId', 'addSshKey');
         }
         if (sshKeyCreate === null || sshKeyCreate === undefined) {
-            throw new ArgumentNullException('sshKeyCreate', 'addSshKeyToProject');
+            throw new ArgumentNullException('sshKeyCreate', 'addSshKey');
         }
         
         let queryString = '';
