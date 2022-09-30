@@ -14,19 +14,19 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
-import { UserTeamInvitation } from '../../generated/models';
+import { Invitation } from '../../generated/models';
 
 /**
- * UsersTeamsApiService - Auto-generated
+ * UsersTeamInvitationsApiService - Auto-generated
  */
-export class UsersTeamsApiService extends ApiBaseService {
+export class UsersTeamInvitationsApiService extends ApiBaseService {
     /**
      * 
      * @summary Returns a list of all pending team invitations for the authenticated user
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */
-    public async listUserTeamInvitations(page?: number, perPage?: number): Promise<ApiResponse<Array<UserTeamInvitation>>> {
+    public async listUserTeamInvitations(page?: number, perPage?: number): Promise<ApiResponse<Array<Invitation>>> {
         
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
@@ -40,7 +40,7 @@ export class UsersTeamsApiService extends ApiBaseService {
 
         const requestUrl = '/users/teams/invitations' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<UserTeamInvitation>>(requestUrl);
+        const response = await this.get <Array<Invitation>>(requestUrl);
         return new ApiResponse(response);
     }
 }

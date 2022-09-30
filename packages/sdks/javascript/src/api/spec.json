@@ -7870,7 +7870,7 @@
         "summary": "Returns a list of all pending team invitations for the authenticated user",
         "operationId": "listUserTeamInvitations",
         "tags": [
-          "Users - Teams"
+          "Users - Team Invitations"
         ],
         "parameters": [
           {
@@ -8552,7 +8552,7 @@
       "name": "Users"
     },
     {
-      "name": "Users - Teams"
+      "name": "Users - Team Invitations"
     }
   ],
   "x-tagGroups": [
@@ -8721,7 +8721,7 @@
       "name": "Users",
       "tags": [
         "Users",
-        "Users - Teams"
+        "Users - Team Invitations"
       ]
     }
   ],
@@ -12753,6 +12753,9 @@
           "team": {
             "$ref": "#/components/schemas/TeamRelation"
           },
+          "project": {
+            "$ref": "#/components/schemas/ProjectRelation"
+          },
           "expires_at": {
             "type": "string",
             "format": "date-time",
@@ -16067,83 +16070,10 @@
           "refresh_token"
         ]
       },
-      "UserTeamInvitation": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "The unique UUID of the given invitation",
-            "example": "e57996b5-3cf3-4cae-a925-e2e2ada52732"
-          },
-          "email": {
-            "type": "string",
-            "description": "The email of the user that has been invited to team",
-            "example": "invited.user@email.com"
-          },
-          "accepted_from_ip": {
-            "type": "string",
-            "nullable": true,
-            "description": "The IP of the user who accepted the invitation",
-            "example": "172.17.0.24"
-          },
-          "expires_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the invitation will expire",
-            "example": "2019-09-26T15:50:48.000000Z"
-          },
-          "accepted_at": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true,
-            "description": "The date and time when the invitation was accepted",
-            "example": "2019-09-26T13:22:37.000000Z"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the record was created",
-            "example": "2019-09-25T15:50:48.000000Z"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the record was last updated",
-            "example": "2019-09-25T13:52:04.000000Z"
-          },
-          "status": {
-            "$ref": "#/components/schemas/InvitationStatus"
-          },
-          "status_human_readable": {
-            "type": "string",
-            "description": "Human readable version of the invitation status",
-            "example": "Pending invitation"
-          },
-          "team": {
-            "$ref": "#/components/schemas/TeamRelation"
-          },
-          "project": {
-            "$ref": "#/components/schemas/ProjectRelation"
-          }
-        },
-        "required": [
-          "id",
-          "email",
-          "accepted_from_ip",
-          "expires_at",
-          "accepted_at",
-          "created_at",
-          "updated_at",
-          "status",
-          "status_human_readable",
-          "team",
-          "project"
-        ]
-      },
       "UserTeamInvitations": {
         "type": "array",
         "items": {
-          "$ref": "#/components/schemas/UserTeamInvitation"
+          "$ref": "#/components/schemas/Invitation"
         }
       },
       "UserTokens": {

@@ -1,6 +1,6 @@
 import { UsersApiService } from '../api/generated/apis/users-api';
-import { UsersTeamsApiService } from '../api/generated/apis/users-teams-api';
+import { UsersTeamInvitationsApiService } from '../api/generated/apis/users-team-invitations-api';
 
 export class UserService extends UsersApiService {
-    public teams = new UsersTeamsApiService();
+    public teamInvitations = new UsersTeamInvitationsApiService();
 }
