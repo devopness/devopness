@@ -27,23 +27,23 @@ export interface SshKeyRelation {
      */
     id: number;
     /**
+     * The Id of the user to which the SSH key belongs to
+     * @type {number}
+     * @memberof SshKeyRelation
+     */
+    created_by: number;
+    /**
      * The project id that the SSH public key belongs to
      * @type {number}
      * @memberof SshKeyRelation
      */
-    project_id?: number;
+    project_id: number;
     /**
      * The name entered by the user to uniquely identify the public SSH key
      * @type {string}
      * @memberof SshKeyRelation
      */
     name: string;
-    /**
-     * The Id of the user to which the SSH key belongs to
-     * @type {number}
-     * @memberof SshKeyRelation
-     */
-    created_by?: number;
     /**
      * The hashed fingerprint of the public key
      * @type {string}
@@ -55,18 +55,18 @@ export interface SshKeyRelation {
      * @type {ActionRelation}
      * @memberof SshKeyRelation
      */
-    last_action?: ActionRelation | null;
+    last_action: ActionRelation | null;
     /**
      * The date and time when the record was created
      * @type {string}
      * @memberof SshKeyRelation
      */
-    created_at?: string;
+    created_at: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof SshKeyRelation
      */
-    updated_at?: string;
+    updated_at: string;
 }
 

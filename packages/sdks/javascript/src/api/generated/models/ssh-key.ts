@@ -30,23 +30,23 @@ export interface SshKey {
      */
     id: number;
     /**
+     * The Id of the user to which the SSH key belongs to
+     * @type {number}
+     * @memberof SshKey
+     */
+    created_by: number;
+    /**
      * The project id that the SSH public key belongs to
      * @type {number}
      * @memberof SshKey
      */
-    project_id?: number;
+    project_id: number;
     /**
      * The name entered by the user to uniquely identify the public SSH key
      * @type {string}
      * @memberof SshKey
      */
     name: string;
-    /**
-     * The Id of the user to which the SSH key belongs to
-     * @type {number}
-     * @memberof SshKey
-     */
-    created_by?: number;
     /**
      * The hashed fingerprint of the public key
      * @type {string}
@@ -82,12 +82,12 @@ export interface SshKey {
      * @type {string}
      * @memberof SshKey
      */
-    created_at?: string;
+    created_at: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof SshKey
      */
-    updated_at?: string;
+    updated_at: string;
 }
 

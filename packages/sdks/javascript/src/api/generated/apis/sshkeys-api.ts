@@ -61,8 +61,8 @@ export class SSHKeysApiService extends ApiBaseService {
     /**
      * 
      * @summary Update an existing SSH key
-     * @param {number} sshKeyId Numeric ID of the SSH key to be updated
-     * @param {SshKeyUpdate} sshKeyUpdate A JSON object containing SSH key data
+     * @param {number} sshKeyId The ID of the ssh key.
+     * @param {SshKeyUpdate} sshKeyUpdate A JSON object containing the resource data
      */
     public async updateSshKey(sshKeyId: number, sshKeyUpdate: SshKeyUpdate): Promise<ApiResponse<void>> {
         if (sshKeyId === null || sshKeyId === undefined) {
