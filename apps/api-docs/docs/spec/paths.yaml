@@ -409,6 +409,9 @@
     $ref: ./endpoints/users/paths/users-account-verify.yaml
   post:
     $ref: ./endpoints/users/paths/users-account-verify-activate.yaml
+/users/teams/invitations:
+  get:
+    $ref: ./endpoints/users/paths/users-teams-invitations-list.yaml
 /users/login:
   post:
     $ref: ./endpoints/users/paths/login.yaml

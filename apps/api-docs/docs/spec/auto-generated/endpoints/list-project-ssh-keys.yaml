@@ -31,6 +31,15 @@ responses:
     content:
       application/json:
         schema:
-          $ref: '#/components/schemas/SshKeys'
+          $ref: '#/components/schemas/SshKeyList'
+    headers:
+      Link:
+        schema:
+          type: string
+        description: 'Link header with `first`, `last`, `previous` and `next` page''s links'
   403:
-    $ref: '#/components/responses/Forbidden'
+    description: Forbidden/Unauthorized
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ApiError'

@@ -25,6 +25,8 @@ properties:
     $ref: '#/components/schemas/UserRelation'
   team:
     $ref: '#/components/schemas/TeamRelation'
+  project:
+    $ref: '#/components/schemas/ProjectRelation'
   expires_at:
     type: string
     format: date-time

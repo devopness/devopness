@@ -242,6 +242,7 @@ tags:
   - name: Teams - Invitations
   - name: Teams - Members
   - name: Users
+  - name: Users - Team Invitations
 
 x-tagGroups:
   - name: API
@@ -345,6 +346,7 @@ x-tagGroups:
   - name: Users
     tags:
       - Users
+      - Users - Team Invitations
 
 components:
   securitySchemes:

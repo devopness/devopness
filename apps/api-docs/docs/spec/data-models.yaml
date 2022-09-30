@@ -498,6 +498,8 @@ UserPasswordSendResetLink:
   $ref: ./endpoints/users/schemas/user-password-send-reset-link.yaml
 UserRefreshTokenCreate:
   $ref: ./endpoints/users/schemas/user-refresh-token-create.yaml
+UserTeamInvitations:
+  $ref: ./endpoints/users/schemas/user-team-invitation-list.yaml
 UserTokens:
   $ref: ./endpoints/users/schemas/user-tokens.yaml
 UserUpdate:

@@ -29,4 +29,8 @@ responses:
         schema:
           $ref: '#/components/schemas/SshKey'
   403:
-    $ref: '#/components/responses/Forbidden'
+    description: Forbidden/Unauthorized
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ApiError'

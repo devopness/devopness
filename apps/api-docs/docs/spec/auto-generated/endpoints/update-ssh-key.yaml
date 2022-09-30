@@ -23,11 +23,24 @@ parameters:
       minimum: 1
 responses:
   204:
-    $ref: '#/components/responses/NoContent'
+    description: 'No Content'
+    headers:
+      X-Devopness-Action-Id:
+        schema:
+          type: integer
+        description: 'The dispatched action ID of the resource'
   403:
-    $ref: '#/components/responses/Forbidden'
+    description: Forbidden/Unauthorized
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ApiError'
   422:
-    $ref: '#/components/responses/ValidationError'
+    description: 'Unprocessable Entity/Validation Error'
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ApiError'
 requestBody:
   description: 'A JSON object containing the resource data'
   required: true

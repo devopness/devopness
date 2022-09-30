@@ -22,13 +22,13 @@ properties:
     type: string
     example: '74:2a:d5:75:8a:9b:64:4c:21:18:54:3f:c5:0a:59:f0'
   created_by_user:
-    $ref: '#/components/schemas/PropertyCreatedByUser'
+    $ref: '#/components/schemas/UserRelation'
   environments:
-    $ref: '#/components/schemas/PropertyEnvironmentsList'
+    $ref: '#/components/schemas/EnvironmentList'
   servers:
-    $ref: '#/components/schemas/PropertyServersList'
+    $ref: '#/components/schemas/ServerList'
   last_action:
-    $ref: '#/components/schemas/PropertyLastAction'
+    $ref: '#/components/schemas/ActionRelation'
   created_at:
     description: 'The date and time when the record was created'
     type: string
