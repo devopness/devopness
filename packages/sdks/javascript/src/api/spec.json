@@ -7865,6 +7865,52 @@
         }
       }
     },
+    "/users/teams/invitations": {
+      "get": {
+        "summary": "Returns a list of all pending team invitations for the authenticated user",
+        "operationId": "listUserTeamInvitations",
+        "tags": [
+          "Users - Team Invitations"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserTeamInvitations"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/users/login": {
       "post": {
         "summary": "Login/create a new token for the given credentials",
@@ -8504,6 +8550,9 @@
     },
     {
       "name": "Users"
+    },
+    {
+      "name": "Users - Team Invitations"
     }
   ],
   "x-tagGroups": [
@@ -8671,7 +8720,8 @@
     {
       "name": "Users",
       "tags": [
-        "Users"
+        "Users",
+        "Users - Team Invitations"
       ]
     }
   ],
@@ -12703,6 +12753,9 @@
           "team": {
             "$ref": "#/components/schemas/TeamRelation"
           },
+          "project": {
+            "$ref": "#/components/schemas/ProjectRelation"
+          },
           "expires_at": {
             "type": "string",
             "format": "date-time",
@@ -16016,6 +16069,12 @@
         "required": [
           "refresh_token"
         ]
+      },
+      "UserTeamInvitations": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Invitation"
+        }
       },
       "UserTokens": {
         "type": "object",
