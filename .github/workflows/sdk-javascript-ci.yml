@@ -1,6 +1,6 @@
 name: SDK JavaScript - CI
 on: # rebuild any PRs and main branch changes
-  pull_request:
+  pull_request_target:
     paths:
       - packages/sdks/javascript/**
   push:
