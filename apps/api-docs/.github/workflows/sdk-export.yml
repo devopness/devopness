@@ -1,0 +1,96 @@
+name: SDK Export
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  sdk-open-pr:
+    name: Open SDK pull request
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build OpenAPI spec
+        run: npm run api-build-spec
+
+      - name: Checkout devopness/devopness repository
+        uses: actions/checkout@v3
+        with:
+          repository: devopness/devopness
+          ref: main
+          path: devopness
+          token: ${{ secrets.DEVOPNESS_AUTOMATIONS_SDK_TOKEN }}
+
+      - name: Generate branch and pull request names
+        id: branch
+        run: |
+          echo ::set-output name=pr_name::$(date +'feat: %Y-%m-%d %H:%M - Update API specification')
+          echo ::set-output name=branch_name::feat/auto-update-api-specification
+
+      - name: Checkout to auto generated branch
+        id: git_config
+        working-directory: ./devopness
+        run: |
+          git config user.name devopness-automations
+          git config user.email automations@devopness.com
+
+          git fetch
+          if git checkout "${{ steps.branch.outputs.branch_name }}" 2> /dev/null; then
+            echo ::set-output name=pr_exists::true
+          else
+            git checkout -b "${{ steps.branch.outputs.branch_name }}"
+            echo ::set-output name=pr_exists::false
+          fi
+
+      - name: Convert OpenAPI spec to JSON
+        run: |
+          yes | npx yaml-convert docs/build/api-docs-output.yaml \
+            --pretty \
+            --output ./devopness/packages/sdks/javascript/src/api/spec.json
+
+      - name: Install SDK-JS dependencies
+        working-directory: ./devopness/packages/sdks/javascript
+        run: npm ci
+
+      - name: Commit SDK-JS modifications
+        id: git
+        working-directory: ./devopness/packages/sdks/javascript
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "File 'spec.json' is up to date. Nothing to commit!"
+            echo ::set-output name=has_changes::false
+            exit 0
+          fi
+
+          git add src/api/spec.json
+          git commit -m "feat: update 'spec.json' file"
+
+          npm run build-api-models
+          if [ -n "$(git status --porcelain)" ]; then
+            git add .
+            git commit -m "feat: update auto generated models"
+          fi
+
+          git push origin "${{ steps.branch.outputs.branch_name }}"
+          echo ::set-output name=has_changes::true
+
+      - name: Create SDK-JS pull request
+        uses: actions/github-script@v6
+        if: |
+          steps.git.outputs.has_changes == 'true'
+          && steps.git_config.outputs.pr_exists == 'false'
+        with:
+          github-token: ${{ secrets.DEVOPNESS_AUTOMATIONS_SDK_TOKEN }}
+          script: |
+            github.rest.pulls.create({
+              owner: 'devopness',
+              repo: 'devopness',
+              title: '${{ steps.branch.outputs.pr_name }}',
+              head: '${{ steps.branch.outputs.branch_name }}',
+              base: 'main',
+              body: 'This PR is auto generated to update `spec.json` file and auto generated models.',
+            });
