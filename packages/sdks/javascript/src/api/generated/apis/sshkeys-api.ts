@@ -25,7 +25,7 @@ export class SSHKeysApiService extends ApiBaseService {
     /**
      * 
      * @summary Delete a given SSH key
-     * @param {number} sshKeyId The ID of the ssh key.
+     * @param {number} sshKeyId Numeric ID of the SSH key to be deleted
      */
     public async deleteSshKey(sshKeyId: number): Promise<ApiResponse<void>> {
         if (sshKeyId === null || sshKeyId === undefined) {
@@ -61,8 +61,8 @@ export class SSHKeysApiService extends ApiBaseService {
     /**
      * 
      * @summary Update an existing SSH key
-     * @param {number} sshKeyId The ID of the ssh key.
-     * @param {SshKeyUpdate} sshKeyUpdate A JSON object containing the resource data
+     * @param {number} sshKeyId Numeric ID of the SSH key to be updated
+     * @param {SshKeyUpdate} sshKeyUpdate A JSON object containing SSH key data
      */
     public async updateSshKey(sshKeyId: number, sshKeyUpdate: SshKeyUpdate): Promise<ApiResponse<void>> {
         if (sshKeyId === null || sshKeyId === undefined) {

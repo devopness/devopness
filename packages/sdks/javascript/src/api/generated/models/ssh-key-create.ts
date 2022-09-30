@@ -21,13 +21,19 @@ import { EnvironmentLinkItem } from './environment-link-item';
  */
 export interface SshKeyCreate {
     /**
-     * The ssh key\'s name. Must not be greater than 60 characters.
+     * The Id of the given SSH public key
+     * @type {number}
+     * @memberof SshKeyCreate
+     */
+    id?: number;
+    /**
+     * The name entered by the user to uniquely identify the public SSH key
      * @type {string}
      * @memberof SshKeyCreate
      */
     name: string;
     /**
-     * The public key of the ssh key.
+     * The public SSH key to add to your `devopness` account and associate it to the given project
      * @type {string}
      * @memberof SshKeyCreate
      */

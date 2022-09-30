@@ -21,13 +21,13 @@ import { EnvironmentLinkItem } from './environment-link-item';
  */
 export interface SshKeyUpdate {
     /**
-     * The ssh key\'s ID.
+     * The Id of the SSH key
      * @type {number}
      * @memberof SshKeyUpdate
      */
     id: number;
     /**
-     * The ssh key\'s name. Must not be greater than 60 characters.
+     * The name entered by the user to uniquely identify the public SSH key
      * @type {string}
      * @memberof SshKeyUpdate
      */

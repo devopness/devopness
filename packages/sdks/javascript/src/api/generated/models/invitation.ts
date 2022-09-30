@@ -13,6 +13,7 @@
 
 
 import { InvitationStatus } from './invitation-status';
+import { ProjectRelation } from './project-relation';
 import { TeamRelation } from './team-relation';
 import { UserRelation } from './user-relation';
 
@@ -70,6 +71,12 @@ export interface Invitation {
      * @memberof Invitation
      */
     team: TeamRelation;
+    /**
+     * 
+     * @type {ProjectRelation}
+     * @memberof Invitation
+     */
+    project?: ProjectRelation;
     /**
      * The date and time when the invitation will expire
      * @type {string}
