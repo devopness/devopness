@@ -27,7 +27,11 @@ jobs:
         os: [ubuntu-latest]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.head_ref }}
+
       - name: Use node ${{ matrix.node }}
         uses: actions/setup-node@v1
         with:
@@ -47,6 +51,5 @@ jobs:
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          repository: ${{ github.event.pull_request.head.repo.full_name }}
           commit_message: "docs: Update auto generated models"
           file_pattern: "packages/sdks/javascript/*"
