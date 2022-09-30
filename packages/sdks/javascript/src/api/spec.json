@@ -6695,6 +6695,9 @@
       "delete": {
         "summary": "Delete a given SSH key",
         "operationId": "deleteSshKey",
+        "description": {
+          "$ref": "../spec/descriptions/delete-ssh-key.md"
+        },
         "tags": [
           "SSH Keys"
         ],
@@ -6711,21 +6714,36 @@
           {
             "in": "path",
             "name": "ssh_key_id",
-            "example": 1,
+            "description": "The ID of the ssh key.",
+            "example": 3984,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "Numeric ID of the SSH key to be deleted"
+            }
           }
         ],
         "responses": {
           "204": {
-            "$ref": "#/components/responses/NoContentDispatchAction"
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
           },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
           }
         }
       },
