@@ -25,7 +25,7 @@ export class SSHKeysApiService extends ApiBaseService {
     /**
      * 
      * @summary Delete a given SSH key
-     * @param {number} sshKeyId Numeric ID of the SSH key to be deleted
+     * @param {number} sshKeyId The ID of the ssh key.
      */
     public async deleteSshKey(sshKeyId: number): Promise<ApiResponse<void>> {
         if (sshKeyId === null || sshKeyId === undefined) {
