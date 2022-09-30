@@ -26,7 +26,7 @@
     "/actions": {
       "get": {
         "summary": "Return a list of all actions belonging to current user",
-        "operationId": "listActions_y",
+        "operationId": "listActions_z",
         "tags": [
           "Actions"
         ],
