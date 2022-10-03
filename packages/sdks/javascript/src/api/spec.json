@@ -2627,7 +2627,7 @@
         }
       }
     },
-    "/invitations/{invitation_id}/accept/{token}": {
+    "/invitations/{invitation_id}/accept": {
       "post": {
         "summary": "Accept a pending invitation",
         "operationId": "acceptInvitation",
@@ -2653,16 +2653,6 @@
             },
             "required": true,
             "description": "UUID of the invitation to be accepted"
-          },
-          {
-            "in": "path",
-            "name": "token",
-            "example": "XCuN00ZVffTHFCu5z3CzAK3YwzSuCPocN0cCFURO",
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "description": "The token of the invitation to be accepted"
           }
         ],
         "responses": {
@@ -7493,7 +7483,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Invitations"
+                  "$ref": "#/components/schemas/TeamInvitations"
                 }
               }
             }
@@ -7534,7 +7524,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/InvitationCreate"
+                "$ref": "#/components/schemas/TeamInvitationCreate"
               }
             }
           }
@@ -7545,7 +7535,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Invitation"
+                  "$ref": "#/components/schemas/TeamInvitation"
                 }
               }
             }
@@ -12717,109 +12707,6 @@
           "updated_at"
         ]
       },
-      "Invitation": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "The unique UUID of the given invitation",
-            "example": "e57996b5-3cf3-4cae-a925-e2e2ada52732"
-          },
-          "status": {
-            "$ref": "#/components/schemas/InvitationStatus"
-          },
-          "status_human_readable": {
-            "type": "string",
-            "description": "Human readable version of the invitation status",
-            "example": "Pending invitation"
-          },
-          "email": {
-            "type": "string",
-            "description": "The email of the user that has been invited to team",
-            "example": "invited.user@email.com"
-          },
-          "accepted_from_ip": {
-            "type": "string",
-            "nullable": true,
-            "description": "The IP of the user who accepted the invitation",
-            "example": "172.17.0.24"
-          },
-          "created_by_user": {
-            "$ref": "#/components/schemas/UserRelation"
-          },
-          "user": {
-            "$ref": "#/components/schemas/UserRelation"
-          },
-          "team": {
-            "$ref": "#/components/schemas/TeamRelation"
-          },
-          "project": {
-            "$ref": "#/components/schemas/ProjectRelation"
-          },
-          "expires_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the invitation will expire",
-            "example": "2019-09-26T15:50:48.000000Z"
-          },
-          "accepted_at": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true,
-            "description": "The date and time when the invitation was accepted",
-            "example": "2019-09-26T13:22:37.000000Z"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the record was created",
-            "example": "2019-09-25T15:50:48.000000Z"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the record was last updated",
-            "example": "2019-09-25T13:52:04.000000Z"
-          }
-        },
-        "required": [
-          "id",
-          "status",
-          "email",
-          "created_by_user",
-          "user",
-          "team"
-        ]
-      },
-      "Invitations": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Invitation"
-        }
-      },
-      "InvitationCreate": {
-        "type": "object",
-        "properties": {
-          "email": {
-            "type": "string",
-            "description": "The user email to send the invitation",
-            "example": "invited.user@email.com"
-          }
-        },
-        "required": [
-          "email"
-        ]
-      },
-      "InvitationStatus": {
-        "type": "string",
-        "description": "The status of the invitation",
-        "example": "accepted",
-        "enum": [
-          "accepted",
-          "expired",
-          "pending"
-        ]
-      },
       "Language": {
         "type": "string",
         "nullable": true,
@@ -15798,6 +15685,109 @@
           "name"
         ]
       },
+      "TeamInvitation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique UUID of the given invitation",
+            "example": "e57996b5-3cf3-4cae-a925-e2e2ada52732"
+          },
+          "status": {
+            "$ref": "#/components/schemas/TeamInvitationStatus"
+          },
+          "status_human_readable": {
+            "type": "string",
+            "description": "Human readable version of the invitation status",
+            "example": "Pending invitation"
+          },
+          "email": {
+            "type": "string",
+            "description": "The email of the user that has been invited to team",
+            "example": "invited.user@email.com"
+          },
+          "accepted_from_ip": {
+            "type": "string",
+            "nullable": true,
+            "description": "The IP of the user who accepted the invitation",
+            "example": "172.17.0.24"
+          },
+          "created_by_user": {
+            "$ref": "#/components/schemas/UserRelation"
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserRelation"
+          },
+          "team": {
+            "$ref": "#/components/schemas/TeamRelation"
+          },
+          "project": {
+            "$ref": "#/components/schemas/ProjectRelation"
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the invitation will expire",
+            "example": "2019-09-26T15:50:48.000000Z"
+          },
+          "accepted_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "description": "The date and time when the invitation was accepted",
+            "example": "2019-09-26T13:22:37.000000Z"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25T13:52:04.000000Z"
+          }
+        },
+        "required": [
+          "id",
+          "status",
+          "email",
+          "created_by_user",
+          "user",
+          "team"
+        ]
+      },
+      "TeamInvitations": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/TeamInvitation"
+        }
+      },
+      "TeamInvitationCreate": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "The user email to send the invitation",
+            "example": "invited.user@email.com"
+          }
+        },
+        "required": [
+          "email"
+        ]
+      },
+      "TeamInvitationStatus": {
+        "type": "string",
+        "description": "The status of the invitation",
+        "example": "accepted",
+        "enum": [
+          "accepted",
+          "expired",
+          "pending"
+        ]
+      },
       "TeamRelation": {
         "type": "object",
         "properties": {
@@ -16073,7 +16063,7 @@
       "UserTeamInvitations": {
         "type": "array",
         "items": {
-          "$ref": "#/components/schemas/Invitation"
+          "$ref": "#/components/schemas/TeamInvitation"
         }
       },
       "UserTokens": {
