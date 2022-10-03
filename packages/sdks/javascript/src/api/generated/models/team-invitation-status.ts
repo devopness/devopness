@@ -18,7 +18,7 @@
  * @export
  * @enum {string}
  */
-export enum InvitationStatus {
+export enum TeamInvitationStatus {
     Accepted = 'accepted',
     Expired = 'expired',
     Pending = 'pending'
