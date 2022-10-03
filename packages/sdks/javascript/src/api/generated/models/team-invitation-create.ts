@@ -16,13 +16,13 @@
 /**
  * 
  * @export
- * @interface InvitationCreate
+ * @interface TeamInvitationCreate
  */
-export interface InvitationCreate {
+export interface TeamInvitationCreate {
     /**
      * The user email to send the invitation
      * @type {string}
-     * @memberof InvitationCreate
+     * @memberof TeamInvitationCreate
      */
     email: string;
 }

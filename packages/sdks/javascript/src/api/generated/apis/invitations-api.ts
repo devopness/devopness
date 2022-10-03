@@ -24,21 +24,17 @@ export class InvitationsApiService extends ApiBaseService {
      * 
      * @summary Accept a pending invitation
      * @param {string} invitationId UUID of the invitation to be accepted
-     * @param {string} token The token of the invitation to be accepted
      */
-    public async acceptInvitation(invitationId: string, token: string): Promise<ApiResponse<void>> {
+    public async acceptInvitation(invitationId: string): Promise<ApiResponse<void>> {
         if (invitationId === null || invitationId === undefined) {
             throw new ArgumentNullException('invitationId', 'acceptInvitation');
-        }
-        if (token === null || token === undefined) {
-            throw new ArgumentNullException('token', 'acceptInvitation');
         }
         
         let queryString = '';
 
-        const requestUrl = '/invitations/{invitation_id}/accept/{token}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/invitations/{invitation_id}/accept' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <void>(requestUrl.replace(`{${"invitation_id"}}`, encodeURIComponent(String(invitationId))).replace(`{${"token"}}`, encodeURIComponent(String(token))));
+        const response = await this.post <void>(requestUrl.replace(`{${"invitation_id"}}`, encodeURIComponent(String(invitationId))));
         return new ApiResponse(response);
     }
 }
