@@ -15,8 +15,8 @@ import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
-import { Invitation } from '../../generated/models';
-import { InvitationCreate } from '../../generated/models';
+import { TeamInvitation } from '../../generated/models';
+import { TeamInvitationCreate } from '../../generated/models';
 
 /**
  * TeamsInvitationsApiService - Auto-generated
@@ -29,7 +29,7 @@ export class TeamsInvitationsApiService extends ApiBaseService {
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */
-    public async listTeamInvitations(teamId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<Invitation>>> {
+    public async listTeamInvitations(teamId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<TeamInvitation>>> {
         if (teamId === null || teamId === undefined) {
             throw new ArgumentNullException('teamId', 'listTeamInvitations');
         }
@@ -46,7 +46,7 @@ export class TeamsInvitationsApiService extends ApiBaseService {
 
         const requestUrl = '/teams/{team_id}/invitations' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<Invitation>>(requestUrl.replace(`{${"team_id"}}`, encodeURIComponent(String(teamId))));
+        const response = await this.get <Array<TeamInvitation>>(requestUrl.replace(`{${"team_id"}}`, encodeURIComponent(String(teamId))));
         return new ApiResponse(response);
     }
 
@@ -54,21 +54,21 @@ export class TeamsInvitationsApiService extends ApiBaseService {
      * 
      * @summary Send invitation to user email to participate to a team
      * @param {number} teamId Numeric ID of the team to invite an user
-     * @param {InvitationCreate} invitationCreate A JSON object containing the email to send the invitation
+     * @param {TeamInvitationCreate} teamInvitationCreate A JSON object containing the email to send the invitation
      */
-    public async sendTeamInvitation(teamId: number, invitationCreate: InvitationCreate): Promise<ApiResponse<Invitation>> {
+    public async sendTeamInvitation(teamId: number, teamInvitationCreate: TeamInvitationCreate): Promise<ApiResponse<TeamInvitation>> {
         if (teamId === null || teamId === undefined) {
             throw new ArgumentNullException('teamId', 'sendTeamInvitation');
         }
-        if (invitationCreate === null || invitationCreate === undefined) {
-            throw new ArgumentNullException('invitationCreate', 'sendTeamInvitation');
+        if (teamInvitationCreate === null || teamInvitationCreate === undefined) {
+            throw new ArgumentNullException('teamInvitationCreate', 'sendTeamInvitation');
         }
         
         let queryString = '';
 
         const requestUrl = '/teams/{team_id}/invitations' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <Invitation, InvitationCreate>(requestUrl.replace(`{${"team_id"}}`, encodeURIComponent(String(teamId))), invitationCreate);
+        const response = await this.post <TeamInvitation, TeamInvitationCreate>(requestUrl.replace(`{${"team_id"}}`, encodeURIComponent(String(teamId))), teamInvitationCreate);
         return new ApiResponse(response);
     }
 }
