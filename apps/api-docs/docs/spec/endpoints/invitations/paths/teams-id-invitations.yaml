@@ -20,14 +20,14 @@ requestBody:
   content:
     application/json:
       schema:
-        $ref: '#/components/schemas/InvitationCreate'
+        $ref: '#/components/schemas/TeamInvitationCreate'
 responses:
   201:
     description: 'Created'
     content:
       application/json:
         schema:
-          $ref: '#/components/schemas/Invitation'
+          $ref: '#/components/schemas/TeamInvitation'
   403:
     $ref: '#/components/responses/Forbidden'
   422:

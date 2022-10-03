@@ -13,13 +13,6 @@ parameters:
       type: string
     required: true
     description: UUID of the invitation to be accepted
-  - in: path
-    name: token
-    example: XCuN00ZVffTHFCu5z3CzAK3YwzSuCPocN0cCFURO
-    schema:
-      type: string
-    required: true
-    description: The token of the invitation to be accepted
 responses:
   204:
     $ref: '#/components/responses/NoContent'

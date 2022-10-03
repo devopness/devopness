@@ -5,7 +5,7 @@ properties:
     description: The unique UUID of the given invitation
     example: e57996b5-3cf3-4cae-a925-e2e2ada52732
   status:
-    $ref: '#/components/schemas/InvitationStatus'
+    $ref: '#/components/schemas/TeamInvitationStatus'
   status_human_readable:
     type: string
     description: Human readable version of the invitation status
