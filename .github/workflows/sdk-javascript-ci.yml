@@ -1,0 +1,42 @@
+name: SDK JavaScript - CI
+on: # rebuild any PRs and main branch changes
+  pull_request:
+    paths:
+      - packages/sdks/javascript/**
+  push:
+    branches:
+      - main
+
+defaults:
+  run:
+    working-directory: packages/sdks/javascript
+
+jobs:
+  build:
+    name: Build SDK-JS on Node.js ${{ matrix.node }} and ${{ matrix.os }}
+
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        node: [16]
+        os: [ubuntu-latest]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use node ${{ matrix.node }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+          registry-url: https://registry.npmjs.org
+      - name: install
+        run: npm install
+
+      - name: lint
+        run: npm run lint
+
+      - name: build
+        run: npm run build
+
+      - name: test
+        run: npm test

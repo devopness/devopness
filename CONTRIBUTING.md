@@ -15,7 +15,7 @@ By participating in this project you agree to abide by its terms.
 Before you create a new Issue:
 
 1. Please search existing issues to ensure the same issue hasn't been reported before and avoid opening a duplicate.
-2. If it is a bug report, include the steps needed to reproduce the issue and please create a reproducible test case on [codesandbox.io], [jsfiddle.net] or [runkit.com](https://runkit.com/). Example: https://runkit.com/gr2m/5aa034f1440b420012a6eebf
+2. If it is a bug report, include the steps needed to reproduce the issue and please create a reproducible test case on [codesandbox.io](https://codesandbox.io/), [jsfiddle.net](https://jsfiddle.net/) or [runkit.com](https://runkit.com/). Example: https://runkit.com/gr2m/5aa034f1440b420012a6eebf
 3. If it is a feature request, please share the motivation for the new feature and how you would implement it.
 4. Please include links to the corresponding GitHub documentation.
 
@@ -27,7 +27,7 @@ If you want to submit a bug fix or new feature, make sure that all tests are pas
 
 - Keep git commit messages clear and appropriate. Ideally, follow commit conventions described below.
 - Push your changes to your topic branch in your fork of the repo.
-- Submit a pull request from your topic branch to the master branch in the `@devponess/sdk-js` repository.
+- Submit a pull request from your topic branch to the main branch in the `@devopness/devopness` repository.
 - Be sure to tag any issues your pull request is taking care of / contributing to. \* Adding "Closes #123" to a pull request description will auto close the issue once the pull request is merged in.
 - Ensure the pull request passes all `checks`. If not, please fix the code until you get a green check mark on the PR.
 
