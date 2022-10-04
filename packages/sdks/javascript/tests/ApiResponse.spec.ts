@@ -1,4 +1,4 @@
-import { AxiosResponse } from 'axios';
+import { AxiosResponse, AxiosRequestConfig } from 'axios';
 import { ApiResponse } from '../src/common/ApiResponse';
 
 test('ApiResponse has the correct pageCount value', () => {
@@ -8,6 +8,8 @@ test('ApiResponse has the correct pageCount value', () => {
     const axiosResponse = {
         data: null,
         status: 200,
+        statusText: 'OK',
+        config: {} as AxiosRequestConfig,
         headers: {
             link: `<${baseUrl}?page=1>; rel="first", <${baseUrl}?page=${expectedPageCount}>; rel="last"`,
         },
@@ -22,6 +24,8 @@ test('ApiResponse do not fail if no header is present', () => {
     const axiosResponse = {
         data: null,
         status: 200,
+        statusText: 'OK',
+        config: {} as AxiosRequestConfig,
         headers: {},
     } as AxiosResponse<null>;
 
@@ -35,6 +39,8 @@ test('If no have last link, expect pageCount to be 1', () => {
     const axiosResponse = {
         data: null,
         status: 200,
+        statusText: 'OK',
+        config: {} as AxiosRequestConfig,
         headers: {
             link: `<https://test.com/path?page=1>; rel="first"`,
         },
@@ -60,8 +66,10 @@ test('ApiResponse has the correct action id value', () => {
     const axiosResponse = {
         data: null,
         status: 200,
+        statusText: 'OK',
+        config: {} as AxiosRequestConfig,
         headers: {
-            'x-devopness-action-id': 54321,
+            'x-devopness-action-id': '54321',
         },
     } as AxiosResponse<null>;
 
