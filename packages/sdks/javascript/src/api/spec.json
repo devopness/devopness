@@ -8418,9 +8418,6 @@
       "name": "Environments - Daemons"
     },
     {
-      "name": "Environments - Invitations"
-    },
-    {
       "name": "Environments - Members"
     },
     {
@@ -8702,7 +8699,6 @@
         "Teams - Invitations",
         "Teams - Members",
         "Invitations",
-        "Environments - Invitations",
         "Environments - Teams",
         "Environments - Members"
       ]
