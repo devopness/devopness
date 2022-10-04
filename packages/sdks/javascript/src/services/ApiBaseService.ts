@@ -32,10 +32,8 @@ export class ApiBaseService {
         timeout: 30000,
         responseType: 'json',
         headers: {
-            common: {
-                Accept: "application/json",
-                'Content-Type': "application/json",
-            },
+            Accept: "application/json",
+            'Content-Type': "application/json"
         },
         withCredentials: false
     }
