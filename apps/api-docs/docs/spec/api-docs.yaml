@@ -189,7 +189,6 @@ tags:
   - name: Environments - Applications
   - name: Environments - Cron Jobs
   - name: Environments - Daemons
-  - name: Environments - Invitations
   - name: Environments - Members
   - name: Environments - Network Rules
   - name: Environments - Servers
@@ -340,7 +339,6 @@ x-tagGroups:
       - Teams - Invitations
       - Teams - Members
       - Invitations
-      - Environments - Invitations
       - Environments - Teams
       - Environments - Members
   - name: Users
