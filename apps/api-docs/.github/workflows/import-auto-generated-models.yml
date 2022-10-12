@@ -1,0 +1,42 @@
+name: Import auto generated models
+on:
+  schedule:
+    - cron: 5 * * * *
+
+jobs:
+  open-pr:
+    name: Open PR to import auto generated models
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.DEVOPNESS_AUTOMATIONS_SDK_TOKEN }}
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate pull request name
+        id: branch
+        run: |
+          echo ::set-output name=pr_name::$(date +'feat: %Y-%m-%d %H:%M - Update auto generated models')
+
+      - name: Import auto generated models
+        id: import_models
+        run: bash import-models.sh
+
+      - name: Create pull request
+        uses: actions/github-script@v6
+        if: |
+          steps.import_models.outputs.has_changes == 'true'
+          && steps.import_models.outputs.pr_exists == 'false'
+        with:
+          github-token: ${{ secrets.DEVOPNESS_AUTOMATIONS_SDK_TOKEN }}
+          script: |
+            github.rest.pulls.create({
+              owner: 'devopness',
+              repo: 'devopness-api-docs',
+              title: '${{ steps.branch.outputs.pr_name }}',
+              head: 'feat/update-auto-generated-models',
+              base: 'main',
+              body: 'This PR is auto generated to update auto generated models and endpoints.',
+            });

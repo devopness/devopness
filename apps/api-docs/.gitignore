@@ -3,3 +3,4 @@ build
 ignore
 graph.dot
 graph.png
+docs/api-docs.zip
