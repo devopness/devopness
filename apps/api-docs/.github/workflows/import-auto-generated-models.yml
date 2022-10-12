@@ -1,7 +1,7 @@
 name: Import auto generated models
 on:
   schedule:
-    - cron: 5 * * * *
+    - cron: */5 * * * *
 
 jobs:
   open-pr:
