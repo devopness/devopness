@@ -14,7 +14,7 @@
     "api-docs-serve": "npm run api-docs && redoc-cli serve docs/build/api-docs-output.yaml --port 9090 --title 'Devopness API docs' -t docs/template.hbs",
     "api-docs-zip-download": "aws s3 cp s3://devopness-api-docs/api-docs.zip ./docs/api-docs.zip",
     "api-docs-zip-extract": "rm -rf ./docs/spec/auto-generated && extract-zip ./docs/api-docs.zip $(pwd)/docs/spec",
-    "api-docs": "npm run api-build-spec && npm run api-convert-spec-to-dredd && npm run api-docs-export-page && npm run test",
+    "api-docs": "npm run api-build-spec && npm run api-convert-spec-to-dredd && npm run api-docs-export-page && npm run test && dredd",
     "api-test": "npm run tsc && npm run test && dredd",
     "ensure_index_file_is_on_size_limit": "[ `du -h public/index.html | grep -oE '^[0-9]+'` -le 3 ]",
     "test": "jest",
