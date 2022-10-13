@@ -11,6 +11,7 @@ git fetch
 if git checkout "$BRANCH_NAME" 2> /dev/null; then
     echo ::set-output name=pr_exists::true
 else
+    git checkout main
     git checkout -b "$BRANCH_NAME"
     echo ::set-output name=pr_exists::false
 fi
@@ -19,7 +20,7 @@ npm run api-docs-zip-download
 npm run api-docs-zip-extract
 
 if [ -z "$(git status --porcelain)" ]; then
-    echo "Auto generated models is up to date. Nothing to commit!"
+    echo "Auto generated models are up to date. Nothing to commit!"
     echo ::set-output name=has_changes::false
     exit 0
 fi

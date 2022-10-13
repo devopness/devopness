@@ -9,8 +9,8 @@ properties:
     description: 'The public key of the ssh key.'
     example: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCAJGoD1B2m718Q6us8k7UbkjwDJQkusFZ1Yg+s13yuEfd+pfEnni1YfWxz67HPCGUYMtdUTnb7Fkc9xgPgj5Fkl6vhQv1mFbL/addJcV9bIYd4e29LMEsojiAyh99JDTtSXMkljlWYuf4ywALswCna2w+70WHSdoDD3p82THDdoB7p9hPXRzRLZVAzw7Y7is/8Sho4V1byXPxxRfTd5HSGqLqi0zdoef8iXZ2wg4uBJStbszu75oSijM9zHgQtUxE0CgQ1iaPHOg8Idxmg8BQoaYD2OmzwxjwW4wmKUZ5F/qOMknrwZ6iUqjqYFJaLZrj6ZMEZ2ydTuS3uNAQO7Zfb'
     type: string
-  environments:
-    $ref: '#/components/schemas/EnvironmentLinks'
+  servers:
+    $ref: '#/components/schemas/ResourceIdList'
 required:
   - name
   - public_key

@@ -2,7 +2,7 @@ name: SDK Export
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   sdk-open-pr:
@@ -52,10 +52,6 @@ jobs:
             --pretty \
             --output ./devopness/packages/sdks/javascript/src/api/spec.json
 
-      - name: Install SDK-JS dependencies
-        working-directory: ./devopness/packages/sdks/javascript
-        run: npm ci
-
       - name: Commit SDK-JS modifications
         id: git
         working-directory: ./devopness/packages/sdks/javascript
@@ -68,12 +64,6 @@ jobs:
 
           git add src/api/spec.json
           git commit -m "feat: update 'spec.json' file"
-
-          npm run build-api-models
-          if [ -n "$(git status --porcelain)" ]; then
-            git add .
-            git commit -m "feat: update auto generated models"
-          fi
 
           git push origin "${{ steps.branch.outputs.branch_name }}"
           echo ::set-output name=has_changes::true
@@ -92,5 +82,5 @@ jobs:
               title: '${{ steps.branch.outputs.pr_name }}',
               head: '${{ steps.branch.outputs.branch_name }}',
               base: 'main',
-              body: 'This PR is auto generated to update `spec.json` file and auto generated models.',
+              body: 'This PR is auto generated to update `spec.json` file.',
             });

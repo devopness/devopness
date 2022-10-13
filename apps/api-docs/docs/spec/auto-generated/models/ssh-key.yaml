@@ -6,13 +6,17 @@ properties:
     type: integer
     example: 643
   created_by:
-    description: 'The Id of the user to which the SSH key belongs to'
+    description: 'The id of the user to which the SSH key belongs to'
     type: integer
     example: 35131
   project_id:
-    description: 'The project id that the SSH public key belongs to'
+    description: 'The project id to which the SSH public key belongs to'
     type: integer
     example: 16642
+  environment_id:
+    description: 'The environment id to which the SSH public key belongs to'
+    type: integer
+    example: 76441
   name:
     description: 'The name entered by the user to uniquely identify the public SSH key'
     type: string
@@ -39,13 +43,10 @@ properties:
     example: '2022-09-26T15:30:58.000000Z'
 required:
   - id
-  - created_by
-  - project_id
+  - environment_id
   - name
   - fingerprint
   - created_by_user
   - environments
   - servers
   - last_action
-  - created_at
-  - updated_at
