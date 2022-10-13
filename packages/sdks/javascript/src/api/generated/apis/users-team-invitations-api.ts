@@ -14,7 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
-import { TeamInvitation } from '../../generated/models';
+import { TeamInvitationRelation } from '../../generated/models';
 
 /**
  * UsersTeamInvitationsApiService - Auto-generated
@@ -22,11 +22,11 @@ import { TeamInvitation } from '../../generated/models';
 export class UsersTeamInvitationsApiService extends ApiBaseService {
     /**
      * 
-     * @summary Returns a list of all pending team invitations for the authenticated user
+     * @summary Return a list of all pending team invitations for the authenticated user
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */
-    public async listUserTeamInvitations(page?: number, perPage?: number): Promise<ApiResponse<Array<TeamInvitation>>> {
+    public async listUserTeamInvitations(page?: number, perPage?: number): Promise<ApiResponse<Array<TeamInvitationRelation>>> {
         
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
@@ -38,9 +38,9 @@ export class UsersTeamInvitationsApiService extends ApiBaseService {
             queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
         }
 
-        const requestUrl = '/users/teams/invitations' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/users/team-invitations' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<TeamInvitation>>(requestUrl);
+        const response = await this.get <Array<TeamInvitationRelation>>(requestUrl);
         return new ApiResponse(response);
     }
 }
