@@ -134,9 +134,6 @@
 /hook-requests/{hook_request_id}:
   get:
     $ref: ./endpoints/hook-requests/paths/hook-requests-id.yaml
-/invitations/{invitation_id}/accept:
-  post:
-    $ref: ./endpoints/invitations/paths/invitations-id-accept.yaml
 /logs/action/{action_id}:
   get:
     $ref: ./endpoints/logs/paths/logs-action-id.yaml
