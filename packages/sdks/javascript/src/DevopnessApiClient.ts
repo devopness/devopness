@@ -25,6 +25,7 @@ import { ResourceEventService } from './services/ResourceEventService';
 import { ActionService } from './services/ActionService';
 import { PipelineService } from './services/PipelineService';
 import { RoleService } from './services/RoleService';
+import { TeamInvitationService } from './services/TeamInvitationService';
 
 export class DevopnessApiClient {
   actions: ActionService;
@@ -51,6 +52,7 @@ export class DevopnessApiClient {
   sslCertificates: SslCertificateService;
   static: StaticService;
   teams: TeamService;
+  teamInvitations: TeamInvitationService;
   users: UserService;
   variables: VariableService;
 
@@ -84,6 +86,7 @@ export class DevopnessApiClient {
     this.sslCertificates = new SslCertificateService();
     this.static = new StaticService();
     this.teams = new TeamService();
+    this.teamInvitations = new TeamInvitationService();
     this.users = new UserService();
     this.variables = new VariableService();
   }
