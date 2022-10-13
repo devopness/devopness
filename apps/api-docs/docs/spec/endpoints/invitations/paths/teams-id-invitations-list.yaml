@@ -27,4 +27,4 @@ responses:
     content:
       application/json:
         schema:
-          $ref: '#/components/schemas/TeamInvitations'
+          $ref: '#/components/schemas/TeamInvitationList'

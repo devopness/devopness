@@ -244,6 +244,14 @@ HookVariableType:
   $ref: ./endpoints/hooks/schemas/hook-variable-type.yaml
 HookRelation:
   $ref: ./shared/schemas/models/hook-relation.yaml
+Invitation:
+  $ref: ./auto-generated/models/invitation.yaml
+InvitationCreate:
+  $ref: ./auto-generated/models/invitation-create.yaml
+InvitationList:
+  $ref: ./auto-generated/models/invitation-list.yaml
+InvitationRelation:
+  $ref: ./auto-generated/models/invitation-relation.yaml
 Language:
   $ref: ./shared/schemas/language.yaml
 LanguageRuntime:
@@ -466,10 +474,12 @@ TeamCreate:
   $ref: ./endpoints/teams/schemas/team-create.yaml
 TeamInvitation:
   $ref: ./endpoints/invitations/schemas/team-invitation.yaml
-TeamInvitations:
-  $ref: ./endpoints/invitations/schemas/team-invitation-list.yaml
+TeamInvitationList:
+  $ref: ./auto-generated/models/team-invitation-list.yaml
 TeamInvitationCreate:
   $ref: ./endpoints/invitations/schemas/team-invitation-create.yaml
+TeamInvitationRelation:
+  $ref: ./auto-generated/models/team-invitation-relation.yaml
 TeamInvitationStatus:
   $ref: ./endpoints/invitations/schemas/team-invitation-status.yaml
 TeamRelation:

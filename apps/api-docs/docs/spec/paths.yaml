@@ -385,11 +385,14 @@
     $ref: ./endpoints/teams/paths/teams-id.yaml
   put:
     $ref: ./endpoints/teams/paths/teams-id-update.yaml
-/teams/{team_id}/invitations:
+'/teams/{team_id}/invitations':
   get:
-    $ref: ./endpoints/invitations/paths/teams-id-invitations-list.yaml
+    $ref: ./auto-generated/endpoints/list-team-invitations.yaml
   post:
-    $ref: ./endpoints/invitations/paths/teams-id-invitations.yaml
+    $ref: ./auto-generated/endpoints/add-team-invitation.yaml
+'/team-invitations/{team_invitation_id}/accept':
+  post:
+    $ref: ./auto-generated/endpoints/accept-team-invitation.yaml
 /teams/{team_id}/members:
   get:
     $ref: ./endpoints/members/paths/teams-id-members-list.yaml
@@ -409,15 +412,15 @@
     $ref: ./endpoints/users/paths/users-account-verify.yaml
   post:
     $ref: ./endpoints/users/paths/users-account-verify-activate.yaml
-/users/teams/invitations:
-  get:
-    $ref: ./endpoints/users/paths/users-teams-invitations-list.yaml
 /users/login:
   post:
     $ref: ./endpoints/users/paths/login.yaml
 /users/logout:
   get:
     $ref: ./endpoints/users/paths/logout.yaml
+/users/team-invitations:
+  get:
+    $ref: ./auto-generated/endpoints/list-user-team-invitations.yaml
 /users/{user_id}:
   get:
     $ref: ./endpoints/users/paths/users-id.yaml

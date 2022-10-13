@@ -23,3 +23,8 @@ responses:
       application/json:
         schema:
           $ref: '#/components/schemas/TeamInvitationList'
+    headers:
+      Link:
+        schema:
+          type: string
+        description: 'Link header with `first`, `last`, `previous` and `next` page''s links'
