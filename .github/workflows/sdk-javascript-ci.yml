@@ -1,9 +1,5 @@
 name: SDK JavaScript - CI
 on: # rebuild any PRs and main branch changes
-  pull_request_target:
-    types:
-      - opened
-      - edited
   pull_request:
     paths:
       - packages/sdks/javascript/**
@@ -52,6 +48,7 @@ jobs:
         run: npm test
 
       - uses: stefanzweifel/git-auto-commit-action@v4
+        if: github.repository == 'devopness/devopness'
         with:
           commit_message: "docs: Update auto generated models"
           file_pattern: "packages/sdks/javascript/*"
