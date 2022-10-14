@@ -1,7 +1,7 @@
 name: Import auto generated models
 on:
   repository_dispatch:
-    types: [import-models-to-pr]
+    types: ['Automation: Import models to pull request']
 
 jobs:
   open-pr:
