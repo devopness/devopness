@@ -1,11 +1,8 @@
 name: SDK JavaScript - CI
-on: # rebuild any PRs and main branch changes
+on:
   pull_request:
     paths:
       - packages/sdks/javascript/**
-  push:
-    branches:
-      - main
 
 defaults:
   run:
@@ -13,7 +10,7 @@ defaults:
 
 jobs:
   build:
-    name: Build SDK-JS on Node.js ${{ matrix.node }} and ${{ matrix.os }}
+    name: Build SDK-JS
 
     runs-on: ${{ matrix.os }}
 
@@ -50,7 +47,7 @@ jobs:
       - uses: stefanzweifel/git-auto-commit-action@v4
         if: github.repository == 'devopness/devopness'
         with:
-          commit_message: "docs: Update auto generated models"
-          file_pattern: "packages/sdks/javascript/*"
+          commit_message: 'docs: Update auto generated models'
+          file_pattern: 'packages/sdks/javascript/*'
           commit_user_name: devopness-automations
           commit_user_email: automations@devopness.com
