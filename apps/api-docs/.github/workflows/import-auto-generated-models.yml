@@ -1,7 +1,7 @@
 name: Import auto generated models
 on:
-  schedule:
-    - cron: '*/6 * * * *'
+  repository_dispatch:
+    types: [import-models-to-pr]
 
 jobs:
   open-pr:
