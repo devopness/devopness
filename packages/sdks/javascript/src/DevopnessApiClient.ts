@@ -19,7 +19,6 @@ import { HookIncomingService } from './services/HookIncomingService';
 import { HookOutgoingService } from './services/HookOutgoingService';
 import { HookRequestService } from './services/HookRequestService';
 import { CloudProviderCredentialService } from './services/CloudProviderCredentialService';
-import { InvitationService } from './services/InvitationService';
 import { TeamService } from './services/TeamService';
 import { ResourceEventService } from './services/ResourceEventService';
 import { ActionService } from './services/ActionService';
@@ -36,7 +35,6 @@ export class DevopnessApiClient {
   environments: EnvironmentService;
   hookRequests: HookRequestService;
   incomingHooks: HookIncomingService;
-  invitations: InvitationService;
   logs: LogService;
   networkRules: NetworkRuleService;
   outgoingHooks: HookOutgoingService;
@@ -70,7 +68,6 @@ export class DevopnessApiClient {
     this.environments = new EnvironmentService();
     this.hookRequests = new HookRequestService();
     this.incomingHooks = new HookIncomingService();
-    this.invitations = new InvitationService();
     this.logs = new LogService();
     this.networkRules = new NetworkRuleService();
     this.outgoingHooks = new HookOutgoingService();
