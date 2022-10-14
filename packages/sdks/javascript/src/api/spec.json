@@ -2627,44 +2627,6 @@
         }
       }
     },
-    "/invitations/{invitation_id}/accept": {
-      "post": {
-        "summary": "Accept a pending invitation",
-        "operationId": "acceptInvitation",
-        "tags": [
-          "Invitations"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "invitation_id",
-            "example": "e57996b5-3cf3-4cae-a925-e2e2ada52732",
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "description": "UUID of the invitation to be accepted"
-          }
-        ],
-        "responses": {
-          "204": {
-            "$ref": "#/components/responses/NoContent"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          }
-        }
-      }
-    },
     "/logs/action/{action_id}": {
       "get": {
         "summary": "Get action log",
