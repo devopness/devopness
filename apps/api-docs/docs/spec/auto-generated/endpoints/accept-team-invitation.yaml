@@ -16,7 +16,7 @@ parameters:
     in: path
     name: team_invitation_id
     description: 'The ID of the team invitation.'
-    example: f8da257D-aEF5-ACC2-519e-ddadcad3cdB6
+    example: 3cad00b7-EAd7-3ADF-006D-864e8BD2c03f
     required: true
     schema:
       type: string

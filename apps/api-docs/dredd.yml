@@ -28,5 +28,5 @@ hooks-worker-term-retry: 500
 hooks-worker-handler-host: 127.0.0.1
 hooks-worker-handler-port: 61321
 config: ./dredd.yml
-blueprint: docs/build/api-docs-output-v2.yaml
+blueprint: docs/build/api-docs-output-v2-without-descriptions.yaml
 endpoint: 'https://staging-api.devopness.com'

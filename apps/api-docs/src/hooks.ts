@@ -56,6 +56,8 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         'linkStepToPipeline204',
         'unlinkStepFromPipeline204',
         'deletePipeline204',
+        // @todo: see how to fixture team_invitation_id
+        'acceptTeamInvitation204',
     ];
 
     // transactions listed here are skipped with a `before` hook

@@ -27,11 +27,12 @@ parameters:
   -
     in: path
     name: resource_id
-    description: 'The ID of the resource.'
-    example: '3984'
+    description: 'The resource ID.'
+    example: 2
     required: true
     schema:
-      type: string
+      type: integer
+      minimum: 1
   -
     in: path
     name: resource_type

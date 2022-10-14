@@ -16,7 +16,7 @@ parameters:
     in: path
     name: application_id
     description: 'The ID of the application.'
-    example: 3984
+    example: 81
     required: true
     schema:
       type: integer

@@ -5,6 +5,8 @@ ActionList:
   $ref: ./auto-generated/models/action-list.yaml
 ActionRelation:
   $ref: ./auto-generated/models/action-relation.yaml
+ActionStatus:
+  $ref: ./auto-generated/models/action-status.yaml
 Application:
   $ref: ./auto-generated/models/application.yaml
 ApplicationCreate:
@@ -39,6 +41,12 @@ InvitationList:
   $ref: ./auto-generated/models/invitation-list.yaml
 InvitationRelation:
   $ref: ./auto-generated/models/invitation-relation.yaml
+Member:
+  $ref: ./auto-generated/models/member.yaml
+MemberList:
+  $ref: ./auto-generated/models/member-list.yaml
+MemberRelation:
+  $ref: ./auto-generated/models/member-relation.yaml
 Project:
   $ref: ./auto-generated/models/project.yaml
 ProjectList:
@@ -51,17 +59,39 @@ ResourceIdList:
   $ref: ./auto-generated/models/resource-id-list.yaml
 RolePermissions:
   $ref: ./auto-generated/models/role-permissions.yaml
+Server:
+  $ref: ./auto-generated/models/server.yaml
+ServerCommand:
+  $ref: ./auto-generated/models/server-command.yaml
+ServerList:
+  $ref: ./auto-generated/models/server-list.yaml
+ServerRelation:
+  $ref: ./auto-generated/models/server-relation.yaml
 SshKey:
   $ref: ./auto-generated/models/ssh-key.yaml
 SshKeyCreate:
   $ref: ./auto-generated/models/ssh-key-create.yaml
 SshKeyList:
   $ref: ./auto-generated/models/ssh-key-list.yaml
+SshKeyProjectCreate:
+  $ref: ./auto-generated/models/ssh-key-project-create.yaml
 SshKeyRelation:
   $ref: ./auto-generated/models/ssh-key-relation.yaml
 SshKeyUpdate:
   $ref: ./auto-generated/models/ssh-key-update.yaml
+Team:
+  $ref: ./auto-generated/models/team.yaml
+TeamCreate:
+  $ref: ./auto-generated/models/team-create.yaml
 TeamInvitationList:
   $ref: ./auto-generated/models/team-invitation-list.yaml
 TeamInvitationRelation:
   $ref: ./auto-generated/models/team-invitation-relation.yaml
+TeamList:
+  $ref: ./auto-generated/models/team-list.yaml
+TeamProjectCreate:
+  $ref: ./auto-generated/models/team-project-create.yaml
+TeamRelation:
+  $ref: ./auto-generated/models/team-relation.yaml
+TeamUpdate:
+  $ref: ./auto-generated/models/team-update.yaml

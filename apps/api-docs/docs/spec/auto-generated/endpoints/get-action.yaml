@@ -16,7 +16,7 @@ parameters:
     in: path
     name: id
     description: 'The ID of the action.'
-    example: 16290
+    example: 81
     required: true
     schema:
       type: integer
