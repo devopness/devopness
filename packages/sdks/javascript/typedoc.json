@@ -1,8 +1,7 @@
 {
   "out": "docs-sdk-js",
   "entryPoints": [
-    "src/index.ts",
-    "src/services"
+    "src/index.ts"
   ],
   "excludePrivate": true,
   "excludeProtected": true,

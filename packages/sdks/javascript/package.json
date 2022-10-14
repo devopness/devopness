@@ -13,7 +13,10 @@
   "scripts": {
     "build": "rm -Rf ./dist && npm run lint && tsc",
     "build-api-models": "rm -Rf ./src/api/generated && JAVA_OPTS=\"${JAVA_OPTS} -Dlog.level=warn\" openapi-generator-cli generate && npm run build",
-    "docs": "typedoc",
+    "docs": "npm run docs-service-index && typedoc",
+    "docs-service-index-remove-old": "rm -f src/services/index.ts",
+    "docs-service-index-create": "find src/services/ ! -name 'index.ts' -name '*.ts' -type f -exec bash -c 'echo \"export * from $(echo -e \"\\x27\")./$(basename $0 .ts)$(echo -e \"\\x27\")\" >> src/services/index.ts' {} \\;",
+    "docs-service-index": "npm run docs-service-index-remove-old && npm run docs-service-index-create",
     "lint": "eslint . --ext .ts",
     "prepublishOnly": "npm test",
     "prepare": "npm run build",
