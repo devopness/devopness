@@ -25,16 +25,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/devopness/devopness-sdk-js.git"
+    "url": "git+https://github.com/devopness/devopness.git"
   },
   "keywords": [
+    "Cloud Engineering",
+    "Cloud Infrastructure Management",
+    "Cloud Platform Engineering",
+    "Configuration Management",
     "DevOps",
     "Devopness",
     "Deploy",
     "Deployment",
+    "Platform Engineering",
     "Zero Downtime Deploy",
-    "Server Management",
-    "Configuration Management"
+    "Server Management"
   ],
   "author": "Devopness (https://www.devopness.com)",
   "license": "MIT",
@@ -44,9 +48,9 @@
     ]
   },
   "bugs": {
-    "url": "https://github.com/devopness/devopness-sdk-js/issues"
+    "url": "https://github.com/devopness/devopness/issues"
   },
-  "homepage": "https://github.com/devopness/devopness-sdk-js#readme",
+  "homepage": "https://github.com/devopness/devopness#readme",
   "devDependencies": {
     "@openapitools/openapi-generator-cli": "^2.0.2",
     "@types/jest": "^27.0.1",
