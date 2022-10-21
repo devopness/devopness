@@ -9112,6 +9112,12 @@
         "Users",
         "Users - Team Invitations"
       ]
+    },
+    {
+      "name": "Variables",
+      "tags": [
+        "Variables"
+      ]
     }
   ],
   "components": {
