@@ -1,6 +1,6 @@
-openapi: "3.0.0"
+openapi: 3.0.0
 info:
-  version: "latest"
+  version: latest
   title: devopness API
   x-logo:
     url: https://assets.devopness.com/images/logo_devopness_complete.png
@@ -345,6 +345,9 @@ x-tagGroups:
     tags:
       - Users
       - Users - Team Invitations
+  - name: Variables
+    tags:
+      - Variables
 
 components:
   securitySchemes:
