@@ -1195,6 +1195,71 @@
             }
           }
         }
+      },
+      "post": {
+        "summary": "Create a new application",
+        "operationId": "addEnvironmentApplication",
+        "description": {
+          "$ref": "../spec/descriptions/add-environment-application.md"
+        },
+        "tags": [
+          "Environments - Applications"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "environment_id",
+            "description": "The ID of the environment.",
+            "example": 1,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Application"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplicationCreate"
+              }
+            }
+          }
+        }
       }
     },
     "/environments/{environment_id}/cron-jobs": {
@@ -1489,9 +1554,12 @@
       }
     },
     "/environments/{environment_id}/servers": {
-      "get": {
-        "summary": "Return a list of all servers belonging to a environment",
-        "operationId": "listEnvironmentServers",
+      "post": {
+        "summary": "Creates a server and link it to the given environment",
+        "operationId": "addEnvironmentServer",
+        "description": {
+          "$ref": "../spec/descriptions/add-environment-server.md"
+        },
         "tags": [
           "Environments - Servers"
         ],
@@ -1506,39 +1574,64 @@
             "$ref": "#/components/parameters/contentTypeHeader"
           },
           {
-            "$ref": "#/components/parameters/pageNumber"
-          },
-          {
-            "$ref": "#/components/parameters/pageSize"
-          },
-          {
             "in": "path",
             "name": "environment_id",
+            "description": "The ID of the environment.",
             "example": 1,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "Numeric ID of the environment to get servers from"
+            }
           }
         ],
         "responses": {
-          "200": {
-            "description": "Ok",
-            "headers": {
-              "Link": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
-              }
-            },
+          "201": {
+            "description": "Created",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Servers"
+                  "$ref": "#/components/schemas/Server"
                 }
+              }
+            },
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ServerCreate"
               }
             }
           }
@@ -1547,8 +1640,11 @@
     },
     "/environments/{environment_id}/services": {
       "get": {
-        "summary": "Returns a list of all services belonging to a environment",
+        "summary": "Return a list of all services belonging to a environment",
         "operationId": "listEnvironmentServices",
+        "description": {
+          "$ref": "../spec/descriptions/list-environment-services.md"
+        },
         "tags": [
           "Environments - Services"
         ],
@@ -1571,31 +1667,31 @@
           {
             "in": "path",
             "name": "environment_id",
+            "description": "The ID of the environment.",
             "example": 1,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "Numeric ID of the environment to get services from"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceList"
+                }
+              }
+            },
             "headers": {
               "Link": {
                 "schema": {
                   "type": "string"
                 },
                 "description": "Link header with `first`, `last`, `previous` and `next` page's links"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Services"
-                }
               }
             }
           }
@@ -1604,8 +1700,11 @@
     },
     "/environments/{environment_id}/ssh-keys": {
       "get": {
-        "summary": "Returns a list of all SSH Keys belonging to a environment",
+        "summary": "Return a list of all SSH keys added to an environment",
         "operationId": "listEnvironmentSshKeys",
+        "description": {
+          "$ref": "../spec/descriptions/list-environment-ssh-keys.md"
+        },
         "tags": [
           "Environments - SSH Keys"
         ],
@@ -1628,18 +1727,25 @@
           {
             "in": "path",
             "name": "environment_id",
+            "description": "The ID of the environment.",
             "example": 1,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "Numeric ID of the environment to get SSH Keys from"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SshKeyList"
+                }
+              }
+            },
             "headers": {
               "Link": {
                 "schema": {
@@ -1647,12 +1753,98 @@
                 },
                 "description": "Link header with `first`, `last`, `previous` and `next` page's links"
               }
-            },
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SshKeys"
+                  "$ref": "#/components/schemas/ApiError"
                 }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create an SSH key and link it to the given environment",
+        "operationId": "addEnvironmentSshKey",
+        "description": {
+          "$ref": "../spec/descriptions/add-environment-ssh-key.md"
+        },
+        "tags": [
+          "Environments - SSH Keys"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "environment_id",
+            "description": "The ID of the environment.",
+            "example": 1,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SshKey"
+                }
+              }
+            },
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SshKeyCreate"
               }
             }
           }
@@ -4775,9 +4967,70 @@
       }
     },
     "/projects/{project_id}/servers": {
+      "get": {
+        "summary": "List all servers linked to a project",
+        "operationId": "listProjectServers",
+        "description": {
+          "$ref": "../spec/descriptions/list-project-servers.md"
+        },
+        "tags": [
+          "Projects - Servers"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "description": "The ID of the project.",
+            "example": 1,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerList"
+                }
+              }
+            },
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            }
+          }
+        }
+      },
       "post": {
         "summary": "Creates a server and link it to the given project",
-        "operationId": "addServerToProject",
+        "operationId": "addProjectServer",
+        "description": {
+          "$ref": "../spec/descriptions/add-project-server.md"
+        },
         "tags": [
           "Projects - Servers"
         ],
@@ -4794,26 +5047,15 @@
           {
             "in": "path",
             "name": "project_id",
+            "description": "The ID of the project.",
             "example": 1,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "The project numeric Id"
-          }
-        ],
-        "requestBody": {
-          "description": "A JSON object containing server data",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ServerCreate"
-              }
             }
           }
-        },
+        ],
         "responses": {
           "201": {
             "description": "Created",
@@ -4823,18 +5065,59 @@
                   "$ref": "#/components/schemas/Server"
                 }
               }
+            },
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
             }
           },
           "422": {
-            "$ref": "#/components/responses/ValidationError"
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ServerCreate"
+              }
+            }
           }
         }
-      },
+      }
+    },
+    "/projects/{project_id}/services": {
       "get": {
-        "summary": "List all servers linked to a project",
-        "operationId": "listProjectServers",
+        "summary": "List all services in a project",
+        "operationId": "listProjectServices",
+        "description": {
+          "$ref": "../spec/descriptions/list-project-services.md"
+        },
         "tags": [
-          "Projects - Servers"
+          "Projects - Services"
         ],
         "parameters": [
           {
@@ -4855,18 +5138,25 @@
           {
             "in": "path",
             "name": "project_id",
+            "description": "The ID of the project.",
             "example": 1,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "The project numeric Id"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceList"
+                }
+              }
+            },
             "headers": {
               "Link": {
                 "schema": {
@@ -4874,22 +5164,16 @@
                 },
                 "description": "Link header with `first`, `last`, `previous` and `next` page's links"
               }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Servers"
-                }
-              }
             }
           }
         }
-      }
-    },
-    "/projects/{project_id}/services": {
+      },
       "post": {
-        "summary": "Add a service to a project and triggers its setup in each linked server",
-        "operationId": "addServiceToProject",
+        "summary": "Add a service to a project and trigger its setup in each linked server",
+        "operationId": "addProjectService",
+        "description": {
+          "$ref": "../spec/descriptions/add-project-service.md"
+        },
         "tags": [
           "Projects - Services"
         ],
@@ -4906,37 +5190,18 @@
           {
             "in": "path",
             "name": "project_id",
+            "description": "The ID of the project.",
             "example": 1,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "The service's unique id"
-          }
-        ],
-        "requestBody": {
-          "description": "A JSON object containing service data",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ServiceCreate"
-              }
             }
           }
-        },
+        ],
         "responses": {
           "201": {
             "description": "Created",
-            "headers": {
-              "X-Devopness-Action-Id": {
-                "schema": {
-                  "type": "integer"
-                },
-                "description": "The dispatched action id of the resource"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -4945,16 +5210,49 @@
               }
             }
           },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
           "422": {
-            "$ref": "#/components/responses/ValidationError"
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ServiceCreate"
+              }
+            }
           }
         }
-      },
+      }
+    },
+    "/projects/{project_id}/ssh-keys": {
       "get": {
-        "summary": "List all services in a project",
-        "operationId": "listProjectServices",
+        "summary": "Return a list of all SSH keys added to a project",
+        "operationId": "listProjectSshKeys",
+        "description": {
+          "$ref": "../spec/descriptions/list-project-ssh-keys.md"
+        },
         "tags": [
-          "Projects - Services"
+          "Projects - SSH Keys"
         ],
         "parameters": [
           {
@@ -4975,18 +5273,25 @@
           {
             "in": "path",
             "name": "project_id",
+            "description": "The ID of the project.",
             "example": 1,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "The service unique Id"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SshKeyList"
+                }
+              }
+            },
             "headers": {
               "Link": {
                 "schema": {
@@ -4994,19 +5299,20 @@
                 },
                 "description": "Link header with `first`, `last`, `previous` and `next` page's links"
               }
-            },
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Services"
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
           }
         }
-      }
-    },
-    "/projects/{project_id}/ssh-keys": {
+      },
       "post": {
         "summary": "Create a SSH key and link it to the given project",
         "operationId": "addSshKeyToProject",
@@ -5067,61 +5373,6 @@
           },
           "422": {
             "$ref": "#/components/responses/ValidationError"
-          }
-        }
-      },
-      "get": {
-        "summary": "Return a list of all SSH keys added to a project",
-        "operationId": "listProjectSshKeys",
-        "tags": [
-          "Projects - SSH Keys"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "$ref": "#/components/parameters/pageNumber"
-          },
-          {
-            "$ref": "#/components/parameters/pageSize"
-          },
-          {
-            "in": "path",
-            "name": "project_id",
-            "example": 1,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "required": true,
-            "description": "The project numeric Id"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "headers": {
-              "Link": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SshKeys"
-                }
-              }
-            }
           }
         }
       }
@@ -5592,6 +5843,9 @@
       "post": {
         "summary": "Connect a server to devopness platform",
         "operationId": "connectServer",
+        "description": {
+          "$ref": "../spec/descriptions/connect-server.md"
+        },
         "tags": [
           "Servers"
         ],
@@ -5600,61 +5854,59 @@
             "$ref": "#/components/parameters/acceptHeader"
           },
           {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
             "$ref": "#/components/parameters/contentTypeHeader"
           },
           {
             "in": "path",
-            "name": "server_id",
-            "example": 1,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
+            "name": "activation_token",
+            "description": "The server activation token.",
+            "example": "B54AWSVf3iIB3QWFs7eF3c6jiXS03ZJLqicyzCNpWMjpV5lR09Gj11naMwCu",
             "required": true,
-            "description": "The server numeric Id"
+            "schema": {
+              "type": "string"
+            }
           },
           {
             "in": "path",
-            "name": "activation_token",
-            "example": "B54AWSVf3iIB3QWFs7eF3c6jiXS03ZJLqicyzCNpWMjpV5lR09Gj11naMwCu",
-            "schema": {
-              "type": "string",
-              "minimum": 60
-            },
+            "name": "server_id",
+            "description": "The ID of the server.",
+            "example": 1,
             "required": true,
-            "description": "The server activation token"
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": "Ok",
+            "description": "Output message indicating success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "example": "Server successfully connected"
+                }
+              }
+            },
             "headers": {
               "X-Devopness-Action-Id": {
                 "schema": {
                   "type": "integer"
                 },
-                "description": "The dispatched action id of the resource"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServerConnect"
-                }
+                "description": "The dispatched action ID of the resource"
               }
             }
           },
           "401": {
-            "$ref": "#/components/responses/Unauthenticated"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
+            "description": "Unauthenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
           }
         }
       }
@@ -5663,6 +5915,9 @@
       "delete": {
         "summary": "Delete a given service",
         "operationId": "deleteService",
+        "description": {
+          "$ref": "../spec/descriptions/delete-service.md"
+        },
         "tags": [
           "Services"
         ],
@@ -5679,27 +5934,37 @@
           {
             "in": "path",
             "name": "service_id",
+            "description": "The ID of the service.",
             "example": 1,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "The Id of the service to be deleted"
+            }
           }
         ],
         "responses": {
           "204": {
-            "$ref": "#/components/responses/NoContentDispatchAction"
+            "description": "No Content"
           },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
           }
         }
       },
       "get": {
         "summary": "Get details of a single service",
         "operationId": "getService",
+        "description": {
+          "$ref": "../spec/descriptions/get-service.md"
+        },
         "tags": [
           "Services"
         ],
@@ -5716,13 +5981,13 @@
           {
             "in": "path",
             "name": "service_id",
+            "description": "The ID of the service.",
             "example": 1,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "Unique ID of the service to get"
+            }
           }
         ],
         "responses": {
@@ -5736,23 +6001,33 @@
               }
             }
           },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
           }
         }
       },
       "put": {
         "summary": "Update an existing service",
         "operationId": "updateService",
+        "description": {
+          "$ref": "../spec/descriptions/update-service.md"
+        },
         "tags": [
           "Services"
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/authHeader"
+            "$ref": "#/components/parameters/acceptHeader"
           },
           {
-            "$ref": "#/components/parameters/acceptHeader"
+            "$ref": "#/components/parameters/authHeader"
           },
           {
             "$ref": "#/components/parameters/contentTypeHeader"
@@ -5760,17 +6035,42 @@
           {
             "in": "path",
             "name": "service_id",
+            "description": "The ID of the service.",
             "example": 1,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "The unique id of the service"
+            }
           }
         ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
         "requestBody": {
-          "description": "A JSON object containing service data",
+          "description": "A JSON object containing the resource data",
           "required": true,
           "content": {
             "application/json": {
@@ -5779,20 +6079,6 @@
               }
             }
           }
-        },
-        "responses": {
-          "204": {
-            "$ref": "#/components/responses/NoContentDispatchAction"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          },
-          "422": {
-            "$ref": "#/components/responses/ValidationError"
-          }
         }
       }
     },
@@ -5800,6 +6086,9 @@
       "post": {
         "summary": "Reload a service",
         "operationId": "reloadService",
+        "description": {
+          "$ref": "../spec/descriptions/reload-service.md"
+        },
         "tags": [
           "Services"
         ],
@@ -5816,17 +6105,42 @@
           {
             "in": "path",
             "name": "service_id",
+            "description": "The ID of the service.",
             "example": 1,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "The unique id of the service"
+            }
           }
         ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
         "requestBody": {
-          "description": "A JSON object containing the environment id",
+          "description": "A JSON object containing the resource data",
           "required": true,
           "content": {
             "application/json": {
@@ -5835,17 +6149,6 @@
               }
             }
           }
-        },
-        "responses": {
-          "204": {
-            "$ref": "#/components/responses/NoContentDispatchAction"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          }
         }
       }
     },
@@ -5853,6 +6156,9 @@
       "post": {
         "summary": "Restart a service",
         "operationId": "restartService",
+        "description": {
+          "$ref": "../spec/descriptions/restart-service.md"
+        },
         "tags": [
           "Services"
         ],
@@ -5869,17 +6175,42 @@
           {
             "in": "path",
             "name": "service_id",
+            "description": "The ID of the service.",
             "example": 1,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "The unique id of the service"
+            }
           }
         ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
         "requestBody": {
-          "description": "A JSON object containing the environment id",
+          "description": "A JSON object containing the resource data",
           "required": true,
           "content": {
             "application/json": {
@@ -5888,17 +6219,6 @@
               }
             }
           }
-        },
-        "responses": {
-          "204": {
-            "$ref": "#/components/responses/NoContentDispatchAction"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          }
         }
       }
     },
@@ -5906,6 +6226,9 @@
       "post": {
         "summary": "Start a service",
         "operationId": "startService",
+        "description": {
+          "$ref": "../spec/descriptions/start-service.md"
+        },
         "tags": [
           "Services"
         ],
@@ -5922,17 +6245,42 @@
           {
             "in": "path",
             "name": "service_id",
+            "description": "The ID of the service.",
             "example": 1,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "The unique id of the service"
+            }
           }
         ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
         "requestBody": {
-          "description": "A JSON object containing the environment id",
+          "description": "A JSON object containing the resource data",
           "required": true,
           "content": {
             "application/json": {
@@ -5941,71 +6289,6 @@
               }
             }
           }
-        },
-        "responses": {
-          "204": {
-            "$ref": "#/components/responses/NoContentDispatchAction"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          }
-        }
-      }
-    },
-    "/services/{service_id}/update-status": {
-      "post": {
-        "summary": "Update status of a service",
-        "description": "Trigger a status update action for a service in all project servers asynchronously. To get the output of service status update action the endpoint [getServiceStatusLog](/#operation/getServiceStatusLog) should be invoked.\n",
-        "operationId": "updateServiceStatus",
-        "tags": [
-          "Services"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "service_id",
-            "example": 1,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "required": true,
-            "description": "The unique id of the service"
-          }
-        ],
-        "requestBody": {
-          "description": "A JSON object containing the environment id",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ServiceStatusUpdate"
-              }
-            }
-          }
-        },
-        "responses": {
-          "204": {
-            "$ref": "#/components/responses/NoContentDispatchAction"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          }
         }
       }
     },
@@ -6013,6 +6296,9 @@
       "post": {
         "summary": "Stop a service",
         "operationId": "stopService",
+        "description": {
+          "$ref": "../spec/descriptions/stop-service.md"
+        },
         "tags": [
           "Services"
         ],
@@ -6029,17 +6315,42 @@
           {
             "in": "path",
             "name": "service_id",
+            "description": "The ID of the service.",
             "example": 1,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "The unique id of the service"
+            }
           }
         ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
         "requestBody": {
-          "description": "A JSON object containing the environment id",
+          "description": "A JSON object containing the resource data",
           "required": true,
           "content": {
             "application/json": {
@@ -6048,16 +6359,75 @@
               }
             }
           }
+        }
+      }
+    },
+    "/services/{service_id}/update-status": {
+      "post": {
+        "summary": "Update status of a service",
+        "operationId": "updateStatusService",
+        "description": {
+          "$ref": "../spec/descriptions/update-status-service.md"
         },
+        "tags": [
+          "Services"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "service_id",
+            "description": "The ID of the service.",
+            "example": 1,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
         "responses": {
           "204": {
-            "$ref": "#/components/responses/NoContentDispatchAction"
+            "description": "No Content"
           },
           "403": {
-            "$ref": "#/components/responses/Forbidden"
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
           },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ServiceUpdateStatus"
+              }
+            }
           }
         }
       }
@@ -7426,7 +7796,7 @@
             "in": "path",
             "name": "team_id",
             "description": "The ID of the team.",
-            "example": 3984,
+            "example": 81,
             "required": true,
             "schema": {
               "type": "integer",
@@ -7478,7 +7848,7 @@
             "in": "path",
             "name": "team_id",
             "description": "The ID of the team.",
-            "example": 3984,
+            "example": 81,
             "required": true,
             "schema": {
               "type": "integer",
@@ -7555,7 +7925,7 @@
             "in": "path",
             "name": "team_invitation_id",
             "description": "The ID of the team invitation.",
-            "example": "f8da257D-aEF5-ACC2-519e-ddadcad3cdB6",
+            "example": "3cad00b7-EAd7-3ADF-006D-864e8BD2c03f",
             "required": true,
             "schema": {
               "type": "string"
@@ -9760,6 +10130,123 @@
           "requires_daemon"
         ]
       },
+      "ApplicationEnvironmentCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "The application's unique name. Must not be greater than 60 characters.",
+            "example": "my-awesome-app",
+            "type": "string"
+          },
+          "type": {
+            "description": "Must be one of <code>web</code> or <code>non-web</code>.",
+            "example": "web",
+            "type": "string"
+          },
+          "domain_name": {
+            "description": "The domain or sub-domain through which the application deployed with these settings will be accessible. It can be a naked domain or any subdomain. If app has domain names `testing.my-app.com`, `staging.my-app.com` and `www.my-app.com` a possible good candidate for the application name would be the \"naked\" domain `my-app.com`. Must not be greater than 60 characters.",
+            "example": "test.my-app.co.uk",
+            "type": "string"
+          },
+          "build_command": {
+            "description": "The optional command that should be executed once during deployment to build the source code and get the application in a ready state. Must be at least 10 characters. Must not be greater than 300 characters.",
+            "example": "`npm run build`, `yarn build`, `docker build -t my_image_name .`, `python build.py`",
+            "type": "string"
+          },
+          "engine_version": {
+            "description": "The language runtime engine version to be used to execute this application on the deployed servers. This field is required unless <code>programming_language</code> is in <code>html</code>.  Must be one of <code></code> Must be at least 1 characters. Must not be greater than 10 characters.",
+            "example": "3.8",
+            "type": "string"
+          },
+          "framework": {
+            "description": "The base framework on top of which the application has been implemented - it might have impact on the steps to be performed during application deployment. Must not be greater than 30 characters.",
+            "example": "drupal",
+            "type": "string"
+          },
+          "programming_language": {
+            "description": "The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`. Must be one of <code>docker</code>, <code>dotnetcore</code>, <code>html</code>, <code>nodejs</code>, <code>php</code>, or <code>python</code> Must not be greater than 30 characters.",
+            "example": "python",
+            "type": "string"
+          },
+          "listening_address": {
+            "description": "Required for CGI|FastCGI|SCGI|WSGI based applications or `docker` containerized applications. It tells `devopness` the private address at which the application listens to external calls.The address has `http` or `https` protocol, an domain name or IP address, optional port and optional path. Or you can specify a UNIX-socket using `unix:` prefix after protocol.",
+            "example": "http://unix:/tmp/backend3:/my/path",
+            "type": "string"
+          },
+          "repository": {
+            "description": "The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed. Must not be greater than 60 characters.",
+            "example": "devopness-api-tests/tester",
+            "type": "string"
+          },
+          "source_provider_id": {
+            "description": "Numeric ID of the source provider account where the repository is hosted. Required when the `repository` field is informed.",
+            "example": 9732156,
+            "type": "integer"
+          },
+          "root_directory": {
+            "description": "The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository. Must start with one of <code>/</code>.",
+            "example": "/src",
+            "type": "string"
+          },
+          "public_directory": {
+            "description": "The relative web directory where publicly accessible assets are located and the web content should be served from. Must start with one of <code>/</code>.",
+            "example": "/public",
+            "type": "string"
+          },
+          "default_branch": {
+            "description": "The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed. Must not be greater than 100 characters.",
+            "example": "develop",
+            "type": "string"
+          },
+          "deployments_keep": {
+            "description": "The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers. OR The number of deployment artifacts to be retained in the user's servers, making it easier and faster to rollback to previous versions. Must be at least 1. Must not be greater than 10.",
+            "example": 4,
+            "type": "integer"
+          },
+          "entrypoint": {
+            "description": "The entrypoint tells devopness how an application should be started and has basically two forms:\n1) `File`: if it's a simple file name/path a web app will be served using the entrypoint value as its index file. Example: `index.html`\n2) `Command`: if a command line instruction is provided as the entrypoint value, it will be handled as the start up command that initializes the application. It will be assumed that the user is an advanced user that knows what she/he is doing, therefore the command specified here will be run - as is - every time the application needs to be started. Must not be greater than 120 characters.",
+            "example": "`index.html`, `index.php`, `server.php`, `default.htm`, `node server.js`, `yarn start`, `npm run production`, `docker run -d -P --name my_container_name my_image_name`, `php artisan serve –-host=192.168.2.20 --port=8000`",
+            "type": "string"
+          },
+          "install_dependencies_dev": {
+            "description": "Indicates if at deployment time Devopness should execute package manager commands to install dependencies used in development mode.",
+            "example": false,
+            "type": "boolean"
+          },
+          "install_dependencies_prod": {
+            "description": "Indicates if at deployment time Devopness should execute package manager commands to install dependencies used in production mode.",
+            "example": false,
+            "type": "boolean"
+          },
+          "push_to_deploy": {
+            "description": "Indicates if push to deploy webhooks are enabled for this application. If enabled an app deployment will be automatically triggered when new changes are committed to the `default_branch`.",
+            "example": false,
+            "type": "boolean"
+          },
+          "requires_daemon": {
+            "description": "Indicates if the application requires a daemon to keep it alive.",
+            "example": false,
+            "type": "boolean"
+          },
+          "servers": {
+            "$ref": "#/components/schemas/ResourceIdList"
+          }
+        },
+        "required": [
+          "name",
+          "type",
+          "framework",
+          "programming_language",
+          "repository",
+          "source_provider_id",
+          "public_directory",
+          "default_branch",
+          "entrypoint",
+          "install_dependencies_dev",
+          "install_dependencies_prod",
+          "requires_daemon"
+        ]
+      },
       "ApplicationDeployment": {
         "type": "object",
         "properties": {
@@ -11427,7 +11914,7 @@
             "example": "Staging"
           },
           "servers": {
-            "$ref": "#/components/schemas/Servers"
+            "$ref": "#/components/schemas/ServerList"
           },
           "cron_jobs": {
             "$ref": "#/components/schemas/CronJobs"
@@ -11445,7 +11932,7 @@
             "$ref": "#/components/schemas/Services"
           },
           "ssh_keys": {
-            "$ref": "#/components/schemas/SshKeys"
+            "$ref": "#/components/schemas/SshKeyList"
           },
           "teams": {
             "$ref": "#/components/schemas/Teams"
@@ -11501,6 +11988,12 @@
           "name",
           "type"
         ]
+      },
+      "EnvironmentList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/EnvironmentRelation"
+        }
       },
       "EnvironmentMember": {
         "type": "object",
@@ -14162,6 +14655,13 @@
           "$ref": "#/components/schemas/ResourceEvent"
         }
       },
+      "ResourceIdList": {
+        "description": "List of valid resource IDs",
+        "type": "array",
+        "items": {
+          "type": "integer"
+        }
+      },
       "ResourceType": {
         "type": "string",
         "enum": [
@@ -14330,55 +14830,24 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "integer",
             "description": "The unique id of the given record",
+            "type": "integer",
             "example": 9654123
           },
+          "created_by": {
+            "description": "The id of the user who created the server and to whom the server belongs",
+            "type": "integer",
+            "example": 1
+          },
           "name": {
-            "type": "string",
             "description": "The server's name",
+            "type": "string",
             "example": "web-srv-1"
           },
           "hostname": {
-            "type": "string",
             "description": "The server's hostname",
-            "example": "web-srv-1"
-          },
-          "ip_address": {
             "type": "string",
-            "format": "ipv4",
-            "description": "Public ipv4 address for server access",
-            "example": "200.123.45.67"
-          },
-          "ssh_port": {
-            "type": "integer",
-            "description": "The network port to which the SSH daemon is listening to SSH connections on the server",
-            "example": 22
-          },
-          "created_by": {
-            "type": "integer",
-            "description": "The id of the user who created the server and to whom the server belongs",
-            "example": 1
-          },
-          "active": {
-            "type": "boolean",
-            "description": "Tells if the server is active or not"
-          },
-          "blueprint": {
-            "$ref": "#/components/schemas/ServerBlueprint"
-          },
-          "status": {
-            "$ref": "#/components/schemas/ActionStatus"
-          },
-          "environments": {
-            "description": "The list of environments to which the server is linked to",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/EnvironmentRelation"
-            }
-          },
-          "project": {
-            "$ref": "#/components/schemas/ProjectRelation"
+            "example": "web-srv-1"
           },
           "provider_name": {
             "description": "The name of the server's provider.",
@@ -14390,38 +14859,72 @@
             "type": "string",
             "example": "VPS/Self Hosted"
           },
+          "ip_address": {
+            "description": "Public ipv4 address for server access",
+            "type": "string",
+            "example": "200.123.45.67"
+          },
+          "ssh_port": {
+            "description": "The network port to which the SSH daemon is listening to SSH connections on the server",
+            "type": "integer",
+            "example": 22
+          },
+          "active": {
+            "description": "Tells if the server is active or not",
+            "type": "boolean",
+            "example": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/ActionStatus"
+          },
+          "blueprint": {
+            "$ref": "#/components/schemas/ServerBlueprint"
+          },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
+          },
+          "project": {
+            "$ref": "#/components/schemas/ProjectRelation"
           },
           "last_action": {
             "$ref": "#/components/schemas/ActionRelation"
           },
+          "environment": {
+            "$ref": "#/components/schemas/EnvironmentRelation"
+          },
+          "environments": {
+            "$ref": "#/components/schemas/EnvironmentList"
+          },
           "created_at": {
-            "type": "string",
-            "format": "date-time",
             "description": "The date and time when the record was created",
+            "type": "string",
             "example": "2019-09-25T15:50:48.000000Z"
           },
           "updated_at": {
-            "type": "string",
-            "format": "date-time",
             "description": "The date and time when the record was last updated",
+            "type": "string",
             "example": "2019-09-25T13:52:04.000000Z"
           }
         },
         "required": [
           "id",
+          "created_by",
           "name",
           "hostname",
+          "provider_name",
+          "provider_name_human_readable",
           "ip_address",
           "ssh_port",
-          "created_by",
           "active",
+          "status",
           "blueprint",
-          "environments",
-          "project",
           "created_by_user",
-          "last_action"
+          "project",
+          "last_action",
+          "environment",
+          "environments",
+          "created_at",
+          "updated_at"
         ]
       },
       "ServerAction": {
@@ -14735,49 +15238,37 @@
           "$ref": "#/components/schemas/ServerRelation"
         }
       },
+      "ServerList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/ServerRelation"
+        }
+      },
       "ServerRelation": {
         "type": "object",
         "properties": {
           "id": {
-            "type": "integer",
             "description": "The unique id of the given record",
+            "type": "integer",
             "example": 9654123
           },
+          "created_by": {
+            "description": "The id of the user who created the server and to whom the server belongs",
+            "type": "integer",
+            "example": 1
+          },
           "name": {
-            "type": "string",
             "description": "The server's name",
+            "type": "string",
             "example": "web-srv-1"
           },
           "hostname": {
-            "type": "string",
             "description": "The server's hostname",
+            "type": "string",
             "example": "web-srv-1"
           },
-          "ip_address": {
-            "type": "string",
-            "format": "ipv4",
-            "description": "Public ipv4 address for server access",
-            "example": "200.123.45.67"
-          },
-          "ssh_port": {
-            "type": "integer",
-            "description": "The network port to which the SSH daemon is listening to SSH connections on the server",
-            "example": 22
-          },
-          "created_by": {
-            "type": "integer",
-            "description": "The id of the user who created the server and to whom the server belongs",
-            "example": 1
-          },
-          "active": {
-            "type": "boolean",
-            "description": "Tells if the server is active or not"
-          },
-          "status": {
-            "$ref": "#/components/schemas/ActionStatus"
-          },
           "provider_name": {
-            "description": "The name of the server's provider.",
+            "description": "strubg The name of the server's provider.",
             "type": "string",
             "example": "self-hosted"
           },
@@ -14786,77 +15277,99 @@
             "type": "string",
             "example": "VPS/Self Hosted"
           },
+          "ip_address": {
+            "description": "Public ipv4 address for server access",
+            "type": "string",
+            "example": "200.123.45.67"
+          },
+          "ssh_port": {
+            "description": "The network port to which the SSH daemon is listening to SSH connections on the server",
+            "type": "integer",
+            "example": 22
+          },
+          "active": {
+            "description": "Tells if the server is active or not",
+            "type": "boolean",
+            "example": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/ActionStatus"
+          },
           "last_action": {
             "$ref": "#/components/schemas/ActionRelation"
           },
           "created_at": {
-            "type": "string",
-            "format": "date-time",
             "description": "The date and time when the record was created",
+            "type": "string",
             "example": "2019-09-25T15:50:48.000000Z"
           },
           "updated_at": {
-            "type": "string",
-            "format": "date-time",
             "description": "The date and time when the record was last updated",
+            "type": "string",
             "example": "2019-09-25T13:52:04.000000Z"
           }
         },
         "required": [
           "id",
+          "created_by",
           "name",
           "hostname",
+          "provider_name",
+          "provider_name_human_readable",
           "ip_address",
           "ssh_port",
-          "created_by",
-          "active"
+          "active",
+          "status",
+          "last_action",
+          "created_at",
+          "updated_at"
         ]
       },
       "Service": {
         "type": "object",
         "properties": {
           "id": {
+            "description": "The unique ID of the given service",
             "type": "integer",
-            "description": "The unique id of the given record",
-            "example": 652674
+            "example": 48682
           },
           "name": {
-            "type": "string",
             "description": "The human readable service name",
+            "type": "string",
             "example": "MySQL"
           },
           "type": {
-            "type": "string",
             "description": "The service type",
+            "type": "string",
             "example": "mysql"
           },
           "type_human_readable": {
-            "type": "string",
             "description": "Formatted/human readable version of the service type",
+            "type": "string",
             "example": "MySQL"
           },
           "version": {
-            "type": "string",
             "description": "The service current installed version",
-            "example": 5.7,
+            "type": "string",
+            "example": "5.7",
             "nullable": true
           },
           "auto_generated": {
+            "description": "Indicates if the service was auto_generated by `devopness` itself",
             "type": "boolean",
-            "default": false,
-            "description": "Indicates if the service was auto_generated by `devopness` itself"
+            "example": false
           },
           "auto_start": {
+            "description": "Indicates if the service will start automatically on operating system boot",
             "type": "boolean",
-            "default": false,
-            "description": "Indicates if the service is marked for start automatically on operating system boot"
+            "example": false
           },
           "initial_state": {
             "$ref": "#/components/schemas/ServiceInitialState"
           },
           "description": {
-            "type": "string",
             "description": "A text describing the service, provided by the service author",
+            "type": "string",
             "example": "MySQL Community Server",
             "nullable": true
           },
@@ -14876,16 +15389,14 @@
             "$ref": "#/components/schemas/ActionRelation"
           },
           "created_at": {
-            "type": "string",
-            "format": "date-time",
             "description": "The date and time when the record was created",
-            "example": "2020-04-16T15:50:48.000000Z"
+            "type": "string",
+            "example": "2019-09-25T13:22:37.000000Z"
           },
           "updated_at": {
-            "type": "string",
-            "format": "date-time",
             "description": "The date and time when the record was last updated",
-            "example": "2020-04-16T15:50:48.000000Z"
+            "type": "string",
+            "example": "2019-09-25T13:22:37.000000Z"
           }
         },
         "required": [
@@ -14893,9 +15404,11 @@
           "name",
           "type",
           "type_human_readable",
+          "version",
           "auto_generated",
           "auto_start",
           "initial_state",
+          "description",
           "environments",
           "created_by_user",
           "project",
@@ -14905,48 +15418,38 @@
           "updated_at"
         ]
       },
-      "ServiceAction": {
-        "type": "string",
-        "description": "The action to be executed for the given service",
-        "enum": [
-          "status",
-          "start",
-          "stop",
-          "reload",
-          "restart",
-          "enable",
-          "disable",
-          "install",
-          "uninstall"
-        ],
-        "example": "active"
+      "Services": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/ServiceRelation"
+        }
       },
       "ServiceCreate": {
         "type": "object",
         "properties": {
-          "type": {
-            "$ref": "#/components/schemas/ServiceName",
-            "example": "redis"
-          },
           "auto_start": {
-            "type": "boolean",
-            "default": false,
-            "description": "Tells if the service should start automatically on operating system boot"
+            "description": "Tells if the service should start automatically on operating system boot.",
+            "example": false,
+            "type": "boolean"
           },
           "initial_state": {
             "$ref": "#/components/schemas/ServiceInitialState"
           },
-          "environments": {
-            "$ref": "#/components/schemas/EnvironmentLinks"
+          "type": {
+            "$ref": "#/components/schemas/ServiceName"
           },
           "version": {
-            "type": "string",
-            "description": "The service version to be installed",
-            "example": 5.7
+            "description": "The service version to be installed. Must be one of <code></code> Must be at least 3 characters. Must not be greater than 30 characters.",
+            "example": "5.7",
+            "type": "string"
+          },
+          "environments": {
+            "$ref": "#/components/schemas/EnvironmentLinks"
           }
         },
         "required": [
-          "type"
+          "type",
+          "version"
         ]
       },
       "ServiceInitialState": {
@@ -14958,6 +15461,12 @@
           "stopped"
         ],
         "example": "stopped"
+      },
+      "ServiceList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/ServiceRelation"
+        }
       },
       "ServiceName": {
         "type": "string",
@@ -14971,12 +15480,6 @@
         ],
         "example": "mysql"
       },
-      "Services": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ServiceRelation"
-        }
-      },
       "ServiceOptions": {
         "type": "object",
         "properties": {
@@ -14986,88 +15489,6 @@
         },
         "required": [
           "types"
-        ]
-      },
-      "ServiceReload": {
-        "type": "object",
-        "properties": {
-          "environment_id": {
-            "type": "integer",
-            "description": "The unique environment id",
-            "example": 198421
-          }
-        },
-        "required": [
-          "environment_id"
-        ]
-      },
-      "ServiceRestart": {
-        "type": "object",
-        "properties": {
-          "environment_id": {
-            "type": "integer",
-            "description": "The unique environment id",
-            "example": 198421
-          }
-        },
-        "required": [
-          "environment_id"
-        ]
-      },
-      "ServiceStart": {
-        "type": "object",
-        "properties": {
-          "environment_id": {
-            "type": "integer",
-            "description": "The unique environment id",
-            "example": 198421
-          }
-        },
-        "required": [
-          "environment_id"
-        ]
-      },
-      "ServiceStatusUpdate": {
-        "type": "object",
-        "properties": {
-          "environment_id": {
-            "type": "integer",
-            "description": "The unique environment id",
-            "example": 198421
-          }
-        },
-        "required": [
-          "environment_id"
-        ]
-      },
-      "ServiceStop": {
-        "type": "object",
-        "properties": {
-          "environment_id": {
-            "type": "integer",
-            "description": "The unique environment id",
-            "example": 198421
-          }
-        },
-        "required": [
-          "environment_id"
-        ]
-      },
-      "ServiceUpdate": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "description": "The unique id of the given record",
-            "example": 45678
-          },
-          "environments": {
-            "$ref": "#/components/schemas/EnvironmentLinks"
-          }
-        },
-        "required": [
-          "id",
-          "environments"
         ]
       },
       "ServiceType": {
@@ -15118,42 +15539,47 @@
         "type": "object",
         "properties": {
           "id": {
+            "description": "The unique ID of the given service",
             "type": "integer",
-            "description": "The unique id of the given record",
-            "example": 652674
+            "example": 48682
           },
           "name": {
+            "description": "The human readable service name",
             "type": "string",
-            "description": "The service name",
+            "example": "MySQL"
+          },
+          "type": {
+            "description": "The service type",
+            "type": "string",
             "example": "mysql"
           },
-          "name_human_readable": {
+          "type_human_readable": {
+            "description": "Formatted/human readable version of the service type",
             "type": "string",
-            "description": "Formatted/human readable version of the service name",
             "example": "MySQL"
           },
           "version": {
-            "type": "string",
             "description": "The service current installed version",
-            "example": 5.7,
+            "type": "string",
+            "example": "5.7",
             "nullable": true
           },
           "auto_generated": {
+            "description": "Indicates if the service was auto_generated by `devopness` itself",
             "type": "boolean",
-            "default": false,
-            "description": "Indicates if the service was auto_generated by `devopness` itself"
+            "example": false
           },
           "auto_start": {
+            "description": "Indicates if the service will start automatically on operating system boot",
             "type": "boolean",
-            "default": false,
-            "description": "Indicates if the service is marked for start automatically on operating system boot"
+            "example": false
           },
           "initial_state": {
             "$ref": "#/components/schemas/ServiceInitialState"
           },
           "description": {
-            "type": "string",
             "description": "A text describing the service, provided by the service author",
+            "type": "string",
             "example": "MySQL Community Server",
             "nullable": true
           },
@@ -15161,26 +15587,110 @@
             "$ref": "#/components/schemas/ActionRelation"
           },
           "created_at": {
-            "type": "string",
-            "format": "date-time",
             "description": "The date and time when the record was created",
-            "example": "2020-04-16T15:50:48.000000Z"
+            "type": "string",
+            "example": "2019-09-25T13:22:37.000000Z"
           },
           "updated_at": {
-            "type": "string",
-            "format": "date-time",
             "description": "The date and time when the record was last updated",
-            "example": "2020-04-16T15:50:48.000000Z"
+            "type": "string",
+            "example": "2019-09-25T13:22:37.000000Z"
           }
         },
         "required": [
           "id",
           "name",
+          "type",
+          "type_human_readable",
+          "version",
           "auto_generated",
           "auto_start",
           "initial_state",
+          "description",
+          "last_action",
           "created_at",
           "updated_at"
+        ]
+      },
+      "ServiceReload": {
+        "type": "object",
+        "properties": {
+          "environment_id": {
+            "description": "The ID of the environment this service is running in.",
+            "example": 839,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "environment_id"
+        ]
+      },
+      "ServiceRestart": {
+        "type": "object",
+        "properties": {
+          "environment_id": {
+            "description": "The ID of the environment this service is running in.",
+            "example": 839,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "environment_id"
+        ]
+      },
+      "ServiceStart": {
+        "type": "object",
+        "properties": {
+          "environment_id": {
+            "description": "The ID of the environment this service is running in.",
+            "example": 839,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "environment_id"
+        ]
+      },
+      "ServiceStop": {
+        "type": "object",
+        "properties": {
+          "environment_id": {
+            "description": "The ID of the environment this service is running in.",
+            "example": 839,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "environment_id"
+        ]
+      },
+      "ServiceUpdate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "The unique ID of the service.",
+            "example": 53283,
+            "type": "integer"
+          },
+          "environments": {
+            "$ref": "#/components/schemas/EnvironmentLinks"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "ServiceUpdateStatus": {
+        "type": "object",
+        "properties": {
+          "environment_id": {
+            "description": "The ID of the environment this service is running in.",
+            "example": 839,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "environment_id"
         ]
       },
       "SocialAccount": {
@@ -15388,57 +15898,61 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "integer",
             "description": "The Id of the given SSH public key",
-            "example": 1
-          },
-          "project_id": {
             "type": "integer",
-            "description": "The project id that the SSH public key belongs to",
-            "example": 67423019
-          },
-          "name": {
-            "type": "string",
-            "description": "The name entered by the user to uniquely identify the public SSH key",
-            "example": "my-laptop-ssh-key"
+            "example": 643
           },
           "created_by": {
+            "description": "The id of the user to which the SSH key belongs to",
             "type": "integer",
-            "description": "The Id of the user to which the SSH key belongs to",
-            "example": 123
+            "example": 35131
+          },
+          "project_id": {
+            "description": "The project id to which the SSH public key belongs to",
+            "type": "integer",
+            "example": 16642
+          },
+          "environment_id": {
+            "description": "The environment id to which the SSH public key belongs to",
+            "type": "integer",
+            "example": 76441
+          },
+          "name": {
+            "description": "The name entered by the user to uniquely identify the public SSH key",
+            "type": "string",
+            "example": "my-ssh-key"
           },
           "fingerprint": {
-            "type": "string",
             "description": "The hashed fingerprint of the public key",
-            "example": "f1:59:d6:c4:55:97:06:94:e3:f2:82:de:46:e5:27:39"
+            "type": "string",
+            "example": "74:2a:d5:75:8a:9b:64:4c:21:18:54:3f:c5:0a:59:f0"
           },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
           },
           "environments": {
-            "$ref": "#/components/schemas/Environments"
+            "$ref": "#/components/schemas/EnvironmentList"
           },
           "servers": {
-            "$ref": "#/components/schemas/Servers"
+            "$ref": "#/components/schemas/ServerList"
           },
           "last_action": {
             "$ref": "#/components/schemas/ActionRelation"
           },
           "created_at": {
-            "type": "string",
-            "format": "date-time",
             "description": "The date and time when the record was created",
-            "example": "2019-09-25T15:50:48.000000Z"
+            "type": "string",
+            "example": "2022-09-26T15:30:31.000000Z"
           },
           "updated_at": {
-            "type": "string",
-            "format": "date-time",
             "description": "The date and time when the record was last updated",
-            "example": "2019-09-25T13:52:04.000000Z"
+            "type": "string",
+            "example": "2022-09-26T15:30:58.000000Z"
           }
         },
         "required": [
           "id",
+          "environment_id",
           "name",
           "fingerprint",
           "created_by_user",
@@ -15450,20 +15964,43 @@
       "SshKeyCreate": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "description": "The Id of the given SSH public key",
-            "example": 1
-          },
           "name": {
-            "type": "string",
-            "description": "The name entered by the user to uniquely identify the public SSH key",
-            "example": "my-laptop-ssh-key"
+            "description": "The ssh key's name. Must not be greater than 60 characters.",
+            "example": "my-ssh-key",
+            "type": "string"
           },
           "public_key": {
-            "type": "string",
-            "description": "The public SSH key to add to your `devopness` account and associate it to the given project",
-            "example": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCu2g54rOA/7OhsILhFncrBAaPe8K0mZilMQugwGpiqQY89Xx0rhcZ/HS2rvmJnGC0nATxOZFsZLfjInpHhq+Y5WumTO0GUrkF215t4QavEU6UMd7VC+mqm2mm4WP+9zkcSSCzy7ZQ1Tuig6IWAB90FNqD7tXRFAqAjlC1LW8V+Efw9AO2mROglpxnoHuH8ZN0a/LQBi5iyeqOLuKZzgUWv4nEIqyYYGslDS1eru2aINwCNahDljXM7f7LcrHlhv5c4y5WSdEYlxSdQQh/ijDcuIIZEv27ivYoY1fse24b2MqD2XdHJpSb1GLnOI76t7+MSmDow3BtSxUNqW0rIUqObFxlMVx9oozHjnn3FkFee+qhQ/9knA7+V9Z7M6SJzDwcGqzJXEpuX/E4AHV04vEI4+RV2vNLhPsHZ2DDQ1fm3ZUtXnWXcIwsLC9WNFdiCOL+WyIYKieQ/CiWfDDIp0xlho83HMp79+BJ4ceFRP/PAdee+TltbtoJR00Ezf8b2nFU="
+            "description": "The public key of the ssh key.",
+            "example": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCAJGoD1B2m718Q6us8k7UbkjwDJQkusFZ1Yg+s13yuEfd+pfEnni1YfWxz67HPCGUYMtdUTnb7Fkc9xgPgj5Fkl6vhQv1mFbL/addJcV9bIYd4e29LMEsojiAyh99JDTtSXMkljlWYuf4ywALswCna2w+70WHSdoDD3p82THDdoB7p9hPXRzRLZVAzw7Y7is/8Sho4V1byXPxxRfTd5HSGqLqi0zdoef8iXZ2wg4uBJStbszu75oSijM9zHgQtUxE0CgQ1iaPHOg8Idxmg8BQoaYD2OmzwxjwW4wmKUZ5F/qOMknrwZ6iUqjqYFJaLZrj6ZMEZ2ydTuS3uNAQO7Zfb",
+            "type": "string"
+          },
+          "servers": {
+            "$ref": "#/components/schemas/ResourceIdList"
+          }
+        },
+        "required": [
+          "name",
+          "public_key"
+        ]
+      },
+      "SshKeyList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/SshKeyRelation"
+        }
+      },
+      "SshKeyProjectCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "The ssh key's name. Must not be greater than 60 characters.",
+            "example": "my-ssh-key",
+            "type": "string"
+          },
+          "public_key": {
+            "description": "The public key of the ssh key.",
+            "example": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCAJGoD1B2m718Q6us8k7UbkjwDJQkusFZ1Yg+s13yuEfd+pfEnni1YfWxz67HPCGUYMtdUTnb7Fkc9xgPgj5Fkl6vhQv1mFbL/addJcV9bIYd4e29LMEsojiAyh99JDTtSXMkljlWYuf4ywALswCna2w+70WHSdoDD3p82THDdoB7p9hPXRzRLZVAzw7Y7is/8Sho4V1byXPxxRfTd5HSGqLqi0zdoef8iXZ2wg4uBJStbszu75oSijM9zHgQtUxE0CgQ1iaPHOg8Idxmg8BQoaYD2OmzwxjwW4wmKUZ5F/qOMknrwZ6iUqjqYFJaLZrj6ZMEZ2ydTuS3uNAQO7Zfb",
+            "type": "string"
           },
           "environments": {
             "$ref": "#/components/schemas/EnvironmentLinks"
@@ -15474,58 +16011,56 @@
           "public_key"
         ]
       },
-      "SshKeys": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/SshKeyRelation"
-        }
-      },
       "SshKeyRelation": {
         "type": "object",
         "properties": {
           "id": {
-            "type": "integer",
             "description": "The Id of the given SSH public key",
-            "example": 1
-          },
-          "project_id": {
             "type": "integer",
-            "description": "The project id that the SSH public key belongs to",
-            "example": 67423019
-          },
-          "name": {
-            "type": "string",
-            "description": "The name entered by the user to uniquely identify the public SSH key",
-            "example": "my-laptop-ssh-key"
+            "example": 644
           },
           "created_by": {
-            "type": "integer",
             "description": "The Id of the user to which the SSH key belongs to",
-            "example": 123
+            "type": "integer",
+            "example": 35201
+          },
+          "project_id": {
+            "description": "The project id to which the SSH public key belongs to",
+            "type": "integer",
+            "example": 16675
+          },
+          "environment_id": {
+            "description": "The environment id to which the SSH public key belongs to",
+            "type": "integer",
+            "example": 76441
+          },
+          "name": {
+            "description": "The name entered by the user to uniquely identify the public SSH key",
+            "type": "string",
+            "example": "my-ssh-key"
           },
           "fingerprint": {
-            "type": "string",
             "description": "The hashed fingerprint of the public key",
-            "example": "f1:59:d6:c4:55:97:06:94:e3:f2:82:de:46:e5:27:39"
+            "type": "string",
+            "example": "74:2a:d5:75:8a:9b:64:4c:21:18:54:3f:c5:0a:59:f0"
           },
           "last_action": {
             "$ref": "#/components/schemas/ActionRelation"
           },
           "created_at": {
-            "type": "string",
-            "format": "date-time",
             "description": "The date and time when the record was created",
-            "example": "2019-09-25T15:50:48.000000Z"
+            "type": "string",
+            "example": "2022-09-26T15:30:31.000000Z"
           },
           "updated_at": {
-            "type": "string",
-            "format": "date-time",
             "description": "The date and time when the record was last updated",
-            "example": "2019-09-25T13:52:04.000000Z"
+            "type": "string",
+            "example": "2022-09-26T15:30:58.000000Z"
           }
         },
         "required": [
           "id",
+          "environment_id",
           "name",
           "fingerprint"
         ]
@@ -15534,14 +16069,14 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "integer",
-            "description": "The Id of the SSH key",
-            "example": 1
+            "description": "The ssh key's ID.",
+            "example": 1,
+            "type": "integer"
           },
           "name": {
-            "type": "string",
-            "description": "The name entered by the user to uniquely identify the public SSH key",
-            "example": "my-laptop-ssh-key"
+            "description": "The ssh key's name. Must not be greater than 60 characters.",
+            "example": "my-ssh-key",
+            "type": "string"
           },
           "environments": {
             "$ref": "#/components/schemas/EnvironmentLinks"

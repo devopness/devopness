@@ -14,20 +14,16 @@
 
 
 /**
- * The action to be executed for the given service
+ * 
  * @export
- * @enum {string}
+ * @interface ServiceUpdateStatus
  */
-export enum ServiceAction {
-    Status = 'status',
-    Start = 'start',
-    Stop = 'stop',
-    Reload = 'reload',
-    Restart = 'restart',
-    Enable = 'enable',
-    Disable = 'disable',
-    Install = 'install',
-    Uninstall = 'uninstall'
+export interface ServiceUpdateStatus {
+    /**
+     * The ID of the environment this service is running in.
+     * @type {number}
+     * @memberof ServiceUpdateStatus
+     */
+    environment_id: number;
 }
-
 

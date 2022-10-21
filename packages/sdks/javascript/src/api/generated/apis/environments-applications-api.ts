@@ -14,12 +14,37 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { ApiError } from '../../generated/models';
+import { Application } from '../../generated/models';
+import { ApplicationCreate } from '../../generated/models';
 import { ApplicationRelation } from '../../generated/models';
 
 /**
  * EnvironmentsApplicationsApiService - Auto-generated
  */
 export class EnvironmentsApplicationsApiService extends ApiBaseService {
+    /**
+     * 
+     * @summary Create a new application
+     * @param {number} environmentId The ID of the environment.
+     * @param {ApplicationCreate} applicationCreate A JSON object containing the resource data
+     */
+    public async addEnvironmentApplication(environmentId: number, applicationCreate: ApplicationCreate): Promise<ApiResponse<Application>> {
+        if (environmentId === null || environmentId === undefined) {
+            throw new ArgumentNullException('environmentId', 'addEnvironmentApplication');
+        }
+        if (applicationCreate === null || applicationCreate === undefined) {
+            throw new ArgumentNullException('applicationCreate', 'addEnvironmentApplication');
+        }
+        
+        let queryString = '';
+
+        const requestUrl = '/environments/{environment_id}/applications' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <Application, ApplicationCreate>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))), applicationCreate);
+        return new ApiResponse(response);
+    }
+
     /**
      * 
      * @summary Returns a list of all applications belonging to a environment

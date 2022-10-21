@@ -26,15 +26,15 @@ export class ProjectsServersApiService extends ApiBaseService {
     /**
      * 
      * @summary Creates a server and link it to the given project
-     * @param {number} projectId The project numeric Id
-     * @param {ServerCreate} serverCreate A JSON object containing server data
+     * @param {number} projectId The ID of the project.
+     * @param {ServerCreate} serverCreate A JSON object containing the resource data
      */
-    public async addServerToProject(projectId: number, serverCreate: ServerCreate): Promise<ApiResponse<Server>> {
+    public async addProjectServer(projectId: number, serverCreate: ServerCreate): Promise<ApiResponse<Server>> {
         if (projectId === null || projectId === undefined) {
-            throw new ArgumentNullException('projectId', 'addServerToProject');
+            throw new ArgumentNullException('projectId', 'addProjectServer');
         }
         if (serverCreate === null || serverCreate === undefined) {
-            throw new ArgumentNullException('serverCreate', 'addServerToProject');
+            throw new ArgumentNullException('serverCreate', 'addProjectServer');
         }
         
         let queryString = '';
@@ -48,7 +48,7 @@ export class ProjectsServersApiService extends ApiBaseService {
     /**
      * 
      * @summary List all servers linked to a project
-     * @param {number} projectId The project numeric Id
+     * @param {number} projectId The ID of the project.
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */

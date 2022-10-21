@@ -17,19 +17,25 @@ import { EnvironmentLinkItem } from './environment-link-item';
 /**
  * 
  * @export
- * @interface ServiceUpdate
+ * @interface SshKeyProjectCreate
  */
-export interface ServiceUpdate {
+export interface SshKeyProjectCreate {
     /**
-     * The unique ID of the service.
-     * @type {number}
-     * @memberof ServiceUpdate
+     * The ssh key\'s name. Must not be greater than 60 characters.
+     * @type {string}
+     * @memberof SshKeyProjectCreate
      */
-    id: number;
+    name: string;
+    /**
+     * The public key of the ssh key.
+     * @type {string}
+     * @memberof SshKeyProjectCreate
+     */
+    public_key: string;
     /**
      * 
      * @type {Array<EnvironmentLinkItem>}
-     * @memberof ServiceUpdate
+     * @memberof SshKeyProjectCreate
      */
     environments?: Array<EnvironmentLinkItem>;
 }

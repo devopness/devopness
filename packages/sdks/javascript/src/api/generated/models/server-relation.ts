@@ -28,6 +28,12 @@ export interface ServerRelation {
      */
     id: number;
     /**
+     * The id of the user who created the server and to whom the server belongs
+     * @type {number}
+     * @memberof ServerRelation
+     */
+    created_by: number;
+    /**
      * The server\'s name
      * @type {string}
      * @memberof ServerRelation
@@ -39,6 +45,18 @@ export interface ServerRelation {
      * @memberof ServerRelation
      */
     hostname: string;
+    /**
+     * strubg The name of the server\'s provider.
+     * @type {string}
+     * @memberof ServerRelation
+     */
+    provider_name: string;
+    /**
+     * The human readable version of the provider\'s name
+     * @type {string}
+     * @memberof ServerRelation
+     */
+    provider_name_human_readable: string;
     /**
      * Public ipv4 address for server access
      * @type {string}
@@ -52,12 +70,6 @@ export interface ServerRelation {
      */
     ssh_port: number;
     /**
-     * The id of the user who created the server and to whom the server belongs
-     * @type {number}
-     * @memberof ServerRelation
-     */
-    created_by: number;
-    /**
      * Tells if the server is active or not
      * @type {boolean}
      * @memberof ServerRelation
@@ -68,36 +80,24 @@ export interface ServerRelation {
      * @type {ActionStatus}
      * @memberof ServerRelation
      */
-    status?: ActionStatus;
-    /**
-     * The name of the server\'s provider.
-     * @type {string}
-     * @memberof ServerRelation
-     */
-    provider_name?: string;
-    /**
-     * The human readable version of the provider\'s name
-     * @type {string}
-     * @memberof ServerRelation
-     */
-    provider_name_human_readable?: string;
+    status: ActionStatus;
     /**
      * 
      * @type {ActionRelation}
      * @memberof ServerRelation
      */
-    last_action?: ActionRelation | null;
+    last_action: ActionRelation | null;
     /**
      * The date and time when the record was created
      * @type {string}
      * @memberof ServerRelation
      */
-    created_at?: string;
+    created_at: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof ServerRelation
      */
-    updated_at?: string;
+    updated_at: string;
 }
 

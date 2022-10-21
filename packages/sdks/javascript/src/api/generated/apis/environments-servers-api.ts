@@ -14,13 +14,37 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { ApiError } from '../../generated/models';
 import { EnvironmentLinkItem } from '../../generated/models';
-import { ServerRelation } from '../../generated/models';
+import { Server } from '../../generated/models';
+import { ServerCreate } from '../../generated/models';
 
 /**
  * EnvironmentsServersApiService - Auto-generated
  */
 export class EnvironmentsServersApiService extends ApiBaseService {
+    /**
+     * 
+     * @summary Creates a server and link it to the given environment
+     * @param {number} environmentId The ID of the environment.
+     * @param {ServerCreate} serverCreate A JSON object containing the resource data
+     */
+    public async addEnvironmentServer(environmentId: number, serverCreate: ServerCreate): Promise<ApiResponse<Server>> {
+        if (environmentId === null || environmentId === undefined) {
+            throw new ArgumentNullException('environmentId', 'addEnvironmentServer');
+        }
+        if (serverCreate === null || serverCreate === undefined) {
+            throw new ArgumentNullException('serverCreate', 'addEnvironmentServer');
+        }
+        
+        let queryString = '';
+
+        const requestUrl = '/environments/{environment_id}/servers' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <Server, ServerCreate>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))), serverCreate);
+        return new ApiResponse(response);
+    }
+
     /**
      * 
      * @summary Link a server to an environment
@@ -41,34 +65,6 @@ export class EnvironmentsServersApiService extends ApiBaseService {
         const requestUrl = '/environments/{environment_id}/servers/{server_id}/link' + (queryString? `?${queryString}` : '');
 
         const response = await this.post <void, EnvironmentLinkItem>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))).replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))), environmentLinkItem);
-        return new ApiResponse(response);
-    }
-
-    /**
-     * 
-     * @summary Return a list of all servers belonging to a environment
-     * @param {number} environmentId Numeric ID of the environment to get servers from
-     * @param {number} [page] Number of the page to be retrieved
-     * @param {number} [perPage] Number of items returned per page
-     */
-    public async listEnvironmentServers(environmentId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<ServerRelation>>> {
-        if (environmentId === null || environmentId === undefined) {
-            throw new ArgumentNullException('environmentId', 'listEnvironmentServers');
-        }
-        
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/environments/{environment_id}/servers' + (queryString? `?${queryString}` : '');
-
-        const response = await this.get <Array<ServerRelation>>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
         return new ApiResponse(response);
     }
 

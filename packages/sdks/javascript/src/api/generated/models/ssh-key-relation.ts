@@ -27,23 +27,29 @@ export interface SshKeyRelation {
      */
     id: number;
     /**
-     * The project id that the SSH public key belongs to
+     * The Id of the user to which the SSH key belongs to
+     * @type {number}
+     * @memberof SshKeyRelation
+     */
+    created_by?: number;
+    /**
+     * The project id to which the SSH public key belongs to
      * @type {number}
      * @memberof SshKeyRelation
      */
     project_id?: number;
+    /**
+     * The environment id to which the SSH public key belongs to
+     * @type {number}
+     * @memberof SshKeyRelation
+     */
+    environment_id: number;
     /**
      * The name entered by the user to uniquely identify the public SSH key
      * @type {string}
      * @memberof SshKeyRelation
      */
     name: string;
-    /**
-     * The Id of the user to which the SSH key belongs to
-     * @type {number}
-     * @memberof SshKeyRelation
-     */
-    created_by?: number;
     /**
      * The hashed fingerprint of the public key
      * @type {string}
