@@ -97,6 +97,8 @@ properties:
     $ref: '#/components/schemas/UserRelation'
   last_deployments:
     $ref: '#/components/schemas/ApplicationLastDeployments'
+  environment:
+    $ref: '#/components/schemas/EnvironmentRelation'
   environments:
     $ref: '#/components/schemas/Environments'
   servers:
@@ -140,6 +142,7 @@ required:
   - default_pipeline
   - created_by_user
   - last_deployments
+  - environment
   - environments
   - servers
   - source_provider

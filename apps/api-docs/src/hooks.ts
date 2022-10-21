@@ -58,6 +58,11 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         'deletePipeline204',
         // @todo: see how to fixture team_invitation_id
         'acceptTeamInvitation204',
+        'linkServerToEnvironment201',
+        'unlinkServerFromEnvironment204',
+        'addSshKeyToProject201',
+        'addApplicationToProject201',
+        'deleteEnvironment204',
     ];
 
     // transactions listed here are skipped with a `before` hook
@@ -236,7 +241,8 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     after('logout204', (transaction: Transaction) => { if (transaction.test.valid) { fixtures.delete('user_tokens'); } });
 
     //// servers
-    before('addServerToProject201', (transaction: Transaction) => {
+
+    const beforeCreateServer = (transaction: Transaction) => {
         const tag = `[fake-server]`
         if (transaction.request.body) {
             const body = JSON.parse(transaction.request.body);
@@ -252,7 +258,10 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
                 }
             }
         }
-    })
+    };
+
+    before('addProjectServer201', beforeCreateServer);
+    before('addEnvironmentServer201', beforeCreateServer);
 
     //// projects
     const randomizeName = (body: any) => {
@@ -261,7 +270,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     before('addProject201', utils.rewriteTransactionRequestBody(randomizeName));
     before('updateProject204', utils.rewriteTransactionRequestBody(randomizeName));
 
-    before('addApplicationToProject201', utils.rewriteTransactionRequestBody((body: any) => {
+    before('addEnvironmentApplication201', utils.rewriteTransactionRequestBody((body: any) => {
         body['entrypoint'] = 'index.html'
     }))
 

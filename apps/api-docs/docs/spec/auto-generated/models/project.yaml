@@ -18,6 +18,8 @@ properties:
     type: string
     example: 'https://example.com/projects-beautiful-logo.png'
     nullable: true
+  os_users:
+    $ref: '#/components/schemas/PropertyOsUsersList'
   created_by_user:
     $ref: '#/components/schemas/UserRelation'
   environments:
@@ -47,6 +49,7 @@ required:
   - user_id
   - name
   - logo_url
+  - os_users
   - created_by_user
   - environments
   - applications

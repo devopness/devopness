@@ -16,7 +16,7 @@ parameters:
     in: path
     name: ssh_key_id
     description: 'The ID of the ssh key.'
-    example: 81
+    example: 914
     required: true
     schema:
       type: integer

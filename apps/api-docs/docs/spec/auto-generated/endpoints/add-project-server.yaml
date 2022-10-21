@@ -16,7 +16,7 @@ parameters:
     in: path
     name: project_id
     description: 'The ID of the project.'
-    example: 81
+    example: 1
     required: true
     schema:
       type: integer
@@ -45,3 +45,10 @@ responses:
       application/json:
         schema:
           $ref: '#/components/schemas/ApiError'
+requestBody:
+  description: 'A JSON object containing the resource data'
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/ServerCreate'

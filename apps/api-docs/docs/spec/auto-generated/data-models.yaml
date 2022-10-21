@@ -11,6 +11,8 @@ Application:
   $ref: ./auto-generated/models/application.yaml
 ApplicationCreate:
   $ref: ./auto-generated/models/application-create.yaml
+ApplicationEnvironmentCreate:
+  $ref: ./auto-generated/models/application-environment-create.yaml
 ApplicationLastDeployments:
   $ref: ./auto-generated/models/application-last-deployments.yaml
 ApplicationList:
@@ -49,24 +51,66 @@ MemberRelation:
   $ref: ./auto-generated/models/member-relation.yaml
 Project:
   $ref: ./auto-generated/models/project.yaml
+ProjectCreate:
+  $ref: ./auto-generated/models/project-create.yaml
 ProjectList:
   $ref: ./auto-generated/models/project-list.yaml
 ProjectRelation:
   $ref: ./auto-generated/models/project-relation.yaml
 ProjectUpdate:
   $ref: ./auto-generated/models/project-update.yaml
+PropertyOsUsers:
+  $ref: ./auto-generated/models/property-os-users.yaml
+PropertyOsUsersList:
+  $ref: ./auto-generated/models/property-os-users-list.yaml
 ResourceIdList:
   $ref: ./auto-generated/models/resource-id-list.yaml
+Role:
+  $ref: ./auto-generated/models/role.yaml
+RoleCreate:
+  $ref: ./auto-generated/models/role-create.yaml
+RoleList:
+  $ref: ./auto-generated/models/role-list.yaml
 RolePermissions:
   $ref: ./auto-generated/models/role-permissions.yaml
+RoleRelation:
+  $ref: ./auto-generated/models/role-relation.yaml
+RoleUpdate:
+  $ref: ./auto-generated/models/role-update.yaml
 Server:
   $ref: ./auto-generated/models/server.yaml
 ServerCommand:
   $ref: ./auto-generated/models/server-command.yaml
+ServerCreate:
+  $ref: ./auto-generated/models/server-create.yaml
+ServerEnvironmentCreate:
+  $ref: ./auto-generated/models/server-environment-create.yaml
 ServerList:
   $ref: ./auto-generated/models/server-list.yaml
 ServerRelation:
   $ref: ./auto-generated/models/server-relation.yaml
+ServerUpdate:
+  $ref: ./auto-generated/models/server-update.yaml
+Service:
+  $ref: ./auto-generated/models/service.yaml
+ServiceCreate:
+  $ref: ./auto-generated/models/service-create.yaml
+ServiceList:
+  $ref: ./auto-generated/models/service-list.yaml
+ServiceRelation:
+  $ref: ./auto-generated/models/service-relation.yaml
+ServiceReload:
+  $ref: ./auto-generated/models/service-reload.yaml
+ServiceRestart:
+  $ref: ./auto-generated/models/service-restart.yaml
+ServiceStart:
+  $ref: ./auto-generated/models/service-start.yaml
+ServiceStop:
+  $ref: ./auto-generated/models/service-stop.yaml
+ServiceUpdate:
+  $ref: ./auto-generated/models/service-update.yaml
+ServiceUpdateStatus:
+  $ref: ./auto-generated/models/service-update-status.yaml
 SshKey:
   $ref: ./auto-generated/models/ssh-key.yaml
 SshKeyCreate:

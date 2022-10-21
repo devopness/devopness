@@ -48,8 +48,7 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     'application': [],
     'application_pipeline': [],
     'application_create': [
-        { path: 'environments[0].id', fixture: 'environment', field: 'id' },
-        { path: 'environments[0].servers[0]', fixture: 'server', field: 'id' },
+        { path: 'servers[0]', fixture: 'server', field: 'id' },
     ],
     'application_update': [
         { path: 'id', fixture: 'application', field: 'id' },
@@ -172,7 +171,7 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     'service_start': [
         { path: 'environment_id', fixture: 'environment', field: 'id' },
     ],
-    'service_status_update': [
+    'service_update_status': [
         { path: 'environment_id', fixture: 'environment', field: 'id' },
     ],
     'service_stop': [
@@ -187,8 +186,7 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     'source_provider': [],
     'ssh_key': [],
     'ssh_key_create': [
-        { path: 'environments[0].id', fixture: 'environment', field: 'id' },
-        { path: 'environments[0].servers[0]', fixture: 'server', field: 'id' }
+        { path: 'servers[0]', fixture: 'server', field: 'id' }
     ],
     'ssh_key_update': [
         { path: 'id', fixture: 'ssh_key', field: 'id' },

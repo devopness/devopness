@@ -59,6 +59,8 @@
 /environments/{environment_id}/applications:
   get:
     $ref: ./endpoints/applications/paths/environments-id-applications-list.yaml
+  post:
+    $ref: ./auto-generated/endpoints/add-environment-application.yaml
 /environments/{environment_id}/cron-jobs:
   get:
     $ref: ./endpoints/cronjobs/paths/environments-id-cronjobs-list.yaml
@@ -74,15 +76,17 @@
 /environments/{environment_id}/network-rules:
   get:
     $ref: ./endpoints/network-rules/paths/environments-id-network-rules-list.yaml
-/environments/{environment_id}/servers:
-  get:
-    $ref: ./endpoints/servers/paths/environments-id-servers-list.yaml
+"/environments/{environment_id}/servers":
+  post:
+    $ref: ./auto-generated/endpoints/add-environment-server.yaml
 /environments/{environment_id}/services:
   get:
-    $ref: ./endpoints/services/paths/environments-id-services-list.yaml
-/environments/{environment_id}/ssh-keys:
+    $ref: ./auto-generated/endpoints/list-environment-services.yaml
+"/environments/{environment_id}/ssh-keys":
   get:
-    $ref: ./endpoints/ssh-keys/paths/environments-id-ssh-keys-list.yaml
+    $ref: ./auto-generated/endpoints/list-environment-ssh-keys.yaml
+  post:
+    $ref: ./auto-generated/endpoints/add-environment-ssh-key.yaml
 /environments/{environment_id}/servers/replace-linked-servers:
   post:
     $ref: ./endpoints/environments/paths/environments-id-servers-replace-linked-servers.yaml
@@ -240,21 +244,21 @@
     $ref: ./endpoints/projects/paths/projects-id-roles.yaml
   get:
     $ref: ./endpoints/projects/paths/projects-id-roles-list.yaml
-/projects/{project_id}/servers:
-  post:
-    $ref: ./endpoints/projects/paths/projects-id-servers.yaml
+"/projects/{project_id}/servers":
   get:
-    $ref: ./endpoints/projects/paths/projects-id-servers-list.yaml
+    $ref: ./auto-generated/endpoints/list-project-servers.yaml
+  post:
+    $ref: ./auto-generated/endpoints/add-project-server.yaml
 /projects/{project_id}/services:
-  post:
-    $ref: ./endpoints/projects/paths/projects-id-services.yaml
   get:
-    $ref: ./endpoints/projects/paths/projects-id-services-list.yaml
-/projects/{project_id}/ssh-keys:
+    $ref: ./auto-generated/endpoints/list-project-services.yaml
+  post:
+    $ref: ./auto-generated/endpoints/add-project-service.yaml
+"/projects/{project_id}/ssh-keys":
+  get:
+    $ref: ./auto-generated/endpoints/list-project-ssh-keys.yaml
   post:
     $ref: ./endpoints/projects/paths/projects-id-ssh-keys.yaml
-  get:
-    $ref: ./endpoints/projects/paths/projects-id-ssh-keys-list.yaml
 /projects/{project_id}/teams:
   get:
     $ref: ./endpoints/teams/paths/projects-id-teams-list.yaml
@@ -278,31 +282,31 @@
 /servers/{server_id}/commands:
   get:
     $ref: ./endpoints/servers/paths/servers-id-commands.yaml
-/servers/{server_id}/connect/{activation_token}:
+"/servers/{server_id}/connect/{activation_token}":
   post:
-    $ref: ./endpoints/servers/paths/servers-id-connect.yaml
+    $ref: ./auto-generated/endpoints/connect-server.yaml
 /services/{service_id}:
   delete:
-    $ref: ./endpoints/services/paths/services-id-delete.yaml
+    $ref: ./auto-generated/endpoints/delete-service.yaml
   get:
-    $ref: ./endpoints/services/paths/services-id.yaml
+    $ref: ./auto-generated/endpoints/get-service.yaml
   put:
-    $ref: ./endpoints/services/paths/services-id-update.yaml
+    $ref: ./auto-generated/endpoints/update-service.yaml
 /services/{service_id}/reload:
   post:
-    $ref: ./endpoints/services/paths/services-id-reload.yaml
+    $ref: ./auto-generated/endpoints/reload-service.yaml
 /services/{service_id}/restart:
   post:
-    $ref: ./endpoints/services/paths/services-id-restart.yaml
+    $ref: ./auto-generated/endpoints/restart-service.yaml
 /services/{service_id}/start:
   post:
-    $ref: ./endpoints/services/paths/services-id-start.yaml
-/services/{service_id}/update-status:
-  post:
-    $ref: ./endpoints/services/paths/services-id-status-update.yaml
+    $ref: ./auto-generated/endpoints/start-service.yaml
 /services/{service_id}/stop:
   post:
-    $ref: ./endpoints/services/paths/services-id-stop.yaml
+    $ref: ./auto-generated/endpoints/stop-service.yaml
+/services/{service_id}/update-status:
+  post:
+    $ref: ./auto-generated/endpoints/update-status-service.yaml
 /social-accounts:
   post:
     $ref: ./endpoints/social-accounts/paths/social-accounts.yaml
@@ -382,12 +386,12 @@
     $ref: ./endpoints/teams/paths/teams-id.yaml
   put:
     $ref: ./endpoints/teams/paths/teams-id-update.yaml
-'/teams/{team_id}/invitations':
+"/teams/{team_id}/invitations":
   get:
     $ref: ./auto-generated/endpoints/list-team-invitations.yaml
   post:
     $ref: ./auto-generated/endpoints/add-team-invitation.yaml
-'/team-invitations/{team_invitation_id}/accept':
+"/team-invitations/{team_invitation_id}/accept":
   post:
     $ref: ./auto-generated/endpoints/accept-team-invitation.yaml
 /teams/{team_id}/members:

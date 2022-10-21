@@ -44,6 +44,8 @@ Application:
   $ref: ./endpoints/applications/schemas/application.yaml
 ApplicationCreate:
   $ref: ./endpoints/applications/schemas/application-create.yaml
+ApplicationEnvironmentCreate:
+  $ref: ./auto-generated/models/application-environment-create.yaml
 ApplicationDeployment:
   $ref: ./endpoints/applications/schemas/application-deployment.yaml
 ApplicationLastDeployment:
@@ -154,6 +156,8 @@ Environment:
   $ref: ./endpoints/environments/schemas/environment.yaml
 EnvironmentCreate:
   $ref: ./endpoints/environments/schemas/environment-create.yaml
+EnvironmentList:
+  $ref: ./auto-generated/models/environment-list.yaml
 EnvironmentMember:
   $ref: ./endpoints/members/schemas/environment-member.yaml
 EnvironmentMemberProfile:
@@ -336,6 +340,8 @@ ResourceEvent:
   $ref: ./endpoints/resource-events/schemas/resource-event.yaml
 ResourceEvents:
   $ref: ./endpoints/resource-events/schemas/resource-event-list.yaml
+ResourceIdList:
+  $ref: ./auto-generated/models/resource-id-list.yaml
 ResourceType:
   $ref: ./endpoints/actions/schemas/resource-type.yaml
 Role:
@@ -353,7 +359,7 @@ ScriptRunner:
 ScriptRunners:
   $ref: ./endpoints/static/schemas/script-runners-list.yaml
 Server:
-  $ref: ./endpoints/servers/schemas/server.yaml
+  $ref: ./auto-generated/models/server.yaml
 ServerAction:
   $ref: ./endpoints/actions/schemas/server-action.yaml
 ServerActionLog:
@@ -386,40 +392,42 @@ ServerUpdate:
   $ref: ./endpoints/servers/schemas/server-update.yaml
 Servers:
   $ref: ./endpoints/servers/schemas/server-list.yaml
+ServerList:
+  $ref: ./auto-generated/models/server-list.yaml
 ServerRelation:
-  $ref: ./shared/schemas/models/server-relation.yaml
+  $ref: ./auto-generated/models/server-relation.yaml
 Service:
-  $ref: ./endpoints/services/schemas/service.yaml
-ServiceAction:
-  $ref: ./shared/schemas/service-action.yaml
+  $ref: ./auto-generated/models/service.yaml
+Services:
+  $ref: ./auto-generated/models/service-list.yaml
 ServiceCreate:
-  $ref: ./endpoints/services/schemas/service-create.yaml
+  $ref: ./auto-generated/models/service-create.yaml
 ServiceInitialState:
   $ref: ./shared/schemas/service-initial-state.yaml
+ServiceList:
+  $ref: ./auto-generated/models/service-list.yaml
 ServiceName:
   $ref: ./shared/schemas/service-name.yaml
-Services:
-  $ref: ./endpoints/services/schemas/service-list.yaml
 ServiceOptions:
   $ref: ./endpoints/static/schemas/service-options.yaml
-ServiceReload:
-  $ref: ./endpoints/services/schemas/service-reload.yaml
-ServiceRestart:
-  $ref: ./endpoints/services/schemas/service-restart.yaml
-ServiceStart:
-  $ref: ./endpoints/services/schemas/service-start.yaml
-ServiceStatusUpdate:
-  $ref: ./endpoints/services/schemas/service-status-update.yaml
-ServiceStop:
-  $ref: ./endpoints/services/schemas/service-stop.yaml
-ServiceUpdate:
-  $ref: ./endpoints/services/schemas/service-update.yaml
 ServiceType:
   $ref: ./endpoints/static/schemas/service-type.yaml
 ServiceTypes:
   $ref: ./endpoints/static/schemas/service-type-list.yaml
 ServiceRelation:
-  $ref: ./shared/schemas/models/service-relation.yaml
+  $ref: ./auto-generated/models/service-relation.yaml
+ServiceReload:
+  $ref: ./auto-generated/models/service-reload.yaml
+ServiceRestart:
+  $ref: ./auto-generated/models/service-restart.yaml
+ServiceStart:
+  $ref: ./auto-generated/models/service-start.yaml
+ServiceStop:
+  $ref: ./auto-generated/models/service-stop.yaml
+ServiceUpdate:
+  $ref: ./auto-generated/models/service-update.yaml
+ServiceUpdateStatus:
+  $ref: ./auto-generated/models/service-update-status.yaml
 SocialAccount:
   $ref: ./endpoints/social-accounts/schemas/social-account.yaml
 SocialAccountCreate:
@@ -443,15 +451,17 @@ SourceProviderDisplayableName:
 SourceProviderName:
   $ref: ./shared/schemas/source-provider-name.yaml
 SshKey:
-  $ref: ./endpoints/ssh-keys/schemas/ssh-key.yaml
+  $ref: ./auto-generated/models/ssh-key.yaml
 SshKeyCreate:
-  $ref: ./endpoints/ssh-keys/schemas/ssh-key-create.yaml
-SshKeys:
-  $ref: ./endpoints/ssh-keys/schemas/ssh-key-list.yaml
+  $ref: ./auto-generated/models/ssh-key-create.yaml
+SshKeyList:
+  $ref: ./auto-generated/models/ssh-key-list.yaml
+SshKeyProjectCreate:
+  $ref: ./auto-generated/models/ssh-key-project-create.yaml
 SshKeyRelation:
-  $ref: ./shared/schemas/models/ssh-key-relation.yaml
+  $ref: ./auto-generated/models/ssh-key-relation.yaml
 SshKeyUpdate:
-  $ref: ./endpoints/ssh-keys/schemas/ssh-key-update.yaml
+  $ref: ./auto-generated/models/ssh-key-update.yaml
 SslCertificate:
   $ref: ./endpoints/ssl-certificates/schemas/ssl-certificate.yaml
 SslCertificateCreate:
