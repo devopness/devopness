@@ -25,16 +25,16 @@ import { ServiceRelation } from '../../generated/models';
 export class ProjectsServicesApiService extends ApiBaseService {
     /**
      * 
-     * @summary Add a service to a project and triggers its setup in each linked server
-     * @param {number} projectId The service\&#39;s unique id
-     * @param {ServiceCreate} serviceCreate A JSON object containing service data
+     * @summary Add a service to a project and trigger its setup in each linked server
+     * @param {number} projectId The ID of the project.
+     * @param {ServiceCreate} serviceCreate A JSON object containing the resource data
      */
-    public async addServiceToProject(projectId: number, serviceCreate: ServiceCreate): Promise<ApiResponse<Service>> {
+    public async addProjectService(projectId: number, serviceCreate: ServiceCreate): Promise<ApiResponse<Service>> {
         if (projectId === null || projectId === undefined) {
-            throw new ArgumentNullException('projectId', 'addServiceToProject');
+            throw new ArgumentNullException('projectId', 'addProjectService');
         }
         if (serviceCreate === null || serviceCreate === undefined) {
-            throw new ArgumentNullException('serviceCreate', 'addServiceToProject');
+            throw new ArgumentNullException('serviceCreate', 'addProjectService');
         }
         
         let queryString = '';
@@ -48,7 +48,7 @@ export class ProjectsServicesApiService extends ApiBaseService {
     /**
      * 
      * @summary List all services in a project
-     * @param {number} projectId The service unique Id
+     * @param {number} projectId The ID of the project.
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */

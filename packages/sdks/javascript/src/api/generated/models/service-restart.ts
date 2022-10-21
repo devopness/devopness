@@ -20,7 +20,7 @@
  */
 export interface ServiceRestart {
     /**
-     * The unique environment id
+     * The ID of the environment this service is running in.
      * @type {number}
      * @memberof ServiceRestart
      */

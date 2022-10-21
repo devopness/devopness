@@ -22,8 +22,8 @@ import { ServiceRelation } from '../../generated/models';
 export class EnvironmentsServicesApiService extends ApiBaseService {
     /**
      * 
-     * @summary Returns a list of all services belonging to a environment
-     * @param {number} environmentId Numeric ID of the environment to get services from
+     * @summary Return a list of all services belonging to a environment
+     * @param {number} environmentId The ID of the environment.
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */

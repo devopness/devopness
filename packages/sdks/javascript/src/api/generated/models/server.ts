@@ -32,6 +32,12 @@ export interface Server {
      */
     id: number;
     /**
+     * The id of the user who created the server and to whom the server belongs
+     * @type {number}
+     * @memberof Server
+     */
+    created_by: number;
+    /**
      * The server\'s name
      * @type {string}
      * @memberof Server
@@ -43,6 +49,18 @@ export interface Server {
      * @memberof Server
      */
     hostname: string;
+    /**
+     * The name of the server\'s provider.
+     * @type {string}
+     * @memberof Server
+     */
+    provider_name: string;
+    /**
+     * The human readable version of the provider\'s name
+     * @type {string}
+     * @memberof Server
+     */
+    provider_name_human_readable: string;
     /**
      * Public ipv4 address for server access
      * @type {string}
@@ -56,17 +74,17 @@ export interface Server {
      */
     ssh_port: number;
     /**
-     * The id of the user who created the server and to whom the server belongs
-     * @type {number}
-     * @memberof Server
-     */
-    created_by: number;
-    /**
      * Tells if the server is active or not
      * @type {boolean}
      * @memberof Server
      */
     active: boolean;
+    /**
+     * 
+     * @type {ActionStatus}
+     * @memberof Server
+     */
+    status: ActionStatus;
     /**
      * 
      * @type {ServerBlueprint}
@@ -75,16 +93,10 @@ export interface Server {
     blueprint: ServerBlueprint;
     /**
      * 
-     * @type {ActionStatus}
+     * @type {UserRelation}
      * @memberof Server
      */
-    status?: ActionStatus;
-    /**
-     * The list of environments to which the server is linked to
-     * @type {Array<EnvironmentRelation>}
-     * @memberof Server
-     */
-    environments: Array<EnvironmentRelation>;
+    created_by_user: UserRelation;
     /**
      * 
      * @type {ProjectRelation}
@@ -92,40 +104,34 @@ export interface Server {
      */
     project: ProjectRelation;
     /**
-     * The name of the server\'s provider.
-     * @type {string}
-     * @memberof Server
-     */
-    provider_name?: string;
-    /**
-     * The human readable version of the provider\'s name
-     * @type {string}
-     * @memberof Server
-     */
-    provider_name_human_readable?: string;
-    /**
-     * 
-     * @type {UserRelation}
-     * @memberof Server
-     */
-    created_by_user: UserRelation;
-    /**
      * 
      * @type {ActionRelation}
      * @memberof Server
      */
     last_action: ActionRelation | null;
     /**
+     * 
+     * @type {EnvironmentRelation}
+     * @memberof Server
+     */
+    environment: EnvironmentRelation;
+    /**
+     * 
+     * @type {Array<EnvironmentRelation>}
+     * @memberof Server
+     */
+    environments: Array<EnvironmentRelation>;
+    /**
      * The date and time when the record was created
      * @type {string}
      * @memberof Server
      */
-    created_at?: string;
+    created_at: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof Server
      */
-    updated_at?: string;
+    updated_at: string;
 }
 

@@ -14,6 +14,9 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { ApiError } from '../../generated/models';
+import { SshKey } from '../../generated/models';
+import { SshKeyCreate } from '../../generated/models';
 import { SshKeyRelation } from '../../generated/models';
 
 /**
@@ -22,8 +25,30 @@ import { SshKeyRelation } from '../../generated/models';
 export class EnvironmentsSSHKeysApiService extends ApiBaseService {
     /**
      * 
-     * @summary Returns a list of all SSH Keys belonging to a environment
-     * @param {number} environmentId Numeric ID of the environment to get SSH Keys from
+     * @summary Create an SSH key and link it to the given environment
+     * @param {number} environmentId The ID of the environment.
+     * @param {SshKeyCreate} sshKeyCreate A JSON object containing the resource data
+     */
+    public async addEnvironmentSshKey(environmentId: number, sshKeyCreate: SshKeyCreate): Promise<ApiResponse<SshKey>> {
+        if (environmentId === null || environmentId === undefined) {
+            throw new ArgumentNullException('environmentId', 'addEnvironmentSshKey');
+        }
+        if (sshKeyCreate === null || sshKeyCreate === undefined) {
+            throw new ArgumentNullException('sshKeyCreate', 'addEnvironmentSshKey');
+        }
+        
+        let queryString = '';
+
+        const requestUrl = '/environments/{environment_id}/ssh-keys' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <SshKey, SshKeyCreate>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))), sshKeyCreate);
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Return a list of all SSH keys added to an environment
+     * @param {number} environmentId The ID of the environment.
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */

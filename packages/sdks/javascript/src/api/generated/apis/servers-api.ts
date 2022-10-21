@@ -17,7 +17,6 @@ import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { Server } from '../../generated/models';
 import { ServerCommands } from '../../generated/models';
-import { ServerConnect } from '../../generated/models';
 import { ServerUpdate } from '../../generated/models';
 
 /**
@@ -27,22 +26,22 @@ export class ServersApiService extends ApiBaseService {
     /**
      * 
      * @summary Connect a server to devopness platform
-     * @param {number} serverId The server numeric Id
-     * @param {string} activationToken The server activation token
+     * @param {string} activationToken The server activation token.
+     * @param {number} serverId The ID of the server.
      */
-    public async connectServer(serverId: number, activationToken: string): Promise<ApiResponse<ServerConnect>> {
-        if (serverId === null || serverId === undefined) {
-            throw new ArgumentNullException('serverId', 'connectServer');
-        }
+    public async connectServer(activationToken: string, serverId: number): Promise<ApiResponse<string>> {
         if (activationToken === null || activationToken === undefined) {
             throw new ArgumentNullException('activationToken', 'connectServer');
+        }
+        if (serverId === null || serverId === undefined) {
+            throw new ArgumentNullException('serverId', 'connectServer');
         }
         
         let queryString = '';
 
         const requestUrl = '/servers/{server_id}/connect/{activation_token}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <ServerConnect>(requestUrl.replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))).replace(`{${"activation_token"}}`, encodeURIComponent(String(activationToken))));
+        const response = await this.post <string>(requestUrl.replace(`{${"activation_token"}}`, encodeURIComponent(String(activationToken))).replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))));
         return new ApiResponse(response);
     }
 

@@ -23,13 +23,7 @@ import { ServiceName } from './service-name';
  */
 export interface ServiceCreate {
     /**
-     * 
-     * @type {ServiceName}
-     * @memberof ServiceCreate
-     */
-    type: ServiceName;
-    /**
-     * Tells if the service should start automatically on operating system boot
+     * Tells if the service should start automatically on operating system boot.
      * @type {boolean}
      * @memberof ServiceCreate
      */
@@ -42,15 +36,21 @@ export interface ServiceCreate {
     initial_state?: ServiceInitialState;
     /**
      * 
+     * @type {ServiceName}
+     * @memberof ServiceCreate
+     */
+    type: ServiceName;
+    /**
+     * The service version to be installed. Must be one of <code></code> Must be at least 3 characters. Must not be greater than 30 characters.
+     * @type {string}
+     * @memberof ServiceCreate
+     */
+    version: string;
+    /**
+     * 
      * @type {Array<EnvironmentLinkItem>}
      * @memberof ServiceCreate
      */
     environments?: Array<EnvironmentLinkItem>;
-    /**
-     * The service version to be installed
-     * @type {string}
-     * @memberof ServiceCreate
-     */
-    version?: string;
 }
 
