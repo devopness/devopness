@@ -8,6 +8,13 @@ on:
     branches:
       - main
 
+    paths:
+      - docs/
+      - src/
+      - dredd.yml
+      - jest.config.js
+      - package*.json
+
 jobs:
   build:
     name: Build and test

@@ -2,11 +2,11 @@
 
 ![CI](https://github.com/devopness/api-docs/workflows/CI/badge.svg)
 
-This is the source code for [Devopness API Documentation](https://api-docs.devopness.com)
+This is the source code for [Devopness API Documentation](https://api-docs.devopness.com).
 
 In this file we keep internal documentation for API development team and contributors.
 For public API documentation, please visit:
-https://staging-api-docs.devopness.com/#tag/API-Reference
+https://staging-api-docs.devopness.com/#tag/API-Reference.
 
 ## About Devopness
 `Devopness` aims to drastically change the way people manage applications and cloud infrastructure, in a secure and performant fashion.
