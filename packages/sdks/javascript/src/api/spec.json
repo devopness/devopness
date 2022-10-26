@@ -1264,8 +1264,11 @@
     },
     "/environments/{environment_id}/cron-jobs": {
       "get": {
-        "summary": "Return a list of all Cron Jobs belonging to a environment",
+        "summary": "Return a list of all Cron Jobs belonging to an environment",
         "operationId": "listEnvironmentCronJobs",
+        "description": {
+          "$ref": "../spec/descriptions/list-environment-cron-jobs.md"
+        },
         "tags": [
           "Environments - Cron Jobs"
         ],
@@ -1288,18 +1291,25 @@
           {
             "in": "path",
             "name": "environment_id",
+            "description": "The ID of the environment.",
             "example": 1,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "Numeric ID of the environment to get cron jobs from"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CronJobList"
+                }
+              }
+            },
             "headers": {
               "Link": {
                 "schema": {
@@ -1307,12 +1317,88 @@
                 },
                 "description": "Link header with `first`, `last`, `previous` and `next` page's links"
               }
-            },
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Add a Cron Job to the given environment",
+        "operationId": "addEnvironmentCronJob",
+        "description": {
+          "$ref": "../spec/descriptions/add-environment-cron-job.md"
+        },
+        "tags": [
+          "Environments - Cron Jobs"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "environment_id",
+            "description": "The ID of the environment.",
+            "example": 1,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CronJobs"
+                  "$ref": "#/components/schemas/CronJob"
                 }
+              }
+            },
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CronJobCreate"
               }
             }
           }
@@ -4394,72 +4480,12 @@
       }
     },
     "/projects/{project_id}/cron-jobs": {
-      "post": {
-        "summary": "Add a Cron Job to the given project",
-        "operationId": "addCronJobToProject",
-        "tags": [
-          "Projects - Cron Jobs"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "project_id",
-            "example": 1,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "required": true,
-            "description": "The project numeric Id"
-          }
-        ],
-        "requestBody": {
-          "description": "A JSON object containing cron job data",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CronJobCreate"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created",
-            "headers": {
-              "X-Devopness-Action-Id": {
-                "schema": {
-                  "type": "integer"
-                },
-                "description": "The dispatched action id of the resource"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CronJob"
-                }
-              }
-            }
-          },
-          "422": {
-            "$ref": "#/components/responses/ValidationError"
-          }
-        }
-      },
       "get": {
         "summary": "Return a list of all Cron Jobs belonging to a project",
         "operationId": "listProjectCronJobs",
+        "description": {
+          "$ref": "../spec/descriptions/list-project-cron-jobs.md"
+        },
         "tags": [
           "Projects - Cron Jobs"
         ],
@@ -4482,18 +4508,25 @@
           {
             "in": "path",
             "name": "project_id",
+            "description": "The ID of the project.",
             "example": 1,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "Numeric ID of the project to get cron jobs from"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CronJobList"
+                }
+              }
+            },
             "headers": {
               "Link": {
                 "schema": {
@@ -4501,12 +4534,88 @@
                 },
                 "description": "Link header with `first`, `last`, `previous` and `next` page's links"
               }
-            },
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Add a Cron Job to the given project",
+        "operationId": "addProjectCronJob",
+        "description": {
+          "$ref": "../spec/descriptions/add-project-cron-job.md"
+        },
+        "tags": [
+          "Projects - Cron Jobs"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "description": "The ID of the project.",
+            "example": 1,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CronJobs"
+                  "$ref": "#/components/schemas/CronJob"
                 }
+              }
+            },
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CronJobCreate"
               }
             }
           }
@@ -7494,17 +7603,20 @@
     },
     "/cron-jobs/{cron_job_id}": {
       "delete": {
-        "summary": "Delete a given CronJob",
+        "summary": "Delete a given Cron Job",
         "operationId": "deleteCronJob",
+        "description": {
+          "$ref": "../spec/descriptions/delete-cron-job.md"
+        },
         "tags": [
           "Cron Jobs"
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/authHeader"
+            "$ref": "#/components/parameters/acceptHeader"
           },
           {
-            "$ref": "#/components/parameters/acceptHeader"
+            "$ref": "#/components/parameters/authHeader"
           },
           {
             "$ref": "#/components/parameters/contentTypeHeader"
@@ -7512,27 +7624,45 @@
           {
             "in": "path",
             "name": "cron_job_id",
-            "example": 1,
+            "description": "The ID of the cron job.",
+            "example": 81,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "Numeric ID of the cron job to be deleted"
+            }
           }
         ],
         "responses": {
           "204": {
-            "$ref": "#/components/responses/NoContentDispatchAction"
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
           },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
           }
         }
       },
       "get": {
-        "summary": "Get a CronJob by ID",
+        "summary": "Get a Cron Job by ID",
         "operationId": "getCronJob",
+        "description": {
+          "$ref": "../spec/descriptions/get-cron-job.md"
+        },
         "tags": [
           "Cron Jobs"
         ],
@@ -7549,13 +7679,13 @@
           {
             "in": "path",
             "name": "cron_job_id",
-            "example": 1,
+            "description": "The ID of the cron job.",
+            "example": 81,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "Numeric ID of the cron job to get"
+            }
           }
         ],
         "responses": {
@@ -7569,23 +7699,33 @@
               }
             }
           },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
           }
         }
       },
       "put": {
-        "summary": "Update an existing cron job",
+        "summary": "Update an existing Cron Job",
         "operationId": "updateCronJob",
+        "description": {
+          "$ref": "../spec/descriptions/update-cron-job.md"
+        },
         "tags": [
           "Cron Jobs"
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/authHeader"
+            "$ref": "#/components/parameters/acceptHeader"
           },
           {
-            "$ref": "#/components/parameters/acceptHeader"
+            "$ref": "#/components/parameters/authHeader"
           },
           {
             "$ref": "#/components/parameters/contentTypeHeader"
@@ -7593,17 +7733,50 @@
           {
             "in": "path",
             "name": "cron_job_id",
-            "example": 1,
+            "description": "The ID of the cron job.",
+            "example": 81,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "Numeric ID of the cron job to update"
+            }
           }
         ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
         "requestBody": {
-          "description": "A JSON object containing cron job data",
+          "description": "A JSON object containing the resource data",
           "required": true,
           "content": {
             "application/json": {
@@ -7611,20 +7784,6 @@
                 "$ref": "#/components/schemas/CronJobUpdate"
               }
             }
-          }
-        },
-        "responses": {
-          "204": {
-            "$ref": "#/components/responses/NoContentDispatchAction"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          },
-          "422": {
-            "$ref": "#/components/responses/ValidationError"
           }
         }
       }
@@ -11255,129 +11414,174 @@
         "type": "object",
         "properties": {
           "id": {
+            "description": "The ID of the given cron job",
             "type": "integer",
-            "description": "The Id of the given cron job",
-            "example": 19876
+            "example": 85324
           },
           "name": {
-            "type": "string",
             "description": "The name of the cron job",
+            "type": "string",
             "example": "My cool cron job"
           },
           "command": {
-            "type": "string",
             "description": "The command line to be executed when running the cron job",
+            "type": "string",
             "example": "echo 'devopness rocks!' | tee -a /tmp/task-output.log"
           },
-          "pattern": {
+          "run_as_user": {
+            "description": "The name of the Unix user on behalf of which the cron job will be executed",
             "type": "string",
+            "example": "root"
+          },
+          "pattern": {
             "description": "A cron expression consisting of Minute, Hour, Day of Month, Month and Day of Week subexpressions",
+            "type": "string",
             "example": "0 0 * * *"
           },
           "pattern_human_readable": {
             "$ref": "#/components/schemas/CronJobPattern"
           },
-          "run_as_user": {
-            "type": "string",
-            "description": "The name of the Unix user on behalf of which the cron job will be executed",
-            "example": "root"
-          },
           "auto_generated": {
-            "default": false,
+            "description": "Indicates if the cron job was auto_generated by `devopness` itself",
             "type": "boolean",
-            "description": "Indicates if the cron job was auto_generated by `devopness` itself"
-          },
-          "application": {
-            "$ref": "#/components/schemas/ApplicationRelation"
-          },
-          "environments": {
-            "$ref": "#/components/schemas/Environments"
-          },
-          "created_by_user": {
-            "$ref": "#/components/schemas/UserRelation"
+            "example": false
           },
           "last_action": {
             "$ref": "#/components/schemas/ActionRelation"
           },
+          "created_by_user": {
+            "$ref": "#/components/schemas/UserRelation"
+          },
+          "application": {
+            "$ref": "#/components/schemas/ApplicationRelation"
+          },
           "project": {
             "$ref": "#/components/schemas/ProjectRelation"
+          },
+          "environments": {
+            "$ref": "#/components/schemas/Environments"
           },
           "servers": {
             "$ref": "#/components/schemas/Servers"
           },
           "created_at": {
-            "type": "string",
-            "format": "date-time",
             "description": "The date and time when the record was created",
+            "type": "string",
             "example": "2019-09-25T15:50:48.000000Z"
           },
           "updated_at": {
-            "type": "string",
-            "format": "date-time",
             "description": "The date and time when the record was last updated",
-            "example": "2019-09-25T13:52:04.000000Z"
+            "type": "string",
+            "example": "2019-09-25T15:50:48.000000Z"
           }
         },
         "required": [
           "id",
-          "command",
           "name",
+          "command",
+          "run_as_user",
           "pattern",
           "pattern_human_readable",
-          "run_as_user",
           "auto_generated",
-          "application",
-          "environments",
-          "created_by_user",
           "last_action",
+          "created_by_user",
+          "application",
           "project",
-          "servers"
+          "environments",
+          "servers",
+          "created_at",
+          "updated_at"
         ]
       },
       "CronJobCreate": {
         "type": "object",
         "properties": {
-          "project_id": {
-            "type": "integer",
-            "description": "Numeric ID of the project to which the cron job belongs to",
-            "example": 1742981
-          },
-          "application_id": {
-            "type": "integer",
-            "description": "Numeric ID of the application to which the cron job belongs to",
-            "example": 7123941090
+          "pattern": {
+            "description": "A cron expression consisting of Minute, Hour, Day of Month, Month and Day of Week subexpressions.",
+            "example": "0 0 * * *",
+            "type": "string"
           },
           "name": {
-            "type": "string",
-            "description": "The name of the cron job",
-            "example": "My cool cron job"
+            "description": "The name of the cron job. Must not be greater than 60 characters.",
+            "example": "My cool cron job",
+            "type": "string"
           },
           "command": {
-            "type": "string",
-            "description": "The command line to be executed when running the cron job",
-            "example": "echo 'devopness rocks!' | tee -a /tmp/task-output.log"
-          },
-          "pattern": {
-            "type": "string",
-            "description": "A cron expression consisting of Minute, Hour, Day of Month, Month and Day of Week subexpressions",
-            "example": "0 0 * * *"
+            "description": "The command line to be executed when running the cron job. Must be at least 5 characters. Must not be greater than 255 characters.",
+            "example": "echo 'devopness rocks!' | tee -a /tmp/task-output.log",
+            "type": "string"
           },
           "run_as_user": {
-            "type": "string",
-            "description": "The name of the system user on behalf of which the cron job will be executed",
-            "example": "root"
+            "description": "The name of the system user on behalf of which the cron job will be executed. Must not be greater than 60 characters.",
+            "example": "root",
+            "type": "string"
+          },
+          "application_id": {
+            "description": "Numeric ID of the application to which the cron job belongs to.",
+            "example": 3745834,
+            "type": "integer"
+          },
+          "project_id": {
+            "description": "Numeric ID of the project to which the cron job belongs to.",
+            "example": 8594323,
+            "type": "integer"
           },
           "environments": {
             "$ref": "#/components/schemas/EnvironmentLinks"
           }
         },
         "required": [
-          "project_id",
+          "pattern",
+          "name",
+          "command",
+          "run_as_user",
+          "project_id"
+        ]
+      },
+      "CronJobEnvironmentCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "The name of the cron job. Must not be greater than 60 characters.",
+            "example": "My cool cron job",
+            "type": "string"
+          },
+          "command": {
+            "description": "The command line to be executed when running the cron job. Must be at least 5 characters. Must not be greater than 255 characters.",
+            "example": "echo 'devopness rocks!' | tee -a /tmp/task-output.log",
+            "type": "string"
+          },
+          "pattern": {
+            "description": "A cron expression consisting of Minute, Hour, Day of Month, Month and Day of Week subexpressions.",
+            "example": "0 0 * * *",
+            "type": "string"
+          },
+          "run_as_user": {
+            "description": "The name of the system user on behalf of which the cron job will be executed. Must not be greater than 60 characters.",
+            "example": "root",
+            "type": "string"
+          },
+          "application_id": {
+            "description": "Numeric ID of the application to which the cron job belongs to.",
+            "example": 7123941090,
+            "type": "integer"
+          },
+          "servers": {
+            "$ref": "#/components/schemas/ResourceIdList"
+          }
+        },
+        "required": [
           "name",
           "command",
           "pattern",
           "run_as_user"
         ]
+      },
+      "CronJobFrequencies": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/CronJobFrequency"
+        }
       },
       "CronJobFrequency": {
         "type": "object",
@@ -11402,10 +11606,10 @@
           "hint"
         ]
       },
-      "CronJobFrequencies": {
+      "CronJobList": {
         "type": "array",
         "items": {
-          "$ref": "#/components/schemas/CronJobFrequency"
+          "$ref": "#/components/schemas/CronJobRelation"
         }
       },
       "CronJobOptions": {
@@ -11421,8 +11625,8 @@
         ]
       },
       "CronJobPattern": {
-        "type": "string",
         "description": "A translation of the cron expression to a readable string indicating its execution frequency.",
+        "type": "string",
         "enum": [
           "Every minute",
           "Hourly",
@@ -11434,38 +11638,109 @@
         ],
         "example": "Every minute"
       },
+      "CronJobRelation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "The ID of the given cron job",
+            "type": "integer",
+            "example": 85324
+          },
+          "name": {
+            "description": "The name of the cron job",
+            "type": "string",
+            "example": "My cool cron job"
+          },
+          "command": {
+            "description": "The command line to be executed when running the cron job",
+            "type": "string",
+            "example": "echo 'devopness rocks!' | tee -a /tmp/task-output.log"
+          },
+          "run_as_user": {
+            "description": "The name of the Unix user on behalf of which the cron job will be executed",
+            "type": "string",
+            "example": "root"
+          },
+          "pattern": {
+            "description": "A cron expression consisting of Minute, Hour, Day of Month, Month and Day of Week subexpressions",
+            "type": "string",
+            "example": "0 0 * * *"
+          },
+          "pattern_human_readable": {
+            "$ref": "#/components/schemas/CronJobPattern"
+          },
+          "auto_generated": {
+            "description": "Indicates if the cron job was auto_generated by `devopness` itself",
+            "type": "boolean",
+            "example": false
+          },
+          "last_action": {
+            "$ref": "#/components/schemas/ActionRelation"
+          },
+          "created_by_user": {
+            "$ref": "#/components/schemas/UserRelation"
+          },
+          "application": {
+            "$ref": "#/components/schemas/ApplicationRelation"
+          },
+          "created_at": {
+            "description": "The date and time when the record was created",
+            "type": "string",
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "description": "The date and time when the record was last updated",
+            "type": "string",
+            "example": "2019-09-25T15:50:48.000000Z"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "command",
+          "run_as_user",
+          "pattern",
+          "pattern_human_readable",
+          "auto_generated",
+          "last_action",
+          "created_by_user",
+          "application",
+          "created_at",
+          "updated_at"
+        ]
+      },
       "CronJobUpdate": {
         "type": "object",
         "properties": {
           "id": {
-            "type": "integer",
-            "description": "The unique id of the given record",
-            "example": 45678
-          },
-          "application_id": {
-            "type": "integer",
-            "description": "Numeric ID of the application to which the cron job belongs to",
-            "example": 7123941090
-          },
-          "name": {
-            "type": "string",
-            "description": "The name of the cron job",
-            "example": "My cool cron job"
-          },
-          "command": {
-            "type": "string",
-            "description": "The command line to be executed when running the cron job",
-            "example": "echo 'devopness rocks!' | tee -a /tmp/task-output.log"
+            "description": "The unique ID of the given cron job.",
+            "example": 970371,
+            "type": "integer"
           },
           "pattern": {
-            "type": "string",
-            "description": "A cron expression consisting of Minute, Hour, Day of Month, Month and Day of Week subexpressions",
-            "example": "0 0 * * *"
+            "description": "A cron expression consisting of Minute, Hour, Day of Month, Month and Day of Week subexpressions.",
+            "example": "0 0 * * *",
+            "type": "string"
+          },
+          "name": {
+            "description": "The name of the cron job. Must not be greater than 60 characters.",
+            "example": "My cool cron job",
+            "type": "string"
+          },
+          "command": {
+            "description": "The command line to be executed when running the cron job. Must be at least 5 characters. Must not be greater than 255 characters.",
+            "example": "echo 'devopness rocks!' | tee -a /tmp/task-output.log",
+            "type": "string"
           },
           "run_as_user": {
-            "type": "string",
-            "description": "The name of the system user on behalf of which the cron job will be executed",
-            "example": "root"
+            "description": "The name of the system user on behalf of which the cron job will be executed. Must not be greater than 60 characters.",
+            "example": "root",
+            "type": "string"
+          },
+          "application_id": {
+            "description": "Numeric ID of the application to which the cron job belongs to.",
+            "example": 3745834,
+            "type": "integer"
           },
           "environments": {
             "$ref": "#/components/schemas/EnvironmentLinks"
@@ -11473,9 +11748,9 @@
         },
         "required": [
           "id",
+          "pattern",
           "name",
           "command",
-          "pattern",
           "run_as_user"
         ]
       },
@@ -11484,70 +11759,6 @@
         "items": {
           "$ref": "#/components/schemas/CronJobRelation"
         }
-      },
-      "CronJobRelation": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "description": "The Id of the given cron job",
-            "example": 19876
-          },
-          "name": {
-            "type": "string",
-            "description": "The name of the cron job",
-            "example": "My cool cron job"
-          },
-          "command": {
-            "type": "string",
-            "description": "The command line to be executed when running the cron job",
-            "example": "echo 'devopness rocks!' | tee -a /tmp/task-output.log"
-          },
-          "pattern": {
-            "type": "string",
-            "description": "A cron expression consisting of Minute, Hour, Day of Month, Month and Day of Week subexpressions",
-            "example": "0 0 * * *"
-          },
-          "pattern_human_readable": {
-            "$ref": "#/components/schemas/CronJobPattern"
-          },
-          "run_as_user": {
-            "type": "string",
-            "description": "The name of the Unix user on behalf of which the cron job will be executed",
-            "example": "root"
-          },
-          "auto_generated": {
-            "default": false,
-            "type": "boolean",
-            "description": "Indicates if the cron job was auto_generated by `devopness` itself"
-          },
-          "last_action": {
-            "$ref": "#/components/schemas/ActionRelation"
-          },
-          "application": {
-            "$ref": "#/components/schemas/ApplicationRelation"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the record was created",
-            "example": "2019-09-25T15:50:48.000000Z"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the record was last updated",
-            "example": "2019-09-25T13:52:04.000000Z"
-          }
-        },
-        "required": [
-          "id",
-          "command",
-          "name",
-          "pattern",
-          "pattern_human_readable",
-          "run_as_user"
-        ]
       },
       "Daemon": {
         "type": "object",
@@ -16670,10 +16881,11 @@
         "type": "string",
         "description": "The application deployment event to which it's attached",
         "enum": [
+          "activate-new-release",
           "check-app-environment",
           "get-new-release",
           "install-dependencies",
-          "activate-new-release"
+          "remove-old-releases"
         ],
         "example": "install-dependencies"
       },
