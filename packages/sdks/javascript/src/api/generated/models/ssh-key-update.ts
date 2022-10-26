@@ -12,7 +12,6 @@
  */
 
 
-import { EnvironmentLinkItem } from './environment-link-item';
 
 /**
  * 
@@ -33,10 +32,10 @@ export interface SshKeyUpdate {
      */
     name: string;
     /**
-     * 
-     * @type {Array<EnvironmentLinkItem>}
+     * List of valid resource IDs
+     * @type {Array<number>}
      * @memberof SshKeyUpdate
      */
-    environments?: Array<EnvironmentLinkItem>;
+    servers?: Array<number>;
 }
 
