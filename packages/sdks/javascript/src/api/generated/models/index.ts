@@ -51,6 +51,7 @@ export * from './credential-google-cloud';
 export * from './credential-setting';
 export * from './cron-job';
 export * from './cron-job-create';
+export * from './cron-job-environment-create';
 export * from './cron-job-frequency';
 export * from './cron-job-options';
 export * from './cron-job-pattern';

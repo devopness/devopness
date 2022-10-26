@@ -24,8 +24,8 @@ import { CronJobUpdate } from '../../generated/models';
 export class CronJobsApiService extends ApiBaseService {
     /**
      * 
-     * @summary Delete a given CronJob
-     * @param {number} cronJobId Numeric ID of the cron job to be deleted
+     * @summary Delete a given Cron Job
+     * @param {number} cronJobId The ID of the cron job.
      */
     public async deleteCronJob(cronJobId: number): Promise<ApiResponse<void>> {
         if (cronJobId === null || cronJobId === undefined) {
@@ -42,8 +42,8 @@ export class CronJobsApiService extends ApiBaseService {
 
     /**
      * 
-     * @summary Get a CronJob by ID
-     * @param {number} cronJobId Numeric ID of the cron job to get
+     * @summary Get a Cron Job by ID
+     * @param {number} cronJobId The ID of the cron job.
      */
     public async getCronJob(cronJobId: number): Promise<ApiResponse<CronJob>> {
         if (cronJobId === null || cronJobId === undefined) {
@@ -60,9 +60,9 @@ export class CronJobsApiService extends ApiBaseService {
 
     /**
      * 
-     * @summary Update an existing cron job
-     * @param {number} cronJobId Numeric ID of the cron job to update
-     * @param {CronJobUpdate} cronJobUpdate A JSON object containing cron job data
+     * @summary Update an existing Cron Job
+     * @param {number} cronJobId The ID of the cron job.
+     * @param {CronJobUpdate} cronJobUpdate A JSON object containing the resource data
      */
     public async updateCronJob(cronJobId: number, cronJobUpdate: CronJobUpdate): Promise<ApiResponse<void>> {
         if (cronJobId === null || cronJobId === undefined) {
