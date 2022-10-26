@@ -47,6 +47,8 @@
   get:
     $ref: ./auto-generated/endpoints/get-environment-member.yaml
 '/environments/{environment_id}/servers':
+  get:
+    $ref: ./auto-generated/endpoints/list-environment-servers.yaml
   post:
     $ref: ./auto-generated/endpoints/add-environment-server.yaml
 '/environments/{environment_id}/services':

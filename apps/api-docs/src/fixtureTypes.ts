@@ -190,8 +190,7 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     ],
     'ssh_key_update': [
         { path: 'id', fixture: 'ssh_key', field: 'id' },
-        { path: 'environments[0].id', fixture: 'environment', field: 'id' },
-        { path: 'environments[0].servers[0]', fixture: 'server', field: 'id' }
+        { path: 'servers[0]', fixture: 'server', field: 'id' },
     ],
     'ssl_certificate': [],
     'team': [],

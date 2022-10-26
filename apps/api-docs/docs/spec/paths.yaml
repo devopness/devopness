@@ -79,6 +79,8 @@
   get:
     $ref: ./endpoints/network-rules/paths/environments-id-network-rules-list.yaml
 "/environments/{environment_id}/servers":
+  get:
+    $ref: ./auto-generated/endpoints/list-environment-servers.yaml
   post:
     $ref: ./auto-generated/endpoints/add-environment-server.yaml
 /environments/{environment_id}/services:
@@ -338,13 +340,13 @@
     $ref: ./endpoints/source-providers/paths/source-providers-id.yaml
   delete:
     $ref: ./endpoints/source-providers/paths/source-providers-id-delete.yaml
-/ssh-keys/{ssh_key_id}:
-  get:
-    $ref: ./endpoints/ssh-keys/paths/ssh-keys-id.yaml
+"/ssh-keys/{ssh_key_id}":
   delete:
-    $ref: ./endpoints/ssh-keys/paths/ssh-keys-id-delete.yaml
+    $ref: ./auto-generated/endpoints/delete-ssh-key.yaml
+  get:
+    $ref: ./auto-generated/endpoints/get-ssh-key.yaml
   put:
-    $ref: ./endpoints/ssh-keys/paths/ssh-keys-id-update.yaml
+    $ref: ./auto-generated/endpoints/update-ssh-key.yaml
 /ssl-certificates/{ssl_certificate_id}:
   get:
     $ref: ./endpoints/ssl-certificates/paths/ssl-certificates-id.yaml
