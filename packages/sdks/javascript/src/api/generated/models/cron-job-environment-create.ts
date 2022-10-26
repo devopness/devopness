@@ -12,55 +12,48 @@
  */
 
 
-import { EnvironmentLinkItem } from './environment-link-item';
 
 /**
  * 
  * @export
- * @interface CronJobUpdate
+ * @interface CronJobEnvironmentCreate
  */
-export interface CronJobUpdate {
-    /**
-     * The unique ID of the given cron job.
-     * @type {number}
-     * @memberof CronJobUpdate
-     */
-    id: number;
-    /**
-     * A cron expression consisting of Minute, Hour, Day of Month, Month and Day of Week subexpressions.
-     * @type {string}
-     * @memberof CronJobUpdate
-     */
-    pattern: string;
+export interface CronJobEnvironmentCreate {
     /**
      * The name of the cron job. Must not be greater than 60 characters.
      * @type {string}
-     * @memberof CronJobUpdate
+     * @memberof CronJobEnvironmentCreate
      */
     name: string;
     /**
      * The command line to be executed when running the cron job. Must be at least 5 characters. Must not be greater than 255 characters.
      * @type {string}
-     * @memberof CronJobUpdate
+     * @memberof CronJobEnvironmentCreate
      */
     command: string;
     /**
+     * A cron expression consisting of Minute, Hour, Day of Month, Month and Day of Week subexpressions.
+     * @type {string}
+     * @memberof CronJobEnvironmentCreate
+     */
+    pattern: string;
+    /**
      * The name of the system user on behalf of which the cron job will be executed. Must not be greater than 60 characters.
      * @type {string}
-     * @memberof CronJobUpdate
+     * @memberof CronJobEnvironmentCreate
      */
     run_as_user: string;
     /**
      * Numeric ID of the application to which the cron job belongs to.
      * @type {number}
-     * @memberof CronJobUpdate
+     * @memberof CronJobEnvironmentCreate
      */
     application_id?: number;
     /**
-     * 
-     * @type {Array<EnvironmentLinkItem>}
-     * @memberof CronJobUpdate
+     * List of valid resource IDs
+     * @type {Array<number>}
+     * @memberof CronJobEnvironmentCreate
      */
-    environments?: Array<EnvironmentLinkItem>;
+    servers?: Array<number>;
 }
 

@@ -19,10 +19,11 @@
  * @enum {string}
  */
 export enum TriggerEvent {
+    ActivateNewRelease = 'activate-new-release',
     CheckAppEnvironment = 'check-app-environment',
     GetNewRelease = 'get-new-release',
     InstallDependencies = 'install-dependencies',
-    ActivateNewRelease = 'activate-new-release'
+    RemoveOldReleases = 'remove-old-releases'
 }
 
 

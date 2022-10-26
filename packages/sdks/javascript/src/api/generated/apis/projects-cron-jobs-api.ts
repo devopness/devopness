@@ -26,15 +26,15 @@ export class ProjectsCronJobsApiService extends ApiBaseService {
     /**
      * 
      * @summary Add a Cron Job to the given project
-     * @param {number} projectId The project numeric Id
-     * @param {CronJobCreate} cronJobCreate A JSON object containing cron job data
+     * @param {number} projectId The ID of the project.
+     * @param {CronJobCreate} cronJobCreate A JSON object containing the resource data
      */
-    public async addCronJobToProject(projectId: number, cronJobCreate: CronJobCreate): Promise<ApiResponse<CronJob>> {
+    public async addProjectCronJob(projectId: number, cronJobCreate: CronJobCreate): Promise<ApiResponse<CronJob>> {
         if (projectId === null || projectId === undefined) {
-            throw new ArgumentNullException('projectId', 'addCronJobToProject');
+            throw new ArgumentNullException('projectId', 'addProjectCronJob');
         }
         if (cronJobCreate === null || cronJobCreate === undefined) {
-            throw new ArgumentNullException('cronJobCreate', 'addCronJobToProject');
+            throw new ArgumentNullException('cronJobCreate', 'addProjectCronJob');
         }
         
         let queryString = '';
@@ -48,7 +48,7 @@ export class ProjectsCronJobsApiService extends ApiBaseService {
     /**
      * 
      * @summary Return a list of all Cron Jobs belonging to a project
-     * @param {number} projectId Numeric ID of the project to get cron jobs from
+     * @param {number} projectId The ID of the project.
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */
