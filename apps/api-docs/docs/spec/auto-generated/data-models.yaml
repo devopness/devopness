@@ -23,6 +23,20 @@ ApplicationType:
   $ref: ./auto-generated/models/application-type.yaml
 ApplicationUpdate:
   $ref: ./auto-generated/models/application-update.yaml
+CronJob:
+  $ref: ./auto-generated/models/cron-job.yaml
+CronJobCreate:
+  $ref: ./auto-generated/models/cron-job-create.yaml
+CronJobEnvironmentCreate:
+  $ref: ./auto-generated/models/cron-job-environment-create.yaml
+CronJobList:
+  $ref: ./auto-generated/models/cron-job-list.yaml
+CronJobPattern:
+  $ref: ./auto-generated/models/cron-job-pattern.yaml
+CronJobRelation:
+  $ref: ./auto-generated/models/cron-job-relation.yaml
+CronJobUpdate:
+  $ref: ./auto-generated/models/cron-job-update.yaml
 Environment:
   $ref: ./auto-generated/models/environment.yaml
 EnvironmentCreate:

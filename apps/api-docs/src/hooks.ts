@@ -63,6 +63,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         'addSshKeyToProject201',
         'addApplicationToProject201',
         'deleteEnvironment204',
+        'addProjectCronJob201',
     ];
 
     // transactions listed here are skipped with a `before` hook

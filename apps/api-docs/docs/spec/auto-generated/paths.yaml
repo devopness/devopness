@@ -18,6 +18,13 @@
     $ref: ./auto-generated/endpoints/get-application.yaml
   put:
     $ref: ./auto-generated/endpoints/update-application.yaml
+'/cron-jobs/{cron_job_id}':
+  delete:
+    $ref: ./auto-generated/endpoints/delete-cron-job.yaml
+  get:
+    $ref: ./auto-generated/endpoints/get-cron-job.yaml
+  put:
+    $ref: ./auto-generated/endpoints/update-cron-job.yaml
 '/environments/{environment_id}':
   delete:
     $ref: ./auto-generated/endpoints/delete-environment.yaml
@@ -28,6 +35,11 @@
 '/environments/{environment_id}/applications':
   post:
     $ref: ./auto-generated/endpoints/add-environment-application.yaml
+'/environments/{environment_id}/cron-jobs':
+  get:
+    $ref: ./auto-generated/endpoints/list-environment-cron-jobs.yaml
+  post:
+    $ref: ./auto-generated/endpoints/add-environment-cron-job.yaml
 '/environments/{environment_id}/members':
   get:
     $ref: ./auto-generated/endpoints/list-environment-members.yaml
@@ -68,6 +80,11 @@
     $ref: ./auto-generated/endpoints/list-project-applications.yaml
   post:
     $ref: ./auto-generated/endpoints/add-project-application.yaml
+'/projects/{project_id}/cron-jobs':
+  get:
+    $ref: ./auto-generated/endpoints/list-project-cron-jobs.yaml
+  post:
+    $ref: ./auto-generated/endpoints/add-project-cron-job.yaml
 '/projects/{project_id}/environments':
   get:
     $ref: ./auto-generated/endpoints/list-project-environments.yaml

@@ -113,23 +113,27 @@ CredentialCreate:
 Credentials:
   $ref: ./endpoints/credentials/schemas/credential-list.yaml
 CronJob:
-  $ref: ./endpoints/cronjobs/schemas/cronjob.yaml
+  $ref: ./auto-generated/models/cron-job.yaml
 CronJobCreate:
-  $ref: ./endpoints/cronjobs/schemas/cronjob-create.yaml
-CronJobFrequency:
-  $ref: ./endpoints/static/schemas/cronjob-frequency.yaml
+  $ref: ./auto-generated/models/cron-job-create.yaml
+CronJobEnvironmentCreate:
+  $ref: ./auto-generated/models/cron-job-environment-create.yaml
 CronJobFrequencies:
   $ref: ./endpoints/static/schemas/cronjob-frequency-list.yaml
+CronJobFrequency:
+  $ref: ./endpoints/static/schemas/cronjob-frequency.yaml
+CronJobList:
+  $ref: ./auto-generated/models/cron-job-list.yaml
 CronJobOptions:
   $ref: ./endpoints/static/schemas/cronjob-options.yaml
 CronJobPattern:
-  $ref: ./shared/schemas/cronjob-pattern.yaml
+  $ref: ./auto-generated/models/cron-job-pattern.yaml
+CronJobRelation:
+  $ref: ./auto-generated/models/cron-job-relation.yaml
 CronJobUpdate:
-  $ref: ./endpoints/cronjobs/schemas/cronjob-update.yaml
+  $ref: ./auto-generated/models/cron-job-update.yaml
 CronJobs:
   $ref: ./endpoints/cronjobs/schemas/cronjob-list.yaml
-CronJobRelation:
-  $ref: ./shared/schemas/models/cronjob-relation.yaml
 Daemon:
   $ref: ./endpoints/daemons/schemas/daemon.yaml
 DaemonCreate:

@@ -61,9 +61,11 @@
     $ref: ./endpoints/applications/paths/environments-id-applications-list.yaml
   post:
     $ref: ./auto-generated/endpoints/add-environment-application.yaml
-/environments/{environment_id}/cron-jobs:
+"/environments/{environment_id}/cron-jobs":
   get:
-    $ref: ./endpoints/cronjobs/paths/environments-id-cronjobs-list.yaml
+    $ref: ./auto-generated/endpoints/list-environment-cron-jobs.yaml
+  post:
+    $ref: ./auto-generated/endpoints/add-environment-cron-job.yaml
 /environments/{environment_id}/daemons:
   get:
     $ref: ./endpoints/daemons/paths/environments-id-daemons-list.yaml
@@ -219,11 +221,11 @@
     $ref: ./endpoints/applications/paths/projects-id-applications.yaml
   get:
     $ref: ./endpoints/applications/paths/projects-id-applications-list.yaml
-/projects/{project_id}/cron-jobs:
-  post:
-    $ref: ./endpoints/cronjobs/paths/projects-id-cronjobs.yaml
+"/projects/{project_id}/cron-jobs":
   get:
-    $ref: ./endpoints/cronjobs/paths/projects-id-cronjobs-list.yaml
+    $ref: ./auto-generated/endpoints/list-project-cron-jobs.yaml
+  post:
+    $ref: ./auto-generated/endpoints/add-project-cron-job.yaml
 /projects/{project_id}/daemons:
   post:
     $ref: ./endpoints/daemons/paths/projects-id-daemons.yaml
@@ -323,8 +325,8 @@
 /source-providers/{source_provider_id}/repositories:
   get:
     $ref: ./endpoints/repositories/paths/repositories-list.yaml
-? /source-providers/{source_provider_id}/repositories/{repository_owner}/{repository_name}
-: get:
+/source-providers/{source_provider_id}/repositories/{repository_owner}/{repository_name}:
+  get:
     $ref: ./endpoints/repositories/paths/repositories-id.yaml
 /source-providers:
   get:
@@ -372,13 +374,13 @@
 /static/services:
   get:
     $ref: ./endpoints/static/paths/services-list.yaml
-/cron-jobs/{cron_job_id}:
+"/cron-jobs/{cron_job_id}":
   delete:
-    $ref: ./endpoints/cronjobs/paths/cronjobs-id-delete.yaml
+    $ref: ./auto-generated/endpoints/delete-cron-job.yaml
   get:
-    $ref: ./endpoints/cronjobs/paths/cronjobs-id.yaml
+    $ref: ./auto-generated/endpoints/get-cron-job.yaml
   put:
-    $ref: ./endpoints/cronjobs/paths/cronjobs-id-update.yaml
+    $ref: ./auto-generated/endpoints/update-cron-job.yaml
 /teams/{team_id}:
   delete:
     $ref: ./endpoints/teams/paths/teams-id-delete.yaml

@@ -9,8 +9,8 @@ on:
       - main
 
     paths:
-      - docs/
-      - src/
+      - docs/**
+      - src/**
       - dredd.yml
       - jest.config.js
       - package*.json
