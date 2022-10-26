@@ -1640,6 +1640,64 @@
       }
     },
     "/environments/{environment_id}/servers": {
+      "get": {
+        "summary": "Return a list of all servers belonging to a environment",
+        "operationId": "listEnvironmentServers",
+        "description": {
+          "$ref": "../spec/descriptions/list-environment-servers.md"
+        },
+        "tags": [
+          "Environments - Servers"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "environment_id",
+            "description": "The ID of the environment.",
+            "example": 1,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerList"
+                }
+              }
+            },
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            }
+          }
+        }
+      },
       "post": {
         "summary": "Creates a server and link it to the given environment",
         "operationId": "addEnvironmentServer",
@@ -7059,9 +7117,12 @@
       }
     },
     "/ssh-keys/{ssh_key_id}": {
-      "get": {
-        "summary": "Get a SSH key by ID",
-        "operationId": "getSshKey",
+      "delete": {
+        "summary": "Delete a given SSH key",
+        "operationId": "deleteSshKey",
+        "description": {
+          "$ref": "../spec/descriptions/delete-ssh-key.md"
+        },
         "tags": [
           "SSH Keys"
         ],
@@ -7078,13 +7139,68 @@
           {
             "in": "path",
             "name": "ssh_key_id",
-            "example": 1,
+            "description": "The ID of the ssh key.",
+            "example": 914,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Get a SSH key by ID",
+        "operationId": "getSshKey",
+        "description": {
+          "$ref": "../spec/descriptions/get-ssh-key.md"
+        },
+        "tags": [
+          "SSH Keys"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "ssh_key_id",
+            "description": "The ID of the ssh key.",
+            "example": 914,
             "required": true,
-            "description": "Numeric ID of the SSH key to get"
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
           }
         ],
         "responses": {
@@ -7098,51 +7214,24 @@
               }
             }
           },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          }
-        }
-      },
-      "delete": {
-        "summary": "Delete a given SSH key",
-        "operationId": "deleteSshKey",
-        "tags": [
-          "SSH Keys"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "ssh_key_id",
-            "example": 1,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "required": true,
-            "description": "Numeric ID of the SSH key to be deleted"
-          }
-        ],
-        "responses": {
-          "204": {
-            "$ref": "#/components/responses/NoContentDispatchAction"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
           }
         }
       },
       "put": {
         "summary": "Update an existing SSH key",
         "operationId": "updateSshKey",
+        "description": {
+          "$ref": "../spec/descriptions/update-ssh-key.md"
+        },
         "tags": [
           "SSH Keys"
         ],
@@ -7159,17 +7248,50 @@
           {
             "in": "path",
             "name": "ssh_key_id",
-            "example": 1,
+            "description": "The ID of the ssh key.",
+            "example": 914,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "Numeric ID of the SSH key to be updated"
+            }
           }
         ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
         "requestBody": {
-          "description": "A JSON object containing SSH key data",
+          "description": "A JSON object containing the resource data",
           "required": true,
           "content": {
             "application/json": {
@@ -7177,17 +7299,6 @@
                 "$ref": "#/components/schemas/SshKeyUpdate"
               }
             }
-          }
-        },
-        "responses": {
-          "204": {
-            "$ref": "#/components/responses/NoContent"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "422": {
-            "$ref": "#/components/responses/ValidationError"
           }
         }
       }
@@ -16295,8 +16406,8 @@
             "example": "my-ssh-key",
             "type": "string"
           },
-          "environments": {
-            "$ref": "#/components/schemas/EnvironmentLinks"
+          "servers": {
+            "$ref": "#/components/schemas/ResourceIdList"
           }
         },
         "required": [
