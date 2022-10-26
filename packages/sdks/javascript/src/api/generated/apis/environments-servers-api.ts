@@ -18,6 +18,7 @@ import { ApiError } from '../../generated/models';
 import { EnvironmentLinkItem } from '../../generated/models';
 import { Server } from '../../generated/models';
 import { ServerCreate } from '../../generated/models';
+import { ServerRelation } from '../../generated/models';
 
 /**
  * EnvironmentsServersApiService - Auto-generated
@@ -65,6 +66,34 @@ export class EnvironmentsServersApiService extends ApiBaseService {
         const requestUrl = '/environments/{environment_id}/servers/{server_id}/link' + (queryString? `?${queryString}` : '');
 
         const response = await this.post <void, EnvironmentLinkItem>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))).replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))), environmentLinkItem);
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Return a list of all servers belonging to a environment
+     * @param {number} environmentId The ID of the environment.
+     * @param {number} [page] Number of the page to be retrieved
+     * @param {number} [perPage] Number of items returned per page
+     */
+    public async listEnvironmentServers(environmentId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<ServerRelation>>> {
+        if (environmentId === null || environmentId === undefined) {
+            throw new ArgumentNullException('environmentId', 'listEnvironmentServers');
+        }
+        
+        let queryString = '';
+        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
+        const requestUrl = '/environments/{environment_id}/servers' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <Array<ServerRelation>>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
         return new ApiResponse(response);
     }
 
