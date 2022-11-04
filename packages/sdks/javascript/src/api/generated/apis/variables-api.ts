@@ -25,7 +25,7 @@ export class VariablesApiService extends ApiBaseService {
     /**
      * 
      * @summary Delete a variable by ID
-     * @param {number} variableId The id of the variable
+     * @param {number} variableId The ID of the variable.
      */
     public async deleteVariable(variableId: number): Promise<ApiResponse<void>> {
         if (variableId === null || variableId === undefined) {
@@ -43,7 +43,7 @@ export class VariablesApiService extends ApiBaseService {
     /**
      * 
      * @summary Get a variable by ID
-     * @param {number} variableId The unique id of the variable
+     * @param {number} variableId The ID of the variable.
      */
     public async getVariable(variableId: number): Promise<ApiResponse<Variable>> {
         if (variableId === null || variableId === undefined) {
@@ -61,8 +61,8 @@ export class VariablesApiService extends ApiBaseService {
     /**
      * 
      * @summary Update an existing variable
-     * @param {number} variableId The unique id of the variable to be updated
-     * @param {VariableUpdate} variableUpdate A JSON object containing variable data
+     * @param {number} variableId The ID of the variable.
+     * @param {VariableUpdate} variableUpdate A JSON object containing the resource data
      */
     public async updateVariable(variableId: number, variableUpdate: VariableUpdate): Promise<ApiResponse<void>> {
         if (variableId === null || variableId === undefined) {

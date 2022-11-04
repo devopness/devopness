@@ -16,7 +16,7 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { Daemon } from '../../generated/models';
-import { DaemonCreate } from '../../generated/models';
+import { DaemonProjectCreate } from '../../generated/models';
 import { DaemonRelation } from '../../generated/models';
 
 /**
@@ -25,30 +25,30 @@ import { DaemonRelation } from '../../generated/models';
 export class ProjectsDaemonsApiService extends ApiBaseService {
     /**
      * 
-     * @summary Add a daemon to the given project
-     * @param {number} projectId The project numeric Id
-     * @param {DaemonCreate} daemonCreate A JSON object containing daemon data
+     * @summary Add a Daemon to the given project
+     * @param {number} projectId The ID of the project.
+     * @param {DaemonProjectCreate} daemonProjectCreate A JSON object containing the resource data
      */
-    public async addDaemonToProject(projectId: number, daemonCreate: DaemonCreate): Promise<ApiResponse<Daemon>> {
+    public async addProjectDaemon(projectId: number, daemonProjectCreate: DaemonProjectCreate): Promise<ApiResponse<Daemon>> {
         if (projectId === null || projectId === undefined) {
-            throw new ArgumentNullException('projectId', 'addDaemonToProject');
+            throw new ArgumentNullException('projectId', 'addProjectDaemon');
         }
-        if (daemonCreate === null || daemonCreate === undefined) {
-            throw new ArgumentNullException('daemonCreate', 'addDaemonToProject');
+        if (daemonProjectCreate === null || daemonProjectCreate === undefined) {
+            throw new ArgumentNullException('daemonProjectCreate', 'addProjectDaemon');
         }
         
         let queryString = '';
 
         const requestUrl = '/projects/{project_id}/daemons' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <Daemon, DaemonCreate>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), daemonCreate);
+        const response = await this.post <Daemon, DaemonProjectCreate>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), daemonProjectCreate);
         return new ApiResponse(response);
     }
 
     /**
      * 
-     * @summary Returns a list of all daemons belonging to a project
-     * @param {number} projectId Numeric ID of the project to get daemons from
+     * @summary Return a list of all Daemons belonging to a project
+     * @param {number} projectId The ID of the project.
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */

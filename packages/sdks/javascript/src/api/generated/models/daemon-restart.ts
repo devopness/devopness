@@ -20,7 +20,7 @@
  */
 export interface DaemonRestart {
     /**
-     * The unique environment id
+     * The unique environment ID.
      * @type {number}
      * @memberof DaemonRestart
      */

@@ -23,13 +23,13 @@ import { NetworkRuleType } from './network-rule-type';
  */
 export interface NetworkRuleUpdate {
     /**
-     * The unique id of the given record
+     * The unique ID of the given network rule.
      * @type {number}
      * @memberof NetworkRuleUpdate
      */
     id: number;
     /**
-     * The rule\'s name/description/reminder
+     * The rule\'s name/description/reminder. Must be at least 3 characters. Must not be greater than 60 characters.
      * @type {string}
      * @memberof NetworkRuleUpdate
      */
@@ -45,19 +45,19 @@ export interface NetworkRuleUpdate {
      * @type {NetworkRuleProtocol}
      * @memberof NetworkRuleUpdate
      */
-    protocol: NetworkRuleProtocol;
+    protocol?: NetworkRuleProtocol;
     /**
-     * Starting range of the public ipv4 or ipv6 addresses that can access this rule
+     * Starting range of the public ipv4 or ipv6 addresses that can access this rule. Must be a valid IP address.
      * @type {string}
      * @memberof NetworkRuleUpdate
      */
-    ip_address_from: string;
+    ip_address_from?: string;
     /**
-     * Ending range of the public ipv4 or ipv6 addresses that can access this rule
+     * Ending range of the public ipv4 or ipv6 addresses that can access this rule. Must be a valid IP address.
      * @type {string}
      * @memberof NetworkRuleUpdate
      */
-    ip_address_to: string;
+    ip_address_to?: string;
     /**
      * 
      * @type {Array<EnvironmentLinkItem>}

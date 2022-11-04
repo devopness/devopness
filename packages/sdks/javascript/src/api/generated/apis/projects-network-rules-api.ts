@@ -25,16 +25,16 @@ import { NetworkRuleRelation } from '../../generated/models';
 export class ProjectsNetworkRulesApiService extends ApiBaseService {
     /**
      * 
-     * @summary Add a network rule to the given project
-     * @param {number} projectId The project numeric Id
-     * @param {NetworkRuleCreate} networkRuleCreate A JSON object containing backgroud process data
+     * @summary Add a Network Rule to the given project
+     * @param {number} projectId The ID of the project.
+     * @param {NetworkRuleCreate} networkRuleCreate A JSON object containing the resource data
      */
-    public async addNetworkRuleToProject(projectId: number, networkRuleCreate: NetworkRuleCreate): Promise<ApiResponse<NetworkRule>> {
+    public async addProjectNetworkRule(projectId: number, networkRuleCreate: NetworkRuleCreate): Promise<ApiResponse<NetworkRule>> {
         if (projectId === null || projectId === undefined) {
-            throw new ArgumentNullException('projectId', 'addNetworkRuleToProject');
+            throw new ArgumentNullException('projectId', 'addProjectNetworkRule');
         }
         if (networkRuleCreate === null || networkRuleCreate === undefined) {
-            throw new ArgumentNullException('networkRuleCreate', 'addNetworkRuleToProject');
+            throw new ArgumentNullException('networkRuleCreate', 'addProjectNetworkRule');
         }
         
         let queryString = '';
@@ -47,8 +47,8 @@ export class ProjectsNetworkRulesApiService extends ApiBaseService {
 
     /**
      * 
-     * @summary Returns a list of all network rules that applies to a project
-     * @param {number} projectId Numeric ID of the project to get network rules from
+     * @summary Return a list of all Network Rules belonging to a project
+     * @param {number} projectId The ID of the project.
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */

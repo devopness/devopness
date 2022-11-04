@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { ApiError } from '../../generated/models';
 import { SslCertificate } from '../../generated/models';
 import { SslCertificateCreate } from '../../generated/models';
 import { SslCertificateRelation } from '../../generated/models';
@@ -24,16 +25,16 @@ import { SslCertificateRelation } from '../../generated/models';
 export class ApplicationsSSLCertificatesApiService extends ApiBaseService {
     /**
      * 
-     * @summary Create a new SSL certificate linked to the current application
-     * @param {number} applicationId Unique id of the parent application
-     * @param {SslCertificateCreate} sslCertificateCreate A JSON object containing data for creating a new record of SSL certificate
+     * @summary Add a new SSL certificate to the current application
+     * @param {number} applicationId The ID of the application.
+     * @param {SslCertificateCreate} sslCertificateCreate A JSON object containing the resource data
      */
-    public async addSslCertificateToApplication(applicationId: number, sslCertificateCreate: SslCertificateCreate): Promise<ApiResponse<SslCertificate>> {
+    public async addApplicationSslCertificate(applicationId: number, sslCertificateCreate: SslCertificateCreate): Promise<ApiResponse<SslCertificate>> {
         if (applicationId === null || applicationId === undefined) {
-            throw new ArgumentNullException('applicationId', 'addSslCertificateToApplication');
+            throw new ArgumentNullException('applicationId', 'addApplicationSslCertificate');
         }
         if (sslCertificateCreate === null || sslCertificateCreate === undefined) {
-            throw new ArgumentNullException('sslCertificateCreate', 'addSslCertificateToApplication');
+            throw new ArgumentNullException('sslCertificateCreate', 'addApplicationSslCertificate');
         }
         
         let queryString = '';
@@ -46,8 +47,8 @@ export class ApplicationsSSLCertificatesApiService extends ApiBaseService {
 
     /**
      * 
-     * @summary Returns a list of SSL certificates issued to an application
-     * @param {number} applicationId Unique ID of the application to retrieve SSL Certificates from
+     * @summary Return a list of SSL certificates issued to an application
+     * @param {number} applicationId The ID of the application.
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */

@@ -22,19 +22,19 @@ import { VariableType } from './variable-type';
  */
 export interface VariableCreate {
     /**
-     * The unique key used to identify the variable on the target. When variable is of type `file`, this is the relative path to the file within the application directory. 
+     * The unique key used to identify the variable on the target.                 When variable is of type `file`, this is the relative path                 to the file within the application directory. Must not be greater than 100 characters.
      * @type {string}
      * @memberof VariableCreate
      */
     key: string;
     /**
-     * The value to be assigned to this variable when deployed to its target. When variable is of type `file`, this is the file content. 
+     * The value to be assigned to this variable when deployed to its target.                 When variable is of type `file`, this is the file content. Must not be greater than 21504 characters.
      * @type {string}
      * @memberof VariableCreate
      */
     value: string;
     /**
-     * A text describing the variable, provided by the end user
+     * A text describing the variable, provided by the end user.
      * @type {string}
      * @memberof VariableCreate
      */
@@ -52,10 +52,22 @@ export interface VariableCreate {
      */
     type: VariableType;
     /**
-     * Indicates if the variable value should be visible or not in the deployment logs
+     * Indicates if the variable value should be visible or not in the deployment logs.
      * @type {boolean}
      * @memberof VariableCreate
      */
     hidden: boolean;
+    /**
+     * The ID of the resource this variable is linked to.
+     * @type {number}
+     * @memberof VariableCreate
+     */
+    resource_id: number;
+    /**
+     * The type of the resource this variable is linked to. Must be one of <code>application</code>.
+     * @type {string}
+     * @memberof VariableCreate
+     */
+    resource_type: string;
 }
 
