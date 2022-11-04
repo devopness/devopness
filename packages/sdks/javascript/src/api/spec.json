@@ -546,72 +546,12 @@
       }
     },
     "/applications/{application_id}/ssl-certificates": {
-      "post": {
-        "summary": "Create a new SSL certificate linked to the current application",
-        "operationId": "addSslCertificateToApplication",
-        "tags": [
-          "Applications - SSL Certificates"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "application_id",
-            "example": 1,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "required": true,
-            "description": "Unique id of the parent application"
-          }
-        ],
-        "requestBody": {
-          "description": "A JSON object containing data for creating a new record of SSL certificate",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SslCertificateCreate"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created",
-            "headers": {
-              "X-Devopness-Action-Id": {
-                "schema": {
-                  "type": "integer"
-                },
-                "description": "The dispatched action id of the resource"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SslCertificate"
-                }
-              }
-            }
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          }
-        }
-      },
       "get": {
-        "summary": "Returns a list of SSL certificates issued to an application",
+        "summary": "Return a list of SSL certificates issued to an application",
         "operationId": "listApplicationSslCertificates",
+        "description": {
+          "$ref": "../spec/descriptions/list-application-ssl-certificates.md"
+        },
         "tags": [
           "Applications - SSL Certificates"
         ],
@@ -634,18 +574,25 @@
           {
             "in": "path",
             "name": "application_id",
+            "description": "The ID of the application.",
             "example": 1,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "Unique ID of the application to retrieve SSL Certificates from"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SslCertificateList"
+                }
+              }
+            },
             "headers": {
               "Link": {
                 "schema": {
@@ -653,12 +600,88 @@
                 },
                 "description": "Link header with `first`, `last`, `previous` and `next` page's links"
               }
-            },
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Add a new SSL certificate to the current application",
+        "operationId": "addApplicationSslCertificate",
+        "description": {
+          "$ref": "../spec/descriptions/add-application-ssl-certificate.md"
+        },
+        "tags": [
+          "Applications - SSL Certificates"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "application_id",
+            "description": "The ID of the application.",
+            "example": 1,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SslCertificates"
+                  "$ref": "#/components/schemas/SslCertificate"
                 }
+              }
+            },
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SslCertificateCreate"
               }
             }
           }
@@ -666,9 +689,70 @@
       }
     },
     "/applications/{application_id}/variables": {
+      "get": {
+        "summary": "Return a list of variables belonging to an application",
+        "operationId": "listApplicationVariables",
+        "description": {
+          "$ref": "../spec/descriptions/list-application-variables.md"
+        },
+        "tags": [
+          "Applications - Variables"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "application_id",
+            "description": "The ID of the application.",
+            "example": 1,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VariableList"
+                }
+              }
+            },
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            }
+          }
+        }
+      },
       "post": {
         "summary": "Create a new variable linked to an application",
-        "operationId": "addVariableToApplication",
+        "operationId": "addApplicationVariable",
+        "description": {
+          "$ref": "../spec/descriptions/add-application-variable.md"
+        },
         "tags": [
           "Applications - Variables"
         ],
@@ -685,26 +769,15 @@
           {
             "in": "path",
             "name": "application_id",
+            "description": "The ID of the application.",
             "example": 1,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "Unique id of the application"
-          }
-        ],
-        "requestBody": {
-          "description": "A JSON object containing application variable data",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/VariableCreate"
-              }
             }
           }
-        },
+        ],
         "responses": {
           "201": {
             "description": "Created",
@@ -716,61 +789,34 @@
               }
             }
           },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          }
-        }
-      },
-      "get": {
-        "summary": "Returns a list of variables belonging to an application",
-        "operationId": "listApplicationVariables",
-        "tags": [
-          "Applications - Variables"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "$ref": "#/components/parameters/pageNumber"
-          },
-          {
-            "$ref": "#/components/parameters/pageSize"
-          },
-          {
-            "in": "path",
-            "name": "application_id",
-            "example": 1,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "required": true,
-            "description": "Unique ID of the application to retrieve variables from"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "headers": {
-              "Link": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
-              }
-            },
+          "403": {
+            "description": "Forbidden/Unauthorized",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Variables"
+                  "$ref": "#/components/schemas/ApiError"
                 }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VariableCreate"
               }
             }
           }
@@ -1407,8 +1453,11 @@
     },
     "/environments/{environment_id}/daemons": {
       "get": {
-        "summary": "Returns a list of all daemons belonging to a environment",
+        "summary": "Return a list of all Daemons belonging to an environment",
         "operationId": "listEnvironmentDaemons",
+        "description": {
+          "$ref": "../spec/descriptions/list-environment-daemons.md"
+        },
         "tags": [
           "Environments - Daemons"
         ],
@@ -1431,18 +1480,25 @@
           {
             "in": "path",
             "name": "environment_id",
+            "description": "The ID of the environment.",
             "example": 1,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "Numeric ID of the environment to get daemons from"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DaemonList"
+                }
+              }
+            },
             "headers": {
               "Link": {
                 "schema": {
@@ -1450,12 +1506,88 @@
                 },
                 "description": "Link header with `first`, `last`, `previous` and `next` page's links"
               }
-            },
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Add a Daemon to the given environment",
+        "operationId": "addEnvironmentDaemon",
+        "description": {
+          "$ref": "../spec/descriptions/add-environment-daemon.md"
+        },
+        "tags": [
+          "Environments - Daemons"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "environment_id",
+            "description": "The ID of the environment.",
+            "example": 1,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Daemons"
+                  "$ref": "#/components/schemas/Daemon"
                 }
+              }
+            },
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DaemonCreate"
               }
             }
           }
@@ -1584,8 +1716,11 @@
     },
     "/environments/{environment_id}/network-rules": {
       "get": {
-        "summary": "Returns a list of all network rules belonging to a environment",
+        "summary": "Return a list of all Network Rules belonging to an environment",
         "operationId": "listEnvironmentNetworkRules",
+        "description": {
+          "$ref": "../spec/descriptions/list-environment-network-rules.md"
+        },
         "tags": [
           "Environments - Network Rules"
         ],
@@ -1608,31 +1743,31 @@
           {
             "in": "path",
             "name": "environment_id",
+            "description": "The ID of the environment.",
             "example": 1,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "Numeric ID of the environment to get network rules from"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NetworkRuleList"
+                }
+              }
+            },
             "headers": {
               "Link": {
                 "schema": {
                   "type": "string"
                 },
                 "description": "Link header with `first`, `last`, `previous` and `next` page's links"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NetworkRules"
-                }
               }
             }
           }
@@ -3305,8 +3440,11 @@
     },
     "/network-rules/{network_rule_id}": {
       "delete": {
-        "summary": "Delete a given network rule",
+        "summary": "Delete a given Network Rule",
         "operationId": "deleteNetworkRule",
+        "description": {
+          "$ref": "../spec/descriptions/delete-network-rule.md"
+        },
         "tags": [
           "Network Rules"
         ],
@@ -3323,27 +3461,45 @@
           {
             "in": "path",
             "name": "network_rule_id",
+            "description": "The ID of the network rule.",
             "example": 1,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "Numeric ID of the rule to be deleted"
+            }
           }
         ],
         "responses": {
           "204": {
-            "$ref": "#/components/responses/NoContentDispatchAction"
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
           },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
           }
         }
       },
       "get": {
-        "summary": "Get a network rule by ID",
+        "summary": "Get a Network Rule by ID",
         "operationId": "getNetworkRule",
+        "description": {
+          "$ref": "../spec/descriptions/get-network-rule.md"
+        },
         "tags": [
           "Network Rules"
         ],
@@ -3360,13 +3516,13 @@
           {
             "in": "path",
             "name": "network_rule_id",
+            "description": "The ID of the network rule.",
             "example": 1,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "Numeric ID of the rule to get"
+            }
           }
         ],
         "responses": {
@@ -3380,14 +3536,24 @@
               }
             }
           },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
           }
         }
       },
       "put": {
-        "summary": "Update an existing network rule",
+        "summary": "Update an existing Network Rule",
         "operationId": "updateNetworkRule",
+        "description": {
+          "$ref": "../spec/descriptions/update-network-rule.md"
+        },
         "tags": [
           "Network Rules"
         ],
@@ -3404,17 +3570,50 @@
           {
             "in": "path",
             "name": "network_rule_id",
+            "description": "The ID of the network rule.",
             "example": 1,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "Numeric ID of the rule to update"
+            }
           }
         ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
         "requestBody": {
-          "description": "A JSON object containing network rule data",
+          "description": "A JSON object containing the resource data",
           "required": true,
           "content": {
             "application/json": {
@@ -3423,24 +3622,16 @@
               }
             }
           }
-        },
-        "responses": {
-          "204": {
-            "$ref": "#/components/responses/NoContentDispatchAction"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          },
-          "422": {
-            "$ref": "#/components/responses/ValidationError"
-          }
         }
       }
     },
     "/daemons/{daemon_id}": {
       "delete": {
-        "summary": "Delete a given Background process",
+        "summary": "Delete a given Daemon",
         "operationId": "deleteDaemon",
+        "description": {
+          "$ref": "../spec/descriptions/delete-daemon.md"
+        },
         "tags": [
           "Daemons"
         ],
@@ -3457,27 +3648,45 @@
           {
             "in": "path",
             "name": "daemon_id",
+            "description": "The ID of the daemon.",
             "example": 1,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "Numeric ID of the daemon to be deleted"
+            }
           }
         ],
         "responses": {
           "204": {
-            "$ref": "#/components/responses/NoContentDispatchAction"
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
           },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
           }
         }
       },
       "get": {
-        "summary": "Get a background process by ID",
+        "summary": "Get a Daemon by ID",
         "operationId": "getDaemon",
+        "description": {
+          "$ref": "../spec/descriptions/get-daemon.md"
+        },
         "tags": [
           "Daemons"
         ],
@@ -3494,13 +3703,13 @@
           {
             "in": "path",
             "name": "daemon_id",
+            "description": "The ID of the daemon.",
             "example": 1,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "Numeric ID of the daemon to get"
+            }
           }
         ],
         "responses": {
@@ -3514,14 +3723,24 @@
               }
             }
           },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
           }
         }
       },
       "put": {
-        "summary": "Update an existing background process",
+        "summary": "Update an existing Daemon",
         "operationId": "updateDaemon",
+        "description": {
+          "$ref": "../spec/descriptions/update-daemon.md"
+        },
         "tags": [
           "Daemons"
         ],
@@ -3538,17 +3757,50 @@
           {
             "in": "path",
             "name": "daemon_id",
+            "description": "The ID of the daemon.",
             "example": 1,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "Numeric ID of the daemon to update"
+            }
           }
         ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
         "requestBody": {
-          "description": "A JSON object containing daemon data",
+          "description": "A JSON object containing the resource data",
           "required": true,
           "content": {
             "application/json": {
@@ -3557,27 +3809,16 @@
               }
             }
           }
-        },
-        "responses": {
-          "204": {
-            "$ref": "#/components/responses/NoContentDispatchAction"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          },
-          "422": {
-            "$ref": "#/components/responses/ValidationError"
-          }
         }
       }
     },
     "/daemons/{daemon_id}/restart": {
       "post": {
-        "summary": "Restart a background process",
+        "summary": "Restart a Daemon",
         "operationId": "restartDaemon",
+        "description": {
+          "$ref": "../spec/descriptions/restart-daemon.md"
+        },
         "tags": [
           "Daemons"
         ],
@@ -3594,17 +3835,42 @@
           {
             "in": "path",
             "name": "daemon_id",
+            "description": "The ID of the daemon.",
             "example": 1,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "Numeric ID of the daemon to restart"
+            }
           }
         ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
         "requestBody": {
-          "description": "A JSON object containing the environment id",
+          "description": "A JSON object containing the resource data",
           "required": true,
           "content": {
             "application/json": {
@@ -3612,14 +3878,6 @@
                 "$ref": "#/components/schemas/DaemonRestart"
               }
             }
-          }
-        },
-        "responses": {
-          "204": {
-            "$ref": "#/components/responses/NoContentDispatchAction"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
           }
         }
       }
@@ -4681,72 +4939,12 @@
       }
     },
     "/projects/{project_id}/daemons": {
-      "post": {
-        "summary": "Add a daemon to the given project",
-        "operationId": "addDaemonToProject",
-        "tags": [
-          "Projects - Daemons"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "project_id",
-            "example": 1,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "required": true,
-            "description": "The project numeric Id"
-          }
-        ],
-        "requestBody": {
-          "description": "A JSON object containing daemon data",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DaemonCreate"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created",
-            "headers": {
-              "X-Devopness-Action-Id": {
-                "schema": {
-                  "type": "integer"
-                },
-                "description": "The dispatched action id of the resource"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Daemon"
-                }
-              }
-            }
-          },
-          "422": {
-            "$ref": "#/components/responses/ValidationError"
-          }
-        }
-      },
       "get": {
-        "summary": "Returns a list of all daemons belonging to a project",
+        "summary": "Return a list of all Daemons belonging to a project",
         "operationId": "listProjectDaemons",
+        "description": {
+          "$ref": "../spec/descriptions/list-project-daemons.md"
+        },
         "tags": [
           "Projects - Daemons"
         ],
@@ -4769,18 +4967,25 @@
           {
             "in": "path",
             "name": "project_id",
+            "description": "The ID of the project.",
             "example": 1,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "Numeric ID of the project to get daemons from"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DaemonList"
+                }
+              }
+            },
             "headers": {
               "Link": {
                 "schema": {
@@ -4788,12 +4993,88 @@
                 },
                 "description": "Link header with `first`, `last`, `previous` and `next` page's links"
               }
-            },
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Add a Daemon to the given project",
+        "operationId": "addProjectDaemon",
+        "description": {
+          "$ref": "../spec/descriptions/add-project-daemon.md"
+        },
+        "tags": [
+          "Projects - Daemons"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "description": "The ID of the project.",
+            "example": 1,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Daemons"
+                  "$ref": "#/components/schemas/Daemon"
                 }
+              }
+            },
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DaemonProjectCreate"
               }
             }
           }
@@ -4913,72 +5194,12 @@
       }
     },
     "/projects/{project_id}/network-rules": {
-      "post": {
-        "summary": "Add a network rule to the given project",
-        "operationId": "addNetworkRuleToProject",
-        "tags": [
-          "Projects - Network Rules"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "project_id",
-            "example": 1,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "required": true,
-            "description": "The project numeric Id"
-          }
-        ],
-        "requestBody": {
-          "description": "A JSON object containing backgroud process data",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NetworkRuleCreate"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created",
-            "headers": {
-              "X-Devopness-Action-Id": {
-                "schema": {
-                  "type": "integer"
-                },
-                "description": "The dispatched action id of the resource"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NetworkRule"
-                }
-              }
-            }
-          },
-          "422": {
-            "$ref": "#/components/responses/ValidationError"
-          }
-        }
-      },
       "get": {
-        "summary": "Returns a list of all network rules that applies to a project",
+        "summary": "Return a list of all Network Rules belonging to a project",
         "operationId": "listProjectNetworkRules",
+        "description": {
+          "$ref": "../spec/descriptions/list-project-network-rules.md"
+        },
         "tags": [
           "Projects - Network Rules"
         ],
@@ -5001,18 +5222,25 @@
           {
             "in": "path",
             "name": "project_id",
+            "description": "The ID of the project.",
             "example": 1,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "Numeric ID of the project to get network rules from"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NetworkRuleList"
+                }
+              }
+            },
             "headers": {
               "Link": {
                 "schema": {
@@ -5020,12 +5248,88 @@
                 },
                 "description": "Link header with `first`, `last`, `previous` and `next` page's links"
               }
-            },
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Add a Network Rule to the given project",
+        "operationId": "addProjectNetworkRule",
+        "description": {
+          "$ref": "../spec/descriptions/add-project-network-rule.md"
+        },
+        "tags": [
+          "Projects - Network Rules"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "description": "The ID of the project.",
+            "example": 1,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/NetworkRules"
+                  "$ref": "#/components/schemas/NetworkRule"
                 }
+              }
+            },
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NetworkRuleCreate"
               }
             }
           }
@@ -7304,9 +7608,12 @@
       }
     },
     "/ssl-certificates/{ssl_certificate_id}": {
-      "get": {
-        "summary": "Get details of a single SSL certificate",
-        "operationId": "getSslCertificate",
+      "delete": {
+        "summary": "Delete a given SSL Certificate",
+        "operationId": "deleteSslCertificate",
+        "description": {
+          "$ref": "../spec/descriptions/delete-ssl-certificate.md"
+        },
         "tags": [
           "SSL Certificates"
         ],
@@ -7323,13 +7630,68 @@
           {
             "in": "path",
             "name": "ssl_certificate_id",
-            "example": 1,
+            "description": "The ID of the ssl certificate.",
+            "example": 81,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Get details of a single SSL certificate",
+        "operationId": "getSslCertificate",
+        "description": {
+          "$ref": "../spec/descriptions/get-ssl-certificate.md"
+        },
+        "tags": [
+          "SSL Certificates"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "ssl_certificate_id",
+            "description": "The ID of the ssl certificate.",
+            "example": 81,
             "required": true,
-            "description": "Unique ID of the item to be retrieved"
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
           }
         ],
         "responses": {
@@ -7343,45 +7705,15 @@
               }
             }
           },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          }
-        }
-      },
-      "delete": {
-        "summary": "Delete a SSL certificate",
-        "operationId": "deleteSslCertificate",
-        "tags": [
-          "SSL Certificates"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "ssl_certificate_id",
-            "example": 1,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "required": true,
-            "description": "The unique id of the record to be deleted"
-          }
-        ],
-        "responses": {
-          "204": {
-            "$ref": "#/components/responses/NoContentDispatchAction"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
           }
         }
       }
@@ -8899,9 +9231,12 @@
       }
     },
     "/variables/{variable_id}": {
-      "put": {
-        "summary": "Update an existing variable",
-        "operationId": "updateVariable",
+      "delete": {
+        "summary": "Delete a variable by ID",
+        "operationId": "deleteVariable",
+        "description": {
+          "$ref": "../spec/descriptions/delete-variable.md"
+        },
         "tags": [
           "Variables"
         ],
@@ -8918,41 +9253,37 @@
           {
             "in": "path",
             "name": "variable_id",
+            "description": "The ID of the variable.",
+            "example": 1,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "The unique id of the variable to be updated",
-            "example": 1
-          }
-        ],
-        "requestBody": {
-          "description": "A JSON object containing variable data",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/VariableUpdate"
-              }
             }
           }
-        },
+        ],
         "responses": {
           "204": {
-            "$ref": "#/components/responses/NoContent"
+            "description": "No Content"
           },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          },
-          "422": {
-            "$ref": "#/components/responses/ValidationError"
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
           }
         }
       },
       "get": {
         "summary": "Get a variable by ID",
         "operationId": "getVariable",
+        "description": {
+          "$ref": "../spec/descriptions/get-variable.md"
+        },
         "tags": [
           "Variables"
         ],
@@ -8969,13 +9300,13 @@
           {
             "in": "path",
             "name": "variable_id",
-            "description": "The unique id of the variable",
+            "description": "The ID of the variable.",
+            "example": 1,
             "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "example": 1
+            }
           }
         ],
         "responses": {
@@ -8989,14 +9320,24 @@
               }
             }
           },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
           }
         }
       },
-      "delete": {
-        "summary": "Delete a variable by ID",
-        "operationId": "deleteVariable",
+      "put": {
+        "summary": "Update an existing variable",
+        "operationId": "updateVariable",
+        "description": {
+          "$ref": "../spec/descriptions/update-variable.md"
+        },
         "tags": [
           "Variables"
         ],
@@ -9013,21 +9354,49 @@
           {
             "in": "path",
             "name": "variable_id",
-            "description": "The id of the variable",
+            "description": "The ID of the variable.",
+            "example": 1,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "example": 1
+            }
           }
         ],
         "responses": {
           "204": {
-            "$ref": "#/components/responses/NoContent"
+            "description": "No Content"
           },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VariableUpdate"
+              }
+            }
           }
         }
       }
@@ -11875,45 +12244,51 @@
         "type": "object",
         "properties": {
           "id": {
+            "description": "The ID of the given daemon",
             "type": "integer",
-            "description": "The Id of the given daemon",
-            "example": 1
+            "example": 85324
           },
           "name": {
-            "type": "string",
             "description": "The name entered by the user (or auto-generated by `devopness`) to uniquely identify the daemon",
-            "example": "my-app"
+            "type": "string",
+            "example": "we-all-have-daemons-inside"
           },
           "command": {
-            "type": "string",
             "description": "The command line to be executed to start the daemon",
+            "type": "string",
             "example": "/usr/bin/example --parameter=%(ENV_VAR_TO_GET_PARAM_VALUE_FROM)s"
           },
-          "working_directory": {
+          "run_as_user": {
+            "description": "The name of the Unix user on behalf of which the daemon will be executed",
             "type": "string",
+            "example": "root-of-all-evil"
+          },
+          "working_directory": {
             "description": "The working directory where the daemon will be relative to when performing disk i/o",
+            "type": "string",
             "example": "/path/to/your/app"
           },
           "process_count": {
-            "type": "integer",
             "description": "The number of daemon process instances of the program to run simultaneously",
-            "example": 3
-          },
-          "run_as_user": {
-            "type": "string",
-            "description": "The name of the Unix user on behalf of which the daemon will run",
-            "example": "root"
+            "type": "integer",
+            "example": 6
           },
           "auto_generated": {
-            "default": false,
+            "description": "Indicates if the daemon was auto_generated by `devopness` itself",
             "type": "boolean",
-            "description": "Indicates if the command was auto_generated by `devopness` itself"
+            "example": false
           },
           "project": {
             "$ref": "#/components/schemas/ProjectRelation"
           },
+          "last_action": {
+            "$ref": "#/components/schemas/ActionRelation"
+          },
           "application": {
             "$ref": "#/components/schemas/ApplicationRelation"
+          },
+          "environment": {
+            "$ref": "#/components/schemas/EnvironmentRelation"
           },
           "environments": {
             "$ref": "#/components/schemas/Environments"
@@ -11921,68 +12296,119 @@
           "servers": {
             "$ref": "#/components/schemas/Servers"
           },
-          "last_action": {
-            "$ref": "#/components/schemas/ActionRelation"
-          },
           "created_at": {
-            "type": "string",
-            "format": "date-time",
             "description": "The date and time when the record was created",
+            "type": "string",
             "example": "2019-09-25T15:50:48.000000Z"
           },
           "updated_at": {
-            "type": "string",
-            "format": "date-time",
             "description": "The date and time when the record was last updated",
-            "example": "2019-09-25T13:52:04.000000Z"
+            "type": "string",
+            "example": "2019-09-25T15:50:48.000000Z"
           }
         },
         "required": [
           "id",
-          "command",
           "name",
-          "process_count",
+          "command",
           "run_as_user",
           "working_directory",
+          "process_count",
+          "auto_generated",
           "project",
+          "last_action",
           "application",
+          "environment",
           "environments",
           "servers",
-          "last_action"
+          "created_at",
+          "updated_at"
         ]
+      },
+      "Daemons": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/DaemonRelation"
+        }
       },
       "DaemonCreate": {
         "type": "object",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "The name entered by the user (or auto-generated by `devopness`) to uniquely identify the daemon",
-            "example": "my-app"
-          },
           "command": {
-            "type": "string",
-            "description": "The command line to be executed to start the daemon",
-            "example": "/usr/bin/example --parameter=%(ENV_VAR_TO_GET_PARAM_VALUE_FROM)s"
-          },
-          "working_directory": {
-            "type": "string",
-            "description": "The working directory where the daemon will be relative to when performing disk i/o",
-            "example": "/path/to/your/app"
+            "description": "The command line to be executed to start the daemon. Must not be greater than 255 characters.",
+            "example": "/usr/bin/example --parameter=%(ENV_VAR_TO_GET_PARAM_VALUE_FROM)s",
+            "type": "string"
           },
           "process_count": {
-            "type": "integer",
-            "description": "The number of daemon process instances of the program to run simultaneously",
-            "example": 3
+            "description": "The number of daemon process instances of the program to run simultaneously. Must be at least 1. Must not be greater than 99.",
+            "example": 3,
+            "type": "integer"
+          },
+          "working_directory": {
+            "description": "The working directory where the daemon will be relative to when performing disk i/o. Must start with one of <code>/</code>.",
+            "example": "/path/to/your/app",
+            "type": "string"
           },
           "run_as_user": {
-            "type": "string",
-            "description": "The name of the Unix user on behalf of which the daemon will run",
-            "example": "root"
+            "description": "The name of the Unix user on behalf of which the daemon will run. Must not be greater than 60 characters.",
+            "example": "root-of-all-evil",
+            "type": "string"
           },
-          "auto_generated": {
-            "default": false,
-            "type": "boolean",
-            "description": "Indicates if the command was auto_generated by `devopness` itself"
+          "name": {
+            "description": "The name entered by the user (or auto-generated by `devopness`) to uniquely identify the daemon. Must contain only letters, numbers, dashes and underscores. Must not be greater than 60 characters.",
+            "example": "we-all-have-daemons-inside",
+            "type": "string"
+          },
+          "servers": {
+            "$ref": "#/components/schemas/ResourceIdList"
+          }
+        },
+        "required": [
+          "command",
+          "process_count",
+          "working_directory",
+          "run_as_user",
+          "name"
+        ]
+      },
+      "DaemonList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/DaemonRelation"
+        }
+      },
+      "DaemonProjectCreate": {
+        "type": "object",
+        "properties": {
+          "command": {
+            "description": "The command line to be executed to start the daemon. Must not be greater than 255 characters.",
+            "example": "/usr/bin/example --parameter=%(ENV_VAR_TO_GET_PARAM_VALUE_FROM)s",
+            "type": "string"
+          },
+          "process_count": {
+            "description": "The number of daemon process instances of the program to run simultaneously. Must be at least 1. Must not be greater than 99.",
+            "example": 3,
+            "type": "integer"
+          },
+          "working_directory": {
+            "description": "The working directory where the daemon will be relative to when performing disk i/o. Must start with one of <code>/</code>.",
+            "example": "/path/to/your/app",
+            "type": "string"
+          },
+          "run_as_user": {
+            "description": "The name of the Unix user on behalf of which the daemon will run. Must not be greater than 60 characters.",
+            "example": "root-of-all-evil",
+            "type": "string"
+          },
+          "name": {
+            "description": "The name entered by the user (or auto-generated by `devopness`) to uniquely identify the daemon. Must contain only letters, numbers, dashes and underscores. Must not be greater than 60 characters.",
+            "example": "we-all-have-daemons-inside",
+            "type": "string"
+          },
+          "project_id": {
+            "description": "Numeric ID of the project to which the cron job belongs to.",
+            "example": 8594323,
+            "type": "integer"
           },
           "environments": {
             "$ref": "#/components/schemas/EnvironmentLinks"
@@ -11990,19 +12416,89 @@
         },
         "required": [
           "command",
-          "name",
           "process_count",
+          "working_directory",
           "run_as_user",
-          "working_directory"
+          "name",
+          "project_id"
+        ]
+      },
+      "DaemonRelation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "The ID of the given daemon",
+            "type": "integer",
+            "example": 85324
+          },
+          "name": {
+            "description": "The name entered by the user (or auto-generated by `devopness`) to uniquely identify the daemon",
+            "type": "string",
+            "example": "we-all-have-daemons-inside"
+          },
+          "command": {
+            "description": "The command line to be executed to start the daemon",
+            "type": "string",
+            "example": "/usr/bin/example --parameter=%(ENV_VAR_TO_GET_PARAM_VALUE_FROM)s"
+          },
+          "run_as_user": {
+            "description": "The name of the Unix user on behalf of which the daemon will be executed",
+            "type": "string",
+            "example": "root-of-all-evil"
+          },
+          "working_directory": {
+            "description": "The working directory where the daemon will be relative to when performing disk i/o",
+            "type": "string",
+            "example": "/path/to/your/app"
+          },
+          "process_count": {
+            "description": "The number of daemon process instances of the program to run simultaneously",
+            "type": "integer",
+            "example": 6
+          },
+          "auto_generated": {
+            "description": "Indicates if the daemon was auto_generated by `devopness` itself",
+            "type": "boolean",
+            "example": false
+          },
+          "last_action": {
+            "$ref": "#/components/schemas/ActionRelation"
+          },
+          "application": {
+            "$ref": "#/components/schemas/ApplicationRelation"
+          },
+          "created_at": {
+            "description": "The date and time when the record was created",
+            "type": "string",
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "description": "The date and time when the record was last updated",
+            "type": "string",
+            "example": "2019-09-25T15:50:48.000000Z"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "command",
+          "run_as_user",
+          "working_directory",
+          "process_count",
+          "auto_generated",
+          "last_action",
+          "application",
+          "created_at",
+          "updated_at"
         ]
       },
       "DaemonRestart": {
         "type": "object",
         "properties": {
           "environment_id": {
-            "type": "integer",
-            "description": "The unique environment id",
-            "example": 198421
+            "description": "The unique environment ID.",
+            "example": 845323,
+            "type": "integer"
           }
         },
         "required": [
@@ -12012,124 +12508,46 @@
       "DaemonUpdate": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "description": "The unique id of the given record",
-            "example": 45678
-          },
-          "application_id": {
-            "type": "integer",
-            "description": "Numeric ID of the application to which the daemon belongs to",
-            "example": 7123941090
-          },
-          "name": {
-            "type": "string",
-            "description": "The name entered by the user (or auto-generated by `devopness`) to uniquely identify the daemon",
-            "example": "my-app"
-          },
           "command": {
-            "type": "string",
-            "description": "The command line to be executed to start the daemon",
-            "example": "/usr/bin/example --parameter=%(ENV_VAR_TO_GET_PARAM_VALUE_FROM)s"
-          },
-          "working_directory": {
-            "type": "string",
-            "description": "The working directory where the daemon will be relative to when performing disk i/o",
-            "example": "/path/to/your/app"
+            "description": "The command line to be executed to start the daemon. Must not be greater than 255 characters.",
+            "example": "/usr/bin/example --parameter=%(ENV_VAR_TO_GET_PARAM_VALUE_FROM)s",
+            "type": "string"
           },
           "process_count": {
-            "type": "integer",
-            "description": "The number of daemon process instances of the program to run simultaneously",
-            "example": 3
+            "description": "The number of daemon process instances of the program to run simultaneously. Must be at least 1. Must not be greater than 99.",
+            "example": 3,
+            "type": "integer"
+          },
+          "working_directory": {
+            "description": "The working directory where the daemon will be relative to when performing disk i/o. Must start with one of <code>/</code>.",
+            "example": "/path/to/your/app",
+            "type": "string"
           },
           "run_as_user": {
-            "type": "string",
-            "description": "The name of the Unix user on behalf of which the daemon will run",
-            "example": "root"
+            "description": "The name of the Unix user on behalf of which the daemon will run. Must not be greater than 60 characters.",
+            "example": "root-of-all-evil",
+            "type": "string"
+          },
+          "name": {
+            "description": "The name entered by the user (or auto-generated by `devopness`) to uniquely identify the daemon. Must contain only letters, numbers, dashes and underscores. Must not be greater than 60 characters.",
+            "example": "we-all-have-daemons-inside",
+            "type": "string"
+          },
+          "application_id": {
+            "description": "Numeric ID of the project to which the daemon belongs to.",
+            "example": 8594323,
+            "type": "integer"
           },
           "environments": {
             "$ref": "#/components/schemas/EnvironmentLinks"
           }
         },
         "required": [
-          "id",
-          "name",
           "command",
+          "process_count",
           "working_directory",
-          "process_count",
-          "run_as_user"
-        ]
-      },
-      "Daemons": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/DaemonRelation"
-        }
-      },
-      "DaemonRelation": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "description": "The Id of the given daemon",
-            "example": 1
-          },
-          "name": {
-            "type": "string",
-            "description": "The name entered by the user (or auto-generated by `devopness`) to uniquely identify the daemon",
-            "example": "my-app"
-          },
-          "command": {
-            "type": "string",
-            "description": "The command line to be executed to start the daemon",
-            "example": "/usr/bin/example --parameter=%(ENV_VAR_TO_GET_PARAM_VALUE_FROM)s"
-          },
-          "working_directory": {
-            "type": "string",
-            "description": "The working directory where the daemon will be relative to when performing disk i/o",
-            "example": "/path/to/your/app"
-          },
-          "process_count": {
-            "type": "integer",
-            "description": "The number of daemon process instances of the program to run simultaneously",
-            "example": 3
-          },
-          "run_as_user": {
-            "type": "string",
-            "description": "The name of the Unix user on behalf of which the daemon will run",
-            "example": "root"
-          },
-          "auto_generated": {
-            "default": false,
-            "type": "boolean",
-            "description": "Indicates if the command was auto_generated by `devopness` itself"
-          },
-          "last_action": {
-            "$ref": "#/components/schemas/ActionRelation"
-          },
-          "application": {
-            "$ref": "#/components/schemas/ApplicationRelation"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the record was created",
-            "example": "2019-09-25T15:50:48.000000Z"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the record was last updated",
-            "example": "2019-09-25T13:52:04.000000Z"
-          }
-        },
-        "required": [
-          "id",
-          "command",
-          "name",
-          "process_count",
           "run_as_user",
-          "working_directory"
+          "name"
         ]
       },
       "DeploymentDefaultStep": {
@@ -13972,13 +14390,13 @@
         "type": "object",
         "properties": {
           "id": {
+            "description": "The ID of the given network rule",
             "type": "integer",
-            "description": "The unique id of the given record",
-            "example": 967864
+            "example": 6548224
           },
           "name": {
-            "type": "string",
             "description": "The rule's name/description/reminder",
+            "type": "string",
             "example": "Opening MySQL port so desktop apps can access it remotely"
           },
           "type": {
@@ -13987,29 +14405,35 @@
           "protocol": {
             "$ref": "#/components/schemas/NetworkRuleProtocol"
           },
-          "ip_address_from": {
-            "nullable": true,
-            "type": "string",
-            "format": "ipv4",
-            "description": "Starting range of the public ipv4 or ipv6 addresses that can access this rule",
-            "example": "200.123.45.67"
-          },
-          "ip_address_to": {
-            "nullable": true,
-            "type": "string",
-            "format": "ipv4",
-            "description": "Ending range of the public ipv4 or ipv6 addresses that can access this rule",
-            "example": "200.123.45.99"
-          },
           "port_from": {
-            "type": "integer",
             "description": "Starting range of network ports to be considered by this rule",
+            "type": "integer",
             "example": 6123
           },
           "port_to": {
-            "type": "integer",
             "description": "Ending range of network ports to be considered by this rule",
+            "type": "integer",
             "example": 7654
+          },
+          "ip_address_from": {
+            "description": "Starting range of the public ipv4 or ipv6 addresses that can access this rule",
+            "type": "string",
+            "example": "200.123.45.67",
+            "nullable": true
+          },
+          "ip_address_to": {
+            "description": "Ending range of the public ipv4 or ipv6 addresses that can access this rule",
+            "type": "string",
+            "example": "200.123.45.99",
+            "nullable": true
+          },
+          "auto_generated": {
+            "description": "Indicates if the network rule was auto_generated by `devopness` itself",
+            "type": "boolean",
+            "example": false
+          },
+          "last_action": {
+            "$ref": "#/components/schemas/ActionRelation"
           },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
@@ -14020,20 +14444,15 @@
           "servers": {
             "$ref": "#/components/schemas/Servers"
           },
-          "last_action": {
-            "$ref": "#/components/schemas/ActionRelation"
-          },
           "created_at": {
-            "type": "string",
-            "format": "date-time",
             "description": "The date and time when the record was created",
+            "type": "string",
             "example": "2019-09-25T15:50:48.000000Z"
           },
           "updated_at": {
-            "type": "string",
-            "format": "date-time",
             "description": "The date and time when the record was last updated",
-            "example": "2019-09-25T13:52:04.000000Z"
+            "type": "string",
+            "example": "2019-09-25T15:50:48.000000Z"
           }
         },
         "required": [
@@ -14043,19 +14462,30 @@
           "protocol",
           "port_from",
           "port_to",
+          "ip_address_from",
+          "ip_address_to",
+          "auto_generated",
+          "last_action",
           "created_by_user",
           "environments",
           "servers",
-          "last_action"
+          "created_at",
+          "updated_at"
         ]
+      },
+      "NetworkRules": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/NetworkRuleRelation"
+        }
       },
       "NetworkRuleCreate": {
         "type": "object",
         "properties": {
           "name": {
-            "type": "string",
-            "description": "The rule's name/description/reminder",
-            "example": "Open MySQL port for remote access"
+            "description": "The rule's name/description/reminder. Must be at least 3 characters. Must not be greater than 60 characters.",
+            "example": "Open MySQL port for remote access",
+            "type": "string"
           },
           "type": {
             "$ref": "#/components/schemas/NetworkRuleType"
@@ -14064,28 +14494,24 @@
             "$ref": "#/components/schemas/NetworkRuleProtocol"
           },
           "ip_address_from": {
-            "nullable": true,
-            "type": "string",
-            "format": "ipv4",
-            "description": "Starting range of the public ipv4 or ipv6 addresses that can access this rule",
-            "example": "200.123.45.67"
+            "description": "Starting range of the public ipv4 or ipv6 addresses that can access this rule. Must be a valid IP address.",
+            "example": "200.123.45.67",
+            "type": "string"
           },
           "ip_address_to": {
-            "nullable": true,
-            "type": "string",
-            "format": "ipv4",
-            "description": "Ending range of the public ipv4 or ipv6 addresses that can access this rule",
-            "example": "200.123.45.99"
+            "description": "Ending range of the public ipv4 or ipv6 addresses that can access this rule. Must be a valid IP address.",
+            "example": "200.123.45.99",
+            "type": "string"
           },
           "port_from": {
-            "type": "integer",
-            "description": "Starting range of network ports to be considered by this rule",
-            "example": 6123
+            "description": "Starting range of network ports to be considered by this rule. Must be at least 1. Must not be greater than 65535.",
+            "example": 6123,
+            "type": "integer"
           },
           "port_to": {
-            "type": "integer",
-            "description": "Ending range of network ports to be considered by this rule",
-            "example": 7654
+            "description": "Ending range of network ports to be considered by this rule. Must be at least 1. Must not be greater than 65535.",
+            "example": 7654,
+            "type": "integer"
           },
           "environments": {
             "$ref": "#/components/schemas/EnvironmentLinks"
@@ -14094,12 +14520,15 @@
         "required": [
           "name",
           "type",
-          "protocol",
-          "ip_address_from",
-          "ip_address_to",
           "port_from",
           "port_to"
         ]
+      },
+      "NetworkRuleList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/NetworkRuleRelation"
+        }
       },
       "NetworkRuleProtocol": {
         "type": "string",
@@ -14111,11 +14540,80 @@
         ],
         "example": "any"
       },
-      "NetworkRules": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/NetworkRuleRelation"
-        }
+      "NetworkRuleRelation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "The ID of the given network rule",
+            "type": "integer",
+            "example": 6548224
+          },
+          "name": {
+            "description": "The rule's name/description/reminder",
+            "type": "string",
+            "example": "Opening MySQL port so desktop apps can access it remotely"
+          },
+          "type": {
+            "$ref": "#/components/schemas/NetworkRuleType"
+          },
+          "protocol": {
+            "$ref": "#/components/schemas/NetworkRuleProtocol"
+          },
+          "port_from": {
+            "description": "Starting range of network ports to be considered by this rule",
+            "type": "integer",
+            "example": 6123
+          },
+          "port_to": {
+            "description": "Ending range of network ports to be considered by this rule",
+            "type": "integer",
+            "example": 7654
+          },
+          "ip_address_from": {
+            "description": "Starting range of the public ipv4 or ipv6 addresses that can access this rule",
+            "type": "string",
+            "example": "200.123.45.67",
+            "nullable": true
+          },
+          "ip_address_to": {
+            "description": "Ending range of the public ipv4 or ipv6 addresses that can access this rule",
+            "type": "string",
+            "example": "200.123.45.99",
+            "nullable": true
+          },
+          "auto_generated": {
+            "description": "Indicates if the network rule was auto_generated by `devopness` itself",
+            "type": "boolean",
+            "example": false
+          },
+          "last_action": {
+            "$ref": "#/components/schemas/ActionRelation"
+          },
+          "created_at": {
+            "description": "The date and time when the record was created",
+            "type": "string",
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "description": "The date and time when the record was last updated",
+            "type": "string",
+            "example": "2019-09-25T15:50:48.000000Z"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "type",
+          "protocol",
+          "port_from",
+          "port_to",
+          "ip_address_from",
+          "ip_address_to",
+          "auto_generated",
+          "last_action",
+          "created_at",
+          "updated_at"
+        ]
       },
       "NetworkRuleType": {
         "type": "string",
@@ -14130,14 +14628,14 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "integer",
-            "description": "The unique id of the given record",
-            "example": 45678
+            "description": "The unique ID of the given network rule.",
+            "example": 37292,
+            "type": "integer"
           },
           "name": {
-            "type": "string",
-            "description": "The rule's name/description/reminder",
-            "example": "Open MySQL port for remote access"
+            "description": "The rule's name/description/reminder. Must be at least 3 characters. Must not be greater than 60 characters.",
+            "example": "Open MySQL port for remote access",
+            "type": "string"
           },
           "type": {
             "$ref": "#/components/schemas/NetworkRuleType"
@@ -14146,16 +14644,14 @@
             "$ref": "#/components/schemas/NetworkRuleProtocol"
           },
           "ip_address_from": {
-            "type": "string",
-            "format": "ipv4",
-            "description": "Starting range of the public ipv4 or ipv6 addresses that can access this rule",
-            "example": "200.123.45.67"
+            "description": "Starting range of the public ipv4 or ipv6 addresses that can access this rule. Must be a valid IP address.",
+            "example": "200.123.45.67",
+            "type": "string"
           },
           "ip_address_to": {
-            "type": "string",
-            "format": "ipv4",
-            "description": "Ending range of the public ipv4 or ipv6 addresses that can access this rule",
-            "example": "200.123.45.99"
+            "description": "Ending range of the public ipv4 or ipv6 addresses that can access this rule. Must be a valid IP address.",
+            "example": "200.123.45.99",
+            "type": "string"
           },
           "environments": {
             "$ref": "#/components/schemas/EnvironmentLinks"
@@ -14164,78 +14660,7 @@
         "required": [
           "id",
           "name",
-          "type",
-          "protocol",
-          "ip_address_from",
-          "ip_address_to"
-        ]
-      },
-      "NetworkRuleRelation": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "description": "The unique id of the given record",
-            "example": 967864
-          },
-          "name": {
-            "type": "string",
-            "description": "The rule's name/description/reminder",
-            "example": "Opening MySQL port so desktop apps can access it remotely"
-          },
-          "type": {
-            "$ref": "#/components/schemas/NetworkRuleType"
-          },
-          "protocol": {
-            "$ref": "#/components/schemas/NetworkRuleProtocol"
-          },
-          "ip_address_from": {
-            "nullable": true,
-            "type": "string",
-            "format": "ipv4",
-            "description": "Starting range of the public ipv4 or ipv6 addresses that can access this rule",
-            "example": "200.123.45.67"
-          },
-          "ip_address_to": {
-            "nullable": true,
-            "type": "string",
-            "format": "ipv4",
-            "description": "Ending range of the public ipv4 or ipv6 addresses that can access this rule",
-            "example": "200.123.45.99"
-          },
-          "port_from": {
-            "type": "integer",
-            "description": "Starting range of network ports to be considered by this rule",
-            "example": 6123
-          },
-          "port_to": {
-            "type": "integer",
-            "description": "Ending range of network ports to be considered by this rule",
-            "example": 7654
-          },
-          "last_action": {
-            "$ref": "#/components/schemas/ActionRelation"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the record was created",
-            "example": "2019-09-25T15:50:48.000000Z"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the record was last updated",
-            "example": "2019-09-25T13:52:04.000000Z"
-          }
-        },
-        "required": [
-          "id",
-          "name",
-          "type",
-          "protocol",
-          "port_from",
-          "port_to"
+          "type"
         ]
       },
       "OperatingSystem": {
@@ -16419,116 +16844,105 @@
         "type": "object",
         "properties": {
           "id": {
+            "description": "The unique ID of the given SSL certificate",
             "type": "integer",
-            "description": "The unique id of the given record",
-            "example": 6789
-          },
-          "domains": {
-            "description": "The list of domain names to which the SSL certificate refers to",
-            "type": "array",
-            "example": [
-              "my-subdomain.example.com",
-              "example.com",
-              "*.example.com"
-            ],
-            "items": {
-              "type": "string"
-            }
+            "example": 8423749
           },
           "name": {
-            "type": "string",
             "description": "The name given to SSL certificate",
+            "type": "string",
             "example": "my-subdomain.example.com"
-          },
-          "issuer": {
-            "$ref": "#/components/schemas/SslCertificateIssuer"
           },
           "type": {
             "$ref": "#/components/schemas/SslCertificateType"
           },
+          "issuer": {
+            "$ref": "#/components/schemas/SslCertificateIssuer"
+          },
           "validation_level": {
             "$ref": "#/components/schemas/SslCertificateValidationLevel"
           },
-          "custom_private_key": {
-            "type": "string",
-            "description": "The private key provided by the Certification Authority, when the certificate has not been automatically issued through `devopness`",
-            "example": "-----BEGIN RSA PRIVATE KEY-----MIIJKQIBAAKCAgEA6AUEbdJa ..."
-          },
-          "custom_certificate": {
-            "type": "string",
-            "description": "The contents of the certificate provided by the Certification Authority, when the certificate has not been automatically issued through `devopness`",
-            "example": "-----BEGIN CERTIFICATE-----MIIGdDCCBVygAwIBAgISAy66cNIj ..."
-          },
           "active": {
+            "description": "Tells if the certificate is active for all linked servers and applications",
             "type": "boolean",
-            "description": "Tells if the certificate is active for all linked servers and applications"
+            "example": true
           },
-          "expires_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when this certificate will no longer be valid, down to minute precision",
-            "example": "2020-04-16T15:50:48.000000Z",
-            "nullable": true
+          "domains": {
+            "$ref": "#/components/schemas/SslCertificateDomainList"
           },
-          "last_renewed_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when this certificate was renewed for the last time",
-            "example": "2020-04-16T15:50:48.000000Z",
-            "nullable": true
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the record was created",
-            "example": "2020-04-16T15:50:48.000000Z"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the record was last updated",
-            "example": "2020-04-16T15:50:48.000000Z"
-          },
-          "servers": {
-            "description": "The list of linked servers",
-            "$ref": "#/components/schemas/Servers"
+          "application_id": {
+            "description": "The application ID that contains this certificate",
+            "type": "integer",
+            "example": 2347658
           },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
           },
           "last_action": {
             "$ref": "#/components/schemas/ActionRelation"
+          },
+          "application": {
+            "$ref": "#/components/schemas/ApplicationRelation"
+          },
+          "servers": {
+            "$ref": "#/components/schemas/Servers"
+          },
+          "expires_at": {
+            "description": "The date and time when this certificate will no longer be valid, down to minute precision",
+            "type": "string",
+            "example": "2020-04-16T15:50:48.000000Z",
+            "nullable": true
+          },
+          "last_renewed_at": {
+            "description": "The date and time when this certificate was renewed for the last time",
+            "type": "string",
+            "example": "2020-04-16T15:50:48.000000Z",
+            "nullable": true
+          },
+          "created_at": {
+            "description": "The date and time when the record was created",
+            "type": "string",
+            "example": "2020-04-16T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "description": "The date and time when the record was last updated",
+            "type": "string",
+            "example": "2020-04-16T15:50:48.000000Z"
           }
         },
         "required": [
           "id",
-          "domains",
           "name",
-          "issuer",
           "type",
+          "issuer",
           "validation_level",
           "active",
-          "servers",
+          "domains",
+          "application_id",
           "created_by_user",
-          "last_action"
+          "last_action",
+          "application",
+          "servers",
+          "expires_at",
+          "last_renewed_at",
+          "created_at",
+          "updated_at"
         ]
+      },
+      "SslCertificates": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/SslCertificateRelation"
+        }
       },
       "SslCertificateCreate": {
         "type": "object",
         "properties": {
-          "domains": {
-            "description": "The list of domain names to which the SSL certificate refers to",
-            "type": "array",
-            "example": [
-              "my-subdomain.example.com",
-              "example.com"
-            ],
-            "items": {
-              "type": "string"
-            }
-          },
           "issuer": {
             "$ref": "#/components/schemas/SslCertificateIssuer"
+          },
+          "domains": {
+            "$ref": "#/components/schemas/SslCertificateDomainList"
           },
           "type": {
             "$ref": "#/components/schemas/SslCertificateType"
@@ -16537,21 +16951,32 @@
             "$ref": "#/components/schemas/SslCertificateValidationLevel"
           },
           "custom_private_key": {
-            "type": "string",
-            "description": "The private key provided by the Certification Authority, when the certificate has not been automatically issued through `devopness`",
-            "example": "-----BEGIN RSA PRIVATE KEY----- Proc-Type: 4,ENCRYPTED DEK-Info: DES-EDE3-CBC,4E262401F693044C\njyoAdQaTKnfNDNfqAZR7hZsNNXoMXmspJp0h0eb7Gc2FyaX1iS70VeUWVlGkPfG/ lp7cPvvUO36pTaU0kLOWdG8FGHRIblO8v4f9E2/eD7VgNLJ4W8tP0rff3d18M32B jfG/Mg90Gsew3XXlLo5eVO+3xbuGhKcZ1p6RVa5vdEOr1Pk/huyvH6HLsXCEOSS+ 6NF/nVRqP8VAlSFF58QQIz7hQsfyOr8EVzdW4RNlygaUgWDCGa/CCwR6NgGcRyRj M3R1R36KUWubxmPHj21EB1XO4H4LF15eE0ZjBXfRUllWdaWONU26HOlld4Y8HhMf tVCt7LeavMuh0tVRmKCrj3fbxRCgc1mRM58EEhYbbFkj0jZzWmbVUB6xegwGCyLH LSb/HuC9WI7xKsNXIkm9O0Gso+EZ75Feex8DGVX407kiAQtJ/Kdh8Lo8Hv0bDby9 IuSpfJszDn5eB9K3k112SOz1LPfQJB8m/o94MmnaFACX5Usc0yy5CmN/3iCEnnVj i2po86njYaqiN2NeAXY07bkp+U2paVfs+crpXkboegy/IO0qWizU3x2GgOxB/6Sg BzqqDNb8yiVjctcr7puIjJfMCe4QR4gAeaMphlK1Y8EeABdTGLsFF7Rxf/2Bn6WS Kd7EW8bF5UqnSM18h9GSbMoZMSBpZF6YGA45lzgKEPlhJqNhBhUgtOz17RocnwnC 7Sl7XFIJZWG9kgVY1bLzD/0hKN3TzTdAzSlFW2dybKdz+te5LSPuI7GjwSi14PPN r/YoTMcpn4EYxiUq/IVaKQkDc5ZE1qKe9etiLQPIp/L7hN3zFgd6UPqAB6vRweJa tS5g1bl24Il/a5yt9i7TgbxyrpY3ZmU5g0WKoz1/WFvO4s49RC9Jgih1ShO5u+CG aV4A80+TMbROuWx35P7y3ZjmUH/y9XU8gKdRo6BgZrBfK0QgIq/JzN7Zca6Z3oss nW8B2g9KTK9JqIKSfhq5Udfyfmtipe6EidpDwHXTMWDNey42CAMH/IOj5Pq5rUwb LW4VOnk4RIVwyGtms3qHRUuki6VBSpy75ROkfHe5v/3RaNqd+2VrzvsGyk3R7ek6 dQbe8J5AUK2/hUYI7UOP6hkQ/jvET+R2DVkqHQoGgGH5XO+7efc60oZuz7qh8khH m2gMmP+6LsSUYAEG743FQFu1BOrFdQPrF7/3Zmx64fPpqp1lVWpqHY0EoDZYfzYw TD2WxeMRFNY4+l1HiKxZOaO+4Q82vOW7fMs8YSH6uDTmTy78R28gTenv/r4kiFQg bey+ghK5msxMFV6Dy9vIrD20D4qknBjl/8Qt73hUaRrRSFaakp0Tq2myg6fzpbQ8 3d/Yx3tZeRnjufh/PrAp+9wdNT5sotuNflXjSiPQ7VDGuSLu4InTu2j/bgcHfqDf 0vRd5GQRcWcVDUwXY5xR7hOoot/Ej/F045rtg2pIG0ALdpfOY0NB5HDVaKY9lvWQ DNL5iY1cxjSK1fjN5qpy1JV7ZHGHoCogBac9SOtBkf+tJPEKu2eF/kIQOCp0iqSg 3ke/l7xYSrusjiEwzIjN+XTsdlcQzMk8OJb7/+Y+SZGqMmlTIemip+L/ybeXETEL -----END RSA PRIVATE KEY-----"
+            "description": "The private key provided by the Certification Authority, when the certificate has not been automatically issued through `devopness`. This field is required when <code>issuer</code> is <code>custom</code>. Must be at least 100 characters. Must not be greater than 4096 characters.",
+            "example": "-----BEGIN RSA PRIVATE KEY-----\n                Proc-Type: 4,ENCRYPTED\n                DEK-Info: DES-EDE3-CBC,4E262401F693044C\n\n                jyoAdQaTKnfNDNfqAZR7hZsNNXoMXmspJp0h0eb7Gc2FyaX1iS70VeUWVlGkPfG/\n                lp7cPvvUO36pTaU0kLOWdG8FGHRIblO8v4f9E2/eD7VgNLJ4W8tP0rff3d18M32B\n                jfG/Mg90Gsew3XXlLo5eVO+3xbuGhKcZ1p6RVa5vdEOr1Pk/huyvH6HLsXCEOSS+\n                6NF/nVRqP8VAlSFF58QQIz7hQsfyOr8EVzdW4RNlygaUgWDCGa/CCwR6NgGcRyRj\n                M3R1R36KUWubxmPHj21EB1XO4H4LF15eE0ZjBXfRUllWdaWONU26HOlld4Y8HhMf\n                tVCt7LeavMuh0tVRmKCrj3fbxRCgc1mRM58EEhYbbFkj0jZzWmbVUB6xegwGCyLH\n                LSb/HuC9WI7xKsNXIkm9O0Gso+EZ75Feex8DGVX407kiAQtJ/Kdh8Lo8Hv0bDby9\n                IuSpfJszDn5eB9K3k112SOz1LPfQJB8m/o94MmnaFACX5Usc0yy5CmN/3iCEnnVj\n                i2po86njYaqiN2NeAXY07bkp+U2paVfs+crpXkboegy/IO0qWizU3x2GgOxB/6Sg\n                BzqqDNb8yiVjctcr7puIjJfMCe4QR4gAeaMphlK1Y8EeABdTGLsFF7Rxf/2Bn6WS\n                Kd7EW8bF5UqnSM18h9GSbMoZMSBpZF6YGA45lzgKEPlhJqNhBhUgtOz17RocnwnC\n                7Sl7XFIJZWG9kgVY1bLzD/0hKN3TzTdAzSlFW2dybKdz+te5LSPuI7GjwSi14PPN\n                r/YoTMcpn4EYxiUq/IVaKQkDc5ZE1qKe9etiLQPIp/L7hN3zFgd6UPqAB6vRweJa\n                tS5g1bl24Il/a5yt9i7TgbxyrpY3ZmU5g0WKoz1/WFvO4s49RC9Jgih1ShO5u+CG\n                aV4A80+TMbROuWx35P7y3ZjmUH/y9XU8gKdRo6BgZrBfK0QgIq/JzN7Zca6Z3oss\n                nW8B2g9KTK9JqIKSfhq5Udfyfmtipe6EidpDwHXTMWDNey42CAMH/IOj5Pq5rUwb\n                LW4VOnk4RIVwyGtms3qHRUuki6VBSpy75ROkfHe5v/3RaNqd+2VrzvsGyk3R7ek6\n                dQbe8J5AUK2/hUYI7UOP6hkQ/jvET+R2DVkqHQoGgGH5XO+7efc60oZuz7qh8khH\n                m2gMmP+6LsSUYAEG743FQFu1BOrFdQPrF7/3Zmx64fPpqp1lVWpqHY0EoDZYfzYw\n                TD2WxeMRFNY4+l1HiKxZOaO+4Q82vOW7fMs8YSH6uDTmTy78R28gTenv/r4kiFQg\n                bey+ghK5msxMFV6Dy9vIrD20D4qknBjl/8Qt73hUaRrRSFaakp0Tq2myg6fzpbQ8\n                3d/Yx3tZeRnjufh/PrAp+9wdNT5sotuNflXjSiPQ7VDGuSLu4InTu2j/bgcHfqDf\n                0vRd5GQRcWcVDUwXY5xR7hOoot/Ej/F045rtg2pIG0ALdpfOY0NB5HDVaKY9lvWQ\n                DNL5iY1cxjSK1fjN5qpy1JV7ZHGHoCogBac9SOtBkf+tJPEKu2eF/kIQOCp0iqSg\n                3ke/l7xYSrusjiEwzIjN+XTsdlcQzMk8OJb7/+Y+SZGqMmlTIemip+L/ybeXETEL\n                -----END RSA PRIVATE KEY-----",
+            "type": "string"
           },
           "custom_certificate": {
-            "type": "string",
-            "description": "The contents of the certificate provided by the Certification Authority, when the certificate has not been automatically issued through `devopness`",
-            "example": "-----BEGIN RSA PRIVATE KEY----- MIIEpAIBAAKCAQEA1DFNCpE0TTSuZNPRYivpH92uFyptmNL0bY8KpnVTzUR/G3vr e5Iua0OuCB9sW0JB1MCoYndHjeSt6NtJ0zDcbT/i+c0LyWqhx4YfsyUhPtYUBOy4 tnDsG9dzFe+PWomxVPERFwVk5a7CflHlbtqadxdhHTBGU34XUk3lGs+YjQarj5OV vbk5sAIkrXYF2hDFn0I2NY7I47sB2CvHqMlXfrawSWMSA0XZhO6g0Fp9AzEw23xf U/oxbTyShyOiwq6fBv/lviqacJTrF4b078qCKUhAW0bDhhk6Oz9NOQlAGV90ISVY Y5vKn0Jpgmi6G+Btsk0+Y626RTAi6bDw6B0QJwIDAQABAoIBAQCS+XsVgLIrb/wD lrwHNccJ7XByV08GdcgcQuHrnoTnPzSTguf+9af1YDGhKrLRGzmh9bgsS9ZiMC1N hubBw6xKd9/tittJLfTU0NAQM/2tGndPWfAvXlQMjNUIMqCm44zS+w8NVQ0oEj5h ZLR4bi5jouv/Xbq4hjP9LDsusPBHbT4HqkM/7jlydV/0L38b+Gpo1bsweVjhSv7w nAfmmiDiV7TmoldJNl/dG69bmSgJzza5ywKSBQQkdGpGYsYK1Y8On8mBgS36wvAN p1rtxV+/Bdg74e5oWuLygHJeR1DnvE0uswcA9ln2KTsLAcw1JESWflWdAGeFTgbp jdU40X5BAoGBAPVRzVx2sSuFQ4Y7QhVvH36/A5HYO1u9JTal8RNebjz+UXMtNFzX 6qsUih5JD60EloZUIgtOhyXw+NdRdyKTUdkuwszldDBvLKIVHmZb9tx46l5C39xf 1O6vIO6mY0l/OlPsg0MNXv73PJllYycXylfFsX1jqCZulCdncEzrYprXAoGBAN1u SKNPe3/pfaZA8HAqvrX6g0N0OwWvQ9muQl8BlVzRzdsdsrfEHCMJ8qJcp5WhpYwg RnyB1jhsjLx9rzpTL9OXwHDII8oo1WqbNW0EGLBYaktXZ9lGUIDBAmdgrxqZTba9 t5r7aUCSYgA6dI2S/SNRxquEbRfq1cwpbQ2RBVsxAoGAFSr81Gitevrhy7hbSGwx RIeI8FG/NXhJuMBy39/7FSpArvaMmSJMbny0Ok7FmoFV17t0wJMDGGQFpNazt/kM S/g7+OAnuXIuYMH/wIdY8sdAOef9Vw+x2PKlndIfqRzgVJOI9AU4WDnPMdFMz/e+ jvpRCWfK/531DL1hNFHvTTsCgYA+T2xtWE5+fiv3fsqqJb0o5GfPsYNyZBGJzfmr Vny7c+ajxEWoZK0uRvxaKAyYlLZLKkHrg3XOxu0LlaqblREeT9O9aPR5TOhRaX+t P7va0+aFcQEuKRU6RhXxFUnxCDbQN67VE+5YV1jwi4KE3FoTeE2ZslgopNKo8vdX G/oP4QKBgQClfgjKf0Vj7wsq1wYJiVQ7it8jZtgB5nv1DQsWoK8OoydzaM0HTWR4 DCdSRb+LB6CfwFiBcZGvGFNNewDZc1X/lKXZ+uuFffCKcwP7f7PYgm3lXIa20KUK ktcbPcfeN0sof3+Mb+NDzLTwL+8bU+8S8AYu5M3JFxBCyzWrldvRrA== -----END RSA PRIVATE KEY-----"
+            "description": "The contents of the certificate provided by the Certification Authority, when the certificate has not been automatically issued through `devopness`. This field is required when <code>issuer</code> is <code>custom</code>. Must be at least 100 characters. Must not be greater than 4096 characters.",
+            "example": "-----BEGIN RSA PRIVATE KEY-----\n                MIIEpAIBAAKCAQEA1DFNCpE0TTSuZNPRYivpH92uFyptmNL0bY8KpnVTzUR/G3vr\n                e5Iua0OuCB9sW0JB1MCoYndHjeSt6NtJ0zDcbT/i+c0LyWqhx4YfsyUhPtYUBOy4\n                tnDsG9dzFe+PWomxVPERFwVk5a7CflHlbtqadxdhHTBGU34XUk3lGs+YjQarj5OV\n                vbk5sAIkrXYF2hDFn0I2NY7I47sB2CvHqMlXfrawSWMSA0XZhO6g0Fp9AzEw23xf\n                U/oxbTyShyOiwq6fBv/lviqacJTrF4b078qCKUhAW0bDhhk6Oz9NOQlAGV90ISVY\n                Y5vKn0Jpgmi6G+Btsk0+Y626RTAi6bDw6B0QJwIDAQABAoIBAQCS+XsVgLIrb/wD\n                lrwHNccJ7XByV08GdcgcQuHrnoTnPzSTguf+9af1YDGhKrLRGzmh9bgsS9ZiMC1N\n                hubBw6xKd9/tittJLfTU0NAQM/2tGndPWfAvXlQMjNUIMqCm44zS+w8NVQ0oEj5h\n                ZLR4bi5jouv/Xbq4hjP9LDsusPBHbT4HqkM/7jlydV/0L38b+Gpo1bsweVjhSv7w\n                nAfmmiDiV7TmoldJNl/dG69bmSgJzza5ywKSBQQkdGpGYsYK1Y8On8mBgS36wvAN\n                p1rtxV+/Bdg74e5oWuLygHJeR1DnvE0uswcA9ln2KTsLAcw1JESWflWdAGeFTgbp\n                jdU40X5BAoGBAPVRzVx2sSuFQ4Y7QhVvH36/A5HYO1u9JTal8RNebjz+UXMtNFzX\n                6qsUih5JD60EloZUIgtOhyXw+NdRdyKTUdkuwszldDBvLKIVHmZb9tx46l5C39xf\n                1O6vIO6mY0l/OlPsg0MNXv73PJllYycXylfFsX1jqCZulCdncEzrYprXAoGBAN1u\n                SKNPe3/pfaZA8HAqvrX6g0N0OwWvQ9muQl8BlVzRzdsdsrfEHCMJ8qJcp5WhpYwg\n                RnyB1jhsjLx9rzpTL9OXwHDII8oo1WqbNW0EGLBYaktXZ9lGUIDBAmdgrxqZTba9\n                t5r7aUCSYgA6dI2S/SNRxquEbRfq1cwpbQ2RBVsxAoGAFSr81Gitevrhy7hbSGwx\n                RIeI8FG/NXhJuMBy39/7FSpArvaMmSJMbny0Ok7FmoFV17t0wJMDGGQFpNazt/kM\n                S/g7+OAnuXIuYMH/wIdY8sdAOef9Vw+x2PKlndIfqRzgVJOI9AU4WDnPMdFMz/e+\n                jvpRCWfK/531DL1hNFHvTTsCgYA+T2xtWE5+fiv3fsqqJb0o5GfPsYNyZBGJzfmr\n                Vny7c+ajxEWoZK0uRvxaKAyYlLZLKkHrg3XOxu0LlaqblREeT9O9aPR5TOhRaX+t\n                P7va0+aFcQEuKRU6RhXxFUnxCDbQN67VE+5YV1jwi4KE3FoTeE2ZslgopNKo8vdX\n                G/oP4QKBgQClfgjKf0Vj7wsq1wYJiVQ7it8jZtgB5nv1DQsWoK8OoydzaM0HTWR4\n                DCdSRb+LB6CfwFiBcZGvGFNNewDZc1X/lKXZ+uuFffCKcwP7f7PYgm3lXIa20KUK\n                ktcbPcfeN0sof3+Mb+NDzLTwL+8bU+8S8AYu5M3JFxBCyzWrldvRrA==\n                -----END RSA PRIVATE KEY-----",
+            "type": "string"
           }
         },
         "required": [
-          "domains",
           "issuer",
-          "type"
+          "domains"
         ]
+      },
+      "SslCertificateDomainList": {
+        "description": "The list of domain names to which the SSL certificate refers to",
+        "type": "array",
+        "example": [
+          "my-subdomain.example.com",
+          "example.com",
+          "*.example.com"
+        ],
+        "items": {
+          "type": "string"
+        }
       },
       "SslCertificateIssuer": {
         "type": "string",
@@ -16562,11 +16987,88 @@
         ],
         "example": "custom"
       },
-      "SslCertificates": {
+      "SslCertificateList": {
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/SslCertificateRelation"
         }
+      },
+      "SslCertificateRelation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "The unique ID of the given SSL certificate",
+            "type": "integer",
+            "example": 8423749
+          },
+          "name": {
+            "description": "The name given to SSL certificate",
+            "type": "string",
+            "example": "my-subdomain.example.com"
+          },
+          "type": {
+            "$ref": "#/components/schemas/SslCertificateType"
+          },
+          "issuer": {
+            "$ref": "#/components/schemas/SslCertificateIssuer"
+          },
+          "validation_level": {
+            "$ref": "#/components/schemas/SslCertificateValidationLevel"
+          },
+          "active": {
+            "description": "Tells if the certificate is active for all linked servers and applications",
+            "type": "boolean",
+            "example": true
+          },
+          "domains": {
+            "$ref": "#/components/schemas/SslCertificateDomainList"
+          },
+          "application_id": {
+            "description": "The application ID that contains this certificate",
+            "type": "integer",
+            "example": 2347658
+          },
+          "last_action": {
+            "$ref": "#/components/schemas/ActionRelation"
+          },
+          "expires_at": {
+            "description": "The date and time when this certificate will no longer be valid, down to minute precision",
+            "type": "string",
+            "example": "2020-04-16T15:50:48.000000Z",
+            "nullable": true
+          },
+          "last_renewed_at": {
+            "description": "The date and time when this certificate was renewed for the last time",
+            "type": "string",
+            "example": "2020-04-16T15:50:48.000000Z",
+            "nullable": true
+          },
+          "created_at": {
+            "description": "The date and time when the record was created",
+            "type": "string",
+            "example": "2020-04-16T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "description": "The date and time when the record was last updated",
+            "type": "string",
+            "example": "2020-04-16T15:50:48.000000Z"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "type",
+          "issuer",
+          "validation_level",
+          "active",
+          "domains",
+          "application_id",
+          "last_action",
+          "expires_at",
+          "last_renewed_at",
+          "created_at",
+          "updated_at"
+        ]
       },
       "SslCertificateType": {
         "type": "string",
@@ -16587,94 +17089,6 @@
           "EV"
         ],
         "example": "DV"
-      },
-      "SslCertificateRelation": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "description": "The unique id of the given record",
-            "example": 6789
-          },
-          "domains": {
-            "description": "The list of domain names to which the SSL certificate refers to",
-            "type": "array",
-            "example": [
-              "my-subdomain.example.com",
-              "example.com",
-              "*.example.com"
-            ],
-            "items": {
-              "type": "string"
-            }
-          },
-          "name": {
-            "type": "string",
-            "description": "The name given to SSL certificate",
-            "example": "my-subdomain.example.com"
-          },
-          "issuer": {
-            "$ref": "#/components/schemas/SslCertificateIssuer"
-          },
-          "type": {
-            "$ref": "#/components/schemas/SslCertificateType"
-          },
-          "validation_level": {
-            "$ref": "#/components/schemas/SslCertificateValidationLevel"
-          },
-          "custom_private_key": {
-            "type": "string",
-            "description": "The private key provided by the Certification Authority, when the certificate has not been automatically issued through `devopness`",
-            "example": "-----BEGIN RSA PRIVATE KEY-----MIIJKQIBAAKCAgEA6AUEbdJa ..."
-          },
-          "custom_certificate": {
-            "type": "string",
-            "description": "The contents of the certificate provided by the Certification Authority, when the certificate has not been automatically issued through `devopness`",
-            "example": "-----BEGIN CERTIFICATE-----MIIGdDCCBVygAwIBAgISAy66cNIj ..."
-          },
-          "active": {
-            "type": "boolean",
-            "description": "Tells if the certificate is active for all linked servers and applications"
-          },
-          "expires_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when this certificate will no longer be valid, down to minute precision",
-            "example": "2020-04-16T15:50:48.000000Z",
-            "nullable": true
-          },
-          "last_renewed_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when this certificate was renewed for the last time",
-            "example": "2020-04-16T15:50:48.000000Z",
-            "nullable": true
-          },
-          "last_action": {
-            "$ref": "#/components/schemas/ActionRelation"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the record was created",
-            "example": "2020-04-16T15:50:48.000000Z"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the record was last updated",
-            "example": "2020-04-16T15:50:48.000000Z"
-          }
-        },
-        "required": [
-          "id",
-          "domains",
-          "name",
-          "issuer",
-          "type",
-          "validation_level",
-          "active"
-        ]
       },
       "Team": {
         "type": "object",
@@ -17312,54 +17726,78 @@
         "type": "object",
         "properties": {
           "id": {
+            "description": "The ID of the given variable",
             "type": "integer",
-            "description": "The unique id of the given record",
-            "example": 415678964
+            "example": 93023
           },
           "key": {
-            "type": "string",
             "description": "The unique key used to identify the variable on the target",
+            "type": "string",
             "example": "APP_URL"
-          },
-          "value": {
-            "type": "string",
-            "description": "The value to be assigned to this variable when deployed to its target",
-            "example": "https://staging.devopness.com"
-          },
-          "description": {
-            "type": "string",
-            "description": "A text describing the variable, provided by the end user",
-            "example": "Sample variable description"
-          },
-          "target": {
-            "$ref": "#/components/schemas/VariableTarget"
           },
           "type": {
             "$ref": "#/components/schemas/VariableType"
           },
+          "description": {
+            "description": "A text describing the variable, provided by the end user",
+            "type": "string",
+            "example": "Sample variable description",
+            "nullable": true
+          },
+          "value": {
+            "description": "The value to be assigned to this variable when deployed to its target",
+            "type": "string",
+            "example": "https://staging.devopness.com"
+          },
+          "target": {
+            "$ref": "#/components/schemas/VariableTarget"
+          },
+          "target_name": {
+            "description": "The target name of this variable",
+            "type": "string",
+            "example": "/etc/php/7.4/cli/php.ini",
+            "nullable": true
+          },
+          "resource_id": {
+            "description": "The ID of the resource this variable is linked to",
+            "type": "integer",
+            "example": 3426,
+            "nullable": true
+          },
+          "resource_type": {
+            "description": "The name of the resource this variable is linked to",
+            "type": "string",
+            "example": "application"
+          },
           "hidden": {
+            "description": "Indicates if the variable value should be visible or not in the deployment logs",
             "type": "boolean",
-            "default": false,
-            "description": "Indicates if the variable value should be visible or not in the deployment logs"
+            "example": false
           },
           "created_at": {
-            "type": "string",
-            "format": "date-time",
             "description": "The date and time when the record was created",
-            "example": "2020-04-16T15:50:48.000000Z"
+            "type": "string",
+            "example": "2022-09-26T15:30:31.000000Z"
           },
           "updated_at": {
-            "type": "string",
-            "format": "date-time",
             "description": "The date and time when the record was last updated",
-            "example": "2020-04-16T15:50:48.000000Z"
+            "type": "string",
+            "example": "2022-09-26T15:30:58.000000Z"
           }
         },
         "required": [
+          "id",
           "key",
+          "type",
+          "description",
           "value",
           "target",
-          "type"
+          "target_name",
+          "resource_id",
+          "resource_type",
+          "hidden",
+          "created_at",
+          "updated_at"
         ]
       },
       "Variables": {
@@ -17372,20 +17810,19 @@
         "type": "object",
         "properties": {
           "key": {
-            "type": "string",
-            "description": "The unique key used to identify the variable on the target.\nWhen variable is of type `file`, this is the relative path\nto the file within the application directory.\n",
-            "example": "APP_URL"
+            "description": "The unique key used to identify the variable on the target.\n                When variable is of type `file`, this is the relative path\n                to the file within the application directory. Must not be greater than 100 characters.",
+            "example": "APP_URL",
+            "type": "string"
           },
           "value": {
-            "type": "string",
-            "maxLength": 21504,
-            "description": "The value to be assigned to this variable when deployed to its target.\nWhen variable is of type `file`, this is the file content.\n",
-            "example": "https://staging.devopness.com"
+            "description": "The value to be assigned to this variable when deployed to its target.\n                When variable is of type `file`, this is the file content. Must not be greater than 21504 characters.",
+            "example": "https://staging.devopness.com",
+            "type": "string"
           },
           "description": {
-            "type": "string",
-            "description": "A text describing the variable, provided by the end user",
-            "example": "Sample variable description"
+            "description": "A text describing the variable, provided by the end user.",
+            "example": "Sample variable description",
+            "type": "string"
           },
           "target": {
             "$ref": "#/components/schemas/VariableTarget"
@@ -17394,17 +17831,113 @@
             "$ref": "#/components/schemas/VariableType"
           },
           "hidden": {
-            "type": "boolean",
-            "default": false,
-            "description": "Indicates if the variable value should be visible or not in the deployment logs"
+            "description": "Indicates if the variable value should be visible or not in the deployment logs.",
+            "example": false,
+            "type": "boolean"
+          },
+          "resource_id": {
+            "description": "The ID of the resource this variable is linked to.",
+            "example": 32423,
+            "type": "integer"
+          },
+          "resource_type": {
+            "description": "The type of the resource this variable is linked to. Must be one of <code>application</code>.",
+            "example": "application",
+            "type": "string"
           }
         },
         "required": [
           "key",
           "value",
-          "hidden",
           "target",
-          "type"
+          "type",
+          "hidden",
+          "resource_id",
+          "resource_type"
+        ]
+      },
+      "VariableList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/VariableRelation"
+        }
+      },
+      "VariableRelation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "The ID of the given variable",
+            "type": "integer",
+            "example": 93023
+          },
+          "key": {
+            "description": "The unique key used to identify the variable on the target",
+            "type": "string",
+            "example": "APP_URL"
+          },
+          "type": {
+            "$ref": "#/components/schemas/VariableType"
+          },
+          "description": {
+            "description": "A text describing the variable, provided by the end user",
+            "type": "string",
+            "example": "Sample variable description",
+            "nullable": true
+          },
+          "value": {
+            "description": "The value to be assigned to this variable when deployed to its target",
+            "type": "string",
+            "example": "https://staging.devopness.com"
+          },
+          "target": {
+            "$ref": "#/components/schemas/VariableTarget"
+          },
+          "target_name": {
+            "description": "The target name of this variable",
+            "type": "string",
+            "example": "/etc/php/7.4/cli/php.ini",
+            "nullable": true
+          },
+          "resource_id": {
+            "description": "The ID of the resource this variable is linked to",
+            "type": "integer",
+            "example": 3426,
+            "nullable": true
+          },
+          "resource_type": {
+            "description": "The name of the resource this variable is linked to",
+            "type": "string",
+            "example": "application"
+          },
+          "hidden": {
+            "description": "Indicates if the variable value should be visible or not in the deployment logs",
+            "type": "boolean",
+            "example": false
+          },
+          "created_at": {
+            "description": "The date and time when the record was created",
+            "type": "string",
+            "example": "2022-09-26T15:30:31.000000Z"
+          },
+          "updated_at": {
+            "description": "The date and time when the record was last updated",
+            "type": "string",
+            "example": "2022-09-26T15:30:58.000000Z"
+          }
+        },
+        "required": [
+          "id",
+          "key",
+          "type",
+          "description",
+          "value",
+          "target",
+          "target_name",
+          "resource_id",
+          "resource_type",
+          "hidden",
+          "created_at",
+          "updated_at"
         ]
       },
       "VariableTarget": {
@@ -17426,25 +17959,20 @@
       "VariableUpdate": {
         "type": "object",
         "properties": {
-          "id": {
-            "description": "Variable's unique id",
-            "example": 867,
-            "type": "integer"
-          },
           "key": {
-            "type": "string",
-            "description": "The unique key used to identify the variable on the target",
-            "example": "APP_URL"
+            "description": "The unique key used to identify the variable on the target.\n                When variable is of type `file`, this is the relative path\n                to the file within the application directory. Must not be greater than 100 characters.",
+            "example": "APP_URL",
+            "type": "string"
           },
           "value": {
-            "type": "string",
-            "description": "The value to be assigned to this variable when deployed to its target",
-            "example": "https://staging.devopness.com"
+            "description": "The value to be assigned to this variable when deployed to its target.\n                When variable is of type `file`, this is the file content. Must not be greater than 21504 characters.",
+            "example": "https://staging.devopness.com",
+            "type": "string"
           },
           "description": {
-            "type": "string",
-            "description": "A text describing the variable, provided by the end user",
-            "example": "Sample variable description"
+            "description": "A text describing the variable, provided by the end user.",
+            "example": "Sample variable description",
+            "type": "string"
           },
           "target": {
             "$ref": "#/components/schemas/VariableTarget"
@@ -17453,13 +17981,12 @@
             "$ref": "#/components/schemas/VariableType"
           },
           "hidden": {
-            "type": "boolean",
-            "default": false,
-            "description": "Indicates if the variable value should be visible or not in the deployment logs"
+            "description": "Indicates if the variable value should be visible or not in the deployment logs.",
+            "example": false,
+            "type": "boolean"
           }
         },
         "required": [
-          "id",
           "key",
           "value",
           "target",
