@@ -26,16 +26,16 @@
 /applications/{application_id}/hooks:
   get:
     $ref: ./endpoints/hooks/paths/applications-id-hooks-list.yaml
-/applications/{application_id}/ssl-certificates:
-  post:
-    $ref: ./endpoints/applications/paths/applications-id-ssl-certificates.yaml
+"/applications/{application_id}/ssl-certificates":
   get:
-    $ref: ./endpoints/applications/paths/applications-id-ssl-certificates-list.yaml
-/applications/{application_id}/variables:
+    $ref: ./auto-generated/endpoints/list-application-ssl-certificates.yaml
   post:
-    $ref: ./endpoints/applications/paths/applications-id-variables.yaml
+    $ref: ./auto-generated/endpoints/add-application-ssl-certificate.yaml
+"/applications/{application_id}/variables":
   get:
-    $ref: ./endpoints/applications/paths/applications-id-variables-list.yaml
+    $ref: ./auto-generated/endpoints/list-application-variables.yaml
+  post:
+    $ref: ./auto-generated/endpoints/add-application-variable.yaml
 /cloud-providers/{cloud_provider_code}/credentials:
   get:
     $ref: ./endpoints/cloud-providers/paths/cloud-provider-credentials-list.yaml
@@ -66,18 +66,20 @@
     $ref: ./auto-generated/endpoints/list-environment-cron-jobs.yaml
   post:
     $ref: ./auto-generated/endpoints/add-environment-cron-job.yaml
-/environments/{environment_id}/daemons:
+"/environments/{environment_id}/daemons":
   get:
-    $ref: ./endpoints/daemons/paths/environments-id-daemons-list.yaml
+    $ref: ./auto-generated/endpoints/list-environment-daemons.yaml
+  post:
+    $ref: ./auto-generated/endpoints/add-environment-daemon.yaml
 /environments/{environment_id}/members:
   get:
     $ref: ./endpoints/members/paths/environments-id-members-list.yaml
 /environments/{environment_id}/members/{user_id}:
   get:
     $ref: ./endpoints/members/paths/environments-id-members-id.yaml
-/environments/{environment_id}/network-rules:
+"/environments/{environment_id}/network-rules":
   get:
-    $ref: ./endpoints/network-rules/paths/environments-id-network-rules-list.yaml
+    $ref: ./auto-generated/endpoints/list-environment-network-rules.yaml
 "/environments/{environment_id}/servers":
   get:
     $ref: ./auto-generated/endpoints/list-environment-servers.yaml
@@ -163,23 +165,23 @@
 /logs/service/{service_id}/stop:
   get:
     $ref: ./endpoints/logs/paths/logs-service-id-stop.yaml
-/network-rules/{network_rule_id}:
+"/network-rules/{network_rule_id}":
   delete:
-    $ref: ./endpoints/network-rules/paths/network-rules-id-delete.yaml
+    $ref: ./auto-generated/endpoints/delete-network-rule.yaml
   get:
-    $ref: ./endpoints/network-rules/paths/network-rules-id.yaml
+    $ref: ./auto-generated/endpoints/get-network-rule.yaml
   put:
-    $ref: ./endpoints/network-rules/paths/network-rules-id-update.yaml
-/daemons/{daemon_id}:
+    $ref: ./auto-generated/endpoints/update-network-rule.yaml
+"/daemons/{daemon_id}":
   delete:
-    $ref: ./endpoints/daemons/paths/daemons-id-delete.yaml
+    $ref: ./auto-generated/endpoints/delete-daemon.yaml
   get:
-    $ref: ./endpoints/daemons/paths/daemons-id.yaml
+    $ref: ./auto-generated/endpoints/get-daemon.yaml
   put:
-    $ref: ./endpoints/daemons/paths/daemons-id-update.yaml
-/daemons/{daemon_id}/restart:
+    $ref: ./auto-generated/endpoints/update-daemon.yaml
+"/daemons/{daemon_id}/restart":
   post:
-    $ref: ./endpoints/daemons/paths/daemons-id-restart.yaml
+    $ref: ./auto-generated/endpoints/restart-daemon.yaml
 /pipelines/{pipeline_id}:
   get:
     $ref: ./endpoints/pipelines/paths/pipelines-id.yaml
@@ -228,21 +230,21 @@
     $ref: ./auto-generated/endpoints/list-project-cron-jobs.yaml
   post:
     $ref: ./auto-generated/endpoints/add-project-cron-job.yaml
-/projects/{project_id}/daemons:
-  post:
-    $ref: ./endpoints/daemons/paths/projects-id-daemons.yaml
+"/projects/{project_id}/daemons":
   get:
-    $ref: ./endpoints/daemons/paths/projects-id-daemons-list.yaml
+    $ref: ./auto-generated/endpoints/list-project-daemons.yaml
+  post:
+    $ref: ./auto-generated/endpoints/add-project-daemon.yaml
 /projects/{project_id}/environments:
   post:
     $ref: ./endpoints/projects/paths/projects-id-environments.yaml
   get:
     $ref: ./endpoints/projects/paths/projects-id-environments-list.yaml
-/projects/{project_id}/network-rules:
-  post:
-    $ref: ./endpoints/projects/paths/projects-id-network-rules.yaml
+"/projects/{project_id}/network-rules":
   get:
-    $ref: ./endpoints/projects/paths/projects-id-network-rules-list.yaml
+    $ref: ./auto-generated/endpoints/list-project-network-rules.yaml
+  post:
+    $ref: ./auto-generated/endpoints/add-project-network-rule.yaml
 /projects/{project_id}/roles:
   post:
     $ref: ./endpoints/projects/paths/projects-id-roles.yaml
@@ -347,11 +349,11 @@
     $ref: ./auto-generated/endpoints/get-ssh-key.yaml
   put:
     $ref: ./auto-generated/endpoints/update-ssh-key.yaml
-/ssl-certificates/{ssl_certificate_id}:
-  get:
-    $ref: ./endpoints/ssl-certificates/paths/ssl-certificates-id.yaml
+"/ssl-certificates/{ssl_certificate_id}":
   delete:
-    $ref: ./endpoints/ssl-certificates/paths/ssl-certificates-id-delete.yaml
+    $ref: ./auto-generated/endpoints/delete-ssl-certificate.yaml
+  get:
+    $ref: ./auto-generated/endpoints/get-ssl-certificate.yaml
 /static/applications:
   get:
     $ref: ./endpoints/static/paths/applications-list.yaml
@@ -443,10 +445,10 @@
 /users/refresh-token:
   post:
     $ref: ./endpoints/users/paths/users-refresh-token.yaml
-/variables/{variable_id}:
-  put:
-    $ref: ./endpoints/variables/paths/variables-id-update.yaml
-  get:
-    $ref: ./endpoints/variables/paths/variables-id.yaml
+"/variables/{variable_id}":
   delete:
-    $ref: ./endpoints/variables/paths/variables-id-delete.yaml
+    $ref: ./auto-generated/endpoints/delete-variable.yaml
+  get:
+    $ref: ./auto-generated/endpoints/get-variable.yaml
+  put:
+    $ref: ./auto-generated/endpoints/update-variable.yaml

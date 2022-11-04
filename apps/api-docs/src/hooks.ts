@@ -26,7 +26,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         // make all social_account routes unreachable by its skipping generator route
         'addSocialAccount201',
         // SSL certificates can only be added to applications that have a successful deployment
-        'addSslCertificateToApplication201',
+        'addApplicationSslCertificate201',
         'updateServer204',
         // A hook request is not created by the tests, so we don't have a valid hook_request_id
         'getHookRequest200',
@@ -64,6 +64,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         'addApplicationToProject201',
         'deleteEnvironment204',
         'addProjectCronJob201',
+        'addProjectDaemon201',
     ];
 
     // transactions listed here are skipped with a `before` hook

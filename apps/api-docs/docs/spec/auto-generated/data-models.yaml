@@ -37,6 +37,20 @@ CronJobRelation:
   $ref: ./auto-generated/models/cron-job-relation.yaml
 CronJobUpdate:
   $ref: ./auto-generated/models/cron-job-update.yaml
+Daemon:
+  $ref: ./auto-generated/models/daemon.yaml
+DaemonCreate:
+  $ref: ./auto-generated/models/daemon-create.yaml
+DaemonList:
+  $ref: ./auto-generated/models/daemon-list.yaml
+DaemonProjectCreate:
+  $ref: ./auto-generated/models/daemon-project-create.yaml
+DaemonRelation:
+  $ref: ./auto-generated/models/daemon-relation.yaml
+DaemonRestart:
+  $ref: ./auto-generated/models/daemon-restart.yaml
+DaemonUpdate:
+  $ref: ./auto-generated/models/daemon-update.yaml
 Environment:
   $ref: ./auto-generated/models/environment.yaml
 EnvironmentCreate:
@@ -63,6 +77,16 @@ MemberList:
   $ref: ./auto-generated/models/member-list.yaml
 MemberRelation:
   $ref: ./auto-generated/models/member-relation.yaml
+NetworkRule:
+  $ref: ./auto-generated/models/network-rule.yaml
+NetworkRuleCreate:
+  $ref: ./auto-generated/models/network-rule-create.yaml
+NetworkRuleList:
+  $ref: ./auto-generated/models/network-rule-list.yaml
+NetworkRuleRelation:
+  $ref: ./auto-generated/models/network-rule-relation.yaml
+NetworkRuleUpdate:
+  $ref: ./auto-generated/models/network-rule-update.yaml
 Project:
   $ref: ./auto-generated/models/project.yaml
 ProjectCreate:
@@ -137,6 +161,16 @@ SshKeyRelation:
   $ref: ./auto-generated/models/ssh-key-relation.yaml
 SshKeyUpdate:
   $ref: ./auto-generated/models/ssh-key-update.yaml
+SslCertificate:
+  $ref: ./auto-generated/models/ssl-certificate.yaml
+SslCertificateCreate:
+  $ref: ./auto-generated/models/ssl-certificate-create.yaml
+SslCertificateDomainList:
+  $ref: ./auto-generated/models/ssl-certificate-domain-list.yaml
+SslCertificateList:
+  $ref: ./auto-generated/models/ssl-certificate-list.yaml
+SslCertificateRelation:
+  $ref: ./auto-generated/models/ssl-certificate-relation.yaml
 Team:
   $ref: ./auto-generated/models/team.yaml
 TeamCreate:
@@ -153,3 +187,13 @@ TeamRelation:
   $ref: ./auto-generated/models/team-relation.yaml
 TeamUpdate:
   $ref: ./auto-generated/models/team-update.yaml
+Variable:
+  $ref: ./auto-generated/models/variable.yaml
+VariableCreate:
+  $ref: ./auto-generated/models/variable-create.yaml
+VariableList:
+  $ref: ./auto-generated/models/variable-list.yaml
+VariableRelation:
+  $ref: ./auto-generated/models/variable-relation.yaml
+VariableUpdate:
+  $ref: ./auto-generated/models/variable-update.yaml

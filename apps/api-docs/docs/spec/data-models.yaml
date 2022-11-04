@@ -135,17 +135,21 @@ CronJobUpdate:
 CronJobs:
   $ref: ./endpoints/cronjobs/schemas/cronjob-list.yaml
 Daemon:
-  $ref: ./endpoints/daemons/schemas/daemon.yaml
-DaemonCreate:
-  $ref: ./endpoints/daemons/schemas/daemon-create.yaml
-DaemonRestart:
-  $ref: ./endpoints/daemons/schemas/daemon-restart.yaml
-DaemonUpdate:
-  $ref: ./endpoints/daemons/schemas/daemon-update.yaml
+  $ref: ./auto-generated/models/daemon.yaml
 Daemons:
   $ref: ./endpoints/daemons/schemas/daemon-list.yaml
+DaemonCreate:
+  $ref: ./auto-generated/models/daemon-create.yaml
+DaemonList:
+  $ref: ./auto-generated/models/daemon-list.yaml
+DaemonProjectCreate:
+  $ref: ./auto-generated/models/daemon-project-create.yaml
 DaemonRelation:
-  $ref: ./shared/schemas/models/daemon-relation.yaml
+  $ref: ./auto-generated/models/daemon-relation.yaml
+DaemonRestart:
+  $ref: ./auto-generated/models/daemon-restart.yaml
+DaemonUpdate:
+  $ref: ./auto-generated/models/daemon-update.yaml
 DeploymentDefaultStep:
   $ref: ./endpoints/static/schemas/deployment-default-step.yaml
 DeploymentDefaultSteps:
@@ -281,19 +285,21 @@ Members:
 MemberRelation:
   $ref: ./shared/schemas/models/member-relation.yaml
 NetworkRule:
-  $ref: ./endpoints/network-rules/schemas/network-rule.yaml
-NetworkRuleCreate:
-  $ref: ./endpoints/network-rules/schemas/network-rule-create.yaml
-NetworkRuleProtocol:
-  $ref: ./shared/schemas/network-rule-protocol.yaml
+  $ref: ./auto-generated/models/network-rule.yaml
 NetworkRules:
   $ref: ./endpoints/network-rules/schemas/network-rule-list.yaml
+NetworkRuleCreate:
+  $ref: ./auto-generated/models/network-rule-create.yaml
+NetworkRuleList:
+  $ref: ./auto-generated/models/network-rule-list.yaml
+NetworkRuleProtocol:
+  $ref: ./shared/schemas/network-rule-protocol.yaml
+NetworkRuleRelation:
+  $ref: ./auto-generated/models/network-rule-relation.yaml
 NetworkRuleType:
   $ref: ./shared/schemas/network-rule-type.yaml
 NetworkRuleUpdate:
-  $ref: ./endpoints/network-rules/schemas/network-rule-update.yaml
-NetworkRuleRelation:
-  $ref: ./shared/schemas/models/network-rule-relation.yaml
+  $ref: ./auto-generated/models/network-rule-update.yaml
 OperatingSystem:
   $ref: ./endpoints/static/schemas/operating-system.yaml
 OperatingSystems:
@@ -467,19 +473,23 @@ SshKeyRelation:
 SshKeyUpdate:
   $ref: ./auto-generated/models/ssh-key-update.yaml
 SslCertificate:
-  $ref: ./endpoints/ssl-certificates/schemas/ssl-certificate.yaml
-SslCertificateCreate:
-  $ref: ./endpoints/ssl-certificates/schemas/ssl-certificate-create.yaml
-SslCertificateIssuer:
-  $ref: ./shared/schemas/ssl-certificate-issuer.yaml
+  $ref: ./auto-generated/models/ssl-certificate.yaml
 SslCertificates:
   $ref: ./endpoints/ssl-certificates/schemas/ssl-certificate-list.yaml
+SslCertificateCreate:
+  $ref: ./auto-generated/models/ssl-certificate-create.yaml
+SslCertificateDomainList:
+  $ref: ./auto-generated/models/ssl-certificate-domain-list.yaml
+SslCertificateIssuer:
+  $ref: ./shared/schemas/ssl-certificate-issuer.yaml
+SslCertificateList:
+  $ref: ./auto-generated/models/ssl-certificate-list.yaml
+SslCertificateRelation:
+  $ref: ./auto-generated/models/ssl-certificate-relation.yaml
 SslCertificateType:
   $ref: ./shared/schemas/ssl-certificate-type.yaml
 SslCertificateValidationLevel:
   $ref: ./shared/schemas/ssl-certificate-validation-level.yaml
-SslCertificateRelation:
-  $ref: ./shared/schemas/models/ssl-certificate-relation.yaml
 Team:
   $ref: ./endpoints/teams/schemas/team.yaml
 Teams:
@@ -531,14 +541,18 @@ UserUpdate:
 UserRelation:
   $ref: ./shared/schemas/models/user-relation.yaml
 Variable:
-  $ref: ./endpoints/variables/schemas/variable.yaml
+  $ref: ./auto-generated/models/variable.yaml
 Variables:
   $ref: ./endpoints/variables/schemas/variable-list.yaml
 VariableCreate:
-  $ref: ./endpoints/variables/schemas/variable-create.yaml
+  $ref: ./auto-generated/models/variable-create.yaml
+VariableList:
+  $ref: ./auto-generated/models/variable-list.yaml
+VariableRelation:
+  $ref: ./auto-generated/models/variable-relation.yaml
 VariableTarget:
   $ref: ./shared/schemas/variable-target.yaml
 VariableType:
   $ref: ./shared/schemas/variable-type.yaml
 VariableUpdate:
-  $ref: ./endpoints/variables/schemas/variable-update.yaml
+  $ref: ./auto-generated/models/variable-update.yaml
