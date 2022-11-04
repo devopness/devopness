@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { ApiError } from '../../generated/models';
 import { SslCertificate } from '../../generated/models';
 
 /**
@@ -22,8 +23,8 @@ import { SslCertificate } from '../../generated/models';
 export class SSLCertificatesApiService extends ApiBaseService {
     /**
      * 
-     * @summary Delete a SSL certificate
-     * @param {number} sslCertificateId The unique id of the record to be deleted
+     * @summary Delete a given SSL Certificate
+     * @param {number} sslCertificateId The ID of the ssl certificate.
      */
     public async deleteSslCertificate(sslCertificateId: number): Promise<ApiResponse<void>> {
         if (sslCertificateId === null || sslCertificateId === undefined) {
@@ -41,7 +42,7 @@ export class SSLCertificatesApiService extends ApiBaseService {
     /**
      * 
      * @summary Get details of a single SSL certificate
-     * @param {number} sslCertificateId Unique ID of the item to be retrieved
+     * @param {number} sslCertificateId The ID of the ssl certificate.
      */
     public async getSslCertificate(sslCertificateId: number): Promise<ApiResponse<SslCertificate>> {
         if (sslCertificateId === null || sslCertificateId === undefined) {

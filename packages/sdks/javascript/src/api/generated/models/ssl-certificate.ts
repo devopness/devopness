@@ -13,6 +13,7 @@
 
 
 import { ActionRelation } from './action-relation';
+import { ApplicationRelation } from './application-relation';
 import { ServerRelation } from './server-relation';
 import { SslCertificateIssuer } from './ssl-certificate-issuer';
 import { SslCertificateType } from './ssl-certificate-type';
@@ -26,17 +27,11 @@ import { UserRelation } from './user-relation';
  */
 export interface SslCertificate {
     /**
-     * The unique id of the given record
+     * The unique ID of the given SSL certificate
      * @type {number}
      * @memberof SslCertificate
      */
     id: number;
-    /**
-     * The list of domain names to which the SSL certificate refers to
-     * @type {Array<string>}
-     * @memberof SslCertificate
-     */
-    domains: Array<string>;
     /**
      * The name given to SSL certificate
      * @type {string}
@@ -45,16 +40,16 @@ export interface SslCertificate {
     name: string;
     /**
      * 
-     * @type {SslCertificateIssuer}
-     * @memberof SslCertificate
-     */
-    issuer: SslCertificateIssuer;
-    /**
-     * 
      * @type {SslCertificateType}
      * @memberof SslCertificate
      */
     type: SslCertificateType;
+    /**
+     * 
+     * @type {SslCertificateIssuer}
+     * @memberof SslCertificate
+     */
+    issuer: SslCertificateIssuer;
     /**
      * 
      * @type {SslCertificateValidationLevel}
@@ -62,53 +57,23 @@ export interface SslCertificate {
      */
     validation_level: SslCertificateValidationLevel;
     /**
-     * The private key provided by the Certification Authority, when the certificate has not been automatically issued through `devopness`
-     * @type {string}
-     * @memberof SslCertificate
-     */
-    custom_private_key?: string;
-    /**
-     * The contents of the certificate provided by the Certification Authority, when the certificate has not been automatically issued through `devopness`
-     * @type {string}
-     * @memberof SslCertificate
-     */
-    custom_certificate?: string;
-    /**
      * Tells if the certificate is active for all linked servers and applications
      * @type {boolean}
      * @memberof SslCertificate
      */
     active: boolean;
     /**
-     * The date and time when this certificate will no longer be valid, down to minute precision
-     * @type {string}
+     * The list of domain names to which the SSL certificate refers to
+     * @type {Array<string>}
      * @memberof SslCertificate
      */
-    expires_at?: string | null;
+    domains: Array<string>;
     /**
-     * The date and time when this certificate was renewed for the last time
-     * @type {string}
+     * The application ID that contains this certificate
+     * @type {number}
      * @memberof SslCertificate
      */
-    last_renewed_at?: string | null;
-    /**
-     * The date and time when the record was created
-     * @type {string}
-     * @memberof SslCertificate
-     */
-    created_at?: string;
-    /**
-     * The date and time when the record was last updated
-     * @type {string}
-     * @memberof SslCertificate
-     */
-    updated_at?: string;
-    /**
-     * 
-     * @type {Array<ServerRelation>}
-     * @memberof SslCertificate
-     */
-    servers: Array<ServerRelation>;
+    application_id: number;
     /**
      * 
      * @type {UserRelation}
@@ -121,5 +86,41 @@ export interface SslCertificate {
      * @memberof SslCertificate
      */
     last_action: ActionRelation | null;
+    /**
+     * 
+     * @type {ApplicationRelation}
+     * @memberof SslCertificate
+     */
+    application: ApplicationRelation | null;
+    /**
+     * 
+     * @type {Array<ServerRelation>}
+     * @memberof SslCertificate
+     */
+    servers: Array<ServerRelation>;
+    /**
+     * The date and time when this certificate will no longer be valid, down to minute precision
+     * @type {string}
+     * @memberof SslCertificate
+     */
+    expires_at: string | null;
+    /**
+     * The date and time when this certificate was renewed for the last time
+     * @type {string}
+     * @memberof SslCertificate
+     */
+    last_renewed_at: string | null;
+    /**
+     * The date and time when the record was created
+     * @type {string}
+     * @memberof SslCertificate
+     */
+    created_at: string;
+    /**
+     * The date and time when the record was last updated
+     * @type {string}
+     * @memberof SslCertificate
+     */
+    updated_at: string;
 }
 

@@ -25,8 +25,8 @@ import { DaemonUpdate } from '../../generated/models';
 export class DaemonsApiService extends ApiBaseService {
     /**
      * 
-     * @summary Delete a given Background process
-     * @param {number} daemonId Numeric ID of the daemon to be deleted
+     * @summary Delete a given Daemon
+     * @param {number} daemonId The ID of the daemon.
      */
     public async deleteDaemon(daemonId: number): Promise<ApiResponse<void>> {
         if (daemonId === null || daemonId === undefined) {
@@ -43,8 +43,8 @@ export class DaemonsApiService extends ApiBaseService {
 
     /**
      * 
-     * @summary Get a background process by ID
-     * @param {number} daemonId Numeric ID of the daemon to get
+     * @summary Get a Daemon by ID
+     * @param {number} daemonId The ID of the daemon.
      */
     public async getDaemon(daemonId: number): Promise<ApiResponse<Daemon>> {
         if (daemonId === null || daemonId === undefined) {
@@ -61,9 +61,9 @@ export class DaemonsApiService extends ApiBaseService {
 
     /**
      * 
-     * @summary Restart a background process
-     * @param {number} daemonId Numeric ID of the daemon to restart
-     * @param {DaemonRestart} daemonRestart A JSON object containing the environment id
+     * @summary Restart a Daemon
+     * @param {number} daemonId The ID of the daemon.
+     * @param {DaemonRestart} daemonRestart A JSON object containing the resource data
      */
     public async restartDaemon(daemonId: number, daemonRestart: DaemonRestart): Promise<ApiResponse<void>> {
         if (daemonId === null || daemonId === undefined) {
@@ -83,9 +83,9 @@ export class DaemonsApiService extends ApiBaseService {
 
     /**
      * 
-     * @summary Update an existing background process
-     * @param {number} daemonId Numeric ID of the daemon to update
-     * @param {DaemonUpdate} daemonUpdate A JSON object containing daemon data
+     * @summary Update an existing Daemon
+     * @param {number} daemonId The ID of the daemon.
+     * @param {DaemonUpdate} daemonUpdate A JSON object containing the resource data
      */
     public async updateDaemon(daemonId: number, daemonUpdate: DaemonUpdate): Promise<ApiResponse<void>> {
         if (daemonId === null || daemonId === undefined) {

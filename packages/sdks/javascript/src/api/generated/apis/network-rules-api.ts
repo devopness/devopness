@@ -24,8 +24,8 @@ import { NetworkRuleUpdate } from '../../generated/models';
 export class NetworkRulesApiService extends ApiBaseService {
     /**
      * 
-     * @summary Delete a given network rule
-     * @param {number} networkRuleId Numeric ID of the rule to be deleted
+     * @summary Delete a given Network Rule
+     * @param {number} networkRuleId The ID of the network rule.
      */
     public async deleteNetworkRule(networkRuleId: number): Promise<ApiResponse<void>> {
         if (networkRuleId === null || networkRuleId === undefined) {
@@ -42,8 +42,8 @@ export class NetworkRulesApiService extends ApiBaseService {
 
     /**
      * 
-     * @summary Get a network rule by ID
-     * @param {number} networkRuleId Numeric ID of the rule to get
+     * @summary Get a Network Rule by ID
+     * @param {number} networkRuleId The ID of the network rule.
      */
     public async getNetworkRule(networkRuleId: number): Promise<ApiResponse<NetworkRule>> {
         if (networkRuleId === null || networkRuleId === undefined) {
@@ -60,9 +60,9 @@ export class NetworkRulesApiService extends ApiBaseService {
 
     /**
      * 
-     * @summary Update an existing network rule
-     * @param {number} networkRuleId Numeric ID of the rule to update
-     * @param {NetworkRuleUpdate} networkRuleUpdate A JSON object containing network rule data
+     * @summary Update an existing Network Rule
+     * @param {number} networkRuleId The ID of the network rule.
+     * @param {NetworkRuleUpdate} networkRuleUpdate A JSON object containing the resource data
      */
     public async updateNetworkRule(networkRuleId: number, networkRuleUpdate: NetworkRuleUpdate): Promise<ApiResponse<void>> {
         if (networkRuleId === null || networkRuleId === undefined) {

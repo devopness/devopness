@@ -14,6 +14,9 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { ApiError } from '../../generated/models';
+import { Daemon } from '../../generated/models';
+import { DaemonCreate } from '../../generated/models';
 import { DaemonRelation } from '../../generated/models';
 
 /**
@@ -22,8 +25,30 @@ import { DaemonRelation } from '../../generated/models';
 export class EnvironmentsDaemonsApiService extends ApiBaseService {
     /**
      * 
-     * @summary Returns a list of all daemons belonging to a environment
-     * @param {number} environmentId Numeric ID of the environment to get daemons from
+     * @summary Add a Daemon to the given environment
+     * @param {number} environmentId The ID of the environment.
+     * @param {DaemonCreate} daemonCreate A JSON object containing the resource data
+     */
+    public async addEnvironmentDaemon(environmentId: number, daemonCreate: DaemonCreate): Promise<ApiResponse<Daemon>> {
+        if (environmentId === null || environmentId === undefined) {
+            throw new ArgumentNullException('environmentId', 'addEnvironmentDaemon');
+        }
+        if (daemonCreate === null || daemonCreate === undefined) {
+            throw new ArgumentNullException('daemonCreate', 'addEnvironmentDaemon');
+        }
+        
+        let queryString = '';
+
+        const requestUrl = '/environments/{environment_id}/daemons' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <Daemon, DaemonCreate>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))), daemonCreate);
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Return a list of all Daemons belonging to an environment
+     * @param {number} environmentId The ID of the environment.
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */

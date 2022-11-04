@@ -23,7 +23,7 @@ import { NetworkRuleType } from './network-rule-type';
  */
 export interface NetworkRuleCreate {
     /**
-     * The rule\'s name/description/reminder
+     * The rule\'s name/description/reminder. Must be at least 3 characters. Must not be greater than 60 characters.
      * @type {string}
      * @memberof NetworkRuleCreate
      */
@@ -39,27 +39,27 @@ export interface NetworkRuleCreate {
      * @type {NetworkRuleProtocol}
      * @memberof NetworkRuleCreate
      */
-    protocol: NetworkRuleProtocol;
+    protocol?: NetworkRuleProtocol;
     /**
-     * Starting range of the public ipv4 or ipv6 addresses that can access this rule
+     * Starting range of the public ipv4 or ipv6 addresses that can access this rule. Must be a valid IP address.
      * @type {string}
      * @memberof NetworkRuleCreate
      */
-    ip_address_from: string | null;
+    ip_address_from?: string;
     /**
-     * Ending range of the public ipv4 or ipv6 addresses that can access this rule
+     * Ending range of the public ipv4 or ipv6 addresses that can access this rule. Must be a valid IP address.
      * @type {string}
      * @memberof NetworkRuleCreate
      */
-    ip_address_to: string | null;
+    ip_address_to?: string;
     /**
-     * Starting range of network ports to be considered by this rule
+     * Starting range of network ports to be considered by this rule. Must be at least 1. Must not be greater than 65535.
      * @type {number}
      * @memberof NetworkRuleCreate
      */
     port_from: number;
     /**
-     * Ending range of network ports to be considered by this rule
+     * Ending range of network ports to be considered by this rule. Must be at least 1. Must not be greater than 65535.
      * @type {number}
      * @memberof NetworkRuleCreate
      */

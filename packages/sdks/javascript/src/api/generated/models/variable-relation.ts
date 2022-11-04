@@ -18,79 +18,79 @@ import { VariableType } from './variable-type';
 /**
  * 
  * @export
- * @interface Variable
+ * @interface VariableRelation
  */
-export interface Variable {
+export interface VariableRelation {
     /**
      * The ID of the given variable
      * @type {number}
-     * @memberof Variable
+     * @memberof VariableRelation
      */
     id: number;
     /**
      * The unique key used to identify the variable on the target
      * @type {string}
-     * @memberof Variable
+     * @memberof VariableRelation
      */
     key: string;
     /**
      * 
      * @type {VariableType}
-     * @memberof Variable
+     * @memberof VariableRelation
      */
     type: VariableType;
     /**
      * A text describing the variable, provided by the end user
      * @type {string}
-     * @memberof Variable
+     * @memberof VariableRelation
      */
     description: string | null;
     /**
      * The value to be assigned to this variable when deployed to its target
      * @type {string}
-     * @memberof Variable
+     * @memberof VariableRelation
      */
     value: string;
     /**
      * 
      * @type {VariableTarget}
-     * @memberof Variable
+     * @memberof VariableRelation
      */
     target: VariableTarget;
     /**
      * The target name of this variable
      * @type {string}
-     * @memberof Variable
+     * @memberof VariableRelation
      */
     target_name: string | null;
     /**
      * The ID of the resource this variable is linked to
      * @type {number}
-     * @memberof Variable
+     * @memberof VariableRelation
      */
     resource_id: number | null;
     /**
      * The name of the resource this variable is linked to
      * @type {string}
-     * @memberof Variable
+     * @memberof VariableRelation
      */
     resource_type: string;
     /**
      * Indicates if the variable value should be visible or not in the deployment logs
      * @type {boolean}
-     * @memberof Variable
+     * @memberof VariableRelation
      */
     hidden: boolean;
     /**
      * The date and time when the record was created
      * @type {string}
-     * @memberof Variable
+     * @memberof VariableRelation
      */
     created_at: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
-     * @memberof Variable
+     * @memberof VariableRelation
      */
     updated_at: string;
 }

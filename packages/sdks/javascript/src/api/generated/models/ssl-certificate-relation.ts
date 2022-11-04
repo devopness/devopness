@@ -24,17 +24,11 @@ import { SslCertificateValidationLevel } from './ssl-certificate-validation-leve
  */
 export interface SslCertificateRelation {
     /**
-     * The unique id of the given record
+     * The unique ID of the given SSL certificate
      * @type {number}
      * @memberof SslCertificateRelation
      */
     id: number;
-    /**
-     * The list of domain names to which the SSL certificate refers to
-     * @type {Array<string>}
-     * @memberof SslCertificateRelation
-     */
-    domains: Array<string>;
     /**
      * The name given to SSL certificate
      * @type {string}
@@ -43,16 +37,16 @@ export interface SslCertificateRelation {
     name: string;
     /**
      * 
-     * @type {SslCertificateIssuer}
-     * @memberof SslCertificateRelation
-     */
-    issuer: SslCertificateIssuer;
-    /**
-     * 
      * @type {SslCertificateType}
      * @memberof SslCertificateRelation
      */
     type: SslCertificateType;
+    /**
+     * 
+     * @type {SslCertificateIssuer}
+     * @memberof SslCertificateRelation
+     */
+    issuer: SslCertificateIssuer;
     /**
      * 
      * @type {SslCertificateValidationLevel}
@@ -60,52 +54,52 @@ export interface SslCertificateRelation {
      */
     validation_level: SslCertificateValidationLevel;
     /**
-     * The private key provided by the Certification Authority, when the certificate has not been automatically issued through `devopness`
-     * @type {string}
-     * @memberof SslCertificateRelation
-     */
-    custom_private_key?: string;
-    /**
-     * The contents of the certificate provided by the Certification Authority, when the certificate has not been automatically issued through `devopness`
-     * @type {string}
-     * @memberof SslCertificateRelation
-     */
-    custom_certificate?: string;
-    /**
      * Tells if the certificate is active for all linked servers and applications
      * @type {boolean}
      * @memberof SslCertificateRelation
      */
     active: boolean;
     /**
-     * The date and time when this certificate will no longer be valid, down to minute precision
-     * @type {string}
+     * The list of domain names to which the SSL certificate refers to
+     * @type {Array<string>}
      * @memberof SslCertificateRelation
      */
-    expires_at?: string | null;
+    domains: Array<string>;
     /**
-     * The date and time when this certificate was renewed for the last time
-     * @type {string}
+     * The application ID that contains this certificate
+     * @type {number}
      * @memberof SslCertificateRelation
      */
-    last_renewed_at?: string | null;
+    application_id: number;
     /**
      * 
      * @type {ActionRelation}
      * @memberof SslCertificateRelation
      */
-    last_action?: ActionRelation | null;
+    last_action: ActionRelation | null;
+    /**
+     * The date and time when this certificate will no longer be valid, down to minute precision
+     * @type {string}
+     * @memberof SslCertificateRelation
+     */
+    expires_at: string | null;
+    /**
+     * The date and time when this certificate was renewed for the last time
+     * @type {string}
+     * @memberof SslCertificateRelation
+     */
+    last_renewed_at: string | null;
     /**
      * The date and time when the record was created
      * @type {string}
      * @memberof SslCertificateRelation
      */
-    created_at?: string;
+    created_at: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof SslCertificateRelation
      */
-    updated_at?: string;
+    updated_at: string;
 }
 

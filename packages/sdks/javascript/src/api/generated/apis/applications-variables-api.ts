@@ -14,8 +14,10 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { ApiError } from '../../generated/models';
 import { Variable } from '../../generated/models';
 import { VariableCreate } from '../../generated/models';
+import { VariableRelation } from '../../generated/models';
 
 /**
  * ApplicationsVariablesApiService - Auto-generated
@@ -24,15 +26,15 @@ export class ApplicationsVariablesApiService extends ApiBaseService {
     /**
      * 
      * @summary Create a new variable linked to an application
-     * @param {number} applicationId Unique id of the application
-     * @param {VariableCreate} variableCreate A JSON object containing application variable data
+     * @param {number} applicationId The ID of the application.
+     * @param {VariableCreate} variableCreate A JSON object containing the resource data
      */
-    public async addVariableToApplication(applicationId: number, variableCreate: VariableCreate): Promise<ApiResponse<Variable>> {
+    public async addApplicationVariable(applicationId: number, variableCreate: VariableCreate): Promise<ApiResponse<Variable>> {
         if (applicationId === null || applicationId === undefined) {
-            throw new ArgumentNullException('applicationId', 'addVariableToApplication');
+            throw new ArgumentNullException('applicationId', 'addApplicationVariable');
         }
         if (variableCreate === null || variableCreate === undefined) {
-            throw new ArgumentNullException('variableCreate', 'addVariableToApplication');
+            throw new ArgumentNullException('variableCreate', 'addApplicationVariable');
         }
         
         let queryString = '';
@@ -45,12 +47,12 @@ export class ApplicationsVariablesApiService extends ApiBaseService {
 
     /**
      * 
-     * @summary Returns a list of variables belonging to an application
-     * @param {number} applicationId Unique ID of the application to retrieve variables from
+     * @summary Return a list of variables belonging to an application
+     * @param {number} applicationId The ID of the application.
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */
-    public async listApplicationVariables(applicationId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<Variable>>> {
+    public async listApplicationVariables(applicationId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<VariableRelation>>> {
         if (applicationId === null || applicationId === undefined) {
             throw new ArgumentNullException('applicationId', 'listApplicationVariables');
         }
@@ -67,7 +69,7 @@ export class ApplicationsVariablesApiService extends ApiBaseService {
 
         const requestUrl = '/applications/{application_id}/variables' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<Variable>>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))));
+        const response = await this.get <Array<VariableRelation>>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))));
         return new ApiResponse(response);
     }
 }
