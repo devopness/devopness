@@ -12,7 +12,6 @@
  */
 
 
-import { EnvironmentLinkItem } from './environment-link-item';
 
 /**
  * 
@@ -57,10 +56,10 @@ export interface DaemonUpdate {
      */
     application_id?: number;
     /**
-     * 
-     * @type {Array<EnvironmentLinkItem>}
+     * List of valid resource IDs
+     * @type {Array<number>}
      * @memberof DaemonUpdate
      */
-    environments?: Array<EnvironmentLinkItem>;
+    servers?: Array<number>;
 }
 

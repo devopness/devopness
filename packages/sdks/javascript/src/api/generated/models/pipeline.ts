@@ -13,6 +13,7 @@
 
 
 import { PipelineStep } from './pipeline-step';
+import { UserRelation } from './user-relation';
 
 /**
  * 
@@ -21,7 +22,7 @@ import { PipelineStep } from './pipeline-step';
  */
 export interface Pipeline {
     /**
-     * The unique id of the given record
+     * The unique ID of the given pipeline
      * @type {number}
      * @memberof Pipeline
      */
@@ -33,35 +34,41 @@ export interface Pipeline {
      */
     name: string;
     /**
+     * ID of the environment this pipeline belongs to
+     * @type {number}
+     * @memberof Pipeline
+     */
+    environment_id: number;
+    /**
+     * ID of the project this pipeline belongs to
+     * @type {number}
+     * @memberof Pipeline
+     */
+    project_id: number;
+    /**
      * The pipeline\'s resource type
      * @type {string}
      * @memberof Pipeline
      */
     resource_type: string;
     /**
-     * The pipeline\'s resource id
+     * The pipeline\'s resource ID
      * @type {number}
      * @memberof Pipeline
      */
     resource_id: number;
     /**
-     * The pipeline\'s project id
-     * @type {number}
-     * @memberof Pipeline
-     */
-    project_id: number;
-    /**
-     * id of the user responsible for creating the pipeline
-     * @type {number}
-     * @memberof Pipeline
-     */
-    created_by: number;
-    /**
      * 
      * @type {Array<PipelineStep>}
      * @memberof Pipeline
      */
-    steps?: Array<PipelineStep>;
+    steps: Array<PipelineStep>;
+    /**
+     * 
+     * @type {UserRelation}
+     * @memberof Pipeline
+     */
+    created_by_user: UserRelation;
     /**
      * The date and time when the record was created
      * @type {string}

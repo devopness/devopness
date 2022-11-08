@@ -16,6 +16,7 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { Pipeline } from '../../generated/models';
+import { PipelineUpdate } from '../../generated/models';
 
 /**
  * PipelinesApiService - Auto-generated
@@ -23,8 +24,8 @@ import { Pipeline } from '../../generated/models';
 export class PipelinesApiService extends ApiBaseService {
     /**
      * 
-     * @summary Delete a pipeline by ID
-     * @param {number} pipelineId Unique ID of the pipeline to be deleted
+     * @summary Delete a given Pipeline
+     * @param {number} pipelineId The ID of the pipeline.
      */
     public async deletePipeline(pipelineId: number): Promise<ApiResponse<void>> {
         if (pipelineId === null || pipelineId === undefined) {
@@ -41,8 +42,8 @@ export class PipelinesApiService extends ApiBaseService {
 
     /**
      * 
-     * @summary Get a pipeline by ID
-     * @param {number} pipelineId Unique ID of the pipeline to get information from
+     * @summary Get a Pipeline by ID
+     * @param {number} pipelineId The ID of the pipeline.
      */
     public async getPipeline(pipelineId: number): Promise<ApiResponse<Pipeline>> {
         if (pipelineId === null || pipelineId === undefined) {
@@ -59,23 +60,23 @@ export class PipelinesApiService extends ApiBaseService {
 
     /**
      * 
-     * @summary Update a pipeline by ID
-     * @param {number} pipelineId Unique ID of the pipeline to update information from
-     * @param {Pipeline} pipeline A JSON object containing pipeline data
+     * @summary Update an existing Pipeline
+     * @param {number} pipelineId The ID of the pipeline.
+     * @param {PipelineUpdate} pipelineUpdate A JSON object containing the resource data
      */
-    public async updatePipeline(pipelineId: number, pipeline: Pipeline): Promise<ApiResponse<void>> {
+    public async updatePipeline(pipelineId: number, pipelineUpdate: PipelineUpdate): Promise<ApiResponse<void>> {
         if (pipelineId === null || pipelineId === undefined) {
             throw new ArgumentNullException('pipelineId', 'updatePipeline');
         }
-        if (pipeline === null || pipeline === undefined) {
-            throw new ArgumentNullException('pipeline', 'updatePipeline');
+        if (pipelineUpdate === null || pipelineUpdate === undefined) {
+            throw new ArgumentNullException('pipelineUpdate', 'updatePipeline');
         }
         
         let queryString = '';
 
         const requestUrl = '/pipelines/{pipeline_id}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.put <void, Pipeline>(requestUrl.replace(`{${"pipeline_id"}}`, encodeURIComponent(String(pipelineId))), pipeline);
+        const response = await this.put <void, PipelineUpdate>(requestUrl.replace(`{${"pipeline_id"}}`, encodeURIComponent(String(pipelineId))), pipelineUpdate);
         return new ApiResponse(response);
     }
 }

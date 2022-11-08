@@ -21,19 +21,13 @@ import { PipelineStepRunnerName } from './pipeline-step-runner-name';
  */
 export interface PipelineStep {
     /**
-     * The pipeline step\'s ID
+     * The unique ID of the given pipeline step
      * @type {number}
      * @memberof PipelineStep
      */
     id: number;
     /**
-     * The script\'s ID of this pipeline step
-     * @type {number}
-     * @memberof PipelineStep
-     */
-    script_id: number;
-    /**
-     * Name of the pipeline step
+     * The pipeline step\'s name
      * @type {string}
      * @memberof PipelineStep
      */
@@ -44,6 +38,12 @@ export interface PipelineStep {
      * @memberof PipelineStep
      */
     type: string;
+    /**
+     * The name of the Unix user on behalf of which the script will be executed
+     * @type {string}
+     * @memberof PipelineStep
+     */
+    run_as_user: string;
     /**
      * A command line or multiline bash pipeline step
      * @type {string}
@@ -57,13 +57,19 @@ export interface PipelineStep {
      */
     runner: PipelineStepRunnerName;
     /**
-     * The name of the Unix user on behalf of which the script will be executed
-     * @type {string}
+     * The script\'s ID of this pipeline step
+     * @type {number}
      * @memberof PipelineStep
      */
-    run_as_user: string;
+    script_id: number;
     /**
-     * The relative order of the pipeline step execution in case the event has multiple pipeline step attached
+     * The pipeline\'s ID
+     * @type {number}
+     * @memberof PipelineStep
+     */
+    pipeline_id: number;
+    /**
+     * The relative order of the step execution in case of multiple steps attached to pipeline
      * @type {number}
      * @memberof PipelineStep
      */
@@ -85,12 +91,12 @@ export interface PipelineStep {
      * @type {string}
      * @memberof PipelineStep
      */
-    created_at?: string;
+    created_at: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof PipelineStep
      */
-    updated_at?: string;
+    updated_at: string;
 }
 

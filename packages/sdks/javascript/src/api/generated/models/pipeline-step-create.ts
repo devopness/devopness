@@ -21,13 +21,19 @@ import { PipelineStepRunnerName } from './pipeline-step-runner-name';
  */
 export interface PipelineStepCreate {
     /**
-     * Name/short description of the script
+     * Name/short description of the script. Must be at least 4 characters. Must not be greater than 60 characters.
      * @type {string}
      * @memberof PipelineStepCreate
      */
     name: string;
     /**
-     * A command line or multiline bash script
+     * The pipeline step\'s type. Must not be greater than 20 characters.
+     * @type {string}
+     * @memberof PipelineStepCreate
+     */
+    type?: string;
+    /**
+     * A command line or multiline bash script. Must be at least 10 characters. Must not be greater than 300 characters.
      * @type {string}
      * @memberof PipelineStepCreate
      */
@@ -39,7 +45,7 @@ export interface PipelineStepCreate {
      */
     runner: PipelineStepRunnerName;
     /**
-     * The name of the Unix user on behalf of which the script will be executed
+     * The name of the Unix user on behalf of which the script will be executed. Must not be greater than 60 characters.
      * @type {string}
      * @memberof PipelineStepCreate
      */
