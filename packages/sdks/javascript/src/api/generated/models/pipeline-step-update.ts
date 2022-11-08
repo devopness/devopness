@@ -21,19 +21,25 @@ import { PipelineStepRunnerName } from './pipeline-step-runner-name';
  */
 export interface PipelineStepUpdate {
     /**
-     * The ID of the pipeline step
+     * The unique ID of the given pipeline step.
      * @type {number}
      * @memberof PipelineStepUpdate
      */
     id: number;
     /**
-     * Name/short description of the script
+     * Name/short description of the script. Must be at least 4 characters. Must not be greater than 60 characters.
      * @type {string}
      * @memberof PipelineStepUpdate
      */
     name: string;
     /**
-     * A command line or multiline bash script
+     * The pipeline step\'s type. Must not be greater than 20 characters.
+     * @type {string}
+     * @memberof PipelineStepUpdate
+     */
+    type?: string;
+    /**
+     * A command line or multiline bash script. Must be at least 10 characters. Must not be greater than 300 characters.
      * @type {string}
      * @memberof PipelineStepUpdate
      */
@@ -45,13 +51,13 @@ export interface PipelineStepUpdate {
      */
     runner: PipelineStepRunnerName;
     /**
-     * The name of the Unix user on behalf of which the script will be executed
+     * The name of the Unix user on behalf of which the script will be executed. Must not be greater than 60 characters.
      * @type {string}
      * @memberof PipelineStepUpdate
      */
     run_as_user?: string;
     /**
-     * Repositions the pipeline step after the step with the given `trigger_order`
+     * Repositions the pipeline step after the step with the given `trigger_order`. Must be at least 0. Must not be greater than 16777214.
      * @type {number}
      * @memberof PipelineStepUpdate
      */
