@@ -13,6 +13,7 @@
 
 
 import { PipelineStep } from './pipeline-step';
+import { UserRelation } from './user-relation'
 
 /**
  * 
@@ -51,11 +52,11 @@ export interface Pipeline {
      */
     project_id: number;
     /**
-     * id of the user responsible for creating the pipeline
-     * @type {number}
-     * @memberof Pipeline
+     * 
+     * @type {UserRelation}
+     * @memberof Environment
      */
-    created_by: number;
+    created_by_user: UserRelation;
     /**
      * 
      * @type {Array<PipelineStep>}
