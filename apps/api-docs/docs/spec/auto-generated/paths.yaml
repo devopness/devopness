@@ -102,6 +102,30 @@
     $ref: ./auto-generated/endpoints/get-network-rule.yaml
   put:
     $ref: ./auto-generated/endpoints/update-network-rule.yaml
+'/pipelines/{pipeline_id}':
+  delete:
+    $ref: ./auto-generated/endpoints/delete-pipeline.yaml
+  get:
+    $ref: ./auto-generated/endpoints/get-pipeline.yaml
+  put:
+    $ref: ./auto-generated/endpoints/update-pipeline.yaml
+'/pipelines/{pipeline_id}/steps':
+  post:
+    $ref: ./auto-generated/endpoints/add-pipeline-pipeline-step.yaml
+'/pipelines/{pipeline_id}/steps/{step_id}':
+  put:
+    $ref: ./auto-generated/endpoints/update-pipeline-pipeline-step.yaml
+'/pipelines/{pipeline_id}/steps/{step_id}/link':
+  post:
+    $ref: ./auto-generated/endpoints/link-pipeline-step-to-pipeline.yaml
+'/pipelines/{pipeline_id}/steps/{step_id}/unlink':
+  delete:
+    $ref: ./auto-generated/endpoints/unlink-pipeline-step-from-pipeline.yaml
+'/pipelines/{resource_type}/{resource_id}':
+  get:
+    $ref: ./auto-generated/endpoints/list-pipelines-by-resource-type.yaml
+  post:
+    $ref: ./auto-generated/endpoints/add-pipeline.yaml
 /projects:
   get:
     $ref: ./auto-generated/endpoints/list-projects.yaml

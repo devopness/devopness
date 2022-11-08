@@ -26,12 +26,12 @@
 /applications/{application_id}/hooks:
   get:
     $ref: ./endpoints/hooks/paths/applications-id-hooks-list.yaml
-"/applications/{application_id}/ssl-certificates":
+'/applications/{application_id}/ssl-certificates':
   get:
     $ref: ./auto-generated/endpoints/list-application-ssl-certificates.yaml
   post:
     $ref: ./auto-generated/endpoints/add-application-ssl-certificate.yaml
-"/applications/{application_id}/variables":
+'/applications/{application_id}/variables':
   get:
     $ref: ./auto-generated/endpoints/list-application-variables.yaml
   post:
@@ -61,12 +61,12 @@
     $ref: ./endpoints/applications/paths/environments-id-applications-list.yaml
   post:
     $ref: ./auto-generated/endpoints/add-environment-application.yaml
-"/environments/{environment_id}/cron-jobs":
+'/environments/{environment_id}/cron-jobs':
   get:
     $ref: ./auto-generated/endpoints/list-environment-cron-jobs.yaml
   post:
     $ref: ./auto-generated/endpoints/add-environment-cron-job.yaml
-"/environments/{environment_id}/daemons":
+'/environments/{environment_id}/daemons':
   get:
     $ref: ./auto-generated/endpoints/list-environment-daemons.yaml
   post:
@@ -77,10 +77,10 @@
 /environments/{environment_id}/members/{user_id}:
   get:
     $ref: ./endpoints/members/paths/environments-id-members-id.yaml
-"/environments/{environment_id}/network-rules":
+'/environments/{environment_id}/network-rules':
   get:
     $ref: ./auto-generated/endpoints/list-environment-network-rules.yaml
-"/environments/{environment_id}/servers":
+'/environments/{environment_id}/servers':
   get:
     $ref: ./auto-generated/endpoints/list-environment-servers.yaml
   post:
@@ -88,7 +88,7 @@
 /environments/{environment_id}/services:
   get:
     $ref: ./auto-generated/endpoints/list-environment-services.yaml
-"/environments/{environment_id}/ssh-keys":
+'/environments/{environment_id}/ssh-keys':
   get:
     $ref: ./auto-generated/endpoints/list-environment-ssh-keys.yaml
   post:
@@ -165,30 +165,30 @@
 /logs/service/{service_id}/stop:
   get:
     $ref: ./endpoints/logs/paths/logs-service-id-stop.yaml
-"/network-rules/{network_rule_id}":
+'/network-rules/{network_rule_id}':
   delete:
     $ref: ./auto-generated/endpoints/delete-network-rule.yaml
   get:
     $ref: ./auto-generated/endpoints/get-network-rule.yaml
   put:
     $ref: ./auto-generated/endpoints/update-network-rule.yaml
-"/daemons/{daemon_id}":
+'/daemons/{daemon_id}':
   delete:
     $ref: ./auto-generated/endpoints/delete-daemon.yaml
   get:
     $ref: ./auto-generated/endpoints/get-daemon.yaml
   put:
     $ref: ./auto-generated/endpoints/update-daemon.yaml
-"/daemons/{daemon_id}/restart":
+'/daemons/{daemon_id}/restart':
   post:
     $ref: ./auto-generated/endpoints/restart-daemon.yaml
 /pipelines/{pipeline_id}:
   get:
-    $ref: ./endpoints/pipelines/paths/pipelines-id.yaml
+    $ref: ./auto-generated/endpoints/get-pipeline.yaml
   put:
-    $ref: ./endpoints/pipelines/paths/pipelines-id-update.yaml
+    $ref: ./auto-generated/endpoints/update-pipeline.yaml
   delete:
-    $ref: ./endpoints/pipelines/paths/pipelines-id-delete.yaml
+    $ref: ./auto-generated/endpoints/delete-pipeline.yaml
 /pipelines/{resource_type}/{resource_id}:
   post:
     $ref: ./endpoints/pipelines/paths/pipelines-resource-id.yaml
@@ -196,14 +196,16 @@
     $ref: ./endpoints/pipelines/paths/pipelines-resource-id-list.yaml
 /pipelines/{pipeline_id}/steps:
   post:
-    $ref: ./endpoints/pipelines/paths/pipelines-id-steps.yaml
-/pipelines/{pipeline_id}/steps/{pipeline_step_id}:
-  delete:
-    $ref: ./endpoints/pipelines/paths/pipelines-id-steps-id-unlink.yaml
-  post:
-    $ref: ./endpoints/pipelines/paths/pipelines-id-steps-id-link.yaml
+    $ref: ./auto-generated/endpoints/add-pipeline-pipeline-step.yaml
+/pipelines/{pipeline_id}/steps/{step_id}:
   put:
-    $ref: ./endpoints/pipelines/paths/pipelines-id-steps-id-update.yaml
+    $ref: ./auto-generated/endpoints/update-pipeline-pipeline-step.yaml
+'/pipelines/{pipeline_id}/steps/{step_id}/link':
+  post:
+    $ref: ./auto-generated/endpoints/link-pipeline-step-to-pipeline.yaml
+'/pipelines/{pipeline_id}/steps/{step_id}/unlink':
+  delete:
+    $ref: ./auto-generated/endpoints/unlink-pipeline-step-from-pipeline.yaml
 /projects:
   post:
     $ref: ./endpoints/projects/paths/projects.yaml
@@ -225,12 +227,12 @@
     $ref: ./endpoints/applications/paths/projects-id-applications.yaml
   get:
     $ref: ./endpoints/applications/paths/projects-id-applications-list.yaml
-"/projects/{project_id}/cron-jobs":
+'/projects/{project_id}/cron-jobs':
   get:
     $ref: ./auto-generated/endpoints/list-project-cron-jobs.yaml
   post:
     $ref: ./auto-generated/endpoints/add-project-cron-job.yaml
-"/projects/{project_id}/daemons":
+'/projects/{project_id}/daemons':
   get:
     $ref: ./auto-generated/endpoints/list-project-daemons.yaml
   post:
@@ -240,7 +242,7 @@
     $ref: ./endpoints/projects/paths/projects-id-environments.yaml
   get:
     $ref: ./endpoints/projects/paths/projects-id-environments-list.yaml
-"/projects/{project_id}/network-rules":
+'/projects/{project_id}/network-rules':
   get:
     $ref: ./auto-generated/endpoints/list-project-network-rules.yaml
   post:
@@ -250,7 +252,7 @@
     $ref: ./endpoints/projects/paths/projects-id-roles.yaml
   get:
     $ref: ./endpoints/projects/paths/projects-id-roles-list.yaml
-"/projects/{project_id}/servers":
+'/projects/{project_id}/servers':
   get:
     $ref: ./auto-generated/endpoints/list-project-servers.yaml
   post:
@@ -260,7 +262,7 @@
     $ref: ./auto-generated/endpoints/list-project-services.yaml
   post:
     $ref: ./auto-generated/endpoints/add-project-service.yaml
-"/projects/{project_id}/ssh-keys":
+'/projects/{project_id}/ssh-keys':
   get:
     $ref: ./auto-generated/endpoints/list-project-ssh-keys.yaml
   post:
@@ -288,7 +290,7 @@
 /servers/{server_id}/commands:
   get:
     $ref: ./endpoints/servers/paths/servers-id-commands.yaml
-"/servers/{server_id}/connect/{activation_token}":
+'/servers/{server_id}/connect/{activation_token}':
   post:
     $ref: ./auto-generated/endpoints/connect-server.yaml
 /services/{service_id}:
@@ -329,8 +331,8 @@
 /source-providers/{source_provider_id}/repositories:
   get:
     $ref: ./endpoints/repositories/paths/repositories-list.yaml
-/source-providers/{source_provider_id}/repositories/{repository_owner}/{repository_name}:
-  get:
+? /source-providers/{source_provider_id}/repositories/{repository_owner}/{repository_name}
+: get:
     $ref: ./endpoints/repositories/paths/repositories-id.yaml
 /source-providers:
   get:
@@ -342,14 +344,14 @@
     $ref: ./endpoints/source-providers/paths/source-providers-id.yaml
   delete:
     $ref: ./endpoints/source-providers/paths/source-providers-id-delete.yaml
-"/ssh-keys/{ssh_key_id}":
+'/ssh-keys/{ssh_key_id}':
   delete:
     $ref: ./auto-generated/endpoints/delete-ssh-key.yaml
   get:
     $ref: ./auto-generated/endpoints/get-ssh-key.yaml
   put:
     $ref: ./auto-generated/endpoints/update-ssh-key.yaml
-"/ssl-certificates/{ssl_certificate_id}":
+'/ssl-certificates/{ssl_certificate_id}':
   delete:
     $ref: ./auto-generated/endpoints/delete-ssl-certificate.yaml
   get:
@@ -378,7 +380,7 @@
 /static/services:
   get:
     $ref: ./endpoints/static/paths/services-list.yaml
-"/cron-jobs/{cron_job_id}":
+'/cron-jobs/{cron_job_id}':
   delete:
     $ref: ./auto-generated/endpoints/delete-cron-job.yaml
   get:
@@ -392,12 +394,12 @@
     $ref: ./endpoints/teams/paths/teams-id.yaml
   put:
     $ref: ./endpoints/teams/paths/teams-id-update.yaml
-"/teams/{team_id}/invitations":
+'/teams/{team_id}/invitations':
   get:
     $ref: ./auto-generated/endpoints/list-team-invitations.yaml
   post:
     $ref: ./auto-generated/endpoints/add-team-invitation.yaml
-"/team-invitations/{team_invitation_id}/accept":
+'/team-invitations/{team_invitation_id}/accept':
   post:
     $ref: ./auto-generated/endpoints/accept-team-invitation.yaml
 /teams/{team_id}/members:
@@ -445,7 +447,7 @@
 /users/refresh-token:
   post:
     $ref: ./endpoints/users/paths/users-refresh-token.yaml
-"/variables/{variable_id}":
+'/variables/{variable_id}':
   delete:
     $ref: ./auto-generated/endpoints/delete-variable.yaml
   get:

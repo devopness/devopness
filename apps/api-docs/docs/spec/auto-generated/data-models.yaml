@@ -87,6 +87,22 @@ NetworkRuleRelation:
   $ref: ./auto-generated/models/network-rule-relation.yaml
 NetworkRuleUpdate:
   $ref: ./auto-generated/models/network-rule-update.yaml
+Pipeline:
+  $ref: ./auto-generated/models/pipeline.yaml
+PipelineCreate:
+  $ref: ./auto-generated/models/pipeline-create.yaml
+PipelineList:
+  $ref: ./auto-generated/models/pipeline-list.yaml
+PipelineRelation:
+  $ref: ./auto-generated/models/pipeline-relation.yaml
+PipelineStep:
+  $ref: ./auto-generated/models/pipeline-step.yaml
+PipelineStepCreate:
+  $ref: ./auto-generated/models/pipeline-step-create.yaml
+PipelineStepUpdate:
+  $ref: ./auto-generated/models/pipeline-step-update.yaml
+PipelineUpdate:
+  $ref: ./auto-generated/models/pipeline-update.yaml
 Project:
   $ref: ./auto-generated/models/project.yaml
 ProjectCreate:

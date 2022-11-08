@@ -311,21 +311,23 @@ Permissions:
 PermissionPermissions:
   $ref: ./endpoints/static/schemas/permission-permissions.yaml
 Pipeline:
-  $ref: ./endpoints/pipelines/schemas/pipeline.yaml
+  $ref: ./auto-generated/models/pipeline.yaml
+PipelineStep:
+  $ref: ./auto-generated/models/pipeline-step.yaml
+PipelineStepCreate:
+  $ref: ./auto-generated/models/pipeline-step-create.yaml
+PipelineStepUpdate:
+  $ref: ./auto-generated/models/pipeline-step-update.yaml
+PipelineUpdate:
+  $ref: ./auto-generated/models/pipeline-update.yaml
 Pipelines:
   $ref: ./endpoints/pipelines/schemas/pipeline-list.yaml
 PipelineCreate:
   $ref: ./endpoints/pipelines/schemas/pipeline-create.yaml
-PipelineStep:
-  $ref: ./endpoints/pipelines/schemas/pipeline-step.yaml
 PipelineSteps:
   $ref: ./endpoints/pipelines/schemas/pipeline-step-list.yaml
-PipelineStepCreate:
-  $ref: ./endpoints/pipelines/schemas/pipeline-step-create.yaml
 PipelineStepRunnerName:
   $ref: ./shared/schemas/pipeline-step-runner-name.yaml
-PipelineStepUpdate:
-  $ref: ./endpoints/pipelines/schemas/pipeline-step-update.yaml
 Project:
   $ref: ./endpoints/projects/schemas/project.yaml
 ProjectCreate:

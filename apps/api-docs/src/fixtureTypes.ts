@@ -52,8 +52,7 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     ],
     'application_update': [
         { path: 'id', fixture: 'application', field: 'id' },
-        { path: 'environments[0].id', fixture: 'environment', field: 'id' },
-        { path: 'environments[0].servers[0]', fixture: 'server', field: 'id' },
+        { path: 'servers[0]', fixture: 'server', field: 'id' },
     ],
     'application_deploy': [
         { path: 'environments[0].id', fixture: 'environment', field: 'id' },
@@ -66,8 +65,7 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     ],
     'cron_job_update': [
         { path: 'id', fixture: 'cron_job', field: 'id' },
-        { path: 'environments[0].id', fixture: 'environment', field: 'id' },
-        { path: 'environments[0].servers[0]', fixture: 'server', field: 'id' },
+        { path: 'servers[0]', fixture: 'server', field: 'id' },
     ],
     'application_deployment': [
         { path: 'applications[0].id', fixture: 'application', field: 'id' },
@@ -125,8 +123,7 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     ],
     'daemon_update': [
         { path: 'id', fixture: 'daemon', field: 'id' },
-        { path: 'environments[0].id', fixture: 'environment', field: 'id' },
-        { path: 'environments[0].servers[0]', fixture: 'server', field: 'id' }
+        { path: 'servers[0]', fixture: 'server', field: 'id' }
     ],
     'daemon_restart': [
         { path: 'environment_id', fixture: 'environment', field: 'id' },
