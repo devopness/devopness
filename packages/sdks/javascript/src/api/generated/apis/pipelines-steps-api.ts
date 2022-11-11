@@ -93,10 +93,10 @@ export class PipelinesStepsApiService extends ApiBaseService {
      * 
      * @summary Update an existing Pipeline Step
      * @param {number} pipelineId The ID of the pipeline.
-     * @param {string} stepId The ID of the step.
+     * @param {number} stepId The ID of the step.
      * @param {PipelineStepUpdate} pipelineStepUpdate A JSON object containing the resource data
      */
-    public async updatePipelinePipelineStep(pipelineId: number, stepId: string, pipelineStepUpdate: PipelineStepUpdate): Promise<ApiResponse<void>> {
+    public async updatePipelinePipelineStep(pipelineId: number, stepId: number, pipelineStepUpdate: PipelineStepUpdate): Promise<ApiResponse<void>> {
         if (pipelineId === null || pipelineId === undefined) {
             throw new ArgumentNullException('pipelineId', 'updatePipelinePipelineStep');
         }
