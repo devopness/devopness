@@ -4295,10 +4295,11 @@
             "in": "path",
             "name": "step_id",
             "description": "The ID of the step.",
-            "example": "81",
+            "example": 2,
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "integer",
+              "minimum": 1
             }
           }
         ],
