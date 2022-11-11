@@ -20,6 +20,12 @@
  */
 export interface DaemonUpdate {
     /**
+     * The unique ID of the given daemon.
+     * @type {number}
+     * @memberof DaemonUpdate
+     */
+    id: number;
+    /**
      * The command line to be executed to start the daemon. Must not be greater than 255 characters.
      * @type {string}
      * @memberof DaemonUpdate
