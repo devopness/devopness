@@ -49,9 +49,9 @@ export class PipelinesStepsApiService extends ApiBaseService {
      * 
      * @summary Link a step to a Pipeline
      * @param {number} pipelineId The ID of the pipeline.
-     * @param {string} stepId The ID of the step.
+     * @param {number} stepId The ID of the step.
      */
-    public async linkPipelineStepToPipeline(pipelineId: number, stepId: string): Promise<ApiResponse<void>> {
+    public async linkPipelineStepToPipeline(pipelineId: number, stepId: number): Promise<ApiResponse<void>> {
         if (pipelineId === null || pipelineId === undefined) {
             throw new ArgumentNullException('pipelineId', 'linkPipelineStepToPipeline');
         }
@@ -71,9 +71,9 @@ export class PipelinesStepsApiService extends ApiBaseService {
      * 
      * @summary Unlink a step from a Pipeline
      * @param {number} pipelineId The ID of the pipeline.
-     * @param {string} stepId The ID of the step.
+     * @param {number} stepId The ID of the step.
      */
-    public async unlinkPipelineStepFromPipeline(pipelineId: number, stepId: string): Promise<ApiResponse<void>> {
+    public async unlinkPipelineStepFromPipeline(pipelineId: number, stepId: number): Promise<ApiResponse<void>> {
         if (pipelineId === null || pipelineId === undefined) {
             throw new ArgumentNullException('pipelineId', 'unlinkPipelineStepFromPipeline');
         }

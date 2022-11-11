@@ -4375,10 +4375,11 @@
             "in": "path",
             "name": "step_id",
             "description": "The ID of the step.",
-            "example": "81",
+            "example": 2,
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "integer",
+              "minimum": 1
             }
           }
         ],
@@ -4434,10 +4435,11 @@
             "in": "path",
             "name": "step_id",
             "description": "The ID of the step.",
-            "example": "81",
+            "example": 2,
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "integer",
+              "minimum": 1
             }
           }
         ],
@@ -12608,6 +12610,11 @@
       "DaemonUpdate": {
         "type": "object",
         "properties": {
+          "id": {
+            "description": "The unique ID of the given daemon.",
+            "example": 970371,
+            "type": "integer"
+          },
           "command": {
             "description": "The command line to be executed to start the daemon. Must not be greater than 255 characters.",
             "example": "/usr/bin/example --parameter=%(ENV_VAR_TO_GET_PARAM_VALUE_FROM)s",
@@ -12643,6 +12650,7 @@
           }
         },
         "required": [
+          "id",
           "command",
           "process_count",
           "working_directory",
@@ -18096,6 +18104,11 @@
       "VariableUpdate": {
         "type": "object",
         "properties": {
+          "id": {
+            "description": "The unique ID of the variable.",
+            "example": 53283,
+            "type": "integer"
+          },
           "key": {
             "description": "The unique key used to identify the variable on the target.\n                When variable is of type `file`, this is the relative path\n                to the file within the application directory. Must not be greater than 100 characters.",
             "example": "APP_URL",
@@ -18124,6 +18137,7 @@
           }
         },
         "required": [
+          "id",
           "key",
           "value",
           "target",
