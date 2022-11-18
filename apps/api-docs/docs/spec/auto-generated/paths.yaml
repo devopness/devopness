@@ -2,10 +2,10 @@
 /actions:
   get:
     $ref: ./auto-generated/endpoints/list-actions.yaml
-'/actions/{id}':
+'/actions/{action_id}':
   get:
     $ref: ./auto-generated/endpoints/get-action.yaml
-'/actions/{id}/retry':
+'/actions/{action_id}/retry':
   post:
     $ref: ./auto-generated/endpoints/retry-action.yaml
 '/actions/{resource_type}/{resource_id}/{action_type?}':
@@ -65,12 +65,6 @@
     $ref: ./auto-generated/endpoints/list-environment-daemons.yaml
   post:
     $ref: ./auto-generated/endpoints/add-environment-daemon.yaml
-'/environments/{environment_id}/members':
-  get:
-    $ref: ./auto-generated/endpoints/list-environment-members.yaml
-'/environments/{environment_id}/members/{user_id}':
-  get:
-    $ref: ./auto-generated/endpoints/get-environment-member.yaml
 '/environments/{environment_id}/network-rules':
   get:
     $ref: ./auto-generated/endpoints/list-environment-network-rules.yaml
@@ -87,9 +81,9 @@
     $ref: ./auto-generated/endpoints/list-environment-ssh-keys.yaml
   post:
     $ref: ./auto-generated/endpoints/add-environment-ssh-key.yaml
-'/environments/{environment_id}/teams':
+'/environments/{environment_id}/team-memberships':
   get:
-    $ref: ./auto-generated/endpoints/list-environment-teams.yaml
+    $ref: ./auto-generated/endpoints/list-environment-team-memberships.yaml
 '/environments/{environment_id}/teams/{team_id}':
   delete:
     $ref: ./auto-generated/endpoints/delete-environment-team.yaml
@@ -111,16 +105,16 @@
     $ref: ./auto-generated/endpoints/update-pipeline.yaml
 '/pipelines/{pipeline_id}/steps':
   post:
-    $ref: ./auto-generated/endpoints/add-pipeline-pipeline-step.yaml
+    $ref: ./auto-generated/endpoints/add-pipeline-step.yaml
 '/pipelines/{pipeline_id}/steps/{step_id}':
   put:
-    $ref: ./auto-generated/endpoints/update-pipeline-pipeline-step.yaml
+    $ref: ./auto-generated/endpoints/update-pipeline-step.yaml
 '/pipelines/{pipeline_id}/steps/{step_id}/link':
   post:
-    $ref: ./auto-generated/endpoints/link-pipeline-step-to-pipeline.yaml
+    $ref: ./auto-generated/endpoints/link-step-to-pipeline.yaml
 '/pipelines/{pipeline_id}/steps/{step_id}/unlink':
   delete:
-    $ref: ./auto-generated/endpoints/unlink-pipeline-step-from-pipeline.yaml
+    $ref: ./auto-generated/endpoints/unlink-step-from-pipeline.yaml
 '/pipelines/{resource_type}/{resource_id}':
   get:
     $ref: ./auto-generated/endpoints/list-pipelines-by-resource-type.yaml
@@ -261,9 +255,41 @@
     $ref: ./auto-generated/endpoints/delete-team-member.yaml
   get:
     $ref: ./auto-generated/endpoints/get-team-member.yaml
+/users:
+  post:
+    $ref: ./auto-generated/endpoints/add-user.yaml
+/users/account/resend-verification:
+  post:
+    $ref: ./auto-generated/endpoints/resend-verification-user.yaml
+/users/account/verify:
+  post:
+    $ref: ./auto-generated/endpoints/verify-user.yaml
+/users/current:
+  get:
+    $ref: ./auto-generated/endpoints/get-user-current.yaml
+/users/login:
+  post:
+    $ref: ./auto-generated/endpoints/login-user.yaml
+/users/logout:
+  get:
+    $ref: ./auto-generated/endpoints/get-user-logout.yaml
+/users/password/reset:
+  post:
+    $ref: ./auto-generated/endpoints/reset-user-password.yaml
+/users/password/send-reset-link:
+  post:
+    $ref: ./auto-generated/endpoints/send-reset-link-user-password.yaml
+/users/refresh-token:
+  post:
+    $ref: ./auto-generated/endpoints/refresh-token-user.yaml
 /users/team-invitations:
   get:
     $ref: ./auto-generated/endpoints/list-user-team-invitations.yaml
+'/users/{user_id}':
+  get:
+    $ref: ./auto-generated/endpoints/get-user.yaml
+  put:
+    $ref: ./auto-generated/endpoints/update-user.yaml
 '/variables/{variable_id}':
   delete:
     $ref: ./auto-generated/endpoints/delete-variable.yaml

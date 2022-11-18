@@ -19,7 +19,7 @@ properties:
     example: 'https://example.com/projects-beautiful-logo.png'
     nullable: true
   os_users:
-    $ref: '#/components/schemas/PropertyOsUsersList'
+    $ref: '#/components/schemas/OsUsers'
   created_by_user:
     $ref: '#/components/schemas/UserRelation'
   created_at:

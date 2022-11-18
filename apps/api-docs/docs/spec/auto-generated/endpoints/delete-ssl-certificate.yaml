@@ -16,7 +16,7 @@ parameters:
     in: path
     name: ssl_certificate_id
     description: 'The ID of the ssl certificate.'
-    example: 81
+    example: 123
     required: true
     schema:
       type: integer

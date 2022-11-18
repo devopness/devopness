@@ -8,7 +8,7 @@ properties:
   name:
     description: 'The name of the given team'
     type: string
-    example: 'Elite Development Team'
+    example: 'One Development Team'
   photo_url:
     description: 'The URL to team''s image'
     type: string

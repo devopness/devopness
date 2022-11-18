@@ -16,7 +16,7 @@ parameters:
     in: path
     name: service_id
     description: 'The ID of the service.'
-    example: 1
+    example: 123
     required: true
     schema:
       type: integer

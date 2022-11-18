@@ -14,9 +14,9 @@ parameters:
     $ref: '#/components/parameters/contentTypeHeader'
   -
     in: path
-    name: id
+    name: action_id
     description: 'The ID of the action.'
-    example: 16290
+    example: 123
     required: true
     schema:
       type: integer
@@ -27,7 +27,7 @@ responses:
     content:
       application/json:
         schema:
-          $ref: '#/components/schemas/Action'
+          $ref: '#/components/schemas/ActionRetryResponse'
   403:
     description: Forbidden/Unauthorized
     content:

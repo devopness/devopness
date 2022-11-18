@@ -27,7 +27,7 @@ export interface FixtureTransactionAdjacencyList {
     /** Maps fixtures to their terminal transactions */
     fixtureTerminalTransactions: FixtureToTransactionListMap
 };
-/** 
+/**
  * An edge between two nodes.
  */
 export type TransactionGraphEdge = [TransactionNode, TransactionNode];
@@ -40,7 +40,7 @@ export default class TransactionGraph {
     log: LogFunction;
 
     /**
-     * 
+     *
      * @param transactions List of transactions that will compose the graph
      * @param initialFixtureTransactionGraph Initial fixture-transaction graph
      * @param initialTransactionAdjacencyList Initial edges of the transaction graph
@@ -54,7 +54,7 @@ export default class TransactionGraph {
         this.log(`:: building transaction graph...`)
 
         // TODO: extract these from here
-        // user_credentials and user_tokens are handled differently than other fixtures, so add them manually to the graph
+        // user_credentials and user_login_response are handled differently than other fixtures, so add them manually to the graph
         const fixtureTransactionGraph = this.fixtureTransactionGraphFromTransactionList(transactions, initialFixtureTransactionGraph);
 
         this.transactionAdjacencyList = initialTransactionAdjacencyList;
@@ -114,9 +114,9 @@ export default class TransactionGraph {
                     }
                 }
             }
-            // auth requires a `user_tokens` fixture
+            // auth requires a `user_login_response` fixture
             if (tx.requiresAuth) {
-                fixtureTransactionGraphPush(fixtureTransactionInputs, 'user_tokens', tx.slug)
+                fixtureTransactionGraphPush(fixtureTransactionInputs, 'user_login_response', tx.slug)
             }
         }
         return { fixtureTransactionInputs, fixtureTransactionOutputs, fixtureTerminalTransactions: fixtureDeleteTransactions };

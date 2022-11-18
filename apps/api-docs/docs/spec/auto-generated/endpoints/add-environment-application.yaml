@@ -16,7 +16,7 @@ parameters:
     in: path
     name: environment_id
     description: 'The ID of the environment.'
-    example: 1
+    example: 123
     required: true
     schema:
       type: integer
@@ -40,4 +40,4 @@ requestBody:
   content:
     application/json:
       schema:
-        $ref: '#/components/schemas/ApplicationCreate'
+        $ref: '#/components/schemas/ApplicationEnvironmentCreate'

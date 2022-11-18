@@ -195,6 +195,7 @@ tags:
   - name: Environments - Services
   - name: Environments - SSH Keys
   - name: Environments - Teams
+  - name: Environments - Team Memberships
   - name: Hooks - Incoming
     description: |
       A hook is a simple way to integrate your Devopness workflow with external processes to trigger Devopness actions by sending a POST request to a public URL. By using hooks you can make Devopness react to events that happen in other applications and make sure your environment resources reflect changes applied in other services.
@@ -206,6 +207,7 @@ tags:
   - name: Logs
   - name: Network Rules
   - name: Pipelines
+  - name: Pipelines - Resources
   - name: Projects
   - name: Projects - Actions
   - name: Projects - Applications
@@ -241,6 +243,7 @@ tags:
   - name: Teams - Invitations
   - name: Teams - Members
   - name: Users
+  - name: Users - Passwords
   - name: Users - Team Invitations
 
 x-tagGroups:
@@ -340,10 +343,11 @@ x-tagGroups:
       - Teams - Members
       - Invitations
       - Environments - Teams
-      - Environments - Members
+      - Environments - Team Memberships
   - name: Users
     tags:
       - Users
+      - Users - Passwords
       - Users - Team Invitations
   - name: Variables
     tags:

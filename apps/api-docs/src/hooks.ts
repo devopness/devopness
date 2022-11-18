@@ -60,11 +60,12 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         'acceptTeamInvitation204',
         'linkServerToEnvironment201',
         'unlinkServerFromEnvironment204',
-        'addSshKeyToProject201',
-        'addApplicationToProject201',
+        'addProjectApplication201',
         'deleteEnvironment204',
         'addProjectCronJob201',
         'addProjectDaemon201',
+        'addProjectServer201',
+        'addProjectSshKey201',
     ];
 
     // transactions listed here are skipped with a `before` hook
@@ -76,26 +77,26 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         // email-dependant user transactions
         'activateUser204',
         'resetUserPassword200',
-        'sendUserPasswordResetLink200',
+        'sendResetLinkUserPassword202',
     ];
 
     // initial fixture-transaction graph definitions
     const initialFixtureTransactionAdjacencyList: FixtureTransactionAdjacencyList = {
         fixtureTransactionInputs: {
             // adding an application requires a valid server
-            'server': ['addApplicationToProject201'],
+            'server': ['addEnvironmentApplication201'],
             // a `login` transaction requires user credentials
-            'user_credentials': ['login200'],
+            'user_credentials': ['loginUser200'],
         },
         fixtureTransactionOutputs: {
             // user credentials are generated from a successful `addUser` transaction
             'user_credentials': ['addUser202'],
             // user tokens are a result of a successful `login` transaction
-            'user_tokens': ['login200'],
+            'user_login_response': ['loginUser200'],
         },
         fixtureTerminalTransactions: {
             // a successful `logout` transaction destroys user tokens
-            'user_tokens': ['logout204']
+            'user_login_response': ['logout204']
         }
     };
 
@@ -219,7 +220,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     })
 
     //// request headers
-    hooks.beforeEach(utils.setTransactionRequestAuthHeaderWithFixture('user_tokens'));
+    hooks.beforeEach(utils.setTransactionRequestAuthHeaderWithFixture('user_login_response'));
     hooks.beforeEach(utils.setTransactionRequestJsonHeaders);
 
     //// users
@@ -237,10 +238,10 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         }
     });
 
-    before('login200', utils.setTransactionRequestBodyToFixture<UserCredentials>('user_credentials'));
+    before('loginUser200', utils.setTransactionRequestBodyToFixture<UserCredentials>('user_credentials'));
 
-    before('refreshToken200', utils.setTransactionRequestBodyToFixture<UserTokens>('user_tokens'));
-    after('logout204', (transaction: Transaction) => { if (transaction.test.valid) { fixtures.delete('user_tokens'); } });
+    before('refreshTokenUser200', utils.setTransactionRequestBodyToFixture<UserTokens>('user_login_response'));
+    after('logout204', (transaction: Transaction) => { if (transaction.test.valid) { fixtures.delete('user_login_response'); } });
 
     //// servers
 
@@ -298,7 +299,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         while (waitTill > new Date()) { }
     }
     after('deleteApplication204', (transaction: Transaction) => {
-        const authToken = fixtures.get<UserTokens>('user_tokens');
+        const authToken = fixtures.get<UserTokens>('user_login_response');
         const project = fixtures.get<Identifiable>('project');
         if (authToken && authToken.access_token && project) {
             const host = transaction.host;

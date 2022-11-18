@@ -47,7 +47,7 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     'application_environment': [],
     'application': [],
     'application_pipeline': [],
-    'application_create': [
+    'application_environment_create': [
         { path: 'servers[0]', fixture: 'server', field: 'id' },
     ],
     'application_update': [
@@ -59,9 +59,8 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     ],
     'credential': [],
     'cron_job': [],
-    'cron_job_create': [
-        { path: 'environments[0].id', fixture: 'environment', field: 'id' },
-        { path: 'environments[0].servers[0]', fixture: 'server', field: 'id' },
+    'cron_job_environment_create': [
+        { path: 'servers[0]', fixture: 'server', field: 'id' },
     ],
     'cron_job_update': [
         { path: 'id', fixture: 'cron_job', field: 'id' },
@@ -100,7 +99,8 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
         { path: 'resource_id', fixture: 'application', field: 'id' },
         { path: 'id', fixture: 'hook_outgoing_create', field: 'id' },
     ],
-    'invitation_create': [
+    'hook_requests': [],
+    'invitation_team_create': [
         { path: 'environment_id', fixture: 'environment', field: 'id' },
     ],
     'member': [
@@ -108,7 +108,7 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
         { path: 'member_id', fixture: 'user', field: 'id' },
     ],
     'network_rule': [],
-    'network_rule_create': [
+    'network_rule_project_create': [
         { path: 'environments[0].id', fixture: 'environment', field: 'id' },
         { path: 'environments[0].servers[0]', fixture: 'server', field: 'id' }
     ],
@@ -118,7 +118,7 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
         { path: 'environments[0].servers[0]', fixture: 'server', field: 'id' }
     ],
     'daemon': [],
-    'daemon_create': [
+    'daemon_environment_create': [
         { path: 'servers[0]', fixture: 'server', field: 'id' },
     ],
     'daemon_update': [
@@ -132,6 +132,7 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     'pipeline_create': [
         { path: 'resource_id', fixture: 'application', field: 'id' },
     ],
+    'pipeline_list': [],
     'pipeline_step': [],
     'pipeline_step_update': [
         { path: 'id', fixture: 'pipeline_step', field: 'id' },
@@ -154,7 +155,7 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
         { path: 'ssh_port', fixture: 'server', field: 'ssh_port' },
     ],
     'service': [],
-    'service_create': [
+    'service_project_create': [
         { path: 'environments[0].id', fixture: 'environment', field: 'id' },
         { path: 'environments[0].servers[0]', fixture: 'server', field: 'id' }
     ],
@@ -181,7 +182,7 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     'social_account': [],
     'source_provider': [],
     'ssh_key': [],
-    'ssh_key_create': [
+    'ssh_key_environment_create': [
         { path: 'servers[0]', fixture: 'server', field: 'id' }
     ],
     'ssh_key_update': [
@@ -190,11 +191,11 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     ],
     'ssl_certificate': [],
     'team': [],
-    'team_create': [
+    'team_environment_create': [
         { path: 'project_id', fixture: 'project', field: 'id' },
     ],
     'user_credentials': [],
-    'user_tokens': [],
+    'user_login_response': [],
     'user': [],
     "user_update": [
         { path: 'id', fixture: 'user', field: 'id' },

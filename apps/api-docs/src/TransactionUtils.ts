@@ -67,7 +67,7 @@ export default class TransactionUtils {
                 if (fixture) {
                     path = path.replace(`{${key}_id}`, fixture.id);
                 } else {
-                    this.logger.log(slug, `${tag} transaction '${transaction.id}' requires '${key}' fixture`);
+                    this.logger.log(slug, `\x1b[31;1m${tag} transaction '${transaction.id}' requires '${key}' fixture\x1b[0m`);
                     transaction.fail = true;
                     break;
                 }
@@ -164,9 +164,7 @@ export default class TransactionUtils {
                     if (authToken && authToken.access_token) {
                         transaction.request.headers.Authorization = 'Bearer ' + authToken.access_token;
                     } else {
-                        this.logger.log(transaction.slug,
-                            `${transaction.id} [setTransactionRequestAuthHeaderWithFixture] requires 'authToken' fixture`);
-                        transaction.fail = true;
+                        throw new Error(`${transaction.slug} ${transaction.id} [setTransactionRequestAuthHeaderWithFixture] requires 'authToken' fixture. Ensure login response is setting the access_token on '${key}' fixture.`);
                     }
                 }
             }

@@ -16,7 +16,7 @@ parameters:
     in: path
     name: network_rule_id
     description: 'The ID of the network rule.'
-    example: 1
+    example: 123
     required: true
     schema:
       type: integer

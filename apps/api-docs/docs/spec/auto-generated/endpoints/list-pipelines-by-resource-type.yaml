@@ -20,7 +20,7 @@ parameters:
     in: path
     name: resource_id
     description: 'The resource ID.'
-    example: 2
+    example: 123
     required: true
     schema:
       type: integer

@@ -38,12 +38,12 @@ ActionType:
   $ref: ./endpoints/actions/schemas/action-type.yaml
 ActionRelation:
   $ref: ./shared/schemas/models/action-relation.yaml
+ActionRetryResponse:
+  $ref: ./auto-generated/models/action-retry-response.yaml
 ApiError:
   $ref: ./shared/schemas/api-error.yaml
 Application:
   $ref: ./endpoints/applications/schemas/application.yaml
-ApplicationCreate:
-  $ref: ./endpoints/applications/schemas/application-create.yaml
 ApplicationEnvironmentCreate:
   $ref: ./auto-generated/models/application-environment-create.yaml
 ApplicationDeployment:
@@ -60,6 +60,10 @@ ApplicationType:
   $ref: ./shared/schemas/application-type.yaml
 Applications:
   $ref: ./endpoints/applications/schemas/application-list.yaml
+ApplicationProjectCreate:
+  $ref: ./auto-generated/models/application-project-create.yaml
+ApplicationList:
+  $ref: ./auto-generated/models/application-list.yaml
 ApplicationRelation:
   $ref: ./shared/schemas/models/application-relation.yaml
 BlueprintService:
@@ -114,8 +118,6 @@ Credentials:
   $ref: ./endpoints/credentials/schemas/credential-list.yaml
 CronJob:
   $ref: ./auto-generated/models/cron-job.yaml
-CronJobCreate:
-  $ref: ./auto-generated/models/cron-job-create.yaml
 CronJobEnvironmentCreate:
   $ref: ./auto-generated/models/cron-job-environment-create.yaml
 CronJobFrequencies:
@@ -128,6 +130,8 @@ CronJobOptions:
   $ref: ./endpoints/static/schemas/cronjob-options.yaml
 CronJobPattern:
   $ref: ./auto-generated/models/cron-job-pattern.yaml
+CronJobProjectCreate:
+  $ref: ./auto-generated/models/cron-job-project-create.yaml
 CronJobRelation:
   $ref: ./auto-generated/models/cron-job-relation.yaml
 CronJobUpdate:
@@ -138,8 +142,8 @@ Daemon:
   $ref: ./auto-generated/models/daemon.yaml
 Daemons:
   $ref: ./endpoints/daemons/schemas/daemon-list.yaml
-DaemonCreate:
-  $ref: ./auto-generated/models/daemon-create.yaml
+DaemonEnvironmentCreate:
+  $ref: ./auto-generated/models/daemon-environment-create.yaml
 DaemonList:
   $ref: ./auto-generated/models/daemon-list.yaml
 DaemonProjectCreate:
@@ -162,8 +166,6 @@ DeploymentType:
   $ref: ./shared/schemas/deployment-type.yaml
 Environment:
   $ref: ./endpoints/environments/schemas/environment.yaml
-EnvironmentCreate:
-  $ref: ./endpoints/environments/schemas/environment-create.yaml
 EnvironmentList:
   $ref: ./auto-generated/models/environment-list.yaml
 EnvironmentMember:
@@ -198,6 +200,8 @@ EnvironmentTeamLink:
   $ref: /endpoints/teams/schemas/environment-team-link.yaml
 EnvironmentType:
   $ref: ./shared/schemas/environment-type.yaml
+EnvironmentProjectCreate:
+  $ref: ./auto-generated/models/environment-project-create.yaml
 EnvironmentRelation:
   $ref: ./shared/schemas/models/environment-relation.yaml
 Hook:
@@ -258,12 +262,12 @@ HookRelation:
   $ref: ./shared/schemas/models/hook-relation.yaml
 Invitation:
   $ref: ./auto-generated/models/invitation.yaml
-InvitationCreate:
-  $ref: ./auto-generated/models/invitation-create.yaml
 InvitationList:
   $ref: ./auto-generated/models/invitation-list.yaml
 InvitationRelation:
   $ref: ./auto-generated/models/invitation-relation.yaml
+InvitationTeamCreate:
+  $ref: ./auto-generated/models/invitation-team-create.yaml
 Language:
   $ref: ./shared/schemas/language.yaml
 LanguageRuntime:
@@ -288,10 +292,10 @@ NetworkRule:
   $ref: ./auto-generated/models/network-rule.yaml
 NetworkRules:
   $ref: ./endpoints/network-rules/schemas/network-rule-list.yaml
-NetworkRuleCreate:
-  $ref: ./auto-generated/models/network-rule-create.yaml
 NetworkRuleList:
   $ref: ./auto-generated/models/network-rule-list.yaml
+NetworkRuleProjectCreate:
+  $ref: ./auto-generated/models/network-rule-project-create.yaml
 NetworkRuleProtocol:
   $ref: ./shared/schemas/network-rule-protocol.yaml
 NetworkRuleRelation:
@@ -300,10 +304,18 @@ NetworkRuleType:
   $ref: ./shared/schemas/network-rule-type.yaml
 NetworkRuleUpdate:
   $ref: ./auto-generated/models/network-rule-update.yaml
+OsUsers:
+  $ref: ./auto-generated/models/os-users.yaml
 OperatingSystem:
   $ref: ./endpoints/static/schemas/operating-system.yaml
 OperatingSystems:
   $ref: ./endpoints/static/schemas/operating-system-list.yaml
+PasswordResetResponse:
+  $ref: ./auto-generated/models/password-reset-response.yaml
+PasswordUserReset:
+  $ref: ./auto-generated/models/password-user-reset.yaml
+PasswordUserSendResetLink:
+  $ref: ./auto-generated/models/password-user-send-reset-link.yaml
 Permission:
   $ref: ./endpoints/static/schemas/permission.yaml
 Permissions:
@@ -312,32 +324,32 @@ PermissionPermissions:
   $ref: ./endpoints/static/schemas/permission-permissions.yaml
 Pipeline:
   $ref: ./auto-generated/models/pipeline.yaml
-PipelineStep:
-  $ref: ./auto-generated/models/pipeline-step.yaml
-PipelineStepCreate:
-  $ref: ./auto-generated/models/pipeline-step-create.yaml
-PipelineStepUpdate:
-  $ref: ./auto-generated/models/pipeline-step-update.yaml
 PipelineUpdate:
   $ref: ./auto-generated/models/pipeline-update.yaml
 Pipelines:
   $ref: ./endpoints/pipelines/schemas/pipeline-list.yaml
 PipelineCreate:
   $ref: ./endpoints/pipelines/schemas/pipeline-create.yaml
+PipelineList:
+  $ref: ./auto-generated/models/pipeline-list.yaml
+PipelineRelation:
+  $ref: ./auto-generated/models/pipeline-relation.yaml
 PipelineSteps:
   $ref: ./endpoints/pipelines/schemas/pipeline-step-list.yaml
 PipelineStepRunnerName:
   $ref: ./shared/schemas/pipeline-step-runner-name.yaml
 Project:
-  $ref: ./endpoints/projects/schemas/project.yaml
+  $ref: ./auto-generated/models/project.yaml
 ProjectCreate:
-  $ref: ./endpoints/projects/schemas/project-create.yaml
+  $ref: ./auto-generated/models/project-create.yaml
 ProjectUpdate:
-  $ref: ./endpoints/projects/schemas/project-update.yaml
+  $ref: ./auto-generated/models/project-update.yaml
 Projects:
   $ref: ./endpoints/projects/schemas/project-list.yaml
+ProjectList:
+  $ref: ./auto-generated/models/project-list.yaml
 ProjectRelation:
-  $ref: ./shared/schemas/models/project-relation.yaml
+  $ref: ./auto-generated/models/project-relation.yaml
 RequiredPermissions:
   $ref: ./endpoints/static/schemas/required-permissions.yaml
 Repositories:
@@ -357,15 +369,19 @@ ResourceIdList:
 ResourceType:
   $ref: ./endpoints/actions/schemas/resource-type.yaml
 Role:
-  $ref: ./endpoints/roles/schemas/role.yaml
+  $ref: ./auto-generated/models/role.yaml
 Roles:
   $ref: ./endpoints/roles/schemas/role-list.yaml
-RoleCreate:
-  $ref: ./endpoints/roles/schemas/role-create.yaml
 RoleUpdate:
-  $ref: ./endpoints/roles/schemas/role-update.yaml
+  $ref: ./auto-generated/models/role-update.yaml
 RolePermissions:
-  $ref: ./shared/schemas/role-permissions.yaml
+  $ref: ./auto-generated/models/role-permissions.yaml
+RoleProjectCreate:
+  $ref: ./auto-generated/models/role-project-create.yaml
+RoleList:
+  $ref: ./auto-generated/models/role-list.yaml
+RoleRelation:
+  $ref: ./auto-generated/models/role-relation.yaml
 ScriptRunner:
   $ref: ./endpoints/static/schemas/script-runner.yaml
 ScriptRunners:
@@ -394,8 +410,10 @@ ServerCloudService:
   $ref: ./endpoints/servers/schemas/server-cloud-service.yaml
 ServerCloudServiceName:
   $ref: ./endpoints/servers/schemas/server-cloud-service-name.yaml
-ServerCreate:
-  $ref: ./endpoints/servers/schemas/server-create.yaml
+ServerEnvironmentCreate:
+  $ref: ./auto-generated/models/server-environment-create.yaml
+ServerProjectCreate:
+  $ref: ./auto-generated/models/server-project-create.yaml
 ServerProvider:
   $ref: ./endpoints/servers/schemas/server-provider.yaml
 ServerProvisionSettings:
@@ -412,8 +430,6 @@ Service:
   $ref: ./auto-generated/models/service.yaml
 Services:
   $ref: ./auto-generated/models/service-list.yaml
-ServiceCreate:
-  $ref: ./auto-generated/models/service-create.yaml
 ServiceInitialState:
   $ref: ./shared/schemas/service-initial-state.yaml
 ServiceList:
@@ -426,6 +442,8 @@ ServiceType:
   $ref: ./endpoints/static/schemas/service-type.yaml
 ServiceTypes:
   $ref: ./endpoints/static/schemas/service-type-list.yaml
+ServiceProjectCreate:
+  $ref: ./auto-generated/models/service-project-create.yaml
 ServiceRelation:
   $ref: ./auto-generated/models/service-relation.yaml
 ServiceReload:
@@ -464,8 +482,8 @@ SourceProviderName:
   $ref: ./shared/schemas/source-provider-name.yaml
 SshKey:
   $ref: ./auto-generated/models/ssh-key.yaml
-SshKeyCreate:
-  $ref: ./auto-generated/models/ssh-key-create.yaml
+SshKeyEnvironmentCreate:
+  $ref: ./auto-generated/models/ssh-key-environment-create.yaml
 SshKeyList:
   $ref: ./auto-generated/models/ssh-key-list.yaml
 SshKeyProjectCreate:
@@ -478,8 +496,8 @@ SslCertificate:
   $ref: ./auto-generated/models/ssl-certificate.yaml
 SslCertificates:
   $ref: ./endpoints/ssl-certificates/schemas/ssl-certificate-list.yaml
-SslCertificateCreate:
-  $ref: ./auto-generated/models/ssl-certificate-create.yaml
+SslCertificateApplicationCreate:
+  $ref: ./auto-generated/models/ssl-certificate-application-create.yaml
 SslCertificateDomainList:
   $ref: ./auto-generated/models/ssl-certificate-domain-list.yaml
 SslCertificateIssuer:
@@ -492,12 +510,18 @@ SslCertificateType:
   $ref: ./shared/schemas/ssl-certificate-type.yaml
 SslCertificateValidationLevel:
   $ref: ./shared/schemas/ssl-certificate-validation-level.yaml
+Step:
+  $ref: ./auto-generated/models/step.yaml
+StepPipelineCreate:
+  $ref: ./auto-generated/models/step-pipeline-create.yaml
+StepPipelineUpdate:
+  $ref: ./auto-generated/models/step-pipeline-update.yaml
 Team:
-  $ref: ./endpoints/teams/schemas/team.yaml
+  $ref: ./auto-generated/models/team.yaml
 Teams:
   $ref: ./endpoints/teams/schemas/team-list.yaml
-TeamCreate:
-  $ref: ./endpoints/teams/schemas/team-create.yaml
+TeamEnvironmentCreate:
+  $ref: ./auto-generated/models/team-environment-create.yaml
 TeamInvitation:
   $ref: ./endpoints/invitations/schemas/team-invitation.yaml
 TeamInvitationList:
@@ -508,46 +532,56 @@ TeamInvitationRelation:
   $ref: ./auto-generated/models/team-invitation-relation.yaml
 TeamInvitationStatus:
   $ref: ./endpoints/invitations/schemas/team-invitation-status.yaml
+TeamList:
+  $ref: ./auto-generated/models/team-list.yaml
+TeamMembershipList:
+  $ref: ./auto-generated/models/team-membership-list.yaml
+TeamMembershipRelation:
+  $ref: ./auto-generated/models/team-membership-relation.yaml
+TeamProjectCreate:
+  $ref: ./auto-generated/models/team-project-create.yaml
 TeamRelation:
-  $ref: ./shared/schemas/models/team-relation.yaml
+  $ref: ./auto-generated/models/team-relation.yaml
 TeamUpdate:
-  $ref: ./endpoints/teams/schemas/team-update.yaml
+  $ref: ./auto-generated/models/team-update.yaml
 TriggerEvent:
   $ref: ./shared/schemas/trigger-event.yaml
 TriggerType:
   $ref: ./shared/schemas/trigger-type.yaml
 User:
-  $ref: ./endpoints/users/schemas/user.yaml
+  $ref: ./auto-generated/models/user.yaml
 Users:
   $ref: ./endpoints/users/schemas/user-list.yaml
-UserAccountActivate:
-  $ref: ./endpoints/users/schemas/user-account-activate.yaml
-UserAccountResendVerification:
-  $ref: ./endpoints/users/schemas/user-account-resend-verification.yaml
-UserAccountVerify:
-  $ref: ./endpoints/users/schemas/user-account-verify.yaml
 UserCreate:
-  $ref: ./endpoints/users/schemas/user-create.yaml
-UserPasswordReset:
-  $ref: ./endpoints/users/schemas/user-password-reset.yaml
-UserPasswordSendResetLink:
-  $ref: ./endpoints/users/schemas/user-password-send-reset-link.yaml
-UserRefreshTokenCreate:
-  $ref: ./endpoints/users/schemas/user-refresh-token-create.yaml
+  $ref: ./auto-generated/models/user-create.yaml
+UserCurrent:
+  $ref: ./auto-generated/models/user-current.yaml
+UserLogin:
+  $ref: ./auto-generated/models/user-login.yaml
+UserLoginResponse:
+  $ref: ./auto-generated/models/user-login-response.yaml
+UserRefreshToken:
+  $ref: ./auto-generated/models/user-refresh-token.yaml
+UserRefreshTokenResponse:
+  $ref: ./auto-generated/models/user-refresh-token-response.yaml
+UserResendVerification:
+  $ref: ./auto-generated/models/user-resend-verification.yaml
+UserUpdate:
+  $ref: ./auto-generated/models/user-update.yaml
+UserVerify:
+  $ref: ./auto-generated/models/user-verify.yaml
 UserTeamInvitations:
   $ref: ./endpoints/users/schemas/user-team-invitation-list.yaml
 UserTokens:
   $ref: ./endpoints/users/schemas/user-tokens.yaml
-UserUpdate:
-  $ref: ./endpoints/users/schemas/user-update.yaml
 UserRelation:
   $ref: ./shared/schemas/models/user-relation.yaml
 Variable:
   $ref: ./auto-generated/models/variable.yaml
 Variables:
   $ref: ./endpoints/variables/schemas/variable-list.yaml
-VariableCreate:
-  $ref: ./auto-generated/models/variable-create.yaml
+VariableApplicationCreate:
+  $ref: ./auto-generated/models/variable-application-create.yaml
 VariableList:
   $ref: ./auto-generated/models/variable-list.yaml
 VariableRelation:

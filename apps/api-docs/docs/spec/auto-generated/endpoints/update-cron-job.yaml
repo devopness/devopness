@@ -16,7 +16,7 @@ parameters:
     in: path
     name: cron_job_id
     description: 'The ID of the cron job.'
-    example: 81
+    example: 123
     required: true
     schema:
       type: integer

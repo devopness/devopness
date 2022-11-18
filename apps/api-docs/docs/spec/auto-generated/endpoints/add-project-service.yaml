@@ -16,7 +16,7 @@ parameters:
     in: path
     name: project_id
     description: 'The ID of the project.'
-    example: 1
+    example: 123
     required: true
     schema:
       type: integer
@@ -46,4 +46,4 @@ requestBody:
   content:
     application/json:
       schema:
-        $ref: '#/components/schemas/ServiceCreate'
+        $ref: '#/components/schemas/ServiceProjectCreate'
