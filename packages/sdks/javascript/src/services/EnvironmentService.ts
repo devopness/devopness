@@ -7,18 +7,16 @@ import { EnvironmentsNetworkRulesApiService } from '../api/generated/apis/enviro
 import { EnvironmentsServersApiService } from '../api/generated/apis/environments-servers-api';
 import { EnvironmentsServicesApiService } from '../api/generated/apis/environments-services-api';
 import { EnvironmentsSSHKeysApiService } from '../api/generated/apis/environments-sshkeys-api';
-import { EnvironmentsTeamsApiService } from '../api/generated/apis/environments-teams-api';
-import { EnvironmentsMembersApiService } from '../api/generated/apis/environments-members-api';
+import { EnvironmentsTeamMembershipsApiService } from '../api/generated/apis/environments-team-memberships-api';
 
 export class EnvironmentService extends EnvironmentsApiService {
     public actions = new EnvironmentsActionsApiService();
     public applications = new EnvironmentsApplicationsApiService();
     public cronjobs = new EnvironmentsCronJobsApiService();
     public daemons = new EnvironmentsDaemonsApiService();
-    public members = new EnvironmentsMembersApiService();
     public networkRules = new EnvironmentsNetworkRulesApiService();
     public servers = new EnvironmentsServersApiService();
     public services = new EnvironmentsServicesApiService();
     public sshKeys = new EnvironmentsSSHKeysApiService();
-    public teams = new EnvironmentsTeamsApiService();
+    public teamMemberships = new EnvironmentsTeamMembershipsApiService();
 }

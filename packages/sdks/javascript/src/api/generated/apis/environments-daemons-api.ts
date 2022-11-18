@@ -16,7 +16,7 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { Daemon } from '../../generated/models';
-import { DaemonCreate } from '../../generated/models';
+import { DaemonEnvironmentCreate } from '../../generated/models';
 import { DaemonRelation } from '../../generated/models';
 
 /**
@@ -27,21 +27,21 @@ export class EnvironmentsDaemonsApiService extends ApiBaseService {
      * 
      * @summary Add a Daemon to the given environment
      * @param {number} environmentId The ID of the environment.
-     * @param {DaemonCreate} daemonCreate A JSON object containing the resource data
+     * @param {DaemonEnvironmentCreate} daemonEnvironmentCreate A JSON object containing the resource data
      */
-    public async addEnvironmentDaemon(environmentId: number, daemonCreate: DaemonCreate): Promise<ApiResponse<Daemon>> {
+    public async addEnvironmentDaemon(environmentId: number, daemonEnvironmentCreate: DaemonEnvironmentCreate): Promise<ApiResponse<Daemon>> {
         if (environmentId === null || environmentId === undefined) {
             throw new ArgumentNullException('environmentId', 'addEnvironmentDaemon');
         }
-        if (daemonCreate === null || daemonCreate === undefined) {
-            throw new ArgumentNullException('daemonCreate', 'addEnvironmentDaemon');
+        if (daemonEnvironmentCreate === null || daemonEnvironmentCreate === undefined) {
+            throw new ArgumentNullException('daemonEnvironmentCreate', 'addEnvironmentDaemon');
         }
         
         let queryString = '';
 
         const requestUrl = '/environments/{environment_id}/daemons' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <Daemon, DaemonCreate>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))), daemonCreate);
+        const response = await this.post <Daemon, DaemonEnvironmentCreate>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))), daemonEnvironmentCreate);
         return new ApiResponse(response);
     }
 

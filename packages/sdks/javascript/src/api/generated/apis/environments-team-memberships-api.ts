@@ -14,22 +14,22 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
-import { TeamRelation } from '../../generated/models';
+import { TeamMembershipRelation } from '../../generated/models';
 
 /**
- * EnvironmentsTeamsApiService - Auto-generated
+ * EnvironmentsTeamMembershipsApiService - Auto-generated
  */
-export class EnvironmentsTeamsApiService extends ApiBaseService {
+export class EnvironmentsTeamMembershipsApiService extends ApiBaseService {
     /**
      * 
-     * @summary Returns a list of all teams belonging to an environment
-     * @param {number} environmentId Numeric ID of the environment to get teams from
+     * @summary Return a list of teams with access to an environment
+     * @param {number} environmentId The ID of the environment.
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */
-    public async listEnvironmentTeams(environmentId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<TeamRelation>>> {
+    public async listEnvironmentTeamMemberships(environmentId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<TeamMembershipRelation>>> {
         if (environmentId === null || environmentId === undefined) {
-            throw new ArgumentNullException('environmentId', 'listEnvironmentTeams');
+            throw new ArgumentNullException('environmentId', 'listEnvironmentTeamMemberships');
         }
         
         let queryString = '';
@@ -42,9 +42,9 @@ export class EnvironmentsTeamsApiService extends ApiBaseService {
             queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
         }
 
-        const requestUrl = '/environments/{environment_id}/teams' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/environments/{environment_id}/team-memberships' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<TeamRelation>>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
+        const response = await this.get <Array<TeamMembershipRelation>>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
         return new ApiResponse(response);
     }
 }

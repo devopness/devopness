@@ -12,41 +12,48 @@
  */
 
 
+import { RoleRelation } from './role-relation';
 
 /**
  * 
  * @export
- * @interface TeamRelation
+ * @interface TeamMembershipRelation
  */
-export interface TeamRelation {
+export interface TeamMembershipRelation {
     /**
      * The unique ID of the given team
      * @type {number}
-     * @memberof TeamRelation
+     * @memberof TeamMembershipRelation
      */
     id: number;
     /**
      * The name of the given team
      * @type {string}
-     * @memberof TeamRelation
+     * @memberof TeamMembershipRelation
      */
     name: string;
     /**
      * The URL to team\'s image
      * @type {string}
-     * @memberof TeamRelation
+     * @memberof TeamMembershipRelation
      */
-    photo_url: string | null;
+    photo_url: string;
+    /**
+     * 
+     * @type {RoleRelation}
+     * @memberof TeamMembershipRelation
+     */
+    role: RoleRelation;
     /**
      * The date and time when the record was created
      * @type {string}
-     * @memberof TeamRelation
+     * @memberof TeamMembershipRelation
      */
     created_at: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
-     * @memberof TeamRelation
+     * @memberof TeamMembershipRelation
      */
     updated_at: string;
 }

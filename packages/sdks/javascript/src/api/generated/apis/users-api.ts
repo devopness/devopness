@@ -14,19 +14,16 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
-import { AcceptedResponseMessage } from '../../generated/models';
 import { ApiError } from '../../generated/models';
-import { LoginCredentials } from '../../generated/models';
 import { User } from '../../generated/models';
-import { UserAccountActivate } from '../../generated/models';
-import { UserAccountResendVerification } from '../../generated/models';
-import { UserAccountVerify } from '../../generated/models';
 import { UserCreate } from '../../generated/models';
-import { UserPasswordReset } from '../../generated/models';
-import { UserPasswordSendResetLink } from '../../generated/models';
-import { UserRefreshTokenCreate } from '../../generated/models';
-import { UserTokens } from '../../generated/models';
+import { UserLogin } from '../../generated/models';
+import { UserLoginResponse } from '../../generated/models';
+import { UserRefreshToken } from '../../generated/models';
+import { UserRefreshTokenResponse } from '../../generated/models';
+import { UserResendVerification } from '../../generated/models';
 import { UserUpdate } from '../../generated/models';
+import { UserVerify } from '../../generated/models';
 
 /**
  * UsersApiService - Auto-generated
@@ -34,28 +31,10 @@ import { UserUpdate } from '../../generated/models';
 export class UsersApiService extends ApiBaseService {
     /**
      * 
-     * @summary Activate the user account
-     * @param {UserAccountActivate} userAccountActivate A JSON object containing user account data
-     */
-    public async activateUser(userAccountActivate: UserAccountActivate): Promise<ApiResponse<void>> {
-        if (userAccountActivate === null || userAccountActivate === undefined) {
-            throw new ArgumentNullException('userAccountActivate', 'activateUser');
-        }
-        
-        let queryString = '';
-
-        const requestUrl = '/users/account/verify' + (queryString? `?${queryString}` : '');
-
-        const response = await this.post <void, UserAccountActivate>(requestUrl, userAccountActivate);
-        return new ApiResponse(response);
-    }
-
-    /**
-     * 
      * @summary Sign up/register a new user
-     * @param {UserCreate} userCreate A JSON object containing user essential data
+     * @param {UserCreate} userCreate A JSON object containing the resource data
      */
-    public async addUser(userCreate: UserCreate): Promise<ApiResponse<AcceptedResponseMessage>> {
+    public async addUser(userCreate: UserCreate): Promise<ApiResponse<void>> {
         if (userCreate === null || userCreate === undefined) {
             throw new ArgumentNullException('userCreate', 'addUser');
         }
@@ -64,28 +43,14 @@ export class UsersApiService extends ApiBaseService {
 
         const requestUrl = '/users' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <AcceptedResponseMessage, UserCreate>(requestUrl, userCreate);
-        return new ApiResponse(response);
-    }
-
-    /**
-     * 
-     * @summary Get details of the current user
-     */
-    public async getCurrentUser(): Promise<ApiResponse<User>> {
-        
-        let queryString = '';
-
-        const requestUrl = '/users/me' + (queryString? `?${queryString}` : '');
-
-        const response = await this.get <User>(requestUrl);
+        const response = await this.post <void, UserCreate>(requestUrl, userCreate);
         return new ApiResponse(response);
     }
 
     /**
      * 
      * @summary Get a user by ID
-     * @param {number} userId Numeric ID of the user to be retrieved
+     * @param {number} userId The ID of the user.
      */
     public async getUser(userId: number): Promise<ApiResponse<User>> {
         if (userId === null || userId === undefined) {
@@ -102,19 +67,33 @@ export class UsersApiService extends ApiBaseService {
 
     /**
      * 
-     * @summary Login/create a new token for the given credentials
-     * @param {LoginCredentials} loginCredentials A JSON object containing user credentials
+     * @summary Get details of the current user
      */
-    public async login(loginCredentials: LoginCredentials): Promise<ApiResponse<UserTokens>> {
-        if (loginCredentials === null || loginCredentials === undefined) {
-            throw new ArgumentNullException('loginCredentials', 'login');
+    public async getUserCurrent(): Promise<ApiResponse<User>> {
+        
+        let queryString = '';
+
+        const requestUrl = '/users/current' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <User>(requestUrl);
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Login/create a new token for the given credentials
+     * @param {UserLogin} userLogin A JSON object containing the resource data
+     */
+    public async loginUser(userLogin: UserLogin): Promise<ApiResponse<UserLoginResponse>> {
+        if (userLogin === null || userLogin === undefined) {
+            throw new ArgumentNullException('userLogin', 'loginUser');
         }
         
         let queryString = '';
 
         const requestUrl = '/users/login' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <UserTokens, LoginCredentials>(requestUrl, loginCredentials);
+        const response = await this.post <UserLoginResponse, UserLogin>(requestUrl, userLogin);
         return new ApiResponse(response);
     }
 
@@ -135,80 +114,44 @@ export class UsersApiService extends ApiBaseService {
     /**
      * 
      * @summary Refresh an existing user access token
-     * @param {UserRefreshTokenCreate} userRefreshTokenCreate A JSON object containing user essential data
+     * @param {UserRefreshToken} userRefreshToken A JSON object containing the resource data
      */
-    public async refreshToken(userRefreshTokenCreate: UserRefreshTokenCreate): Promise<ApiResponse<UserTokens>> {
-        if (userRefreshTokenCreate === null || userRefreshTokenCreate === undefined) {
-            throw new ArgumentNullException('userRefreshTokenCreate', 'refreshToken');
+    public async refreshTokenUser(userRefreshToken: UserRefreshToken): Promise<ApiResponse<UserRefreshTokenResponse>> {
+        if (userRefreshToken === null || userRefreshToken === undefined) {
+            throw new ArgumentNullException('userRefreshToken', 'refreshTokenUser');
         }
         
         let queryString = '';
 
         const requestUrl = '/users/refresh-token' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <UserTokens, UserRefreshTokenCreate>(requestUrl, userRefreshTokenCreate);
+        const response = await this.post <UserRefreshTokenResponse, UserRefreshToken>(requestUrl, userRefreshToken);
         return new ApiResponse(response);
     }
 
     /**
      * 
      * @summary Resend the verification email
-     * @param {UserAccountResendVerification} userAccountResendVerification A JSON object containing the email to resend the verification link
+     * @param {UserResendVerification} userResendVerification A JSON object containing the resource data
      */
-    public async resendUserVerification(userAccountResendVerification: UserAccountResendVerification): Promise<ApiResponse<void>> {
-        if (userAccountResendVerification === null || userAccountResendVerification === undefined) {
-            throw new ArgumentNullException('userAccountResendVerification', 'resendUserVerification');
+    public async resendVerificationUser(userResendVerification: UserResendVerification): Promise<ApiResponse<void>> {
+        if (userResendVerification === null || userResendVerification === undefined) {
+            throw new ArgumentNullException('userResendVerification', 'resendVerificationUser');
         }
         
         let queryString = '';
 
         const requestUrl = '/users/account/resend-verification' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <void, UserAccountResendVerification>(requestUrl, userAccountResendVerification);
-        return new ApiResponse(response);
-    }
-
-    /**
-     * 
-     * @summary Reset the user password
-     * @param {UserPasswordReset} userPasswordReset A JSON containing the new password of the user
-     */
-    public async resetUserPassword(userPasswordReset: UserPasswordReset): Promise<ApiResponse<object>> {
-        if (userPasswordReset === null || userPasswordReset === undefined) {
-            throw new ArgumentNullException('userPasswordReset', 'resetUserPassword');
-        }
-        
-        let queryString = '';
-
-        const requestUrl = '/users/password/reset' + (queryString? `?${queryString}` : '');
-
-        const response = await this.post <object, UserPasswordReset>(requestUrl, userPasswordReset);
-        return new ApiResponse(response);
-    }
-
-    /**
-     * 
-     * @summary Send the password reset link to user\'s email
-     * @param {UserPasswordSendResetLink} userPasswordSendResetLink A JSON containing the user email
-     */
-    public async sendUserPasswordResetLink(userPasswordSendResetLink: UserPasswordSendResetLink): Promise<ApiResponse<object>> {
-        if (userPasswordSendResetLink === null || userPasswordSendResetLink === undefined) {
-            throw new ArgumentNullException('userPasswordSendResetLink', 'sendUserPasswordResetLink');
-        }
-        
-        let queryString = '';
-
-        const requestUrl = '/users/password/send-reset-link' + (queryString? `?${queryString}` : '');
-
-        const response = await this.post <object, UserPasswordSendResetLink>(requestUrl, userPasswordSendResetLink);
+        const response = await this.post <void, UserResendVerification>(requestUrl, userResendVerification);
         return new ApiResponse(response);
     }
 
     /**
      * 
      * @summary Update an existing user
-     * @param {number} userId Numeric ID of the user
-     * @param {UserUpdate} userUpdate A JSON containing user data
+     * @param {number} userId The ID of the user.
+     * @param {UserUpdate} userUpdate A JSON object containing the resource data
      */
     public async updateUser(userId: number, userUpdate: UserUpdate): Promise<ApiResponse<void>> {
         if (userId === null || userId === undefined) {
@@ -228,15 +171,19 @@ export class UsersApiService extends ApiBaseService {
 
     /**
      * 
-     * @summary Get the information about the activation status of the current user
+     * @summary Activate the user account
+     * @param {UserVerify} userVerify A JSON object containing the resource data
      */
-    public async verifyUser(): Promise<ApiResponse<UserAccountVerify>> {
+    public async verifyUser(userVerify: UserVerify): Promise<ApiResponse<void>> {
+        if (userVerify === null || userVerify === undefined) {
+            throw new ArgumentNullException('userVerify', 'verifyUser');
+        }
         
         let queryString = '';
 
         const requestUrl = '/users/account/verify' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <UserAccountVerify>(requestUrl);
+        const response = await this.post <void, UserVerify>(requestUrl, userVerify);
         return new ApiResponse(response);
     }
 }

@@ -17,85 +17,85 @@ import { PipelineStepRunnerName } from './pipeline-step-runner-name';
 /**
  * 
  * @export
- * @interface PipelineStep
+ * @interface Step
  */
-export interface PipelineStep {
+export interface Step {
     /**
      * The unique ID of the given pipeline step
      * @type {number}
-     * @memberof PipelineStep
+     * @memberof Step
      */
     id: number;
     /**
      * The pipeline step\'s name
      * @type {string}
-     * @memberof PipelineStep
+     * @memberof Step
      */
     name: string;
     /**
      * The pipeline step\'s type
      * @type {string}
-     * @memberof PipelineStep
+     * @memberof Step
      */
     type: string;
     /**
      * The name of the Unix user on behalf of which the script will be executed
      * @type {string}
-     * @memberof PipelineStep
+     * @memberof Step
      */
     run_as_user: string;
     /**
      * A command line or multiline bash pipeline step
      * @type {string}
-     * @memberof PipelineStep
+     * @memberof Step
      */
     command: string;
     /**
      * 
      * @type {PipelineStepRunnerName}
-     * @memberof PipelineStep
+     * @memberof Step
      */
     runner: PipelineStepRunnerName;
     /**
      * The script\'s ID of this pipeline step
      * @type {number}
-     * @memberof PipelineStep
+     * @memberof Step
      */
     script_id: number;
     /**
      * The pipeline\'s ID
      * @type {number}
-     * @memberof PipelineStep
+     * @memberof Step
      */
     pipeline_id: number;
     /**
      * The relative order of the step execution in case of multiple steps attached to pipeline
      * @type {number}
-     * @memberof PipelineStep
+     * @memberof Step
      */
     trigger_order: number;
     /**
      * True if this step is auto-generated or false if this was created by the user
      * @type {boolean}
-     * @memberof PipelineStep
+     * @memberof Step
      */
     is_auto_generated: boolean;
     /**
      * True if this step is a default step of the pipeline and cannot be updated/deleted
      * @type {boolean}
-     * @memberof PipelineStep
+     * @memberof Step
      */
     is_default_step: boolean;
     /**
      * The date and time when the record was created
      * @type {string}
-     * @memberof PipelineStep
+     * @memberof Step
      */
     created_at: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
-     * @memberof PipelineStep
+     * @memberof Step
      */
     updated_at: string;
 }

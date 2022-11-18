@@ -18,61 +18,61 @@ import { SocialAccount } from './social-account';
 /**
  * 
  * @export
- * @interface User
+ * @interface UserCurrent
  */
-export interface User {
+export interface UserCurrent {
     /**
      * The unique ID of the given user
      * @type {number}
-     * @memberof User
+     * @memberof UserCurrent
      */
     id: number;
     /**
      * User\'s full name
      * @type {string}
-     * @memberof User
+     * @memberof UserCurrent
      */
     name: string;
     /**
      * The e-mail that will uniquely identify the user on the system and become its login credential
      * @type {string}
-     * @memberof User
+     * @memberof UserCurrent
      */
     email: string;
     /**
      * 
      * @type {Language}
-     * @memberof User
+     * @memberof UserCurrent
      */
     language: Language | null;
     /**
      * Tells if the user is active or not
      * @type {boolean}
-     * @memberof User
+     * @memberof UserCurrent
      */
     active: boolean;
     /**
      * 
      * @type {Array<SocialAccount>}
-     * @memberof User
+     * @memberof UserCurrent
      */
     social_accounts: Array<SocialAccount>;
     /**
      * The code of current billing plan
      * @type {string}
-     * @memberof User
+     * @memberof UserCurrent
      */
     current_billing_plan: string;
     /**
      * The date and time when the record was created
      * @type {string}
-     * @memberof User
+     * @memberof UserCurrent
      */
     created_at: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
-     * @memberof User
+     * @memberof UserCurrent
      */
     updated_at: string;
 }

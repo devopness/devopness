@@ -12,7 +12,6 @@
  */
 
 
-import { Language } from './language';
 
 /**
  * 
@@ -21,28 +20,28 @@ import { Language } from './language';
  */
 export interface UserUpdate {
     /**
-     * The Id of the given user
+     * The unique ID of the given user.
      * @type {number}
      * @memberof UserUpdate
      */
     id: number;
     /**
-     * The e-mail that will uniquely identify the user on the system and become its login credential
-     * @type {string}
-     * @memberof UserUpdate
-     */
-    email: string;
-    /**
-     * User\'s full name
+     * User\'s full name. Must be at least 5 characters. Must not be greater than 60 characters.
      * @type {string}
      * @memberof UserUpdate
      */
     name: string;
     /**
-     * 
-     * @type {Language}
+     * The e-mail that will uniquely identify the user on the system and become its login credential. Must be a valid email address.
+     * @type {string}
      * @memberof UserUpdate
      */
-    language?: Language | null;
+    email: string;
+    /**
+     * Must be one of <code>en</code> or <code>pt</code>.
+     * @type {string}
+     * @memberof UserUpdate
+     */
+    language?: string;
 }
 

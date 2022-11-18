@@ -16,25 +16,25 @@
 /**
  * 
  * @export
- * @interface RoleCreate
+ * @interface RoleProjectCreate
  */
-export interface RoleCreate {
+export interface RoleProjectCreate {
     /**
-     * The role\'s name
+     * The role\'s name. Must be at least 2 characters. Must not be greater than 60 characters.
      * @type {string}
-     * @memberof RoleCreate
+     * @memberof RoleProjectCreate
      */
     name: string;
     /**
-     * Description of this role
+     * Description of this role. Must not be greater than 255 characters.
      * @type {string}
-     * @memberof RoleCreate
+     * @memberof RoleProjectCreate
      */
     description?: string;
     /**
      * The list of permissions for this role
      * @type {Array<string>}
-     * @memberof RoleCreate
+     * @memberof RoleProjectCreate
      */
     permissions: Array<string>;
 }

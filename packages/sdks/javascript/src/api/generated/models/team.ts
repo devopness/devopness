@@ -22,7 +22,7 @@ import { UserRelation } from './user-relation';
  */
 export interface Team {
     /**
-     * The unique id of the given team
+     * The unique ID of the given team
      * @type {number}
      * @memberof Team
      */
@@ -56,12 +56,12 @@ export interface Team {
      * @type {string}
      * @memberof Team
      */
-    created_at?: string;
+    created_at: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof Team
      */
-    updated_at?: string;
+    updated_at: string;
 }
 

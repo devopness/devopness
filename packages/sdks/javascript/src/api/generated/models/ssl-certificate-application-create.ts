@@ -19,43 +19,43 @@ import { SslCertificateValidationLevel } from './ssl-certificate-validation-leve
 /**
  * 
  * @export
- * @interface SslCertificateCreate
+ * @interface SslCertificateApplicationCreate
  */
-export interface SslCertificateCreate {
+export interface SslCertificateApplicationCreate {
     /**
      * 
      * @type {SslCertificateIssuer}
-     * @memberof SslCertificateCreate
+     * @memberof SslCertificateApplicationCreate
      */
     issuer: SslCertificateIssuer;
     /**
      * The list of domain names to which the SSL certificate refers to
      * @type {Array<string>}
-     * @memberof SslCertificateCreate
+     * @memberof SslCertificateApplicationCreate
      */
     domains: Array<string>;
     /**
      * 
      * @type {SslCertificateType}
-     * @memberof SslCertificateCreate
+     * @memberof SslCertificateApplicationCreate
      */
     type?: SslCertificateType;
     /**
      * 
      * @type {SslCertificateValidationLevel}
-     * @memberof SslCertificateCreate
+     * @memberof SslCertificateApplicationCreate
      */
     validation_level?: SslCertificateValidationLevel;
     /**
      * The private key provided by the Certification Authority, when the certificate has not been automatically issued through `devopness`. This field is required when <code>issuer</code> is <code>custom</code>. Must be at least 100 characters. Must not be greater than 4096 characters.
      * @type {string}
-     * @memberof SslCertificateCreate
+     * @memberof SslCertificateApplicationCreate
      */
     custom_private_key?: string;
     /**
      * The contents of the certificate provided by the Certification Authority, when the certificate has not been automatically issued through `devopness`. This field is required when <code>issuer</code> is <code>custom</code>. Must be at least 100 characters. Must not be greater than 4096 characters.
      * @type {string}
-     * @memberof SslCertificateCreate
+     * @memberof SslCertificateApplicationCreate
      */
     custom_certificate?: string;
 }

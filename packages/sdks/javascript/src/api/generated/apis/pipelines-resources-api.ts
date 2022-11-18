@@ -14,40 +14,12 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
-import { ApiError } from '../../generated/models';
 import { Pipeline } from '../../generated/models';
-import { PipelineCreate } from '../../generated/models';
 
 /**
  * PipelinesResourcesApiService - Auto-generated
  */
 export class PipelinesResourcesApiService extends ApiBaseService {
-    /**
-     * 
-     * @summary Create a new pipeline to a resource
-     * @param {string} resourceType Pipeline\&#39;s resource type to create
-     * @param {number} resourceId Unique ID of the resource to create a pipeline
-     * @param {PipelineCreate} pipelineCreate A JSON object containing pipeline data
-     */
-    public async addPipeline(resourceType: string, resourceId: number, pipelineCreate: PipelineCreate): Promise<ApiResponse<Pipeline>> {
-        if (resourceType === null || resourceType === undefined) {
-            throw new ArgumentNullException('resourceType', 'addPipeline');
-        }
-        if (resourceId === null || resourceId === undefined) {
-            throw new ArgumentNullException('resourceId', 'addPipeline');
-        }
-        if (pipelineCreate === null || pipelineCreate === undefined) {
-            throw new ArgumentNullException('pipelineCreate', 'addPipeline');
-        }
-        
-        let queryString = '';
-
-        const requestUrl = '/pipelines/{resource_type}/{resource_id}' + (queryString? `?${queryString}` : '');
-
-        const response = await this.post <Pipeline, PipelineCreate>(requestUrl.replace(`{${"resource_type"}}`, encodeURIComponent(String(resourceType))).replace(`{${"resource_id"}}`, encodeURIComponent(String(resourceId))), pipelineCreate);
-        return new ApiResponse(response);
-    }
-
     /**
      * 
      * @summary Returns a list of pipelines to a resource

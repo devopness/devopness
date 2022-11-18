@@ -16,20 +16,14 @@
 /**
  * 
  * @export
- * @interface TeamUpdate
+ * @interface TeamEnvironmentCreate
  */
-export interface TeamUpdate {
+export interface TeamEnvironmentCreate {
     /**
-     * The name of the team. Must not be greater than 255 characters.
-     * @type {string}
-     * @memberof TeamUpdate
+     * The role\'s ID to use for this team on environment.
+     * @type {number}
+     * @memberof TeamEnvironmentCreate
      */
-    name: string;
-    /**
-     * The URL to team\'s image. Must be a valid URL.
-     * @type {string}
-     * @memberof TeamUpdate
-     */
-    photo_url?: string;
+    role_id: number;
 }
 

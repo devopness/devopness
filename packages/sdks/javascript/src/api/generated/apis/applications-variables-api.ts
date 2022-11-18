@@ -16,7 +16,7 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { Variable } from '../../generated/models';
-import { VariableCreate } from '../../generated/models';
+import { VariableApplicationCreate } from '../../generated/models';
 import { VariableRelation } from '../../generated/models';
 
 /**
@@ -27,21 +27,21 @@ export class ApplicationsVariablesApiService extends ApiBaseService {
      * 
      * @summary Create a new variable linked to an application
      * @param {number} applicationId The ID of the application.
-     * @param {VariableCreate} variableCreate A JSON object containing the resource data
+     * @param {VariableApplicationCreate} variableApplicationCreate A JSON object containing the resource data
      */
-    public async addApplicationVariable(applicationId: number, variableCreate: VariableCreate): Promise<ApiResponse<Variable>> {
+    public async addApplicationVariable(applicationId: number, variableApplicationCreate: VariableApplicationCreate): Promise<ApiResponse<Variable>> {
         if (applicationId === null || applicationId === undefined) {
             throw new ArgumentNullException('applicationId', 'addApplicationVariable');
         }
-        if (variableCreate === null || variableCreate === undefined) {
-            throw new ArgumentNullException('variableCreate', 'addApplicationVariable');
+        if (variableApplicationCreate === null || variableApplicationCreate === undefined) {
+            throw new ArgumentNullException('variableApplicationCreate', 'addApplicationVariable');
         }
         
         let queryString = '';
 
         const requestUrl = '/applications/{application_id}/variables' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <Variable, VariableCreate>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))), variableCreate);
+        const response = await this.post <Variable, VariableApplicationCreate>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))), variableApplicationCreate);
         return new ApiResponse(response);
     }
 

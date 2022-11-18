@@ -16,7 +16,7 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { CronJob } from '../../generated/models';
-import { CronJobCreate } from '../../generated/models';
+import { CronJobProjectCreate } from '../../generated/models';
 import { CronJobRelation } from '../../generated/models';
 
 /**
@@ -27,21 +27,21 @@ export class ProjectsCronJobsApiService extends ApiBaseService {
      * 
      * @summary Add a Cron Job to the given project
      * @param {number} projectId The ID of the project.
-     * @param {CronJobCreate} cronJobCreate A JSON object containing the resource data
+     * @param {CronJobProjectCreate} cronJobProjectCreate A JSON object containing the resource data
      */
-    public async addProjectCronJob(projectId: number, cronJobCreate: CronJobCreate): Promise<ApiResponse<CronJob>> {
+    public async addProjectCronJob(projectId: number, cronJobProjectCreate: CronJobProjectCreate): Promise<ApiResponse<CronJob>> {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'addProjectCronJob');
         }
-        if (cronJobCreate === null || cronJobCreate === undefined) {
-            throw new ArgumentNullException('cronJobCreate', 'addProjectCronJob');
+        if (cronJobProjectCreate === null || cronJobProjectCreate === undefined) {
+            throw new ArgumentNullException('cronJobProjectCreate', 'addProjectCronJob');
         }
         
         let queryString = '';
 
         const requestUrl = '/projects/{project_id}/cron-jobs' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <CronJob, CronJobCreate>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), cronJobCreate);
+        const response = await this.post <CronJob, CronJobProjectCreate>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), cronJobProjectCreate);
         return new ApiResponse(response);
     }
 

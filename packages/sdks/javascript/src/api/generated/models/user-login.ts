@@ -16,14 +16,20 @@
 /**
  * 
  * @export
- * @interface InvitationCreate
+ * @interface UserLogin
  */
-export interface InvitationCreate {
+export interface UserLogin {
     /**
-     * The user email to send the invitation. Must be a valid email address.
+     * The user\'s registered e-mail address. Must be a valid email address.
      * @type {string}
-     * @memberof InvitationCreate
+     * @memberof UserLogin
      */
     email: string;
+    /**
+     * The user password.
+     * @type {string}
+     * @memberof UserLogin
+     */
+    password: string;
 }
 

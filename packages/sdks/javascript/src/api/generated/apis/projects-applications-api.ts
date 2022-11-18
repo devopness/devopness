@@ -16,7 +16,7 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { Application } from '../../generated/models';
-import { ApplicationCreate } from '../../generated/models';
+import { ApplicationProjectCreate } from '../../generated/models';
 import { ApplicationRelation } from '../../generated/models';
 
 /**
@@ -26,29 +26,29 @@ export class ProjectsApplicationsApiService extends ApiBaseService {
     /**
      * 
      * @summary Create a new application
-     * @param {number} projectId Numeric ID of the project to which the application will be added
-     * @param {ApplicationCreate} applicationCreate A JSON object containing project data
+     * @param {number} projectId The ID of the project.
+     * @param {ApplicationProjectCreate} applicationProjectCreate A JSON object containing the resource data
      */
-    public async addApplicationToProject(projectId: number, applicationCreate: ApplicationCreate): Promise<ApiResponse<Application>> {
+    public async addProjectApplication(projectId: number, applicationProjectCreate: ApplicationProjectCreate): Promise<ApiResponse<Application>> {
         if (projectId === null || projectId === undefined) {
-            throw new ArgumentNullException('projectId', 'addApplicationToProject');
+            throw new ArgumentNullException('projectId', 'addProjectApplication');
         }
-        if (applicationCreate === null || applicationCreate === undefined) {
-            throw new ArgumentNullException('applicationCreate', 'addApplicationToProject');
+        if (applicationProjectCreate === null || applicationProjectCreate === undefined) {
+            throw new ArgumentNullException('applicationProjectCreate', 'addProjectApplication');
         }
         
         let queryString = '';
 
         const requestUrl = '/projects/{project_id}/applications' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <Application, ApplicationCreate>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), applicationCreate);
+        const response = await this.post <Application, ApplicationProjectCreate>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), applicationProjectCreate);
         return new ApiResponse(response);
     }
 
     /**
      * 
-     * @summary Returns a list of all applications belonging to a project
-     * @param {number} projectId Numeric ID of the project to get applications from
+     * @summary Return a list of all applications belonging to a project
+     * @param {number} projectId The ID of the project.
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */

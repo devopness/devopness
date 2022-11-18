@@ -20,19 +20,19 @@
  */
 export interface ProjectCreate {
     /**
-     * The project\'s name
+     * The name of the project. Must not be greater than 60 characters.
      * @type {string}
      * @memberof ProjectCreate
      */
     name: string;
     /**
-     * A base64 string representation of the logo image
+     * A base64 string representation of the logo image.
      * @type {string}
      * @memberof ProjectCreate
      */
     logo_image?: string;
     /**
-     * A URL path to the project\'s logo image
+     * A URL path to the project\'s logo image. Must be a valid URL.
      * @type {string}
      * @memberof ProjectCreate
      */

@@ -16,20 +16,14 @@
 /**
  * 
  * @export
- * @interface TeamUpdate
+ * @interface InvitationTeamCreate
  */
-export interface TeamUpdate {
+export interface InvitationTeamCreate {
     /**
-     * The name of the team. Must not be greater than 255 characters.
+     * The user email to send the invitation. Must be a valid email address.
      * @type {string}
-     * @memberof TeamUpdate
+     * @memberof InvitationTeamCreate
      */
-    name: string;
-    /**
-     * The URL to team\'s image. Must be a valid URL.
-     * @type {string}
-     * @memberof TeamUpdate
-     */
-    photo_url?: string;
+    email: string;
 }
 

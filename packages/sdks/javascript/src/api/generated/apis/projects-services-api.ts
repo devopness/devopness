@@ -16,7 +16,7 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { Service } from '../../generated/models';
-import { ServiceCreate } from '../../generated/models';
+import { ServiceProjectCreate } from '../../generated/models';
 import { ServiceRelation } from '../../generated/models';
 
 /**
@@ -27,21 +27,21 @@ export class ProjectsServicesApiService extends ApiBaseService {
      * 
      * @summary Add a service to a project and trigger its setup in each linked server
      * @param {number} projectId The ID of the project.
-     * @param {ServiceCreate} serviceCreate A JSON object containing the resource data
+     * @param {ServiceProjectCreate} serviceProjectCreate A JSON object containing the resource data
      */
-    public async addProjectService(projectId: number, serviceCreate: ServiceCreate): Promise<ApiResponse<Service>> {
+    public async addProjectService(projectId: number, serviceProjectCreate: ServiceProjectCreate): Promise<ApiResponse<Service>> {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'addProjectService');
         }
-        if (serviceCreate === null || serviceCreate === undefined) {
-            throw new ArgumentNullException('serviceCreate', 'addProjectService');
+        if (serviceProjectCreate === null || serviceProjectCreate === undefined) {
+            throw new ArgumentNullException('serviceProjectCreate', 'addProjectService');
         }
         
         let queryString = '';
 
         const requestUrl = '/projects/{project_id}/services' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <Service, ServiceCreate>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), serviceCreate);
+        const response = await this.post <Service, ServiceProjectCreate>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), serviceProjectCreate);
         return new ApiResponse(response);
     }
 

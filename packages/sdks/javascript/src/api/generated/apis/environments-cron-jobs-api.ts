@@ -16,7 +16,7 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { CronJob } from '../../generated/models';
-import { CronJobCreate } from '../../generated/models';
+import { CronJobEnvironmentCreate } from '../../generated/models';
 import { CronJobRelation } from '../../generated/models';
 
 /**
@@ -27,21 +27,21 @@ export class EnvironmentsCronJobsApiService extends ApiBaseService {
      * 
      * @summary Add a Cron Job to the given environment
      * @param {number} environmentId The ID of the environment.
-     * @param {CronJobCreate} cronJobCreate A JSON object containing the resource data
+     * @param {CronJobEnvironmentCreate} cronJobEnvironmentCreate A JSON object containing the resource data
      */
-    public async addEnvironmentCronJob(environmentId: number, cronJobCreate: CronJobCreate): Promise<ApiResponse<CronJob>> {
+    public async addEnvironmentCronJob(environmentId: number, cronJobEnvironmentCreate: CronJobEnvironmentCreate): Promise<ApiResponse<CronJob>> {
         if (environmentId === null || environmentId === undefined) {
             throw new ArgumentNullException('environmentId', 'addEnvironmentCronJob');
         }
-        if (cronJobCreate === null || cronJobCreate === undefined) {
-            throw new ArgumentNullException('cronJobCreate', 'addEnvironmentCronJob');
+        if (cronJobEnvironmentCreate === null || cronJobEnvironmentCreate === undefined) {
+            throw new ArgumentNullException('cronJobEnvironmentCreate', 'addEnvironmentCronJob');
         }
         
         let queryString = '';
 
         const requestUrl = '/environments/{environment_id}/cron-jobs' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <CronJob, CronJobCreate>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))), cronJobCreate);
+        const response = await this.post <CronJob, CronJobEnvironmentCreate>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))), cronJobEnvironmentCreate);
         return new ApiResponse(response);
     }
 

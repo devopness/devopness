@@ -17,7 +17,7 @@ import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { EnvironmentLinkItem } from '../../generated/models';
 import { Server } from '../../generated/models';
-import { ServerCreate } from '../../generated/models';
+import { ServerEnvironmentCreate } from '../../generated/models';
 import { ServerRelation } from '../../generated/models';
 
 /**
@@ -28,21 +28,21 @@ export class EnvironmentsServersApiService extends ApiBaseService {
      * 
      * @summary Creates a server and link it to the given environment
      * @param {number} environmentId The ID of the environment.
-     * @param {ServerCreate} serverCreate A JSON object containing the resource data
+     * @param {ServerEnvironmentCreate} serverEnvironmentCreate A JSON object containing the resource data
      */
-    public async addEnvironmentServer(environmentId: number, serverCreate: ServerCreate): Promise<ApiResponse<Server>> {
+    public async addEnvironmentServer(environmentId: number, serverEnvironmentCreate: ServerEnvironmentCreate): Promise<ApiResponse<Server>> {
         if (environmentId === null || environmentId === undefined) {
             throw new ArgumentNullException('environmentId', 'addEnvironmentServer');
         }
-        if (serverCreate === null || serverCreate === undefined) {
-            throw new ArgumentNullException('serverCreate', 'addEnvironmentServer');
+        if (serverEnvironmentCreate === null || serverEnvironmentCreate === undefined) {
+            throw new ArgumentNullException('serverEnvironmentCreate', 'addEnvironmentServer');
         }
         
         let queryString = '';
 
         const requestUrl = '/environments/{environment_id}/servers' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <Server, ServerCreate>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))), serverCreate);
+        const response = await this.post <Server, ServerEnvironmentCreate>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))), serverEnvironmentCreate);
         return new ApiResponse(response);
     }
 

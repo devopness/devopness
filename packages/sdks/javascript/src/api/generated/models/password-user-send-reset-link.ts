@@ -16,20 +16,14 @@
 /**
  * 
  * @export
- * @interface UserAccountVerify
+ * @interface PasswordUserSendResetLink
  */
-export interface UserAccountVerify {
+export interface PasswordUserSendResetLink {
     /**
-     * The current activation status of the account
-     * @type {boolean}
-     * @memberof UserAccountVerify
-     */
-    status: boolean;
-    /**
-     * Message describing the status of the account
+     * The e-mail that will uniquely identify the user on the system and become its login credential. Must be a valid email address. Must not be greater than 255 characters.
      * @type {string}
-     * @memberof UserAccountVerify
+     * @memberof PasswordUserSendResetLink
      */
-    message?: string;
+    email: string;
 }
 

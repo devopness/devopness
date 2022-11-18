@@ -16,7 +16,7 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { SshKey } from '../../generated/models';
-import { SshKeyCreate } from '../../generated/models';
+import { SshKeyEnvironmentCreate } from '../../generated/models';
 import { SshKeyRelation } from '../../generated/models';
 
 /**
@@ -27,21 +27,21 @@ export class EnvironmentsSSHKeysApiService extends ApiBaseService {
      * 
      * @summary Create an SSH key and link it to the given environment
      * @param {number} environmentId The ID of the environment.
-     * @param {SshKeyCreate} sshKeyCreate A JSON object containing the resource data
+     * @param {SshKeyEnvironmentCreate} sshKeyEnvironmentCreate A JSON object containing the resource data
      */
-    public async addEnvironmentSshKey(environmentId: number, sshKeyCreate: SshKeyCreate): Promise<ApiResponse<SshKey>> {
+    public async addEnvironmentSshKey(environmentId: number, sshKeyEnvironmentCreate: SshKeyEnvironmentCreate): Promise<ApiResponse<SshKey>> {
         if (environmentId === null || environmentId === undefined) {
             throw new ArgumentNullException('environmentId', 'addEnvironmentSshKey');
         }
-        if (sshKeyCreate === null || sshKeyCreate === undefined) {
-            throw new ArgumentNullException('sshKeyCreate', 'addEnvironmentSshKey');
+        if (sshKeyEnvironmentCreate === null || sshKeyEnvironmentCreate === undefined) {
+            throw new ArgumentNullException('sshKeyEnvironmentCreate', 'addEnvironmentSshKey');
         }
         
         let queryString = '';
 
         const requestUrl = '/environments/{environment_id}/ssh-keys' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <SshKey, SshKeyCreate>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))), sshKeyCreate);
+        const response = await this.post <SshKey, SshKeyEnvironmentCreate>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))), sshKeyEnvironmentCreate);
         return new ApiResponse(response);
     }
 
