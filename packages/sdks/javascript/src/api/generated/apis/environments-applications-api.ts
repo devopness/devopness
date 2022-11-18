@@ -16,7 +16,7 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { Application } from '../../generated/models';
-import { ApplicationCreate } from '../../generated/models';
+import { ApplicationEnvironmentCreate } from '../../generated/models';
 import { ApplicationRelation } from '../../generated/models';
 
 /**
@@ -27,21 +27,21 @@ export class EnvironmentsApplicationsApiService extends ApiBaseService {
      * 
      * @summary Create a new application
      * @param {number} environmentId The ID of the environment.
-     * @param {ApplicationCreate} applicationCreate A JSON object containing the resource data
+     * @param {ApplicationEnvironmentCreate} applicationEnvironmentCreate A JSON object containing the resource data
      */
-    public async addEnvironmentApplication(environmentId: number, applicationCreate: ApplicationCreate): Promise<ApiResponse<Application>> {
+    public async addEnvironmentApplication(environmentId: number, applicationEnvironmentCreate: ApplicationEnvironmentCreate): Promise<ApiResponse<Application>> {
         if (environmentId === null || environmentId === undefined) {
             throw new ArgumentNullException('environmentId', 'addEnvironmentApplication');
         }
-        if (applicationCreate === null || applicationCreate === undefined) {
-            throw new ArgumentNullException('applicationCreate', 'addEnvironmentApplication');
+        if (applicationEnvironmentCreate === null || applicationEnvironmentCreate === undefined) {
+            throw new ArgumentNullException('applicationEnvironmentCreate', 'addEnvironmentApplication');
         }
         
         let queryString = '';
 
         const requestUrl = '/environments/{environment_id}/applications' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <Application, ApplicationCreate>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))), applicationCreate);
+        const response = await this.post <Application, ApplicationEnvironmentCreate>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))), applicationEnvironmentCreate);
         return new ApiResponse(response);
     }
 

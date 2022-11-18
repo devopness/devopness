@@ -16,7 +16,7 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { SslCertificate } from '../../generated/models';
-import { SslCertificateCreate } from '../../generated/models';
+import { SslCertificateApplicationCreate } from '../../generated/models';
 import { SslCertificateRelation } from '../../generated/models';
 
 /**
@@ -27,21 +27,21 @@ export class ApplicationsSSLCertificatesApiService extends ApiBaseService {
      * 
      * @summary Add a new SSL certificate to the current application
      * @param {number} applicationId The ID of the application.
-     * @param {SslCertificateCreate} sslCertificateCreate A JSON object containing the resource data
+     * @param {SslCertificateApplicationCreate} sslCertificateApplicationCreate A JSON object containing the resource data
      */
-    public async addApplicationSslCertificate(applicationId: number, sslCertificateCreate: SslCertificateCreate): Promise<ApiResponse<SslCertificate>> {
+    public async addApplicationSslCertificate(applicationId: number, sslCertificateApplicationCreate: SslCertificateApplicationCreate): Promise<ApiResponse<SslCertificate>> {
         if (applicationId === null || applicationId === undefined) {
             throw new ArgumentNullException('applicationId', 'addApplicationSslCertificate');
         }
-        if (sslCertificateCreate === null || sslCertificateCreate === undefined) {
-            throw new ArgumentNullException('sslCertificateCreate', 'addApplicationSslCertificate');
+        if (sslCertificateApplicationCreate === null || sslCertificateApplicationCreate === undefined) {
+            throw new ArgumentNullException('sslCertificateApplicationCreate', 'addApplicationSslCertificate');
         }
         
         let queryString = '';
 
         const requestUrl = '/applications/{application_id}/ssl-certificates' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <SslCertificate, SslCertificateCreate>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))), sslCertificateCreate);
+        const response = await this.post <SslCertificate, SslCertificateApplicationCreate>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))), sslCertificateApplicationCreate);
         return new ApiResponse(response);
     }
 

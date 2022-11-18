@@ -16,13 +16,13 @@
 /**
  * 
  * @export
- * @interface UserPasswordSendResetLink
+ * @interface UserResendVerification
  */
-export interface UserPasswordSendResetLink {
+export interface UserResendVerification {
     /**
-     * The user email to send the password reset link
+     * The user email to resend the verification link to. Must be a valid email address.
      * @type {string}
-     * @memberof UserPasswordSendResetLink
+     * @memberof UserResendVerification
      */
     email: string;
 }

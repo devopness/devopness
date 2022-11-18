@@ -12,73 +12,66 @@
  */
 
 
-import { Step } from './step';
 import { UserRelation } from './user-relation';
 
 /**
  * 
  * @export
- * @interface Pipeline
+ * @interface PipelineRelation
  */
-export interface Pipeline {
+export interface PipelineRelation {
     /**
      * The unique ID of the given pipeline
      * @type {number}
-     * @memberof Pipeline
+     * @memberof PipelineRelation
      */
     id: number;
     /**
      * The pipeline\'s name
      * @type {string}
-     * @memberof Pipeline
+     * @memberof PipelineRelation
      */
     name: string;
     /**
      * ID of the environment this pipeline belongs to
      * @type {number}
-     * @memberof Pipeline
+     * @memberof PipelineRelation
      */
     environment_id: number;
     /**
      * ID of the project this pipeline belongs to
      * @type {number}
-     * @memberof Pipeline
+     * @memberof PipelineRelation
      */
     project_id: number;
     /**
      * The pipeline\'s resource type
      * @type {string}
-     * @memberof Pipeline
+     * @memberof PipelineRelation
      */
     resource_type: string;
     /**
      * The pipeline\'s resource ID
      * @type {number}
-     * @memberof Pipeline
+     * @memberof PipelineRelation
      */
     resource_id: number;
     /**
      * 
-     * @type {Array<Step>}
-     * @memberof Pipeline
-     */
-    steps: Array<Step>;
-    /**
-     * 
      * @type {UserRelation}
-     * @memberof Pipeline
+     * @memberof PipelineRelation
      */
     created_by_user: UserRelation;
     /**
      * The date and time when the record was created
      * @type {string}
-     * @memberof Pipeline
+     * @memberof PipelineRelation
      */
     created_at: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
-     * @memberof Pipeline
+     * @memberof PipelineRelation
      */
     updated_at: string;
 }

@@ -18,55 +18,55 @@ import { VariableType } from './variable-type';
 /**
  * 
  * @export
- * @interface VariableCreate
+ * @interface VariableApplicationCreate
  */
-export interface VariableCreate {
+export interface VariableApplicationCreate {
     /**
      * The unique key used to identify the variable on the target.                 When variable is of type `file`, this is the relative path                 to the file within the application directory. Must not be greater than 100 characters.
      * @type {string}
-     * @memberof VariableCreate
+     * @memberof VariableApplicationCreate
      */
     key: string;
     /**
      * The value to be assigned to this variable when deployed to its target.                 When variable is of type `file`, this is the file content. Must not be greater than 21504 characters.
      * @type {string}
-     * @memberof VariableCreate
+     * @memberof VariableApplicationCreate
      */
     value: string;
     /**
      * A text describing the variable, provided by the end user.
      * @type {string}
-     * @memberof VariableCreate
+     * @memberof VariableApplicationCreate
      */
     description?: string;
     /**
      * 
      * @type {VariableTarget}
-     * @memberof VariableCreate
+     * @memberof VariableApplicationCreate
      */
     target: VariableTarget;
     /**
      * 
      * @type {VariableType}
-     * @memberof VariableCreate
+     * @memberof VariableApplicationCreate
      */
     type: VariableType;
     /**
      * Indicates if the variable value should be visible or not in the deployment logs.
      * @type {boolean}
-     * @memberof VariableCreate
+     * @memberof VariableApplicationCreate
      */
     hidden: boolean;
     /**
      * The ID of the resource this variable is linked to.
      * @type {number}
-     * @memberof VariableCreate
+     * @memberof VariableApplicationCreate
      */
     resource_id: number;
     /**
      * The type of the resource this variable is linked to. Must be one of <code>application</code>.
      * @type {string}
-     * @memberof VariableCreate
+     * @memberof VariableApplicationCreate
      */
     resource_type: string;
 }

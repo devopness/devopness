@@ -21,7 +21,7 @@ import { UserRelation } from './user-relation';
  */
 export interface ProjectRelation {
     /**
-     * The unique id of the given record
+     * The Id of the project
      * @type {number}
      * @memberof ProjectRelation
      */
@@ -39,28 +39,34 @@ export interface ProjectRelation {
      */
     name: string;
     /**
-     * A base64 string representation of the logo image
-     * @type {string}
-     * @memberof ProjectRelation
-     */
-    logo_image?: string;
-    /**
      * A URL path to the project\'s logo image
      * @type {string}
      * @memberof ProjectRelation
      */
-    logo_url?: string | null;
+    logo_url: string | null;
     /**
      * The list of the operating system users found in all the servers linked to a project
      * @type {Array<object>}
      * @memberof ProjectRelation
      */
-    os_users?: Array<object>;
+    os_users: Array<object>;
     /**
      * 
      * @type {UserRelation}
      * @memberof ProjectRelation
      */
-    created_by_user?: UserRelation;
+    created_by_user: UserRelation;
+    /**
+     * The date and time when the record was created
+     * @type {string}
+     * @memberof ProjectRelation
+     */
+    created_at: string;
+    /**
+     * The date and time when the record was last updated
+     * @type {string}
+     * @memberof ProjectRelation
+     */
+    updated_at: string;
 }
 

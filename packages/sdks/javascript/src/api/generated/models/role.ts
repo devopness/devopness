@@ -20,19 +20,13 @@
  */
 export interface Role {
     /**
-     * The unique id of the given record
+     * The unique ID of the given role
      * @type {number}
      * @memberof Role
      */
     id: number;
     /**
-     * The id of the project this role belongs to
-     * @type {number}
-     * @memberof Role
-     */
-    project_id: number;
-    /**
-     * The role\'s name
+     * The name of the given role
      * @type {string}
      * @memberof Role
      */
@@ -42,7 +36,13 @@ export interface Role {
      * @type {string}
      * @memberof Role
      */
-    description: string | null;
+    description: string;
+    /**
+     * The ID of the project this role belongs to
+     * @type {number}
+     * @memberof Role
+     */
+    project_id: number;
     /**
      * The list of permissions for this role
      * @type {Array<string>}

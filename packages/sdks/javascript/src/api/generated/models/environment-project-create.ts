@@ -17,20 +17,20 @@ import { EnvironmentType } from './environment-type';
 /**
  * 
  * @export
- * @interface EnvironmentCreate
+ * @interface EnvironmentProjectCreate
  */
-export interface EnvironmentCreate {
-    /**
-     * The environment\'s name
-     * @type {string}
-     * @memberof EnvironmentCreate
-     */
-    name: string;
+export interface EnvironmentProjectCreate {
     /**
      * 
      * @type {EnvironmentType}
-     * @memberof EnvironmentCreate
+     * @memberof EnvironmentProjectCreate
      */
     type: EnvironmentType;
+    /**
+     * The environment\'s name. Must not be greater than 60 characters.
+     * @type {string}
+     * @memberof EnvironmentProjectCreate
+     */
+    name: string;
 }
 

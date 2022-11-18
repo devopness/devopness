@@ -16,7 +16,7 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { Team } from '../../generated/models';
-import { TeamCreate } from '../../generated/models';
+import { TeamProjectCreate } from '../../generated/models';
 import { TeamRelation } from '../../generated/models';
 
 /**
@@ -26,29 +26,29 @@ export class ProjectsTeamsApiService extends ApiBaseService {
     /**
      * 
      * @summary Create a team to the given project
-     * @param {number} projectId The numeric project ID
-     * @param {TeamCreate} teamCreate A JSON object containing team data
+     * @param {number} projectId The ID of the project.
+     * @param {TeamProjectCreate} teamProjectCreate A JSON object containing the resource data
      */
-    public async addTeam(projectId: number, teamCreate: TeamCreate): Promise<ApiResponse<Team>> {
+    public async addProjectTeam(projectId: number, teamProjectCreate: TeamProjectCreate): Promise<ApiResponse<Team>> {
         if (projectId === null || projectId === undefined) {
-            throw new ArgumentNullException('projectId', 'addTeam');
+            throw new ArgumentNullException('projectId', 'addProjectTeam');
         }
-        if (teamCreate === null || teamCreate === undefined) {
-            throw new ArgumentNullException('teamCreate', 'addTeam');
+        if (teamProjectCreate === null || teamProjectCreate === undefined) {
+            throw new ArgumentNullException('teamProjectCreate', 'addProjectTeam');
         }
         
         let queryString = '';
 
         const requestUrl = '/projects/{project_id}/teams' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <Team, TeamCreate>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), teamCreate);
+        const response = await this.post <Team, TeamProjectCreate>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), teamProjectCreate);
         return new ApiResponse(response);
     }
 
     /**
      * 
-     * @summary Returns a list of all teams belonging to a project
-     * @param {number} projectId Numeric ID of the project to get teams from
+     * @summary Return a list of all teams belonging to a project
+     * @param {number} projectId The ID of the project.
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */

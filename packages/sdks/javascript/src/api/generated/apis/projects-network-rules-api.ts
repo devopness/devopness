@@ -16,7 +16,7 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { NetworkRule } from '../../generated/models';
-import { NetworkRuleCreate } from '../../generated/models';
+import { NetworkRuleProjectCreate } from '../../generated/models';
 import { NetworkRuleRelation } from '../../generated/models';
 
 /**
@@ -27,21 +27,21 @@ export class ProjectsNetworkRulesApiService extends ApiBaseService {
      * 
      * @summary Add a Network Rule to the given project
      * @param {number} projectId The ID of the project.
-     * @param {NetworkRuleCreate} networkRuleCreate A JSON object containing the resource data
+     * @param {NetworkRuleProjectCreate} networkRuleProjectCreate A JSON object containing the resource data
      */
-    public async addProjectNetworkRule(projectId: number, networkRuleCreate: NetworkRuleCreate): Promise<ApiResponse<NetworkRule>> {
+    public async addProjectNetworkRule(projectId: number, networkRuleProjectCreate: NetworkRuleProjectCreate): Promise<ApiResponse<NetworkRule>> {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'addProjectNetworkRule');
         }
-        if (networkRuleCreate === null || networkRuleCreate === undefined) {
-            throw new ArgumentNullException('networkRuleCreate', 'addProjectNetworkRule');
+        if (networkRuleProjectCreate === null || networkRuleProjectCreate === undefined) {
+            throw new ArgumentNullException('networkRuleProjectCreate', 'addProjectNetworkRule');
         }
         
         let queryString = '';
 
         const requestUrl = '/projects/{project_id}/network-rules' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <NetworkRule, NetworkRuleCreate>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), networkRuleCreate);
+        const response = await this.post <NetworkRule, NetworkRuleProjectCreate>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), networkRuleProjectCreate);
         return new ApiResponse(response);
     }
 

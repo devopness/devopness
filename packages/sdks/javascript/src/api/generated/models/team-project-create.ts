@@ -16,26 +16,20 @@
 /**
  * 
  * @export
- * @interface SshKeyCreate
+ * @interface TeamProjectCreate
  */
-export interface SshKeyCreate {
+export interface TeamProjectCreate {
     /**
-     * The ssh key\'s name. Must not be greater than 60 characters.
+     * The name of the team. Must not be greater than 255 characters.
      * @type {string}
-     * @memberof SshKeyCreate
+     * @memberof TeamProjectCreate
      */
     name: string;
     /**
-     * The public key of the ssh key.
+     * The URL to team\'s image. Must be a valid URL.
      * @type {string}
-     * @memberof SshKeyCreate
+     * @memberof TeamProjectCreate
      */
-    public_key: string;
-    /**
-     * List of valid resource IDs
-     * @type {Array<number>}
-     * @memberof SshKeyCreate
-     */
-    servers?: Array<number>;
+    photo_url?: string;
 }
 

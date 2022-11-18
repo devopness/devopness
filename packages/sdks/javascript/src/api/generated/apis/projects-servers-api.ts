@@ -16,7 +16,7 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { Server } from '../../generated/models';
-import { ServerCreate } from '../../generated/models';
+import { ServerProjectCreate } from '../../generated/models';
 import { ServerRelation } from '../../generated/models';
 
 /**
@@ -27,21 +27,21 @@ export class ProjectsServersApiService extends ApiBaseService {
      * 
      * @summary Creates a server and link it to the given project
      * @param {number} projectId The ID of the project.
-     * @param {ServerCreate} serverCreate A JSON object containing the resource data
+     * @param {ServerProjectCreate} serverProjectCreate A JSON object containing the resource data
      */
-    public async addProjectServer(projectId: number, serverCreate: ServerCreate): Promise<ApiResponse<Server>> {
+    public async addProjectServer(projectId: number, serverProjectCreate: ServerProjectCreate): Promise<ApiResponse<Server>> {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'addProjectServer');
         }
-        if (serverCreate === null || serverCreate === undefined) {
-            throw new ArgumentNullException('serverCreate', 'addProjectServer');
+        if (serverProjectCreate === null || serverProjectCreate === undefined) {
+            throw new ArgumentNullException('serverProjectCreate', 'addProjectServer');
         }
         
         let queryString = '';
 
         const requestUrl = '/projects/{project_id}/servers' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <Server, ServerCreate>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), serverCreate);
+        const response = await this.post <Server, ServerProjectCreate>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), serverProjectCreate);
         return new ApiResponse(response);
     }
 

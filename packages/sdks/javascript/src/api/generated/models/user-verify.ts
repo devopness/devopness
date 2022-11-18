@@ -16,31 +16,31 @@
 /**
  * 
  * @export
- * @interface UserAccountActivate
+ * @interface UserVerify
  */
-export interface UserAccountActivate {
+export interface UserVerify {
     /**
-     * The email of the user\'s account
+     * The email of the user\'s account. Must be a valid email address. Must not be greater than 255 characters.
      * @type {string}
-     * @memberof UserAccountActivate
+     * @memberof UserVerify
      */
     email: string;
     /**
-     * The security token of the account
+     * The security token of the account. Must not be greater than 255 characters.
      * @type {string}
-     * @memberof UserAccountActivate
+     * @memberof UserVerify
      */
     token: string;
     /**
-     * The new user name to account
+     * The new user name to account. Must be at least 3 characters. Must not be greater than 255 characters.
      * @type {string}
-     * @memberof UserAccountActivate
+     * @memberof UserVerify
      */
     name: string;
     /**
-     * The new password to account
+     * The new password to account. Must be at least 8 characters.
      * @type {string}
-     * @memberof UserAccountActivate
+     * @memberof UserVerify
      */
     password: string;
 }

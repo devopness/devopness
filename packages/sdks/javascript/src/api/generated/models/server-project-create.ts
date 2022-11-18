@@ -12,50 +12,43 @@
  */
 
 
-import { EnvironmentLinkServer } from './environment-link-server';
 import { ServerBlueprint } from './server-blueprint';
 import { ServerProvisionSettings } from './server-provision-settings';
 
 /**
  * 
  * @export
- * @interface ServerCreate
+ * @interface ServerProjectCreate
  */
-export interface ServerCreate {
+export interface ServerProjectCreate {
     /**
-     * The hostname to be set on Linux servers. Accepts numbers (0-9), dash (-) and lower case non accented characters
+     * The hostname to be set on Linux servers. Accepts numbers (0-9), dash (-) and lower case non accented characters. Must contain only letters, numbers, dashes and underscores. Must not be greater than 60 characters.
      * @type {string}
-     * @memberof ServerCreate
+     * @memberof ServerProjectCreate
      */
     hostname: string;
     /**
-     * Public ipv4 address for server access
+     * Public ipv4 address for server access. This field is required when <code>provision_settings.self_hosted</code> is <code>true</code>.
      * @type {string}
-     * @memberof ServerCreate
+     * @memberof ServerProjectCreate
      */
     ip_address?: string;
     /**
-     * The network port to which the SSH daemon is listening to SSH connections on the server
+     * The network port to which the SSH daemon is listening to SSH connections on the server. This field is required when <code>provision_settings.self_hosted</code> is <code>true</code>.
      * @type {number}
-     * @memberof ServerCreate
+     * @memberof ServerProjectCreate
      */
     ssh_port?: number;
     /**
      * 
      * @type {ServerBlueprint}
-     * @memberof ServerCreate
+     * @memberof ServerProjectCreate
      */
     blueprint: ServerBlueprint;
     /**
      * 
-     * @type {Array<EnvironmentLinkServer>}
-     * @memberof ServerCreate
-     */
-    environments?: Array<EnvironmentLinkServer>;
-    /**
-     * 
      * @type {ServerProvisionSettings}
-     * @memberof ServerCreate
+     * @memberof ServerProjectCreate
      */
     provision_settings: ServerProvisionSettings;
 }

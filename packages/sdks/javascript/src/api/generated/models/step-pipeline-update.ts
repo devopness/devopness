@@ -17,38 +17,50 @@ import { PipelineStepRunnerName } from './pipeline-step-runner-name';
 /**
  * 
  * @export
- * @interface PipelineStepCreate
+ * @interface StepPipelineUpdate
  */
-export interface PipelineStepCreate {
+export interface StepPipelineUpdate {
+    /**
+     * The unique ID of the given pipeline step.
+     * @type {number}
+     * @memberof StepPipelineUpdate
+     */
+    id: number;
     /**
      * Name/short description of the script. Must be at least 4 characters. Must not be greater than 60 characters.
      * @type {string}
-     * @memberof PipelineStepCreate
+     * @memberof StepPipelineUpdate
      */
     name: string;
     /**
      * The pipeline step\'s type. Must not be greater than 20 characters.
      * @type {string}
-     * @memberof PipelineStepCreate
+     * @memberof StepPipelineUpdate
      */
     type?: string;
     /**
      * A command line or multiline bash script. Must be at least 10 characters. Must not be greater than 300 characters.
      * @type {string}
-     * @memberof PipelineStepCreate
+     * @memberof StepPipelineUpdate
      */
     command: string;
     /**
      * 
      * @type {PipelineStepRunnerName}
-     * @memberof PipelineStepCreate
+     * @memberof StepPipelineUpdate
      */
     runner: PipelineStepRunnerName;
     /**
      * The name of the Unix user on behalf of which the script will be executed. Must not be greater than 60 characters.
      * @type {string}
-     * @memberof PipelineStepCreate
+     * @memberof StepPipelineUpdate
      */
     run_as_user?: string;
+    /**
+     * Repositions the pipeline step after the step with the given `trigger_order`. Must be at least 0. Must not be greater than 16777214.
+     * @type {number}
+     * @memberof StepPipelineUpdate
+     */
+    trigger_after?: number;
 }
 

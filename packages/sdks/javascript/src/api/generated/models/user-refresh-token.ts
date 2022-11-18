@@ -16,14 +16,14 @@
 /**
  * 
  * @export
- * @interface UserAccountResendVerification
+ * @interface UserRefreshToken
  */
-export interface UserAccountResendVerification {
+export interface UserRefreshToken {
     /**
-     * The user email to resend the verification link
+     * A token to be used after the original access token has expired, to issue a new token without requiring a new request to the /users/login endpoint.
      * @type {string}
-     * @memberof UserAccountResendVerification
+     * @memberof UserRefreshToken
      */
-    email: string;
+    refresh_token: string;
 }
 

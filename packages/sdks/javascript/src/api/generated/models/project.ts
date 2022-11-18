@@ -19,7 +19,6 @@ import { EnvironmentRelation } from './environment-relation';
 import { NetworkRuleRelation } from './network-rule-relation';
 import { ServerRelation } from './server-relation';
 import { ServiceRelation } from './service-relation';
-import { SshKeyRelation } from './ssh-key-relation';
 import { UserRelation } from './user-relation';
 
 /**
@@ -29,7 +28,7 @@ import { UserRelation } from './user-relation';
  */
 export interface Project {
     /**
-     * The unique id of the given record
+     * The Id of the project
      * @type {number}
      * @memberof Project
      */
@@ -47,47 +46,23 @@ export interface Project {
      */
     name: string;
     /**
-     * A base64 string representation of the logo image
-     * @type {string}
-     * @memberof Project
-     */
-    logo_image?: string;
-    /**
      * A URL path to the project\'s logo image
      * @type {string}
      * @memberof Project
      */
-    logo_url?: string | null;
-    /**
-     * The list of SSH keys added to the project
-     * @type {Array<SshKeyRelation>}
-     * @memberof Project
-     */
-    ssh_keys?: Array<SshKeyRelation>;
+    logo_url: string | null;
     /**
      * The list of the operating system users found in all the servers linked to a project
      * @type {Array<object>}
      * @memberof Project
      */
-    os_users?: Array<object>;
-    /**
-     * 
-     * @type {Array<ApplicationRelation>}
-     * @memberof Project
-     */
-    applications: Array<ApplicationRelation>;
+    os_users: Array<object>;
     /**
      * 
      * @type {UserRelation}
      * @memberof Project
      */
-    created_by_user?: UserRelation;
-    /**
-     * 
-     * @type {Array<CronJobRelation>}
-     * @memberof Project
-     */
-    cron_jobs: Array<CronJobRelation>;
+    created_by_user: UserRelation;
     /**
      * 
      * @type {Array<EnvironmentRelation>}
@@ -96,16 +71,28 @@ export interface Project {
     environments: Array<EnvironmentRelation>;
     /**
      * 
-     * @type {Array<NetworkRuleRelation>}
+     * @type {Array<ApplicationRelation>}
      * @memberof Project
      */
-    network_rules: Array<NetworkRuleRelation>;
+    applications: Array<ApplicationRelation>;
+    /**
+     * 
+     * @type {Array<CronJobRelation>}
+     * @memberof Project
+     */
+    cron_jobs: Array<CronJobRelation>;
     /**
      * 
      * @type {Array<DaemonRelation>}
      * @memberof Project
      */
     daemons: Array<DaemonRelation>;
+    /**
+     * 
+     * @type {Array<NetworkRuleRelation>}
+     * @memberof Project
+     */
+    network_rules: Array<NetworkRuleRelation>;
     /**
      * 
      * @type {Array<ServerRelation>}
@@ -118,5 +105,17 @@ export interface Project {
      * @memberof Project
      */
     services: Array<ServiceRelation>;
+    /**
+     * The date and time when the record was created
+     * @type {string}
+     * @memberof Project
+     */
+    created_at: string;
+    /**
+     * The date and time when the record was last updated
+     * @type {string}
+     * @memberof Project
+     */
+    updated_at: string;
 }
 

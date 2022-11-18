@@ -16,14 +16,14 @@
 /**
  * 
  * @export
- * @interface UserRefreshTokenCreate
+ * @interface PasswordResetResponse
  */
-export interface UserRefreshTokenCreate {
+export interface PasswordResetResponse {
     /**
-     * A token to be used after the original access token has expired, to issue a new token without requiring a new request to the `/users/login` endpoint 
+     * Message with information about the response
      * @type {string}
-     * @memberof UserRefreshTokenCreate
+     * @memberof PasswordResetResponse
      */
-    refresh_token: string;
+    message: string;
 }
 

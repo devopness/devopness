@@ -20,25 +20,25 @@
  */
 export interface ProjectUpdate {
     /**
-     * The unique id of the given record
+     * The ID of the project.
      * @type {number}
      * @memberof ProjectUpdate
      */
     id: number;
     /**
-     * The project\'s name
+     * The name of the project. Must not be greater than 60 characters.
      * @type {string}
      * @memberof ProjectUpdate
      */
     name: string;
     /**
-     * A base64 string representation of the logo image
+     * A base64 string representation of the logo image.
      * @type {string}
      * @memberof ProjectUpdate
      */
     logo_image?: string;
     /**
-     * A URL path to the project\'s logo image
+     * A URL path to the project\'s logo image. Must be a valid URL.
      * @type {string}
      * @memberof ProjectUpdate
      */

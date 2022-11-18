@@ -16,37 +16,49 @@
 /**
  * 
  * @export
- * @interface TeamRelation
+ * @interface RoleRelation
  */
-export interface TeamRelation {
+export interface RoleRelation {
     /**
-     * The unique ID of the given team
+     * The unique ID of the given role
      * @type {number}
-     * @memberof TeamRelation
+     * @memberof RoleRelation
      */
     id: number;
     /**
-     * The name of the given team
+     * The name of the given role
      * @type {string}
-     * @memberof TeamRelation
+     * @memberof RoleRelation
      */
     name: string;
     /**
-     * The URL to team\'s image
+     * Description of this role
      * @type {string}
-     * @memberof TeamRelation
+     * @memberof RoleRelation
      */
-    photo_url: string | null;
+    description: string;
+    /**
+     * The ID of the project this role belongs to
+     * @type {number}
+     * @memberof RoleRelation
+     */
+    project_id: number;
+    /**
+     * The list of permissions for this role
+     * @type {Array<string>}
+     * @memberof RoleRelation
+     */
+    permissions: Array<string>;
     /**
      * The date and time when the record was created
      * @type {string}
-     * @memberof TeamRelation
+     * @memberof RoleRelation
      */
     created_at: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
-     * @memberof TeamRelation
+     * @memberof RoleRelation
      */
     updated_at: string;
 }
