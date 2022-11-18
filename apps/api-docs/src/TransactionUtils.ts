@@ -204,6 +204,21 @@ export default class TransactionUtils {
         }
     }
 
+    rewriteTransactionRequestUriResourceId(resourceType: string): TransactionHook {
+        return (transaction: Transaction) => {
+            if (transaction.skip) {
+                return;
+            }
+
+            const resourceId = this.fixtureStore.get<Identifiable>(resourceType)?.id as string;
+            const path = transaction.request.uri
+                .replace(new RegExp(`${resourceType}\/[0-9]+`), `${resourceType}/${resourceId}`);
+
+            transaction.fullPath = path;
+            transaction.id = `${transaction.request.method} (${transaction.expected.statusCode}) ${path}`;
+        }
+    }
+
     /**
      * Returns a `TransactionHook` that resolves all fixture dependencies in a request body.
      * Applies `TransactionDependency` rewriting rules in the body data, using data present in the fixture store.

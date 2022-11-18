@@ -97,7 +97,7 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     ],
     'hook_outgoing_update': [
         { path: 'resource_id', fixture: 'application', field: 'id' },
-        { path: 'id', fixture: 'hook_outgoing_create', field: 'id' },
+        { path: 'id', fixture: 'hook_outgoing', field: 'id' },
     ],
     'hook_requests': [],
     'invitation_team_create': [
@@ -132,10 +132,8 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     'pipeline_create': [
         { path: 'resource_id', fixture: 'application', field: 'id' },
     ],
-    'pipeline_list': [],
-    'pipeline_step': [],
-    'pipeline_step_update': [
-        { path: 'id', fixture: 'pipeline_step', field: 'id' },
+    'pipeline_update': [
+        { path: 'id', fixture: 'pipeline', field: 'id' },
     ],
     'project': [],
     'project_update': [
@@ -190,6 +188,10 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
         { path: 'servers[0]', fixture: 'server', field: 'id' },
     ],
     'ssl_certificate': [],
+    'step': [],
+    'step_pipeline_update': [
+        { path: 'id', fixture: 'step', field: 'id' },
+    ],
     'team': [],
     'team_environment_create': [
         { path: 'project_id', fixture: 'project', field: 'id' },

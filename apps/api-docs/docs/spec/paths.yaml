@@ -185,7 +185,7 @@
     $ref: ./auto-generated/endpoints/delete-pipeline.yaml
 '/pipelines/{resource_type}/{resource_id}':
   get:
-    $ref: ./endpoints/pipelines/paths/pipelines-resource-id-list.yaml
+    $ref: ./auto-generated/endpoints/list-pipelines-by-resource-type.yaml
   post:
     $ref: ./auto-generated/endpoints/add-pipeline.yaml
 /pipelines/{pipeline_id}/steps:

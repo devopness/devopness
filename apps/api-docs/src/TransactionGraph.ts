@@ -138,13 +138,10 @@ export default class TransactionGraph {
         for (const fixture in fixtureTransactionInputs) {
             // check if there's transaction producing that fixture, otherwise it's an unreachable branch
             if (!(fixture in fixtureTransactionOutputs)) {
-                this.log(`fixture '${fixture}' has no generator transactions, skipping transactions [${fixtureTransactionInputs[fixture]}];`)
-                for (const transaction of fixtureTransactionInputs[fixture] || []) {
-                    unreachable[transaction] = true;
-                }
-                for (const transaction of fixtureDeleteTransactions[fixture] || []) {
-                    unreachable[transaction] = true;
-                }
+                throw new Error(
+                    `fixture '${fixture}' has no generator transactions, skipping transactions [${fixtureTransactionInputs[fixture]}]\n`
+                    + `Tip: add '${fixture}' to list 'fixtureTransactionOutputs' on hooks.ts file.`
+                );
             }
         }
 

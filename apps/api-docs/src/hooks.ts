@@ -23,19 +23,16 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     const preSkiplist = [
         'replaceLinkedServers201',
         'connectServer200',
-        // make all social_account routes unreachable by its skipping generator route
-        'addSocialAccount201',
         // SSL certificates can only be added to applications that have a successful deployment
         'addApplicationSslCertificate201',
+        'getSslCertificate200',
+        'deleteSslCertificate204',
         'updateServer204',
         // A hook request is not created by the tests, so we don't have a valid hook_request_id
         'getHookRequest200',
         // @todo: Resolves conflicts to trigger a hook on dev-api
         'triggerHook201',
         'triggerHook204',
-        // @todo: fake-server route could force create a credential so we would at least be able to validate GET, PUT and DELETE for /credentials endpoints
-        'addCredential201',
-        'deleteCredential204',
         'acceptInvitation204',
         // We do not create the member when the team is created, therefore we cannot retrieve a team member by its ID.
         'getTeamMember200',
@@ -51,11 +48,6 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         'getTeamMember200',
         'deleteTeamMember204',
         'sendInvitation201',
-        // @todo: fix create pipeline resource_id and re-enable transaction
-        'addPipeline201',
-        'linkStepToPipeline204',
-        'unlinkStepFromPipeline204',
-        'deletePipeline204',
         // @todo: see how to fixture team_invitation_id
         'acceptTeamInvitation204',
         'linkServerToEnvironment201',
@@ -72,6 +64,8 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     const postSkiplist = [
         // source_provider has a static fixture, so don't delete it
         'deleteSourceProvider204',
+        'deleteSocialAccount204',
+        'deleteCredential204',
         // social_account related
         'getSocialAccountStatusByName200',
         // email-dependant user transactions
@@ -93,6 +87,8 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
             'user_credentials': ['addUser202'],
             // user tokens are a result of a successful `login` transaction
             'user_login_response': ['loginUser200'],
+            'pipeline': ['addPipeline201'],
+            'ssl_certificate': ['addApplicationSslCertificate201'],
         },
         fixtureTerminalTransactions: {
             // a successful `logout` transaction destroys user tokens
@@ -119,6 +115,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         ['deleteIncomingHook204', 'deleteEnvironment204'],
         ['linkStepToPipeline204', 'unlinkStepFromPipeline204'],
         ['unlinkStepFromPipeline204', 'deletePipeline204'],
+        ['addPipeline201', 'listPipelinesByResourceType200'],
     ]);
 
     let apiSpec = new OpenAPISpec(logger);
@@ -287,6 +284,20 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         transaction.skip = true;
     })
 
+    const staticSocialAccountId = 'github';
+    before('addSocialAccount201', (transaction: Transaction) => {
+        hooks.log(`=> 'social_account' (id=${staticSocialAccountId})`)
+        fixtures.put('social_account', { id: `${staticSocialAccountId}` });
+        transaction.skip = true;
+    })
+
+    const staticCloudCredentialId = 1;
+    before('addCredential201', (transaction: Transaction) => {
+        hooks.log(`=> 'credential' (id=${staticCloudCredentialId})`)
+        fixtures.put('credential', { id: `${staticCloudCredentialId}` });
+        transaction.skip = true;
+    })
+
     //// repositories
     before('getRepository200', (transaction: Transaction) => {
         transaction.fullPath = `/source-providers/${staticSourceProviderId}/repositories/devopness-api-tests/tester`
@@ -319,6 +330,9 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     before('addTeamToEnvironment201', utils.rewriteTransactionRequestBody((body: any) => {
         body['name'] = `team-${new Date().getTime()}`;
     }));
+
+    before('listPipelinesByResourceType200', utils.rewriteTransactionRequestUriResourceId('application'));
+    before('addPipeline201', utils.rewriteTransactionRequestUriResourceId('application'));
 
     done();
 })
