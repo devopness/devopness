@@ -23,7 +23,6 @@ import { SslCertificateService } from './services/SslCertificateService';
 import { StaticService } from './services/StaticService';
 import { TeamInvitationService } from './services/TeamInvitationService';
 import { TeamService } from './services/TeamService';
-import { UserPasswordService } from './services'
 import { UserService } from './services/UserService';
 import { VariableService } from './services/VariableService';
 
@@ -53,7 +52,6 @@ export class DevopnessApiClient {
   teamInvitations: TeamInvitationService;
   teams: TeamService;
   users: UserService;
-  usersPasswords: UserPasswordService;
   variables: VariableService;
 
   constructor(options?: ConfigurationOptions) {
@@ -87,7 +85,6 @@ export class DevopnessApiClient {
     this.teamInvitations = new TeamInvitationService();
     this.teams = new TeamService();
     this.users = new UserService();
-    this.usersPasswords = new UserPasswordService();
     this.variables = new VariableService();
   }
 

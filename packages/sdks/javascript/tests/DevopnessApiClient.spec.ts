@@ -36,6 +36,6 @@ test("base URL is configurable on initialization", () => {
     expect(apiClient).toHaveProperty('teamInvitations')
     expect(apiClient).toHaveProperty('teams')
     expect(apiClient).toHaveProperty('users')
-    expect(apiClient).toHaveProperty('usersPasswords')
+    expect(apiClient.users).toHaveProperty('passwords')
     expect(apiClient).toHaveProperty('variables')
 })
