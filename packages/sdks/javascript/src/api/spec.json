@@ -3938,10 +3938,13 @@
     },
     "/pipelines/{resource_type}/{resource_id}": {
       "get": {
-        "summary": "Returns a list of pipelines to a resource",
-        "operationId": "listPipelines",
+        "summary": "Return a list of pipelines to a resource",
+        "operationId": "listPipelinesByResourceType",
+        "description": {
+          "$ref": "../spec/descriptions/list-pipelines-by-resource-type.md"
+        },
         "tags": [
-          "Pipelines - Resources"
+          "Pipelines"
         ],
         "parameters": [
           {
@@ -3961,41 +3964,42 @@
           },
           {
             "in": "path",
-            "name": "resource_type",
-            "example": "application",
-            "schema": {
-              "type": "string"
-            },
+            "name": "resource_id",
+            "description": "The resource ID.",
+            "example": 123,
             "required": true,
-            "description": "Pipeline's resource type to get pipelines from"
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
           },
           {
             "in": "path",
-            "name": "resource_id",
-            "example": 323,
-            "schema": {
-              "type": "integer"
-            },
+            "name": "resource_type",
+            "description": "The resource type to get pipelines from.",
+            "example": "application",
             "required": true,
-            "description": "Unique ID of the resource to get pipelines from"
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipelineList"
+                }
+              }
+            },
             "headers": {
               "Link": {
                 "schema": {
                   "type": "string"
                 },
                 "description": "Link header with `first`, `last`, `previous` and `next` page's links"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Pipelines"
-                }
               }
             }
           }
