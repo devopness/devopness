@@ -575,7 +575,7 @@
             "in": "path",
             "name": "application_id",
             "description": "The ID of the application.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -627,7 +627,7 @@
             "in": "path",
             "name": "application_id",
             "description": "The ID of the application.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -681,7 +681,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/SslCertificateCreate"
+                "$ref": "#/components/schemas/SslCertificateApplicationCreate"
               }
             }
           }
@@ -718,7 +718,7 @@
             "in": "path",
             "name": "application_id",
             "description": "The ID of the application.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -770,7 +770,7 @@
             "in": "path",
             "name": "application_id",
             "description": "The ID of the application.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -816,7 +816,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/VariableCreate"
+                "$ref": "#/components/schemas/VariableApplicationCreate"
               }
             }
           }
@@ -1265,7 +1265,7 @@
             "in": "path",
             "name": "environment_id",
             "description": "The ID of the environment.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -1301,7 +1301,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ApplicationCreate"
+                "$ref": "#/components/schemas/ApplicationEnvironmentCreate"
               }
             }
           }
@@ -1338,7 +1338,7 @@
             "in": "path",
             "name": "environment_id",
             "description": "The ID of the environment.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -1390,7 +1390,7 @@
             "in": "path",
             "name": "environment_id",
             "description": "The ID of the environment.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -1444,7 +1444,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CronJobCreate"
+                "$ref": "#/components/schemas/CronJobEnvironmentCreate"
               }
             }
           }
@@ -1481,7 +1481,7 @@
             "in": "path",
             "name": "environment_id",
             "description": "The ID of the environment.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -1533,7 +1533,7 @@
             "in": "path",
             "name": "environment_id",
             "description": "The ID of the environment.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -1587,129 +1587,9 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/DaemonCreate"
+                "$ref": "#/components/schemas/DaemonEnvironmentCreate"
               }
             }
-          }
-        }
-      }
-    },
-    "/environments/{environment_id}/members": {
-      "get": {
-        "summary": "Returns a list of all members belonging to an environment",
-        "operationId": "listEnvironmentMembers",
-        "tags": [
-          "Environments - Members"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "$ref": "#/components/parameters/pageNumber"
-          },
-          {
-            "$ref": "#/components/parameters/pageSize"
-          },
-          {
-            "in": "path",
-            "name": "environment_id",
-            "example": 1,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "required": true,
-            "description": "Numeric ID of the environment to get members from"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "headers": {
-              "Link": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EnvironmentMembers"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/environments/{environment_id}/members/{user_id}": {
-      "get": {
-        "summary": "Returns the profile of a member on environment",
-        "operationId": "getEnvironmentMemberProfile",
-        "tags": [
-          "Environments - Members"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "$ref": "#/components/parameters/pageNumber"
-          },
-          {
-            "$ref": "#/components/parameters/pageSize"
-          },
-          {
-            "in": "path",
-            "name": "environment_id",
-            "example": 1,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "required": true,
-            "description": "Numeric ID of the environment to get members from"
-          },
-          {
-            "in": "path",
-            "name": "user_id",
-            "example": 1,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "required": true,
-            "description": "Numeric ID of the user to get profile information"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EnvironmentMemberProfile"
-                }
-              }
-            }
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
           }
         }
       }
@@ -1744,7 +1624,7 @@
             "in": "path",
             "name": "environment_id",
             "description": "The ID of the environment.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -1804,7 +1684,7 @@
             "in": "path",
             "name": "environment_id",
             "description": "The ID of the environment.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -1856,7 +1736,7 @@
             "in": "path",
             "name": "environment_id",
             "description": "The ID of the environment.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -1910,7 +1790,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ServerCreate"
+                "$ref": "#/components/schemas/ServerEnvironmentCreate"
               }
             }
           }
@@ -1947,7 +1827,7 @@
             "in": "path",
             "name": "environment_id",
             "description": "The ID of the environment.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -2007,7 +1887,7 @@
             "in": "path",
             "name": "environment_id",
             "description": "The ID of the environment.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -2069,7 +1949,7 @@
             "in": "path",
             "name": "environment_id",
             "description": "The ID of the environment.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -2123,7 +2003,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/SshKeyCreate"
+                "$ref": "#/components/schemas/SshKeyEnvironmentCreate"
               }
             }
           }
@@ -2291,12 +2171,15 @@
         }
       }
     },
-    "/environments/{environment_id}/teams": {
+    "/environments/{environment_id}/team-memberships": {
       "get": {
-        "summary": "Returns a list of all teams belonging to an environment",
-        "operationId": "listEnvironmentTeams",
+        "summary": "Return a list of teams with access to an environment",
+        "operationId": "listEnvironmentTeamMemberships",
+        "description": {
+          "$ref": "../spec/descriptions/list-environment-team-memberships.md"
+        },
         "tags": [
-          "Environments - Teams"
+          "Environments - Team Memberships"
         ],
         "parameters": [
           {
@@ -2317,31 +2200,31 @@
           {
             "in": "path",
             "name": "environment_id",
-            "example": 1,
+            "description": "The ID of the environment.",
+            "example": 123,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "Numeric ID of the environment to get teams from"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeamMembershipList"
+                }
+              }
+            },
             "headers": {
               "Link": {
                 "schema": {
                   "type": "string"
                 },
                 "description": "Link header with `first`, `last`, `previous` and `next` page's links"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Teams"
-                }
               }
             }
           }
@@ -3462,7 +3345,7 @@
             "in": "path",
             "name": "network_rule_id",
             "description": "The ID of the network rule.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -3517,7 +3400,7 @@
             "in": "path",
             "name": "network_rule_id",
             "description": "The ID of the network rule.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -3571,7 +3454,7 @@
             "in": "path",
             "name": "network_rule_id",
             "description": "The ID of the network rule.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -3649,7 +3532,7 @@
             "in": "path",
             "name": "daemon_id",
             "description": "The ID of the daemon.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -3704,7 +3587,7 @@
             "in": "path",
             "name": "daemon_id",
             "description": "The ID of the daemon.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -3758,7 +3641,7 @@
             "in": "path",
             "name": "daemon_id",
             "description": "The ID of the daemon.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -3836,7 +3719,7 @@
             "in": "path",
             "name": "daemon_id",
             "description": "The ID of the daemon.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -3906,7 +3789,7 @@
             "in": "path",
             "name": "pipeline_id",
             "description": "The ID of the pipeline.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -3960,7 +3843,7 @@
             "in": "path",
             "name": "pipeline_id",
             "description": "The ID of the pipeline.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -4028,7 +3911,7 @@
             "in": "path",
             "name": "pipeline_id",
             "description": "The ID of the pipeline.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -4054,70 +3937,6 @@
       }
     },
     "/pipelines/{resource_type}/{resource_id}": {
-      "post": {
-        "summary": "Create a new pipeline to a resource",
-        "operationId": "addPipeline",
-        "tags": [
-          "Pipelines - Resources"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "resource_type",
-            "example": "application",
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "description": "Pipeline's resource type to create"
-          },
-          {
-            "in": "path",
-            "name": "resource_id",
-            "example": 323,
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "Unique ID of the resource to create a pipeline"
-          }
-        ],
-        "requestBody": {
-          "description": "A JSON object containing pipeline data",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PipelineCreate"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Pipeline"
-                }
-              }
-            }
-          },
-          "422": {
-            "$ref": "#/components/responses/ValidationError"
-          }
-        }
-      },
       "get": {
         "summary": "Returns a list of pipelines to a resource",
         "operationId": "listPipelines",
@@ -4181,17 +4000,15 @@
             }
           }
         }
-      }
-    },
-    "/pipelines/{pipeline_id}/steps": {
+      },
       "post": {
-        "summary": "Add a step to a pipeline",
-        "operationId": "addPipelinePipelineStep",
+        "summary": "Add a Pipeline to a resource",
+        "operationId": "addPipeline",
         "description": {
-          "$ref": "../spec/descriptions/add-pipeline-pipeline-step.md"
+          "$ref": "../spec/descriptions/add-pipeline.md"
         },
         "tags": [
-          "Pipelines - Steps"
+          "Pipelines"
         ],
         "parameters": [
           {
@@ -4205,13 +4022,23 @@
           },
           {
             "in": "path",
-            "name": "pipeline_id",
-            "description": "The ID of the pipeline.",
-            "example": 1,
+            "name": "resource_id",
+            "description": "The resource ID.",
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
+            }
+          },
+          {
+            "in": "path",
+            "name": "resource_type",
+            "description": "The resource type to add a pipeline to.",
+            "example": "application",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -4221,7 +4048,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PipelineStep"
+                  "$ref": "#/components/schemas/Pipeline"
                 }
               }
             }
@@ -4253,19 +4080,19 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PipelineStepCreate"
+                "$ref": "#/components/schemas/PipelineCreate"
               }
             }
           }
         }
       }
     },
-    "/pipelines/{pipeline_id}/steps/{step_id}": {
-      "put": {
-        "summary": "Update an existing Pipeline Step",
-        "operationId": "updatePipelinePipelineStep",
+    "/pipelines/{pipeline_id}/steps": {
+      "post": {
+        "summary": "Add a step to a pipeline",
+        "operationId": "addPipelineStep",
         "description": {
-          "$ref": "../spec/descriptions/update-pipeline-pipeline-step.md"
+          "$ref": "../spec/descriptions/add-pipeline-step.md"
         },
         "tags": [
           "Pipelines - Steps"
@@ -4284,7 +4111,84 @@
             "in": "path",
             "name": "pipeline_id",
             "description": "The ID of the pipeline.",
-            "example": 1,
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Step"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StepPipelineCreate"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pipelines/{pipeline_id}/steps/{step_id}": {
+      "put": {
+        "summary": "Update an existing Pipeline Step",
+        "operationId": "updatePipelineStep",
+        "description": {
+          "$ref": "../spec/descriptions/update-pipeline-step.md"
+        },
+        "tags": [
+          "Pipelines - Steps"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "pipeline_id",
+            "description": "The ID of the pipeline.",
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -4295,7 +4199,7 @@
             "in": "path",
             "name": "step_id",
             "description": "The ID of the step.",
-            "example": 2,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -4334,7 +4238,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PipelineStepUpdate"
+                "$ref": "#/components/schemas/StepPipelineUpdate"
               }
             }
           }
@@ -4344,9 +4248,9 @@
     "/pipelines/{pipeline_id}/steps/{step_id}/link": {
       "post": {
         "summary": "Link a step to a Pipeline",
-        "operationId": "linkPipelineStepToPipeline",
+        "operationId": "linkStepToPipeline",
         "description": {
-          "$ref": "../spec/descriptions/link-pipeline-step-to-pipeline.md"
+          "$ref": "../spec/descriptions/link-step-to-pipeline.md"
         },
         "tags": [
           "Pipelines - Steps"
@@ -4365,7 +4269,7 @@
             "in": "path",
             "name": "pipeline_id",
             "description": "The ID of the pipeline.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -4376,7 +4280,7 @@
             "in": "path",
             "name": "step_id",
             "description": "The ID of the step.",
-            "example": 2,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -4404,9 +4308,9 @@
     "/pipelines/{pipeline_id}/steps/{step_id}/unlink": {
       "delete": {
         "summary": "Unlink a step from a Pipeline",
-        "operationId": "unlinkPipelineStepFromPipeline",
+        "operationId": "unlinkStepFromPipeline",
         "description": {
-          "$ref": "../spec/descriptions/unlink-pipeline-step-from-pipeline.md"
+          "$ref": "../spec/descriptions/unlink-step-from-pipeline.md"
         },
         "tags": [
           "Pipelines - Steps"
@@ -4425,7 +4329,7 @@
             "in": "path",
             "name": "pipeline_id",
             "description": "The ID of the pipeline.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -4436,7 +4340,7 @@
             "in": "path",
             "name": "step_id",
             "description": "The ID of the step.",
-            "example": 2,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -4787,64 +4691,12 @@
       }
     },
     "/projects/{project_id}/applications": {
-      "post": {
-        "summary": "Create a new application",
-        "operationId": "addApplicationToProject",
-        "tags": [
-          "Projects - Applications"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "project_id",
-            "example": 1,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "required": true,
-            "description": "Numeric ID of the project to which the application will be added"
-          }
-        ],
-        "requestBody": {
-          "description": "A JSON object containing project data",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ApplicationCreate"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Application"
-                }
-              }
-            }
-          },
-          "422": {
-            "$ref": "#/components/responses/ValidationError"
-          }
-        }
-      },
       "get": {
-        "summary": "Returns a list of all applications belonging to a project",
+        "summary": "Return a list of all applications belonging to a project",
         "operationId": "listProjectApplications",
+        "description": {
+          "$ref": "../spec/descriptions/list-project-applications.md"
+        },
         "tags": [
           "Projects - Applications"
         ],
@@ -4867,18 +4719,25 @@
           {
             "in": "path",
             "name": "project_id",
-            "example": 1,
+            "description": "The ID of the project.",
+            "example": 123,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "Numeric ID of the project to get applications from"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationList"
+                }
+              }
+            },
             "headers": {
               "Link": {
                 "schema": {
@@ -4886,12 +4745,80 @@
                 },
                 "description": "Link header with `first`, `last`, `previous` and `next` page's links"
               }
-            },
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Applications"
+                  "$ref": "#/components/schemas/ApiError"
                 }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new application",
+        "operationId": "addProjectApplication",
+        "description": {
+          "$ref": "../spec/descriptions/add-project-application.md"
+        },
+        "tags": [
+          "Projects - Applications"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "description": "The ID of the project.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Application"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplicationProjectCreate"
               }
             }
           }
@@ -4928,7 +4855,7 @@
             "in": "path",
             "name": "project_id",
             "description": "The ID of the project.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -4980,7 +4907,7 @@
             "in": "path",
             "name": "project_id",
             "description": "The ID of the project.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -5034,7 +4961,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CronJobCreate"
+                "$ref": "#/components/schemas/CronJobProjectCreate"
               }
             }
           }
@@ -5071,7 +4998,7 @@
             "in": "path",
             "name": "project_id",
             "description": "The ID of the project.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -5123,7 +5050,7 @@
             "in": "path",
             "name": "project_id",
             "description": "The ID of the project.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -5185,64 +5112,12 @@
       }
     },
     "/projects/{project_id}/environments": {
-      "post": {
-        "summary": "Create a new environment, on the current project",
-        "operationId": "addEnvironmentToProject",
-        "tags": [
-          "Projects - Environments"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "project_id",
-            "example": 1,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "required": true,
-            "description": "Numeric ID of the project to which an environment will be added"
-          }
-        ],
-        "requestBody": {
-          "description": "A JSON object containing environment data",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/EnvironmentCreate"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Environment"
-                }
-              }
-            }
-          },
-          "422": {
-            "$ref": "#/components/responses/ValidationError"
-          }
-        }
-      },
       "get": {
-        "summary": "Returns a list of all environments belonging to a project",
+        "summary": "Return a list of all environments belonging to a project",
         "operationId": "listProjectEnvironments",
+        "description": {
+          "$ref": "../spec/descriptions/list-project-environments.md"
+        },
         "tags": [
           "Projects - Environments"
         ],
@@ -5265,18 +5140,25 @@
           {
             "in": "path",
             "name": "project_id",
-            "example": 1,
+            "description": "The ID of the project.",
+            "example": 123,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "Numeric ID of the project to get environments from"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EnvironmentList"
+                }
+              }
+            },
             "headers": {
               "Link": {
                 "schema": {
@@ -5284,12 +5166,80 @@
                 },
                 "description": "Link header with `first`, `last`, `previous` and `next` page's links"
               }
-            },
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Environments"
+                  "$ref": "#/components/schemas/ApiError"
                 }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new environment on the current project",
+        "operationId": "addProjectEnvironment",
+        "description": {
+          "$ref": "../spec/descriptions/add-project-environment.md"
+        },
+        "tags": [
+          "Projects - Environments"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "description": "The ID of the project.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Environment"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EnvironmentProjectCreate"
               }
             }
           }
@@ -5326,7 +5276,7 @@
             "in": "path",
             "name": "project_id",
             "description": "The ID of the project.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -5378,7 +5328,7 @@
             "in": "path",
             "name": "project_id",
             "description": "The ID of the project.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -5432,7 +5382,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NetworkRuleCreate"
+                "$ref": "#/components/schemas/NetworkRuleProjectCreate"
               }
             }
           }
@@ -5440,9 +5390,70 @@
       }
     },
     "/projects/{project_id}/roles": {
+      "get": {
+        "summary": "List all roles from a project",
+        "operationId": "listProjectRoles",
+        "description": {
+          "$ref": "../spec/descriptions/list-project-roles.md"
+        },
+        "tags": [
+          "Projects - Roles"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "description": "The ID of the project.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoleList"
+                }
+              }
+            },
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            }
+          }
+        }
+      },
       "post": {
         "summary": "Create a role to a given project",
-        "operationId": "addRoleToProject",
+        "operationId": "addProjectRole",
+        "description": {
+          "$ref": "../spec/descriptions/add-project-role.md"
+        },
         "tags": [
           "Projects - Roles"
         ],
@@ -5459,26 +5470,15 @@
           {
             "in": "path",
             "name": "project_id",
-            "example": 1,
+            "description": "The ID of the project.",
+            "example": 123,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "The project numeric ID"
-          }
-        ],
-        "requestBody": {
-          "description": "A JSON object containing server data",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RoleCreate"
-              }
             }
           }
-        },
+        ],
         "responses": {
           "201": {
             "description": "Created",
@@ -5491,49 +5491,33 @@
             }
           },
           "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "422": {
-            "$ref": "#/components/responses/ValidationError"
-          }
-        }
-      },
-      "get": {
-        "summary": "List all roles from a project",
-        "operationId": "listProjectRoles",
-        "tags": [
-          "Projects - Roles"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "project_id",
-            "example": 1,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "required": true,
-            "description": "The project numeric ID"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
+            "description": "Forbidden/Unauthorized",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Roles"
+                  "$ref": "#/components/schemas/ApiError"
                 }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RoleProjectCreate"
               }
             }
           }
@@ -5570,7 +5554,7 @@
             "in": "path",
             "name": "project_id",
             "description": "The ID of the project.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -5622,7 +5606,7 @@
             "in": "path",
             "name": "project_id",
             "description": "The ID of the project.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -5676,7 +5660,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ServerCreate"
+                "$ref": "#/components/schemas/ServerProjectCreate"
               }
             }
           }
@@ -5713,7 +5697,7 @@
             "in": "path",
             "name": "project_id",
             "description": "The ID of the project.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -5765,7 +5749,7 @@
             "in": "path",
             "name": "project_id",
             "description": "The ID of the project.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -5811,7 +5795,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ServiceCreate"
+                "$ref": "#/components/schemas/ServiceProjectCreate"
               }
             }
           }
@@ -5848,7 +5832,7 @@
             "in": "path",
             "name": "project_id",
             "description": "The ID of the project.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -5888,8 +5872,11 @@
         }
       },
       "post": {
-        "summary": "Create a SSH key and link it to the given project",
-        "operationId": "addSshKeyToProject",
+        "summary": "Create an SSH key and link it to the given project",
+        "operationId": "addProjectSshKey",
+        "description": {
+          "$ref": "../spec/descriptions/add-project-ssh-key.md"
+        },
         "tags": [
           "Projects - SSH Keys"
         ],
@@ -5906,55 +5893,75 @@
           {
             "in": "path",
             "name": "project_id",
-            "example": 1,
+            "description": "The ID of the project.",
+            "example": 123,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "The project numeric Id"
-          }
-        ],
-        "requestBody": {
-          "description": "A JSON object containing SSH key data",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SshKeyCreate"
-              }
             }
           }
-        },
+        ],
         "responses": {
           "201": {
             "description": "Created",
-            "headers": {
-              "X-Devopness-Action-Id": {
-                "schema": {
-                  "type": "integer"
-                },
-                "description": "The dispatched action id of the resource"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/SshKey"
                 }
               }
+            },
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
             }
           },
           "422": {
-            "$ref": "#/components/responses/ValidationError"
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SshKeyProjectCreate"
+              }
+            }
           }
         }
       }
     },
     "/projects/{project_id}/teams": {
       "get": {
-        "summary": "Returns a list of all teams belonging to a project",
+        "summary": "Return a list of all teams belonging to a project",
         "operationId": "listProjectTeams",
+        "description": {
+          "$ref": "../spec/descriptions/list-project-teams.md"
+        },
         "tags": [
           "Projects - Teams"
         ],
@@ -5977,18 +5984,25 @@
           {
             "in": "path",
             "name": "project_id",
-            "example": 1,
+            "description": "The ID of the project.",
+            "example": 123,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "Numeric ID of the project to get teams from"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeamList"
+                }
+              }
+            },
             "headers": {
               "Link": {
                 "schema": {
@@ -5996,20 +6010,16 @@
                 },
                 "description": "Link header with `first`, `last`, `previous` and `next` page's links"
               }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Teams"
-                }
-              }
             }
           }
         }
       },
       "post": {
         "summary": "Create a team to the given project",
-        "operationId": "addTeam",
+        "operationId": "addProjectTeam",
+        "description": {
+          "$ref": "../spec/descriptions/add-project-team.md"
+        },
         "tags": [
           "Projects - Teams"
         ],
@@ -6026,26 +6036,15 @@
           {
             "in": "path",
             "name": "project_id",
-            "example": 1,
+            "description": "The ID of the project.",
+            "example": 123,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "The numeric project ID"
-          }
-        ],
-        "requestBody": {
-          "description": "A JSON object containing team data",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TeamCreate"
-              }
             }
           }
-        },
+        ],
         "responses": {
           "201": {
             "description": "Created",
@@ -6058,10 +6057,35 @@
             }
           },
           "403": {
-            "$ref": "#/components/responses/Forbidden"
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
           },
           "422": {
-            "$ref": "#/components/responses/ValidationError"
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TeamProjectCreate"
+              }
+            }
           }
         }
       }
@@ -6444,7 +6468,7 @@
             "in": "path",
             "name": "server_id",
             "description": "The ID of the server.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -6509,7 +6533,7 @@
             "in": "path",
             "name": "service_id",
             "description": "The ID of the service.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -6556,7 +6580,7 @@
             "in": "path",
             "name": "service_id",
             "description": "The ID of the service.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -6610,7 +6634,7 @@
             "in": "path",
             "name": "service_id",
             "description": "The ID of the service.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -6680,7 +6704,7 @@
             "in": "path",
             "name": "service_id",
             "description": "The ID of the service.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -6750,7 +6774,7 @@
             "in": "path",
             "name": "service_id",
             "description": "The ID of the service.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -6820,7 +6844,7 @@
             "in": "path",
             "name": "service_id",
             "description": "The ID of the service.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -6890,7 +6914,7 @@
             "in": "path",
             "name": "service_id",
             "description": "The ID of the service.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -6960,7 +6984,7 @@
             "in": "path",
             "name": "service_id",
             "description": "The ID of the service.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -7547,7 +7571,7 @@
             "in": "path",
             "name": "ssh_key_id",
             "description": "The ID of the ssh key.",
-            "example": 914,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -7602,7 +7626,7 @@
             "in": "path",
             "name": "ssh_key_id",
             "description": "The ID of the ssh key.",
-            "example": 914,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -7656,7 +7680,7 @@
             "in": "path",
             "name": "ssh_key_id",
             "description": "The ID of the ssh key.",
-            "example": 914,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -7734,7 +7758,7 @@
             "in": "path",
             "name": "ssl_certificate_id",
             "description": "The ID of the ssl certificate.",
-            "example": 81,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -7789,7 +7813,7 @@
             "in": "path",
             "name": "ssl_certificate_id",
             "description": "The ID of the ssl certificate.",
-            "example": 81,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -8171,7 +8195,7 @@
             "in": "path",
             "name": "cron_job_id",
             "description": "The ID of the cron job.",
-            "example": 81,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -8226,7 +8250,7 @@
             "in": "path",
             "name": "cron_job_id",
             "description": "The ID of the cron job.",
-            "example": 81,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -8280,7 +8304,7 @@
             "in": "path",
             "name": "cron_job_id",
             "description": "The ID of the cron job.",
-            "example": 81,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -8501,7 +8525,7 @@
             "in": "path",
             "name": "team_id",
             "description": "The ID of the team.",
-            "example": 81,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -8553,7 +8577,7 @@
             "in": "path",
             "name": "team_id",
             "description": "The ID of the team.",
-            "example": 81,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -8599,7 +8623,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/InvitationCreate"
+                "$ref": "#/components/schemas/InvitationTeamCreate"
               }
             }
           }
@@ -8630,7 +8654,7 @@
             "in": "path",
             "name": "team_invitation_id",
             "description": "The ID of the team invitation.",
-            "example": "3cad00b7-EAd7-3ADF-006D-864e8BD2c03f",
+            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
             "required": true,
             "schema": {
               "type": "string"
@@ -8820,6 +8844,9 @@
       "post": {
         "summary": "Sign up/register a new user",
         "operationId": "addUser",
+        "description": {
+          "$ref": "../spec/descriptions/add-user.md"
+        },
         "tags": [
           "Users"
         ],
@@ -8831,8 +8858,23 @@
             "$ref": "#/components/parameters/contentTypeHeader"
           }
         ],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
         "requestBody": {
-          "description": "A JSON object containing user essential data",
+          "description": "A JSON object containing the resource data",
           "required": true,
           "content": {
             "application/json": {
@@ -8841,21 +8883,16 @@
               }
             }
           }
-        },
-        "responses": {
-          "202": {
-            "$ref": "#/components/responses/AcceptedWithMessage"
-          },
-          "422": {
-            "$ref": "#/components/responses/ValidationError"
-          }
         }
       }
     },
     "/users/account/resend-verification": {
       "post": {
         "summary": "Resend the verification email",
-        "operationId": "resendUserVerification",
+        "operationId": "resendVerificationUser",
+        "description": {
+          "$ref": "../spec/descriptions/resend-verification-user.md"
+        },
         "tags": [
           "Users"
         ],
@@ -8867,34 +8904,100 @@
             "$ref": "#/components/parameters/contentTypeHeader"
           }
         ],
-        "requestBody": {
-          "description": "A JSON object containing the email to resend the verification link",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UserAccountResendVerification"
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
               }
             }
           }
         },
-        "responses": {
-          "202": {
-            "$ref": "#/components/responses/Accepted"
-          },
-          "204": {
-            "$ref": "#/components/responses/NoContent"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserResendVerification"
+              }
+            }
           }
         }
       }
     },
     "/users/account/verify": {
-      "get": {
-        "summary": "Get the information about the activation status of the current user",
+      "post": {
+        "summary": "Activate the user account",
         "operationId": "verifyUser",
+        "description": {
+          "$ref": "../spec/descriptions/verify-user.md"
+        },
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserVerify"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/current": {
+      "get": {
+        "summary": "Get details of the current user",
+        "operationId": "getUserCurrent",
+        "description": {
+          "$ref": "../spec/descriptions/get-user-current.md"
+        },
         "tags": [
           "Users"
         ],
@@ -8915,47 +9018,10 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UserAccountVerify"
+                  "$ref": "#/components/schemas/User"
                 }
               }
             }
-          }
-        }
-      },
-      "post": {
-        "summary": "Activate the user account",
-        "operationId": "activateUser",
-        "tags": [
-          "Users"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          }
-        ],
-        "requestBody": {
-          "description": "A JSON object containing user account data",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UserAccountActivate"
-              }
-            }
-          }
-        },
-        "responses": {
-          "204": {
-            "$ref": "#/components/responses/NoContent"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "422": {
-            "$ref": "#/components/responses/ValidationError"
           }
         }
       }
@@ -8963,7 +9029,10 @@
     "/users/login": {
       "post": {
         "summary": "Login/create a new token for the given credentials",
-        "operationId": "login",
+        "operationId": "loginUser",
+        "description": {
+          "$ref": "../spec/descriptions/login-user.md"
+        },
         "tags": [
           "Users"
         ],
@@ -8975,30 +9044,57 @@
             "$ref": "#/components/parameters/contentTypeHeader"
           }
         ],
-        "requestBody": {
-          "description": "A JSON object containing user credentials",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/LoginCredentials"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
-            "description": "Ok - Tokens created",
+            "description": "Ok",
             "content": {
-              "application/json; charset=utf-8": {
+              "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UserTokens"
+                  "$ref": "#/components/schemas/UserLoginResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
           },
           "422": {
-            "$ref": "#/components/responses/ValidationError"
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserLogin"
+              }
+            }
           }
         }
       }
@@ -9024,6 +9120,168 @@
         "responses": {
           "204": {
             "$ref": "#/components/responses/NoContent"
+          }
+        }
+      }
+    },
+    "/users/password/reset": {
+      "post": {
+        "summary": "Reset the user password",
+        "operationId": "resetUserPassword",
+        "description": {
+          "$ref": "../spec/descriptions/reset-user-password.md"
+        },
+        "tags": [
+          "Users - Passwords"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PasswordResetResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PasswordUserReset"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/password/send-reset-link": {
+      "post": {
+        "summary": "Send the password reset link to user's email",
+        "operationId": "sendResetLinkUserPassword",
+        "description": {
+          "$ref": "../spec/descriptions/send-reset-link-user-password.md"
+        },
+        "tags": [
+          "Users - Passwords"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PasswordUserSendResetLink"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/refresh-token": {
+      "post": {
+        "summary": "Refresh an existing user access token",
+        "operationId": "refreshTokenUser",
+        "description": {
+          "$ref": "../spec/descriptions/refresh-token-user.md"
+        },
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserRefreshTokenResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRefreshToken"
+              }
+            }
           }
         }
       }
@@ -9081,6 +9339,9 @@
       "get": {
         "summary": "Get a user by ID",
         "operationId": "getUser",
+        "description": {
+          "$ref": "../spec/descriptions/get-user.md"
+        },
         "tags": [
           "Users"
         ],
@@ -9097,13 +9358,13 @@
           {
             "in": "path",
             "name": "user_id",
-            "example": 1,
+            "description": "The ID of the user.",
+            "example": 123,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "Numeric ID of the user to be retrieved"
+            }
           }
         ],
         "responses": {
@@ -9118,16 +9379,23 @@
             }
           },
           "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
           }
         }
       },
       "put": {
         "summary": "Update an existing user",
         "operationId": "updateUser",
+        "description": {
+          "$ref": "../spec/descriptions/update-user.md"
+        },
         "tags": [
           "Users"
         ],
@@ -9144,17 +9412,42 @@
           {
             "in": "path",
             "name": "user_id",
-            "example": 1,
+            "description": "The ID of the user.",
+            "example": 123,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "Numeric ID of the user"
+            }
           }
         ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
         "requestBody": {
-          "description": "A JSON containing user data",
+          "description": "A JSON object containing the resource data",
           "required": true,
           "content": {
             "application/json": {
@@ -9162,173 +9455,6 @@
                 "$ref": "#/components/schemas/UserUpdate"
               }
             }
-          }
-        },
-        "responses": {
-          "204": {
-            "$ref": "#/components/responses/NoContent"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "422": {
-            "$ref": "#/components/responses/ValidationError"
-          }
-        }
-      }
-    },
-    "/users/me": {
-      "get": {
-        "summary": "Get details of the current user",
-        "operationId": "getCurrentUser",
-        "tags": [
-          "Users"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                }
-              }
-            }
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          }
-        }
-      }
-    },
-    "/users/password/reset": {
-      "post": {
-        "summary": "Reset the user password",
-        "operationId": "resetUserPassword",
-        "tags": [
-          "Users"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          }
-        ],
-        "requestBody": {
-          "description": "A JSON containing the new password of the user",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UserPasswordReset"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "$ref": "#/components/responses/Ok"
-          },
-          "422": {
-            "$ref": "#/components/responses/ValidationError"
-          }
-        }
-      }
-    },
-    "/users/password/send-reset-link": {
-      "post": {
-        "summary": "Send the password reset link to user's email",
-        "operationId": "sendUserPasswordResetLink",
-        "tags": [
-          "Users"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          }
-        ],
-        "requestBody": {
-          "description": "A JSON containing the user email",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UserPasswordSendResetLink"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "$ref": "#/components/responses/Ok"
-          },
-          "422": {
-            "$ref": "#/components/responses/ValidationError"
-          }
-        }
-      }
-    },
-    "/users/refresh-token": {
-      "post": {
-        "summary": "Refresh an existing user access token",
-        "operationId": "refreshToken",
-        "tags": [
-          "Users"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          }
-        ],
-        "requestBody": {
-          "description": "A JSON object containing user essential data",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UserRefreshTokenCreate"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Ok - Tokens refreshed",
-            "content": {
-              "application/json; charset=utf-8": {
-                "schema": {
-                  "$ref": "#/components/schemas/UserTokens"
-                }
-              }
-            }
-          },
-          "422": {
-            "$ref": "#/components/responses/ValidationError"
           }
         }
       }
@@ -9357,7 +9483,7 @@
             "in": "path",
             "name": "variable_id",
             "description": "The ID of the variable.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -9404,7 +9530,7 @@
             "in": "path",
             "name": "variable_id",
             "description": "The ID of the variable.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -9458,7 +9584,7 @@
             "in": "path",
             "name": "variable_id",
             "description": "The ID of the variable.",
-            "example": 1,
+            "example": 123,
             "required": true,
             "schema": {
               "type": "integer",
@@ -9581,6 +9707,9 @@
       "name": "Environments - Teams"
     },
     {
+      "name": "Environments - Team Memberships"
+    },
+    {
       "name": "Hooks - Incoming",
       "description": "A hook is a simple way to integrate your Devopness workflow with external processes to trigger Devopness actions by sending a POST request to a public URL. By using hooks you can make Devopness react to events that happen in other applications and make sure your environment resources reflect changes applied in other services.\n"
     },
@@ -9602,6 +9731,9 @@
     },
     {
       "name": "Pipelines"
+    },
+    {
+      "name": "Pipelines - Resources"
     },
     {
       "name": "Projects"
@@ -9682,6 +9814,9 @@
     },
     {
       "name": "Users"
+    },
+    {
+      "name": "Users - Passwords"
     },
     {
       "name": "Users - Team Invitations"
@@ -9845,13 +9980,14 @@
         "Teams - Members",
         "Invitations",
         "Environments - Teams",
-        "Environments - Members"
+        "Environments - Team Memberships"
       ]
     },
     {
       "name": "Users",
       "tags": [
         "Users",
+        "Users - Passwords",
         "Users - Team Invitations"
       ]
     },
@@ -10535,6 +10671,96 @@
           "resource"
         ]
       },
+      "ActionRetryResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "The Id of the given action",
+            "type": "integer",
+            "example": 567819876
+          },
+          "status": {
+            "$ref": "#/components/schemas/ActionStatus"
+          },
+          "type": {
+            "$ref": "#/components/schemas/ActionType"
+          },
+          "type_human_readable": {
+            "description": "Human readable version of the action type",
+            "type": "string",
+            "example": "Deploy"
+          },
+          "url_web_permalink": {
+            "description": "The permalink URL to the action details on Devopness web app",
+            "type": "string",
+            "example": "https://devopness.com/actions/567819876"
+          },
+          "action_data": {
+            "$ref": "#/components/schemas/ActionData"
+          },
+          "triggered_from": {
+            "$ref": "#/components/schemas/ActionTriggeredFrom"
+          },
+          "triggered_by_user": {
+            "$ref": "#/components/schemas/UserRelation"
+          },
+          "resource": {
+            "$ref": "#/components/schemas/Resource"
+          },
+          "summary": {
+            "$ref": "#/components/schemas/ActionSummary"
+          },
+          "environment": {
+            "$ref": "#/components/schemas/EnvironmentRelation"
+          },
+          "project": {
+            "$ref": "#/components/schemas/ProjectRelation"
+          },
+          "servers": {
+            "$ref": "#/components/schemas/ServerActions"
+          },
+          "hook_requests": {
+            "$ref": "#/components/schemas/ActionHookRequest"
+          },
+          "started_at": {
+            "description": "The date and time when the action started execution (i.e., left the `pending/queued` status)",
+            "type": "string",
+            "example": "2019-09-25T15:50:48.000000Z",
+            "nullable": true
+          },
+          "completed_at": {
+            "description": "The date and time when the action has finished execution",
+            "type": "string",
+            "example": "2019-09-25T13:52:04.000000Z",
+            "nullable": true
+          },
+          "created_at": {
+            "description": "The date and time when the record was created",
+            "type": "string",
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "description": "The date and time when the record was last updated",
+            "type": "string",
+            "example": "2019-09-25T13:52:04.000000Z"
+          }
+        },
+        "required": [
+          "id",
+          "status",
+          "type",
+          "type_human_readable",
+          "url_web_permalink",
+          "action_data",
+          "triggered_from",
+          "resource",
+          "summary",
+          "started_at",
+          "completed_at",
+          "created_at",
+          "updated_at"
+        ]
+      },
       "ApiError": {
         "type": "object",
         "properties": {
@@ -10759,123 +10985,6 @@
           "source_provider",
           "ssl_certificates",
           "created_by_user"
-        ]
-      },
-      "ApplicationCreate": {
-        "type": "object",
-        "properties": {
-          "source_provider_id": {
-            "type": "integer",
-            "description": "Numeric ID of the source provider account where the repository is hosted. Required when the `repository` field is informed."
-          },
-          "type": {
-            "$ref": "#/components/schemas/ApplicationType"
-          },
-          "name": {
-            "type": "string",
-            "description": "The application's unique name",
-            "example": "my-awesome-app"
-          },
-          "domain_name": {
-            "type": "string",
-            "format": "hostname",
-            "description": "The domain or sub-domain through which the application deployed with these settings will be accessible. It can be a naked domain or any subdomain. If app has domain names `testing.my-app.com`, `staging.my-app.com` and `www.my-app.com` a possible good candidate for the application name would be the \"naked\" domain `my-app.com`",
-            "example": "test.my-app.co.uk"
-          },
-          "repository": {
-            "description": "The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed.",
-            "type": "string",
-            "example": "devopness-api-tests/tester"
-          },
-          "default_branch": {
-            "type": "string",
-            "description": "The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed.",
-            "example": "develop"
-          },
-          "push_to_deploy": {
-            "description": "Indicates if push to deploy webhooks are enabled for this application. If enabled an app deployment will be automatically triggered when new changes are committed to the `default_branch`",
-            "type": "boolean",
-            "example": false
-          },
-          "programming_language": {
-            "type": "string",
-            "description": "The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`.",
-            "example": "python"
-          },
-          "engine_version": {
-            "description": "The language runtime engine version to be used to execute this application on the deployed servers",
-            "type": "string",
-            "example": "3.8"
-          },
-          "framework": {
-            "type": "string",
-            "description": "The base framework on top of which the application has been implemented - it might have impact on the steps to be performed during application deployment",
-            "example": "drupal"
-          },
-          "root_directory": {
-            "type": "string",
-            "description": "The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository.",
-            "example": "/ or /src or /lib/src or /code or /app"
-          },
-          "public_directory": {
-            "type": "string",
-            "description": "The relative web directory where publicly accessible assets are located and the web content should be served from",
-            "example": "/public"
-          },
-          "entrypoint": {
-            "type": "string",
-            "description": "The entrypoint tells devopness how an application should be started and has basically two forms:\n\n1) `File`: if it's a simple file name/path a web app will be served using the entrypoint value as its index file. Example: `index.html`\n\n2) `Command`: if a command line instruction is provided as the entrypoint value, it will be handled as the start up command that initializes the application. It will be assumed that the user is an advanced user that knows what she/he is doing, therefore the command specified here will be run - as is - every time the application needs to be started.\n",
-            "example": "`index.html`, `index.php`, `server.php`, `default.htm`, `node server.js`, `yarn start`, `npm run production`, `docker run -d -P --name my_container_name my_image_name`, `php artisan serve –-host=192.168.2.20 --port=8000`"
-          },
-          "listening_address": {
-            "description": "Required for CGI|FastCGI|SCGI|WSGI based applications or `docker` containerized applications. It tells `devopness` the private address at which the application listens to external calls. The address has `http` or `https` protocol, an domain name or IP address, optional port and optional path. Or you can specify a UNIX-socket using `unix:` prefix after protocol.",
-            "type": "string",
-            "example": "http://unix:/tmp/backend3:/my/path"
-          },
-          "build_command": {
-            "description": "The optional command that should be executed once during deployment to build the source code and get the application in a ready state.",
-            "type": "string",
-            "example": "`npm run build`, `yarn build`, `docker build -t my_image_name .`, `python build.py`"
-          },
-          "deployments_keep": {
-            "type": "integer",
-            "description": "The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers. OR The number of deployment artifacts to be retained in the user's servers, making it easier and faster to rollback to previous versions",
-            "example": 4
-          },
-          "install_dependencies_dev": {
-            "description": "Indicates if at deployment time Devopness should execute package manager commands to install dependencies used in development mode",
-            "type": "boolean",
-            "example": false
-          },
-          "install_dependencies_prod": {
-            "description": "Indicates if at deployment time Devopness should execute package manager commands to install dependencies used in production mode",
-            "type": "boolean",
-            "example": true
-          },
-          "requires_daemon": {
-            "description": "Indicates if the application requires a daemon to keep it alive",
-            "type": "boolean",
-            "example": false
-          },
-          "project_id": {
-            "type": "integer",
-            "description": "Numeric ID of the project to which the application belongs to"
-          },
-          "environments": {
-            "$ref": "#/components/schemas/EnvironmentLinks"
-          }
-        },
-        "required": [
-          "type",
-          "name",
-          "source_provider_id",
-          "repository",
-          "programming_language",
-          "framework",
-          "public_directory",
-          "entrypoint",
-          "default_branch",
-          "requires_daemon"
         ]
       },
       "ApplicationEnvironmentCreate": {
@@ -11287,6 +11396,130 @@
         "example": "web"
       },
       "Applications": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/ApplicationRelation"
+        }
+      },
+      "ApplicationProjectCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "The application's unique name. Must not be greater than 60 characters.",
+            "example": "my-awesome-app",
+            "type": "string"
+          },
+          "type": {
+            "description": "Must be one of <code>web</code> or <code>non-web</code>.",
+            "example": "web",
+            "type": "string"
+          },
+          "domain_name": {
+            "description": "The domain or sub-domain through which the application deployed with these settings will be accessible. It can be a naked domain or any subdomain. If app has domain names `testing.my-app.com`, `staging.my-app.com` and `www.my-app.com` a possible good candidate for the application name would be the \"naked\" domain `my-app.com`. Must not be greater than 60 characters.",
+            "example": "test.my-app.co.uk",
+            "type": "string"
+          },
+          "build_command": {
+            "description": "The optional command that should be executed once during deployment to build the source code and get the application in a ready state. Must be at least 10 characters. Must not be greater than 300 characters.",
+            "example": "`npm run build`, `yarn build`, `docker build -t my_image_name .`, `python build.py`",
+            "type": "string"
+          },
+          "engine_version": {
+            "description": "The language runtime engine version to be used to execute this application on the deployed servers. This field is required unless <code>programming_language</code> is in <code>html</code>.  Must be one of <code></code> Must be at least 1 characters. Must not be greater than 10 characters.",
+            "example": "3.8",
+            "type": "string"
+          },
+          "framework": {
+            "description": "The base framework on top of which the application has been implemented - it might have impact on the steps to be performed during application deployment. Must not be greater than 30 characters.",
+            "example": "drupal",
+            "type": "string"
+          },
+          "programming_language": {
+            "description": "The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`. Must be one of <code>docker</code>, <code>dotnetcore</code>, <code>html</code>, <code>nodejs</code>, <code>php</code>, or <code>python</code> Must not be greater than 30 characters.",
+            "example": "python",
+            "type": "string"
+          },
+          "listening_address": {
+            "description": "Required for CGI|FastCGI|SCGI|WSGI based applications or `docker` containerized applications. It tells `devopness` the private address at which the application listens to external calls.The address has `http` or `https` protocol, an domain name or IP address, optional port and optional path. Or you can specify a UNIX-socket using `unix:` prefix after protocol.",
+            "example": "http://unix:/tmp/backend3:/my/path",
+            "type": "string"
+          },
+          "repository": {
+            "description": "The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed. Must not be greater than 60 characters.",
+            "example": "devopness-api-tests/tester",
+            "type": "string"
+          },
+          "source_provider_id": {
+            "description": "Numeric ID of the source provider account where the repository is hosted. Required when the `repository` field is informed.",
+            "example": 9732156,
+            "type": "integer"
+          },
+          "root_directory": {
+            "description": "The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository. Must start with one of <code>/</code>.",
+            "example": "/src",
+            "type": "string"
+          },
+          "public_directory": {
+            "description": "The relative web directory where publicly accessible assets are located and the web content should be served from. Must start with one of <code>/</code>.",
+            "example": "/public",
+            "type": "string"
+          },
+          "default_branch": {
+            "description": "The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed. Must not be greater than 100 characters.",
+            "example": "develop",
+            "type": "string"
+          },
+          "deployments_keep": {
+            "description": "The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers. OR The number of deployment artifacts to be retained in the user's servers, making it easier and faster to rollback to previous versions. Must be at least 1. Must not be greater than 10.",
+            "example": 4,
+            "type": "integer"
+          },
+          "entrypoint": {
+            "description": "The entrypoint tells devopness how an application should be started and has basically two forms:\n1) `File`: if it's a simple file name/path a web app will be served using the entrypoint value as its index file. Example: `index.html`\n2) `Command`: if a command line instruction is provided as the entrypoint value, it will be handled as the start up command that initializes the application. It will be assumed that the user is an advanced user that knows what she/he is doing, therefore the command specified here will be run - as is - every time the application needs to be started. Must not be greater than 120 characters.",
+            "example": "`index.html`, `index.php`, `server.php`, `default.htm`, `node server.js`, `yarn start`, `npm run production`, `docker run -d -P --name my_container_name my_image_name`, `php artisan serve –-host=192.168.2.20 --port=8000`",
+            "type": "string"
+          },
+          "install_dependencies_dev": {
+            "description": "Indicates if at deployment time Devopness should execute package manager commands to install dependencies used in development mode.",
+            "example": false,
+            "type": "boolean"
+          },
+          "install_dependencies_prod": {
+            "description": "Indicates if at deployment time Devopness should execute package manager commands to install dependencies used in production mode.",
+            "example": false,
+            "type": "boolean"
+          },
+          "push_to_deploy": {
+            "description": "Indicates if push to deploy webhooks are enabled for this application. If enabled an app deployment will be automatically triggered when new changes are committed to the `default_branch`.",
+            "example": false,
+            "type": "boolean"
+          },
+          "requires_daemon": {
+            "description": "Indicates if the application requires a daemon to keep it alive.",
+            "example": false,
+            "type": "boolean"
+          },
+          "environments": {
+            "$ref": "#/components/schemas/EnvironmentLinks"
+          }
+        },
+        "required": [
+          "name",
+          "type",
+          "framework",
+          "programming_language",
+          "repository",
+          "source_provider_id",
+          "public_directory",
+          "default_branch",
+          "entrypoint",
+          "install_dependencies_dev",
+          "install_dependencies_prod",
+          "requires_daemon",
+          "environments"
+        ]
+      },
+      "ApplicationList": {
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/ApplicationRelation"
@@ -12076,51 +12309,6 @@
           "updated_at"
         ]
       },
-      "CronJobCreate": {
-        "type": "object",
-        "properties": {
-          "pattern": {
-            "description": "A cron expression consisting of Minute, Hour, Day of Month, Month and Day of Week subexpressions.",
-            "example": "0 0 * * *",
-            "type": "string"
-          },
-          "name": {
-            "description": "The name of the cron job. Must not be greater than 60 characters.",
-            "example": "My cool cron job",
-            "type": "string"
-          },
-          "command": {
-            "description": "The command line to be executed when running the cron job. Must be at least 5 characters. Must not be greater than 255 characters.",
-            "example": "echo 'devopness rocks!' | tee -a /tmp/task-output.log",
-            "type": "string"
-          },
-          "run_as_user": {
-            "description": "The name of the system user on behalf of which the cron job will be executed. Must not be greater than 60 characters.",
-            "example": "root",
-            "type": "string"
-          },
-          "application_id": {
-            "description": "Numeric ID of the application to which the cron job belongs to.",
-            "example": 3745834,
-            "type": "integer"
-          },
-          "project_id": {
-            "description": "Numeric ID of the project to which the cron job belongs to.",
-            "example": 8594323,
-            "type": "integer"
-          },
-          "environments": {
-            "$ref": "#/components/schemas/EnvironmentLinks"
-          }
-        },
-        "required": [
-          "pattern",
-          "name",
-          "command",
-          "run_as_user",
-          "project_id"
-        ]
-      },
       "CronJobEnvironmentCreate": {
         "type": "object",
         "properties": {
@@ -12220,6 +12408,51 @@
           "Yearly"
         ],
         "example": "Every minute"
+      },
+      "CronJobProjectCreate": {
+        "type": "object",
+        "properties": {
+          "pattern": {
+            "description": "A cron expression consisting of Minute, Hour, Day of Month, Month and Day of Week subexpressions.",
+            "example": "0 0 * * *",
+            "type": "string"
+          },
+          "name": {
+            "description": "The name of the cron job. Must not be greater than 60 characters.",
+            "example": "My cool cron job",
+            "type": "string"
+          },
+          "command": {
+            "description": "The command line to be executed when running the cron job. Must be at least 5 characters. Must not be greater than 255 characters.",
+            "example": "echo 'devopness rocks!' | tee -a /tmp/task-output.log",
+            "type": "string"
+          },
+          "run_as_user": {
+            "description": "The name of the system user on behalf of which the cron job will be executed. Must not be greater than 60 characters.",
+            "example": "root",
+            "type": "string"
+          },
+          "application_id": {
+            "description": "Numeric ID of the application to which the cron job belongs to.",
+            "example": 3745834,
+            "type": "integer"
+          },
+          "project_id": {
+            "description": "Numeric ID of the project to which the cron job belongs to.",
+            "example": 8594323,
+            "type": "integer"
+          },
+          "environments": {
+            "$ref": "#/components/schemas/EnvironmentLinks"
+          }
+        },
+        "required": [
+          "pattern",
+          "name",
+          "command",
+          "run_as_user",
+          "project_id"
+        ]
       },
       "CronJobRelation": {
         "type": "object",
@@ -12434,7 +12667,7 @@
           "$ref": "#/components/schemas/DaemonRelation"
         }
       },
-      "DaemonCreate": {
+      "DaemonEnvironmentCreate": {
         "type": "object",
         "properties": {
           "command": {
@@ -12827,23 +13060,6 @@
           "created_by_user"
         ]
       },
-      "EnvironmentCreate": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "description": "The environment's name",
-            "example": "my project - staging"
-          },
-          "type": {
-            "$ref": "#/components/schemas/EnvironmentType"
-          }
-        },
-        "required": [
-          "name",
-          "type"
-        ]
-      },
       "EnvironmentList": {
         "type": "array",
         "items": {
@@ -13121,6 +13337,23 @@
         ],
         "description": "Environment's type",
         "example": "staging"
+      },
+      "EnvironmentProjectCreate": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/EnvironmentType"
+          },
+          "name": {
+            "description": "The environment's name. Must not be greater than 60 characters.",
+            "example": "my project - staging",
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "name"
+        ]
       },
       "EnvironmentRelation": {
         "type": "object",
@@ -14157,19 +14390,6 @@
           "updated_at"
         ]
       },
-      "InvitationCreate": {
-        "type": "object",
-        "properties": {
-          "email": {
-            "description": "The user email to send the invitation. Must be a valid email address.",
-            "example": "invited.user@email.com",
-            "type": "string"
-          }
-        },
-        "required": [
-          "email"
-        ]
-      },
       "InvitationList": {
         "type": "array",
         "items": {
@@ -14251,6 +14471,19 @@
           "expires_at",
           "created_at",
           "updated_at"
+        ]
+      },
+      "InvitationTeamCreate": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "description": "The user email to send the invitation. Must be a valid email address.",
+            "example": "invited.user@email.com",
+            "type": "string"
+          }
+        },
+        "required": [
+          "email"
         ]
       },
       "Language": {
@@ -14588,7 +14821,13 @@
           "$ref": "#/components/schemas/NetworkRuleRelation"
         }
       },
-      "NetworkRuleCreate": {
+      "NetworkRuleList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/NetworkRuleRelation"
+        }
+      },
+      "NetworkRuleProjectCreate": {
         "type": "object",
         "properties": {
           "name": {
@@ -14632,12 +14871,6 @@
           "port_from",
           "port_to"
         ]
-      },
-      "NetworkRuleList": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/NetworkRuleRelation"
-        }
       },
       "NetworkRuleProtocol": {
         "type": "string",
@@ -14772,6 +15005,22 @@
           "type"
         ]
       },
+      "OsUsers": {
+        "description": "The list of the operating system users found in all the servers linked to a project",
+        "type": "array",
+        "items": {
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Operating system username",
+              "example": "devopness"
+            }
+          },
+          "required": [
+            "name"
+          ]
+        }
+      },
       "OperatingSystem": {
         "type": "object",
         "properties": {
@@ -14825,6 +15074,63 @@
         "items": {
           "$ref": "#/components/schemas/OperatingSystem"
         }
+      },
+      "PasswordResetResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "description": "Message with information about the response",
+            "type": "string",
+            "example": "Your password has been reset"
+          }
+        },
+        "required": [
+          "message"
+        ]
+      },
+      "PasswordUserReset": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "description": "The unique token generated by the API and sent to the user's e-mail address when the send-reset-link operation has been triggered.",
+            "example": "55e16e05980a5ed3b48d8ace4282b6b3b9c92f4f2cf3d50f1c67e38a53e43b7d",
+            "type": "string"
+          },
+          "email": {
+            "description": "The email of the user to reset the password.",
+            "example": "my-email@devopness.com",
+            "type": "string"
+          },
+          "password": {
+            "description": "The new password to define to user account.",
+            "example": "my-password",
+            "type": "string"
+          },
+          "password_confirmation": {
+            "description": "The new password again.",
+            "example": "my-password",
+            "type": "string"
+          }
+        },
+        "required": [
+          "token",
+          "email",
+          "password",
+          "password_confirmation"
+        ]
+      },
+      "PasswordUserSendResetLink": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "description": "The e-mail that will uniquely identify the user on the system and become its login credential. Must be a valid email address. Must not be greater than 255 characters.",
+            "example": "user@example.com",
+            "type": "string"
+          }
+        },
+        "required": [
+          "email"
+        ]
       },
       "Permission": {
         "type": "object",
@@ -14950,166 +15256,6 @@
           "updated_at"
         ]
       },
-      "PipelineStep": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "description": "The unique ID of the given pipeline step",
-            "type": "integer",
-            "example": 45678
-          },
-          "name": {
-            "description": "The pipeline step's name",
-            "type": "string",
-            "example": "Extra step before build app"
-          },
-          "type": {
-            "description": "The pipeline step's type",
-            "type": "string",
-            "example": "default-step"
-          },
-          "run_as_user": {
-            "description": "The name of the Unix user on behalf of which the script will be executed",
-            "type": "string",
-            "example": "devopness"
-          },
-          "command": {
-            "description": "A command line or multiline bash pipeline step",
-            "type": "string",
-            "example": "echo 'Deploy with devopness is a breeze!' | tee -a /tmp/build-started.log"
-          },
-          "runner": {
-            "$ref": "#/components/schemas/PipelineStepRunnerName"
-          },
-          "script_id": {
-            "description": "The script's ID of this pipeline step",
-            "type": "integer",
-            "example": 3452033
-          },
-          "pipeline_id": {
-            "description": "The pipeline's ID",
-            "type": "integer",
-            "example": 7869450
-          },
-          "trigger_order": {
-            "description": "The relative order of the step execution in case of multiple steps attached to pipeline",
-            "type": "integer",
-            "example": 1001
-          },
-          "is_auto_generated": {
-            "description": "True if this step is auto-generated or false if this was created by the user",
-            "type": "boolean",
-            "example": false
-          },
-          "is_default_step": {
-            "description": "True if this step is a default step of the pipeline and cannot be updated/deleted",
-            "type": "boolean",
-            "example": false
-          },
-          "created_at": {
-            "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2019-09-25T13:22:37.000000Z"
-          },
-          "updated_at": {
-            "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2019-09-25T13:22:37.000000Z"
-          }
-        },
-        "required": [
-          "id",
-          "name",
-          "type",
-          "run_as_user",
-          "command",
-          "runner",
-          "script_id",
-          "pipeline_id",
-          "trigger_order",
-          "is_auto_generated",
-          "is_default_step",
-          "created_at",
-          "updated_at"
-        ]
-      },
-      "PipelineStepCreate": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "description": "Name/short description of the script. Must be at least 4 characters. Must not be greater than 60 characters.",
-            "example": "Extra step before build app",
-            "type": "string"
-          },
-          "type": {
-            "description": "The pipeline step's type. Must not be greater than 20 characters.",
-            "example": "default-step",
-            "type": "string"
-          },
-          "command": {
-            "description": "A command line or multiline bash script. Must be at least 10 characters. Must not be greater than 300 characters.",
-            "example": "echo 'Deploy with devopness is a breeze!' | tee -a /tmp/build-started.log",
-            "type": "string"
-          },
-          "runner": {
-            "$ref": "#/components/schemas/PipelineStepRunnerName"
-          },
-          "run_as_user": {
-            "description": "The name of the Unix user on behalf of which the script will be executed. Must not be greater than 60 characters.",
-            "example": "devopness",
-            "type": "string"
-          }
-        },
-        "required": [
-          "name",
-          "command",
-          "runner"
-        ]
-      },
-      "PipelineStepUpdate": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "description": "The unique ID of the given pipeline step.",
-            "example": 37292,
-            "type": "integer"
-          },
-          "name": {
-            "description": "Name/short description of the script. Must be at least 4 characters. Must not be greater than 60 characters.",
-            "example": "Extra step before build app",
-            "type": "string"
-          },
-          "type": {
-            "description": "The pipeline step's type. Must not be greater than 20 characters.",
-            "example": "default-step",
-            "type": "string"
-          },
-          "command": {
-            "description": "A command line or multiline bash script. Must be at least 10 characters. Must not be greater than 300 characters.",
-            "example": "echo 'Deploy with devopness is a breeze!' | tee -a /tmp/build-started.log",
-            "type": "string"
-          },
-          "runner": {
-            "$ref": "#/components/schemas/PipelineStepRunnerName"
-          },
-          "run_as_user": {
-            "description": "The name of the Unix user on behalf of which the script will be executed. Must not be greater than 60 characters.",
-            "example": "devopness",
-            "type": "string"
-          },
-          "trigger_after": {
-            "description": "Repositions the pipeline step after the step with the given `trigger_order`. Must be at least 0. Must not be greater than 16777214.",
-            "example": 2000,
-            "type": "integer"
-          }
-        },
-        "required": [
-          "id",
-          "name",
-          "command",
-          "runner"
-        ]
-      },
       "PipelineUpdate": {
         "type": "object",
         "properties": {
@@ -15148,10 +15294,75 @@
           "name"
         ]
       },
+      "PipelineList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/PipelineRelation"
+        }
+      },
+      "PipelineRelation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "The unique ID of the given pipeline",
+            "type": "integer",
+            "example": 342390
+          },
+          "name": {
+            "description": "The pipeline's name",
+            "type": "string",
+            "example": "My pied piper-line"
+          },
+          "environment_id": {
+            "description": "ID of the environment this pipeline belongs to",
+            "type": "integer",
+            "example": 4532342
+          },
+          "project_id": {
+            "description": "ID of the project this pipeline belongs to",
+            "type": "integer",
+            "example": 97063242
+          },
+          "resource_type": {
+            "description": "The pipeline's resource type",
+            "type": "string",
+            "example": "application"
+          },
+          "resource_id": {
+            "description": "The pipeline's resource ID",
+            "type": "integer",
+            "example": 5324234
+          },
+          "created_by_user": {
+            "$ref": "#/components/schemas/UserRelation"
+          },
+          "created_at": {
+            "description": "The date and time when the record was created",
+            "type": "string",
+            "example": "2022-09-26T15:30:31.000000Z"
+          },
+          "updated_at": {
+            "description": "The date and time when the record was last updated",
+            "type": "string",
+            "example": "2022-09-26T15:30:58.000000Z"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "environment_id",
+          "project_id",
+          "resource_type",
+          "resource_id",
+          "created_by_user",
+          "created_at",
+          "updated_at"
+        ]
+      },
       "PipelineSteps": {
         "type": "array",
         "items": {
-          "$ref": "#/components/schemas/PipelineStep"
+          "$ref": "#/components/schemas/Step"
         }
       },
       "PipelineStepRunnerName": {
@@ -15170,109 +15381,99 @@
         "type": "object",
         "properties": {
           "id": {
+            "description": "The Id of the project",
             "type": "integer",
-            "description": "The unique id of the given record",
             "example": 45678
           },
           "user_id": {
-            "type": "integer",
             "description": "The id of the user that own the project",
-            "example": 984123
+            "type": "integer",
+            "example": 45678
           },
           "name": {
-            "type": "string",
             "description": "The project's name",
+            "type": "string",
             "example": "my project"
           },
-          "logo_image": {
-            "type": "string",
-            "description": "A base64 string representation of the logo image",
-            "example": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACA.../AgwAgJqsE2/7ccAAAAAASUVORK5CYII="
-          },
           "logo_url": {
-            "type": "string",
-            "format": "url",
             "description": "A URL path to the project's logo image",
+            "type": "string",
             "example": "https://example.com/projects-beautiful-logo.png",
             "nullable": true
           },
-          "ssh_keys": {
-            "description": "The list of SSH keys added to the project",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SshKeyRelation"
-            }
-          },
           "os_users": {
-            "description": "The list of the operating system users found in all the servers linked to a project",
-            "type": "array",
-            "items": {
-              "properties": {
-                "name": {
-                  "type": "string"
-                }
-              },
-              "example": {
-                "name": "devopness"
-              }
-            }
-          },
-          "applications": {
-            "$ref": "#/components/schemas/Applications"
+            "$ref": "#/components/schemas/OsUsers"
           },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
           },
+          "environments": {
+            "$ref": "#/components/schemas/EnvironmentList"
+          },
+          "applications": {
+            "$ref": "#/components/schemas/Applications"
+          },
           "cron_jobs": {
             "$ref": "#/components/schemas/CronJobs"
           },
-          "environments": {
-            "$ref": "#/components/schemas/Environments"
+          "daemons": {
+            "$ref": "#/components/schemas/DaemonList"
           },
           "network_rules": {
             "$ref": "#/components/schemas/NetworkRules"
           },
-          "daemons": {
-            "$ref": "#/components/schemas/Daemons"
-          },
           "servers": {
-            "$ref": "#/components/schemas/Servers"
+            "$ref": "#/components/schemas/ServerList"
           },
           "services": {
-            "$ref": "#/components/schemas/Services"
+            "$ref": "#/components/schemas/ServiceList"
+          },
+          "created_at": {
+            "description": "The date and time when the record was created",
+            "type": "string",
+            "example": "2022-09-26T15:30:31.000000Z"
+          },
+          "updated_at": {
+            "description": "The date and time when the record was last updated",
+            "type": "string",
+            "example": "2022-09-26T15:30:58.000000Z"
           }
         },
         "required": [
           "id",
           "user_id",
           "name",
+          "logo_url",
+          "os_users",
+          "created_by_user",
+          "environments",
           "applications",
           "cron_jobs",
-          "environments",
-          "network_rules",
           "daemons",
+          "network_rules",
           "servers",
-          "services"
+          "services",
+          "created_at",
+          "updated_at"
         ]
       },
       "ProjectCreate": {
         "type": "object",
         "properties": {
           "name": {
-            "type": "string",
-            "description": "The project's name",
-            "example": "my project"
+            "description": "The name of the project. Must not be greater than 60 characters.",
+            "example": "my project",
+            "type": "string"
           },
           "logo_image": {
-            "type": "string",
-            "description": "A base64 string representation of the logo image",
-            "example": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACA.../AgwAgJqsE2/7ccAAAAAASUVORK5CYII="
+            "description": "A base64 string representation of the logo image.",
+            "example": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACA.../AgwAgJqsE2/7ccAAAAAASUVORK5CYII=",
+            "type": "string"
           },
           "logo_url": {
-            "type": "string",
-            "format": "url",
-            "description": "A URL path to the project's logo image",
-            "example": "https://example.com/projects-beautiful-logo.png"
+            "description": "A URL path to the project's logo image. Must be a valid URL.",
+            "example": "https://example.com/projects-beautiful-logo.png",
+            "type": "string"
           }
         },
         "required": [
@@ -15283,25 +15484,24 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "integer",
-            "description": "The unique id of the given record",
-            "example": 45678
+            "description": "The ID of the project.",
+            "example": 45678,
+            "type": "integer"
           },
           "name": {
-            "type": "string",
-            "description": "The project's name",
-            "example": "my project"
+            "description": "The name of the project. Must not be greater than 60 characters.",
+            "example": "my project",
+            "type": "string"
           },
           "logo_image": {
-            "type": "string",
-            "description": "A base64 string representation of the logo image",
-            "example": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACA.../AgwAgJqsE2/7ccAAAAAASUVORK5CYII="
+            "description": "A base64 string representation of the logo image.",
+            "example": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACA.../AgwAgJqsE2/7ccAAAAAASUVORK5CYII=",
+            "type": "string"
           },
           "logo_url": {
-            "type": "string",
-            "format": "url",
-            "description": "A URL path to the project's logo image",
-            "example": "https://example.com/projects-beautiful-logo.png"
+            "description": "A URL path to the project's logo image. Must be a valid URL.",
+            "example": "https://example.com/projects-beautiful-logo.png",
+            "type": "string"
           }
         },
         "required": [
@@ -15315,58 +15515,62 @@
           "$ref": "#/components/schemas/ProjectRelation"
         }
       },
+      "ProjectList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/ProjectRelation"
+        }
+      },
       "ProjectRelation": {
         "type": "object",
         "properties": {
           "id": {
+            "description": "The Id of the project",
             "type": "integer",
-            "description": "The unique id of the given record",
             "example": 45678
           },
           "user_id": {
-            "type": "integer",
             "description": "The id of the user that own the project",
-            "example": 984123
+            "type": "integer",
+            "example": 45678
           },
           "name": {
-            "type": "string",
             "description": "The project's name",
+            "type": "string",
             "example": "my project"
           },
-          "logo_image": {
-            "type": "string",
-            "description": "A base64 string representation of the logo image",
-            "example": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACA.../AgwAgJqsE2/7ccAAAAAASUVORK5CYII="
-          },
           "logo_url": {
-            "type": "string",
-            "format": "url",
             "description": "A URL path to the project's logo image",
+            "type": "string",
             "example": "https://example.com/projects-beautiful-logo.png",
             "nullable": true
           },
           "os_users": {
-            "description": "The list of the operating system users found in all the servers linked to a project",
-            "type": "array",
-            "items": {
-              "properties": {
-                "name": {
-                  "type": "string"
-                }
-              },
-              "example": {
-                "name": "devopness"
-              }
-            }
+            "$ref": "#/components/schemas/OsUsers"
           },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
+          },
+          "created_at": {
+            "description": "The date and time when the record was created",
+            "type": "string",
+            "example": "2022-09-26T15:30:31.000000Z"
+          },
+          "updated_at": {
+            "description": "The date and time when the record was last updated",
+            "type": "string",
+            "example": "2022-09-26T15:30:58.000000Z"
           }
         },
         "required": [
           "id",
           "user_id",
-          "name"
+          "name",
+          "logo_url",
+          "os_users",
+          "created_by_user",
+          "created_at",
+          "updated_at"
         ]
       },
       "RequiredPermissions": {
@@ -15580,47 +15784,44 @@
         "type": "object",
         "properties": {
           "id": {
+            "description": "The unique ID of the given role",
             "type": "integer",
-            "description": "The unique id of the given record",
             "example": 45678
           },
-          "project_id": {
-            "type": "integer",
-            "description": "The id of the project this role belongs to",
-            "example": 984123
-          },
           "name": {
+            "description": "The name of the given role",
             "type": "string",
-            "description": "The role's name",
             "example": "admin"
           },
           "description": {
-            "type": "string",
             "description": "Description of this role",
-            "example": "Has total access to resources",
-            "nullable": true
+            "type": "string",
+            "example": "Has total access to resources"
+          },
+          "project_id": {
+            "description": "The ID of the project this role belongs to",
+            "type": "integer",
+            "example": 984123
           },
           "permissions": {
             "$ref": "#/components/schemas/RolePermissions"
           },
           "created_at": {
-            "type": "string",
-            "format": "date-time",
             "description": "The date and time when the record was created",
-            "example": "2019-09-25T15:50:48.000000Z"
+            "type": "string",
+            "example": "2019-09-25T13:22:37.000000Z"
           },
           "updated_at": {
-            "type": "string",
-            "format": "date-time",
             "description": "The date and time when the record was last updated",
-            "example": "2019-09-25T13:52:04.000000Z"
+            "type": "string",
+            "example": "2019-09-25T13:22:37.000000Z"
           }
         },
         "required": [
           "id",
-          "project_id",
           "name",
           "description",
+          "project_id",
           "permissions",
           "created_at",
           "updated_at"
@@ -15632,67 +15833,113 @@
           "$ref": "#/components/schemas/Role"
         }
       },
-      "RoleCreate": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "description": "The role's name",
-            "example": "admin"
-          },
-          "description": {
-            "type": "string",
-            "description": "Description of this role",
-            "example": "Has total access to resources"
-          },
-          "permissions": {
-            "$ref": "#/components/schemas/RolePermissions"
-          }
-        },
-        "required": [
-          "name",
-          "permissions"
-        ]
-      },
       "RoleUpdate": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "description": "The unique id of the given record",
-            "example": 45678
-          },
           "name": {
-            "type": "string",
-            "description": "The role's name",
-            "example": "admin"
+            "description": "The role's name. Must be at least 2 characters. Must not be greater than 60 characters.",
+            "example": "admin",
+            "type": "string"
           },
           "description": {
-            "type": "string",
-            "description": "Description of this role",
-            "example": "Has total access to resources"
+            "description": "Description of this role. Must not be greater than 255 characters.",
+            "example": "Has total access to resources",
+            "type": "string"
           },
           "permissions": {
             "$ref": "#/components/schemas/RolePermissions"
           }
         },
         "required": [
-          "id",
           "name",
           "permissions"
         ]
       },
       "RolePermissions": {
-        "type": "array",
         "description": "The list of permissions for this role",
+        "items": {
+          "type": "string"
+        },
         "example": [
           "application:read",
           "application:create",
           "server:read"
-        ],
+        ]
+      },
+      "RoleProjectCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "The role's name. Must be at least 2 characters. Must not be greater than 60 characters.",
+            "example": "admin",
+            "type": "string"
+          },
+          "description": {
+            "description": "Description of this role. Must not be greater than 255 characters.",
+            "example": "Has total access to resources",
+            "type": "string"
+          },
+          "permissions": {
+            "$ref": "#/components/schemas/RolePermissions"
+          }
+        },
+        "required": [
+          "name",
+          "permissions"
+        ]
+      },
+      "RoleList": {
+        "type": "array",
         "items": {
-          "type": "string"
+          "$ref": "#/components/schemas/RoleRelation"
         }
+      },
+      "RoleRelation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "The unique ID of the given role",
+            "type": "integer",
+            "example": 45678
+          },
+          "name": {
+            "description": "The name of the given role",
+            "type": "string",
+            "example": "admin"
+          },
+          "description": {
+            "description": "Description of this role",
+            "type": "string",
+            "example": "Has total access to resources"
+          },
+          "project_id": {
+            "description": "The ID of the project this role belongs to",
+            "type": "integer",
+            "example": 984123
+          },
+          "permissions": {
+            "$ref": "#/components/schemas/RolePermissions"
+          },
+          "created_at": {
+            "description": "The date and time when the record was created",
+            "type": "string",
+            "example": "2019-09-25T13:22:37.000000Z"
+          },
+          "updated_at": {
+            "description": "The date and time when the record was last updated",
+            "type": "string",
+            "example": "2019-09-25T13:22:37.000000Z"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "description",
+          "project_id",
+          "permissions",
+          "created_at",
+          "updated_at"
+        ]
       },
       "ScriptRunner": {
         "type": "object",
@@ -16039,41 +16286,65 @@
           "gcp-gce"
         ]
       },
-      "ServerCreate": {
+      "ServerEnvironmentCreate": {
         "type": "object",
         "properties": {
           "hostname": {
-            "type": "string",
-            "description": "The hostname to be set on Linux servers. Accepts numbers (0-9), dash (-) and lower case non accented characters",
-            "example": "web-srv-1"
+            "description": "The hostname to be set on Linux servers. Accepts numbers (0-9), dash (-) and lower case non accented characters. Must contain only letters, numbers, dashes and underscores. Must not be greater than 60 characters.",
+            "example": "web-srv-1",
+            "type": "string"
           },
           "ip_address": {
-            "type": "string",
-            "format": "ipv4",
-            "description": "Public ipv4 address for server access",
-            "example": "200.123.45.67"
+            "description": "Public ipv4 address for server access. This field is required when <code>provision_settings.self_hosted</code> is <code>true</code>.",
+            "example": "200.123.45.67",
+            "type": "string"
           },
           "ssh_port": {
-            "type": "integer",
-            "description": "The network port to which the SSH daemon is listening to SSH connections on the server",
-            "example": 22
+            "description": "The network port to which the SSH daemon is listening to SSH connections on the server. This field is required when <code>provision_settings.self_hosted</code> is <code>true</code>.",
+            "example": 22,
+            "type": "integer"
           },
           "blueprint": {
             "$ref": "#/components/schemas/ServerBlueprint"
-          },
-          "environments": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/EnvironmentLinkServer"
-            }
           },
           "provision_settings": {
             "$ref": "#/components/schemas/ServerProvisionSettings"
           }
         },
         "required": [
-          "blueprint",
           "hostname",
+          "blueprint",
+          "provision_settings"
+        ]
+      },
+      "ServerProjectCreate": {
+        "type": "object",
+        "properties": {
+          "hostname": {
+            "description": "The hostname to be set on Linux servers. Accepts numbers (0-9), dash (-) and lower case non accented characters. Must contain only letters, numbers, dashes and underscores. Must not be greater than 60 characters.",
+            "example": "web-srv-1",
+            "type": "string"
+          },
+          "ip_address": {
+            "description": "Public ipv4 address for server access. This field is required when <code>provision_settings.self_hosted</code> is <code>true</code>.",
+            "example": "200.123.45.67",
+            "type": "string"
+          },
+          "ssh_port": {
+            "description": "The network port to which the SSH daemon is listening to SSH connections on the server. This field is required when <code>provision_settings.self_hosted</code> is <code>true</code>.",
+            "example": 22,
+            "type": "integer"
+          },
+          "blueprint": {
+            "$ref": "#/components/schemas/ServerBlueprint"
+          },
+          "provision_settings": {
+            "$ref": "#/components/schemas/ServerProvisionSettings"
+          }
+        },
+        "required": [
+          "hostname",
+          "blueprint",
           "provision_settings"
         ]
       },
@@ -16323,34 +16594,6 @@
           "$ref": "#/components/schemas/ServiceRelation"
         }
       },
-      "ServiceCreate": {
-        "type": "object",
-        "properties": {
-          "auto_start": {
-            "description": "Tells if the service should start automatically on operating system boot.",
-            "example": false,
-            "type": "boolean"
-          },
-          "initial_state": {
-            "$ref": "#/components/schemas/ServiceInitialState"
-          },
-          "type": {
-            "$ref": "#/components/schemas/ServiceName"
-          },
-          "version": {
-            "description": "The service version to be installed. Must be one of <code></code> Must be at least 3 characters. Must not be greater than 30 characters.",
-            "example": "5.7",
-            "type": "string"
-          },
-          "environments": {
-            "$ref": "#/components/schemas/EnvironmentLinks"
-          }
-        },
-        "required": [
-          "type",
-          "version"
-        ]
-      },
       "ServiceInitialState": {
         "type": "string",
         "default": "started",
@@ -16433,6 +16676,34 @@
         "items": {
           "$ref": "#/components/schemas/ServiceType"
         }
+      },
+      "ServiceProjectCreate": {
+        "type": "object",
+        "properties": {
+          "auto_start": {
+            "description": "Tells if the service should start automatically on operating system boot.",
+            "example": false,
+            "type": "boolean"
+          },
+          "initial_state": {
+            "$ref": "#/components/schemas/ServiceInitialState"
+          },
+          "type": {
+            "$ref": "#/components/schemas/ServiceName"
+          },
+          "version": {
+            "description": "The service version to be installed. Must be one of <code></code> Must be at least 3 characters. Must not be greater than 30 characters.",
+            "example": "5.7",
+            "type": "string"
+          },
+          "environments": {
+            "$ref": "#/components/schemas/EnvironmentLinks"
+          }
+        },
+        "required": [
+          "type",
+          "version"
+        ]
       },
       "ServiceRelation": {
         "type": "object",
@@ -16860,7 +17131,7 @@
           "last_action"
         ]
       },
-      "SshKeyCreate": {
+      "SshKeyEnvironmentCreate": {
         "type": "object",
         "properties": {
           "name": {
@@ -17081,7 +17352,7 @@
           "$ref": "#/components/schemas/SslCertificateRelation"
         }
       },
-      "SslCertificateCreate": {
+      "SslCertificateApplicationCreate": {
         "type": "object",
         "properties": {
           "issuer": {
@@ -17236,24 +17507,184 @@
         ],
         "example": "DV"
       },
+      "Step": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "The unique ID of the given pipeline step",
+            "type": "integer",
+            "example": 45678
+          },
+          "name": {
+            "description": "The pipeline step's name",
+            "type": "string",
+            "example": "Extra step before build app"
+          },
+          "type": {
+            "description": "The pipeline step's type",
+            "type": "string",
+            "example": "default-step"
+          },
+          "run_as_user": {
+            "description": "The name of the Unix user on behalf of which the script will be executed",
+            "type": "string",
+            "example": "devopness"
+          },
+          "command": {
+            "description": "A command line or multiline bash pipeline step",
+            "type": "string",
+            "example": "echo 'Deploy with devopness is a breeze!' | tee -a /tmp/build-started.log"
+          },
+          "runner": {
+            "$ref": "#/components/schemas/PipelineStepRunnerName"
+          },
+          "script_id": {
+            "description": "The script's ID of this pipeline step",
+            "type": "integer",
+            "example": 3452033
+          },
+          "pipeline_id": {
+            "description": "The pipeline's ID",
+            "type": "integer",
+            "example": 7869450
+          },
+          "trigger_order": {
+            "description": "The relative order of the step execution in case of multiple steps attached to pipeline",
+            "type": "integer",
+            "example": 1001
+          },
+          "is_auto_generated": {
+            "description": "True if this step is auto-generated or false if this was created by the user",
+            "type": "boolean",
+            "example": false
+          },
+          "is_default_step": {
+            "description": "True if this step is a default step of the pipeline and cannot be updated/deleted",
+            "type": "boolean",
+            "example": false
+          },
+          "created_at": {
+            "description": "The date and time when the record was created",
+            "type": "string",
+            "example": "2019-09-25T13:22:37.000000Z"
+          },
+          "updated_at": {
+            "description": "The date and time when the record was last updated",
+            "type": "string",
+            "example": "2019-09-25T13:22:37.000000Z"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "type",
+          "run_as_user",
+          "command",
+          "runner",
+          "script_id",
+          "pipeline_id",
+          "trigger_order",
+          "is_auto_generated",
+          "is_default_step",
+          "created_at",
+          "updated_at"
+        ]
+      },
+      "StepPipelineCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "Name/short description of the script. Must be at least 4 characters. Must not be greater than 60 characters.",
+            "example": "Extra step before build app",
+            "type": "string"
+          },
+          "type": {
+            "description": "The pipeline step's type. Must not be greater than 20 characters.",
+            "example": "default-step",
+            "type": "string"
+          },
+          "command": {
+            "description": "A command line or multiline bash script. Must be at least 10 characters. Must not be greater than 300 characters.",
+            "example": "echo 'Deploy with devopness is a breeze!' | tee -a /tmp/build-started.log",
+            "type": "string"
+          },
+          "runner": {
+            "$ref": "#/components/schemas/PipelineStepRunnerName"
+          },
+          "run_as_user": {
+            "description": "The name of the Unix user on behalf of which the script will be executed. Must not be greater than 60 characters.",
+            "example": "devopness",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "command",
+          "runner"
+        ]
+      },
+      "StepPipelineUpdate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "The unique ID of the given pipeline step.",
+            "example": 37292,
+            "type": "integer"
+          },
+          "name": {
+            "description": "Name/short description of the script. Must be at least 4 characters. Must not be greater than 60 characters.",
+            "example": "Extra step before build app",
+            "type": "string"
+          },
+          "type": {
+            "description": "The pipeline step's type. Must not be greater than 20 characters.",
+            "example": "default-step",
+            "type": "string"
+          },
+          "command": {
+            "description": "A command line or multiline bash script. Must be at least 10 characters. Must not be greater than 300 characters.",
+            "example": "echo 'Deploy with devopness is a breeze!' | tee -a /tmp/build-started.log",
+            "type": "string"
+          },
+          "runner": {
+            "$ref": "#/components/schemas/PipelineStepRunnerName"
+          },
+          "run_as_user": {
+            "description": "The name of the Unix user on behalf of which the script will be executed. Must not be greater than 60 characters.",
+            "example": "devopness",
+            "type": "string"
+          },
+          "trigger_after": {
+            "description": "Repositions the pipeline step after the step with the given `trigger_order`. Must be at least 0. Must not be greater than 16777214.",
+            "example": 2000,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "command",
+          "runner"
+        ]
+      },
       "Team": {
         "type": "object",
         "properties": {
           "id": {
+            "description": "The unique ID of the given team",
             "type": "integer",
-            "description": "The unique id of the given team",
-            "example": 1
+            "example": 137
           },
           "name": {
-            "type": "string",
             "description": "The name of the given team",
-            "example": "Development Team"
+            "type": "string",
+            "example": "One Development Team"
           },
           "photo_url": {
-            "type": "string",
-            "nullable": true,
             "description": "The URL to team's image",
-            "example": "https://example.com/images/my_team.png"
+            "type": "string",
+            "example": "https://example.com/images/my_team.png",
+            "nullable": true
           },
           "project": {
             "$ref": "#/components/schemas/ProjectRelation"
@@ -17262,16 +17693,14 @@
             "$ref": "#/components/schemas/Users"
           },
           "created_at": {
-            "type": "string",
-            "format": "date-time",
             "description": "The date and time when the record was created",
-            "example": "2019-09-25T15:50:48.000000Z"
+            "type": "string",
+            "example": "2019-09-25T13:22:37.000000Z"
           },
           "updated_at": {
-            "type": "string",
-            "format": "date-time",
             "description": "The date and time when the record was last updated",
-            "example": "2019-09-25T13:52:04.000000Z"
+            "type": "string",
+            "example": "2019-09-25T13:22:37.000000Z"
           }
         },
         "required": [
@@ -17279,7 +17708,9 @@
           "name",
           "photo_url",
           "project",
-          "users"
+          "users",
+          "created_at",
+          "updated_at"
         ]
       },
       "Teams": {
@@ -17288,22 +17719,17 @@
           "$ref": "#/components/schemas/TeamRelation"
         }
       },
-      "TeamCreate": {
+      "TeamEnvironmentCreate": {
         "type": "object",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "The name of the team",
-            "example": "Development Team"
-          },
-          "photo_url": {
-            "type": "string",
-            "description": "The URL to team's image",
-            "example": "https://example.com/images/my_team.png"
+          "role_id": {
+            "description": "The role's ID to use for this team on environment.",
+            "example": 430,
+            "type": "integer"
           }
         },
         "required": [
-          "name"
+          "role_id"
         ]
       },
       "TeamInvitation": {
@@ -17486,65 +17912,130 @@
           "pending"
         ]
       },
-      "TeamRelation": {
+      "TeamList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/TeamRelation"
+        }
+      },
+      "TeamMembershipList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/TeamMembershipRelation"
+        }
+      },
+      "TeamMembershipRelation": {
         "type": "object",
         "properties": {
           "id": {
+            "description": "The unique ID of the given team",
             "type": "integer",
-            "description": "The unique id of the given team",
-            "example": 1
+            "example": 626
           },
           "name": {
-            "type": "string",
             "description": "The name of the given team",
-            "example": "Development Team"
+            "type": "string",
+            "example": "Team Rocket"
           },
           "photo_url": {
-            "type": "string",
-            "nullable": true,
             "description": "The URL to team's image",
-            "example": "https://example.com/images/my_team.png"
+            "type": "string",
+            "example": "https://example.com/images/team_rocket.png"
+          },
+          "role": {
+            "$ref": "#/components/schemas/RoleRelation"
           },
           "created_at": {
-            "type": "string",
-            "format": "date-time",
             "description": "The date and time when the record was created",
-            "example": "2019-09-25T15:50:48.000000Z"
+            "type": "string",
+            "example": "2019-09-25T13:22:37.000000Z"
           },
           "updated_at": {
-            "type": "string",
-            "format": "date-time",
             "description": "The date and time when the record was last updated",
-            "example": "2019-09-25T13:52:04.000000Z"
+            "type": "string",
+            "example": "2019-09-25T13:22:37.000000Z"
           }
         },
         "required": [
           "id",
           "name",
-          "photo_url"
+          "photo_url",
+          "role",
+          "created_at",
+          "updated_at"
+        ]
+      },
+      "TeamProjectCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "The name of the team. Must not be greater than 255 characters.",
+            "example": "Development Team",
+            "type": "string"
+          },
+          "photo_url": {
+            "description": "The URL to team's image. Must be a valid URL.",
+            "example": "https://example.com/images/my_team.png",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "TeamRelation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "The unique ID of the given team",
+            "type": "integer",
+            "example": 137
+          },
+          "name": {
+            "description": "The name of the given team",
+            "type": "string",
+            "example": "Some Development Team"
+          },
+          "photo_url": {
+            "description": "The URL to team's image",
+            "type": "string",
+            "example": "https://example.com/images/my_team.png",
+            "nullable": true
+          },
+          "created_at": {
+            "description": "The date and time when the record was created",
+            "type": "string",
+            "example": "2019-09-25T13:22:37.000000Z"
+          },
+          "updated_at": {
+            "description": "The date and time when the record was last updated",
+            "type": "string",
+            "example": "2019-09-25T13:22:37.000000Z"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "photo_url",
+          "created_at",
+          "updated_at"
         ]
       },
       "TeamUpdate": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "description": "The unique ID of the team",
-            "example": 1
-          },
           "name": {
-            "type": "string",
-            "description": "The name of the team",
-            "example": "Development Team"
+            "description": "The name of the team. Must not be greater than 255 characters.",
+            "example": "Development Team",
+            "type": "string"
           },
           "photo_url": {
-            "type": "string",
-            "description": "The URL to team's image",
-            "example": "https://example.com/images/my_team.png"
+            "description": "The URL to team's image. Must be a valid URL.",
+            "example": "https://example.com/images/my_team.png",
+            "type": "string"
           }
         },
         "required": [
-          "id",
           "name"
         ]
       },
@@ -17573,52 +18064,57 @@
         "type": "object",
         "properties": {
           "id": {
+            "description": "The unique ID of the given user",
             "type": "integer",
-            "description": "The Id of the given user",
-            "example": 1
+            "example": 45678
           },
           "name": {
-            "type": "string",
             "description": "User's full name",
-            "minLength": 5,
-            "maxLength": 60
+            "type": "string",
+            "example": "Some One"
           },
           "email": {
+            "description": "The e-mail that will uniquely identify the user on the system and become its login credential",
             "type": "string",
-            "format": "email",
-            "description": "The e-mail that will uniquely identify the user on the system and become its login credential"
+            "example": "user@example.com"
           },
           "language": {
             "$ref": "#/components/schemas/Language"
           },
           "active": {
+            "description": "Tells if the user is active or not",
             "type": "boolean",
-            "description": "Tells if the user is active or not"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the record was created",
-            "example": "2019-09-25T15:50:48.000000Z"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the record was last updated",
-            "example": "2019-09-25T13:52:04.000000Z"
+            "example": true
           },
           "social_accounts": {
-            "description": "The list of social accounts (source providers + login providers) connected to the user",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SocialAccount"
-            }
+            "$ref": "#/components/schemas/SocialAccounts"
+          },
+          "current_billing_plan": {
+            "description": "The code of current billing plan",
+            "type": "string",
+            "example": "PAID"
+          },
+          "created_at": {
+            "description": "The date and time when the record was created",
+            "type": "string",
+            "example": "2019-09-25T13:22:37.000000Z"
+          },
+          "updated_at": {
+            "description": "The date and time when the record was last updated",
+            "type": "string",
+            "example": "2019-09-25T13:22:37.000000Z"
           }
         },
         "required": [
           "id",
+          "name",
           "email",
-          "name"
+          "language",
+          "active",
+          "social_accounts",
+          "current_billing_plan",
+          "created_at",
+          "updated_at"
         ]
       },
       "Users": {
@@ -17628,28 +18124,235 @@
           "$ref": "#/components/schemas/UserRelation"
         }
       },
-      "UserAccountActivate": {
+      "UserCreate": {
         "type": "object",
         "properties": {
           "email": {
-            "type": "string",
-            "description": "The email of the user's account",
-            "example": "my-email@devopness.com"
-          },
-          "token": {
-            "type": "string",
-            "description": "The security token of the account",
-            "example": "MTRiMGVmMzM5NDQzODJjZjY1NzE4ZTAzMjlkYTRjYjcwMDVkMmU1OTQxZmRl"
+            "description": "The e-mail that will uniquely identify the user on the system and become its login credential. Must be a valid email address. Must not be greater than 255 characters.",
+            "example": "user@example.com",
+            "type": "string"
+          }
+        },
+        "required": [
+          "email"
+        ]
+      },
+      "UserCurrent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "The unique ID of the given user",
+            "type": "integer",
+            "example": 45678
           },
           "name": {
+            "description": "User's full name",
             "type": "string",
-            "description": "The new user name to account",
-            "example": "My Name"
+            "example": "Some One"
+          },
+          "email": {
+            "description": "The e-mail that will uniquely identify the user on the system and become its login credential",
+            "type": "string",
+            "example": "user@example.com"
+          },
+          "language": {
+            "$ref": "#/components/schemas/Language"
+          },
+          "active": {
+            "description": "Tells if the user is active or not",
+            "type": "boolean",
+            "example": true
+          },
+          "social_accounts": {
+            "$ref": "#/components/schemas/SocialAccounts"
+          },
+          "current_billing_plan": {
+            "description": "The code of current billing plan",
+            "type": "string",
+            "example": "PAID"
+          },
+          "created_at": {
+            "description": "The date and time when the record was created",
+            "type": "string",
+            "example": "2019-09-25T13:22:37.000000Z"
+          },
+          "updated_at": {
+            "description": "The date and time when the record was last updated",
+            "type": "string",
+            "example": "2019-09-25T13:22:37.000000Z"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "email",
+          "language",
+          "active",
+          "social_accounts",
+          "current_billing_plan",
+          "created_at",
+          "updated_at"
+        ]
+      },
+      "UserLogin": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "description": "The user's registered e-mail address. Must be a valid email address.",
+            "example": "user@example.com",
+            "type": "string"
           },
           "password": {
+            "description": "The user password.",
+            "example": "pa$$word",
+            "type": "string"
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ]
+      },
+      "UserLoginResponse": {
+        "type": "object",
+        "properties": {
+          "token_type": {
+            "description": "The type of the authorization token being issued",
             "type": "string",
-            "description": "The new password to account",
-            "example": "my-password"
+            "example": "Bearer"
+          },
+          "expires_in": {
+            "description": "The number of seconds remaining to the token expiration time, to be counted since the token issue date and time",
+            "type": "integer",
+            "example": 3600
+          },
+          "access_token": {
+            "description": "The issued JWT access token",
+            "type": "string",
+            "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImYwYjQxZjk1MTdiYWExOTg4Zjk..."
+          },
+          "refresh_token": {
+            "description": "A token to be used after the original access token has expired, to issue a new token without requiring a new request to the /users/login endpoint",
+            "type": "string",
+            "example": "def50200a757a1c4dbc4859a4c47195632f4df60ebb521ac5a28a0b7553101f08f8b9..."
+          }
+        },
+        "required": [
+          "token_type",
+          "expires_in",
+          "access_token",
+          "refresh_token"
+        ]
+      },
+      "UserRefreshToken": {
+        "type": "object",
+        "properties": {
+          "refresh_token": {
+            "description": "A token to be used after the original access token has expired, to issue a new token without requiring a new request to the /users/login endpoint.",
+            "example": "def50200a757a1c4dbc4859a4c47195632f4df60ebb521ac5a28a0b7553101f08f8b9...",
+            "type": "string"
+          }
+        },
+        "required": [
+          "refresh_token"
+        ]
+      },
+      "UserRefreshTokenResponse": {
+        "type": "object",
+        "properties": {
+          "token_type": {
+            "description": "The type of the authorization token being issued",
+            "type": "string",
+            "example": "Bearer"
+          },
+          "expires_in": {
+            "description": "The number of seconds remaining to the token expiration time, to be counted since the token issue date and time",
+            "type": "integer",
+            "example": 3600
+          },
+          "access_token": {
+            "description": "The issued JWT access token",
+            "type": "string",
+            "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImYwYjQxZjk1MTdiYWExOTg4Zjk..."
+          },
+          "refresh_token": {
+            "description": "A token to be used after the original access token has expired, to issue a new token without requiring a new request to the /users/login endpoint",
+            "type": "string",
+            "example": "def50200a757a1c4dbc4859a4c47195632f4df60ebb521ac5a28a0b7553101f08f8b9..."
+          }
+        },
+        "required": [
+          "token_type",
+          "expires_in",
+          "access_token",
+          "refresh_token"
+        ]
+      },
+      "UserResendVerification": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "description": "The user email to resend the verification link to. Must be a valid email address.",
+            "example": "my-email@devopness.com",
+            "type": "string"
+          }
+        },
+        "required": [
+          "email"
+        ]
+      },
+      "UserUpdate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "The unique ID of the given user.",
+            "example": 48039,
+            "type": "integer"
+          },
+          "name": {
+            "description": "User's full name. Must be at least 5 characters. Must not be greater than 60 characters.",
+            "example": "Com Truise",
+            "type": "string"
+          },
+          "email": {
+            "description": "The e-mail that will uniquely identify the user on the system and become its login credential. Must be a valid email address.",
+            "example": "user@example.com",
+            "type": "string"
+          },
+          "language": {
+            "description": "Must be one of <code>en</code> or <code>pt</code>.",
+            "example": "en",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "email"
+        ]
+      },
+      "UserVerify": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "description": "The email of the user's account. Must be a valid email address. Must not be greater than 255 characters.",
+            "example": "my-email@devopness.com",
+            "type": "string"
+          },
+          "token": {
+            "description": "The security token of the account. Must not be greater than 255 characters.",
+            "example": "MTRiMGVmMzM5NDQzODJjZjY1NzE4ZTAzMjlkYTRjYjcwMDVkMmU1OTQxZmRl",
+            "type": "string"
+          },
+          "name": {
+            "description": "The new user name to account. Must be at least 3 characters. Must not be greater than 255 characters.",
+            "example": "My Name",
+            "type": "string"
+          },
+          "password": {
+            "description": "The new password to account. Must be at least 8 characters.",
+            "example": "my-password",
+            "type": "string"
           }
         },
         "required": [
@@ -17657,106 +18360,6 @@
           "token",
           "name",
           "password"
-        ]
-      },
-      "UserAccountResendVerification": {
-        "type": "object",
-        "properties": {
-          "email": {
-            "type": "string",
-            "description": "The user email to resend the verification link",
-            "example": "my-email@devopness.com"
-          }
-        },
-        "required": [
-          "email"
-        ]
-      },
-      "UserAccountVerify": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "boolean",
-            "description": "The current activation status of the account",
-            "example": false
-          },
-          "message": {
-            "type": "string",
-            "description": "Message describing the status of the account",
-            "example": "Your email has not been verified, please verify your email address."
-          }
-        },
-        "required": [
-          "status"
-        ]
-      },
-      "UserCreate": {
-        "type": "object",
-        "properties": {
-          "email": {
-            "type": "string",
-            "format": "email",
-            "description": "The e-mail that will uniquely identify the user on the system and become its login credential"
-          }
-        },
-        "required": [
-          "email"
-        ]
-      },
-      "UserPasswordReset": {
-        "type": "object",
-        "properties": {
-          "token": {
-            "type": "string",
-            "description": "The unique token generated by the API and sent to the user's e-mail address when the `send-reset-link` operation has been triggered.",
-            "example": "55e16e05980a5ed3b48d8ace4282b6b3b9c92f4f2cf3d50f1c67e38a53e43b7d"
-          },
-          "email": {
-            "type": "string",
-            "description": "The email of the user to reset the password",
-            "example": "my-email@devopness.com"
-          },
-          "password": {
-            "type": "string",
-            "description": "The new password to define to user account",
-            "example": "my-password"
-          },
-          "password_confirmation": {
-            "type": "string",
-            "description": "The new password again",
-            "example": "my-password"
-          }
-        },
-        "required": [
-          "token",
-          "email",
-          "password",
-          "password_confirmation"
-        ]
-      },
-      "UserPasswordSendResetLink": {
-        "type": "object",
-        "properties": {
-          "email": {
-            "type": "string",
-            "description": "The user email to send the password reset link",
-            "example": "my-email@devopness.com"
-          }
-        },
-        "required": [
-          "email"
-        ]
-      },
-      "UserRefreshTokenCreate": {
-        "type": "object",
-        "properties": {
-          "refresh_token": {
-            "type": "string",
-            "description": "A token to be used after the original access token has expired, to issue a new token\nwithout requiring a new request to the `/users/login` endpoint\n"
-          }
-        },
-        "required": [
-          "refresh_token"
         ]
       },
       "UserTeamInvitations": {
@@ -17792,35 +18395,6 @@
         "required": [
           "access_token",
           "refresh_token"
-        ]
-      },
-      "UserUpdate": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "description": "The Id of the given user",
-            "example": 1
-          },
-          "email": {
-            "type": "string",
-            "format": "email",
-            "description": "The e-mail that will uniquely identify the user on the system and become its login credential"
-          },
-          "name": {
-            "type": "string",
-            "description": "User's full name",
-            "minLength": 5,
-            "maxLength": 60
-          },
-          "language": {
-            "$ref": "#/components/schemas/Language"
-          }
-        },
-        "required": [
-          "id",
-          "email",
-          "name"
         ]
       },
       "UserRelation": {
@@ -17952,7 +18526,7 @@
           "$ref": "#/components/schemas/Variable"
         }
       },
-      "VariableCreate": {
+      "VariableApplicationCreate": {
         "type": "object",
         "properties": {
           "key": {
