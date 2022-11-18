@@ -1,30 +1,30 @@
+import { ActionService } from './services/ActionService';
 import { ApiBaseService, ConfigurationOptions, Configuration } from './services/ApiBaseService';
 import { ApplicationService } from './services/ApplicationService';
+import { CloudProviderCredentialService } from './services/CloudProviderCredentialService';
+import { CronJobService } from './services/CronJobService';
 import { DaemonService } from './services/DaemonService';
 import { EnvironmentService } from './services/EnvironmentService';
-import { NetworkRuleService } from './services/NetworkRuleService';
-import { ProjectService } from './services/ProjectService';
-import { ServerService } from './services/ServerService';
-import { ServiceService } from './services/ServiceService';
-import { SourceProviderService } from './services/SourceProviderService'
-import { SshKeyService } from './services/SshKeyService';
-import { SslCertificateService } from './services/SslCertificateService';
-import { UserService } from './services/UserService';
-import { CronJobService } from './services/CronJobService';
-import { StaticService } from './services/StaticService';
-import { SocialAccountService } from './services/SocialAccountService';
-import { LogService } from './services/LogService';
-import { VariableService } from './services/VariableService';
 import { HookIncomingService } from './services/HookIncomingService';
 import { HookOutgoingService } from './services/HookOutgoingService';
 import { HookRequestService } from './services/HookRequestService';
-import { CloudProviderCredentialService } from './services/CloudProviderCredentialService';
-import { TeamService } from './services/TeamService';
-import { ResourceEventService } from './services/ResourceEventService';
-import { ActionService } from './services/ActionService';
+import { LogService } from './services/LogService';
+import { NetworkRuleService } from './services/NetworkRuleService';
 import { PipelineService } from './services/PipelineService';
+import { ProjectService } from './services/ProjectService';
+import { ResourceEventService } from './services/ResourceEventService';
 import { RoleService } from './services/RoleService';
+import { ServerService } from './services/ServerService';
+import { ServiceService } from './services/ServiceService';
+import { SocialAccountService } from './services/SocialAccountService';
+import { SourceProviderService } from './services/SourceProviderService'
+import { SshKeyService } from './services/SshKeyService';
+import { SslCertificateService } from './services/SslCertificateService';
+import { StaticService } from './services/StaticService';
 import { TeamInvitationService } from './services/TeamInvitationService';
+import { TeamService } from './services/TeamService';
+import { UserService } from './services/UserService';
+import { VariableService } from './services/VariableService';
 
 export class DevopnessApiClient {
   actions: ActionService;
@@ -40,8 +40,8 @@ export class DevopnessApiClient {
   outgoingHooks: HookOutgoingService;
   pipelines: PipelineService;
   projects: ProjectService;
-  roles: RoleService;
   resourceEvents: ResourceEventService;
+  roles: RoleService;
   servers: ServerService;
   services: ServiceService;
   socialAccounts: SocialAccountService;
@@ -49,8 +49,8 @@ export class DevopnessApiClient {
   sshKeys: SshKeyService;
   sslCertificates: SslCertificateService;
   static: StaticService;
-  teams: TeamService;
   teamInvitations: TeamInvitationService;
+  teams: TeamService;
   users: UserService;
   variables: VariableService;
 
@@ -73,8 +73,8 @@ export class DevopnessApiClient {
     this.outgoingHooks = new HookOutgoingService();
     this.pipelines = new PipelineService();
     this.projects = new ProjectService();
-    this.roles = new RoleService();
     this.resourceEvents = new ResourceEventService();
+    this.roles = new RoleService();
     this.servers = new ServerService();
     this.services = new ServiceService();
     this.socialAccounts = new SocialAccountService();
@@ -82,8 +82,8 @@ export class DevopnessApiClient {
     this.sshKeys = new SshKeyService();
     this.sslCertificates = new SslCertificateService();
     this.static = new StaticService();
-    this.teams = new TeamService();
     this.teamInvitations = new TeamInvitationService();
+    this.teams = new TeamService();
     this.users = new UserService();
     this.variables = new VariableService();
   }

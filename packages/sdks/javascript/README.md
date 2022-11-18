@@ -40,7 +40,7 @@ To authenticate, just invoke the `login` method on the `users` service:
 
 ```javascript
 async function authenticate(email, pass) {
-  const userTokens = await devopnessApi.users.login({ email: email, password: pass });
+  const userTokens = await devopnessApi.users.loginUser({ email: email, password: pass });
   // The `accessToken` must be set every time a token is obtained or refreshed.
   devopnessApi.accessToken = userTokens.data.access_token;
 }
@@ -63,7 +63,7 @@ async function getUserProfile() {
 
     // Now that we're authenticated, we can invoke methods on any services.
     // Here we're invoking the `getCurrentUser()` method on the `users` service
-    const currentUser = await devopnessApi.users.getCurrentUser();
+    const currentUser = await devopnessApi.users.getUserCurrent();
     console.log('Successfully retrieved user profile: ', currentUser);
 }
 
