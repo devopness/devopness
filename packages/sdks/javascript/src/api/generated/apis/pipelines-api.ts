@@ -17,6 +17,7 @@ import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { Pipeline } from '../../generated/models';
 import { PipelineCreate } from '../../generated/models';
+import { PipelineRelation } from '../../generated/models';
 import { PipelineUpdate } from '../../generated/models';
 
 /**
@@ -82,6 +83,38 @@ export class PipelinesApiService extends ApiBaseService {
         const requestUrl = '/pipelines/{pipeline_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Pipeline>(requestUrl.replace(`{${"pipeline_id"}}`, encodeURIComponent(String(pipelineId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Return a list of pipelines to a resource
+     * @param {number} resourceId The resource ID.
+     * @param {string} resourceType The resource type to get pipelines from.
+     * @param {number} [page] Number of the page to be retrieved
+     * @param {number} [perPage] Number of items returned per page
+     */
+    public async listPipelinesByResourceType(resourceId: number, resourceType: string, page?: number, perPage?: number): Promise<ApiResponse<Array<PipelineRelation>>> {
+        if (resourceId === null || resourceId === undefined) {
+            throw new ArgumentNullException('resourceId', 'listPipelinesByResourceType');
+        }
+        if (resourceType === null || resourceType === undefined) {
+            throw new ArgumentNullException('resourceType', 'listPipelinesByResourceType');
+        }
+        
+        let queryString = '';
+        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
+        const requestUrl = '/pipelines/{resource_type}/{resource_id}' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <Array<PipelineRelation>>(requestUrl.replace(`{${"resource_id"}}`, encodeURIComponent(String(resourceId))).replace(`{${"resource_type"}}`, encodeURIComponent(String(resourceType))));
         return new ApiResponse(response);
     }
 
