@@ -16,7 +16,7 @@ test("200 response shouldn't reject", async () => {
         'refresh_token': 'def50200a757a1c4dbc4859a4c47195632f4df60ebb521ac5a28a0b7553101f08f8b9'
     });
     try {
-        await apiClient.users.login({ email, password })
+        await apiClient.users.loginUser({ email, password })
     } catch (e) {
         expect(e).toBeInstanceOf(ApiError)
     }
@@ -28,7 +28,7 @@ test("non-200 response should reject with an ApiError", async () => {
     const password = 'testpassword'
     reqMock.onPost('/users/login').replyOnce(422, {});
     try {
-        await (apiClient.users.login({ email, password }))
+        await (apiClient.users.loginUser({ email, password }))
     } catch (e) {
         expect(e).toBeInstanceOf(ApiError)
     }
@@ -36,9 +36,9 @@ test("non-200 response should reject with an ApiError", async () => {
 
 test("ApiError message must contain a prefix so consumers know it's been raised by Devopness SDK", async () => {
     expect.assertions(2);
-    reqMock.onGet('/users/me').replyOnce(403, {});
+    reqMock.onGet('/users/current').replyOnce(403, {});
     try {
-        await (apiClient.users.getCurrentUser());
+        await (apiClient.users.getUserCurrent());
     } catch (e: any) {
         expect(e).toBeInstanceOf(ApiError)
         expect(e.message).toBe('Request failed with status code 403');
@@ -47,9 +47,9 @@ test("ApiError message must contain a prefix so consumers know it's been raised 
 
 test("NetworkError message must contain a prefix so consumers know it's been raised by Devopness SDK", async () => {
     expect.assertions(2);
-    reqMock.onGet('/users/me').timeoutOnce();
+    reqMock.onGet('/users/current').timeoutOnce();
     try {
-        await (apiClient.users.getCurrentUser());
+        await (apiClient.users.getUserCurrent());
     } catch (e: any) {
         expect(e).toBeInstanceOf(NetworkError)
         expect(e.message).toContain('Devopness SDK Network Error - timeout of ');
@@ -62,7 +62,7 @@ test("request timeout should reject with a NetworkError", async () => {
     const password = 'testpassword'
     reqMock.onPost('/users/login').timeoutOnce();
     try {
-        await (apiClient.users.login({ email, password }))
+        await (apiClient.users.loginUser({ email, password }))
     } catch (e) {
         expect(e).toBeInstanceOf(NetworkError)
     }
@@ -74,7 +74,7 @@ test("request network error should reject with a NetworkError", async () => {
     const password = 'testpassword'
     reqMock.onPost('/users/login').networkErrorOnce();
     try {
-        await (apiClient.users.login({ email, password }))
+        await (apiClient.users.loginUser({ email, password }))
     } catch (e) {
         expect(e).toBeInstanceOf(NetworkError)
     }
