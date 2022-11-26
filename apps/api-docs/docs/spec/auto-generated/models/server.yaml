@@ -46,7 +46,12 @@ properties:
   project:
     $ref: '#/components/schemas/ProjectRelation'
   last_action:
-    $ref: '#/components/schemas/ActionRelation'
+    description: ''
+    oneOf:
+      -
+        nullable: true
+      -
+        $ref: '#/components/schemas/ActionRelation'
   environment:
     $ref: '#/components/schemas/EnvironmentRelation'
   environments:

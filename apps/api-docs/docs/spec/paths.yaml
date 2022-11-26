@@ -1,31 +1,31 @@
 /actions:
   get:
-    $ref: ./endpoints/actions/paths/actions-list.yaml
-/actions/{action_id}:
+    $ref: ./auto-generated/endpoints/list-actions.yaml
+'/actions/{action_id}':
   get:
-    $ref: ./endpoints/actions/paths/actions-id.yaml
-/actions/{action_id}/retry:
+    $ref: ./auto-generated/endpoints/get-action.yaml
+'/actions/{action_id}/retry':
   post:
-    $ref: ./endpoints/actions/paths/actions-id-retry.yaml
+    $ref: ./auto-generated/endpoints/retry-action.yaml
 /actions/{resource_type}/{resource_id}:
   get:
     $ref: ./endpoints/actions/paths/action-list-resource-type-id.yaml
-/actions/{resource_type}/{resource_id}/{action_type}:
+'/actions/{resource_type}/{resource_id}/{action_type}':
   get:
-    $ref: ./endpoints/actions/paths/action-list-resource-type-id-action-type.yaml
-/applications/{application_id}:
-  get:
-    $ref: ./endpoints/applications/paths/applications-id.yaml
-  put:
-    $ref: ./endpoints/applications/paths/applications-id-update.yaml
+    $ref: ./auto-generated/endpoints/list-actions-by-resource-type-and-action-type.yaml
+'/applications/{application_id}':
   delete:
-    $ref: ./endpoints/applications/paths/applications-id-delete.yaml
+    $ref: ./auto-generated/endpoints/delete-application.yaml
+  get:
+    $ref: ./auto-generated/endpoints/get-application.yaml
+  put:
+    $ref: ./auto-generated/endpoints/update-application.yaml
 /applications/{application_id}/deployments:
   post:
     $ref: ./endpoints/applications/paths/applications-id-deployments.yaml
-/applications/{application_id}/hooks:
+'/applications/{application_id}/hooks':
   get:
-    $ref: ./endpoints/hooks/paths/applications-id-hooks-list.yaml
+    $ref: ./auto-generated/endpoints/list-application-hooks.yaml
 '/applications/{application_id}/ssl-certificates':
   get:
     $ref: ./auto-generated/endpoints/list-application-ssl-certificates.yaml
@@ -49,13 +49,13 @@
     $ref: ./endpoints/credentials/paths/credentials-id-delete.yaml
   get:
     $ref: ./endpoints/credentials/paths/credentials-id.yaml
-/environments/{environment_id}:
+'/environments/{environment_id}':
   delete:
-    $ref: ./endpoints/environments/paths/environments-id-delete.yaml
-  put:
-    $ref: ./endpoints/environments/paths/environments-id-update.yaml
+    $ref: ./auto-generated/endpoints/delete-environment.yaml
   get:
-    $ref: ./endpoints/environments/paths/environments-id.yaml
+    $ref: ./auto-generated/endpoints/get-environment.yaml
+  put:
+    $ref: ./auto-generated/endpoints/update-environment.yaml
 /environments/{environment_id}/applications:
   get:
     $ref: ./endpoints/applications/paths/environments-id-applications-list.yaml
@@ -101,43 +101,31 @@
     $ref: ./auto-generated/endpoints/list-environment-team-memberships.yaml
 /environments/{environment_id}/teams/{team_id}:
   delete:
-    $ref: ./endpoints/teams/paths/environments-id-teams-id-delete.yaml
+    $ref: ./auto-generated/endpoints/delete-environment-team.yaml
   post:
-    $ref: ./endpoints/teams/paths/environments-id-teams-id.yaml
+    $ref: ./auto-generated/endpoints/add-environment-team.yaml
 /environments/{environment_id}/actions/{resource_type}:
   get:
     $ref: ./endpoints/environments/paths/action-list-environment-id-resource-type.yaml
-/hooks/incoming:
+'/hook-requests/{hook_request_id}':
+  get:
+    $ref: ./auto-generated/endpoints/get-hook-request.yaml
+'/hooks/{hook_id}/trigger':
   post:
-    $ref: ./endpoints/hooks/paths/hooks-incoming-create.yaml
-/hooks/incoming/{hook_incoming_id}:
+    $ref: ./auto-generated/endpoints/trigger-hook.yaml
+'/hooks/{hook_type}':
+  post:
+    $ref: ./auto-generated/endpoints/add-hook.yaml
+'/hooks/{hook_type}/{hook_id}':
   delete:
-    $ref: ./endpoints/hooks/paths/hooks-incoming-id-delete.yaml
+    $ref: ./auto-generated/endpoints/delete-hook.yaml
   get:
-    $ref: ./endpoints/hooks/paths/hooks-incoming-id.yaml
-  post:
-    $ref: ./endpoints/hooks/paths/hooks-incoming-id-trigger.yaml
+    $ref: ./auto-generated/endpoints/get-hook.yaml
   put:
-    $ref: ./endpoints/hooks/paths/hooks-incoming-id-update.yaml
-/hooks/incoming/{hook_incoming_id}/requests:
+    $ref: ./auto-generated/endpoints/update-hook.yaml
+'/hooks/{hook_type}/{hook_id}/requests':
   get:
-    $ref: ./endpoints/hooks/paths/hooks-incoming-id-requests-list.yaml
-/hooks/outgoing:
-  post:
-    $ref: ./endpoints/hooks/paths/hooks-outgoing-create.yaml
-/hooks/outgoing/{hook_outgoing_id}:
-  delete:
-    $ref: ./endpoints/hooks/paths/hooks-outgoing-id-delete.yaml
-  get:
-    $ref: ./endpoints/hooks/paths/hooks-outgoing-id.yaml
-  put:
-    $ref: ./endpoints/hooks/paths/hooks-outgoing-id-update.yaml
-/hooks/outgoing/{hook_outgoing_id}/requests:
-  get:
-    $ref: ./endpoints/hooks/paths/hooks-outgoing-id-requests-list.yaml
-/hook-requests/{hook_request_id}:
-  get:
-    $ref: ./endpoints/hook-requests/paths/hook-requests-id.yaml
+    $ref: ./auto-generated/endpoints/list-hook-requests-by-hook-type.yaml
 /logs/action/{action_id}:
   get:
     $ref: ./endpoints/logs/paths/logs-action-id.yaml
@@ -201,15 +189,15 @@
   delete:
     $ref: ./auto-generated/endpoints/unlink-step-from-pipeline.yaml
 /projects:
+  get:
+    $ref: ./auto-generated/endpoints/list-projects.yaml
   post:
-    $ref: ./endpoints/projects/paths/projects.yaml
+    $ref: ./auto-generated/endpoints/add-project.yaml
+'/projects/{project_id}':
   get:
-    $ref: ./endpoints/projects/paths/projects-list.yaml
-/projects/{project_id}:
-  get:
-    $ref: ./endpoints/projects/paths/projects-id.yaml
+    $ref: ./auto-generated/endpoints/get-project.yaml
   put:
-    $ref: ./endpoints/projects/paths/projects-id-update.yaml
+    $ref: ./auto-generated/endpoints/update-project.yaml
 /projects/{project_id}/actions/{resource_type}:
   get:
     $ref: ./endpoints/projects/paths/action-list-project-id-resource-type.yaml
@@ -269,21 +257,21 @@
 /events/{resource_type}/{resource_id}:
   get:
     $ref: ./endpoints/resource-events/paths/resource-events-list.yaml
-/roles/{role_id}:
-  get:
-    $ref: ./endpoints/roles/paths/roles-id.yaml
-  put:
-    $ref: ./endpoints/roles/paths/roles-id-update.yaml
+'/roles/{role_id}':
   delete:
-    $ref: ./endpoints/roles/paths/roles-id-delete.yaml
-/servers/{server_id}:
+    $ref: ./auto-generated/endpoints/delete-role.yaml
   get:
-    $ref: ./endpoints/servers/paths/servers-id.yaml
+    $ref: ./auto-generated/endpoints/get-role.yaml
   put:
-    $ref: ./endpoints/servers/paths/servers-id-update.yaml
-/servers/{server_id}/commands:
+    $ref: ./auto-generated/endpoints/update-role.yaml
+'/servers/{server_id}':
   get:
-    $ref: ./endpoints/servers/paths/servers-id-commands.yaml
+    $ref: ./auto-generated/endpoints/get-server.yaml
+  put:
+    $ref: ./auto-generated/endpoints/update-server.yaml
+'/servers/{server_id}/commands':
+  get:
+    $ref: ./auto-generated/endpoints/get-server-commands.yaml
 '/servers/{server_id}/connect/{activation_token}':
   post:
     $ref: ./auto-generated/endpoints/connect-server.yaml
@@ -381,13 +369,13 @@
     $ref: ./auto-generated/endpoints/get-cron-job.yaml
   put:
     $ref: ./auto-generated/endpoints/update-cron-job.yaml
-/teams/{team_id}:
+'/teams/{team_id}':
   delete:
-    $ref: ./endpoints/teams/paths/teams-id-delete.yaml
+    $ref: ./auto-generated/endpoints/delete-team.yaml
   get:
-    $ref: ./endpoints/teams/paths/teams-id.yaml
+    $ref: ./auto-generated/endpoints/get-team.yaml
   put:
-    $ref: ./endpoints/teams/paths/teams-id-update.yaml
+    $ref: ./auto-generated/endpoints/update-team.yaml
 '/teams/{team_id}/invitations':
   get:
     $ref: ./auto-generated/endpoints/list-team-invitations.yaml
@@ -396,14 +384,14 @@
 '/team-invitations/{team_invitation_id}/accept':
   post:
     $ref: ./auto-generated/endpoints/accept-team-invitation.yaml
-/teams/{team_id}/members:
+'/teams/{team_id}/members':
   get:
-    $ref: ./endpoints/members/paths/teams-id-members-list.yaml
-/teams/{team_id}/members/{member_id}:
+    $ref: ./auto-generated/endpoints/list-team-members.yaml
+'/teams/{team_id}/members/{user_id}':
   delete:
-    $ref: ./endpoints/members/paths/teams-id-members-id-delete.yaml
+    $ref: ./auto-generated/endpoints/delete-team-member.yaml
   get:
-    $ref: ./endpoints/members/paths/teams-id-members-id.yaml
+    $ref: ./auto-generated/endpoints/get-team-member.yaml
 /users:
   post:
     $ref: ./auto-generated/endpoints/add-user.yaml
@@ -413,15 +401,15 @@
 /users/account/verify:
   post:
     $ref: ./auto-generated/endpoints/verify-user.yaml
-/users/current:
-  get:
-    $ref: ./auto-generated/endpoints/get-user-current.yaml
 /users/login:
   post:
     $ref: ./auto-generated/endpoints/login-user.yaml
 /users/logout:
   get:
     $ref: ./endpoints/users/paths/logout.yaml
+/users/me:
+  get:
+    $ref: ./endpoints/users/paths/users-me.yaml
 /users/password/reset:
   post:
     $ref: ./auto-generated/endpoints/reset-user-password.yaml

@@ -17,6 +17,10 @@ properties:
     description: 'Must be one of <code>en</code> or <code>pt</code>.'
     example: en
     type: string
+  current_billing_plan:
+    description: 'The user subscription plan. Must be one of <code>FREE</code> or <code>PAID</code>.'
+    example: FREE
+    type: string
 required:
   - id
   - name

@@ -24,7 +24,9 @@ properties:
   current_billing_plan:
     description: 'The code of current billing plan'
     type: string
-    example: PAID
+    example: FREE
+  subscription_plans:
+    $ref: '#/components/schemas/SubscriptionPlanList'
   created_at:
     description: 'The date and time when the record was created'
     type: string
@@ -41,5 +43,6 @@ required:
   - active
   - social_accounts
   - current_billing_plan
+  - subscription_plans
   - created_at
   - updated_at

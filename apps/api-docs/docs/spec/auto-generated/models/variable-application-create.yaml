@@ -21,19 +21,9 @@ properties:
     description: 'Indicates if the variable value should be visible or not in the deployment logs.'
     example: false
     type: boolean
-  resource_id:
-    description: 'The ID of the resource this variable is linked to.'
-    example: 32423
-    type: integer
-  resource_type:
-    description: 'The type of the resource this variable is linked to. Must be one of <code>application</code>.'
-    example: application
-    type: string
 required:
   - key
   - value
   - target
   - type
   - hidden
-  - resource_id
-  - resource_type

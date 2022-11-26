@@ -46,7 +46,12 @@ properties:
   servers:
     $ref: '#/components/schemas/Servers'
   last_action:
-    $ref: '#/components/schemas/ActionRelation'
+    description: ''
+    oneOf:
+      -
+        nullable: true
+      -
+        $ref: '#/components/schemas/ActionRelation'
   created_at:
     description: 'The date and time when the record was created'
     type: string

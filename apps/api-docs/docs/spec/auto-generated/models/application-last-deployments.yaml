@@ -3,6 +3,14 @@ description: 'Latest deployment created to application and the more recent compl
 type: object
 properties:
   latest:
-    $ref: '#/components/schemas/ActionRelation'
+    oneOf:
+      -
+        nullable: true
+      -
+        $ref: '#/components/schemas/ActionRelation'
   live:
-    $ref: '#/components/schemas/ActionRelation'
+    oneOf:
+      -
+        nullable: true
+      -
+        $ref: '#/components/schemas/ActionRelation'

@@ -54,7 +54,6 @@ required:
   - action_data
   - triggered_from
   - resource
-  - summary
   - servers
   - started_at
   - completed_at

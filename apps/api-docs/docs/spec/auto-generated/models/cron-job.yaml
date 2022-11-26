@@ -28,11 +28,21 @@ properties:
     type: boolean
     example: false
   last_action:
-    $ref: '#/components/schemas/ActionRelation'
+    description: ''
+    oneOf:
+      -
+        nullable: true
+      -
+        $ref: '#/components/schemas/ActionRelation'
   created_by_user:
     $ref: '#/components/schemas/UserRelation'
   application:
-    $ref: '#/components/schemas/ApplicationRelation'
+    description: ''
+    oneOf:
+      -
+        nullable: true
+      -
+        $ref: '#/components/schemas/ApplicationRelation'
   project:
     $ref: '#/components/schemas/ProjectRelation'
   environments:

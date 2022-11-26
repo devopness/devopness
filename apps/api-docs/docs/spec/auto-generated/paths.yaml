@@ -18,6 +18,9 @@
     $ref: ./auto-generated/endpoints/get-application.yaml
   put:
     $ref: ./auto-generated/endpoints/update-application.yaml
+'/applications/{application_id}/hooks':
+  get:
+    $ref: ./auto-generated/endpoints/list-application-hooks.yaml
 '/applications/{application_id}/ssl-certificates':
   get:
     $ref: ./auto-generated/endpoints/list-application-ssl-certificates.yaml
@@ -89,6 +92,25 @@
     $ref: ./auto-generated/endpoints/delete-environment-team.yaml
   post:
     $ref: ./auto-generated/endpoints/add-environment-team.yaml
+'/hook-requests/{hook_request_id}':
+  get:
+    $ref: ./auto-generated/endpoints/get-hook-request.yaml
+'/hooks/{hook_id}/trigger':
+  post:
+    $ref: ./auto-generated/endpoints/trigger-hook.yaml
+'/hooks/{hook_type}':
+  post:
+    $ref: ./auto-generated/endpoints/add-hook.yaml
+'/hooks/{hook_type}/{hook_id}':
+  delete:
+    $ref: ./auto-generated/endpoints/delete-hook.yaml
+  get:
+    $ref: ./auto-generated/endpoints/get-hook.yaml
+  put:
+    $ref: ./auto-generated/endpoints/update-hook.yaml
+'/hooks/{hook_type}/{hook_id}/requests':
+  get:
+    $ref: ./auto-generated/endpoints/list-hook-requests-by-hook-type.yaml
 '/network-rules/{network_rule_id}':
   delete:
     $ref: ./auto-generated/endpoints/delete-network-rule.yaml
@@ -220,6 +242,11 @@
 '/services/{service_id}/update-status':
   post:
     $ref: ./auto-generated/endpoints/update-status-service.yaml
+'/services/{service_id}/variables':
+  get:
+    $ref: ./auto-generated/endpoints/list-service-variables.yaml
+  post:
+    $ref: ./auto-generated/endpoints/add-service-variable.yaml
 '/ssh-keys/{ssh_key_id}':
   delete:
     $ref: ./auto-generated/endpoints/delete-ssh-key.yaml
@@ -264,15 +291,15 @@
 /users/account/verify:
   post:
     $ref: ./auto-generated/endpoints/verify-user.yaml
-/users/current:
-  get:
-    $ref: ./auto-generated/endpoints/get-user-current.yaml
 /users/login:
   post:
     $ref: ./auto-generated/endpoints/login-user.yaml
 /users/logout:
   get:
     $ref: ./auto-generated/endpoints/get-user-logout.yaml
+/users/me:
+  get:
+    $ref: ./auto-generated/endpoints/get-user-me.yaml
 /users/password/reset:
   post:
     $ref: ./auto-generated/endpoints/reset-user-password.yaml

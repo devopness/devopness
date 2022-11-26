@@ -26,7 +26,12 @@ properties:
     type: integer
     example: 2347658
   last_action:
-    $ref: '#/components/schemas/ActionRelation'
+    description: ''
+    oneOf:
+      -
+        nullable: true
+      -
+        $ref: '#/components/schemas/ActionRelation'
   expires_at:
     description: 'The date and time when this certificate will no longer be valid, down to minute precision'
     type: string

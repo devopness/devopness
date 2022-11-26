@@ -27,7 +27,7 @@ responses:
     content:
       application/json:
         schema:
-          $ref: '#/components/schemas/Server'
+          $ref: '#/components/schemas/ServerCommand'
   403:
     description: Forbidden/Unauthorized
     content:

@@ -65,6 +65,52 @@ EnvironmentType:
   $ref: ./auto-generated/models/environment-type.yaml
 EnvironmentUpdate:
   $ref: ./auto-generated/models/environment-update.yaml
+Hook:
+  $ref: ./auto-generated/models/hook.yaml
+HookCreate:
+  $ref: ./auto-generated/models/hook-create.yaml
+HookIncomingSettings:
+  $ref: ./auto-generated/models/hook-incoming-settings.yaml
+HookIncomingTriggerVariables:
+  $ref: ./auto-generated/models/hook-incoming-trigger-variables.yaml
+HookIncomingTriggerWhen:
+  $ref: ./auto-generated/models/hook-incoming-trigger-when.yaml
+HookIncomingTriggerWhenCondition:
+  $ref: ./auto-generated/models/hook-incoming-trigger-when-condition.yaml
+HookIncomingTriggerWhenConditionType:
+  $ref: ./auto-generated/models/hook-incoming-trigger-when-condition-type.yaml
+HookList:
+  $ref: ./auto-generated/models/hook-list.yaml
+HookOutgoingRequestHeader:
+  $ref: ./auto-generated/models/hook-outgoing-request-header.yaml
+HookOutgoingSettings:
+  $ref: ./auto-generated/models/hook-outgoing-settings.yaml
+HookOutgoingTriggerWhen:
+  $ref: ./auto-generated/models/hook-outgoing-trigger-when.yaml
+HookOutgoingTriggerWhenActionStatus:
+  $ref: ./auto-generated/models/hook-outgoing-trigger-when-action-status.yaml
+HookOutgoingTriggerWhenCondition:
+  $ref: ./auto-generated/models/hook-outgoing-trigger-when-condition.yaml
+HookOutgoingTriggerWhenConditionType:
+  $ref: ./auto-generated/models/hook-outgoing-trigger-when-condition-type.yaml
+HookRelation:
+  $ref: ./auto-generated/models/hook-relation.yaml
+HookRequest:
+  $ref: ./auto-generated/models/hook-request.yaml
+HookRequestRequestBody:
+  $ref: ./auto-generated/models/hook-request-request-body.yaml
+HookRequestRequestHeaders:
+  $ref: ./auto-generated/models/hook-request-request-headers.yaml
+HookRequestResponseBody:
+  $ref: ./auto-generated/models/hook-request-response-body.yaml
+HookRequestResponseHeaders:
+  $ref: ./auto-generated/models/hook-request-response-headers.yaml
+HookUpdate:
+  $ref: ./auto-generated/models/hook-update.yaml
+HookVariable:
+  $ref: ./auto-generated/models/hook-variable.yaml
+HookVariableType:
+  $ref: ./auto-generated/models/hook-variable-type.yaml
 Invitation:
   $ref: ./auto-generated/models/invitation.yaml
 InvitationList:
@@ -117,8 +163,14 @@ ProjectRelation:
   $ref: ./auto-generated/models/project-relation.yaml
 ProjectUpdate:
   $ref: ./auto-generated/models/project-update.yaml
+RequestList:
+  $ref: ./auto-generated/models/request-list.yaml
+RequestRelation:
+  $ref: ./auto-generated/models/request-relation.yaml
 ResourceIdList:
   $ref: ./auto-generated/models/resource-id-list.yaml
+ResourceType:
+  $ref: ./auto-generated/models/resource-type.yaml
 Role:
   $ref: ./auto-generated/models/role.yaml
 RoleList:
@@ -193,6 +245,10 @@ StepPipelineCreate:
   $ref: ./auto-generated/models/step-pipeline-create.yaml
 StepPipelineUpdate:
   $ref: ./auto-generated/models/step-pipeline-update.yaml
+SubscriptionPlan:
+  $ref: ./auto-generated/models/subscription-plan.yaml
+SubscriptionPlanList:
+  $ref: ./auto-generated/models/subscription-plan-list.yaml
 Team:
   $ref: ./auto-generated/models/team.yaml
 TeamEnvironmentCreate:
@@ -217,12 +273,12 @@ User:
   $ref: ./auto-generated/models/user.yaml
 UserCreate:
   $ref: ./auto-generated/models/user-create.yaml
-UserCurrent:
-  $ref: ./auto-generated/models/user-current.yaml
 UserLogin:
   $ref: ./auto-generated/models/user-login.yaml
 UserLoginResponse:
   $ref: ./auto-generated/models/user-login-response.yaml
+UserMe:
+  $ref: ./auto-generated/models/user-me.yaml
 UserRefreshToken:
   $ref: ./auto-generated/models/user-refresh-token.yaml
 UserRefreshTokenResponse:
@@ -241,5 +297,7 @@ VariableList:
   $ref: ./auto-generated/models/variable-list.yaml
 VariableRelation:
   $ref: ./auto-generated/models/variable-relation.yaml
+VariableServiceCreate:
+  $ref: ./auto-generated/models/variable-service-create.yaml
 VariableUpdate:
   $ref: ./auto-generated/models/variable-update.yaml

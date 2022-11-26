@@ -16,7 +16,7 @@ properties:
     type: string
     example: Staging
   servers:
-    $ref: '#/components/schemas/Servers'
+    $ref: '#/components/schemas/ServerList'
   cron_jobs:
     $ref: '#/components/schemas/CronJobs'
   daemons:

@@ -31,8 +31,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         // A hook request is not created by the tests, so we don't have a valid hook_request_id
         'getHookRequest200',
         // @todo: Resolves conflicts to trigger a hook on dev-api
-        'triggerHook201',
-        'triggerHook204',
+        'triggerHook202',
         'acceptInvitation204',
         // We do not create the member when the team is created, therefore we cannot retrieve a team member by its ID.
         'getTeamMember200',
@@ -58,6 +57,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         'addProjectDaemon201',
         'addProjectServer201',
         'addProjectSshKey201',
+        'listActions200',
     ];
 
     // transactions listed here are skipped with a `before` hook
@@ -100,7 +100,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     const initialAdjacencyList = new Set<TransactionGraphEdge>([
         // variable tests should run before deleteApplication
         ['deleteVariable204', 'deleteApplication204'],
-        ['triggerHook204', 'deleteApplication204'],
+        ['triggerHook202', 'deleteApplication204'],
         // unlinkServerFromEnvironment requires deleting the associated ssh key, network rule, daemon, service, cron job and application
         ['deleteSshKey204', 'unlinkServerFromEnvironment204'],
         ['deleteNetworkRule204', 'unlinkServerFromEnvironment204'],
@@ -111,8 +111,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         // deleteEnvironment requires an environment without linked servers
         ['unlinkServerFromEnvironment204', 'deleteEnvironment204'],
         ['deletePipeline204', 'deleteEnvironment204'],
-        ['deleteOutgoingHook204', 'deleteEnvironment204'],
-        ['deleteIncomingHook204', 'deleteEnvironment204'],
+        ['deleteHook204', 'deleteEnvironment204'],
         ['linkStepToPipeline204', 'unlinkStepFromPipeline204'],
         ['unlinkStepFromPipeline204', 'deletePipeline204'],
         ['addPipeline201', 'listPipelinesByResourceType200'],
@@ -274,6 +273,10 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         body['entrypoint'] = 'index.html'
     }))
 
+    before('updateApplication204', utils.rewriteTransactionRequestBody((body: any) => {
+        body['entrypoint'] = 'index.html'
+    }))
+
     //// source providers
     // use a static source_provider fixture, associated manually to the static user account
     // @todo: mock source provider
@@ -333,6 +336,14 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
 
     before('listPipelinesByResourceType200', utils.rewriteTransactionRequestUriResourceId('application'));
     before('addPipeline201', utils.rewriteTransactionRequestUriResourceId('application'));
+
+    before('addHook201', utils.rewriteTransactionRequestBody((body: any) => {
+        body['trigger_when'] = null;
+    }));
+
+    before('updateHook204', utils.rewriteTransactionRequestBody((body: any) => {
+        body['trigger_when'] = null;
+    }));
 
     done();
 })

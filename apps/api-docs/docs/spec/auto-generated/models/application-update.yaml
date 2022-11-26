@@ -10,9 +10,7 @@ properties:
     example: my-awesome-app
     type: string
   type:
-    description: 'Must be one of <code>web</code> or <code>non-web</code> Must be at least 3 characters. Must not be greater than 10 characters.'
-    example: ''
-    type: string
+    $ref: '#/components/schemas/ApplicationType'
   domain_name:
     description: 'The domain or sub-domain through which the application deployed with these settings will be accessible. It can be a naked domain or any subdomain. If app has domain names `testing.my-app.com`, `staging.my-app.com` and `www.my-app.com` a possible good candidate for the application name would be the "naked" domain `my-app.com`. Must not be greater than 60 characters.'
     example: test.my-app.co.uk

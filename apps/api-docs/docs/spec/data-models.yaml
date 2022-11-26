@@ -1,7 +1,7 @@
 AcceptedResponseMessage:
   $ref: ./shared/schemas/accepted-response-message.yaml
 Action:
-  $ref: ./endpoints/actions/schemas/action.yaml
+  $ref: ./auto-generated/models/action.yaml
 ActionData:
   $ref: ./endpoints/actions/schemas/action-data.yaml
 ActionDeploymentCommit:
@@ -14,12 +14,18 @@ ActionHookRequest:
   $ref: ./endpoints/actions/schemas/action-hook-request.yaml
 Actions:
   $ref: ./endpoints/actions/schemas/action-list.yaml
+ActionList:
+  $ref: ./auto-generated/models/action-list.yaml
 ActionListItem:
   $ref: ./endpoints/actions/schemas/action-list-item.yaml
 ActionListItemParams:
   $ref: ./endpoints/actions/schemas/action-list-item-params.yaml
+ActionRelation:
+  $ref: ./auto-generated/models/action-relation.yaml
+ActionRetryResponse:
+  $ref: ./auto-generated/models/action-retry-response.yaml
 ActionStatus:
-  $ref: ./endpoints/actions/schemas/action-status.yaml
+  $ref: ./auto-generated/models/action-status.yaml
 ActionStep:
   $ref: ./endpoints/actions/schemas/action-step.yaml
 ActionSteps:
@@ -36,36 +42,32 @@ ActionTriggerType:
   $ref: ./endpoints/actions/schemas/action-trigger-type.yaml
 ActionType:
   $ref: ./endpoints/actions/schemas/action-type.yaml
-ActionRelation:
-  $ref: ./shared/schemas/models/action-relation.yaml
-ActionRetryResponse:
-  $ref: ./auto-generated/models/action-retry-response.yaml
 ApiError:
   $ref: ./shared/schemas/api-error.yaml
 Application:
-  $ref: ./endpoints/applications/schemas/application.yaml
-ApplicationEnvironmentCreate:
-  $ref: ./auto-generated/models/application-environment-create.yaml
+  $ref: ./auto-generated/models/application.yaml
 ApplicationDeployment:
   $ref: ./endpoints/applications/schemas/application-deployment.yaml
-ApplicationLastDeployment:
-  $ref: ./endpoints/applications/schemas/application-last-deployment.yaml
+ApplicationEnvironmentCreate:
+  $ref: ./auto-generated/models/application-environment-create.yaml
+ApplicationLastDeployments:
+  $ref: ./auto-generated/models/application-last-deployments.yaml
+ApplicationList:
+  $ref: ./auto-generated/models/application-list.yaml
 ApplicationOptions:
   $ref: ./endpoints/static/schemas/application-options.yaml
 ApplicationPipeline:
   $ref: ./endpoints/applications/schemas/application-pipeline.yaml
-ApplicationUpdate:
-  $ref: ./endpoints/applications/schemas/application-update.yaml
-ApplicationType:
-  $ref: ./shared/schemas/application-type.yaml
-Applications:
-  $ref: ./endpoints/applications/schemas/application-list.yaml
 ApplicationProjectCreate:
   $ref: ./auto-generated/models/application-project-create.yaml
-ApplicationList:
-  $ref: ./auto-generated/models/application-list.yaml
 ApplicationRelation:
-  $ref: ./shared/schemas/models/application-relation.yaml
+  $ref: ./auto-generated/models/application-relation.yaml
+ApplicationType:
+  $ref: ./auto-generated/models/application-type.yaml
+Applications:
+  $ref: ./endpoints/applications/schemas/application-list.yaml
+ApplicationUpdate:
+  $ref: ./auto-generated/models/application-update.yaml
 BlueprintService:
   $ref: ./endpoints/servers/schemas/blueprint-service.yaml
 Commit:
@@ -165,7 +167,7 @@ DeploymentSource:
 DeploymentType:
   $ref: ./shared/schemas/deployment-type.yaml
 Environment:
-  $ref: ./endpoints/environments/schemas/environment.yaml
+  $ref: ./auto-generated/models/environment.yaml
 EnvironmentList:
   $ref: ./auto-generated/models/environment-list.yaml
 EnvironmentMember:
@@ -205,61 +207,59 @@ EnvironmentProjectCreate:
 EnvironmentRelation:
   $ref: ./shared/schemas/models/environment-relation.yaml
 Hook:
-  $ref: ./endpoints/hooks/schemas/hook.yaml
+  $ref: ./auto-generated/models/hook.yaml
+HookCreate:
+  $ref: ./auto-generated/models/hook-create.yaml
+HookIncomingSettings:
+  $ref: ./auto-generated/models/hook-incoming-settings.yaml
+HookIncomingTriggerVariables:
+  $ref: ./auto-generated/models/hook-incoming-trigger-variables.yaml
+HookIncomingTriggerWhen:
+  $ref: ./auto-generated/models/hook-incoming-trigger-when.yaml
+HookIncomingTriggerWhenCondition:
+  $ref: ./auto-generated/models/hook-incoming-trigger-when-condition.yaml
+HookIncomingTriggerWhenConditionType:
+  $ref: ./auto-generated/models/hook-incoming-trigger-when-condition-type.yaml
+HookList:
+  $ref: ./auto-generated/models/hook-list.yaml
+HookOutgoingRequestHeader:
+  $ref: ./auto-generated/models/hook-outgoing-request-header.yaml
+HookOutgoingSettings:
+  $ref: ./auto-generated/models/hook-outgoing-settings.yaml
+HookOutgoingTriggerWhen:
+  $ref: ./auto-generated/models/hook-outgoing-trigger-when.yaml
+HookOutgoingTriggerWhenActionStatus:
+  $ref: ./auto-generated/models/hook-outgoing-trigger-when-action-status.yaml
+HookOutgoingTriggerWhenCondition:
+  $ref: ./auto-generated/models/hook-outgoing-trigger-when-condition.yaml
+HookOutgoingTriggerWhenConditionType:
+  $ref: ./auto-generated/models/hook-outgoing-trigger-when-condition-type.yaml
+HookRelation:
+  $ref: ./auto-generated/models/hook-relation.yaml
+HookRequest:
+  $ref: ./auto-generated/models/hook-request.yaml
+HookRequestRequestBody:
+  $ref: ./auto-generated/models/hook-request-request-body.yaml
+HookRequestRequestHeaders:
+  $ref: ./auto-generated/models/hook-request-request-headers.yaml
+HookRequestResponseBody:
+  $ref: ./auto-generated/models/hook-request-response-body.yaml
+HookRequestResponseHeaders:
+  $ref: ./auto-generated/models/hook-request-response-headers.yaml
+HookUpdate:
+  $ref: ./auto-generated/models/hook-update.yaml
+HookVariable:
+  $ref: ./auto-generated/models/hook-variable.yaml
+HookVariableType:
+  $ref: ./auto-generated/models/hook-variable-type.yaml
 Hooks:
   $ref: ./endpoints/hooks/schemas/hook-list.yaml
-HookIncoming:
-  $ref: ./endpoints/hooks/schemas/hook-incoming.yaml
-HookIncomingCreate:
-  $ref: ./endpoints/hooks/schemas/hook-incoming-create.yaml
-HookIncomingParams:
-  $ref: ./endpoints/hooks/schemas/hook-incoming-params.yaml
-HookIncomingSetting:
-  $ref: ./endpoints/hooks/schemas/hook-incoming-setting.yaml
-HookIncomingTrigger:
-  $ref: ./endpoints/hooks/schemas/hook-incoming-trigger.yaml
-HookIncomingTriggerWhen:
-  $ref: ./endpoints/hooks/schemas/hook-incoming-trigger-when.yaml
-HookIncomingTriggerWhenCondition:
-  $ref: ./endpoints/hooks/schemas/hook-incoming-trigger-when-condition.yaml
-HookIncomingTriggerWhenConditionType:
-  $ref: ./endpoints/hooks/schemas/hook-incoming-trigger-when-condition-type.yaml
-HookIncomingUpdate:
-  $ref: ./endpoints/hooks/schemas/hook-incoming-update.yaml
-HookOutgoing:
-  $ref: ./endpoints/hooks/schemas/hook-outgoing.yaml
-HookOutgoingCreate:
-  $ref: ./endpoints/hooks/schemas/hook-outgoing-create.yaml
-HookOutgoingParams:
-  $ref: ./endpoints/hooks/schemas/hook-outgoing-params.yaml
-HookOutgoingRequestHeader:
-  $ref: ./endpoints/hooks/schemas/hook-outgoing-request-header.yaml
-HookOutgoingSetting:
-  $ref: ./endpoints/hooks/schemas/hook-outgoing-setting.yaml
-HookOutgoingTriggerWhen:
-  $ref: ./endpoints/hooks/schemas/hook-outgoing-trigger-when.yaml
-HookOutgoingTriggerWhenActionStatus:
-  $ref: ./endpoints/hooks/schemas/hook-outgoing-trigger-when-action-status.yaml
-HookOutgoingTriggerWhenCondition:
-  $ref: ./endpoints/hooks/schemas/hook-outgoing-trigger-when-condition.yaml
-HookOutgoingTriggerWhenConditionType:
-  $ref: ./endpoints/hooks/schemas/hook-outgoing-trigger-when-condition-type.yaml
-HookOutgoingUpdate:
-  $ref: ./endpoints/hooks/schemas/hook-outgoing-update.yaml
-HookRequest:
-  $ref: ./endpoints/hook-requests/schemas/hook-request.yaml
 HookRequests:
   $ref: ./endpoints/hook-requests/schemas/hook-request-list.yaml
 HookRequestRelation:
   $ref: ./shared/schemas/models/hook-request-relation.yaml
 HookType:
   $ref: ./endpoints/hooks/schemas/hook-type.yaml
-HookVariable:
-  $ref: ./endpoints/hooks/schemas/hook-variable.yaml
-HookVariableType:
-  $ref: ./endpoints/hooks/schemas/hook-variable-type.yaml
-HookRelation:
-  $ref: ./shared/schemas/models/hook-relation.yaml
 Invitation:
   $ref: ./auto-generated/models/invitation.yaml
 InvitationList:
@@ -283,11 +283,13 @@ Log:
 LoginCredentials:
   $ref: ./endpoints/users/schemas/login-credentials.yaml
 Member:
-  $ref: ./endpoints/members/schemas/member.yaml
+  $ref: ./auto-generated/models/member.yaml
+MemberList:
+  $ref: ./auto-generated/models/member-list.yaml
+MemberRelation:
+  $ref: ./auto-generated/models/member-relation.yaml
 Members:
   $ref: ./endpoints/members/schemas/member-list.yaml
-MemberRelation:
-  $ref: ./shared/schemas/models/member-relation.yaml
 NetworkRule:
   $ref: ./auto-generated/models/network-rule.yaml
 NetworkRules:
@@ -350,6 +352,10 @@ ProjectList:
   $ref: ./auto-generated/models/project-list.yaml
 ProjectRelation:
   $ref: ./auto-generated/models/project-relation.yaml
+RequestList:
+  $ref: ./auto-generated/models/request-list.yaml
+RequestRelation:
+  $ref: ./auto-generated/models/request-relation.yaml
 RequiredPermissions:
   $ref: ./endpoints/static/schemas/required-permissions.yaml
 Repositories:
@@ -367,7 +373,7 @@ ResourceEvents:
 ResourceIdList:
   $ref: ./auto-generated/models/resource-id-list.yaml
 ResourceType:
-  $ref: ./endpoints/actions/schemas/resource-type.yaml
+  $ref: ./auto-generated/models/resource-type.yaml
 Role:
   $ref: ./auto-generated/models/role.yaml
 Roles:
@@ -402,6 +408,8 @@ ServerActions:
   $ref: ./endpoints/actions/schemas/server-action-list.yaml
 ServerBlueprint:
   $ref: ./endpoints/servers/schemas/server-blueprint.yaml
+ServerCommand:
+  $ref: ./auto-generated/models/server-command.yaml
 ServerCommands:
   $ref: ./endpoints/servers/schemas/server-commands.yaml
 ServerConnect:
@@ -516,6 +524,10 @@ StepPipelineCreate:
   $ref: ./auto-generated/models/step-pipeline-create.yaml
 StepPipelineUpdate:
   $ref: ./auto-generated/models/step-pipeline-update.yaml
+SubscriptionPlan:
+  $ref: ./auto-generated/models/subscription-plan.yaml
+SubscriptionPlanList:
+  $ref: ./auto-generated/models/subscription-plan-list.yaml
 Team:
   $ref: ./auto-generated/models/team.yaml
 Teams:
@@ -554,12 +566,12 @@ Users:
   $ref: ./endpoints/users/schemas/user-list.yaml
 UserCreate:
   $ref: ./auto-generated/models/user-create.yaml
-UserCurrent:
-  $ref: ./auto-generated/models/user-current.yaml
 UserLogin:
   $ref: ./auto-generated/models/user-login.yaml
 UserLoginResponse:
   $ref: ./auto-generated/models/user-login-response.yaml
+UserMe:
+  $ref: ./auto-generated/models/user-me.yaml
 UserRefreshToken:
   $ref: ./auto-generated/models/user-refresh-token.yaml
 UserRefreshTokenResponse:

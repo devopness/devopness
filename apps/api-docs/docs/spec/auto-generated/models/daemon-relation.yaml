@@ -30,9 +30,19 @@ properties:
     type: boolean
     example: false
   last_action:
-    $ref: '#/components/schemas/ActionRelation'
+    description: ''
+    oneOf:
+      -
+        nullable: true
+      -
+        $ref: '#/components/schemas/ActionRelation'
   application:
-    $ref: '#/components/schemas/ApplicationRelation'
+    description: ''
+    oneOf:
+      -
+        nullable: true
+      -
+        $ref: '#/components/schemas/ApplicationRelation'
   created_at:
     description: 'The date and time when the record was created'
     type: string
