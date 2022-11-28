@@ -73,7 +73,7 @@ export interface CronJob {
      * @type {ActionRelation}
      * @memberof CronJob
      */
-    last_action: ActionRelation;
+    last_action: ActionRelation | null;
     /**
      * 
      * @type {UserRelation}
@@ -85,13 +85,13 @@ export interface CronJob {
      * @type {ApplicationRelation}
      * @memberof CronJob
      */
-    application: ApplicationRelation;
+    application: ApplicationRelation | null;
     /**
      * 
      * @type {ProjectRelation}
      * @memberof CronJob
      */
-    project: ProjectRelation;
+    project: ProjectRelation | null;
     /**
      * 
      * @type {Array<EnvironmentRelation>}

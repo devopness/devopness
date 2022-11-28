@@ -32,7 +32,7 @@ export interface Member {
      * @type {TeamRelation}
      * @memberof Member
      */
-    team: TeamRelation;
+    team: TeamRelation | null;
     /**
      * The date and time when the record was created
      * @type {string}

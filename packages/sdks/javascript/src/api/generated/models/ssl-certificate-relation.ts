@@ -76,7 +76,7 @@ export interface SslCertificateRelation {
      * @type {ActionRelation}
      * @memberof SslCertificateRelation
      */
-    last_action: ActionRelation;
+    last_action: ActionRelation | null;
     /**
      * The date and time when this certificate will no longer be valid, down to minute precision
      * @type {string}

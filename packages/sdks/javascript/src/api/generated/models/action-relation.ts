@@ -85,7 +85,7 @@ export interface ActionRelation {
      * @type {Array<ServerAction>}
      * @memberof ActionRelation
      */
-    servers: Array<ServerAction>;
+    servers?: Array<ServerAction>;
     /**
      * The date and time when the action started execution (i.e., left the `pending/queued` status)
      * @type {string}

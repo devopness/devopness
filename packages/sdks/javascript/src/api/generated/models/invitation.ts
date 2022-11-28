@@ -69,7 +69,7 @@ export interface Invitation {
      * @type {TeamRelation}
      * @memberof Invitation
      */
-    team: TeamRelation;
+    team: TeamRelation | null;
     /**
      * The date and time when the invitation was accepted
      * @type {string}

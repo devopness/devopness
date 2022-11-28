@@ -91,7 +91,7 @@ export interface HookRequest {
      * @type {HookRelation}
      * @memberof HookRequest
      */
-    hook: HookRelation;
+    hook: HookRelation | null;
     /**
      * The date and time when the record was created
      * @type {string}

@@ -82,7 +82,7 @@ export interface SshKey {
      * @type {ActionRelation}
      * @memberof SshKey
      */
-    last_action: ActionRelation;
+    last_action: ActionRelation | null;
     /**
      * The date and time when the record was created
      * @type {string}

@@ -101,7 +101,7 @@ export interface Action {
      * @type {ProjectRelation}
      * @memberof Action
      */
-    project?: ProjectRelation;
+    project?: ProjectRelation | null;
     /**
      * List of actions dispatched to servers
      * @type {Array<ServerAction>}

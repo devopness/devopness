@@ -32,7 +32,7 @@ export interface ActionStepLog {
      * @type {ServerRelation}
      * @memberof ActionStepLog
      */
-    server?: ServerRelation;
+    server?: ServerRelation | null;
     /**
      * 
      * @type {ServerActionLogStep}

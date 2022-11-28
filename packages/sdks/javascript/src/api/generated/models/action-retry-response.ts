@@ -101,7 +101,7 @@ export interface ActionRetryResponse {
      * @type {ProjectRelation}
      * @memberof ActionRetryResponse
      */
-    project?: ProjectRelation;
+    project?: ProjectRelation | null;
     /**
      * List of actions dispatched to servers
      * @type {Array<ServerAction>}

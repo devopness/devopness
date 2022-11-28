@@ -102,13 +102,13 @@ export interface Server {
      * @type {ProjectRelation}
      * @memberof Server
      */
-    project: ProjectRelation;
+    project: ProjectRelation | null;
     /**
      * 
      * @type {ActionRelation}
      * @memberof Server
      */
-    last_action: ActionRelation;
+    last_action: ActionRelation | null;
     /**
      * 
      * @type {EnvironmentRelation}

@@ -70,13 +70,13 @@ export interface TeamInvitation {
      * @type {TeamRelation}
      * @memberof TeamInvitation
      */
-    team: TeamRelation;
+    team: TeamRelation | null;
     /**
      * 
      * @type {ProjectRelation}
      * @memberof TeamInvitation
      */
-    project?: ProjectRelation;
+    project?: ProjectRelation | null;
     /**
      * The date and time when the invitation will expire
      * @type {string}

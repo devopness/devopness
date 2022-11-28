@@ -25,12 +25,12 @@ export interface ApplicationLastDeployments {
      * @type {ActionRelation}
      * @memberof ApplicationLastDeployments
      */
-    latest?: ActionRelation;
+    latest?: ActionRelation | null;
     /**
      * 
      * @type {ActionRelation}
      * @memberof ApplicationLastDeployments
      */
-    live?: ActionRelation;
+    live?: ActionRelation | null;
 }
 

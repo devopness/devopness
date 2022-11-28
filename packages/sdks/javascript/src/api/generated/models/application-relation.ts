@@ -164,7 +164,7 @@ export interface ApplicationRelation {
      * @type {ApplicationLastDeployments}
      * @memberof ApplicationRelation
      */
-    last_deployments: ApplicationLastDeployments;
+    last_deployments?: ApplicationLastDeployments;
     /**
      * The date and time when the record was created
      * @type {string}
