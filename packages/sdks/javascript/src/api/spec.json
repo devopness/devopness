@@ -7183,6 +7183,141 @@
         }
       }
     },
+    "/services/{service_id}/variables": {
+      "get": {
+        "summary": "Return a list of variables belonging to a service",
+        "operationId": "listServiceVariables",
+        "description": {
+          "$ref": "../spec/descriptions/list-service-variables.md"
+        },
+        "tags": [
+          "Services - Variables"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "service_id",
+            "description": "The ID of the service.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VariableList"
+                }
+              }
+            },
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new variable linked to a service",
+        "operationId": "addServiceVariable",
+        "description": {
+          "$ref": "../spec/descriptions/add-service-variable.md"
+        },
+        "tags": [
+          "Services - Variables"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "service_id",
+            "description": "The ID of the service.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Variable"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VariableServiceCreate"
+              }
+            }
+          }
+        }
+      }
+    },
     "/social-accounts": {
       "post": {
         "summary": "Create a new social account linked to the current user's profile",
@@ -9896,12 +10031,8 @@
       "name": "Environments - Team Memberships"
     },
     {
-      "name": "Hooks - Incoming",
-      "description": "A hook is a simple way to integrate your Devopness workflow with external processes to trigger Devopness actions by sending a POST request to a public URL. By using hooks you can make Devopness react to events that happen in other applications and make sure your environment resources reflect changes applied in other services.\n"
-    },
-    {
-      "name": "Hooks - Outgoing",
-      "description": "An outgoing hook is a webhook that trigger a request when an action of a resource has your state updated.\n"
+      "name": "Hooks",
+      "description": "A hook is a simple way to integrate your Devopness workflow with external processes to trigger Devopness actions by sending a POST request to a public URL. By using hooks you can make Devopness react to events that happen in other applications and make sure your environment resources reflect changes applied in other services.\nAn outgoing hook is a webhook that trigger a request when an action of a resource has your state updated.\n"
     },
     {
       "name": "Hooks - Requests"
@@ -9970,6 +10101,9 @@
     },
     {
       "name": "Services"
+    },
+    {
+      "name": "Services - Variables"
     },
     {
       "name": "Social Accounts",
@@ -10074,8 +10208,7 @@
     {
       "name": "Hooks",
       "tags": [
-        "Hooks - Incoming",
-        "Hooks - Outgoing",
+        "Hooks",
         "Hooks - Requests"
       ]
     },
@@ -10132,6 +10265,7 @@
       "name": "Services",
       "tags": [
         "Services",
+        "Services - Variables",
         "Environments - Services",
         "Projects - Services"
       ]
@@ -10267,6 +10401,12 @@
             "type": "integer",
             "example": 567819876
           },
+          "retry_of": {
+            "description": "The Id of the parent action that this action is a retry of",
+            "type": "integer",
+            "example": 764123,
+            "nullable": true
+          },
           "status": {
             "$ref": "#/components/schemas/ActionStatus"
           },
@@ -10335,6 +10475,7 @@
         },
         "required": [
           "id",
+          "retry_of",
           "status",
           "type",
           "type_human_readable",
@@ -10631,6 +10772,12 @@
             "type": "integer",
             "example": 567819876
           },
+          "retry_of": {
+            "description": "The Id of the parent action that this action is a retry of",
+            "type": "integer",
+            "example": 764123,
+            "nullable": true
+          },
           "status": {
             "$ref": "#/components/schemas/ActionStatus"
           },
@@ -10699,6 +10846,7 @@
         },
         "required": [
           "id",
+          "retry_of",
           "status",
           "type",
           "type_human_readable",
@@ -18671,12 +18819,6 @@
           "target": {
             "$ref": "#/components/schemas/VariableTarget"
           },
-          "target_name": {
-            "description": "The target name of this variable",
-            "type": "string",
-            "example": "/etc/php/7.4/cli/php.ini",
-            "nullable": true
-          },
           "resource_id": {
             "description": "The ID of the resource this variable is linked to",
             "type": "integer",
@@ -18711,7 +18853,6 @@
           "description",
           "value",
           "target",
-          "target_name",
           "resource_id",
           "resource_type",
           "hidden",
@@ -18799,12 +18940,6 @@
           "target": {
             "$ref": "#/components/schemas/VariableTarget"
           },
-          "target_name": {
-            "description": "The target name of this variable",
-            "type": "string",
-            "example": "/etc/php/7.4/cli/php.ini",
-            "nullable": true
-          },
           "resource_id": {
             "description": "The ID of the resource this variable is linked to",
             "type": "integer",
@@ -18839,7 +18974,6 @@
           "description",
           "value",
           "target",
-          "target_name",
           "resource_id",
           "resource_type",
           "hidden",
@@ -18847,6 +18981,44 @@
           "updated_at"
         ],
         "nullable": true
+      },
+      "VariableServiceCreate": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "description": "The unique key used to identify the variable on the target. Must not be greater than 100 characters.",
+            "example": "APP_URL",
+            "type": "string"
+          },
+          "value": {
+            "description": "The value to be assigned to this variable when deployed to its target.\n                When variable is of type `file`, this is the file content. Must not be greater than 21504 characters.",
+            "example": "https://staging.devopness.com",
+            "type": "string"
+          },
+          "description": {
+            "description": "A text describing the variable, provided by the end user.",
+            "example": "Sample variable description",
+            "type": "string"
+          },
+          "target": {
+            "$ref": "#/components/schemas/VariableTarget"
+          },
+          "type": {
+            "$ref": "#/components/schemas/VariableType"
+          },
+          "hidden": {
+            "description": "Indicates if the variable value should be visible or not in the deployment logs.",
+            "example": false,
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "key",
+          "value",
+          "target",
+          "type",
+          "hidden"
+        ]
       },
       "VariableTarget": {
         "type": "string",
