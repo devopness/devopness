@@ -51,7 +51,7 @@ jobs:
 
       - name: Copy JSON spec from 'devopness-api-docs' to `devopness`
         run: |
-          cp '$GITHUB_WORKSPACE/docs/build/spec.json' src/api/spec.json
+          cp '${{ github.workspace }}/docs/build/spec.json' devopness/packages/sdks/javascript/src/api/spec.json
 
       - name: Commit SDK-JS modifications
         id: git
