@@ -37,6 +37,12 @@ export interface ActionRetryResponse {
      */
     id: number;
     /**
+     * The Id of the parent action that this action is a retry of
+     * @type {number}
+     * @memberof ActionRetryResponse
+     */
+    retry_of: number | null;
+    /**
      * 
      * @type {ActionStatus}
      * @memberof ActionRetryResponse
@@ -101,7 +107,7 @@ export interface ActionRetryResponse {
      * @type {ProjectRelation}
      * @memberof ActionRetryResponse
      */
-    project?: ProjectRelation;
+    project?: ProjectRelation | null;
     /**
      * List of actions dispatched to servers
      * @type {Array<ServerAction>}

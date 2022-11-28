@@ -24,51 +24,51 @@ export class TeamsMembersApiService extends ApiBaseService {
     /**
      * 
      * @summary Delete a given team member
-     * @param {number} teamId Numeric ID of the team
-     * @param {number} memberId Numeric ID of the member to be deleted
+     * @param {number} teamId The ID of the team.
+     * @param {number} userId The ID of the user.
      */
-    public async deleteTeamMember(teamId: number, memberId: number): Promise<ApiResponse<void>> {
+    public async deleteTeamMember(teamId: number, userId: number): Promise<ApiResponse<void>> {
         if (teamId === null || teamId === undefined) {
             throw new ArgumentNullException('teamId', 'deleteTeamMember');
         }
-        if (memberId === null || memberId === undefined) {
-            throw new ArgumentNullException('memberId', 'deleteTeamMember');
+        if (userId === null || userId === undefined) {
+            throw new ArgumentNullException('userId', 'deleteTeamMember');
         }
         
         let queryString = '';
 
-        const requestUrl = '/teams/{team_id}/members/{member_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/teams/{team_id}/members/{user_id}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.delete <void>(requestUrl.replace(`{${"team_id"}}`, encodeURIComponent(String(teamId))).replace(`{${"member_id"}}`, encodeURIComponent(String(memberId))));
+        const response = await this.delete <void>(requestUrl.replace(`{${"team_id"}}`, encodeURIComponent(String(teamId))).replace(`{${"user_id"}}`, encodeURIComponent(String(userId))));
         return new ApiResponse(response);
     }
 
     /**
      * 
      * @summary Get a member of team by ID
-     * @param {number} teamId Numeric ID of the team
-     * @param {number} memberId Numeric ID of the member to be retrieved
+     * @param {number} teamId The ID of the team.
+     * @param {number} userId The ID of the user.
      */
-    public async getTeamMember(teamId: number, memberId: number): Promise<ApiResponse<Member>> {
+    public async getTeamMember(teamId: number, userId: number): Promise<ApiResponse<Member>> {
         if (teamId === null || teamId === undefined) {
             throw new ArgumentNullException('teamId', 'getTeamMember');
         }
-        if (memberId === null || memberId === undefined) {
-            throw new ArgumentNullException('memberId', 'getTeamMember');
+        if (userId === null || userId === undefined) {
+            throw new ArgumentNullException('userId', 'getTeamMember');
         }
         
         let queryString = '';
 
-        const requestUrl = '/teams/{team_id}/members/{member_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/teams/{team_id}/members/{user_id}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Member>(requestUrl.replace(`{${"team_id"}}`, encodeURIComponent(String(teamId))).replace(`{${"member_id"}}`, encodeURIComponent(String(memberId))));
+        const response = await this.get <Member>(requestUrl.replace(`{${"team_id"}}`, encodeURIComponent(String(teamId))).replace(`{${"user_id"}}`, encodeURIComponent(String(userId))));
         return new ApiResponse(response);
     }
 
     /**
      * 
-     * @summary Returns a list of all members belonging to a team
-     * @param {number} teamId Numeric ID of the team to get members from
+     * @summary Return a list of all members belonging to a team
+     * @param {number} teamId The ID of the team.
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */

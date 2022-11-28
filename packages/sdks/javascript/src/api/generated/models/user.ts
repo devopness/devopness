@@ -14,6 +14,7 @@
 
 import { Language } from './language';
 import { SocialAccount } from './social-account';
+import { SubscriptionPlan } from './subscription-plan';
 
 /**
  * 
@@ -63,6 +64,12 @@ export interface User {
      * @memberof User
      */
     current_billing_plan: string;
+    /**
+     * The list of subscription plans
+     * @type {Array<SubscriptionPlan>}
+     * @memberof User
+     */
+    subscription_plans: Array<SubscriptionPlan>;
     /**
      * The date and time when the record was created
      * @type {string}

@@ -14,65 +14,72 @@
 
 import { Language } from './language';
 import { SocialAccount } from './social-account';
+import { SubscriptionPlan } from './subscription-plan';
 
 /**
  * 
  * @export
- * @interface UserCurrent
+ * @interface UserMe
  */
-export interface UserCurrent {
+export interface UserMe {
     /**
      * The unique ID of the given user
      * @type {number}
-     * @memberof UserCurrent
+     * @memberof UserMe
      */
     id: number;
     /**
      * User\'s full name
      * @type {string}
-     * @memberof UserCurrent
+     * @memberof UserMe
      */
     name: string;
     /**
      * The e-mail that will uniquely identify the user on the system and become its login credential
      * @type {string}
-     * @memberof UserCurrent
+     * @memberof UserMe
      */
     email: string;
     /**
      * 
      * @type {Language}
-     * @memberof UserCurrent
+     * @memberof UserMe
      */
     language: Language | null;
     /**
      * Tells if the user is active or not
      * @type {boolean}
-     * @memberof UserCurrent
+     * @memberof UserMe
      */
     active: boolean;
     /**
      * 
      * @type {Array<SocialAccount>}
-     * @memberof UserCurrent
+     * @memberof UserMe
      */
     social_accounts: Array<SocialAccount>;
     /**
      * The code of current billing plan
      * @type {string}
-     * @memberof UserCurrent
+     * @memberof UserMe
      */
     current_billing_plan: string;
     /**
+     * The list of subscription plans
+     * @type {Array<SubscriptionPlan>}
+     * @memberof UserMe
+     */
+    subscription_plans: Array<SubscriptionPlan>;
+    /**
      * The date and time when the record was created
      * @type {string}
-     * @memberof UserCurrent
+     * @memberof UserMe
      */
     created_at: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
-     * @memberof UserCurrent
+     * @memberof UserMe
      */
     updated_at: string;
 }

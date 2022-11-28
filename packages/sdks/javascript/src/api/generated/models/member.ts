@@ -22,22 +22,28 @@ import { UserRelation } from './user-relation';
  */
 export interface Member {
     /**
-     * The role of the member on team
-     * @type {string}
-     * @memberof Member
-     */
-    role: string;
-    /**
-     * 
-     * @type {TeamRelation}
-     * @memberof Member
-     */
-    team: TeamRelation;
-    /**
      * 
      * @type {UserRelation}
      * @memberof Member
      */
     user: UserRelation;
+    /**
+     * 
+     * @type {TeamRelation}
+     * @memberof Member
+     */
+    team: TeamRelation | null;
+    /**
+     * The date and time when the record was created
+     * @type {string}
+     * @memberof Member
+     */
+    created_at: string;
+    /**
+     * The date and time when the record was last updated
+     * @type {string}
+     * @memberof Member
+     */
+    updated_at: string;
 }
 

@@ -44,7 +44,7 @@ export interface Team {
      * @type {ProjectRelation}
      * @memberof Team
      */
-    project: ProjectRelation;
+    project: ProjectRelation | null;
     /**
      * The list of users
      * @type {Array<UserRelation>}

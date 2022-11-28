@@ -69,11 +69,11 @@ export class UsersApiService extends ApiBaseService {
      * 
      * @summary Get details of the current user
      */
-    public async getUserCurrent(): Promise<ApiResponse<User>> {
+    public async getUserMe(): Promise<ApiResponse<User>> {
         
         let queryString = '';
 
-        const requestUrl = '/users/current' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/users/me' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <User>(requestUrl);
         return new ApiResponse(response);

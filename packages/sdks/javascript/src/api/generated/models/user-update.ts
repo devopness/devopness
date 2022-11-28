@@ -43,5 +43,11 @@ export interface UserUpdate {
      * @memberof UserUpdate
      */
     language?: string;
+    /**
+     * The user subscription plan. Must be one of <code>FREE</code> or <code>PAID</code>.
+     * @type {string}
+     * @memberof UserUpdate
+     */
+    current_billing_plan?: string;
 }
 

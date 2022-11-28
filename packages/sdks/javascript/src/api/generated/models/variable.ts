@@ -58,12 +58,6 @@ export interface Variable {
      */
     target: VariableTarget;
     /**
-     * The target name of this variable
-     * @type {string}
-     * @memberof Variable
-     */
-    target_name: string | null;
-    /**
      * The ID of the resource this variable is linked to
      * @type {number}
      * @memberof Variable

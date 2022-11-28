@@ -26,8 +26,8 @@ import { ProjectUpdate } from '../../generated/models';
 export class ProjectsApiService extends ApiBaseService {
     /**
      * 
-     * @summary Create a new project
-     * @param {ProjectCreate} projectCreate A JSON object containing project data
+     * @summary Create a project
+     * @param {ProjectCreate} projectCreate A JSON object containing the resource data
      */
     public async addProject(projectCreate: ProjectCreate): Promise<ApiResponse<Project>> {
         if (projectCreate === null || projectCreate === undefined) {
@@ -44,8 +44,8 @@ export class ProjectsApiService extends ApiBaseService {
 
     /**
      * 
-     * @summary Get a project by ID
-     * @param {number} projectId Numeric ID of the project to get
+     * @summary Get a Project by ID
+     * @param {number} projectId The ID of the project.
      */
     public async getProject(projectId: number): Promise<ApiResponse<Project>> {
         if (projectId === null || projectId === undefined) {
@@ -62,7 +62,7 @@ export class ProjectsApiService extends ApiBaseService {
 
     /**
      * 
-     * @summary Returns a list of all projects the current user has access to
+     * @summary Return a list of all projects the current user has access to
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */
@@ -86,9 +86,9 @@ export class ProjectsApiService extends ApiBaseService {
 
     /**
      * 
-     * @summary Update an existing project
-     * @param {number} projectId Numeric ID of the project to put
-     * @param {ProjectUpdate} projectUpdate A JSON object containing project data
+     * @summary Update an existing Project
+     * @param {number} projectId The ID of the project.
+     * @param {ProjectUpdate} projectUpdate A JSON object containing the resource data
      */
     public async updateProject(projectId: number, projectUpdate: ProjectUpdate): Promise<ApiResponse<void>> {
         if (projectId === null || projectId === undefined) {

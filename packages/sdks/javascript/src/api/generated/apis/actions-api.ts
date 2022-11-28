@@ -15,7 +15,9 @@ import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { Action } from '../../generated/models';
-import { ActionListItem } from '../../generated/models';
+import { ActionRelation } from '../../generated/models';
+import { ActionRetryResponse } from '../../generated/models';
+import { ApiError } from '../../generated/models';
 
 /**
  * ActionsApiService - Auto-generated
@@ -24,7 +26,7 @@ export class ActionsApiService extends ApiBaseService {
     /**
      * 
      * @summary Get an action by ID
-     * @param {number} actionId Numeric ID of the action to be retrieved
+     * @param {number} actionId The ID of the action.
      */
     public async getAction(actionId: number): Promise<ApiResponse<Action>> {
         if (actionId === null || actionId === undefined) {
@@ -45,7 +47,7 @@ export class ActionsApiService extends ApiBaseService {
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */
-    public async listActions(page?: number, perPage?: number): Promise<ApiResponse<Array<ActionListItem>>> {
+    public async listActions(page?: number, perPage?: number): Promise<ApiResponse<Array<ActionRelation>>> {
         
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
@@ -59,16 +61,52 @@ export class ActionsApiService extends ApiBaseService {
 
         const requestUrl = '/actions' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<ActionListItem>>(requestUrl);
+        const response = await this.get <Array<ActionRelation>>(requestUrl);
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary List resource actions of an action type
+     * @param {string} actionType The action type.
+     * @param {number} resourceId The resource ID.
+     * @param {string} resourceType The resource type to get related actions.
+     * @param {number} [page] Number of the page to be retrieved
+     * @param {number} [perPage] Number of items returned per page
+     */
+    public async listActionsByResourceTypeAndActionType(actionType: string, resourceId: number, resourceType: string, page?: number, perPage?: number): Promise<ApiResponse<Array<ActionRelation>>> {
+        if (actionType === null || actionType === undefined) {
+            throw new ArgumentNullException('actionType', 'listActionsByResourceTypeAndActionType');
+        }
+        if (resourceId === null || resourceId === undefined) {
+            throw new ArgumentNullException('resourceId', 'listActionsByResourceTypeAndActionType');
+        }
+        if (resourceType === null || resourceType === undefined) {
+            throw new ArgumentNullException('resourceType', 'listActionsByResourceTypeAndActionType');
+        }
+        
+        let queryString = '';
+        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
+        const requestUrl = '/actions/{resource_type}/{resource_id}/{action_type}' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <Array<ActionRelation>>(requestUrl.replace(`{${"action_type"}}`, encodeURIComponent(String(actionType))).replace(`{${"resource_id"}}`, encodeURIComponent(String(resourceId))).replace(`{${"resource_type"}}`, encodeURIComponent(String(resourceType))));
         return new ApiResponse(response);
     }
 
     /**
      * 
      * @summary Retry an action
-     * @param {number} actionId Numeric ID of the action to be retried
+     * @param {number} actionId The ID of the action.
      */
-    public async retryAction(actionId: number): Promise<ApiResponse<Action>> {
+    public async retryAction(actionId: number): Promise<ApiResponse<ActionRetryResponse>> {
         if (actionId === null || actionId === undefined) {
             throw new ArgumentNullException('actionId', 'retryAction');
         }
@@ -77,7 +115,7 @@ export class ActionsApiService extends ApiBaseService {
 
         const requestUrl = '/actions/{action_id}/retry' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <Action>(requestUrl.replace(`{${"action_id"}}`, encodeURIComponent(String(actionId))));
+        const response = await this.post <ActionRetryResponse>(requestUrl.replace(`{${"action_id"}}`, encodeURIComponent(String(actionId))));
         return new ApiResponse(response);
     }
 }

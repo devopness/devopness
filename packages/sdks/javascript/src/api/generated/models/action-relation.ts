@@ -12,10 +12,13 @@
  */
 
 
+import { ActionData } from './action-data';
 import { ActionStatus } from './action-status';
 import { ActionSummary } from './action-summary';
+import { ActionTriggeredFrom } from './action-triggered-from';
 import { ActionType } from './action-type';
 import { Resource } from './resource';
+import { ServerAction } from './server-action';
 
 /**
  * 
@@ -48,6 +51,24 @@ export interface ActionRelation {
      */
     type_human_readable: string;
     /**
+     * The permalink URL to the action details on Devopness web app
+     * @type {string}
+     * @memberof ActionRelation
+     */
+    url_web_permalink: string;
+    /**
+     * 
+     * @type {ActionData}
+     * @memberof ActionRelation
+     */
+    action_data: ActionData | null;
+    /**
+     * 
+     * @type {ActionTriggeredFrom}
+     * @memberof ActionRelation
+     */
+    triggered_from: ActionTriggeredFrom;
+    /**
      * 
      * @type {Resource}
      * @memberof ActionRelation
@@ -60,28 +81,34 @@ export interface ActionRelation {
      */
     summary?: ActionSummary;
     /**
+     * List of actions dispatched to servers
+     * @type {Array<ServerAction>}
+     * @memberof ActionRelation
+     */
+    servers?: Array<ServerAction>;
+    /**
      * The date and time when the action started execution (i.e., left the `pending/queued` status)
      * @type {string}
      * @memberof ActionRelation
      */
-    started_at?: string | null;
+    started_at: string | null;
     /**
      * The date and time when the action has finished execution
      * @type {string}
      * @memberof ActionRelation
      */
-    completed_at?: string | null;
+    completed_at: string | null;
     /**
      * The date and time when the record was created
      * @type {string}
      * @memberof ActionRelation
      */
-    created_at?: string;
+    created_at: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof ActionRelation
      */
-    updated_at?: string;
+    updated_at: string;
 }
 

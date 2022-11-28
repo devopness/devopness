@@ -18,43 +18,43 @@ import { VariableType } from './variable-type';
 /**
  * 
  * @export
- * @interface VariableApplicationCreate
+ * @interface VariableServiceCreate
  */
-export interface VariableApplicationCreate {
+export interface VariableServiceCreate {
     /**
-     * The unique key used to identify the variable on the target.                 When variable is of type `file`, this is the relative path                 to the file within the application directory. Must not be greater than 100 characters.
+     * The unique key used to identify the variable on the target. Must not be greater than 100 characters.
      * @type {string}
-     * @memberof VariableApplicationCreate
+     * @memberof VariableServiceCreate
      */
     key: string;
     /**
      * The value to be assigned to this variable when deployed to its target.                 When variable is of type `file`, this is the file content. Must not be greater than 21504 characters.
      * @type {string}
-     * @memberof VariableApplicationCreate
+     * @memberof VariableServiceCreate
      */
     value: string;
     /**
      * A text describing the variable, provided by the end user.
      * @type {string}
-     * @memberof VariableApplicationCreate
+     * @memberof VariableServiceCreate
      */
     description?: string;
     /**
      * 
      * @type {VariableTarget}
-     * @memberof VariableApplicationCreate
+     * @memberof VariableServiceCreate
      */
     target: VariableTarget;
     /**
      * 
      * @type {VariableType}
-     * @memberof VariableApplicationCreate
+     * @memberof VariableServiceCreate
      */
     type: VariableType;
     /**
      * Indicates if the variable value should be visible or not in the deployment logs.
      * @type {boolean}
-     * @memberof VariableApplicationCreate
+     * @memberof VariableServiceCreate
      */
     hidden: boolean;
 }

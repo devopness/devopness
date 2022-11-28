@@ -25,9 +25,9 @@ export interface HookVariable {
      * @type {string}
      * @memberof HookVariable
      */
-    name: string;
+    name?: string;
     /**
-     * A `dot-notation` path used to retrieve the variable\'s value. If not defined the `name` will be used instead. 
+     * A `dot-notation` path used to retrieve the variable\'s value. If not defined the `name` will be used instead.
      * @type {string}
      * @memberof HookVariable
      */
@@ -37,13 +37,13 @@ export interface HookVariable {
      * @type {HookVariableType}
      * @memberof HookVariable
      */
-    type: HookVariableType;
+    type?: HookVariableType;
     /**
      * Defines if the variable is required
      * @type {boolean}
      * @memberof HookVariable
      */
-    required: boolean;
+    required?: boolean;
     /**
      * Optional variable assumes the default value if it\'s not given on the request to trigger the hook
      * @type {string | number | boolean | Array<string | number | boolean | object>}

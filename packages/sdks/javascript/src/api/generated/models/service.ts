@@ -96,7 +96,7 @@ export interface Service {
      * @type {ProjectRelation}
      * @memberof Service
      */
-    project: ProjectRelation;
+    project: ProjectRelation | null;
     /**
      * 
      * @type {Array<ServerRelation>}

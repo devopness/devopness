@@ -71,7 +71,7 @@ export interface Daemon {
      * @type {ProjectRelation}
      * @memberof Daemon
      */
-    project: ProjectRelation;
+    project: ProjectRelation | null;
     /**
      * 
      * @type {ActionRelation}

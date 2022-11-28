@@ -37,6 +37,12 @@ export interface Action {
      */
     id: number;
     /**
+     * The Id of the parent action that this action is a retry of
+     * @type {number}
+     * @memberof Action
+     */
+    retry_of: number | null;
+    /**
      * 
      * @type {ActionStatus}
      * @memberof Action
@@ -55,12 +61,6 @@ export interface Action {
      */
     type_human_readable: string;
     /**
-     * 
-     * @type {ActionSummary}
-     * @memberof Action
-     */
-    summary: ActionSummary;
-    /**
      * The permalink URL to the action details on Devopness web app
      * @type {string}
      * @memberof Action
@@ -72,24 +72,6 @@ export interface Action {
      * @memberof Action
      */
     action_data: ActionData | null;
-    /**
-     * List of actions dispatched to servers
-     * @type {Array<ServerAction>}
-     * @memberof Action
-     */
-    servers?: Array<ServerAction>;
-    /**
-     * 
-     * @type {Resource}
-     * @memberof Action
-     */
-    resource: Resource;
-    /**
-     * 
-     * @type {EnvironmentRelation}
-     * @memberof Action
-     */
-    environment?: EnvironmentRelation;
     /**
      * 
      * @type {ActionTriggeredFrom}
@@ -104,10 +86,34 @@ export interface Action {
     triggered_by_user?: UserRelation;
     /**
      * 
+     * @type {Resource}
+     * @memberof Action
+     */
+    resource: Resource;
+    /**
+     * 
+     * @type {ActionSummary}
+     * @memberof Action
+     */
+    summary: ActionSummary;
+    /**
+     * 
+     * @type {EnvironmentRelation}
+     * @memberof Action
+     */
+    environment?: EnvironmentRelation;
+    /**
+     * 
      * @type {ProjectRelation}
      * @memberof Action
      */
-    project?: ProjectRelation;
+    project?: ProjectRelation | null;
+    /**
+     * List of actions dispatched to servers
+     * @type {Array<ServerAction>}
+     * @memberof Action
+     */
+    servers?: Array<ServerAction>;
     /**
      * 
      * @type {ActionHookRequest}
@@ -119,24 +125,24 @@ export interface Action {
      * @type {string}
      * @memberof Action
      */
-    started_at?: string | null;
+    started_at: string | null;
     /**
      * The date and time when the action has finished execution
      * @type {string}
      * @memberof Action
      */
-    completed_at?: string | null;
+    completed_at: string | null;
     /**
      * The date and time when the record was created
      * @type {string}
      * @memberof Action
      */
-    created_at?: string;
+    created_at: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof Action
      */
-    updated_at?: string;
+    updated_at: string;
 }
 

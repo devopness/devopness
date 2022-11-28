@@ -16,7 +16,7 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { Server } from '../../generated/models';
-import { ServerCommands } from '../../generated/models';
+import { ServerCommand } from '../../generated/models';
 import { ServerUpdate } from '../../generated/models';
 
 /**
@@ -48,7 +48,7 @@ export class ServersApiService extends ApiBaseService {
     /**
      * 
      * @summary Get a server by ID
-     * @param {number} serverId Numeric ID of the server to get
+     * @param {number} serverId The ID of the server.
      */
     public async getServer(serverId: number): Promise<ApiResponse<Server>> {
         if (serverId === null || serverId === undefined) {
@@ -66,9 +66,9 @@ export class ServersApiService extends ApiBaseService {
     /**
      * 
      * @summary Get commands to be executed on the given server
-     * @param {number} serverId The server numeric Id
+     * @param {number} serverId The ID of the server.
      */
-    public async getServerCommands(serverId: number): Promise<ApiResponse<ServerCommands>> {
+    public async getServerCommands(serverId: number): Promise<ApiResponse<ServerCommand>> {
         if (serverId === null || serverId === undefined) {
             throw new ArgumentNullException('serverId', 'getServerCommands');
         }
@@ -77,15 +77,15 @@ export class ServersApiService extends ApiBaseService {
 
         const requestUrl = '/servers/{server_id}/commands' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <ServerCommands>(requestUrl.replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))));
+        const response = await this.get <ServerCommand>(requestUrl.replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))));
         return new ApiResponse(response);
     }
 
     /**
      * 
      * @summary Update an existing server
-     * @param {number} serverId Numeric ID of the server to update
-     * @param {ServerUpdate} serverUpdate A JSON object containing server data
+     * @param {number} serverId The ID of the server.
+     * @param {ServerUpdate} serverUpdate A JSON object containing the resource data
      */
     public async updateServer(serverId: number, serverUpdate: ServerUpdate): Promise<ApiResponse<void>> {
         if (serverId === null || serverId === undefined) {
