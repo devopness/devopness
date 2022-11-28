@@ -196,11 +196,9 @@ tags:
   - name: Environments - SSH Keys
   - name: Environments - Teams
   - name: Environments - Team Memberships
-  - name: Hooks - Incoming
+  - name: Hooks
     description: |
       A hook is a simple way to integrate your Devopness workflow with external processes to trigger Devopness actions by sending a POST request to a public URL. By using hooks you can make Devopness react to events that happen in other applications and make sure your environment resources reflect changes applied in other services.
-  - name: Hooks - Outgoing
-    description: |
       An outgoing hook is a webhook that trigger a request when an action of a resource has your state updated.
   - name: Hooks - Requests
   - name: Invitations
@@ -228,6 +226,7 @@ tags:
   - name: Roles
   - name: Servers
   - name: Services
+  - name: Services - Variables
   - name: Social Accounts
     description: |
       A social account is a third party login/authorization service connected to the current user's account. e.g.: Facebook, Google, GitHub
@@ -287,8 +286,7 @@ x-tagGroups:
       - Projects - Environments
   - name: Hooks
     tags:
-      - Hooks - Incoming
-      - Hooks - Outgoing
+      - Hooks
       - Hooks - Requests
   - name: Logs
     tags:
@@ -321,6 +319,7 @@ x-tagGroups:
   - name: Services
     tags:
       - Services
+      - Services - Variables
       - Environments - Services
       - Projects - Services
   - name: Source Providers

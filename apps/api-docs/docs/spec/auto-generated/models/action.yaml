@@ -5,6 +5,11 @@ properties:
     description: 'The Id of the given action'
     type: integer
     example: 567819876
+  retry_of:
+    description: 'The Id of the parent action that this action is a retry of'
+    type: integer
+    example: 764123
+    nullable: true
   status:
     $ref: '#/components/schemas/ActionStatus'
   type:
@@ -55,6 +60,7 @@ properties:
     example: '2019-09-25T13:52:04.000000Z'
 required:
   - id
+  - retry_of
   - status
   - type
   - type_human_readable

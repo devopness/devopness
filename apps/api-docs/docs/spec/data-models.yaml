@@ -596,6 +596,8 @@ VariableList:
   $ref: ./auto-generated/models/variable-list.yaml
 VariableRelation:
   $ref: ./auto-generated/models/variable-relation.yaml
+VariableServiceCreate:
+  $ref: ./auto-generated/models/variable-service-create.yaml
 VariableTarget:
   $ref: ./shared/schemas/variable-target.yaml
 VariableType:

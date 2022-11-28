@@ -297,6 +297,11 @@
 /services/{service_id}/update-status:
   post:
     $ref: ./auto-generated/endpoints/update-status-service.yaml
+'/services/{service_id}/variables':
+  get:
+    $ref: ./auto-generated/endpoints/list-service-variables.yaml
+  post:
+    $ref: ./auto-generated/endpoints/add-service-variable.yaml
 /social-accounts:
   post:
     $ref: ./endpoints/social-accounts/paths/social-accounts.yaml

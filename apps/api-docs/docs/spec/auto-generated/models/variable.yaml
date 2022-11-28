@@ -22,11 +22,6 @@ properties:
     example: 'https://staging.devopness.com'
   target:
     $ref: '#/components/schemas/VariableTarget'
-  target_name:
-    description: 'The target name of this variable'
-    type: string
-    example: /etc/php/7.4/cli/php.ini
-    nullable: true
   resource_id:
     description: 'The ID of the resource this variable is linked to'
     type: integer
@@ -55,7 +50,6 @@ required:
   - description
   - value
   - target
-  - target_name
   - resource_id
   - resource_type
   - hidden
