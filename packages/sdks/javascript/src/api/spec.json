@@ -11348,24 +11348,14 @@
         "type": "object",
         "properties": {
           "latest": {
-            "oneOf": [
-              {
-                "nullable": true
-              },
-              {
-                "$ref": "#/components/schemas/ActionRelation"
-              }
-            ]
+            "$ref": "#/components/schemas/ActionRelation",
+            "nullable": true,
+            "description": "The most recent application deployment, regardless of its status"
           },
           "live": {
-            "oneOf": [
-              {
-                "nullable": true
-              },
-              {
-                "$ref": "#/components/schemas/ActionRelation"
-              }
-            ]
+            "$ref": "#/components/schemas/ActionRelation",
+            "nullable": true,
+            "description": "The most recent application deployment, that was successfully completed"
           }
         }
       },
@@ -12424,29 +12414,17 @@
             "example": false
           },
           "last_action": {
-            "description": "",
-            "oneOf": [
-              {
-                "nullable": true
-              },
-              {
-                "$ref": "#/components/schemas/ActionRelation"
-              }
-            ]
+            "$ref": "#/components/schemas/ActionRelation",
+            "description": "The last action triggered for the resource",
+            "nullable": true
           },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
           },
           "application": {
+            "$ref": "#/components/schemas/ApplicationRelation",
             "description": "",
-            "oneOf": [
-              {
-                "nullable": true
-              },
-              {
-                "$ref": "#/components/schemas/ApplicationRelation"
-              }
-            ]
+            "nullable": true
           },
           "project": {
             "$ref": "#/components/schemas/ProjectRelation"
@@ -12668,29 +12646,17 @@
             "example": false
           },
           "last_action": {
-            "description": "",
-            "oneOf": [
-              {
-                "nullable": true
-              },
-              {
-                "$ref": "#/components/schemas/ActionRelation"
-              }
-            ]
+            "$ref": "#/components/schemas/ActionRelation",
+            "description": "The last action triggered for the resource",
+            "nullable": true
           },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
           },
           "application": {
+            "$ref": "#/components/schemas/ApplicationRelation",
             "description": "",
-            "oneOf": [
-              {
-                "nullable": true
-              },
-              {
-                "$ref": "#/components/schemas/ApplicationRelation"
-              }
-            ]
+            "nullable": true
           },
           "created_at": {
             "description": "The date and time when the record was created",
@@ -12811,26 +12777,14 @@
             "$ref": "#/components/schemas/ProjectRelation"
           },
           "last_action": {
-            "description": "",
-            "oneOf": [
-              {
-                "nullable": true
-              },
-              {
-                "$ref": "#/components/schemas/ActionRelation"
-              }
-            ]
+            "$ref": "#/components/schemas/ActionRelation",
+            "description": "The last action triggered for the resource",
+            "nullable": true
           },
           "application": {
+            "$ref": "#/components/schemas/ApplicationRelation",
             "description": "",
-            "oneOf": [
-              {
-                "nullable": true
-              },
-              {
-                "$ref": "#/components/schemas/ApplicationRelation"
-              }
-            ]
+            "nullable": true
           },
           "environment": {
             "$ref": "#/components/schemas/EnvironmentRelation"
@@ -13007,26 +12961,14 @@
             "example": false
           },
           "last_action": {
-            "description": "",
-            "oneOf": [
-              {
-                "nullable": true
-              },
-              {
-                "$ref": "#/components/schemas/ActionRelation"
-              }
-            ]
+            "$ref": "#/components/schemas/ActionRelation",
+            "description": "The last action triggered for the resource",
+            "nullable": true
           },
           "application": {
+            "$ref": "#/components/schemas/ApplicationRelation",
             "description": "",
-            "oneOf": [
-              {
-                "nullable": true
-              },
-              {
-                "$ref": "#/components/schemas/ApplicationRelation"
-              }
-            ]
+            "nullable": true
           },
           "created_at": {
             "description": "The date and time when the record was created",
@@ -14188,26 +14130,14 @@
             "example": "https://api.devopness.com/hooks-incoming/f1a61a4e-4d08-11eb-9481-0242ac130004"
           },
           "request_headers": {
+            "$ref": "#/components/schemas/HookRequestRequestHeaders",
             "description": "",
-            "oneOf": [
-              {
-                "nullable": true
-              },
-              {
-                "$ref": "#/components/schemas/HookRequestRequestHeaders"
-              }
-            ]
+            "nullable": true
           },
           "request_body": {
+            "$ref": "#/components/schemas/HookRequestRequestBody",
             "description": "",
-            "oneOf": [
-              {
-                "nullable": true
-              },
-              {
-                "$ref": "#/components/schemas/HookRequestRequestBody"
-              }
-            ]
+            "nullable": true
           },
           "response_status_code": {
             "description": "The response status code",
@@ -14215,26 +14145,14 @@
             "example": 200
           },
           "response_headers": {
+            "$ref": "#/components/schemas/HookRequestResponseHeaders",
             "description": "",
-            "oneOf": [
-              {
-                "nullable": true
-              },
-              {
-                "$ref": "#/components/schemas/HookRequestResponseHeaders"
-              }
-            ]
+            "nullable": true
           },
           "response_body": {
+            "$ref": "#/components/schemas/HookRequestResponseBody",
             "description": "",
-            "oneOf": [
-              {
-                "nullable": true
-              },
-              {
-                "$ref": "#/components/schemas/HookRequestResponseBody"
-              }
-            ]
+            "nullable": true
           },
           "hook": {
             "$ref": "#/components/schemas/HookRelation"
@@ -14987,15 +14905,9 @@
             "example": false
           },
           "last_action": {
-            "description": "",
-            "oneOf": [
-              {
-                "nullable": true
-              },
-              {
-                "$ref": "#/components/schemas/ActionRelation"
-              }
-            ]
+            "$ref": "#/components/schemas/ActionRelation",
+            "description": "The last action triggered for the resource",
+            "nullable": true
           },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
@@ -15149,15 +15061,9 @@
             "example": false
           },
           "last_action": {
-            "description": "",
-            "oneOf": [
-              {
-                "nullable": true
-              },
-              {
-                "$ref": "#/components/schemas/ActionRelation"
-              }
-            ]
+            "$ref": "#/components/schemas/ActionRelation",
+            "description": "The last action triggered for the resource",
+            "nullable": true
           },
           "created_at": {
             "description": "The date and time when the record was created",
@@ -16318,15 +16224,9 @@
             "$ref": "#/components/schemas/ProjectRelation"
           },
           "last_action": {
-            "description": "",
-            "oneOf": [
-              {
-                "nullable": true
-              },
-              {
-                "$ref": "#/components/schemas/ActionRelation"
-              }
-            ]
+            "$ref": "#/components/schemas/ActionRelation",
+            "description": "The last action triggered for the resource",
+            "nullable": true
           },
           "environment": {
             "$ref": "#/components/schemas/EnvironmentRelation"
@@ -16772,15 +16672,9 @@
             "$ref": "#/components/schemas/ActionStatus"
           },
           "last_action": {
-            "description": "",
-            "oneOf": [
-              {
-                "nullable": true
-              },
-              {
-                "$ref": "#/components/schemas/ActionRelation"
-              }
-            ]
+            "$ref": "#/components/schemas/ActionRelation",
+            "description": "The last action triggered for the resource",
+            "nullable": true
           },
           "created_at": {
             "description": "The date and time when the record was created",
@@ -16870,15 +16764,9 @@
             "$ref": "#/components/schemas/Servers"
           },
           "last_action": {
-            "description": "",
-            "oneOf": [
-              {
-                "nullable": true
-              },
-              {
-                "$ref": "#/components/schemas/ActionRelation"
-              }
-            ]
+            "$ref": "#/components/schemas/ActionRelation",
+            "description": "The last action triggered for the resource",
+            "nullable": true
           },
           "created_at": {
             "description": "The date and time when the record was created",
@@ -17076,15 +16964,9 @@
             "nullable": true
           },
           "last_action": {
-            "description": "",
-            "oneOf": [
-              {
-                "nullable": true
-              },
-              {
-                "$ref": "#/components/schemas/ActionRelation"
-              }
-            ]
+            "$ref": "#/components/schemas/ActionRelation",
+            "description": "The last action triggered for the resource",
+            "nullable": true
           },
           "created_at": {
             "description": "The date and time when the record was created",
@@ -17437,15 +17319,9 @@
             "$ref": "#/components/schemas/ServerList"
           },
           "last_action": {
-            "description": "",
-            "oneOf": [
-              {
-                "nullable": true
-              },
-              {
-                "$ref": "#/components/schemas/ActionRelation"
-              }
-            ]
+            "$ref": "#/components/schemas/ActionRelation",
+            "description": "The last action triggered for the resource",
+            "nullable": true
           },
           "created_at": {
             "description": "The date and time when the record was created",
@@ -17553,15 +17429,9 @@
             "example": "74:2a:d5:75:8a:9b:64:4c:21:18:54:3f:c5:0a:59:f0"
           },
           "last_action": {
+            "$ref": "#/components/schemas/ActionRelation",
             "description": "",
-            "oneOf": [
-              {
-                "nullable": true
-              },
-              {
-                "$ref": "#/components/schemas/ActionRelation"
-              }
-            ]
+            "nullable": true
           },
           "created_at": {
             "description": "The date and time when the record was created",
@@ -17639,26 +17509,14 @@
             "example": 2347658
           },
           "created_by_user": {
+            "$ref": "#/components/schemas/UserRelation",
             "description": "",
-            "oneOf": [
-              {
-                "nullable": true
-              },
-              {
-                "$ref": "#/components/schemas/UserRelation"
-              }
-            ]
+            "nullable": true
           },
           "last_action": {
-            "description": "",
-            "oneOf": [
-              {
-                "nullable": true
-              },
-              {
-                "$ref": "#/components/schemas/ActionRelation"
-              }
-            ]
+            "$ref": "#/components/schemas/ActionRelation",
+            "description": "The last action triggered for the resource",
+            "nullable": true
           },
           "application": {
             "$ref": "#/components/schemas/ApplicationRelation"
@@ -17808,15 +17666,9 @@
             "example": 2347658
           },
           "last_action": {
-            "description": "",
-            "oneOf": [
-              {
-                "nullable": true
-              },
-              {
-                "$ref": "#/components/schemas/ActionRelation"
-              }
-            ]
+            "$ref": "#/components/schemas/ActionRelation",
+            "description": "The last action triggered for the resource",
+            "nullable": true
           },
           "expires_at": {
             "description": "The date and time when this certificate will no longer be valid, down to minute precision",
