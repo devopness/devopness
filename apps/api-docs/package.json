@@ -10,6 +10,7 @@
     "build": "npm run api-docs && npm run ensure_index_file_is_on_size_limit",
     "api-build-spec": "npm run tsc && node ./build/buildApiSpec.js && swagger-cli validate docs/build/api-docs-output.yaml",
     "api-convert-spec-to-dredd": "api-spec-converter --from=openapi_3 --to=swagger_2 --syntax=yaml --order=alpha docs/build/api-docs-output.yaml > docs/build/api-docs-output-v2.yaml",
+    "api-convert-spec-to-json": "yaml-convert docs/build/api-docs-output.yaml --pretty --output docs/build/spec.json",
     "api-docs-export-page": "redoc-cli build docs/build/api-docs-output.yaml --title 'Devopness API Docs' --output public/index.html --cdn true -t docs/template.hbs",
     "api-docs-serve": "npm run api-docs && redoc-cli serve docs/build/api-docs-output.yaml --port 9090 --title 'Devopness API Docs - Local' -t docs/template.hbs",
     "api-docs-zip-download": "aws s3 cp s3://devopness-api-docs/api-docs.zip ./docs/api-docs.zip",
@@ -17,7 +18,7 @@
     "api-docs": "npm run api-build-spec && npm run api-convert-spec-to-dredd && npm run api-docs-export-page && npm run api-test",
     "api-test": "npm run tsc && npm run test && npm run remove-descriptions && dredd",
     "remove-descriptions": "sed -E \"s:^(\\s+).ref. \\.\\./spec/descriptions.*\\.md$:\\1'':\" 'docs/build/api-docs-output-v2.yaml' > 'docs/build/api-docs-output-v2-without-descriptions.yaml'",
-    "ensure_index_file_is_on_size_limit": "[ `du -h public/index.html | grep -oE '^[0-9]+'` -le 4 ]",
+    "ensure_index_file_is_on_size_limit": "[ `du -h public/index.html | grep -oE '^[0-9]+'` -le 5 ]",
     "test": "jest",
     "tsc": "tsc"
   },
@@ -50,6 +51,7 @@
     "toposort": "^2.0.2",
     "ts-jest": "^28.0.7",
     "typescript": "^4.8.3",
-    "uuid": "^8.3.0"
+    "uuid": "^8.3.0",
+    "yaml-convert": "^1.0.1"
   }
 }

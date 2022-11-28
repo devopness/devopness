@@ -214,8 +214,6 @@ HookIncomingSettings:
   $ref: ./auto-generated/models/hook-incoming-settings.yaml
 HookIncomingTriggerVariables:
   $ref: ./auto-generated/models/hook-incoming-trigger-variables.yaml
-HookIncomingTriggerWhen:
-  $ref: ./auto-generated/models/hook-incoming-trigger-when.yaml
 HookIncomingTriggerWhenCondition:
   $ref: ./auto-generated/models/hook-incoming-trigger-when-condition.yaml
 HookIncomingTriggerWhenConditionType:
@@ -226,8 +224,6 @@ HookOutgoingRequestHeader:
   $ref: ./auto-generated/models/hook-outgoing-request-header.yaml
 HookOutgoingSettings:
   $ref: ./auto-generated/models/hook-outgoing-settings.yaml
-HookOutgoingTriggerWhen:
-  $ref: ./auto-generated/models/hook-outgoing-trigger-when.yaml
 HookOutgoingTriggerWhenActionStatus:
   $ref: ./auto-generated/models/hook-outgoing-trigger-when-action-status.yaml
 HookOutgoingTriggerWhenCondition:
@@ -246,6 +242,8 @@ HookRequestResponseBody:
   $ref: ./auto-generated/models/hook-request-response-body.yaml
 HookRequestResponseHeaders:
   $ref: ./auto-generated/models/hook-request-response-headers.yaml
+HookTriggerWhen:
+  $ref: ./auto-generated/models/hook-trigger-when.yaml
 HookUpdate:
   $ref: ./auto-generated/models/hook-update.yaml
 HookVariable:

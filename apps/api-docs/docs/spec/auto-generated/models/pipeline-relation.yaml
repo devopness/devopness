@@ -45,3 +45,4 @@ required:
   - created_by_user
   - created_at
   - updated_at
+nullable: true

@@ -62,13 +62,7 @@ properties:
         $ref: '#/components/schemas/HookOutgoingSettings'
     nullable: true
   trigger_when:
-    description: ''
-    oneOf:
-      -
-        $ref: '#/components/schemas/HookIncomingTriggerWhen'
-      -
-        $ref: '#/components/schemas/HookOutgoingTriggerWhen'
-    nullable: true
+    $ref: '#/components/schemas/HookTriggerWhen'
   created_at:
     description: 'The date and time when the record was created'
     type: string
@@ -96,3 +90,4 @@ required:
   - trigger_when
   - created_at
   - updated_at
+nullable: true

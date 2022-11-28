@@ -39,3 +39,4 @@ required:
   - ip_address
   - created_at
   - updated_at
+nullable: true

@@ -17,6 +17,9 @@ jobs:
       - name: Build OpenAPI spec
         run: npm run api-build-spec
 
+      - name: Convert OpenAPI spec to JSON
+        run: npm run api-convert-spec-to-json
+
       - name: Checkout devopness/devopness repository
         uses: actions/checkout@v3
         with:
@@ -46,11 +49,9 @@ jobs:
             echo ::set-output name=pr_exists::false
           fi
 
-      - name: Convert OpenAPI spec to JSON
+      - name: Copy JSON spec from 'devopness-api-docs' to `devopness`
         run: |
-          yes | npx yaml-convert docs/build/api-docs-output.yaml \
-            --pretty \
-            --output ./devopness/packages/sdks/javascript/src/api/spec.json
+          cp '$GITHUB_WORKSPACE/docs/build/spec.json' src/api/spec.json
 
       - name: Commit SDK-JS modifications
         id: git

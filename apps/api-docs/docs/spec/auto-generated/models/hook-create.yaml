@@ -30,12 +30,7 @@ properties:
     example: X-Custom-Header
     type: string
   trigger_when:
-    description: ''
-    oneOf:
-      -
-        $ref: '#/components/schemas/HookIncomingTriggerWhen'
-      -
-        $ref: '#/components/schemas/HookOutgoingTriggerWhen'
+    $ref: '#/components/schemas/HookTriggerWhen'
   settings:
     description: ''
     oneOf:

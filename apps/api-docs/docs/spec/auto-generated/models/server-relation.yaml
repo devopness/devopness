@@ -40,12 +40,7 @@ properties:
   status:
     $ref: '#/components/schemas/ActionStatus'
   last_action:
-    description: ''
-    oneOf:
-      -
-        nullable: true
-      -
-        $ref: '#/components/schemas/ActionRelation'
+    $ref: '#/components/schemas/ActionRelation'
   created_at:
     description: 'The date and time when the record was created'
     type: string
@@ -68,3 +63,4 @@ required:
   - last_action
   - created_at
   - updated_at
+nullable: true

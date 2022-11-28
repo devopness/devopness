@@ -30,3 +30,4 @@ required:
   - type_human_readable
   - created_at
   - updated_at
+nullable: true

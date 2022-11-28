@@ -338,11 +338,27 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     before('addPipeline201', utils.rewriteTransactionRequestUriResourceId('application'));
 
     before('addHook201', utils.rewriteTransactionRequestBody((body: any) => {
-        body['trigger_when'] = null;
+        body['trigger_when'] = [
+            {
+                type: 'request_body',
+                path: 'key',
+                accepted_values: [
+                    'value',
+                ],
+            },
+        ];
     }));
 
     before('updateHook204', utils.rewriteTransactionRequestBody((body: any) => {
-        body['trigger_when'] = null;
+        body['trigger_when'] = [
+            {
+                type: 'request_body',
+                path: 'key',
+                accepted_values: [
+                    'value',
+                ],
+            },
+        ];
     }));
 
     done();

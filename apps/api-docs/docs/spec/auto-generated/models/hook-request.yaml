@@ -28,37 +28,17 @@ properties:
     type: string
     example: 'https://api.devopness.com/hooks-incoming/f1a61a4e-4d08-11eb-9481-0242ac130004'
   request_headers:
-    description: ''
-    oneOf:
-      -
-        nullable: true
-      -
-        $ref: '#/components/schemas/HookRequestRequestHeaders'
+    $ref: '#/components/schemas/HookRequestRequestHeaders'
   request_body:
-    description: ''
-    oneOf:
-      -
-        nullable: true
-      -
-        $ref: '#/components/schemas/HookRequestRequestBody'
+    $ref: '#/components/schemas/HookRequestRequestBody'
   response_status_code:
     description: 'The response status code'
     type: integer
     example: 200
   response_headers:
-    description: ''
-    oneOf:
-      -
-        nullable: true
-      -
-        $ref: '#/components/schemas/HookRequestResponseHeaders'
+    $ref: '#/components/schemas/HookRequestResponseHeaders'
   response_body:
-    description: ''
-    oneOf:
-      -
-        nullable: true
-      -
-        $ref: '#/components/schemas/HookRequestResponseBody'
+    $ref: '#/components/schemas/HookRequestResponseBody'
   hook:
     $ref: '#/components/schemas/HookRelation'
   created_at:

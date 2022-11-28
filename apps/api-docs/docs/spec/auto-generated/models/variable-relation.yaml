@@ -61,3 +61,4 @@ required:
   - hidden
   - created_at
   - updated_at
+nullable: true

@@ -125,6 +125,6 @@ required:
   - install_dependencies_dev
   - install_dependencies_prod
   - requires_daemon
-  - last_deployments
   - created_at
   - updated_at
+nullable: true

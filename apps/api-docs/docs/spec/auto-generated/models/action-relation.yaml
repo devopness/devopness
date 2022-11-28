@@ -54,8 +54,8 @@ required:
   - action_data
   - triggered_from
   - resource
-  - servers
   - started_at
   - completed_at
   - created_at
   - updated_at
+nullable: true

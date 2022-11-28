@@ -26,19 +26,9 @@ properties:
     type: integer
     example: 2347658
   created_by_user:
-    description: ''
-    oneOf:
-      -
-        nullable: true
-      -
-        $ref: '#/components/schemas/UserRelation'
+    $ref: '#/components/schemas/UserRelation'
   last_action:
-    description: ''
-    oneOf:
-      -
-        nullable: true
-      -
-        $ref: '#/components/schemas/ActionRelation'
+    $ref: '#/components/schemas/ActionRelation'
   application:
     $ref: '#/components/schemas/ApplicationRelation'
   servers:

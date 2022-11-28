@@ -28,3 +28,4 @@ required:
   - photo_url
   - created_at
   - updated_at
+nullable: true

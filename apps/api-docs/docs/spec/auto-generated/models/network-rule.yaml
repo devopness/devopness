@@ -36,12 +36,7 @@ properties:
     type: boolean
     example: false
   last_action:
-    description: ''
-    oneOf:
-      -
-        nullable: true
-      -
-        $ref: '#/components/schemas/ActionRelation'
+    $ref: '#/components/schemas/ActionRelation'
   created_by_user:
     $ref: '#/components/schemas/UserRelation'
   environments:

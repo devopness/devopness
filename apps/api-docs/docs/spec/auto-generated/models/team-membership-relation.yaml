@@ -30,3 +30,4 @@ required:
   - role
   - created_at
   - updated_at
+nullable: true
