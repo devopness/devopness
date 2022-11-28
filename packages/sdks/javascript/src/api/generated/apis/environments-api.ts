@@ -25,7 +25,7 @@ export class EnvironmentsApiService extends ApiBaseService {
     /**
      * 
      * @summary Delete a given environment
-     * @param {number} environmentId Unique ID of the environment to delete
+     * @param {number} environmentId The ID of the environment.
      */
     public async deleteEnvironment(environmentId: number): Promise<ApiResponse<void>> {
         if (environmentId === null || environmentId === undefined) {
@@ -43,7 +43,7 @@ export class EnvironmentsApiService extends ApiBaseService {
     /**
      * 
      * @summary Get an environment by ID
-     * @param {number} environmentId Unique ID of the environment to get
+     * @param {number} environmentId The ID of the environment.
      */
     public async getEnvironment(environmentId: number): Promise<ApiResponse<Environment>> {
         if (environmentId === null || environmentId === undefined) {
@@ -61,8 +61,8 @@ export class EnvironmentsApiService extends ApiBaseService {
     /**
      * 
      * @summary Update a given environment
-     * @param {number} environmentId Unique ID of the environment to update
-     * @param {EnvironmentUpdate} environmentUpdate A JSON object containing environment data
+     * @param {number} environmentId The ID of the environment.
+     * @param {EnvironmentUpdate} environmentUpdate A JSON object containing the resource data
      */
     public async updateEnvironment(environmentId: number, environmentUpdate: EnvironmentUpdate): Promise<ApiResponse<void>> {
         if (environmentId === null || environmentId === undefined) {

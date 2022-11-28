@@ -70,7 +70,7 @@ export interface CronJobRelation {
      * @type {ActionRelation}
      * @memberof CronJobRelation
      */
-    last_action: ActionRelation | null;
+    last_action: ActionRelation;
     /**
      * 
      * @type {UserRelation}
@@ -82,7 +82,7 @@ export interface CronJobRelation {
      * @type {ApplicationRelation}
      * @memberof CronJobRelation
      */
-    application: ApplicationRelation | null;
+    application: ApplicationRelation;
     /**
      * The date and time when the record was created
      * @type {string}

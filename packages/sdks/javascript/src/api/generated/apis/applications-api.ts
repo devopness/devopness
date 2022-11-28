@@ -25,7 +25,7 @@ export class ApplicationsApiService extends ApiBaseService {
     /**
      * 
      * @summary Delete a given application
-     * @param {number} applicationId Numeric ID of the application to be deleted
+     * @param {number} applicationId The ID of the application.
      */
     public async deleteApplication(applicationId: number): Promise<ApiResponse<void>> {
         if (applicationId === null || applicationId === undefined) {
@@ -43,7 +43,7 @@ export class ApplicationsApiService extends ApiBaseService {
     /**
      * 
      * @summary Get an application by ID
-     * @param {number} applicationId Numeric ID of the application to get
+     * @param {number} applicationId The ID of the application.
      */
     public async getApplication(applicationId: number): Promise<ApiResponse<Application>> {
         if (applicationId === null || applicationId === undefined) {
@@ -61,8 +61,8 @@ export class ApplicationsApiService extends ApiBaseService {
     /**
      * 
      * @summary Update an existing application
-     * @param {number} applicationId Numeric ID of the application to be updated
-     * @param {ApplicationUpdate} applicationUpdate A JSON object containing application data
+     * @param {number} applicationId The ID of the application.
+     * @param {ApplicationUpdate} applicationUpdate A JSON object containing the resource data
      */
     public async updateApplication(applicationId: number, applicationUpdate: ApplicationUpdate): Promise<ApiResponse<void>> {
         if (applicationId === null || applicationId === undefined) {

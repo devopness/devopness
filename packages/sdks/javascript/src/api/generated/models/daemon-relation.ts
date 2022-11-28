@@ -68,13 +68,13 @@ export interface DaemonRelation {
      * @type {ActionRelation}
      * @memberof DaemonRelation
      */
-    last_action: ActionRelation | null;
+    last_action: ActionRelation;
     /**
      * 
      * @type {ApplicationRelation}
      * @memberof DaemonRelation
      */
-    application: ApplicationRelation | null;
+    application: ApplicationRelation;
     /**
      * The date and time when the record was created
      * @type {string}

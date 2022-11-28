@@ -86,7 +86,7 @@ export interface ServerRelation {
      * @type {ActionRelation}
      * @memberof ServerRelation
      */
-    last_action: ActionRelation | null;
+    last_action: ActionRelation;
     /**
      * The date and time when the record was created
      * @type {string}

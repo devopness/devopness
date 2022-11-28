@@ -85,13 +85,13 @@ export interface SslCertificate {
      * @type {ActionRelation}
      * @memberof SslCertificate
      */
-    last_action: ActionRelation | null;
+    last_action: ActionRelation;
     /**
      * 
      * @type {ApplicationRelation}
      * @memberof SslCertificate
      */
-    application: ApplicationRelation | null;
+    application: ApplicationRelation;
     /**
      * 
      * @type {Array<ServerRelation>}

@@ -14,7 +14,6 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
-import { ApiError } from '../../generated/models';
 import { HookRelation } from '../../generated/models';
 
 /**
@@ -23,15 +22,25 @@ import { HookRelation } from '../../generated/models';
 export class ApplicationsHooksApiService extends ApiBaseService {
     /**
      * 
-     * @summary Returns a list of all hooks belonging to an application
-     * @param {number} applicationId Unique id of the application
+     * @summary List all hooks in an application
+     * @param {number} applicationId The ID of the application.
+     * @param {number} [page] Number of the page to be retrieved
+     * @param {number} [perPage] Number of items returned per page
      */
-    public async listApplicationHooks(applicationId: number): Promise<ApiResponse<Array<HookRelation>>> {
+    public async listApplicationHooks(applicationId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<HookRelation>>> {
         if (applicationId === null || applicationId === undefined) {
             throw new ArgumentNullException('applicationId', 'listApplicationHooks');
         }
         
         let queryString = '';
+        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
 
         const requestUrl = '/applications/{application_id}/hooks' + (queryString? `?${queryString}` : '');
 

@@ -84,7 +84,7 @@ export interface NetworkRule {
      * @type {ActionRelation}
      * @memberof NetworkRule
      */
-    last_action: ActionRelation | null;
+    last_action: ActionRelation;
     /**
      * 
      * @type {UserRelation}

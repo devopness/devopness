@@ -12,6 +12,7 @@
  */
 
 
+import { ApplicationType } from './application-type';
 
 /**
  * 
@@ -26,11 +27,11 @@ export interface ApplicationEnvironmentCreate {
      */
     name: string;
     /**
-     * Must be one of <code>web</code> or <code>non-web</code>.
-     * @type {string}
+     * 
+     * @type {ApplicationType}
      * @memberof ApplicationEnvironmentCreate
      */
-    type: string;
+    type: ApplicationType;
     /**
      * The domain or sub-domain through which the application deployed with these settings will be accessible. It can be a naked domain or any subdomain. If app has domain names `testing.my-app.com`, `staging.my-app.com` and `www.my-app.com` a possible good candidate for the application name would be the \"naked\" domain `my-app.com`. Must not be greater than 60 characters.
      * @type {string}

@@ -28,7 +28,7 @@ export interface HookOutgoingTriggerWhenCondition {
      */
     type: HookOutgoingTriggerWhenConditionType;
     /**
-     * An list of accepted values to checked field.
+     * A list of accepted values to checked field.
      * @type {Array<HookOutgoingTriggerWhenActionStatus>}
      * @memberof HookOutgoingTriggerWhenCondition
      */

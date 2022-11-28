@@ -57,17 +57,5 @@ export interface VariableApplicationCreate {
      * @memberof VariableApplicationCreate
      */
     hidden: boolean;
-    /**
-     * The ID of the resource this variable is linked to.
-     * @type {number}
-     * @memberof VariableApplicationCreate
-     */
-    resource_id: number;
-    /**
-     * The type of the resource this variable is linked to. Must be one of <code>application</code>.
-     * @type {string}
-     * @memberof VariableApplicationCreate
-     */
-    resource_type: string;
 }
 

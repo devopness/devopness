@@ -17,19 +17,19 @@ import { HookOutgoingRequestHeader } from './hook-outgoing-request-header';
 /**
  * Settings to an outgoing hook
  * @export
- * @interface HookOutgoingSetting
+ * @interface HookOutgoingSettings
  */
-export interface HookOutgoingSetting {
+export interface HookOutgoingSettings {
     /**
      * List of outgoing hook request headers
      * @type {Array<HookOutgoingRequestHeader>}
-     * @memberof HookOutgoingSetting
+     * @memberof HookOutgoingSettings
      */
     request_headers?: Array<HookOutgoingRequestHeader>;
     /**
      * The request body that should be send to target URL
      * @type {string | object | Array<object>}
-     * @memberof HookOutgoingSetting
+     * @memberof HookOutgoingSettings
      */
     request_body?: string | object | Array<object>;
 }

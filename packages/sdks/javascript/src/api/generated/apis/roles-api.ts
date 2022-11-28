@@ -24,8 +24,8 @@ import { RoleUpdate } from '../../generated/models';
 export class RolesApiService extends ApiBaseService {
     /**
      * 
-     * @summary Delete a role
-     * @param {number} roleId Numeric ID of the role to delete
+     * @summary Delete a given role
+     * @param {number} roleId The ID of the role.
      */
     public async deleteRole(roleId: number): Promise<ApiResponse<void>> {
         if (roleId === null || roleId === undefined) {
@@ -42,8 +42,8 @@ export class RolesApiService extends ApiBaseService {
 
     /**
      * 
-     * @summary Get a role
-     * @param {number} roleId Numeric ID of the role to get
+     * @summary Get a role by ID
+     * @param {number} roleId The ID of the role.
      */
     public async getRole(roleId: number): Promise<ApiResponse<Role>> {
         if (roleId === null || roleId === undefined) {
@@ -61,8 +61,8 @@ export class RolesApiService extends ApiBaseService {
     /**
      * 
      * @summary Update an existing role
-     * @param {number} roleId Numeric ID of the role to update
-     * @param {RoleUpdate} roleUpdate A JSON object containing role data
+     * @param {number} roleId The ID of the role.
+     * @param {RoleUpdate} roleUpdate A JSON object containing the resource data
      */
     public async updateRole(roleId: number, roleUpdate: RoleUpdate): Promise<ApiResponse<void>> {
         if (roleId === null || roleId === undefined) {

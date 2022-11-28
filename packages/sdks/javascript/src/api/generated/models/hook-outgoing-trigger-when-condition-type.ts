@@ -14,7 +14,7 @@
 
 
 /**
- * Type of the outgoing hook condition. * `action_status` - Validate action status for outgoing hooks. 
+ * Type of the outgoing hook condition.\\n* `action_status` - Validate action status for outgoing hooks.
  * @export
  * @enum {string}
  */

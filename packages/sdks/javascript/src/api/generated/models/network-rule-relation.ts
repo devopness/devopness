@@ -81,7 +81,7 @@ export interface NetworkRuleRelation {
      * @type {ActionRelation}
      * @memberof NetworkRuleRelation
      */
-    last_action: ActionRelation | null;
+    last_action: ActionRelation;
     /**
      * The date and time when the record was created
      * @type {string}

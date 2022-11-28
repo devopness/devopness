@@ -15,7 +15,6 @@ import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ActionListItem } from '../../generated/models';
-import { ActionType } from '../../generated/models';
 
 /**
  * ActionsResourcesApiService - Auto-generated
@@ -50,42 +49,6 @@ export class ActionsResourcesApiService extends ApiBaseService {
         const requestUrl = '/actions/{resource_type}/{resource_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Array<ActionListItem>>(requestUrl.replace(`{${"resource_type"}}`, encodeURIComponent(String(resourceType))).replace(`{${"resource_id"}}`, encodeURIComponent(String(resourceId))));
-        return new ApiResponse(response);
-    }
-
-    /**
-     * 
-     * @summary List resource actions of an action type
-     * @param {string} resourceType The resource type to get related actions
-     * @param {number} resourceId Unique ID of the resource that\&#39;s being searched
-     * @param {ActionType} actionType The action type
-     * @param {number} [page] Number of the page to be retrieved
-     * @param {number} [perPage] Number of items returned per page
-     */
-    public async listResourceActionsOfResourceTypeActionType(resourceType: string, resourceId: number, actionType: ActionType, page?: number, perPage?: number): Promise<ApiResponse<Array<ActionListItem>>> {
-        if (resourceType === null || resourceType === undefined) {
-            throw new ArgumentNullException('resourceType', 'listResourceActionsOfResourceTypeActionType');
-        }
-        if (resourceId === null || resourceId === undefined) {
-            throw new ArgumentNullException('resourceId', 'listResourceActionsOfResourceTypeActionType');
-        }
-        if (actionType === null || actionType === undefined) {
-            throw new ArgumentNullException('actionType', 'listResourceActionsOfResourceTypeActionType');
-        }
-        
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/actions/{resource_type}/{resource_id}/{action_type}' + (queryString? `?${queryString}` : '');
-
-        const response = await this.get <Array<ActionListItem>>(requestUrl.replace(`{${"resource_type"}}`, encodeURIComponent(String(resourceType))).replace(`{${"resource_id"}}`, encodeURIComponent(String(resourceId))).replace(`{${"action_type"}}`, encodeURIComponent(String(actionType))));
         return new ApiResponse(response);
     }
 }

@@ -108,7 +108,7 @@ export interface Server {
      * @type {ActionRelation}
      * @memberof Server
      */
-    last_action: ActionRelation | null;
+    last_action: ActionRelation;
     /**
      * 
      * @type {EnvironmentRelation}

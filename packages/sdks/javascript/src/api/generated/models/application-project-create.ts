@@ -12,6 +12,7 @@
  */
 
 
+import { ApplicationType } from './application-type';
 import { EnvironmentLinkItem } from './environment-link-item';
 
 /**
@@ -27,11 +28,11 @@ export interface ApplicationProjectCreate {
      */
     name: string;
     /**
-     * Must be one of <code>web</code> or <code>non-web</code>.
-     * @type {string}
+     * 
+     * @type {ApplicationType}
      * @memberof ApplicationProjectCreate
      */
-    type: string;
+    type: ApplicationType;
     /**
      * The domain or sub-domain through which the application deployed with these settings will be accessible. It can be a naked domain or any subdomain. If app has domain names `testing.my-app.com`, `staging.my-app.com` and `www.my-app.com` a possible good candidate for the application name would be the \"naked\" domain `my-app.com`. Must not be greater than 60 characters.
      * @type {string}

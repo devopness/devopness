@@ -17,13 +17,13 @@ import { HookVariable } from './hook-variable';
 /**
  * Settings to an incoming hook
  * @export
- * @interface HookIncomingSetting
+ * @interface HookIncomingSettings
  */
-export interface HookIncomingSetting {
+export interface HookIncomingSettings {
     /**
      * List of variables to incoming hook
      * @type {Array<HookVariable>}
-     * @memberof HookIncomingSetting
+     * @memberof HookIncomingSettings
      */
     variables?: Array<HookVariable>;
 }

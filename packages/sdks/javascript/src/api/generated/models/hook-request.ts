@@ -33,7 +33,7 @@ export interface HookRequest {
      */
     hook_id: string;
     /**
-     * The id of the action that the request belongs to
+     * The ID of the action that the request belongs to
      * @type {number}
      * @memberof HookRequest
      */
@@ -55,54 +55,54 @@ export interface HookRequest {
      * @type {string}
      * @memberof HookRequest
      */
-    url?: string;
+    url: string;
     /**
      * The headers of the request
      * @type {object}
      * @memberof HookRequest
      */
-    request_headers?: object | null;
+    request_headers: object;
     /**
      * The body of the request
      * @type {object}
      * @memberof HookRequest
      */
-    request_body?: object | null;
+    request_body: object;
     /**
      * The response status code
      * @type {number}
      * @memberof HookRequest
      */
-    response_status_code?: number;
+    response_status_code: number;
     /**
      * The headers of the response
      * @type {object}
      * @memberof HookRequest
      */
-    response_headers?: object | null;
+    response_headers: object;
     /**
      * The body of the response
      * @type {object}
      * @memberof HookRequest
      */
-    response_body?: object | null;
+    response_body: object;
     /**
      * 
      * @type {HookRelation}
      * @memberof HookRequest
      */
-    hook?: HookRelation;
+    hook: HookRelation;
     /**
      * The date and time when the record was created
      * @type {string}
      * @memberof HookRequest
      */
-    created_at?: string | null;
+    created_at: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof HookRequest
      */
-    updated_at?: string | null;
+    updated_at: string;
 }
 

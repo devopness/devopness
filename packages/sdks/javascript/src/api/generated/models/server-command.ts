@@ -14,12 +14,16 @@
 
 
 /**
- * Type of the incoming hook condition.\\n* `request_body` - Validate request body for incoming hooks.
+ * 
  * @export
- * @enum {string}
+ * @interface ServerCommand
  */
-export enum HookIncomingTriggerWhenConditionType {
-    RequestBody = 'request_body'
+export interface ServerCommand {
+    /**
+     * The Shell Script command to be executed in an existing Linux server in order to connect it to the `devopness`
+     * @type {string}
+     * @memberof ServerCommand
+     */
+    connect_command: string;
 }
-
 

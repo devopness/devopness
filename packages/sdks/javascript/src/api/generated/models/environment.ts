@@ -112,18 +112,18 @@ export interface Environment {
      * @type {Array<string>}
      * @memberof Environment
      */
-    current_user_permissions?: Array<string>;
+    current_user_permissions: Array<string>;
     /**
      * The date and time when the record was created
      * @type {string}
      * @memberof Environment
      */
-    created_at?: string;
+    created_at: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof Environment
      */
-    updated_at?: string;
+    updated_at: string;
 }
 

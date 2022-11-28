@@ -77,13 +77,13 @@ export interface Daemon {
      * @type {ActionRelation}
      * @memberof Daemon
      */
-    last_action: ActionRelation | null;
+    last_action: ActionRelation;
     /**
      * 
      * @type {ApplicationRelation}
      * @memberof Daemon
      */
-    application: ApplicationRelation | null;
+    application: ApplicationRelation;
     /**
      * 
      * @type {EnvironmentRelation}
