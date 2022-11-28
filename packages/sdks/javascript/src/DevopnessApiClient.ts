@@ -5,9 +5,8 @@ import { CloudProviderCredentialService } from './services/CloudProviderCredenti
 import { CronJobService } from './services/CronJobService';
 import { DaemonService } from './services/DaemonService';
 import { EnvironmentService } from './services/EnvironmentService';
-import { HookIncomingService } from './services/HookIncomingService';
-import { HookOutgoingService } from './services/HookOutgoingService';
 import { HookRequestService } from './services/HookRequestService';
+import { HookService } from './services/HookService';
 import { LogService } from './services/LogService';
 import { NetworkRuleService } from './services/NetworkRuleService';
 import { PipelineService } from './services/PipelineService';
@@ -34,10 +33,9 @@ export class DevopnessApiClient {
   daemons: DaemonService;
   environments: EnvironmentService;
   hookRequests: HookRequestService;
-  incomingHooks: HookIncomingService;
+  hooks: HookService;
   logs: LogService;
   networkRules: NetworkRuleService;
-  outgoingHooks: HookOutgoingService;
   pipelines: PipelineService;
   projects: ProjectService;
   resourceEvents: ResourceEventService;
@@ -67,10 +65,9 @@ export class DevopnessApiClient {
     this.daemons = new DaemonService();
     this.environments = new EnvironmentService();
     this.hookRequests = new HookRequestService();
-    this.incomingHooks = new HookIncomingService();
+    this.hooks = new HookService();
     this.logs = new LogService();
     this.networkRules = new NetworkRuleService();
-    this.outgoingHooks = new HookOutgoingService();
     this.pipelines = new PipelineService();
     this.projects = new ProjectService();
     this.resourceEvents = new ResourceEventService();
