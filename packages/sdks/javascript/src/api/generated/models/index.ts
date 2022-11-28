@@ -223,6 +223,7 @@ export * from './user-verify';
 export * from './variable';
 export * from './variable-application-create';
 export * from './variable-relation';
+export * from './variable-service-create';
 export * from './variable-target';
 export * from './variable-type';
 export * from './variable-update';

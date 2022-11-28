@@ -37,6 +37,12 @@ export interface Action {
      */
     id: number;
     /**
+     * The Id of the parent action that this action is a retry of
+     * @type {number}
+     * @memberof Action
+     */
+    retry_of: number | null;
+    /**
      * 
      * @type {ActionStatus}
      * @memberof Action
