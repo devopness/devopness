@@ -7537,10 +7537,222 @@
         }
       }
     },
+    "/source-providers": {
+      "get": {
+        "summary": "Return a list of all source code providers linked to current user",
+        "operationId": "listSourceProviders",
+        "description": {
+          "$ref": "../spec/descriptions/list-source-providers.md"
+        },
+        "tags": [
+          "Source Providers"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SourceProviderList"
+                }
+              }
+            },
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Add a new source provider to the current user's profile",
+        "operationId": "addSourceProvider",
+        "description": {
+          "$ref": "../spec/descriptions/add-source-provider.md"
+        },
+        "tags": [
+          "Source Providers"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SourceProvider"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SourceProviderCreate"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/source-providers/{source_provider_id}": {
+      "delete": {
+        "summary": "Delete a given source provider from current user's account",
+        "operationId": "deleteSourceProvider",
+        "description": {
+          "$ref": "../spec/descriptions/delete-source-provider.md"
+        },
+        "tags": [
+          "Source Providers"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "source_provider_id",
+            "description": "The ID of the source provider.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Get a source provider by ID",
+        "operationId": "getSourceProvider",
+        "description": {
+          "$ref": "../spec/descriptions/get-source-provider.md"
+        },
+        "tags": [
+          "Source Providers"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "source_provider_id",
+            "description": "The ID of the source provider.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SourceProvider"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified resource was not found"
+          }
+        }
+      }
+    },
     "/source-providers/{source_provider_id}/repositories": {
       "get": {
-        "summary": "Return a list of all repositories belonging to a current user social provider account",
-        "operationId": "listRepositories",
+        "summary": "Return a list of all repositories belonging to the current user social provider account",
+        "operationId": "listSourceProviderRepositories",
+        "description": {
+          "$ref": "../spec/descriptions/list-source-provider-repositories.md"
+        },
         "tags": [
           "Source Providers - Repositories"
         ],
@@ -7563,30 +7775,22 @@
           {
             "in": "path",
             "name": "source_provider_id",
-            "example": 567,
+            "description": "The ID of the source provider.",
+            "example": 123,
+            "required": true,
             "schema": {
               "type": "integer",
-              "minimum": 3
-            },
-            "required": true,
-            "description": "Unique ID of the provider where the repository is hosted"
+              "minimum": 1
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "Ok",
-            "headers": {
-              "Link": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Repositories"
+                  "$ref": "#/components/schemas/RepositoryList"
                 }
               }
             }
@@ -7596,8 +7800,11 @@
     },
     "/source-providers/{source_provider_id}/repositories/{repository_owner}/{repository_name}": {
       "get": {
-        "summary": "Get details of a repository, by its name",
-        "operationId": "getRepository",
+        "summary": "Get details of a repository by its name",
+        "operationId": "getSourceProviderRepository",
+        "description": {
+          "$ref": "../spec/descriptions/get-source-provider-repository.md"
+        },
         "tags": [
           "Source Providers - Repositories"
         ],
@@ -7613,36 +7820,34 @@
           },
           {
             "in": "path",
-            "name": "source_provider_id",
-            "example": 567,
-            "schema": {
-              "type": "integer",
-              "minimum": 3
-            },
+            "name": "repository_name",
+            "description": "The repository name",
+            "example": "repo_name",
             "required": true,
-            "description": "Unique ID of the provider where the repository is hosted"
+            "schema": {
+              "type": "string"
+            }
           },
           {
             "in": "path",
             "name": "repository_owner",
-            "example": "devopness",
-            "schema": {
-              "type": "string",
-              "minimum": 3
-            },
+            "description": "The owner of the repository",
+            "example": "repo_owner",
             "required": true,
-            "description": "Nickname/user id of the owner of the repository"
+            "schema": {
+              "type": "string"
+            }
           },
           {
             "in": "path",
-            "name": "repository_name",
-            "example": "devopness-site",
-            "schema": {
-              "type": "string",
-              "minimum": 3
-            },
+            "name": "source_provider_id",
+            "description": "The ID of the source provider.",
+            "example": 123,
             "required": true,
-            "description": "The name of the repository to be retrieved"
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
           }
         ],
         "responses": {
@@ -7657,180 +7862,7 @@
             }
           },
           "404": {
-            "$ref": "#/components/responses/NotFound"
-          }
-        }
-      }
-    },
-    "/source-providers": {
-      "get": {
-        "summary": "Return a list of all source code providers linked to current user",
-        "operationId": "listSourceProviders",
-        "tags": [
-          "Source Providers"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "$ref": "#/components/parameters/pageNumber"
-          },
-          {
-            "$ref": "#/components/parameters/pageSize"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "headers": {
-              "Link": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SourceProviders"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "summary": "Create a new source provider linked to the current user's profile",
-        "operationId": "addSourceProvider",
-        "tags": [
-          "Source Providers"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          }
-        ],
-        "requestBody": {
-          "description": "A JSON object containing source provider callback data",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SourceProviderCreate"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SourceProvider"
-                }
-              }
-            }
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          }
-        }
-      }
-    },
-    "/source-providers/{source_provider_id}": {
-      "get": {
-        "summary": "Get details of a single Source Code provider",
-        "operationId": "getSourceProvider",
-        "tags": [
-          "Source Providers"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "source_provider_id",
-            "example": 567,
-            "schema": {
-              "type": "integer",
-              "minimum": 3
-            },
-            "required": true,
-            "description": "Unique ID of the provider to be retrieved"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SourceProvider"
-                }
-              }
-            }
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          }
-        }
-      },
-      "delete": {
-        "summary": "Delete a given source provider from current user's account",
-        "operationId": "deleteSourceProvider",
-        "tags": [
-          "Source Providers"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "source_provider_id",
-            "example": 123,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "required": true,
-            "description": "Unique Id of the source provider to be deleted"
-          }
-        ],
-        "responses": {
-          "204": {
-            "$ref": "#/components/responses/NoContent"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
+            "description": "The specified resource was not found"
           }
         }
       }
@@ -12006,11 +12038,6 @@
             "description": "The full name of the repository (`owner/repository`) to which the commit belongs to",
             "example": "devopness/devopness-site"
           },
-          "branch": {
-            "type": "string",
-            "description": "The name of the branch of which the commit was the head at the time of its retrieval",
-            "example": "develop"
-          },
           "url": {
             "type": "string",
             "format": "url",
@@ -12026,7 +12053,17 @@
             "description": "The name of the commit's author",
             "example": "feature/some-branch"
           }
-        }
+        },
+        "required": [
+          "hash",
+          "message",
+          "committed_at",
+          "provider",
+          "repository",
+          "url",
+          "author_email",
+          "author_name"
+        ]
       },
       "CloudAwsEc2Settings": {
         "type": "object",
@@ -15869,45 +15906,43 @@
           "application:read"
         ]
       },
-      "Repositories": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Repository"
-        }
-      },
       "Repository": {
         "type": "object",
         "properties": {
           "name": {
-            "type": "string",
             "description": "The name of the repository",
+            "type": "string",
             "example": "myrepo"
           },
           "user_name": {
-            "type": "string",
             "description": "The name of the user/account on the Version Control System",
+            "type": "string",
             "example": "myusername"
           },
           "full_name": {
-            "type": "string",
             "description": "The fully qualified repository name. Usually composed of user_name/name",
+            "type": "string",
             "example": "myusername/myrepo"
           },
           "html_url": {
-            "type": "string",
-            "format": "url",
             "description": "The URL for viewing repository details on the provider's web application",
+            "type": "string",
             "example": "https://github.com/myusername/myrepo"
           },
           "branches": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/RepositoryBranch"
-            }
+            "$ref": "#/components/schemas/RepositoryBranchList"
           }
-        }
+        },
+        "required": [
+          "name",
+          "user_name",
+          "full_name",
+          "html_url",
+          "branches"
+        ]
       },
       "RepositoryBranch": {
+        "description": "A repository branch",
         "type": "object",
         "properties": {
           "name": {
@@ -15923,7 +15958,57 @@
           "commit": {
             "$ref": "#/components/schemas/Commit"
           }
+        },
+        "required": [
+          "name",
+          "repo_full_name",
+          "commit"
+        ]
+      },
+      "RepositoryBranchList": {
+        "description": "List of repository branches",
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/RepositoryBranch"
         }
+      },
+      "RepositoryList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/RepositoryRelation"
+        }
+      },
+      "RepositoryRelation": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "The name of the repository",
+            "type": "string",
+            "example": "myrepo"
+          },
+          "user_name": {
+            "description": "The name of the user/account on the Version Control System",
+            "type": "string",
+            "example": "myusername"
+          },
+          "full_name": {
+            "description": "The fully qualified repository name. Usually composed of user_name/name",
+            "type": "string",
+            "example": "myusername/myrepo"
+          },
+          "html_url": {
+            "description": "The URL for viewing repository details on the provider's web application",
+            "type": "string",
+            "example": "https://github.com/myusername/myrepo"
+          }
+        },
+        "required": [
+          "name",
+          "user_name",
+          "full_name",
+          "html_url"
+        ],
+        "nullable": true
       },
       "Resource": {
         "type": "object",
@@ -17281,12 +17366,16 @@
       },
       "SourceProvider": {
         "type": "object",
-        "nullable": true,
         "properties": {
           "id": {
+            "description": "The unique ID of the given source provider",
             "type": "integer",
-            "description": "The unique id of the given record",
-            "example": 964
+            "example": 45678
+          },
+          "user_id": {
+            "description": "The current user's ID",
+            "type": "integer",
+            "example": 6589
           },
           "provider": {
             "$ref": "#/components/schemas/SourceProviderName"
@@ -17295,39 +17384,37 @@
             "$ref": "#/components/schemas/SourceProviderDisplayableName"
           },
           "provider_user_nickname": {
-            "type": "string",
             "description": "The nickname of the user on the Source Authentication provider",
+            "type": "string",
             "example": "Joe Smith"
           },
-          "user_id": {
-            "type": "integer",
-            "description": "The current user's id",
-            "example": 123
+          "token_expires_at": {
+            "description": "The date and time indicating when the authentication token will expire at",
+            "type": "string",
+            "example": "2020-09-25T15:50:48.000000Z",
+            "nullable": true
           },
           "created_at": {
-            "type": "string",
-            "format": "date-time",
             "description": "The date and time when the record was created",
-            "example": "2019-09-25T15:50:48.000000Z"
+            "type": "string",
+            "example": "2019-09-25T13:22:37.000000Z"
           },
           "updated_at": {
-            "type": "string",
-            "format": "date-time",
             "description": "The date and time when the record was last updated",
-            "example": "2019-09-25T13:52:04.000000Z"
+            "type": "string",
+            "example": "2019-09-25T13:22:37.000000Z"
           }
         },
         "required": [
           "id",
+          "user_id",
           "provider",
-          "provider_user_nickname"
+          "provider_human_readable",
+          "provider_user_nickname",
+          "token_expires_at",
+          "created_at",
+          "updated_at"
         ]
-      },
-      "SourceProviders": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/SourceProvider"
-        }
       },
       "SourceProviderCreate": {
         "type": "object",
@@ -17336,9 +17423,9 @@
             "$ref": "#/components/schemas/SourceProviderName"
           },
           "callback_code": {
-            "type": "string",
-            "description": "The temporary code forwarded by the OAuth provider as a parameter to our callback URL",
-            "example": "a606964974b5fb082971"
+            "description": "The temporary code forwarded by the OAuth provider as a parameter to our callback URL. Must be at least 8 characters.",
+            "example": "a606964974b5fb082971",
+            "type": "string"
           }
         },
         "required": [
@@ -17354,7 +17441,13 @@
           "GitHub",
           "GitLab"
         ],
-        "example": "GitHub"
+        "example": "Bitbucket"
+      },
+      "SourceProviderList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/SourceProviderRelation"
+        }
       },
       "SourceProviderName": {
         "type": "string",
@@ -17365,6 +17458,59 @@
           "gitlab"
         ],
         "example": "bitbucket"
+      },
+      "SourceProviderRelation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "The ID of the given source provider",
+            "type": "integer",
+            "example": 85324
+          },
+          "user_id": {
+            "description": "The current user's ID",
+            "type": "integer",
+            "example": 6589
+          },
+          "provider": {
+            "$ref": "#/components/schemas/SourceProviderName"
+          },
+          "provider_human_readable": {
+            "$ref": "#/components/schemas/SourceProviderDisplayableName"
+          },
+          "provider_user_nickname": {
+            "description": "The nickname of the user on the Source Authentication provider",
+            "type": "string",
+            "example": "Joe Smith"
+          },
+          "token_expires_at": {
+            "description": "The date and time indicating when the authentication token will expire at",
+            "type": "string",
+            "example": "2020-09-25T15:50:48.000000Z",
+            "nullable": true
+          },
+          "created_at": {
+            "description": "The date and time when the record was created",
+            "type": "string",
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "description": "The date and time when the record was last updated",
+            "type": "string",
+            "example": "2019-09-25T15:50:48.000000Z"
+          }
+        },
+        "required": [
+          "id",
+          "user_id",
+          "provider",
+          "provider_human_readable",
+          "provider_user_nickname",
+          "token_expires_at",
+          "created_at",
+          "updated_at"
+        ],
+        "nullable": true
       },
       "SshKey": {
         "type": "object",
