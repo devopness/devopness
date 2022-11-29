@@ -25,54 +25,48 @@ export interface Commit {
      * @type {string}
      * @memberof Commit
      */
-    hash?: string;
+    hash: string;
     /**
      * The commit\'s comment message
      * @type {string}
      * @memberof Commit
      */
-    message?: string;
+    message: string;
     /**
      * The date and time when the commit has been submitted
      * @type {string}
      * @memberof Commit
      */
-    committed_at?: string;
+    committed_at: string;
     /**
      * 
      * @type {SourceProviderName}
      * @memberof Commit
      */
-    provider?: SourceProviderName;
+    provider: SourceProviderName;
     /**
      * The full name of the repository (`owner/repository`) to which the commit belongs to
      * @type {string}
      * @memberof Commit
      */
-    repository?: string;
-    /**
-     * The name of the branch of which the commit was the head at the time of its retrieval
-     * @type {string}
-     * @memberof Commit
-     */
-    branch?: string;
+    repository: string;
     /**
      * The direct URL for accessing commit details on the provider\'s web application
      * @type {string}
      * @memberof Commit
      */
-    url?: string;
+    url: string;
     /**
      * The e-mail of the commit\'s author
      * @type {string}
      * @memberof Commit
      */
-    author_email?: string;
+    author_email: string;
     /**
      * The name of the commit\'s author
      * @type {string}
      * @memberof Commit
      */
-    author_name?: string;
+    author_name: string;
 }
 

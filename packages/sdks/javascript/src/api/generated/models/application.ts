@@ -206,7 +206,7 @@ export interface Application {
      * @type {SourceProvider}
      * @memberof Application
      */
-    source_provider: SourceProvider | null;
+    source_provider: SourceProvider;
     /**
      * 
      * @type {Array<SslCertificateRelation>}

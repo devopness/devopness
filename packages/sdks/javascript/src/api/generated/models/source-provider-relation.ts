@@ -18,55 +18,55 @@ import { SourceProviderName } from './source-provider-name';
 /**
  * 
  * @export
- * @interface SourceProvider
+ * @interface SourceProviderRelation
  */
-export interface SourceProvider {
+export interface SourceProviderRelation {
     /**
-     * The unique ID of the given source provider
+     * The ID of the given source provider
      * @type {number}
-     * @memberof SourceProvider
+     * @memberof SourceProviderRelation
      */
     id: number;
     /**
      * The current user\'s ID
      * @type {number}
-     * @memberof SourceProvider
+     * @memberof SourceProviderRelation
      */
     user_id: number;
     /**
      * 
      * @type {SourceProviderName}
-     * @memberof SourceProvider
+     * @memberof SourceProviderRelation
      */
     provider: SourceProviderName;
     /**
      * 
      * @type {SourceProviderDisplayableName}
-     * @memberof SourceProvider
+     * @memberof SourceProviderRelation
      */
     provider_human_readable: SourceProviderDisplayableName;
     /**
      * The nickname of the user on the Source Authentication provider
      * @type {string}
-     * @memberof SourceProvider
+     * @memberof SourceProviderRelation
      */
     provider_user_nickname: string;
     /**
      * The date and time indicating when the authentication token will expire at
      * @type {string}
-     * @memberof SourceProvider
+     * @memberof SourceProviderRelation
      */
     token_expires_at: string | null;
     /**
      * The date and time when the record was created
      * @type {string}
-     * @memberof SourceProvider
+     * @memberof SourceProviderRelation
      */
     created_at: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
-     * @memberof SourceProvider
+     * @memberof SourceProviderRelation
      */
     updated_at: string;
 }

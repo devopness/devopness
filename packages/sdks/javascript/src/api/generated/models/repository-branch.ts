@@ -15,7 +15,7 @@
 import { Commit } from './commit';
 
 /**
- * 
+ * A repository branch
  * @export
  * @interface RepositoryBranch
  */
@@ -25,18 +25,18 @@ export interface RepositoryBranch {
      * @type {string}
      * @memberof RepositoryBranch
      */
-    name?: string;
+    name: string;
     /**
      * The full name of the repository (`owner/repository`)
      * @type {string}
      * @memberof RepositoryBranch
      */
-    repo_full_name?: string;
+    repo_full_name: string;
     /**
      * 
      * @type {Commit}
      * @memberof RepositoryBranch
      */
-    commit?: Commit;
+    commit: Commit;
 }
 

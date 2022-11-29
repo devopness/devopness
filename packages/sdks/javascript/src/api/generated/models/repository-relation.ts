@@ -12,43 +12,36 @@
  */
 
 
-import { RepositoryBranch } from './repository-branch';
 
 /**
  * 
  * @export
- * @interface Repository
+ * @interface RepositoryRelation
  */
-export interface Repository {
+export interface RepositoryRelation {
     /**
      * The name of the repository
      * @type {string}
-     * @memberof Repository
+     * @memberof RepositoryRelation
      */
     name: string;
     /**
      * The name of the user/account on the Version Control System
      * @type {string}
-     * @memberof Repository
+     * @memberof RepositoryRelation
      */
     user_name: string;
     /**
      * The fully qualified repository name. Usually composed of user_name/name
      * @type {string}
-     * @memberof Repository
+     * @memberof RepositoryRelation
      */
     full_name: string;
     /**
      * The URL for viewing repository details on the provider\'s web application
      * @type {string}
-     * @memberof Repository
+     * @memberof RepositoryRelation
      */
     html_url: string;
-    /**
-     * List of repository branches
-     * @type {Array<RepositoryBranch>}
-     * @memberof Repository
-     */
-    branches: Array<RepositoryBranch>;
 }
 
