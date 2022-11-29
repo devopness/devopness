@@ -25,6 +25,8 @@ ApplicationType:
   $ref: ./auto-generated/models/application-type.yaml
 ApplicationUpdate:
   $ref: ./auto-generated/models/application-update.yaml
+Commit:
+  $ref: ./auto-generated/models/commit.yaml
 CronJob:
   $ref: ./auto-generated/models/cron-job.yaml
 CronJobEnvironmentCreate:
@@ -161,6 +163,16 @@ ProjectRelation:
   $ref: ./auto-generated/models/project-relation.yaml
 ProjectUpdate:
   $ref: ./auto-generated/models/project-update.yaml
+Repository:
+  $ref: ./auto-generated/models/repository.yaml
+RepositoryBranch:
+  $ref: ./auto-generated/models/repository-branch.yaml
+RepositoryBranchList:
+  $ref: ./auto-generated/models/repository-branch-list.yaml
+RepositoryList:
+  $ref: ./auto-generated/models/repository-list.yaml
+RepositoryRelation:
+  $ref: ./auto-generated/models/repository-relation.yaml
 RequestList:
   $ref: ./auto-generated/models/request-list.yaml
 RequestRelation:
@@ -215,6 +227,18 @@ ServiceUpdate:
   $ref: ./auto-generated/models/service-update.yaml
 ServiceUpdateStatus:
   $ref: ./auto-generated/models/service-update-status.yaml
+SourceProvider:
+  $ref: ./auto-generated/models/source-provider.yaml
+SourceProviderCreate:
+  $ref: ./auto-generated/models/source-provider-create.yaml
+SourceProviderDisplayableName:
+  $ref: ./auto-generated/models/source-provider-displayable-name.yaml
+SourceProviderList:
+  $ref: ./auto-generated/models/source-provider-list.yaml
+SourceProviderName:
+  $ref: ./auto-generated/models/source-provider-name.yaml
+SourceProviderRelation:
+  $ref: ./auto-generated/models/source-provider-relation.yaml
 SshKey:
   $ref: ./auto-generated/models/ssh-key.yaml
 SshKeyEnvironmentCreate:

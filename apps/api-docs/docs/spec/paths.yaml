@@ -315,22 +315,22 @@
 /social-accounts/{social_account_provider_name}/status:
   get:
     $ref: ./endpoints/social-accounts/paths/social-accounts-name-status.yaml
-/source-providers/{source_provider_id}/repositories:
-  get:
-    $ref: ./endpoints/repositories/paths/repositories-list.yaml
-/source-providers/{source_provider_id}/repositories/{repository_owner}/{repository_name}:
-  get:
-    $ref: ./endpoints/repositories/paths/repositories-id.yaml
 /source-providers:
   get:
-    $ref: ./endpoints/source-providers/paths/source-providers-list.yaml
+    $ref: ./auto-generated/endpoints/list-source-providers.yaml
   post:
-    $ref: ./endpoints/source-providers/paths/source-providers.yaml
-/source-providers/{source_provider_id}:
-  get:
-    $ref: ./endpoints/source-providers/paths/source-providers-id.yaml
+    $ref: ./auto-generated/endpoints/add-source-provider.yaml
+'/source-providers/{source_provider_id}':
   delete:
-    $ref: ./endpoints/source-providers/paths/source-providers-id-delete.yaml
+    $ref: ./auto-generated/endpoints/delete-source-provider.yaml
+  get:
+    $ref: ./auto-generated/endpoints/get-source-provider.yaml
+'/source-providers/{source_provider_id}/repositories':
+  get:
+    $ref: ./auto-generated/endpoints/list-source-provider-repositories.yaml
+'/source-providers/{source_provider_id}/repositories/{repository_owner}/{repository_name}':
+  get:
+    $ref: ./auto-generated/endpoints/get-source-provider-repository.yaml
 '/ssh-keys/{ssh_key_id}':
   delete:
     $ref: ./auto-generated/endpoints/delete-ssh-key.yaml

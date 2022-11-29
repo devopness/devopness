@@ -71,7 +71,7 @@ ApplicationUpdate:
 BlueprintService:
   $ref: ./endpoints/servers/schemas/blueprint-service.yaml
 Commit:
-  $ref: ./shared/schemas/commit.yaml
+  $ref: ./auto-generated/models/commit.yaml
 CloudAwsEc2Settings:
   $ref: ./endpoints/servers/schemas/cloud-settings/cloud-aws-ec2-settings.yaml
 CloudDigitalOceanDropletSettings:
@@ -356,12 +356,16 @@ RequestRelation:
   $ref: ./auto-generated/models/request-relation.yaml
 RequiredPermissions:
   $ref: ./endpoints/static/schemas/required-permissions.yaml
-Repositories:
-  $ref: ./endpoints/repositories/schemas/repository-list.yaml
 Repository:
-  $ref: ./endpoints/repositories/schemas/repository.yaml
+  $ref: ./auto-generated/models/repository.yaml
 RepositoryBranch:
-  $ref: ./endpoints/repositories/schemas/repository-branch.yaml
+  $ref: ./auto-generated/models/repository-branch.yaml
+RepositoryBranchList:
+  $ref: ./auto-generated/models/repository-branch-list.yaml
+RepositoryList:
+  $ref: ./auto-generated/models/repository-list.yaml
+RepositoryRelation:
+  $ref: ./auto-generated/models/repository-relation.yaml
 Resource:
   $ref: ./endpoints/actions/schemas/resource.yaml
 ResourceEvent:
@@ -477,15 +481,17 @@ SocialAccounts:
 SocialAccountStatus:
   $ref: ./endpoints/social-accounts/schemas/social-account-status.yaml
 SourceProvider:
-  $ref: ./endpoints/source-providers/schemas/source-provider.yaml
-SourceProviders:
-  $ref: ./endpoints/source-providers/schemas/source-provider-list.yaml
+  $ref: ./auto-generated/models/source-provider.yaml
 SourceProviderCreate:
-  $ref: ./endpoints/source-providers/schemas/source-provider-create.yaml
+  $ref: ./auto-generated/models/source-provider-create.yaml
 SourceProviderDisplayableName:
-  $ref: ./shared/schemas/source-provider-displayable-name.yaml
+  $ref: ./auto-generated/models/source-provider-displayable-name.yaml
+SourceProviderList:
+  $ref: ./auto-generated/models/source-provider-list.yaml
 SourceProviderName:
-  $ref: ./shared/schemas/source-provider-name.yaml
+  $ref: ./auto-generated/models/source-provider-name.yaml
+SourceProviderRelation:
+  $ref: ./auto-generated/models/source-provider-relation.yaml
 SshKey:
   $ref: ./auto-generated/models/ssh-key.yaml
 SshKeyEnvironmentCreate:
