@@ -14,8 +14,10 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { ApiError } from '../../generated/models';
 import { SourceProvider } from '../../generated/models';
 import { SourceProviderCreate } from '../../generated/models';
+import { SourceProviderRelation } from '../../generated/models';
 
 /**
  * SourceProvidersApiService - Auto-generated
@@ -23,8 +25,8 @@ import { SourceProviderCreate } from '../../generated/models';
 export class SourceProvidersApiService extends ApiBaseService {
     /**
      * 
-     * @summary Create a new source provider linked to the current user\'s profile
-     * @param {SourceProviderCreate} sourceProviderCreate A JSON object containing source provider callback data
+     * @summary Add a new source provider to the current user\'s profile
+     * @param {SourceProviderCreate} sourceProviderCreate A JSON object containing the resource data
      */
     public async addSourceProvider(sourceProviderCreate: SourceProviderCreate): Promise<ApiResponse<SourceProvider>> {
         if (sourceProviderCreate === null || sourceProviderCreate === undefined) {
@@ -42,7 +44,7 @@ export class SourceProvidersApiService extends ApiBaseService {
     /**
      * 
      * @summary Delete a given source provider from current user\'s account
-     * @param {number} sourceProviderId Unique Id of the source provider to be deleted
+     * @param {number} sourceProviderId The ID of the source provider.
      */
     public async deleteSourceProvider(sourceProviderId: number): Promise<ApiResponse<void>> {
         if (sourceProviderId === null || sourceProviderId === undefined) {
@@ -59,8 +61,8 @@ export class SourceProvidersApiService extends ApiBaseService {
 
     /**
      * 
-     * @summary Get details of a single Source Code provider
-     * @param {number} sourceProviderId Unique ID of the provider to be retrieved
+     * @summary Get a source provider by ID
+     * @param {number} sourceProviderId The ID of the source provider.
      */
     public async getSourceProvider(sourceProviderId: number): Promise<ApiResponse<SourceProvider>> {
         if (sourceProviderId === null || sourceProviderId === undefined) {
@@ -81,7 +83,7 @@ export class SourceProvidersApiService extends ApiBaseService {
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */
-    public async listSourceProviders(page?: number, perPage?: number): Promise<ApiResponse<Array<SourceProvider>>> {
+    public async listSourceProviders(page?: number, perPage?: number): Promise<ApiResponse<Array<SourceProviderRelation>>> {
         
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
@@ -95,7 +97,7 @@ export class SourceProvidersApiService extends ApiBaseService {
 
         const requestUrl = '/source-providers' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<SourceProvider>>(requestUrl);
+        const response = await this.get <Array<SourceProviderRelation>>(requestUrl);
         return new ApiResponse(response);
     }
 }

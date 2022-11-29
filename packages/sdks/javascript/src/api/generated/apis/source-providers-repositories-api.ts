@@ -15,6 +15,7 @@ import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { Repository } from '../../generated/models';
+import { RepositoryRelation } from '../../generated/models';
 
 /**
  * SourceProvidersRepositoriesApiService - Auto-generated
@@ -22,40 +23,40 @@ import { Repository } from '../../generated/models';
 export class SourceProvidersRepositoriesApiService extends ApiBaseService {
     /**
      * 
-     * @summary Get details of a repository, by its name
-     * @param {number} sourceProviderId Unique ID of the provider where the repository is hosted
-     * @param {string} repositoryOwner Nickname/user id of the owner of the repository
-     * @param {string} repositoryName The name of the repository to be retrieved
+     * @summary Get details of a repository by its name
+     * @param {string} repositoryName The repository name
+     * @param {string} repositoryOwner The owner of the repository
+     * @param {number} sourceProviderId The ID of the source provider.
      */
-    public async getRepository(sourceProviderId: number, repositoryOwner: string, repositoryName: string): Promise<ApiResponse<Repository>> {
-        if (sourceProviderId === null || sourceProviderId === undefined) {
-            throw new ArgumentNullException('sourceProviderId', 'getRepository');
+    public async getSourceProviderRepository(repositoryName: string, repositoryOwner: string, sourceProviderId: number): Promise<ApiResponse<Repository>> {
+        if (repositoryName === null || repositoryName === undefined) {
+            throw new ArgumentNullException('repositoryName', 'getSourceProviderRepository');
         }
         if (repositoryOwner === null || repositoryOwner === undefined) {
-            throw new ArgumentNullException('repositoryOwner', 'getRepository');
+            throw new ArgumentNullException('repositoryOwner', 'getSourceProviderRepository');
         }
-        if (repositoryName === null || repositoryName === undefined) {
-            throw new ArgumentNullException('repositoryName', 'getRepository');
+        if (sourceProviderId === null || sourceProviderId === undefined) {
+            throw new ArgumentNullException('sourceProviderId', 'getSourceProviderRepository');
         }
         
         let queryString = '';
 
         const requestUrl = '/source-providers/{source_provider_id}/repositories/{repository_owner}/{repository_name}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Repository>(requestUrl.replace(`{${"source_provider_id"}}`, encodeURIComponent(String(sourceProviderId))).replace(`{${"repository_owner"}}`, encodeURIComponent(String(repositoryOwner))).replace(`{${"repository_name"}}`, encodeURIComponent(String(repositoryName))));
+        const response = await this.get <Repository>(requestUrl.replace(`{${"repository_name"}}`, encodeURIComponent(String(repositoryName))).replace(`{${"repository_owner"}}`, encodeURIComponent(String(repositoryOwner))).replace(`{${"source_provider_id"}}`, encodeURIComponent(String(sourceProviderId))));
         return new ApiResponse(response);
     }
 
     /**
      * 
-     * @summary Return a list of all repositories belonging to a current user social provider account
-     * @param {number} sourceProviderId Unique ID of the provider where the repository is hosted
+     * @summary Return a list of all repositories belonging to the current user social provider account
+     * @param {number} sourceProviderId The ID of the source provider.
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */
-    public async listRepositories(sourceProviderId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<Repository>>> {
+    public async listSourceProviderRepositories(sourceProviderId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<RepositoryRelation>>> {
         if (sourceProviderId === null || sourceProviderId === undefined) {
-            throw new ArgumentNullException('sourceProviderId', 'listRepositories');
+            throw new ArgumentNullException('sourceProviderId', 'listSourceProviderRepositories');
         }
         
         let queryString = '';
@@ -70,7 +71,7 @@ export class SourceProvidersRepositoriesApiService extends ApiBaseService {
 
         const requestUrl = '/source-providers/{source_provider_id}/repositories' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<Repository>>(requestUrl.replace(`{${"source_provider_id"}}`, encodeURIComponent(String(sourceProviderId))));
+        const response = await this.get <Array<RepositoryRelation>>(requestUrl.replace(`{${"source_provider_id"}}`, encodeURIComponent(String(sourceProviderId))));
         return new ApiResponse(response);
     }
 }
