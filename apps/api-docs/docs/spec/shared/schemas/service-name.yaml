@@ -1,4 +1,4 @@
 type: string
 description: The name of a supported service
-enum: [docker, mysql, nginx, redis, supervisor]
+enum: [docker, mysql, nginx, php, redis, supervisor]
 example: mysql

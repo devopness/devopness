@@ -36,19 +36,19 @@
     $ref: ./auto-generated/endpoints/list-application-variables.yaml
   post:
     $ref: ./auto-generated/endpoints/add-application-variable.yaml
-/cloud-providers/{cloud_provider_code}/credentials:
+'/cloud-providers/{cloud_provider_code}/credentials':
   get:
-    $ref: ./endpoints/cloud-providers/paths/cloud-provider-credentials-list.yaml
-/credentials:
+    $ref: ./auto-generated/endpoints/list-cloud-provider-credentials-by-cloud-provider-code.yaml
   post:
-    $ref: ./endpoints/credentials/paths/credentials-create.yaml
+    $ref: ./auto-generated/endpoints/add-cloud-provider-credential.yaml
+/credentials:
   get:
-    $ref: ./endpoints/credentials/paths/credentials-list.yaml
-/credentials/{credential_id}:
+    $ref: ./auto-generated/endpoints/list-credentials.yaml
+'/credentials/{credential_id}':
   delete:
-    $ref: ./endpoints/credentials/paths/credentials-id-delete.yaml
+    $ref: ./auto-generated/endpoints/delete-credential.yaml
   get:
-    $ref: ./endpoints/credentials/paths/credentials-id.yaml
+    $ref: ./auto-generated/endpoints/get-credential.yaml
 '/environments/{environment_id}':
   delete:
     $ref: ./auto-generated/endpoints/delete-environment.yaml

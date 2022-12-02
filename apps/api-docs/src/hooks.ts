@@ -295,7 +295,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     })
 
     const staticCloudCredentialId = 1;
-    before('addCredential201', (transaction: Transaction) => {
+    before('addCloudProviderCredential201', (transaction: Transaction) => {
         hooks.log(`=> 'credential' (id=${staticCloudCredentialId})`)
         fixtures.put('credential', { id: `${staticCloudCredentialId}` });
         transaction.skip = true;

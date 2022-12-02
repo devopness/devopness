@@ -31,6 +31,19 @@
     $ref: ./auto-generated/endpoints/list-application-variables.yaml
   post:
     $ref: ./auto-generated/endpoints/add-application-variable.yaml
+'/cloud-providers/{cloud_provider_code}/credentials':
+  get:
+    $ref: ./auto-generated/endpoints/list-cloud-provider-credentials-by-cloud-provider-code.yaml
+  post:
+    $ref: ./auto-generated/endpoints/add-cloud-provider-credential.yaml
+/credentials:
+  get:
+    $ref: ./auto-generated/endpoints/list-credentials.yaml
+'/credentials/{credential_id}':
+  delete:
+    $ref: ./auto-generated/endpoints/delete-credential.yaml
+  get:
+    $ref: ./auto-generated/endpoints/get-credential.yaml
 '/cron-jobs/{cron_job_id}':
   delete:
     $ref: ./auto-generated/endpoints/delete-cron-job.yaml

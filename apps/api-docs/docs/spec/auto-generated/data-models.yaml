@@ -25,8 +25,46 @@ ApplicationType:
   $ref: ./auto-generated/models/application-type.yaml
 ApplicationUpdate:
   $ref: ./auto-generated/models/application-update.yaml
+CloudProvider:
+  $ref: ./auto-generated/models/cloud-provider.yaml
+CloudProviderCode:
+  $ref: ./auto-generated/models/cloud-provider-code.yaml
+CloudProviderCredentialSettings:
+  $ref: ./auto-generated/models/cloud-provider-credential-settings.yaml
+CloudProviderCredentialSettingsList:
+  $ref: ./auto-generated/models/cloud-provider-credential-settings-list.yaml
+CloudProviderPropertyType:
+  $ref: ./auto-generated/models/cloud-provider-property-type.yaml
+CloudProviderPropertyValidation:
+  $ref: ./auto-generated/models/cloud-provider-property-validation.yaml
+CloudProviderService:
+  $ref: ./auto-generated/models/cloud-provider-service.yaml
+CloudProviderServiceList:
+  $ref: ./auto-generated/models/cloud-provider-service-list.yaml
+CloudProviderServiceRegion:
+  $ref: ./auto-generated/models/cloud-provider-service-region.yaml
+CloudProviderServiceRegionList:
+  $ref: ./auto-generated/models/cloud-provider-service-region-list.yaml
+CloudProviderSettingsList:
+  $ref: ./auto-generated/models/cloud-provider-settings-list.yaml
 Commit:
   $ref: ./auto-generated/models/commit.yaml
+Credential:
+  $ref: ./auto-generated/models/credential.yaml
+CredentialAws:
+  $ref: ./auto-generated/models/credential-aws.yaml
+CredentialCloudProviderCreate:
+  $ref: ./auto-generated/models/credential-cloud-provider-create.yaml
+CredentialDigitalOcean:
+  $ref: ./auto-generated/models/credential-digital-ocean.yaml
+CredentialGoogleCloud:
+  $ref: ./auto-generated/models/credential-google-cloud.yaml
+CredentialList:
+  $ref: ./auto-generated/models/credential-list.yaml
+CredentialRelation:
+  $ref: ./auto-generated/models/credential-relation.yaml
+CredentialSetting:
+  $ref: ./auto-generated/models/credential-setting.yaml
 CronJob:
   $ref: ./auto-generated/models/cron-job.yaml
 CronJobEnvironmentCreate:
@@ -135,6 +173,10 @@ NetworkRuleRelation:
   $ref: ./auto-generated/models/network-rule-relation.yaml
 NetworkRuleUpdate:
   $ref: ./auto-generated/models/network-rule-update.yaml
+OperatingSystem:
+  $ref: ./auto-generated/models/operating-system.yaml
+OperatingSystems:
+  $ref: ./auto-generated/models/operating-systems.yaml
 OsUsers:
   $ref: ./auto-generated/models/os-users.yaml
 PasswordResetResponse:

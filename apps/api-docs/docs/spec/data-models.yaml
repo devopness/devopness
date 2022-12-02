@@ -70,8 +70,6 @@ ApplicationUpdate:
   $ref: ./auto-generated/models/application-update.yaml
 BlueprintService:
   $ref: ./endpoints/servers/schemas/blueprint-service.yaml
-Commit:
-  $ref: ./auto-generated/models/commit.yaml
 CloudAwsEc2Settings:
   $ref: ./endpoints/servers/schemas/cloud-settings/cloud-aws-ec2-settings.yaml
 CloudDigitalOceanDropletSettings:
@@ -82,42 +80,48 @@ CloudInstances:
   $ref: ./endpoints/static/schemas/cloud-instance-list.yaml
 CloudOs:
   $ref: ./endpoints/servers/schemas/cloud-settings/cloud-os.yaml
-CloudProvider:
-  $ref: ./shared/schemas/cloud-provider.yaml
 CloudProviders:
   $ref: ./endpoints/static/schemas/cloud-provider-list.yaml
-CloudProviderCredential:
-  $ref: ./endpoints/static/schemas/cloud-provider-credential.yaml
-CloudProviderProperty:
-  $ref: ./endpoints/static/schemas/cloud-provider-property.yaml
+CloudProvider:
+  $ref: ./auto-generated/models/cloud-provider.yaml
+CloudProviderCode:
+  $ref: ./auto-generated/models/cloud-provider-code.yaml
+CloudProviderCredentialSettings:
+  $ref: ./auto-generated/models/cloud-provider-credential-settings.yaml
+CloudProviderCredentialSettingsList:
+  $ref: ./auto-generated/models/cloud-provider-credential-settings-list.yaml
 CloudProviderPropertyType:
-  $ref: ./endpoints/static/schemas/cloud-provider-property-type.yaml
+  $ref: ./auto-generated/models/cloud-provider-property-type.yaml
 CloudProviderPropertyValidation:
-  $ref: ./endpoints/static/schemas/cloud-provider-property-validation.yaml
+  $ref: ./auto-generated/models/cloud-provider-property-validation.yaml
 CloudProviderService:
-  $ref: ./endpoints/static/schemas/cloud-provider-service.yaml
-CloudProviderServices:
-  $ref: ./endpoints/static/schemas/cloud-provider-service-list.yaml
+  $ref: ./auto-generated/models/cloud-provider-service.yaml
+CloudProviderServiceList:
+  $ref: ./auto-generated/models/cloud-provider-service-list.yaml
 CloudProviderServiceRegion:
-  $ref: ./endpoints/static/schemas/cloud-provider-service-region.yaml
-CloudProviderServiceRegions:
-  $ref: ./endpoints/static/schemas/cloud-provider-service-region-list.yaml
-CloudProviderSettings:
-  $ref: ./endpoints/static/schemas/cloud-provider-settings.yaml
+  $ref: ./auto-generated/models/cloud-provider-service-region.yaml
+CloudProviderServiceRegionList:
+  $ref: ./auto-generated/models/cloud-provider-service-region-list.yaml
+CloudProviderSettingsList:
+  $ref: ./auto-generated/models/cloud-provider-settings-list.yaml
+Commit:
+  $ref: ./auto-generated/models/commit.yaml
 Credential:
-  $ref: ./endpoints/credentials/schemas/credential.yaml
+  $ref: ./auto-generated/models/credential.yaml
 CredentialAws:
-  $ref: ./endpoints/credentials/schemas/credentials/credential-aws.yaml
+  $ref: ./auto-generated/models/credential-aws.yaml
+CredentialCloudProviderCreate:
+  $ref: ./auto-generated/models/credential-cloud-provider-create.yaml
 CredentialDigitalOcean:
-  $ref: ./endpoints/credentials/schemas/credentials/credential-digital-ocean.yaml
+  $ref: ./auto-generated/models/credential-digital-ocean.yaml
 CredentialGoogleCloud:
-  $ref: ./endpoints/credentials/schemas/credentials/credential-google-cloud.yaml
+  $ref: ./auto-generated/models/credential-google-cloud.yaml
+CredentialList:
+  $ref: ./auto-generated/models/credential-list.yaml
+CredentialRelation:
+  $ref: ./auto-generated/models/credential-relation.yaml
 CredentialSetting:
-  $ref: ./endpoints/credentials/schemas/credential-setting.yaml
-CredentialCreate:
-  $ref: ./endpoints/credentials/schemas/credential-create.yaml
-Credentials:
-  $ref: ./endpoints/credentials/schemas/credential-list.yaml
+  $ref: ./auto-generated/models/credential-setting.yaml
 CronJob:
   $ref: ./auto-generated/models/cron-job.yaml
 CronJobEnvironmentCreate:
@@ -307,9 +311,9 @@ NetworkRuleUpdate:
 OsUsers:
   $ref: ./auto-generated/models/os-users.yaml
 OperatingSystem:
-  $ref: ./endpoints/static/schemas/operating-system.yaml
+  $ref: ./auto-generated/models/operating-system.yaml
 OperatingSystems:
-  $ref: ./endpoints/static/schemas/operating-system-list.yaml
+  $ref: ./auto-generated/models/operating-systems.yaml
 PasswordResetResponse:
   $ref: ./auto-generated/models/password-reset-response.yaml
 PasswordUserReset:
