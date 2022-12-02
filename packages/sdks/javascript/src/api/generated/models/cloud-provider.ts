@@ -13,7 +13,7 @@
 
 
 import { CloudProviderService } from './cloud-provider-service';
-import { CloudProviderSettings } from './cloud-provider-settings';
+import { CloudProviderSettingsList } from './cloud-provider-settings-list';
 
 /**
  * 
@@ -53,9 +53,9 @@ export interface CloudProvider {
     cloud_services?: Array<CloudProviderService>;
     /**
      * 
-     * @type {CloudProviderSettings}
+     * @type {CloudProviderSettingsList}
      * @memberof CloudProvider
      */
-    settings?: CloudProviderSettings;
+    settings?: CloudProviderSettingsList;
 }
 

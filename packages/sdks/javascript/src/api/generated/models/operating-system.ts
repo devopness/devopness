@@ -33,28 +33,16 @@ export interface OperatingSystem {
      */
     name: string;
     /**
-     * The name of the operating system
-     * @type {string}
-     * @memberof OperatingSystem
-     */
-    value?: string;
-    /**
-     * The formatted name of the operating system
-     * @type {string}
-     * @memberof OperatingSystem
-     */
-    human_readable?: string;
-    /**
      * Text describing the operating system
      * @type {string}
      * @memberof OperatingSystem
      */
-    hint?: string;
+    hint: string;
     /**
      * List of operating system versions supported by Devopness
      * @type {Array<OperatingSystemSupportedVersions>}
      * @memberof OperatingSystem
      */
-    supported_versions?: Array<OperatingSystemSupportedVersions>;
+    supported_versions: Array<OperatingSystemSupportedVersions>;
 }
 

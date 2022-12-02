@@ -22,6 +22,7 @@ export enum ServiceName {
     Docker = 'docker',
     Mysql = 'mysql',
     Nginx = 'nginx',
+    Php = 'php',
     Redis = 'redis',
     Supervisor = 'supervisor'
 }

@@ -15,39 +15,39 @@
 import { CloudProviderPropertyValidation } from './cloud-provider-property-validation';
 
 /**
- * Cloud provider setting\'s property
+ * Cloud provider credential settings
  * @export
- * @interface CloudProviderProperty
+ * @interface CloudProviderCredentialSettings
  */
-export interface CloudProviderProperty {
+export interface CloudProviderCredentialSettings {
     /**
      * Name of the property
      * @type {string}
-     * @memberof CloudProviderProperty
+     * @memberof CloudProviderCredentialSettings
      */
     name: string;
     /**
      * Human readable version of the property\'s name
      * @type {string}
-     * @memberof CloudProviderProperty
+     * @memberof CloudProviderCredentialSettings
      */
     name_human_readable: string;
     /**
      * Default property\'s value
      * @type {string | number | boolean}
-     * @memberof CloudProviderProperty
+     * @memberof CloudProviderCredentialSettings
      */
     default_value: string | number | boolean | null;
     /**
      * Defines if the property data is a sensitive content
      * @type {boolean}
-     * @memberof CloudProviderProperty
+     * @memberof CloudProviderCredentialSettings
      */
     sensitive: boolean;
     /**
      * 
      * @type {CloudProviderPropertyValidation}
-     * @memberof CloudProviderProperty
+     * @memberof CloudProviderCredentialSettings
      */
     validation: CloudProviderPropertyValidation;
 }

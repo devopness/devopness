@@ -894,7 +894,10 @@
     "/cloud-providers/{cloud_provider_code}/credentials": {
       "get": {
         "summary": "List credentials of the given cloud provider",
-        "operationId": "listCloudProviderCredentials",
+        "operationId": "listCloudProviderCredentialsByCloudProviderCode",
+        "description": {
+          "$ref": "../spec/descriptions/list-cloud-provider-credentials-by-cloud-provider-code.md"
+        },
         "tags": [
           "Cloud Providers - Credentials"
         ],
@@ -917,17 +920,24 @@
           {
             "in": "path",
             "name": "cloud_provider_code",
+            "description": "The cloud provider code.",
             "example": "aws",
+            "required": true,
             "schema": {
               "type": "string"
-            },
-            "required": true,
-            "description": "Code of the cloud provider to get credentials from"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CredentialList"
+                }
+              }
+            },
             "headers": {
               "Link": {
                 "schema": {
@@ -935,22 +945,16 @@
                 },
                 "description": "Link header with `first`, `last`, `previous` and `next` page's links"
               }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Credentials"
-                }
-              }
             }
           }
         }
-      }
-    },
-    "/credentials": {
+      },
       "post": {
         "summary": "Add a cloud provider credential",
-        "operationId": "addCredential",
+        "operationId": "addCloudProviderCredential",
+        "description": {
+          "$ref": "../spec/descriptions/add-cloud-provider-credential.md"
+        },
         "tags": [
           "Cloud Providers - Credentials"
         ],
@@ -963,19 +967,18 @@
           },
           {
             "$ref": "#/components/parameters/contentTypeHeader"
-          }
-        ],
-        "requestBody": {
-          "description": "A JSON object containing credential data",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CredentialCreate"
-              }
+          },
+          {
+            "in": "path",
+            "name": "cloud_provider_code",
+            "description": "The cloud provider code.",
+            "example": "aws",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           }
-        },
+        ],
         "responses": {
           "201": {
             "description": "Created",
@@ -987,16 +990,49 @@
               }
             }
           },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
           "422": {
-            "$ref": "#/components/responses/ValidationError"
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CredentialCloudProviderCreate"
+              }
+            }
           }
         }
-      },
+      }
+    },
+    "/credentials": {
       "get": {
-        "summary": "List cloud provider credentials",
+        "summary": "List credentials",
         "operationId": "listCredentials",
+        "description": {
+          "$ref": "../spec/descriptions/list-credentials.md"
+        },
         "tags": [
-          "Cloud Providers - Credentials"
+          "Credentials"
         ],
         "parameters": [
           {
@@ -1018,19 +1054,19 @@
         "responses": {
           "200": {
             "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CredentialList"
+                }
+              }
+            },
             "headers": {
               "Link": {
                 "schema": {
                   "type": "string"
                 },
                 "description": "Link header with `first`, `last`, `previous` and `next` page's links"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Credentials"
-                }
               }
             }
           }
@@ -1039,17 +1075,20 @@
     },
     "/credentials/{credential_id}": {
       "delete": {
-        "summary": "Delete a given cloud provider credential",
+        "summary": "Delete a given credential",
         "operationId": "deleteCredential",
+        "description": {
+          "$ref": "../spec/descriptions/delete-credential.md"
+        },
         "tags": [
-          "Cloud Providers - Credentials"
+          "Credentials"
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/authHeader"
+            "$ref": "#/components/parameters/acceptHeader"
           },
           {
-            "$ref": "#/components/parameters/acceptHeader"
+            "$ref": "#/components/parameters/authHeader"
           },
           {
             "$ref": "#/components/parameters/contentTypeHeader"
@@ -1057,29 +1096,32 @@
           {
             "in": "path",
             "name": "credential_id",
-            "example": 1,
+            "description": "The ID of the credential.",
+            "example": 123,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "Numeric ID of the cloud provider credential to be deleted"
+            }
           }
         ],
         "responses": {
           "204": {
-            "$ref": "#/components/responses/NoContent"
+            "description": "No Content"
           },
           "404": {
-            "$ref": "#/components/responses/NotFound"
+            "description": "The specified resource was not found"
           }
         }
       },
       "get": {
-        "summary": "Get a cloud provider credential by ID",
+        "summary": "Get a credential by ID",
         "operationId": "getCredential",
+        "description": {
+          "$ref": "../spec/descriptions/get-credential.md"
+        },
         "tags": [
-          "Cloud Providers - Credentials"
+          "Credentials"
         ],
         "parameters": [
           {
@@ -1094,13 +1136,13 @@
           {
             "in": "path",
             "name": "credential_id",
-            "example": 1,
+            "description": "The ID of the credential.",
+            "example": 123,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "Numeric ID of the credential to get"
+            }
           }
         ],
         "responses": {
@@ -1115,7 +1157,7 @@
             }
           },
           "404": {
-            "$ref": "#/components/responses/NotFound"
+            "description": "The specified resource was not found"
           }
         }
       }
@@ -10063,6 +10105,9 @@
       "name": "Environments - Team Memberships"
     },
     {
+      "name": "Credentials"
+    },
+    {
       "name": "Hooks",
       "description": "A hook is a simple way to integrate your Devopness workflow with external processes to trigger Devopness actions by sending a POST request to a public URL. By using hooks you can make Devopness react to events that happen in other applications and make sure your environment resources reflect changes applied in other services.\nAn outgoing hook is a webhook that trigger a request when an action of a resource has your state updated.\n"
     },
@@ -10212,6 +10257,12 @@
       "name": "Cloud Providers",
       "tags": [
         "Cloud Providers - Credentials"
+      ]
+    },
+    {
+      "name": "Credentials",
+      "tags": [
+        "Credentials"
       ]
     },
     {
@@ -12012,59 +12063,6 @@
           }
         }
       },
-      "Commit": {
-        "type": "object",
-        "properties": {
-          "hash": {
-            "type": "string",
-            "description": "The commit comment's full hash that uniquely identify it",
-            "example": "4a03b9d21edeef8434c45818594a5d72027c14e7"
-          },
-          "message": {
-            "type": "string",
-            "description": "The commit's comment message",
-            "example": "Good developers always add messages to their commits"
-          },
-          "committed_at": {
-            "type": "string",
-            "description": "The date and time when the commit has been submitted",
-            "example": "2019-09-25T15:50:48.000000Z"
-          },
-          "provider": {
-            "$ref": "#/components/schemas/SourceProviderName"
-          },
-          "repository": {
-            "type": "string",
-            "description": "The full name of the repository (`owner/repository`) to which the commit belongs to",
-            "example": "devopness/devopness-site"
-          },
-          "url": {
-            "type": "string",
-            "format": "url",
-            "description": "The direct URL for accessing commit details on the provider's web application",
-            "example": "https://github.com/myusername/myrepo"
-          },
-          "author_email": {
-            "type": "string",
-            "description": "The e-mail of the commit's author"
-          },
-          "author_name": {
-            "type": "string",
-            "description": "The name of the commit's author",
-            "example": "feature/some-branch"
-          }
-        },
-        "required": [
-          "hash",
-          "message",
-          "committed_at",
-          "provider",
-          "repository",
-          "url",
-          "author_email",
-          "author_name"
-        ]
-      },
       "CloudAwsEc2Settings": {
         "type": "object",
         "properties": {
@@ -12203,6 +12201,12 @@
           "version"
         ]
       },
+      "CloudProviders": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/CloudProvider"
+        }
+      },
       "CloudProvider": {
         "type": "object",
         "properties": {
@@ -12227,10 +12231,10 @@
             "example": "https://assets.devopness.com/images/icons/cloud-providers/aws.svg"
           },
           "cloud_services": {
-            "$ref": "#/components/schemas/CloudProviderServices"
+            "$ref": "#/components/schemas/CloudProviderServiceList"
           },
           "settings": {
-            "$ref": "#/components/schemas/CloudProviderSettings"
+            "$ref": "#/components/schemas/CloudProviderSettingsList"
           }
         },
         "required": [
@@ -12239,22 +12243,19 @@
           "logo_url"
         ]
       },
-      "CloudProviders": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/CloudProvider"
-        }
+      "CloudProviderCode": {
+        "description": "The code of the cloud service provider",
+        "type": "string",
+        "enum": [
+          "aws",
+          "digitalocean",
+          "gcp"
+        ],
+        "example": "aws"
       },
-      "CloudProviderCredential": {
-        "type": "array",
-        "description": "Settings of the cloud provider credential",
-        "items": {
-          "$ref": "#/components/schemas/CloudProviderProperty"
-        }
-      },
-      "CloudProviderProperty": {
+      "CloudProviderCredentialSettings": {
         "type": "object",
-        "description": "Cloud provider setting's property",
+        "description": "Cloud provider credential settings",
         "properties": {
           "name": {
             "type": "string",
@@ -12298,6 +12299,13 @@
           "sensitive",
           "validation"
         ]
+      },
+      "CloudProviderCredentialSettingsList": {
+        "type": "array",
+        "description": "Settings of the cloud provider credential",
+        "items": {
+          "$ref": "#/components/schemas/CloudProviderCredentialSettings"
+        }
       },
       "CloudProviderPropertyType": {
         "type": "string",
@@ -12364,7 +12372,7 @@
             "example": "Amazon Elastic Compute Cloud"
           },
           "regions": {
-            "$ref": "#/components/schemas/CloudProviderServiceRegions"
+            "$ref": "#/components/schemas/CloudProviderServiceRegionList"
           },
           "os": {
             "$ref": "#/components/schemas/OperatingSystems"
@@ -12375,7 +12383,7 @@
           "name"
         ]
       },
-      "CloudProviderServices": {
+      "CloudProviderServiceList": {
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/CloudProviderService"
@@ -12406,64 +12414,117 @@
           "hint"
         ]
       },
-      "CloudProviderServiceRegions": {
+      "CloudProviderServiceRegionList": {
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/CloudProviderServiceRegion"
         }
       },
-      "CloudProviderSettings": {
+      "CloudProviderSettingsList": {
         "type": "object",
         "description": "Settings of the cloud provider",
         "properties": {
           "credential": {
-            "$ref": "#/components/schemas/CloudProviderCredential"
+            "$ref": "#/components/schemas/CloudProviderCredentialSettingsList"
           }
         }
+      },
+      "Commit": {
+        "type": "object",
+        "properties": {
+          "hash": {
+            "type": "string",
+            "description": "The commit comment's full hash that uniquely identify it",
+            "example": "4a03b9d21edeef8434c45818594a5d72027c14e7"
+          },
+          "message": {
+            "type": "string",
+            "description": "The commit's comment message",
+            "example": "Good developers always add messages to their commits"
+          },
+          "committed_at": {
+            "type": "string",
+            "description": "The date and time when the commit has been submitted",
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "provider": {
+            "$ref": "#/components/schemas/SourceProviderName"
+          },
+          "repository": {
+            "type": "string",
+            "description": "The full name of the repository (`owner/repository`) to which the commit belongs to",
+            "example": "devopness/devopness-site"
+          },
+          "url": {
+            "type": "string",
+            "format": "url",
+            "description": "The direct URL for accessing commit details on the provider's web application",
+            "example": "https://github.com/myusername/myrepo"
+          },
+          "author_email": {
+            "type": "string",
+            "description": "The e-mail of the commit's author"
+          },
+          "author_name": {
+            "type": "string",
+            "description": "The name of the commit's author",
+            "example": "feature/some-branch"
+          }
+        },
+        "required": [
+          "hash",
+          "message",
+          "committed_at",
+          "provider",
+          "repository",
+          "url",
+          "author_email",
+          "author_name"
+        ]
       },
       "Credential": {
         "type": "object",
         "properties": {
           "id": {
+            "description": "The unique ID of the cloud provider credential",
             "type": "integer",
-            "description": "The unique cloud provider credential id",
-            "example": 364910054
+            "example": 342390
           },
           "created_by": {
-            "type": "integer",
             "description": "The user id that created the credential",
-            "example": 697031704
+            "type": "integer",
+            "example": 453891
           },
           "name": {
-            "type": "string",
             "description": "The name of the credential",
+            "type": "string",
             "example": "My credential of AWS cloud provider"
           },
-          "active": {
-            "type": "boolean",
-            "description": "Determines if the credential is current activated",
-            "example": true
+          "cloud_provider_code": {
+            "$ref": "#/components/schemas/CloudProviderCode"
           },
-          "provider": {
+          "cloud_provider": {
             "$ref": "#/components/schemas/CloudProvider"
           },
           "created_at": {
-            "type": "string",
-            "format": "date-time",
             "description": "The date and time when the record was created",
-            "example": "2019-09-25T15:50:48.000000Z"
+            "type": "string",
+            "example": "2022-09-26T15:30:31.000000Z"
           },
           "updated_at": {
-            "type": "string",
-            "format": "date-time",
             "description": "The date and time when the record was last updated",
-            "example": "2019-09-25T13:52:04.000000Z"
+            "type": "string",
+            "example": "2022-09-26T15:30:58.000000Z"
           }
         },
         "required": [
           "id",
           "created_by",
-          "name"
+          "name",
+          "cloud_provider_code",
+          "cloud_provider",
+          "created_at",
+          "updated_at"
         ]
       },
       "CredentialAws": {
@@ -12485,6 +12546,23 @@
           "secret"
         ]
       },
+      "CredentialCloudProviderCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "A name to uniquely identify this cloud provider credential. Must not be greater than 255 characters.",
+            "example": "AWS production account",
+            "type": "string"
+          },
+          "settings": {
+            "$ref": "#/components/schemas/CredentialSetting"
+          }
+        },
+        "required": [
+          "name",
+          "settings"
+        ]
+      },
       "CredentialDigitalOcean": {
         "type": "object",
         "properties": {
@@ -12503,13 +12581,65 @@
         "properties": {
           "service_account_key": {
             "type": "string",
-            "description": "The JSON key to service account of Google Cloud provider.",
-            "example": "{\n  \"type\": \"service_account\",\n  \"project_id\": \"project-name-12345\",\n  \"private_key_id\": \"91612c57c42a125c7cdfa788f9ac659006721731\",\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\\nf5RDfS3aRzGyjcKsRLqQfpDWalRVgTWgpMhZwmdoZPkWFi3EPw1BmM\\n-----END PRIVATE KEY-----\\n\",\n  \"client_email\": \"account-12345@project-name-12345.iam.gserviceaccount.com\",\n  \"client_id\": \"764123001245678971239\",\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n  \"client_x509_cert_url\": \"https://www.googleapis.com/robot/v1/metadata/x509/account-12345%40project-name-12345.iam.gserviceaccount.com\"\n}\n"
+            "description": "The JSON key to service account of Google Cloud provider",
+            "example": "{\n    \"type\": \"service_account\",\n    \"project_id\": \"project-name-12345\",\n    \"private_key_id\": \"91612c57c42a125c7cdfa788f9ac659006721731\",\n    \"private_key\": \"-----BEGIN PRIVATE KEY-----\\nf5RDfS3aRzGyjcKsRLqQfpDWalRVgTWgpMhZwmdoZPkWFi3EPw1BmM\\n-----END PRIVATE KEY-----\\n\",\n    \"client_email\": \"account-12345@project-name-12345.iam.gserviceaccount.com\",\n    \"client_id\": \"764123001245678971239\",\n    \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\n    \"token_uri\": \"https://oauth2.googleapis.com/token\",\n    \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n    \"client_x509_cert_url\": \"https://www.googleapis.com/robot/v1/metadata/x509/account-12345%40project-name-12345.iam.gserviceaccount.com\"\n    }"
           }
         },
         "required": [
           "service_account_key"
         ]
+      },
+      "CredentialList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/CredentialRelation"
+        }
+      },
+      "CredentialRelation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "The unique ID of the given pipeline",
+            "type": "integer",
+            "example": 342390
+          },
+          "created_by": {
+            "description": "The user id that created the credential",
+            "type": "integer",
+            "example": 453891
+          },
+          "name": {
+            "description": "The name of the credential",
+            "type": "string",
+            "example": "My credential of AWS cloud provider"
+          },
+          "cloud_provider_code": {
+            "$ref": "#/components/schemas/CloudProviderCode"
+          },
+          "cloud_provider": {
+            "$ref": "#/components/schemas/CloudProvider"
+          },
+          "created_at": {
+            "description": "The date and time when the record was created",
+            "type": "string",
+            "example": "2022-09-26T15:30:31.000000Z"
+          },
+          "updated_at": {
+            "description": "The date and time when the record was last updated",
+            "type": "string",
+            "example": "2022-09-26T15:30:58.000000Z"
+          }
+        },
+        "required": [
+          "id",
+          "created_by",
+          "name",
+          "cloud_provider_code",
+          "cloud_provider",
+          "created_at",
+          "updated_at"
+        ],
+        "nullable": true
       },
       "CredentialSetting": {
         "type": "object",
@@ -12532,35 +12662,6 @@
         "required": [
           "credential"
         ]
-      },
-      "CredentialCreate": {
-        "type": "object",
-        "properties": {
-          "provider_code": {
-            "type": "string",
-            "description": "The provider to which this credential belongs to",
-            "example": "aws"
-          },
-          "name": {
-            "type": "string",
-            "description": "A name to uniquely identify this cloud provider credential",
-            "example": "AWS production account"
-          },
-          "settings": {
-            "$ref": "#/components/schemas/CredentialSetting"
-          }
-        },
-        "required": [
-          "provider_code",
-          "name",
-          "settings"
-        ]
-      },
-      "Credentials": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Credential"
-        }
       },
       "CronJob": {
         "type": "object",
@@ -15297,16 +15398,6 @@
             "description": "The formatted name of the operating system",
             "example": "Ubuntu"
           },
-          "value": {
-            "type": "string",
-            "description": "The name of the operating system",
-            "example": "ubuntu"
-          },
-          "human_readable": {
-            "type": "string",
-            "description": "The formatted name of the operating system",
-            "example": "Ubuntu"
-          },
           "hint": {
             "type": "string",
             "description": "Text describing the operating system",
@@ -15329,7 +15420,9 @@
         },
         "required": [
           "code",
-          "name"
+          "name",
+          "hint",
+          "supported_versions"
         ]
       },
       "OperatingSystems": {
@@ -17003,6 +17096,7 @@
           "docker",
           "mysql",
           "nginx",
+          "php",
           "redis",
           "supervisor"
         ],

@@ -17,25 +17,19 @@ import { CredentialSetting } from './credential-setting';
 /**
  * 
  * @export
- * @interface CredentialCreate
+ * @interface CredentialCloudProviderCreate
  */
-export interface CredentialCreate {
+export interface CredentialCloudProviderCreate {
     /**
-     * The provider to which this credential belongs to
+     * A name to uniquely identify this cloud provider credential. Must not be greater than 255 characters.
      * @type {string}
-     * @memberof CredentialCreate
-     */
-    provider_code: string;
-    /**
-     * A name to uniquely identify this cloud provider credential
-     * @type {string}
-     * @memberof CredentialCreate
+     * @memberof CredentialCloudProviderCreate
      */
     name: string;
     /**
      * 
      * @type {CredentialSetting}
-     * @memberof CredentialCreate
+     * @memberof CredentialCloudProviderCreate
      */
     settings: CredentialSetting;
 }

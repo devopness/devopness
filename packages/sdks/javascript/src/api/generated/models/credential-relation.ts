@@ -18,49 +18,49 @@ import { CloudProviderCode } from './cloud-provider-code';
 /**
  * 
  * @export
- * @interface Credential
+ * @interface CredentialRelation
  */
-export interface Credential {
+export interface CredentialRelation {
     /**
-     * The unique ID of the cloud provider credential
+     * The unique ID of the given pipeline
      * @type {number}
-     * @memberof Credential
+     * @memberof CredentialRelation
      */
     id: number;
     /**
      * The user id that created the credential
      * @type {number}
-     * @memberof Credential
+     * @memberof CredentialRelation
      */
     created_by: number;
     /**
      * The name of the credential
      * @type {string}
-     * @memberof Credential
+     * @memberof CredentialRelation
      */
     name: string;
     /**
      * 
      * @type {CloudProviderCode}
-     * @memberof Credential
+     * @memberof CredentialRelation
      */
     cloud_provider_code: CloudProviderCode;
     /**
      * 
      * @type {CloudProvider}
-     * @memberof Credential
+     * @memberof CredentialRelation
      */
     cloud_provider: CloudProvider;
     /**
      * The date and time when the record was created
      * @type {string}
-     * @memberof Credential
+     * @memberof CredentialRelation
      */
     created_at: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
-     * @memberof Credential
+     * @memberof CredentialRelation
      */
     updated_at: string;
 }
