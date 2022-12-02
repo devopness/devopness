@@ -16,7 +16,8 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { Credential } from '../../generated/models';
-import { CredentialCreate } from '../../generated/models';
+import { CredentialCloudProviderCreate } from '../../generated/models';
+import { CredentialRelation } from '../../generated/models';
 
 /**
  * CloudProvidersCredentialsApiService - Auto-generated
@@ -25,67 +26,35 @@ export class CloudProvidersCredentialsApiService extends ApiBaseService {
     /**
      * 
      * @summary Add a cloud provider credential
-     * @param {CredentialCreate} credentialCreate A JSON object containing credential data
+     * @param {string} cloudProviderCode The cloud provider code.
+     * @param {CredentialCloudProviderCreate} credentialCloudProviderCreate A JSON object containing the resource data
      */
-    public async addCredential(credentialCreate: CredentialCreate): Promise<ApiResponse<Credential>> {
-        if (credentialCreate === null || credentialCreate === undefined) {
-            throw new ArgumentNullException('credentialCreate', 'addCredential');
+    public async addCloudProviderCredential(cloudProviderCode: string, credentialCloudProviderCreate: CredentialCloudProviderCreate): Promise<ApiResponse<Credential>> {
+        if (cloudProviderCode === null || cloudProviderCode === undefined) {
+            throw new ArgumentNullException('cloudProviderCode', 'addCloudProviderCredential');
+        }
+        if (credentialCloudProviderCreate === null || credentialCloudProviderCreate === undefined) {
+            throw new ArgumentNullException('credentialCloudProviderCreate', 'addCloudProviderCredential');
         }
         
         let queryString = '';
 
-        const requestUrl = '/credentials' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/cloud-providers/{cloud_provider_code}/credentials' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <Credential, CredentialCreate>(requestUrl, credentialCreate);
-        return new ApiResponse(response);
-    }
-
-    /**
-     * 
-     * @summary Delete a given cloud provider credential
-     * @param {number} credentialId Numeric ID of the cloud provider credential to be deleted
-     */
-    public async deleteCredential(credentialId: number): Promise<ApiResponse<void>> {
-        if (credentialId === null || credentialId === undefined) {
-            throw new ArgumentNullException('credentialId', 'deleteCredential');
-        }
-        
-        let queryString = '';
-
-        const requestUrl = '/credentials/{credential_id}' + (queryString? `?${queryString}` : '');
-
-        const response = await this.delete <void>(requestUrl.replace(`{${"credential_id"}}`, encodeURIComponent(String(credentialId))));
-        return new ApiResponse(response);
-    }
-
-    /**
-     * 
-     * @summary Get a cloud provider credential by ID
-     * @param {number} credentialId Numeric ID of the credential to get
-     */
-    public async getCredential(credentialId: number): Promise<ApiResponse<Credential>> {
-        if (credentialId === null || credentialId === undefined) {
-            throw new ArgumentNullException('credentialId', 'getCredential');
-        }
-        
-        let queryString = '';
-
-        const requestUrl = '/credentials/{credential_id}' + (queryString? `?${queryString}` : '');
-
-        const response = await this.get <Credential>(requestUrl.replace(`{${"credential_id"}}`, encodeURIComponent(String(credentialId))));
+        const response = await this.post <Credential, CredentialCloudProviderCreate>(requestUrl.replace(`{${"cloud_provider_code"}}`, encodeURIComponent(String(cloudProviderCode))), credentialCloudProviderCreate);
         return new ApiResponse(response);
     }
 
     /**
      * 
      * @summary List credentials of the given cloud provider
-     * @param {string} cloudProviderCode Code of the cloud provider to get credentials from
+     * @param {string} cloudProviderCode The cloud provider code.
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */
-    public async listCloudProviderCredentials(cloudProviderCode: string, page?: number, perPage?: number): Promise<ApiResponse<Array<Credential>>> {
+    public async listCloudProviderCredentialsByCloudProviderCode(cloudProviderCode: string, page?: number, perPage?: number): Promise<ApiResponse<Array<CredentialRelation>>> {
         if (cloudProviderCode === null || cloudProviderCode === undefined) {
-            throw new ArgumentNullException('cloudProviderCode', 'listCloudProviderCredentials');
+            throw new ArgumentNullException('cloudProviderCode', 'listCloudProviderCredentialsByCloudProviderCode');
         }
         
         let queryString = '';
@@ -100,31 +69,7 @@ export class CloudProvidersCredentialsApiService extends ApiBaseService {
 
         const requestUrl = '/cloud-providers/{cloud_provider_code}/credentials' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<Credential>>(requestUrl.replace(`{${"cloud_provider_code"}}`, encodeURIComponent(String(cloudProviderCode))));
-        return new ApiResponse(response);
-    }
-
-    /**
-     * 
-     * @summary List cloud provider credentials
-     * @param {number} [page] Number of the page to be retrieved
-     * @param {number} [perPage] Number of items returned per page
-     */
-    public async listCredentials(page?: number, perPage?: number): Promise<ApiResponse<Array<Credential>>> {
-        
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/credentials' + (queryString? `?${queryString}` : '');
-
-        const response = await this.get <Array<Credential>>(requestUrl);
+        const response = await this.get <Array<CredentialRelation>>(requestUrl.replace(`{${"cloud_provider_code"}}`, encodeURIComponent(String(cloudProviderCode))));
         return new ApiResponse(response);
     }
 }

@@ -14,16 +14,14 @@
 
 
 /**
- * 
+ * The code of the cloud service provider
  * @export
- * @interface CredentialGoogleCloud
+ * @enum {string}
  */
-export interface CredentialGoogleCloud {
-    /**
-     * The JSON key to service account of Google Cloud provider
-     * @type {string}
-     * @memberof CredentialGoogleCloud
-     */
-    service_account_key: string;
+export enum CloudProviderCode {
+    Aws = 'aws',
+    Digitalocean = 'digitalocean',
+    Gcp = 'gcp'
 }
+
 

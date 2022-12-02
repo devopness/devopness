@@ -12,19 +12,19 @@
  */
 
 
-import { CloudProviderProperty } from './cloud-provider-property';
+import { CloudProviderCredentialSettings } from './cloud-provider-credential-settings';
 
 /**
  * Settings of the cloud provider
  * @export
- * @interface CloudProviderSettings
+ * @interface CloudProviderSettingsList
  */
-export interface CloudProviderSettings {
+export interface CloudProviderSettingsList {
     /**
      * Settings of the cloud provider credential
-     * @type {Array<CloudProviderProperty>}
-     * @memberof CloudProviderSettings
+     * @type {Array<CloudProviderCredentialSettings>}
+     * @memberof CloudProviderSettingsList
      */
-    credential?: Array<CloudProviderProperty>;
+    credential?: Array<CloudProviderCredentialSettings>;
 }
 
