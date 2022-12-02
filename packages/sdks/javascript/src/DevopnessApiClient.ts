@@ -2,6 +2,7 @@ import { ActionService } from './services/ActionService';
 import { ApiBaseService, ConfigurationOptions, Configuration } from './services/ApiBaseService';
 import { ApplicationService } from './services/ApplicationService';
 import { CloudProviderCredentialService } from './services/CloudProviderCredentialService';
+import { CredentialService } from './services/CredentialService';
 import { CronJobService } from './services/CronJobService';
 import { DaemonService } from './services/DaemonService';
 import { EnvironmentService } from './services/EnvironmentService';
@@ -29,6 +30,7 @@ export class DevopnessApiClient {
   actions: ActionService;
   applications: ApplicationService;
   cloudProviderCredentials: CloudProviderCredentialService;
+  credentials: CredentialService;
   cronjobs: CronJobService;
   daemons: DaemonService;
   environments: EnvironmentService;
@@ -61,6 +63,7 @@ export class DevopnessApiClient {
     this.actions = new ActionService();
     this.applications = new ApplicationService();
     this.cloudProviderCredentials = new CloudProviderCredentialService();
+    this.credentials = new CredentialService();
     this.cronjobs = new CronJobService();
     this.daemons = new DaemonService();
     this.environments = new EnvironmentService();
