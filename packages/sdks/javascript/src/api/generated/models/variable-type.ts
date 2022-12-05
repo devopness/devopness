@@ -19,7 +19,8 @@
  * @enum {string}
  */
 export enum VariableType {
-    File = 'file'
+    File = 'file',
+    Variable = 'variable'
 }
 
 

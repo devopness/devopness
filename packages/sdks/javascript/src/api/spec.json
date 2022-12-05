@@ -19264,6 +19264,8 @@
         "type": "string",
         "description": "The target defining how the variable key/value pair will be deployed",
         "enum": [
+          "nginx-conf",
+          "os-env-var",
           "resource-config-file"
         ],
         "example": "resource-config-file"
@@ -19272,7 +19274,8 @@
         "type": "string",
         "description": "The type of the key/value pair",
         "enum": [
-          "file"
+          "file",
+          "variable"
         ],
         "example": "file"
       },

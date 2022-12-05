@@ -19,6 +19,8 @@
  * @enum {string}
  */
 export enum VariableTarget {
+    NginxConf = 'nginx-conf',
+    OsEnvVar = 'os-env-var',
     ResourceConfigFile = 'resource-config-file'
 }
 
