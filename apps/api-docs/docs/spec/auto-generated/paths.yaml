@@ -84,6 +84,8 @@
 '/environments/{environment_id}/network-rules':
   get:
     $ref: ./auto-generated/endpoints/list-environment-network-rules.yaml
+  post:
+    $ref: ./auto-generated/endpoints/add-environment-network-rule.yaml
 '/environments/{environment_id}/servers':
   get:
     $ref: ./auto-generated/endpoints/list-environment-servers.yaml
@@ -288,6 +290,18 @@
     $ref: ./auto-generated/endpoints/delete-ssl-certificate.yaml
   get:
     $ref: ./auto-generated/endpoints/get-ssl-certificate.yaml
+/static/application-options:
+  get:
+    $ref: ./auto-generated/endpoints/get-static-application-options.yaml
+/static/cloud-provider-options:
+  get:
+    $ref: ./auto-generated/endpoints/list-static-cloud-provider-options.yaml
+'/static/cloud-provider-service-options/{cloud_provider_service_code}':
+  get:
+    $ref: ./auto-generated/endpoints/get-static-cloud-provider-service.yaml
+'/static/cloud-provider-service-options/{cloud_provider_service_code}/regions/{region_code}/instances':
+  get:
+    $ref: ./auto-generated/endpoints/list-static-cloud-instances-by-cloud-provider-service-code-and-region-code.yaml
 '/team-invitations/{team_invitation_id}/accept':
   post:
     $ref: ./auto-generated/endpoints/accept-team-invitation.yaml

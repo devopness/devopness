@@ -1,6 +1,0 @@
-type: string
-description: The type of the key/value pair
-enum:
-  - file
-  - variable
-example: 'file'

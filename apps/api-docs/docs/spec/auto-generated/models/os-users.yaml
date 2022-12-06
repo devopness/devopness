@@ -2,6 +2,7 @@
 description: 'The list of the operating system users found in all the servers linked to a project'
 type: array
 items:
+  type: object
   properties:
     name:
       type: string

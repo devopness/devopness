@@ -1,7 +1,0 @@
-type: string
-description: The target defining how the variable key/value pair will be deployed
-enum:
-  - nginx-conf
-  - os-env-var
-  - resource-config-file
-example: 'resource-config-file'

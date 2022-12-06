@@ -17,6 +17,8 @@ ApplicationLastDeployments:
   $ref: ./auto-generated/models/application-last-deployments.yaml
 ApplicationList:
   $ref: ./auto-generated/models/application-list.yaml
+ApplicationOptions:
+  $ref: ./auto-generated/models/application-options.yaml
 ApplicationProjectCreate:
   $ref: ./auto-generated/models/application-project-create.yaml
 ApplicationRelation:
@@ -25,6 +27,10 @@ ApplicationType:
   $ref: ./auto-generated/models/application-type.yaml
 ApplicationUpdate:
   $ref: ./auto-generated/models/application-update.yaml
+CloudInstanceList:
+  $ref: ./auto-generated/models/cloud-instance-list.yaml
+CloudInstanceRelation:
+  $ref: ./auto-generated/models/cloud-instance-relation.yaml
 CloudProvider:
   $ref: ./auto-generated/models/cloud-provider.yaml
 CloudProviderCode:
@@ -33,12 +39,18 @@ CloudProviderCredentialSettings:
   $ref: ./auto-generated/models/cloud-provider-credential-settings.yaml
 CloudProviderCredentialSettingsList:
   $ref: ./auto-generated/models/cloud-provider-credential-settings-list.yaml
+CloudProviderOptionsList:
+  $ref: ./auto-generated/models/cloud-provider-options-list.yaml
+CloudProviderOptionsRelation:
+  $ref: ./auto-generated/models/cloud-provider-options-relation.yaml
 CloudProviderPropertyType:
   $ref: ./auto-generated/models/cloud-provider-property-type.yaml
 CloudProviderPropertyValidation:
   $ref: ./auto-generated/models/cloud-provider-property-validation.yaml
 CloudProviderService:
   $ref: ./auto-generated/models/cloud-provider-service.yaml
+CloudProviderServiceCode:
+  $ref: ./auto-generated/models/cloud-provider-service-code.yaml
 CloudProviderServiceList:
   $ref: ./auto-generated/models/cloud-provider-service-list.yaml
 CloudProviderServiceRegion:
@@ -93,6 +105,10 @@ DaemonRestart:
   $ref: ./auto-generated/models/daemon-restart.yaml
 DaemonUpdate:
   $ref: ./auto-generated/models/daemon-update.yaml
+DeploymentDefaultStep:
+  $ref: ./auto-generated/models/deployment-default-step.yaml
+DeploymentDefaultStepList:
+  $ref: ./auto-generated/models/deployment-default-step-list.yaml
 Environment:
   $ref: ./auto-generated/models/environment.yaml
 EnvironmentList:
@@ -157,6 +173,14 @@ InvitationRelation:
   $ref: ./auto-generated/models/invitation-relation.yaml
 InvitationTeamCreate:
   $ref: ./auto-generated/models/invitation-team-create.yaml
+LanguageRuntime:
+  $ref: ./auto-generated/models/language-runtime.yaml
+LanguageRuntimeFramework:
+  $ref: ./auto-generated/models/language-runtime-framework.yaml
+LanguageRuntimeFrameworkDefaults:
+  $ref: ./auto-generated/models/language-runtime-framework-defaults.yaml
+LanguageRuntimeList:
+  $ref: ./auto-generated/models/language-runtime-list.yaml
 Member:
   $ref: ./auto-generated/models/member.yaml
 MemberList:
@@ -165,6 +189,8 @@ MemberRelation:
   $ref: ./auto-generated/models/member-relation.yaml
 NetworkRule:
   $ref: ./auto-generated/models/network-rule.yaml
+NetworkRuleEnvironmentCreate:
+  $ref: ./auto-generated/models/network-rule-environment-create.yaml
 NetworkRuleList:
   $ref: ./auto-generated/models/network-rule-list.yaml
 NetworkRuleProjectCreate:
@@ -235,6 +261,10 @@ RoleRelation:
   $ref: ./auto-generated/models/role-relation.yaml
 RoleUpdate:
   $ref: ./auto-generated/models/role-update.yaml
+ScriptRunner:
+  $ref: ./auto-generated/models/script-runner.yaml
+ScriptRunnerList:
+  $ref: ./auto-generated/models/script-runner-list.yaml
 Server:
   $ref: ./auto-generated/models/server.yaml
 ServerCommand:
@@ -303,6 +333,8 @@ SslCertificateList:
   $ref: ./auto-generated/models/ssl-certificate-list.yaml
 SslCertificateRelation:
   $ref: ./auto-generated/models/ssl-certificate-relation.yaml
+StaticCloudProviderCode:
+  $ref: ./auto-generated/models/static-cloud-provider-code.yaml
 Step:
   $ref: ./auto-generated/models/step.yaml
 StepPipelineCreate:
@@ -333,6 +365,8 @@ TeamRelation:
   $ref: ./auto-generated/models/team-relation.yaml
 TeamUpdate:
   $ref: ./auto-generated/models/team-update.yaml
+TriggerEvent:
+  $ref: ./auto-generated/models/trigger-event.yaml
 User:
   $ref: ./auto-generated/models/user.yaml
 UserCreate:
@@ -363,5 +397,9 @@ VariableRelation:
   $ref: ./auto-generated/models/variable-relation.yaml
 VariableServiceCreate:
   $ref: ./auto-generated/models/variable-service-create.yaml
+VariableTarget:
+  $ref: ./auto-generated/models/variable-target.yaml
+VariableType:
+  $ref: ./auto-generated/models/variable-type.yaml
 VariableUpdate:
   $ref: ./auto-generated/models/variable-update.yaml

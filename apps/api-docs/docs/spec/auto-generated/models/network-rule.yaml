@@ -39,6 +39,8 @@ properties:
     $ref: '#/components/schemas/ActionRelation'
   created_by_user:
     $ref: '#/components/schemas/UserRelation'
+  environment:
+    $ref: '#/components/schemas/EnvironmentRelation'
   environments:
     $ref: '#/components/schemas/Environments'
   servers:
@@ -63,6 +65,7 @@ required:
   - auto_generated
   - last_action
   - created_by_user
+  - environment
   - environments
   - servers
   - created_at

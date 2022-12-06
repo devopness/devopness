@@ -343,18 +343,19 @@
     $ref: ./auto-generated/endpoints/delete-ssl-certificate.yaml
   get:
     $ref: ./auto-generated/endpoints/get-ssl-certificate.yaml
-/static/applications:
+
+/static/application-options:
   get:
-    $ref: ./endpoints/static/paths/applications-list.yaml
-/static/cloud-providers:
+    $ref: ./auto-generated/endpoints/get-static-application-options.yaml
+/static/cloud-provider-options:
   get:
-    $ref: ./endpoints/static/paths/cloud-providers-list.yaml
-/static/cloud-provider-services/{service_code}:
+    $ref: ./auto-generated/endpoints/list-static-cloud-provider-options.yaml
+'/static/cloud-provider-service-options/{cloud_provider_service_code}':
   get:
-    $ref: ./endpoints/static/paths/cloud-provider-services-id.yaml
-/static/cloud-provider-services/{service_code}/regions/{region_code}:
+    $ref: ./auto-generated/endpoints/get-static-cloud-provider-service.yaml
+'/static/cloud-provider-service-options/{cloud_provider_service_code}/regions/{region_code}/instances':
   get:
-    $ref: ./endpoints/static/paths/cloud-provider-service-regions-list.yaml
+    $ref: ./auto-generated/endpoints/list-static-cloud-instances-by-cloud-provider-service-code-and-region-code.yaml
 /static/cronjobs:
   get:
     $ref: ./endpoints/static/paths/cronjobs-list.yaml

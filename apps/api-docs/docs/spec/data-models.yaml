@@ -55,7 +55,7 @@ ApplicationLastDeployments:
 ApplicationList:
   $ref: ./auto-generated/models/application-list.yaml
 ApplicationOptions:
-  $ref: ./endpoints/static/schemas/application-options.yaml
+  $ref: ./auto-generated/models/application-options.yaml
 ApplicationPipeline:
   $ref: ./endpoints/applications/schemas/application-pipeline.yaml
 ApplicationProjectCreate:
@@ -74,10 +74,10 @@ CloudAwsEc2Settings:
   $ref: ./endpoints/servers/schemas/cloud-settings/cloud-aws-ec2-settings.yaml
 CloudDigitalOceanDropletSettings:
   $ref: ./endpoints/servers/schemas/cloud-settings/cloud-digital-ocean-droplet-settings.yaml
-CloudInstance:
-  $ref: ./endpoints/static/schemas/cloud-instance.yaml
-CloudInstances:
-  $ref: ./endpoints/static/schemas/cloud-instance-list.yaml
+CloudInstanceList:
+  $ref: ./auto-generated/models/cloud-instance-list.yaml
+CloudInstanceRelation:
+  $ref: ./auto-generated/models/cloud-instance-relation.yaml
 CloudOs:
   $ref: ./endpoints/servers/schemas/cloud-settings/cloud-os.yaml
 CloudProviders:
@@ -90,12 +90,18 @@ CloudProviderCredentialSettings:
   $ref: ./auto-generated/models/cloud-provider-credential-settings.yaml
 CloudProviderCredentialSettingsList:
   $ref: ./auto-generated/models/cloud-provider-credential-settings-list.yaml
+CloudProviderOptionsList:
+  $ref: ./auto-generated/models/cloud-provider-options-list.yaml
+CloudProviderOptionsRelation:
+  $ref: ./auto-generated/models/cloud-provider-options-relation.yaml
 CloudProviderPropertyType:
   $ref: ./auto-generated/models/cloud-provider-property-type.yaml
 CloudProviderPropertyValidation:
   $ref: ./auto-generated/models/cloud-provider-property-validation.yaml
 CloudProviderService:
   $ref: ./auto-generated/models/cloud-provider-service.yaml
+CloudProviderServiceCode:
+  $ref: ./auto-generated/models/cloud-provider-service-code.yaml
 CloudProviderServiceList:
   $ref: ./auto-generated/models/cloud-provider-service-list.yaml
 CloudProviderServiceRegion:
@@ -161,9 +167,9 @@ DaemonRestart:
 DaemonUpdate:
   $ref: ./auto-generated/models/daemon-update.yaml
 DeploymentDefaultStep:
-  $ref: ./endpoints/static/schemas/deployment-default-step.yaml
-DeploymentDefaultSteps:
-  $ref: ./endpoints/static/schemas/deployment-default-step-list.yaml
+  $ref: ./auto-generated/models/deployment-default-step.yaml
+DeploymentDefaultStepList:
+  $ref: ./auto-generated/models/deployment-default-step-list.yaml
 DeploymentOrigin:
   $ref: ./shared/schemas/deployment-origin.yaml
 DeploymentSource:
@@ -273,13 +279,13 @@ InvitationTeamCreate:
 Language:
   $ref: ./shared/schemas/language.yaml
 LanguageRuntime:
-  $ref: ./endpoints/static/schemas/language-runtime.yaml
+  $ref: ./auto-generated/models/language-runtime.yaml
 LanguageRuntimeFramework:
-  $ref: ./endpoints/static/schemas/language-runtime-framework.yaml
+  $ref: ./auto-generated/models/language-runtime-framework.yaml
 LanguageRuntimeFrameworkDefaults:
-  $ref: ./endpoints/static/schemas/language-runtime-framework-defaults.yaml
-LanguageRuntimes:
-  $ref: ./endpoints/static/schemas/language-runtime-list.yaml
+  $ref: ./auto-generated/models/language-runtime-framework-defaults.yaml
+LanguageRuntimeList:
+  $ref: ./auto-generated/models/language-runtime-list.yaml
 Log:
   $ref: ./endpoints/logs/schemas/log.yaml
 LoginCredentials:
@@ -395,9 +401,9 @@ RoleList:
 RoleRelation:
   $ref: ./auto-generated/models/role-relation.yaml
 ScriptRunner:
-  $ref: ./endpoints/static/schemas/script-runner.yaml
-ScriptRunners:
-  $ref: ./endpoints/static/schemas/script-runners-list.yaml
+  $ref: ./auto-generated/models/script-runner.yaml
+ScriptRunnerList:
+  $ref: ./auto-generated/models/script-runner-list.yaml
 Server:
   $ref: ./auto-generated/models/server.yaml
 ServerAction:
@@ -526,6 +532,8 @@ SslCertificateType:
   $ref: ./shared/schemas/ssl-certificate-type.yaml
 SslCertificateValidationLevel:
   $ref: ./shared/schemas/ssl-certificate-validation-level.yaml
+StaticCloudProviderCode:
+  $ref: ./auto-generated/models/static-cloud-provider-code.yaml
 Step:
   $ref: ./auto-generated/models/step.yaml
 StepPipelineCreate:
@@ -565,7 +573,7 @@ TeamRelation:
 TeamUpdate:
   $ref: ./auto-generated/models/team-update.yaml
 TriggerEvent:
-  $ref: ./shared/schemas/trigger-event.yaml
+  $ref: ./auto-generated/models/trigger-event.yaml
 TriggerType:
   $ref: ./shared/schemas/trigger-type.yaml
 User:
@@ -609,8 +617,8 @@ VariableRelation:
 VariableServiceCreate:
   $ref: ./auto-generated/models/variable-service-create.yaml
 VariableTarget:
-  $ref: ./shared/schemas/variable-target.yaml
+  $ref: ./auto-generated/models/variable-target.yaml
 VariableType:
-  $ref: ./shared/schemas/variable-type.yaml
+  $ref: ./auto-generated/models/variable-type.yaml
 VariableUpdate:
   $ref: ./auto-generated/models/variable-update.yaml
