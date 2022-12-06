@@ -16,62 +16,62 @@
 /**
  * 
  * @export
- * @interface CloudInstance
+ * @interface CloudInstanceRelation
  */
-export interface CloudInstance {
+export interface CloudInstanceRelation {
     /**
      * The name of the cloud instance
      * @type {string}
-     * @memberof CloudInstance
+     * @memberof CloudInstanceRelation
      */
     name: string;
     /**
      * The type of the cloud instance
      * @type {string}
-     * @memberof CloudInstance
+     * @memberof CloudInstanceRelation
      */
     type: string;
     /**
      * The family to which the instance belongs
      * @type {string}
-     * @memberof CloudInstance
+     * @memberof CloudInstanceRelation
      */
     family: string;
     /**
      * The default disk size (in GB) used to instance
      * @type {number}
-     * @memberof CloudInstance
+     * @memberof CloudInstanceRelation
      */
     default_disk_size: number;
     /**
      * The price per hour of the instance
-     * @type {string}
-     * @memberof CloudInstance
+     * @type {number}
+     * @memberof CloudInstanceRelation
      */
-    price_hourly: string;
+    price_hourly: number;
     /**
      * The price per month of the instance
-     * @type {string}
-     * @memberof CloudInstance
+     * @type {number}
+     * @memberof CloudInstanceRelation
      */
-    price_monthly: string;
+    price_monthly: number;
     /**
      * The currency of the prices
      * @type {string}
-     * @memberof CloudInstance
+     * @memberof CloudInstanceRelation
      */
     price_currency: string;
     /**
      * The number of virtual CPU of the instance
      * @type {number}
-     * @memberof CloudInstance
+     * @memberof CloudInstanceRelation
      */
     vcpus: number;
     /**
      * The RAM memory size (in MB) of the instance
-     * @type {string}
-     * @memberof CloudInstance
+     * @type {number}
+     * @memberof CloudInstanceRelation
      */
-    memory: string;
+    memory: number;
 }
 

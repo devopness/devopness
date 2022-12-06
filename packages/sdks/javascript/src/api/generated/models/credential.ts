@@ -52,6 +52,12 @@ export interface Credential {
      */
     cloud_provider: CloudProvider;
     /**
+     * If this credential is active or not
+     * @type {boolean}
+     * @memberof Credential
+     */
+    active: boolean;
+    /**
      * The date and time when the record was created
      * @type {string}
      * @memberof Credential

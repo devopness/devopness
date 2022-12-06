@@ -12,6 +12,7 @@
  */
 
 
+import { LanguageRuntimeEngineVersions } from './language-runtime-engine-versions';
 import { LanguageRuntimeFramework } from './language-runtime-framework';
 
 /**
@@ -34,10 +35,10 @@ export interface LanguageRuntime {
     name_human_readable: string;
     /**
      * The list of the supported versions of the runtime engine
-     * @type {Array<object>}
+     * @type {Array<LanguageRuntimeEngineVersions>}
      * @memberof LanguageRuntime
      */
-    engine_versions: Array<object>;
+    engine_versions: Array<LanguageRuntimeEngineVersions>;
     /**
      * The list of supported frameworks built on top of the runtime engine
      * @type {Array<LanguageRuntimeFramework>}
