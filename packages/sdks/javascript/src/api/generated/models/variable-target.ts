@@ -19,9 +19,13 @@
  * @enum {string}
  */
 export enum VariableTarget {
+    ResourceConfigFile = 'resource-config-file',
     NginxConf = 'nginx-conf',
     OsEnvVar = 'os-env-var',
-    ResourceConfigFile = 'resource-config-file'
+    PhpCliPhpIni = 'php-cli_php-ini',
+    PhpFpmPhpFpmConf = 'php-fpm_php-fpm-conf',
+    PhpFpmPhpIni = 'php-fpm_php-ini',
+    PhpFpmPoolDWwwConf = 'php-fpm_pool-d-www-conf'
 }
 
 

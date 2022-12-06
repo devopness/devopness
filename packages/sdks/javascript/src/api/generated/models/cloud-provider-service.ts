@@ -12,6 +12,7 @@
  */
 
 
+import { CloudProviderServiceCode } from './cloud-provider-service-code';
 import { CloudProviderServiceRegion } from './cloud-provider-service-region';
 import { OperatingSystem } from './operating-system';
 
@@ -22,11 +23,11 @@ import { OperatingSystem } from './operating-system';
  */
 export interface CloudProviderService {
     /**
-     * The code that uniquely identify this cloud service
-     * @type {string}
+     * 
+     * @type {CloudProviderServiceCode}
      * @memberof CloudProviderService
      */
-    code: CloudProviderServiceCodeEnum;
+    code: CloudProviderServiceCode;
     /**
      * The full name of the cloud service
      * @type {string}
@@ -46,15 +47,4 @@ export interface CloudProviderService {
      */
     os?: Array<OperatingSystem>;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum CloudProviderServiceCodeEnum {
-    AwsEc2 = 'aws-ec2',
-    DigitaloceanDroplet = 'digitalocean-droplet',
-    GcpGce = 'gcp-gce'
-}
-
 

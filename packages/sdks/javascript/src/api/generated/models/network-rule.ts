@@ -93,6 +93,12 @@ export interface NetworkRule {
     created_by_user: UserRelation;
     /**
      * 
+     * @type {EnvironmentRelation}
+     * @memberof NetworkRule
+     */
+    environment: EnvironmentRelation;
+    /**
+     * 
      * @type {Array<EnvironmentRelation>}
      * @memberof NetworkRule
      */
