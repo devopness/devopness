@@ -31,10 +31,18 @@ test("base URL is configurable on initialization", () => {
   expect(apiClient).toHaveProperty('sourceProviders')
   expect(apiClient).toHaveProperty('sshKeys')
   expect(apiClient).toHaveProperty('sslCertificates')
+
   expect(apiClient).toHaveProperty('static')
+  expect(apiClient.static).toHaveProperty('applicationOptions')
+  expect(apiClient.static).toHaveProperty('cloudProviderOptions')
+  expect(apiClient.static).toHaveProperty('cloudProviderServiceInstances')
+  expect(apiClient.static).toHaveProperty('cloudProviderServices')
+
   expect(apiClient).toHaveProperty('teamInvitations')
   expect(apiClient).toHaveProperty('teams')
+
   expect(apiClient).toHaveProperty('users')
   expect(apiClient.users).toHaveProperty('passwords')
+
   expect(apiClient).toHaveProperty('variables')
 })
