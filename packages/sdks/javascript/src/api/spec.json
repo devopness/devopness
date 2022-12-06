@@ -8207,12 +8207,15 @@
         }
       }
     },
-    "/static/applications": {
+    "/static/application-options": {
       "get": {
-        "summary": "Lists options of the applications",
-        "operationId": "listApplicationOptions",
+        "summary": "List options of the applications",
+        "operationId": "getStaticApplicationOptions",
+        "description": {
+          "$ref": "../spec/descriptions/get-static-application-options.md"
+        },
         "tags": [
-          "Static Data"
+          "Static Data - Application Options"
         ],
         "parameters": [
           {
@@ -8228,14 +8231,6 @@
         "responses": {
           "200": {
             "description": "Ok",
-            "headers": {
-              "Link": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -8247,12 +8242,15 @@
         }
       }
     },
-    "/static/cloud-providers": {
+    "/static/cloud-provider-options": {
       "get": {
-        "summary": "Lists cloud providers",
-        "operationId": "listCloudProviders",
+        "summary": "List options of the cloud providers",
+        "operationId": "listStaticCloudProviderOptions",
+        "description": {
+          "$ref": "../spec/descriptions/list-static-cloud-provider-options.md"
+        },
         "tags": [
-          "Static Data"
+          "Static Data - Cloud Provider Options"
         ],
         "parameters": [
           {
@@ -8263,23 +8261,21 @@
           },
           {
             "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
           }
         ],
         "responses": {
           "200": {
             "description": "Ok",
-            "headers": {
-              "Link": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CloudProviders"
+                  "$ref": "#/components/schemas/CloudProviderOptionsList"
                 }
               }
             }
@@ -8287,12 +8283,15 @@
         }
       }
     },
-    "/static/cloud-provider-services/{service_code}": {
+    "/static/cloud-provider-service-options/{cloud_provider_service_code}": {
       "get": {
         "summary": "Get details of a single cloud provider service",
-        "operationId": "getCloudProviderService",
+        "operationId": "getStaticCloudProviderService",
+        "description": {
+          "$ref": "../spec/descriptions/get-static-cloud-provider-service.md"
+        },
         "tags": [
-          "Static Data"
+          "Static Data - Cloud Provider Services"
         ],
         "parameters": [
           {
@@ -8306,13 +8305,13 @@
           },
           {
             "in": "path",
-            "name": "service_code",
+            "name": "cloud_provider_service_code",
+            "description": "The cloud provider service code.",
             "example": "aws-ec2",
+            "required": true,
             "schema": {
               "type": "string"
-            },
-            "required": true,
-            "description": "The unique id of the service"
+            }
           }
         ],
         "responses": {
@@ -8325,16 +8324,22 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "The specified resource was not found"
           }
         }
       }
     },
-    "/static/cloud-provider-services/{service_code}/regions/{region_code}": {
+    "/static/cloud-provider-service-options/{cloud_provider_service_code}/regions/{region_code}/instances": {
       "get": {
-        "summary": "Lists cloud provider service regions",
-        "operationId": "listCloudProviderServiceRegions",
+        "summary": "List cloud provider service instances by region",
+        "operationId": "listStaticCloudInstancesByCloudProviderServiceCodeAndRegionCode",
+        "description": {
+          "$ref": "../spec/descriptions/list-static-cloud-instances-by-cloud-provider-service-code-and-region-code.md"
+        },
         "tags": [
-          "Static Data"
+          "Static Data - Cloud Provider Service Instances"
         ],
         "parameters": [
           {
@@ -8347,24 +8352,30 @@
             "$ref": "#/components/parameters/contentTypeHeader"
           },
           {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
             "in": "path",
-            "name": "service_code",
+            "name": "cloud_provider_service_code",
+            "description": "The cloud provider service code.",
             "example": "aws-ec2",
+            "required": true,
             "schema": {
               "type": "string"
-            },
-            "required": true,
-            "description": "The unique id of the service"
+            }
           },
           {
             "in": "path",
             "name": "region_code",
+            "description": "The region of the cloud provider to get related instances.",
             "example": "us-east-1",
+            "required": true,
             "schema": {
               "type": "string"
-            },
-            "required": true,
-            "description": "The unique id of the region"
+            }
           }
         ],
         "responses": {
@@ -8373,7 +8384,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CloudInstances"
+                  "$ref": "#/components/schemas/CloudInstanceList"
                 }
               }
             }
@@ -10036,6 +10047,18 @@
       "description": "Client API applications might need to retrieve possible accepted values to fulfill their forms and allow end users to pick values from a list of valid data.\nAll static data that need to be used through `devopness` API client applications is provided through the `/static/*` endpoints.\n"
     },
     {
+      "name": "Static Data - Application Options"
+    },
+    {
+      "name": "Static Data - Cloud Provider Options"
+    },
+    {
+      "name": "Static Data - Cloud Provider Service Instances"
+    },
+    {
+      "name": "Static Data - Cloud Provider Services"
+    },
+    {
       "name": "Actions"
     },
     {
@@ -10229,7 +10252,10 @@
     {
       "name": "Static Data",
       "tags": [
-        "Static Data"
+        "Static Data - Application Options",
+        "Static Data - Cloud Provider Options",
+        "Static Data - Cloud Provider Service Instances",
+        "Static Data - Cloud Provider Services"
       ]
     },
     {
@@ -11600,16 +11626,13 @@
         "type": "object",
         "properties": {
           "deployment_steps": {
-            "description": "Default deployment steps that run when a deployment is triggered",
-            "$ref": "#/components/schemas/DeploymentDefaultSteps"
+            "$ref": "#/components/schemas/DeploymentDefaultStepList"
           },
           "language_runtimes": {
-            "description": "Supported language runtimes and respective frameworks",
-            "$ref": "#/components/schemas/LanguageRuntimes"
+            "$ref": "#/components/schemas/LanguageRuntimeList"
           },
           "script_runners": {
-            "description": "Available script runners",
-            "$ref": "#/components/schemas/ScriptRunners"
+            "$ref": "#/components/schemas/ScriptRunnerList"
           }
         },
         "required": [
@@ -12115,53 +12138,59 @@
           "os"
         ]
       },
-      "CloudInstance": {
+      "CloudInstanceList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/CloudInstanceRelation"
+        }
+      },
+      "CloudInstanceRelation": {
         "type": "object",
         "properties": {
           "name": {
-            "type": "string",
             "description": "The name of the cloud instance",
+            "type": "string",
             "example": "m5.large"
           },
           "type": {
-            "type": "string",
             "description": "The type of the cloud instance",
+            "type": "string",
             "example": "m5"
           },
           "family": {
-            "type": "string",
             "description": "The family to which the instance belongs",
+            "type": "string",
             "example": "Memory Optimized"
           },
           "default_disk_size": {
-            "type": "integer",
             "description": "The default disk size (in GB) used to instance",
+            "type": "integer",
             "example": 25
           },
           "price_hourly": {
-            "type": "string",
             "description": "The price per hour of the instance",
-            "example": "0.09600"
+            "type": "number",
+            "example": 0.096
           },
           "price_monthly": {
-            "type": "string",
             "description": "The price per month of the instance",
-            "example": "70.28"
+            "type": "number",
+            "example": 70.28
           },
           "price_currency": {
-            "type": "string",
             "description": "The currency of the prices",
+            "type": "string",
             "example": "USD"
           },
           "vcpus": {
-            "type": "integer",
             "description": "The number of virtual CPU of the instance",
+            "type": "integer",
             "example": 2
           },
           "memory": {
-            "type": "string",
             "description": "The RAM memory size (in MB) of the instance",
-            "example": "8192.00"
+            "type": "integer",
+            "example": 8192
           }
         },
         "required": [
@@ -12174,13 +12203,8 @@
           "price_currency",
           "vcpus",
           "memory"
-        ]
-      },
-      "CloudInstances": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/CloudInstance"
-        }
+        ],
+        "nullable": true
       },
       "CloudOs": {
         "type": "object",
@@ -12307,6 +12331,50 @@
           "$ref": "#/components/schemas/CloudProviderCredentialSettings"
         }
       },
+      "CloudProviderOptionsList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/CloudProviderOptionsRelation"
+        }
+      },
+      "CloudProviderOptionsRelation": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "$ref": "#/components/schemas/StaticCloudProviderCode"
+          },
+          "name": {
+            "description": "Cloud provider name",
+            "type": "string",
+            "example": "Amazon Web Services"
+          },
+          "hint": {
+            "description": "Text describing what is the provider",
+            "type": "string",
+            "example": "Cloud Server provided by Amazon Web Services"
+          },
+          "logo_url": {
+            "description": "The provider's logo URL",
+            "type": "string",
+            "example": "https://assets.devopness.com/images/icons/cloud-providers/aws.svg"
+          },
+          "cloud_services": {
+            "$ref": "#/components/schemas/CloudProviderServiceList"
+          },
+          "settings": {
+            "$ref": "#/components/schemas/CloudProviderSettingsList"
+          }
+        },
+        "required": [
+          "code",
+          "name",
+          "hint",
+          "logo_url",
+          "cloud_services",
+          "settings"
+        ],
+        "nullable": true
+      },
       "CloudProviderPropertyType": {
         "type": "string",
         "enum": [
@@ -12357,14 +12425,7 @@
         "type": "object",
         "properties": {
           "code": {
-            "type": "string",
-            "enum": [
-              "aws-ec2",
-              "digitalocean-droplet",
-              "gcp-gce"
-            ],
-            "description": "The code that uniquely identify this cloud service",
-            "example": "aws-ec2"
+            "$ref": "#/components/schemas/CloudProviderServiceCode"
           },
           "name": {
             "type": "string",
@@ -12382,6 +12443,16 @@
           "code",
           "name"
         ]
+      },
+      "CloudProviderServiceCode": {
+        "type": "string",
+        "enum": [
+          "aws-ec2",
+          "digitalocean-droplet",
+          "gcp-gce"
+        ],
+        "description": "The code that uniquely identify this cloud service",
+        "example": "aws-ec2"
       },
       "CloudProviderServiceList": {
         "type": "array",
@@ -12506,6 +12577,11 @@
           "cloud_provider": {
             "$ref": "#/components/schemas/CloudProvider"
           },
+          "active": {
+            "description": "If this credential is active or not",
+            "type": "boolean",
+            "example": true
+          },
           "created_at": {
             "description": "The date and time when the record was created",
             "type": "string",
@@ -12523,6 +12599,7 @@
           "name",
           "cloud_provider_code",
           "cloud_provider",
+          "active",
           "created_at",
           "updated_at"
         ]
@@ -12619,6 +12696,11 @@
           "cloud_provider": {
             "$ref": "#/components/schemas/CloudProvider"
           },
+          "active": {
+            "description": "If this credential is active or not",
+            "type": "boolean",
+            "example": true
+          },
           "created_at": {
             "description": "The date and time when the record was created",
             "type": "string",
@@ -12636,6 +12718,7 @@
           "name",
           "cloud_provider_code",
           "cloud_provider",
+          "active",
           "created_at",
           "updated_at"
         ],
@@ -13354,7 +13437,7 @@
           "hint"
         ]
       },
-      "DeploymentDefaultSteps": {
+      "DeploymentDefaultStepList": {
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/DeploymentDefaultStep"
@@ -14869,6 +14952,7 @@
             "description": "The list of the supported versions of the runtime engine",
             "type": "array",
             "items": {
+              "type": "object",
               "properties": {
                 "version": {
                   "type": "string",
@@ -14956,7 +15040,7 @@
           },
           "entrypoint": {
             "type": "string",
-            "description": "The entrypoint tells devopness how an application should be started and has basically two forms:\n\n1) `File`: if it's a simple file name/path an web app will be served using the entrypoint value as its index file. Example: `index.html`\n\n2) `Command`: if a command line instruction is provided as the entrypoint value, it will be handled as the start up command that initalizes the application. It will be assumed that the user is an advanced user that knows what she/he is doing, therefore the command specified here will be run - as is - everytime the application needs to be started.\n",
+            "description": "The entrypoint tells devopness how an application should be started and has basically two forms:\n\n1) `File`: if it's a simple file name/path an web app will be served using the entrypoint value as its index file. Example: `index.html`\n\n2) `Command`: if a command line instruction is provided as the entrypoint value, it will be handled as the start up command that initalizes the application. It will be assumed that the user is an advanced user that knows what she/he is doing, therefore the command specified here will be run - as is - everytime the application needs to be started.",
             "example": "`index.html`, `index.php`, `server.php`, `default.htm`, `node server.js`, `yarn start`, `npm run production`, `docker run -d -P --name my_container_name my_image_name`, `php artisan serve –-host=192.168.2.20 --port=8000`"
           },
           "listening_address": {
@@ -14986,7 +15070,7 @@
           }
         }
       },
-      "LanguageRuntimes": {
+      "LanguageRuntimeList": {
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/LanguageRuntime"
@@ -15143,6 +15227,9 @@
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
           },
+          "environment": {
+            "$ref": "#/components/schemas/EnvironmentRelation"
+          },
           "environments": {
             "$ref": "#/components/schemas/Environments"
           },
@@ -15172,6 +15259,7 @@
           "auto_generated",
           "last_action",
           "created_by_user",
+          "environment",
           "environments",
           "servers",
           "created_at",
@@ -15373,6 +15461,7 @@
         "description": "The list of the operating system users found in all the servers linked to a project",
         "type": "array",
         "items": {
+          "type": "object",
           "properties": {
             "name": {
               "type": "string",
@@ -16431,7 +16520,7 @@
           "hint"
         ]
       },
-      "ScriptRunners": {
+      "ScriptRunnerList": {
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/ScriptRunner"
@@ -18051,6 +18140,17 @@
         ],
         "example": "DV"
       },
+      "StaticCloudProviderCode": {
+        "description": "The code of the cloud service provider",
+        "type": "string",
+        "enum": [
+          "aws",
+          "digitalocean",
+          "gcp",
+          "self-hosted"
+        ],
+        "example": "aws"
+      },
       "Step": {
         "type": "object",
         "properties": {
@@ -19261,18 +19361,22 @@
         ]
       },
       "VariableTarget": {
-        "type": "string",
         "description": "The target defining how the variable key/value pair will be deployed",
+        "type": "string",
         "enum": [
+          "resource-config-file",
           "nginx-conf",
           "os-env-var",
-          "resource-config-file"
+          "php-cli_php-ini",
+          "php-fpm_php-fpm-conf",
+          "php-fpm_php-ini",
+          "php-fpm_pool-d-www-conf"
         ],
         "example": "resource-config-file"
       },
       "VariableType": {
-        "type": "string",
         "description": "The type of the key/value pair",
+        "type": "string",
         "enum": [
           "file",
           "variable"
