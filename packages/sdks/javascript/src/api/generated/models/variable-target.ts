@@ -25,7 +25,8 @@ export enum VariableTarget {
     PhpCliPhpIni = 'php-cli_php-ini',
     PhpFpmPhpFpmConf = 'php-fpm_php-fpm-conf',
     PhpFpmPhpIni = 'php-fpm_php-ini',
-    PhpFpmPoolDWwwConf = 'php-fpm_pool-d-www-conf'
+    PhpFpmPoolDWwwConf = 'php-fpm_pool-d-www-conf',
+    RedisConf = 'redis-conf'
 }
 
 
