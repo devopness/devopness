@@ -19370,7 +19370,8 @@
           "php-cli_php-ini",
           "php-fpm_php-fpm-conf",
           "php-fpm_php-ini",
-          "php-fpm_pool-d-www-conf"
+          "php-fpm_pool-d-www-conf",
+          "redis-conf"
         ],
         "example": "resource-config-file"
       },
