@@ -1799,6 +1799,89 @@
             }
           }
         }
+      },
+      "post": {
+        "summary": "Add a Network Rule to the given environment",
+        "operationId": "addEnvironmentNetworkRule",
+        "description": {
+          "$ref": "../spec/descriptions/add-environment-network-rule.md"
+        },
+        "tags": [
+          "Environments - Network Rules"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "environment_id",
+            "description": "The ID of the environment.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NetworkRule"
+                }
+              }
+            },
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NetworkRuleEnvironmentCreate"
+              }
+            }
+          }
+        }
       }
     },
     "/environments/{environment_id}/servers": {
@@ -1998,6 +2081,89 @@
                   "type": "string"
                 },
                 "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Add a Service to the given environment",
+        "operationId": "addEnvironmentService",
+        "description": {
+          "$ref": "../spec/descriptions/add-environment-service.md"
+        },
+        "tags": [
+          "Environments - Services"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "environment_id",
+            "description": "The ID of the environment.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Service"
+                }
+              }
+            },
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ServiceEnvironmentCreate"
               }
             }
           }
@@ -5452,89 +5618,6 @@
             }
           }
         }
-      },
-      "post": {
-        "summary": "Add a Network Rule to the given project",
-        "operationId": "addProjectNetworkRule",
-        "description": {
-          "$ref": "../spec/descriptions/add-project-network-rule.md"
-        },
-        "tags": [
-          "Projects - Network Rules"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "project_id",
-            "description": "The ID of the project.",
-            "example": 123,
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NetworkRule"
-                }
-              }
-            },
-            "headers": {
-              "X-Devopness-Action-Id": {
-                "schema": {
-                  "type": "integer"
-                },
-                "description": "The dispatched action ID of the resource"
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden/Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Unprocessable Entity/Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "description": "A JSON object containing the resource data",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NetworkRuleProjectCreate"
-              }
-            }
-          }
-        }
       }
     },
     "/projects/{project_id}/roles": {
@@ -5869,81 +5952,6 @@
                   "type": "string"
                 },
                 "description": "Link header with `first`, `last`, `previous` and `next` page's links"
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "summary": "Add a service to a project and trigger its setup in each linked server",
-        "operationId": "addProjectService",
-        "description": {
-          "$ref": "../spec/descriptions/add-project-service.md"
-        },
-        "tags": [
-          "Projects - Services"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "project_id",
-            "description": "The ID of the project.",
-            "example": 123,
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Service"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden/Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Unprocessable Entity/Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "description": "A JSON object containing the resource data",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ServiceProjectCreate"
               }
             }
           }
@@ -8209,7 +8217,7 @@
     },
     "/static/application-options": {
       "get": {
-        "summary": "List options of the applications",
+        "summary": "List `Application` resource options",
         "operationId": "getStaticApplicationOptions",
         "description": {
           "$ref": "../spec/descriptions/get-static-application-options.md"
@@ -8244,7 +8252,7 @@
     },
     "/static/cloud-provider-options": {
       "get": {
-        "summary": "List options of the cloud providers",
+        "summary": "List `Cloud Provider` service options",
         "operationId": "listStaticCloudProviderOptions",
         "description": {
           "$ref": "../spec/descriptions/list-static-cloud-provider-options.md"
@@ -8285,7 +8293,7 @@
     },
     "/static/cloud-provider-service-options/{cloud_provider_service_code}": {
       "get": {
-        "summary": "Get details of a single cloud provider service",
+        "summary": "Get details of a single `Cloud Provider Service`",
         "operationId": "getStaticCloudProviderService",
         "description": {
           "$ref": "../spec/descriptions/get-static-cloud-provider-service.md"
@@ -8333,7 +8341,7 @@
     },
     "/static/cloud-provider-service-options/{cloud_provider_service_code}/regions/{region_code}/instances": {
       "get": {
-        "summary": "List cloud provider service instances by region",
+        "summary": "List `Cloud Provider Service` instances by region",
         "operationId": "listStaticCloudInstancesByCloudProviderServiceCodeAndRegionCode",
         "description": {
           "$ref": "../spec/descriptions/list-static-cloud-instances-by-cloud-provider-service-code-and-region-code.md"
@@ -8392,12 +8400,15 @@
         }
       }
     },
-    "/static/cronjobs": {
+    "/static/cronjob-options": {
       "get": {
-        "summary": "Lists options of the cronjobs",
-        "operationId": "listCronJobOptions",
+        "summary": "List `CronJob` resource options",
+        "operationId": "getStaticCronJobOptions",
+        "description": {
+          "$ref": "../spec/descriptions/get-static-cron-job-options.md"
+        },
         "tags": [
-          "Static Data"
+          "Static Data - Cron Job Options"
         ],
         "parameters": [
           {
@@ -8413,14 +8424,6 @@
         "responses": {
           "200": {
             "description": "Ok",
-            "headers": {
-              "Link": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -8432,12 +8435,15 @@
         }
       }
     },
-    "/static/environments": {
+    "/static/environment-options": {
       "get": {
-        "summary": "Lists options of the environments",
-        "operationId": "listEnvironmentOptions",
+        "summary": "List `Environment` options",
+        "operationId": "getStaticEnvironmentOptions",
+        "description": {
+          "$ref": "../spec/descriptions/get-static-environment-options.md"
+        },
         "tags": [
-          "Static Data"
+          "Static Data - Environment Options"
         ],
         "parameters": [
           {
@@ -8453,14 +8459,6 @@
         "responses": {
           "200": {
             "description": "Ok",
-            "headers": {
-              "Link": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -8474,10 +8472,13 @@
     },
     "/static/permissions": {
       "get": {
-        "summary": "Lists available permissions",
-        "operationId": "listPermissions",
+        "summary": "List available `Role` permissions",
+        "operationId": "listStaticPermissions",
+        "description": {
+          "$ref": "../spec/descriptions/list-static-permissions.md"
+        },
         "tags": [
-          "Static Data"
+          "Static Data - Permissions"
         ],
         "parameters": [
           {
@@ -8488,6 +8489,12 @@
           },
           {
             "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
           }
         ],
         "responses": {
@@ -8496,7 +8503,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Permissions"
+                  "$ref": "#/components/schemas/PermissionList"
                 }
               }
             }
@@ -8504,12 +8511,15 @@
         }
       }
     },
-    "/static/services": {
+    "/static/service-options": {
       "get": {
-        "summary": "Lists options of the services",
-        "operationId": "listServiceOptions",
+        "summary": "List `Service` resource options",
+        "operationId": "getStaticServiceOptions",
+        "description": {
+          "$ref": "../spec/descriptions/get-static-service-options.md"
+        },
         "tags": [
-          "Static Data"
+          "Static Data - Service Options"
         ],
         "parameters": [
           {
@@ -8525,14 +8535,6 @@
         "responses": {
           "200": {
             "description": "Ok",
-            "headers": {
-              "Link": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -10059,6 +10061,18 @@
       "name": "Static Data - Cloud Provider Services"
     },
     {
+      "name": "Static Data - Cron Job Options"
+    },
+    {
+      "name": "Static Data - Environment Options"
+    },
+    {
+      "name": "Static Data - Permissions"
+    },
+    {
+      "name": "Static Data - Service Options"
+    },
+    {
       "name": "Actions"
     },
     {
@@ -10255,7 +10269,11 @@
         "Static Data - Application Options",
         "Static Data - Cloud Provider Options",
         "Static Data - Cloud Provider Service Instances",
-        "Static Data - Cloud Provider Services"
+        "Static Data - Cloud Provider Services",
+        "Static Data - Cron Job Options",
+        "Static Data - Environment Options",
+        "Static Data - Permissions",
+        "Static Data - Service Options"
       ]
     },
     {
@@ -12008,7 +12026,7 @@
             "type": "string"
           },
           "source_provider_id": {
-            "description": "Numeric ID of the source provider account where the repository is hosted. Required when the `repository` field is informed.",
+            "description": "Numeric ID of the source provider account where the repository is hosted. This field is required when <code>repository</code> is present.",
             "example": 9732156,
             "type": "integer"
           },
@@ -12067,8 +12085,6 @@
           "type",
           "framework",
           "programming_language",
-          "repository",
-          "source_provider_id",
           "public_directory",
           "default_branch",
           "entrypoint",
@@ -12082,7 +12098,7 @@
         "type": "object",
         "properties": {
           "name": {
-            "$ref": "#/components/schemas/ServiceName"
+            "$ref": "#/components/schemas/ServiceType"
           }
         }
       },
@@ -12868,35 +12884,6 @@
           "run_as_user"
         ]
       },
-      "CronJobFrequencies": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/CronJobFrequency"
-        }
-      },
-      "CronJobFrequency": {
-        "type": "object",
-        "properties": {
-          "value": {
-            "type": "string",
-            "description": "Frequency pattern to trigger the cronjob",
-            "example": "0 0 1 * *"
-          },
-          "human_readable": {
-            "$ref": "#/components/schemas/CronJobPattern"
-          },
-          "hint": {
-            "type": "string",
-            "description": "Text hint describing the frequency",
-            "example": "Run once a month at midnight on the first day of month"
-          }
-        },
-        "required": [
-          "value",
-          "human_readable",
-          "hint"
-        ]
-      },
       "CronJobList": {
         "type": "array",
         "items": {
@@ -12907,8 +12894,7 @@
         "type": "object",
         "properties": {
           "frequencies": {
-            "description": "The supported time frequencies to trigger a cronjob",
-            "$ref": "#/components/schemas/CronJobFrequencies"
+            "$ref": "#/components/schemas/StaticCronJobFrequencyList"
           }
         },
         "required": [
@@ -13659,8 +13645,7 @@
         "type": "object",
         "properties": {
           "types": {
-            "description": "The supported environments types",
-            "$ref": "#/components/schemas/EnvironmentOptionTypes"
+            "$ref": "#/components/schemas/StaticEnvironmentTypeList"
           }
         },
         "required": [
@@ -15278,6 +15263,51 @@
           "$ref": "#/components/schemas/NetworkRuleRelation"
         }
       },
+      "NetworkRuleEnvironmentCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "The rule's name/description/reminder. Must be at least 3 characters. Must not be greater than 60 characters.",
+            "example": "Open MySQL port for remote access",
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/NetworkRuleType"
+          },
+          "protocol": {
+            "$ref": "#/components/schemas/NetworkRuleProtocol"
+          },
+          "ip_address_from": {
+            "description": "Starting range of the public ipv4 or ipv6 addresses that can access this rule. Must be a valid IP address.",
+            "example": "200.123.45.67",
+            "type": "string"
+          },
+          "ip_address_to": {
+            "description": "Ending range of the public ipv4 or ipv6 addresses that can access this rule. Must be a valid IP address.",
+            "example": "200.123.45.99",
+            "type": "string"
+          },
+          "port_from": {
+            "description": "Starting range of network ports to be considered by this rule. Must be at least 1. Must not be greater than 65535.",
+            "example": 6123,
+            "type": "integer"
+          },
+          "port_to": {
+            "description": "Ending range of network ports to be considered by this rule. Must be at least 1. Must not be greater than 65535.",
+            "example": 7654,
+            "type": "integer"
+          },
+          "servers": {
+            "$ref": "#/components/schemas/ResourceIdList"
+          }
+        },
+        "required": [
+          "name",
+          "type",
+          "port_from",
+          "port_to"
+        ]
+      },
       "NetworkRuleProjectCreate": {
         "type": "object",
         "properties": {
@@ -15447,8 +15477,8 @@
             "example": "200.123.45.99",
             "type": "string"
           },
-          "environments": {
-            "$ref": "#/components/schemas/EnvironmentLinks"
+          "servers": {
+            "$ref": "#/components/schemas/ResourceIdList"
           }
         },
         "required": [
@@ -15577,66 +15607,35 @@
           "email"
         ]
       },
-      "Permission": {
+      "PermissionList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/PermissionRelation"
+        }
+      },
+      "PermissionRelation": {
         "type": "object",
         "properties": {
           "resource_type": {
-            "type": "string",
             "description": "The type of resource this permission affects",
+            "type": "string",
             "example": "application"
           },
           "human_readable": {
-            "type": "string",
             "description": "Human readable resource name",
+            "type": "string",
             "example": "Application"
           },
           "permissions": {
-            "type": "array",
-            "description": "List of permissions available for this resource",
-            "items": {
-              "$ref": "#/components/schemas/PermissionPermissions"
-            }
+            "$ref": "#/components/schemas/StaticPermissionList"
           }
         },
         "required": [
           "resource_type",
           "human_readable",
           "permissions"
-        ]
-      },
-      "Permissions": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Permission"
-        }
-      },
-      "PermissionPermissions": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name of permission",
-            "example": "create"
-          },
-          "human_readable": {
-            "type": "string",
-            "description": "Human readable permission name",
-            "example": "Add"
-          },
-          "hint": {
-            "type": "string",
-            "description": "Description of what a role is allowed to do with a resource if she has this permission",
-            "example": "Authorize to create new applications"
-          },
-          "required_permissions": {
-            "$ref": "#/components/schemas/RequiredPermissions"
-          }
-        },
-        "required": [
-          "name",
-          "human_readable",
-          "hint"
-        ]
+        ],
+        "nullable": true
       },
       "Pipeline": {
         "type": "object",
@@ -17111,6 +17110,9 @@
             "example": "MySQL Community Server",
             "nullable": true
           },
+          "environment": {
+            "$ref": "#/components/schemas/EnvironmentRelation"
+          },
           "environments": {
             "$ref": "#/components/schemas/Environments"
           },
@@ -17147,6 +17149,7 @@
           "auto_start",
           "initial_state",
           "description",
+          "environment",
           "environments",
           "created_by_user",
           "project",
@@ -17161,6 +17164,34 @@
         "items": {
           "$ref": "#/components/schemas/ServiceRelation"
         }
+      },
+      "ServiceEnvironmentCreate": {
+        "type": "object",
+        "properties": {
+          "auto_start": {
+            "description": "Tells if the service should start automatically on operating system boot.",
+            "example": false,
+            "type": "boolean"
+          },
+          "initial_state": {
+            "$ref": "#/components/schemas/ServiceInitialState"
+          },
+          "type": {
+            "$ref": "#/components/schemas/ServiceType"
+          },
+          "version": {
+            "description": "The service version to be installed. Must be one of <code></code> Must be at least 3 characters. Must not be greater than 30 characters.",
+            "example": "5.7",
+            "type": "string"
+          },
+          "servers": {
+            "$ref": "#/components/schemas/ResourceIdList"
+          }
+        },
+        "required": [
+          "type",
+          "version"
+        ]
       },
       "ServiceInitialState": {
         "type": "string",
@@ -17178,9 +17209,20 @@
           "$ref": "#/components/schemas/ServiceRelation"
         }
       },
-      "ServiceName": {
+      "ServiceOptions": {
+        "type": "object",
+        "properties": {
+          "types": {
+            "$ref": "#/components/schemas/StaticServiceTypeList"
+          }
+        },
+        "required": [
+          "types"
+        ]
+      },
+      "ServiceType": {
         "type": "string",
-        "description": "The name of a supported service",
+        "description": "Types of OS Services supported by Devopness",
         "enum": [
           "docker",
           "mysql",
@@ -17190,61 +17232,6 @@
           "supervisor"
         ],
         "example": "mysql"
-      },
-      "ServiceOptions": {
-        "type": "object",
-        "properties": {
-          "types": {
-            "$ref": "#/components/schemas/ServiceTypes"
-          }
-        },
-        "required": [
-          "types"
-        ]
-      },
-      "ServiceType": {
-        "type": "object",
-        "properties": {
-          "value": {
-            "$ref": "#/components/schemas/ServiceName"
-          },
-          "human_readable": {
-            "type": "string",
-            "description": "Displayable version of the service name",
-            "example": "MySQL"
-          },
-          "hint": {
-            "type": "string",
-            "description": "Text describing the service",
-            "example": "MySQL Community Server"
-          },
-          "supported_versions": {
-            "type": "array",
-            "description": "List of service versions supported by Devopness",
-            "items": {
-              "type": "object",
-              "properties": {
-                "version": {
-                  "type": "string",
-                  "description": "The service's version that is supported",
-                  "example": "5.7"
-                }
-              }
-            }
-          }
-        },
-        "required": [
-          "value",
-          "human_readable",
-          "hint",
-          "supported_versions"
-        ]
-      },
-      "ServiceTypes": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ServiceType"
-        }
       },
       "ServiceProjectCreate": {
         "type": "object",
@@ -17258,7 +17245,7 @@
             "$ref": "#/components/schemas/ServiceInitialState"
           },
           "type": {
-            "$ref": "#/components/schemas/ServiceName"
+            "$ref": "#/components/schemas/ServiceType"
           },
           "version": {
             "description": "The service version to be installed. Must be one of <code></code> Must be at least 3 characters. Must not be greater than 30 characters.",
@@ -17412,8 +17399,8 @@
             "example": 53283,
             "type": "integer"
           },
-          "environments": {
-            "$ref": "#/components/schemas/EnvironmentLinks"
+          "servers": {
+            "$ref": "#/components/schemas/ResourceIdList"
           }
         },
         "required": [
@@ -18150,6 +18137,157 @@
           "self-hosted"
         ],
         "example": "aws"
+      },
+      "StaticCronJobFrequency": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "Frequency pattern to trigger the cronjob",
+            "example": "0 0 1 * *"
+          },
+          "human_readable": {
+            "$ref": "#/components/schemas/CronJobPattern"
+          },
+          "hint": {
+            "type": "string",
+            "description": "Text hint describing the frequency",
+            "example": "Run once a month at midnight on the first day of month"
+          }
+        },
+        "required": [
+          "value",
+          "human_readable",
+          "hint"
+        ]
+      },
+      "StaticCronJobFrequencyList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/StaticCronJobFrequency"
+        }
+      },
+      "StaticEnvironmentType": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "The internal name of the environment",
+            "example": "development"
+          },
+          "human_readable": {
+            "type": "string",
+            "description": "The formatted name to be displayed in user interfaces",
+            "example": "Development"
+          },
+          "hint": {
+            "type": "string",
+            "description": "Text describing the environment purpose",
+            "example": "Environment used for dev testing"
+          }
+        },
+        "required": [
+          "value",
+          "human_readable",
+          "hint"
+        ]
+      },
+      "StaticEnvironmentTypeList": {
+        "description": "The supported environments types",
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/StaticEnvironmentType"
+        }
+      },
+      "StaticPermission": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of permission",
+            "example": "create"
+          },
+          "human_readable": {
+            "type": "string",
+            "description": "Human readable permission name",
+            "example": "Add"
+          },
+          "hint": {
+            "type": "string",
+            "description": "Description of what a role is allowed to do with a resource if she has this permission",
+            "example": "Authorize to create new applications"
+          },
+          "required_permissions": {
+            "$ref": "#/components/schemas/StaticRequiredPermissions"
+          }
+        },
+        "required": [
+          "name",
+          "human_readable",
+          "hint"
+        ]
+      },
+      "StaticPermissionList": {
+        "type": "array",
+        "description": "List of permissions available for this resource",
+        "items": {
+          "$ref": "#/components/schemas/StaticPermission"
+        }
+      },
+      "StaticRequiredPermissions": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "List of permissions the role must have before receiving this one",
+        "example": [
+          "application:read"
+        ]
+      },
+      "StaticServiceType": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "$ref": "#/components/schemas/ServiceType"
+          },
+          "human_readable": {
+            "type": "string",
+            "description": "Displayable version of the service name",
+            "example": "MySQL"
+          },
+          "hint": {
+            "type": "string",
+            "description": "Text describing the service",
+            "example": "MySQL Community Server"
+          },
+          "supported_versions": {
+            "type": "array",
+            "description": "List of service versions supported by Devopness",
+            "items": {
+              "type": "object",
+              "properties": {
+                "version": {
+                  "type": "string",
+                  "description": "The service's version that is supported",
+                  "example": "5.7"
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "value",
+          "human_readable",
+          "hint",
+          "supported_versions"
+        ]
+      },
+      "StaticServiceTypeList": {
+        "type": "array",
+        "description": "List of service types",
+        "items": {
+          "$ref": "#/components/schemas/StaticServiceType"
+        }
       },
       "Step": {
         "type": "object",
