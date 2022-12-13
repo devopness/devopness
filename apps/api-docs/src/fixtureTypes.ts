@@ -101,14 +101,12 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
         { path: 'member_id', fixture: 'user', field: 'id' },
     ],
     'network_rule': [],
-    'network_rule_project_create': [
-        { path: 'environments[0].id', fixture: 'environment', field: 'id' },
-        { path: 'environments[0].servers[0]', fixture: 'server', field: 'id' }
+    'network_rule_environment_create': [
+        { path: 'servers[0]', fixture: 'server', field: 'id' },
     ],
     'network_rule_update': [
         { path: 'id', fixture: 'network_rule', field: 'id' },
-        { path: 'environments[0].id', fixture: 'environment', field: 'id' },
-        { path: 'environments[0].servers[0]', fixture: 'server', field: 'id' }
+        { path: 'servers[0]', fixture: 'server', field: 'id' },
     ],
     'daemon': [],
     'daemon_environment_create': [
@@ -146,9 +144,8 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
         { path: 'ssh_port', fixture: 'server', field: 'ssh_port' },
     ],
     'service': [],
-    'service_project_create': [
-        { path: 'environments[0].id', fixture: 'environment', field: 'id' },
-        { path: 'environments[0].servers[0]', fixture: 'server', field: 'id' }
+    'service_environment_create': [
+        { path: 'servers[0]', fixture: 'server', field: 'id' },
     ],
     'service_reload': [
         { path: 'environment_id', fixture: 'environment', field: 'id' },
@@ -167,8 +164,7 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     ],
     'service_update': [
         { path: 'id', fixture: 'service', field: 'id' },
-        { path: 'environments[0].id', fixture: 'environment', field: 'id' },
-        { path: 'environments[0].servers[0]', fixture: 'server', field: 'id' },
+        { path: 'servers[0]', fixture: 'server', field: 'id' },
     ],
     'social_account': [],
     'source_provider': [],

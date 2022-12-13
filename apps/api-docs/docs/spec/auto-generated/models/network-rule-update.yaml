@@ -21,8 +21,8 @@ properties:
     description: 'Ending range of the public ipv4 or ipv6 addresses that can access this rule. Must be a valid IP address.'
     example: 200.123.45.99
     type: string
-  environments:
-    $ref: '#/components/schemas/EnvironmentLinks'
+  servers:
+    $ref: '#/components/schemas/ResourceIdList'
 required:
   - id
   - name

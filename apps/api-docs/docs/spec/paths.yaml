@@ -74,6 +74,8 @@
 '/environments/{environment_id}/network-rules':
   get:
     $ref: ./auto-generated/endpoints/list-environment-network-rules.yaml
+  post:
+    $ref: ./auto-generated/endpoints/add-environment-network-rule.yaml
 '/environments/{environment_id}/servers':
   get:
     $ref: ./auto-generated/endpoints/list-environment-servers.yaml
@@ -82,6 +84,8 @@
 /environments/{environment_id}/services:
   get:
     $ref: ./auto-generated/endpoints/list-environment-services.yaml
+  post:
+    $ref: ./auto-generated/endpoints/add-environment-service.yaml
 '/environments/{environment_id}/ssh-keys':
   get:
     $ref: ./auto-generated/endpoints/list-environment-ssh-keys.yaml
@@ -227,8 +231,6 @@
 '/projects/{project_id}/network-rules':
   get:
     $ref: ./auto-generated/endpoints/list-project-network-rules.yaml
-  post:
-    $ref: ./auto-generated/endpoints/add-project-network-rule.yaml
 '/projects/{project_id}/roles':
   get:
     $ref: ./auto-generated/endpoints/list-project-roles.yaml
@@ -242,8 +244,6 @@
 /projects/{project_id}/services:
   get:
     $ref: ./auto-generated/endpoints/list-project-services.yaml
-  post:
-    $ref: ./auto-generated/endpoints/add-project-service.yaml
 '/projects/{project_id}/ssh-keys':
   get:
     $ref: ./auto-generated/endpoints/list-project-ssh-keys.yaml
@@ -356,18 +356,18 @@
 '/static/cloud-provider-service-options/{cloud_provider_service_code}/regions/{region_code}/instances':
   get:
     $ref: ./auto-generated/endpoints/list-static-cloud-instances-by-cloud-provider-service-code-and-region-code.yaml
-/static/cronjobs:
+/static/cronjob-options:
   get:
-    $ref: ./endpoints/static/paths/cronjobs-list.yaml
-/static/environments:
+    $ref: ./auto-generated/endpoints/get-static-cron-job-options.yaml
+/static/environment-options:
   get:
-    $ref: ./endpoints/static/paths/environments-list.yaml
+    $ref: ./auto-generated/endpoints/get-static-environment-options.yaml
 /static/permissions:
   get:
-    $ref: ./endpoints/static/paths/permissions-list.yaml
-/static/services:
+    $ref: ./auto-generated/endpoints/list-static-permissions.yaml
+/static/service-options:
   get:
-    $ref: ./endpoints/static/paths/services-list.yaml
+    $ref: ./auto-generated/endpoints/get-static-service-options.yaml
 '/cron-jobs/{cron_job_id}':
   delete:
     $ref: ./auto-generated/endpoints/delete-cron-job.yaml

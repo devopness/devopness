@@ -94,6 +94,8 @@
 '/environments/{environment_id}/services':
   get:
     $ref: ./auto-generated/endpoints/list-environment-services.yaml
+  post:
+    $ref: ./auto-generated/endpoints/add-environment-service.yaml
 '/environments/{environment_id}/ssh-keys':
   get:
     $ref: ./auto-generated/endpoints/list-environment-ssh-keys.yaml
@@ -302,6 +304,18 @@
 '/static/cloud-provider-service-options/{cloud_provider_service_code}/regions/{region_code}/instances':
   get:
     $ref: ./auto-generated/endpoints/list-static-cloud-instances-by-cloud-provider-service-code-and-region-code.yaml
+/static/cronjob-options:
+  get:
+    $ref: ./auto-generated/endpoints/get-static-cron-job-options.yaml
+/static/environment-options:
+  get:
+    $ref: ./auto-generated/endpoints/get-static-environment-options.yaml
+/static/permissions:
+  get:
+    $ref: ./auto-generated/endpoints/list-static-permissions.yaml
+/static/service-options:
+  get:
+    $ref: ./auto-generated/endpoints/get-static-service-options.yaml
 '/team-invitations/{team_invitation_id}/accept':
   post:
     $ref: ./auto-generated/endpoints/accept-team-invitation.yaml

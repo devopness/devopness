@@ -44,7 +44,7 @@ properties:
     example: 347106
     type: string
   source_provider_id:
-    description: 'Numeric ID of the source provider account where the repository is hosted. Required when the `repository` field is informed.'
+    description: 'Numeric ID of the source provider account where the repository is hosted. This field is required when <code>repository</code> is present.'
     example: 9732156
     type: integer
   root_directory:
@@ -91,8 +91,6 @@ required:
   - type
   - framework
   - programming_language
-  - repository
-  - source_provider_id
   - public_directory
   - default_branch
   - entrypoint

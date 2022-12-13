@@ -1,4 +1,4 @@
 type: object
 properties:
   name:
-    $ref: '#/components/schemas/ServiceName'
+    $ref: '#/components/schemas/ServiceType'

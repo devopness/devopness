@@ -5,7 +5,7 @@ properties:
     description: 'The unique ID of the service.'
     example: 53283
     type: integer
-  environments:
-    $ref: '#/components/schemas/EnvironmentLinks'
+  servers:
+    $ref: '#/components/schemas/ResourceIdList'
 required:
   - id

@@ -83,6 +83,8 @@ CronJobEnvironmentCreate:
   $ref: ./auto-generated/models/cron-job-environment-create.yaml
 CronJobList:
   $ref: ./auto-generated/models/cron-job-list.yaml
+CronJobOptions:
+  $ref: ./auto-generated/models/cron-job-options.yaml
 CronJobPattern:
   $ref: ./auto-generated/models/cron-job-pattern.yaml
 CronJobProjectCreate:
@@ -113,6 +115,8 @@ Environment:
   $ref: ./auto-generated/models/environment.yaml
 EnvironmentList:
   $ref: ./auto-generated/models/environment-list.yaml
+EnvironmentOptions:
+  $ref: ./auto-generated/models/environment-options.yaml
 EnvironmentProjectCreate:
   $ref: ./auto-generated/models/environment-project-create.yaml
 EnvironmentRelation:
@@ -211,6 +215,10 @@ PasswordUserReset:
   $ref: ./auto-generated/models/password-user-reset.yaml
 PasswordUserSendResetLink:
   $ref: ./auto-generated/models/password-user-send-reset-link.yaml
+PermissionList:
+  $ref: ./auto-generated/models/permission-list.yaml
+PermissionRelation:
+  $ref: ./auto-generated/models/permission-relation.yaml
 Pipeline:
   $ref: ./auto-generated/models/pipeline.yaml
 PipelineCreate:
@@ -281,8 +289,12 @@ ServerUpdate:
   $ref: ./auto-generated/models/server-update.yaml
 Service:
   $ref: ./auto-generated/models/service.yaml
+ServiceEnvironmentCreate:
+  $ref: ./auto-generated/models/service-environment-create.yaml
 ServiceList:
   $ref: ./auto-generated/models/service-list.yaml
+ServiceOptions:
+  $ref: ./auto-generated/models/service-options.yaml
 ServiceProjectCreate:
   $ref: ./auto-generated/models/service-project-create.yaml
 ServiceRelation:
@@ -295,6 +307,8 @@ ServiceStart:
   $ref: ./auto-generated/models/service-start.yaml
 ServiceStop:
   $ref: ./auto-generated/models/service-stop.yaml
+ServiceType:
+  $ref: ./auto-generated/models/service-type.yaml
 ServiceUpdate:
   $ref: ./auto-generated/models/service-update.yaml
 ServiceUpdateStatus:
@@ -335,6 +349,24 @@ SslCertificateRelation:
   $ref: ./auto-generated/models/ssl-certificate-relation.yaml
 StaticCloudProviderCode:
   $ref: ./auto-generated/models/static-cloud-provider-code.yaml
+StaticCronJobFrequency:
+  $ref: ./auto-generated/models/static-cron-job-frequency.yaml
+StaticCronJobFrequencyList:
+  $ref: ./auto-generated/models/static-cron-job-frequency-list.yaml
+StaticEnvironmentType:
+  $ref: ./auto-generated/models/static-environment-type.yaml
+StaticEnvironmentTypeList:
+  $ref: ./auto-generated/models/static-environment-type-list.yaml
+StaticPermission:
+  $ref: ./auto-generated/models/static-permission.yaml
+StaticPermissionList:
+  $ref: ./auto-generated/models/static-permission-list.yaml
+StaticRequiredPermissions:
+  $ref: ./auto-generated/models/static-required-permissions.yaml
+StaticServiceType:
+  $ref: ./auto-generated/models/static-service-type.yaml
+StaticServiceTypeList:
+  $ref: ./auto-generated/models/static-service-type-list.yaml
 Step:
   $ref: ./auto-generated/models/step.yaml
 StepPipelineCreate:

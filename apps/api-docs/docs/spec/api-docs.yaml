@@ -172,6 +172,10 @@ tags:
   - name: Static Data - Cloud Provider Options
   - name: Static Data - Cloud Provider Service Instances
   - name: Static Data - Cloud Provider Services
+  - name: Static Data - Cron Job Options
+  - name: Static Data - Environment Options
+  - name: Static Data - Permissions
+  - name: Static Data - Service Options
   - name: Actions
   - name: Actions - Resources
   - name: Applications
@@ -260,6 +264,10 @@ x-tagGroups:
       - Static Data - Cloud Provider Options
       - Static Data - Cloud Provider Service Instances
       - Static Data - Cloud Provider Services
+      - Static Data - Cron Job Options
+      - Static Data - Environment Options
+      - Static Data - Permissions
+      - Static Data - Service Options
   - name: Actions
     tags:
       - Actions

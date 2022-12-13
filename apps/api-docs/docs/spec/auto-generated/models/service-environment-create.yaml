@@ -13,8 +13,8 @@ properties:
     description: 'The service version to be installed. Must be one of <code></code> Must be at least 3 characters. Must not be greater than 30 characters.'
     example: '5.7'
     type: string
-  environments:
-    $ref: '#/components/schemas/EnvironmentLinks'
+  servers:
+    $ref: '#/components/schemas/ResourceIdList'
 required:
   - type
   - version

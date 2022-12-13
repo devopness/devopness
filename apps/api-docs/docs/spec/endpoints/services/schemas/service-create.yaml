@@ -1,7 +1,7 @@
 type: object
 properties:
   type:
-    $ref: '#/components/schemas/ServiceName'
+    $ref: '#/components/schemas/ServiceType'
     example: redis
   auto_start:
     type: boolean
