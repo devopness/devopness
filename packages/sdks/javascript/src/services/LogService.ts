@@ -1,4 +1,4 @@
-import { LogsApiService } from "../api/generated/apis/logs-api";
+import { ActionsLogsApiService } from "../api/generated/apis/actions-logs-api";
 
-export class LogService extends LogsApiService {
+export class LogService extends ActionsLogsApiService {
 }
