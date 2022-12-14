@@ -149,7 +149,6 @@ export * from './role-update';
 export * from './script-runner';
 export * from './server';
 export * from './server-action';
-export * from './server-action-log';
 export * from './server-action-log-step';
 export * from './server-blueprint';
 export * from './server-cloud-service';

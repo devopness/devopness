@@ -12,7 +12,8 @@
  */
 
 
-import { ServerActionLog } from './server-action-log';
+import { ServerActionLogStep } from './server-action-log-step';
+import { ServerRelation } from './server-relation';
 
 /**
  * 
@@ -21,16 +22,22 @@ import { ServerActionLog } from './server-action-log';
  */
 export interface Log {
     /**
+     * 
+     * @type {ServerRelation}
+     * @memberof Log
+     */
+    server: ServerRelation | null;
+    /**
+     * 
+     * @type {ServerActionLogStep}
+     * @memberof Log
+     */
+    step: ServerActionLogStep | null;
+    /**
      * The date and time when the requested log record was last updated
      * @type {string}
      * @memberof Log
      */
-    updated_at?: string | null;
-    /**
-     * List of logs from multiple servers
-     * @type {Array<ServerActionLog>}
-     * @memberof Log
-     */
-    servers: Array<ServerActionLog>;
+    updated_at: string | null;
 }
 
