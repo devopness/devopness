@@ -79,7 +79,7 @@ export interface ApplicationUpdate {
      * @type {string}
      * @memberof ApplicationUpdate
      */
-    repository: string;
+    repository?: string;
     /**
      * Numeric ID of the pipeline used as default on deploy the application.
      * @type {string}
@@ -87,11 +87,11 @@ export interface ApplicationUpdate {
      */
     default_pipeline_id?: string;
     /**
-     * Numeric ID of the source provider account where the repository is hosted. Required when the `repository` field is informed.
+     * Numeric ID of the source provider account where the repository is hosted. This field is required when <code>repository</code> is present.
      * @type {number}
      * @memberof ApplicationUpdate
      */
-    source_provider_id: number;
+    source_provider_id?: number;
     /**
      * The relative directory where package manager\'s manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository. Must start with one of <code>/</code>.
      * @type {string}

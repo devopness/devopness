@@ -14,37 +14,12 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
-import { ApiError } from '../../generated/models';
-import { NetworkRule } from '../../generated/models';
-import { NetworkRuleProjectCreate } from '../../generated/models';
 import { NetworkRuleRelation } from '../../generated/models';
 
 /**
  * ProjectsNetworkRulesApiService - Auto-generated
  */
 export class ProjectsNetworkRulesApiService extends ApiBaseService {
-    /**
-     * 
-     * @summary Add a Network Rule to the given project
-     * @param {number} projectId The ID of the project.
-     * @param {NetworkRuleProjectCreate} networkRuleProjectCreate A JSON object containing the resource data
-     */
-    public async addProjectNetworkRule(projectId: number, networkRuleProjectCreate: NetworkRuleProjectCreate): Promise<ApiResponse<NetworkRule>> {
-        if (projectId === null || projectId === undefined) {
-            throw new ArgumentNullException('projectId', 'addProjectNetworkRule');
-        }
-        if (networkRuleProjectCreate === null || networkRuleProjectCreate === undefined) {
-            throw new ArgumentNullException('networkRuleProjectCreate', 'addProjectNetworkRule');
-        }
-        
-        let queryString = '';
-
-        const requestUrl = '/projects/{project_id}/network-rules' + (queryString? `?${queryString}` : '');
-
-        const response = await this.post <NetworkRule, NetworkRuleProjectCreate>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), networkRuleProjectCreate);
-        return new ApiResponse(response);
-    }
-
     /**
      * 
      * @summary Return a list of all Network Rules belonging to a project

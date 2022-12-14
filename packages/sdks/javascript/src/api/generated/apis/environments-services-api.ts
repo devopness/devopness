@@ -14,12 +14,37 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { ApiError } from '../../generated/models';
+import { Service } from '../../generated/models';
+import { ServiceEnvironmentCreate } from '../../generated/models';
 import { ServiceRelation } from '../../generated/models';
 
 /**
  * EnvironmentsServicesApiService - Auto-generated
  */
 export class EnvironmentsServicesApiService extends ApiBaseService {
+    /**
+     * 
+     * @summary Add a Service to the given environment
+     * @param {number} environmentId The ID of the environment.
+     * @param {ServiceEnvironmentCreate} serviceEnvironmentCreate A JSON object containing the resource data
+     */
+    public async addEnvironmentService(environmentId: number, serviceEnvironmentCreate: ServiceEnvironmentCreate): Promise<ApiResponse<Service>> {
+        if (environmentId === null || environmentId === undefined) {
+            throw new ArgumentNullException('environmentId', 'addEnvironmentService');
+        }
+        if (serviceEnvironmentCreate === null || serviceEnvironmentCreate === undefined) {
+            throw new ArgumentNullException('serviceEnvironmentCreate', 'addEnvironmentService');
+        }
+        
+        let queryString = '';
+
+        const requestUrl = '/environments/{environment_id}/services' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <Service, ServiceEnvironmentCreate>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))), serviceEnvironmentCreate);
+        return new ApiResponse(response);
+    }
+
     /**
      * 
      * @summary Return a list of all services belonging to a environment

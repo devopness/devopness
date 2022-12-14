@@ -14,23 +14,23 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
-import { ApplicationOptions } from '../../generated/models';
+import { CronJobOptions } from '../../generated/models';
 
 /**
- * StaticDataApplicationOptionsApiService - Auto-generated
+ * StaticDataCronJobOptionsApiService - Auto-generated
  */
-export class StaticDataApplicationOptionsApiService extends ApiBaseService {
+export class StaticDataCronJobOptionsApiService extends ApiBaseService {
     /**
      * 
-     * @summary List `Application` resource options
+     * @summary List `CronJob` resource options
      */
-    public async getStaticApplicationOptions(): Promise<ApiResponse<ApplicationOptions>> {
+    public async getStaticCronJobOptions(): Promise<ApiResponse<CronJobOptions>> {
         
         let queryString = '';
 
-        const requestUrl = '/static/application-options' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/static/cronjob-options' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <ApplicationOptions>(requestUrl);
+        const response = await this.get <CronJobOptions>(requestUrl);
         return new ApiResponse(response);
     }
 }

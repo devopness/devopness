@@ -14,23 +14,23 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
-import { ApplicationOptions } from '../../generated/models';
+import { EnvironmentOptions } from '../../generated/models';
 
 /**
- * StaticDataApplicationOptionsApiService - Auto-generated
+ * StaticDataEnvironmentOptionsApiService - Auto-generated
  */
-export class StaticDataApplicationOptionsApiService extends ApiBaseService {
+export class StaticDataEnvironmentOptionsApiService extends ApiBaseService {
     /**
      * 
-     * @summary List `Application` resource options
+     * @summary List `Environment` options
      */
-    public async getStaticApplicationOptions(): Promise<ApiResponse<ApplicationOptions>> {
+    public async getStaticEnvironmentOptions(): Promise<ApiResponse<EnvironmentOptions>> {
         
         let queryString = '';
 
-        const requestUrl = '/static/application-options' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/static/environment-options' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <ApplicationOptions>(requestUrl);
+        const response = await this.get <EnvironmentOptions>(requestUrl);
         return new ApiResponse(response);
     }
 }

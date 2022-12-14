@@ -12,31 +12,30 @@
  */
 
 
-import { PermissionPermissions } from './permission-permissions';
 
 /**
  * 
  * @export
- * @interface Permission
+ * @interface StaticEnvironmentType
  */
-export interface Permission {
+export interface StaticEnvironmentType {
     /**
-     * The type of resource this permission affects
+     * The internal name of the environment
      * @type {string}
-     * @memberof Permission
+     * @memberof StaticEnvironmentType
      */
-    resource_type: string;
+    value: string;
     /**
-     * Human readable resource name
+     * The formatted name to be displayed in user interfaces
      * @type {string}
-     * @memberof Permission
+     * @memberof StaticEnvironmentType
      */
     human_readable: string;
     /**
-     * List of permissions available for this resource
-     * @type {Array<PermissionPermissions>}
-     * @memberof Permission
+     * Text describing the environment purpose
+     * @type {string}
+     * @memberof StaticEnvironmentType
      */
-    permissions: Array<PermissionPermissions>;
+    hint: string;
 }
 

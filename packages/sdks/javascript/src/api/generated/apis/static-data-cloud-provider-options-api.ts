@@ -22,7 +22,7 @@ import { CloudProviderOptionsRelation } from '../../generated/models';
 export class StaticDataCloudProviderOptionsApiService extends ApiBaseService {
     /**
      * 
-     * @summary List options of the cloud providers
+     * @summary List `Cloud Provider` service options
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */

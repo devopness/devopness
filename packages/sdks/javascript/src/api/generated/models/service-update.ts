@@ -12,7 +12,6 @@
  */
 
 
-import { EnvironmentLinkItem } from './environment-link-item';
 
 /**
  * 
@@ -27,10 +26,10 @@ export interface ServiceUpdate {
      */
     id: number;
     /**
-     * 
-     * @type {Array<EnvironmentLinkItem>}
+     * List of valid resource IDs
+     * @type {Array<number>}
      * @memberof ServiceUpdate
      */
-    environments?: Array<EnvironmentLinkItem>;
+    servers?: Array<number>;
 }
 

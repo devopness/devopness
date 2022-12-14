@@ -81,6 +81,12 @@ export interface Service {
     description: string | null;
     /**
      * 
+     * @type {EnvironmentRelation}
+     * @memberof Service
+     */
+    environment: EnvironmentRelation;
+    /**
+     * 
      * @type {Array<EnvironmentRelation>}
      * @memberof Service
      */
