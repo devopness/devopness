@@ -8,6 +8,9 @@
 '/actions/{action_id}/retry':
   post:
     $ref: ./auto-generated/endpoints/retry-action.yaml
+'/actions/{action_id}/servers/{server_id}/steps/{action_step_order}/logs':
+  get:
+    $ref: ./auto-generated/endpoints/get-action-log.yaml
 '/actions/{resource_type}/{resource_id}/{action_type?}':
   get:
     $ref: ./auto-generated/endpoints/list-actions-by-resource-type-and-action-type.yaml

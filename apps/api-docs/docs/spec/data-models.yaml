@@ -283,7 +283,7 @@ LanguageRuntimeFrameworkDefaults:
 LanguageRuntimeList:
   $ref: ./auto-generated/models/language-runtime-list.yaml
 Log:
-  $ref: ./endpoints/logs/schemas/log.yaml
+  $ref: ./auto-generated/models/log.yaml
 LoginCredentials:
   $ref: ./endpoints/users/schemas/login-credentials.yaml
 Member:
@@ -404,14 +404,8 @@ Server:
   $ref: ./auto-generated/models/server.yaml
 ServerAction:
   $ref: ./endpoints/actions/schemas/server-action.yaml
-ServerActionLog:
-  $ref: ./endpoints/logs/schemas/server-action-log.yaml
-ServerActionLogs:
-  $ref: ./endpoints/logs/schemas/server-action-log-list.yaml
 ServerActionLogStep:
-  $ref: ./endpoints/logs/schemas/server-action-log-step.yaml
-ServerActionLogSteps:
-  $ref: ./endpoints/logs/schemas/server-action-log-step-list.yaml
+  $ref: ./auto-generated/models/server-action-log-step.yaml
 ServerActions:
   $ref: ./endpoints/actions/schemas/server-action-list.yaml
 ServerBlueprint:

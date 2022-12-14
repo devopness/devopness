@@ -7,6 +7,9 @@
 '/actions/{action_id}/retry':
   post:
     $ref: ./auto-generated/endpoints/retry-action.yaml
+'/actions/{action_id}/servers/{server_id}/steps/{action_step_order}/logs':
+  get:
+    $ref: ./auto-generated/endpoints/get-action-log.yaml
 /actions/{resource_type}/{resource_id}:
   get:
     $ref: ./endpoints/actions/paths/action-list-resource-type-id.yaml
@@ -130,27 +133,6 @@
 '/hooks/{hook_type}/{hook_id}/requests':
   get:
     $ref: ./auto-generated/endpoints/list-hook-requests-by-hook-type.yaml
-/logs/action/{action_id}:
-  get:
-    $ref: ./endpoints/logs/paths/logs-action-id.yaml
-/logs/action/{action_id}/server/{server_id}/step/{action_step_order}:
-  get:
-    $ref: ./endpoints/logs/paths/logs-action-id-server-id-step-order.yaml
-/logs/service/{service_id}/reload:
-  get:
-    $ref: ./endpoints/logs/paths/logs-service-id-reload.yaml
-/logs/service/{service_id}/restart:
-  get:
-    $ref: ./endpoints/logs/paths/logs-service-id-restart.yaml
-/logs/service/{service_id}/start:
-  get:
-    $ref: ./endpoints/logs/paths/logs-service-id-start.yaml
-/logs/service/{service_id}/status:
-  get:
-    $ref: ./endpoints/logs/paths/logs-service-id-status.yaml
-/logs/service/{service_id}/stop:
-  get:
-    $ref: ./endpoints/logs/paths/logs-service-id-stop.yaml
 '/network-rules/{network_rule_id}':
   delete:
     $ref: ./auto-generated/endpoints/delete-network-rule.yaml

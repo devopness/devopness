@@ -185,6 +185,8 @@ LanguageRuntimeFrameworkDefaults:
   $ref: ./auto-generated/models/language-runtime-framework-defaults.yaml
 LanguageRuntimeList:
   $ref: ./auto-generated/models/language-runtime-list.yaml
+Log:
+  $ref: ./auto-generated/models/log.yaml
 Member:
   $ref: ./auto-generated/models/member.yaml
 MemberList:
@@ -275,6 +277,8 @@ ScriptRunnerList:
   $ref: ./auto-generated/models/script-runner-list.yaml
 Server:
   $ref: ./auto-generated/models/server.yaml
+ServerActionLogStep:
+  $ref: ./auto-generated/models/server-action-log-step.yaml
 ServerCommand:
   $ref: ./auto-generated/models/server-command.yaml
 ServerEnvironmentCreate:
