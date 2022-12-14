@@ -37,6 +37,10 @@ test("base URL is configurable on initialization", () => {
   expect(apiClient.static).toHaveProperty('cloudProviderOptions')
   expect(apiClient.static).toHaveProperty('cloudProviderServiceInstances')
   expect(apiClient.static).toHaveProperty('cloudProviderServices')
+  expect(apiClient.static).toHaveProperty('cronJobOptions')
+  expect(apiClient.static).toHaveProperty('environmentOptions')
+  expect(apiClient.static).toHaveProperty('permissions')
+  expect(apiClient.static).toHaveProperty('serviceOptions')
 
   expect(apiClient).toHaveProperty('teamInvitations')
   expect(apiClient).toHaveProperty('teams')
