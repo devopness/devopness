@@ -17,25 +17,25 @@ import { CronJobPattern } from './cron-job-pattern';
 /**
  * 
  * @export
- * @interface CronJobFrequency
+ * @interface StaticCronJobFrequency
  */
-export interface CronJobFrequency {
+export interface StaticCronJobFrequency {
     /**
      * Frequency pattern to trigger the cronjob
      * @type {string}
-     * @memberof CronJobFrequency
+     * @memberof StaticCronJobFrequency
      */
     value: string;
     /**
      * 
      * @type {CronJobPattern}
-     * @memberof CronJobFrequency
+     * @memberof StaticCronJobFrequency
      */
     human_readable: CronJobPattern;
     /**
      * Text hint describing the frequency
      * @type {string}
-     * @memberof CronJobFrequency
+     * @memberof StaticCronJobFrequency
      */
     hint: string;
 }

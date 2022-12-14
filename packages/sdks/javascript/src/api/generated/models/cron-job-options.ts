@@ -12,7 +12,7 @@
  */
 
 
-import { CronJobFrequency } from './cron-job-frequency';
+import { StaticCronJobFrequency } from './static-cron-job-frequency';
 
 /**
  * 
@@ -22,9 +22,9 @@ import { CronJobFrequency } from './cron-job-frequency';
 export interface CronJobOptions {
     /**
      * 
-     * @type {Array<CronJobFrequency>}
+     * @type {Array<StaticCronJobFrequency>}
      * @memberof CronJobOptions
      */
-    frequencies: Array<CronJobFrequency>;
+    frequencies: Array<StaticCronJobFrequency>;
 }
 

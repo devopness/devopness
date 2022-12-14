@@ -22,7 +22,7 @@ import { CloudProviderService } from '../../generated/models';
 export class StaticDataCloudProviderServicesApiService extends ApiBaseService {
     /**
      * 
-     * @summary Get details of a single cloud provider service
+     * @summary Get details of a single `Cloud Provider Service`
      * @param {string} cloudProviderServiceCode The cloud provider service code.
      */
     public async getStaticCloudProviderService(cloudProviderServiceCode: string): Promise<ApiResponse<CloudProviderService>> {

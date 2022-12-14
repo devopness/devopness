@@ -16,13 +16,13 @@
 /**
  * 
  * @export
- * @interface ServiceTypeSupportedVersions
+ * @interface StaticServiceTypeSupportedVersions
  */
-export interface ServiceTypeSupportedVersions {
+export interface StaticServiceTypeSupportedVersions {
     /**
      * The service\'s version that is supported
      * @type {string}
-     * @memberof ServiceTypeSupportedVersions
+     * @memberof StaticServiceTypeSupportedVersions
      */
     version?: string;
 }

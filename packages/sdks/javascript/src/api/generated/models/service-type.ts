@@ -12,38 +12,19 @@
  */
 
 
-import { ServiceName } from './service-name';
-import { ServiceTypeSupportedVersions } from './service-type-supported-versions';
 
 /**
- * 
+ * Types of OS Services supported by Devopness
  * @export
- * @interface ServiceType
+ * @enum {string}
  */
-export interface ServiceType {
-    /**
-     * 
-     * @type {ServiceName}
-     * @memberof ServiceType
-     */
-    value: ServiceName;
-    /**
-     * Displayable version of the service name
-     * @type {string}
-     * @memberof ServiceType
-     */
-    human_readable: string;
-    /**
-     * Text describing the service
-     * @type {string}
-     * @memberof ServiceType
-     */
-    hint: string;
-    /**
-     * List of service versions supported by Devopness
-     * @type {Array<ServiceTypeSupportedVersions>}
-     * @memberof ServiceType
-     */
-    supported_versions: Array<ServiceTypeSupportedVersions>;
+export enum ServiceType {
+    Docker = 'docker',
+    Mysql = 'mysql',
+    Nginx = 'nginx',
+    Php = 'php',
+    Redis = 'redis',
+    Supervisor = 'supervisor'
 }
+
 

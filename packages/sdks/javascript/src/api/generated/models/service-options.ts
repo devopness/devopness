@@ -12,7 +12,7 @@
  */
 
 
-import { ServiceType } from './service-type';
+import { StaticServiceType } from './static-service-type';
 
 /**
  * 
@@ -21,10 +21,10 @@ import { ServiceType } from './service-type';
  */
 export interface ServiceOptions {
     /**
-     * 
-     * @type {Array<ServiceType>}
+     * List of service types
+     * @type {Array<StaticServiceType>}
      * @memberof ServiceOptions
      */
-    types: Array<ServiceType>;
+    types: Array<StaticServiceType>;
 }
 

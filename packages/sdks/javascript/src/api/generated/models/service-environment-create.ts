@@ -12,45 +12,44 @@
  */
 
 
-import { EnvironmentLinkItem } from './environment-link-item';
 import { ServiceInitialState } from './service-initial-state';
 import { ServiceType } from './service-type';
 
 /**
  * 
  * @export
- * @interface ServiceProjectCreate
+ * @interface ServiceEnvironmentCreate
  */
-export interface ServiceProjectCreate {
+export interface ServiceEnvironmentCreate {
     /**
      * Tells if the service should start automatically on operating system boot.
      * @type {boolean}
-     * @memberof ServiceProjectCreate
+     * @memberof ServiceEnvironmentCreate
      */
     auto_start?: boolean;
     /**
      * 
      * @type {ServiceInitialState}
-     * @memberof ServiceProjectCreate
+     * @memberof ServiceEnvironmentCreate
      */
     initial_state?: ServiceInitialState;
     /**
      * 
      * @type {ServiceType}
-     * @memberof ServiceProjectCreate
+     * @memberof ServiceEnvironmentCreate
      */
     type: ServiceType;
     /**
      * The service version to be installed. Must be one of <code></code> Must be at least 3 characters. Must not be greater than 30 characters.
      * @type {string}
-     * @memberof ServiceProjectCreate
+     * @memberof ServiceEnvironmentCreate
      */
     version: string;
     /**
-     * 
-     * @type {Array<EnvironmentLinkItem>}
-     * @memberof ServiceProjectCreate
+     * List of valid resource IDs
+     * @type {Array<number>}
+     * @memberof ServiceEnvironmentCreate
      */
-    environments?: Array<EnvironmentLinkItem>;
+    servers?: Array<number>;
 }
 

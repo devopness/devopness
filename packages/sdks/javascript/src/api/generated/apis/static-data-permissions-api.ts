@@ -14,23 +14,19 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
-import { ServiceRelation } from '../../generated/models';
+import { PermissionRelation } from '../../generated/models';
 
 /**
- * ProjectsServicesApiService - Auto-generated
+ * StaticDataPermissionsApiService - Auto-generated
  */
-export class ProjectsServicesApiService extends ApiBaseService {
+export class StaticDataPermissionsApiService extends ApiBaseService {
     /**
      * 
-     * @summary List all services in a project
-     * @param {number} projectId The ID of the project.
+     * @summary List available `Role` permissions
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */
-    public async listProjectServices(projectId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<ServiceRelation>>> {
-        if (projectId === null || projectId === undefined) {
-            throw new ArgumentNullException('projectId', 'listProjectServices');
-        }
+    public async listStaticPermissions(page?: number, perPage?: number): Promise<ApiResponse<Array<PermissionRelation>>> {
         
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
@@ -42,9 +38,9 @@ export class ProjectsServicesApiService extends ApiBaseService {
             queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
         }
 
-        const requestUrl = '/projects/{project_id}/services' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/static/permissions' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<ServiceRelation>>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
+        const response = await this.get <Array<PermissionRelation>>(requestUrl);
         return new ApiResponse(response);
     }
 }

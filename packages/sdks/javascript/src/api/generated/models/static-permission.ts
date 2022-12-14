@@ -16,31 +16,31 @@
 /**
  * 
  * @export
- * @interface PermissionPermissions
+ * @interface StaticPermission
  */
-export interface PermissionPermissions {
+export interface StaticPermission {
     /**
      * Name of permission
      * @type {string}
-     * @memberof PermissionPermissions
+     * @memberof StaticPermission
      */
     name: string;
     /**
      * Human readable permission name
      * @type {string}
-     * @memberof PermissionPermissions
+     * @memberof StaticPermission
      */
     human_readable: string;
     /**
      * Description of what a role is allowed to do with a resource if she has this permission
      * @type {string}
-     * @memberof PermissionPermissions
+     * @memberof StaticPermission
      */
     hint: string;
     /**
      * List of permissions the role must have before receiving this one
      * @type {Array<string>}
-     * @memberof PermissionPermissions
+     * @memberof StaticPermission
      */
     required_permissions?: Array<string>;
 }

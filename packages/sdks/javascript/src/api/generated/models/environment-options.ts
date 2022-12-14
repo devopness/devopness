@@ -12,7 +12,7 @@
  */
 
 
-import { EnvironmentOptionType } from './environment-option-type';
+import { StaticEnvironmentType } from './static-environment-type';
 
 /**
  * 
@@ -21,10 +21,10 @@ import { EnvironmentOptionType } from './environment-option-type';
  */
 export interface EnvironmentOptions {
     /**
-     * 
-     * @type {Array<EnvironmentOptionType>}
+     * The supported environments types
+     * @type {Array<StaticEnvironmentType>}
      * @memberof EnvironmentOptions
      */
-    types: Array<EnvironmentOptionType>;
+    types: Array<StaticEnvironmentType>;
 }
 

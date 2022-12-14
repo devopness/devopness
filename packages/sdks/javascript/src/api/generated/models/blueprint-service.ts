@@ -12,7 +12,7 @@
  */
 
 
-import { ServiceName } from './service-name';
+import { ServiceType } from './service-type';
 
 /**
  * 
@@ -22,9 +22,9 @@ import { ServiceName } from './service-name';
 export interface BlueprintService {
     /**
      * 
-     * @type {ServiceName}
+     * @type {ServiceType}
      * @memberof BlueprintService
      */
-    name?: ServiceName;
+    name?: ServiceType;
 }
 

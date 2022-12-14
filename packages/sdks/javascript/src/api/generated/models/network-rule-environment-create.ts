@@ -18,49 +18,55 @@ import { NetworkRuleType } from './network-rule-type';
 /**
  * 
  * @export
- * @interface NetworkRuleUpdate
+ * @interface NetworkRuleEnvironmentCreate
  */
-export interface NetworkRuleUpdate {
-    /**
-     * The unique ID of the given network rule.
-     * @type {number}
-     * @memberof NetworkRuleUpdate
-     */
-    id: number;
+export interface NetworkRuleEnvironmentCreate {
     /**
      * The rule\'s name/description/reminder. Must be at least 3 characters. Must not be greater than 60 characters.
      * @type {string}
-     * @memberof NetworkRuleUpdate
+     * @memberof NetworkRuleEnvironmentCreate
      */
     name: string;
     /**
      * 
      * @type {NetworkRuleType}
-     * @memberof NetworkRuleUpdate
+     * @memberof NetworkRuleEnvironmentCreate
      */
     type: NetworkRuleType;
     /**
      * 
      * @type {NetworkRuleProtocol}
-     * @memberof NetworkRuleUpdate
+     * @memberof NetworkRuleEnvironmentCreate
      */
     protocol?: NetworkRuleProtocol;
     /**
      * Starting range of the public ipv4 or ipv6 addresses that can access this rule. Must be a valid IP address.
      * @type {string}
-     * @memberof NetworkRuleUpdate
+     * @memberof NetworkRuleEnvironmentCreate
      */
     ip_address_from?: string;
     /**
      * Ending range of the public ipv4 or ipv6 addresses that can access this rule. Must be a valid IP address.
      * @type {string}
-     * @memberof NetworkRuleUpdate
+     * @memberof NetworkRuleEnvironmentCreate
      */
     ip_address_to?: string;
     /**
+     * Starting range of network ports to be considered by this rule. Must be at least 1. Must not be greater than 65535.
+     * @type {number}
+     * @memberof NetworkRuleEnvironmentCreate
+     */
+    port_from: number;
+    /**
+     * Ending range of network ports to be considered by this rule. Must be at least 1. Must not be greater than 65535.
+     * @type {number}
+     * @memberof NetworkRuleEnvironmentCreate
+     */
+    port_to: number;
+    /**
      * List of valid resource IDs
      * @type {Array<number>}
-     * @memberof NetworkRuleUpdate
+     * @memberof NetworkRuleEnvironmentCreate
      */
     servers?: Array<number>;
 }
