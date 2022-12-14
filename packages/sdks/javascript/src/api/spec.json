@@ -184,6 +184,74 @@
         }
       }
     },
+    "/actions/{action_id}/servers/{server_id}/steps/{action_step_order}/logs": {
+      "get": {
+        "summary": "Get action server step log",
+        "operationId": "getActionLog",
+        "description": {
+          "$ref": "../spec/descriptions/get-action-log.md"
+        },
+        "tags": [
+          "Actions - Logs"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "action_id",
+            "description": "The ID of the action.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "in": "path",
+            "name": "action_step_order",
+            "description": "The action step order.",
+            "example": 2,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "in": "path",
+            "name": "server_id",
+            "description": "The ID of the server.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Log"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/actions/{resource_type}/{resource_id}": {
       "get": {
         "summary": "List resource actions",
@@ -3226,346 +3294,6 @@
                 "description": "Link header with `first`, `last`, `previous` and `next` page's links"
               }
             }
-          }
-        }
-      }
-    },
-    "/logs/action/{action_id}": {
-      "get": {
-        "summary": "Get action log",
-        "operationId": "getActionLog",
-        "tags": [
-          "Logs"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "action_id",
-            "example": 9139,
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "Unique ID of the action to get logs from"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Log"
-                }
-              }
-            }
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          }
-        }
-      }
-    },
-    "/logs/action/{action_id}/server/{server_id}/step/{action_step_order}": {
-      "get": {
-        "summary": "Get action step log",
-        "operationId": "getActionStepLog",
-        "tags": [
-          "Logs"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "action_id",
-            "example": 9139,
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "Unique ID of the action to get logs from"
-          },
-          {
-            "in": "path",
-            "name": "server_id",
-            "example": 95189123,
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "Unique ID of the server to get logs from"
-          },
-          {
-            "in": "path",
-            "name": "action_step_order",
-            "example": 2,
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "Step's order number to get the logs from"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ActionStepLog"
-                }
-              }
-            }
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          }
-        }
-      }
-    },
-    "/logs/service/{service_id}/reload": {
-      "get": {
-        "summary": "Get service reload log",
-        "operationId": "getServiceReloadLog",
-        "tags": [
-          "Logs"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "service_id",
-            "example": 1,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "required": true,
-            "description": "The unique id of the service"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Log"
-                }
-              }
-            }
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          }
-        }
-      }
-    },
-    "/logs/service/{service_id}/restart": {
-      "get": {
-        "summary": "Get service restart log",
-        "operationId": "getServiceRestartLog",
-        "tags": [
-          "Logs"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "service_id",
-            "example": 1,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "required": true,
-            "description": "The unique id of the service"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Log"
-                }
-              }
-            }
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          }
-        }
-      }
-    },
-    "/logs/service/{service_id}/start": {
-      "get": {
-        "summary": "Get service start log",
-        "operationId": "getServiceStartLog",
-        "tags": [
-          "Logs"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "service_id",
-            "example": 1,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "required": true,
-            "description": "The unique id of the service"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Log"
-                }
-              }
-            }
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          }
-        }
-      }
-    },
-    "/logs/service/{service_id}/status": {
-      "get": {
-        "summary": "Get service status log",
-        "operationId": "getServiceStatusLog",
-        "tags": [
-          "Logs"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "service_id",
-            "example": 1,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "required": true,
-            "description": "The unique id of the service"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Log"
-                }
-              }
-            }
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          }
-        }
-      }
-    },
-    "/logs/service/{service_id}/stop": {
-      "get": {
-        "summary": "Get service stop log",
-        "operationId": "getServiceStopLog",
-        "tags": [
-          "Logs"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "service_id",
-            "example": 1,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "required": true,
-            "description": "The unique id of the service"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Log"
-                }
-              }
-            }
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
           }
         }
       }
@@ -15064,19 +14792,23 @@
       "Log": {
         "type": "object",
         "properties": {
+          "server": {
+            "$ref": "#/components/schemas/ServerRelation"
+          },
+          "step": {
+            "$ref": "#/components/schemas/ServerActionLogStep"
+          },
           "updated_at": {
-            "type": "string",
-            "format": "date-time",
             "description": "The date and time when the requested log record was last updated",
+            "type": "string",
             "example": "2019-09-25T13:52:04.000000Z",
             "nullable": true
-          },
-          "servers": {
-            "$ref": "#/components/schemas/ServerActionLogs"
           }
         },
         "required": [
-          "servers"
+          "server",
+          "step",
+          "updated_at"
         ]
       },
       "LoginCredentials": {
@@ -16685,33 +16417,6 @@
           }
         }
       },
-      "ServerActionLog": {
-        "type": "object",
-        "nullable": true,
-        "properties": {
-          "id": {
-            "type": "integer",
-            "description": "The unique id of the server",
-            "example": 9654123
-          },
-          "name": {
-            "type": "string",
-            "description": "The server's hostname",
-            "example": "web-srv-1"
-          },
-          "steps": {
-            "$ref": "#/components/schemas/ServerActionLogSteps"
-          }
-        }
-      },
-      "ServerActionLogs": {
-        "type": "array",
-        "minItems": 0,
-        "description": "List of logs from multiple servers",
-        "items": {
-          "$ref": "#/components/schemas/ServerActionLog"
-        }
-      },
       "ServerActionLogStep": {
         "type": "object",
         "nullable": true,
@@ -16747,14 +16452,6 @@
           "completed_at",
           "output"
         ]
-      },
-      "ServerActionLogSteps": {
-        "type": "array",
-        "minItems": 0,
-        "description": "List of server action steps",
-        "items": {
-          "$ref": "#/components/schemas/ServerActionLogStep"
-        }
       },
       "ServerActions": {
         "type": "array",
