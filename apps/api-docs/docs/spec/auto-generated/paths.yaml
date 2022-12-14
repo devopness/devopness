@@ -72,6 +72,8 @@
   put:
     $ref: ./auto-generated/endpoints/update-environment.yaml
 '/environments/{environment_id}/applications':
+  get:
+    $ref: ./auto-generated/endpoints/list-environment-applications.yaml
   post:
     $ref: ./auto-generated/endpoints/add-environment-application.yaml
 '/environments/{environment_id}/cron-jobs':
@@ -172,51 +174,16 @@
     $ref: ./auto-generated/endpoints/get-project.yaml
   put:
     $ref: ./auto-generated/endpoints/update-project.yaml
-'/projects/{project_id}/applications':
-  get:
-    $ref: ./auto-generated/endpoints/list-project-applications.yaml
-  post:
-    $ref: ./auto-generated/endpoints/add-project-application.yaml
-'/projects/{project_id}/cron-jobs':
-  get:
-    $ref: ./auto-generated/endpoints/list-project-cron-jobs.yaml
-  post:
-    $ref: ./auto-generated/endpoints/add-project-cron-job.yaml
-'/projects/{project_id}/daemons':
-  get:
-    $ref: ./auto-generated/endpoints/list-project-daemons.yaml
-  post:
-    $ref: ./auto-generated/endpoints/add-project-daemon.yaml
 '/projects/{project_id}/environments':
   get:
     $ref: ./auto-generated/endpoints/list-project-environments.yaml
   post:
     $ref: ./auto-generated/endpoints/add-project-environment.yaml
-'/projects/{project_id}/network-rules':
-  get:
-    $ref: ./auto-generated/endpoints/list-project-network-rules.yaml
-  post:
-    $ref: ./auto-generated/endpoints/add-project-network-rule.yaml
 '/projects/{project_id}/roles':
   get:
     $ref: ./auto-generated/endpoints/list-project-roles.yaml
   post:
     $ref: ./auto-generated/endpoints/add-project-role.yaml
-'/projects/{project_id}/servers':
-  get:
-    $ref: ./auto-generated/endpoints/list-project-servers.yaml
-  post:
-    $ref: ./auto-generated/endpoints/add-project-server.yaml
-'/projects/{project_id}/services':
-  get:
-    $ref: ./auto-generated/endpoints/list-project-services.yaml
-  post:
-    $ref: ./auto-generated/endpoints/add-project-service.yaml
-'/projects/{project_id}/ssh-keys':
-  get:
-    $ref: ./auto-generated/endpoints/list-project-ssh-keys.yaml
-  post:
-    $ref: ./auto-generated/endpoints/add-project-ssh-key.yaml
 '/projects/{project_id}/teams':
   get:
     $ref: ./auto-generated/endpoints/list-project-teams.yaml

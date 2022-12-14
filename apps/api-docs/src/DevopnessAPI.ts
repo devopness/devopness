@@ -39,12 +39,12 @@ export default class DevopnessAPI {
     }
 
     /**
-     * Gets all application IDs belonging to a project.
-     * @param projectId ID of the project to be queried
+     * Gets all application IDs belonging to an environment.
+     * @param environmentId ID of the environment to be queried
      */
-    listProjectApplications(projectId: string): string[] {
-        const tag = '[listProjectApplications]';
-        const res = this.apiRequest('GET', `/projects/${projectId}/applications`, tag);
+    listEnvironmentApplications(environmentId: string): string[] {
+        const tag = '[listEnvironmentApplications]';
+        const res = this.apiRequest('GET', `/environments/${environmentId}/applications`, tag);
         const body = res.getBody('utf8');
         if (res.statusCode == 200) {
             return JSON.parse(body).map((p: Identifiable) => p.id);

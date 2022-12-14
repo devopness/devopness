@@ -318,7 +318,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         if (authToken && authToken.access_token && project) {
             const host = transaction.host;
             const api = new DevopnessAPI(host, authToken.access_token, hooks.log);
-            const appIds = api.listProjectApplications(project.id);
+            const appIds = api.listEnvironmentApplications(project.id);
             for (const appId of appIds) {
                 const success = api.deleteApplication(appId);
                 if (!success) {

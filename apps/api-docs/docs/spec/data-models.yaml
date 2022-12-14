@@ -58,8 +58,6 @@ ApplicationOptions:
   $ref: ./auto-generated/models/application-options.yaml
 ApplicationPipeline:
   $ref: ./endpoints/applications/schemas/application-pipeline.yaml
-ApplicationProjectCreate:
-  $ref: ./auto-generated/models/application-project-create.yaml
 ApplicationRelation:
   $ref: ./auto-generated/models/application-relation.yaml
 ApplicationType:
@@ -138,8 +136,6 @@ CronJobOptions:
   $ref: ./auto-generated/models/cron-job-options.yaml
 CronJobPattern:
   $ref: ./auto-generated/models/cron-job-pattern.yaml
-CronJobProjectCreate:
-  $ref: ./auto-generated/models/cron-job-project-create.yaml
 CronJobRelation:
   $ref: ./auto-generated/models/cron-job-relation.yaml
 CronJobUpdate:
@@ -154,8 +150,6 @@ DaemonEnvironmentCreate:
   $ref: ./auto-generated/models/daemon-environment-create.yaml
 DaemonList:
   $ref: ./auto-generated/models/daemon-list.yaml
-DaemonProjectCreate:
-  $ref: ./auto-generated/models/daemon-project-create.yaml
 DaemonRelation:
   $ref: ./auto-generated/models/daemon-relation.yaml
 DaemonRestart:
@@ -302,8 +296,6 @@ NetworkRuleList:
   $ref: ./auto-generated/models/network-rule-list.yaml
 NetworkRuleEnvironmentCreate:
   $ref: ./auto-generated/models/network-rule-environment-create.yaml
-NetworkRuleProjectCreate:
-  $ref: ./auto-generated/models/network-rule-project-create.yaml
 NetworkRuleProtocol:
   $ref: ./shared/schemas/network-rule-protocol.yaml
 NetworkRuleRelation:
@@ -422,8 +414,6 @@ ServerCloudServiceName:
   $ref: ./endpoints/servers/schemas/server-cloud-service-name.yaml
 ServerEnvironmentCreate:
   $ref: ./auto-generated/models/server-environment-create.yaml
-ServerProjectCreate:
-  $ref: ./auto-generated/models/server-project-create.yaml
 ServerProvider:
   $ref: ./endpoints/servers/schemas/server-provider.yaml
 ServerProvisionSettings:
@@ -450,8 +440,6 @@ ServiceOptions:
   $ref: ./auto-generated/models/service-options.yaml
 ServiceType:
   $ref: ./auto-generated/models/service-type.yaml
-ServiceProjectCreate:
-  $ref: ./auto-generated/models/service-project-create.yaml
 ServiceRelation:
   $ref: ./auto-generated/models/service-relation.yaml
 ServiceReload:
@@ -496,8 +484,6 @@ SshKeyEnvironmentCreate:
   $ref: ./auto-generated/models/ssh-key-environment-create.yaml
 SshKeyList:
   $ref: ./auto-generated/models/ssh-key-list.yaml
-SshKeyProjectCreate:
-  $ref: ./auto-generated/models/ssh-key-project-create.yaml
 SshKeyRelation:
   $ref: ./auto-generated/models/ssh-key-relation.yaml
 SshKeyUpdate:

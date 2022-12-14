@@ -19,8 +19,6 @@ ApplicationList:
   $ref: ./auto-generated/models/application-list.yaml
 ApplicationOptions:
   $ref: ./auto-generated/models/application-options.yaml
-ApplicationProjectCreate:
-  $ref: ./auto-generated/models/application-project-create.yaml
 ApplicationRelation:
   $ref: ./auto-generated/models/application-relation.yaml
 ApplicationType:
@@ -87,8 +85,6 @@ CronJobOptions:
   $ref: ./auto-generated/models/cron-job-options.yaml
 CronJobPattern:
   $ref: ./auto-generated/models/cron-job-pattern.yaml
-CronJobProjectCreate:
-  $ref: ./auto-generated/models/cron-job-project-create.yaml
 CronJobRelation:
   $ref: ./auto-generated/models/cron-job-relation.yaml
 CronJobUpdate:
@@ -99,8 +95,6 @@ DaemonEnvironmentCreate:
   $ref: ./auto-generated/models/daemon-environment-create.yaml
 DaemonList:
   $ref: ./auto-generated/models/daemon-list.yaml
-DaemonProjectCreate:
-  $ref: ./auto-generated/models/daemon-project-create.yaml
 DaemonRelation:
   $ref: ./auto-generated/models/daemon-relation.yaml
 DaemonRestart:
@@ -199,8 +193,6 @@ NetworkRuleEnvironmentCreate:
   $ref: ./auto-generated/models/network-rule-environment-create.yaml
 NetworkRuleList:
   $ref: ./auto-generated/models/network-rule-list.yaml
-NetworkRuleProjectCreate:
-  $ref: ./auto-generated/models/network-rule-project-create.yaml
 NetworkRuleRelation:
   $ref: ./auto-generated/models/network-rule-relation.yaml
 NetworkRuleUpdate:
@@ -285,8 +277,6 @@ ServerEnvironmentCreate:
   $ref: ./auto-generated/models/server-environment-create.yaml
 ServerList:
   $ref: ./auto-generated/models/server-list.yaml
-ServerProjectCreate:
-  $ref: ./auto-generated/models/server-project-create.yaml
 ServerRelation:
   $ref: ./auto-generated/models/server-relation.yaml
 ServerUpdate:
@@ -299,8 +289,6 @@ ServiceList:
   $ref: ./auto-generated/models/service-list.yaml
 ServiceOptions:
   $ref: ./auto-generated/models/service-options.yaml
-ServiceProjectCreate:
-  $ref: ./auto-generated/models/service-project-create.yaml
 ServiceRelation:
   $ref: ./auto-generated/models/service-relation.yaml
 ServiceReload:
@@ -335,8 +323,6 @@ SshKeyEnvironmentCreate:
   $ref: ./auto-generated/models/ssh-key-environment-create.yaml
 SshKeyList:
   $ref: ./auto-generated/models/ssh-key-list.yaml
-SshKeyProjectCreate:
-  $ref: ./auto-generated/models/ssh-key-project-create.yaml
 SshKeyRelation:
   $ref: ./auto-generated/models/ssh-key-relation.yaml
 SshKeyUpdate:
