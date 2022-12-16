@@ -2391,167 +2391,6 @@
         }
       }
     },
-    "/environments/{environment_id}/servers/replace-linked-servers": {
-      "post": {
-        "summary": "Replace all linked servers by new ones. Immediately deploying all changes to previously and newly linked servers",
-        "operationId": "replaceLinkedServers",
-        "tags": [
-          "Environments - Servers"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "environment_id",
-            "example": 1,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "required": true,
-            "description": "Unique ID of the environment"
-          }
-        ],
-        "requestBody": {
-          "description": "A JSON object containing environment server link parameters",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/EnvironmentLinkItem"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "$ref": "#/components/responses/NoContent"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          }
-        }
-      }
-    },
-    "/environments/{environment_id}/servers/{server_id}/link": {
-      "post": {
-        "summary": "Link a server to an environment",
-        "operationId": "linkServerToEnvironment",
-        "tags": [
-          "Environments - Servers"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "environment_id",
-            "example": 1,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "required": true,
-            "description": "Unique ID of the environment"
-          },
-          {
-            "in": "path",
-            "name": "server_id",
-            "example": 1,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "required": true,
-            "description": "Unique ID of the server to be linked"
-          }
-        ],
-        "requestBody": {
-          "description": "A JSON object containing environment server link optional parameters",
-          "required": false,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/EnvironmentLinkItem"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "$ref": "#/components/responses/NoContent"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          }
-        }
-      }
-    },
-    "/environments/{environment_id}/servers/{server_id}/unlink": {
-      "delete": {
-        "summary": "Unlink/Remove a server from an environment",
-        "operationId": "unlinkServerFromEnvironment",
-        "tags": [
-          "Environments - Servers"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "environment_id",
-            "example": 1,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "required": true,
-            "description": "Unique ID of the environment"
-          },
-          {
-            "in": "path",
-            "name": "server_id",
-            "example": 1,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "required": true,
-            "description": "Unique ID of the server to unlink"
-          }
-        ],
-        "responses": {
-          "204": {
-            "$ref": "#/components/responses/NoContent"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          }
-        }
-      }
-    },
     "/environments/{environment_id}/team-memberships": {
       "get": {
         "summary": "Return a list of teams with access to an environment",
@@ -10298,9 +10137,6 @@
           "environment": {
             "$ref": "#/components/schemas/EnvironmentRelation"
           },
-          "environments": {
-            "$ref": "#/components/schemas/Environments"
-          },
           "servers": {
             "$ref": "#/components/schemas/Servers"
           },
@@ -10349,7 +10185,6 @@
           "created_by_user",
           "last_deployments",
           "environment",
-          "environments",
           "servers",
           "source_provider",
           "ssl_certificates",
@@ -10506,7 +10341,8 @@
           "entrypoint",
           "install_dependencies_dev",
           "install_dependencies_prod",
-          "requires_daemon"
+          "requires_daemon",
+          "servers"
         ]
       },
       "ApplicationLastDeployments": {
@@ -11585,8 +11421,8 @@
           "project": {
             "$ref": "#/components/schemas/ProjectRelation"
           },
-          "environments": {
-            "$ref": "#/components/schemas/Environments"
+          "environment": {
+            "$ref": "#/components/schemas/EnvironmentRelation"
           },
           "servers": {
             "$ref": "#/components/schemas/Servers"
@@ -11614,7 +11450,7 @@
           "created_by_user",
           "application",
           "project",
-          "environments",
+          "environment",
           "servers",
           "created_at",
           "updated_at"
@@ -11656,7 +11492,8 @@
           "name",
           "command",
           "pattern",
-          "run_as_user"
+          "run_as_user",
+          "servers"
         ]
       },
       "CronJobList": {
@@ -11804,7 +11641,8 @@
           "pattern",
           "name",
           "command",
-          "run_as_user"
+          "run_as_user",
+          "servers"
         ]
       },
       "CronJobs": {
@@ -11863,9 +11701,6 @@
           "environment": {
             "$ref": "#/components/schemas/EnvironmentRelation"
           },
-          "environments": {
-            "$ref": "#/components/schemas/Environments"
-          },
           "servers": {
             "$ref": "#/components/schemas/Servers"
           },
@@ -11892,7 +11727,6 @@
           "last_action",
           "application",
           "environment",
-          "environments",
           "servers",
           "created_at",
           "updated_at"
@@ -11941,7 +11775,8 @@
           "process_count",
           "working_directory",
           "run_as_user",
-          "name"
+          "name",
+          "servers"
         ]
       },
       "DaemonList": {
@@ -12081,7 +11916,8 @@
           "process_count",
           "working_directory",
           "run_as_user",
-          "name"
+          "name",
+          "servers"
         ]
       },
       "DeploymentDefaultStep": {
@@ -13903,9 +13739,6 @@
           "environment": {
             "$ref": "#/components/schemas/EnvironmentRelation"
           },
-          "environments": {
-            "$ref": "#/components/schemas/Environments"
-          },
           "servers": {
             "$ref": "#/components/schemas/Servers"
           },
@@ -13933,7 +13766,6 @@
           "last_action",
           "created_by_user",
           "environment",
-          "environments",
           "servers",
           "created_at",
           "updated_at"
@@ -13993,7 +13825,8 @@
           "name",
           "type",
           "port_from",
-          "port_to"
+          "port_to",
+          "servers"
         ]
       },
       "NetworkRuleProtocol": {
@@ -14127,7 +13960,8 @@
         "required": [
           "id",
           "name",
-          "type"
+          "type",
+          "servers"
         ]
       },
       "OsUsers": {
@@ -15234,9 +15068,6 @@
           "environment": {
             "$ref": "#/components/schemas/EnvironmentRelation"
           },
-          "environments": {
-            "$ref": "#/components/schemas/EnvironmentList"
-          },
           "created_at": {
             "description": "The date and time when the record was created",
             "type": "string",
@@ -15264,7 +15095,6 @@
           "project",
           "last_action",
           "environment",
-          "environments",
           "created_at",
           "updated_at"
         ]
@@ -15690,9 +15520,6 @@
           "environment": {
             "$ref": "#/components/schemas/EnvironmentRelation"
           },
-          "environments": {
-            "$ref": "#/components/schemas/Environments"
-          },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
           },
@@ -15727,7 +15554,6 @@
           "initial_state",
           "description",
           "environment",
-          "environments",
           "created_by_user",
           "project",
           "servers",
@@ -15767,7 +15593,8 @@
         },
         "required": [
           "type",
-          "version"
+          "version",
+          "servers"
         ]
       },
       "ServiceInitialState": {
@@ -15953,7 +15780,8 @@
           }
         },
         "required": [
-          "id"
+          "id",
+          "servers"
         ]
       },
       "ServiceUpdateStatus": {
@@ -16267,8 +16095,8 @@
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
           },
-          "environments": {
-            "$ref": "#/components/schemas/EnvironmentList"
+          "environment": {
+            "$ref": "#/components/schemas/EnvironmentRelation"
           },
           "servers": {
             "$ref": "#/components/schemas/ServerList"
@@ -16293,7 +16121,7 @@
           "name",
           "fingerprint",
           "created_by_user",
-          "environments",
+          "environment",
           "servers",
           "last_action"
         ]
@@ -16317,7 +16145,8 @@
         },
         "required": [
           "name",
-          "public_key"
+          "public_key",
+          "servers"
         ]
       },
       "SshKeyList": {
@@ -16400,7 +16229,8 @@
         },
         "required": [
           "id",
-          "name"
+          "name",
+          "servers"
         ]
       },
       "SslCertificate": {
@@ -17840,6 +17670,9 @@
             "type": "boolean",
             "example": false
           },
+          "created_by_user": {
+            "$ref": "#/components/schemas/UserRelation"
+          },
           "created_at": {
             "description": "The date and time when the record was created",
             "type": "string",
@@ -17861,6 +17694,7 @@
           "resource_id",
           "resource_type",
           "hidden",
+          "created_by_user",
           "created_at",
           "updated_at"
         ]
@@ -17961,6 +17795,9 @@
             "type": "boolean",
             "example": false
           },
+          "created_by_user": {
+            "$ref": "#/components/schemas/UserRelation"
+          },
           "created_at": {
             "description": "The date and time when the record was created",
             "type": "string",
@@ -17982,6 +17819,7 @@
           "resource_id",
           "resource_type",
           "hidden",
+          "created_by_user",
           "created_at",
           "updated_at"
         ],
