@@ -92,12 +92,6 @@ export interface Daemon {
     environment: EnvironmentRelation;
     /**
      * 
-     * @type {Array<EnvironmentRelation>}
-     * @memberof Daemon
-     */
-    environments: Array<EnvironmentRelation>;
-    /**
-     * 
      * @type {Array<ServerRelation>}
      * @memberof Daemon
      */

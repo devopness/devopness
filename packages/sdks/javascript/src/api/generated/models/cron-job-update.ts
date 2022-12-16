@@ -60,6 +60,6 @@ export interface CronJobUpdate {
      * @type {Array<number>}
      * @memberof CronJobUpdate
      */
-    servers?: Array<number>;
+    servers: Array<number>;
 }
 

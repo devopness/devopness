@@ -12,6 +12,7 @@
  */
 
 
+import { UserRelation } from './user-relation';
 import { VariableTarget } from './variable-target';
 import { VariableType } from './variable-type';
 
@@ -75,6 +76,12 @@ export interface Variable {
      * @memberof Variable
      */
     hidden: boolean;
+    /**
+     * 
+     * @type {UserRelation}
+     * @memberof Variable
+     */
+    created_by_user: UserRelation;
     /**
      * The date and time when the record was created
      * @type {string}

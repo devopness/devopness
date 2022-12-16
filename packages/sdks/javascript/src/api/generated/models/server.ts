@@ -116,12 +116,6 @@ export interface Server {
      */
     environment: EnvironmentRelation;
     /**
-     * 
-     * @type {Array<EnvironmentRelation>}
-     * @memberof Server
-     */
-    environments: Array<EnvironmentRelation>;
-    /**
      * The date and time when the record was created
      * @type {string}
      * @memberof Server

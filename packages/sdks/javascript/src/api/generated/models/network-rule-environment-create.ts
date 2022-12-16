@@ -68,6 +68,6 @@ export interface NetworkRuleEnvironmentCreate {
      * @type {Array<number>}
      * @memberof NetworkRuleEnvironmentCreate
      */
-    servers?: Array<number>;
+    servers: Array<number>;
 }
 

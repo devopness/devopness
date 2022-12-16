@@ -36,6 +36,6 @@ export interface SshKeyEnvironmentCreate {
      * @type {Array<number>}
      * @memberof SshKeyEnvironmentCreate
      */
-    servers?: Array<number>;
+    servers: Array<number>;
 }
 

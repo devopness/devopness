@@ -139,6 +139,6 @@ export interface ApplicationEnvironmentCreate {
      * @type {Array<number>}
      * @memberof ApplicationEnvironmentCreate
      */
-    servers?: Array<number>;
+    servers: Array<number>;
 }
 

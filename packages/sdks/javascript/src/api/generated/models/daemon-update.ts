@@ -66,6 +66,6 @@ export interface DaemonUpdate {
      * @type {Array<number>}
      * @memberof DaemonUpdate
      */
-    servers?: Array<number>;
+    servers: Array<number>;
 }
 

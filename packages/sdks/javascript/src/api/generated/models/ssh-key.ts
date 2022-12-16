@@ -67,10 +67,10 @@ export interface SshKey {
     created_by_user: UserRelation;
     /**
      * 
-     * @type {Array<EnvironmentRelation>}
+     * @type {EnvironmentRelation}
      * @memberof SshKey
      */
-    environments: Array<EnvironmentRelation>;
+    environment: EnvironmentRelation;
     /**
      * 
      * @type {Array<ServerRelation>}
