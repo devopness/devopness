@@ -30,6 +30,6 @@ export interface ServiceUpdate {
      * @type {Array<number>}
      * @memberof ServiceUpdate
      */
-    servers?: Array<number>;
+    servers: Array<number>;
 }
 

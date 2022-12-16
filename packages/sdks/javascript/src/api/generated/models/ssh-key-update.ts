@@ -36,6 +36,6 @@ export interface SshKeyUpdate {
      * @type {Array<number>}
      * @memberof SshKeyUpdate
      */
-    servers?: Array<number>;
+    servers: Array<number>;
 }
 

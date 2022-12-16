@@ -94,10 +94,10 @@ export interface CronJob {
     project: ProjectRelation | null;
     /**
      * 
-     * @type {Array<EnvironmentRelation>}
+     * @type {EnvironmentRelation}
      * @memberof CronJob
      */
-    environments: Array<EnvironmentRelation>;
+    environment: EnvironmentRelation;
     /**
      * 
      * @type {Array<ServerRelation>}

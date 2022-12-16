@@ -54,6 +54,6 @@ export interface DaemonEnvironmentCreate {
      * @type {Array<number>}
      * @memberof DaemonEnvironmentCreate
      */
-    servers?: Array<number>;
+    servers: Array<number>;
 }
 

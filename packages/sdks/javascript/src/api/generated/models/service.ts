@@ -87,12 +87,6 @@ export interface Service {
     environment: EnvironmentRelation;
     /**
      * 
-     * @type {Array<EnvironmentRelation>}
-     * @memberof Service
-     */
-    environments: Array<EnvironmentRelation>;
-    /**
-     * 
      * @type {UserRelation}
      * @memberof Service
      */

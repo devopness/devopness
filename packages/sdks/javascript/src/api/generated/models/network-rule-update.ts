@@ -62,6 +62,6 @@ export interface NetworkRuleUpdate {
      * @type {Array<number>}
      * @memberof NetworkRuleUpdate
      */
-    servers?: Array<number>;
+    servers: Array<number>;
 }
 

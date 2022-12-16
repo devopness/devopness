@@ -50,6 +50,6 @@ export interface ServiceEnvironmentCreate {
      * @type {Array<number>}
      * @memberof ServiceEnvironmentCreate
      */
-    servers?: Array<number>;
+    servers: Array<number>;
 }
 

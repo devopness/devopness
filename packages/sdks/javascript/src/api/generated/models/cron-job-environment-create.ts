@@ -54,6 +54,6 @@ export interface CronJobEnvironmentCreate {
      * @type {Array<number>}
      * @memberof CronJobEnvironmentCreate
      */
-    servers?: Array<number>;
+    servers: Array<number>;
 }
 

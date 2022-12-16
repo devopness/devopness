@@ -99,12 +99,6 @@ export interface NetworkRule {
     environment: EnvironmentRelation;
     /**
      * 
-     * @type {Array<EnvironmentRelation>}
-     * @memberof NetworkRule
-     */
-    environments: Array<EnvironmentRelation>;
-    /**
-     * 
      * @type {Array<ServerRelation>}
      * @memberof NetworkRule
      */

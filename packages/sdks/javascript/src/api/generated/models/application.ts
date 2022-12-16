@@ -191,12 +191,6 @@ export interface Application {
     environment: EnvironmentRelation;
     /**
      * 
-     * @type {Array<EnvironmentRelation>}
-     * @memberof Application
-     */
-    environments: Array<EnvironmentRelation>;
-    /**
-     * 
      * @type {Array<ServerRelation>}
      * @memberof Application
      */
