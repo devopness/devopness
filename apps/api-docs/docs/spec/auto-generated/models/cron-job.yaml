@@ -35,8 +35,8 @@ properties:
     $ref: '#/components/schemas/ApplicationRelation'
   project:
     $ref: '#/components/schemas/ProjectRelation'
-  environments:
-    $ref: '#/components/schemas/Environments'
+  environment:
+    $ref: '#/components/schemas/EnvironmentRelation'
   servers:
     $ref: '#/components/schemas/Servers'
   created_at:
@@ -59,7 +59,7 @@ required:
   - created_by_user
   - application
   - project
-  - environments
+  - environment
   - servers
   - created_at
   - updated_at

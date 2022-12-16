@@ -28,3 +28,4 @@ required:
   - command
   - pattern
   - run_as_user
+  - servers

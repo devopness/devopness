@@ -14,3 +14,4 @@ properties:
 required:
   - name
   - public_key
+  - servers

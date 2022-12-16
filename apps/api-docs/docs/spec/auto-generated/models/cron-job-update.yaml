@@ -33,3 +33,4 @@ required:
   - name
   - command
   - run_as_user
+  - servers

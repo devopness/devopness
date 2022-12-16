@@ -41,8 +41,6 @@ properties:
     $ref: '#/components/schemas/UserRelation'
   environment:
     $ref: '#/components/schemas/EnvironmentRelation'
-  environments:
-    $ref: '#/components/schemas/Environments'
   servers:
     $ref: '#/components/schemas/Servers'
   created_at:
@@ -66,7 +64,6 @@ required:
   - last_action
   - created_by_user
   - environment
-  - environments
   - servers
   - created_at
   - updated_at

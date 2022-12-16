@@ -39,8 +39,6 @@ properties:
     nullable: true
   environment:
     $ref: '#/components/schemas/EnvironmentRelation'
-  environments:
-    $ref: '#/components/schemas/Environments'
   created_by_user:
     $ref: '#/components/schemas/UserRelation'
   project:
@@ -68,7 +66,6 @@ required:
   - initial_state
   - description
   - environment
-  - environments
   - created_by_user
   - project
   - servers

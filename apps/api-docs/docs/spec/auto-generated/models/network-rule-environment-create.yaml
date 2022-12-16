@@ -32,3 +32,4 @@ required:
   - type
   - port_from
   - port_to
+  - servers

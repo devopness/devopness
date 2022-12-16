@@ -90,3 +90,4 @@ required:
   - install_dependencies_dev
   - install_dependencies_prod
   - requires_daemon
+  - servers

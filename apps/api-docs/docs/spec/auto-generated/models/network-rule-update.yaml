@@ -27,3 +27,4 @@ required:
   - id
   - name
   - type
+  - servers

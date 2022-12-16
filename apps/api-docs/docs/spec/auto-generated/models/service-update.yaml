@@ -9,3 +9,4 @@ properties:
     $ref: '#/components/schemas/ResourceIdList'
 required:
   - id
+  - servers

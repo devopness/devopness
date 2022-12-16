@@ -49,8 +49,6 @@ properties:
     $ref: '#/components/schemas/ActionRelation'
   environment:
     $ref: '#/components/schemas/EnvironmentRelation'
-  environments:
-    $ref: '#/components/schemas/EnvironmentList'
   created_at:
     description: 'The date and time when the record was created'
     type: string
@@ -75,6 +73,5 @@ required:
   - project
   - last_action
   - environment
-  - environments
   - created_at
   - updated_at

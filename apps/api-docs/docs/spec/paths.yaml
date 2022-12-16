@@ -94,15 +94,6 @@
     $ref: ./auto-generated/endpoints/list-environment-ssh-keys.yaml
   post:
     $ref: ./auto-generated/endpoints/add-environment-ssh-key.yaml
-/environments/{environment_id}/servers/replace-linked-servers:
-  post:
-    $ref: ./endpoints/environments/paths/environments-id-servers-replace-linked-servers.yaml
-/environments/{environment_id}/servers/{server_id}/link:
-  post:
-    $ref: ./endpoints/environments/paths/environments-id-servers-id-link.yaml
-/environments/{environment_id}/servers/{server_id}/unlink:
-  delete:
-    $ref: ./endpoints/environments/paths/environments-id-servers-id-unlink.yaml
 '/environments/{environment_id}/team-memberships':
   get:
     $ref: ./auto-generated/endpoints/list-environment-team-memberships.yaml

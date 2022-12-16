@@ -35,6 +35,8 @@ properties:
     description: 'Indicates if the variable value should be visible or not in the deployment logs'
     type: boolean
     example: false
+  created_by_user:
+    $ref: '#/components/schemas/UserRelation'
   created_at:
     description: 'The date and time when the record was created'
     type: string
@@ -53,6 +55,7 @@ required:
   - resource_id
   - resource_type
   - hidden
+  - created_by_user
   - created_at
   - updated_at
 nullable: true

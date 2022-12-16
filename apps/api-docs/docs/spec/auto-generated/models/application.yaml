@@ -99,8 +99,6 @@ properties:
     $ref: '#/components/schemas/ApplicationLastDeployments'
   environment:
     $ref: '#/components/schemas/EnvironmentRelation'
-  environments:
-    $ref: '#/components/schemas/Environments'
   servers:
     $ref: '#/components/schemas/Servers'
   source_provider:
@@ -143,7 +141,6 @@ required:
   - created_by_user
   - last_deployments
   - environment
-  - environments
   - servers
   - source_provider
   - ssl_certificates

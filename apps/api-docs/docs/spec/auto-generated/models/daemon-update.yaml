@@ -38,3 +38,4 @@ required:
   - working_directory
   - run_as_user
   - name
+  - servers
