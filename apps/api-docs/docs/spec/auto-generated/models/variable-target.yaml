@@ -3,6 +3,7 @@ description: 'The target defining how the variable key/value pair will be deploy
 type: string
 enum:
   - resource-config-file
+  - my-cnf
   - nginx-conf
   - os-env-var
   - php-cli_php-ini
@@ -10,4 +11,5 @@ enum:
   - php-fpm_php-ini
   - php-fpm_pool-d-www-conf
   - redis-conf
+  - supervisord-conf
 example: resource-config-file
