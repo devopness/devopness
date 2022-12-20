@@ -14332,24 +14332,6 @@
           "environments": {
             "$ref": "#/components/schemas/EnvironmentList"
           },
-          "applications": {
-            "$ref": "#/components/schemas/Applications"
-          },
-          "cron_jobs": {
-            "$ref": "#/components/schemas/CronJobs"
-          },
-          "daemons": {
-            "$ref": "#/components/schemas/DaemonList"
-          },
-          "network_rules": {
-            "$ref": "#/components/schemas/NetworkRules"
-          },
-          "servers": {
-            "$ref": "#/components/schemas/ServerList"
-          },
-          "services": {
-            "$ref": "#/components/schemas/ServiceList"
-          },
           "created_at": {
             "description": "The date and time when the record was created",
             "type": "string",
@@ -14369,12 +14351,6 @@
           "os_users",
           "created_by_user",
           "environments",
-          "applications",
-          "cron_jobs",
-          "daemons",
-          "network_rules",
-          "servers",
-          "services",
           "created_at",
           "updated_at"
         ]
