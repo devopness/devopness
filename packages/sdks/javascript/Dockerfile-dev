@@ -1,0 +1,13 @@
+FROM node:16-alpine
+
+RUN apk update
+
+RUN apk add --no-cache bash
+
+RUN apk add --no-cache openjdk11-jre
+
+WORKDIR /usr/app
+
+COPY . .
+
+RUN npm install

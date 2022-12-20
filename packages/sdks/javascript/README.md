@@ -78,21 +78,55 @@ TypeScript versions `>= 3.8` are supported.
 
 ## Building and testing
 To build and test the SDK locally, follow these steps:
-1. Clone de repository
+
+## 1. Clone de repository
 ```
 git clone https://github.com/devopness/devopness.git
 ```
-2. Install missing dependencies
 
+## 2. Setup
+### With Docker + Makefile
+
+#### 1. Build
+```
+make build
+```
+
+#### 2. Run Tests
+```
+make test
+```
+
+### With Docker Only
+
+#### 1. Build
+```
+npm run docker:build
+
+npm run docker:build-api-models
+```
+
+#### 2. Run Tests
+```
+npm run docker:build
+
+npm run docker:test
+```
+
+### Without Docker
+
+#### 1. Install missing dependencies
 This command will install all modules listed as dependencies in [package.json](package.json). **A working Java Runtime Environment is also required.** Please, check out the installation instructions for your operating system.
 ```
 npm install
 ```
-3. Build
+
+#### 2. Build
 ```
 npm run build-api-models
 ```
-4. Run tests
+
+#### 3. Run tests
 ```
 npm run test
 ```
