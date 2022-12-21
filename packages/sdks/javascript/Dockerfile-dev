@@ -1,4 +1,4 @@
-FROM node:16-alpine
+FROM node:16-alpine3.17
 
 RUN apk update
 
@@ -6,8 +6,8 @@ RUN apk add --no-cache bash
 
 RUN apk add --no-cache openjdk11-jre
 
-WORKDIR /usr/app
+WORKDIR /api
 
 COPY . .
 
-RUN npm install
+USER node

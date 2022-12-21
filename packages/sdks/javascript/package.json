@@ -21,10 +21,7 @@
     "prepublishOnly": "npm test",
     "prepare": "npm run build",
     "preversion": "npm run lint",
-    "test": "jest",
-    "docker:build": "docker build --force-rm -f Dockerfile-dev -t devopness_sdk-javascript .",
-    "docker:test": "docker run devopness_sdk-javascript npm run test",
-    "docker:build-api-models": "docker run -v sdk-javascript:/usr/app/ devopness_sdk-javascript npm run build-api-models"
+    "test": "jest"
   },
   "repository": {
     "type": "git",

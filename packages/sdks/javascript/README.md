@@ -76,41 +76,24 @@ TypeScript versions `>= 3.8` are supported.
 
 **Some methods in `Devopness SDK JavaScript` accept and return objects from the Devopness API. The type declarations for these objects will always track the latest version of the API. Therefore, if you'e using the latest version of this package, you can rely on the Devopness API documentation for checking the input and return types of each API endpoint.**
 
-## Building and testing
-To build and test the SDK locally, follow these steps:
+## Development & Testing
+To build and test the SDK locally, [**fork this repository**](https://github.com/devopness/devopness/fork) and follow these steps:
 
-## 1. Clone de repository
-```
-git clone https://github.com/devopness/devopness.git
-```
+### With Docker
+#### Pre-requisites
+- [Docker](https://www.docker.com/products/docker-desktop/)
+- [make](https://www.gnu.org/software/make/)
+  - `make` is pre-installed in most Linux systems. In `macOS` it is included as part of the `Xcode` command line utils
+### Setup and run in local environment
 
-## 2. Setup
-### With Docker + Makefile
-
-#### 1. Build
+#### 1. Build SDK
 ```
-make build
+make build-sdk-js
 ```
 
 #### 2. Run Tests
 ```
 make test
-```
-
-### With Docker Only
-
-#### 1. Build
-```
-npm run docker:build
-
-npm run docker:build-api-models
-```
-
-#### 2. Run Tests
-```
-npm run docker:build
-
-npm run docker:test
 ```
 
 ### Without Docker
@@ -121,7 +104,7 @@ This command will install all modules listed as dependencies in [package.json](p
 npm install
 ```
 
-#### 2. Build
+#### 2. Build SDK
 ```
 npm run build-api-models
 ```
