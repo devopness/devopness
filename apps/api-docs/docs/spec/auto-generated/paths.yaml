@@ -11,9 +11,9 @@
 '/actions/{action_id}/servers/{server_id}/steps/{action_step_order}/logs':
   get:
     $ref: ./auto-generated/endpoints/get-action-log.yaml
-'/actions/{resource_type}/{resource_id}/{action_type?}':
+'/actions/{resource_type}/{resource_id}':
   get:
-    $ref: ./auto-generated/endpoints/list-actions-by-resource-type-and-action-type.yaml
+    $ref: ./auto-generated/endpoints/list-actions-by-resource-type.yaml
 '/applications/{application_id}':
   delete:
     $ref: ./auto-generated/endpoints/delete-application.yaml
@@ -21,6 +21,9 @@
     $ref: ./auto-generated/endpoints/get-application.yaml
   put:
     $ref: ./auto-generated/endpoints/update-application.yaml
+'/applications/{application_id}/deployments':
+  post:
+    $ref: ./auto-generated/endpoints/add-application-deployment.yaml
 '/applications/{application_id}/hooks':
   get:
     $ref: ./auto-generated/endpoints/list-application-hooks.yaml
@@ -71,6 +74,9 @@
     $ref: ./auto-generated/endpoints/get-environment.yaml
   put:
     $ref: ./auto-generated/endpoints/update-environment.yaml
+'/environments/{environment_id}/actions/{resource_type}':
+  get:
+    $ref: ./auto-generated/endpoints/list-environment-actions-by-resource-type.yaml
 '/environments/{environment_id}/applications':
   get:
     $ref: ./auto-generated/endpoints/list-environment-applications.yaml
@@ -114,6 +120,9 @@
     $ref: ./auto-generated/endpoints/delete-environment-team.yaml
   post:
     $ref: ./auto-generated/endpoints/add-environment-team.yaml
+'/events/{resource_type}/{resource_id}':
+  get:
+    $ref: ./auto-generated/endpoints/list-resource-events-by-resource-type.yaml
 '/hook-requests/{hook_request_id}':
   get:
     $ref: ./auto-generated/endpoints/get-hook-request.yaml
@@ -174,6 +183,9 @@
     $ref: ./auto-generated/endpoints/get-project.yaml
   put:
     $ref: ./auto-generated/endpoints/update-project.yaml
+'/projects/{project_id}/actions/{resource_type}':
+  get:
+    $ref: ./auto-generated/endpoints/list-project-actions-by-resource-type.yaml
 '/projects/{project_id}/environments':
   get:
     $ref: ./auto-generated/endpoints/list-project-environments.yaml

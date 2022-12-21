@@ -10,12 +10,9 @@
 '/actions/{action_id}/servers/{server_id}/steps/{action_step_order}/logs':
   get:
     $ref: ./auto-generated/endpoints/get-action-log.yaml
-/actions/{resource_type}/{resource_id}:
+'/actions/{resource_type}/{resource_id}':
   get:
-    $ref: ./endpoints/actions/paths/action-list-resource-type-id.yaml
-'/actions/{resource_type}/{resource_id}/{action_type}':
-  get:
-    $ref: ./auto-generated/endpoints/list-actions-by-resource-type-and-action-type.yaml
+    $ref: ./auto-generated/endpoints/list-actions-by-resource-type.yaml
 '/applications/{application_id}':
   delete:
     $ref: ./auto-generated/endpoints/delete-application.yaml
@@ -23,9 +20,9 @@
     $ref: ./auto-generated/endpoints/get-application.yaml
   put:
     $ref: ./auto-generated/endpoints/update-application.yaml
-/applications/{application_id}/deployments:
+'/applications/{application_id}/deployments':
   post:
-    $ref: ./endpoints/applications/paths/applications-id-deployments.yaml
+    $ref: ./auto-generated/endpoints/add-application-deployment.yaml
 '/applications/{application_id}/hooks':
   get:
     $ref: ./auto-generated/endpoints/list-application-hooks.yaml
@@ -59,6 +56,9 @@
     $ref: ./auto-generated/endpoints/get-environment.yaml
   put:
     $ref: ./auto-generated/endpoints/update-environment.yaml
+'/environments/{environment_id}/actions/{resource_type}':
+  get:
+    $ref: ./auto-generated/endpoints/list-environment-actions-by-resource-type.yaml
 /environments/{environment_id}/applications:
   get:
     $ref: ./endpoints/applications/paths/environments-id-applications-list.yaml
@@ -102,9 +102,6 @@
     $ref: ./auto-generated/endpoints/delete-environment-team.yaml
   post:
     $ref: ./auto-generated/endpoints/add-environment-team.yaml
-/environments/{environment_id}/actions/{resource_type}:
-  get:
-    $ref: ./endpoints/environments/paths/action-list-environment-id-resource-type.yaml
 '/hook-requests/{hook_request_id}':
   get:
     $ref: ./auto-generated/endpoints/get-hook-request.yaml
@@ -175,12 +172,9 @@
     $ref: ./auto-generated/endpoints/get-project.yaml
   put:
     $ref: ./auto-generated/endpoints/update-project.yaml
-/projects/{project_id}/actions/{resource_type}:
+'/projects/{project_id}/actions/{resource_type}':
   get:
-    $ref: ./endpoints/projects/paths/action-list-project-id-resource-type.yaml
-/projects/{project_id}/actions/{resource_type}/{action_type}:
-  get:
-    $ref: ./endpoints/projects/paths/action-list-project-id-resource-type-action-type.yaml
+    $ref: ./auto-generated/endpoints/list-project-actions-by-resource-type.yaml
 '/projects/{project_id}/environments':
   get:
     $ref: ./auto-generated/endpoints/list-project-environments.yaml
@@ -196,9 +190,9 @@
     $ref: ./auto-generated/endpoints/list-project-teams.yaml
   post:
     $ref: ./auto-generated/endpoints/add-project-team.yaml
-/events/{resource_type}/{resource_id}:
+'/events/{resource_type}/{resource_id}':
   get:
-    $ref: ./endpoints/resource-events/paths/resource-events-list.yaml
+    $ref: ./auto-generated/endpoints/list-resource-events-by-resource-type.yaml
 '/roles/{role_id}':
   delete:
     $ref: ./auto-generated/endpoints/delete-role.yaml

@@ -156,6 +156,8 @@ DaemonRestart:
   $ref: ./auto-generated/models/daemon-restart.yaml
 DaemonUpdate:
   $ref: ./auto-generated/models/daemon-update.yaml
+DeploymentApplicationCreate:
+  $ref: ./auto-generated/models/deployment-application-create.yaml
 DeploymentDefaultStep:
   $ref: ./auto-generated/models/deployment-default-step.yaml
 DeploymentDefaultStepList:
@@ -354,6 +356,10 @@ RequestRelation:
   $ref: ./auto-generated/models/request-relation.yaml
 RequiredPermissions:
   $ref: ./endpoints/static/schemas/required-permissions.yaml
+ResourceEventList:
+  $ref: ./auto-generated/models/resource-event-list.yaml
+ResourceEventRelation:
+  $ref: ./auto-generated/models/resource-event-relation.yaml
 Repository:
   $ref: ./auto-generated/models/repository.yaml
 RepositoryBranch:
@@ -366,10 +372,6 @@ RepositoryRelation:
   $ref: ./auto-generated/models/repository-relation.yaml
 Resource:
   $ref: ./endpoints/actions/schemas/resource.yaml
-ResourceEvent:
-  $ref: ./endpoints/resource-events/schemas/resource-event.yaml
-ResourceEvents:
-  $ref: ./endpoints/resource-events/schemas/resource-event-list.yaml
 ResourceIdList:
   $ref: ./auto-generated/models/resource-id-list.yaml
 ResourceType:

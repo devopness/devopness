@@ -67,12 +67,9 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
         { path: 'id', fixture: 'cron_job', field: 'id' },
         { path: 'servers[0]', fixture: 'server', field: 'id' },
     ],
-    'application_deployment': [
-        { path: 'applications[0].id', fixture: 'application', field: 'id' },
-        { path: 'applications[0].name', fixture: 'application', field: 'name' },
+    'deployment_application_create': [
         { path: 'servers[0]', fixture: 'server', field: 'id' },
-        { path: 'environments[0].id', fixture: 'environment', field: 'id' },
-        { path: 'environments[0].servers[0]', fixture: 'server', field: 'id' }
+        { path: 'pipeline_id', fixture: 'pipeline', field: 'id' }
     ],
     'environment': [],
     'environment_link_item': [

@@ -101,6 +101,8 @@ DaemonRestart:
   $ref: ./auto-generated/models/daemon-restart.yaml
 DaemonUpdate:
   $ref: ./auto-generated/models/daemon-update.yaml
+DeploymentApplicationCreate:
+  $ref: ./auto-generated/models/deployment-application-create.yaml
 DeploymentDefaultStep:
   $ref: ./auto-generated/models/deployment-default-step.yaml
 DeploymentDefaultStepList:
@@ -247,6 +249,10 @@ RequestList:
   $ref: ./auto-generated/models/request-list.yaml
 RequestRelation:
   $ref: ./auto-generated/models/request-relation.yaml
+ResourceEventList:
+  $ref: ./auto-generated/models/resource-event-list.yaml
+ResourceEventRelation:
+  $ref: ./auto-generated/models/resource-event-relation.yaml
 ResourceIdList:
   $ref: ./auto-generated/models/resource-id-list.yaml
 ResourceType:
