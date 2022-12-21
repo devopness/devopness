@@ -106,7 +106,7 @@ npm install
 
 #### 2. Build SDK
 ```
-npm run build-api-models
+npm run build
 ```
 
 #### 3. Run tests

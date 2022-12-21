@@ -1,6 +1,7 @@
 IMAGE=devopness-sdk-js
 TAG?=latest
 PWD=$(shell pwd)
+WORKDIR=sdk
 
 .PHONY:	all build-image
 
@@ -12,7 +13,7 @@ build-image: ## Build Docker Image
 
 build-sdk-js: build-image npm-install ## Build Javascript SDK
 	$(info Docker - Building Javascript SDK ...)
-	@docker run --rm -v $(PWD):/api $(IMAGE):$(TAG) --name sdk-js-build npm run build-api-models
+	@docker run --rm -v $(PWD):/$(WORKDIR) $(IMAGE):$(TAG) --name sdk-js-build npm run build
 
 help: ## Show this help.
 # `help' function obtained from GitHub gist: https://gist.github.com/prwhite/8168133?permalink_comment_id=4160123#gistcomment-4160123
@@ -21,10 +22,10 @@ help: ## Show this help.
 
 npm-install: ## Install project dependencies
 	$(info NPM - Installing dependencies ...)
-	@docker run --rm -v $(PWD):/api --name npm_install $(IMAGE):$(TAG) npm install
+	@docker run --rm -v $(PWD):/$(WORKDIR) --name npm_install $(IMAGE):$(TAG) npm install
 
 test: build-image npm-install ## Run tests
 	$(info NPM - Running Tests ...)
-	@docker run --rm -v $(PWD):/api --name sdk-js-tests $(IMAGE):$(TAG) npm run test
+	@docker run --rm -v $(PWD):/$(WORKDIR) --name sdk-js-tests $(IMAGE):$(TAG) npm run test
 
 .DEFAULT_GOAL=help
