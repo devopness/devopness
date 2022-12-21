@@ -2,15 +2,15 @@ IMAGE=devopness-sdk-js
 TAG?=latest
 PWD=$(shell pwd)
 
-.PHONY:	all build-docker-image
+.PHONY:	all build-image
 
-all:	build-docker-image
+all:	build-image
 
 build-image: ## Build Docker Image
 	$(info Docker - Building Image ...)
 	@docker build -f Dockerfile-dev -t $(IMAGE):$(TAG) .
 
-build-sdk-js: build-docker-img npm-install ## Build Javascript SDK
+build-sdk-js: build-image npm-install ## Build Javascript SDK
 	$(info Docker - Building Javascript SDK ...)
 	@docker run --rm -v $(PWD):/api $(IMAGE):$(TAG) --name sdk-js-build npm run build-api-models
 
@@ -23,7 +23,7 @@ npm-install: ## Install project dependencies
 	$(info NPM - Installing dependencies ...)
 	@docker run --rm -v $(PWD):/api --name npm_install $(IMAGE):$(TAG) npm install
 
-test: build-docker-img npm-install ## Run tests
+test: build-image npm-install ## Run tests
 	$(info NPM - Running Tests ...)
 	@docker run --rm -v $(PWD):/api --name sdk-js-tests $(IMAGE):$(TAG) npm run test
 
