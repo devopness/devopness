@@ -85,13 +85,22 @@ To build and test the SDK locally, [**fork this repository**](https://github.com
 - [make](https://www.gnu.org/software/make/)
   - `make` is pre-installed in most Linux systems. In `macOS` it is included as part of the `Xcode` command line utils
 ### Setup and run in local environment
+#### 1. Build Docker Image
+```
+make build-image
+```
 
-#### 1. Build SDK
+#### 2. Install Dependencies
+```
+make npm-ci
+```
+
+#### 3. Build SDK
 ```
 make build-sdk-js
 ```
 
-#### 2. Run Tests
+#### 4. Run Tests
 ```
 make test
 ```
