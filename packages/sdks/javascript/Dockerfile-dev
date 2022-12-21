@@ -1,0 +1,11 @@
+FROM node:16-alpine3.17
+
+RUN apk update
+
+RUN apk add --no-cache bash
+
+RUN apk add --no-cache openjdk11-jre
+
+WORKDIR /sdk
+
+USER node
