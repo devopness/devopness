@@ -21,6 +21,7 @@
 export enum VariableTarget {
     ResourceConfigFile = 'resource-config-file',
     MyCnf = 'my-cnf',
+    NewrelicInfra = 'newrelic-infra',
     NginxConf = 'nginx-conf',
     OsEnvVar = 'os-env-var',
     PhpCliPhpIni = 'php-cli_php-ini',

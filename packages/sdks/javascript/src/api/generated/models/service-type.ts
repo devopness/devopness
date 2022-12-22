@@ -21,6 +21,7 @@
 export enum ServiceType {
     Docker = 'docker',
     Mysql = 'mysql',
+    NewrelicInfra = 'newrelic-infra',
     Nginx = 'nginx',
     Php = 'php',
     Redis = 'redis',

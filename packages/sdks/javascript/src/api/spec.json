@@ -9158,6 +9158,12 @@
           "triggered_from": {
             "$ref": "#/components/schemas/ActionTriggeredFrom"
           },
+          "parent": {
+            "$ref": "#/components/schemas/RelatedAction"
+          },
+          "children": {
+            "$ref": "#/components/schemas/RelatedActionList"
+          },
           "triggered_by_user": {
             "$ref": "#/components/schemas/UserRelation"
           },
@@ -9211,6 +9217,8 @@
           "url_web_permalink",
           "action_data",
           "triggered_from",
+          "parent",
+          "children",
           "resource",
           "summary",
           "started_at",
@@ -9529,6 +9537,12 @@
           "triggered_from": {
             "$ref": "#/components/schemas/ActionTriggeredFrom"
           },
+          "parent": {
+            "$ref": "#/components/schemas/RelatedAction"
+          },
+          "children": {
+            "$ref": "#/components/schemas/RelatedActionList"
+          },
           "triggered_by_user": {
             "$ref": "#/components/schemas/UserRelation"
           },
@@ -9582,6 +9596,8 @@
           "url_web_permalink",
           "action_data",
           "triggered_from",
+          "parent",
+          "children",
           "resource",
           "summary",
           "started_at",
@@ -14515,6 +14531,58 @@
         ],
         "nullable": true
       },
+      "RelatedAction": {
+        "description": "Action related to another action",
+        "type": "object",
+        "nullable": true,
+        "properties": {
+          "id": {
+            "description": "The Id of the given action",
+            "type": "integer",
+            "example": 567819876
+          },
+          "status": {
+            "$ref": "#/components/schemas/ActionStatus"
+          },
+          "type": {
+            "$ref": "#/components/schemas/ActionType"
+          },
+          "type_human_readable": {
+            "description": "Human readable version of the action type",
+            "type": "string",
+            "example": "Deploy"
+          },
+          "resource_type": {
+            "$ref": "#/components/schemas/ResourceType"
+          },
+          "resource_type_human_readable": {
+            "description": "Human readable version of the resource type",
+            "type": "string",
+            "example": "Application"
+          },
+          "url_web_permalink": {
+            "description": "The permalink URL to the action details on Devopness web app",
+            "type": "string",
+            "example": "https://devopness.com/actions/567819876"
+          }
+        },
+        "required": [
+          "id",
+          "status",
+          "type",
+          "type_human_readable",
+          "resource_type",
+          "resource_type_human_readable",
+          "url_web_permalink"
+        ]
+      },
+      "RelatedActionList": {
+        "type": "array",
+        "description": "List of related actions",
+        "items": {
+          "$ref": "#/components/schemas/RelatedAction"
+        }
+      },
       "Repository": {
         "type": "object",
         "properties": {
@@ -15518,6 +15586,7 @@
         "enum": [
           "docker",
           "mysql",
+          "newrelic-infra",
           "nginx",
           "php",
           "redis",
@@ -17757,6 +17826,7 @@
         "enum": [
           "resource-config-file",
           "my-cnf",
+          "newrelic-infra",
           "nginx-conf",
           "os-env-var",
           "php-cli_php-ini",
