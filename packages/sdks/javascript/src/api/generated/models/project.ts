@@ -12,13 +12,7 @@
  */
 
 
-import { ApplicationRelation } from './application-relation';
-import { CronJobRelation } from './cron-job-relation';
-import { DaemonRelation } from './daemon-relation';
 import { EnvironmentRelation } from './environment-relation';
-import { NetworkRuleRelation } from './network-rule-relation';
-import { ServerRelation } from './server-relation';
-import { ServiceRelation } from './service-relation';
 import { UserRelation } from './user-relation';
 
 /**
@@ -69,42 +63,6 @@ export interface Project {
      * @memberof Project
      */
     environments: Array<EnvironmentRelation>;
-    /**
-     * 
-     * @type {Array<ApplicationRelation>}
-     * @memberof Project
-     */
-    applications: Array<ApplicationRelation>;
-    /**
-     * 
-     * @type {Array<CronJobRelation>}
-     * @memberof Project
-     */
-    cron_jobs: Array<CronJobRelation>;
-    /**
-     * 
-     * @type {Array<DaemonRelation>}
-     * @memberof Project
-     */
-    daemons: Array<DaemonRelation>;
-    /**
-     * 
-     * @type {Array<NetworkRuleRelation>}
-     * @memberof Project
-     */
-    network_rules: Array<NetworkRuleRelation>;
-    /**
-     * 
-     * @type {Array<ServerRelation>}
-     * @memberof Project
-     */
-    servers: Array<ServerRelation>;
-    /**
-     * 
-     * @type {Array<ServiceRelation>}
-     * @memberof Project
-     */
-    services: Array<ServiceRelation>;
     /**
      * The date and time when the record was created
      * @type {string}

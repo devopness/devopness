@@ -20,13 +20,15 @@
  */
 export enum VariableTarget {
     ResourceConfigFile = 'resource-config-file',
+    MyCnf = 'my-cnf',
     NginxConf = 'nginx-conf',
     OsEnvVar = 'os-env-var',
     PhpCliPhpIni = 'php-cli_php-ini',
     PhpFpmPhpFpmConf = 'php-fpm_php-fpm-conf',
     PhpFpmPhpIni = 'php-fpm_php-ini',
     PhpFpmPoolDWwwConf = 'php-fpm_pool-d-www-conf',
-    RedisConf = 'redis-conf'
+    RedisConf = 'redis-conf',
+    SupervisordConf = 'supervisord-conf'
 }
 
 

@@ -14,7 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
-import { ResourceEvent } from '../../generated/models';
+import { ResourceEventRelation } from '../../generated/models';
 
 /**
  * ResourceEventsApiService - Auto-generated
@@ -22,18 +22,18 @@ import { ResourceEvent } from '../../generated/models';
 export class ResourceEventsApiService extends ApiBaseService {
     /**
      * 
-     * @summary Return a list of all events belonging to a resource
-     * @param {string} resourceType The resource type to get related events
-     * @param {number} resourceId Unique ID of the resource that\&#39;s being searched
+     * @summary List events of a resource type
+     * @param {number} resourceId The resource ID.
+     * @param {string} resourceType The resource type to get related events.
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */
-    public async listResourceEvents(resourceType: string, resourceId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<ResourceEvent>>> {
-        if (resourceType === null || resourceType === undefined) {
-            throw new ArgumentNullException('resourceType', 'listResourceEvents');
-        }
+    public async listResourceEventsByResourceType(resourceId: number, resourceType: string, page?: number, perPage?: number): Promise<ApiResponse<Array<ResourceEventRelation>>> {
         if (resourceId === null || resourceId === undefined) {
-            throw new ArgumentNullException('resourceId', 'listResourceEvents');
+            throw new ArgumentNullException('resourceId', 'listResourceEventsByResourceType');
+        }
+        if (resourceType === null || resourceType === undefined) {
+            throw new ArgumentNullException('resourceType', 'listResourceEventsByResourceType');
         }
         
         let queryString = '';
@@ -48,7 +48,7 @@ export class ResourceEventsApiService extends ApiBaseService {
 
         const requestUrl = '/events/{resource_type}/{resource_id}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<ResourceEvent>>(requestUrl.replace(`{${"resource_type"}}`, encodeURIComponent(String(resourceType))).replace(`{${"resource_id"}}`, encodeURIComponent(String(resourceId))));
+        const response = await this.get <Array<ResourceEventRelation>>(requestUrl.replace(`{${"resource_id"}}`, encodeURIComponent(String(resourceId))).replace(`{${"resource_type"}}`, encodeURIComponent(String(resourceType))));
         return new ApiResponse(response);
     }
 }

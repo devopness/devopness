@@ -14,7 +14,8 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
-import { ApplicationDeployment } from '../../generated/models';
+import { ApiError } from '../../generated/models';
+import { DeploymentApplicationCreate } from '../../generated/models';
 
 /**
  * ApplicationsDeploymentsApiService - Auto-generated
@@ -23,19 +24,22 @@ export class ApplicationsDeploymentsApiService extends ApiBaseService {
     /**
      * 
      * @summary Trigger a new deployment for current application
-     * @param {number} applicationId Numeric ID of the application to be deployed
-     * @param {ApplicationDeployment} [applicationDeployment] A JSON object containing deployment parameters
+     * @param {number} applicationId The ID of the application.
+     * @param {DeploymentApplicationCreate} deploymentApplicationCreate A JSON object containing the resource data
      */
-    public async deployApplication(applicationId: number, applicationDeployment?: ApplicationDeployment): Promise<ApiResponse<void>> {
+    public async addApplicationDeployment(applicationId: number, deploymentApplicationCreate: DeploymentApplicationCreate): Promise<ApiResponse<void>> {
         if (applicationId === null || applicationId === undefined) {
-            throw new ArgumentNullException('applicationId', 'deployApplication');
+            throw new ArgumentNullException('applicationId', 'addApplicationDeployment');
+        }
+        if (deploymentApplicationCreate === null || deploymentApplicationCreate === undefined) {
+            throw new ArgumentNullException('deploymentApplicationCreate', 'addApplicationDeployment');
         }
         
         let queryString = '';
 
         const requestUrl = '/applications/{application_id}/deployments' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <void, ApplicationDeployment>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))), applicationDeployment);
+        const response = await this.post <void, DeploymentApplicationCreate>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))), deploymentApplicationCreate);
         return new ApiResponse(response);
     }
 }

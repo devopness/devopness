@@ -254,80 +254,10 @@
     },
     "/actions/{resource_type}/{resource_id}": {
       "get": {
-        "summary": "List resource actions",
-        "operationId": "listResourceActions",
-        "tags": [
-          "Actions - Resources"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "$ref": "#/components/parameters/pageNumber"
-          },
-          {
-            "$ref": "#/components/parameters/pageSize"
-          },
-          {
-            "in": "path",
-            "name": "resource_type",
-            "example": "service",
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "description": "The resource type to get related actions"
-          },
-          {
-            "in": "path",
-            "name": "resource_id",
-            "example": 1,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "required": true,
-            "description": "Unique ID of the resource that's being searched"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "headers": {
-              "Link": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Actions"
-                }
-              }
-            }
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          }
-        }
-      }
-    },
-    "/actions/{resource_type}/{resource_id}/{action_type}": {
-      "get": {
         "summary": "List resource actions of an action type",
-        "operationId": "listActionsByResourceTypeAndActionType",
+        "operationId": "listActionsByResourceType",
         "description": {
-          "$ref": "../spec/descriptions/list-actions-by-resource-type-and-action-type.md"
+          "$ref": "../spec/descriptions/list-actions-by-resource-type.md"
         },
         "tags": [
           "Actions"
@@ -347,16 +277,6 @@
           },
           {
             "$ref": "#/components/parameters/pageSize"
-          },
-          {
-            "in": "path",
-            "name": "action_type",
-            "description": "The action type.",
-            "example": "deploy",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
           },
           {
             "in": "path",
@@ -574,7 +494,10 @@
     "/applications/{application_id}/deployments": {
       "post": {
         "summary": "Trigger a new deployment for current application",
-        "operationId": "deployApplication",
+        "operationId": "addApplicationDeployment",
+        "description": {
+          "$ref": "../spec/descriptions/add-application-deployment.md"
+        },
         "tags": [
           "Applications - Deployments"
         ],
@@ -591,32 +514,57 @@
           {
             "in": "path",
             "name": "application_id",
-            "example": 1,
+            "description": "The ID of the application.",
+            "example": 123,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "Numeric ID of the application to be deployed"
+            }
           }
         ],
-        "requestBody": {
-          "description": "A JSON object containing deployment parameters",
-          "required": false,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ApplicationDeployment"
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
               }
             }
           }
         },
-        "responses": {
-          "204": {
-            "$ref": "#/components/responses/NoContentDispatchAction"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeploymentApplicationCreate"
+              }
+            }
           }
         }
       }
@@ -1395,6 +1343,76 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/EnvironmentUpdate"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/environments/{environment_id}/actions/{resource_type}": {
+      "get": {
+        "summary": "List environment actions of a resource type",
+        "operationId": "listEnvironmentActionsByResourceType",
+        "description": {
+          "$ref": "../spec/descriptions/list-environment-actions-by-resource-type.md"
+        },
+        "tags": [
+          "Environments - Actions"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "environment_id",
+            "description": "The ID of the environment.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "in": "path",
+            "name": "resource_type",
+            "description": "The resource type to get related actions.",
+            "example": "application",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActionList"
+                }
+              }
+            },
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
               }
             }
           }
@@ -2596,76 +2614,6 @@
                 "$ref": "#/components/schemas/TeamEnvironmentCreate"
               }
             }
-          }
-        }
-      }
-    },
-    "/environments/{environment_id}/actions/{resource_type}": {
-      "get": {
-        "summary": "List environment actions of a resource type",
-        "operationId": "listEnvironmentActionsOfResourceType",
-        "tags": [
-          "Environments - Actions"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "$ref": "#/components/parameters/pageNumber"
-          },
-          {
-            "$ref": "#/components/parameters/pageSize"
-          },
-          {
-            "in": "path",
-            "name": "environment_id",
-            "example": 1,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "required": true,
-            "description": "Unique ID of the environment to get"
-          },
-          {
-            "in": "path",
-            "name": "resource_type",
-            "example": "service",
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "description": "The resource type to get related actions"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "headers": {
-              "Link": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Actions"
-                }
-              }
-            }
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
           }
         }
       }
@@ -4424,8 +4372,11 @@
     },
     "/projects/{project_id}/actions/{resource_type}": {
       "get": {
-        "summary": "List resource actions of a resource type",
-        "operationId": "listProjectActionsOfResourceType",
+        "summary": "List project actions of a resource type",
+        "operationId": "listProjectActionsByResourceType",
+        "description": {
+          "$ref": "../spec/descriptions/list-project-actions-by-resource-type.md"
+        },
         "tags": [
           "Projects - Actions"
         ],
@@ -4448,28 +4399,35 @@
           {
             "in": "path",
             "name": "project_id",
-            "example": 1,
+            "description": "The ID of the project.",
+            "example": 123,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "Unique ID of the project to get"
+            }
           },
           {
             "in": "path",
             "name": "resource_type",
-            "example": "service",
+            "description": "The resource type to get related actions.",
+            "example": "application",
+            "required": true,
             "schema": {
               "type": "string"
-            },
-            "required": true,
-            "description": "The resource type to get related actions"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActionList"
+                }
+              }
+            },
             "headers": {
               "Link": {
                 "schema": {
@@ -4477,96 +4435,7 @@
                 },
                 "description": "Link header with `first`, `last`, `previous` and `next` page's links"
               }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Actions"
-                }
-              }
             }
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          }
-        }
-      }
-    },
-    "/projects/{project_id}/actions/{resource_type}/{action_type}": {
-      "get": {
-        "summary": "List project actions of a resource type and action type",
-        "operationId": "listProjectActionsOfResourceTypeActionType",
-        "tags": [
-          "Projects - Actions"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "$ref": "#/components/parameters/pageNumber"
-          },
-          {
-            "$ref": "#/components/parameters/pageSize"
-          },
-          {
-            "in": "path",
-            "name": "project_id",
-            "example": 1,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "required": true,
-            "description": "Unique ID of the project to get"
-          },
-          {
-            "in": "path",
-            "name": "resource_type",
-            "example": "service",
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "description": "The resource type to get related actions"
-          },
-          {
-            "in": "path",
-            "name": "action_type",
-            "schema": {
-              "$ref": "#/components/schemas/ActionType"
-            },
-            "required": true,
-            "description": "The action type"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "headers": {
-              "Link": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Actions"
-                }
-              }
-            }
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
           }
         }
       }
@@ -4978,8 +4847,11 @@
     },
     "/events/{resource_type}/{resource_id}": {
       "get": {
-        "summary": "Return a list of all events belonging to a resource",
-        "operationId": "listResourceEvents",
+        "summary": "List events of a resource type",
+        "operationId": "listResourceEventsByResourceType",
+        "description": {
+          "$ref": "../spec/descriptions/list-resource-events-by-resource-type.md"
+        },
         "tags": [
           "Resource Events"
         ],
@@ -5001,42 +4873,42 @@
           },
           {
             "in": "path",
-            "name": "resource_type",
-            "example": "service",
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "description": "The resource type to get related events"
-          },
-          {
-            "in": "path",
             "name": "resource_id",
-            "example": 1,
+            "description": "The resource ID.",
+            "example": 123,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
+            }
+          },
+          {
+            "in": "path",
+            "name": "resource_type",
+            "description": "The resource type to get related events.",
+            "example": "application",
             "required": true,
-            "description": "Unique ID of the resource that's being searched"
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceEventList"
+                }
+              }
+            },
             "headers": {
               "Link": {
                 "schema": {
                   "type": "string"
                 },
                 "description": "Link header with `first`, `last`, `previous` and `next` page's links"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResourceEvents"
-                }
               }
             }
           }
@@ -11920,6 +11792,45 @@
           "servers"
         ]
       },
+      "DeploymentApplicationCreate": {
+        "type": "object",
+        "properties": {
+          "environment": {
+            "description": "The environment type of the deployment. Must be one of <code>development</code>, <code>testing</code>, <code>staging</code>, or <code>production</code>.",
+            "example": "staging",
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/DeploymentType"
+          },
+          "branch": {
+            "description": "The name of the branch from which the application source code will be retrieved and deployed.This field is required when <code>hash</code> is not present. Must not be greater than 100 characters.",
+            "example": "master",
+            "type": "string"
+          },
+          "hash": {
+            "description": "The commit hash from which the application source code will be retrieved and deployed.This field is required when <code>branch</code> is not present.  Must contain only letters and numbers. Must be at least 7 characters. Must not be greater than 40 characters.",
+            "example": "7ff09b0f2ed07625222f689d1afc29aa322b03a2",
+            "type": "string"
+          },
+          "pipeline_id": {
+            "description": "The pipeline's ID to use for deployment.",
+            "example": 59387,
+            "type": "integer"
+          },
+          "pull_request_id": {
+            "description": "The pull request's ID to use for deployment.",
+            "example": 52346,
+            "type": "integer"
+          },
+          "servers": {
+            "$ref": "#/components/schemas/ResourceIdList"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
       "DeploymentDefaultStep": {
         "type": "object",
         "properties": {
@@ -14332,24 +14243,6 @@
           "environments": {
             "$ref": "#/components/schemas/EnvironmentList"
           },
-          "applications": {
-            "$ref": "#/components/schemas/Applications"
-          },
-          "cron_jobs": {
-            "$ref": "#/components/schemas/CronJobs"
-          },
-          "daemons": {
-            "$ref": "#/components/schemas/DaemonList"
-          },
-          "network_rules": {
-            "$ref": "#/components/schemas/NetworkRules"
-          },
-          "servers": {
-            "$ref": "#/components/schemas/ServerList"
-          },
-          "services": {
-            "$ref": "#/components/schemas/ServiceList"
-          },
           "created_at": {
             "description": "The date and time when the record was created",
             "type": "string",
@@ -14369,12 +14262,6 @@
           "os_users",
           "created_by_user",
           "environments",
-          "applications",
-          "cron_jobs",
-          "daemons",
-          "network_rules",
-          "servers",
-          "services",
           "created_at",
           "updated_at"
         ]
@@ -14564,6 +14451,70 @@
           "application:read"
         ]
       },
+      "ResourceEventList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/ResourceEventRelation"
+        }
+      },
+      "ResourceEventRelation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "The ID of the given resource event",
+            "type": "integer",
+            "example": 652674
+          },
+          "event_type": {
+            "description": "The type of resource event",
+            "type": "string",
+            "example": "testtype"
+          },
+          "resource_type": {
+            "description": "The event's resource type",
+            "type": "string",
+            "example": "service"
+          },
+          "resource_id": {
+            "description": "The event's resource ID",
+            "type": "integer",
+            "example": 652674
+          },
+          "message": {
+            "description": "",
+            "type": "string",
+            "example": "Test message",
+            "nullable": true
+          },
+          "triggered_by": {
+            "description": "",
+            "type": "integer",
+            "example": 2,
+            "nullable": true
+          },
+          "created_at": {
+            "description": "The date and time when the record was created",
+            "type": "string",
+            "example": "2020-04-16T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "description": "The date and time when the record was last updated",
+            "type": "string",
+            "example": "2020-04-16T15:50:48.000000Z"
+          }
+        },
+        "required": [
+          "id",
+          "event_type",
+          "resource_type",
+          "resource_id",
+          "message",
+          "triggered_by",
+          "created_at",
+          "updated_at"
+        ],
+        "nullable": true
+      },
       "Repository": {
         "type": "object",
         "properties": {
@@ -14723,69 +14674,6 @@
           "type",
           "type_human_readable"
         ]
-      },
-      "ResourceEvent": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "description": "The unique id of the event",
-            "example": 652674
-          },
-          "type": {
-            "type": "string",
-            "description": "The event type",
-            "example": "testtype"
-          },
-          "resource_type": {
-            "type": "string",
-            "description": "The type of the resource that triggered the event",
-            "example": "Service"
-          },
-          "resource_id": {
-            "type": "integer",
-            "description": "The id of the resource that triggered the event",
-            "example": 652674
-          },
-          "message": {
-            "type": "string",
-            "description": "Text describing the event's origin and output",
-            "example": "Test message",
-            "nullable": true
-          },
-          "triggered_by": {
-            "type": "integer",
-            "description": "ID of the user who triggered the event",
-            "example": 2,
-            "nullable": true
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the record was created",
-            "example": "2020-04-16T15:50:48.000000Z"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the record was last updated",
-            "example": "2020-04-16T15:50:48.000000Z"
-          }
-        },
-        "required": [
-          "id",
-          "type",
-          "resource_type",
-          "resource_id",
-          "created_at",
-          "updated_at"
-        ]
-      },
-      "ResourceEvents": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ResourceEvent"
-        }
       },
       "ResourceIdList": {
         "description": "List of valid resource IDs",
@@ -17868,13 +17756,15 @@
         "type": "string",
         "enum": [
           "resource-config-file",
+          "my-cnf",
           "nginx-conf",
           "os-env-var",
           "php-cli_php-ini",
           "php-fpm_php-fpm-conf",
           "php-fpm_php-ini",
           "php-fpm_pool-d-www-conf",
-          "redis-conf"
+          "redis-conf",
+          "supervisord-conf"
         ],
         "example": "resource-config-file"
       },

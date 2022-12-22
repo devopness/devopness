@@ -14,8 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
-import { ActionListItem } from '../../generated/models';
-import { ActionType } from '../../generated/models';
+import { ActionRelation } from '../../generated/models';
 
 /**
  * ProjectsActionsApiService - Auto-generated
@@ -23,18 +22,18 @@ import { ActionType } from '../../generated/models';
 export class ProjectsActionsApiService extends ApiBaseService {
     /**
      * 
-     * @summary List resource actions of a resource type
-     * @param {number} projectId Unique ID of the project to get
-     * @param {string} resourceType The resource type to get related actions
+     * @summary List project actions of a resource type
+     * @param {number} projectId The ID of the project.
+     * @param {string} resourceType The resource type to get related actions.
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */
-    public async listProjectActionsOfResourceType(projectId: number, resourceType: string, page?: number, perPage?: number): Promise<ApiResponse<Array<ActionListItem>>> {
+    public async listProjectActionsByResourceType(projectId: number, resourceType: string, page?: number, perPage?: number): Promise<ApiResponse<Array<ActionRelation>>> {
         if (projectId === null || projectId === undefined) {
-            throw new ArgumentNullException('projectId', 'listProjectActionsOfResourceType');
+            throw new ArgumentNullException('projectId', 'listProjectActionsByResourceType');
         }
         if (resourceType === null || resourceType === undefined) {
-            throw new ArgumentNullException('resourceType', 'listProjectActionsOfResourceType');
+            throw new ArgumentNullException('resourceType', 'listProjectActionsByResourceType');
         }
         
         let queryString = '';
@@ -49,43 +48,7 @@ export class ProjectsActionsApiService extends ApiBaseService {
 
         const requestUrl = '/projects/{project_id}/actions/{resource_type}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<ActionListItem>>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))).replace(`{${"resource_type"}}`, encodeURIComponent(String(resourceType))));
-        return new ApiResponse(response);
-    }
-
-    /**
-     * 
-     * @summary List project actions of a resource type and action type
-     * @param {number} projectId Unique ID of the project to get
-     * @param {string} resourceType The resource type to get related actions
-     * @param {ActionType} actionType The action type
-     * @param {number} [page] Number of the page to be retrieved
-     * @param {number} [perPage] Number of items returned per page
-     */
-    public async listProjectActionsOfResourceTypeActionType(projectId: number, resourceType: string, actionType: ActionType, page?: number, perPage?: number): Promise<ApiResponse<Array<ActionListItem>>> {
-        if (projectId === null || projectId === undefined) {
-            throw new ArgumentNullException('projectId', 'listProjectActionsOfResourceTypeActionType');
-        }
-        if (resourceType === null || resourceType === undefined) {
-            throw new ArgumentNullException('resourceType', 'listProjectActionsOfResourceTypeActionType');
-        }
-        if (actionType === null || actionType === undefined) {
-            throw new ArgumentNullException('actionType', 'listProjectActionsOfResourceTypeActionType');
-        }
-        
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/projects/{project_id}/actions/{resource_type}/{action_type}' + (queryString? `?${queryString}` : '');
-
-        const response = await this.get <Array<ActionListItem>>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))).replace(`{${"resource_type"}}`, encodeURIComponent(String(resourceType))).replace(`{${"action_type"}}`, encodeURIComponent(String(actionType))));
+        const response = await this.get <Array<ActionRelation>>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))).replace(`{${"resource_type"}}`, encodeURIComponent(String(resourceType))));
         return new ApiResponse(response);
     }
 }

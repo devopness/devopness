@@ -16,55 +16,55 @@
 /**
  * 
  * @export
- * @interface ResourceEvent
+ * @interface ResourceEventRelation
  */
-export interface ResourceEvent {
+export interface ResourceEventRelation {
     /**
-     * The unique id of the event
+     * The ID of the given resource event
      * @type {number}
-     * @memberof ResourceEvent
+     * @memberof ResourceEventRelation
      */
     id: number;
     /**
-     * The event type
+     * The type of resource event
      * @type {string}
-     * @memberof ResourceEvent
+     * @memberof ResourceEventRelation
      */
-    type: string;
+    event_type: string;
     /**
-     * The type of the resource that triggered the event
+     * The event\'s resource type
      * @type {string}
-     * @memberof ResourceEvent
+     * @memberof ResourceEventRelation
      */
     resource_type: string;
     /**
-     * The id of the resource that triggered the event
+     * The event\'s resource ID
      * @type {number}
-     * @memberof ResourceEvent
+     * @memberof ResourceEventRelation
      */
     resource_id: number;
     /**
-     * Text describing the event\'s origin and output
+     * 
      * @type {string}
-     * @memberof ResourceEvent
+     * @memberof ResourceEventRelation
      */
-    message?: string | null;
+    message: string | null;
     /**
-     * ID of the user who triggered the event
+     * 
      * @type {number}
-     * @memberof ResourceEvent
+     * @memberof ResourceEventRelation
      */
-    triggered_by?: number | null;
+    triggered_by: number | null;
     /**
      * The date and time when the record was created
      * @type {string}
-     * @memberof ResourceEvent
+     * @memberof ResourceEventRelation
      */
     created_at: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
-     * @memberof ResourceEvent
+     * @memberof ResourceEventRelation
      */
     updated_at: string;
 }
