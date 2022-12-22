@@ -14,7 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
-import { ActionListItem } from '../../generated/models';
+import { ActionRelation } from '../../generated/models';
 
 /**
  * EnvironmentsActionsApiService - Auto-generated
@@ -23,17 +23,17 @@ export class EnvironmentsActionsApiService extends ApiBaseService {
     /**
      * 
      * @summary List environment actions of a resource type
-     * @param {number} environmentId Unique ID of the environment to get
-     * @param {string} resourceType The resource type to get related actions
+     * @param {number} environmentId The ID of the environment.
+     * @param {string} resourceType The resource type to get related actions.
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */
-    public async listEnvironmentActionsOfResourceType(environmentId: number, resourceType: string, page?: number, perPage?: number): Promise<ApiResponse<Array<ActionListItem>>> {
+    public async listEnvironmentActionsByResourceType(environmentId: number, resourceType: string, page?: number, perPage?: number): Promise<ApiResponse<Array<ActionRelation>>> {
         if (environmentId === null || environmentId === undefined) {
-            throw new ArgumentNullException('environmentId', 'listEnvironmentActionsOfResourceType');
+            throw new ArgumentNullException('environmentId', 'listEnvironmentActionsByResourceType');
         }
         if (resourceType === null || resourceType === undefined) {
-            throw new ArgumentNullException('resourceType', 'listEnvironmentActionsOfResourceType');
+            throw new ArgumentNullException('resourceType', 'listEnvironmentActionsByResourceType');
         }
         
         let queryString = '';
@@ -48,7 +48,7 @@ export class EnvironmentsActionsApiService extends ApiBaseService {
 
         const requestUrl = '/environments/{environment_id}/actions/{resource_type}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<ActionListItem>>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))).replace(`{${"resource_type"}}`, encodeURIComponent(String(resourceType))));
+        const response = await this.get <Array<ActionRelation>>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))).replace(`{${"resource_type"}}`, encodeURIComponent(String(resourceType))));
         return new ApiResponse(response);
     }
 }

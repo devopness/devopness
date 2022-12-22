@@ -68,21 +68,17 @@ export class ActionsApiService extends ApiBaseService {
     /**
      * 
      * @summary List resource actions of an action type
-     * @param {string} actionType The action type.
      * @param {number} resourceId The resource ID.
      * @param {string} resourceType The resource type to get related actions.
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */
-    public async listActionsByResourceTypeAndActionType(actionType: string, resourceId: number, resourceType: string, page?: number, perPage?: number): Promise<ApiResponse<Array<ActionRelation>>> {
-        if (actionType === null || actionType === undefined) {
-            throw new ArgumentNullException('actionType', 'listActionsByResourceTypeAndActionType');
-        }
+    public async listActionsByResourceType(resourceId: number, resourceType: string, page?: number, perPage?: number): Promise<ApiResponse<Array<ActionRelation>>> {
         if (resourceId === null || resourceId === undefined) {
-            throw new ArgumentNullException('resourceId', 'listActionsByResourceTypeAndActionType');
+            throw new ArgumentNullException('resourceId', 'listActionsByResourceType');
         }
         if (resourceType === null || resourceType === undefined) {
-            throw new ArgumentNullException('resourceType', 'listActionsByResourceTypeAndActionType');
+            throw new ArgumentNullException('resourceType', 'listActionsByResourceType');
         }
         
         let queryString = '';
@@ -95,9 +91,9 @@ export class ActionsApiService extends ApiBaseService {
             queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
         }
 
-        const requestUrl = '/actions/{resource_type}/{resource_id}/{action_type}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/actions/{resource_type}/{resource_id}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<ActionRelation>>(requestUrl.replace(`{${"action_type"}}`, encodeURIComponent(String(actionType))).replace(`{${"resource_id"}}`, encodeURIComponent(String(resourceId))).replace(`{${"resource_type"}}`, encodeURIComponent(String(resourceType))));
+        const response = await this.get <Array<ActionRelation>>(requestUrl.replace(`{${"resource_id"}}`, encodeURIComponent(String(resourceId))).replace(`{${"resource_type"}}`, encodeURIComponent(String(resourceType))));
         return new ApiResponse(response);
     }
 
