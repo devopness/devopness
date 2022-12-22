@@ -20,6 +20,7 @@ import { ActionTriggeredFrom } from './action-triggered-from';
 import { ActionType } from './action-type';
 import { EnvironmentRelation } from './environment-relation';
 import { ProjectRelation } from './project-relation';
+import { RelatedAction } from './related-action';
 import { Resource } from './resource';
 import { ServerAction } from './server-action';
 import { UserRelation } from './user-relation';
@@ -78,6 +79,18 @@ export interface ActionRetryResponse {
      * @memberof ActionRetryResponse
      */
     triggered_from: ActionTriggeredFrom;
+    /**
+     * 
+     * @type {RelatedAction}
+     * @memberof ActionRetryResponse
+     */
+    parent: RelatedAction | null;
+    /**
+     * List of related actions
+     * @type {Array<RelatedAction>}
+     * @memberof ActionRetryResponse
+     */
+    children: Array<RelatedAction>;
     /**
      * 
      * @type {UserRelation}
