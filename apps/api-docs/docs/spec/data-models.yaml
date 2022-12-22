@@ -360,6 +360,10 @@ ResourceEventList:
   $ref: ./auto-generated/models/resource-event-list.yaml
 ResourceEventRelation:
   $ref: ./auto-generated/models/resource-event-relation.yaml
+RelatedAction:
+  $ref: ./auto-generated/models/related-action.yaml
+RelatedActionList:
+  $ref: ./auto-generated/models/related-action-list.yaml
 Repository:
   $ref: ./auto-generated/models/repository.yaml
 RepositoryBranch:

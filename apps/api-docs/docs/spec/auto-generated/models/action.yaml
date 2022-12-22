@@ -26,6 +26,10 @@ properties:
     $ref: '#/components/schemas/ActionData'
   triggered_from:
     $ref: '#/components/schemas/ActionTriggeredFrom'
+  parent:
+    $ref: '#/components/schemas/RelatedAction'
+  children:
+    $ref: '#/components/schemas/RelatedActionList'
   triggered_by_user:
     $ref: '#/components/schemas/UserRelation'
   resource:
@@ -67,6 +71,8 @@ required:
   - url_web_permalink
   - action_data
   - triggered_from
+  - parent
+  - children
   - resource
   - summary
   - started_at

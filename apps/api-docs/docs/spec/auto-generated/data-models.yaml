@@ -235,6 +235,10 @@ ProjectRelation:
   $ref: ./auto-generated/models/project-relation.yaml
 ProjectUpdate:
   $ref: ./auto-generated/models/project-update.yaml
+RelatedAction:
+  $ref: ./auto-generated/models/related-action.yaml
+RelatedActionList:
+  $ref: ./auto-generated/models/related-action-list.yaml
 Repository:
   $ref: ./auto-generated/models/repository.yaml
 RepositoryBranch:

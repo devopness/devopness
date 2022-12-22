@@ -4,6 +4,7 @@ description: 'Types of OS Services supported by Devopness'
 enum:
   - docker
   - mysql
+  - newrelic-infra
   - nginx
   - php
   - redis
