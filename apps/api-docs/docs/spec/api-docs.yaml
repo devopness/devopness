@@ -177,7 +177,6 @@ tags:
   - name: Static Data - Permissions
   - name: Static Data - Service Options
   - name: Actions
-  - name: Actions - Resources
   - name: Applications
   - name: Applications - Deployments
   - name: Applications - Hooks
@@ -209,7 +208,6 @@ tags:
     description: |
       A hook is a simple way to integrate your Devopness workflow with external processes to trigger Devopness actions by sending a POST request to a public URL. By using hooks you can make Devopness react to events that happen in other applications and make sure your environment resources reflect changes applied in other services.
       An outgoing hook is a webhook that trigger a request when an action of a resource has your state updated.
-  - name: Hooks - Requests
   - name: Invitations
   - name: Logs
   - name: Network Rules
@@ -271,7 +269,7 @@ x-tagGroups:
   - name: Actions
     tags:
       - Actions
-      - Actions - Resources
+      - Actions - Logs
       - Environments - Actions
       - Projects - Actions
   - name: Applications
@@ -282,7 +280,6 @@ x-tagGroups:
       - Applications - SSL Certificates
       - Applications - Variables
       - Environments - Applications
-      - Projects - Applications
   - name: Cloud Providers
     tags:
       - Cloud Providers - Credentials
@@ -293,12 +290,10 @@ x-tagGroups:
     tags:
       - Cron Jobs
       - Environments - Cron Jobs
-      - Projects - Cron Jobs
   - name: Daemons
     tags:
       - Daemons
       - Environments - Daemons
-      - Projects - Daemons
   - name: Environments
     tags:
       - Environments
@@ -307,9 +302,7 @@ x-tagGroups:
     tags:
       - Hooks
       - Hooks - Requests
-  - name: Logs
-    tags:
-      - Logs
+      - Hook Requests
   - name: Network Rules
     tags:
       - Network Rules
@@ -318,7 +311,6 @@ x-tagGroups:
   - name: Pipelines
     tags:
       - Pipelines
-      - Pipelines - Resources
       - Pipelines - Steps
   - name: Projects
     tags:
@@ -334,13 +326,14 @@ x-tagGroups:
     tags:
       - Servers
       - Environments - Servers
-      - Projects - Servers
   - name: Services
     tags:
       - Services
       - Services - Variables
       - Environments - Services
-      - Projects - Services
+  - name: Social Accounts
+    tags:
+      - Social Accounts
   - name: Source Providers
     tags:
       - Source Providers
@@ -349,7 +342,6 @@ x-tagGroups:
     tags:
       - SSH Keys
       - Environments - SSH Keys
-      - Projects - SSH Keys
   - name: SSL Certificates
     tags:
       - SSL Certificates
@@ -359,7 +351,6 @@ x-tagGroups:
       - Teams
       - Teams - Invitations
       - Teams - Members
-      - Invitations
       - Environments - Teams
       - Environments - Team Memberships
   - name: Users

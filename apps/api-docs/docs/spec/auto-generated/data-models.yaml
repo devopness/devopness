@@ -315,6 +315,16 @@ ServiceUpdate:
   $ref: ./auto-generated/models/service-update.yaml
 ServiceUpdateStatus:
   $ref: ./auto-generated/models/service-update-status.yaml
+SocialAccount:
+  $ref: ./auto-generated/models/social-account.yaml
+SocialAccountCreate:
+  $ref: ./auto-generated/models/social-account-create.yaml
+SocialAccountList:
+  $ref: ./auto-generated/models/social-account-list.yaml
+SocialAccountRelation:
+  $ref: ./auto-generated/models/social-account-relation.yaml
+SocialAccountStatus:
+  $ref: ./auto-generated/models/social-account-status.yaml
 SourceProvider:
   $ref: ./auto-generated/models/source-provider.yaml
 SourceProviderCreate:

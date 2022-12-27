@@ -67,7 +67,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         'deleteSocialAccount204',
         'deleteCredential204',
         // social_account related
-        'getSocialAccountStatusByName200',
+        'getSocialAccount200',
         // email-dependant user transactions
         'activateUser204',
         'resetUserPassword200',

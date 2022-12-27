@@ -461,17 +461,17 @@ ServiceUpdate:
 ServiceUpdateStatus:
   $ref: ./auto-generated/models/service-update-status.yaml
 SocialAccount:
-  $ref: ./endpoints/social-accounts/schemas/social-account.yaml
+  $ref: ./auto-generated/models/social-account.yaml
 SocialAccountCreate:
-  $ref: ./endpoints/social-accounts/schemas/social-account-create.yaml
-SocialAccountDisplayableName:
-  $ref: ./shared/schemas/social-account-displayable-name.yaml
-SocialAccountProvider:
-  $ref: ./shared/schemas/social-account-provider.yaml
+  $ref: ./auto-generated/models/social-account-create.yaml
+SocialAccountList:
+  $ref: ./auto-generated/models/social-account-list.yaml
+SocialAccountRelation:
+  $ref: ./auto-generated/models/social-account-relation.yaml
 SocialAccounts:
   $ref: ./endpoints/social-accounts/schemas/social-account-list.yaml
 SocialAccountStatus:
-  $ref: ./endpoints/social-accounts/schemas/social-account-status.yaml
+  $ref: ./auto-generated/models/social-account-status.yaml
 SourceProvider:
   $ref: ./auto-generated/models/source-provider.yaml
 SourceProviderCreate:
