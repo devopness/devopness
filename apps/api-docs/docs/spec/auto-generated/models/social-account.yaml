@@ -10,9 +10,9 @@ properties:
     type: integer
     example: 6589
   provider:
-    $ref: '#/components/schemas/SourceProviderName'
+    $ref: '#/components/schemas/SocialAccountProvider'
   provider_human_readable:
-    $ref: '#/components/schemas/SourceProviderDisplayableName'
+    $ref: '#/components/schemas/SocialAccountDisplayableName'
   provider_user_nickname:
     description: 'The nickname of the user on the Source Authentication provider'
     type: string

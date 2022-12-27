@@ -15,6 +15,10 @@ properties:
     description: 'Human readable version of the action type'
     type: string
     example: Deploy
+  resource_name:
+    description: 'The name of the resource'
+    type: string
+    example: 'Example resource'
   resource_type:
     $ref: '#/components/schemas/ResourceType'
   resource_type_human_readable:

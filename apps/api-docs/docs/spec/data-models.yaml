@@ -464,8 +464,12 @@ SocialAccount:
   $ref: ./auto-generated/models/social-account.yaml
 SocialAccountCreate:
   $ref: ./auto-generated/models/social-account-create.yaml
+SocialAccountDisplayableName:
+  $ref: ./auto-generated/models/social-account-displayable-name.yaml
 SocialAccountList:
   $ref: ./auto-generated/models/social-account-list.yaml
+SocialAccountProvider:
+  $ref: ./auto-generated/models/social-account-provider.yaml
 SocialAccountRelation:
   $ref: ./auto-generated/models/social-account-relation.yaml
 SocialAccounts:
