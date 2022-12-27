@@ -14548,6 +14548,11 @@
             "type": "string",
             "example": "Deploy"
           },
+          "resource_name": {
+            "description": "The name of the resource",
+            "type": "string",
+            "example": "Example resource"
+          },
           "resource_type": {
             "$ref": "#/components/schemas/ResourceType"
           },
@@ -15764,10 +15769,10 @@
             "example": 6589
           },
           "provider": {
-            "$ref": "#/components/schemas/SourceProviderName"
+            "$ref": "#/components/schemas/SocialAccountProvider"
           },
           "provider_human_readable": {
-            "$ref": "#/components/schemas/SourceProviderDisplayableName"
+            "$ref": "#/components/schemas/SocialAccountDisplayableName"
           },
           "provider_user_nickname": {
             "description": "The nickname of the user on the Source Authentication provider",
@@ -15825,11 +15830,35 @@
           "callback_code"
         ]
       },
+      "SocialAccountDisplayableName": {
+        "type": "string",
+        "description": "A formatted version of the `provider` field value, aligned with the provider's name branding",
+        "enum": [
+          "Bitbucket",
+          "Facebook",
+          "GitHub",
+          "GitLab",
+          "Google"
+        ],
+        "example": "GitHub"
+      },
       "SocialAccountList": {
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/SocialAccountRelation"
         }
+      },
+      "SocialAccountProvider": {
+        "type": "string",
+        "description": "The name of the Social Authentication provider",
+        "enum": [
+          "bitbucket",
+          "facebook",
+          "github",
+          "gitlab",
+          "google"
+        ],
+        "example": "github"
       },
       "SocialAccountRelation": {
         "type": "object",
@@ -15845,10 +15874,10 @@
             "example": 6589
           },
           "provider": {
-            "$ref": "#/components/schemas/SourceProviderName"
+            "$ref": "#/components/schemas/SocialAccountProvider"
           },
           "provider_human_readable": {
-            "$ref": "#/components/schemas/SourceProviderDisplayableName"
+            "$ref": "#/components/schemas/SocialAccountDisplayableName"
           },
           "provider_user_nickname": {
             "description": "The nickname of the user on the Source Authentication provider",
