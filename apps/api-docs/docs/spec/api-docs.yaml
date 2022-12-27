@@ -223,11 +223,7 @@ tags:
     description: |
       The terms `process`, `background process` and `daemon` may be used interchangeably in the `devopness` API documentation to denote the same thing: i.e., a computer process that runs behind the scenes without user intervention, detached from TTY (teletype/terminal type) and having no associated console or controlling terminal, therefore prevented from receiving `SIGHUP` on shell termination.
   - name: Projects - Environments
-  - name: Projects - Network Rules
   - name: Projects - Roles
-  - name: Projects - Servers
-  - name: Projects - Services
-  - name: Projects - SSH Keys
   - name: Projects - Teams
   - name: Resource Events
   - name: Roles
@@ -307,7 +303,6 @@ x-tagGroups:
     tags:
       - Network Rules
       - Environments - Network Rules
-      - Projects - Network Rules
   - name: Pipelines
     tags:
       - Pipelines
