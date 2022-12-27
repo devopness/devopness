@@ -5971,53 +5971,12 @@
       }
     },
     "/social-accounts": {
-      "post": {
-        "summary": "Create a new social account linked to the current user's profile",
-        "operationId": "addSocialAccount",
-        "tags": [
-          "Social Accounts"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          }
-        ],
-        "requestBody": {
-          "description": "A JSON object containing social provider callback data",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SocialAccountCreate"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SocialAccount"
-                }
-              }
-            }
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          }
-        }
-      },
       "get": {
-        "summary": "Return a list of all social accounts belonging to current user",
+        "summary": "Return a list of all social accounts of the current user",
         "operationId": "listSocialAccounts",
+        "description": {
+          "$ref": "../spec/descriptions/list-social-accounts.md"
+        },
         "tags": [
           "Social Accounts"
         ],
@@ -6041,6 +6000,13 @@
         "responses": {
           "200": {
             "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SocialAccountList"
+                }
+              }
+            },
             "headers": {
               "Link": {
                 "schema": {
@@ -6048,22 +6014,72 @@
                 },
                 "description": "Link header with `first`, `last`, `previous` and `next` page's links"
               }
-            },
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Add a social account",
+        "operationId": "addSocialAccount",
+        "description": {
+          "$ref": "../spec/descriptions/add-social-account.md"
+        },
+        "tags": [
+          "Social Accounts"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SocialAccounts"
+                  "$ref": "#/components/schemas/SocialAccount"
                 }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SocialAccountCreate"
               }
             }
           }
         }
       }
     },
-    "/social-accounts/{social_account_id}": {
+    "/social-accounts/{provider}": {
       "get": {
-        "summary": "Get details of a single Social authentication provider",
+        "summary": "Get a social account by provider name",
         "operationId": "getSocialAccount",
+        "description": {
+          "$ref": "../spec/descriptions/get-social-account.md"
+        },
         "tags": [
           "Social Accounts"
         ],
@@ -6079,14 +6095,13 @@
           },
           {
             "in": "path",
-            "name": "social_account_id",
-            "example": 1,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            },
+            "name": "provider",
+            "description": "The provider name.",
+            "example": "gitlab",
             "required": true,
-            "description": "Unique ID of the provider to be retrieved"
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -6101,13 +6116,66 @@
             }
           },
           "404": {
-            "$ref": "#/components/responses/NotFound"
+            "description": "The specified resource was not found"
           }
         }
-      },
+      }
+    },
+    "/social-accounts/{provider}/status": {
+      "get": {
+        "summary": "Get status of a social account",
+        "operationId": "getSocialAccountStatus",
+        "description": {
+          "$ref": "../spec/descriptions/get-social-account-status.md"
+        },
+        "tags": [
+          "Social Accounts"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "provider",
+            "description": "The provider name.",
+            "example": "gitlab",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SocialAccountStatus"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified resource was not found"
+          }
+        }
+      }
+    },
+    "/social-accounts/{social_account_id}": {
       "delete": {
         "summary": "Delete a given social account",
         "operationId": "deleteSocialAccount",
+        "description": {
+          "$ref": "../spec/descriptions/delete-social-account.md"
+        },
         "tags": [
           "Social Accounts"
         ],
@@ -6124,67 +6192,21 @@
           {
             "in": "path",
             "name": "social_account_id",
-            "example": 1,
+            "description": "The ID of the social account.",
+            "example": 123,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "The Id of the social account to be deleted"
+            }
           }
         ],
         "responses": {
           "204": {
-            "$ref": "#/components/responses/NoContent"
+            "description": "No Content"
           },
           "404": {
-            "$ref": "#/components/responses/NotFound"
-          }
-        }
-      }
-    },
-    "/social-accounts/{social_account_provider_name}/status": {
-      "get": {
-        "summary": "Get the connect status of a Social authentication provider, by its name",
-        "operationId": "getSocialAccountStatusByName",
-        "tags": [
-          "Social Accounts"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "social_account_provider_name",
-            "example": "google",
-            "schema": {
-              "type": "string",
-              "minimum": 3
-            },
-            "required": true,
-            "description": "Unique name of the provider to be retrieved"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SocialAccountStatus"
-                }
-              }
-            }
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
+            "description": "The specified resource was not found"
           }
         }
       }
@@ -8678,9 +8700,6 @@
       "name": "Actions"
     },
     {
-      "name": "Actions - Resources"
-    },
-    {
       "name": "Applications"
     },
     {
@@ -8749,9 +8768,6 @@
     {
       "name": "Hooks",
       "description": "A hook is a simple way to integrate your Devopness workflow with external processes to trigger Devopness actions by sending a POST request to a public URL. By using hooks you can make Devopness react to events that happen in other applications and make sure your environment resources reflect changes applied in other services.\nAn outgoing hook is a webhook that trigger a request when an action of a resource has your state updated.\n"
-    },
-    {
-      "name": "Hooks - Requests"
     },
     {
       "name": "Invitations"
@@ -8882,7 +8898,7 @@
       "name": "Actions",
       "tags": [
         "Actions",
-        "Actions - Resources",
+        "Actions - Logs",
         "Environments - Actions",
         "Projects - Actions"
       ]
@@ -8895,8 +8911,7 @@
         "Applications - Hooks",
         "Applications - SSL Certificates",
         "Applications - Variables",
-        "Environments - Applications",
-        "Projects - Applications"
+        "Environments - Applications"
       ]
     },
     {
@@ -8915,16 +8930,14 @@
       "name": "Cron Jobs",
       "tags": [
         "Cron Jobs",
-        "Environments - Cron Jobs",
-        "Projects - Cron Jobs"
+        "Environments - Cron Jobs"
       ]
     },
     {
       "name": "Daemons",
       "tags": [
         "Daemons",
-        "Environments - Daemons",
-        "Projects - Daemons"
+        "Environments - Daemons"
       ]
     },
     {
@@ -8938,13 +8951,8 @@
       "name": "Hooks",
       "tags": [
         "Hooks",
-        "Hooks - Requests"
-      ]
-    },
-    {
-      "name": "Logs",
-      "tags": [
-        "Logs"
+        "Hooks - Requests",
+        "Hook Requests"
       ]
     },
     {
@@ -8959,7 +8967,6 @@
       "name": "Pipelines",
       "tags": [
         "Pipelines",
-        "Pipelines - Resources",
         "Pipelines - Steps"
       ]
     },
@@ -8986,8 +8993,7 @@
       "name": "Servers",
       "tags": [
         "Servers",
-        "Environments - Servers",
-        "Projects - Servers"
+        "Environments - Servers"
       ]
     },
     {
@@ -8995,8 +9001,13 @@
       "tags": [
         "Services",
         "Services - Variables",
-        "Environments - Services",
-        "Projects - Services"
+        "Environments - Services"
+      ]
+    },
+    {
+      "name": "Social Accounts",
+      "tags": [
+        "Social Accounts"
       ]
     },
     {
@@ -9010,8 +9021,7 @@
       "name": "SSH Keys",
       "tags": [
         "SSH Keys",
-        "Environments - SSH Keys",
-        "Projects - SSH Keys"
+        "Environments - SSH Keys"
       ]
     },
     {
@@ -9027,7 +9037,6 @@
         "Teams",
         "Teams - Invitations",
         "Teams - Members",
-        "Invitations",
         "Environments - Teams",
         "Environments - Team Memberships"
       ]
@@ -15758,59 +15767,70 @@
         "type": "object",
         "properties": {
           "id": {
+            "description": "The ID of the given social account",
             "type": "integer",
-            "description": "The unique id of the given record",
-            "example": 964
+            "example": 85324
+          },
+          "user_id": {
+            "description": "The current user's ID",
+            "type": "integer",
+            "example": 6589
           },
           "provider": {
-            "$ref": "#/components/schemas/SocialAccountProvider"
+            "$ref": "#/components/schemas/SourceProviderName"
           },
           "provider_human_readable": {
-            "$ref": "#/components/schemas/SocialAccountDisplayableName"
+            "$ref": "#/components/schemas/SourceProviderDisplayableName"
           },
           "provider_user_nickname": {
+            "description": "The nickname of the user on the Source Authentication provider",
             "type": "string",
-            "description": "The nickname of the user on the Social Authentication provider",
             "example": "Joe Smith"
           },
           "is_vcs": {
+            "description": "If this social account is from a Version Control System (VCS)",
             "type": "boolean",
-            "description": "Tells if the social account provider is a Source Code Provider/Version Control System. e.g. false for Facebook, true for Github"
+            "example": true
           },
-          "user_id": {
-            "type": "integer",
-            "description": "The current user's id",
-            "example": 123
+          "token_expires_at": {
+            "description": "The date and time indicating when the authentication token will expire at",
+            "type": "string",
+            "example": "2020-09-25T15:50:48.000000Z",
+            "nullable": true
           },
           "created_at": {
-            "type": "string",
-            "format": "date-time",
             "description": "The date and time when the record was created",
+            "type": "string",
             "example": "2019-09-25T15:50:48.000000Z"
           },
           "updated_at": {
-            "type": "string",
-            "format": "date-time",
             "description": "The date and time when the record was last updated",
-            "example": "2019-09-25T13:52:04.000000Z"
+            "type": "string",
+            "example": "2019-09-25T15:50:48.000000Z"
           }
         },
         "required": [
           "id",
+          "user_id",
           "provider",
-          "provider_user_nickname"
+          "provider_human_readable",
+          "provider_user_nickname",
+          "is_vcs",
+          "token_expires_at",
+          "created_at",
+          "updated_at"
         ]
       },
       "SocialAccountCreate": {
         "type": "object",
         "properties": {
           "provider": {
-            "$ref": "#/components/schemas/SocialAccountProvider"
+            "$ref": "#/components/schemas/SourceProviderName"
           },
           "callback_code": {
-            "type": "string",
-            "description": "The temporary code forwarded by the OAuth provider as a parameter to our callback URL",
-            "example": "a606964974b5fb082971"
+            "description": "The temporary code forwarded by the OAuth provider as a parameter to our callback URL. Must be at least 8 characters.",
+            "example": "a606964974b5fb082971",
+            "type": "string"
           }
         },
         "required": [
@@ -15818,31 +15838,70 @@
           "callback_code"
         ]
       },
-      "SocialAccountDisplayableName": {
-        "type": "string",
-        "description": "A formatted version of the `provider` field value, aligned with the provider's name branding",
-        "enum": [
-          "Bitbucket",
-          "Facebook",
-          "GitHub",
-          "GitLab",
-          "Google",
-          "LinkedIn"
-        ],
-        "example": "GitHub"
+      "SocialAccountList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/SocialAccountRelation"
+        }
       },
-      "SocialAccountProvider": {
-        "type": "string",
-        "description": "The name of the Social Authentication provider",
-        "enum": [
-          "bitbucket",
-          "facebook",
-          "github",
-          "gitlab",
-          "google",
-          "linkedin"
+      "SocialAccountRelation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "The ID of the given social account",
+            "type": "integer",
+            "example": 85324
+          },
+          "user_id": {
+            "description": "The current user's ID",
+            "type": "integer",
+            "example": 6589
+          },
+          "provider": {
+            "$ref": "#/components/schemas/SourceProviderName"
+          },
+          "provider_human_readable": {
+            "$ref": "#/components/schemas/SourceProviderDisplayableName"
+          },
+          "provider_user_nickname": {
+            "description": "The nickname of the user on the Source Authentication provider",
+            "type": "string",
+            "example": "Joe Smith"
+          },
+          "is_vcs": {
+            "description": "If this social account is from a Version Control System (VCS)",
+            "type": "boolean",
+            "example": true
+          },
+          "token_expires_at": {
+            "description": "The date and time indicating when the authentication token will expire at",
+            "type": "string",
+            "example": "2020-09-25T15:50:48.000000Z",
+            "nullable": true
+          },
+          "created_at": {
+            "description": "The date and time when the record was created",
+            "type": "string",
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "description": "The date and time when the record was last updated",
+            "type": "string",
+            "example": "2019-09-25T13:52:04.000000Z"
+          }
+        },
+        "required": [
+          "id",
+          "user_id",
+          "provider",
+          "provider_human_readable",
+          "provider_user_nickname",
+          "is_vcs",
+          "token_expires_at",
+          "created_at",
+          "updated_at"
         ],
-        "example": "github"
+        "nullable": true
       },
       "SocialAccounts": {
         "type": "array",
@@ -15854,19 +15913,26 @@
         "type": "object",
         "properties": {
           "provider": {
-            "$ref": "#/components/schemas/SocialAccountProvider"
+            "description": "Name of the provider",
+            "type": "string",
+            "example": "gitlab"
           },
           "connected": {
+            "description": "If the account is currently connected",
             "type": "boolean",
-            "description": "Tells if the provider is already connected to the current user's account"
+            "example": false
           },
           "connect_url": {
+            "description": "URL of the connection",
             "type": "string",
-            "format": "url",
-            "description": "A URL path to the provider's OAuth page",
-            "example": "https://github.com/login/oauth/authorize?client_id=...&redirect_uri=...&scope=..."
+            "example": "https://gitlab.com/oauth/authorize?client_id=%3CSET-DEVOPNESS-GITLAB-CLIENT-ID-HERE%3E&redirect_uri=http%3A%2F%2Fd2-social-provider-redirect-url.com%3Fprovider%3Dgitlab&scope=read_user+email+api&response_type=code"
           }
-        }
+        },
+        "required": [
+          "provider",
+          "connected",
+          "connect_url"
+        ]
       },
       "SourceProvider": {
         "type": "object",
