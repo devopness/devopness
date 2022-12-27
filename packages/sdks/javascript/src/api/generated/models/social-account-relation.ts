@@ -18,61 +18,61 @@ import { SourceProviderName } from './source-provider-name';
 /**
  * 
  * @export
- * @interface SocialAccount
+ * @interface SocialAccountRelation
  */
-export interface SocialAccount {
+export interface SocialAccountRelation {
     /**
      * The ID of the given social account
      * @type {number}
-     * @memberof SocialAccount
+     * @memberof SocialAccountRelation
      */
     id: number;
     /**
      * The current user\'s ID
      * @type {number}
-     * @memberof SocialAccount
+     * @memberof SocialAccountRelation
      */
     user_id: number;
     /**
      * 
      * @type {SourceProviderName}
-     * @memberof SocialAccount
+     * @memberof SocialAccountRelation
      */
     provider: SourceProviderName;
     /**
      * 
      * @type {SourceProviderDisplayableName}
-     * @memberof SocialAccount
+     * @memberof SocialAccountRelation
      */
     provider_human_readable: SourceProviderDisplayableName;
     /**
      * The nickname of the user on the Source Authentication provider
      * @type {string}
-     * @memberof SocialAccount
+     * @memberof SocialAccountRelation
      */
     provider_user_nickname: string;
     /**
      * If this social account is from a Version Control System (VCS)
      * @type {boolean}
-     * @memberof SocialAccount
+     * @memberof SocialAccountRelation
      */
     is_vcs: boolean;
     /**
      * The date and time indicating when the authentication token will expire at
      * @type {string}
-     * @memberof SocialAccount
+     * @memberof SocialAccountRelation
      */
     token_expires_at: string | null;
     /**
      * The date and time when the record was created
      * @type {string}
-     * @memberof SocialAccount
+     * @memberof SocialAccountRelation
      */
     created_at: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
-     * @memberof SocialAccount
+     * @memberof SocialAccountRelation
      */
     updated_at: string;
 }
