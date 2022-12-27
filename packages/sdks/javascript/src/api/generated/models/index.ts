@@ -175,6 +175,7 @@ export * from './social-account';
 export * from './social-account-create';
 export * from './social-account-displayable-name';
 export * from './social-account-provider';
+export * from './social-account-relation';
 export * from './social-account-status';
 export * from './source-provider';
 export * from './source-provider-create';

@@ -23,8 +23,7 @@ export enum SocialAccountDisplayableName {
     Facebook = 'Facebook',
     GitHub = 'GitHub',
     GitLab = 'GitLab',
-    Google = 'Google',
-    LinkedIn = 'LinkedIn'
+    Google = 'Google'
 }
 
 

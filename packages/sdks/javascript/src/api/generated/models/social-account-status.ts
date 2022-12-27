@@ -12,7 +12,6 @@
  */
 
 
-import { SocialAccountProvider } from './social-account-provider';
 
 /**
  * 
@@ -21,22 +20,22 @@ import { SocialAccountProvider } from './social-account-provider';
  */
 export interface SocialAccountStatus {
     /**
-     * 
-     * @type {SocialAccountProvider}
-     * @memberof SocialAccountStatus
-     */
-    provider?: SocialAccountProvider;
-    /**
-     * Tells if the provider is already connected to the current user\'s account
-     * @type {boolean}
-     * @memberof SocialAccountStatus
-     */
-    connected?: boolean;
-    /**
-     * A URL path to the provider\'s OAuth page
+     * Name of the provider
      * @type {string}
      * @memberof SocialAccountStatus
      */
-    connect_url?: string;
+    provider: string;
+    /**
+     * If the account is currently connected
+     * @type {boolean}
+     * @memberof SocialAccountStatus
+     */
+    connected: boolean;
+    /**
+     * URL of the connection
+     * @type {string}
+     * @memberof SocialAccountStatus
+     */
+    connect_url: string;
 }
 

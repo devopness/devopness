@@ -23,8 +23,7 @@ export enum SocialAccountProvider {
     Facebook = 'facebook',
     Github = 'github',
     Gitlab = 'gitlab',
-    Google = 'google',
-    Linkedin = 'linkedin'
+    Google = 'google'
 }
 
 

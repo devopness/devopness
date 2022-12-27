@@ -12,7 +12,7 @@
  */
 
 
-import { SocialAccountProvider } from './social-account-provider';
+import { SourceProviderName } from './source-provider-name';
 
 /**
  * 
@@ -22,12 +22,12 @@ import { SocialAccountProvider } from './social-account-provider';
 export interface SocialAccountCreate {
     /**
      * 
-     * @type {SocialAccountProvider}
+     * @type {SourceProviderName}
      * @memberof SocialAccountCreate
      */
-    provider: SocialAccountProvider;
+    provider: SourceProviderName;
     /**
-     * The temporary code forwarded by the OAuth provider as a parameter to our callback URL
+     * The temporary code forwarded by the OAuth provider as a parameter to our callback URL. Must be at least 8 characters.
      * @type {string}
      * @memberof SocialAccountCreate
      */

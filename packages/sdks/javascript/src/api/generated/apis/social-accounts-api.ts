@@ -14,8 +14,10 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { ApiError } from '../../generated/models';
 import { SocialAccount } from '../../generated/models';
 import { SocialAccountCreate } from '../../generated/models';
+import { SocialAccountRelation } from '../../generated/models';
 import { SocialAccountStatus } from '../../generated/models';
 
 /**
@@ -24,8 +26,8 @@ import { SocialAccountStatus } from '../../generated/models';
 export class SocialAccountsApiService extends ApiBaseService {
     /**
      * 
-     * @summary Create a new social account linked to the current user\'s profile
-     * @param {SocialAccountCreate} socialAccountCreate A JSON object containing social provider callback data
+     * @summary Add a social account
+     * @param {SocialAccountCreate} socialAccountCreate A JSON object containing the resource data
      */
     public async addSocialAccount(socialAccountCreate: SocialAccountCreate): Promise<ApiResponse<SocialAccount>> {
         if (socialAccountCreate === null || socialAccountCreate === undefined) {
@@ -43,7 +45,7 @@ export class SocialAccountsApiService extends ApiBaseService {
     /**
      * 
      * @summary Delete a given social account
-     * @param {number} socialAccountId The Id of the social account to be deleted
+     * @param {number} socialAccountId The ID of the social account.
      */
     public async deleteSocialAccount(socialAccountId: number): Promise<ApiResponse<void>> {
         if (socialAccountId === null || socialAccountId === undefined) {
@@ -60,47 +62,47 @@ export class SocialAccountsApiService extends ApiBaseService {
 
     /**
      * 
-     * @summary Get details of a single Social authentication provider
-     * @param {number} socialAccountId Unique ID of the provider to be retrieved
+     * @summary Get a social account by provider name
+     * @param {string} provider The provider name.
      */
-    public async getSocialAccount(socialAccountId: number): Promise<ApiResponse<SocialAccount>> {
-        if (socialAccountId === null || socialAccountId === undefined) {
-            throw new ArgumentNullException('socialAccountId', 'getSocialAccount');
+    public async getSocialAccount(provider: string): Promise<ApiResponse<SocialAccount>> {
+        if (provider === null || provider === undefined) {
+            throw new ArgumentNullException('provider', 'getSocialAccount');
         }
         
         let queryString = '';
 
-        const requestUrl = '/social-accounts/{social_account_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/social-accounts/{provider}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <SocialAccount>(requestUrl.replace(`{${"social_account_id"}}`, encodeURIComponent(String(socialAccountId))));
+        const response = await this.get <SocialAccount>(requestUrl.replace(`{${"provider"}}`, encodeURIComponent(String(provider))));
         return new ApiResponse(response);
     }
 
     /**
      * 
-     * @summary Get the connect status of a Social authentication provider, by its name
-     * @param {string} socialAccountProviderName Unique name of the provider to be retrieved
+     * @summary Get status of a social account
+     * @param {string} provider The provider name.
      */
-    public async getSocialAccountStatusByName(socialAccountProviderName: string): Promise<ApiResponse<SocialAccountStatus>> {
-        if (socialAccountProviderName === null || socialAccountProviderName === undefined) {
-            throw new ArgumentNullException('socialAccountProviderName', 'getSocialAccountStatusByName');
+    public async getSocialAccountStatus(provider: string): Promise<ApiResponse<SocialAccountStatus>> {
+        if (provider === null || provider === undefined) {
+            throw new ArgumentNullException('provider', 'getSocialAccountStatus');
         }
         
         let queryString = '';
 
-        const requestUrl = '/social-accounts/{social_account_provider_name}/status' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/social-accounts/{provider}/status' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <SocialAccountStatus>(requestUrl.replace(`{${"social_account_provider_name"}}`, encodeURIComponent(String(socialAccountProviderName))));
+        const response = await this.get <SocialAccountStatus>(requestUrl.replace(`{${"provider"}}`, encodeURIComponent(String(provider))));
         return new ApiResponse(response);
     }
 
     /**
      * 
-     * @summary Return a list of all social accounts belonging to current user
+     * @summary Return a list of all social accounts of the current user
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */
-    public async listSocialAccounts(page?: number, perPage?: number): Promise<ApiResponse<Array<SocialAccount>>> {
+    public async listSocialAccounts(page?: number, perPage?: number): Promise<ApiResponse<Array<SocialAccountRelation>>> {
         
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
@@ -114,7 +116,7 @@ export class SocialAccountsApiService extends ApiBaseService {
 
         const requestUrl = '/social-accounts' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<SocialAccount>>(requestUrl);
+        const response = await this.get <Array<SocialAccountRelation>>(requestUrl);
         return new ApiResponse(response);
     }
 }

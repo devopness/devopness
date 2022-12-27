@@ -47,6 +47,12 @@ export interface RelatedAction {
      */
     type_human_readable: string;
     /**
+     * The name of the resource
+     * @type {string}
+     * @memberof RelatedAction
+     */
+    resource_name?: string;
+    /**
      * 
      * @type {ResourceType}
      * @memberof RelatedAction
