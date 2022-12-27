@@ -8805,19 +8805,7 @@
       "name": "Projects - Environments"
     },
     {
-      "name": "Projects - Network Rules"
-    },
-    {
       "name": "Projects - Roles"
-    },
-    {
-      "name": "Projects - Servers"
-    },
-    {
-      "name": "Projects - Services"
-    },
-    {
-      "name": "Projects - SSH Keys"
     },
     {
       "name": "Projects - Teams"
@@ -8959,8 +8947,7 @@
       "name": "Network Rules",
       "tags": [
         "Network Rules",
-        "Environments - Network Rules",
-        "Projects - Network Rules"
+        "Environments - Network Rules"
       ]
     },
     {
