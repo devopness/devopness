@@ -12,8 +12,8 @@
  */
 
 
-import { SourceProviderDisplayableName } from './source-provider-displayable-name';
-import { SourceProviderName } from './source-provider-name';
+import { SocialAccountDisplayableName } from './social-account-displayable-name';
+import { SocialAccountProvider } from './social-account-provider';
 
 /**
  * 
@@ -35,16 +35,16 @@ export interface SocialAccountRelation {
     user_id: number;
     /**
      * 
-     * @type {SourceProviderName}
+     * @type {SocialAccountProvider}
      * @memberof SocialAccountRelation
      */
-    provider: SourceProviderName;
+    provider: SocialAccountProvider;
     /**
      * 
-     * @type {SourceProviderDisplayableName}
+     * @type {SocialAccountDisplayableName}
      * @memberof SocialAccountRelation
      */
-    provider_human_readable: SourceProviderDisplayableName;
+    provider_human_readable: SocialAccountDisplayableName;
     /**
      * The nickname of the user on the Source Authentication provider
      * @type {string}
