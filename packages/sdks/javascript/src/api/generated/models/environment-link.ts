@@ -16,26 +16,26 @@
 /**
  * 
  * @export
- * @interface EnvironmentMember
+ * @interface EnvironmentLink
  */
-export interface EnvironmentMember {
+export interface EnvironmentLink {
     /**
-     * The ID of the member
+     * Environment\'s unique id
      * @type {number}
-     * @memberof EnvironmentMember
+     * @memberof EnvironmentLink
      */
     id: number;
     /**
-     * Member\'s full name
+     * Environment\'s name
      * @type {string}
-     * @memberof EnvironmentMember
+     * @memberof EnvironmentLink
      */
-    name: string;
+    name?: string | null;
     /**
-     * Member\'s email
-     * @type {string}
-     * @memberof EnvironmentMember
+     * A list of server IDs to which the item link/unlink operations must be performed
+     * @type {Array<number>}
+     * @memberof EnvironmentLink
      */
-    email: string;
+    servers: Array<number>;
 }
 

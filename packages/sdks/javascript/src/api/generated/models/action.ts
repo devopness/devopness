@@ -114,7 +114,7 @@ export interface Action {
      * @type {EnvironmentRelation}
      * @memberof Action
      */
-    environment?: EnvironmentRelation;
+    environment?: EnvironmentRelation | null;
     /**
      * 
      * @type {ProjectRelation}

@@ -14,7 +14,7 @@
 
 
 /**
- * * `hook`: the action have been triggered by an `incoming hook`. * `manual`: the action have been manually triggered. 
+ *  * `hook`: the action have been triggered by an `incoming hook`. * `manual`: the action have been manually triggered. 
  * @export
  * @enum {string}
  */

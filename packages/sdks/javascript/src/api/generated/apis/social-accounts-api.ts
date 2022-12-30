@@ -63,36 +63,36 @@ export class SocialAccountsApiService extends ApiBaseService {
     /**
      * 
      * @summary Get a social account by provider name
-     * @param {string} provider The provider name.
+     * @param {string} socialAccountProvider The social account provider name.
      */
-    public async getSocialAccount(provider: string): Promise<ApiResponse<SocialAccount>> {
-        if (provider === null || provider === undefined) {
-            throw new ArgumentNullException('provider', 'getSocialAccount');
+    public async getSocialAccount(socialAccountProvider: string): Promise<ApiResponse<SocialAccount>> {
+        if (socialAccountProvider === null || socialAccountProvider === undefined) {
+            throw new ArgumentNullException('socialAccountProvider', 'getSocialAccount');
         }
         
         let queryString = '';
 
-        const requestUrl = '/social-accounts/{provider}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/social-accounts/{social_account_provider}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <SocialAccount>(requestUrl.replace(`{${"provider"}}`, encodeURIComponent(String(provider))));
+        const response = await this.get <SocialAccount>(requestUrl.replace(`{${"social_account_provider"}}`, encodeURIComponent(String(socialAccountProvider))));
         return new ApiResponse(response);
     }
 
     /**
      * 
      * @summary Get status of a social account
-     * @param {string} provider The provider name.
+     * @param {string} socialAccountProvider The social account provider name.
      */
-    public async getSocialAccountStatus(provider: string): Promise<ApiResponse<SocialAccountStatus>> {
-        if (provider === null || provider === undefined) {
-            throw new ArgumentNullException('provider', 'getSocialAccountStatus');
+    public async getSocialAccountStatus(socialAccountProvider: string): Promise<ApiResponse<SocialAccountStatus>> {
+        if (socialAccountProvider === null || socialAccountProvider === undefined) {
+            throw new ArgumentNullException('socialAccountProvider', 'getSocialAccountStatus');
         }
         
         let queryString = '';
 
-        const requestUrl = '/social-accounts/{provider}/status' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/social-accounts/{social_account_provider}/status' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <SocialAccountStatus>(requestUrl.replace(`{${"provider"}}`, encodeURIComponent(String(provider))));
+        const response = await this.get <SocialAccountStatus>(requestUrl.replace(`{${"social_account_provider"}}`, encodeURIComponent(String(socialAccountProvider))));
         return new ApiResponse(response);
     }
 

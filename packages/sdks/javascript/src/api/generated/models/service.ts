@@ -84,7 +84,7 @@ export interface Service {
      * @type {EnvironmentRelation}
      * @memberof Service
      */
-    environment: EnvironmentRelation;
+    environment: EnvironmentRelation | null;
     /**
      * 
      * @type {UserRelation}
