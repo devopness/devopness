@@ -188,7 +188,7 @@ export interface Application {
      * @type {EnvironmentRelation}
      * @memberof Application
      */
-    environment: EnvironmentRelation;
+    environment: EnvironmentRelation | null;
     /**
      * 
      * @type {Array<ServerRelation>}

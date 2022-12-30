@@ -52,7 +52,7 @@ export interface SocialAccountRelation {
      */
     provider_user_nickname: string;
     /**
-     * If this social account is from a Version Control System (VCS)
+     * Tells if the social account provider is a Source Code Provider/Version Control System. e.g. false for Facebook, true for Github
      * @type {boolean}
      * @memberof SocialAccountRelation
      */

@@ -20,8 +20,8 @@
  */
 export enum EnvironmentType {
     Development = 'development',
-    Staging = 'staging',
-    Production = 'production'
+    Production = 'production',
+    Staging = 'staging'
 }
 
 

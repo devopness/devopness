@@ -114,7 +114,7 @@ export interface ActionRetryResponse {
      * @type {EnvironmentRelation}
      * @memberof ActionRetryResponse
      */
-    environment?: EnvironmentRelation;
+    environment?: EnvironmentRelation | null;
     /**
      * 
      * @type {ProjectRelation}

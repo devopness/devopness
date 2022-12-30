@@ -70,7 +70,7 @@ export interface SshKey {
      * @type {EnvironmentRelation}
      * @memberof SshKey
      */
-    environment: EnvironmentRelation;
+    environment: EnvironmentRelation | null;
     /**
      * 
      * @type {Array<ServerRelation>}

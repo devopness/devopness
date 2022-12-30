@@ -47,8 +47,8 @@ export class EnvironmentsApplicationsApiService extends ApiBaseService {
 
     /**
      * 
-     * @summary Returns a list of all applications belonging to a environment
-     * @param {number} environmentId Numeric ID of the environment to get applications from
+     * @summary Return a list of all Applications belonging to an environment
+     * @param {number} environmentId The ID of the environment.
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */

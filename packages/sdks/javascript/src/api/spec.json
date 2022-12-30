@@ -1421,8 +1421,11 @@
     },
     "/environments/{environment_id}/applications": {
       "get": {
-        "summary": "Returns a list of all applications belonging to a environment",
+        "summary": "Return a list of all Applications belonging to an environment",
         "operationId": "listEnvironmentApplications",
+        "description": {
+          "$ref": "../spec/descriptions/list-environment-applications.md"
+        },
         "tags": [
           "Environments - Applications"
         ],
@@ -1445,31 +1448,31 @@
           {
             "in": "path",
             "name": "environment_id",
-            "example": 1,
+            "description": "The ID of the environment.",
+            "example": 123,
+            "required": true,
             "schema": {
               "type": "integer",
               "minimum": 1
-            },
-            "required": true,
-            "description": "Numeric ID of the environment to get applications from"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationList"
+                }
+              }
+            },
             "headers": {
               "Link": {
                 "schema": {
                   "type": "string"
                 },
                 "description": "Link header with `first`, `last`, `previous` and `next` page's links"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Applications"
-                }
               }
             }
           }
@@ -6073,102 +6076,6 @@
         }
       }
     },
-    "/social-accounts/{provider}": {
-      "get": {
-        "summary": "Get a social account by provider name",
-        "operationId": "getSocialAccount",
-        "description": {
-          "$ref": "../spec/descriptions/get-social-account.md"
-        },
-        "tags": [
-          "Social Accounts"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "provider",
-            "description": "The provider name.",
-            "example": "gitlab",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SocialAccount"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "The specified resource was not found"
-          }
-        }
-      }
-    },
-    "/social-accounts/{provider}/status": {
-      "get": {
-        "summary": "Get status of a social account",
-        "operationId": "getSocialAccountStatus",
-        "description": {
-          "$ref": "../spec/descriptions/get-social-account-status.md"
-        },
-        "tags": [
-          "Social Accounts"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "provider",
-            "description": "The provider name.",
-            "example": "gitlab",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SocialAccountStatus"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "The specified resource was not found"
-          }
-        }
-      }
-    },
     "/social-accounts/{social_account_id}": {
       "delete": {
         "summary": "Delete a given social account",
@@ -6204,6 +6111,102 @@
         "responses": {
           "204": {
             "description": "No Content"
+          },
+          "404": {
+            "description": "The specified resource was not found"
+          }
+        }
+      }
+    },
+    "/social-accounts/{social_account_provider}": {
+      "get": {
+        "summary": "Get a social account by provider name",
+        "operationId": "getSocialAccount",
+        "description": {
+          "$ref": "../spec/descriptions/get-social-account.md"
+        },
+        "tags": [
+          "Social Accounts"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "social_account_provider",
+            "description": "The social account provider name.",
+            "example": "gitlab",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SocialAccount"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified resource was not found"
+          }
+        }
+      }
+    },
+    "/social-accounts/{social_account_provider}/status": {
+      "get": {
+        "summary": "Get status of a social account",
+        "operationId": "getSocialAccountStatus",
+        "description": {
+          "$ref": "../spec/descriptions/get-social-account-status.md"
+        },
+        "tags": [
+          "Social Accounts"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "social_account_provider",
+            "description": "The social account provider name.",
+            "example": "gitlab",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SocialAccountStatus"
+                }
+              }
+            }
           },
           "404": {
             "description": "The specified resource was not found"
@@ -9176,7 +9179,7 @@
             "$ref": "#/components/schemas/ProjectRelation"
           },
           "servers": {
-            "$ref": "#/components/schemas/ServerActions"
+            "$ref": "#/components/schemas/ServerActionList"
           },
           "hook_requests": {
             "$ref": "#/components/schemas/ActionHookRequest"
@@ -9388,35 +9391,10 @@
           }
         }
       },
-      "Actions": {
-        "description": "The list of related actions",
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ActionListItem"
-        }
-      },
       "ActionList": {
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/ActionRelation"
-        }
-      },
-      "ActionListItem": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/ActionRelation"
-          },
-          {
-            "$ref": "#/components/schemas/ActionListItemParams"
-          }
-        ]
-      },
-      "ActionListItemParams": {
-        "type": "object",
-        "properties": {
-          "servers": {
-            "$ref": "#/components/schemas/ServerActions"
-          }
         }
       },
       "ActionRelation": {
@@ -9456,7 +9434,7 @@
             "$ref": "#/components/schemas/ActionSummary"
           },
           "servers": {
-            "$ref": "#/components/schemas/ServerActions"
+            "$ref": "#/components/schemas/ServerActionList"
           },
           "started_at": {
             "description": "The date and time when the action started execution (i.e., left the `pending/queued` status)",
@@ -9555,7 +9533,7 @@
             "$ref": "#/components/schemas/ProjectRelation"
           },
           "servers": {
-            "$ref": "#/components/schemas/ServerActions"
+            "$ref": "#/components/schemas/ServerActionList"
           },
           "hook_requests": {
             "$ref": "#/components/schemas/ActionHookRequest"
@@ -9688,33 +9666,12 @@
           "status"
         ]
       },
-      "ActionSteps": {
+      "ActionStepList": {
         "description": "The list of action steps",
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/ActionStep"
         }
-      },
-      "ActionStepLog": {
-        "type": "object",
-        "properties": {
-          "updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the requested log record was last updated",
-            "example": "2019-09-25T13:52:04.000000Z",
-            "nullable": true
-          },
-          "server": {
-            "$ref": "#/components/schemas/ServerRelation"
-          },
-          "step": {
-            "$ref": "#/components/schemas/ServerActionLogStep"
-          }
-        },
-        "required": [
-          "updated_at"
-        ]
       },
       "ActionSummary": {
         "type": "object",
@@ -9762,6 +9719,15 @@
           "in_progress",
           "completed",
           "failed"
+        ]
+      },
+      "ActionTriggerType": {
+        "type": "string",
+        "example": "manual",
+        "description": "\n* `hook`: the action have been triggered by an `incoming hook`.\n* `manual`: the action have been manually triggered.\n",
+        "enum": [
+          "hook",
+          "manual"
         ]
       },
       "ActionTriggeredFrom": {
@@ -9827,15 +9793,6 @@
           "hook_id",
           "hook_request_id",
           "pull_request_id"
-        ]
-      },
-      "ActionTriggerType": {
-        "type": "string",
-        "example": "manual",
-        "description": "* `hook`: the action have been triggered by an `incoming hook`.\n* `manual`: the action have been manually triggered.\n",
-        "enum": [
-          "hook",
-          "manual"
         ]
       },
       "ActionType": {
@@ -10074,43 +10031,6 @@
           "ssl_certificates",
           "created_at",
           "updated_at"
-        ]
-      },
-      "ApplicationDeployment": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "$ref": "#/components/schemas/DeploymentType"
-          },
-          "pipeline_id": {
-            "type": "integer",
-            "description": "The pipeline's ID to use for deployment",
-            "example": 12345
-          },
-          "branch": {
-            "type": "string",
-            "description": "The name of the branch from which the application source code will be retrieved and deployed. This parameter is ignored when `hash` is provided.",
-            "example": "master"
-          },
-          "hash": {
-            "type": "string",
-            "description": "The commit hash from which the application source code will be retrieved and deployed. When provided `branch` parameter is ignored",
-            "example": "7ff09b0f2ed07625222f689d1afc29aa322b03a2"
-          },
-          "servers": {
-            "type": "array",
-            "description": "List of servers ids that the deploy will be triggered to",
-            "example": [
-              4321
-            ],
-            "items": {
-              "type": "integer"
-            }
-          }
-        },
-        "required": [
-          "type",
-          "branch"
         ]
       },
       "ApplicationEnvironmentCreate": {
@@ -10458,12 +10378,6 @@
         ],
         "example": "web"
       },
-      "Applications": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ApplicationRelation"
-        }
-      },
       "ApplicationUpdate": {
         "type": "object",
         "properties": {
@@ -10735,12 +10649,6 @@
           "name",
           "version"
         ]
-      },
-      "CloudProviders": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/CloudProvider"
-        }
       },
       "CloudProvider": {
         "type": "object",
@@ -11529,12 +11437,6 @@
           "servers"
         ]
       },
-      "CronJobs": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/CronJobRelation"
-        }
-      },
       "Daemon": {
         "type": "object",
         "properties": {
@@ -11615,12 +11517,6 @@
           "created_at",
           "updated_at"
         ]
-      },
-      "Daemons": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/DaemonRelation"
-        }
       },
       "DaemonEnvironmentCreate": {
         "type": "object",
@@ -11872,54 +11768,6 @@
           "$ref": "#/components/schemas/DeploymentDefaultStep"
         }
       },
-      "DeploymentOrigin": {
-        "type": "string",
-        "description": "Source/channel from which the deployment has been triggered",
-        "enum": [
-          "hook",
-          "manual"
-        ]
-      },
-      "DeploymentSource": {
-        "type": "object",
-        "description": "Deployment source information",
-        "properties": {
-          "origin": {
-            "$ref": "#/components/schemas/DeploymentOrigin"
-          },
-          "ip_address": {
-            "type": "string",
-            "nullable": true,
-            "description": "The IP address from the deployment has been triggered",
-            "example": "172.17.0.5"
-          },
-          "hook_id": {
-            "type": "integer",
-            "nullable": true,
-            "description": "The hook that has been triggered the deployment",
-            "example": 9752
-          },
-          "hook_request_id": {
-            "type": "integer",
-            "nullable": true,
-            "description": "The hook request's ID that have triggered the deployment",
-            "example": 716385
-          },
-          "pull_request_id": {
-            "type": "integer",
-            "nullable": true,
-            "description": "The pull request that have triggered the deployment",
-            "example": 296
-          }
-        },
-        "required": [
-          "origin",
-          "ip_address",
-          "hook_id",
-          "hook_request_id",
-          "pull_request_id"
-        ]
-      },
       "DeploymentType": {
         "type": "string",
         "description": "The type of the deployment",
@@ -11955,10 +11803,10 @@
             "$ref": "#/components/schemas/ServerList"
           },
           "cron_jobs": {
-            "$ref": "#/components/schemas/CronJobs"
+            "$ref": "#/components/schemas/CronJobList"
           },
           "daemons": {
-            "$ref": "#/components/schemas/Daemons"
+            "$ref": "#/components/schemas/DaemonList"
           },
           "network_rules": {
             "$ref": "#/components/schemas/NetworkRules"
@@ -12011,79 +11859,6 @@
           "updated_at"
         ]
       },
-      "EnvironmentList": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/EnvironmentRelation"
-        }
-      },
-      "EnvironmentMember": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "description": "The ID of the member",
-            "example": 1
-          },
-          "name": {
-            "type": "string",
-            "description": "Member's full name",
-            "example": "John Smith"
-          },
-          "email": {
-            "type": "string",
-            "format": "email",
-            "description": "Member's email",
-            "example": "member@example.com"
-          }
-        },
-        "required": [
-          "id",
-          "name",
-          "email"
-        ]
-      },
-      "EnvironmentMemberProfile": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "description": "The ID of the member",
-            "example": 1
-          },
-          "name": {
-            "type": "string",
-            "description": "Member's full name",
-            "example": "John Smith"
-          },
-          "email": {
-            "type": "string",
-            "format": "email",
-            "description": "Member's email",
-            "example": "member@example.com"
-          },
-          "active": {
-            "type": "boolean",
-            "description": "Tells if the user is active or not"
-          },
-          "teams": {
-            "$ref": "#/components/schemas/EnvironmentTeams"
-          }
-        },
-        "required": [
-          "id",
-          "name",
-          "email",
-          "active",
-          "teams"
-        ]
-      },
-      "EnvironmentMembers": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/EnvironmentMember"
-        }
-      },
       "EnvironmentOptions": {
         "type": "object",
         "properties": {
@@ -12095,109 +11870,13 @@
           "types"
         ]
       },
-      "EnvironmentOptionTypes": {
+      "EnvironmentList": {
         "type": "array",
         "items": {
-          "$ref": "#/components/schemas/EnvironmentOptionType"
+          "$ref": "#/components/schemas/EnvironmentRelation"
         }
       },
-      "EnvironmentOptionType": {
-        "type": "object",
-        "properties": {
-          "value": {
-            "type": "string",
-            "description": "The internal name of the environment",
-            "example": "development"
-          },
-          "human_readable": {
-            "type": "string",
-            "description": "The formatted name to be displayed in user interfaces",
-            "example": "Development"
-          },
-          "hint": {
-            "type": "string",
-            "description": "Text describing the environment purpose",
-            "example": "Environment used for dev testing"
-          }
-        },
-        "required": [
-          "value",
-          "human_readable",
-          "hint"
-        ]
-      },
-      "EnvironmentTeam": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "description": "The unique id of the given team",
-            "example": 1
-          },
-          "name": {
-            "type": "string",
-            "description": "The name of the given team",
-            "example": "Development Team"
-          },
-          "photo_url": {
-            "type": "string",
-            "nullable": true,
-            "description": "The URL to team's image",
-            "example": "https://example.com/images/my_team.png"
-          },
-          "role": {
-            "$ref": "#/components/schemas/Role"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the record was created",
-            "example": "2019-09-25T15:50:48.000000Z"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the record was last updated",
-            "example": "2019-09-25T13:52:04.000000Z"
-          }
-        },
-        "required": [
-          "id",
-          "name",
-          "photo_url",
-          "role"
-        ]
-      },
-      "EnvironmentTeams": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/EnvironmentTeam"
-        }
-      },
-      "EnvironmentUpdate": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "description": "Environment's unique id",
-            "example": 867,
-            "type": "integer"
-          },
-          "name": {
-            "type": "string",
-            "description": "The environment's name",
-            "example": "my project - staging"
-          },
-          "type": {
-            "$ref": "#/components/schemas/EnvironmentType"
-          }
-        },
-        "required": [
-          "id",
-          "name",
-          "type"
-        ]
-      },
-      "EnvironmentLinkItem": {
+      "EnvironmentLink": {
         "type": "object",
         "properties": {
           "id": {
@@ -12227,66 +11906,44 @@
           "servers"
         ]
       },
-      "EnvironmentLinks": {
+      "EnvironmentLinkList": {
         "type": "array",
         "items": {
-          "$ref": "#/components/schemas/EnvironmentLinkItem"
+          "$ref": "#/components/schemas/EnvironmentLink"
         }
-      },
-      "EnvironmentLinkServer": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "description": "Environment's unique id",
-            "example": 867
-          }
-        },
-        "required": [
-          "id"
-        ]
-      },
-      "EnvironmentIdRequest": {
-        "type": "object",
-        "properties": {
-          "environment_id": {
-            "type": "integer",
-            "description": "The unique environment id",
-            "example": 198421
-          }
-        },
-        "required": [
-          "environment_id"
-        ]
-      },
-      "Environments": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/EnvironmentRelation"
-        }
-      },
-      "EnvironmentTeamLink": {
-        "type": "object",
-        "properties": {
-          "role_id": {
-            "type": "integer",
-            "description": "The role's ID to use for this team on environment",
-            "example": 123
-          }
-        },
-        "required": [
-          "role_id"
-        ]
       },
       "EnvironmentType": {
+        "description": "Environment's type",
         "type": "string",
         "enum": [
           "development",
-          "staging",
-          "production"
+          "production",
+          "staging"
         ],
-        "description": "Environment's type",
         "example": "staging"
+      },
+      "EnvironmentUpdate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "Environment's unique ID.",
+            "example": 867,
+            "type": "integer"
+          },
+          "type": {
+            "$ref": "#/components/schemas/EnvironmentType"
+          },
+          "name": {
+            "description": "The environment's name. Must not be greater than 60 characters.",
+            "example": "my project - staging",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "name"
+        ]
       },
       "EnvironmentProjectCreate": {
         "type": "object",
@@ -12309,18 +11966,17 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "integer",
             "description": "Unique id of the given record",
+            "type": "integer",
             "example": 16523
           },
           "name": {
-            "type": "string",
             "description": "Environment's name",
-            "example": "produção"
+            "type": "string",
+            "example": "My staging"
           },
           "type": {
-            "$ref": "#/components/schemas/EnvironmentType",
-            "description": "The type of the deployment being triggered"
+            "$ref": "#/components/schemas/EnvironmentType"
           },
           "type_human_readable": {
             "description": "The human readable version of the type",
@@ -12328,15 +11984,13 @@
             "example": "Staging"
           },
           "created_at": {
-            "type": "string",
-            "format": "date-time",
             "description": "The date and time when the record was created",
+            "type": "string",
             "example": "2019-09-25T15:50:48.000000Z"
           },
           "updated_at": {
-            "type": "string",
-            "format": "date-time",
             "description": "The date and time when the record was last updated",
+            "type": "string",
             "example": "2019-09-25T13:52:04.000000Z"
           }
         },
@@ -12344,8 +11998,11 @@
           "id",
           "name",
           "type",
-          "type_human_readable"
-        ]
+          "type_human_readable",
+          "created_at",
+          "updated_at"
+        ],
+        "nullable": true
       },
       "Hook": {
         "type": "object",
@@ -12921,6 +12578,70 @@
           "updated_at"
         ]
       },
+      "HookRequestRelation": {
+        "type": "object",
+        "nullable": true,
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique UUID of the hook request",
+            "example": "6fa16226-9dc4-4367-88aa-e689ad2bc580"
+          },
+          "hook_id": {
+            "type": "string",
+            "description": "The UUID of the hook that the request belongs to",
+            "example": "f1a61a4e-4d08-11eb-9481-0242ac130004"
+          },
+          "action_id": {
+            "type": "integer",
+            "nullable": true,
+            "description": "The id of the action that the request belongs to",
+            "example": 1985239
+          },
+          "retry_of": {
+            "type": "string",
+            "nullable": true,
+            "description": "The UUID of the request that this request is a retry of",
+            "example": "002afd04-e3af-4dad-bf46-b2b25978482a"
+          },
+          "ip_address": {
+            "type": "string",
+            "description": "The IP address of the source that triggered the hook",
+            "example": "172.17.0.4"
+          },
+          "url": {
+            "type": "string",
+            "description": "Original URL used on the request",
+            "example": "https://api.devopness.com/hooks-incoming/f1a61a4e-4d08-11eb-9481-0242ac130004"
+          },
+          "response_status_code": {
+            "type": "integer",
+            "description": "The response status code",
+            "example": 200
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25T15:50:48.000000Z",
+            "nullable": true
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25T13:52:04.000000Z",
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "hook_id",
+          "action_id",
+          "retry_of",
+          "ip_address"
+        ]
+      },
       "HookRequestRequestBody": {
         "type": "object",
         "description": "The body of the request",
@@ -12964,6 +12685,14 @@
             }
           ]
         }
+      },
+      "HookType": {
+        "type": "string",
+        "description": "The type of hook (incoming or outgoing)",
+        "enum": [
+          "in",
+          "out"
+        ]
       },
       "HookUpdate": {
         "type": "object",
@@ -13098,90 +12827,6 @@
           "boolean"
         ],
         "example": "integer"
-      },
-      "Hooks": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/HookRelation"
-        }
-      },
-      "HookRequests": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/HookRequestRelation"
-        }
-      },
-      "HookRequestRelation": {
-        "type": "object",
-        "nullable": true,
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "The unique UUID of the hook request",
-            "example": "6fa16226-9dc4-4367-88aa-e689ad2bc580"
-          },
-          "hook_id": {
-            "type": "string",
-            "description": "The UUID of the hook that the request belongs to",
-            "example": "f1a61a4e-4d08-11eb-9481-0242ac130004"
-          },
-          "action_id": {
-            "type": "integer",
-            "nullable": true,
-            "description": "The id of the action that the request belongs to",
-            "example": 1985239
-          },
-          "retry_of": {
-            "type": "string",
-            "nullable": true,
-            "description": "The UUID of the request that this request is a retry of",
-            "example": "002afd04-e3af-4dad-bf46-b2b25978482a"
-          },
-          "ip_address": {
-            "type": "string",
-            "description": "The IP address of the source that triggered the hook",
-            "example": "172.17.0.4"
-          },
-          "url": {
-            "type": "string",
-            "description": "Original URL used on the request",
-            "example": "https://api.devopness.com/hooks-incoming/f1a61a4e-4d08-11eb-9481-0242ac130004"
-          },
-          "response_status_code": {
-            "type": "integer",
-            "description": "The response status code",
-            "example": 200
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the record was created",
-            "example": "2019-09-25T15:50:48.000000Z",
-            "nullable": true
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the record was last updated",
-            "example": "2019-09-25T13:52:04.000000Z",
-            "nullable": true
-          }
-        },
-        "required": [
-          "id",
-          "hook_id",
-          "action_id",
-          "retry_of",
-          "ip_address"
-        ]
-      },
-      "HookType": {
-        "type": "string",
-        "description": "The type of hook (incoming or outgoing)",
-        "enum": [
-          "in",
-          "out"
-        ]
       },
       "Invitation": {
         "type": "object",
@@ -15085,7 +14730,7 @@
             "$ref": "#/components/schemas/ActionStep"
           },
           "steps": {
-            "$ref": "#/components/schemas/ActionSteps"
+            "$ref": "#/components/schemas/ActionStepList"
           },
           "started_at": {
             "type": "string",
@@ -15113,6 +14758,13 @@
             "description": "The date and time when the record was last updated",
             "example": "2019-09-25T13:52:04.000000Z"
           }
+        }
+      },
+      "ServerActionList": {
+        "type": "array",
+        "description": "List of actions dispatched to servers",
+        "items": {
+          "$ref": "#/components/schemas/ServerAction"
         }
       },
       "ServerActionLogStep": {
@@ -15150,13 +14802,6 @@
           "completed_at",
           "output"
         ]
-      },
-      "ServerActions": {
-        "type": "array",
-        "description": "List of actions dispatched to servers",
-        "items": {
-          "$ref": "#/components/schemas/ServerAction"
-        }
       },
       "ServerBlueprint": {
         "type": "object",
@@ -15225,6 +14870,7 @@
             "$ref": "#/components/schemas/ServerCloudServiceName"
           },
           "settings": {
+            "description": "The configurations used to cloud service",
             "anyOf": [
               {
                 "$ref": "#/components/schemas/CloudAwsEc2Settings"
@@ -15232,8 +14878,7 @@
               {
                 "$ref": "#/components/schemas/CloudDigitalOceanDropletSettings"
               }
-            ],
-            "description": "The configurations used to cloud service"
+            ]
           }
         }
       },
@@ -15780,7 +15425,7 @@
             "example": "Joe Smith"
           },
           "is_vcs": {
-            "description": "If this social account is from a Version Control System (VCS)",
+            "description": "Tells if the social account provider is a Source Code Provider/Version Control System. e.g. false for Facebook, true for Github",
             "type": "boolean",
             "example": true
           },
@@ -15885,7 +15530,7 @@
             "example": "Joe Smith"
           },
           "is_vcs": {
-            "description": "If this social account is from a Version Control System (VCS)",
+            "description": "Tells if the social account provider is a Source Code Provider/Version Control System. e.g. false for Facebook, true for Github",
             "type": "boolean",
             "example": true
           },

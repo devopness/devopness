@@ -97,7 +97,7 @@ export interface CronJob {
      * @type {EnvironmentRelation}
      * @memberof CronJob
      */
-    environment: EnvironmentRelation;
+    environment: EnvironmentRelation | null;
     /**
      * 
      * @type {Array<ServerRelation>}

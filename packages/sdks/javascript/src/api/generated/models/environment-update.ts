@@ -21,22 +21,22 @@ import { EnvironmentType } from './environment-type';
  */
 export interface EnvironmentUpdate {
     /**
-     * Environment\'s unique id
+     * Environment\'s unique ID.
      * @type {number}
      * @memberof EnvironmentUpdate
      */
     id: number;
-    /**
-     * The environment\'s name
-     * @type {string}
-     * @memberof EnvironmentUpdate
-     */
-    name: string;
     /**
      * 
      * @type {EnvironmentType}
      * @memberof EnvironmentUpdate
      */
     type: EnvironmentType;
+    /**
+     * The environment\'s name. Must not be greater than 60 characters.
+     * @type {string}
+     * @memberof EnvironmentUpdate
+     */
+    name: string;
 }
 

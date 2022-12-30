@@ -114,7 +114,7 @@ export interface Server {
      * @type {EnvironmentRelation}
      * @memberof Server
      */
-    environment: EnvironmentRelation;
+    environment: EnvironmentRelation | null;
     /**
      * The date and time when the record was created
      * @type {string}
