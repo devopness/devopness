@@ -26,7 +26,7 @@ properties:
   summary:
     $ref: '#/components/schemas/ActionSummary'
   servers:
-    $ref: '#/components/schemas/ServerActions'
+    $ref: '#/components/schemas/ServerActionList'
   started_at:
     description: 'The date and time when the action started execution (i.e., left the `pending/queued` status)'
     type: string

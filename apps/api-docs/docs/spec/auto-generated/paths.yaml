@@ -251,15 +251,15 @@
     $ref: ./auto-generated/endpoints/list-social-accounts.yaml
   post:
     $ref: ./auto-generated/endpoints/add-social-account.yaml
-'/social-accounts/{provider}':
-  get:
-    $ref: ./auto-generated/endpoints/get-social-account.yaml
-'/social-accounts/{provider}/status':
-  get:
-    $ref: ./auto-generated/endpoints/get-social-account-status.yaml
 '/social-accounts/{social_account_id}':
   delete:
     $ref: ./auto-generated/endpoints/delete-social-account.yaml
+'/social-accounts/{social_account_provider}':
+  get:
+    $ref: ./auto-generated/endpoints/get-social-account.yaml
+'/social-accounts/{social_account_provider}/status':
+  get:
+    $ref: ./auto-generated/endpoints/get-social-account-status.yaml
 /source-providers:
   get:
     $ref: ./auto-generated/endpoints/list-source-providers.yaml

@@ -41,7 +41,7 @@ properties:
   project:
     $ref: '#/components/schemas/ProjectRelation'
   servers:
-    $ref: '#/components/schemas/ServerActions'
+    $ref: '#/components/schemas/ServerActionList'
   hook_requests:
     $ref: '#/components/schemas/ActionHookRequest'
   started_at:

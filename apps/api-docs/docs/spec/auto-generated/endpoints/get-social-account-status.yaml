@@ -14,8 +14,8 @@ parameters:
     $ref: '#/components/parameters/contentTypeHeader'
   -
     in: path
-    name: provider
-    description: 'The provider name.'
+    name: social_account_provider
+    description: 'The social account provider name.'
     example: gitlab
     required: true
     schema:

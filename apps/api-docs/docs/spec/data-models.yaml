@@ -3,23 +3,17 @@ AcceptedResponseMessage:
 Action:
   $ref: ./auto-generated/models/action.yaml
 ActionData:
-  $ref: ./endpoints/actions/schemas/action-data.yaml
+  $ref: ./auto-generated/models/action-data.yaml
 ActionDeploymentCommit:
-  $ref: ./endpoints/actions/schemas/action-datas/action-deployment-commit.yaml
+  $ref: ./auto-generated/models/action-deployment-commit.yaml
 ActionDeploymentContent:
-  $ref: ./endpoints/actions/schemas/action-datas/action-deployment-content.yaml
+  $ref: ./auto-generated/models/action-deployment-content.yaml
 ActionDeploymentData:
-  $ref: ./endpoints/actions/schemas/action-datas/action-deployment-data.yaml
+  $ref: ./auto-generated/models/action-deployment-data.yaml
 ActionHookRequest:
-  $ref: ./endpoints/actions/schemas/action-hook-request.yaml
-Actions:
-  $ref: ./endpoints/actions/schemas/action-list.yaml
+  $ref: ./auto-generated/models/action-hook-request.yaml
 ActionList:
   $ref: ./auto-generated/models/action-list.yaml
-ActionListItem:
-  $ref: ./endpoints/actions/schemas/action-list-item.yaml
-ActionListItemParams:
-  $ref: ./endpoints/actions/schemas/action-list-item-params.yaml
 ActionRelation:
   $ref: ./auto-generated/models/action-relation.yaml
 ActionRetryResponse:
@@ -27,27 +21,23 @@ ActionRetryResponse:
 ActionStatus:
   $ref: ./auto-generated/models/action-status.yaml
 ActionStep:
-  $ref: ./endpoints/actions/schemas/action-step.yaml
-ActionSteps:
-  $ref: ./endpoints/actions/schemas/action-step-list.yaml
-ActionStepLog:
-  $ref: ./endpoints/logs/schemas/action-step-log.yaml
+  $ref: ./auto-generated/models/action-step.yaml
+ActionStepList:
+  $ref: ./auto-generated/models/action-step-list.yaml
 ActionSummary:
-  $ref: ./endpoints/actions/schemas/action-summary.yaml
+  $ref: ./auto-generated/models/action-summary.yaml
 ActionSummaryServer:
-  $ref: ./endpoints/actions/schemas/action-summary-server.yaml
-ActionTriggeredFrom:
-  $ref: ./endpoints/actions/schemas/action-triggered-from.yaml
+  $ref: ./auto-generated/models/action-summary-server.yaml
 ActionTriggerType:
-  $ref: ./endpoints/actions/schemas/action-trigger-type.yaml
+  $ref: ./auto-generated/models/action-trigger-type.yaml
+ActionTriggeredFrom:
+  $ref: ./auto-generated/models/action-triggered-from.yaml
 ActionType:
-  $ref: ./endpoints/actions/schemas/action-type.yaml
+  $ref: ./auto-generated/models/action-type.yaml
 ApiError:
   $ref: ./shared/schemas/api-error.yaml
 Application:
   $ref: ./auto-generated/models/application.yaml
-ApplicationDeployment:
-  $ref: ./endpoints/applications/schemas/application-deployment.yaml
 ApplicationEnvironmentCreate:
   $ref: ./auto-generated/models/application-environment-create.yaml
 ApplicationLastDeployments:
@@ -57,29 +47,25 @@ ApplicationList:
 ApplicationOptions:
   $ref: ./auto-generated/models/application-options.yaml
 ApplicationPipeline:
-  $ref: ./endpoints/applications/schemas/application-pipeline.yaml
+  $ref: ./auto-generated/models/application-pipeline.yaml
 ApplicationRelation:
   $ref: ./auto-generated/models/application-relation.yaml
 ApplicationType:
   $ref: ./auto-generated/models/application-type.yaml
-Applications:
-  $ref: ./endpoints/applications/schemas/application-list.yaml
 ApplicationUpdate:
   $ref: ./auto-generated/models/application-update.yaml
 BlueprintService:
-  $ref: ./endpoints/servers/schemas/blueprint-service.yaml
+  $ref: ./auto-generated/models/blueprint-service.yaml
 CloudAwsEc2Settings:
-  $ref: ./endpoints/servers/schemas/cloud-settings/cloud-aws-ec2-settings.yaml
+  $ref: ./auto-generated/models/cloud-aws-ec2-settings.yaml
 CloudDigitalOceanDropletSettings:
-  $ref: ./endpoints/servers/schemas/cloud-settings/cloud-digital-ocean-droplet-settings.yaml
+  $ref: ./auto-generated/models/cloud-digital-ocean-droplet-settings.yaml
 CloudInstanceList:
   $ref: ./auto-generated/models/cloud-instance-list.yaml
 CloudInstanceRelation:
   $ref: ./auto-generated/models/cloud-instance-relation.yaml
 CloudOs:
-  $ref: ./endpoints/servers/schemas/cloud-settings/cloud-os.yaml
-CloudProviders:
-  $ref: ./endpoints/static/schemas/cloud-provider-list.yaml
+  $ref: ./auto-generated/models/cloud-os.yaml
 CloudProvider:
   $ref: ./auto-generated/models/cloud-provider.yaml
 CloudProviderCode:
@@ -140,12 +126,8 @@ CronJobRelation:
   $ref: ./auto-generated/models/cron-job-relation.yaml
 CronJobUpdate:
   $ref: ./auto-generated/models/cron-job-update.yaml
-CronJobs:
-  $ref: ./endpoints/cronjobs/schemas/cronjob-list.yaml
 Daemon:
   $ref: ./auto-generated/models/daemon.yaml
-Daemons:
-  $ref: ./endpoints/daemons/schemas/daemon-list.yaml
 DaemonEnvironmentCreate:
   $ref: ./auto-generated/models/daemon-environment-create.yaml
 DaemonList:
@@ -162,52 +144,26 @@ DeploymentDefaultStep:
   $ref: ./auto-generated/models/deployment-default-step.yaml
 DeploymentDefaultStepList:
   $ref: ./auto-generated/models/deployment-default-step-list.yaml
-DeploymentOrigin:
-  $ref: ./shared/schemas/deployment-origin.yaml
-DeploymentSource:
-  $ref: ./shared/schemas/deployment-source.yaml
 DeploymentType:
-  $ref: ./shared/schemas/deployment-type.yaml
+  $ref: ./auto-generated/models/deployment-type.yaml
 Environment:
   $ref: ./auto-generated/models/environment.yaml
-EnvironmentList:
-  $ref: ./auto-generated/models/environment-list.yaml
-EnvironmentMember:
-  $ref: ./endpoints/members/schemas/environment-member.yaml
-EnvironmentMemberProfile:
-  $ref: ./endpoints/members/schemas/environment-member-profile.yaml
-EnvironmentMembers:
-  $ref: ./endpoints/members/schemas/environment-member-list.yaml
 EnvironmentOptions:
   $ref: ./auto-generated/models/environment-options.yaml
-EnvironmentOptionTypes:
-  $ref: ./endpoints/static/schemas/environment-type-list.yaml
-EnvironmentOptionType:
-  $ref: ./endpoints/static/schemas/environment-type.yaml
-EnvironmentTeam:
-  $ref: ./endpoints/teams/schemas/environment-team.yaml
-EnvironmentTeams:
-  $ref: ./endpoints/teams/schemas/environment-team-list.yaml
-EnvironmentUpdate:
-  $ref: ./endpoints/environments/schemas/environment-update.yaml
-EnvironmentLinkItem:
-  $ref: ./shared/schemas/environment-link-item.yaml
-EnvironmentLinks:
-  $ref: ./shared/schemas/environment-links.yaml
-EnvironmentLinkServer:
-  $ref: ./shared/schemas/environment-link-server.yaml
-EnvironmentIdRequest:
-  $ref: ./shared/schemas/environment-id-request.yaml
-Environments:
-  $ref: ./endpoints/environments/schemas/environment-list.yaml
-EnvironmentTeamLink:
-  $ref: /endpoints/teams/schemas/environment-team-link.yaml
+EnvironmentList:
+  $ref: ./auto-generated/models/environment-list.yaml
+EnvironmentLink:
+  $ref: ./auto-generated/models/environment-link.yaml
+EnvironmentLinkList:
+  $ref: ./auto-generated/models/environment-link-list.yaml
 EnvironmentType:
-  $ref: ./shared/schemas/environment-type.yaml
+  $ref: ./auto-generated/models/environment-type.yaml
+EnvironmentUpdate:
+  $ref: ./auto-generated/models/environment-update.yaml
 EnvironmentProjectCreate:
   $ref: ./auto-generated/models/environment-project-create.yaml
 EnvironmentRelation:
-  $ref: ./shared/schemas/models/environment-relation.yaml
+  $ref: ./auto-generated/models/environment-relation.yaml
 Hook:
   $ref: ./auto-generated/models/hook.yaml
 HookCreate:
@@ -236,6 +192,8 @@ HookRelation:
   $ref: ./auto-generated/models/hook-relation.yaml
 HookRequest:
   $ref: ./auto-generated/models/hook-request.yaml
+HookRequestRelation:
+  $ref: ./auto-generated/models/hook-request-relation.yaml
 HookRequestRequestBody:
   $ref: ./auto-generated/models/hook-request-request-body.yaml
 HookRequestRequestHeaders:
@@ -246,20 +204,14 @@ HookRequestResponseHeaders:
   $ref: ./auto-generated/models/hook-request-response-headers.yaml
 HookTriggerWhen:
   $ref: ./auto-generated/models/hook-trigger-when.yaml
+HookType:
+  $ref: ./auto-generated/models/hook-type.yaml
 HookUpdate:
   $ref: ./auto-generated/models/hook-update.yaml
 HookVariable:
   $ref: ./auto-generated/models/hook-variable.yaml
 HookVariableType:
   $ref: ./auto-generated/models/hook-variable-type.yaml
-Hooks:
-  $ref: ./endpoints/hooks/schemas/hook-list.yaml
-HookRequests:
-  $ref: ./endpoints/hook-requests/schemas/hook-request-list.yaml
-HookRequestRelation:
-  $ref: ./shared/schemas/models/hook-request-relation.yaml
-HookType:
-  $ref: ./endpoints/hooks/schemas/hook-type.yaml
 Invitation:
   $ref: ./auto-generated/models/invitation.yaml
 InvitationList:
@@ -401,13 +353,13 @@ ScriptRunnerList:
 Server:
   $ref: ./auto-generated/models/server.yaml
 ServerAction:
-  $ref: ./endpoints/actions/schemas/server-action.yaml
+  $ref: ./auto-generated/models/server-action.yaml
+ServerActionList:
+  $ref: ./auto-generated/models/server-action-list.yaml
 ServerActionLogStep:
   $ref: ./auto-generated/models/server-action-log-step.yaml
-ServerActions:
-  $ref: ./endpoints/actions/schemas/server-action-list.yaml
 ServerBlueprint:
-  $ref: ./endpoints/servers/schemas/server-blueprint.yaml
+  $ref: ./auto-generated/models/server-blueprint.yaml
 ServerCommand:
   $ref: ./auto-generated/models/server-command.yaml
 ServerCommands:
@@ -415,15 +367,15 @@ ServerCommands:
 ServerConnect:
   $ref: ./endpoints/servers/schemas/server-connect.yaml
 ServerCloudService:
-  $ref: ./endpoints/servers/schemas/server-cloud-service.yaml
+  $ref: ./auto-generated/models/server-cloud-service.yaml
 ServerCloudServiceName:
-  $ref: ./endpoints/servers/schemas/server-cloud-service-name.yaml
+  $ref: ./auto-generated/models/server-cloud-service-name.yaml
 ServerEnvironmentCreate:
   $ref: ./auto-generated/models/server-environment-create.yaml
 ServerProvider:
   $ref: ./endpoints/servers/schemas/server-provider.yaml
 ServerProvisionSettings:
-  $ref: ./endpoints/servers/schemas/server-provision-settings.yaml
+  $ref: ./auto-generated/models/server-provision-settings.yaml
 ServerUpdate:
   $ref: ./endpoints/servers/schemas/server-update.yaml
 Servers:

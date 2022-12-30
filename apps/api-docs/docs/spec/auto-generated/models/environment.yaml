@@ -18,9 +18,9 @@ properties:
   servers:
     $ref: '#/components/schemas/ServerList'
   cron_jobs:
-    $ref: '#/components/schemas/CronJobs'
+    $ref: '#/components/schemas/CronJobList'
   daemons:
-    $ref: '#/components/schemas/Daemons'
+    $ref: '#/components/schemas/DaemonList'
   network_rules:
     $ref: '#/components/schemas/NetworkRules'
   applications:
