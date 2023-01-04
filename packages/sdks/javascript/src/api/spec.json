@@ -2472,80 +2472,12 @@
         }
       }
     },
-    "/environments/{environment_id}/teams/{team_id}": {
-      "delete": {
-        "summary": "Unlink team from the environment",
-        "operationId": "deleteEnvironmentTeam",
-        "description": {
-          "$ref": "../spec/descriptions/delete-environment-team.md"
-        },
-        "tags": [
-          "Environments - Teams"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "environment_id",
-            "description": "The ID of the environment.",
-            "example": 123,
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            }
-          },
-          {
-            "in": "path",
-            "name": "team_id",
-            "description": "The ID of the team.",
-            "example": 123,
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "403": {
-            "description": "Forbidden/Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Unprocessable Entity/Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        }
-      },
+    "/environments/{environment_id}/teams/{team_id}/link": {
       "post": {
         "summary": "Link team to a given environment",
-        "operationId": "addEnvironmentTeam",
+        "operationId": "linkTeamToEnvironment",
         "description": {
-          "$ref": "../spec/descriptions/add-environment-team.md"
+          "$ref": "../spec/descriptions/link-team-to-environment.md"
         },
         "tags": [
           "Environments - Teams"
@@ -2614,7 +2546,77 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TeamEnvironmentCreate"
+                "$ref": "#/components/schemas/TeamEnvironmentLink"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/environments/{environment_id}/teams/{team_id}/unlink": {
+      "delete": {
+        "summary": "Unlink team from the environment",
+        "operationId": "unlinkTeamFromEnvironment",
+        "description": {
+          "$ref": "../spec/descriptions/unlink-team-from-environment.md"
+        },
+        "tags": [
+          "Environments - Teams"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "environment_id",
+            "description": "The ID of the environment.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "in": "path",
+            "name": "team_id",
+            "description": "The ID of the team.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
               }
             }
           }
@@ -8102,63 +8104,6 @@
         }
       }
     },
-    "/users/logout": {
-      "get": {
-        "summary": "Logout/revoke an existing token",
-        "operationId": "logout",
-        "tags": [
-          "Users"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          }
-        ],
-        "responses": {
-          "204": {
-            "$ref": "#/components/responses/NoContent"
-          }
-        }
-      }
-    },
-    "/users/me": {
-      "get": {
-        "summary": "Get details of the current user",
-        "operationId": "getUserMe",
-        "tags": [
-          "Users"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/users/password/reset": {
       "post": {
         "summary": "Reset the user password",
@@ -8659,6 +8604,63 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/VariableUpdate"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/logout": {
+      "get": {
+        "summary": "Logout/revoke an existing token",
+        "operationId": "logout",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          }
+        }
+      }
+    },
+    "/users/me": {
+      "get": {
+        "summary": "Get details of the current user",
+        "operationId": "getUserMe",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
               }
             }
           }
@@ -9585,6 +9587,7 @@
         "type": "string",
         "enum": [
           "pending",
+          "queued",
           "in-progress",
           "completed",
           "failed"
@@ -9979,13 +9982,13 @@
             "$ref": "#/components/schemas/EnvironmentRelation"
           },
           "servers": {
-            "$ref": "#/components/schemas/Servers"
+            "$ref": "#/components/schemas/ServerList"
           },
           "source_provider": {
             "$ref": "#/components/schemas/SourceProvider"
           },
           "ssl_certificates": {
-            "$ref": "#/components/schemas/SslCertificates"
+            "$ref": "#/components/schemas/SslCertificateList"
           },
           "created_at": {
             "description": "The date and time when the record was created",
@@ -11217,7 +11220,7 @@
             "$ref": "#/components/schemas/EnvironmentRelation"
           },
           "servers": {
-            "$ref": "#/components/schemas/Servers"
+            "$ref": "#/components/schemas/ServerList"
           },
           "created_at": {
             "description": "The date and time when the record was created",
@@ -11488,7 +11491,7 @@
             "$ref": "#/components/schemas/EnvironmentRelation"
           },
           "servers": {
-            "$ref": "#/components/schemas/Servers"
+            "$ref": "#/components/schemas/ServerList"
           },
           "created_at": {
             "description": "The date and time when the record was created",
@@ -11809,7 +11812,7 @@
             "$ref": "#/components/schemas/DaemonList"
           },
           "network_rules": {
-            "$ref": "#/components/schemas/NetworkRules"
+            "$ref": "#/components/schemas/NetworkRuleList"
           },
           "applications": {
             "$ref": "#/components/schemas/ApplicationList"
@@ -11821,7 +11824,7 @@
             "$ref": "#/components/schemas/SshKeyList"
           },
           "teams": {
-            "$ref": "#/components/schemas/Teams"
+            "$ref": "#/components/schemas/TeamList"
           },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
@@ -13171,24 +13174,6 @@
           "updated_at"
         ]
       },
-      "LoginCredentials": {
-        "type": "object",
-        "properties": {
-          "email": {
-            "type": "string",
-            "format": "email",
-            "description": "The user's registered e-mail address"
-          },
-          "password": {
-            "type": "string",
-            "format": "password"
-          }
-        },
-        "required": [
-          "email",
-          "password"
-        ]
-      },
       "Member": {
         "type": "object",
         "properties": {
@@ -13246,12 +13231,6 @@
         ],
         "nullable": true
       },
-      "Members": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/MemberRelation"
-        }
-      },
       "NetworkRule": {
         "type": "object",
         "properties": {
@@ -13308,7 +13287,7 @@
             "$ref": "#/components/schemas/EnvironmentRelation"
           },
           "servers": {
-            "$ref": "#/components/schemas/Servers"
+            "$ref": "#/components/schemas/ServerList"
           },
           "created_at": {
             "description": "The date and time when the record was created",
@@ -13338,12 +13317,6 @@
           "created_at",
           "updated_at"
         ]
-      },
-      "NetworkRules": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/NetworkRuleRelation"
-        }
       },
       "NetworkRuleList": {
         "type": "array",
@@ -13716,7 +13689,7 @@
             "example": 5324234
           },
           "steps": {
-            "$ref": "#/components/schemas/PipelineSteps"
+            "$ref": "#/components/schemas/StepList"
           },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
@@ -13764,19 +13737,13 @@
           "name"
         ]
       },
-      "Pipelines": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Pipeline"
-        }
-      },
       "PipelineCreate": {
         "type": "object",
         "properties": {
           "name": {
-            "type": "string",
-            "description": "The pipeline's name",
-            "example": "my pipeline"
+            "description": "The pipeline's name. Must be at least 3 characters. Must not be greater than 80 characters.",
+            "example": "My pipeline",
+            "type": "string"
           }
         },
         "required": [
@@ -13848,12 +13815,6 @@
           "updated_at"
         ],
         "nullable": true
-      },
-      "PipelineSteps": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Step"
-        }
       },
       "PipelineStepRunnerName": {
         "type": "string",
@@ -13975,12 +13936,6 @@
           "name"
         ]
       },
-      "Projects": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ProjectRelation"
-        }
-      },
       "ProjectList": {
         "type": "array",
         "items": {
@@ -14097,16 +14052,6 @@
           "updated_at"
         ],
         "nullable": true
-      },
-      "RequiredPermissions": {
-        "type": "array",
-        "items": {
-          "type": "string"
-        },
-        "description": "List of permissions the role must have before receiving this one",
-        "example": [
-          "application:read"
-        ]
       },
       "ResourceEventList": {
         "type": "array",
@@ -14457,12 +14402,6 @@
           "created_at",
           "updated_at"
         ]
-      },
-      "Roles": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Role"
-        }
       },
       "RoleUpdate": {
         "type": "object",
@@ -14837,32 +14776,6 @@
           "connect_command"
         ]
       },
-      "ServerCommands": {
-        "type": "object",
-        "properties": {
-          "connect_command": {
-            "type": "string",
-            "description": "The Shell Script command to be executed in an existing Linux server in order to connect it to the `devopness`",
-            "example": "echo '# devopness:' | ..."
-          }
-        },
-        "required": [
-          "connect_command"
-        ]
-      },
-      "ServerConnect": {
-        "type": "object",
-        "properties": {
-          "message": {
-            "type": "string",
-            "description": "Output message indicating success or failure",
-            "example": "Server successfully connected"
-          }
-        },
-        "required": [
-          "message"
-        ]
-      },
       "ServerCloudService": {
         "type": "object",
         "properties": {
@@ -14923,15 +14836,6 @@
           "provision_settings"
         ]
       },
-      "ServerProvider": {
-        "type": "string",
-        "description": "`self-hosted` if connecting to an existing server instance. May also be a list of cloud providers to which the server spec will be used to launch instances.",
-        "enum": [
-          "self-hosted",
-          "aws",
-          "digital-ocean"
-        ]
-      },
       "ServerProvisionSettings": {
         "type": "object",
         "description": "Configuration used to launch cloud instance",
@@ -14954,33 +14858,16 @@
       "ServerUpdate": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "description": "The unique id of the given record",
-            "example": 45678
-          },
           "ip_address": {
-            "type": "string",
-            "format": "ipv4",
-            "description": "Public ipv4 address for server access",
-            "example": "200.123.45.67"
+            "description": "Public ipv4 address for server access. This field is required when <code>provision_settings.self_hosted</code> is <code>true</code>.",
+            "example": "200.123.45.67",
+            "type": "string"
           },
           "ssh_port": {
-            "type": "integer",
-            "description": "The network port to which the SSH daemon is listening to SSH connections on the server",
-            "example": 22
+            "description": "The network port to which the SSH daemon is listening to SSH connections on the server. This field is required when <code>provision_settings.self_hosted</code> is <code>true</code>.",
+            "example": 22,
+            "type": "integer"
           }
-        },
-        "required": [
-          "id",
-          "ip_address",
-          "ssh_port"
-        ]
-      },
-      "Servers": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ServerRelation"
         }
       },
       "ServerList": {
@@ -15129,7 +15016,7 @@
             "$ref": "#/components/schemas/ProjectRelation"
           },
           "servers": {
-            "$ref": "#/components/schemas/Servers"
+            "$ref": "#/components/schemas/ServerList"
           },
           "last_action": {
             "$ref": "#/components/schemas/ActionRelation"
@@ -15564,12 +15451,6 @@
         ],
         "nullable": true
       },
-      "SocialAccounts": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/SocialAccount"
-        }
-      },
       "SocialAccountStatus": {
         "type": "object",
         "properties": {
@@ -15962,7 +15843,7 @@
             "$ref": "#/components/schemas/ApplicationRelation"
           },
           "servers": {
-            "$ref": "#/components/schemas/Servers"
+            "$ref": "#/components/schemas/ServerList"
           },
           "expires_at": {
             "description": "The date and time when this certificate will no longer be valid, down to minute precision",
@@ -16005,12 +15886,6 @@
           "created_at",
           "updated_at"
         ]
-      },
-      "SslCertificates": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/SslCertificateRelation"
-        }
       },
       "SslCertificateApplicationCreate": {
         "type": "object",
@@ -16413,6 +16288,12 @@
           "updated_at"
         ]
       },
+      "StepList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Step"
+        }
+      },
       "StepPipelineCreate": {
         "type": "object",
         "properties": {
@@ -16540,7 +16421,7 @@
             "$ref": "#/components/schemas/ProjectRelation"
           },
           "users": {
-            "$ref": "#/components/schemas/Users"
+            "$ref": "#/components/schemas/UserList"
           },
           "created_at": {
             "description": "The date and time when the record was created",
@@ -16563,13 +16444,7 @@
           "updated_at"
         ]
       },
-      "Teams": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/TeamRelation"
-        }
-      },
-      "TeamEnvironmentCreate": {
+      "TeamEnvironmentLink": {
         "type": "object",
         "properties": {
           "role_id": {
@@ -16582,98 +16457,11 @@
           "role_id"
         ]
       },
-      "TeamInvitation": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "The unique UUID of the given invitation",
-            "example": "e57996b5-3cf3-4cae-a925-e2e2ada52732"
-          },
-          "status": {
-            "$ref": "#/components/schemas/TeamInvitationStatus"
-          },
-          "status_human_readable": {
-            "type": "string",
-            "description": "Human readable version of the invitation status",
-            "example": "Pending invitation"
-          },
-          "email": {
-            "type": "string",
-            "description": "The email of the user that has been invited to team",
-            "example": "invited.user@email.com"
-          },
-          "accepted_from_ip": {
-            "type": "string",
-            "nullable": true,
-            "description": "The IP of the user who accepted the invitation",
-            "example": "172.17.0.24"
-          },
-          "created_by_user": {
-            "$ref": "#/components/schemas/UserRelation"
-          },
-          "user": {
-            "$ref": "#/components/schemas/UserRelation"
-          },
-          "team": {
-            "$ref": "#/components/schemas/TeamRelation"
-          },
-          "project": {
-            "$ref": "#/components/schemas/ProjectRelation"
-          },
-          "expires_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the invitation will expire",
-            "example": "2019-09-26T15:50:48.000000Z"
-          },
-          "accepted_at": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true,
-            "description": "The date and time when the invitation was accepted",
-            "example": "2019-09-26T13:22:37.000000Z"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the record was created",
-            "example": "2019-09-25T15:50:48.000000Z"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the record was last updated",
-            "example": "2019-09-25T13:52:04.000000Z"
-          }
-        },
-        "required": [
-          "id",
-          "status",
-          "email",
-          "created_by_user",
-          "user",
-          "team"
-        ]
-      },
       "TeamInvitationList": {
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/TeamInvitationRelation"
         }
-      },
-      "TeamInvitationCreate": {
-        "type": "object",
-        "properties": {
-          "email": {
-            "type": "string",
-            "description": "The user email to send the invitation",
-            "example": "invited.user@email.com"
-          }
-        },
-        "required": [
-          "email"
-        ]
       },
       "TeamInvitationRelation": {
         "type": "object",
@@ -16904,15 +16692,6 @@
         ],
         "example": "install-dependencies"
       },
-      "TriggerType": {
-        "type": "string",
-        "description": "The type of event that will trigger it",
-        "enum": [
-          "before",
-          "after"
-        ],
-        "example": "after"
-      },
       "User": {
         "type": "object",
         "properties": {
@@ -16940,7 +16719,7 @@
             "example": true
           },
           "social_accounts": {
-            "$ref": "#/components/schemas/SocialAccounts"
+            "$ref": "#/components/schemas/SocialAccountList"
           },
           "current_billing_plan": {
             "description": "The code of current billing plan",
@@ -16974,13 +16753,6 @@
           "updated_at"
         ]
       },
-      "Users": {
-        "description": "The list of users",
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/UserRelation"
-        }
-      },
       "UserCreate": {
         "type": "object",
         "properties": {
@@ -16993,6 +16765,13 @@
         "required": [
           "email"
         ]
+      },
+      "UserList": {
+        "description": "The list of users",
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/UserRelation"
+        }
       },
       "UserLogin": {
         "type": "object",
@@ -17071,7 +16850,7 @@
             "example": true
           },
           "social_accounts": {
-            "$ref": "#/components/schemas/SocialAccounts"
+            "$ref": "#/components/schemas/SocialAccountList"
           },
           "current_billing_plan": {
             "description": "The code of current billing plan",
@@ -17228,41 +17007,6 @@
           "password"
         ]
       },
-      "UserTeamInvitations": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/TeamInvitation"
-        }
-      },
-      "UserTokens": {
-        "type": "object",
-        "properties": {
-          "token_type": {
-            "type": "string",
-            "example": "Bearer",
-            "description": "The type of the authorization token being issued"
-          },
-          "expires_in": {
-            "type": "integer",
-            "example": 3600,
-            "description": "The number of seconds remaining to the token expiration time,\nto be counted since the token issue date and time\n"
-          },
-          "access_token": {
-            "type": "string",
-            "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImYwYjQxZjk1MTdiYWExOTg4Zjk...",
-            "description": "The issued JWT access token"
-          },
-          "refresh_token": {
-            "type": "string",
-            "example": "def50200a757a1c4dbc4859a4c47195632f4df60ebb521ac5a28a0b7553101f08f8b9...",
-            "description": "A token to be used after the original access token has expired, to issue a new token\nwithout requiring a new request to the `/users/login` endpoint\n"
-          }
-        },
-        "required": [
-          "access_token",
-          "refresh_token"
-        ]
-      },
       "UserRelation": {
         "type": "object",
         "properties": {
@@ -17382,12 +17126,6 @@
           "created_at",
           "updated_at"
         ]
-      },
-      "Variables": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Variable"
-        }
       },
       "VariableApplicationCreate": {
         "type": "object",
