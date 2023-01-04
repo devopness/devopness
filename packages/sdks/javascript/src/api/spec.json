@@ -14858,6 +14858,11 @@
       "ServerUpdate": {
         "type": "object",
         "properties": {
+          "id": {
+            "description": "The unique ID of the given server.",
+            "example": 37292,
+            "type": "integer"
+          },
           "ip_address": {
             "description": "Public ipv4 address for server access. This field is required when <code>provision_settings.self_hosted</code> is <code>true</code>.",
             "example": "200.123.45.67",
@@ -14868,7 +14873,10 @@
             "example": 22,
             "type": "integer"
           }
-        }
+        },
+        "required": [
+          "id"
+        ]
       },
       "ServerList": {
         "type": "array",
