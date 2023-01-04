@@ -97,11 +97,12 @@
 '/environments/{environment_id}/team-memberships':
   get:
     $ref: ./auto-generated/endpoints/list-environment-team-memberships.yaml
-/environments/{environment_id}/teams/{team_id}:
-  delete:
-    $ref: ./auto-generated/endpoints/delete-environment-team.yaml
+'/environments/{environment_id}/teams/{team_id}/link':
   post:
-    $ref: ./auto-generated/endpoints/add-environment-team.yaml
+    $ref: ./auto-generated/endpoints/link-team-to-environment.yaml
+'/environments/{environment_id}/teams/{team_id}/unlink':
+  delete:
+    $ref: ./auto-generated/endpoints/unlink-team-from-environment.yaml
 '/hook-requests/{hook_request_id}':
   get:
     $ref: ./auto-generated/endpoints/get-hook-request.yaml
@@ -347,12 +348,6 @@
 /users/login:
   post:
     $ref: ./auto-generated/endpoints/login-user.yaml
-/users/logout:
-  get:
-    $ref: ./endpoints/users/paths/logout.yaml
-/users/me:
-  get:
-    $ref: ./endpoints/users/paths/users-me.yaml
 /users/password/reset:
   post:
     $ref: ./auto-generated/endpoints/reset-user-password.yaml
@@ -377,3 +372,16 @@
     $ref: ./auto-generated/endpoints/get-variable.yaml
   put:
     $ref: ./auto-generated/endpoints/update-variable.yaml
+
+# TO DO: `/users/me` and - specially - `/users/logout` must only consume auto-generated
+# models once all other models and endpoints are converted to auto-generated. Having
+# all models and endpoints consuming from auto-generated we can then improve the
+# transaction grapth generation methods to make sure endpoint that require user
+# token are executed before logout and the auth token is not lost.
+# For details see `hooks.ts > initialAdjacencyList`
+/users/logout:
+  get:
+    $ref: ./endpoints/users/paths/logout.yaml
+/users/me:
+  get:
+    $ref: ./endpoints/users/paths/users-me.yaml

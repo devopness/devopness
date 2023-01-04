@@ -20,7 +20,7 @@ properties:
     type: boolean
     example: true
   social_accounts:
-    $ref: '#/components/schemas/SocialAccounts'
+    $ref: '#/components/schemas/SocialAccountList'
   current_billing_plan:
     description: 'The code of current billing plan'
     type: string

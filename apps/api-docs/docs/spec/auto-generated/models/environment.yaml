@@ -22,7 +22,7 @@ properties:
   daemons:
     $ref: '#/components/schemas/DaemonList'
   network_rules:
-    $ref: '#/components/schemas/NetworkRules'
+    $ref: '#/components/schemas/NetworkRuleList'
   applications:
     $ref: '#/components/schemas/ApplicationList'
   services:
@@ -30,7 +30,7 @@ properties:
   ssh_keys:
     $ref: '#/components/schemas/SshKeyList'
   teams:
-    $ref: '#/components/schemas/Teams'
+    $ref: '#/components/schemas/TeamList'
   created_by_user:
     $ref: '#/components/schemas/UserRelation'
   current_user_permissions:

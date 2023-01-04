@@ -3,6 +3,7 @@ description: 'Current item status'
 type: string
 enum:
   - pending
+  - queued
   - in-progress
   - completed
   - failed

@@ -17,7 +17,7 @@ properties:
   project:
     $ref: '#/components/schemas/ProjectRelation'
   users:
-    $ref: '#/components/schemas/Users'
+    $ref: '#/components/schemas/UserList'
   created_at:
     description: 'The date and time when the record was created'
     type: string

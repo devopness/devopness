@@ -32,7 +32,7 @@ properties:
   application:
     $ref: '#/components/schemas/ApplicationRelation'
   servers:
-    $ref: '#/components/schemas/Servers'
+    $ref: '#/components/schemas/ServerList'
   expires_at:
     description: 'The date and time when this certificate will no longer be valid, down to minute precision'
     type: string

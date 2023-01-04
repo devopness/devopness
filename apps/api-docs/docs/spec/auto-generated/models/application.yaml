@@ -100,11 +100,11 @@ properties:
   environment:
     $ref: '#/components/schemas/EnvironmentRelation'
   servers:
-    $ref: '#/components/schemas/Servers'
+    $ref: '#/components/schemas/ServerList'
   source_provider:
     $ref: '#/components/schemas/SourceProvider'
   ssl_certificates:
-    $ref: '#/components/schemas/SslCertificates'
+    $ref: '#/components/schemas/SslCertificateList'
   created_at:
     description: 'The date and time when the record was created'
     type: string

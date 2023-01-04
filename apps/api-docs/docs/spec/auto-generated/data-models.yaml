@@ -217,6 +217,8 @@ InvitationRelation:
   $ref: ./auto-generated/models/invitation-relation.yaml
 InvitationTeamCreate:
   $ref: ./auto-generated/models/invitation-team-create.yaml
+Language:
+  $ref: ./auto-generated/models/language.yaml
 LanguageRuntime:
   $ref: ./auto-generated/models/language-runtime.yaml
 LanguageRuntimeFramework:
@@ -239,8 +241,12 @@ NetworkRuleEnvironmentCreate:
   $ref: ./auto-generated/models/network-rule-environment-create.yaml
 NetworkRuleList:
   $ref: ./auto-generated/models/network-rule-list.yaml
+NetworkRuleProtocol:
+  $ref: ./auto-generated/models/network-rule-protocol.yaml
 NetworkRuleRelation:
   $ref: ./auto-generated/models/network-rule-relation.yaml
+NetworkRuleType:
+  $ref: ./auto-generated/models/network-rule-type.yaml
 NetworkRuleUpdate:
   $ref: ./auto-generated/models/network-rule-update.yaml
 OperatingSystem:
@@ -267,6 +273,8 @@ PipelineList:
   $ref: ./auto-generated/models/pipeline-list.yaml
 PipelineRelation:
   $ref: ./auto-generated/models/pipeline-relation.yaml
+PipelineStepRunnerName:
+  $ref: ./auto-generated/models/pipeline-step-runner-name.yaml
 PipelineUpdate:
   $ref: ./auto-generated/models/pipeline-update.yaml
 Project:
@@ -297,6 +305,8 @@ RequestList:
   $ref: ./auto-generated/models/request-list.yaml
 RequestRelation:
   $ref: ./auto-generated/models/request-relation.yaml
+Resource:
+  $ref: ./auto-generated/models/resource.yaml
 ResourceEventList:
   $ref: ./auto-generated/models/resource-event-list.yaml
 ResourceEventRelation:
@@ -351,6 +361,8 @@ Service:
   $ref: ./auto-generated/models/service.yaml
 ServiceEnvironmentCreate:
   $ref: ./auto-generated/models/service-environment-create.yaml
+ServiceInitialState:
+  $ref: ./auto-generated/models/service-initial-state.yaml
 ServiceList:
   $ref: ./auto-generated/models/service-list.yaml
 ServiceOptions:
@@ -413,10 +425,16 @@ SslCertificateApplicationCreate:
   $ref: ./auto-generated/models/ssl-certificate-application-create.yaml
 SslCertificateDomainList:
   $ref: ./auto-generated/models/ssl-certificate-domain-list.yaml
+SslCertificateIssuer:
+  $ref: ./auto-generated/models/ssl-certificate-issuer.yaml
 SslCertificateList:
   $ref: ./auto-generated/models/ssl-certificate-list.yaml
 SslCertificateRelation:
   $ref: ./auto-generated/models/ssl-certificate-relation.yaml
+SslCertificateType:
+  $ref: ./auto-generated/models/ssl-certificate-type.yaml
+SslCertificateValidationLevel:
+  $ref: ./auto-generated/models/ssl-certificate-validation-level.yaml
 StaticCloudProviderCode:
   $ref: ./auto-generated/models/static-cloud-provider-code.yaml
 StaticCronJobFrequency:
@@ -439,6 +457,8 @@ StaticServiceTypeList:
   $ref: ./auto-generated/models/static-service-type-list.yaml
 Step:
   $ref: ./auto-generated/models/step.yaml
+StepList:
+  $ref: ./auto-generated/models/step-list.yaml
 StepPipelineCreate:
   $ref: ./auto-generated/models/step-pipeline-create.yaml
 StepPipelineUpdate:
@@ -449,12 +469,14 @@ SubscriptionPlanList:
   $ref: ./auto-generated/models/subscription-plan-list.yaml
 Team:
   $ref: ./auto-generated/models/team.yaml
-TeamEnvironmentCreate:
-  $ref: ./auto-generated/models/team-environment-create.yaml
+TeamEnvironmentLink:
+  $ref: ./auto-generated/models/team-environment-link.yaml
 TeamInvitationList:
   $ref: ./auto-generated/models/team-invitation-list.yaml
 TeamInvitationRelation:
   $ref: ./auto-generated/models/team-invitation-relation.yaml
+TeamInvitationStatus:
+  $ref: ./auto-generated/models/team-invitation-status.yaml
 TeamList:
   $ref: ./auto-generated/models/team-list.yaml
 TeamMembershipList:
@@ -473,6 +495,8 @@ User:
   $ref: ./auto-generated/models/user.yaml
 UserCreate:
   $ref: ./auto-generated/models/user-create.yaml
+UserList:
+  $ref: ./auto-generated/models/user-list.yaml
 UserLogin:
   $ref: ./auto-generated/models/user-login.yaml
 UserLoginResponse:
@@ -483,6 +507,8 @@ UserRefreshToken:
   $ref: ./auto-generated/models/user-refresh-token.yaml
 UserRefreshTokenResponse:
   $ref: ./auto-generated/models/user-refresh-token-response.yaml
+UserRelation:
+  $ref: ./auto-generated/models/user-relation.yaml
 UserResendVerification:
   $ref: ./auto-generated/models/user-resend-verification.yaml
 UserUpdate:

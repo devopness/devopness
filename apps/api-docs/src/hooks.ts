@@ -84,6 +84,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         },
         fixtureTransactionOutputs: {
             // user credentials are generated from a successful `addUser` transaction
+            // 'user': ['addUser202'],
             'user_credentials': ['addUser202'],
             // user tokens are a result of a successful `login` transaction
             'user_login_response': ['loginUser200'],
@@ -93,11 +94,26 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         fixtureTerminalTransactions: {
             // a successful `logout` transaction destroys user tokens
             'user_login_response': ['logout204']
+            // 'user_login_response': ['getUserlogout204']
         }
     };
 
     // initial transaction graph definitions
     const initialAdjacencyList = new Set<TransactionGraphEdge>([
+        // `User` authenticated endpoints should be executed before `logout`,
+        // otherwise the current user authentication token is lost and
+        // requests will fail with HTTP status code 401 - Unauthenticated.
+        // We could alternatively set dependencies on `paths.yaml` moving
+        // logout to be the last transaction, but that would require paths.yaml
+        // to be generated in a non-alphabetically sorted approach, which might
+        // be more error prone.
+        // TO DO: investigate/improve how the transaction graph is generated,
+        // because before using auto-generated models the dependency on logout
+        // was automatically mapped to the transaction graph and now it's no
+        // longer working.
+        // ['getUser200', 'getUserLogout204'],
+        // ['getUserMe200', 'getUserLogout204'],
+        // ['updateUser204', 'getUserLogout204'],
         // variable tests should run before deleteApplication
         ['deleteVariable204', 'deleteApplication204'],
         ['triggerHook202', 'deleteApplication204'],
@@ -238,6 +254,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
 
     before('refreshTokenUser200', utils.setTransactionRequestBodyToFixture<UserTokens>('user_login_response'));
     after('logout204', (transaction: Transaction) => { if (transaction.test.valid) { fixtures.delete('user_login_response'); } });
+    // after('getUserlogout204', (transaction: Transaction) => { if (transaction.test.valid) { fixtures.delete('user_login_response'); } });
 
     //// servers
 

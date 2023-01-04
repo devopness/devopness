@@ -42,7 +42,7 @@ properties:
   environment:
     $ref: '#/components/schemas/EnvironmentRelation'
   servers:
-    $ref: '#/components/schemas/Servers'
+    $ref: '#/components/schemas/ServerList'
   created_at:
     description: 'The date and time when the record was created'
     type: string

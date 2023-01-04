@@ -115,11 +115,12 @@
 '/environments/{environment_id}/team-memberships':
   get:
     $ref: ./auto-generated/endpoints/list-environment-team-memberships.yaml
-'/environments/{environment_id}/teams/{team_id}':
-  delete:
-    $ref: ./auto-generated/endpoints/delete-environment-team.yaml
+'/environments/{environment_id}/teams/{team_id}/link':
   post:
-    $ref: ./auto-generated/endpoints/add-environment-team.yaml
+    $ref: ./auto-generated/endpoints/link-team-to-environment.yaml
+'/environments/{environment_id}/teams/{team_id}/unlink':
+  delete:
+    $ref: ./auto-generated/endpoints/unlink-team-from-environment.yaml
 '/events/{resource_type}/{resource_id}':
   get:
     $ref: ./auto-generated/endpoints/list-resource-events-by-resource-type.yaml
