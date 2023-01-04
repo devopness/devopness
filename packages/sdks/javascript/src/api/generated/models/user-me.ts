@@ -13,7 +13,7 @@
 
 
 import { Language } from './language';
-import { SocialAccount } from './social-account';
+import { SocialAccountRelation } from './social-account-relation';
 import { SubscriptionPlan } from './subscription-plan';
 
 /**
@@ -54,10 +54,10 @@ export interface UserMe {
     active: boolean;
     /**
      * 
-     * @type {Array<SocialAccount>}
+     * @type {Array<SocialAccountRelation>}
      * @memberof UserMe
      */
-    social_accounts: Array<SocialAccount>;
+    social_accounts: Array<SocialAccountRelation>;
     /**
      * The code of current billing plan
      * @type {string}

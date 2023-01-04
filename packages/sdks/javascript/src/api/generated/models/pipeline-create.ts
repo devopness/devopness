@@ -20,7 +20,7 @@
  */
 export interface PipelineCreate {
     /**
-     * The pipeline\'s name
+     * The pipeline\'s name. Must be at least 3 characters. Must not be greater than 80 characters.
      * @type {string}
      * @memberof PipelineCreate
      */
