@@ -20,6 +20,12 @@
  */
 export interface ServerUpdate {
     /**
+     * The unique ID of the given server.
+     * @type {number}
+     * @memberof ServerUpdate
+     */
+    id: number;
+    /**
      * Public ipv4 address for server access. This field is required when <code>provision_settings.self_hosted</code> is <code>true</code>.
      * @type {string}
      * @memberof ServerUpdate
