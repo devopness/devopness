@@ -33,6 +33,8 @@ ActionTriggeredFrom:
   $ref: ./auto-generated/models/action-triggered-from.yaml
 ActionType:
   $ref: ./auto-generated/models/action-type.yaml
+ApiError:
+  $ref: ./auto-generated/models/api-error.yaml
 Application:
   $ref: ./auto-generated/models/application.yaml
 ApplicationEnvironmentCreate:
