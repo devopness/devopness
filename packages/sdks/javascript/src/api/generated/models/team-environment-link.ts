@@ -16,14 +16,14 @@
 /**
  * 
  * @export
- * @interface ServerCommands
+ * @interface TeamEnvironmentLink
  */
-export interface ServerCommands {
+export interface TeamEnvironmentLink {
     /**
-     * The Shell Script command to be executed in an existing Linux server in order to connect it to the `devopness`
-     * @type {string}
-     * @memberof ServerCommands
+     * The role\'s ID to use for this team on environment.
+     * @type {number}
+     * @memberof TeamEnvironmentLink
      */
-    connect_command: string;
+    role_id: number;
 }
 
