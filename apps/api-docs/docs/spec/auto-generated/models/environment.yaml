@@ -26,7 +26,7 @@ properties:
   applications:
     $ref: '#/components/schemas/ApplicationList'
   services:
-    $ref: '#/components/schemas/Services'
+    $ref: '#/components/schemas/ServiceList'
   ssh_keys:
     $ref: '#/components/schemas/SshKeyList'
   teams:
