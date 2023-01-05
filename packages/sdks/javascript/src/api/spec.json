@@ -11818,7 +11818,7 @@
             "$ref": "#/components/schemas/ApplicationList"
           },
           "services": {
-            "$ref": "#/components/schemas/Services"
+            "$ref": "#/components/schemas/ServiceList"
           },
           "ssh_keys": {
             "$ref": "#/components/schemas/SshKeyList"
@@ -16673,6 +16673,11 @@
       "TeamUpdate": {
         "type": "object",
         "properties": {
+          "id": {
+            "description": "The unique ID of the given team.",
+            "example": 37292,
+            "type": "integer"
+          },
           "name": {
             "description": "The name of the team. Must not be greater than 255 characters.",
             "example": "Development Team",
@@ -16685,6 +16690,7 @@
           }
         },
         "required": [
+          "id",
           "name"
         ]
       },
