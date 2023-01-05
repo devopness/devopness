@@ -1,4 +1,0 @@
-type: string
-description: The type of network traffic to which this rule is applied
-enum: ['inbound', 'outbound']
-example: 'inbound'

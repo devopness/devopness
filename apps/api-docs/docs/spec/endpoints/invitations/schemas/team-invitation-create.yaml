@@ -1,8 +1,0 @@
-type: object
-properties:
-  email:
-    type: string
-    description: The user email to send the invitation
-    example: invited.user@email.com
-required:
-  - email

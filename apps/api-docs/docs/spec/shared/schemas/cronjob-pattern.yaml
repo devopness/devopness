@@ -1,4 +1,0 @@
-type: string
-description: A translation of the cron expression to a readable string indicating its execution frequency.
-enum: ["Every minute", "Hourly", "Daily", "Twice a day", "Weekly", "Monthly", "Yearly"]
-example: "Every minute"

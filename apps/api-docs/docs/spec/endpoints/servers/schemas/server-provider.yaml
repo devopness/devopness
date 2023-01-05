@@ -1,6 +1,0 @@
-type: string
-description: "`self-hosted` if connecting to an existing server instance. May also be a list of cloud providers to which the server spec will be used to launch instances."
-enum:
-  - self-hosted
-  - aws
-  - digital-ocean

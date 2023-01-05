@@ -1,8 +1,0 @@
-type: object
-properties:
-  email:
-    type: string
-    description: The user email to resend the verification link
-    example: my-email@devopness.com
-required:
-  - email

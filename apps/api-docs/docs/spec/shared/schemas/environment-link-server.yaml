@@ -1,8 +1,0 @@
-type: object
-properties:
-  id:
-    type: integer
-    description: Environment's unique id
-    example: 867
-required:
-  - id

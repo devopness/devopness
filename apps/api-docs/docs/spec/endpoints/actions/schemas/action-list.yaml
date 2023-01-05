@@ -1,4 +1,0 @@
-description: "The list of related actions"
-type: array
-items:
-  $ref: '#/components/schemas/ActionListItem'

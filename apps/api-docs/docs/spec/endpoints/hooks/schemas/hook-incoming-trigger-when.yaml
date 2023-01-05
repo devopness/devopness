@@ -1,4 +1,0 @@
-type: array
-description: Conditions that must be met to trigger the hook.
-items:
-  $ref: '#/components/schemas/HookIncomingTriggerWhenCondition'

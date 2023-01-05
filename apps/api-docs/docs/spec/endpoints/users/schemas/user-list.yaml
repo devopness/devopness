@@ -1,4 +1,0 @@
-description: The list of users
-type: array
-items:
-  $ref: '#/components/schemas/UserRelation'

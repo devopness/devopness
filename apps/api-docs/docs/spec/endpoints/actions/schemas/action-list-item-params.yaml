@@ -1,4 +1,0 @@
-type: object
-properties:
-  servers:
-    $ref: '#/components/schemas/ServerActions'

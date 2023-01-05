@@ -1,4 +1,0 @@
-description: Current item status
-type: string
-enum: ["pending", "in-progress", "completed", "failed"]
-example: "in-progress"

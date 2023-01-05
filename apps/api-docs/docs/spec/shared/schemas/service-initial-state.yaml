@@ -1,5 +1,0 @@
-type: string
-default: "started"
-description: The expected initial state of the service after installed
-enum: [started, stopped]
-example: "stopped"

@@ -1,8 +1,0 @@
-type: string
-example: manual
-description: |
-  * `hook`: the action have been triggered by an `incoming hook`.
-  * `manual`: the action have been manually triggered.
-enum:
-  - hook
-  - manual

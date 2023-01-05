@@ -1,8 +1,0 @@
-type: object
-properties:
-  name:
-    type: string
-    description: The pipeline's name
-    example: 'my pipeline'
-required:
-  - name

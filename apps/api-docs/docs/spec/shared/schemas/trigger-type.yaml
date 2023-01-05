@@ -1,4 +1,0 @@
-type: string
-description: The type of event that will trigger it
-enum: [before, after]
-example: 'after'

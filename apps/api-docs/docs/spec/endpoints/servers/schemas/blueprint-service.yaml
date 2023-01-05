@@ -1,4 +1,0 @@
-type: object
-properties:
-  name:
-    $ref: '#/components/schemas/ServiceType'
