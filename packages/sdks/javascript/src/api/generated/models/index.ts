@@ -1,4 +1,3 @@
-export * from './accepted-response-message';
 export * from './action';
 export * from './action-data';
 export * from './action-deployment-commit';

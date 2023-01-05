@@ -20,6 +20,12 @@
  */
 export interface TeamUpdate {
     /**
+     * The unique ID of the given team.
+     * @type {number}
+     * @memberof TeamUpdate
+     */
+    id: number;
+    /**
      * The name of the team. Must not be greater than 255 characters.
      * @type {string}
      * @memberof TeamUpdate
