@@ -1178,6 +1178,450 @@
         }
       }
     },
+    "/cron-jobs/{cron_job_id}": {
+      "delete": {
+        "summary": "Delete a given Cron Job",
+        "operationId": "deleteCronJob",
+        "description": {
+          "$ref": "../spec/descriptions/delete-cron-job.md"
+        },
+        "tags": [
+          "Cron Jobs"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "cron_job_id",
+            "description": "The ID of the cron job.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Get a Cron Job by ID",
+        "operationId": "getCronJob",
+        "description": {
+          "$ref": "../spec/descriptions/get-cron-job.md"
+        },
+        "tags": [
+          "Cron Jobs"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "cron_job_id",
+            "description": "The ID of the cron job.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CronJob"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update an existing Cron Job",
+        "operationId": "updateCronJob",
+        "description": {
+          "$ref": "../spec/descriptions/update-cron-job.md"
+        },
+        "tags": [
+          "Cron Jobs"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "cron_job_id",
+            "description": "The ID of the cron job.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CronJobUpdate"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/daemons/{daemon_id}": {
+      "delete": {
+        "summary": "Delete a given Daemon",
+        "operationId": "deleteDaemon",
+        "description": {
+          "$ref": "../spec/descriptions/delete-daemon.md"
+        },
+        "tags": [
+          "Daemons"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "daemon_id",
+            "description": "The ID of the daemon.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Get a Daemon by ID",
+        "operationId": "getDaemon",
+        "description": {
+          "$ref": "../spec/descriptions/get-daemon.md"
+        },
+        "tags": [
+          "Daemons"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "daemon_id",
+            "description": "The ID of the daemon.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Daemon"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update an existing Daemon",
+        "operationId": "updateDaemon",
+        "description": {
+          "$ref": "../spec/descriptions/update-daemon.md"
+        },
+        "tags": [
+          "Daemons"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "daemon_id",
+            "description": "The ID of the daemon.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DaemonUpdate"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/daemons/{daemon_id}/restart": {
+      "post": {
+        "summary": "Restart a Daemon",
+        "operationId": "restartDaemon",
+        "description": {
+          "$ref": "../spec/descriptions/restart-daemon.md"
+        },
+        "tags": [
+          "Daemons"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "daemon_id",
+            "description": "The ID of the daemon.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DaemonRestart"
+              }
+            }
+          }
+        }
+      }
+    },
     "/environments/{environment_id}": {
       "delete": {
         "summary": "Delete a given environment",
@@ -2623,6 +3067,76 @@
         }
       }
     },
+    "/events/{resource_type}/{resource_id}": {
+      "get": {
+        "summary": "List events of a resource type",
+        "operationId": "listResourceEventsByResourceType",
+        "description": {
+          "$ref": "../spec/descriptions/list-resource-events-by-resource-type.md"
+        },
+        "tags": [
+          "Resource Events"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "resource_id",
+            "description": "The resource ID.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "in": "path",
+            "name": "resource_type",
+            "description": "The resource type to get related events.",
+            "example": "application",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceEventList"
+                }
+              }
+            },
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            }
+          }
+        }
+      }
+    },
     "/hook-requests/{hook_request_id}": {
       "get": {
         "summary": "Get a hook request by ID",
@@ -3277,15 +3791,15 @@
         }
       }
     },
-    "/daemons/{daemon_id}": {
+    "/pipelines/{pipeline_id}": {
       "delete": {
-        "summary": "Delete a given Daemon",
-        "operationId": "deleteDaemon",
+        "summary": "Delete a given Pipeline",
+        "operationId": "deletePipeline",
         "description": {
-          "$ref": "../spec/descriptions/delete-daemon.md"
+          "$ref": "../spec/descriptions/delete-pipeline.md"
         },
         "tags": [
-          "Daemons"
+          "Pipelines"
         ],
         "parameters": [
           {
@@ -3299,195 +3813,8 @@
           },
           {
             "in": "path",
-            "name": "daemon_id",
-            "description": "The ID of the daemon.",
-            "example": 123,
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content",
-            "headers": {
-              "X-Devopness-Action-Id": {
-                "schema": {
-                  "type": "integer"
-                },
-                "description": "The dispatched action ID of the resource"
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden/Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        }
-      },
-      "get": {
-        "summary": "Get a Daemon by ID",
-        "operationId": "getDaemon",
-        "description": {
-          "$ref": "../spec/descriptions/get-daemon.md"
-        },
-        "tags": [
-          "Daemons"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "daemon_id",
-            "description": "The ID of the daemon.",
-            "example": 123,
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Daemon"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden/Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "summary": "Update an existing Daemon",
-        "operationId": "updateDaemon",
-        "description": {
-          "$ref": "../spec/descriptions/update-daemon.md"
-        },
-        "tags": [
-          "Daemons"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "daemon_id",
-            "description": "The ID of the daemon.",
-            "example": 123,
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content",
-            "headers": {
-              "X-Devopness-Action-Id": {
-                "schema": {
-                  "type": "integer"
-                },
-                "description": "The dispatched action ID of the resource"
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden/Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Unprocessable Entity/Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "description": "A JSON object containing the resource data",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DaemonUpdate"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/daemons/{daemon_id}/restart": {
-      "post": {
-        "summary": "Restart a Daemon",
-        "operationId": "restartDaemon",
-        "description": {
-          "$ref": "../spec/descriptions/restart-daemon.md"
-        },
-        "tags": [
-          "Daemons"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "daemon_id",
-            "description": "The ID of the daemon.",
+            "name": "pipeline_id",
+            "description": "The ID of the pipeline.",
             "example": 123,
             "required": true,
             "schema": {
@@ -3509,32 +3836,9 @@
                 }
               }
             }
-          },
-          "422": {
-            "description": "Unprocessable Entity/Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "description": "A JSON object containing the resource data",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DaemonRestart"
-              }
-            }
           }
         }
-      }
-    },
-    "/pipelines/{pipeline_id}": {
+      },
       "get": {
         "summary": "Get a Pipeline by ID",
         "operationId": "getPipeline",
@@ -3652,208 +3956,6 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/PipelineUpdate"
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "summary": "Delete a given Pipeline",
-        "operationId": "deletePipeline",
-        "description": {
-          "$ref": "../spec/descriptions/delete-pipeline.md"
-        },
-        "tags": [
-          "Pipelines"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "pipeline_id",
-            "description": "The ID of the pipeline.",
-            "example": 123,
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "403": {
-            "description": "Forbidden/Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/pipelines/{resource_type}/{resource_id}": {
-      "get": {
-        "summary": "Return a list of pipelines to a resource",
-        "operationId": "listPipelinesByResourceType",
-        "description": {
-          "$ref": "../spec/descriptions/list-pipelines-by-resource-type.md"
-        },
-        "tags": [
-          "Pipelines"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "$ref": "#/components/parameters/pageNumber"
-          },
-          {
-            "$ref": "#/components/parameters/pageSize"
-          },
-          {
-            "in": "path",
-            "name": "resource_id",
-            "description": "The resource ID.",
-            "example": 123,
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            }
-          },
-          {
-            "in": "path",
-            "name": "resource_type",
-            "description": "The resource type to get pipelines from.",
-            "example": "application",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PipelineList"
-                }
-              }
-            },
-            "headers": {
-              "Link": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "summary": "Add a Pipeline to a resource",
-        "operationId": "addPipeline",
-        "description": {
-          "$ref": "../spec/descriptions/add-pipeline.md"
-        },
-        "tags": [
-          "Pipelines"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "resource_id",
-            "description": "The resource ID.",
-            "example": 123,
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            }
-          },
-          {
-            "in": "path",
-            "name": "resource_type",
-            "description": "The resource type to add a pipeline to.",
-            "example": "application",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Pipeline"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden/Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Unprocessable Entity/Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "description": "A JSON object containing the resource data",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PipelineCreate"
               }
             }
           }
@@ -4132,6 +4234,161 @@
                 "schema": {
                   "$ref": "#/components/schemas/ApiError"
                 }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pipelines/{resource_type}/{resource_id}": {
+      "get": {
+        "summary": "Return a list of pipelines to a resource",
+        "operationId": "listPipelinesByResourceType",
+        "description": {
+          "$ref": "../spec/descriptions/list-pipelines-by-resource-type.md"
+        },
+        "tags": [
+          "Pipelines"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "resource_id",
+            "description": "The resource ID.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "in": "path",
+            "name": "resource_type",
+            "description": "The resource type to get pipelines from.",
+            "example": "application",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipelineList"
+                }
+              }
+            },
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Add a Pipeline to a resource",
+        "operationId": "addPipeline",
+        "description": {
+          "$ref": "../spec/descriptions/add-pipeline.md"
+        },
+        "tags": [
+          "Pipelines"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "resource_id",
+            "description": "The resource ID.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "in": "path",
+            "name": "resource_type",
+            "description": "The resource type to add a pipeline to.",
+            "example": "application",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pipeline"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PipelineCreate"
               }
             }
           }
@@ -4844,76 +5101,6 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/TeamProjectCreate"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/events/{resource_type}/{resource_id}": {
-      "get": {
-        "summary": "List events of a resource type",
-        "operationId": "listResourceEventsByResourceType",
-        "description": {
-          "$ref": "../spec/descriptions/list-resource-events-by-resource-type.md"
-        },
-        "tags": [
-          "Resource Events"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "$ref": "#/components/parameters/pageNumber"
-          },
-          {
-            "$ref": "#/components/parameters/pageSize"
-          },
-          {
-            "in": "path",
-            "name": "resource_id",
-            "description": "The resource ID.",
-            "example": 123,
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            }
-          },
-          {
-            "in": "path",
-            "name": "resource_type",
-            "description": "The resource type to get related events.",
-            "example": "application",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResourceEventList"
-                }
-              }
-            },
-            "headers": {
-              "Link": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
               }
             }
           }
@@ -7175,15 +7362,15 @@
         }
       }
     },
-    "/cron-jobs/{cron_job_id}": {
-      "delete": {
-        "summary": "Delete a given Cron Job",
-        "operationId": "deleteCronJob",
+    "/team-invitations/{team_invitation_id}/accept": {
+      "post": {
+        "summary": "Accept a pending team invitation",
+        "operationId": "acceptTeamInvitation",
         "description": {
-          "$ref": "../spec/descriptions/delete-cron-job.md"
+          "$ref": "../spec/descriptions/accept-team-invitation.md"
         },
         "tags": [
-          "Cron Jobs"
+          "Team Invitations"
         ],
         "parameters": [
           {
@@ -7197,27 +7384,18 @@
           },
           {
             "in": "path",
-            "name": "cron_job_id",
-            "description": "The ID of the cron job.",
-            "example": 123,
+            "name": "team_invitation_id",
+            "description": "The ID of the team invitation.",
+            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
             "required": true,
             "schema": {
-              "type": "integer",
-              "minimum": 1
+              "type": "string"
             }
           }
         ],
         "responses": {
           "204": {
-            "description": "No Content",
-            "headers": {
-              "X-Devopness-Action-Id": {
-                "schema": {
-                  "type": "integer"
-                },
-                "description": "The dispatched action ID of the resource"
-              }
-            }
+            "description": "No Content"
           },
           "403": {
             "description": "Forbidden/Unauthorized",
@@ -7226,136 +7404,6 @@
                 "schema": {
                   "$ref": "#/components/schemas/ApiError"
                 }
-              }
-            }
-          }
-        }
-      },
-      "get": {
-        "summary": "Get a Cron Job by ID",
-        "operationId": "getCronJob",
-        "description": {
-          "$ref": "../spec/descriptions/get-cron-job.md"
-        },
-        "tags": [
-          "Cron Jobs"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "cron_job_id",
-            "description": "The ID of the cron job.",
-            "example": 123,
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CronJob"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden/Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "summary": "Update an existing Cron Job",
-        "operationId": "updateCronJob",
-        "description": {
-          "$ref": "../spec/descriptions/update-cron-job.md"
-        },
-        "tags": [
-          "Cron Jobs"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "cron_job_id",
-            "description": "The ID of the cron job.",
-            "example": 123,
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content",
-            "headers": {
-              "X-Devopness-Action-Id": {
-                "schema": {
-                  "type": "integer"
-                },
-                "description": "The dispatched action ID of the resource"
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden/Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Unprocessable Entity/Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "description": "A JSON object containing the resource data",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CronJobUpdate"
               }
             }
           }
@@ -7655,54 +7703,6 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/InvitationTeamCreate"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/team-invitations/{team_invitation_id}/accept": {
-      "post": {
-        "summary": "Accept a pending team invitation",
-        "operationId": "acceptTeamInvitation",
-        "description": {
-          "$ref": "../spec/descriptions/accept-team-invitation.md"
-        },
-        "tags": [
-          "Team Invitations"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "team_invitation_id",
-            "description": "The ID of the team invitation.",
-            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "403": {
-            "description": "Forbidden/Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
               }
             }
           }
@@ -8098,6 +8098,79 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/UserLogin"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/logout": {
+      "get": {
+        "summary": "Logout/revoke an existing token",
+        "operationId": "getUserLogout",
+        "description": {
+          "$ref": "../spec/descriptions/get-user-logout.md"
+        },
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/me": {
+      "get": {
+        "summary": "Get details of the current user",
+        "operationId": "getUserMe",
+        "description": {
+          "$ref": "../spec/descriptions/get-user-me.md"
+        },
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserMe"
+                }
               }
             }
           }
@@ -8604,63 +8677,6 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/VariableUpdate"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/users/logout": {
-      "get": {
-        "summary": "Logout/revoke an existing token",
-        "operationId": "logout",
-        "tags": [
-          "Users"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          }
-        ],
-        "responses": {
-          "204": {
-            "$ref": "#/components/responses/NoContent"
-          }
-        }
-      }
-    },
-    "/users/me": {
-      "get": {
-        "summary": "Get details of the current user",
-        "operationId": "getUserMe",
-        "tags": [
-          "Users"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                }
               }
             }
           }
