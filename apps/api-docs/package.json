@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "npm run api-docs && npm run ensure_index_file_is_on_size_limit",
-    "api-build-spec": "rm -rf ./data-models.yaml && cp -R ./docs/spec/auto-generated/data-models.yaml ./docs/spec/data-models.yaml && npm run tsc && node ./build/buildApiSpec.js && swagger-cli validate docs/build/api-docs-output.yaml",
+    "api-build-spec": "npm run update-paths-and-schemas && npm run tsc && node ./build/buildApiSpec.js && swagger-cli validate docs/build/api-docs-output.yaml",
     "api-convert-spec-to-dredd": "api-spec-converter --from=openapi_3 --to=swagger_2 --syntax=yaml --order=alpha docs/build/api-docs-output.yaml > docs/build/api-docs-output-v2.yaml",
     "api-convert-spec-to-json": "yaml-convert docs/build/api-docs-output.yaml --pretty --output docs/build/spec.json",
     "api-docs-export-page": "redoc-cli build docs/build/api-docs-output.yaml --title 'Devopness API Docs' --output public/index.html --cdn true -t docs/template.hbs",
@@ -17,6 +17,7 @@
     "api-docs-zip-extract": "rm -rf ./docs/spec/auto-generated && extract-zip ./docs/api-docs.zip $(pwd)/docs/spec",
     "api-docs": "npm run api-build-spec && npm run api-convert-spec-to-dredd && npm run api-docs-export-page && npm run api-test",
     "api-test": "npm run tsc && npm run test && npm run remove-descriptions && dredd",
+    "update-paths-and-schemas": "rm -rf ./data-models.yaml ./paths.yaml && cp -R ./docs/spec/auto-generated/data-models.yaml ./docs/spec/data-models.yaml && cp -R ./docs/spec/auto-generated/paths.yaml ./docs/spec/paths.yaml",
     "remove-descriptions": "node src/utils/create-dredd-compatible-openapi-v2.js ",
     "ensure_index_file_is_on_size_limit": "[ `du -h public/index.html | grep -oE '^[0-9]+'` -le 7 ]",
     "test": "jest",

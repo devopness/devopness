@@ -22,8 +22,14 @@ function fixtureTransactionGraphPush(map: FixtureToTransactionListMap, k: Fixtur
 export interface FixtureTransactionAdjacencyList {
     /** Maps fixtures to a list of transactions that take it as input */
     fixtureTransactionInputs: FixtureToTransactionListMap
-    /** Maps fixtures to a list of transactions that take it as output */
+
+    /**
+     * Maps fixtures to a list of transactions that need to be executed before the fixture values are made available.
+     * The transaction on which the fixture depends can return the fixture values or have a `before(<transaction>)`
+     * method or a `after(<transaction>)` method that update the fixture values when the transaction is executed.
+     */
     fixtureTransactionOutputs: FixtureToTransactionListMap
+
     /** Maps fixtures to their terminal transactions */
     fixtureTerminalTransactions: FixtureToTransactionListMap
 };
@@ -140,7 +146,7 @@ export default class TransactionGraph {
             if (!(fixture in fixtureTransactionOutputs)) {
                 throw new Error(
                     `fixture '${fixture}' has no generator transactions, skipping transactions [${fixtureTransactionInputs[fixture]}]\n`
-                    + `Tip: add '${fixture}' to list 'fixtureTransactionOutputs' on hooks.ts file.`
+                    + `Tip: add '${fixture}' to list 'fixtureTransactionOutputs' on 'hooks.ts' or fix fixture name on 'fixtureTypes.ts'.`
                 );
             }
         }

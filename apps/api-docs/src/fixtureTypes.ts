@@ -10,6 +10,7 @@ export interface Identifiable {
  * User login data.
  */
 export type UserCredentials = {
+    id: number
     email: string
     password: string
 };
@@ -182,14 +183,26 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     'team_environment_create': [
         { path: 'project_id', fixture: 'project', field: 'id' },
     ],
+    'user': [
+        { path: 'id', fixture: 'user_credentials', field: 'id' },
+    ],
+    'user_create': [],
     'user_credentials': [],
+    "user_login": [
+        { path: 'email', fixture: 'user_credentials', field: 'email' },
+        { path: 'password', fixture: 'user_credentials', field: 'password' },
+    ],
     'user_login_response': [],
-    'user': [],
+    "user_me": [],
+    "user_refresh_token": [],
+    "user_refresh_token_response": [],
+    'user_resend_verification': [],
     "user_update": [
         { path: 'id', fixture: 'user', field: 'id' },
         { path: 'name', fixture: 'user_credentials', field: 'email' },
         { path: 'email', fixture: 'user_credentials', field: 'email' },
     ],
+    'user_verify': [],
     'variable': [],
     'variable_update': [
         { path: 'id', fixture: 'variable', field: 'id' }

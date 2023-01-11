@@ -67,7 +67,7 @@ export default class TransactionUtils {
                 if (fixture) {
                     path = path.replace(`{${key}_id}`, fixture.id);
                 } else {
-                    this.logger.log(slug, `\x1b[31;1m${tag} transaction '${transaction.id}' requires '${key}' fixture\x1b[0m`);
+                    this.logger.log(slug, `\x1b[31;1m${tag} transaction '${transaction.id}' path '${path}': requires fixture '${key}'.\x1b[0m`);
                     transaction.fail = true;
                     break;
                 }
@@ -95,7 +95,13 @@ export default class TransactionUtils {
                             break;
                         }
                     } else {
-                        this.logger.log(slug, `${tag} transaction '${transaction.id}' requires '${depId.fixture}' fixture`);
+                        this.logger.log(
+                            slug,
+                            `${tag} transaction '${transaction.id}' path '${path}': fixture '${key}' param '${depId.path}' ` +
+                            `depends on '${depId.fixture}' fixture, but parameter '${depId.path}' could not be resolved. ` +
+                            `Tip: ensure parameter name '${depId.path}' is correct for operation '${transaction.id}' ` +
+                            `and its value is correctly set for fixture '${key}' on 'fixtureTypes.ts' file.`
+                        );
                         transaction.fail = true;
                         break;
                     }

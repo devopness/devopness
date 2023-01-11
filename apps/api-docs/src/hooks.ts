@@ -58,6 +58,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         'addProjectServer201',
         'addProjectSshKey201',
         'listActions200',
+        'getUserLogout204',
     ];
 
     // transactions listed here are skipped with a `before` hook
@@ -80,40 +81,33 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
             // adding an application requires a valid server
             'server': ['addEnvironmentApplication201'],
             // a `login` transaction requires user credentials
-            'user_credentials': ['loginUser200'],
+            'user_login': ['loginUser200'],
         },
         fixtureTransactionOutputs: {
-            // user credentials are generated from a successful `addUser` transaction
-            // 'user': ['addUser202'],
+            // `user`, `user_credentials` and `user_login` are available after successful
+            // `addUser202` transaction, which hardcodes values for those two
+            // fixtures, replacing the value defined on `fixtureTypes.ts`
+            'user': ['addUser202'],
             'user_credentials': ['addUser202'],
-            // user tokens are a result of a successful `login` transaction
+            'user_login': ['addUser202'],
+
+            // user_login_response is available after successful `loginUser200` transaction
             'user_login_response': ['loginUser200'],
+
+            // A `pipeline` is returned by `addPipeline201`
             'pipeline': ['addPipeline201'],
+
+            // An `ssl_certificate` is returned by `addApplicationSslCertificate201`
             'ssl_certificate': ['addApplicationSslCertificate201'],
         },
         fixtureTerminalTransactions: {
             // a successful `logout` transaction destroys user tokens
-            'user_login_response': ['logout204']
-            // 'user_login_response': ['getUserlogout204']
+            'user_login_response': ['getUserlogout204']
         }
     };
 
     // initial transaction graph definitions
     const initialAdjacencyList = new Set<TransactionGraphEdge>([
-        // `User` authenticated endpoints should be executed before `logout`,
-        // otherwise the current user authentication token is lost and
-        // requests will fail with HTTP status code 401 - Unauthenticated.
-        // We could alternatively set dependencies on `paths.yaml` moving
-        // logout to be the last transaction, but that would require paths.yaml
-        // to be generated in a non-alphabetically sorted approach, which might
-        // be more error prone.
-        // TO DO: investigate/improve how the transaction graph is generated,
-        // because before using auto-generated models the dependency on logout
-        // was automatically mapped to the transaction graph and now it's no
-        // longer working.
-        // ['getUser200', 'getUserLogout204'],
-        // ['getUserMe200', 'getUserLogout204'],
-        // ['updateUser204', 'getUserLogout204'],
         // variable tests should run before deleteApplication
         ['deleteVariable204', 'deleteApplication204'],
         ['triggerHook202', 'deleteApplication204'],
@@ -238,22 +232,21 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     //// users
     before('addUser202', (transaction: Transaction) => {
         // randomize user, as db state won't be clean
-        const randomCredentials = { email: `${v1()}@api-test.devopness`, password: v4() }
+        const randomCredentials: UserCredentials = { id: -1, email: `${v1()}@api-test.devopness`, password: v4() }
         transaction.request.body = JSON.stringify(randomCredentials);
 
         // use a predefined user fixture instead of the user we just created
         const usePredefinedCredentials = true;
+        let credentials: UserCredentials
         if (usePredefinedCredentials) {
-            fixtures.put('user_credentials', { email: 'test@test.com', password: 'testes' })
+            credentials = { id: 21, email: 'test@test.com', password: 'testes' }
         } else {
-            fixtures.put('user_credentials', randomCredentials)
+            credentials = randomCredentials
         }
+        fixtures.put('user_credentials', credentials)
     });
 
-    before('loginUser200', utils.setTransactionRequestBodyToFixture<UserCredentials>('user_credentials'));
-
     before('refreshTokenUser200', utils.setTransactionRequestBodyToFixture<UserTokens>('user_login_response'));
-    after('logout204', (transaction: Transaction) => { if (transaction.test.valid) { fixtures.delete('user_login_response'); } });
     // after('getUserlogout204', (transaction: Transaction) => { if (transaction.test.valid) { fixtures.delete('user_login_response'); } });
 
     //// servers
