@@ -72,7 +72,7 @@ getUserProfile();
 
 ### TypeScript support
 This package includes TypeScript declarations for every method.
-TypeScript versions `>= 3.8` are supported.
+TypeScript versions `>= 4.4` are supported.
 
 >Some methods in `Devopness SDK JavaScript` accept and return objects from the Devopness API. The type declarations for these objects will always track the latest version of the API. Therefore, if you'e using the latest version of this package, you can rely on the Devopness API documentation for checking the input and return types of each API endpoint.
 
