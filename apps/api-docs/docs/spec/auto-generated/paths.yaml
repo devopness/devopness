@@ -313,6 +313,9 @@
 /static/service-options:
   get:
     $ref: ./auto-generated/endpoints/get-static-service-options.yaml
+/static/user-profile-options:
+  get:
+    $ref: ./auto-generated/endpoints/get-static-user-profile-options.yaml
 '/team-invitations/{team_invitation_id}/accept':
   post:
     $ref: ./auto-generated/endpoints/accept-team-invitation.yaml

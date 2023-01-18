@@ -53,6 +53,8 @@ ApplicationType:
   $ref: ./auto-generated/models/application-type.yaml
 ApplicationUpdate:
   $ref: ./auto-generated/models/application-update.yaml
+Billing:
+  $ref: ./auto-generated/models/billing.yaml
 BlueprintService:
   $ref: ./auto-generated/models/blueprint-service.yaml
 CloudAwsEc2Settings:
@@ -447,6 +449,8 @@ StaticEnvironmentType:
   $ref: ./auto-generated/models/static-environment-type.yaml
 StaticEnvironmentTypeList:
   $ref: ./auto-generated/models/static-environment-type-list.yaml
+StaticLanguageList:
+  $ref: ./auto-generated/models/static-language-list.yaml
 StaticPermission:
   $ref: ./auto-generated/models/static-permission.yaml
 StaticPermissionList:
@@ -457,6 +461,8 @@ StaticServiceType:
   $ref: ./auto-generated/models/static-service-type.yaml
 StaticServiceTypeList:
   $ref: ./auto-generated/models/static-service-type-list.yaml
+StaticTimeZoneList:
+  $ref: ./auto-generated/models/static-time-zone-list.yaml
 Step:
   $ref: ./auto-generated/models/step.yaml
 StepList:
@@ -505,6 +511,8 @@ UserLoginResponse:
   $ref: ./auto-generated/models/user-login-response.yaml
 UserMe:
   $ref: ./auto-generated/models/user-me.yaml
+UserProfileOptions:
+  $ref: ./auto-generated/models/user-profile-options.yaml
 UserRefreshToken:
   $ref: ./auto-generated/models/user-refresh-token.yaml
 UserRefreshTokenResponse:

@@ -176,6 +176,7 @@ tags:
   - name: Static Data - Environment Options
   - name: Static Data - Permissions
   - name: Static Data - Service Options
+  - name: Static Data - User Profile Options
   - name: Actions
   - name: Applications
   - name: Applications - Deployments
@@ -262,6 +263,7 @@ x-tagGroups:
       - Static Data - Environment Options
       - Static Data - Permissions
       - Static Data - Service Options
+      - Static Data - User Profile Options
   - name: Actions
     tags:
       - Actions
