@@ -12,30 +12,25 @@
  */
 
 
+import { SubscriptionPlan } from './subscription-plan';
 
 /**
- * A subscription plan
+ * 
  * @export
- * @interface SubscriptionPlan
+ * @interface Billing
  */
-export interface SubscriptionPlan {
+export interface Billing {
     /**
-     * 
+     * Billing management URL
      * @type {string}
-     * @memberof SubscriptionPlan
+     * @memberof Billing
      */
-    provider_plan_id?: string;
+    management_url?: string;
     /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionPlan
+     * The list of subscription plans
+     * @type {Array<SubscriptionPlan>}
+     * @memberof Billing
      */
-    human_readable?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SubscriptionPlan
-     */
-    allow_subscriptions?: boolean;
+    subscription_plans?: Array<SubscriptionPlan>;
 }
 
