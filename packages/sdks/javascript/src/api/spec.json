@@ -7362,6 +7362,41 @@
         }
       }
     },
+    "/static/user-profile-options": {
+      "get": {
+        "summary": "List `User profile` options",
+        "operationId": "getStaticUserProfileOptions",
+        "description": {
+          "$ref": "../spec/descriptions/get-static-user-profile-options.md"
+        },
+        "tags": [
+          "Static Data - User Profile Options"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserProfileOptions"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/team-invitations/{team_invitation_id}/accept": {
       "post": {
         "summary": "Accept a pending team invitation",
@@ -8718,6 +8753,9 @@
       "name": "Static Data - Service Options"
     },
     {
+      "name": "Static Data - User Profile Options"
+    },
+    {
       "name": "Actions"
     },
     {
@@ -8900,7 +8938,8 @@
         "Static Data - Cron Job Options",
         "Static Data - Environment Options",
         "Static Data - Permissions",
-        "Static Data - Service Options"
+        "Static Data - Service Options",
+        "Static Data - User Profile Options"
       ]
     },
     {
@@ -10508,6 +10547,19 @@
           "requires_daemon",
           "servers"
         ]
+      },
+      "Billing": {
+        "type": "object",
+        "properties": {
+          "management_url": {
+            "type": "string",
+            "description": "Billing management URL",
+            "example": "https://billing.devopness.com"
+          },
+          "subscription_plans": {
+            "$ref": "#/components/schemas/SubscriptionPlanList"
+          }
+        }
       },
       "BlueprintService": {
         "type": "object",
@@ -16120,6 +16172,14 @@
           "$ref": "#/components/schemas/StaticEnvironmentType"
         }
       },
+      "StaticLanguageList": {
+        "type": "array",
+        "description": "Supported languages",
+        "items": {
+          "type": "string",
+          "example": "PT-BR"
+        }
+      },
       "StaticPermission": {
         "type": "object",
         "properties": {
@@ -16208,6 +16268,14 @@
         "description": "List of service types",
         "items": {
           "$ref": "#/components/schemas/StaticServiceType"
+        }
+      },
+      "StaticTimeZoneList": {
+        "type": "array",
+        "description": "Supported time zones",
+        "items": {
+          "type": "string",
+          "example": "America/Sao_Paulo"
         }
       },
       "Step": {
@@ -16377,24 +16445,22 @@
         ]
       },
       "SubscriptionPlan": {
-        "description": "A subscription plan",
         "type": "object",
+        "description": "A subscription plan",
         "properties": {
-          "plan": {
+          "provider_plan_id": {
             "type": "string",
-            "description": "The subscription plan's code",
-            "example": "FREE"
+            "example": "PAID"
           },
-          "plan_human_readable": {
+          "human_readable": {
             "type": "string",
-            "description": "The subscription plan's name",
-            "example": "Free"
+            "example": "Standard"
+          },
+          "allow_subscriptions": {
+            "type": "boolean",
+            "example": true
           }
-        },
-        "required": [
-          "plan",
-          "plan_human_readable"
-        ]
+        }
       },
       "SubscriptionPlanList": {
         "description": "The list of subscription plans",
@@ -16895,6 +16961,25 @@
           "updated_at"
         ]
       },
+      "UserProfileOptions": {
+        "type": "object",
+        "properties": {
+          "billing": {
+            "$ref": "#/components/schemas/Billing"
+          },
+          "languages": {
+            "$ref": "#/components/schemas/StaticLanguageList"
+          },
+          "timezones": {
+            "$ref": "#/components/schemas/StaticTimeZoneList"
+          }
+        },
+        "required": [
+          "billing",
+          "languages",
+          "timezones"
+        ]
+      },
       "UserRefreshToken": {
         "type": "object",
         "properties": {
@@ -17302,7 +17387,7 @@
         "enum": [
           "resource-config-file",
           "my-cnf",
-          "newrelic-infra",
+          "newrelic-infra-yml",
           "nginx-conf",
           "os-env-var",
           "php-cli_php-ini",
