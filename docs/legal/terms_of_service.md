@@ -1,6 +1,6 @@
 ---
 title: Terms of Service
-intro: Terms of Service (ToS) is a legal agreement outlining rights, responsibilities, and limitations for using a service.
+intro:
 links:
     overview:
     quickstart:
@@ -10,7 +10,6 @@ links:
     related:
     featured:
 ---
-
 # PLEASE READ THESE TERMS AND CONDITIONS (“Terms”) CAREFULLY BEFORE USING THIS PLATFORM
 We are **Devopness Tecnologia LTDA** (registered with the number 45.911.586/0001-84) trading as **Devopness**.
 Our registered address is:
@@ -31,7 +30,9 @@ Where you are not a consumer, you confirm that you have authority to bind the bu
 - **Cancellation, Refunds, And Guarantees.** If you purchase a subscription to one or more of our services, you can cancel your subscription at any time by logging into your account in our Platform. Your cancellation will take effect at the end of the current paid term. No refunds will be provided for our subscription services.
 - **Third party subscriptions.** Some features on our platform may require you to have a paid subscription with external providers. These fees are independent of any charges paid to us, and it is your responsibility to establish these accounts and abide by the terms of the third-party provider, this includes but is not limited to, server providers such as Amazon Web Services, DigitalOcean, Google Cloud Platform, Microsoft Azure and source control providers like GitHub, GitLab, and Bitbucket.
 - **Upgrades and downgrades.** WhenWhere you upgrade or downgrade the services you can access on our Platform and you are on a monthly plan, we will amend your fees payable on the next billing cycle. By downgrading your services it may cause you to lose features and/ or data. We will in no way be liable for this.
+
 In the event you exceed the limit of your current plan, we may decide to upgrade your account accordingly to facilitate your usage. We will provide you with 14 days’ notice prior to upgrading your account in which you can choose to object to this change of Platform access.
+
 - **Merchant of record.** Where you pay fees for the services we provide to you as part of your access to our Platform, we will use a merchant of record: Paddle, to recover these fees and any applicable taxes. Any invoices or payments from your account will be under the name “Paddle”.
 
 # OUR PLATFORM
@@ -39,10 +40,15 @@ In the event you exceed the limit of your current plan, we may decide to upgrade
 - **User Content.** Our Platform allows you to create and manage multiple cloud infrastructure projects, environments, which allow managing infrastructure resources such as applications, servers, cron jobs, SSH keys, daemons, network rules, and services.
 - **Action.** Any operation executed by Devopness on user environment resources is considered an action, and it will only be performed if the user has sufficient action credits available.
 - **Action credits.** Each plan on Devopness will have a set number of action credits that will become available on a monthly basis upon processing of the subscription fees.
-- **Performance of the Platform.** During your use of the Platform, we will take steps to ensure that the Platform functions as described at the point you signed up. Although we will introduce technology to prevent malware and viruses we do not guarantee that our Platform will be secure or free from bugs or viruses. You are responsible for configuring your information technology, computer programmes and platform to access our Platform.
+- **Performance of the Platform.** During your use of the Platform, we will take steps to ensure that the Platform functions as described at the point you signed up. 
+
+Although we will introduce technology to prevent malware and viruses we do not guarantee that our Platform will be secure or free from bugs or viruses. You are responsible for configuring your information technology, computer programmes and platform to access our Platform.
+
 - **What happens when the Platform stops working as described.** In the event you report to us a substantial error with the Platform, we will seek to correct this within a reasonable amount of time – where legally permitted, this will be your sole remedy.
 - **We may suspend or withdraw our Platform.** We do not guarantee that our Platform, or any of the Website Content or the User Content, will always be available or be uninterrupted. We may suspend or withdraw or restrict the availability of all or any part of our Platform for business and operational reasons.
+
 You are also responsible for ensuring that all persons who access our Platform through your internet connection are aware of and comply with these Terms.
+
 - **What action we may take in the event of a breach.** When we consider that a breach of these Terms has occurred, we may take such action as we deem appropriate including:
   - immediate, temporary or permanent withdrawal of your right to use our Platform;
   - immediate, temporary or permanent removal of any User Content uploaded by you to our Platform;
@@ -76,14 +82,15 @@ You are also responsible for ensuring that all persons who access our Platform t
 # LIABILITY
 - **We do not limit any losses that we are not allowed to limit:** We do not exclude or limit in any way our liability to you where it would be unlawful to do so including death or personal injury caused by our negligence.
 - **What we do limit:** We exclude all implied conditions, warranties, representations or other terms that may apply to our Platform or any Services on it. We will not be liable to you for any loss or damage, whether in contract, tort (including negligence), breach of statutory duty, or otherwise, even if foreseeable, arising under or in connection with the use of, or inability to use, our Platform; or use of or reliance on any Services displayed on our Platform.
+
 In particular, we will not be liable for loss of profits, sales, business, or revenue; business interruption; loss of anticipated savings; loss of business opportunity, goodwill or reputation; or any indirect or consequential loss or damage.
+
 - **No Services guarantees.** The Platform is provided “as is”. We make no guarantee as to the quality of the Platform and its suitability for your individual purposes, and will not be liable in the event you do not undertake your own prior due diligence.
 - **Severability.** Each of the paragraphs of these terms operates separately. If any court or relevant authority decides that any of them are unlawful or unenforceable, the remaining paragraphs will remain in full force and effect.
 
 # NOTICES
 - **Where do we issue notices to you.** We will issue all notices to you via the Platform save for any that will materially impact your rights or your use of the Platform which we will email to you, via the email you use to subscribe to the Platform.
 - **Complaints and legal disputes.** Where you have any complaints, are subject to insolvency (or similar) proceedings or wish to issue legal proceedings against us, you should send notice of these to:
-
 
 Devopness Tecnologia LTDA
 Rua carijos 424, sala 508
