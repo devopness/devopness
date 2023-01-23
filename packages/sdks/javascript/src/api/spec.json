@@ -8423,6 +8423,41 @@
         }
       }
     },
+    "/users/urls": {
+      "get": {
+        "summary": "Get the authenticated user's URLs",
+        "operationId": "getUserUrls",
+        "description": {
+          "$ref": "../spec/descriptions/get-user-urls.md"
+        },
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserUrl"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/users/{user_id}": {
       "get": {
         "summary": "Get a user by ID",
@@ -9820,12 +9855,6 @@
             "nullable": true,
             "description": "The hook request's ID if the action have been triggered by a hook.",
             "example": 98756123796
-          },
-          "pull_request_id": {
-            "type": "integer",
-            "nullable": true,
-            "description": "The value defined has pull request ID on triggering a deployment.",
-            "example": 237
           }
         },
         "required": [
@@ -9836,8 +9865,7 @@
           "ip_address",
           "user_id",
           "hook_id",
-          "hook_request_id",
-          "pull_request_id"
+          "hook_request_id"
         ]
       },
       "ActionType": {
@@ -10547,19 +10575,6 @@
           "requires_daemon",
           "servers"
         ]
-      },
-      "Billing": {
-        "type": "object",
-        "properties": {
-          "management_url": {
-            "type": "string",
-            "description": "Billing management URL",
-            "example": "https://billing.devopness.com"
-          },
-          "subscription_plans": {
-            "$ref": "#/components/schemas/SubscriptionPlanList"
-          }
-        }
       },
       "BlueprintService": {
         "type": "object",
@@ -11782,11 +11797,6 @@
           "pipeline_id": {
             "description": "The pipeline's ID to use for deployment.",
             "example": 59387,
-            "type": "integer"
-          },
-          "pull_request_id": {
-            "description": "The pull request's ID to use for deployment.",
-            "example": 52346,
             "type": "integer"
           },
           "servers": {
@@ -16100,6 +16110,15 @@
         ],
         "example": "DV"
       },
+      "StaticBillingInfo": {
+        "type": "object",
+        "description": "Information about billing, such as subscription plans.",
+        "properties": {
+          "subscription_plans": {
+            "$ref": "#/components/schemas/SubscriptionPlanList"
+          }
+        }
+      },
       "StaticCloudProviderCode": {
         "description": "The code of the cloud service provider",
         "type": "string",
@@ -16965,7 +16984,7 @@
         "type": "object",
         "properties": {
           "billing": {
-            "$ref": "#/components/schemas/Billing"
+            "$ref": "#/components/schemas/StaticBillingInfo"
           },
           "languages": {
             "$ref": "#/components/schemas/StaticLanguageList"
@@ -17115,6 +17134,19 @@
           "id",
           "name",
           "email"
+        ]
+      },
+      "UserUrl": {
+        "type": "object",
+        "properties": {
+          "billing_management_url": {
+            "description": "The URL leading to a billing management page",
+            "type": "string",
+            "example": "http://billing.url.example"
+          }
+        },
+        "required": [
+          "billing_management_url"
         ]
       },
       "UserVerify": {
