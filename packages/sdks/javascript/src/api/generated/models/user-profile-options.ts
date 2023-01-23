@@ -12,7 +12,7 @@
  */
 
 
-import { Billing } from './billing';
+import { StaticBillingInfo } from './static-billing-info';
 
 /**
  * 
@@ -22,10 +22,10 @@ import { Billing } from './billing';
 export interface UserProfileOptions {
     /**
      * 
-     * @type {Billing}
+     * @type {StaticBillingInfo}
      * @memberof UserProfileOptions
      */
-    billing: Billing;
+    billing: StaticBillingInfo;
     /**
      * Supported languages
      * @type {Array<string>}

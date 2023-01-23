@@ -24,6 +24,7 @@ import { UserRefreshToken } from '../../generated/models';
 import { UserRefreshTokenResponse } from '../../generated/models';
 import { UserResendVerification } from '../../generated/models';
 import { UserUpdate } from '../../generated/models';
+import { UserUrl } from '../../generated/models';
 import { UserVerify } from '../../generated/models';
 
 /**
@@ -91,6 +92,20 @@ export class UsersApiService extends ApiBaseService {
         const requestUrl = '/users/me' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <UserMe>(requestUrl);
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Get the authenticated user\'s URLs
+     */
+    public async getUserUrls(): Promise<ApiResponse<UserUrl>> {
+        
+        let queryString = '';
+
+        const requestUrl = '/users/urls' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <UserUrl>(requestUrl);
         return new ApiResponse(response);
     }
 
