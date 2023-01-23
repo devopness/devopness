@@ -6,6 +6,7 @@ import { StaticDataCronJobOptionsApiService } from "../api/generated/apis/static
 import { StaticDataEnvironmentOptionsApiService } from "../api/generated/apis/static-data-environment-options-api";
 import { StaticDataPermissionsApiService } from "../api/generated/apis/static-data-permissions-api";
 import { StaticDataServiceOptionsApiService } from "../api/generated/apis/static-data-service-options-api";
+import { StaticDataUserProfileOptionsApiService } from "../api/generated/apis/static-data-user-profile-options-api";
 
 export class StaticService {
   public applicationOptions = new StaticDataApplicationOptionsApiService();
@@ -16,4 +17,5 @@ export class StaticService {
   public environmentOptions = new StaticDataEnvironmentOptionsApiService();
   public permissions = new StaticDataPermissionsApiService();
   public serviceOptions = new StaticDataServiceOptionsApiService();
+  public userProfileOptions = new StaticDataUserProfileOptionsApiService();
 }
