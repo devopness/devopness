@@ -15,21 +15,15 @@
 import { SubscriptionPlan } from './subscription-plan';
 
 /**
- * 
+ * Information about billing, such as subscription plans.
  * @export
- * @interface Billing
+ * @interface StaticBillingInfo
  */
-export interface Billing {
-    /**
-     * Billing management URL
-     * @type {string}
-     * @memberof Billing
-     */
-    management_url?: string;
+export interface StaticBillingInfo {
     /**
      * The list of subscription plans
      * @type {Array<SubscriptionPlan>}
-     * @memberof Billing
+     * @memberof StaticBillingInfo
      */
     subscription_plans?: Array<SubscriptionPlan>;
 }

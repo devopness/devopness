@@ -68,11 +68,5 @@ export interface ActionTriggeredFrom {
      * @memberof ActionTriggeredFrom
      */
     hook_request_id: number | null;
-    /**
-     * The value defined has pull request ID on triggering a deployment.
-     * @type {number}
-     * @memberof ActionTriggeredFrom
-     */
-    pull_request_id: number | null;
 }
 
