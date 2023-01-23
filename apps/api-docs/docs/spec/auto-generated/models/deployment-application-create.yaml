@@ -19,10 +19,6 @@ properties:
     description: 'The pipeline''s ID to use for deployment.'
     example: 59387
     type: integer
-  pull_request_id:
-    description: 'The pull request''s ID to use for deployment.'
-    example: 52346
-    type: integer
   servers:
     $ref: '#/components/schemas/ResourceIdList'
 required:

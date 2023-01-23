@@ -36,11 +36,6 @@ properties:
     nullable: true
     description: 'The hook request''s ID if the action have been triggered by a hook.'
     example: 98756123796
-  pull_request_id:
-    type: integer
-    nullable: true
-    description: 'The value defined has pull request ID on triggering a deployment.'
-    example: 237
 required:
   - origin
   - trigger_type
@@ -50,4 +45,3 @@ required:
   - user_id
   - hook_id
   - hook_request_id
-  - pull_request_id

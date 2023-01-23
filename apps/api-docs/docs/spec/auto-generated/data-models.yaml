@@ -53,8 +53,6 @@ ApplicationType:
   $ref: ./auto-generated/models/application-type.yaml
 ApplicationUpdate:
   $ref: ./auto-generated/models/application-update.yaml
-Billing:
-  $ref: ./auto-generated/models/billing.yaml
 BlueprintService:
   $ref: ./auto-generated/models/blueprint-service.yaml
 CloudAwsEc2Settings:
@@ -439,6 +437,8 @@ SslCertificateType:
   $ref: ./auto-generated/models/ssl-certificate-type.yaml
 SslCertificateValidationLevel:
   $ref: ./auto-generated/models/ssl-certificate-validation-level.yaml
+StaticBillingInfo:
+  $ref: ./auto-generated/models/static-billing-info.yaml
 StaticCloudProviderCode:
   $ref: ./auto-generated/models/static-cloud-provider-code.yaml
 StaticCronJobFrequency:
@@ -523,6 +523,8 @@ UserResendVerification:
   $ref: ./auto-generated/models/user-resend-verification.yaml
 UserUpdate:
   $ref: ./auto-generated/models/user-update.yaml
+UserUrl:
+  $ref: ./auto-generated/models/user-url.yaml
 UserVerify:
   $ref: ./auto-generated/models/user-verify.yaml
 Variable:

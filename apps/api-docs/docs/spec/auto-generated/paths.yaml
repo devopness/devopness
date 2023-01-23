@@ -369,6 +369,9 @@
 /users/team-invitations:
   get:
     $ref: ./auto-generated/endpoints/list-user-team-invitations.yaml
+/users/urls:
+  get:
+    $ref: ./auto-generated/endpoints/get-user-urls.yaml
 '/users/{user_id}':
   get:
     $ref: ./auto-generated/endpoints/get-user.yaml

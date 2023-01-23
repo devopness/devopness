@@ -2,7 +2,7 @@
 type: object
 properties:
   billing:
-    $ref: '#/components/schemas/Billing'
+    $ref: '#/components/schemas/StaticBillingInfo'
   languages:
     $ref: '#/components/schemas/StaticLanguageList'
   timezones:
