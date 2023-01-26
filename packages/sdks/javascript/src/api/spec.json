@@ -3224,8 +3224,15 @@
           }
         ],
         "responses": {
-          "202": {
-            "description": "Accepted",
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HookTriggerResponse"
+                }
+              }
+            },
             "headers": {
               "X-Devopness-Action-Id": {
                 "schema": {
@@ -12739,6 +12746,26 @@
           "Content-Type": "application/json",
           "Accept": "application/json"
         }
+      },
+      "HookTriggerResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "description": "Message containing information about the hook being triggered",
+            "type": "string",
+            "example": "Hook successfully triggered"
+          },
+          "errors": {
+            "description": "Optional error object containing details of the server error",
+            "type": "object",
+            "example": null,
+            "nullable": true
+          }
+        },
+        "required": [
+          "message",
+          "errors"
+        ]
       },
       "HookTriggerWhen": {
         "type": "array",
