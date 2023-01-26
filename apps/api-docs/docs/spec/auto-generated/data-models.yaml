@@ -201,6 +201,8 @@ HookRequestResponseBody:
   $ref: ./auto-generated/models/hook-request-response-body.yaml
 HookRequestResponseHeaders:
   $ref: ./auto-generated/models/hook-request-response-headers.yaml
+HookTriggerResponse:
+  $ref: ./auto-generated/models/hook-trigger-response.yaml
 HookTriggerWhen:
   $ref: ./auto-generated/models/hook-trigger-when.yaml
 HookType:

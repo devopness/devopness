@@ -19,8 +19,12 @@ parameters:
     schema:
       type: string
 responses:
-  202:
-    description: Accepted
+  200:
+    description: Ok
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/HookTriggerResponse'
     headers:
       X-Devopness-Action-Id:
         schema:
