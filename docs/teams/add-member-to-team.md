@@ -17,6 +17,6 @@ links:
 1. Find the `Teams` card
 1. Click `View` in the `Teams` card to see a list of existing `Teams`
 1. In the list of `Teams` find the `Team` you want to add a member and click `View`
-1. On the upper-right corner of the `Team` details member list, click `ADD MEMBER`
+1. On the upper-right corner of the `Members` list, click `ADD MEMBER`
 1. Provide the email of the member to be invites
 1. Click `CONFIRM`
