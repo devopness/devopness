@@ -2,7 +2,7 @@
 title: Add team to an Environment
 intro: Set team memberships to give team members permissions to access and manage an environment and its resources.
 links:
-    overview:
+    overview: Project owners can establish team memberships, granting access to team members based on the assigned role.
     quickstart:
     previous:
     next:
