@@ -17,7 +17,7 @@ links:
 1. On the upper-right click `ROLES` to see a list of existing `Roles`
 1. On the upper-right corner of the list click `ADD ROLE`
 1. Provide a name to the `Role`
-1. Optionally type a `Description` about thow this role is for or what permissions it grants
+1. Optionally type a `Description` explaining the purpose of the role
 1. Click `NEXT`
 1. In the `Permissions` step select the permissions for each resource type
 1. Click `CONFIRM`
