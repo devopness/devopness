@@ -21,7 +21,7 @@ Where you are not a consumer, you confirm that you have authority to bind the bu
 
 # ACCOUNT CREATION AND SECURITY
 - **You must create an account to use our Platform.** When you register for an account on our Platform you must ensure that all information you provide to us is accurate and kept up to date. Upon registration we grant to you the personal, non-transferable right and license to use the Platform for your own internal business purposes, until terminated as set out in these Terms.
-- **You must keep your account details safe.** Any piece of information as part of our security procedures including your username and password must be treated as confidential. We have the right to disable any user identification code or password at any time. If you know or suspect that anyone other than you knows your user identification code or password, you must promptly notify us at social@devopness.com.
+- **You must keep your account details safe.** Any piece of information as part of our security procedures including your username and password must be treated as confidential. We have the right to disable any user identification code or password at any time. If you know or suspect that anyone other than you knows your user identification code or password, you must promptly notify us at legal@devopness.com.
 - **These terms are binding.** By using our Platform and downloading any of our Website Content you acknowledge that these terms will apply and you have legal capacity to enter into contracts in the country you live. You also confirm that when acting on behalf of a business you have authority to bind them to these terms. If this is not the case, you should not use our Platform.
 - **Subscription fees.** A free subscription option is available, but if you wish to set up a paid subscription, you will only be able to use the premium services if you pay the relevant fees. You will be liable to pay for all taxes and duties imposed by the relevant authorities, all prices listed on our Platform are exclusive of these.
 - **Payment terms.** Where you sign up to a monthly plan with us, all subscription fees will be payable in advance at the beginning of each subscription period. You will be able to cancel your monthly subscription at any time which will give you access to premium services in our Platform until the end of the current paid term, after which no further payments will be taken.
@@ -72,7 +72,7 @@ You are also responsible for ensuring that all persons who access our Platform t
 
 # CANCELLATION, TERMINATION AND SUSPENSION
 - **Termination of your subscription term.** Your subscription will start on the date you sign up as a user of the Platform and agree to these Terms. Your access to the Platform will continue until the earlier of you canceling your subscription; we terminate your right to access the Platform; or you commit a material breach of these Terms.All fees owed to Devopness and charges accrued before such termination shall be immediately due and payable.
-- **Where you wish to terminate your subscription.** You can do this via the Platform or by email at: social@devopness.com.
+- **Where you wish to terminate your subscription.** You can do this via the Platform or by email at: legal@devopness.com.
 - **Deletion of data.** We will only retain your data for as long as we need it. We will contact you by email 30 days before deactivating and deleting your account.
 - **Survival of important terms.** Please note that all rights under this Agreement, which by nature should survive termination, will, including Indemnity, Liability, Governing Law, Notices and Intellectual Property.
 
@@ -90,7 +90,7 @@ In particular, we will not be liable for loss of profits, sales, business, or re
 
 # NOTICES
 - **Where do we issue notices to you.** We will issue all notices to you via the Platform save for any that will materially impact your rights or your use of the Platform which we will email to you, via the email you use to subscribe to the Platform.
-- **Complaints and legal disputes.** Where you have any complaints, are subject to insolvency (or similar) proceedings or wish to issue legal proceedings against us, you should send notice of these to social@devopness.com .
+- **Complaints and legal disputes.** Where you have any complaints, are subject to insolvency (or similar) proceedings or wish to issue legal proceedings against us, you should send notice of these to legal@devopness.com .
 
 # GOVERNING LAW
 - **What laws apply to these Terms?** These terms are governed by English law and you can bring legal proceedings in the English courts.
