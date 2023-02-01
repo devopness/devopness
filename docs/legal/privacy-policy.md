@@ -1,3 +1,15 @@
+---
+title: Privacy Policy
+intro:
+links:
+    overview:
+    quickstart:
+    previous:
+    next:
+    guides:
+    related:
+    featured:
+---
 # Privacy Policy
 Last updated January 26, 2023
 ## 1. Introduction
