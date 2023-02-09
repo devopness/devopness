@@ -17,6 +17,7 @@ import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { Hook } from '../../generated/models';
 import { HookCreate } from '../../generated/models';
+import { HookTriggerResponse } from '../../generated/models';
 import { HookUpdate } from '../../generated/models';
 
 /**
@@ -94,7 +95,7 @@ export class HooksApiService extends ApiBaseService {
      * @summary Trigger an incoming hook associated action
      * @param {string} hookId The ID of the hook.
      */
-    public async triggerHook(hookId: string): Promise<ApiResponse<void>> {
+    public async triggerHook(hookId: string): Promise<ApiResponse<HookTriggerResponse>> {
         if (hookId === null || hookId === undefined) {
             throw new ArgumentNullException('hookId', 'triggerHook');
         }
@@ -103,7 +104,7 @@ export class HooksApiService extends ApiBaseService {
 
         const requestUrl = '/hooks/{hook_id}/trigger' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <void>(requestUrl.replace(`{${"hook_id"}}`, encodeURIComponent(String(hookId))));
+        const response = await this.post <HookTriggerResponse>(requestUrl.replace(`{${"hook_id"}}`, encodeURIComponent(String(hookId))));
         return new ApiResponse(response);
     }
 
