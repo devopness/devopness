@@ -49,7 +49,7 @@ async function authenticate(email, pass) {
 authenticate('user@email.com', 'secret-password');
 ```
 
-In the example above, `userTokens` is an instance of `ApiResponse` and the `data` property has the data requested from the API. See [ApiResponse.ts](https://github.com/devopness/devopness/blob/master/src/common/ApiResponse.ts) for reference.
+In the example above, `userTokens` is an instance of `ApiResponse` and the `data` property has the data requested from the API. See [ApiResponse.ts](https://github.com/devopness/devopness/blob/main/packages/sdks/javascript/src/common/ApiResponse.ts) for reference.
 
 ### Invoking authentication protected endpoints
 Once an authentication token is set, any protected endpoint can be invoked.
@@ -106,19 +106,25 @@ make test
 ```
 
 ### Without Docker
+Installing on ``Linux`` or ``macOS`` systems.
 
-#### 1. Install missing dependencies
+#### 1. Navigate to the project directory!
+```
+.\packages\sdks\javascript\
+```
+
+#### 2. Install missing dependencies
 This command will install all modules listed as dependencies in [package.json](package.json). **A working Java Runtime Environment is also required.** Please, check out the installation instructions for your operating system.
 ```
 npm install
 ```
 
-#### 2. Build SDK
+#### 3. Build SDK
 ```
 npm run build
 ```
 
-#### 3. Run tests
+#### 4. Run tests
 ```
 npm run test
 ```
