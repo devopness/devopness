@@ -110,7 +110,7 @@ Installing on ``Linux`` or ``macOS`` systems.
 
 #### 1. Navigate to the project directory!
 ```
-.\packages\sdks\javascript\
+cd packages/sdks/javascript/
 ```
 
 #### 2. Install missing dependencies
