@@ -81,6 +81,7 @@ export * from './hook-outgoing-trigger-when-condition-type';
 export * from './hook-relation';
 export * from './hook-request';
 export * from './hook-request-relation';
+export * from './hook-trigger-response';
 export * from './hook-type';
 export * from './hook-update';
 export * from './hook-variable';
