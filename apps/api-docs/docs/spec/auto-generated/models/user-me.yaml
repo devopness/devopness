@@ -21,12 +21,8 @@ properties:
     example: true
   social_accounts:
     $ref: '#/components/schemas/SocialAccountList'
-  current_billing_plan:
-    description: 'The code of current billing plan'
-    type: string
-    example: FREE
-  subscription_plans:
-    $ref: '#/components/schemas/SubscriptionPlanList'
+  active_subscription:
+    $ref: '#/components/schemas/Subscription'
   created_at:
     description: 'The date and time when the record was created'
     type: string
@@ -42,7 +38,6 @@ required:
   - language
   - active
   - social_accounts
-  - current_billing_plan
-  - subscription_plans
+  - active_subscription
   - created_at
   - updated_at

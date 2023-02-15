@@ -473,6 +473,8 @@ StepPipelineCreate:
   $ref: ./auto-generated/models/step-pipeline-create.yaml
 StepPipelineUpdate:
   $ref: ./auto-generated/models/step-pipeline-update.yaml
+Subscription:
+  $ref: ./auto-generated/models/subscription.yaml
 SubscriptionPlan:
   $ref: ./auto-generated/models/subscription-plan.yaml
 SubscriptionPlanList:

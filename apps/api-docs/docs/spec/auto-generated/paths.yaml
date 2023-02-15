@@ -124,6 +124,8 @@
 '/events/{resource_type}/{resource_id}':
   get:
     $ref: ./auto-generated/endpoints/list-resource-events-by-resource-type.yaml
+  post:
+    $ref: ./auto-generated/endpoints/add-resource-event.yaml
 '/hook-requests/{hook_request_id}':
   get:
     $ref: ./auto-generated/endpoints/get-hook-request.yaml

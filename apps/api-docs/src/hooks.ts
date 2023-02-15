@@ -59,6 +59,8 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         'addProjectSshKey201',
         'listActions200',
         'getUserLogout204',
+        // Skipping post resource events because we only support payment_provider events for now
+        'addResourceEvent204',
     ];
 
     // transactions listed here are skipped with a `before` hook
