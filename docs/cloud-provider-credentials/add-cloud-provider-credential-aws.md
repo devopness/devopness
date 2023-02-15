@@ -12,8 +12,6 @@ links:
     featured:
 ---
 
-# Get AWS Credentials
-
 1. Log in to AWS console and access [AWS IAM](https://console.aws.amazon.com/iam/)
 1. In the navigation pane on the left side, choose `Users` and then choose `Add users`
 1. Type the user name for the new user

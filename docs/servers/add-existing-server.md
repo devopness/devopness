@@ -11,7 +11,6 @@ links:
     featured:
 ---
 
-# Add an existing Server
 1. On Devopness, navigate to a project then select an environment
 2. If there's no other server in the selected environment, just click `Add Server`
 3. If a list of resource cards is displayed, find the `Servers` card

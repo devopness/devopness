@@ -12,7 +12,6 @@ links:
     featured:
 ---
 
-# Add a Cloud Provider Credential
 1. In the upper-right corner of any page, click your profile icon then click `Cloud Providers`
     - A list of existing Cloud Providers Credentials will be displayed
 1. On the upper-right corner of the list, click `ADD CLOUD PROVIDER`
