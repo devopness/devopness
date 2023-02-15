@@ -185,6 +185,7 @@ export * from './static-service-type-supported-versions';
 export * from './step';
 export * from './step-pipeline-create';
 export * from './step-pipeline-update';
+export * from './subscription';
 export * from './subscription-plan';
 export * from './team';
 export * from './team-environment-link';

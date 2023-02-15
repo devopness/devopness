@@ -26,11 +26,5 @@ export interface ServerBlueprint {
      * @memberof ServerBlueprint
      */
     services?: Array<BlueprintService> | null;
-    /**
-     * If `true`, create a landing page on the server to validate if has public access
-     * @type {boolean}
-     * @memberof ServerBlueprint
-     */
-    validate_web_public_access: boolean;
 }
 
