@@ -17,7 +17,7 @@ By using our Platform you accept these Terms. If you do not agree to these Terms
 
 In using our Platform we may process your personal data, more information about this can be found here.
 
-Where you are not a consumer, you confirm that you have authority to bind the business on behalf of which you are accepting these Terms. In that context, references to “you” or “your” will be to that business. Otherwise it will refer to you, the individual entering into these Terms.<br><br>
+Where you are not a consumer, you confirm that you have authority to bind the business on behalf of which you are accepting these Terms. In that context, references to “you” or “your” will be to that business. Otherwise it will refer to you, the individual entering into these Terms.
 
 ## ACCOUNT CREATION AND SECURITY
 - **You must create an account to use our Platform.** When you register for an account on our Platform you must ensure that all information you provide to us is accurate and kept up to date. Upon registration we grant to you the personal, non-transferable right and license to use the Platform for your own internal business purposes, until terminated as set out in these Terms.
@@ -31,7 +31,7 @@ Where you are not a consumer, you confirm that you have authority to bind the bu
 
 In the event you exceed the limit of your current plan, we may decide to upgrade your account accordingly to facilitate your usage. We will provide you with 14 days notice prior to upgrading your account in which you can choose to object to this change of Platform access.
 
-- **Merchant of record.** Where you pay fees for the services we provide to you as part of your access to our Platform, we will use a merchant of record: Paddle, to recover these fees and any applicable taxes. Any invoices or payments from your account will be under the name “Paddle”.<br><br>
+- **Merchant of record.** Where you pay fees for the services we provide to you as part of your access to our Platform, we will use a merchant of record: Paddle, to recover these fees and any applicable taxes. Any invoices or payments from your account will be under the name “Paddle”.
 
 ## OUR PLATFORM
 - **What is our platform?** Our **“Platform”** to our platform and all other related services and documentation that gives you access to products and services (**“Website Content”**), except for User Content.
@@ -53,7 +53,7 @@ You are also responsible for ensuring that all persons who access our Platform t
   - legal action against you; and/or
   - disclosure of such information to law enforcement authorities as we reasonably feel is necessary or as required by law.
 - **You must maintain a secure internet connection.** Where you lose access to the Platform and any User Content due to a disruption in your telecommunications or internet services, we will in no way be liable for any losses suffered.
-- **Where our Platform contains links to other sites, User Content and resources provided by third parties.** These are provided for your information only. They should not be interpreted as approval by us of those linked websites or information you may obtain from them.<br><br>
+- **Where our Platform contains links to other sites, User Content and resources provided by third parties.** These are provided for your information only. They should not be interpreted as approval by us of those linked websites or information you may obtain from them.
 
 ## CONTENT ON OUR PLATFORM
 - **Devopness Website Content:** We are the owner or the licensee of all intellectual property rights in all of the Website Content on our Platform, and in the material published on it. Those works are protected by copyright laws and treaties around the world. All such rights are reserved. You may download Website Content from our Platform for your personal use and you may draw the attention of others within your organization to Website Content posted on our Platform. You must not modify any Devopness Website Content you download.
@@ -63,21 +63,21 @@ You are also responsible for ensuring that all persons who access our Platform t
 - **Internal business use only.** You acknowledge and agree that you can only use the Platform for internal business purposes only and may not transfer, sell, distribute, lease, sublease, assign or license to any third parties.
 - **You must not attempt to gain unauthorized access.** Whether this is to our Platform, the servers on which our Platform is stored or any servers, computer or database connected to our Platform. You must not attack our Platform via a denial-of-service attack or a distributed denial-of service attack. We will report any such breach to the relevant law enforcement authorities and we will cooperate with those authorities by disclosing your identity to them. In the event of such a breach, your right to use our Platform will cease immediately.
 - **Server Security.** You are solely responsible for maintaining the security of your servers that are provisioned, connected or managed through our Platform. Devopness shall have no liability for any security breaches or data breaches of your servers, even if those servers were initially created and provisioned by our Platform. Devopness does not guarantee the security of any of your servers, even if those servers were initially created and provisioned by our Platform.
-- **Backup.** You are solely responsible for the preservation of the data you save on physical, and virtual servers and cloud services managed through our Platform  (the “Data”). Devopness shall have no responsibility to preserve Data and shall have no liability for any Data that may be lost.<br><br>
+- **Backup.** You are solely responsible for the preservation of the data you save on physical, and virtual servers and cloud services managed through our Platform  (the “Data”). Devopness shall have no responsibility to preserve Data and shall have no liability for any Data that may be lost.
 
 ## INTELLECTUAL PROPERTY
 - **Our Platform.** We are the owner or the licensee of all intellectual property rights in the Platform including any modifications and improvements, whether made by us or suggested by you. Those works are protected by copyright laws and treaties around the world. All such rights are reserved. We provide you with a worldwide, non-exclusive, non-transferable, non-sublicensable, revocable limited term license for internal use only to use the Platform in accordance with these Terms. Such a right to use the Platform and any User Content on the Platform will expire at the point your subscription ends or when we terminate the Agreement, whichever is sooner.
 - **Data you transmit through the Platform.** All documents, messages, logos, images, files and other information you transmit through our Platform, will remain yours and you shall retain all rights, titles and interest in those. You do however provide us with a worldwide, royalty-free, non-exclusive, transferable and sublicensable right to use your data to improve our Platform.
-- **User Content.** We will retain all intellectual property rights in the User Content on the Platform, save for those created by you and our other users. We grant to you a non-exclusive license to make, use and share User Content publicly with other users via the Platform. Any User Content created by you are private, and it is your choice as to whether or not you share these with the Devopness community publically to use, share and modify. You grant to us a worldwide, royalty-free, non-exclusive, transferable and sub-licensable right to use, modify and distribute any User Content you choose to share on our Platform. You acknowledge that where we create User Content materially similar to or the same as any User Content you have made public on our Platform, you will have no claims against us including for infringement or misappropriation.<br><br>
+- **User Content.** We will retain all intellectual property rights in the User Content on the Platform, save for those created by you and our other users. We grant to you a non-exclusive license to make, use and share User Content publicly with other users via the Platform. Any User Content created by you are private, and it is your choice as to whether or not you share these with the Devopness community publically to use, share and modify. You grant to us a worldwide, royalty-free, non-exclusive, transferable and sub-licensable right to use, modify and distribute any User Content you choose to share on our Platform. You acknowledge that where we create User Content materially similar to or the same as any User Content you have made public on our Platform, you will have no claims against us including for infringement or misappropriation.
 
 ## CANCELLATION, TERMINATION AND SUSPENSION
 - **Termination of your subscription term.** Your subscription will start on the date you sign up as a user of the Platform and agree to these Terms. Your access to the Platform will continue until the earlier of you canceling your subscription; we terminate your right to access the Platform; or you commit a material breach of these Terms. All fees owed to Devopness and charges accrued before such termination shall be immediately due and payable.
 - **Where you wish to terminate your subscription.** You can do this via the Platform or by email at: legal@devopness.com.
 - **Deletion of data.** We will only retain your data for as long as we need it. We will contact you by email 30 days before deactivating and deleting your account.
-- **Survival of important terms.** Please note that all rights under this Agreement, which by nature should survive termination, will, including Indemnity, Liability, Governing Law, Notices and Intellectual Property.<br><br>
+- **Survival of important terms.** Please note that all rights under this Agreement, which by nature should survive termination, will, including Indemnity, Liability, Governing Law, Notices and Intellectual Property.
 
 ## INDEMNITY
-- **Your indemnity to us.** You agree to indemnify us, our affiliates, directors, officers and employees against all loss, costs, damages, liabilities and expenses that arise out of your breach of these Terms and/ or use of the Platform.<br><br>
+- **Your indemnity to us.** You agree to indemnify us, our affiliates, directors, officers and employees against all loss, costs, damages, liabilities and expenses that arise out of your breach of these Terms and/ or use of the Platform.
 
 ## LIABILITY
 - **We do not limit any losses that we are not allowed to limit:** We do not exclude or limit in any way our liability to you where it would be unlawful to do so including death or personal injury caused by our negligence.
@@ -86,11 +86,11 @@ You are also responsible for ensuring that all persons who access our Platform t
 In particular, we will not be liable for loss of profits, sales, business, or revenue; business interruption; loss of anticipated savings; loss of business opportunity, goodwill or reputation; or any indirect or consequential loss or damage.
 
 - **No Services guarantees.** The Platform is provided “as is”. We make no guarantee as to the quality of the Platform and its suitability for your individual purposes, and will not be liable in the event you do not undertake your own prior due diligence.
-- **Severability.** Each of the paragraphs of these terms operates separately. If any court or relevant authority decides that any of them are unlawful or unenforceable, the remaining paragraphs will remain in full force and effect.<br><br>
+- **Severability.** Each of the paragraphs of these terms operates separately. If any court or relevant authority decides that any of them are unlawful or unenforceable, the remaining paragraphs will remain in full force and effect.
 
 ## NOTICES
 - **Where do we issue notices to you.** We will issue all notices to you via the Platform save for any that will materially impact your rights or your use of the Platform which we will email to you, via the email you use to subscribe to the Platform.
-- **Complaints and legal disputes.** Where you have any complaints, are subject to insolvency (or similar) proceedings or wish to issue legal proceedings against us, you should send notice of these to legal@devopness.com.<br><br>
+- **Complaints and legal disputes.** Where you have any complaints, are subject to insolvency (or similar) proceedings or wish to issue legal proceedings against us, you should send notice of these to legal@devopness.com.
 
 ## GOVERNING LAW
 - **What laws apply to these Terms?** These terms are governed by English law and you can bring legal proceedings in the English courts.
