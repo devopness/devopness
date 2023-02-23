@@ -3135,6 +3135,72 @@
             }
           }
         }
+      },
+      "post": {
+        "summary": "Process event for a resource",
+        "operationId": "addResourceEvent",
+        "description": {
+          "$ref": "../spec/descriptions/add-resource-event.md"
+        },
+        "tags": [
+          "Resource Events"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "resource_id",
+            "description": "The resource ID.",
+            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "resource_type",
+            "description": "The resource type to create events for.",
+            "example": "application",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/hook-requests/{hook_request_id}": {
@@ -14844,16 +14910,8 @@
               "$ref": "#/components/schemas/BlueprintService"
             },
             "nullable": true
-          },
-          "validate_web_public_access": {
-            "description": "If `true`, create a landing page on the server to validate if has public access",
-            "type": "boolean",
-            "example": true
           }
-        },
-        "required": [
-          "validate_web_public_access"
-        ]
+        }
       },
       "ServerCloudService": {
         "type": "object",
@@ -14911,7 +14969,7 @@
             "type": "string"
           },
           "ssh_port": {
-            "description": "The network port to which the SSH daemon is listening to SSH connections on the server. This field is required when <code>provision_settings.self_hosted</code> is <code>true</code>.",
+            "description": "The network port to which the SSH daemon is listening to SSH connections on the server. This field is required when <code>provision_settings.self_hosted</code> is <code>true</code>. Must be between 22 and 65535.",
             "example": 22,
             "type": "integer"
           },
@@ -15049,7 +15107,7 @@
             "type": "string"
           },
           "ssh_port": {
-            "description": "The network port to which the SSH daemon is listening to SSH connections on the server. This field is required when <code>provision_settings.self_hosted</code> is <code>true</code>.",
+            "description": "The network port to which the SSH daemon is listening to SSH connections on the server. This field is required when <code>provision_settings.self_hosted</code> is <code>true</code>. Must be between 22 and 65535.",
             "example": 22,
             "type": "integer"
           }
@@ -16490,8 +16548,88 @@
           "runner"
         ]
       },
+      "Subscription": {
+        "type": "object",
+        "nullable": true,
+        "description": "The user's active subscription",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The ID of the subscription",
+            "example": 654982
+          },
+          "user_id": {
+            "type": "integer",
+            "description": "The ID of the user this subscription belongs to",
+            "example": 654982
+          },
+          "plan_name": {
+            "type": "string",
+            "description": "The plan name of this subscription",
+            "example": "Devopness - 300 actions per month plan"
+          },
+          "status": {
+            "type": "string",
+            "description": "Status of this subscription",
+            "example": "active"
+          },
+          "quantity": {
+            "type": "integer",
+            "description": "Amount of plans purchased in this subscription",
+            "example": 10
+          },
+          "price_unit": {
+            "type": "number",
+            "description": "Unitary price of the subscribed plan",
+            "example": 20.5
+          },
+          "price_total": {
+            "type": "number",
+            "description": "Total price of this subscription (quantity x price_unit)",
+            "example": 200.5
+          },
+          "price_currency": {
+            "type": "string",
+            "description": "Currency of the prices",
+            "example": "USD"
+          },
+          "trial_ends_at": {
+            "type": "string",
+            "nullable": true,
+            "format": "date-time",
+            "description": "If this subscription is a trial, this field indicates when it will end",
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "cancelled_at": {
+            "type": "string",
+            "nullable": true,
+            "format": "date-time",
+            "description": "If not null, indicates the date when this subscription was cancelled",
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "ends_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Indicates the date and time when this subscription ends",
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25T13:52:04.000000Z"
+          }
+        }
+      },
       "SubscriptionPlan": {
         "type": "object",
+        "nullable": true,
         "description": "A subscription plan",
         "properties": {
           "provider_plan_id": {
@@ -16844,13 +16982,8 @@
           "social_accounts": {
             "$ref": "#/components/schemas/SocialAccountList"
           },
-          "current_billing_plan": {
-            "description": "The code of current billing plan",
-            "type": "string",
-            "example": "FREE"
-          },
-          "subscription_plans": {
-            "$ref": "#/components/schemas/SubscriptionPlanList"
+          "active_subscription": {
+            "$ref": "#/components/schemas/Subscription"
           },
           "created_at": {
             "description": "The date and time when the record was created",
@@ -16870,8 +17003,7 @@
           "language",
           "active",
           "social_accounts",
-          "current_billing_plan",
-          "subscription_plans",
+          "active_subscription",
           "created_at",
           "updated_at"
         ]
@@ -16975,13 +17107,8 @@
           "social_accounts": {
             "$ref": "#/components/schemas/SocialAccountList"
           },
-          "current_billing_plan": {
-            "description": "The code of current billing plan",
-            "type": "string",
-            "example": "FREE"
-          },
-          "subscription_plans": {
-            "$ref": "#/components/schemas/SubscriptionPlanList"
+          "active_subscription": {
+            "$ref": "#/components/schemas/Subscription"
           },
           "created_at": {
             "description": "The date and time when the record was created",
@@ -17001,8 +17128,7 @@
           "language",
           "active",
           "social_accounts",
-          "current_billing_plan",
-          "subscription_plans",
+          "active_subscription",
           "created_at",
           "updated_at"
         ]
@@ -17149,11 +17275,6 @@
           "language": {
             "description": "Must be one of <code>en</code> or <code>pt</code>.",
             "example": "en",
-            "type": "string"
-          },
-          "current_billing_plan": {
-            "description": "The user subscription plan. Must be one of <code>FREE</code> or <code>PAID</code>.",
-            "example": "FREE",
             "type": "string"
           }
         },

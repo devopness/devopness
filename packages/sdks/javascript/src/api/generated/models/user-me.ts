@@ -14,7 +14,7 @@
 
 import { Language } from './language';
 import { SocialAccountRelation } from './social-account-relation';
-import { SubscriptionPlan } from './subscription-plan';
+import { Subscription } from './subscription';
 
 /**
  * 
@@ -59,17 +59,11 @@ export interface UserMe {
      */
     social_accounts: Array<SocialAccountRelation>;
     /**
-     * The code of current billing plan
-     * @type {string}
+     * 
+     * @type {Subscription}
      * @memberof UserMe
      */
-    current_billing_plan: string;
-    /**
-     * The list of subscription plans
-     * @type {Array<SubscriptionPlan>}
-     * @memberof UserMe
-     */
-    subscription_plans: Array<SubscriptionPlan>;
+    active_subscription: Subscription | null;
     /**
      * The date and time when the record was created
      * @type {string}
