@@ -12,7 +12,6 @@ links:
     featured:
 ---
 
-# Add an SSH key
 1. On Devopness, navigate to a project then select an environment
 2. Find the `SSH Keys` card
 3. Click `View` in the `SSH Keys` card to see a list of existing `SSH Keys`

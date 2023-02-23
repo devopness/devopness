@@ -11,7 +11,6 @@ links:
     featured:
 ---
 
-# Add team to an Environment
 1. On Devopness upper-left corner, click the Devopness logo to see a list of existing projects
 1. Select a `Project`
 1. Find the `Environments` card

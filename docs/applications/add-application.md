@@ -11,7 +11,6 @@ links:
     featured:
 ---
 
-# Add an Application
 1. On Devopness, navigate to a project then select an environment
 1. Find the `Applications` card
 1. Click `View` in the `Applications` card to see a list of existing `Applications`

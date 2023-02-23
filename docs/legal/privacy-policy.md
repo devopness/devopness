@@ -10,7 +10,7 @@ links:
     related:
     featured:
 ---
-# Privacy Policy
+
 Last updated January 26, 2023
 ## 1. Introduction
 
@@ -169,7 +169,7 @@ According to CalOPPA we agree to the following:
 1. users can visit our site anonymously;
 1. our Privacy Policy link includes the word “Privacy”, and can easily be found on the page specified above on the home page of our website;
 1. users will be notified of any privacy policy changes on our Privacy Policy Page;
-1. users are able to change their personal information by emailing us at legal@devopness.com 
+1. users are able to change their personal information by emailing us at legal@devopness.com
 
 Our Policy on “Do Not Track” Signals:
 
@@ -216,11 +216,11 @@ We may use third-party Service Providers to monitor and analyze the use of our S
 
 ‍Google Analytics is a web analytics service offered by Google that tracks and reports website traffic. Google uses the data collected to track and monitor the use of our Service. This data is shared with other Google services. Google may use the collected data to contextualise and personalise the ads of its own advertising network.
 
-For more information on the privacy practices of Google, please visit the Google Privacy Terms web page: 
+For more information on the privacy practices of Google, please visit the Google Privacy Terms web page:
 
 https://policies.google.com/privacy?hl=en
 
-We also encourage you to review Google's policy for safeguarding your data: 
+We also encourage you to review Google's policy for safeguarding your data:
 
 https://support.google.com/analytics/answer/6004245
 
@@ -234,11 +234,11 @@ https://segment.com/legal/privacy/
 
 ‍Mixpanel is provided by Mixpanel Inc.
 
-You can prevent Mixpanel from using your information for analytics purposes by opting-out. To opt-out of Mixpanel service, please visit this page: 
+You can prevent Mixpanel from using your information for analytics purposes by opting-out. To opt-out of Mixpanel service, please visit this page:
 
 https://mixpanel.com/optout
 
-For more information on what type of information Mixpanel collects, please visit the Terms of Use page of Mixpanel: 
+For more information on what type of information Mixpanel collects, please visit the Terms of Use page of Mixpanel:
 
 https://mixpanel.com/terms/
 
