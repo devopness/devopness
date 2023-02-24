@@ -4,7 +4,7 @@ Devopness maintains its documentation in an open source repository, so feel free
 # Contributing
 Make sure all files created in this folder adhere to the following basic rules:
 1. Are defined as `Markdown` files (.md)
-2. Use front matter headers, see the list of available headers in [this topic](#available-header-to-use-in-front-matter)
+2. Use front matter headers, see the list of available headers in [this topic](#predefined-variables)
 3. **NOT** use only one `#` in `Markdown` content to define a header, prefer to use `##`
 4. **NOT** use `HTML` tags in `Markdown` content
 
@@ -23,6 +23,10 @@ That will help the reader to understand each step without pressure, then breath,
 It is Devopness API responsibility to communicate the validation rules to the end users in a clear way, so that should not require extra documentation to explain API messages.
 * We might, however, want to produce `Overview` or `Deep dive` articles to conceptually give users detailed explanation on specific topics that fall beyond the more common use-case-based step by step.
 
-## Available header to use in front matter
-* `title`: is title of page and is required
-* `intro`: is description of page but is not required
+## Predefined variables
+Here is a list of predefined variables that can be set in the `front-matter` block of a documentation topic:
+
+| Variable | Description                               | Required       |
+|----------|-------------------------------------------|----------------|
+| `title`  | The title of the documentation topic      | Yes            |
+| `intro`  | A short paragraph introducing the topic   | No             |
