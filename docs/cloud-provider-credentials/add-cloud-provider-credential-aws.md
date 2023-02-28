@@ -17,7 +17,7 @@ links:
 1. Type the user name for the new user
     > Tip: you might want to name the user as `devopness` to make it easier to track its activities
 1. Click `Next: Permissions`
-1. In the `Set Permissions` step click `Attach existing policies directly`
+1. In the `Set Permissions` step click `Attach policies directly`
 1. Search and select the policies `AmazonEC2FullAccess` and `IAMReadOnlyAccess`
 1. Follow the prompts then click `Create user`
 1. In the `Users` list, click the username link of the user recently created
