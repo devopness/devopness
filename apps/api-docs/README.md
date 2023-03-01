@@ -24,7 +24,23 @@ For more details and reference see the existing [endpoints specs](docs/spec).
 
 # Usage
 
-## Build and run
+## Build and run, with Docker
+### Prerequisites
+- [Docker](https://www.docker.com/products/docker-desktop/)
+- [make](https://www.gnu.org/software/make/)
+  - `make` is pre-installed in most Linux systems. In `macOS` it is included as part of the `Xcode` command line utils
+
+## Generate docs
+```bash
+make build
+```
+
+## Run the application server
+```bash
+make dev
+```
+
+## Build and run, without Docker
 ### Install dependencies
 ```shell
 npm ci

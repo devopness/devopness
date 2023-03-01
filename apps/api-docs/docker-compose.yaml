@@ -1,0 +1,18 @@
+version: '3.8'
+
+networks:
+  devopness-api-docs:
+    name: devopness-api-docs
+
+services:
+  web:
+    image: devopness-api-docs:${DEVOPNESS_API_DOCS_IMAGE_TAG:-latest}
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: devopness-api-docs
+    ports:
+      - "9090:9090"
+    networks:
+      - devopness-api-docs
+
