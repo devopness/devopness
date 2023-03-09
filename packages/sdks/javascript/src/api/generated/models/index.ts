@@ -24,7 +24,6 @@ export * from './application-pipeline';
 export * from './application-relation';
 export * from './application-type';
 export * from './application-update';
-export * from './blueprint-service';
 export * from './cloud-aws-ec2-settings';
 export * from './cloud-digital-ocean-droplet-settings';
 export * from './cloud-instance-relation';

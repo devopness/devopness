@@ -50,6 +50,12 @@ export interface Action {
      */
     status: ActionStatus;
     /**
+     * Current item status human readable
+     * @type {string}
+     * @memberof Action
+     */
+    status_human_readable: string;
+    /**
      * 
      * @type {ActionType}
      * @memberof Action
