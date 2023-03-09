@@ -12,6 +12,7 @@
  */
 
 
+import { BlueprintService } from './blueprint-service';
 import { ServerProvisionSettings } from './server-provision-settings';
 
 /**
@@ -40,10 +41,10 @@ export interface ServerEnvironmentCreate {
     ssh_port?: number;
     /**
      * The specification for this blueprint. Usually contains the service names and their respective versions to be installed on a server.
-     * @type {Array<object>}
+     * @type {Array<BlueprintService>}
      * @memberof ServerEnvironmentCreate
      */
-    blueprint?: Array<object>;
+    blueprint?: Array<BlueprintService>;
     /**
      * 
      * @type {ServerProvisionSettings}
