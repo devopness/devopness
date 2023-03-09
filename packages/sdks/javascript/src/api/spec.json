@@ -9290,6 +9290,11 @@
           "status": {
             "$ref": "#/components/schemas/ActionStatus"
           },
+          "status_human_readable": {
+            "description": "Current item status human readable",
+            "type": "string",
+            "example": "Pending"
+          },
           "type": {
             "$ref": "#/components/schemas/ActionType"
           },
@@ -9363,6 +9368,7 @@
           "id",
           "retry_of",
           "status",
+          "status_human_readable",
           "type",
           "type_human_readable",
           "url_web_permalink",
@@ -9560,6 +9566,11 @@
           "status": {
             "$ref": "#/components/schemas/ActionStatus"
           },
+          "status_human_readable": {
+            "description": "Current item status human readable",
+            "type": "string",
+            "example": "Pending"
+          },
           "type": {
             "$ref": "#/components/schemas/ActionType"
           },
@@ -9614,6 +9625,7 @@
         "required": [
           "id",
           "status",
+          "status_human_readable",
           "type",
           "type_human_readable",
           "url_web_permalink",
@@ -9643,6 +9655,11 @@
           },
           "status": {
             "$ref": "#/components/schemas/ActionStatus"
+          },
+          "status_human_readable": {
+            "description": "Current item status human readable",
+            "type": "string",
+            "example": "Pending"
           },
           "type": {
             "$ref": "#/components/schemas/ActionType"
@@ -9717,6 +9734,7 @@
           "id",
           "retry_of",
           "status",
+          "status_human_readable",
           "type",
           "type_human_readable",
           "url_web_permalink",
@@ -10475,6 +10493,9 @@
           "last_deployments": {
             "$ref": "#/components/schemas/ApplicationLastDeployments"
           },
+          "source_provider": {
+            "$ref": "#/components/schemas/SourceProvider"
+          },
           "created_at": {
             "description": "The date and time when the record was created",
             "type": "string",
@@ -10649,12 +10670,33 @@
           "servers"
         ]
       },
-      "BlueprintService": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "$ref": "#/components/schemas/ServiceType"
-          }
+      "BlueprintServiceList": {
+        "type": "array",
+        "description": "The specification for this blueprint. Usually contains the service names and their respective versions to be installed on a server.",
+        "items": {
+          "type": "object",
+          "properties": {
+            "auto_start": {
+              "type": "boolean",
+              "description": "Indicates if the service will start automatically on operating system boot",
+              "example": false
+            },
+            "initial_state": {
+              "$ref": "#/components/schemas/ServiceInitialState"
+            },
+            "type": {
+              "$ref": "#/components/schemas/ServiceType"
+            },
+            "version": {
+              "type": "string",
+              "description": "The service version",
+              "example": "5.7"
+            }
+          },
+          "required": [
+            "type",
+            "version"
+          ]
         }
       },
       "CloudAwsEc2Settings": {
@@ -14166,6 +14208,11 @@
           "status": {
             "$ref": "#/components/schemas/ActionStatus"
           },
+          "status_human_readable": {
+            "description": "Human readable version of the action status",
+            "type": "string",
+            "example": "Pending"
+          },
           "type": {
             "$ref": "#/components/schemas/ActionType"
           },
@@ -14902,14 +14949,40 @@
       },
       "ServerBlueprint": {
         "type": "object",
+        "description": "Blueprint for creating a server",
         "properties": {
-          "services": {
-            "description": "The list of services that must be installed on the server",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/BlueprintService"
-            },
-            "nullable": true
+          "id": {
+            "type": "integer",
+            "description": "The unique id of the blueprint",
+            "example": 23
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the blueprint",
+            "example": "bp-from-server:web-srv-1"
+          },
+          "type": {
+            "type": "string",
+            "description": "The blueprint type",
+            "example": "server"
+          },
+          "spec": {
+            "type": "object",
+            "example": {
+              "$ref": "#/components/schemas/BlueprintServiceList"
+            }
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25T13:52:04.000000Z"
           }
         }
       },
@@ -14974,7 +15047,7 @@
             "type": "integer"
           },
           "blueprint": {
-            "$ref": "#/components/schemas/ServerBlueprint"
+            "$ref": "#/components/schemas/BlueprintServiceList"
           },
           "provision_settings": {
             "$ref": "#/components/schemas/ServerProvisionSettings"
@@ -14982,7 +15055,6 @@
         },
         "required": [
           "hostname",
-          "blueprint",
           "provision_settings"
         ]
       },
