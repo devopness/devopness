@@ -53,8 +53,8 @@ ApplicationType:
   $ref: ./auto-generated/models/application-type.yaml
 ApplicationUpdate:
   $ref: ./auto-generated/models/application-update.yaml
-BlueprintService:
-  $ref: ./auto-generated/models/blueprint-service.yaml
+BlueprintServiceList:
+  $ref: ./auto-generated/models/blueprint-service-list.yaml
 CloudAwsEc2Settings:
   $ref: ./auto-generated/models/cloud-aws-ec2-settings.yaml
 CloudDigitalOceanDropletSettings:

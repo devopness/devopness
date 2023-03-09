@@ -7,6 +7,10 @@ properties:
     example: 567819876
   status:
     $ref: '#/components/schemas/ActionStatus'
+  status_human_readable:
+    description: 'Current item status human readable'
+    type: string
+    example: Pending
   type:
     $ref: '#/components/schemas/ActionType'
   type_human_readable:
@@ -48,6 +52,7 @@ properties:
 required:
   - id
   - status
+  - status_human_readable
   - type
   - type_human_readable
   - url_web_permalink

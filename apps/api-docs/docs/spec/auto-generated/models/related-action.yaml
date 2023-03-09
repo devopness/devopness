@@ -9,6 +9,10 @@ properties:
     example: 567819876
   status:
     $ref: '#/components/schemas/ActionStatus'
+  status_human_readable:
+    description: 'Human readable version of the action status'
+    type: string
+    example: Pending
   type:
     $ref: '#/components/schemas/ActionType'
   type_human_readable:

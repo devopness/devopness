@@ -14,10 +14,9 @@ properties:
     example: 22
     type: integer
   blueprint:
-    $ref: '#/components/schemas/ServerBlueprint'
+    $ref: '#/components/schemas/BlueprintServiceList'
   provision_settings:
     $ref: '#/components/schemas/ServerProvisionSettings'
 required:
   - hostname
-  - blueprint
   - provision_settings

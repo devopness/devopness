@@ -12,6 +12,10 @@ properties:
     nullable: true
   status:
     $ref: '#/components/schemas/ActionStatus'
+  status_human_readable:
+    description: 'Current item status human readable'
+    type: string
+    example: Pending
   type:
     $ref: '#/components/schemas/ActionType'
   type_human_readable:
@@ -66,6 +70,7 @@ required:
   - id
   - retry_of
   - status
+  - status_human_readable
   - type
   - type_human_readable
   - url_web_permalink

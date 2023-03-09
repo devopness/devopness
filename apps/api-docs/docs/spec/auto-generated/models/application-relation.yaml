@@ -93,6 +93,8 @@ properties:
     example: false
   last_deployments:
     $ref: '#/components/schemas/ApplicationLastDeployments'
+  source_provider:
+    $ref: '#/components/schemas/SourceProvider'
   created_at:
     description: 'The date and time when the record was created'
     type: string
