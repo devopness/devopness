@@ -14,6 +14,7 @@
 
 import { ApplicationLastDeployments } from './application-last-deployments';
 import { ApplicationType } from './application-type';
+import { SourceProvider } from './source-provider';
 
 /**
  * 
@@ -165,6 +166,12 @@ export interface ApplicationRelation {
      * @memberof ApplicationRelation
      */
     last_deployments?: ApplicationLastDeployments;
+    /**
+     * 
+     * @type {SourceProvider}
+     * @memberof ApplicationRelation
+     */
+    source_provider?: SourceProvider;
     /**
      * The date and time when the record was created
      * @type {string}

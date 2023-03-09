@@ -12,19 +12,48 @@
  */
 
 
-import { BlueprintService } from './blueprint-service';
 
 /**
- * 
+ * Blueprint for creating a server
  * @export
  * @interface ServerBlueprint
  */
 export interface ServerBlueprint {
     /**
-     * The list of services that must be installed on the server
-     * @type {Array<BlueprintService>}
+     * The unique id of the blueprint
+     * @type {number}
      * @memberof ServerBlueprint
      */
-    services?: Array<BlueprintService> | null;
+    id?: number;
+    /**
+     * Name of the blueprint
+     * @type {string}
+     * @memberof ServerBlueprint
+     */
+    name?: string;
+    /**
+     * The blueprint type
+     * @type {string}
+     * @memberof ServerBlueprint
+     */
+    type?: string;
+    /**
+     * 
+     * @type {object}
+     * @memberof ServerBlueprint
+     */
+    spec?: object;
+    /**
+     * The date and time when the record was created
+     * @type {string}
+     * @memberof ServerBlueprint
+     */
+    created_at?: string;
+    /**
+     * The date and time when the record was last updated
+     * @type {string}
+     * @memberof ServerBlueprint
+     */
+    updated_at?: string;
 }
 

@@ -39,6 +39,12 @@ export interface ActionRelation {
      */
     status: ActionStatus;
     /**
+     * Current item status human readable
+     * @type {string}
+     * @memberof ActionRelation
+     */
+    status_human_readable: string;
+    /**
      * 
      * @type {ActionType}
      * @memberof ActionRelation

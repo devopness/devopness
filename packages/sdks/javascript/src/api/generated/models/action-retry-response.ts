@@ -50,6 +50,12 @@ export interface ActionRetryResponse {
      */
     status: ActionStatus;
     /**
+     * Current item status human readable
+     * @type {string}
+     * @memberof ActionRetryResponse
+     */
+    status_human_readable: string;
+    /**
      * 
      * @type {ActionType}
      * @memberof ActionRetryResponse

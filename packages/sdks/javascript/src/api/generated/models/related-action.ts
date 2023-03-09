@@ -35,6 +35,12 @@ export interface RelatedAction {
      */
     status: ActionStatus;
     /**
+     * Human readable version of the action status
+     * @type {string}
+     * @memberof RelatedAction
+     */
+    status_human_readable?: string;
+    /**
      * 
      * @type {ActionType}
      * @memberof RelatedAction
