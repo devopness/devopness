@@ -10670,33 +10670,36 @@
           "servers"
         ]
       },
+      "BlueprintService": {
+        "type": "object",
+        "properties": {
+          "auto_start": {
+            "type": "boolean",
+            "description": "Indicates if the service will start automatically on operating system boot",
+            "example": false
+          },
+          "initial_state": {
+            "$ref": "#/components/schemas/ServiceInitialState"
+          },
+          "type": {
+            "$ref": "#/components/schemas/ServiceType"
+          },
+          "version": {
+            "type": "string",
+            "description": "The service version",
+            "example": "5.7"
+          }
+        },
+        "required": [
+          "type",
+          "version"
+        ]
+      },
       "BlueprintServiceList": {
         "type": "array",
         "description": "The specification for this blueprint. Usually contains the service names and their respective versions to be installed on a server.",
         "items": {
-          "type": "object",
-          "properties": {
-            "auto_start": {
-              "type": "boolean",
-              "description": "Indicates if the service will start automatically on operating system boot",
-              "example": false
-            },
-            "initial_state": {
-              "$ref": "#/components/schemas/ServiceInitialState"
-            },
-            "type": {
-              "$ref": "#/components/schemas/ServiceType"
-            },
-            "version": {
-              "type": "string",
-              "description": "The service version",
-              "example": "5.7"
-            }
-          },
-          "required": [
-            "type",
-            "version"
-          ]
+          "$ref": "#/components/schemas/BlueprintService"
         }
       },
       "CloudAwsEc2Settings": {
