@@ -183,12 +183,8 @@ HookOutgoingRequestHeader:
   $ref: ./auto-generated/models/hook-outgoing-request-header.yaml
 HookOutgoingSettings:
   $ref: ./auto-generated/models/hook-outgoing-settings.yaml
-HookOutgoingTriggerWhenActionStatus:
-  $ref: ./auto-generated/models/hook-outgoing-trigger-when-action-status.yaml
 HookOutgoingTriggerWhenCondition:
   $ref: ./auto-generated/models/hook-outgoing-trigger-when-condition.yaml
-HookOutgoingTriggerWhenConditionType:
-  $ref: ./auto-generated/models/hook-outgoing-trigger-when-condition-type.yaml
 HookRelation:
   $ref: ./auto-generated/models/hook-relation.yaml
 HookRequest:

@@ -16,8 +16,10 @@ properties:
     example: server
   spec:
     type: object
-    example:
-      $ref: '#/components/schemas/BlueprintServiceList'
+    description: 'The blueprint specification'
+    properties:
+      services:
+        $ref: '#/components/schemas/BlueprintServiceList'
   created_at:
     type: string
     format: date-time

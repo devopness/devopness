@@ -12,6 +12,10 @@ properties:
     example: web-srv-1
   status:
     $ref: '#/components/schemas/ActionStatus'
+  status_human_readable:
+    description: 'Human readable version of the action status'
+    type: string
+    example: Pending
   total_steps:
     type: integer
     minimum: 0

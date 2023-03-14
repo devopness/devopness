@@ -29,6 +29,10 @@ properties:
     example: 3
   status:
     $ref: '#/components/schemas/ActionStatus'
+  status_human_readable:
+    description: 'Human readable version of the action status'
+    type: string
+    example: Pending
   started_at:
     type: string
     format: date-time

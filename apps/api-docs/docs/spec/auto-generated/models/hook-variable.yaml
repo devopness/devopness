@@ -8,7 +8,7 @@ properties:
     example: environment_id
   path:
     type: string
-    description: 'A `dot-notation` path used to retrieve the variable''s value. If not defined the `name` will be used instead.'
+    description: 'A dot-notation path of the variable to be used as the value to evaluate this condition. If not defined the `name` will be used instead.'
     example: data.environment.id
   type:
     $ref: '#/components/schemas/HookVariableType'
