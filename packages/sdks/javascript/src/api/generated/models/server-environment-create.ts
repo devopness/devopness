@@ -40,7 +40,7 @@ export interface ServerEnvironmentCreate {
      */
     ssh_port?: number;
     /**
-     * The specification for this blueprint. Usually contains the service names and their respective versions to be installed on a server.
+     * The service names and their respective versions for a blueprint.
      * @type {Array<BlueprintService>}
      * @memberof ServerEnvironmentCreate
      */
