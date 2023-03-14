@@ -3,6 +3,8 @@ type: object
 properties:
   events:
     type: array
+    items:
+      type: string
     description: 'List of events that will trigger an outgoing hook'
     example:
       - action.status_changed
