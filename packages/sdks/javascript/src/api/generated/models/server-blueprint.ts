@@ -12,6 +12,7 @@
  */
 
 
+import { ServerBlueprintSpec } from './server-blueprint-spec';
 
 /**
  * Blueprint for creating a server
@@ -39,10 +40,10 @@ export interface ServerBlueprint {
     type?: string;
     /**
      * 
-     * @type {object}
+     * @type {ServerBlueprintSpec}
      * @memberof ServerBlueprint
      */
-    spec?: object;
+    spec?: ServerBlueprintSpec;
     /**
      * The date and time when the record was created
      * @type {string}

@@ -9800,6 +9800,11 @@
           "status": {
             "$ref": "#/components/schemas/ActionStatus"
           },
+          "status_human_readable": {
+            "description": "Human readable version of the action status",
+            "type": "string",
+            "example": "Pending"
+          },
           "started_at": {
             "type": "string",
             "format": "date-time",
@@ -10697,7 +10702,7 @@
       },
       "BlueprintServiceList": {
         "type": "array",
-        "description": "The specification for this blueprint. Usually contains the service names and their respective versions to be installed on a server.",
+        "description": "The service names and their respective versions for a blueprint.",
         "items": {
           "$ref": "#/components/schemas/BlueprintService"
         }
@@ -12424,13 +12429,13 @@
             "$ref": "#/components/schemas/HookIncomingTriggerWhenConditionType"
           },
           "path": {
-            "description": "A dot-notation path of the request body where the value will be checked.",
+            "description": "A dot-notation path of the request body attribute to be used as the value to evaluate this condition.",
             "example": "pullrequest.author.nickname",
             "type": "string"
           },
           "accepted_values": {
             "type": "array",
-            "description": "An list of accepted values to checked field.",
+            "description": "List of accepted values for this condition.",
             "items": {
               "anyOf": [
                 {
@@ -12525,43 +12530,31 @@
           }
         }
       },
-      "HookOutgoingTriggerWhenActionStatus": {
-        "type": "string",
-        "enum": [
-          "in-progress",
-          "completed",
-          "failed"
-        ]
-      },
       "HookOutgoingTriggerWhenCondition": {
         "type": "object",
         "properties": {
-          "type": {
-            "$ref": "#/components/schemas/HookOutgoingTriggerWhenConditionType"
+          "path": {
+            "description": "A dot-notation path of the outgoing hook variable to be used as the value to evaluate this condition.",
+            "example": "action.pipeline.id",
+            "type": "string"
           },
           "accepted_values": {
             "type": "array",
-            "description": "A list of accepted values to checked field.",
+            "description": "List of accepted values for this condition.",
             "items": {
-              "$ref": "#/components/schemas/HookOutgoingTriggerWhenActionStatus"
+              "type": "string"
             },
             "example": [
-              "in-progress",
-              "completed",
-              "failed"
+              123,
+              "some-value",
+              false,
+              true
             ]
           }
         },
         "required": [
-          "type",
+          "path",
           "accepted_values"
-        ]
-      },
-      "HookOutgoingTriggerWhenConditionType": {
-        "type": "string",
-        "description": "Type of the outgoing hook condition.\\n* `action_status` - Validate action status for outgoing hooks.",
-        "enum": [
-          "action_status"
         ]
       },
       "HookRelation": {
@@ -12879,17 +12872,46 @@
         ]
       },
       "HookTriggerWhen": {
-        "type": "array",
-        "description": "Conditions that must be met to trigger the hook",
-        "items": {
-          "oneOf": [
-            {
-              "$ref": "#/components/schemas/HookIncomingTriggerWhenCondition"
+        "type": "object",
+        "properties": {
+          "events": {
+            "type": "array",
+            "items": {
+              "type": "string"
             },
-            {
-              "$ref": "#/components/schemas/HookOutgoingTriggerWhenCondition"
+            "description": "List of events that will trigger an outgoing hook",
+            "example": [
+              "action.status_changed",
+              "action.queued",
+              "action.started",
+              "action.completed",
+              "action.failed"
+            ]
+          },
+          "conditions": {
+            "type": "array",
+            "description": "Conditions that must be met to trigger the hook",
+            "example": [
+              {
+                "name": "Only trigger incoming hook on PRs of a given pull request author",
+                "type": "request_body",
+                "path": "sender.login",
+                "accepted_values": [
+                  "some-one"
+                ]
+              }
+            ],
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/HookIncomingTriggerWhenCondition"
+                },
+                {
+                  "$ref": "#/components/schemas/HookOutgoingTriggerWhenCondition"
+                }
+              ]
             }
-          ]
+          }
         }
       },
       "HookType": {
@@ -12969,7 +12991,7 @@
           },
           "path": {
             "type": "string",
-            "description": "A `dot-notation` path used to retrieve the variable's value. If not defined the `name` will be used instead.",
+            "description": "A dot-notation path of the variable to be used as the value to evaluate this condition. If not defined the `name` will be used instead.",
             "example": "data.environment.id"
           },
           "type": {
@@ -14865,6 +14887,11 @@
           "status": {
             "$ref": "#/components/schemas/ActionStatus"
           },
+          "status_human_readable": {
+            "description": "Human readable version of the action status",
+            "type": "string",
+            "example": "Pending"
+          },
           "total_steps": {
             "type": "integer",
             "minimum": 0,
@@ -14971,8 +14998,11 @@
           },
           "spec": {
             "type": "object",
-            "example": {
-              "$ref": "#/components/schemas/BlueprintServiceList"
+            "description": "The blueprint specification",
+            "properties": {
+              "services": {
+                "$ref": "#/components/schemas/BlueprintServiceList"
+              }
             }
           },
           "created_at": {
