@@ -204,6 +204,9 @@
     $ref: ./auto-generated/endpoints/list-project-teams.yaml
   post:
     $ref: ./auto-generated/endpoints/add-project-team.yaml
+'/resource-links/{resource_type}/{resource_id}':
+  get:
+    $ref: ./auto-generated/endpoints/list-resource-links-by-resource-type.yaml
 '/roles/{role_id}':
   delete:
     $ref: ./auto-generated/endpoints/delete-role.yaml

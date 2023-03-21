@@ -229,6 +229,8 @@ LanguageRuntimeFrameworkDefaults:
   $ref: ./auto-generated/models/language-runtime-framework-defaults.yaml
 LanguageRuntimeList:
   $ref: ./auto-generated/models/language-runtime-list.yaml
+LinkedResourceData:
+  $ref: ./auto-generated/models/linked-resource-data.yaml
 Log:
   $ref: ./auto-generated/models/log.yaml
 Member:
@@ -315,6 +317,10 @@ ResourceEventRelation:
   $ref: ./auto-generated/models/resource-event-relation.yaml
 ResourceIdList:
   $ref: ./auto-generated/models/resource-id-list.yaml
+ResourceLinkList:
+  $ref: ./auto-generated/models/resource-link-list.yaml
+ResourceLinkRelation:
+  $ref: ./auto-generated/models/resource-link-relation.yaml
 ResourceType:
   $ref: ./auto-generated/models/resource-type.yaml
 Role:
