@@ -227,6 +227,7 @@ tags:
   - name: Projects - Roles
   - name: Projects - Teams
   - name: Resource Events
+  - name: Resource Links
   - name: Roles
   - name: Servers
   - name: Services
@@ -315,6 +316,9 @@ x-tagGroups:
   - name: Resource Events
     tags:
       - Resource Events
+  - name: Resource Links
+    tags:
+      - Resource Links
   - name: Roles
     tags:
       - Roles
