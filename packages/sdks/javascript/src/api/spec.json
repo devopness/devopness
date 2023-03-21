@@ -5180,6 +5180,76 @@
         }
       }
     },
+    "/resource-links/{resource_type}/{resource_id}": {
+      "get": {
+        "summary": "List linked resources of the given resource",
+        "operationId": "listResourceLinksByResourceType",
+        "description": {
+          "$ref": "../spec/descriptions/list-resource-links-by-resource-type.md"
+        },
+        "tags": [
+          "Resource Links"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "resource_id",
+            "description": "The resource ID.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "in": "path",
+            "name": "resource_type",
+            "description": "The resource type to get linked resources.",
+            "example": "application",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceLinkList"
+                }
+              }
+            },
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            }
+          }
+        }
+      }
+    },
     "/roles/{role_id}": {
       "delete": {
         "summary": "Delete a given role",
@@ -13377,6 +13447,38 @@
           "$ref": "#/components/schemas/LanguageRuntime"
         }
       },
+      "LinkedResourceData": {
+        "type": "object",
+        "description": "Object containing linked resource data",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The unique ID of the resource",
+            "example": 1839123
+          },
+          "name": {
+            "type": "string",
+            "description": "Resource name",
+            "example": "my-server"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25T13:52:04.000000Z"
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ]
+      },
       "Log": {
         "type": "object",
         "properties": {
@@ -14570,6 +14672,48 @@
         "items": {
           "type": "integer"
         }
+      },
+      "ResourceLinkList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/ResourceLinkRelation"
+        }
+      },
+      "ResourceLinkRelation": {
+        "type": "object",
+        "properties": {
+          "link_type": {
+            "description": "The link type to related resource (`child` or `parent`)",
+            "type": "string",
+            "example": "parent"
+          },
+          "resource_type_human_readable": {
+            "description": "The human readable resource type",
+            "type": "string",
+            "example": "Server"
+          },
+          "resource_type": {
+            "description": "The linked resource type",
+            "type": "string",
+            "example": "server"
+          },
+          "resource_id": {
+            "description": "The linked resource ID",
+            "type": "string",
+            "example": 123
+          },
+          "linked_resource_data": {
+            "$ref": "#/components/schemas/LinkedResourceData"
+          }
+        },
+        "required": [
+          "link_type",
+          "resource_type_human_readable",
+          "resource_type",
+          "resource_id",
+          "linked_resource_data"
+        ],
+        "nullable": true
       },
       "ResourceType": {
         "type": "string",
@@ -16085,11 +16229,6 @@
           "domains": {
             "$ref": "#/components/schemas/SslCertificateDomainList"
           },
-          "application_id": {
-            "description": "The application ID that contains this certificate",
-            "type": "integer",
-            "example": 2347658
-          },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
           },
@@ -16133,7 +16272,6 @@
           "validation_level",
           "active",
           "domains",
-          "application_id",
           "created_by_user",
           "last_action",
           "application",
@@ -16232,11 +16370,6 @@
           "domains": {
             "$ref": "#/components/schemas/SslCertificateDomainList"
           },
-          "application_id": {
-            "description": "The application ID that contains this certificate",
-            "type": "integer",
-            "example": 2347658
-          },
           "last_action": {
             "$ref": "#/components/schemas/ActionRelation"
           },
@@ -16271,7 +16404,6 @@
           "validation_level",
           "active",
           "domains",
-          "application_id",
           "last_action",
           "expires_at",
           "last_renewed_at",
