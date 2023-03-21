@@ -9051,6 +9051,9 @@
       "name": "Resource Events"
     },
     {
+      "name": "Resource Links"
+    },
+    {
       "name": "Roles"
     },
     {
@@ -9205,6 +9208,12 @@
       "name": "Resource Events",
       "tags": [
         "Resource Events"
+      ]
+    },
+    {
+      "name": "Resource Links",
+      "tags": [
+        "Resource Links"
       ]
     },
     {
