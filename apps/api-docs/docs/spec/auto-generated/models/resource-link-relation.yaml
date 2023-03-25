@@ -19,6 +19,8 @@ properties:
     example: 123
   linked_resource_data:
     $ref: '#/components/schemas/LinkedResourceData'
+  children:
+    $ref: '#/components/schemas/ResourceLinkList'
 required:
   - link_type
   - resource_type_human_readable

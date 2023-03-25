@@ -207,6 +207,12 @@
 '/resource-links/{resource_type}/{resource_id}':
   get:
     $ref: ./auto-generated/endpoints/list-resource-links-by-resource-type.yaml
+'/resource-links/{resource_type}/{resource_id}/{child_type}/{child_id}/unlink':
+  delete:
+    $ref: ./auto-generated/endpoints/unlink-resource-link-from-resource-link.yaml
+'/resource-links/{resource_type}/{resource_id}/{link_type}':
+  get:
+    $ref: ./auto-generated/endpoints/list-resource-links-by-resource-type-and-link-type.yaml
 '/roles/{role_id}':
   delete:
     $ref: ./auto-generated/endpoints/delete-role.yaml

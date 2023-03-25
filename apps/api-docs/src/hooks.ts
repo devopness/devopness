@@ -127,6 +127,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         ['linkStepToPipeline204', 'unlinkStepFromPipeline204'],
         ['unlinkStepFromPipeline204', 'deletePipeline204'],
         ['addPipeline201', 'listPipelinesByResourceType200'],
+        ['addEnvironmentApplication201', 'unlinkResourceLinkFromResourceLink204'],
     ]);
 
     let apiSpec = new OpenAPISpec(logger);
@@ -348,6 +349,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
 
     before('listPipelinesByResourceType200', utils.rewriteTransactionRequestUriResourceId('application'));
     before('addPipeline201', utils.rewriteTransactionRequestUriResourceId('application'));
+    before('unlinkResourceLinkFromResourceLink204', utils.rewriteTransactionRequestUriResourceId('application'));
 
     done();
 })
