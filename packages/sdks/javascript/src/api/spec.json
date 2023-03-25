@@ -5250,6 +5250,166 @@
         }
       }
     },
+    "/resource-links/{resource_type}/{resource_id}/{child_type}/{child_id}/unlink": {
+      "delete": {
+        "summary": "Delete a given resource link",
+        "operationId": "unlinkResourceLinkFromResourceLink",
+        "description": {
+          "$ref": "../spec/descriptions/unlink-resource-link-from-resource-link.md"
+        },
+        "tags": [
+          "Resource Links"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "child_id",
+            "description": "The child resource ID.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "in": "path",
+            "name": "child_type",
+            "description": "The resource type of the child resource.",
+            "example": "cronjob",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "resource_id",
+            "description": "The parent resource ID.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "in": "path",
+            "name": "resource_type",
+            "description": "The resource type of the parent resource.",
+            "example": "application",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/resource-links/{resource_type}/{resource_id}/{link_type}": {
+      "get": {
+        "summary": "List linked resources of specified link type",
+        "operationId": "listResourceLinksByResourceTypeAndLinkType",
+        "description": {
+          "$ref": "../spec/descriptions/list-resource-links-by-resource-type-and-link-type.md"
+        },
+        "tags": [
+          "Resource Links"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "link_type",
+            "description": "The link type (`child` or `parent`).",
+            "example": "parent",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "resource_id",
+            "description": "The resource ID.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "in": "path",
+            "name": "resource_type",
+            "description": "The resource type to get linked resources.",
+            "example": "application",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceLinkList"
+                }
+              }
+            },
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            }
+          }
+        }
+      }
+    },
     "/roles/{role_id}": {
       "delete": {
         "summary": "Delete a given role",
@@ -14713,6 +14873,9 @@
           },
           "linked_resource_data": {
             "$ref": "#/components/schemas/LinkedResourceData"
+          },
+          "children": {
+            "$ref": "#/components/schemas/ResourceLinkList"
           }
         },
         "required": [

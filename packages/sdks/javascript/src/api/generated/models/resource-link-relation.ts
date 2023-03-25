@@ -50,5 +50,11 @@ export interface ResourceLinkRelation {
      * @memberof ResourceLinkRelation
      */
     linked_resource_data: LinkedResourceData;
+    /**
+     * 
+     * @type {Array<ResourceLinkRelation>}
+     * @memberof ResourceLinkRelation
+     */
+    children?: Array<ResourceLinkRelation>;
 }
 
