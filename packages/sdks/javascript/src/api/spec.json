@@ -3177,8 +3177,15 @@
           }
         ],
         "responses": {
-          "204": {
-            "description": "No Content"
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceEvent"
+                }
+              }
+            }
           },
           "403": {
             "description": "Forbidden/Unauthorized",
@@ -5244,6 +5251,96 @@
                   "type": "string"
                 },
                 "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/resource-links/{resource_type}/{resource_id}/{child_type}/{child_id}/link": {
+      "post": {
+        "summary": "Link the given resources",
+        "operationId": "linkResourceLinkToResourceLink",
+        "description": {
+          "$ref": "../spec/descriptions/link-resource-link-to-resource-link.md"
+        },
+        "tags": [
+          "Resource Links"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "child_id",
+            "description": "The child resource ID.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "in": "path",
+            "name": "child_type",
+            "description": "The resource type of the child resource.",
+            "example": "daemon",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "resource_id",
+            "description": "The parent resource ID.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "in": "path",
+            "name": "resource_type",
+            "description": "The resource type of the parent resource.",
+            "example": "application",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
               }
             }
           }
@@ -9563,7 +9660,7 @@
             "$ref": "#/components/schemas/UserRelation"
           },
           "resource": {
-            "$ref": "#/components/schemas/Resource"
+            "$ref": "#/components/schemas/ActionResource"
           },
           "summary": {
             "$ref": "#/components/schemas/ActionSummary"
@@ -9830,7 +9927,7 @@
             "$ref": "#/components/schemas/ActionTriggeredFrom"
           },
           "resource": {
-            "$ref": "#/components/schemas/Resource"
+            "$ref": "#/components/schemas/ActionResource"
           },
           "summary": {
             "$ref": "#/components/schemas/ActionSummary"
@@ -9877,6 +9974,62 @@
           "updated_at"
         ],
         "nullable": true
+      },
+      "ActionResource": {
+        "type": "object",
+        "description": "The resource that triggered an action",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The unique id of the resource",
+            "example": 1839123
+          },
+          "type": {
+            "$ref": "#/components/schemas/ResourceType",
+            "description": "Name of the entity who the actions is related to"
+          },
+          "type_human_readable": {
+            "type": "string",
+            "description": "Human readable version of the resource type",
+            "example": "Application"
+          },
+          "data": {
+            "type": "object",
+            "nullable": true,
+            "description": "The resource data of type specified on `resource.type`",
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ApplicationRelation"
+              },
+              {
+                "$ref": "#/components/schemas/CronJobRelation"
+              },
+              {
+                "$ref": "#/components/schemas/DaemonRelation"
+              },
+              {
+                "$ref": "#/components/schemas/NetworkRuleRelation"
+              },
+              {
+                "$ref": "#/components/schemas/ServerRelation"
+              },
+              {
+                "$ref": "#/components/schemas/ServiceRelation"
+              },
+              {
+                "$ref": "#/components/schemas/SshKeyRelation"
+              },
+              {
+                "$ref": "#/components/schemas/SslCertificateRelation"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "type_human_readable"
+        ]
       },
       "ActionRetryResponse": {
         "type": "object",
@@ -9929,7 +10082,7 @@
             "$ref": "#/components/schemas/UserRelation"
           },
           "resource": {
-            "$ref": "#/components/schemas/Resource"
+            "$ref": "#/components/schemas/ActionResource"
           },
           "summary": {
             "$ref": "#/components/schemas/ActionSummary"
@@ -13618,7 +13771,7 @@
       },
       "LinkedResourceData": {
         "type": "object",
-        "description": "Object containing linked resource data",
+        "description": "Object with common attributes that identify a linked resource",
         "properties": {
           "id": {
             "type": "integer",
@@ -14715,60 +14868,27 @@
         ],
         "nullable": true
       },
-      "Resource": {
+      "ResourceEvent": {
         "type": "object",
-        "description": "Object containing the data of the resource and informations about it",
         "properties": {
-          "id": {
-            "type": "integer",
-            "description": "The unique id of the resource",
-            "example": 1839123
-          },
-          "type": {
-            "$ref": "#/components/schemas/ResourceType",
-            "description": "Name of the entity who the actions is related to"
-          },
-          "type_human_readable": {
+          "resource_type": {
+            "description": "The resource type to create events for.",
             "type": "string",
-            "description": "Human readable version of the resource type",
-            "example": "Application"
+            "example": "payment_provider"
           },
-          "data": {
-            "type": "object",
-            "nullable": true,
-            "description": "The resource data of type specified on `resource.type`",
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/ApplicationRelation"
-              },
-              {
-                "$ref": "#/components/schemas/CronJobRelation"
-              },
-              {
-                "$ref": "#/components/schemas/DaemonRelation"
-              },
-              {
-                "$ref": "#/components/schemas/NetworkRuleRelation"
-              },
-              {
-                "$ref": "#/components/schemas/ServerRelation"
-              },
-              {
-                "$ref": "#/components/schemas/ServiceRelation"
-              },
-              {
-                "$ref": "#/components/schemas/SshKeyRelation"
-              },
-              {
-                "$ref": "#/components/schemas/SslCertificateRelation"
-              }
-            ]
+          "resource_id": {
+            "description": "The resource ID.",
+            "type": "string",
+            "example": "paddle"
+          },
+          "resource_data": {
+            "$ref": "#/components/schemas/Subscription"
           }
         },
         "required": [
-          "id",
-          "type",
-          "type_human_readable"
+          "resource_type",
+          "resource_id",
+          "resource_data"
         ]
       },
       "ResourceEventList": {
@@ -16970,7 +17090,7 @@
           "user_id": {
             "type": "integer",
             "description": "The ID of the user this subscription belongs to",
-            "example": 654982
+            "example": 23489
           },
           "plan_name": {
             "type": "string",
@@ -17001,13 +17121,6 @@
             "type": "string",
             "description": "Currency of the prices",
             "example": "USD"
-          },
-          "trial_ends_at": {
-            "type": "string",
-            "nullable": true,
-            "format": "date-time",
-            "description": "If this subscription is a trial, this field indicates when it will end",
-            "example": "2019-09-25T15:50:48.000000Z"
           },
           "cancelled_at": {
             "type": "string",
