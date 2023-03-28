@@ -23,6 +23,36 @@ import { ResourceLinkRelation } from '../../generated/models';
 export class ResourceLinksApiService extends ApiBaseService {
     /**
      * 
+     * @summary Link the given resources
+     * @param {number} childId The child resource ID.
+     * @param {string} childType The resource type of the child resource.
+     * @param {number} resourceId The parent resource ID.
+     * @param {string} resourceType The resource type of the parent resource.
+     */
+    public async linkResourceLinkToResourceLink(childId: number, childType: string, resourceId: number, resourceType: string): Promise<ApiResponse<void>> {
+        if (childId === null || childId === undefined) {
+            throw new ArgumentNullException('childId', 'linkResourceLinkToResourceLink');
+        }
+        if (childType === null || childType === undefined) {
+            throw new ArgumentNullException('childType', 'linkResourceLinkToResourceLink');
+        }
+        if (resourceId === null || resourceId === undefined) {
+            throw new ArgumentNullException('resourceId', 'linkResourceLinkToResourceLink');
+        }
+        if (resourceType === null || resourceType === undefined) {
+            throw new ArgumentNullException('resourceType', 'linkResourceLinkToResourceLink');
+        }
+        
+        let queryString = '';
+
+        const requestUrl = '/resource-links/{resource_type}/{resource_id}/{child_type}/{child_id}/link' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <void>(requestUrl.replace(`{${"child_id"}}`, encodeURIComponent(String(childId))).replace(`{${"child_type"}}`, encodeURIComponent(String(childType))).replace(`{${"resource_id"}}`, encodeURIComponent(String(resourceId))).replace(`{${"resource_type"}}`, encodeURIComponent(String(resourceType))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
      * @summary List linked resources of the given resource
      * @param {number} resourceId The resource ID.
      * @param {string} resourceType The resource type to get linked resources.

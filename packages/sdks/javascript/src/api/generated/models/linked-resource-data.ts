@@ -14,7 +14,7 @@
 
 
 /**
- * Object containing linked resource data
+ * Object with common attributes that identify a linked resource
  * @export
  * @interface LinkedResourceData
  */
