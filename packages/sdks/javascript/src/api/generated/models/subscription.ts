@@ -68,12 +68,6 @@ export interface Subscription {
      */
     price_currency?: string;
     /**
-     * If this subscription is a trial, this field indicates when it will end
-     * @type {string}
-     * @memberof Subscription
-     */
-    trial_ends_at?: string | null;
-    /**
      * If not null, indicates the date when this subscription was cancelled
      * @type {string}
      * @memberof Subscription
