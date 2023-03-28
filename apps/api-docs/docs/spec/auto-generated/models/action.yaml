@@ -37,7 +37,7 @@ properties:
   triggered_by_user:
     $ref: '#/components/schemas/UserRelation'
   resource:
-    $ref: '#/components/schemas/Resource'
+    $ref: '#/components/schemas/ActionResource'
   summary:
     $ref: '#/components/schemas/ActionSummary'
   environment:

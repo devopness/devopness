@@ -10,7 +10,7 @@ properties:
   user_id:
     type: integer
     description: 'The ID of the user this subscription belongs to'
-    example: 654982
+    example: 23489
   plan_name:
     type: string
     description: 'The plan name of this subscription'
@@ -35,12 +35,6 @@ properties:
     type: string
     description: 'Currency of the prices'
     example: USD
-  trial_ends_at:
-    type: string
-    nullable: true
-    format: date-time
-    description: 'If this subscription is a trial, this field indicates when it will end'
-    example: '2019-09-25T15:50:48.000000Z'
   cancelled_at:
     type: string
     nullable: true

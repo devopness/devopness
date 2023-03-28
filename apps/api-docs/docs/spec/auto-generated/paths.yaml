@@ -207,6 +207,9 @@
 '/resource-links/{resource_type}/{resource_id}':
   get:
     $ref: ./auto-generated/endpoints/list-resource-links-by-resource-type.yaml
+'/resource-links/{resource_type}/{resource_id}/{child_type}/{child_id}/link':
+  post:
+    $ref: ./auto-generated/endpoints/link-resource-link-to-resource-link.yaml
 '/resource-links/{resource_type}/{resource_id}/{child_type}/{child_id}/unlink':
   delete:
     $ref: ./auto-generated/endpoints/unlink-resource-link-from-resource-link.yaml

@@ -26,7 +26,7 @@ properties:
   triggered_from:
     $ref: '#/components/schemas/ActionTriggeredFrom'
   resource:
-    $ref: '#/components/schemas/Resource'
+    $ref: '#/components/schemas/ActionResource'
   summary:
     $ref: '#/components/schemas/ActionSummary'
   servers:

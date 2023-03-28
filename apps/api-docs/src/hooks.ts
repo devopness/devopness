@@ -60,7 +60,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         'listActions200',
         'getUserLogout204',
         // Skipping post resource events because we only support payment_provider events for now
-        'addResourceEvent204',
+        'addResourceEvent200',
     ];
 
     // transactions listed here are skipped with a `before` hook
@@ -127,7 +127,8 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         ['linkStepToPipeline204', 'unlinkStepFromPipeline204'],
         ['unlinkStepFromPipeline204', 'deletePipeline204'],
         ['addPipeline201', 'listPipelinesByResourceType200'],
-        ['addEnvironmentApplication201', 'unlinkResourceLinkFromResourceLink204'],
+        ['addEnvironmentApplication201', 'linkResourceLinkToResourceLink204'],
+        ['linkResourceLinkToResourceLink204', 'unlinkResourceLinkFromResourceLink204'],
     ]);
 
     let apiSpec = new OpenAPISpec(logger);
@@ -347,9 +348,10 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         body['name'] = `team-${new Date().getTime()}`;
     }));
 
-    before('listPipelinesByResourceType200', utils.rewriteTransactionRequestUriResourceId('application'));
-    before('addPipeline201', utils.rewriteTransactionRequestUriResourceId('application'));
-    before('unlinkResourceLinkFromResourceLink204', utils.rewriteTransactionRequestUriResourceId('application'));
+    before('listPipelinesByResourceType200', utils.rewriteTransactionRequestUriResourceId(['application']));
+    before('addPipeline201', utils.rewriteTransactionRequestUriResourceId(['application']));
+    before('unlinkResourceLinkFromResourceLink204', utils.rewriteTransactionRequestUriResourceId(['application']));
+    before('linkResourceLinkToResourceLink204', utils.rewriteTransactionRequestUriResourceId(['application', 'daemon']));
 
     done();
 })

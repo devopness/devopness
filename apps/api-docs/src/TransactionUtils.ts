@@ -210,15 +210,21 @@ export default class TransactionUtils {
         }
     }
 
-    rewriteTransactionRequestUriResourceId(resourceType: string): TransactionHook {
+    rewriteTransactionRequestUriResourceId(resourceTypes: string[]): TransactionHook {
         return (transaction: Transaction) => {
             if (transaction.skip) {
                 return;
             }
 
-            const resourceId = this.fixtureStore.get<Identifiable>(resourceType)?.id as string;
-            const path = transaction.request.uri
-                .replace(new RegExp(`${resourceType}\/[0-9]+`), `${resourceType}/${resourceId}`);
+            let path = transaction.request.uri;
+
+            for (const resourceType of resourceTypes) {
+                const resourceId = this.fixtureStore.get<Identifiable>(resourceType)?.id as string;
+                path = path.replace(
+                    new RegExp(`${resourceType}\/[0-9]+`),
+                    `${resourceType}/${resourceId}`,
+                );
+            }
 
             transaction.fullPath = path;
             transaction.id = `${transaction.request.method} (${transaction.expected.statusCode}) ${path}`;
