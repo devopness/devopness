@@ -12,25 +12,49 @@
  */
 
 
-import { BlueprintService } from './blueprint-service';
+import { ServerBlueprintSpec } from './server-blueprint-spec';
 
 /**
- * 
+ * Blueprint for creating a server
  * @export
  * @interface ServerBlueprint
  */
 export interface ServerBlueprint {
     /**
-     * The list of services that must be installed on the server
-     * @type {Array<BlueprintService>}
+     * The unique id of the blueprint
+     * @type {number}
      * @memberof ServerBlueprint
      */
-    services?: Array<BlueprintService> | null;
+    id?: number;
     /**
-     * If `true`, create a landing page on the server to validate if has public access
-     * @type {boolean}
+     * Name of the blueprint
+     * @type {string}
      * @memberof ServerBlueprint
      */
-    validate_web_public_access: boolean;
+    name?: string;
+    /**
+     * The blueprint type
+     * @type {string}
+     * @memberof ServerBlueprint
+     */
+    type?: string;
+    /**
+     * 
+     * @type {ServerBlueprintSpec}
+     * @memberof ServerBlueprint
+     */
+    spec?: ServerBlueprintSpec;
+    /**
+     * The date and time when the record was created
+     * @type {string}
+     * @memberof ServerBlueprint
+     */
+    created_at?: string;
+    /**
+     * The date and time when the record was last updated
+     * @type {string}
+     * @memberof ServerBlueprint
+     */
+    updated_at?: string;
 }
 

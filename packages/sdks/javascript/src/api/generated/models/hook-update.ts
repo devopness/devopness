@@ -14,9 +14,8 @@
 
 import { ActionType } from './action-type';
 import { HookIncomingSettings } from './hook-incoming-settings';
-import { HookIncomingTriggerWhenCondition } from './hook-incoming-trigger-when-condition';
 import { HookOutgoingSettings } from './hook-outgoing-settings';
-import { HookOutgoingTriggerWhenCondition } from './hook-outgoing-trigger-when-condition';
+import { HookTriggerWhen } from './hook-trigger-when';
 import { ResourceType } from './resource-type';
 
 /**
@@ -74,11 +73,11 @@ export interface HookUpdate {
      */
     secret_header_name?: string;
     /**
-     * Conditions that must be met to trigger the hook
-     * @type {Array<HookIncomingTriggerWhenCondition | HookOutgoingTriggerWhenCondition>}
+     * 
+     * @type {HookTriggerWhen}
      * @memberof HookUpdate
      */
-    trigger_when?: Array<HookIncomingTriggerWhenCondition | HookOutgoingTriggerWhenCondition>;
+    trigger_when?: HookTriggerWhen;
     /**
      * 
      * @type {HookIncomingSettings | HookOutgoingSettings}

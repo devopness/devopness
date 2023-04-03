@@ -11,7 +11,6 @@ links:
     featured:
 ---
 
-# Add and SSL Certificate to an Application
 1. On the chosen Devopness environment, click `View` in the `Applications` card to see a list of existing `Applications`
 1. Click `DETAILS` on the application you want to add an SSL certificate to
 1. On the upper-right corner click `SSL` (open lock icon)

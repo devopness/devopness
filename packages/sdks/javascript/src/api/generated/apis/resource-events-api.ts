@@ -14,12 +14,36 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { ApiError } from '../../generated/models';
+import { ResourceEvent } from '../../generated/models';
 import { ResourceEventRelation } from '../../generated/models';
 
 /**
  * ResourceEventsApiService - Auto-generated
  */
 export class ResourceEventsApiService extends ApiBaseService {
+    /**
+     * 
+     * @summary Process event for a resource
+     * @param {string} resourceId The resource ID.
+     * @param {string} resourceType The resource type to create events for.
+     */
+    public async addResourceEvent(resourceId: string, resourceType: string): Promise<ApiResponse<ResourceEvent>> {
+        if (resourceId === null || resourceId === undefined) {
+            throw new ArgumentNullException('resourceId', 'addResourceEvent');
+        }
+        if (resourceType === null || resourceType === undefined) {
+            throw new ArgumentNullException('resourceType', 'addResourceEvent');
+        }
+        
+        let queryString = '';
+
+        const requestUrl = '/events/{resource_type}/{resource_id}' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <ResourceEvent>(requestUrl.replace(`{${"resource_id"}}`, encodeURIComponent(String(resourceId))).replace(`{${"resource_type"}}`, encodeURIComponent(String(resourceType))));
+        return new ApiResponse(response);
+    }
+
     /**
      * 
      * @summary List events of a resource type

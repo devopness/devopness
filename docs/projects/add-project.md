@@ -11,7 +11,6 @@ links:
     featured:
 ---
 
-# Add a Project
 1. On Devopness upper-left corner, click the Devopness logo to see a list of existing projects
 2. On the upper-right corner of the list click `ADD PROJECT`
 3. Provide a name to the `Project` being added. For example, "My Product"

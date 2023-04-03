@@ -16,12 +16,14 @@
 /**
  * 
  * @export
- * @enum {string}
+ * @interface UserUrl
  */
-export enum HookOutgoingTriggerWhenActionStatus {
-    InProgress = 'in-progress',
-    Completed = 'completed',
-    Failed = 'failed'
+export interface UserUrl {
+    /**
+     * The URL leading to a billing management page
+     * @type {string}
+     * @memberof UserUrl
+     */
+    billing_management_url: string;
 }
-
 

@@ -20,16 +20,22 @@
  */
 export interface SubscriptionPlan {
     /**
-     * The subscription plan\'s code
+     * 
      * @type {string}
      * @memberof SubscriptionPlan
      */
-    plan: string;
+    provider_plan_id?: string;
     /**
-     * The subscription plan\'s name
+     * 
      * @type {string}
      * @memberof SubscriptionPlan
      */
-    plan_human_readable: string;
+    human_readable?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SubscriptionPlan
+     */
+    allow_subscriptions?: boolean;
 }
 

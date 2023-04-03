@@ -49,7 +49,7 @@ async function authenticate(email, pass) {
 authenticate('user@email.com', 'secret-password');
 ```
 
-In the example above, `userTokens` is an instance of `ApiResponse` and the `data` property has the data requested from the API. See [ApiResponse.ts](https://github.com/devopness/devopness/blob/master/src/common/ApiResponse.ts) for reference.
+In the example above, `userTokens` is an instance of `ApiResponse` and the `data` property has the data requested from the API. See [ApiResponse.ts](https://github.com/devopness/devopness/blob/main/packages/sdks/javascript/src/common/ApiResponse.ts) for reference.
 
 ### Invoking authentication protected endpoints
 Once an authentication token is set, any protected endpoint can be invoked.
@@ -72,7 +72,7 @@ getUserProfile();
 
 ### TypeScript support
 This package includes TypeScript declarations for every method.
-TypeScript versions `>= 3.8` are supported.
+TypeScript versions `>= 4.4` are supported.
 
 >Some methods in `Devopness SDK JavaScript` accept and return objects from the Devopness API. The type declarations for these objects will always track the latest version of the API. Therefore, if you'e using the latest version of this package, you can rely on the Devopness API documentation for checking the input and return types of each API endpoint.
 
@@ -106,19 +106,26 @@ make test
 ```
 
 ### Without Docker
+Installing on ``Linux`` or ``macOS`` systems.
 
-#### 1. Install missing dependencies
-This command will install all modules listed as dependencies in [package.json](package.json). **A working Java Runtime Environment is also required.** Please, check out the installation instructions for your operating system.
+#### 1. Navigate to the project directory!
+```shell
+cd packages/sdks/javascript/
+```
+
+#### 2. Install missing dependencies
+This command will install all modules listed as dependencies in [package.json](package.json). **A working Java Runtime Environment is also required.** Please, check out the installation instructions 
+for your operating system.
 ```
 npm install
 ```
 
-#### 2. Build SDK
+#### 3. Build SDK
 ```
 npm run build
 ```
 
-#### 3. Run tests
+#### 4. Run tests
 ```
 npm run test
 ```

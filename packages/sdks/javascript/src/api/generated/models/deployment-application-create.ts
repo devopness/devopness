@@ -51,12 +51,6 @@ export interface DeploymentApplicationCreate {
      */
     pipeline_id?: number;
     /**
-     * The pull request\'s ID to use for deployment.
-     * @type {number}
-     * @memberof DeploymentApplicationCreate
-     */
-    pull_request_id?: number;
-    /**
      * List of valid resource IDs
      * @type {Array<number>}
      * @memberof DeploymentApplicationCreate

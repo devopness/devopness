@@ -66,12 +66,6 @@ export interface SslCertificateRelation {
      */
     domains: Array<string>;
     /**
-     * The application ID that contains this certificate
-     * @type {number}
-     * @memberof SslCertificateRelation
-     */
-    application_id: number;
-    /**
      * 
      * @type {ActionRelation}
      * @memberof SslCertificateRelation

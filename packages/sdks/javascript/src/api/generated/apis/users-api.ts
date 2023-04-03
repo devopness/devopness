@@ -19,10 +19,12 @@ import { User } from '../../generated/models';
 import { UserCreate } from '../../generated/models';
 import { UserLogin } from '../../generated/models';
 import { UserLoginResponse } from '../../generated/models';
+import { UserMe } from '../../generated/models';
 import { UserRefreshToken } from '../../generated/models';
 import { UserRefreshTokenResponse } from '../../generated/models';
 import { UserResendVerification } from '../../generated/models';
 import { UserUpdate } from '../../generated/models';
+import { UserUrl } from '../../generated/models';
 import { UserVerify } from '../../generated/models';
 
 /**
@@ -67,15 +69,43 @@ export class UsersApiService extends ApiBaseService {
 
     /**
      * 
+     * @summary Logout/revoke an existing token
+     */
+    public async getUserLogout(): Promise<ApiResponse<void>> {
+        
+        let queryString = '';
+
+        const requestUrl = '/users/logout' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <void>(requestUrl);
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
      * @summary Get details of the current user
      */
-    public async getUserMe(): Promise<ApiResponse<User>> {
+    public async getUserMe(): Promise<ApiResponse<UserMe>> {
         
         let queryString = '';
 
         const requestUrl = '/users/me' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <User>(requestUrl);
+        const response = await this.get <UserMe>(requestUrl);
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Get the authenticated user\'s URLs
+     */
+    public async getUserUrls(): Promise<ApiResponse<UserUrl>> {
+        
+        let queryString = '';
+
+        const requestUrl = '/users/urls' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <UserUrl>(requestUrl);
         return new ApiResponse(response);
     }
 
@@ -94,20 +124,6 @@ export class UsersApiService extends ApiBaseService {
         const requestUrl = '/users/login' + (queryString? `?${queryString}` : '');
 
         const response = await this.post <UserLoginResponse, UserLogin>(requestUrl, userLogin);
-        return new ApiResponse(response);
-    }
-
-    /**
-     * 
-     * @summary Logout/revoke an existing token
-     */
-    public async logout(): Promise<ApiResponse<void>> {
-        
-        let queryString = '';
-
-        const requestUrl = '/users/logout' + (queryString? `?${queryString}` : '');
-
-        const response = await this.get <void>(requestUrl);
         return new ApiResponse(response);
     }
 

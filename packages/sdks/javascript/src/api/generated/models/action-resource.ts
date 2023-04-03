@@ -23,33 +23,33 @@ import { SshKeyRelation } from './ssh-key-relation';
 import { SslCertificateRelation } from './ssl-certificate-relation';
 
 /**
- * Object containing the data of the resource and informations about it
+ * The resource that triggered an action
  * @export
- * @interface Resource
+ * @interface ActionResource
  */
-export interface Resource {
+export interface ActionResource {
     /**
      * The unique id of the resource
      * @type {number}
-     * @memberof Resource
+     * @memberof ActionResource
      */
     id: number;
     /**
      * 
      * @type {ResourceType}
-     * @memberof Resource
+     * @memberof ActionResource
      */
     type: ResourceType;
     /**
      * Human readable version of the resource type
      * @type {string}
-     * @memberof Resource
+     * @memberof ActionResource
      */
     type_human_readable: string;
     /**
      * The resource data of type specified on `resource.type`
      * @type {ApplicationRelation | CronJobRelation | DaemonRelation | NetworkRuleRelation | ServerRelation | ServiceRelation | SshKeyRelation | SslCertificateRelation}
-     * @memberof Resource
+     * @memberof ActionResource
      */
     data?: ApplicationRelation | CronJobRelation | DaemonRelation | NetworkRuleRelation | ServerRelation | ServiceRelation | SshKeyRelation | SslCertificateRelation | null;
 }
