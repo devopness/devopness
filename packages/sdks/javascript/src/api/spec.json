@@ -11117,15 +11117,15 @@
             "description": "The storage's size of the cloud instance",
             "example": 32
           },
-          "os": {
-            "$ref": "#/components/schemas/CloudOs"
+          "os_version_code": {
+            "$ref": "#/components/schemas/CloudOsVersionCode"
           }
         },
         "required": [
           "region",
           "instance_type",
           "storage_size",
-          "os"
+          "os_version_code"
         ]
       },
       "CloudDigitalOceanDropletSettings": {
@@ -11141,14 +11141,14 @@
             "description": "Datacenter region where the cloud instance will be launched",
             "example": "nyc1"
           },
-          "os": {
-            "$ref": "#/components/schemas/CloudOs"
+          "os_version_code": {
+            "$ref": "#/components/schemas/CloudOsVersionCode"
           }
         },
         "required": [
           "instance_type",
           "region",
-          "os"
+          "os_version_code"
         ]
       },
       "CloudInstanceList": {
@@ -11219,23 +11219,16 @@
         ],
         "nullable": true
       },
-      "CloudOs": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "description": "The operating system's name",
-            "example": "ubuntu"
-          },
-          "version": {
-            "type": "string",
-            "description": "The version of the operating system",
-            "example": "18"
-          }
-        },
-        "required": [
-          "name",
-          "version"
+      "CloudOsVersionCode": {
+        "type": "string",
+        "nullable": true,
+        "description": "Code to identify operating system and version",
+        "example": "ubuntu_22_04",
+        "enum": [
+          "centos_7",
+          "ubuntu_18_04",
+          "ubuntu_20_04",
+          "ubuntu_22_04"
         ]
       },
       "CloudProvider": {
@@ -14173,18 +14166,7 @@
             "example": "Ubuntu"
           },
           "supported_versions": {
-            "type": "array",
-            "description": "List of operating system versions supported by Devopness",
-            "items": {
-              "type": "object",
-              "properties": {
-                "version": {
-                  "type": "string",
-                  "description": "The system's version that is supported",
-                  "example": "18"
-                }
-              }
-            }
+            "$ref": "#/components/schemas/OperatingSystemVersions"
           }
         },
         "required": [
@@ -14193,6 +14175,59 @@
           "hint",
           "supported_versions"
         ]
+      },
+      "OperatingSystemVersion": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Version name",
+            "example": "22.04 LTS (Jammy Jellyfish)"
+          },
+          "code_name": {
+            "type": "string",
+            "description": "The name given to the OS version while it is under development. For some OS it can be seen as a version nickname that is used to refer to that version even after official release.",
+            "example": "Jammy Jellyfish"
+          },
+          "version": {
+            "type": "string",
+            "description": "Version number",
+            "example": "22.04"
+          },
+          "os_version_code": {
+            "$ref": "#/components/schemas/CloudOsVersionCode"
+          },
+          "released_at": {
+            "type": "string",
+            "description": "Release date",
+            "example": "2020-04-23"
+          },
+          "end_standard_support_at": {
+            "type": "string",
+            "description": "The date when this release will no longer receive updates under their LTS (Long Term Support) conditions. For details and terms of service, please refer to the documentation on the OS website.",
+            "example": "2025-04-01"
+          },
+          "end_of_life_at": {
+            "type": "string",
+            "description": "The date when this release will no longer receive any patches or security updates. For details and terms of service, please refer to the documentation on the OS website.",
+            "example": "2030-04-01"
+          }
+        },
+        "required": [
+          "name",
+          "code_name",
+          "version",
+          "os_version_code",
+          "released_at",
+          "end_standard_support_at",
+          "end_of_life_at"
+        ]
+      },
+      "OperatingSystemVersions": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/OperatingSystemVersion"
+        }
       },
       "OperatingSystems": {
         "type": "array",
