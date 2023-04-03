@@ -12,7 +12,7 @@
  */
 
 
-import { CloudOs } from './cloud-os';
+import { CloudOsVersionCode } from './cloud-os-version-code';
 
 /**
  * 
@@ -34,9 +34,9 @@ export interface CloudDigitalOceanDropletSettings {
     region: string;
     /**
      * 
-     * @type {CloudOs}
+     * @type {CloudOsVersionCode}
      * @memberof CloudDigitalOceanDropletSettings
      */
-    os: CloudOs;
+    os_version_code: CloudOsVersionCode | null;
 }
 
