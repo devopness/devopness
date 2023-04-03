@@ -9,9 +9,9 @@ properties:
     type: string
     description: 'Datacenter region where the cloud instance will be launched'
     example: nyc1
-  os:
-    $ref: '#/components/schemas/CloudOs'
+  os_version_code:
+    $ref: '#/components/schemas/CloudOsVersionCode'
 required:
   - instance_type
   - region
-  - os
+  - os_version_code

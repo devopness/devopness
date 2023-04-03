@@ -67,8 +67,8 @@ CloudInstanceList:
   $ref: ./auto-generated/models/cloud-instance-list.yaml
 CloudInstanceRelation:
   $ref: ./auto-generated/models/cloud-instance-relation.yaml
-CloudOs:
-  $ref: ./auto-generated/models/cloud-os.yaml
+CloudOsVersionCode:
+  $ref: ./auto-generated/models/cloud-os-version-code.yaml
 CloudProvider:
   $ref: ./auto-generated/models/cloud-provider.yaml
 CloudProviderCode:
@@ -257,6 +257,10 @@ NetworkRuleUpdate:
   $ref: ./auto-generated/models/network-rule-update.yaml
 OperatingSystem:
   $ref: ./auto-generated/models/operating-system.yaml
+OperatingSystemVersion:
+  $ref: ./auto-generated/models/operating-system-version.yaml
+OperatingSystemVersions:
+  $ref: ./auto-generated/models/operating-system-versions.yaml
 OperatingSystems:
   $ref: ./auto-generated/models/operating-systems.yaml
 OsUsers:

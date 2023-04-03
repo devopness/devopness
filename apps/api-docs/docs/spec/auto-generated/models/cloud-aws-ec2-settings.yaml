@@ -13,10 +13,10 @@ properties:
     type: integer
     description: 'The storage''s size of the cloud instance'
     example: 32
-  os:
-    $ref: '#/components/schemas/CloudOs'
+  os_version_code:
+    $ref: '#/components/schemas/CloudOsVersionCode'
 required:
   - region
   - instance_type
   - storage_size
-  - os
+  - os_version_code

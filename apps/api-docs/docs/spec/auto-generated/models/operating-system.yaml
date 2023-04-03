@@ -14,15 +14,7 @@ properties:
     description: 'Text describing the operating system'
     example: Ubuntu
   supported_versions:
-    type: array
-    description: 'List of operating system versions supported by Devopness'
-    items:
-      type: object
-      properties:
-        version:
-          type: string
-          description: 'The system''s version that is supported'
-          example: '18'
+    $ref: '#/components/schemas/OperatingSystemVersions'
 required:
   - code
   - name
