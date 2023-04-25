@@ -1,6 +1,5 @@
 /* eslint-disable */
 /**
- * FORCE CI
  * devopness API
  * Devopness API - Painless essential DevOps to everyone 
  *
