@@ -1,6 +1,5 @@
 /* eslint-disable */
 /**
- * FORCE PR CHECKS
  * devopness API
  * Devopness API - Painless essential DevOps to everyone 
  *
