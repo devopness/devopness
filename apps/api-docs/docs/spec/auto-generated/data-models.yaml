@@ -485,6 +485,10 @@ StepPipelineUpdate:
   $ref: ./auto-generated/models/step-pipeline-update.yaml
 Subscription:
   $ref: ./auto-generated/models/subscription.yaml
+SubscriptionBalance:
+  $ref: ./auto-generated/models/subscription-balance.yaml
+SubscriptionBalanceList:
+  $ref: ./auto-generated/models/subscription-balance-list.yaml
 SubscriptionPlan:
   $ref: ./auto-generated/models/subscription-plan.yaml
 SubscriptionPlanList:

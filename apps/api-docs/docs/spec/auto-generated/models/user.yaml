@@ -21,8 +21,6 @@ properties:
     example: true
   social_accounts:
     $ref: '#/components/schemas/SocialAccountList'
-  active_subscription:
-    $ref: '#/components/schemas/Subscription'
   created_at:
     description: 'The date and time when the record was created'
     type: string
@@ -38,6 +36,5 @@ required:
   - language
   - active
   - social_accounts
-  - active_subscription
   - created_at
   - updated_at
