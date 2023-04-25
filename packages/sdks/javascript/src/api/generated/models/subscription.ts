@@ -12,6 +12,7 @@
  */
 
 
+import { SubscriptionBalance } from './subscription-balance';
 
 /**
  * The user\'s active subscription
@@ -91,5 +92,11 @@ export interface Subscription {
      * @memberof Subscription
      */
     updated_at?: string;
+    /**
+     * The list of subscription balances
+     * @type {Array<SubscriptionBalance>}
+     * @memberof Subscription
+     */
+    balances?: Array<SubscriptionBalance>;
 }
 
