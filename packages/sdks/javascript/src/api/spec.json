@@ -17181,7 +17181,63 @@
             "format": "date-time",
             "description": "The date and time when the record was last updated",
             "example": "2019-09-25T13:52:04.000000Z"
+          },
+          "balances": {
+            "$ref": "#/components/schemas/SubscriptionBalanceList"
           }
+        }
+      },
+      "SubscriptionBalance": {
+        "type": "object",
+        "nullable": true,
+        "description": "The user's active subscription balance",
+        "properties": {
+          "plan_limit": {
+            "type": "number",
+            "description": "Total credits that can be used to perform actions in the subscription period",
+            "example": 200
+          },
+          "used": {
+            "type": "number",
+            "description": "Total credits that were used to perform actions",
+            "example": 50
+          },
+          "remaining": {
+            "type": "number",
+            "description": "Total credits available to use to perform actions",
+            "example": 150
+          },
+          "billing_period_started_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time the subscription plan starts",
+            "example": "2023-04-11T00:00:00.000000Z"
+          },
+          "billing_period_ends_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time the subscription plan ends",
+            "example": "2023-05-11T00:00:00.000000Z"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2023-04-11T00:22:48.000000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2023-04-12T00:22:48.000000Z"
+          }
+        }
+      },
+      "SubscriptionBalanceList": {
+        "description": "The list of subscription balances",
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/SubscriptionBalance"
         }
       },
       "SubscriptionPlan": {
@@ -17539,9 +17595,6 @@
           "social_accounts": {
             "$ref": "#/components/schemas/SocialAccountList"
           },
-          "active_subscription": {
-            "$ref": "#/components/schemas/Subscription"
-          },
           "created_at": {
             "description": "The date and time when the record was created",
             "type": "string",
@@ -17560,7 +17613,6 @@
           "language",
           "active",
           "social_accounts",
-          "active_subscription",
           "created_at",
           "updated_at"
         ]
@@ -17664,9 +17716,6 @@
           "social_accounts": {
             "$ref": "#/components/schemas/SocialAccountList"
           },
-          "active_subscription": {
-            "$ref": "#/components/schemas/Subscription"
-          },
           "created_at": {
             "description": "The date and time when the record was created",
             "type": "string",
@@ -17685,7 +17734,6 @@
           "language",
           "active",
           "social_accounts",
-          "active_subscription",
           "created_at",
           "updated_at"
         ]
