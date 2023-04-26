@@ -362,6 +362,9 @@
 /users/account/verify:
   post:
     $ref: ./auto-generated/endpoints/verify-user.yaml
+/users/billing:
+  get:
+    $ref: ./auto-generated/endpoints/get-user-billing.yaml
 /users/login:
   post:
     $ref: ./auto-generated/endpoints/login-user.yaml

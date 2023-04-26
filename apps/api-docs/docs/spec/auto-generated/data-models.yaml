@@ -521,6 +521,8 @@ TriggerEvent:
   $ref: ./auto-generated/models/trigger-event.yaml
 User:
   $ref: ./auto-generated/models/user.yaml
+UserBilling:
+  $ref: ./auto-generated/models/user-billing.yaml
 UserCreate:
   $ref: ./auto-generated/models/user-create.yaml
 UserList:
