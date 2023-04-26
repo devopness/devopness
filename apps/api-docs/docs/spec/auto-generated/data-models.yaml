@@ -115,6 +115,8 @@ CredentialRelation:
   $ref: ./auto-generated/models/credential-relation.yaml
 CredentialSetting:
   $ref: ./auto-generated/models/credential-setting.yaml
+Credits:
+  $ref: ./auto-generated/models/credits.yaml
 CronJob:
   $ref: ./auto-generated/models/cron-job.yaml
 CronJobEnvironmentCreate:
