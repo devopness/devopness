@@ -12,6 +12,7 @@
  */
 
 
+import { Credits } from './credits';
 
 /**
  * The user\'s active subscription balance
@@ -20,23 +21,17 @@
  */
 export interface SubscriptionBalance {
     /**
-     * Total credits that can be used to perform actions in the subscription period
-     * @type {number}
+     * 
+     * @type {Credits}
      * @memberof SubscriptionBalance
      */
-    plan_limit?: number;
+    credits?: Credits;
     /**
-     * Total credits that were used to perform actions
-     * @type {number}
+     * The unit of measurement to count credits
+     * @type {string}
      * @memberof SubscriptionBalance
      */
-    used?: number;
-    /**
-     * Total credits available to use to perform actions
-     * @type {number}
-     * @memberof SubscriptionBalance
-     */
-    remaining?: number;
+    unit?: string;
     /**
      * The date and time the subscription plan starts
      * @type {string}

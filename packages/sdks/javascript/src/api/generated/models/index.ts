@@ -48,6 +48,7 @@ export * from './credential-digital-ocean';
 export * from './credential-google-cloud';
 export * from './credential-relation';
 export * from './credential-setting';
+export * from './credits';
 export * from './cron-job';
 export * from './cron-job-environment-create';
 export * from './cron-job-options';
