@@ -8466,6 +8466,41 @@
         }
       }
     },
+    "/users/billing": {
+      "get": {
+        "summary": "Get details of the current user active subscription",
+        "operationId": "getUserBilling",
+        "description": {
+          "$ref": "../spec/descriptions/get-user-billing.md"
+        },
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserBilling"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/users/login": {
       "post": {
         "summary": "Login/create a new token for the given credentials",
@@ -17629,6 +17664,17 @@
           "social_accounts",
           "created_at",
           "updated_at"
+        ]
+      },
+      "UserBilling": {
+        "type": "object",
+        "properties": {
+          "active_subscription": {
+            "$ref": "#/components/schemas/Subscription"
+          }
+        },
+        "required": [
+          "active_subscription"
         ]
       },
       "UserCreate": {
