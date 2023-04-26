@@ -202,6 +202,7 @@ export * from './team-relation';
 export * from './team-update';
 export * from './trigger-event';
 export * from './user';
+export * from './user-billing';
 export * from './user-create';
 export * from './user-login';
 export * from './user-login-response';

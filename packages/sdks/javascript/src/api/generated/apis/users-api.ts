@@ -16,6 +16,7 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { User } from '../../generated/models';
+import { UserBilling } from '../../generated/models';
 import { UserCreate } from '../../generated/models';
 import { UserLogin } from '../../generated/models';
 import { UserLoginResponse } from '../../generated/models';
@@ -64,6 +65,20 @@ export class UsersApiService extends ApiBaseService {
         const requestUrl = '/users/{user_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <User>(requestUrl.replace(`{${"user_id"}}`, encodeURIComponent(String(userId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Get details of the current user active subscription
+     */
+    public async getUserBilling(): Promise<ApiResponse<UserBilling>> {
+        
+        let queryString = '';
+
+        const requestUrl = '/users/billing' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <UserBilling>(requestUrl);
         return new ApiResponse(response);
     }
 
