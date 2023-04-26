@@ -11746,6 +11746,27 @@
           "credential"
         ]
       },
+      "Credits": {
+        "type": "object",
+        "description": "The user's active subscription credits",
+        "properties": {
+          "plan_limit": {
+            "type": "number",
+            "description": "Total credits that can be used to perform actions in the subscription period",
+            "example": 200
+          },
+          "used": {
+            "type": "number",
+            "description": "Total credits that were used to perform actions",
+            "example": 50
+          },
+          "remaining": {
+            "type": "number",
+            "description": "Total credits available to use to perform actions",
+            "example": 150
+          }
+        }
+      },
       "CronJob": {
         "type": "object",
         "properties": {
@@ -17192,20 +17213,13 @@
         "nullable": true,
         "description": "The user's active subscription balance",
         "properties": {
-          "plan_limit": {
-            "type": "number",
-            "description": "Total credits that can be used to perform actions in the subscription period",
-            "example": 200
+          "credits": {
+            "$ref": "#/components/schemas/Credits"
           },
-          "used": {
-            "type": "number",
-            "description": "Total credits that were used to perform actions",
-            "example": 50
-          },
-          "remaining": {
-            "type": "number",
-            "description": "Total credits available to use to perform actions",
-            "example": 150
+          "unit": {
+            "type": "string",
+            "description": "The unit of measurement to count credits",
+            "example": "action-step"
           },
           "billing_period_started_at": {
             "type": "string",
