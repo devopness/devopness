@@ -24,7 +24,7 @@ export interface Credits {
      * @type {number}
      * @memberof Credits
      */
-    plan_limit?: number;
+    limit?: number;
     /**
      * Total credits that were used to perform actions
      * @type {number}

@@ -11785,7 +11785,7 @@
         "type": "object",
         "description": "The user's active subscription credits",
         "properties": {
-          "plan_limit": {
+          "limit": {
             "type": "number",
             "description": "Total credits that can be used to perform actions in the subscription period",
             "example": 200
