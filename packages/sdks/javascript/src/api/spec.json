@@ -8468,7 +8468,7 @@
     },
     "/users/billing": {
       "get": {
-        "summary": "Get details of the current user active subscription",
+        "summary": "Get current user's billing info for active subscription",
         "operationId": "getUserBilling",
         "description": {
           "$ref": "../spec/descriptions/get-user-billing.md"
