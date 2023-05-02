@@ -70,7 +70,7 @@ export class UsersApiService extends ApiBaseService {
 
     /**
      * 
-     * @summary Get details of the current user active subscription
+     * @summary Get current user\'s billing info for active subscription
      */
     public async getUserBilling(): Promise<ApiResponse<UserBilling>> {
         
