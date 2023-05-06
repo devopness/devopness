@@ -13,6 +13,7 @@ import { NetworkRuleService } from './services/NetworkRuleService';
 import { PipelineService } from './services/PipelineService';
 import { ProjectService } from './services/ProjectService';
 import { ResourceEventService } from './services/ResourceEventService';
+import { ResourceLinkService } from './services/ResourceLinkService';
 import { RoleService } from './services/RoleService';
 import { ServerService } from './services/ServerService';
 import { ServiceService } from './services/ServiceService';
@@ -41,6 +42,7 @@ export class DevopnessApiClient {
   pipelines: PipelineService;
   projects: ProjectService;
   resourceEvents: ResourceEventService;
+  resourceLinks: ResourceLinkService;
   roles: RoleService;
   servers: ServerService;
   services: ServiceService;
@@ -74,6 +76,7 @@ export class DevopnessApiClient {
     this.pipelines = new PipelineService();
     this.projects = new ProjectService();
     this.resourceEvents = new ResourceEventService();
+    this.resourceLinks = new ResourceLinkService();
     this.roles = new RoleService();
     this.servers = new ServerService();
     this.services = new ServiceService();

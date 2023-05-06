@@ -13,11 +13,11 @@
 
 
 import { ActionData } from './action-data';
+import { ActionResource } from './action-resource';
 import { ActionStatus } from './action-status';
 import { ActionSummary } from './action-summary';
 import { ActionTriggeredFrom } from './action-triggered-from';
 import { ActionType } from './action-type';
-import { Resource } from './resource';
 import { ServerAction } from './server-action';
 
 /**
@@ -38,6 +38,12 @@ export interface ActionRelation {
      * @memberof ActionRelation
      */
     status: ActionStatus;
+    /**
+     * Current item status human readable
+     * @type {string}
+     * @memberof ActionRelation
+     */
+    status_human_readable: string;
     /**
      * 
      * @type {ActionType}
@@ -70,10 +76,10 @@ export interface ActionRelation {
     triggered_from: ActionTriggeredFrom;
     /**
      * 
-     * @type {Resource}
+     * @type {ActionResource}
      * @memberof ActionRelation
      */
-    resource: Resource;
+    resource: ActionResource;
     /**
      * 
      * @type {ActionSummary}

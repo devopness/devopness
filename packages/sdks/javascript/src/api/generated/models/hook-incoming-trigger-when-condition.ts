@@ -33,13 +33,13 @@ export interface HookIncomingTriggerWhenCondition {
      */
     type: HookIncomingTriggerWhenConditionType;
     /**
-     * A dot-notation path of the request body where the value will be checked.
+     * A dot-notation path of the request body attribute to be used as the value to evaluate this condition.
      * @type {string}
      * @memberof HookIncomingTriggerWhenCondition
      */
     path: string;
     /**
-     * An list of accepted values to checked field.
+     * List of accepted values for this condition.
      * @type {Array<boolean | number | string>}
      * @memberof HookIncomingTriggerWhenCondition
      */

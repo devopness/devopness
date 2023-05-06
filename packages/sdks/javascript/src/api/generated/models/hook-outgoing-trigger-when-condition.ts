@@ -12,8 +12,6 @@
  */
 
 
-import { HookOutgoingTriggerWhenActionStatus } from './hook-outgoing-trigger-when-action-status';
-import { HookOutgoingTriggerWhenConditionType } from './hook-outgoing-trigger-when-condition-type';
 
 /**
  * 
@@ -22,16 +20,16 @@ import { HookOutgoingTriggerWhenConditionType } from './hook-outgoing-trigger-wh
  */
 export interface HookOutgoingTriggerWhenCondition {
     /**
-     * 
-     * @type {HookOutgoingTriggerWhenConditionType}
+     * A dot-notation path of the outgoing hook variable to be used as the value to evaluate this condition.
+     * @type {string}
      * @memberof HookOutgoingTriggerWhenCondition
      */
-    type: HookOutgoingTriggerWhenConditionType;
+    path: string;
     /**
-     * A list of accepted values to checked field.
-     * @type {Array<HookOutgoingTriggerWhenActionStatus>}
+     * List of accepted values for this condition.
+     * @type {Array<string>}
      * @memberof HookOutgoingTriggerWhenCondition
      */
-    accepted_values: Array<HookOutgoingTriggerWhenActionStatus>;
+    accepted_values: Array<string>;
 }
 

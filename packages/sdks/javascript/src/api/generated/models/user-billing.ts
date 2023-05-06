@@ -12,16 +12,19 @@
  */
 
 
+import { Subscription } from './subscription';
 
 /**
  * 
  * @export
- * @enum {string}
+ * @interface UserBilling
  */
-export enum HookOutgoingTriggerWhenActionStatus {
-    InProgress = 'in-progress',
-    Completed = 'completed',
-    Failed = 'failed'
+export interface UserBilling {
+    /**
+     * 
+     * @type {Subscription}
+     * @memberof UserBilling
+     */
+    active_subscription: Subscription | null;
 }
-
 

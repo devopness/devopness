@@ -63,6 +63,12 @@ export interface ActionStep {
      */
     status: ActionStatus;
     /**
+     * Human readable version of the action status
+     * @type {string}
+     * @memberof ActionStep
+     */
+    status_human_readable?: string;
+    /**
      * The date and time when the action started execution (i.e., left the `pending/queued` status)
      * @type {string}
      * @memberof ActionStep

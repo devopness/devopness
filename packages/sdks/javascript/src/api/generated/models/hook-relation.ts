@@ -14,9 +14,8 @@
 
 import { ActionType } from './action-type';
 import { HookIncomingSettings } from './hook-incoming-settings';
-import { HookIncomingTriggerWhenCondition } from './hook-incoming-trigger-when-condition';
 import { HookOutgoingSettings } from './hook-outgoing-settings';
-import { HookOutgoingTriggerWhenCondition } from './hook-outgoing-trigger-when-condition';
+import { HookTriggerWhen } from './hook-trigger-when';
 import { HookType } from './hook-type';
 import { ResourceType } from './resource-type';
 
@@ -117,11 +116,11 @@ export interface HookRelation {
      */
     settings: HookIncomingSettings | HookOutgoingSettings | null;
     /**
-     * Conditions that must be met to trigger the hook
-     * @type {Array<HookIncomingTriggerWhenCondition | HookOutgoingTriggerWhenCondition>}
+     * 
+     * @type {HookTriggerWhen}
      * @memberof HookRelation
      */
-    trigger_when: Array<HookIncomingTriggerWhenCondition | HookOutgoingTriggerWhenCondition>;
+    trigger_when: HookTriggerWhen;
     /**
      * The date and time when the record was created
      * @type {string}

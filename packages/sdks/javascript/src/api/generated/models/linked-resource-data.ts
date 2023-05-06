@@ -12,48 +12,35 @@
  */
 
 
-import { ServerBlueprintSpec } from './server-blueprint-spec';
 
 /**
- * Blueprint for creating a server
+ * Object with common attributes that identify a linked resource
  * @export
- * @interface ServerBlueprint
+ * @interface LinkedResourceData
  */
-export interface ServerBlueprint {
+export interface LinkedResourceData {
     /**
-     * The unique id of the blueprint
+     * The unique ID of the resource
      * @type {number}
-     * @memberof ServerBlueprint
+     * @memberof LinkedResourceData
      */
-    id?: number;
+    id: number;
     /**
-     * Name of the blueprint
+     * Resource name
      * @type {string}
-     * @memberof ServerBlueprint
+     * @memberof LinkedResourceData
      */
-    name?: string;
-    /**
-     * The blueprint type
-     * @type {string}
-     * @memberof ServerBlueprint
-     */
-    type?: string;
-    /**
-     * 
-     * @type {ServerBlueprintSpec}
-     * @memberof ServerBlueprint
-     */
-    spec?: ServerBlueprintSpec;
+    name: string;
     /**
      * The date and time when the record was created
      * @type {string}
-     * @memberof ServerBlueprint
+     * @memberof LinkedResourceData
      */
     created_at?: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
-     * @memberof ServerBlueprint
+     * @memberof LinkedResourceData
      */
     updated_at?: string;
 }
