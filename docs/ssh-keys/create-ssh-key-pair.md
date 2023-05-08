@@ -1,5 +1,5 @@
 ---
-title: Create a SSH key pair
+title: Create an SSH key pair
 intro: Sometimes you may need to connect to your servers on a new device. Create SSH keys to authenticate your server access on the new device.
 links:
     overview:
@@ -9,6 +9,7 @@ links:
         - /docs/ssh-keys/add-ssh-key
     guides:
     related:
+        - /docs/ssh-keys/add-ssh-key
         - /docs/ssh-keys/remove-ssh-key
     featured:
 ---
@@ -17,9 +18,11 @@ links:
     ```bash
     ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
     ```
-    > This creates a new SSH key, using the provided email as a label
+    > This creates a new SSH key, using the provided email as a label.
+    > Devopness is working to support the most populars cryptosystem keys types,
+    > for now we are are supporting RSA and DSA.
 1. Follow the prompts to complete the creation of the new SSH Key pair
-    > There should be 2 new files inside `$USER/.ssh` directory: `id_rsa` and `id_rsa.pub`
+    > There should be 2 new files inside `$USER/.ssh` directory, `id_rsa` (private key) and `id_rsa.pub` (public key)
 1. Start the `ssh-agent`, using command:
     ```bash
     eval "$(ssh-agent -s)"
