@@ -5,7 +5,9 @@ links:
     overview:
     quickstart:
     previous:
+        - /docs/servers/ssh-into-server
     next:
+        - /docs/pipelines/add-pipeline-step
     guides:
     related:
     featured:
