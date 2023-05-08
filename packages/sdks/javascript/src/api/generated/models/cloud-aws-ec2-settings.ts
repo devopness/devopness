@@ -12,7 +12,7 @@
  */
 
 
-import { CloudOs } from './cloud-os';
+import { CloudOsVersionCode } from './cloud-os-version-code';
 
 /**
  * 
@@ -40,9 +40,9 @@ export interface CloudAwsEc2Settings {
     storage_size: number;
     /**
      * 
-     * @type {CloudOs}
+     * @type {CloudOsVersionCode}
      * @memberof CloudAwsEc2Settings
      */
-    os: CloudOs;
+    os_version_code: CloudOsVersionCode | null;
 }
 

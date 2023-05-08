@@ -14,7 +14,6 @@
 
 import { Language } from './language';
 import { SocialAccountRelation } from './social-account-relation';
-import { Subscription } from './subscription';
 
 /**
  * 
@@ -58,12 +57,6 @@ export interface UserMe {
      * @memberof UserMe
      */
     social_accounts: Array<SocialAccountRelation>;
-    /**
-     * 
-     * @type {Subscription}
-     * @memberof UserMe
-     */
-    active_subscription: Subscription | null;
     /**
      * The date and time when the record was created
      * @type {string}

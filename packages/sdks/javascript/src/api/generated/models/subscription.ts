@@ -12,6 +12,7 @@
  */
 
 
+import { SubscriptionBalance } from './subscription-balance';
 
 /**
  * The user\'s active subscription
@@ -68,12 +69,6 @@ export interface Subscription {
      */
     price_currency?: string;
     /**
-     * If this subscription is a trial, this field indicates when it will end
-     * @type {string}
-     * @memberof Subscription
-     */
-    trial_ends_at?: string | null;
-    /**
      * If not null, indicates the date when this subscription was cancelled
      * @type {string}
      * @memberof Subscription
@@ -97,5 +92,11 @@ export interface Subscription {
      * @memberof Subscription
      */
     updated_at?: string;
+    /**
+     * The list of subscription balances
+     * @type {Array<SubscriptionBalance>}
+     * @memberof Subscription
+     */
+    balances?: Array<SubscriptionBalance>;
 }
 

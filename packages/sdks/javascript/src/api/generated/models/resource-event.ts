@@ -12,24 +12,31 @@
  */
 
 
+import { Subscription } from './subscription';
 
 /**
  * 
  * @export
- * @interface CloudOs
+ * @interface ResourceEvent
  */
-export interface CloudOs {
+export interface ResourceEvent {
     /**
-     * The operating system\'s name
+     * The resource type to create events for.
      * @type {string}
-     * @memberof CloudOs
+     * @memberof ResourceEvent
      */
-    name: string;
+    resource_type: string;
     /**
-     * The version of the operating system
+     * The resource ID.
      * @type {string}
-     * @memberof CloudOs
+     * @memberof ResourceEvent
      */
-    version: string;
+    resource_id: string;
+    /**
+     * 
+     * @type {Subscription}
+     * @memberof ResourceEvent
+     */
+    resource_data: Subscription | null;
 }
 

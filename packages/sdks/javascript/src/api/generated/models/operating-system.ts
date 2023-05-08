@@ -12,7 +12,7 @@
  */
 
 
-import { OperatingSystemSupportedVersions } from './operating-system-supported-versions';
+import { OperatingSystemVersion } from './operating-system-version';
 
 /**
  * 
@@ -39,10 +39,10 @@ export interface OperatingSystem {
      */
     hint: string;
     /**
-     * List of operating system versions supported by Devopness
-     * @type {Array<OperatingSystemSupportedVersions>}
+     * 
+     * @type {Array<OperatingSystemVersion>}
      * @memberof OperatingSystem
      */
-    supported_versions: Array<OperatingSystemSupportedVersions>;
+    supported_versions: Array<OperatingSystemVersion>;
 }
 

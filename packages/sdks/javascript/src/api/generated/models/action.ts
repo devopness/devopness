@@ -14,6 +14,7 @@
 
 import { ActionData } from './action-data';
 import { ActionHookRequest } from './action-hook-request';
+import { ActionResource } from './action-resource';
 import { ActionStatus } from './action-status';
 import { ActionSummary } from './action-summary';
 import { ActionTriggeredFrom } from './action-triggered-from';
@@ -21,7 +22,6 @@ import { ActionType } from './action-type';
 import { EnvironmentRelation } from './environment-relation';
 import { ProjectRelation } from './project-relation';
 import { RelatedAction } from './related-action';
-import { Resource } from './resource';
 import { ServerAction } from './server-action';
 import { UserRelation } from './user-relation';
 
@@ -49,6 +49,12 @@ export interface Action {
      * @memberof Action
      */
     status: ActionStatus;
+    /**
+     * Current item status human readable
+     * @type {string}
+     * @memberof Action
+     */
+    status_human_readable: string;
     /**
      * 
      * @type {ActionType}
@@ -99,10 +105,10 @@ export interface Action {
     triggered_by_user?: UserRelation;
     /**
      * 
-     * @type {Resource}
+     * @type {ActionResource}
      * @memberof Action
      */
-    resource: Resource;
+    resource: ActionResource;
     /**
      * 
      * @type {ActionSummary}

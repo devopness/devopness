@@ -40,6 +40,12 @@ export interface ServerAction {
      */
     status?: ActionStatus;
     /**
+     * Human readable version of the action status
+     * @type {string}
+     * @memberof ServerAction
+     */
+    status_human_readable?: string;
+    /**
      * The total number of steps to complete the action
      * @type {number}
      * @memberof ServerAction
