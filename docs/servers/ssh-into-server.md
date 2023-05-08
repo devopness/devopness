@@ -22,7 +22,7 @@ links:
     > The ip address should be a number separated by dots, e.g: 41.234.56.78
 1. On Terminal, run the remote login program with the command
     ```bash
-    ssh devopness@192.0.2.1
+    ssh devopness@<server IP address copied in previous steps>
     ```
     > This should give you shell access to your remote server hosted at the IP address, logged in as user `devopness`
 1. Test your SSH connection running simple commands on your server, e.g: `whoami` or `ls`
