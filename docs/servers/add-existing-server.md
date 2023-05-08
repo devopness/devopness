@@ -7,7 +7,7 @@ links:
     previous:
         - docs/environments/add-environment
     next:
-        - /docs/ssh-keys/test-ssh-connection
+        - /docs/servers/ssh-into-server
     guides:
     related:
     featured:

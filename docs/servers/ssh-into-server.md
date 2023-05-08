@@ -1,6 +1,6 @@
 ---
-title: Test SSH connection
-intro: Sometimes you may need to verify your ssh access to your servers. Testing your access is important to ensure the creation and adition of your keys were setup correctly.
+title: Connect to your servers using SSH
+intro: Sometimes you and your team members need to connect to your servers to run commands from the terminal. Connect via SSH to ensure your servers only executes commands by authorized SSH keys.
 links:
     overview:
     quickstart:
