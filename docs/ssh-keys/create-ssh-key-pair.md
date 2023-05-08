@@ -17,11 +17,9 @@ links:
 
 1. In a terminal window, run command below, substituting in your email address
     ```bash
-    ssh-keygen -t rsa -b 4096 -C "<your devopness email address>"
+    ssh-keygen -t rsa -b 4096 -C "<your email address>"
     ```
     > This creates a new SSH key, using the provided email as a label.
-    > Devopness is working to support the most populars cryptosystem keys types,
-    > for now we are are supporting RSA and DSA.
 1. Follow the prompts to complete the creation of the new SSH Key pair
     > There should be 2 new files inside `$USER/.ssh` directory, `id_rsa` (private key) and `id_rsa.pub` (public key)
 1. Start the `ssh-agent`, using command:
