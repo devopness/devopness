@@ -17,7 +17,7 @@ links:
 
 1. In a terminal window, run command below, substituting in your Devopness email address
     ```bash
-    ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+    ssh-keygen -t rsa -b 4096 -C "<your devopness email address>"
     ```
     > This creates a new SSH key, using the provided email as a label.
     > Devopness is working to support the most populars cryptosystem keys types,
