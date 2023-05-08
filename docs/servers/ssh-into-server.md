@@ -26,4 +26,4 @@ links:
     ```
     > This should give you shell access to your remote server hosted at the IP address, logged in as user `devopness`
 1. Run commands on your server, e.g: `htop`
-1. Run command `logout`, to close connection.
+1. When you are finished with your remote server terminal usage, run the `exit` command to close the SSH connection.
