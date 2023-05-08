@@ -5,7 +5,7 @@ links:
     overview:
     quickstart:
     previous:
-        - /docs/configuration-files/create-dotenv-file
+        - /docs/configuration-files/add-configuration-file
     next:
         - /docs/roles/add-role
     guides:
