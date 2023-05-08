@@ -15,7 +15,7 @@ links:
     featured:
 ---
 
-1. On Terminal, run command below, substituting in your Devopness email address
+1. In a terminal window, run command below, substituting in your Devopness email address
     ```bash
     ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
     ```
