@@ -1,6 +1,6 @@
 ---
-title: Test SSH connection
-intro: Sometimes you may need to verify your ssh access to your servers. Testing your access is important to ensure the creation and adition of your keys were setup correctly.
+title: Connect to your servers using SSH
+intro: Sometimes you and your team members need to connect to your servers to run commands from the terminal. Connect via SSH to ensure your servers only executes commands by authorized SSH keys.
 links:
     overview:
     quickstart:
@@ -24,4 +24,5 @@ links:
     ssh devopness@192.0.2.1
     ```
     > This should give you shell access to your remote server hosted at the IP address, logged in as user `devopness`
+1. Run commands on your server, e.g: `htop`
 1. Run command `logout`, to close connection.
