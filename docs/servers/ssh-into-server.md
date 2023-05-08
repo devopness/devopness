@@ -25,5 +25,5 @@ links:
     ssh devopness@192.0.2.1
     ```
     > This should give you shell access to your remote server hosted at the IP address, logged in as user `devopness`
-1. Run commands on your server, e.g: `htop`
+1. Test your SSH connection running simple commands on your server, e.g: `whoami` or `ls`
 1. When you are finished with your remote server terminal usage, run the `exit` command to close the SSH connection.
