@@ -1,5 +1,5 @@
 ---
-title: Create configuration file
+title: Add configuration file
 intro:
 links:
     overview:
