@@ -22,8 +22,4 @@ links:
     > This creates a new SSH key, using the provided email as a label.
 1. Follow the prompts to complete the creation of the new SSH Key pair
     > There should be 2 new files inside `$USER/.ssh` directory, `id_rsa` (private key) and `id_rsa.pub` (public key)
-1. Add your private key to `ssh-agent`
-    ```bash
-    ssh-add ~/.ssh/id_rsa
-    ```
 1. To add the public key (`id_rsa.pub`) to Devopness, see [Add a SSH key](/docs/ssh-keys/add-ssh-key)
