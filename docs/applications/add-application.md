@@ -7,7 +7,7 @@ links:
     previous:
         - /docs/ssh-keys/test-ssh-connection
     next:
-        - /docs/pipelines/add-new-step
+        - /docs/pipelines/add-pipeline-step
     guides:
     related:
     featured:
