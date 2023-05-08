@@ -19,7 +19,7 @@ links:
 1. Find the `Servers` card
 1. Click the `View` in the `Servers` card to see a list of existing `Servers`
 1. In the list of servers, find the server you want to connect and copy the server' IP Address
-    > The ip address should be number separated by dots, e.g: 192.0.2.1
+    > The ip address should be a number separated by dots, e.g: 41.234.56.78
 1. On Terminal, run the remote login program with the command
     ```bash
     ssh devopness@192.0.2.1
