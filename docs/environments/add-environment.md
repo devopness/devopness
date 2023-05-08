@@ -5,7 +5,9 @@ links:
     overview:
     quickstart:
     previous:
+        - /docs/projects/add-project
     next:
+        - /docs/servers
     guides:
     related:
     featured:

@@ -5,8 +5,9 @@ links:
     overview:
     quickstart:
     previous:
+        - /docs/servers
     next:
-        - /docs/ssh-keys/remove-ssh-key
+        - /docs/applications/add-application
     guides:
     related:
         - /docs/ssh-keys/add-ssh-key

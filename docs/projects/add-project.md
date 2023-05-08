@@ -6,6 +6,7 @@ links:
     quickstart:
     previous:
     next:
+        - /docs/environments/add-environment
     guides:
     related:
     featured:

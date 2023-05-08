@@ -5,10 +5,14 @@ links:
     overview:
     quickstart:
     previous:
+        - /docs/environments/add-environment
     next:
     guides:
         - docs/servers/add-existing-server
         - docs/servers/add-gcp-server
     related:
+        - /docs/servers/add-aws-server
+        - /docs/servers/add-existing-server
+        - /docs/servers/add-gcp-server
     featured:
 ---

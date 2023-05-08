@@ -5,7 +5,9 @@ links:
     overview:
     quickstart:
     previous:
+        - /docs/environments/add-environment
     next:
+        - /docs/servers/ssh-into-server
     guides:
     related:
     featured:

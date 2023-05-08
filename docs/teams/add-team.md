@@ -5,7 +5,9 @@ links:
     overview: Project owners can create teams as a initial step to manage permissions and collaboration on environment resources.
     quickstart:
     previous:
+        - /docs/roles/add-role
     next:
+        - /docs/teams/add-member-to-team
     guides:
     related:
     featured:
