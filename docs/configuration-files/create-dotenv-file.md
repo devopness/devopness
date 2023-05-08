@@ -5,7 +5,7 @@ links:
     overview:
     quickstart:
     previous:
-        - /docs/pipelines/add-new-step
+        - /docs/pipelines/add-pipeline-step
     next:
         - /docs/applications/deploy-application
     guides:
