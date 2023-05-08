@@ -1,5 +1,5 @@
 ---
-title: Create `.env` file
+title: Create configuration file
 intro:
 links:
     overview:

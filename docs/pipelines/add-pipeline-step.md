@@ -7,7 +7,7 @@ links:
     previous:
         - /docs/applications/add-application
     next:
-        - /docs/configuration-files/create-dotenv-file
+        - /docs/configuration-files/add-configuration-file
     guides:
     related:
     featured:
