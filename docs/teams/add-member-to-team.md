@@ -5,6 +5,7 @@ links:
     overview: Project owners can add members to multiple teams and invite non-members to join a project team.
     quickstart:
     previous:
+        - /docs/teams/add-team
     next:
     guides:
     related:

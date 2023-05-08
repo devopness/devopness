@@ -5,7 +5,9 @@ links:
     overview:
     quickstart:
     previous:
+        - /docs/environments/add-environment
     next:
+        - /docs/ssh-keys/test-ssh-connection
     guides:
     related:
     featured:

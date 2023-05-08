@@ -5,7 +5,9 @@ links:
     overview:
     quickstart:
     previous:
+        - /docs/ssh-keys/test-ssh-connection
     next:
+        - /docs/pipelines/add-new-step
     guides:
     related:
     featured:
