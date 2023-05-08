@@ -5,6 +5,7 @@ links:
     overview:
     quickstart:
     previous:
+        - /docs/ssh-keys/test-ssh-connection
     next:
     guides:
     related:

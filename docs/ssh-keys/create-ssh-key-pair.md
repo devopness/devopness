@@ -5,6 +5,7 @@ links:
     overview:
     quickstart:
     previous:
+        - /docs/ssh-keys
     next:
         - /docs/ssh-keys/add-ssh-key
     guides:

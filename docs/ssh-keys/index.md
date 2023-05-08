@@ -6,6 +6,7 @@ links:
     quickstart:
     previous:
     next:
+        - /docs/ssh-keys/create-ssh-key-pair
     guides:
     related:
     featured:

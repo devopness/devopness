@@ -5,7 +5,9 @@ links:
     overview:
     quickstart:
     previous:
+        - /docs/ssh-keys/create-ssh-key-pair
     next:
+        - /docs/ssh-keys/test-ssh-connection
     guides:
     related:
         - /docs/ssh-keys/create-ssh-key-pair
