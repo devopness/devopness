@@ -28,7 +28,11 @@ For more details and reference see the existing [endpoints specs](docs/spec).
 ### Prerequisites
 - [Docker](https://www.docker.com/products/docker-desktop/)
 - [make](https://www.gnu.org/software/make/)
-  - `make` is pre-installed in most Linux systems. In `macOS` it is included as part of the `Xcode` command line utils
+  - `make` is pre-installed in most Linux systems.
+  - In `macOS` it is included as part of the `Xcode` command line utils. It can be installed with the following command:
+  ```
+  xcode-select --install
+  ```
 
 ## Generate docs
 ```bash
