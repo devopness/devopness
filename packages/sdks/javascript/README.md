@@ -84,7 +84,7 @@ To build and test the SDK locally, [**fork this repository**](https://github.com
 - [Docker](https://www.docker.com/products/docker-desktop/)
 - [make](https://www.gnu.org/software/make/)
   - `make` is pre-installed in most Linux systems.
-  - In `macOS` it is included as part of the `Xcode` command line utils. It can be installed with the homebrew installation or the follow command:
+  - In `macOS` it is included as part of the `Xcode` command line utils. It can be installed with the following command:
   ```
   xcode-select --install
   ```
