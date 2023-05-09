@@ -1,5 +1,5 @@
 ---
-title: Add an Pipeline
+title: Add a Pipeline
 intro: By adding a pipeline to your environment's resources, you can automate their deployment by using customized pipeline steps.
 links:
     overview:
