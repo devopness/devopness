@@ -18,6 +18,6 @@ links:
 5. On the upper-right corner of the applications details view click `SETTINGS`
 6. Use the drop-down menu to chose `PIPELINES`
 8. In the list of pipelines find the pipeline you want to remove and click `DETAILS`
-9. On the upper-right corner of the key details click `...`
+9. On the upper-right corner of the pipeline details view details click `...`
 10. Use the drop-down menu to chose `REMOVE`
 11. Follow the instructions in the delete form then click `REMOVE`
