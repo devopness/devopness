@@ -1,5 +1,5 @@
 ---
-title: Remove Configuration File
+title: Remove a Configuration File
 intro: Removing unused configuration files can ensure that only relevant and necessary information is utilized, thereby reducing the risk of errors during the deployment process.
 links:
     overview:
