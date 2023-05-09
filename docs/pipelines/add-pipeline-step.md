@@ -1,5 +1,5 @@
 ---
-title: Add New Step to Pipeline
+title: Add Step to Pipeline
 intro: Add a pipeline step to perform a specific task in a defined order during the resource deployment process of your pipeline.
 links:
     overview:
