@@ -1,5 +1,5 @@
 ---
-title: Remove an Pipeline
+title: Remove a Pipeline
 intro: By removing unused pipelines can help ensure that only relevant pipelines are active and properly managed.
 links:
     overview:
