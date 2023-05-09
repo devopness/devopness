@@ -1,6 +1,6 @@
 ---
 title: Edit an Pipeline
-intro: 
+intro: Editing a pipeline is crucial as it provides a clear and concise way to identify and differentiate between pipelines in your environment.
 links:
     overview:
     quickstart:
