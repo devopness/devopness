@@ -18,6 +18,6 @@ links:
 1. Click `View` in the `Applications` card to see a list of existing `Applications`
 4. In the list of applications find the application where you want to add a configuration file and click `DETAILS`
 5. On the upper-right corner of the applications details view click `SETTINGS`
-1. Use the drop-down menu to chose `CONFIGURATION FILE`
+1. Use the drop-down menu to choose `CONFIGURATION FILE`
 1. On the right corner of the list click `ADD CONFIGURATION FILE`
 2. Follow the instructions in the add configuration file step form then click `CONFIRM`
