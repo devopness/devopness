@@ -7,6 +7,7 @@ links:
     previous:
         - /docs/teams/add-team
     next:
+        - /docs/environments/add-teams-to-environment
     guides:
     related:
     featured:
