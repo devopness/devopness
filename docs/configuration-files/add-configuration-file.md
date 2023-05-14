@@ -20,4 +20,4 @@ links:
 5. On the upper-right corner of the applications details view click `SETTINGS`
 1. Use the drop-down menu to choose `CONFIGURATION FILE`
 1. On the right corner of the list click `ADD CONFIGURATION FILE`
-2. Follow the instructions in the add configuration file step form then click `CONFIRM`
+1. Follow the instructions in the add configuration file step form then click `CONFIRM`
