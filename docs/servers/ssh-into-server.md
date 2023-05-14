@@ -7,7 +7,7 @@ links:
     previous:
         - /docs/servers
     next:
-        - /docs/applications/add-application
+        - /docs/servers/check-server-provision-logs
     guides:
     related:
         - /docs/ssh-keys/add-ssh-key
