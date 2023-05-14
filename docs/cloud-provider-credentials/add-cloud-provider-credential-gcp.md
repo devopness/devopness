@@ -33,6 +33,7 @@ links:
 1.. Having your service account listed, go to the `Actions` column, click the three dot menu on your service account and choose `Manage details` option
 1. Copy your service account email to your clipboard
 1. Bellow your service account name, go to the `PERMISSIONS` tab
+1. In the permissions table, go to `VIEW BY ROLES` tab
 1. Make sure your service account has the `Compute Engine Service Agent` role
 1. If the service account doesn't have the `Compute Engine Service Agent` role, set it:
     - Click `GRANT ACCESS` button
