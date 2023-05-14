@@ -12,7 +12,7 @@ links:
     featured:
 ---
 
-1. Access a GCP project or create a new one: https://console.cloud.google.com/project
+1. Access a GCP project or create a new one: [https://console.cloud.google.com/project](https://console.cloud.google.com/project)
     > If you created a new project, a notification modal will appear showing your new project creation status.
     > Reload the console page if your new project is not listed a few seconds after its creation is succeded.
 1. Make sure `Compute Engine API` is enabled on the selected Project:
@@ -33,6 +33,7 @@ links:
 1.. Having your service account listed, go to the `Actions` column, click the three dot menu on your service account and choose `Manage details` option
 1. Copy your service account email to your clipboard
 1. Bellow your service account name, go to the `PERMISSIONS` tab
+1. In the permissions table, go to `VIEW BY ROLES` tab
 1. Make sure your service account has the `Compute Engine Service Agent` role
 1. If the service account doesn't have the `Compute Engine Service Agent` role, set it:
     - Click `GRANT ACCESS` button
