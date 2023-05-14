@@ -20,4 +20,4 @@ links:
 8. In the list of configuration files find the configuration file you want to edit and click `DETAILS`
 9. On the upper-right corner of the key details click `...`
 10. Use the drop-down menu to choose `EDIT`
-11. Follow the instructions in the configuration file edit form then click `REMOVE`
+11. Follow the instructions in the configuration file edit form then click `CONFIRM`
