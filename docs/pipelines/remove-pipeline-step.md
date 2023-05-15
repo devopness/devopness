@@ -1,13 +1,11 @@
 ---
-title: Add Step to Pipeline
-intro: Add a pipeline step to perform a specific task in a defined order during the resource deployment process of your pipeline.
+title: Remove Step from Pipeline
+intro: Removing unused pipeline steps can help to ensure that only necessary steps are executed, simplifying the management of the pipeline and reducing the risk of errors during the deployment process.
 links:
     overview:
     quickstart:
     previous:
-        - /docs/applications/add-application
     next:
-        - /docs/configuration-files/add-configuration-file
     guides:
     related:
     featured:
@@ -21,5 +19,5 @@ links:
 1. Use the drop-down menu to choose `PIPELINES`
 1. In the list of pipeline find the pipeline you want to manage and click `DETAILS`
 1. On the upper-right corner of pipeline details view click `STEPS`
-1. On the upper-right corner of the list click `ADD STEP`
-1. Follow the instructions in the add pipeline step form then click `CONFIRM`
+1. In the list of pipeline steps find the pipeline step you want to remove and click `REMOVE`
+1. Follow the instructions in the remove pipeline step form then click `REMOVE`
