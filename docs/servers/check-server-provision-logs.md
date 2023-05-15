@@ -19,6 +19,6 @@ links:
 1. On the upper-right corner, click `ACTIONS` to see a list of actions for all `Servers`
 1. In the list of actions, find the action you want to inspect and click `LOGS` to see the list of action steps
     > There are 3 actions related to the server provision process: `Provision`, `Provision-check` and `Add`;
-    > each action can have one of the following status: `Pending`, `In progress`, `Completed` or `Failed`.
+    > each action can have one of the following status: `Queued`, `Pending`, `In progress`, `Completed` or `Failed`.
 1. In the action details view, find the server and the action step you want to inspect and click `LOGS`
 1. A text area will be displayed containing the output log of the action step execution
