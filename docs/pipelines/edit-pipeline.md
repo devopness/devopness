@@ -20,4 +20,4 @@ links:
 1. In the list of pipelines find the pipeline you want to edit and click `DETAILS`
 1. On the upper-right corner of the key details click `...`
 1. Use the drop-down menu to choose `EDIT`
-1. Follow the instructions in the pipeline edit form then click `REMOVE`
+1. Follow the instructions in the pipeline edit form then click `CONFIRM`
