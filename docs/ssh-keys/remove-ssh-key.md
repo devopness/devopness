@@ -5,6 +5,7 @@ links:
     overview:
     quickstart:
     previous:
+        - /docs/servers/ssh-into-server
     next:
     guides:
     related:
