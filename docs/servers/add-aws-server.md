@@ -7,7 +7,7 @@ links:
     previous:
         - /docs/environments/add-environment
     next:
-        - /docs/servers/ssh-into-server
+        - /docs/servers/check-server-provision-logs
     guides:
     related:
     featured:
