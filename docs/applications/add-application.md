@@ -5,7 +5,7 @@ links:
     overview:
     quickstart:
     previous:
-        - /docs/servers/check-server-provision-logs
+        - /docs/servers/ssh-into-server
     next:
         - /docs/pipelines/add-pipeline-step
     guides:
