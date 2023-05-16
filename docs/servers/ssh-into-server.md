@@ -5,9 +5,9 @@ links:
     overview:
     quickstart:
     previous:
-        - /docs/servers
-    next:
         - /docs/servers/check-server-provision-logs
+    next:
+        - /docs/applications/add-application
     guides:
     related:
         - /docs/ssh-keys/add-ssh-key

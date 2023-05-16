@@ -5,9 +5,9 @@ links:
     overview:
     quickstart:
     previous:
-        - /docs/servers/ssh-into-server
+        - /docs/servers
     next:
-        - /docs/applications/add-application
+        - /docs/servers/ssh-into-server
     guides:
     related:
     featured:
