@@ -1,5 +1,5 @@
 ---
-title: Upgrade from Free Subscription Plan
+title: Upgrade your Devopness Subscription
 intro: Sometimes your projects have a high demand for changes and your Devopness free credits reach the limit. Upgrade from free subscription plan to ensure your team can continue to iterate on the projects.
 links:
     overview:
