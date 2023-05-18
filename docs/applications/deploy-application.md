@@ -19,5 +19,5 @@ links:
 1. Click `DEPLOY` on the application you want to deploy
 1. Choose the branch and the pipeline to be deployed, then click `Next`
 1. Review deploy information then click `Confirm`
-    > There should be a green notification popup saying "Deployment triggered, please wait"
+   > A notification popup will be displayed, confirming that the deployment has been triggered
 1. Wait for the `Application:Deploy` action to be completed
