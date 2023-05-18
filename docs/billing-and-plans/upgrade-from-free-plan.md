@@ -12,7 +12,6 @@ links:
 ---
 
 1. On Devopness, in the upper-right corner of any page, click your profile icon then click `Billing & plans`
-    > This page shows the current subscription plan information including: plan name, credit limit, remaining credits and expiration date.
 1. Click `MANAGE YOUR PLAN`
     > This will open your billing page
 1. In `Subscribe to Devopness` section, select a plan then click `Choose Plan`
