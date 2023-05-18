@@ -1,5 +1,5 @@
 ---
-title: Billing & Plans
+title: Billing and Plans
 intro: Learn how to manage your subscription plan on Devopness.
 links:
     overview:
