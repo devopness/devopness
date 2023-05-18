@@ -14,4 +14,5 @@ links:
 1. On Devopness, in the upper-right corner of any page, click your profile icon then click `Billing & plans`
 1. Click `MANAGE YOUR PLAN`
     > This will redirect you to the billing management page
-1. In `Current subscription` section, click `Cancel my subscription` and follow the prompts
+1. In `Current subscription` section, click `Cancel my subscription`
+1. Follow the prompts to complete the subscription cancellation
