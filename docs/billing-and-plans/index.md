@@ -8,7 +8,7 @@ links:
     next:
     guides:
     related:
-        - /docs/billing-and-plans/upgrade-from-free-plan
-        - /docs/billing-and-plans/cancel-active-paid-plan
+        - /docs/billing-and-plans/upgrade-subscription
+        - /docs/billing-and-plans/cancel-subscription
     featured:
 ---
