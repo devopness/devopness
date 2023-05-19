@@ -9017,6 +9017,52 @@
         }
       }
     },
+    "/users/{user_id}/activity": {
+      "get": {
+        "summary": "Get current user's activity info",
+        "operationId": "getUserActivity",
+        "description": {
+          "$ref": "../spec/descriptions/get-user-activity.md"
+        },
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "user_id",
+            "description": "The ID of the user.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserActivity"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/variables/{variable_id}": {
       "delete": {
         "summary": "Delete a variable by ID",
@@ -17615,6 +17661,88 @@
         ],
         "example": "install-dependencies"
       },
+      "TriggeredActionStats": {
+        "type": "object",
+        "description": "Information about the action that was triggered",
+        "properties": {
+          "resource_type": {
+            "type": "string",
+            "description": "Type of resource used in the action",
+            "example": "server"
+          },
+          "action_type": {
+            "type": "string",
+            "description": "Type of action",
+            "example": "add"
+          },
+          "resource_type_human_readable": {
+            "type": "string",
+            "description": "Type of resource used in action human readable",
+            "example": "Server"
+          },
+          "action_type_human_readable": {
+            "type": "string",
+            "description": "Type of action human readable",
+            "example": "Add"
+          },
+          "summary": {
+            "$ref": "#/components/schemas/TriggeredActionSummary"
+          }
+        }
+      },
+      "TriggeredActionStatsList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/TriggeredActionStats"
+        }
+      },
+      "TriggeredActionSummary": {
+        "type": "object",
+        "description": "Summary of actions that were triggered by the user",
+        "properties": {
+          "count": {
+            "type": "number",
+            "description": "Total of actions that were triggered by the user",
+            "example": 5
+          },
+          "queued": {
+            "type": "number",
+            "description": "Total of actions that were triggered by the user with status queued",
+            "example": 1
+          },
+          "pending": {
+            "type": "number",
+            "description": "Total of actions that were triggered by the user with status pending",
+            "example": 1
+          },
+          "in_progress": {
+            "type": "number",
+            "description": "Total of actions that were triggered by the user with status in_progress",
+            "example": 1
+          },
+          "completed": {
+            "type": "number",
+            "description": "Total of actions that were triggered by the user with status completed",
+            "example": 1
+          },
+          "failed": {
+            "type": "number",
+            "description": "Total of actions that were triggered by the user with status failed",
+            "example": 1
+          }
+        }
+      },
+      "TriggeredActions": {
+        "type": "object",
+        "properties": {
+          "summary": {
+            "$ref": "#/components/schemas/TriggeredActionSummary"
+          },
+          "operations": {
+            "$ref": "#/components/schemas/TriggeredActionStatsList"
+          }
+        }
+      },
       "User": {
         "type": "object",
         "properties": {
@@ -17666,6 +17794,29 @@
           "updated_at"
         ]
       },
+      "UserActivity": {
+        "type": "object",
+        "properties": {
+          "projects": {
+            "$ref": "#/components/schemas/UserProjectStats"
+          },
+          "environments": {
+            "$ref": "#/components/schemas/UserEnvironmentStats"
+          },
+          "teams": {
+            "$ref": "#/components/schemas/UserTeamStats"
+          },
+          "triggered_actions": {
+            "$ref": "#/components/schemas/TriggeredActions"
+          }
+        },
+        "required": [
+          "projects",
+          "environments",
+          "teams",
+          "triggered_actions"
+        ]
+      },
       "UserBilling": {
         "type": "object",
         "properties": {
@@ -17689,6 +17840,22 @@
         "required": [
           "email"
         ]
+      },
+      "UserEnvironmentStats": {
+        "type": "object",
+        "description": "Total number of environments that user has access to, as owner or team member.",
+        "properties": {
+          "owner_of": {
+            "type": "number",
+            "description": "Total number of environments that user has access to, as owner.",
+            "example": 4
+          },
+          "member_of": {
+            "type": "number",
+            "description": "Total number of environments that user has access to, as team member.",
+            "example": 6
+          }
+        }
       },
       "UserList": {
         "description": "The list of users",
@@ -17817,6 +17984,22 @@
           "timezones"
         ]
       },
+      "UserProjectStats": {
+        "type": "object",
+        "description": "Total number of projects that user has access to, as owner or team member.",
+        "properties": {
+          "owner_of": {
+            "type": "number",
+            "description": "Total number of projects that user has access to, as owner.",
+            "example": 4
+          },
+          "member_of": {
+            "type": "number",
+            "description": "Total number of projects that user has access to, as team member.",
+            "example": 6
+          }
+        }
+      },
       "UserRefreshToken": {
         "type": "object",
         "properties": {
@@ -17918,6 +18101,22 @@
         "required": [
           "email"
         ]
+      },
+      "UserTeamStats": {
+        "type": "object",
+        "description": "Total number of teams that user has access to, as owner or team member.",
+        "properties": {
+          "owner_of": {
+            "type": "number",
+            "description": "Total number of teams that user has access to, as owner.",
+            "example": 4
+          },
+          "member_of": {
+            "type": "number",
+            "description": "Total number of teams that user has access to, as team member.",
+            "example": 6
+          }
+        }
       },
       "UserUpdate": {
         "type": "object",
