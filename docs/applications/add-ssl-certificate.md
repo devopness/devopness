@@ -6,6 +6,7 @@ links:
     quickstart:
     previous:
     next:
+      - /docs/applications/configure-dns-service
     guides:
     related:
     featured:
