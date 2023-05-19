@@ -519,12 +519,24 @@ TeamUpdate:
   $ref: ./auto-generated/models/team-update.yaml
 TriggerEvent:
   $ref: ./auto-generated/models/trigger-event.yaml
+TriggeredActionStats:
+  $ref: ./auto-generated/models/triggered-action-stats.yaml
+TriggeredActionStatsList:
+  $ref: ./auto-generated/models/triggered-action-stats-list.yaml
+TriggeredActionSummary:
+  $ref: ./auto-generated/models/triggered-action-summary.yaml
+TriggeredActions:
+  $ref: ./auto-generated/models/triggered-actions.yaml
 User:
   $ref: ./auto-generated/models/user.yaml
+UserActivity:
+  $ref: ./auto-generated/models/user-activity.yaml
 UserBilling:
   $ref: ./auto-generated/models/user-billing.yaml
 UserCreate:
   $ref: ./auto-generated/models/user-create.yaml
+UserEnvironmentStats:
+  $ref: ./auto-generated/models/user-environment-stats.yaml
 UserList:
   $ref: ./auto-generated/models/user-list.yaml
 UserLogin:
@@ -535,6 +547,8 @@ UserMe:
   $ref: ./auto-generated/models/user-me.yaml
 UserProfileOptions:
   $ref: ./auto-generated/models/user-profile-options.yaml
+UserProjectStats:
+  $ref: ./auto-generated/models/user-project-stats.yaml
 UserRefreshToken:
   $ref: ./auto-generated/models/user-refresh-token.yaml
 UserRefreshTokenResponse:
@@ -543,6 +557,8 @@ UserRelation:
   $ref: ./auto-generated/models/user-relation.yaml
 UserResendVerification:
   $ref: ./auto-generated/models/user-resend-verification.yaml
+UserTeamStats:
+  $ref: ./auto-generated/models/user-team-stats.yaml
 UserUpdate:
   $ref: ./auto-generated/models/user-update.yaml
 UserUrl:

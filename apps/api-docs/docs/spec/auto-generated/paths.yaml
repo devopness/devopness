@@ -394,6 +394,9 @@
     $ref: ./auto-generated/endpoints/get-user.yaml
   put:
     $ref: ./auto-generated/endpoints/update-user.yaml
+'/users/{user_id}/activity':
+  get:
+    $ref: ./auto-generated/endpoints/get-user-activity.yaml
 '/variables/{variable_id}':
   delete:
     $ref: ./auto-generated/endpoints/delete-variable.yaml
