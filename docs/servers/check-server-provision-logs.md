@@ -5,7 +5,7 @@ links:
     overview:
     quickstart:
     previous:
-        - /docs/servers
+        - /docs/servers/add-aws-server
     next:
         - /docs/servers/ssh-into-server
     guides:
