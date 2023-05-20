@@ -5,7 +5,7 @@ links:
     overview: Project owners can create roles to be used when managing environments team permissions.
     quickstart:
     previous:
-        - /docs/applications/deploy-application
+        - /docs/applications/add-ssl-certificate
     next:
         - /docs/teams/add-team
     guides:

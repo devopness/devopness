@@ -5,6 +5,7 @@ links:
     overview:
     quickstart:
     previous:
+        - /docs
     next:
         - /docs/environments/add-environment
     guides:
