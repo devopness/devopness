@@ -15,5 +15,5 @@ links:
 1. Find the `Servers` card
 1. Click the `View` in the `Servers` card to see a list of existing `Servers`
 1. In the list of servers, find the server you want to connect
-    > The ip address should be a number separated by dots, e.g: 41.234.56.78
+    > The ip address is a number separated by dots, e.g: 41.234.56.78
 1. Copy the server' IP Address
