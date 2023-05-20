@@ -6,7 +6,7 @@ links:
     quickstart:
     previous:
     next:
-      - /docs/applications/configure-dns-service
+      - /docs/servers/find-server-ip-address
     guides:
     related:
     featured:
