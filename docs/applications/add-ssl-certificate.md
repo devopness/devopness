@@ -5,7 +5,9 @@ links:
     overview:
     quickstart:
     previous:
+        - /docs/applications/deploy-application
     next:
+        - /docs/roles/add-role
     guides:
     related:
     featured:
