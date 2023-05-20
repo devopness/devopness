@@ -7,7 +7,7 @@ links:
     previous:
         - /docs/configuration-files/add-configuration-file
     next:
-        - /docs/roles/add-role
+        - /docs/applications/add-ssl-certificate
     guides:
     related:
     featured:

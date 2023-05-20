@@ -6,6 +6,5 @@
 
 - [ ] [DVN-<task or subtask number here>]
 
-<details>
-  <summary>More info to help validate your PR: links, images, videos, ...</summary>
-</details>
+## More info
+<!-- More info to help validate your PR: links, images, videos, ... -->

@@ -5,8 +5,9 @@ links:
     overview:
     quickstart:
     previous:
+        - /docs/applications/deploy-application
     next:
-      - /docs/servers/find-server-ip-address
+        - /docs/servers/find-server-ip-address
     guides:
     related:
     featured:

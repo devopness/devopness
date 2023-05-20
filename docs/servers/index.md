@@ -1,6 +1,6 @@
 ---
 title: Servers
-intro: Learn how to provision servers on multiple cloud providers and also how to connect existing servers to Devopness.
+intro:
 links:
     overview:
     quickstart:
@@ -11,8 +11,10 @@ links:
         - docs/servers/add-existing-server
         - docs/servers/add-gcp-server
     related:
-        - /docs/servers/add-aws-server
-        - /docs/servers/add-existing-server
-        - /docs/servers/add-gcp-server
     featured:
 ---
+
+Devopness allows you to provision servers on multiple cloud providers or connect to existing servers. Choose one of the topics below to get specific instructions for the cloud provider on which you want to add a new server:
+- [Add a Server to Amazon Web Services (AWS)](add-aws-server)
+- [Add a Server to Google Cloud Platform (GCP)](add-gcp-server)
+- [Add an existing Server](add-existing-server)

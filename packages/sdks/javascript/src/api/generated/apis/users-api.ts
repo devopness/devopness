@@ -16,6 +16,7 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { User } from '../../generated/models';
+import { UserActivity } from '../../generated/models';
 import { UserBilling } from '../../generated/models';
 import { UserCreate } from '../../generated/models';
 import { UserLogin } from '../../generated/models';
@@ -65,6 +66,24 @@ export class UsersApiService extends ApiBaseService {
         const requestUrl = '/users/{user_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <User>(requestUrl.replace(`{${"user_id"}}`, encodeURIComponent(String(userId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Get current user\'s activity info
+     * @param {number} userId The ID of the user.
+     */
+    public async getUserActivity(userId: number): Promise<ApiResponse<UserActivity>> {
+        if (userId === null || userId === undefined) {
+            throw new ArgumentNullException('userId', 'getUserActivity');
+        }
+        
+        let queryString = '';
+
+        const requestUrl = '/users/{user_id}/activity' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <UserActivity>(requestUrl.replace(`{${"user_id"}}`, encodeURIComponent(String(userId))));
         return new ApiResponse(response);
     }
 
