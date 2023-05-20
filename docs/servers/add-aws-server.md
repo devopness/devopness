@@ -5,7 +5,7 @@ links:
     overview:
     quickstart:
     previous:
-        - /docs/environments/add-environment
+        - /docs/servers
     next:
         - /docs/servers/check-server-provision-logs
     guides:

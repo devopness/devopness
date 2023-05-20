@@ -7,7 +7,7 @@ links:
     previous:
         - /docs/projects/add-project
     next:
-        - /docs/servers/add-aws-server
+        - /docs/servers
     guides:
     related:
     featured:
