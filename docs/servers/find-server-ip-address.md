@@ -5,9 +5,7 @@ links:
     overview:
     quickstart:
     previous:
-        - /docs/applications/add-ssl-certificate
     next:
-        - /docs/roles/add-role
     guides:
     related:
     featured:
