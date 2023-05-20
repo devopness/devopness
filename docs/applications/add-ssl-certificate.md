@@ -13,6 +13,8 @@ links:
     featured:
 ---
 
+Before issuing an SSL certificate, a valid DNS record pointing to the server is required. If you don't have one configured already, please follow the [Find Server IP Address](/docs/servers/find-server-ip-address) guide and configure a DNS record on your DNS service before continuing to follow this guide.
+
 1. On the chosen Devopness environment, click `View` in the `Applications` card to see a list of existing `Applications`
 1. Click `DETAILS` on the application you want to add an SSL certificate to
 1. On the upper-right corner click `SSL` (open lock icon)
