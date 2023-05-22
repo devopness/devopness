@@ -1,6 +1,6 @@
 ---
 title: Find your Server IP Address
-intro: Having the IP address of a server is useful when performing operations that require network connections to the server, such as log in to your server via SSH to run commands in a terminal or configuring a DNS record so your application can accessed using a domain name.
+intro: Having the IP address of a server is useful when performing operations that require network connections to the server, such as log in to your server via SSH to run commands in a terminal or configuring a DNS record so your application can be accessed using a domain name.
 links:
     overview:
     quickstart:
