@@ -18,7 +18,7 @@ Before issuing an Secure Sockets Layer (SSL) certificate, a valid Domain Name Sy
 <details open>
   <summary>Steps to configure a DNS record pointing to your servers:</summary>
 
-1. Copy the IP Address from the server where the application is running
+1. Copy the IP Address of the server where the application is running
     > Follow the [Find the IP Address of the server](/docs/servers/find-server-ip-address) guide for detailed instructions
 1. Access your DNS service management panel
     > If you don't have your own domains configured with a DNS service, you can use free services such as [FreeDNS](https://freedns.afraid.org/) or hire paid managed DNS services such as [AWS Route53](https://aws.amazon.com/route53/), [Cloudflare DNS](https://www.cloudflare.com/dns/), or any [notable managed DNS service provider](https://en.wikipedia.org/wiki/List_of_managed_DNS_providers) that suits your needs.
