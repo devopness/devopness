@@ -13,7 +13,7 @@ links:
     featured:
 ---
 
-Before issuing an Secure Sockets Layer (SSL) certificate, a valid Domain Name System (DNS) record must be pointing to the server on which the application is deployed, so the SSL Certificate can be issued and validated for the configured application web domain.
+Before an SSL certificate can be issued a valid DNS record must point to the server on which the application is deployed, so the SSL Certificate can be issued and validated for the configured application web domain. For example, if your application is publicly accessible through the domain `my-application.example.com` the subdomain `my-application` on the domain `example.com` must be configured to point to your server IP address.
 
 <details open>
   <summary>Steps to configure a DNS record pointing to your servers:</summary>
