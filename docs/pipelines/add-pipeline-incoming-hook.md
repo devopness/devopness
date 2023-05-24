@@ -38,61 +38,61 @@ https://app.devopness.com/projects/<project_id>/environments/<environment_id>/ap
 Once you have your `Application ID` (`<application_id>`) and `Pipeline ID` (`<pipeline_id>`), please follow the instructions below to add a incoming webhook to your pipeline:
 
 1. In a terminal window, run [POST /users/login](https://api-docs.devopness.com/#tag/Users/operation/loginUser) request using your Devopness account email and password
-```bash
-curl --request POST \
-  --url https://api.devopness.com/users/login \
-  --header 'Accept: application/json' \
-  --header 'Content-Type: application/json' \
-  --data '{
-	"email": "<email>",
-	"password": "<password>"
-}'
-```
+    ```bash
+    curl --request POST \
+      --url https://api.devopness.com/users/login \
+      --header 'Accept: application/json' \
+      --header 'Content-Type: application/json' \
+      --data '{
+    	"email": "<email>",
+    	"password": "<password>"
+    }'
+    ```
 1. From the previous command response, copy the field `access_token`
 1. In a terminal window, run [POST /hooks/incoming](https://api-docs.devopness.com/#tag/Hooks/operation/addHook) request, replacing `<application_id>` and `<pipeline_id>`.
-```bash
-curl --request POST \
-  --url https://api.devopness.com/hooks/incoming \
-  --header 'Accept: application/json' \
-  --header 'Authorization: Bearer <access_token>' \
-  --header 'Content-Type: application/json' \
-  --data '{
-	"name": "CI/CD pipeline triggered",
-	"requires_secret": false,
-	"action_type": "deploy",
-	"resource_type": "application",
-	"resource_id": <application_id>,
-	"settings": {
-		"variables": [
-			{
-				"name": "branch",
-				"type": "string",
-				"required": false,
-				"default_value": "main"
-			},
-			{
-				"name": "pipeline_id",
-				"type": "integer",
-				"required": false,
-				"default_value": <pipeline_id>
-			}
-		]
-	},
-	"trigger_when": {
-		"conditions": []
-	}
-}'
-```
+    ```bash
+    curl --request POST \
+      --url https://api.devopness.com/hooks/incoming \
+      --header 'Accept: application/json' \
+      --header 'Authorization: Bearer <access_token>' \
+      --header 'Content-Type: application/json' \
+      --data '{
+    	"name": "CI/CD pipeline triggered",
+    	"requires_secret": false,
+    	"action_type": "deploy",
+    	"resource_type": "application",
+    	"resource_id": <application_id>,
+    	"settings": {
+    		"variables": [
+    			{
+    				"name": "branch",
+	    			"type": "string",
+		    		"required": false,
+			    	"default_value": "main"
+    			},
+	    		{
+		    		"name": "pipeline_id",
+			    	"type": "integer",
+				    "required": false,
+    				"default_value": <pipeline_id>
+	    		}
+		    ]
+    	},
+	    "trigger_when": {
+		    "conditions": []
+    	}
+    }'
+    ```
 1. From the previous command response, copy the field `url`
     > This is the hook unique URL
 1. In a terminal window, run the command below to test the trigger
-```bash
-curl --request POST \
-  --url <hook unique url> \
-  --header 'Accept: application/json' \
-  --header 'Content-Type: application/json' \
-  --data '{}'
-```
+    ```bash
+    curl --request POST \
+      --url <hook unique url> \
+      --header 'Accept: application/json' \
+      --header 'Content-Type: application/json' \
+      --data '{}'
+    ```
 1. On the chosen Devopness environment, click `View` in the `Applications` card to see a list of existing `Applications`
 1. Click `DETAILS` on the application you triggered the pipeline
 1. On the upper-right corner click `DEPLOYMENTS`
