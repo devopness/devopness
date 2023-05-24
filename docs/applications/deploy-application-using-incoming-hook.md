@@ -49,7 +49,7 @@ Once you have your `Application ID` (`<application_id>`) and `Pipeline ID` (`<pi
     }'
     ```
 1. From the previous command response, copy the field `access_token`
-1. In a terminal window, run [POST /hooks/incoming](https://api-docs.devopness.com/#tag/Hooks/operation/addHook) request, replacing `<application_id>` and `<pipeline_id>`.
+1. In a terminal window, run [POST /hooks/incoming](https://api-docs.devopness.com/#tag/Hooks/operation/addHook) request, replacing `<access_token>`, `<application_id>` and `<pipeline_id>`.
     ```bash
     curl --request POST \
       --url https://api.devopness.com/hooks/incoming \
