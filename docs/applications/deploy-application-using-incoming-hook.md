@@ -1,6 +1,6 @@
 ---
-title: Add an Incoming Webhook to trigger Pipeline
-intro: As project teams and users base grow, there's a need to rely more on processes and automation; Devopness helps those teams by providing, among other tools, customizable CI/CD pipelines, empowering our users to automate common and repetitive tasks to improve code quality and their code review processes. Create a incoming webhook to trigger a pipeline programmatically.
+title: Deploy Application using an Incoming Hook
+intro: As project teams and users base grow, there's a need to rely more on processes and automation; Devopness helps those teams by providing, among other tools, customizable CI/CD pipelines, empowering our users to automate common and repetitive tasks to improve code quality and their code review processes. Create a incoming webhook to trigger a application deploy programmatically.
 links:
     overview:
     quickstart:
