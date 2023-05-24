@@ -23,10 +23,10 @@ Before creating our incoming webhook, we need the `Application ID` (`<applicatio
 1. On Devopness, navigate to a project then select an environment
 1. Find the `Applications` card
 1. Click `View` in the `Applications` card to see a list of existing `Applications`
-1. In the list of applications find the application with the pipeline you want to manage and click `DETAILS`
+1. In the list of applications, find the application with the pipeline you want to manage and click `DETAILS`
 1. On the upper-right corner of the applications details view click `SETTINGS`
 1. Use the drop-down menu to choose `PIPELINES`
-1. In the list of pipelines find the pipeline you want to manage and click `DETAILS`
+1. In the list of pipelines, find the pipeline you want to manage and click `DETAILS`
     > If you haven't created a pipeline yet, follow the [Add a Pipeline](/docs/pipelines/add-pipeline) guide
 1. Copy the `Application ID` and `Pipeline ID` from the URL, considering the following URL format:
 ```bash
