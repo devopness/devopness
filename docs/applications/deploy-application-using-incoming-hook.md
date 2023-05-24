@@ -17,7 +17,7 @@ Webhooks, for now, are an API only feature; so this post will guide you through 
 
 Before creating our incoming webhook, we need the `Application ID` (`<application_id>`) and `Pipeline ID` (`<pipeline_id>`) to use as parameters in our API calls.
 
-<details>
+<details open>
   <summary>Steps to find `Pipeline ID` and `Application ID`</summary>
 
 1. On Devopness, navigate to a project then select an environment
