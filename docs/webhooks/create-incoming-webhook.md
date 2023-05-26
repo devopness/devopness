@@ -11,7 +11,11 @@ links:
     featured:
 ---
 
-Devopness is an API-First product, meaning that every feature in our product is first designed with the API usage in mind. That development approach implies that every action you make using our web app can also be directly made using API calls.
+At Devopness we treat our `API-as-a-Product`, meaning that every feature in our product is first designed with the API usage in mind, resulting in an API that is easy to use, well documented and actively maintained and supported.
+
+This `API-first` development approach makes it possible that every piece of functionality available to users of our web app can also be automated and integrated with external systems.
+
+Devopness webhooks are a highly performant way to allow applications to push data from external events to trigger pipelines on your infrastructure environments, increasing productivity and reliability while working on cloud applications and infrastructure management workflows.
 
 Webhooks, for now, are an API only feature; so this post will guide you through the usage of our API to help you create a webhook.
 
