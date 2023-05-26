@@ -19,24 +19,8 @@ Devopness webhooks are a highly performant way to allow applications to push dat
 
 Webhooks, for now, are an API only feature; so this post will guide you through the usage of our API to help you create a webhook.
 
-To create our incoming webhook, we need the `Application ID` (`<application_id>`).
-
-<details open>
-  <summary>Steps to find `Application ID`</summary>
-
-1. On Devopness, navigate to a project then select an environment
-1. Find the `Applications` card
-1. Click `View` in the `Applications` card to see a list of existing `Applications`
-1. In the list of applications find the application with the pipeline you want to manage and click `DETAILS`
-1. Copy the `Application ID` from the URL, considering the following URL format:
-    ```bash
-    https://app.devopness.com/projects/<project_id>/environments/<environment_id>/applications/<application_id>
-    ```
-
-</details>
-
-Once you have your `Application ID` (`<application_id>`), please follow the instructions below to add a incoming webhook to your application:
-
+1. Copy the `Application ID` (`<application_id>`) of the application which you want to run pipelines programatically
+    > Follow the [Deploy Application using an Incoming Hook](/docs/applications/deploy-application-using-incoming-hook) guide for detailed instructions
 1. In a terminal window, run [POST /users/login](https://api-docs.devopness.com/#tag/Users/operation/loginUser) request using your Devopness account email and password
     ```bash
     curl --request POST \
