@@ -42,8 +42,10 @@ Once you have your `Application ID` (`<application_id>`) and `Deploy Pipeline ID
       --header 'Authorization: Bearer <access_token>' \
       --header 'Content-Type: application/json' \
       --data '{
-    	"name": "CI/CD pipeline triggered",
-    	"requires_secret": false,
+    	"name": "run pipeline <pipeline_id> on application <application_id> using main branch",
+    	"requires_secret": true,
+    	"secret_algorithm": "sha256",
+    	"secret_header_name": "x-hub-signature-256",
     	"action_type": "deploy",
     	"resource_type": "application",
     	"resource_id": <application_id>,
@@ -65,16 +67,12 @@ Once you have your `Application ID` (`<application_id>`) and `Deploy Pipeline ID
     	}
     }'
     ```
-1. From the previous command response, copy the field `url`
-    > This is the hook unique URL
-1. In a terminal window, run the command below to test the trigger
-    ```bash
-    curl --request POST \
-      --url <hook unique url> \
-      --header 'Accept: application/json' \
-      --header 'Content-Type: application/json' \
-      --data '{}'
-    ```
+1. From the previous command response, copy the fields `url` (unique hook URL) and `secret` (signature key)
+1. Add your webhook to your source provider
+    - Follow Bitbucket' [Manage webhooks: create webhooks](https://support.atlassian.com/bitbucket-cloud/docs/manage-webhooks/#Create-webhooks) guide; or
+    - Follow Github' [Webhooks: setting up a webhook](https://docs.github.com/en/webhooks-and-events/webhooks/creating-webhooks#setting-up-a-webhook) guide; or
+    - Follow Gitlab' [Webhooks: configure a webhook in GitLab](https://docs.gitlab.com/ee/user/project/integrations/webhooks.html#configure-a-webhook-in-gitlab) guide.
+1. Trigger the webhook, using the configured source provider event trigger options
 1. On the chosen Devopness environment, click `View` in the `Applications` card to see a list of existing `Applications`
 1. Click `DETAILS` on the application you triggered the pipeline
 1. On the upper-right corner click `DEPLOYMENTS`
