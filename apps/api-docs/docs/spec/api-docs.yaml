@@ -175,6 +175,7 @@ tags:
   - name: Static Data - Cron Job Options
   - name: Static Data - Environment Options
   - name: Static Data - Permissions
+  - name: Static Data - Resource Types
   - name: Static Data - Service Options
   - name: Static Data - User Profile Options
   - name: Actions
@@ -263,6 +264,7 @@ x-tagGroups:
       - Static Data - Cron Job Options
       - Static Data - Environment Options
       - Static Data - Permissions
+      - Static Data - Resource Types
       - Static Data - Service Options
       - Static Data - User Profile Options
   - name: Actions
