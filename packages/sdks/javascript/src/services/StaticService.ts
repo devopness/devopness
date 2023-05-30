@@ -5,7 +5,7 @@ import { StaticDataCloudProviderServicesApiService } from "../api/generated/apis
 import { StaticDataCronJobOptionsApiService } from "../api/generated/apis/static-data-cron-job-options-api";
 import { StaticDataEnvironmentOptionsApiService } from "../api/generated/apis/static-data-environment-options-api";
 import { StaticDataPermissionsApiService } from "../api/generated/apis/static-data-permissions-api";
-import { StaticDataResourceTypesApiService } from "../api/generated/apis/static-data-resource-types-api.ts";
+import { StaticDataResourceTypesApiService } from "../api/generated/apis/static-data-resource-types-api";
 import { StaticDataServiceOptionsApiService } from "../api/generated/apis/static-data-service-options-api";
 import { StaticDataUserProfileOptionsApiService } from "../api/generated/apis/static-data-user-profile-options-api";
 
