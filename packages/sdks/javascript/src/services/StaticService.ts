@@ -5,6 +5,7 @@ import { StaticDataCloudProviderServicesApiService } from "../api/generated/apis
 import { StaticDataCronJobOptionsApiService } from "../api/generated/apis/static-data-cron-job-options-api";
 import { StaticDataEnvironmentOptionsApiService } from "../api/generated/apis/static-data-environment-options-api";
 import { StaticDataPermissionsApiService } from "../api/generated/apis/static-data-permissions-api";
+import { StaticDataResourceTypesApiService } from "../api/generated/apis/static-data-resource-types-api.ts";
 import { StaticDataServiceOptionsApiService } from "../api/generated/apis/static-data-service-options-api";
 import { StaticDataUserProfileOptionsApiService } from "../api/generated/apis/static-data-user-profile-options-api";
 
@@ -16,6 +17,7 @@ export class StaticService {
   public cronJobOptions = new StaticDataCronJobOptionsApiService();
   public environmentOptions = new StaticDataEnvironmentOptionsApiService();
   public permissions = new StaticDataPermissionsApiService();
+  public resourceTypes = new StaticDataResourceTypesApiService();
   public serviceOptions = new StaticDataServiceOptionsApiService();
   public userProfileOptions = new StaticDataUserProfileOptionsApiService();
 }
