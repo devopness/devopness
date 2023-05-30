@@ -7727,6 +7727,47 @@
         }
       }
     },
+    "/static/resource-types": {
+      "get": {
+        "summary": "List available resource types",
+        "operationId": "listStaticResourceTypes",
+        "description": {
+          "$ref": "../spec/descriptions/list-static-resource-types.md"
+        },
+        "tags": [
+          "Static Data - Resource Types"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceTypeList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/static/service-options": {
       "get": {
         "summary": "List `Service` resource options",
@@ -14583,6 +14624,79 @@
         ],
         "nullable": true
       },
+      "PipelineSettings": {
+        "type": "object",
+        "nullable": true,
+        "description": "Settings that can be customized for a pipeline",
+        "properties": {
+          "stages": {
+            "$ref": "#/components/schemas/PipelineSettingsStageList"
+          },
+          "variables": {
+            "$ref": "#/components/schemas/PipelineSettingsVariableList"
+          }
+        }
+      },
+      "PipelineSettingsStage": {
+        "type": "object",
+        "nullable": true,
+        "description": "Step to be performed in the pipeline",
+        "properties": {
+          "value": {
+            "type": "string",
+            "example": "remove-old-releases"
+          },
+          "human_readable": {
+            "type": "string",
+            "example": "Remove old releases"
+          },
+          "hint": {
+            "type": "string",
+            "example": "Remove outdated releases from application directory"
+          }
+        }
+      },
+      "PipelineSettingsStageList": {
+        "description": "The list of pipeline setting stage",
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/PipelineSettingsStage"
+        }
+      },
+      "PipelineSettingsVariable": {
+        "type": "object",
+        "nullable": true,
+        "description": "Variables used in pipeline",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "branch"
+          },
+          "human_readable": {
+            "type": "string",
+            "example": "Branch"
+          },
+          "hint": {
+            "type": "string",
+            "example": "The name of the branch from which the application source code will be retrieved and deployed. If not provided, the application default branch will be used."
+          },
+          "type": {
+            "type": "string",
+            "example": "string"
+          },
+          "required": {
+            "type": "boolean",
+            "example": true
+          }
+        }
+      },
+      "PipelineSettingsVariableList": {
+        "description": "The list of pipeline setting variable",
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/PipelineSettingsVariable"
+        }
+      },
       "PipelineStepRunnerName": {
         "type": "string",
         "description": "Name of the script runner that will run the script",
@@ -15144,6 +15258,24 @@
         ],
         "nullable": true
       },
+      "ResourceOperation": {
+        "type": "array",
+        "nullable": true,
+        "description": "An operation supported by this resource type and can have pipelines associated to it.",
+        "properties": {
+          "operation": {
+            "type": "string",
+            "example": "deploy"
+          },
+          "operation_human_readable": {
+            "type": "string",
+            "example": "Deploy"
+          },
+          "pipeline_settings": {
+            "$ref": "#/components/schemas/PipelineSettings"
+          }
+        }
+      },
       "ResourceType": {
         "type": "string",
         "enum": [
@@ -15158,6 +15290,42 @@
           "ssl-certificate"
         ],
         "example": "application"
+      },
+      "ResourceTypeList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/ResourceTypeRelation"
+        }
+      },
+      "ResourceTypeRelation": {
+        "type": "object",
+        "properties": {
+          "resource_type": {
+            "description": "The type of resource this resourceType affects",
+            "type": "string",
+            "example": "application"
+          },
+          "resource_type_human_readable": {
+            "description": "Human readable resource name",
+            "type": "string",
+            "example": "Application"
+          },
+          "resource_type_human_readable_plural": {
+            "description": "Human readable plural resource name",
+            "type": "string",
+            "example": "Applications"
+          },
+          "supported_operations": {
+            "$ref": "#/components/schemas/ResourceOperation"
+          }
+        },
+        "required": [
+          "resource_type",
+          "resource_type_human_readable",
+          "resource_type_human_readable_plural",
+          "supported_operations"
+        ],
+        "nullable": true
       },
       "Role": {
         "type": "object",
