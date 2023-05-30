@@ -324,6 +324,9 @@
 /static/permissions:
   get:
     $ref: ./auto-generated/endpoints/list-static-permissions.yaml
+/static/resource-types:
+  get:
+    $ref: ./auto-generated/endpoints/list-static-resource-types.yaml
 /static/service-options:
   get:
     $ref: ./auto-generated/endpoints/get-static-service-options.yaml

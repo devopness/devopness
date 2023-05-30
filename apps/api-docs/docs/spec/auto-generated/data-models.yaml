@@ -285,6 +285,16 @@ PipelineList:
   $ref: ./auto-generated/models/pipeline-list.yaml
 PipelineRelation:
   $ref: ./auto-generated/models/pipeline-relation.yaml
+PipelineSettings:
+  $ref: ./auto-generated/models/pipeline-settings.yaml
+PipelineSettingsStage:
+  $ref: ./auto-generated/models/pipeline-settings-stage.yaml
+PipelineSettingsStageList:
+  $ref: ./auto-generated/models/pipeline-settings-stage-list.yaml
+PipelineSettingsVariable:
+  $ref: ./auto-generated/models/pipeline-settings-variable.yaml
+PipelineSettingsVariableList:
+  $ref: ./auto-generated/models/pipeline-settings-variable-list.yaml
 PipelineStepRunnerName:
   $ref: ./auto-generated/models/pipeline-step-runner-name.yaml
 PipelineUpdate:
@@ -329,8 +339,14 @@ ResourceLinkList:
   $ref: ./auto-generated/models/resource-link-list.yaml
 ResourceLinkRelation:
   $ref: ./auto-generated/models/resource-link-relation.yaml
+ResourceOperation:
+  $ref: ./auto-generated/models/resource-operation.yaml
 ResourceType:
   $ref: ./auto-generated/models/resource-type.yaml
+ResourceTypeList:
+  $ref: ./auto-generated/models/resource-type-list.yaml
+ResourceTypeRelation:
+  $ref: ./auto-generated/models/resource-type-relation.yaml
 Role:
   $ref: ./auto-generated/models/role.yaml
 RoleList:
