@@ -14630,7 +14630,6 @@
       },
       "PipelineSettings": {
         "type": "object",
-        "nullable": true,
         "description": "Settings that can be customized for a pipeline",
         "properties": {
           "stages": {
@@ -14643,7 +14642,6 @@
       },
       "PipelineSettingsStage": {
         "type": "object",
-        "nullable": true,
         "description": "Step to be performed in the pipeline",
         "properties": {
           "value": {
@@ -14662,6 +14660,7 @@
       },
       "PipelineSettingsStageList": {
         "description": "The list of pipeline setting stage",
+        "nullable": true,
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/PipelineSettingsStage"
@@ -14669,7 +14668,6 @@
       },
       "PipelineSettingsVariable": {
         "type": "object",
-        "nullable": true,
         "description": "Variables used in pipeline",
         "properties": {
           "name": {
@@ -14696,6 +14694,7 @@
       },
       "PipelineSettingsVariableList": {
         "description": "The list of pipeline setting variable",
+        "nullable": true,
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/PipelineSettingsVariable"
@@ -15263,9 +15262,8 @@
         "nullable": true
       },
       "ResourceOperation": {
-        "type": "array",
-        "nullable": true,
-        "description": "An operation supported by this resource type and can have pipelines associated to it.",
+        "type": "object",
+        "description": "An operation supported by this resource type that can have pipelines associated to it.",
         "properties": {
           "operation": {
             "type": "string",
@@ -15278,6 +15276,13 @@
           "pipeline_settings": {
             "$ref": "#/components/schemas/PipelineSettings"
           }
+        }
+      },
+      "ResourceOperationList": {
+        "description": "A list of resource operations",
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/ResourceOperation"
         }
       },
       "ResourceType": {
@@ -15320,7 +15325,7 @@
             "example": "Applications"
           },
           "supported_operations": {
-            "$ref": "#/components/schemas/ResourceOperation"
+            "$ref": "#/components/schemas/ResourceOperationList"
           }
         },
         "required": [
