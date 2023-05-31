@@ -14,7 +14,7 @@ properties:
     type: string
     example: Applications
   supported_operations:
-    $ref: '#/components/schemas/ResourceOperation'
+    $ref: '#/components/schemas/ResourceOperationList'
 required:
   - resource_type
   - resource_type_human_readable
