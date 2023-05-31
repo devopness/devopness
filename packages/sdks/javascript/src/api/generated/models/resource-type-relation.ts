@@ -12,6 +12,7 @@
  */
 
 
+import { ResourceOperation } from './resource-operation';
 
 /**
  * 
@@ -38,10 +39,10 @@ export interface ResourceTypeRelation {
      */
     resource_type_human_readable_plural: string;
     /**
-     * An operation supported by this resource type and can have pipelines associated to it.
-     * @type {object}
+     * A list of resource operations
+     * @type {Array<ResourceOperation>}
      * @memberof ResourceTypeRelation
      */
-    supported_operations: object | null;
+    supported_operations: Array<ResourceOperation>;
 }
 

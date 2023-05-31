@@ -26,12 +26,12 @@ export interface PipelineSettings {
      * @type {Array<PipelineSettingsStage>}
      * @memberof PipelineSettings
      */
-    stages?: Array<PipelineSettingsStage>;
+    stages?: Array<PipelineSettingsStage> | null;
     /**
      * The list of pipeline setting variable
      * @type {Array<PipelineSettingsVariable>}
      * @memberof PipelineSettings
      */
-    variables?: Array<PipelineSettingsVariable>;
+    variables?: Array<PipelineSettingsVariable> | null;
 }
 
