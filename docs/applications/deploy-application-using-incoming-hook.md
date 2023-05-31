@@ -33,7 +33,7 @@ Before creating our application deploy incoming webhook, we need the `Applicatio
 
 Once you have your `Application ID` (`<application_id>`) and `Deploy Pipeline ID` (`<pipeline_id>`), please follow the instructions below to add an incoming webhook to your application that triggers the deploy pipeline:
 
-1. In a terminal window, run [POST /hooks/incoming](https://api-docs.devopness.com/#tag/Hooks/operation/addHook) request, replacing `<access_token>`, `<application_id>` and `<pipeline_id>`.
+1. In a terminal window, submit a request to Devopness API endpoint `POST /hooks/incoming`, replacing `<access_token>`, `<application_id>` and `<pipeline_id>`.
     > If this is your first time calling the Devopness API, follow the [Create an Incoming Webhook](/docs/webhooks/create-incoming-webhook) guide to see instructions on getting your `<access_token>`.
     ```bash
     curl --request POST \

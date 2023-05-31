@@ -21,7 +21,7 @@ Webhooks, for now, are an API only feature; so this post will guide you through 
 
 1. Copy the `Application ID` (`<application_id>`) and `Deploy Pipeline ID` (`<pipeline_id>`) from the application which you want to run pipelines programatically
     > Follow the [Deploy Application using an Incoming Hook](/docs/applications/deploy-application-using-incoming-hook) guide for detailed instructions
-1. In a terminal window, run [POST /users/login](https://api-docs.devopness.com/#tag/Users/operation/loginUser) request using your Devopness account email and password
+1. In a terminal window, submit a request to Devopness API endpoint `POST /users/login` using your Devopness account email and password
     ```bash
     curl --request POST \
       --url https://api.devopness.com/users/login \
@@ -33,7 +33,7 @@ Webhooks, for now, are an API only feature; so this post will guide you through 
     }'
     ```
 1. From the previous command response, copy the field `access_token`
-1. In a terminal window, run [POST /hooks/incoming](https://api-docs.devopness.com/#tag/Hooks/operation/addHook) request, replacing `<application_id>` and `<pipeline_id>`.
+1. In a terminal window, submit a request to Devopness API endpoint `POST /hooks/incoming`, replacing `<application_id>` and `<pipeline_id>`.
     ```bash
     curl --request POST \
       --url https://api.devopness.com/hooks/incoming \
