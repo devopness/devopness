@@ -11,7 +11,7 @@ links:
     featured:
 ---
 
-1. In a terminal window, run [POST /users/login](https://api-docs.devopness.com/#tag/Users/operation/loginUser) request using your Devopness account email and password
+1. In a terminal window, submit a request to Devopness API endpoint `POST /users/login` using your Devopness account email and password
     ```bash
     curl --request POST \
       --url https://api.devopness.com/users/login \
@@ -23,7 +23,7 @@ links:
     }'
     ```
 1. From the previous command response, copy the field `access_token`
-1. In a terminal window, run [GET /users/me](https://api-docs.devopness.com/#tag/Users/operation/getUserMe), replacing `<access_token>`
+1. In a terminal window, submit a request to Devopness API endpoint `GET /users/me`, replacing `<access_token>`
     ```bash
     curl --request GET \
       --url https://api.devopness.com/users/me \
@@ -32,7 +32,7 @@ links:
       --header 'Content-Type: application/json'
    ```
 1. From the previous command response, copy the field `id`
-1. In a terminal window, run [GET /users/<user_id>/activity](https://api-docs.devopness.com/#tag/Users/operation/getUserActivity), replacing `<id>` and `<access_token>`
+1. In a terminal window, submit a request to Devopness API endpoint `GET /users/<user_id>/activity`, replacing `<id>` and `<access_token>`
     ```bash
     curl --request GET \
       --url https://api.devopness.com/users/<id>/activity \
