@@ -30,7 +30,7 @@ links:
     - Click `+ CREATE SERVICE ACCOUNT` option bellow the search bar
     - Name your new service account
     - Click `DONE`
-1.. Having your service account listed, go to the `Actions` column, click the three dot menu on your service account and choose `Manage details` option
+1. Having your service account listed, go to the `Actions` column, click the three dot menu on your service account and choose `Manage details` option
 1. Copy your service account email to your clipboard
 1. Bellow your service account name, go to the `PERMISSIONS` tab
 1. In the permissions table, go to `VIEW BY ROLES` tab
