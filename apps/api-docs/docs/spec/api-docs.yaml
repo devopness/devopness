@@ -120,6 +120,7 @@ tags:
       | 204           | No content - The request was successful. There is no content to return, but the headers may be useful
       | 400           | Bad Request - The server could not understand the request due to invalid syntax
       | 401           | Unauthenticated - It is usally caused by using wrong or expired credentials
+      | 402           | Project Limit Exceeded - Usage limit has been reached. Ask project owner to increase project's credits
       | 403           | Forbidden/Unauthorized - The used credentials do not allow access to the resource
       | 404           | Not Found - The server cannot find the requested resource
       | 405           | Method not allowed - The request method has been disabled and cannot be used
