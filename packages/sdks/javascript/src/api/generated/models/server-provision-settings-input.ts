@@ -12,17 +12,19 @@
  */
 
 
+import { ServerCloudService } from './server-cloud-service';
 
 /**
- * The Operating System distribution and version used in the server/virtual machine instance
+ * Configuration used to launch this server
  * @export
- * @enum {string}
+ * @interface ServerProvisionSettingsInput
  */
-export enum CloudOsVersionCode {
-    Centos7 = 'centos_7',
-    Ubuntu1804 = 'ubuntu_18_04',
-    Ubuntu2004 = 'ubuntu_20_04',
-    Ubuntu2204 = 'ubuntu_22_04'
+export interface ServerProvisionSettingsInput {
+    /**
+     * 
+     * @type {ServerCloudService}
+     * @memberof ServerProvisionSettingsInput
+     */
+    cloud_service: ServerCloudService | null;
 }
-
 

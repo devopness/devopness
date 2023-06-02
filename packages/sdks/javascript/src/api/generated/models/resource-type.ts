@@ -14,7 +14,7 @@
 
 
 /**
- * 
+ * Type of an infrastructure resource managed through a Devopness environment.
  * @export
  * @enum {string}
  */

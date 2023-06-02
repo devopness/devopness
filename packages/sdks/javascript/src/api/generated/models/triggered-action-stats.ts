@@ -33,7 +33,7 @@ export interface TriggeredActionStats {
      */
     action_type?: string;
     /**
-     * Type of resource used in action human readable
+     * Human readable version of the resource type
      * @type {string}
      * @memberof TriggeredActionStats
      */
