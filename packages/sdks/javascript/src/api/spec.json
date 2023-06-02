@@ -10112,7 +10112,7 @@
           },
           "type": {
             "$ref": "#/components/schemas/ResourceType",
-            "description": "Name of the entity who the actions is related to"
+            "description": "Type of the resource to which the action is related to"
           },
           "type_human_readable": {
             "type": "string",
@@ -11277,6 +11277,29 @@
           "os_version_code"
         ]
       },
+      "CloudGcpSettings": {
+        "type": "object",
+        "properties": {
+          "instance_type": {
+            "type": "string",
+            "description": "The instance type to be launched on the cloud provider",
+            "example": "f1-micro"
+          },
+          "region": {
+            "type": "string",
+            "description": "Datacenter region where the cloud instance will be launched",
+            "example": "us-east1"
+          },
+          "os_version_code": {
+            "$ref": "#/components/schemas/CloudOsVersionCode"
+          }
+        },
+        "required": [
+          "instance_type",
+          "region",
+          "os_version_code"
+        ]
+      },
       "CloudInstanceList": {
         "type": "array",
         "items": {
@@ -11348,7 +11371,7 @@
       "CloudOsVersionCode": {
         "type": "string",
         "nullable": true,
-        "description": "Code to identify operating system and version",
+        "description": "The Operating System distribution and version used in the server/virtual machine instance",
         "example": "ubuntu_22_04",
         "enum": [
           "centos_7",
@@ -15286,6 +15309,7 @@
         }
       },
       "ResourceType": {
+        "description": "Type of an infrastructure resource managed through a Devopness environment.",
         "type": "string",
         "enum": [
           "application",
@@ -15310,17 +15334,15 @@
         "type": "object",
         "properties": {
           "resource_type": {
-            "description": "The type of resource this resourceType affects",
-            "type": "string",
-            "example": "application"
+            "$ref": "#/components/schemas/ResourceType"
           },
           "resource_type_human_readable": {
-            "description": "Human readable resource name",
+            "description": "Human readable version of the resource type",
             "type": "string",
             "example": "Application"
           },
           "resource_type_human_readable_plural": {
-            "description": "Human readable plural resource name",
+            "description": "Human readable version of the resource type, in plural form",
             "type": "string",
             "example": "Applications"
           },
@@ -15390,7 +15412,7 @@
         }
       },
       "RolePermissions": {
-        "description": "The list of permissions for this role",
+        "description": "The list of permissions granted for this role",
         "items": {
           "type": "string"
         },
@@ -15566,6 +15588,9 @@
             "type": "integer",
             "example": 22
           },
+          "os_version_code": {
+            "$ref": "#/components/schemas/CloudOsVersionCode"
+          },
           "active": {
             "description": "Tells if the server is active or not",
             "type": "boolean",
@@ -15576,6 +15601,9 @@
           },
           "blueprint": {
             "$ref": "#/components/schemas/ServerBlueprint"
+          },
+          "provision_settings": {
+            "$ref": "#/components/schemas/ServerProvisionSettingsInput"
           },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
@@ -15609,9 +15637,11 @@
           "provider_name_human_readable",
           "ip_address",
           "ssh_port",
+          "os_version_code",
           "active",
           "status",
           "blueprint",
+          "provision_settings",
           "created_by_user",
           "project",
           "last_action",
@@ -15783,6 +15813,9 @@
               },
               {
                 "$ref": "#/components/schemas/CloudDigitalOceanDropletSettings"
+              },
+              {
+                "$ref": "#/components/schemas/CloudGcpSettings"
               }
             ]
           }
@@ -15865,6 +15898,23 @@
             "$ref": "#/components/schemas/ServerCloudService"
           }
         }
+      },
+      "ServerProvisionSettingsInput": {
+        "type": "object",
+        "description": "Configuration used to launch this server",
+        "properties": {
+          "cloud_service": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ServerCloudService"
+              }
+            ]
+          }
+        },
+        "required": [
+          "cloud_service"
+        ]
       },
       "ServerRelation": {
         "type": "object",
@@ -17854,7 +17904,7 @@
           },
           "resource_type_human_readable": {
             "type": "string",
-            "description": "Type of resource used in action human readable",
+            "description": "Human readable version of the resource type",
             "example": "Server"
           },
           "action_type_human_readable": {
