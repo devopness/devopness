@@ -8,7 +8,7 @@ properties:
     example: 1839123
   type:
     $ref: '#/components/schemas/ResourceType'
-    description: 'Name of the entity who the actions is related to'
+    description: 'Type of the resource to which the action is related to'
   type_human_readable:
     type: string
     description: 'Human readable version of the resource type'

@@ -10,3 +10,5 @@ properties:
         $ref: '#/components/schemas/CloudAwsEc2Settings'
       -
         $ref: '#/components/schemas/CloudDigitalOceanDropletSettings'
+      -
+        $ref: '#/components/schemas/CloudGcpSettings'

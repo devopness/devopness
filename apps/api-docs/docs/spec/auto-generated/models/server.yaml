@@ -33,6 +33,8 @@ properties:
     description: 'The network port to which the SSH daemon is listening to SSH connections on the server'
     type: integer
     example: 22
+  os_version_code:
+    $ref: '#/components/schemas/CloudOsVersionCode'
   active:
     description: 'Tells if the server is active or not'
     type: boolean
@@ -41,6 +43,8 @@ properties:
     $ref: '#/components/schemas/ActionStatus'
   blueprint:
     $ref: '#/components/schemas/ServerBlueprint'
+  provision_settings:
+    $ref: '#/components/schemas/ServerProvisionSettingsInput'
   created_by_user:
     $ref: '#/components/schemas/UserRelation'
   project:
@@ -66,9 +70,11 @@ required:
   - provider_name_human_readable
   - ip_address
   - ssh_port
+  - os_version_code
   - active
   - status
   - blueprint
+  - provision_settings
   - created_by_user
   - project
   - last_action

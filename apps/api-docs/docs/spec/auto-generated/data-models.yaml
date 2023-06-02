@@ -63,6 +63,8 @@ CloudAwsEc2Settings:
   $ref: ./auto-generated/models/cloud-aws-ec2-settings.yaml
 CloudDigitalOceanDropletSettings:
   $ref: ./auto-generated/models/cloud-digital-ocean-droplet-settings.yaml
+CloudGcpSettings:
+  $ref: ./auto-generated/models/cloud-gcp-settings.yaml
 CloudInstanceList:
   $ref: ./auto-generated/models/cloud-instance-list.yaml
 CloudInstanceRelation:
@@ -387,6 +389,8 @@ ServerList:
   $ref: ./auto-generated/models/server-list.yaml
 ServerProvisionSettings:
   $ref: ./auto-generated/models/server-provision-settings.yaml
+ServerProvisionSettingsInput:
+  $ref: ./auto-generated/models/server-provision-settings-input.yaml
 ServerRelation:
   $ref: ./auto-generated/models/server-relation.yaml
 ServerUpdate:

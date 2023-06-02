@@ -2,15 +2,13 @@
 type: object
 properties:
   resource_type:
-    description: 'The type of resource this resourceType affects'
-    type: string
-    example: application
+    $ref: '#/components/schemas/ResourceType'
   resource_type_human_readable:
-    description: 'Human readable resource name'
+    description: 'Human readable version of the resource type'
     type: string
     example: Application
   resource_type_human_readable_plural:
-    description: 'Human readable plural resource name'
+    description: 'Human readable version of the resource type, in plural form'
     type: string
     example: Applications
   supported_operations:

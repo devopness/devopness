@@ -12,7 +12,7 @@ properties:
     example: add
   resource_type_human_readable:
     type: string
-    description: 'Type of resource used in action human readable'
+    description: 'Human readable version of the resource type'
     example: Server
   action_type_human_readable:
     type: string
