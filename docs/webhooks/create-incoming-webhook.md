@@ -41,21 +41,27 @@ Webhooks, for now, are an API only feature; so this post will guide you through 
       --header 'Authorization: Bearer <access_token>' \
       --header 'Content-Type: application/json' \
       --data '{
-    	"name": "run pipeline <pipeline_id> on application <application_id> hook",
+    	"name": "run pipeline <pipeline_id> on application <application_id> using main branch",
     	"requires_secret": true,
     	"secret_algorithm": "sha256",
     	"secret_header_name": "x-hub-signature-256",
     	"action_type": "deploy",
     	"resource_type": "application",
     	"resource_id": <application_id>,
-        "settings": {
-		    "variables": [
+    	"settings": {
+    		"variables": [
     			{
+    				"name": "branch",
+	    			"type": "string",
+		    		"required": false,
+			    	"default_value": "main"
+    			},
+	    		{
 		    		"name": "pipeline_id",
-				    "type": "integer",
-    				"required": false,
+			    	"type": "integer",
+				    "required": false,
     				"default_value": <pipeline_id>
-    			}
+	    		}
 		    ]
     	}
     }'

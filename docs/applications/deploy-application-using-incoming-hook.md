@@ -33,36 +33,7 @@ Before creating our application deploy incoming webhook, we need the `Applicatio
 
 Once you have your `Application ID` (`<application_id>`) and `Deploy Pipeline ID` (`<pipeline_id>`), please follow the instructions below to add an incoming webhook to your application that triggers the deploy pipeline:
 
-1. Create an incoming webhook using the payload below, replacing `<application_id>` and `<pipeline_id>`
-    > Follow the [Create an Incoming Webhook](/docs/webhooks/create-incoming-webhook) guide
-    ```json
-    {
-    	"name": "run pipeline <pipeline_id> on application <application_id> using main branch",
-    	"requires_secret": true,
-    	"secret_algorithm": "sha256",
-    	"secret_header_name": "x-hub-signature-256",
-    	"action_type": "deploy",
-    	"resource_type": "application",
-    	"resource_id": <application_id>,
-    	"settings": {
-    		"variables": [
-    			{
-    				"name": "branch",
-	    			"type": "string",
-		    		"required": false,
-			    	"default_value": "main"
-    			},
-	    		{
-		    		"name": "pipeline_id",
-			    	"type": "integer",
-				    "required": false,
-    				"default_value": <pipeline_id>
-	    		}
-		    ]
-    	}
-    }
-    ```
-1. From the previous step response, copy the fields `url` (unique hook URL) and `secret` (signature key)
+1. Follow the [Create an Incoming Webhook](/docs/webhooks/create-incoming-webhook) guide and copy the fields `url` (unique hook URL) and `secret` (signature key)
 1. Add your webhook to your source provider
     - Follow Bitbucket' [Manage webhooks: create webhooks](https://support.atlassian.com/bitbucket-cloud/docs/manage-webhooks/#Create-webhooks) guide; or
     - Follow Github' [Webhooks: setting up a webhook](https://docs.github.com/en/webhooks-and-events/webhooks/creating-webhooks#setting-up-a-webhook) guide; or
