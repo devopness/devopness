@@ -5,5 +5,10 @@ properties:
     description: 'The pipeline''s name. Must be at least 3 characters. Must not be greater than 80 characters.'
     example: 'My pipeline'
     type: string
+  operation:
+    description: 'The pipeline''s operation. Must not be greater than 20 characters.'
+    example: deploy
+    type: string
 required:
   - name
+  - operation
