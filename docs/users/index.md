@@ -1,5 +1,5 @@
 ---
-title: Profile
+title: Users
 intro: In this section you will learn how to find your activity summary.
 links:
     overview:
@@ -8,6 +8,6 @@ links:
     next:
     guides:
     related:
-        - /docs/profile/find-your-activity-summary
+        - /docs/users/find-your-activity-summary
     featured:
 ---
