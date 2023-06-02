@@ -1,4 +1,5 @@
 ---
+draft: true
 title: Find an Archived an Environment
 intro: Sometimes you may need to inspect which environments have been archived recently. Access the archived environments list to check on all archived environments for the current project.
 links:

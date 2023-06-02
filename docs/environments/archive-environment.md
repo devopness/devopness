@@ -1,4 +1,5 @@
 ---
+draft: true
 title: Archive an Environment
 intro: Some environments have a specific time frame that they will be used, proof of concepts and testing can be examples of such use cases; after their goal has been achieved, you might want to claim back those resources while ensuring a gradual transition of the users dependent on the environment. Archiving unused environments avoids you being charged by actions on old projects while keeping your environment one click away from being available to your users again.
 links:
