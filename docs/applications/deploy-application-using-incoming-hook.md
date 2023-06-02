@@ -33,15 +33,10 @@ Before creating our application deploy incoming webhook, we need the `Applicatio
 
 Once you have your `Application ID` (`<application_id>`) and `Deploy Pipeline ID` (`<pipeline_id>`), please follow the instructions below to add an incoming webhook to your application that triggers the deploy pipeline:
 
-1. In a terminal window, submit a request to Devopness API endpoint `POST /hooks/incoming`, replacing `<access_token>`, `<application_id>` and `<pipeline_id>`.
-    > If this is your first time calling the Devopness API, follow the [Create an Incoming Webhook](/docs/webhooks/create-incoming-webhook) guide to see instructions on getting your `<access_token>`.
-    ```bash
-    curl --request POST \
-      --url https://api.devopness.com/hooks/incoming \
-      --header 'Accept: application/json' \
-      --header 'Authorization: Bearer <access_token>' \
-      --header 'Content-Type: application/json' \
-      --data '{
+1. Create an incoming webhook using the payload below, replacing `<application_id>` and `<pipeline_id>`
+    > Follow the [Create an Incoming Webhook](/docs/webhooks/create-incoming-webhook) guide
+    ```json
+    {
     	"name": "run pipeline <pipeline_id> on application <application_id> using main branch",
     	"requires_secret": true,
     	"secret_algorithm": "sha256",
@@ -65,9 +60,9 @@ Once you have your `Application ID` (`<application_id>`) and `Deploy Pipeline ID
 	    		}
 		    ]
     	}
-    }'
+    }
     ```
-1. From the previous command response, copy the fields `url` (unique hook URL) and `secret` (signature key)
+1. From the previous step response, copy the fields `url` (unique hook URL) and `secret` (signature key)
 1. Add your webhook to your source provider
     - Follow Bitbucket' [Manage webhooks: create webhooks](https://support.atlassian.com/bitbucket-cloud/docs/manage-webhooks/#Create-webhooks) guide; or
     - Follow Github' [Webhooks: setting up a webhook](https://docs.github.com/en/webhooks-and-events/webhooks/creating-webhooks#setting-up-a-webhook) guide; or
@@ -77,4 +72,4 @@ Once you have your `Application ID` (`<application_id>`) and `Deploy Pipeline ID
 1. Click `DETAILS` on the application you triggered the pipeline
 1. On the upper-right corner click `DEPLOYMENTS`
 1. Click `LOGS` on the action triggered by incoming hook
-    > In `START TIME` column, the name of the subject, user or incoming hook, that triggered the action will be visible, e.g: CI/CD pipeline triggered
+    > In `START TIME` column, the name of the subject, user or incoming hook, that triggered the action will be visible, e.g: run pipeline 'deploy' on application 'website' using main branch
