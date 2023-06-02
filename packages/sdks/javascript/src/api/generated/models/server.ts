@@ -14,9 +14,11 @@
 
 import { ActionRelation } from './action-relation';
 import { ActionStatus } from './action-status';
+import { CloudOsVersionCode } from './cloud-os-version-code';
 import { EnvironmentRelation } from './environment-relation';
 import { ProjectRelation } from './project-relation';
 import { ServerBlueprint } from './server-blueprint';
+import { ServerProvisionSettingsInput } from './server-provision-settings-input';
 import { UserRelation } from './user-relation';
 
 /**
@@ -74,6 +76,12 @@ export interface Server {
      */
     ssh_port: number;
     /**
+     * 
+     * @type {CloudOsVersionCode}
+     * @memberof Server
+     */
+    os_version_code: CloudOsVersionCode | null;
+    /**
      * Tells if the server is active or not
      * @type {boolean}
      * @memberof Server
@@ -91,6 +99,12 @@ export interface Server {
      * @memberof Server
      */
     blueprint: ServerBlueprint;
+    /**
+     * 
+     * @type {ServerProvisionSettingsInput}
+     * @memberof Server
+     */
+    provision_settings: ServerProvisionSettingsInput;
     /**
      * 
      * @type {UserRelation}

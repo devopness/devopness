@@ -13,6 +13,7 @@
 
 
 import { ResourceOperation } from './resource-operation';
+import { ResourceType } from './resource-type';
 
 /**
  * 
@@ -21,19 +22,19 @@ import { ResourceOperation } from './resource-operation';
  */
 export interface ResourceTypeRelation {
     /**
-     * The type of resource this resourceType affects
-     * @type {string}
+     * 
+     * @type {ResourceType}
      * @memberof ResourceTypeRelation
      */
-    resource_type: string;
+    resource_type: ResourceType;
     /**
-     * Human readable resource name
+     * Human readable version of the resource type
      * @type {string}
      * @memberof ResourceTypeRelation
      */
     resource_type_human_readable: string;
     /**
-     * Human readable plural resource name
+     * Human readable version of the resource type, in plural form
      * @type {string}
      * @memberof ResourceTypeRelation
      */

@@ -32,7 +32,7 @@ export interface RoleUpdate {
      */
     description?: string;
     /**
-     * The list of permissions for this role
+     * The list of permissions granted for this role
      * @type {Array<string>}
      * @memberof RoleUpdate
      */
