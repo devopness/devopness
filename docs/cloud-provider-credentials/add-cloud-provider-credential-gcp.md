@@ -38,7 +38,7 @@ links:
 1. If the service account doesn't have the `Compute Engine Service Agent` role, set it:
     - Click `GRANT ACCESS` button
     - Paste the service account email on the `New principals` field
-    - Select the `Compute Engine Service Agent` option
+    - Select the `Compute Engine Service Agent` option on the `Role` field
     - Click `SAVE`
 1. On the left side menu under `IAM & Admin`, select the `IAM` option
 1. Having your service account listed, edit its roles:
