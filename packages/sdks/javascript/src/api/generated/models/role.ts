@@ -44,7 +44,7 @@ export interface Role {
      */
     project_id: number;
     /**
-     * The list of permissions for this role
+     * The list of permissions granted for this role
      * @type {Array<string>}
      * @memberof Role
      */
