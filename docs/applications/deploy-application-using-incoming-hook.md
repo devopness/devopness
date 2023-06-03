@@ -34,8 +34,8 @@ Before creating our application deploy incoming webhook, we need the `Applicatio
 Once you have your `Application ID` (`<application_id>`) and `Deploy Pipeline ID` (`<pipeline_id>`), please follow the instructions below to add an incoming webhook to your application that triggers the deploy pipeline:
 
 1. Follow the steps on [Create an Incoming Webhook](/docs/webhooks/create-incoming-webhook) guide 
-2. Once your web hook is created, copy the webhook the hook's unique URL (`url` field)
-3. Take note of the hook secret signature key (`secret` field)
+1. Once your web hook is created, copy the webhook the hook's unique URL (`url` field)
+1. Take note of the hook secret signature key (`secret` field)
   > If the hook was created without a `secret` (non recommended), you can skip this step
 1. Add your webhook to your source provider
     - Follow Bitbucket' [Manage webhooks: create webhooks](https://support.atlassian.com/bitbucket-cloud/docs/manage-webhooks/#Create-webhooks) guide; or
