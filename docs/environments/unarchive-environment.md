@@ -1,5 +1,5 @@
 ---
-draft: true
+hidden: true
 title: Unarchive an Environment
 intro: Some environments may need to be unarchived to re-run tests or manage a service included in the environment. Unarchive an Environment to view its linked resources.
 links:
