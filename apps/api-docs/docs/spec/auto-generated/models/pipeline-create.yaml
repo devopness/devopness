@@ -6,7 +6,7 @@ properties:
     example: 'My pipeline'
     type: string
   operation:
-    description: 'The pipeline''s operation. Must not be greater than 20 characters.'
+    description: 'The resource operation associated to the pipeline. Must not be greater than 20 characters.'
     example: deploy
     type: string
 required:
