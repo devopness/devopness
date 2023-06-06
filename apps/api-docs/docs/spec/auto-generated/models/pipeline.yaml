@@ -18,9 +18,7 @@ properties:
     type: integer
     example: 97063242
   resource_type:
-    description: 'The pipeline''s resource type'
-    type: string
-    example: application
+    $ref: '#/components/schemas/ResourceType'
   resource_type_human_readable:
     description: 'Human readable version of the resource type'
     type: string
