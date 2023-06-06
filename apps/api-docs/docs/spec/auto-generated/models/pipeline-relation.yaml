@@ -21,10 +21,22 @@ properties:
     description: 'The pipeline''s resource type'
     type: string
     example: application
+  resource_type_human_readable:
+    description: 'Human readable version of the resource type'
+    type: string
+    example: Application
   resource_id:
     description: 'The pipeline''s resource ID'
     type: integer
     example: 5324234
+  operation:
+    description: 'The resource operation associated to the pipeline.'
+    type: string
+    example: deploy
+  operation_human_readable:
+    description: 'Human readable version of the operation'
+    type: string
+    example: Deploy
   created_by_user:
     $ref: '#/components/schemas/UserRelation'
   created_at:
@@ -41,7 +53,10 @@ required:
   - environment_id
   - project_id
   - resource_type
+  - resource_type_human_readable
   - resource_id
+  - operation
+  - operation_human_readable
   - created_by_user
   - created_at
   - updated_at
