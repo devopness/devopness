@@ -1,5 +1,5 @@
 ---
-hidden: true
+draft: true
 title: Find an Archived Environment
 intro: Sometimes you may need to access the details of an archived environment or see a list of environments in a project that have been archived. You can access details of all archived environments in a project owned by you.
 links:

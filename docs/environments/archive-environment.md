@@ -1,5 +1,5 @@
 ---
-hidden: true
+draft: true
 title: Archive an Environment
 intro: You can archive an environment to make it read-only for all users as a way to indicate that it's no longer actively maintained. When an environment is archived all its data is preserved, including the environment settings, team memberships and environment resources. Archived environments can be unarchived at any time.
 links:
