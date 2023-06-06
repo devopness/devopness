@@ -224,8 +224,6 @@
   put:
     $ref: ./auto-generated/endpoints/update-role.yaml
 '/servers/{server_id}':
-  delete:
-    $ref: ./auto-generated/endpoints/delete-server.yaml
   get:
     $ref: ./auto-generated/endpoints/get-server.yaml
   put:
@@ -236,15 +234,6 @@
 '/servers/{server_id}/connect/{activation_token}':
   post:
     $ref: ./auto-generated/endpoints/connect-server.yaml
-'/servers/{server_id}/get-status':
-  post:
-    $ref: ./auto-generated/endpoints/get-status-server.yaml
-'/servers/{server_id}/start':
-  post:
-    $ref: ./auto-generated/endpoints/start-server.yaml
-'/servers/{server_id}/stop':
-  post:
-    $ref: ./auto-generated/endpoints/stop-server.yaml
 '/services/{service_id}':
   delete:
     $ref: ./auto-generated/endpoints/delete-service.yaml
