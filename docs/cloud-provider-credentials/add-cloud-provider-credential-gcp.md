@@ -12,6 +12,8 @@ links:
     featured:
 ---
 
+> If you don't have access to a GCP account, you can create a account for free following the cloud provider specific guide [Gogle Cloud Free Tier](https://cloud.google.com/free)
+
 1. Access a GCP project or create a new one: [https://console.cloud.google.com/project](https://console.cloud.google.com/project)
     > If you created a new project, a notification modal will appear showing your new project creation status.
     > Reload the console page if your new project is not listed a few seconds after its creation is succeded.

@@ -12,6 +12,8 @@ links:
     featured:
 ---
 
+> If you don't have access to an AWS account, you can create a account for free following the cloud provider specific guide [AWS Free Tier](https://aws.amazon.com/free/)
+
 1. Log in to AWS console and access [AWS IAM](https://console.aws.amazon.com/iam/)
 1. In the navigation pane on the left side, choose `Users` and then choose `Add users`
 1. Type the user name for the new user
