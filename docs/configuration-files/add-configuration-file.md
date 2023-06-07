@@ -1,5 +1,5 @@
 ---
-title: Add a configuration file
+title: Add a Configuration File
 intro: By adding configuration files you ensure a more consistent resource deployment, as they can contain crucial information and settings for each environment.
 links:
     overview:
