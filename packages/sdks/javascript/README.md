@@ -89,7 +89,7 @@ To build and test the SDK locally, [**fork this repository**](https://github.com
   xcode-select --install
   ```
 ### Setup and run in local environment
-#### 1. Navigate to the project directory!
+#### 1. Navigate to the project directory
 ```shell
 cd packages/sdks/javascript/
 ```
