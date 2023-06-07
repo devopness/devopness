@@ -61,6 +61,13 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         'getUserLogout204',
         // Skipping post resource events because we only support payment_provider events for now
         'addResourceEvent200',
+        // The server created by tests is self-hosted, so we can't test endpoints
+        // used for provisioned servers only
+        'deleteServer204',
+        'getStatusServer204',
+        'startServer204',
+        'restartServer204',
+        'stopServer204',
     ];
 
     // transactions listed here are skipped with a `before` hook
