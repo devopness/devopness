@@ -19,7 +19,7 @@ jobs:
       - name: Generate pull request name
         id: branch
         run: |
-          echo ::set-output name=pr_name::$(date +'feat: %Y-%m-%d %H:%M - Update auto generated models')
+          echo "pr_name=$(date +'feat: %Y-%m-%d %H:%M - Update auto generated models')" >> $GITHUB_OUTPUT
 
       - name: Import auto generated models
         id: import_models

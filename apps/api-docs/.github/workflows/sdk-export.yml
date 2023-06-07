@@ -31,8 +31,8 @@ jobs:
       - name: Generate branch and pull request names
         id: branch
         run: |
-          echo ::set-output name=pr_name::$(date +'feat: %Y-%m-%d %H:%M - Update API specification')
-          echo ::set-output name=branch_name::feat/auto-update-api-specification
+          echo "pr_name=$(date +'feat: %Y-%m-%d %H:%M - Update API specification')" >> $GITHUB_OUTPUT
+          echo "branch_name=feat/auto-update-api-specification" >> $GITHUB_OUTPUT
 
       - name: Checkout to auto generated branch
         id: git_config
@@ -43,10 +43,11 @@ jobs:
 
           git fetch
           if git checkout "${{ steps.branch.outputs.branch_name }}" 2> /dev/null; then
-            echo ::set-output name=pr_exists::true
+            echo "pr_exists=true" >> $GITHUB_OUTPUT
+
           else
             git checkout -b "${{ steps.branch.outputs.branch_name }}"
-            echo ::set-output name=pr_exists::false
+            echo "pr_exists=false" >> $GITHUB_OUTPUT
           fi
 
       - name: Copy JSON spec from 'devopness-api-docs' to `devopness`
@@ -59,7 +60,7 @@ jobs:
         run: |
           if [ -z "$(git status --porcelain)" ]; then
             echo "File 'spec.json' is up to date. Nothing to commit!"
-            echo ::set-output name=has_changes::false
+            echo "has_changes=false" >> $GITHUB_OUTPUT
             exit 0
           fi
 
@@ -67,7 +68,7 @@ jobs:
           git commit -m "feat: update 'spec.json' file"
 
           git push origin "${{ steps.branch.outputs.branch_name }}"
-          echo ::set-output name=has_changes::true
+          echo "has_changes=true" >> $GITHUB_OUTPUT
 
       - name: Create SDK-JS pull request
         uses: actions/github-script@v6
