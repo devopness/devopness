@@ -14533,14 +14533,27 @@
             "example": 97063242
           },
           "resource_type": {
-            "description": "The pipeline's resource type",
+            "$ref": "#/components/schemas/ResourceType"
+          },
+          "resource_type_human_readable": {
+            "description": "Human readable version of the resource type",
             "type": "string",
-            "example": "application"
+            "example": "Application"
           },
           "resource_id": {
             "description": "The pipeline's resource ID",
             "type": "integer",
             "example": 5324234
+          },
+          "operation": {
+            "description": "The resource operation associated to the pipeline.",
+            "type": "string",
+            "example": "deploy"
+          },
+          "operation_human_readable": {
+            "description": "Human readable version of the operation",
+            "type": "string",
+            "example": "Deploy"
           },
           "steps": {
             "$ref": "#/components/schemas/StepList"
@@ -14565,7 +14578,10 @@
           "environment_id",
           "project_id",
           "resource_type",
+          "resource_type_human_readable",
           "resource_id",
+          "operation",
+          "operation_human_readable",
           "steps",
           "created_by_user",
           "created_at",
@@ -14579,10 +14595,16 @@
             "description": "The pipeline's name. Must be at least 3 characters. Must not be greater than 80 characters.",
             "example": "My pipeline",
             "type": "string"
+          },
+          "operation": {
+            "description": "The resource operation associated to the pipeline. Must not be greater than 20 characters.",
+            "example": "deploy",
+            "type": "string"
           }
         },
         "required": [
-          "name"
+          "name",
+          "operation"
         ]
       },
       "PipelineList": {
@@ -14619,10 +14641,25 @@
             "type": "string",
             "example": "application"
           },
+          "resource_type_human_readable": {
+            "description": "Human readable version of the resource type",
+            "type": "string",
+            "example": "Application"
+          },
           "resource_id": {
             "description": "The pipeline's resource ID",
             "type": "integer",
             "example": 5324234
+          },
+          "operation": {
+            "description": "The resource operation associated to the pipeline.",
+            "type": "string",
+            "example": "deploy"
+          },
+          "operation_human_readable": {
+            "description": "Human readable version of the operation",
+            "type": "string",
+            "example": "Deploy"
           },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
@@ -14644,7 +14681,10 @@
           "environment_id",
           "project_id",
           "resource_type",
+          "resource_type_human_readable",
           "resource_id",
+          "operation",
+          "operation_human_readable",
           "created_by_user",
           "created_at",
           "updated_at"
