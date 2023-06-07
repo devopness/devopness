@@ -51,11 +51,29 @@ export interface PipelineRelation {
      */
     resource_type: string;
     /**
+     * Human readable version of the resource type
+     * @type {string}
+     * @memberof PipelineRelation
+     */
+    resource_type_human_readable: string;
+    /**
      * The pipeline\'s resource ID
      * @type {number}
      * @memberof PipelineRelation
      */
     resource_id: number;
+    /**
+     * The resource operation associated to the pipeline.
+     * @type {string}
+     * @memberof PipelineRelation
+     */
+    operation: string;
+    /**
+     * Human readable version of the operation
+     * @type {string}
+     * @memberof PipelineRelation
+     */
+    operation_human_readable: string;
     /**
      * 
      * @type {UserRelation}
