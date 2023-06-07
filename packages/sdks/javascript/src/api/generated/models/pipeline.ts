@@ -12,6 +12,7 @@
  */
 
 
+import { ResourceType } from './resource-type';
 import { Step } from './step';
 import { UserRelation } from './user-relation';
 
@@ -46,17 +47,35 @@ export interface Pipeline {
      */
     project_id: number;
     /**
-     * The pipeline\'s resource type
+     * 
+     * @type {ResourceType}
+     * @memberof Pipeline
+     */
+    resource_type: ResourceType;
+    /**
+     * Human readable version of the resource type
      * @type {string}
      * @memberof Pipeline
      */
-    resource_type: string;
+    resource_type_human_readable: string;
     /**
      * The pipeline\'s resource ID
      * @type {number}
      * @memberof Pipeline
      */
     resource_id: number;
+    /**
+     * The resource operation associated to the pipeline.
+     * @type {string}
+     * @memberof Pipeline
+     */
+    operation: string;
+    /**
+     * Human readable version of the operation
+     * @type {string}
+     * @memberof Pipeline
+     */
+    operation_human_readable: string;
     /**
      * 
      * @type {Array<Step>}

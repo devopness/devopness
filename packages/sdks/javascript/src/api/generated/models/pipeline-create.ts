@@ -25,5 +25,11 @@ export interface PipelineCreate {
      * @memberof PipelineCreate
      */
     name: string;
+    /**
+     * The resource operation associated to the pipeline. Must not be greater than 20 characters.
+     * @type {string}
+     * @memberof PipelineCreate
+     */
+    operation: string;
 }
 
