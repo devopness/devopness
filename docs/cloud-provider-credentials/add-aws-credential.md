@@ -1,6 +1,6 @@
 ---
-title: Add AWS Credential
-intro: In order to allow Devopness to manage Amazon Web Services (AWS) resources on your behalf, IAM user security credentials have to be provided.
+title: Add Amazon Web Services (AWS) Credential
+intro: In order to allow Devopness to manage AWS resources on your behalf, IAM user security credentials have to be provided.
 links:
     overview:
     quickstart:

@@ -1,6 +1,6 @@
 ---
-title: Add Google Cloud Platform Credential
-intro: In order to allow Devopness to manage Google Cloud Platform (GCP) resources on your behalf, Service Account key has to be provided.
+title: Add Google Cloud Platform (GCP) Credential
+intro: In order to allow Devopness to manage GCP resources on your behalf, Service Account key has to be provided.
 links:
     overview:
     quickstart:
