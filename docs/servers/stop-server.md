@@ -12,6 +12,9 @@ links:
     featured:
 ---
 
+> Note #1: Any applications or daemons on this server will stop working as a consequence of the server being stopped.
+> Note #2: Your server's public IP address will be updated the next time the server is started, unless you have configured an elastic IP on your cloud provider management panel; meaning, the next time this server is started, you will need to update any domains pointing to this server.
+
 1. On Devopness, navigate to a project then select an environment
 1. Find the `Servers` card
 1. Click the `View` in the `Servers` card to see a list of existing `Servers`
