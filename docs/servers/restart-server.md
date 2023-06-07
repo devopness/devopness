@@ -15,9 +15,8 @@ links:
 1. On Devopness, navigate to a project then select an environment
 1. Find the `Servers` card
 1. Click the `View` in the `Servers` card to see a list of existing `Servers`
-1. In the list of servers, find the running server you want to restart and click `DETAILS`
-    > If you don’t have any running servers, follow the guide [Start a Server](/docs/servers/start-server)
-3. On the upper-right corner of the stopped server details view click `ACTIONS`
+1. In the list of servers, find the server you want to restart and click `DETAILS`
+3. On the upper-right corner of the server details view click `ACTIONS`
 4. Use the drop-down menu to choose `Restart`
 5. Wait for the `Server:restart` action to be completed
 6. Follow the guide [Get a Server’s Status](/docs/server/get-server-status)
