@@ -13,7 +13,7 @@ links:
     featured:
 ---
 
-> If you don't have a GCP credential, please follow the guide [Add Google Cloud Platform Credential](/docs/cloud-provider-credentials/add-cloud-provider-credential-gcp/)
+> If you don't have a GCP credential, please follow the guide [Add Google Cloud Platform Credential](/docs/cloud-provider-credentials/add-gcp-credential/)
 
 1. On Devopness, navigate to a project then select an environment
 1. If there's no other server in the selected environment, just click `ADD SERVER`

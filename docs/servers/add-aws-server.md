@@ -13,7 +13,7 @@ links:
     featured:
 ---
 
-> If you don't have an AWS credential, please follow the guide [Add AWS Credential](/docs/cloud-provider-credentials/add-cloud-provider-credential-aws/)
+> If you don't have an AWS credential, please follow the guide [Add AWS Credential](/docs/cloud-provider-credentials/add-aws-credential/)
 
 1. On Devopness, navigate to a project then select an environment
 1. If there's no other server in the selected environment, just click `ADD SERVER`
