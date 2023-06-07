@@ -47,6 +47,24 @@ export class ServersApiService extends ApiBaseService {
 
     /**
      * 
+     * @summary Delete a given server
+     * @param {number} serverId The ID of the server.
+     */
+    public async deleteServer(serverId: number): Promise<ApiResponse<void>> {
+        if (serverId === null || serverId === undefined) {
+            throw new ArgumentNullException('serverId', 'deleteServer');
+        }
+        
+        let queryString = '';
+
+        const requestUrl = '/servers/{server_id}' + (queryString? `?${queryString}` : '');
+
+        const response = await this.delete <void>(requestUrl.replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
      * @summary Get a server by ID
      * @param {number} serverId The ID of the server.
      */
@@ -78,6 +96,78 @@ export class ServersApiService extends ApiBaseService {
         const requestUrl = '/servers/{server_id}/commands' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <ServerCommand>(requestUrl.replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Get current status of the server on the cloud provider
+     * @param {number} serverId The ID of the server.
+     */
+    public async getStatusServer(serverId: number): Promise<ApiResponse<void>> {
+        if (serverId === null || serverId === undefined) {
+            throw new ArgumentNullException('serverId', 'getStatusServer');
+        }
+        
+        let queryString = '';
+
+        const requestUrl = '/servers/{server_id}/get-status' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <void>(requestUrl.replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Restart a current running server
+     * @param {number} serverId The ID of the server.
+     */
+    public async restartServer(serverId: number): Promise<ApiResponse<void>> {
+        if (serverId === null || serverId === undefined) {
+            throw new ArgumentNullException('serverId', 'restartServer');
+        }
+        
+        let queryString = '';
+
+        const requestUrl = '/servers/{server_id}/restart' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <void>(requestUrl.replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Start a previously stopped server
+     * @param {number} serverId The ID of the server.
+     */
+    public async startServer(serverId: number): Promise<ApiResponse<void>> {
+        if (serverId === null || serverId === undefined) {
+            throw new ArgumentNullException('serverId', 'startServer');
+        }
+        
+        let queryString = '';
+
+        const requestUrl = '/servers/{server_id}/start' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <void>(requestUrl.replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Stop a running server
+     * @param {number} serverId The ID of the server.
+     */
+    public async stopServer(serverId: number): Promise<ApiResponse<void>> {
+        if (serverId === null || serverId === undefined) {
+            throw new ArgumentNullException('serverId', 'stopServer');
+        }
+        
+        let queryString = '';
+
+        const requestUrl = '/servers/{server_id}/stop' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <void>(requestUrl.replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))));
         return new ApiResponse(response);
     }
 
