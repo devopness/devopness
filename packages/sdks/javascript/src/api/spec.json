@@ -1988,6 +1988,55 @@
         }
       }
     },
+    "/environments/{environment_id}/archive": {
+      "post": {
+        "summary": "Archive an environment",
+        "operationId": "archiveEnvironment",
+        "description": {
+          "$ref": "../spec/descriptions/archive-environment.md"
+        },
+        "tags": [
+          "Environments"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "environment_id",
+            "description": "The ID of the environment.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/environments/{environment_id}/cron-jobs": {
       "get": {
         "summary": "Return a list of all Cron Jobs belonging to an environment",
@@ -3056,6 +3105,55 @@
           },
           "422": {
             "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/environments/{environment_id}/unarchive": {
+      "post": {
+        "summary": "Unarchive an environment",
+        "operationId": "unarchiveEnvironment",
+        "description": {
+          "$ref": "../spec/descriptions/unarchive-environment.md"
+        },
+        "tags": [
+          "Environments"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "environment_id",
+            "description": "The ID of the environment.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
             "content": {
               "application/json": {
                 "schema": {
@@ -4911,6 +5009,76 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/EnvironmentProjectCreate"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/environments/archived": {
+      "get": {
+        "summary": "Return a list of all archived environments belonging to a project",
+        "operationId": "listProjectArchivedEnvironments",
+        "description": {
+          "$ref": "../spec/descriptions/list-project-archived-environments.md"
+        },
+        "tags": [
+          "Projects - Archived Environments"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "description": "The ID of the project.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ArchivedEnvironmentList"
+                }
+              }
+            },
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
               }
             }
           }
@@ -9704,6 +9872,9 @@
       "description": "The terms `process`, `background process` and `daemon` may be used interchangeably in the `devopness` API documentation to denote the same thing: i.e., a computer process that runs behind the scenes without user intervention, detached from TTY (teletype/terminal type) and having no associated console or controlling terminal, therefore prevented from receiving `SIGHUP` on shell termination.\n"
     },
     {
+      "name": "Projects - Archived Environments"
+    },
+    {
       "name": "Projects - Environments"
     },
     {
@@ -9839,7 +10010,8 @@
       "name": "Environments",
       "tags": [
         "Environments",
-        "Projects - Environments"
+        "Projects - Environments",
+        "Projects - Archived Environments"
       ]
     },
     {
@@ -11476,6 +11648,61 @@
           "servers"
         ]
       },
+      "ArchivedEnvironmentList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/ArchivedEnvironmentRelation"
+        }
+      },
+      "ArchivedEnvironmentRelation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "Unique id of the given record",
+            "type": "integer",
+            "example": 16523
+          },
+          "name": {
+            "description": "Environment's name",
+            "type": "string",
+            "example": "My staging"
+          },
+          "type": {
+            "$ref": "#/components/schemas/EnvironmentType"
+          },
+          "type_human_readable": {
+            "description": "The human readable version of the type",
+            "type": "string",
+            "example": "Staging"
+          },
+          "created_at": {
+            "description": "The date and time when the record was created",
+            "type": "string",
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "description": "The date and time when the record was last updated",
+            "type": "string",
+            "example": "2019-09-25T13:52:04.000000Z"
+          },
+          "archived_at": {
+            "description": "The date and time when the record was archived",
+            "type": "string",
+            "example": "2019-09-26T10:45:42.000000Z",
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "type",
+          "type_human_readable",
+          "created_at",
+          "updated_at",
+          "archived_at"
+        ],
+        "nullable": true
+      },
       "BlueprintService": {
         "type": "object",
         "properties": {
@@ -12988,6 +13215,12 @@
             "description": "The date and time when the record was last updated",
             "type": "string",
             "example": "2019-09-25T13:52:04.000000Z"
+          },
+          "archived_at": {
+            "description": "The date and time when the record was archived",
+            "type": "string",
+            "example": "2019-09-26T10:45:42.000000Z",
+            "nullable": true
           }
         },
         "required": [
@@ -12996,7 +13229,8 @@
           "type",
           "type_human_readable",
           "created_at",
-          "updated_at"
+          "updated_at",
+          "archived_at"
         ],
         "nullable": true
       },
