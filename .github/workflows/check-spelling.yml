@@ -1,9 +1,16 @@
 name: Check Spelling
 
 on:
-  pull_request:
-    branches: [ main ]
-
+  pull_request_target:
+    # triggers on `pull_request_target` as this is a fork-based repository
+    # for security reasons, `npm` or other code execution jobs must not
+    # be executed on this workflow
+    types:
+      - opened
+      - reopened
+      - synchronize
+    paths:
+      - docs/**
 
 jobs:
   cspell:
@@ -16,5 +23,4 @@ jobs:
           fetch-depth: 2
       - name: Check spelling
         run: |
-          git diff --name-only -r HEAD~1 HEAD
           git diff --name-only -r HEAD~1 HEAD | npx cspell --config .github/cspell.json --file-list stdin
