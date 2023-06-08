@@ -23,8 +23,8 @@ links:
 1. Select a GCP credential using the drop-down menu
     > If no credential is listed or you want to use a different one, please follow the [Add a Cloud Provider Credential](/docs/cloud-provider-credentials/add-cloud-provider-credential/) guide
 1. Click `NEXT`
-1. Select an avaliable region using the drop-down menu
-1. Select an avaliable instance type using the drop-down menu
+1. Select an available region using the drop-down menu
+1. Select an available instance type using the drop-down menu
 1. Set the `Disk size`
 1. Click `NEXT`
 1. Provide your server name, OS and hostname and click `NEXT`
