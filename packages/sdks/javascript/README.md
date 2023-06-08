@@ -89,22 +89,27 @@ To build and test the SDK locally, [**fork this repository**](https://github.com
   xcode-select --install
   ```
 ### Setup and run in local environment
-#### 1. Build Docker Image
+#### 1. Navigate to the project directory
+```shell
+cd packages/sdks/javascript/
+```
+
+#### 2. Build Docker Image
 ```
 make build-image
 ```
 
-#### 2. Install Dependencies
+#### 3. Install Dependencies
 ```
 make npm-ci
 ```
 
-#### 3. Build SDK
+#### 4. Build SDK
 ```
 make build-sdk-js
 ```
 
-#### 4. Run Tests
+#### 5. Run Tests
 ```
 make test
 ```
@@ -112,7 +117,7 @@ make test
 ### Without Docker
 Installing on ``Linux`` or ``macOS`` systems.
 
-#### 1. Navigate to the project directory!
+#### 1. Navigate to the project directory
 ```shell
 cd packages/sdks/javascript/
 ```
