@@ -11,7 +11,7 @@ links:
     featured:
 ---
 
-> If you don't have access to an DigitalOcean account, you can create an account for free following the cloud provider specific guide [DigitalOcean Free Trial Offer](https://www.digitalocean.com/try/free-trial-offer)
+> If you don't have access to a DigitalOcean account, you can create an account for free following the cloud provider specific guide [DigitalOcean Free Trial Offer](https://www.digitalocean.com/try/free-trial-offer)
 
 1. Log in to [DigitalOcean Control Panel](https://cloud.digitalocean.com/)
 1. In the navigation panel on the left side, click `API`
