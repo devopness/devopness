@@ -22,7 +22,7 @@ links:
     - Tip: you might want to name the token as `devopness` to make it easier to track its activities
 1. Under `Expiration`, click the `Select token expiry` field and select one of the expiration options for when this token will become expired
 1. Under `Select scopes`, ensure the `Write` option is checked
-    - It’s critical that your credential key has the permissions to create instances, otherwise Devopness will be unable to add new Servers.
+    - It’s critical that your token has the permission to create droplets, otherwise Devopness will be unable to add new Servers.
 1. Click `Generate Token`
 1. Copy the value of `token`
     - It will be the text prefixed with `dop_v1_`
