@@ -23,3 +23,4 @@ links:
 1. On the upper-right corner of pipeline details view click `STEPS`
 1. On the upper-right corner of the list click `ADD STEP`
 1. Follow the instructions in the add pipeline step form then click `CONFIRM`
+    > A new deployment is required for your changes to take effect, follow the guide [Deploy Application](/docs/applications/deploy-application/)
