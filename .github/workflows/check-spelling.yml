@@ -6,8 +6,8 @@ on:
 
 
 jobs:
-  get_files:
-    name: run_on_pr
+  cspell:
+    name: check_spelling
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -16,4 +16,5 @@ jobs:
           fetch-depth: 2
       - name: Check spelling
         run: |
-          git diff --name-only -r HEAD^1 HEAD | npx cspell --config .github/cspell.json --file-list stdin
+          git diff --name-only -r HEAD~1 HEAD
+          git diff --name-only -r HEAD~1 HEAD | npx cspell --config .github/cspell.json --file-list stdin
