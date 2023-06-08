@@ -1,6 +1,6 @@
 ---
-title: Add Google Cloud Platform Credential
-intro: In order to allow Devopness to manage Google Cloud Platform (GCP) resources on your behalf, Service Account key has to be provided.
+title: Add Google Cloud Platform (GCP) Credential
+intro: In order to allow Devopness to manage GCP resources on your behalf, Service Account key has to be provided.
 links:
     overview:
     quickstart:
@@ -11,6 +11,8 @@ links:
     related:
     featured:
 ---
+
+> If you don't have access to a GCP account, you can create an account for free following the cloud provider specific guide [Gogle Cloud Free Tier](https://cloud.google.com/free)
 
 1. Access a GCP project or create a new one: [https://console.cloud.google.com/project](https://console.cloud.google.com/project)
     > If you created a new project, a notification modal will appear showing your new project creation status.
