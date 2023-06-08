@@ -117,7 +117,7 @@ make test
 ### Without Docker
 Installing on ``Linux`` or ``macOS`` systems.
 
-#### 1. Navigate to the project directory!
+#### 1. Navigate to the project directory
 ```shell
 cd packages/sdks/javascript/
 ```
