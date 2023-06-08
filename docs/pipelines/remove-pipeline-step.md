@@ -21,4 +21,5 @@ links:
 1. On the upper-right corner of pipeline details view click `STEPS`
 1. In the list of pipeline steps find the pipeline step you want to remove and click `REMOVE`
 1. Follow the instructions in the remove pipeline step form then click `REMOVE`
-    > A new deployment is required for your changes to take effect, follow the guide [Deploy Application](/docs/applications/deploy-application/)
+    > A new deployment is required for your changes to take effect.
+      - Follow the guide [Deploy Application](/docs/applications/deploy-application/)

@@ -23,4 +23,5 @@ links:
 1. On the upper-right corner of the configuration file details click `...`
 1. Use the drop-down menu to choose `REMOVE`
 1. Follow the instructions in the delete form then click `REMOVE`
-    > A new deployment is required for your changes to take effect, follow the guide [Deploy Application](/docs/applications/deploy-application/)
+    > A new deployment is required for your changes to take effect.
+      - Follow the guide [Deploy Application](/docs/applications/deploy-application/)
