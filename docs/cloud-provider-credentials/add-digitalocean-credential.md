@@ -19,7 +19,7 @@ links:
 1. In the `Tokens` tab, click `Generate New Token`
 1. The `New personal access token` form will be displayed
 1. Under `Token name`, click `Enter token name` field and type a name for the new token
-    - Tip: you might want to name the user as `devopness` to make it easier to track its activities
+    - Tip: you might want to name the token as `devopness` to make it easier to track its activities
 1. Under `Expiration`, click the `Select token expiry` field and select one of the expiration options for when this token will become expired
 1. Under `Select scopes`, ensure the `Write` option is checked
     - It’s critical that your credential key has the permissions to create instances, otherwise Devopness will be unable to add new Servers.
