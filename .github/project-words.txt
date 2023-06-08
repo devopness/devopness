@@ -1,0 +1,24 @@
+# Devopness Words
+
+## Company Name
+Devopness
+Tecnologia
+LTDA
+
+## Legal
+sublicensable
+remarketing
+CalOPPA
+CCPA
+
+## Frontmatter params
+quickstart
+
+## Security
+HMAC
+
+## Websites
+codesandbox
+jsfiddle
+runkit
+whatsmydns

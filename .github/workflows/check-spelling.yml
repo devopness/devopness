@@ -1,0 +1,19 @@
+name: Check Spelling
+
+on:
+  pull_request:
+    branches: [ main ]
+
+
+jobs:
+  get_files:
+    name: run_on_pr
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+      - name: Check spelling
+        run: |
+          git diff --name-only -r HEAD^1 HEAD | npx cspell --config .github/cspell.json --file-list stdin
