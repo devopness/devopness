@@ -82,9 +82,6 @@
     $ref: ./auto-generated/endpoints/list-environment-applications.yaml
   post:
     $ref: ./auto-generated/endpoints/add-environment-application.yaml
-'/environments/{environment_id}/archive':
-  post:
-    $ref: ./auto-generated/endpoints/archive-environment.yaml
 '/environments/{environment_id}/cron-jobs':
   get:
     $ref: ./auto-generated/endpoints/list-environment-cron-jobs.yaml
@@ -124,9 +121,6 @@
 '/environments/{environment_id}/teams/{team_id}/unlink':
   delete:
     $ref: ./auto-generated/endpoints/unlink-team-from-environment.yaml
-'/environments/{environment_id}/unarchive':
-  post:
-    $ref: ./auto-generated/endpoints/unarchive-environment.yaml
 '/events/{resource_type}/{resource_id}':
   get:
     $ref: ./auto-generated/endpoints/list-resource-events-by-resource-type.yaml
@@ -200,9 +194,6 @@
     $ref: ./auto-generated/endpoints/list-project-environments.yaml
   post:
     $ref: ./auto-generated/endpoints/add-project-environment.yaml
-'/projects/{project_id}/environments/archived':
-  get:
-    $ref: ./auto-generated/endpoints/list-project-archived-environments.yaml
 '/projects/{project_id}/roles':
   get:
     $ref: ./auto-generated/endpoints/list-project-roles.yaml

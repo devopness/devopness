@@ -55,10 +55,6 @@ ApplicationType:
   $ref: ./auto-generated/models/application-type.yaml
 ApplicationUpdate:
   $ref: ./auto-generated/models/application-update.yaml
-ArchivedEnvironmentList:
-  $ref: ./auto-generated/models/archived-environment-list.yaml
-ArchivedEnvironmentRelation:
-  $ref: ./auto-generated/models/archived-environment-relation.yaml
 BlueprintService:
   $ref: ./auto-generated/models/blueprint-service.yaml
 BlueprintServiceList:
