@@ -17,49 +17,49 @@ import { EnvironmentType } from './environment-type';
 /**
  * 
  * @export
- * @interface EnvironmentRelation
+ * @interface ArchivedEnvironmentRelation
  */
-export interface EnvironmentRelation {
+export interface ArchivedEnvironmentRelation {
     /**
      * Unique id of the given record
      * @type {number}
-     * @memberof EnvironmentRelation
+     * @memberof ArchivedEnvironmentRelation
      */
     id: number;
     /**
      * Environment\'s name
      * @type {string}
-     * @memberof EnvironmentRelation
+     * @memberof ArchivedEnvironmentRelation
      */
     name: string;
     /**
      * 
      * @type {EnvironmentType}
-     * @memberof EnvironmentRelation
+     * @memberof ArchivedEnvironmentRelation
      */
     type: EnvironmentType;
     /**
      * The human readable version of the type
      * @type {string}
-     * @memberof EnvironmentRelation
+     * @memberof ArchivedEnvironmentRelation
      */
     type_human_readable: string;
     /**
      * The date and time when the record was created
      * @type {string}
-     * @memberof EnvironmentRelation
+     * @memberof ArchivedEnvironmentRelation
      */
     created_at: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
-     * @memberof EnvironmentRelation
+     * @memberof ArchivedEnvironmentRelation
      */
     updated_at: string;
     /**
      * The date and time when the record was archived
      * @type {string}
-     * @memberof EnvironmentRelation
+     * @memberof ArchivedEnvironmentRelation
      */
     archived_at: string | null;
 }
