@@ -35,4 +35,4 @@ links:
 1. If you want to access the server on GCP console:
     - Access [GCP Console](https://console.cloud.google.com/)
     - On the Search box, enter “Compute Engine” and select it from search results
-    - A `GCE` instance with the name provided on Devopness web interface will be listed
+    - A `GCE` instance will be listed, with the name of the new `Server` you provisioned on Devopness
