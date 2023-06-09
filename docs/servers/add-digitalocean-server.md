@@ -35,4 +35,5 @@ links:
 1. If you want to access the server on `DigitalOcean` console:
     - Log in to [DigitalOcean Control Panel](https://cloud.digitalocean.com/)
     - Find the droplets section
-    - A `droplet` instance with the name provided on Devopness web interface will be listed
+    - A `droplet` instance will be listed, with the name of the new `Server` you provisioned on Devopness
+- ```
