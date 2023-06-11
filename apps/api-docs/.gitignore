@@ -14,11 +14,6 @@ graph.png
 # Ignore API docs zip file
 docs/api-docs.zip
 
-# Ignore generated documentation, for more information check the scripts:
-#api-build-spec
-#api-convert-spec-to-dredd
-#api-convert-spec-to-json
-#api-docs-export-page
-#api-docs-zip-extract
+# Auto-generated/copied files. For details, see `api-*` scripts in package.json
 docs/spec/data-models.yaml
 docs/spec/paths.yaml
