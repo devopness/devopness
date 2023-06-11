@@ -2,6 +2,12 @@
 /actions:
   get:
     $ref: ./auto-generated/endpoints/list-actions.yaml
+'/actions/{action_id}':
+  get:
+    $ref: ./auto-generated/endpoints/get-action.yaml
+'/actions/{action_id}/retry':
+  post:
+    $ref: ./auto-generated/endpoints/retry-action.yaml
 '/actions/{action_id}/servers/{server_id}/steps/{action_step_order}/logs':
   get:
     $ref: ./auto-generated/endpoints/get-action-log.yaml
@@ -159,6 +165,9 @@
     $ref: ./auto-generated/endpoints/get-pipeline.yaml
   put:
     $ref: ./auto-generated/endpoints/update-pipeline.yaml
+'/pipelines/{pipeline_id}/actions':
+  post:
+    $ref: ./auto-generated/endpoints/add-pipeline-action.yaml
 '/pipelines/{pipeline_id}/steps':
   post:
     $ref: ./auto-generated/endpoints/add-pipeline-step.yaml
