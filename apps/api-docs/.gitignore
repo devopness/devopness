@@ -1,8 +1,19 @@
+# node_modules directory
 node_modules
+
+# build directory
 build
+
+# Ignore file
 ignore
+
+# graph files
 graph.dot
 graph.png
+
+# API docs zip file
 docs/api-docs.zip
+
+# Auto-generated/copied files. For details, see `api-*` scripts in package.json
 docs/spec/data-models.yaml
 docs/spec/paths.yaml
