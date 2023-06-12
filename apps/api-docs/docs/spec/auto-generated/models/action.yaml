@@ -9,6 +9,7 @@ properties:
     description: 'The ID of the pipeline executed by this action'
     type: integer
     example: 567819876
+    nullable: true
   retry_of:
     description: 'The Id of the parent action that this action is a retry of'
     type: integer
