@@ -46,17 +46,20 @@ export type FixtureDependency = { path: string, fixture: FixtureKey, field: stri
  *      - /pipelines/{pipeline_id}/actions
  *  - Route input model in `/docs/api-docs/auto-generated/endpoints/add-pipeline-action.yaml`:
  *      - ActionPipelineCreate
- *  - Field requiredin by input model in `/docs/api-docs/auto-generated/models/action-pipeline-create.yaml`:
- *      - servers, which is an array
+ *  - Fields required in by input model in `/docs/api-docs/auto-generated/models/action-pipeline-create.yaml`:
+ *      - servers
  *  - Fixture defined here in `fixtureKeys`:
  *      'action_pipeline_create': [
  *          { path: 'servers[0]', fixture: 'server', field: 'id' },
  *      ],
- *      // Which can be read as first item of request body `servers` array, `servers[0]`,
- *      // will receive the valud of the field `id` of the fixture `server`. This way,
+ *      // Which can be read as: first item of request body `servers` array, `servers[0]`,
+ *      // will receive the value of the field `id` of the fixture `server`. This way,
  *      // once a server is created by previous requests and saved into `server`
  *      // fixture, the `/pipelines/{pipeline_id}/actions` route will then be able
  *      // to trigger actions for the same server ID.
+ * Notes:
+ *  - Please keep fixture sroted in alphabetical order, for readability. The order that fixtures
+ *      are declared here are not relevant for fixture value resolution.
 */
 const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     'action': [
