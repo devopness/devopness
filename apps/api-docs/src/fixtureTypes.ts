@@ -44,6 +44,10 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     'action': [
         { path: 'id', fixture: 'cron_job', field: 'last_action.id' },
     ],
+    'action_pipeline_create': [
+        { path: 'id', fixture: 'pipeline', field: 'id' },
+        { path: 'servers[0]', fixture: 'server', field: 'id' },
+    ],
     'application_environment_variable': [],
     'application_environment': [],
     'application': [],
@@ -123,10 +127,6 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     ],
     'pipeline_update': [
         { path: 'id', fixture: 'pipeline', field: 'id' },
-    ],
-    'pipeline_action_create': [
-        { path: 'id', fixture: 'pipeline', field: 'id' },
-        { path: 'servers[0]', fixture: 'server', field: 'id' },
     ],
     'project': [],
     'project_update': [
