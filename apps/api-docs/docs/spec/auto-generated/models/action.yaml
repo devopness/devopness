@@ -80,7 +80,6 @@ required:
   - type
   - type_human_readable
   - url_web_permalink
-  - action_data
   - triggered_from
   - parent
   - children
