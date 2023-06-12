@@ -118,6 +118,9 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
         { path: 'environment_id', fixture: 'environment', field: 'id' },
     ],
     'pipeline': [],
+    'pipeline_action_create': [
+        { path: 'servers[0]', fixture: 'server', field: 'id' },
+    ],
     'pipeline_create': [
         { path: 'resource_id', fixture: 'application', field: 'id' },
     ],
