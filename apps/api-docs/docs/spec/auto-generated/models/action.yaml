@@ -6,7 +6,7 @@ properties:
     type: integer
     example: 567819876
   pipeline_id:
-    description: 'The ID of the pipeline that executed by this action'
+    description: 'The ID of the pipeline executed by this action'
     type: integer
     example: 567819876
   retry_of:
