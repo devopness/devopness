@@ -40,3 +40,10 @@ responses:
       application/json:
         schema:
           $ref: '#/components/schemas/ApiError'
+requestBody:
+  description: 'A JSON object containing the resource data'
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/ActionPipelineCreate'
