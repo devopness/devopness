@@ -1,6 +1,6 @@
 ---
-title: Add AWS Credential
-intro: In order to allow Devopness to manage Amazon Web Services (AWS) resources on your behalf, IAM user security credentials have to be provided.
+title: Add Amazon Web Services (AWS) Credential
+intro: In order to allow Devopness to manage AWS resources on your behalf, IAM user security credentials have to be provided.
 links:
     overview:
     quickstart:
@@ -11,6 +11,8 @@ links:
     related:
     featured:
 ---
+
+> If you don't have access to an AWS account, you can create an account for free following the cloud provider specific guide [AWS Free Tier](https://aws.amazon.com/free/)
 
 1. Log in to AWS console and access [AWS IAM](https://console.aws.amazon.com/iam/)
 1. In the navigation pane on the left side, choose `Users` and then choose `Add users`

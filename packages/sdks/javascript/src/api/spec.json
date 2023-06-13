@@ -1988,6 +1988,55 @@
         }
       }
     },
+    "/environments/{environment_id}/archive": {
+      "post": {
+        "summary": "Archive an environment",
+        "operationId": "archiveEnvironment",
+        "description": {
+          "$ref": "../spec/descriptions/archive-environment.md"
+        },
+        "tags": [
+          "Environments"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "environment_id",
+            "description": "The ID of the environment.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/environments/{environment_id}/cron-jobs": {
       "get": {
         "summary": "Return a list of all Cron Jobs belonging to an environment",
@@ -3056,6 +3105,55 @@
           },
           "422": {
             "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/environments/{environment_id}/unarchive": {
+      "post": {
+        "summary": "Unarchive an environment",
+        "operationId": "unarchiveEnvironment",
+        "description": {
+          "$ref": "../spec/descriptions/unarchive-environment.md"
+        },
+        "tags": [
+          "Environments"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "environment_id",
+            "description": "The ID of the environment.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
             "content": {
               "application/json": {
                 "schema": {
@@ -4917,6 +5015,76 @@
         }
       }
     },
+    "/projects/{project_id}/environments/archived": {
+      "get": {
+        "summary": "Return a list of all archived environments belonging to a project",
+        "operationId": "listProjectArchivedEnvironments",
+        "description": {
+          "$ref": "../spec/descriptions/list-project-archived-environments.md"
+        },
+        "tags": [
+          "Projects - Archived Environments"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "description": "The ID of the project.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ArchivedEnvironmentList"
+                }
+              }
+            },
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/projects/{project_id}/roles": {
       "get": {
         "summary": "List all roles from a project",
@@ -5655,6 +5823,61 @@
       }
     },
     "/servers/{server_id}": {
+      "delete": {
+        "summary": "Delete a given server",
+        "operationId": "deleteServer",
+        "description": {
+          "$ref": "../spec/descriptions/delete-server.md"
+        },
+        "tags": [
+          "Servers"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "server_id",
+            "description": "The ID of the server.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      },
       "get": {
         "summary": "Get a server by ID",
         "operationId": "getServer",
@@ -5895,6 +6118,234 @@
           },
           "401": {
             "description": "Unauthenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/servers/{server_id}/get-status": {
+      "post": {
+        "summary": "Get current status of the server on the cloud provider",
+        "operationId": "getStatusServer",
+        "description": {
+          "$ref": "../spec/descriptions/get-status-server.md"
+        },
+        "tags": [
+          "Servers"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "server_id",
+            "description": "The ID of the server.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/servers/{server_id}/restart": {
+      "post": {
+        "summary": "Restart a current running server",
+        "operationId": "restartServer",
+        "description": {
+          "$ref": "../spec/descriptions/restart-server.md"
+        },
+        "tags": [
+          "Servers"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "server_id",
+            "description": "The ID of the server.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/servers/{server_id}/start": {
+      "post": {
+        "summary": "Start a previously stopped server",
+        "operationId": "startServer",
+        "description": {
+          "$ref": "../spec/descriptions/start-server.md"
+        },
+        "tags": [
+          "Servers"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "server_id",
+            "description": "The ID of the server.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/servers/{server_id}/stop": {
+      "post": {
+        "summary": "Stop a running server",
+        "operationId": "stopServer",
+        "description": {
+          "$ref": "../spec/descriptions/stop-server.md"
+        },
+        "tags": [
+          "Servers"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "server_id",
+            "description": "The ID of the server.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
             "content": {
               "application/json": {
                 "schema": {
@@ -9421,6 +9872,9 @@
       "description": "The terms `process`, `background process` and `daemon` may be used interchangeably in the `devopness` API documentation to denote the same thing: i.e., a computer process that runs behind the scenes without user intervention, detached from TTY (teletype/terminal type) and having no associated console or controlling terminal, therefore prevented from receiving `SIGHUP` on shell termination.\n"
     },
     {
+      "name": "Projects - Archived Environments"
+    },
+    {
       "name": "Projects - Environments"
     },
     {
@@ -9556,7 +10010,8 @@
       "name": "Environments",
       "tags": [
         "Environments",
-        "Projects - Environments"
+        "Projects - Environments",
+        "Projects - Archived Environments"
       ]
     },
     {
@@ -11193,6 +11648,61 @@
           "servers"
         ]
       },
+      "ArchivedEnvironmentList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/ArchivedEnvironmentRelation"
+        }
+      },
+      "ArchivedEnvironmentRelation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "Unique id of the given record",
+            "type": "integer",
+            "example": 16523
+          },
+          "name": {
+            "description": "Environment's name",
+            "type": "string",
+            "example": "My staging"
+          },
+          "type": {
+            "$ref": "#/components/schemas/EnvironmentType"
+          },
+          "type_human_readable": {
+            "description": "The human readable version of the type",
+            "type": "string",
+            "example": "Staging"
+          },
+          "created_at": {
+            "description": "The date and time when the record was created",
+            "type": "string",
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "description": "The date and time when the record was last updated",
+            "type": "string",
+            "example": "2019-09-25T13:52:04.000000Z"
+          },
+          "archived_at": {
+            "description": "The date and time when the record was archived",
+            "type": "string",
+            "example": "2019-09-26T10:45:42.000000Z",
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "type",
+          "type_human_readable",
+          "created_at",
+          "updated_at",
+          "archived_at"
+        ],
+        "nullable": true
+      },
       "BlueprintService": {
         "type": "object",
         "properties": {
@@ -12705,6 +13215,12 @@
             "description": "The date and time when the record was last updated",
             "type": "string",
             "example": "2019-09-25T13:52:04.000000Z"
+          },
+          "archived_at": {
+            "description": "The date and time when the record was archived",
+            "type": "string",
+            "example": "2019-09-26T10:45:42.000000Z",
+            "nullable": true
           }
         },
         "required": [
@@ -12713,7 +13229,8 @@
           "type",
           "type_human_readable",
           "created_at",
-          "updated_at"
+          "updated_at",
+          "archived_at"
         ],
         "nullable": true
       },
@@ -14533,14 +15050,27 @@
             "example": 97063242
           },
           "resource_type": {
-            "description": "The pipeline's resource type",
+            "$ref": "#/components/schemas/ResourceType"
+          },
+          "resource_type_human_readable": {
+            "description": "Human readable version of the resource type",
             "type": "string",
-            "example": "application"
+            "example": "Application"
           },
           "resource_id": {
             "description": "The pipeline's resource ID",
             "type": "integer",
             "example": 5324234
+          },
+          "operation": {
+            "description": "The resource operation associated to the pipeline.",
+            "type": "string",
+            "example": "deploy"
+          },
+          "operation_human_readable": {
+            "description": "Human readable version of the operation",
+            "type": "string",
+            "example": "Deploy"
           },
           "steps": {
             "$ref": "#/components/schemas/StepList"
@@ -14565,7 +15095,10 @@
           "environment_id",
           "project_id",
           "resource_type",
+          "resource_type_human_readable",
           "resource_id",
+          "operation",
+          "operation_human_readable",
           "steps",
           "created_by_user",
           "created_at",
@@ -14579,10 +15112,16 @@
             "description": "The pipeline's name. Must be at least 3 characters. Must not be greater than 80 characters.",
             "example": "My pipeline",
             "type": "string"
+          },
+          "operation": {
+            "description": "The resource operation associated to the pipeline. Must not be greater than 20 characters.",
+            "example": "deploy",
+            "type": "string"
           }
         },
         "required": [
-          "name"
+          "name",
+          "operation"
         ]
       },
       "PipelineList": {
@@ -14619,10 +15158,25 @@
             "type": "string",
             "example": "application"
           },
+          "resource_type_human_readable": {
+            "description": "Human readable version of the resource type",
+            "type": "string",
+            "example": "Application"
+          },
           "resource_id": {
             "description": "The pipeline's resource ID",
             "type": "integer",
             "example": 5324234
+          },
+          "operation": {
+            "description": "The resource operation associated to the pipeline.",
+            "type": "string",
+            "example": "deploy"
+          },
+          "operation_human_readable": {
+            "description": "Human readable version of the operation",
+            "type": "string",
+            "example": "Deploy"
           },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
@@ -14644,7 +15198,10 @@
           "environment_id",
           "project_id",
           "resource_type",
+          "resource_type_human_readable",
           "resource_id",
+          "operation",
+          "operation_human_readable",
           "created_by_user",
           "created_at",
           "updated_at"

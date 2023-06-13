@@ -1,5 +1,5 @@
 ---
-title: Add a configuration file
+title: Add a Configuration File
 intro: By adding configuration files you ensure a more consistent resource deployment, as they can contain crucial information and settings for each environment.
 links:
     overview:
@@ -21,3 +21,5 @@ links:
 1. Use the drop-down menu to choose `CONFIGURATION FILE`
 1. On the right corner of the list click `ADD CONFIGURATION FILE`
 1. Follow the instructions in the add configuration file step form then click `CONFIRM`
+    > A new deployment is required for your changes to take effect.
+      - Follow the guide [Deploy Application](/docs/applications/deploy-application/)
