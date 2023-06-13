@@ -24,6 +24,24 @@ import { EnvironmentUpdate } from '../../generated/models';
 export class EnvironmentsApiService extends ApiBaseService {
     /**
      * 
+     * @summary Archive an environment
+     * @param {number} environmentId The ID of the environment.
+     */
+    public async archiveEnvironment(environmentId: number): Promise<ApiResponse<void>> {
+        if (environmentId === null || environmentId === undefined) {
+            throw new ArgumentNullException('environmentId', 'archiveEnvironment');
+        }
+        
+        let queryString = '';
+
+        const requestUrl = '/environments/{environment_id}/archive' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <void>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
      * @summary Delete a given environment
      * @param {number} environmentId The ID of the environment.
      */
@@ -55,6 +73,24 @@ export class EnvironmentsApiService extends ApiBaseService {
         const requestUrl = '/environments/{environment_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Environment>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Unarchive an environment
+     * @param {number} environmentId The ID of the environment.
+     */
+    public async unarchiveEnvironment(environmentId: number): Promise<ApiResponse<void>> {
+        if (environmentId === null || environmentId === undefined) {
+            throw new ArgumentNullException('environmentId', 'unarchiveEnvironment');
+        }
+        
+        let queryString = '';
+
+        const requestUrl = '/environments/{environment_id}/unarchive' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <void>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
         return new ApiResponse(response);
     }
 

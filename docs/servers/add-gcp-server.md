@@ -13,6 +13,8 @@ links:
     featured:
 ---
 
+> If you don't have a GCP credential, please follow the guide [Add Google Cloud Platform Credential](/docs/cloud-provider-credentials/add-gcp-credential/)
+
 1. On Devopness, navigate to a project then select an environment
 1. If there's no other server in the selected environment, just click `ADD SERVER`
 1. If a list of resource cards is displayed, find the `Servers` card and click View on it
@@ -21,8 +23,8 @@ links:
 1. Select a GCP credential using the drop-down menu
     > If no credential is listed or you want to use a different one, please follow the [Add a Cloud Provider Credential](/docs/cloud-provider-credentials/add-cloud-provider-credential/) guide
 1. Click `NEXT`
-1. Select an avaliable region using the drop-down menu
-1. Select an avaliable instance type using the drop-down menu
+1. Select an available region using the drop-down menu
+1. Select an available instance type using the drop-down menu
 1. Set the `Disk size`
 1. Click `NEXT`
 1. Provide your server name, OS and hostname and click `NEXT`
@@ -33,4 +35,4 @@ links:
 1. If you want to access the server on GCP console:
     - Access [GCP Console](https://console.cloud.google.com/)
     - On the Search box, enter “Compute Engine” and select it from search results
-    - A `GCE` instance with the name provided on Devopness web interface will be listed
+    - A `GCE` instance will be listed, with the name of the new `Server` you provisioned on Devopness
