@@ -5,11 +5,6 @@ properties:
     description: 'The Id of the given action'
     type: integer
     example: 567819876
-  pipeline_id:
-    description: 'The ID of the pipeline executed by this action'
-    type: integer
-    example: 567819876
-    nullable: true
   retry_of:
     description: 'The Id of the parent action that this action is a retry of'
     type: integer
@@ -73,7 +68,6 @@ properties:
     example: '2019-09-25T13:52:04.000000Z'
 required:
   - id
-  - pipeline_id
   - retry_of
   - status
   - status_human_readable

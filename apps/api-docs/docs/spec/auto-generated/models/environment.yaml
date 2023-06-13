@@ -15,6 +15,10 @@ properties:
     description: 'The human readable version of the type'
     type: string
     example: Staging
+  is_archived:
+    description: 'Indicates whether the record was archived'
+    type: boolean
+    example: false
   servers:
     $ref: '#/components/schemas/ServerList'
   cron_jobs:
@@ -48,6 +52,7 @@ required:
   - name
   - type
   - type_human_readable
+  - is_archived
   - servers
   - cron_jobs
   - daemons
