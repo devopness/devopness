@@ -18,4 +18,4 @@ links:
 1. Click `View` in the `Environments` card to see a list of existing `Environments`
 1. On the upper-right corner of the `Environment` resources list, click `ARCHIVED ENVIRONMENTS`
 1. Find the `Archived Environment` you want to inspect and click `View`
-1. The `Environment` resources list will be displayed containing all the environment's running resources
+1. The `Environment` resources list will be displayed containing all the environment's resources
