@@ -38,11 +38,35 @@ export type FixtureDependency = { path: string, fixture: FixtureKey, field: stri
 /**
  * Maps a FixtureKey to a list of FixtureDependency, indicating how fixtures are composed.
  * Should only be accessed by the helper methods `isFixtureKey`, `fixtureDependencies`, `addFixtureDependencies`.
- * FixtureKey values are written with underscores so they map directly to Devopness URL params and JSON fields.
- */
+ * FixtureKey values are written with underscores so they map directly to Devopness URL params and JSON fields,
+ * however, keep in mind that fixtures should be named after the route input model name and not named as the
+ * route URL.
+ * Example:
+ *  - Route name in `/docs/spec/paths.yaml`:
+ *      - /pipelines/{pipeline_id}/actions
+ *  - Route input model in `/docs/api-docs/auto-generated/endpoints/add-pipeline-action.yaml`:
+ *      - ActionPipelineCreate
+ *  - Fields required in by input model in `/docs/api-docs/auto-generated/models/action-pipeline-create.yaml`:
+ *      - servers
+ *  - Fixture defined here in `fixtureKeys`:
+ *      'action_pipeline_create': [
+ *          { path: 'servers[0]', fixture: 'server', field: 'id' },
+ *      ],
+ *      // Which can be read as: first item of request body `servers` array, `servers[0]`,
+ *      // will receive the value of the field `id` of the fixture `server`. This way,
+ *      // once a server is created by previous requests and saved into `server`
+ *      // fixture, the `/pipelines/{pipeline_id}/actions` route will then be able
+ *      // to trigger actions for the same server ID.
+ * Notes:
+ *  - Please keep fixture sroted in alphabetical order, for readability. The order that fixtures
+ *      are declared here are not relevant for fixture value resolution.
+*/
 const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     'action': [
         { path: 'id', fixture: 'cron_job', field: 'last_action.id' },
+    ],
+    'action_pipeline_create': [
+        { path: 'servers[0]', fixture: 'server', field: 'id' },
     ],
     'application_environment_variable': [],
     'application_environment': [],
