@@ -13,6 +13,8 @@ ActionHookRequest:
   $ref: ./auto-generated/models/action-hook-request.yaml
 ActionList:
   $ref: ./auto-generated/models/action-list.yaml
+ActionPipelineCreate:
+  $ref: ./auto-generated/models/action-pipeline-create.yaml
 ActionRelation:
   $ref: ./auto-generated/models/action-relation.yaml
 ActionResource:
