@@ -4,6 +4,7 @@ export * from './action-deployment-commit';
 export * from './action-deployment-content';
 export * from './action-deployment-data';
 export * from './action-hook-request';
+export * from './action-pipeline-create';
 export * from './action-relation';
 export * from './action-resource';
 export * from './action-retry-response';

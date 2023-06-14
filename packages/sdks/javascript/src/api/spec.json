@@ -4140,6 +4140,83 @@
         }
       }
     },
+    "/pipelines/{pipeline_id}/actions": {
+      "post": {
+        "summary": "Create an action to run a Pipeline",
+        "operationId": "addPipelineAction",
+        "description": {
+          "$ref": "../spec/descriptions/add-pipeline-action.md"
+        },
+        "tags": [
+          "Pipelines - Actions"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "pipeline_id",
+            "description": "The ID of the pipeline that will be executed by the created action",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Action"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActionPipelineCreate"
+              }
+            }
+          }
+        }
+      }
+    },
     "/pipelines/{pipeline_id}/steps": {
       "post": {
         "summary": "Add a step to a pipeline",
@@ -10198,6 +10275,12 @@
             "type": "integer",
             "example": 567819876
           },
+          "pipeline_id": {
+            "description": "The ID of the pipeline executed by this action",
+            "type": "integer",
+            "example": 567819876,
+            "nullable": true
+          },
           "retry_of": {
             "description": "The Id of the parent action that this action is a retry of",
             "type": "integer",
@@ -10283,6 +10366,7 @@
         },
         "required": [
           "id",
+          "pipeline_id",
           "retry_of",
           "status",
           "status_human_readable",
@@ -10472,6 +10556,17 @@
           "$ref": "#/components/schemas/ActionRelation"
         }
       },
+      "ActionPipelineCreate": {
+        "type": "object",
+        "properties": {
+          "servers": {
+            "$ref": "#/components/schemas/ResourceIdList"
+          }
+        },
+        "required": [
+          "servers"
+        ]
+      },
       "ActionRelation": {
         "type": "object",
         "properties": {
@@ -10620,6 +10715,12 @@
             "type": "integer",
             "example": 567819876
           },
+          "pipeline_id": {
+            "description": "The ID of the pipeline executed by this action",
+            "type": "integer",
+            "example": 567819876,
+            "nullable": true
+          },
           "retry_of": {
             "description": "The Id of the parent action that this action is a retry of",
             "type": "integer",
@@ -10705,6 +10806,7 @@
         },
         "required": [
           "id",
+          "pipeline_id",
           "retry_of",
           "status",
           "status_human_readable",
@@ -13055,6 +13157,11 @@
             "type": "string",
             "example": "Staging"
           },
+          "is_archived": {
+            "description": "Indicates whether the record was archived",
+            "type": "boolean",
+            "example": false
+          },
           "servers": {
             "$ref": "#/components/schemas/ServerList"
           },
@@ -13101,6 +13208,7 @@
           "name",
           "type",
           "type_human_readable",
+          "is_archived",
           "servers",
           "cron_jobs",
           "daemons",
