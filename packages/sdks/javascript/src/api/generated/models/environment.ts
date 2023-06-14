@@ -54,6 +54,12 @@ export interface Environment {
      */
     type_human_readable: string;
     /**
+     * Indicates whether the record was archived
+     * @type {boolean}
+     * @memberof Environment
+     */
+    is_archived: boolean;
+    /**
      * 
      * @type {Array<ServerRelation>}
      * @memberof Environment

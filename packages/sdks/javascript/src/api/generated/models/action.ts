@@ -38,6 +38,12 @@ export interface Action {
      */
     id: number;
     /**
+     * The ID of the pipeline executed by this action
+     * @type {number}
+     * @memberof Action
+     */
+    pipeline_id: number | null;
+    /**
      * The Id of the parent action that this action is a retry of
      * @type {number}
      * @memberof Action
