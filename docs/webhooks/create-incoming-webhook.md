@@ -21,7 +21,7 @@ Webhooks, for now, are an API only feature; so this post will guide you through 
 
 1. Copy the `Application ID` (`<application_id>`) and `Deploy Pipeline ID` (`<pipeline_id>`) from the application which you want to run pipelines programatically
     > Follow the [Deploy Application using an Incoming Hook](/docs/applications/deploy-application-using-incoming-hook) guide for detailed instructions
-1. In a terminal window, submit a request to Devopness API endpoint `POST /users/login` using your Devopness account email and password
+1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /users/login` using your Devopness account email and password
     ```bash
     curl --request POST \
       --url https://api.devopness.com/users/login \
@@ -33,7 +33,7 @@ Webhooks, for now, are an API only feature; so this post will guide you through 
     }'
     ```
 1. From the previous command response, copy the field `access_token`
-1. In a terminal window, submit a request to Devopness API endpoint `POST /hooks/incoming`, replacing `<application_id>` and `<pipeline_id>`.
+1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /hooks/incoming`, replacing `<application_id>` and `<pipeline_id>`.
     ```bash
     curl --request POST \
       --url https://api.devopness.com/hooks/incoming \
@@ -69,7 +69,7 @@ Webhooks, for now, are an API only feature; so this post will guide you through 
     > Devopness authenticates webhook calls using [hash-based message authentication code (HMAC)](https://en.wikipedia.org/wiki/HMAC); in summary, a request is considered valid when it provides the header `<secret_header_name>` with the request body encoded using the `<secret_algorithm>` and a secret, provided to you by Devopness
 1. From the previous command response, copy the field `url` and `secret`
     > `url` is the hook unique URL used to integrate with external services and `secret` is the signature key used to authenticate your webhook calls; this is the only time the secret' value will be returned as text, later operations will mask it
-1. In a terminal window, run command to list all the application hooks, replacing `<application_id>`.
+1. On your local machine, in a terminal window, run command to list all the application hooks, replacing `<application_id>`.
     ```bash
     curl --request GET \
       --url https://api.devopness.com/applications/<application_id>/hooks \
