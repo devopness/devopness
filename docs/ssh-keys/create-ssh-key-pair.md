@@ -15,7 +15,7 @@ links:
     featured:
 ---
 
-1. In a terminal window, run the command below, replacing `<your email address>` with a valid email address
+1. On your local machine, in a terminal window, run the command below, replacing `<your email address>` with a valid email address
     ```bash
     ssh-keygen -t rsa -b 4096 -C "<your email address>"
     ```

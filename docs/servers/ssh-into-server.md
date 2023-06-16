@@ -17,7 +17,7 @@ links:
 
 1. On Devopness, copy the IP Address of the server you want to connect
     > Follow the [Find Server IP Address](/docs/servers/find-server-ip-address) guide
-1. In a terminal window, use the `ssh` command to connect to the server
+1. On your local machine, in a terminal window, use the `ssh` command to connect to the server
     ```bash
     ssh devopness@<server IP address copied in previous steps>
     ```
