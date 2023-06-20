@@ -23,7 +23,7 @@ tags:
     description: |
       This page contains the documentation on how to use `devopness` through API calls.
       > Note: This documentation is not complete, so for missing parts or inaccurate API description please
-      > reach out to the `devopness` API team.
+      > reach out to the `devopness` API team on [our GitHub open source repository](https://github.com/devopness/devopness/issues/new/choose).
 
       ## Introduction
       devopness's API exposes all `devopness` features via a standardized programmatic interface. Through devopness API a registered Devopness user can perform every operation you can do on https://www.devopness.com web interfaces and mobile apps.
@@ -215,6 +215,7 @@ tags:
   - name: Logs
   - name: Network Rules
   - name: Pipelines
+  - name: Pipelines - Actions
   - name: Pipelines - Resources
   - name: Projects
   - name: Projects - Actions
@@ -314,6 +315,7 @@ x-tagGroups:
   - name: Pipelines
     tags:
       - Pipelines
+      - Pipelines - Actions
       - Pipelines - Steps
   - name: Projects
     tags:
