@@ -4,9 +4,10 @@ Devopness maintains its documentation in an open source repository, so feel free
 # Contributing
 Make sure all files created in this folder adhere to the following basic rules:
 1. Are defined as `Markdown` files (.md)
-2. Use front matter headers, see the list of available headers in [this topic](#predefined-variables)
-3. **DO NOT** set heading level one only one (`#`) in `Markdown` content, as it is reserved for the documentation article title. Headings inside the documentation article content must start from heading level two (`##`). Please refer to [Markdown basic syntax](https://www.markdownguide.org/basic-syntax/#headings) for examples and detailed instructions
-4. **DO NOT** use `HTML` tags in `Markdown` content
+1. Follow the [Github's Content Markup Reference](https://github.com/github/docs/blob/main/contributing/content-markup-reference.md)
+1. Use front matter headers, see the list of available headers in [this topic](#predefined-variables)
+1. **DO NOT** set heading level one only one (`#`) in `Markdown` content, as it is reserved for the documentation article title. Headings inside the documentation article content must start from heading level two (`##`). Please refer to [Markdown basic syntax](https://www.markdownguide.org/basic-syntax/#headings) for examples and detailed instructions
+1. **DO NOT** use `HTML` tags in `Markdown` content
 
 # Documentation guidelines
 ## What to document?
