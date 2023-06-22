@@ -1,0 +1,91 @@
+---
+title: Create an Outgoing Webhook
+intro: Outgoing Webhooks are a simple way integrate your Devopness environment with external services, triggering a request when an action of a resource has its state updated. Some use cases of resource action state updates are “a new application deployment is done”, “the server is now stopped” and many more use cases that can benefit from webhooks integration. Learn how to create an outgoing webhook to comment on a GitHub Pull Request the application deployment pipeline status.
+links:
+    overview:
+    quickstart:
+    previous:
+    next:
+    guides:
+    related:
+    featured:
+---
+
+NOTE: Webhooks, for now, are an API only feature; so this post will guide you through the usage of our API to help you create an outgoing webhook.
+
+NOTE: cURL requests can be imported to API clients, by following the API client's instructions on the links below:
+
+- Postman: [Importing and exporting data: Importing with cURL commands](https://learning.postman.com/docs/getting-started/importing-and-exporting-data/#importing-with-curl-commands)
+- Insomnia: [Import and Export Data: Import Data](https://docs.insomnia.rest/insomnia/import-export-data#import-data)
+
+NOTE: Insomnia uses curly braces syntax for environment variables, to avoid errors you need to disable the nunjuncks template feature for the request body. Further instructions at [Insomnia's FAQ](https://docs.insomnia.rest/insomnia/faq#how-can-i-temporarily-disable-nunjucks-template)
+
+1. Take note of the `Application ID` (`<application_id>`) and `Deploy Pipeline ID` (`<pipeline_id>`) from the application which you want to watch the action statuses
+    - Follow the [Deploy Application using an Incoming Hook](/docs/applications/deploy-application-using-incoming-hook) guide for detailed instructions
+1. Take note of the `Repository Owner` (`<repo_owner>`) and `Repository Name` (`<repo_name>`) from the URL to the GitHub repository where the source code is hosted
+    - Considering the following GitHub repository URL format `https://github.com/<repo_owner>/<repo_name>`
+1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /users/login` using your Devopness account email and password
+    ```bash
+    curl --request POST \
+      --url https://api.devopness.com/users/login \
+      --header 'Accept: application/json' \
+      --header 'Content-Type: application/json' \
+      --data '{
+    	"email": "<email>",
+    	"password": "<password>"
+    }'
+    ```
+1. From the previous command response, copy the field `access_token`
+1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /hooks/outgoing` to create a outgoing webhook to comment on the Pull Request using the GitHub API, replacing `<application_id>`, `<pipeline_id>`, `<repo_owner>`, `<repo_name>`.
+    {% raw %}
+    ```bash
+    curl --request POST \
+      --url https://api.devopness.com/hooks/outgoing \
+      --header 'Accept: application/json' \
+      --header 'Authorization: Bearer <access_token>' \
+      --header 'Content-Type: application/json' \
+      --data '{
+        "name": "GitHub CD(deploy)",
+        "action_type": "deploy",
+        "resource_type": "application",
+        "resource_id": <application-id>,
+        "target_url": "https:\/\/api.github.com\/repos\/<repo_owner>\/<repo_name>\/issues\/{{ action.triggered_from.hook_parsed_variables.pull_request_id }}\/comments",
+        "settings": {
+          "request_headers": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{ application.source_provider.access_token }}"
+            },
+            {
+              "name": "Accept",
+              "value": "application\/vnd.github+json"
+            },
+            {
+              "name": "X-GitHub-Api-Version",
+              "value": "2022-11-28"
+            }
+          ],
+          "request_body": {
+            "body": "Deployed pipeline for `PR #{{ action.triggered_from.hook_parsed_variables.pull_request_id }} ({{ action.triggered_from.hook_parsed_variables.pull_request_title }})`: Devopness application `{{ application.name }}` deployment **{{ action.status }}** on action <https:\/\/{{ application.name }}>"
+          }
+        },
+        "trigger_when": {
+          "events": [
+            "action.started",
+            "action.completed",
+            "action.failed"
+          ]
+        }
+      }'
+    ```
+    {% endraw %}
+1. On your local machine, in a terminal window, run command to list all the application hooks, replacing `<application_id>`.
+    ```bash
+    curl --request GET \
+      --url https://api.devopness.com/applications/<application_id>/hooks \
+      --header 'Accept: application/json' \
+      --header 'Authorization: Bearer <access_token>' \
+      --header 'Content-Type: application/json'
+    ```
+1. In the previous command response, the recently created hook will be included in the list
+
