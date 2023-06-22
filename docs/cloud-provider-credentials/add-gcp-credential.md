@@ -27,7 +27,7 @@ links:
 1. Go back to [projects console](https://console.cloud.google.com/project)
 1. Having your project listed, click the three dot button on it and pick the `Settings` option
 1. On the left side menu under `IAM & Admin`, select the `Service Accounts` option
-1. Make sure a service account named as `{{project-id}}-comput@developer.gserviceaccount.com` is listed
+1. Make sure a service account named as `<project-id>-compute@developer.gserviceaccount.com` is listed
 1. If you do not have a service account, [create a new one](https://cloud.google.com/iam/docs/creating-managing-service-account-keys):
     - Click `+ CREATE SERVICE ACCOUNT` option bellow the search bar
     - Name your new service account
