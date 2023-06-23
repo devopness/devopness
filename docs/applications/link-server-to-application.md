@@ -21,4 +21,4 @@ links:
 1. Use the drop-down menu to choose `Linked resources`
 1. On the upper-right corner of the `Linked resources` list, click `LINK TO A SERVER`
 1. Follow the prompts then click `Link`
-1. In the `Linked Resource` list, the selected server will be listed in the `DEPENDS ON` table
+1. In the `Linked Resource` list, find the selected server from the previous step in the `DEPENDS ON` table
