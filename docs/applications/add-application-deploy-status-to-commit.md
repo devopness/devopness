@@ -1,5 +1,5 @@
 ---
-title: Add Application Deploy Status to Commits
+title: Add Application Deploy Status to Commit
 intro: Commit statuses provide a way to tag commits with meta data, like automated build results. Learn how to create outgoing webhooks to update a commit status to match your Devopness application deploy status.
 links:
     overview:
