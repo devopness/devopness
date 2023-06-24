@@ -54,8 +54,8 @@ NOTE: Insomnia uses curly braces syntax for environment variables, to avoid erro
            // NOTE: add Request Headers (`<request_headers>`) here
          ],
          "request_body": {
-           // NOTE: review the fields bellow according to Request Body (`<request_body>`)
-           "state": <"INPROGRESS" | "pending" | "running">,
+           // NOTE: review the fields bellow according to Request Body (`<request_body>`) from the source provider's instructions
+           "state": <source_provider_pipeline_status>,
            "target_url": "https:\/\/app.devopness.com\/actions\/{{ action.id }}",
            "url": "https:\/\/app.devopness.com\/actions\/{{ action.id }}",
            "description": "Application building started",
@@ -86,8 +86,8 @@ NOTE: Insomnia uses curly braces syntax for environment variables, to avoid erro
    ```bash
    …
          "request_body": {
-           // NOTE: review the fields bellow according to Request Body (`<request_body>`)
-           "state": <"FAILED" | "failure" | "failed">,
+           // NOTE: review the fields bellow according to Request Body (`<request_body>`) from the source provider's instructions
+           "state": <source_provider_pipeline_status>,
            "target_url": "https:\/\/app.devopness.com\/actions\/{{ action.id }}",
            "url": "https:\/\/app.devopness.com\/actions\/{{ action.id }}",
            "description": "Application building failed",
@@ -111,8 +111,8 @@ NOTE: Insomnia uses curly braces syntax for environment variables, to avoid erro
    ```bash
    …
          "request_body": {
-           // NOTE: review the fields bellow according to Request Body (`<request_body>`)
-           "state": <"SUCCESSFUL" | "success">,
+           // NOTE: review the fields bellow according to Request Body (`<request_body>`) from the source provider's instructions
+           "state": <source_provider_pipeline_status>,
            "target_url": "https:\/\/app.devopness.com\/actions\/{{ action.id }}",
            "url": "https:\/\/app.devopness.com\/actions\/{{ action.id }}",
            "description": "Application building success",
