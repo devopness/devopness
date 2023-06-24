@@ -21,7 +21,11 @@ links:
 6. On the `Cloud Provider` drop-down menu choose `VPS/Self Hosted`
 7. Provide the `Public IP address` of your existing server
 6. Enter the `SSH Port` to be used to connect to the server
-> Note: we do not recommend connecting servers that are already being used in production. Server's existing configuration will be lost and replaced by Devopness during the server setup process
+
+    {% note %}
+    NOTE: we do not recommend connecting servers that are already being used in production. Server's existing configuration will be lost and replaced by Devopness during the server setup process
+    {% endnote %}
+
 7. Click `NEXT`
 8. Follow the prompts to complete the configuration of the new `Server`
 9. Click `CONFIRM`
