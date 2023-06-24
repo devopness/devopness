@@ -80,11 +80,29 @@ NOTE: Insomnia uses curly braces syntax for environment variables, to avoid erro
    ```
    {% endraw %}
 
-1. Repeat the previous step, changing the `request_body` and `trigger_when.events`, to create the commit status to the `action.failed` state.
+1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /hooks/outgoing` to create a outgoing for the `action.failed` event, replacing `<application_id>`, `<pipeline_id>`, `<target_url>`, `<request_headers>` and `<request_body>`
 
    {% raw %}
    ```bash
-   …
+   curl --request POST \
+     --url https://api.devopness.com/hooks/outgoing \
+     --header 'Accept: application/json' \
+     --header 'Authorization: Bearer <access_token>' \
+     --header 'Content-Type: application/json' \
+     --data '{
+       "name": "CI(build)",
+       "action_type": "deploy",
+       "resource_type": "application",
+       "resource_id": <application_id>,
+       "target_url": "https:\/\/<target_url>\/{{ action.triggered_from.hook_parsed_variables.commit_hash }}",
+       "settings": {
+         "request_headers": [
+           {
+             "name": "Authorization",
+             "value": "Bearer {{ application.source_provider.access_token }}"
+           },
+           // NOTE: add Request Headers (`<request_headers>`) here
+         ],
          "request_body": {
            // NOTE: review the fields bellow according to Request Body (`<request_body>`) from the source provider's instructions
            "state": <source_provider_pipeline_status>,
@@ -99,17 +117,44 @@ NOTE: Insomnia uses curly braces syntax for environment variables, to avoid erro
          "events": [
            "action.failed"
          ],
-   …
+         "conditions": [
+           {
+             "path": "action.triggered_from.hook_parsed_variables.pipeline_id",
+             "accepted_values": [
+               <pipeline_id>
+             ]
+           }
+         ]
+       }
+     }'
    ```
    {% endraw %}
 
    - NOTE: the field `request_body.context` needs to be the same for all the action status; this way the same commit status will be updated, instead of creating a new entry for every state.
 
-1. Repeat the previous step, changing the `request_body` and `trigger_when.events`, to create the commit status to the `action.completed` state.
+1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /hooks/outgoing` to create a outgoing for the `action.completed` event, replacing `<application_id>`, `<pipeline_id>`, `<target_url>`, `<request_headers>` and `<request_body>`
 
    {% raw %}
    ```bash
-   …
+   curl --request POST \
+     --url https://api.devopness.com/hooks/outgoing \
+     --header 'Accept: application/json' \
+     --header 'Authorization: Bearer <access_token>' \
+     --header 'Content-Type: application/json' \
+     --data '{
+       "name": "CI(build)",
+       "action_type": "deploy",
+       "resource_type": "application",
+       "resource_id": <application_id>,
+       "target_url": "https:\/\/<target_url>\/{{ action.triggered_from.hook_parsed_variables.commit_hash }}",
+       "settings": {
+         "request_headers": [
+           {
+             "name": "Authorization",
+             "value": "Bearer {{ application.source_provider.access_token }}"
+           },
+           // NOTE: add Request Headers (`<request_headers>`) here
+         ],
          "request_body": {
            // NOTE: review the fields bellow according to Request Body (`<request_body>`) from the source provider's instructions
            "state": <source_provider_pipeline_status>,
@@ -124,7 +169,16 @@ NOTE: Insomnia uses curly braces syntax for environment variables, to avoid erro
          "events": [
            "action.completed"
          ],
-   …
+         "conditions": [
+           {
+             "path": "action.triggered_from.hook_parsed_variables.pipeline_id",
+             "accepted_values": [
+               <pipeline_id>
+             ]
+           }
+         ]
+       }
+     }'
    ```
    {% endraw %}
 
