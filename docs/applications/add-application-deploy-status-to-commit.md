@@ -40,7 +40,7 @@ NOTE: Insomnia uses curly braces syntax for environment variables, to avoid erro
      --header 'Authorization: Bearer <access_token>' \
      --header 'Content-Type: application/json' \
      --data '{
-       "name": "GitHub CI(build)",
+       "name": "CI(build)",
        "action_type": "deploy",
        "resource_type": "application",
        "resource_id": <application_id>,
