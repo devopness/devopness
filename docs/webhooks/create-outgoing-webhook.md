@@ -13,7 +13,7 @@ links:
 
 NOTE: Webhooks, for now, are an API only feature; so this post will guide you through the usage of our API to help you create an outgoing webhook.
 
-NOTE: cURL requests can be imported to API clients, by following the API client's instructions on the links below:
+NOTE: The examples below use `cURL`, which is a command line utility to be used from a terminal window. If you're not familiar with running commands on a terminal or you simply don't want to use a terminal you could, alternatively, copy the examples and import the `cURL` command line into your favorite API client platform. Here are links with instructions on how to achieve that on some of the most popular API client platforms:
 
 - Postman: [Importing and exporting data: Importing with cURL commands](https://learning.postman.com/docs/getting-started/importing-and-exporting-data/#importing-with-curl-commands)
 - Insomnia: [Import and Export Data: Import Data](https://docs.insomnia.rest/insomnia/import-export-data#import-data)
