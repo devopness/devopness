@@ -1,6 +1,6 @@
 ---
-title: Create Commit Statuses from Application Deployment Statuses
-intro: Outgoing Webhooks allow users to integrate Devopness to their current CI/CD Workflows. Learn how to create outgoing webhooks to update a commit status check to match your Devopness application deploy pipeline status.
+title: Add Application Deploy Status to Commits
+intro: Commit statuses provide a way to tag commits with meta data, like automated build results. Learn how to create outgoing webhooks to update a commit status to match your Devopness application deploy status.
 links:
     overview:
     quickstart:
@@ -21,14 +21,14 @@ NOTE: The examples below use `cURL`, which is a command line utility to be used 
 NOTE: Insomnia uses curly braces syntax for environment variables, to avoid errors you need to disable the nunjuncks template feature for the request body. Further instructions at [Insomnia's FAQ](https://docs.insomnia.rest/insomnia/faq#how-can-i-temporarily-disable-nunjucks-template)
 
 1. Take note of the `Application ID` (`<application_id>`) and `Deploy Pipeline ID` (`<pipeline_id>`) from the application which you want to watch the action statuses
-
    - Follow the [Deploy Application using an Incoming Hook](/docs/applications/deploy-application-using-incoming-hook) guide for detailed instructions
 
-1. Take note of the `Repository Owner` (`<repo_owner>`) and `Repository Name` (`<repo_name>`) from the URL to the GitHub repository where the source code is hosted
+1. Take note of the `Target URL` (`<target_url>`), `Request Headers` (`<request_headers>`) and `Request Body` (`<request_body>`) fields according to the source provider where the application' source code is hosted, by following the source provider's instructions on the links bellow:
+   - Bitbucket: [REST APIs: Create a build status for a commit](https://developer.atlassian.com/cloud/bitbucket/rest/api-group-commit-statuses/#api-repositories-workspace-repo-slug-commit-commit-statuses-build-post)
+   - Github: [REST API: Create a commit status](https://docs.github.com/en/rest/commits/statuses#create-a-commit-status)
+   - Gitlab: [REST API: Set the pipeline status of a commit](https://docs.gitlab.com/ee/api/commits.html#set-the-pipeline-status-of-a-commit)
 
-   - Considering the following GitHub repository URL format `https://github.com/<repo_owner>/<repo_name>`
-
-1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /hooks/outgoing` to create a outgoing for the `action.started` event, replacing `<application_id>`, `<pipeline_id>`, `<repo_owner>`, `<repo_name>`
+1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /hooks/outgoing` to create a outgoing for the `action.started` event, replacing `<application_id>`, `<pipeline_id>`, `<target_url>`, `<request_headers>` and `<request_body>`
 
    - For further instructions, follow the guide [Create an Outgoing Webhook](/docs/webhooks/create-outgoing-webhook)
 
@@ -44,27 +44,23 @@ NOTE: Insomnia uses curly braces syntax for environment variables, to avoid erro
        "action_type": "deploy",
        "resource_type": "application",
        "resource_id": <application_id>,
-       "target_url": "https:\/\/api.github.com\/repos\/<repo_owner>\/<repo_name>\/statuses\/{{ action.triggered_from.hook_parsed_variables.commit_hash }}",
+       "target_url": "https:\/\/<target_url>\/{{ action.triggered_from.hook_parsed_variables.commit_hash }}",
        "settings": {
          "request_headers": [
            {
              "name": "Authorization",
              "value": "Bearer {{ application.source_provider.access_token }}"
            },
-           {
-             "name": "Accept",
-             "value": "application\/vnd.github+json"
-           },
-           {
-             "name": "X-GitHub-Api-Version",
-             "value": "2022-11-28"
-           }
+           // NOTE: add Request Headers (`<request_headers>`) here
          ],
          "request_body": {
-           "state": "pending",
+           // NOTE: review the fields bellow according to Request Body (`<request_body>`)
+           "state": <"INPROGRESS" | "pending" | "running">,
            "target_url": "https:\/\/app.devopness.com\/actions\/{{ action.id }}",
+           "url": "https:\/\/app.devopness.com\/actions\/{{ action.id }}",
            "description": "Application building started",
            "context": "ci\/devopness(build)",
+           "key": "ci\/devopness(build)",
          }
        },
        "trigger_when": {
@@ -90,10 +86,13 @@ NOTE: Insomnia uses curly braces syntax for environment variables, to avoid erro
    ```bash
    …
          "request_body": {
-           "state": "failure",
+           // NOTE: review the fields bellow according to Request Body (`<request_body>`)
+           "state": <"FAILED" | "failure" | "failed">,
            "target_url": "https:\/\/app.devopness.com\/actions\/{{ action.id }}",
+           "url": "https:\/\/app.devopness.com\/actions\/{{ action.id }}",
            "description": "Application building failed",
            "context": "ci\/devopness(build)",
+           "key": "ci\/devopness(build)",
          }
        },
        "trigger_when": {
@@ -112,10 +111,13 @@ NOTE: Insomnia uses curly braces syntax for environment variables, to avoid erro
    ```bash
    …
          "request_body": {
-           "state": "success",
+           // NOTE: review the fields bellow according to Request Body (`<request_body>`)
+           "state": <"SUCCESSFUL" | "success">,
            "target_url": "https:\/\/app.devopness.com\/actions\/{{ action.id }}",
+           "url": "https:\/\/app.devopness.com\/actions\/{{ action.id }}",
            "description": "Application building success",
            "context": "ci\/devopness(build)",
+           "key": "ci\/devopness(build)",
          }
        },
        "trigger_when": {
