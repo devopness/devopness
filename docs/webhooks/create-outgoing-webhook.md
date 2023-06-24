@@ -38,7 +38,7 @@ NOTE: Insomnia uses curly braces syntax for environment variables, to avoid erro
    - Bitbucket: [REST APIs: Create a comment on a pull request](https://developer.atlassian.com/cloud/bitbucket/rest/api-group-pullrequests/#api-repositories-workspace-repo-slug-pullrequests-pull-request-id-comments-post)
    - Github: [REST API: Create an issue comment](https://docs.github.com/en/rest/issues/comments#create-an-issue-comment)
    - Gitlab: [REST API: Create new issue note](https://docs.gitlab.com/ee/api/notes.html#create-new-issue-note)
-1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /hooks/outgoing` to create a outgoing webhook to comment on the Pull Request using your source provider, replacing `<application_id>`, `<pipeline_id>`, `<target_url>`, `<request_headers>` and `<request_body>`.
+1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /hooks/outgoing` to create a outgoing webhook to comment on the Pull Request using the source provider where the application' source code is hosted, replacing `<application_id>`, `<pipeline_id>`, `<target_url>`, `<request_headers>` and `<request_body>`.
     {% raw %}
     ```bash
     curl --request POST \
