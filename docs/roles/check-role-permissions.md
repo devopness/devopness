@@ -16,4 +16,4 @@ links:
 1. Find the `Roles` card
 1. Click `View` in the `Roles` card to see a list of existing `Roles`
 1. In the list of `Roles` find the `Role` you want to check the permissions and click `DETAILS`
-1. In the role details view, find the permissions list
+1. In the role details view, you will see the list of permissions granted by this role
