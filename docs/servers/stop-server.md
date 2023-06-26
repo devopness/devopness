@@ -14,13 +14,13 @@ links:
 
 {% note %}
 
-NOTE #1: Any applications or daemons on this server will stop working as a consequence of the server being stopped.
+**NOTE**: Any applications or daemons on this server will stop working as a consequence of the server being stopped.
 
 {% endnote %}
 
 {% note %}
 
-NOTE #2: Your server's public IP address will be updated the next time the server is started, unless you have configured an elastic IP on your cloud provider management panel; meaning, the next time this server is started, you will need to update any domains pointing to this server.
+**NOTE**: Your server's public IP address will be updated the next time the server is started, unless you have configured an elastic IP on your cloud provider management panel; meaning, the next time this server is started, you will need to update any domains pointing to this server.
 
 {% endnote %}
 

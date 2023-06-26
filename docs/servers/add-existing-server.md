@@ -23,7 +23,9 @@ links:
 6. Enter the `SSH Port` to be used to connect to the server
 
     {% note %}
-    NOTE: we do not recommend connecting servers that are already being used in production. Server's existing configuration will be lost and replaced by Devopness during the server setup process
+
+    **NOTE**: we do not recommend connecting servers that are already being used in production. Server's existing configuration will be lost and replaced by Devopness during the server setup process
+
     {% endnote %}
 
 7. Click `NEXT`
