@@ -5,7 +5,7 @@ links:
     overview:
     quickstart:
     previous:
-        - /docs/configuration-files/add-configuration-file
+        - /docs/applications/link-server-to-application
     next:
         - /docs/applications/add-ssl-certificate
     guides:
