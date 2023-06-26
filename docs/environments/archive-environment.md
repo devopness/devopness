@@ -12,9 +12,19 @@ links:
     featured:
 ---
 
-> Note #1: Archiving an environment does not remove its cloud resources from the corresponding cloud providers where they were provisioned. For cost savings, if an environment has cloud resources that are no longer needed, it's recommended that you remove the resources using Devopness **before** archiving an environment.
+{% note %}
 
-> Note #2: Archived environments can only be accessible, in read-only mode, by the user who owns the project to which the environment belongs to. If other users need access to an archived environment, please unarchive it first. For more information, see [Unarchive an Environment](/docs/environments/unarchive-environment)
+**NOTE**: Archiving an environment does not remove its cloud resources from the corresponding cloud providers where they were provisioned. For cost savings, if an environment has cloud resources that are no longer needed, it's recommended that you remove the resources using Devopness **before** archiving an environment.
+
+{% endnote %}
+
+{% note %}
+
+**NOTE**: Archived environments can only be accessible, in read-only mode, by the user who owns the project to which the environment belongs to.
+
+The project owner can unarchive an archived environment, making it active and accessible to other team members. For more information, see [Unarchive an Environment](/docs/environments/unarchive-environment)
+
+{% endnote %}
 
 1. On Devopness upper-left corner, click the Devopness logo to see a list of existing projects
 1. Select a `Project`
