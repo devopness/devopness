@@ -26,11 +26,6 @@ links:
 
 {% endnote %}
 
-{% note %}
-
-**NOTE**: Insomnia uses curly braces syntax for environment variables, to avoid errors you need to disable the nunjuncks template feature for the request body. Further instructions at [Insomnia's FAQ](https://docs.insomnia.rest/insomnia/faq#how-can-i-temporarily-disable-nunjucks-template)
-
-{% endnote %}
 
 1. Take note of the `Application ID` (`<application_id>`) and `Deploy Pipeline ID` (`<pipeline_id>`) from the application which you want to watch the action statuses
     - Follow the [Deploy Application using an Incoming Hook](/docs/applications/deploy-application-using-incoming-hook) guide for detailed instructions
