@@ -62,7 +62,7 @@ links:
            {
              "name": "Authorization",
              "value": "Bearer {{ application.source_provider.access_token }}"
-           },
+           }
            // NOTE: add Request Headers (`<request_headers>`) here
          ],
          "request_body": {
@@ -112,7 +112,7 @@ links:
            {
              "name": "Authorization",
              "value": "Bearer {{ application.source_provider.access_token }}"
-           },
+           }
            // NOTE: add Request Headers (`<request_headers>`) here
          ],
          "request_body": {
@@ -164,7 +164,7 @@ links:
            {
              "name": "Authorization",
              "value": "Bearer {{ application.source_provider.access_token }}"
-           },
+           }
            // NOTE: add Request Headers (`<request_headers>`) here
          ],
          "request_body": {
