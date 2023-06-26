@@ -66,7 +66,7 @@ links:
            // NOTE: add Request Headers (`<request_headers>`) here
          ],
          "request_body": {
-           // NOTE: review the fields bellow according to Request Body (`<request_body>`) from the source provider's instructions
+           // NOTE: review the fields bellow according to Request Body (`<request_body>`) from the source provider instructions
            "state": <source_provider_pipeline_status>,
            "target_url": "https:\/\/app.devopness.com\/actions\/{{ action.id }}",
            "url": "https:\/\/app.devopness.com\/actions\/{{ action.id }}",
@@ -116,7 +116,7 @@ links:
            // NOTE: add Request Headers (`<request_headers>`) here
          ],
          "request_body": {
-           // NOTE: review the fields bellow according to Request Body (`<request_body>`) from the source provider's instructions
+           // NOTE: review the fields bellow according to Request Body (`<request_body>`) from the source provider instructions
            "state": <source_provider_pipeline_status>,
            "target_url": "https:\/\/app.devopness.com\/actions\/{{ action.id }}",
            "url": "https:\/\/app.devopness.com\/actions\/{{ action.id }}",
@@ -168,7 +168,7 @@ links:
            // NOTE: add Request Headers (`<request_headers>`) here
          ],
          "request_body": {
-           // NOTE: review the fields bellow according to Request Body (`<request_body>`) from the source provider's instructions
+           // NOTE: review the fields below according to Request Body (`<request_body>`) from the source provider instructions
            "state": <source_provider_pipeline_status>,
            "target_url": "https:\/\/app.devopness.com\/actions\/{{ action.id }}",
            "url": "https:\/\/app.devopness.com\/actions\/{{ action.id }}",

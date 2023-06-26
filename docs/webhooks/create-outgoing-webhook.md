@@ -73,7 +73,7 @@ links:
             // NOTE: add Request Headers (`<request_headers>`) here
           ],
           "request_body": {
-            // NOTE: review the fields bellow according to Request Body (`<request_body>`)
+            // NOTE: review the fields below according to Request Body (`<request_body>`)
             "body": "Deployed pipeline for `PR #{{ action.triggered_from.hook_parsed_variables.pull_request_id }} ({{ action.triggered_from.hook_parsed_variables.pull_request_title }})`: Devopness application `{{ application.name }}` deployment **{{ action.status }}** on action <https:\/\/{{ application.name }}>"
           }
         },
