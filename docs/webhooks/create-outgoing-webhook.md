@@ -11,14 +11,26 @@ links:
     featured:
 ---
 
-NOTE: Webhooks, for now, are an API only feature; so this post will guide you through the usage of our API to help you create an outgoing webhook.
+{% note %}
 
-NOTE: The examples below use `cURL`, which is a command line utility to be used from a terminal window. If you're not familiar with running commands on a terminal or you simply don't want to use a terminal you could, alternatively, copy the examples and import the `cURL` command line into your favorite API client platform. Here are links with instructions on how to achieve that on some of the most popular API client platforms:
+**NOTE**: Webhooks, for now, are an API only feature; so this post will guide you through the usage of our API to help you create an outgoing webhook.
+
+{% endnote %}
+
+{% note %}
+
+**NOTE**: The examples below use `cURL`, which is a command line utility to be used from a terminal window. If you're not familiar with running commands on a terminal or you simply don't want to use a terminal you could, alternatively, copy the examples and import the `cURL` command line into your favorite API client platform. Here are links with instructions on how to achieve that on some of the most popular API client platforms:
 
 - [Postman](https://learning.postman.com/docs/getting-started/importing-and-exporting-data/#importing-with-curl-commands)
 - [Insomnia](https://docs.insomnia.rest/insomnia/import-export-data#import-data)
 
-NOTE: Insomnia uses curly braces syntax for environment variables, to avoid errors you need to disable the nunjuncks template feature for the request body. Further instructions at [Insomnia's FAQ](https://docs.insomnia.rest/insomnia/faq#how-can-i-temporarily-disable-nunjucks-template)
+{% endnote %}
+
+{% note %}
+
+**NOTE**: Insomnia uses curly braces syntax for environment variables, to avoid errors you need to disable the nunjuncks template feature for the request body. Further instructions at [Insomnia's FAQ](https://docs.insomnia.rest/insomnia/faq#how-can-i-temporarily-disable-nunjucks-template)
+
+{% endnote %}
 
 1. Take note of the `Application ID` (`<application_id>`) and `Deploy Pipeline ID` (`<pipeline_id>`) from the application which you want to watch the action statuses
     - Follow the [Deploy Application using an Incoming Hook](/docs/applications/deploy-application-using-incoming-hook) guide for detailed instructions
