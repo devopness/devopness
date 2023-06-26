@@ -7,7 +7,7 @@ links:
     previous:
         - /docs/applications/deploy-application
     next:
-        - /docs/roles/add-role
+        - /docs/teams/add-team
     guides:
     related:
     featured:
