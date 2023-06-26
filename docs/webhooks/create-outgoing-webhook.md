@@ -47,9 +47,9 @@ links:
     ```
 1. From the previous command response, copy the field `access_token`
 1. Take note of the `Target URL` (`<target_url>`), `Request Headers` (`<request_headers>`) and `Request Body` (`<request_body>`) fields according to the source provider where the application' source code is hosted, by following the source provider's instructions on the links bellow:
-   - Bitbucket: [REST APIs: Create a comment on a pull request](https://developer.atlassian.com/cloud/bitbucket/rest/api-group-pullrequests/#api-repositories-workspace-repo-slug-pullrequests-pull-request-id-comments-post)
-   - Github: [REST API: Create an issue comment](https://docs.github.com/en/rest/issues/comments#create-an-issue-comment)
-   - Gitlab: [REST API: Create new issue note](https://docs.gitlab.com/ee/api/notes.html#create-new-issue-note)
+   - [Bitbucket](https://developer.atlassian.com/cloud/bitbucket/rest/api-group-pullrequests/#api-repositories-workspace-repo-slug-pullrequests-pull-request-id-comments-post)
+   - [Github](https://docs.github.com/en/rest/issues/comments#create-an-issue-comment)
+   - [Gitlab](https://docs.gitlab.com/ee/api/notes.html#create-new-issue-note)
 1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /hooks/outgoing` to create a outgoing webhook to comment on the Pull Request using the source provider where the application' source code is hosted, replacing `<application_id>`, `<pipeline_id>`, `<target_url>`, `<request_headers>` and `<request_body>`.
     {% raw %}
     ```bash

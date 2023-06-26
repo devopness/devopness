@@ -36,9 +36,9 @@ links:
    - Follow the [Deploy Application using an Incoming Hook](/docs/applications/deploy-application-using-incoming-hook) guide for detailed instructions
 
 1. Take note of the `Target URL` (`<target_url>`), `Request Headers` (`<request_headers>`) and `Request Body` (`<request_body>`) fields according to the source provider where the application' source code is hosted, by following the source provider's instructions on the links bellow:
-   - Bitbucket: [REST APIs: Create a build status for a commit](https://developer.atlassian.com/cloud/bitbucket/rest/api-group-commit-statuses/#api-repositories-workspace-repo-slug-commit-commit-statuses-build-post)
-   - Github: [REST API: Create a commit status](https://docs.github.com/en/rest/commits/statuses#create-a-commit-status)
-   - Gitlab: [REST API: Set the pipeline status of a commit](https://docs.gitlab.com/ee/api/commits.html#set-the-pipeline-status-of-a-commit)
+   - [Bitbucket](https://developer.atlassian.com/cloud/bitbucket/rest/api-group-commit-statuses/#api-repositories-workspace-repo-slug-commit-commit-statuses-build-post)
+   - [Github](https://docs.github.com/en/rest/commits/statuses#create-a-commit-status)
+   - [Gitlab](https://docs.gitlab.com/ee/api/commits.html#set-the-pipeline-status-of-a-commit)
 
 1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /hooks/outgoing` to create a outgoing for the `action.started` event, replacing `<application_id>`, `<pipeline_id>`, `<target_url>`, `<request_headers>` and `<request_body>`
 
