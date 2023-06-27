@@ -1212,15 +1212,7 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content",
-            "headers": {
-              "X-Devopness-Action-Id": {
-                "schema": {
-                  "type": "integer"
-                },
-                "description": "The dispatched action ID of the resource"
-              }
-            }
+            "description": "No Content"
           },
           "403": {
             "description": "Forbidden/Unauthorized",
@@ -1321,15 +1313,7 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content",
-            "headers": {
-              "X-Devopness-Action-Id": {
-                "schema": {
-                  "type": "integer"
-                },
-                "description": "The dispatched action ID of the resource"
-              }
-            }
+            "description": "No Content"
           },
           "403": {
             "description": "Forbidden/Unauthorized",
@@ -2135,14 +2119,6 @@
                 "schema": {
                   "$ref": "#/components/schemas/CronJob"
                 }
-              }
-            },
-            "headers": {
-              "X-Devopness-Action-Id": {
-                "schema": {
-                  "type": "integer"
-                },
-                "description": "The dispatched action ID of the resource"
               }
             }
           },
@@ -12642,17 +12618,13 @@
             "description": "Numeric ID of the application to which the cron job belongs to.",
             "example": 7123941090,
             "type": "integer"
-          },
-          "servers": {
-            "$ref": "#/components/schemas/ResourceIdList"
           }
         },
         "required": [
           "name",
           "command",
           "pattern",
-          "run_as_user",
-          "servers"
+          "run_as_user"
         ]
       },
       "CronJobList": {
@@ -12790,9 +12762,6 @@
             "description": "Numeric ID of the application to which the cron job belongs to.",
             "example": 3745834,
             "type": "integer"
-          },
-          "servers": {
-            "$ref": "#/components/schemas/ResourceIdList"
           }
         },
         "required": [
@@ -12800,8 +12769,7 @@
           "pattern",
           "name",
           "command",
-          "run_as_user",
-          "servers"
+          "run_as_user"
         ]
       },
       "Daemon": {
@@ -16048,10 +16016,19 @@
           "project_id": {
             "description": "The ID of the project this role belongs to",
             "type": "integer",
-            "example": 984123
+            "example": 984123,
+            "nullable": true
+          },
+          "is_predefined": {
+            "description": "Defines if the role is predefined or custom",
+            "type": "boolean",
+            "example": false
           },
           "permissions": {
             "$ref": "#/components/schemas/RolePermissions"
+          },
+          "parent": {
+            "$ref": "#/components/schemas/RoleRelation"
           },
           "created_at": {
             "description": "The date and time when the record was created",
@@ -16069,7 +16046,9 @@
           "name",
           "description",
           "project_id",
+          "is_predefined",
           "permissions",
+          "parent",
           "created_at",
           "updated_at"
         ]
@@ -16134,7 +16113,13 @@
           "project_id": {
             "description": "The ID of the project this role belongs to",
             "type": "integer",
-            "example": 984123
+            "example": 984123,
+            "nullable": true
+          },
+          "is_predefined": {
+            "description": "Defines if the role is predefined or a custom role for specific project",
+            "type": "boolean",
+            "example": false
           },
           "permissions": {
             "$ref": "#/components/schemas/RolePermissions"
@@ -16155,6 +16140,7 @@
           "name",
           "description",
           "project_id",
+          "is_predefined",
           "permissions",
           "created_at",
           "updated_at"
