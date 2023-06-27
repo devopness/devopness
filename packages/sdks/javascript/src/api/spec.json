@@ -1607,53 +1607,6 @@
       }
     },
     "/environments/{environment_id}": {
-      "delete": {
-        "summary": "Delete a given environment",
-        "operationId": "deleteEnvironment",
-        "description": {
-          "$ref": "../spec/descriptions/delete-environment.md"
-        },
-        "tags": [
-          "Environments"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "environment_id",
-            "description": "The ID of the environment.",
-            "example": 123,
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "403": {
-            "description": "Forbidden/Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        }
-      },
       "get": {
         "summary": "Get an environment by ID",
         "operationId": "getEnvironment",
