@@ -55,11 +55,5 @@ export interface CronJobUpdate {
      * @memberof CronJobUpdate
      */
     application_id?: number;
-    /**
-     * List of valid resource IDs
-     * @type {Array<number>}
-     * @memberof CronJobUpdate
-     */
-    servers: Array<number>;
 }
 
