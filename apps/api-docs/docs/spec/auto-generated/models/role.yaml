@@ -17,8 +17,15 @@ properties:
     description: 'The ID of the project this role belongs to'
     type: integer
     example: 984123
+    nullable: true
+  is_predefined:
+    description: 'Defines if the role is predefined or custom'
+    type: boolean
+    example: false
   permissions:
     $ref: '#/components/schemas/RolePermissions'
+  parent:
+    $ref: '#/components/schemas/RoleRelation'
   created_at:
     description: 'The date and time when the record was created'
     type: string
@@ -32,6 +39,8 @@ required:
   - name
   - description
   - project_id
+  - is_predefined
   - permissions
+  - parent
   - created_at
   - updated_at

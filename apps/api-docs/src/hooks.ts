@@ -68,6 +68,8 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         'startServer204',
         'restartServer204',
         'stopServer204',
+        // Pending actions cannot be retried, so we can't test this endpoint
+        'retryAction201',
     ];
 
     // transactions listed here are skipped with a `before` hook

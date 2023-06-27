@@ -21,11 +21,8 @@ properties:
     description: 'Numeric ID of the application to which the cron job belongs to.'
     example: 7123941090
     type: integer
-  servers:
-    $ref: '#/components/schemas/ResourceIdList'
 required:
   - name
   - command
   - pattern
   - run_as_user
-  - servers

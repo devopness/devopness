@@ -62,9 +62,7 @@ export type FixtureDependency = { path: string, fixture: FixtureKey, field: stri
  *      are declared here are not relevant for fixture value resolution.
 */
 const fixtureKeys: { [str: string]: FixtureDependency[] } = {
-    'action': [
-        { path: 'id', fixture: 'cron_job', field: 'last_action.id' },
-    ],
+    'action': [],
     'action_pipeline_create': [
         { path: 'servers[0]', fixture: 'server', field: 'id' },
     ],
