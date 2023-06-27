@@ -58,7 +58,7 @@ links:
         "action_type": "deploy",
         "resource_type": "application",
         "resource_id": <application-id>,
-        "target_url": "https:\/\/<target_url>\/{{ action.triggered_from.hook_parsed_variables.pull_request_id }}",
+        "target_url": "https://<target_url>/{{ action.triggered_from.hook_parsed_variables.pull_request_id }}",
         "settings": {
           "request_headers": [
             {

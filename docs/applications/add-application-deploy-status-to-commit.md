@@ -51,7 +51,7 @@ links:
        "action_type": "deploy",
        "resource_type": "application",
        "resource_id": <application_id>,
-       "target_url": "https:\/\/<target_url>\/{{ action.triggered_from.hook_parsed_variables.commit_hash }}",
+       "target_url": "https://<target_url>/{{ action.triggered_from.hook_parsed_variables.commit_hash }}",
        "settings": {
          "request_headers": [
            {
@@ -63,8 +63,8 @@ links:
          "request_body": {
            // NOTE: review the fields bellow according to Request Body (`<request_body>`) from the source provider instructions
            "state": <source_provider_pipeline_status>,
-           "target_url": "https:\/\/app.devopness.com\/actions\/{{ action.id }}",
-           "url": "https:\/\/app.devopness.com\/actions\/{{ action.id }}",
+           "target_url": "https://app.devopness.com/actions/{{ action.id }}",
+           "url": "https://app.devopness.com/actions/{{ action.id }}",
            "description": "Application building started",
            "context": "ci\/devopness(build)",
            "key": "ci\/devopness(build)"
@@ -101,7 +101,7 @@ links:
        "action_type": "deploy",
        "resource_type": "application",
        "resource_id": <application_id>,
-       "target_url": "https:\/\/<target_url>\/{{ action.triggered_from.hook_parsed_variables.commit_hash }}",
+       "target_url": "https://<target_url>/{{ action.triggered_from.hook_parsed_variables.commit_hash }}",
        "settings": {
          "request_headers": [
            {
@@ -113,8 +113,8 @@ links:
          "request_body": {
            // NOTE: review the fields bellow according to Request Body (`<request_body>`) from the source provider instructions
            "state": <source_provider_pipeline_status>,
-           "target_url": "https:\/\/app.devopness.com\/actions\/{{ action.id }}",
-           "url": "https:\/\/app.devopness.com\/actions\/{{ action.id }}",
+           "target_url": "https://app.devopness.com/actions/{{ action.id }}",
+           "url": "https://app.devopness.com/actions/{{ action.id }}",
            "description": "Application building failed",
            "context": "ci\/devopness(build)",
            "key": "ci\/devopness(build)"
@@ -153,7 +153,7 @@ links:
        "action_type": "deploy",
        "resource_type": "application",
        "resource_id": <application_id>,
-       "target_url": "https:\/\/<target_url>\/{{ action.triggered_from.hook_parsed_variables.commit_hash }}",
+       "target_url": "https://<target_url>/{{ action.triggered_from.hook_parsed_variables.commit_hash }}",
        "settings": {
          "request_headers": [
            {
@@ -165,8 +165,8 @@ links:
          "request_body": {
            // NOTE: review the fields below according to Request Body (`<request_body>`) from the source provider instructions
            "state": <source_provider_pipeline_status>,
-           "target_url": "https:\/\/app.devopness.com\/actions\/{{ action.id }}",
-           "url": "https:\/\/app.devopness.com\/actions\/{{ action.id }}",
+           "target_url": "https://app.devopness.com/actions/{{ action.id }}",
+           "url": "https://app.devopness.com/actions/{{ action.id }}",
            "description": "Application building success",
            "context": "ci\/devopness(build)",
            "key": "ci\/devopness(build)"
