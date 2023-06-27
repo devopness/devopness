@@ -67,7 +67,7 @@ links:
            "url": "https:\/\/app.devopness.com\/actions\/{{ action.id }}",
            "description": "Application building started",
            "context": "ci\/devopness(build)",
-           "key": "ci\/devopness(build)",
+           "key": "ci\/devopness(build)"
          }
        },
        "trigger_when": {
@@ -117,7 +117,7 @@ links:
            "url": "https:\/\/app.devopness.com\/actions\/{{ action.id }}",
            "description": "Application building failed",
            "context": "ci\/devopness(build)",
-           "key": "ci\/devopness(build)",
+           "key": "ci\/devopness(build)"
          }
        },
        "trigger_when": {
@@ -169,7 +169,7 @@ links:
            "url": "https:\/\/app.devopness.com\/actions\/{{ action.id }}",
            "description": "Application building success",
            "context": "ci\/devopness(build)",
-           "key": "ci\/devopness(build)",
+           "key": "ci\/devopness(build)"
          }
        },
        "trigger_when": {
