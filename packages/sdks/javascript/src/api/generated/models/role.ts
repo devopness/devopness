@@ -12,6 +12,7 @@
  */
 
 
+import { RoleRelation } from './role-relation';
 
 /**
  * 
@@ -42,13 +43,25 @@ export interface Role {
      * @type {number}
      * @memberof Role
      */
-    project_id: number;
+    project_id: number | null;
+    /**
+     * Defines if the role is predefined or custom
+     * @type {boolean}
+     * @memberof Role
+     */
+    is_predefined: boolean;
     /**
      * The list of permissions granted for this role
      * @type {Array<string>}
      * @memberof Role
      */
     permissions: Array<string>;
+    /**
+     * 
+     * @type {RoleRelation}
+     * @memberof Role
+     */
+    parent: RoleRelation | null;
     /**
      * The date and time when the record was created
      * @type {string}

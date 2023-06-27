@@ -49,11 +49,5 @@ export interface CronJobEnvironmentCreate {
      * @memberof CronJobEnvironmentCreate
      */
     application_id?: number;
-    /**
-     * List of valid resource IDs
-     * @type {Array<number>}
-     * @memberof CronJobEnvironmentCreate
-     */
-    servers: Array<number>;
 }
 
