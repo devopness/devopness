@@ -134,11 +134,5 @@ export interface ApplicationEnvironmentCreate {
      * @memberof ApplicationEnvironmentCreate
      */
     requires_daemon: boolean;
-    /**
-     * List of valid resource IDs
-     * @type {Array<number>}
-     * @memberof ApplicationEnvironmentCreate
-     */
-    servers: Array<number>;
 }
 
