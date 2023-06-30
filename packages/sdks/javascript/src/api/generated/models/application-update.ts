@@ -146,11 +146,5 @@ export interface ApplicationUpdate {
      * @memberof ApplicationUpdate
      */
     requires_daemon: boolean;
-    /**
-     * List of valid resource IDs
-     * @type {Array<number>}
-     * @memberof ApplicationUpdate
-     */
-    servers: Array<number>;
 }
 
