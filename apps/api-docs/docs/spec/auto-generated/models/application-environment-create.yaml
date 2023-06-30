@@ -75,8 +75,6 @@ properties:
     description: 'Indicates if the application requires a daemon to keep it alive.'
     example: false
     type: boolean
-  servers:
-    $ref: '#/components/schemas/ResourceIdList'
 required:
   - name
   - type
@@ -90,4 +88,3 @@ required:
   - install_dependencies_dev
   - install_dependencies_prod
   - requires_daemon
-  - servers
