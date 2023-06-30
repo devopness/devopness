@@ -3,5 +3,3 @@ type: object
 properties:
   servers:
     $ref: '#/components/schemas/ResourceIdList'
-required:
-  - servers
