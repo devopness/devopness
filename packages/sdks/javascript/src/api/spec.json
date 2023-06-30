@@ -10487,10 +10487,7 @@
           "servers": {
             "$ref": "#/components/schemas/ResourceIdList"
           }
-        },
-        "required": [
-          "servers"
-        ]
+        }
       },
       "ActionRelation": {
         "type": "object",
