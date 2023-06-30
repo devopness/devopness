@@ -356,15 +356,7 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content",
-            "headers": {
-              "X-Devopness-Action-Id": {
-                "schema": {
-                  "type": "integer"
-                },
-                "description": "The dispatched action ID of the resource"
-              }
-            }
+            "description": "No Content"
           },
           "403": {
             "description": "Forbidden/Unauthorized",
@@ -11305,9 +11297,6 @@
             "description": "Indicates if the application requires a daemon to keep it alive.",
             "example": false,
             "type": "boolean"
-          },
-          "servers": {
-            "$ref": "#/components/schemas/ResourceIdList"
           }
         },
         "required": [
@@ -11322,8 +11311,7 @@
           "entrypoint",
           "install_dependencies_dev",
           "install_dependencies_prod",
-          "requires_daemon",
-          "servers"
+          "requires_daemon"
         ]
       },
       "ApplicationLastDeployments": {
@@ -11663,9 +11651,6 @@
             "description": "Indicates if the application requires a daemon to keep it alive.",
             "example": false,
             "type": "boolean"
-          },
-          "servers": {
-            "$ref": "#/components/schemas/ResourceIdList"
           }
         },
         "required": [
@@ -11679,8 +11664,7 @@
           "entrypoint",
           "install_dependencies_dev",
           "install_dependencies_prod",
-          "requires_daemon",
-          "servers"
+          "requires_daemon"
         ]
       },
       "ArchivedEnvironmentList": {
