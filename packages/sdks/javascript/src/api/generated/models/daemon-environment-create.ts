@@ -49,11 +49,5 @@ export interface DaemonEnvironmentCreate {
      * @memberof DaemonEnvironmentCreate
      */
     name: string;
-    /**
-     * List of valid resource IDs
-     * @type {Array<number>}
-     * @memberof DaemonEnvironmentCreate
-     */
-    servers: Array<number>;
 }
 
