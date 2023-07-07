@@ -29,8 +29,6 @@ properties:
     description: 'Numeric ID of the project to which the daemon belongs to.'
     example: 8594323
     type: integer
-  servers:
-    $ref: '#/components/schemas/ResourceIdList'
 required:
   - id
   - command
@@ -38,4 +36,3 @@ required:
   - working_directory
   - run_as_user
   - name
-  - servers

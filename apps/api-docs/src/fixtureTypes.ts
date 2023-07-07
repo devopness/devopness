@@ -138,6 +138,7 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     ],
     'daemon_restart': [
         { path: 'environment_id', fixture: 'environment', field: 'id' },
+        { path: 'servers[0]', fixture: 'server', field: 'id' }
     ],
     'pipeline': [],
     'pipeline_create': [
