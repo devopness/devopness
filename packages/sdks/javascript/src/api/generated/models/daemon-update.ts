@@ -61,11 +61,5 @@ export interface DaemonUpdate {
      * @memberof DaemonUpdate
      */
     application_id?: number;
-    /**
-     * List of valid resource IDs
-     * @type {Array<number>}
-     * @memberof DaemonUpdate
-     */
-    servers: Array<number>;
 }
 
