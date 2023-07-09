@@ -9,9 +9,6 @@ properties:
     description: 'The ssh key''s name. Must not be greater than 60 characters.'
     example: my-ssh-key
     type: string
-  servers:
-    $ref: '#/components/schemas/ResourceIdList'
 required:
   - id
   - name
-  - servers
