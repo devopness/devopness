@@ -25,11 +25,8 @@ properties:
     description: 'Ending range of network ports to be considered by this rule. Must be at least 1. Must not be greater than 65535.'
     example: 7654
     type: integer
-  servers:
-    $ref: '#/components/schemas/ResourceIdList'
 required:
   - name
   - type
   - port_from
   - port_to
-  - servers
