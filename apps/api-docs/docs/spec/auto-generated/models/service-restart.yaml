@@ -5,5 +5,7 @@ properties:
     description: 'The ID of the environment this service is running in.'
     example: 839
     type: integer
+  servers:
+    $ref: '#/components/schemas/ResourceIdList'
 required:
   - environment_id

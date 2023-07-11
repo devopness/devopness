@@ -165,27 +165,29 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
         { path: 'ssh_port', fixture: 'server', field: 'ssh_port' },
     ],
     'service': [],
-    'service_environment_create': [
-        { path: 'servers[0]', fixture: 'server', field: 'id' },
-    ],
+    'service_environment_create': [],
     'service_reload': [
         { path: 'environment_id', fixture: 'environment', field: 'id' },
+        { path: 'servers[0]', fixture: 'server', field: 'id' },
     ],
     'service_restart': [
         { path: 'environment_id', fixture: 'environment', field: 'id' },
+        { path: 'servers[0]', fixture: 'server', field: 'id' },
     ],
     'service_start': [
         { path: 'environment_id', fixture: 'environment', field: 'id' },
+        { path: 'servers[0]', fixture: 'server', field: 'id' },
     ],
     'service_update_status': [
         { path: 'environment_id', fixture: 'environment', field: 'id' },
+        { path: 'servers[0]', fixture: 'server', field: 'id' },
     ],
     'service_stop': [
         { path: 'environment_id', fixture: 'environment', field: 'id' },
+        { path: 'servers[0]', fixture: 'server', field: 'id' },
     ],
     'service_update': [
         { path: 'id', fixture: 'service', field: 'id' },
-        { path: 'servers[0]', fixture: 'server', field: 'id' },
     ],
     'social_account': [],
     'source_provider': [],
