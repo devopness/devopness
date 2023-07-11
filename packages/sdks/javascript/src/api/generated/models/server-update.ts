@@ -37,5 +37,11 @@ export interface ServerUpdate {
      * @memberof ServerUpdate
      */
     ssh_port?: number;
+    /**
+     * Maximum number of actions that can run in parallel on this server. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run on this server. Must be between 0 and 65535.
+     * @type {number}
+     * @memberof ServerUpdate
+     */
+    max_parallel_actions?: number;
 }
 

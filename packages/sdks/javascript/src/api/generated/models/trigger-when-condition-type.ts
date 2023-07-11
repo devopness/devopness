@@ -14,18 +14,12 @@
 
 
 /**
- * Current item status
+ * The type of the condition to define where the values to be validated should be retrieved from. Example: `request_body` - Validate the condition using values of attributes sent in the request body.
  * @export
  * @enum {string}
  */
-export enum ActionStatus {
-    Pending = 'pending',
-    Waiting = 'waiting',
-    Skipped = 'skipped',
-    Queued = 'queued',
-    InProgress = 'in-progress',
-    Completed = 'completed',
-    Failed = 'failed'
+export enum TriggerWhenConditionType {
+    RequestBody = 'request_body'
 }
 
 
