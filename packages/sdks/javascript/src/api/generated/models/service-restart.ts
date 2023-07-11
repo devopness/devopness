@@ -25,5 +25,11 @@ export interface ServiceRestart {
      * @memberof ServiceRestart
      */
     environment_id: number;
+    /**
+     * List of valid resource IDs
+     * @type {Array<number>}
+     * @memberof ServiceRestart
+     */
+    servers?: Array<number>;
 }
 
