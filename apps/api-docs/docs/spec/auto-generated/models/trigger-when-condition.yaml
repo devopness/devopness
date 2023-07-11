@@ -6,7 +6,7 @@ properties:
     description: 'Name of the condition'
     example: 'Check pullrequest author'
   type:
-    $ref: '#/components/schemas/HookIncomingTriggerWhenConditionType'
+    $ref: '#/components/schemas/TriggerWhenConditionType'
   path:
     description: 'A dot-notation path of the request body attribute to be used as the value to evaluate this condition.'
     example: pullrequest.author.nickname

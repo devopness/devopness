@@ -37,6 +37,12 @@ properties:
     description: 'Human readable version of the operation'
     type: string
     example: Deploy
+  max_parallel_actions:
+    description: 'Maximum number of actions that can run in parallel for this pipeline. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run this pipeline.'
+    type: integer
+    example: 1
+  trigger_when:
+    $ref: '#/components/schemas/PipelineTriggerWhen'
   created_by_user:
     $ref: '#/components/schemas/UserRelation'
   created_at:
@@ -57,6 +63,8 @@ required:
   - resource_id
   - operation
   - operation_human_readable
+  - max_parallel_actions
+  - trigger_when
   - created_by_user
   - created_at
   - updated_at

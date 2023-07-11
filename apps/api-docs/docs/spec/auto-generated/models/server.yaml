@@ -41,6 +41,10 @@ properties:
     example: true
   status:
     $ref: '#/components/schemas/ActionStatus'
+  max_parallel_actions:
+    description: 'Maximum number of actions that can run in parallel on this server. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run on this server,'
+    type: integer
+    example: 1
   blueprint:
     $ref: '#/components/schemas/ServerBlueprint'
   provision_settings:
@@ -73,6 +77,7 @@ required:
   - os_version_code
   - active
   - status
+  - max_parallel_actions
   - blueprint
   - provision_settings
   - created_by_user

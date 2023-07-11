@@ -185,10 +185,6 @@ HookIncomingSettings:
   $ref: ./auto-generated/models/hook-incoming-settings.yaml
 HookIncomingTriggerVariables:
   $ref: ./auto-generated/models/hook-incoming-trigger-variables.yaml
-HookIncomingTriggerWhenCondition:
-  $ref: ./auto-generated/models/hook-incoming-trigger-when-condition.yaml
-HookIncomingTriggerWhenConditionType:
-  $ref: ./auto-generated/models/hook-incoming-trigger-when-condition-type.yaml
 HookList:
   $ref: ./auto-generated/models/hook-list.yaml
 HookOutgoingRequestHeader:
@@ -305,6 +301,8 @@ PipelineSettingsVariableList:
   $ref: ./auto-generated/models/pipeline-settings-variable-list.yaml
 PipelineStepRunnerName:
   $ref: ./auto-generated/models/pipeline-step-runner-name.yaml
+PipelineTriggerWhen:
+  $ref: ./auto-generated/models/pipeline-trigger-when.yaml
 PipelineUpdate:
   $ref: ./auto-generated/models/pipeline-update.yaml
 Project:
@@ -547,6 +545,10 @@ TeamUpdate:
   $ref: ./auto-generated/models/team-update.yaml
 TriggerEvent:
   $ref: ./auto-generated/models/trigger-event.yaml
+TriggerWhenCondition:
+  $ref: ./auto-generated/models/trigger-when-condition.yaml
+TriggerWhenConditionType:
+  $ref: ./auto-generated/models/trigger-when-condition-type.yaml
 TriggeredActionStats:
   $ref: ./auto-generated/models/triggered-action-stats.yaml
 TriggeredActionStatsList:

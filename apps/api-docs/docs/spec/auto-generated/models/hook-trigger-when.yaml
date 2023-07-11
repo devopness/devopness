@@ -25,6 +25,6 @@ properties:
     items:
       oneOf:
         -
-          $ref: '#/components/schemas/HookIncomingTriggerWhenCondition'
+          $ref: '#/components/schemas/TriggerWhenCondition'
         -
           $ref: '#/components/schemas/HookOutgoingTriggerWhenCondition'
