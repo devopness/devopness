@@ -1,6 +1,6 @@
 ---
-title: Integrate Application Deploy to Source Provider's CI
-intro: Commit statuses provide a way to tag commits with meta data, like automated deploy results. Learn how to create outgoing webhooks to update a commit status to integrate the application deploy to the source provider's CI.
+title: Integrate Application deployments with your Continuous integration (CI) workflows
+intro: Devopness enables you to connect to your current CI workflows, saving time migrating commands. Learn how to create outgoing webhooks to integrate the application deployment with your existing CI workflow.
 links:
     overview:
     quickstart:
