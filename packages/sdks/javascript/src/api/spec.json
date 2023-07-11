@@ -2327,14 +2327,6 @@
                   "$ref": "#/components/schemas/NetworkRule"
                 }
               }
-            },
-            "headers": {
-              "X-Devopness-Action-Id": {
-                "schema": {
-                  "type": "integer"
-                },
-                "description": "The dispatched action ID of the resource"
-              }
             }
           },
           "403": {
@@ -2613,14 +2605,6 @@
                   "$ref": "#/components/schemas/Service"
                 }
               }
-            },
-            "headers": {
-              "X-Devopness-Action-Id": {
-                "schema": {
-                  "type": "integer"
-                },
-                "description": "The dispatched action ID of the resource"
-              }
             }
           },
           "403": {
@@ -2765,14 +2749,6 @@
                 "schema": {
                   "$ref": "#/components/schemas/SshKey"
                 }
-              }
-            },
-            "headers": {
-              "X-Devopness-Action-Id": {
-                "schema": {
-                  "type": "integer"
-                },
-                "description": "The dispatched action ID of the resource"
               }
             }
           },
@@ -3721,15 +3697,7 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content",
-            "headers": {
-              "X-Devopness-Action-Id": {
-                "schema": {
-                  "type": "integer"
-                },
-                "description": "The dispatched action ID of the resource"
-              }
-            }
+            "description": "No Content"
           },
           "403": {
             "description": "Forbidden/Unauthorized",
@@ -3830,15 +3798,7 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content",
-            "headers": {
-              "X-Devopness-Action-Id": {
-                "schema": {
-                  "type": "integer"
-                },
-                "description": "The dispatched action ID of the resource"
-              }
-            }
+            "description": "No Content"
           },
           "403": {
             "description": "Forbidden/Unauthorized",
@@ -7600,15 +7560,7 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content",
-            "headers": {
-              "X-Devopness-Action-Id": {
-                "schema": {
-                  "type": "integer"
-                },
-                "description": "The dispatched action ID of the resource"
-              }
-            }
+            "description": "No Content"
           },
           "403": {
             "description": "Forbidden/Unauthorized",
@@ -7709,15 +7661,7 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content",
-            "headers": {
-              "X-Devopness-Action-Id": {
-                "schema": {
-                  "type": "integer"
-                },
-                "description": "The dispatched action ID of the resource"
-              }
-            }
+            "description": "No Content"
           },
           "403": {
             "description": "Forbidden/Unauthorized",
@@ -14665,17 +14609,13 @@
             "description": "Ending range of network ports to be considered by this rule. Must be at least 1. Must not be greater than 65535.",
             "example": 7654,
             "type": "integer"
-          },
-          "servers": {
-            "$ref": "#/components/schemas/ResourceIdList"
           }
         },
         "required": [
           "name",
           "type",
           "port_from",
-          "port_to",
-          "servers"
+          "port_to"
         ]
       },
       "NetworkRuleList": {
@@ -14807,16 +14747,12 @@
             "description": "Ending range of the public ipv4 or ipv6 addresses that can access this rule. Must be a valid IP address.",
             "example": "200.123.45.99",
             "type": "string"
-          },
-          "servers": {
-            "$ref": "#/components/schemas/ResourceIdList"
           }
         },
         "required": [
           "id",
           "name",
-          "type",
-          "servers"
+          "type"
         ]
       },
       "OperatingSystem": {
@@ -16692,15 +16628,11 @@
             "description": "The service version to be installed. Must be one of <code></code> Must be at least 3 characters. Must not be greater than 30 characters.",
             "example": "5.7",
             "type": "string"
-          },
-          "servers": {
-            "$ref": "#/components/schemas/ResourceIdList"
           }
         },
         "required": [
           "type",
-          "version",
-          "servers"
+          "version"
         ]
       },
       "ServiceInitialState": {
@@ -16815,6 +16747,9 @@
             "description": "The ID of the environment this service is running in.",
             "example": 839,
             "type": "integer"
+          },
+          "servers": {
+            "$ref": "#/components/schemas/ResourceIdList"
           }
         },
         "required": [
@@ -16828,6 +16763,9 @@
             "description": "The ID of the environment this service is running in.",
             "example": 839,
             "type": "integer"
+          },
+          "servers": {
+            "$ref": "#/components/schemas/ResourceIdList"
           }
         },
         "required": [
@@ -16841,6 +16779,9 @@
             "description": "The ID of the environment this service is running in.",
             "example": 839,
             "type": "integer"
+          },
+          "servers": {
+            "$ref": "#/components/schemas/ResourceIdList"
           }
         },
         "required": [
@@ -16854,6 +16795,9 @@
             "description": "The ID of the environment this service is running in.",
             "example": 839,
             "type": "integer"
+          },
+          "servers": {
+            "$ref": "#/components/schemas/ResourceIdList"
           }
         },
         "required": [
@@ -16881,14 +16825,10 @@
             "description": "The unique ID of the service.",
             "example": 53283,
             "type": "integer"
-          },
-          "servers": {
-            "$ref": "#/components/schemas/ResourceIdList"
           }
         },
         "required": [
-          "id",
-          "servers"
+          "id"
         ]
       },
       "ServiceUpdateStatus": {
@@ -16898,6 +16838,9 @@
             "description": "The ID of the environment this service is running in.",
             "example": 839,
             "type": "integer"
+          },
+          "servers": {
+            "$ref": "#/components/schemas/ResourceIdList"
           }
         },
         "required": [
@@ -17320,15 +17263,11 @@
             "description": "The public key of the ssh key.",
             "example": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCAJGoD1B2m718Q6us8k7UbkjwDJQkusFZ1Yg+s13yuEfd+pfEnni1YfWxz67HPCGUYMtdUTnb7Fkc9xgPgj5Fkl6vhQv1mFbL/addJcV9bIYd4e29LMEsojiAyh99JDTtSXMkljlWYuf4ywALswCna2w+70WHSdoDD3p82THDdoB7p9hPXRzRLZVAzw7Y7is/8Sho4V1byXPxxRfTd5HSGqLqi0zdoef8iXZ2wg4uBJStbszu75oSijM9zHgQtUxE0CgQ1iaPHOg8Idxmg8BQoaYD2OmzwxjwW4wmKUZ5F/qOMknrwZ6iUqjqYFJaLZrj6ZMEZ2ydTuS3uNAQO7Zfb",
             "type": "string"
-          },
-          "servers": {
-            "$ref": "#/components/schemas/ResourceIdList"
           }
         },
         "required": [
           "name",
-          "public_key",
-          "servers"
+          "public_key"
         ]
       },
       "SshKeyList": {
@@ -17404,15 +17343,11 @@
             "description": "The ssh key's name. Must not be greater than 60 characters.",
             "example": "my-ssh-key",
             "type": "string"
-          },
-          "servers": {
-            "$ref": "#/components/schemas/ResourceIdList"
           }
         },
         "required": [
           "id",
-          "name",
-          "servers"
+          "name"
         ]
       },
       "SslCertificate": {

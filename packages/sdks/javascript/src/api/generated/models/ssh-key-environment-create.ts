@@ -31,11 +31,5 @@ export interface SshKeyEnvironmentCreate {
      * @memberof SshKeyEnvironmentCreate
      */
     public_key: string;
-    /**
-     * List of valid resource IDs
-     * @type {Array<number>}
-     * @memberof SshKeyEnvironmentCreate
-     */
-    servers: Array<number>;
 }
 
