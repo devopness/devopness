@@ -2605,14 +2605,6 @@
                   "$ref": "#/components/schemas/Service"
                 }
               }
-            },
-            "headers": {
-              "X-Devopness-Action-Id": {
-                "schema": {
-                  "type": "integer"
-                },
-                "description": "The dispatched action ID of the resource"
-              }
             }
           },
           "403": {
@@ -16636,15 +16628,11 @@
             "description": "The service version to be installed. Must be one of <code></code> Must be at least 3 characters. Must not be greater than 30 characters.",
             "example": "5.7",
             "type": "string"
-          },
-          "servers": {
-            "$ref": "#/components/schemas/ResourceIdList"
           }
         },
         "required": [
           "type",
-          "version",
-          "servers"
+          "version"
         ]
       },
       "ServiceInitialState": {
@@ -16759,6 +16747,9 @@
             "description": "The ID of the environment this service is running in.",
             "example": 839,
             "type": "integer"
+          },
+          "servers": {
+            "$ref": "#/components/schemas/ResourceIdList"
           }
         },
         "required": [
@@ -16772,6 +16763,9 @@
             "description": "The ID of the environment this service is running in.",
             "example": 839,
             "type": "integer"
+          },
+          "servers": {
+            "$ref": "#/components/schemas/ResourceIdList"
           }
         },
         "required": [
@@ -16785,6 +16779,9 @@
             "description": "The ID of the environment this service is running in.",
             "example": 839,
             "type": "integer"
+          },
+          "servers": {
+            "$ref": "#/components/schemas/ResourceIdList"
           }
         },
         "required": [
@@ -16798,6 +16795,9 @@
             "description": "The ID of the environment this service is running in.",
             "example": 839,
             "type": "integer"
+          },
+          "servers": {
+            "$ref": "#/components/schemas/ResourceIdList"
           }
         },
         "required": [
@@ -16825,14 +16825,10 @@
             "description": "The unique ID of the service.",
             "example": 53283,
             "type": "integer"
-          },
-          "servers": {
-            "$ref": "#/components/schemas/ResourceIdList"
           }
         },
         "required": [
-          "id",
-          "servers"
+          "id"
         ]
       },
       "ServiceUpdateStatus": {
@@ -16842,6 +16838,9 @@
             "description": "The ID of the environment this service is running in.",
             "example": 839,
             "type": "integer"
+          },
+          "servers": {
+            "$ref": "#/components/schemas/ResourceIdList"
           }
         },
         "required": [
