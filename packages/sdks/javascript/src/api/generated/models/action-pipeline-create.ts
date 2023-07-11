@@ -24,6 +24,6 @@ export interface ActionPipelineCreate {
      * @type {Array<number>}
      * @memberof ActionPipelineCreate
      */
-    servers: Array<number>;
+    servers?: Array<number>;
 }
 

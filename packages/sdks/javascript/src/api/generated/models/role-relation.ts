@@ -42,7 +42,13 @@ export interface RoleRelation {
      * @type {number}
      * @memberof RoleRelation
      */
-    project_id: number;
+    project_id: number | null;
+    /**
+     * Defines if the role is predefined or a custom role for specific project
+     * @type {boolean}
+     * @memberof RoleRelation
+     */
+    is_predefined: boolean;
     /**
      * The list of permissions granted for this role
      * @type {Array<string>}
