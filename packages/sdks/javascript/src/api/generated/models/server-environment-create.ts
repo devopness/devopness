@@ -40,6 +40,12 @@ export interface ServerEnvironmentCreate {
      */
     ssh_port?: number;
     /**
+     * Maximum number of actions that can run in parallel on this server. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run on this server. Must be between 0 and 65535.
+     * @type {number}
+     * @memberof ServerEnvironmentCreate
+     */
+    max_parallel_actions?: number;
+    /**
      * The service names and their respective versions for a blueprint.
      * @type {Array<BlueprintService>}
      * @memberof ServerEnvironmentCreate

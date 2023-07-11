@@ -12,6 +12,7 @@
  */
 
 
+import { PipelineTriggerWhen } from './pipeline-trigger-when';
 import { UserRelation } from './user-relation';
 
 /**
@@ -74,6 +75,18 @@ export interface PipelineRelation {
      * @memberof PipelineRelation
      */
     operation_human_readable: string;
+    /**
+     * Maximum number of actions that can run in parallel for this pipeline. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run this pipeline.
+     * @type {number}
+     * @memberof PipelineRelation
+     */
+    max_parallel_actions: number;
+    /**
+     * 
+     * @type {PipelineTriggerWhen}
+     * @memberof PipelineRelation
+     */
+    trigger_when: PipelineTriggerWhen | null;
     /**
      * 
      * @type {UserRelation}
