@@ -28,6 +28,7 @@ links:
 1. Set the `Disk size`
 1. Click `NEXT`
 1. Provide your server name, OS and hostname and click `NEXT`
+1. Follow the prompts to complete the configuration of the new `Server`
 1. Review server information and settings. If everything is correct, click `CONFIRM`
     > Use the `PREVIOUS` button if you need to modify any server details
 1. Wait for the `Server:provision` action to finish
