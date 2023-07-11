@@ -10680,6 +10680,8 @@
         "type": "string",
         "enum": [
           "pending",
+          "waiting",
+          "skipped",
           "queued",
           "in-progress",
           "completed",
@@ -13418,61 +13420,6 @@
           "second_var": "its-a-value"
         }
       },
-      "HookIncomingTriggerWhenCondition": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name of the condition",
-            "example": "Check pullrequest author"
-          },
-          "type": {
-            "$ref": "#/components/schemas/HookIncomingTriggerWhenConditionType"
-          },
-          "path": {
-            "description": "A dot-notation path of the request body attribute to be used as the value to evaluate this condition.",
-            "example": "pullrequest.author.nickname",
-            "type": "string"
-          },
-          "accepted_values": {
-            "type": "array",
-            "description": "List of accepted values for this condition.",
-            "items": {
-              "anyOf": [
-                {
-                  "type": "boolean"
-                },
-                {
-                  "type": "integer"
-                },
-                {
-                  "type": "number"
-                },
-                {
-                  "type": "string",
-                  "nullable": true
-                }
-              ]
-            },
-            "example": [
-              "myuser123",
-              "bu_nick456"
-            ]
-          }
-        },
-        "required": [
-          "type",
-          "path",
-          "accepted_values"
-        ]
-      },
-      "HookIncomingTriggerWhenConditionType": {
-        "type": "string",
-        "description": "Type of the incoming hook condition.\\n* `request_body` - Validate request body for incoming hooks.",
-        "enum": [
-          "request_body"
-        ]
-      },
       "HookList": {
         "type": "array",
         "items": {
@@ -13905,7 +13852,7 @@
             "items": {
               "oneOf": [
                 {
-                  "$ref": "#/components/schemas/HookIncomingTriggerWhenCondition"
+                  "$ref": "#/components/schemas/TriggerWhenCondition"
                 },
                 {
                   "$ref": "#/components/schemas/HookOutgoingTriggerWhenCondition"
@@ -14993,6 +14940,14 @@
             "type": "string",
             "example": "Deploy"
           },
+          "max_parallel_actions": {
+            "description": "Maximum number of actions that can run in parallel for this pipeline. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run this pipeline.",
+            "type": "integer",
+            "example": 1
+          },
+          "trigger_when": {
+            "$ref": "#/components/schemas/PipelineTriggerWhen"
+          },
           "steps": {
             "$ref": "#/components/schemas/StepList"
           },
@@ -15020,6 +14975,8 @@
           "resource_id",
           "operation",
           "operation_human_readable",
+          "max_parallel_actions",
+          "trigger_when",
           "steps",
           "created_by_user",
           "created_at",
@@ -15038,6 +14995,14 @@
             "description": "The resource operation associated to the pipeline. Must not be greater than 20 characters.",
             "example": "deploy",
             "type": "string"
+          },
+          "max_parallel_actions": {
+            "description": "Maximum number of actions that can run in parallel for this pipeline. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run this pipeline. Must be between 0 and 65535.",
+            "example": 1,
+            "type": "integer"
+          },
+          "trigger_when": {
+            "$ref": "#/components/schemas/PipelineTriggerWhen"
           }
         },
         "required": [
@@ -15099,6 +15064,14 @@
             "type": "string",
             "example": "Deploy"
           },
+          "max_parallel_actions": {
+            "description": "Maximum number of actions that can run in parallel for this pipeline. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run this pipeline.",
+            "type": "integer",
+            "example": 1
+          },
+          "trigger_when": {
+            "$ref": "#/components/schemas/PipelineTriggerWhen"
+          },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
           },
@@ -15123,6 +15096,8 @@
           "resource_id",
           "operation",
           "operation_human_readable",
+          "max_parallel_actions",
+          "trigger_when",
           "created_by_user",
           "created_at",
           "updated_at"
@@ -15213,6 +15188,19 @@
           "yarn"
         ]
       },
+      "PipelineTriggerWhen": {
+        "type": "object",
+        "nullable": true,
+        "properties": {
+          "conditions": {
+            "type": "array",
+            "description": "Conditions that must be met to trigger the pipeline",
+            "items": {
+              "$ref": "#/components/schemas/TriggerWhenCondition"
+            }
+          }
+        }
+      },
       "PipelineUpdate": {
         "type": "object",
         "properties": {
@@ -15225,6 +15213,14 @@
             "description": "The pipeline's name. Must be at least 3 characters. Must not be greater than 80 characters.",
             "example": "My pipeline",
             "type": "string"
+          },
+          "max_parallel_actions": {
+            "description": "Maximum number of actions that can run in parallel for this pipeline. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run this pipeline. Must be between 0 and 65535.",
+            "example": 1,
+            "type": "integer"
+          },
+          "trigger_when": {
+            "$ref": "#/components/schemas/PipelineTriggerWhen"
           }
         },
         "required": [
@@ -16095,6 +16091,11 @@
           "status": {
             "$ref": "#/components/schemas/ActionStatus"
           },
+          "max_parallel_actions": {
+            "description": "Maximum number of actions that can run in parallel on this server. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run on this server,",
+            "type": "integer",
+            "example": 1
+          },
           "blueprint": {
             "$ref": "#/components/schemas/ServerBlueprint"
           },
@@ -16136,6 +16137,7 @@
           "os_version_code",
           "active",
           "status",
+          "max_parallel_actions",
           "blueprint",
           "provision_settings",
           "created_by_user",
@@ -16358,6 +16360,11 @@
             "example": 22,
             "type": "integer"
           },
+          "max_parallel_actions": {
+            "description": "Maximum number of actions that can run in parallel on this server. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run on this server. Must be between 0 and 65535.",
+            "example": 1,
+            "type": "integer"
+          },
           "blueprint": {
             "$ref": "#/components/schemas/BlueprintServiceList"
           },
@@ -16510,6 +16517,11 @@
           "ssh_port": {
             "description": "The network port to which the SSH daemon is listening to SSH connections on the server. This field is required when <code>provision_settings.self_hosted</code> is <code>true</code>. Must be between 22 and 65535.",
             "example": 22,
+            "type": "integer"
+          },
+          "max_parallel_actions": {
+            "description": "Maximum number of actions that can run in parallel on this server. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run on this server. Must be between 0 and 65535.",
+            "example": 1,
             "type": "integer"
           }
         },
@@ -18382,6 +18394,61 @@
           "remove-old-releases"
         ],
         "example": "install-dependencies"
+      },
+      "TriggerWhenCondition": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the condition",
+            "example": "Check pullrequest author"
+          },
+          "type": {
+            "$ref": "#/components/schemas/TriggerWhenConditionType"
+          },
+          "path": {
+            "description": "A dot-notation path of the request body attribute to be used as the value to evaluate this condition.",
+            "example": "pullrequest.author.nickname",
+            "type": "string"
+          },
+          "accepted_values": {
+            "type": "array",
+            "description": "List of accepted values for this condition.",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "string",
+                  "nullable": true
+                }
+              ]
+            },
+            "example": [
+              "myuser123",
+              "bu_nick456"
+            ]
+          }
+        },
+        "required": [
+          "type",
+          "path",
+          "accepted_values"
+        ]
+      },
+      "TriggerWhenConditionType": {
+        "type": "string",
+        "description": "The type of the condition to define where the values to be validated should be retrieved from. Example: `request_body` - Validate the condition using values of attributes sent in the request body.",
+        "enum": [
+          "request_body"
+        ]
       },
       "TriggeredActionStats": {
         "type": "object",
