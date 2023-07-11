@@ -31,11 +31,5 @@ export interface SshKeyUpdate {
      * @memberof SshKeyUpdate
      */
     name: string;
-    /**
-     * List of valid resource IDs
-     * @type {Array<number>}
-     * @memberof SshKeyUpdate
-     */
-    servers: Array<number>;
 }
 
