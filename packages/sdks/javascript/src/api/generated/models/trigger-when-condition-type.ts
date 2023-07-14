@@ -14,22 +14,12 @@
 
 
 /**
- * 
+ * The type of the condition to define where the values to be validated should be retrieved from. Example: `request_body` - Validate the condition using values of attributes sent in the request body.
  * @export
- * @interface SshKeyUpdate
+ * @enum {string}
  */
-export interface SshKeyUpdate {
-    /**
-     * The ssh key\'s ID.
-     * @type {number}
-     * @memberof SshKeyUpdate
-     */
-    id: number;
-    /**
-     * The ssh key\'s name. Must not be greater than 60 characters.
-     * @type {string}
-     * @memberof SshKeyUpdate
-     */
-    name: string;
+export enum TriggerWhenConditionType {
+    RequestBody = 'request_body'
 }
+
 

@@ -63,11 +63,5 @@ export interface NetworkRuleEnvironmentCreate {
      * @memberof NetworkRuleEnvironmentCreate
      */
     port_to: number;
-    /**
-     * List of valid resource IDs
-     * @type {Array<number>}
-     * @memberof NetworkRuleEnvironmentCreate
-     */
-    servers: Array<number>;
 }
 

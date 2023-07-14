@@ -45,11 +45,5 @@ export interface ServiceEnvironmentCreate {
      * @memberof ServiceEnvironmentCreate
      */
     version: string;
-    /**
-     * List of valid resource IDs
-     * @type {Array<number>}
-     * @memberof ServiceEnvironmentCreate
-     */
-    servers: Array<number>;
 }
 

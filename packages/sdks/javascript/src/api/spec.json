@@ -2327,14 +2327,6 @@
                   "$ref": "#/components/schemas/NetworkRule"
                 }
               }
-            },
-            "headers": {
-              "X-Devopness-Action-Id": {
-                "schema": {
-                  "type": "integer"
-                },
-                "description": "The dispatched action ID of the resource"
-              }
             }
           },
           "403": {
@@ -2613,14 +2605,6 @@
                   "$ref": "#/components/schemas/Service"
                 }
               }
-            },
-            "headers": {
-              "X-Devopness-Action-Id": {
-                "schema": {
-                  "type": "integer"
-                },
-                "description": "The dispatched action ID of the resource"
-              }
             }
           },
           "403": {
@@ -2765,14 +2749,6 @@
                 "schema": {
                   "$ref": "#/components/schemas/SshKey"
                 }
-              }
-            },
-            "headers": {
-              "X-Devopness-Action-Id": {
-                "schema": {
-                  "type": "integer"
-                },
-                "description": "The dispatched action ID of the resource"
               }
             }
           },
@@ -3721,15 +3697,7 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content",
-            "headers": {
-              "X-Devopness-Action-Id": {
-                "schema": {
-                  "type": "integer"
-                },
-                "description": "The dispatched action ID of the resource"
-              }
-            }
+            "description": "No Content"
           },
           "403": {
             "description": "Forbidden/Unauthorized",
@@ -3830,15 +3798,7 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content",
-            "headers": {
-              "X-Devopness-Action-Id": {
-                "schema": {
-                  "type": "integer"
-                },
-                "description": "The dispatched action ID of the resource"
-              }
-            }
+            "description": "No Content"
           },
           "403": {
             "description": "Forbidden/Unauthorized",
@@ -7600,15 +7560,7 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content",
-            "headers": {
-              "X-Devopness-Action-Id": {
-                "schema": {
-                  "type": "integer"
-                },
-                "description": "The dispatched action ID of the resource"
-              }
-            }
+            "description": "No Content"
           },
           "403": {
             "description": "Forbidden/Unauthorized",
@@ -7709,15 +7661,7 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content",
-            "headers": {
-              "X-Devopness-Action-Id": {
-                "schema": {
-                  "type": "integer"
-                },
-                "description": "The dispatched action ID of the resource"
-              }
-            }
+            "description": "No Content"
           },
           "403": {
             "description": "Forbidden/Unauthorized",
@@ -10736,6 +10680,8 @@
         "type": "string",
         "enum": [
           "pending",
+          "waiting",
+          "skipped",
           "queued",
           "in-progress",
           "completed",
@@ -13474,61 +13420,6 @@
           "second_var": "its-a-value"
         }
       },
-      "HookIncomingTriggerWhenCondition": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name of the condition",
-            "example": "Check pullrequest author"
-          },
-          "type": {
-            "$ref": "#/components/schemas/HookIncomingTriggerWhenConditionType"
-          },
-          "path": {
-            "description": "A dot-notation path of the request body attribute to be used as the value to evaluate this condition.",
-            "example": "pullrequest.author.nickname",
-            "type": "string"
-          },
-          "accepted_values": {
-            "type": "array",
-            "description": "List of accepted values for this condition.",
-            "items": {
-              "anyOf": [
-                {
-                  "type": "boolean"
-                },
-                {
-                  "type": "integer"
-                },
-                {
-                  "type": "number"
-                },
-                {
-                  "type": "string",
-                  "nullable": true
-                }
-              ]
-            },
-            "example": [
-              "myuser123",
-              "bu_nick456"
-            ]
-          }
-        },
-        "required": [
-          "type",
-          "path",
-          "accepted_values"
-        ]
-      },
-      "HookIncomingTriggerWhenConditionType": {
-        "type": "string",
-        "description": "Type of the incoming hook condition.\\n* `request_body` - Validate request body for incoming hooks.",
-        "enum": [
-          "request_body"
-        ]
-      },
       "HookList": {
         "type": "array",
         "items": {
@@ -13961,7 +13852,7 @@
             "items": {
               "oneOf": [
                 {
-                  "$ref": "#/components/schemas/HookIncomingTriggerWhenCondition"
+                  "$ref": "#/components/schemas/TriggerWhenCondition"
                 },
                 {
                   "$ref": "#/components/schemas/HookOutgoingTriggerWhenCondition"
@@ -14665,17 +14556,13 @@
             "description": "Ending range of network ports to be considered by this rule. Must be at least 1. Must not be greater than 65535.",
             "example": 7654,
             "type": "integer"
-          },
-          "servers": {
-            "$ref": "#/components/schemas/ResourceIdList"
           }
         },
         "required": [
           "name",
           "type",
           "port_from",
-          "port_to",
-          "servers"
+          "port_to"
         ]
       },
       "NetworkRuleList": {
@@ -14807,16 +14694,12 @@
             "description": "Ending range of the public ipv4 or ipv6 addresses that can access this rule. Must be a valid IP address.",
             "example": "200.123.45.99",
             "type": "string"
-          },
-          "servers": {
-            "$ref": "#/components/schemas/ResourceIdList"
           }
         },
         "required": [
           "id",
           "name",
-          "type",
-          "servers"
+          "type"
         ]
       },
       "OperatingSystem": {
@@ -15057,6 +14940,14 @@
             "type": "string",
             "example": "Deploy"
           },
+          "max_parallel_actions": {
+            "description": "Maximum number of actions that can run in parallel for this pipeline. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run this pipeline.",
+            "type": "integer",
+            "example": 1
+          },
+          "trigger_when": {
+            "$ref": "#/components/schemas/PipelineTriggerWhen"
+          },
           "steps": {
             "$ref": "#/components/schemas/StepList"
           },
@@ -15084,6 +14975,8 @@
           "resource_id",
           "operation",
           "operation_human_readable",
+          "max_parallel_actions",
+          "trigger_when",
           "steps",
           "created_by_user",
           "created_at",
@@ -15102,6 +14995,14 @@
             "description": "The resource operation associated to the pipeline. Must not be greater than 20 characters.",
             "example": "deploy",
             "type": "string"
+          },
+          "max_parallel_actions": {
+            "description": "Maximum number of actions that can run in parallel for this pipeline. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run this pipeline. Must be between 0 and 65535.",
+            "example": 1,
+            "type": "integer"
+          },
+          "trigger_when": {
+            "$ref": "#/components/schemas/PipelineTriggerWhen"
           }
         },
         "required": [
@@ -15163,6 +15064,14 @@
             "type": "string",
             "example": "Deploy"
           },
+          "max_parallel_actions": {
+            "description": "Maximum number of actions that can run in parallel for this pipeline. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run this pipeline.",
+            "type": "integer",
+            "example": 1
+          },
+          "trigger_when": {
+            "$ref": "#/components/schemas/PipelineTriggerWhen"
+          },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
           },
@@ -15187,6 +15096,8 @@
           "resource_id",
           "operation",
           "operation_human_readable",
+          "max_parallel_actions",
+          "trigger_when",
           "created_by_user",
           "created_at",
           "updated_at"
@@ -15277,6 +15188,19 @@
           "yarn"
         ]
       },
+      "PipelineTriggerWhen": {
+        "type": "object",
+        "nullable": true,
+        "properties": {
+          "conditions": {
+            "type": "array",
+            "description": "Conditions that must be met to trigger the pipeline",
+            "items": {
+              "$ref": "#/components/schemas/TriggerWhenCondition"
+            }
+          }
+        }
+      },
       "PipelineUpdate": {
         "type": "object",
         "properties": {
@@ -15289,6 +15213,14 @@
             "description": "The pipeline's name. Must be at least 3 characters. Must not be greater than 80 characters.",
             "example": "My pipeline",
             "type": "string"
+          },
+          "max_parallel_actions": {
+            "description": "Maximum number of actions that can run in parallel for this pipeline. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run this pipeline. Must be between 0 and 65535.",
+            "example": 1,
+            "type": "integer"
+          },
+          "trigger_when": {
+            "$ref": "#/components/schemas/PipelineTriggerWhen"
           }
         },
         "required": [
@@ -16159,6 +16091,11 @@
           "status": {
             "$ref": "#/components/schemas/ActionStatus"
           },
+          "max_parallel_actions": {
+            "description": "Maximum number of actions that can run in parallel on this server. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run on this server,",
+            "type": "integer",
+            "example": 1
+          },
           "blueprint": {
             "$ref": "#/components/schemas/ServerBlueprint"
           },
@@ -16200,6 +16137,7 @@
           "os_version_code",
           "active",
           "status",
+          "max_parallel_actions",
           "blueprint",
           "provision_settings",
           "created_by_user",
@@ -16422,6 +16360,11 @@
             "example": 22,
             "type": "integer"
           },
+          "max_parallel_actions": {
+            "description": "Maximum number of actions that can run in parallel on this server. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run on this server. Must be between 0 and 65535.",
+            "example": 1,
+            "type": "integer"
+          },
           "blueprint": {
             "$ref": "#/components/schemas/BlueprintServiceList"
           },
@@ -16575,6 +16518,11 @@
             "description": "The network port to which the SSH daemon is listening to SSH connections on the server. This field is required when <code>provision_settings.self_hosted</code> is <code>true</code>. Must be between 22 and 65535.",
             "example": 22,
             "type": "integer"
+          },
+          "max_parallel_actions": {
+            "description": "Maximum number of actions that can run in parallel on this server. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run on this server. Must be between 0 and 65535.",
+            "example": 1,
+            "type": "integer"
           }
         },
         "required": [
@@ -16692,15 +16640,11 @@
             "description": "The service version to be installed. Must be one of <code></code> Must be at least 3 characters. Must not be greater than 30 characters.",
             "example": "5.7",
             "type": "string"
-          },
-          "servers": {
-            "$ref": "#/components/schemas/ResourceIdList"
           }
         },
         "required": [
           "type",
-          "version",
-          "servers"
+          "version"
         ]
       },
       "ServiceInitialState": {
@@ -16815,6 +16759,9 @@
             "description": "The ID of the environment this service is running in.",
             "example": 839,
             "type": "integer"
+          },
+          "servers": {
+            "$ref": "#/components/schemas/ResourceIdList"
           }
         },
         "required": [
@@ -16828,6 +16775,9 @@
             "description": "The ID of the environment this service is running in.",
             "example": 839,
             "type": "integer"
+          },
+          "servers": {
+            "$ref": "#/components/schemas/ResourceIdList"
           }
         },
         "required": [
@@ -16841,6 +16791,9 @@
             "description": "The ID of the environment this service is running in.",
             "example": 839,
             "type": "integer"
+          },
+          "servers": {
+            "$ref": "#/components/schemas/ResourceIdList"
           }
         },
         "required": [
@@ -16854,6 +16807,9 @@
             "description": "The ID of the environment this service is running in.",
             "example": 839,
             "type": "integer"
+          },
+          "servers": {
+            "$ref": "#/components/schemas/ResourceIdList"
           }
         },
         "required": [
@@ -16881,14 +16837,10 @@
             "description": "The unique ID of the service.",
             "example": 53283,
             "type": "integer"
-          },
-          "servers": {
-            "$ref": "#/components/schemas/ResourceIdList"
           }
         },
         "required": [
-          "id",
-          "servers"
+          "id"
         ]
       },
       "ServiceUpdateStatus": {
@@ -16898,6 +16850,9 @@
             "description": "The ID of the environment this service is running in.",
             "example": 839,
             "type": "integer"
+          },
+          "servers": {
+            "$ref": "#/components/schemas/ResourceIdList"
           }
         },
         "required": [
@@ -17320,15 +17275,11 @@
             "description": "The public key of the ssh key.",
             "example": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCAJGoD1B2m718Q6us8k7UbkjwDJQkusFZ1Yg+s13yuEfd+pfEnni1YfWxz67HPCGUYMtdUTnb7Fkc9xgPgj5Fkl6vhQv1mFbL/addJcV9bIYd4e29LMEsojiAyh99JDTtSXMkljlWYuf4ywALswCna2w+70WHSdoDD3p82THDdoB7p9hPXRzRLZVAzw7Y7is/8Sho4V1byXPxxRfTd5HSGqLqi0zdoef8iXZ2wg4uBJStbszu75oSijM9zHgQtUxE0CgQ1iaPHOg8Idxmg8BQoaYD2OmzwxjwW4wmKUZ5F/qOMknrwZ6iUqjqYFJaLZrj6ZMEZ2ydTuS3uNAQO7Zfb",
             "type": "string"
-          },
-          "servers": {
-            "$ref": "#/components/schemas/ResourceIdList"
           }
         },
         "required": [
           "name",
-          "public_key",
-          "servers"
+          "public_key"
         ]
       },
       "SshKeyList": {
@@ -17404,15 +17355,11 @@
             "description": "The ssh key's name. Must not be greater than 60 characters.",
             "example": "my-ssh-key",
             "type": "string"
-          },
-          "servers": {
-            "$ref": "#/components/schemas/ResourceIdList"
           }
         },
         "required": [
           "id",
-          "name",
-          "servers"
+          "name"
         ]
       },
       "SslCertificate": {
@@ -18447,6 +18394,61 @@
           "remove-old-releases"
         ],
         "example": "install-dependencies"
+      },
+      "TriggerWhenCondition": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the condition",
+            "example": "Check pullrequest author"
+          },
+          "type": {
+            "$ref": "#/components/schemas/TriggerWhenConditionType"
+          },
+          "path": {
+            "description": "A dot-notation path of the request body attribute to be used as the value to evaluate this condition.",
+            "example": "pullrequest.author.nickname",
+            "type": "string"
+          },
+          "accepted_values": {
+            "type": "array",
+            "description": "List of accepted values for this condition.",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "string",
+                  "nullable": true
+                }
+              ]
+            },
+            "example": [
+              "myuser123",
+              "bu_nick456"
+            ]
+          }
+        },
+        "required": [
+          "type",
+          "path",
+          "accepted_values"
+        ]
+      },
+      "TriggerWhenConditionType": {
+        "type": "string",
+        "description": "The type of the condition to define where the values to be validated should be retrieved from. Example: `request_body` - Validate the condition using values of attributes sent in the request body.",
+        "enum": [
+          "request_body"
+        ]
       },
       "TriggeredActionStats": {
         "type": "object",
