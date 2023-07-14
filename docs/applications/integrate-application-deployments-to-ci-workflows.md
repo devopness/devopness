@@ -1,6 +1,6 @@
 ---
 title: Integrate Application deployments with your Continuous Integration (CI) workflows
-intro: Devopness enables you to connect to your current CI workflows, saving time migrating commands. Learn how to create outgoing webhooks to integrate the application deployment with your existing CI workflow.
+intro: Learn how to create outgoing webhooks to integrate the application deployment with your existing CI workflow.
 links:
     overview:
     quickstart:
