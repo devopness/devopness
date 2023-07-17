@@ -21,7 +21,8 @@
 export enum CloudProviderServiceCode {
     AwsEc2 = 'aws-ec2',
     DigitaloceanDroplet = 'digitalocean-droplet',
-    GcpGce = 'gcp-gce'
+    GcpGce = 'gcp-gce',
+    SelfHostedCustom = 'self-hosted-custom'
 }
 
 

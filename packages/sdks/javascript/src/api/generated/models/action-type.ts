@@ -20,17 +20,18 @@
  */
 export enum ActionType {
     Add = 'add',
-    Remove = 'remove',
     Deploy = 'deploy',
+    Disable = 'disable',
+    Enable = 'enable',
+    GetStatus = 'get-status',
     Redeploy = 'redeploy',
-    Rollback = 'rollback',
     Reload = 'reload',
+    Remove = 'remove',
     Restart = 'restart',
+    Rollback = 'rollback',
     Start = 'start',
     Status = 'status',
-    Stop = 'stop',
-    Enable = 'enable',
-    Disable = 'disable'
+    Stop = 'stop'
 }
 
 

@@ -16,6 +16,7 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { Action } from '../../generated/models';
 import { ActionPipelineCreate } from '../../generated/models';
+import { ActionRelation } from '../../generated/models';
 import { ApiError } from '../../generated/models';
 
 /**
@@ -41,6 +42,34 @@ export class PipelinesActionsApiService extends ApiBaseService {
         const requestUrl = '/pipelines/{pipeline_id}/actions' + (queryString? `?${queryString}` : '');
 
         const response = await this.post <Action, ActionPipelineCreate>(requestUrl.replace(`{${"pipeline_id"}}`, encodeURIComponent(String(pipelineId))), actionPipelineCreate);
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Return a list of pipeline\'s actions
+     * @param {number} pipelineId The ID of the pipeline.
+     * @param {number} [page] Number of the page to be retrieved
+     * @param {number} [perPage] Number of items returned per page
+     */
+    public async listPipelineActions(pipelineId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<ActionRelation>>> {
+        if (pipelineId === null || pipelineId === undefined) {
+            throw new ArgumentNullException('pipelineId', 'listPipelineActions');
+        }
+        
+        let queryString = '';
+        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
+        const requestUrl = '/pipelines/{pipeline_id}/actions' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <Array<ActionRelation>>(requestUrl.replace(`{${"pipeline_id"}}`, encodeURIComponent(String(pipelineId))));
         return new ApiResponse(response);
     }
 }

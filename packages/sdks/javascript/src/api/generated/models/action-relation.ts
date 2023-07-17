@@ -67,7 +67,7 @@ export interface ActionRelation {
      * @type {ActionData}
      * @memberof ActionRelation
      */
-    action_data: ActionData | null;
+    action_data: ActionData;
     /**
      * 
      * @type {ActionTriggeredFrom}
