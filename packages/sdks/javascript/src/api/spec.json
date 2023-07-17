@@ -4006,6 +4006,64 @@
       }
     },
     "/pipelines/{pipeline_id}/actions": {
+      "get": {
+        "summary": "Return a list of pipeline's actions",
+        "operationId": "listPipelineActions",
+        "description": {
+          "$ref": "../spec/descriptions/list-pipeline-actions.md"
+        },
+        "tags": [
+          "Pipelines - Actions"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "pipeline_id",
+            "description": "The ID of the pipeline.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActionList"
+                }
+              }
+            },
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            }
+          }
+        }
+      },
       "post": {
         "summary": "Create an action to run a Pipeline",
         "operationId": "addPipelineAction",
@@ -10240,7 +10298,6 @@
       },
       "ActionData": {
         "description": "Data related to action resource.",
-        "nullable": true,
         "oneOf": [
           {
             "$ref": "#/components/schemas/ActionDeploymentData"
@@ -10372,6 +10429,7 @@
       },
       "ActionDeploymentData": {
         "type": "object",
+        "nullable": true,
         "properties": {
           "release_name": {
             "type": "string",
@@ -10895,17 +10953,18 @@
         "type": "string",
         "enum": [
           "add",
-          "remove",
           "deploy",
+          "disable",
+          "enable",
+          "get-status",
           "redeploy",
-          "rollback",
           "reload",
+          "remove",
           "restart",
+          "rollback",
           "start",
           "status",
-          "stop",
-          "enable",
-          "disable"
+          "stop"
         ],
         "example": "deploy"
       },
@@ -12054,7 +12113,8 @@
         "enum": [
           "aws-ec2",
           "digitalocean-droplet",
-          "gcp-gce"
+          "gcp-gce",
+          "self-hosted-custom"
         ],
         "description": "The code that uniquely identify this cloud service",
         "example": "aws-ec2"
@@ -16510,12 +16570,12 @@
             "type": "integer"
           },
           "ip_address": {
-            "description": "Public ipv4 address for server access. This field is required when <code>provision_settings.self_hosted</code> is <code>true</code>.",
+            "description": "Public ipv4 address for server access.",
             "example": "200.123.45.67",
             "type": "string"
           },
           "ssh_port": {
-            "description": "The network port to which the SSH daemon is listening to SSH connections on the server. This field is required when <code>provision_settings.self_hosted</code> is <code>true</code>. Must be between 22 and 65535.",
+            "description": "The network port to which the SSH daemon is listening to SSH connections on the server. Must be between 0 and 65535.",
             "example": 22,
             "type": "integer"
           },
