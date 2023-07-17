@@ -13,19 +13,10 @@ links:
         - /docs/ssh-keys/create-ssh-key-pair
         - /docs/ssh-keys/remove-ssh-key
     featured:
+required_permissions:
+    - resource_type: SSH Keys
+      permissions: Add
 ---
-
-{% note %}
-
-**NOTE**: To follow this post's steps, the user needs to have a Role with the following permissions:
-
-| Resource | Permissions |
-| -------- | ----------- |
-| SSH-Key  | Add, View   |
-
-For instructions on how to check this information, see [Check a Role's Permissionsl](/docs/roles/check-role-permissions)
-
-{% endnote %}
 
 1. On Devopness, navigate to a project then select an environment
 2. Find the `SSH Keys` card
