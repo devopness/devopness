@@ -164,6 +164,8 @@
   put:
     $ref: ./auto-generated/endpoints/update-pipeline.yaml
 '/pipelines/{pipeline_id}/actions':
+  get:
+    $ref: ./auto-generated/endpoints/list-pipeline-actions.yaml
   post:
     $ref: ./auto-generated/endpoints/add-pipeline-action.yaml
 '/pipelines/{pipeline_id}/steps':

@@ -2,15 +2,16 @@
 type: string
 enum:
   - add
-  - remove
   - deploy
+  - disable
+  - enable
+  - get-status
   - redeploy
-  - rollback
   - reload
+  - remove
   - restart
+  - rollback
   - start
   - status
   - stop
-  - enable
-  - disable
 example: deploy
