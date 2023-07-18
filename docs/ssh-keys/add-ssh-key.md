@@ -14,8 +14,7 @@ links:
         - /docs/ssh-keys/remove-ssh-key
     featured:
 required_permissions:
-    - resource_type: SSH Keys
-      permissions: Add
+    - ssh-key:create
 ---
 
 1. On Devopness, navigate to a project then select an environment
