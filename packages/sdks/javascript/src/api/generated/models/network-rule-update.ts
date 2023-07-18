@@ -57,11 +57,5 @@ export interface NetworkRuleUpdate {
      * @memberof NetworkRuleUpdate
      */
     ip_address_to?: string;
-    /**
-     * List of valid resource IDs
-     * @type {Array<number>}
-     * @memberof NetworkRuleUpdate
-     */
-    servers: Array<number>;
 }
 

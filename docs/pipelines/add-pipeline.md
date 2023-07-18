@@ -20,7 +20,7 @@ links:
 1. On the upper-right corner of the applications details view click `SETTINGS`
 1. Use the drop-down menu to choose `PIPELINES`
 1. On the right corner of the list click `ADD PIPELINE`
-1. Provide a `name` to the Pipeline being added
+1. Follow the prompts to complete the configuration of the new `Pipeline`
 1. Click `CONFIRM`
     > A new deployment is required for your changes to take effect.
       - Follow the guide [Deploy Application](/docs/applications/deploy-application/)

@@ -12,14 +12,19 @@
  */
 
 
+import { TriggerWhenCondition } from './trigger-when-condition';
 
 /**
- * Type of the incoming hook condition.\\n* `request_body` - Validate request body for incoming hooks.
+ * 
  * @export
- * @enum {string}
+ * @interface PipelineTriggerWhen
  */
-export enum HookIncomingTriggerWhenConditionType {
-    RequestBody = 'request_body'
+export interface PipelineTriggerWhen {
+    /**
+     * Conditions that must be met to trigger the pipeline
+     * @type {Array<TriggerWhenCondition>}
+     * @memberof PipelineTriggerWhen
+     */
+    conditions?: Array<TriggerWhenCondition>;
 }
-
 

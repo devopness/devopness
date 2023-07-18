@@ -84,7 +84,7 @@ export interface ActionRetryResponse {
      * @type {ActionData}
      * @memberof ActionRetryResponse
      */
-    action_data: ActionData | null;
+    action_data: ActionData;
     /**
      * 
      * @type {ActionTriggeredFrom}

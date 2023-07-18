@@ -25,11 +25,5 @@ export interface ServiceUpdate {
      * @memberof ServiceUpdate
      */
     id: number;
-    /**
-     * List of valid resource IDs
-     * @type {Array<number>}
-     * @memberof ServiceUpdate
-     */
-    servers: Array<number>;
 }
 

@@ -26,16 +26,22 @@ export interface ServerUpdate {
      */
     id: number;
     /**
-     * Public ipv4 address for server access. This field is required when <code>provision_settings.self_hosted</code> is <code>true</code>.
+     * Public ipv4 address for server access.
      * @type {string}
      * @memberof ServerUpdate
      */
     ip_address?: string;
     /**
-     * The network port to which the SSH daemon is listening to SSH connections on the server. This field is required when <code>provision_settings.self_hosted</code> is <code>true</code>. Must be between 22 and 65535.
+     * The network port to which the SSH daemon is listening to SSH connections on the server. Must be between 0 and 65535.
      * @type {number}
      * @memberof ServerUpdate
      */
     ssh_port?: number;
+    /**
+     * Maximum number of actions that can run in parallel on this server. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run on this server. Must be between 0 and 65535.
+     * @type {number}
+     * @memberof ServerUpdate
+     */
+    max_parallel_actions?: number;
 }
 

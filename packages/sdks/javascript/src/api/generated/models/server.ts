@@ -94,6 +94,12 @@ export interface Server {
      */
     status: ActionStatus;
     /**
+     * Maximum number of actions that can run in parallel on this server. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run on this server,
+     * @type {number}
+     * @memberof Server
+     */
+    max_parallel_actions: number;
+    /**
      * 
      * @type {ServerBlueprint}
      * @memberof Server

@@ -18,12 +18,12 @@ required_permissions:
 ---
 
 1. On Devopness, navigate to a project then select an environment
-2. Find the `SSH Keys` card
-3. Click `View` in the `SSH Keys` card to see a list of existing `SSH Keys`
-4. On the upper-right corner of the list click `ADD SSH KEY`
-5. Provide a name to the `SSH Key` being added. For example, "Company Laptop"
-6. Paste in your public key
-    > See [Create an SSH key](/docs/ssh-keys/create-ssh-key-pair) for instructions on how to create your public key
-7. Click `NEXT`
-8. Follow the prompts to complete the configuration of the new `SSH Key`
-9. Click `CONFIRM`
+1. Find the `SSH Keys` card
+1. Click `View` in the `SSH Keys` card to see a list of existing `SSH Keys`
+1. On the upper-right corner of the list click `ADD SSH KEY`
+1. Provide a name to the `SSH Key` being added. For example, "Company Laptop"
+1. Paste in the public key
+    - If you want to create a new key, see [Create an SSH key](/docs/ssh-keys/create-ssh-key-pair) for instruction on how to create a public key
+1. Click `NEXT`
+1. Follow the prompts to complete the configuration of the new `SSH Key`
+1. Click `CONFIRM`

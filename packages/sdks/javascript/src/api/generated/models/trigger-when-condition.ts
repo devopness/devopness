@@ -12,36 +12,36 @@
  */
 
 
-import { HookIncomingTriggerWhenConditionType } from './hook-incoming-trigger-when-condition-type';
+import { TriggerWhenConditionType } from './trigger-when-condition-type';
 
 /**
  * 
  * @export
- * @interface HookIncomingTriggerWhenCondition
+ * @interface TriggerWhenCondition
  */
-export interface HookIncomingTriggerWhenCondition {
+export interface TriggerWhenCondition {
     /**
      * Name of the condition
      * @type {string}
-     * @memberof HookIncomingTriggerWhenCondition
+     * @memberof TriggerWhenCondition
      */
     name?: string;
     /**
      * 
-     * @type {HookIncomingTriggerWhenConditionType}
-     * @memberof HookIncomingTriggerWhenCondition
+     * @type {TriggerWhenConditionType}
+     * @memberof TriggerWhenCondition
      */
-    type: HookIncomingTriggerWhenConditionType;
+    type: TriggerWhenConditionType;
     /**
      * A dot-notation path of the request body attribute to be used as the value to evaluate this condition.
      * @type {string}
-     * @memberof HookIncomingTriggerWhenCondition
+     * @memberof TriggerWhenCondition
      */
     path: string;
     /**
      * List of accepted values for this condition.
      * @type {Array<boolean | number | string>}
-     * @memberof HookIncomingTriggerWhenCondition
+     * @memberof TriggerWhenCondition
      */
     accepted_values: Array<boolean | number | string>;
 }

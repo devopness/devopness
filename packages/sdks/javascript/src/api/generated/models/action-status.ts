@@ -20,6 +20,8 @@
  */
 export enum ActionStatus {
     Pending = 'pending',
+    Waiting = 'waiting',
+    Skipped = 'skipped',
     Queued = 'queued',
     InProgress = 'in-progress',
     Completed = 'completed',
