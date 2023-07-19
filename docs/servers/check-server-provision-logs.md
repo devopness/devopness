@@ -11,6 +11,8 @@ links:
     guides:
     related:
     featured:
+required_permissions:
+    - server:read
 ---
 
 1. On Devopness, navigate to a project then select an environment
