@@ -11,6 +11,8 @@ links:
     related:
         - /docs/ssh-keys/add-ssh-key
     featured:
+required_permissions:
+    - ssh-key:delete
 ---
 
 1. On Devopness, navigate to a project then select an environment

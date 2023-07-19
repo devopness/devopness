@@ -13,6 +13,8 @@ links:
         - /docs/ssh-keys/create-ssh-key-pair
         - /docs/ssh-keys/remove-ssh-key
     featured:
+required_permissions:
+    - ssh-key:create
 ---
 
 1. On Devopness, navigate to a project then select an environment
