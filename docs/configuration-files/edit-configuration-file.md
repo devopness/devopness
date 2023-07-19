@@ -9,6 +9,8 @@ links:
     guides:
     related:
     featured:
+required_permissions:
+    - application:update
 ---
 
 1. On Devopness, navigate to a project then select an environment
