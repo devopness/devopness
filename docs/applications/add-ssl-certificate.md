@@ -11,6 +11,8 @@ links:
     guides:
     related:
     featured:
+required_permissions:
+    - application:update
 ---
 
 Before an SSL certificate can be issued a valid DNS record must point to the server on which the application is deployed, so the SSL Certificate can be issued and validated for the configured application web domain. For example, if your application is publicly accessible through the domain `my-application.example.com` the subdomain `my-application` on the domain `example.com` must be configured to point to your server IP address.
