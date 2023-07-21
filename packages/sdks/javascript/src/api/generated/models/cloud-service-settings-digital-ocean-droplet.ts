@@ -17,25 +17,25 @@ import { CloudOsVersionCode } from './cloud-os-version-code';
 /**
  * 
  * @export
- * @interface CloudGcpSettings
+ * @interface CloudServiceSettingsDigitalOceanDroplet
  */
-export interface CloudGcpSettings {
+export interface CloudServiceSettingsDigitalOceanDroplet {
     /**
      * The instance type to be launched on the cloud provider
      * @type {string}
-     * @memberof CloudGcpSettings
+     * @memberof CloudServiceSettingsDigitalOceanDroplet
      */
     instance_type: string;
     /**
      * Datacenter region where the cloud instance will be launched
      * @type {string}
-     * @memberof CloudGcpSettings
+     * @memberof CloudServiceSettingsDigitalOceanDroplet
      */
     region: string;
     /**
      * 
      * @type {CloudOsVersionCode}
-     * @memberof CloudGcpSettings
+     * @memberof CloudServiceSettingsDigitalOceanDroplet
      */
     os_version_code: CloudOsVersionCode | null;
 }

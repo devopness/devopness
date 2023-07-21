@@ -17,31 +17,25 @@ import { CloudOsVersionCode } from './cloud-os-version-code';
 /**
  * 
  * @export
- * @interface CloudAwsEc2Settings
+ * @interface CloudServiceSettingsGcpGce
  */
-export interface CloudAwsEc2Settings {
+export interface CloudServiceSettingsGcpGce {
     /**
      * The instance type to be launched on the cloud provider
      * @type {string}
-     * @memberof CloudAwsEc2Settings
+     * @memberof CloudServiceSettingsGcpGce
      */
     instance_type: string;
     /**
      * Datacenter region where the cloud instance will be launched
      * @type {string}
-     * @memberof CloudAwsEc2Settings
+     * @memberof CloudServiceSettingsGcpGce
      */
     region: string;
     /**
-     * The storage\'s size of the cloud instance
-     * @type {number}
-     * @memberof CloudAwsEc2Settings
-     */
-    storage_size: number;
-    /**
      * 
      * @type {CloudOsVersionCode}
-     * @memberof CloudAwsEc2Settings
+     * @memberof CloudServiceSettingsGcpGce
      */
     os_version_code: CloudOsVersionCode | null;
 }

@@ -17,25 +17,31 @@ import { CloudOsVersionCode } from './cloud-os-version-code';
 /**
  * 
  * @export
- * @interface CloudDigitalOceanDropletSettings
+ * @interface CloudServiceSettingsAwsEc2
  */
-export interface CloudDigitalOceanDropletSettings {
+export interface CloudServiceSettingsAwsEc2 {
     /**
      * The instance type to be launched on the cloud provider
      * @type {string}
-     * @memberof CloudDigitalOceanDropletSettings
+     * @memberof CloudServiceSettingsAwsEc2
      */
     instance_type: string;
     /**
      * Datacenter region where the cloud instance will be launched
      * @type {string}
-     * @memberof CloudDigitalOceanDropletSettings
+     * @memberof CloudServiceSettingsAwsEc2
      */
     region: string;
     /**
+     * The storage\'s size of the cloud instance
+     * @type {number}
+     * @memberof CloudServiceSettingsAwsEc2
+     */
+    storage_size: number;
+    /**
      * 
      * @type {CloudOsVersionCode}
-     * @memberof CloudDigitalOceanDropletSettings
+     * @memberof CloudServiceSettingsAwsEc2
      */
     os_version_code: CloudOsVersionCode | null;
 }
