@@ -93,6 +93,12 @@ export interface Subscription {
      */
     updated_at?: string;
     /**
+     * 
+     * @type {SubscriptionBalance}
+     * @memberof Subscription
+     */
+    current_balance?: SubscriptionBalance | null;
+    /**
      * The list of subscription balances
      * @type {Array<SubscriptionBalance>}
      * @memberof Subscription
