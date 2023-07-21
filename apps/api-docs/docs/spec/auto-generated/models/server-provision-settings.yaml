@@ -12,3 +12,5 @@ properties:
     example: 8430015757
   cloud_service:
     $ref: '#/components/schemas/ServerCloudService'
+required:
+  - cloud_service

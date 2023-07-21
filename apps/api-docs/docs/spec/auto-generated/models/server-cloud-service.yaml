@@ -7,8 +7,13 @@ properties:
     description: 'The configurations used to cloud service'
     anyOf:
       -
-        $ref: '#/components/schemas/CloudAwsEc2Settings'
+        $ref: '#/components/schemas/CloudServiceSettingsAwsEc2'
       -
-        $ref: '#/components/schemas/CloudDigitalOceanDropletSettings'
+        $ref: '#/components/schemas/CloudServiceSettingsDigitalOceanDroplet'
       -
-        $ref: '#/components/schemas/CloudGcpSettings'
+        $ref: '#/components/schemas/CloudServiceSettingsGcpGce'
+      -
+        $ref: '#/components/schemas/CloudServiceSettingsSelfHostedCustom'
+required:
+  - name
+  - settings
