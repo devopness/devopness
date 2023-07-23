@@ -6,6 +6,7 @@ declare const window: unknown;
 export interface ConfigurationOptions {
     apiKey?: string;
     baseURL?: string;
+    callbacks?: { onTokenExpired: (data: string) => void; };
 }
 
 export class Configuration implements ConfigurationOptions {
@@ -13,16 +14,20 @@ export class Configuration implements ConfigurationOptions {
     // so far only supporting authentication with user credentials
     public apiKey?: string;
     public baseURL = "https://api.devopness.com";
+    public callbacks?: { onTokenExpired: (data: string) => void; };
 
     constructor(options: ConfigurationOptions) {
         this.apiKey = options.apiKey;
         this.baseURL = options.baseURL || this.baseURL;
+        this.callbacks = options.callbacks;
     }
 }
 
 export class ApiBaseService {
     private api: AxiosInstance;
     private static _accessToken: string;
+    private static _refreshToken: string;
+    private static _accessTokenExpiresAt: number;
 
     public static configuration: Configuration;
 
@@ -95,10 +100,23 @@ export class ApiBaseService {
     private setupAxiosResponseInterceptors(): void {
         this.api.interceptors.response.use(
             (response: AxiosResponse) => {
+                const { access_token, refresh_token, expires_in } = response.data;
+
+                ApiBaseService._accessToken = access_token || ApiBaseService._accessToken;
+                ApiBaseService._refreshToken = refresh_token || ApiBaseService._refreshToken;
+                ApiBaseService._accessTokenExpiresAt = expires_in
+                    ? Date.now() + expires_in
+                    : ApiBaseService._accessTokenExpiresAt;
+
                 return response;
             },
             (error: AxiosError) => {
-                if (error.response) {
+                if (this.isTokenExpired(error.response)) {
+                    // access_token is expired (verified with expires_at field) 
+                    return ApiBaseService.configuration.callbacks?.onTokenExpired(
+                        ApiBaseService._refreshToken
+                    )
+                } else if (error.response) {
                     // server responded, but with a status code other than 2xx
                     throw new ApiError(error);
                 } else if (error.request) {
@@ -112,12 +130,8 @@ export class ApiBaseService {
         );
     }
 
-    public static get accessToken(): string {
-        return ApiBaseService._accessToken;
-    }
-
-    public static set accessToken(value: string) {
-        ApiBaseService._accessToken = value;
+    private isTokenExpired(response: any): boolean {
+        return response.status === 401 && Date.now() > ApiBaseService._accessTokenExpiresAt;
     }
 
     public baseURL(): string {

@@ -40,9 +40,7 @@ To authenticate, just invoke the `login` method on the `users` service:
 
 ```javascript
 async function authenticate(email, pass) {
-  const userTokens = await devopnessApi.users.loginUser({ email: email, password: pass });
-  // The `accessToken` must be set every time a token is obtained or refreshed.
-  devopnessApi.accessToken = userTokens.data.access_token;
+  await devopnessApi.users.loginUser({ email: email, password: pass });
 }
 
 // invoke the authentication method

@@ -3,9 +3,11 @@ import MockAdapter from 'axios-mock-adapter';
 
 import { DevopnessApiClient } from '../src/DevopnessApiClient'
 import { ApiError, NetworkError } from '../src/common/Exceptions';
+import { ConfigurationOptions } from '../src/services/ApiBaseService';
 
 const reqMock = new MockAdapter(axios)
-const apiClient = new DevopnessApiClient();
+const options = { callbacks: { onTokenExpired: (data: any) => console.log(data) } } as unknown as ConfigurationOptions
+const apiClient = new DevopnessApiClient(options);
 
 test("200 response shouldn't reject", async () => {
   expect.assertions(0);
