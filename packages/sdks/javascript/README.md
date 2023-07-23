@@ -26,7 +26,12 @@ Here is a generic simple example that can be used from `Node.js`, `TypeScript` o
 
 ```javascript
 import { DevopnessApiClient } from '@devopness/sdk-js'
-const devopnessApi = new DevopnessApiClient();
+// a callback for when the accessToken expires can be defined. Whenever a refresh
+// needs to be done this function will be called.
+const configuration = {
+  callbacks: { onTokenExpired: refreshToken => console.log("Doing something with refreshToken") }
+}
+const devopnessApi = new DevopnessApiClient(configuration);
 ```
 
 The instance of `DevopnessApiClient` has properties to all services provided by the API.
