@@ -6,17 +6,18 @@ import { ApiError, NetworkError } from '../src/common/Exceptions';
 import { ConfigurationOptions } from '../src/services/ApiBaseService';
 
 const reqMock = new MockAdapter(axios)
-const options = { callbacks: { onTokenExpired: (data: any) => console.log(data) } } as unknown as ConfigurationOptions
-const apiClient = new DevopnessApiClient(options);
+let apiClient = new DevopnessApiClient();
 
 test("200 response shouldn't reject", async () => {
   expect.assertions(0);
   const email = 'test@test.com'
   const password = 'testpassword'
-  reqMock.onAny().replyOnce(200, {
+
+  reqMock.onPost('/users/login').replyOnce(200, {
     'access_token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImYwYjQxZjk1MTdiYWExOTg4Zjk',
-    'refresh_token': 'def50200a757a1c4dbc4859a4c47195632f4df60ebb521ac5a28a0b7553101f08f8b9'
+    'refresh_token': 'def50200a757a1c4dbc4859a4c47195632f4df60ebb521ac5a28a0b7553101f08f8b9',
   });
+
   try {
     await apiClient.users.loginUser({ email, password })
   } catch (e) {
@@ -80,4 +81,16 @@ test("request network error should reject with a NetworkError", async () => {
   } catch (e) {
     expect(e).toBeInstanceOf(NetworkError)
   }
+});
+
+test("Expired access_token should trigger callback function", async () => {
+  const mockCallback = jest.fn(x => x);
+
+  const options = { callbacks: { onTokenExpired: mockCallback } } as unknown as ConfigurationOptions
+  apiClient = new DevopnessApiClient(options);
+
+  reqMock.onGet('/users/me').replyOnce(401, {});
+  await (apiClient.users.getUserMe());
+
+  expect(mockCallback.mock.calls).toHaveLength(1)
 });

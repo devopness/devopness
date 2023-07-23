@@ -27,7 +27,7 @@ export class ApiBaseService {
     private api: AxiosInstance;
     private static _accessToken: string;
     private static _refreshToken: string;
-    private static _accessTokenExpiresAt: number;
+    private static _accessTokenExpiresAt = 0;
 
     public static configuration: Configuration;
 
@@ -101,21 +101,17 @@ export class ApiBaseService {
         this.api.interceptors.response.use(
             (response: AxiosResponse) => {
                 const { access_token, refresh_token, expires_in } = response.data;
-
-                ApiBaseService._accessToken = access_token || ApiBaseService._accessToken;
-                ApiBaseService._refreshToken = refresh_token || ApiBaseService._refreshToken;
-                ApiBaseService._accessTokenExpiresAt = expires_in
-                    ? Date.now() + expires_in
-                    : ApiBaseService._accessTokenExpiresAt;
+                this.setAuthParams(access_token, refresh_token, expires_in);
 
                 return response;
             },
             (error: AxiosError) => {
                 if (this.isTokenExpired(error.response)) {
                     // access_token is expired (verified with expires_at field) 
-                    return ApiBaseService.configuration.callbacks?.onTokenExpired(
+                    ApiBaseService.configuration.callbacks?.onTokenExpired(
                         ApiBaseService._refreshToken
                     )
+                    return error.response
                 } else if (error.response) {
                     // server responded, but with a status code other than 2xx
                     throw new ApiError(error);
@@ -130,8 +126,16 @@ export class ApiBaseService {
         );
     }
 
+    private setAuthParams(accessToken : string, refreshToken : string, expiresIn : number) : void {
+        ApiBaseService._accessToken = accessToken || ApiBaseService._accessToken;
+        ApiBaseService._refreshToken = refreshToken || ApiBaseService._refreshToken;
+        ApiBaseService._accessTokenExpiresAt = expiresIn
+            ? Date.now() + expiresIn
+            : ApiBaseService._accessTokenExpiresAt;
+    }
+
     private isTokenExpired(response: any): boolean {
-        return response.status === 401 && Date.now() > ApiBaseService._accessTokenExpiresAt;
+        return response?.status === 401 && Date.now() > ApiBaseService._accessTokenExpiresAt;
     }
 
     public baseURL(): string {
