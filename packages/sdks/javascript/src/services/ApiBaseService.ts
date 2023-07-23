@@ -134,7 +134,7 @@ export class ApiBaseService {
             : ApiBaseService._accessTokenExpiresAt;
     }
 
-    private isTokenExpired(response: any): boolean {
+    private isTokenExpired(response: AxiosResponse | undefined): boolean {
         return response?.status === 401 && Date.now() > ApiBaseService._accessTokenExpiresAt;
     }
 
