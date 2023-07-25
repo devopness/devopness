@@ -25,5 +25,11 @@ export interface ActionPipelineCreate {
      * @memberof ActionPipelineCreate
      */
     servers?: Array<number>;
+    /**
+     * The name of the branch from which the application source code will be retrieved and deployed. Must not be greater than 100 characters.
+     * @type {string}
+     * @memberof ActionPipelineCreate
+     */
+    branch?: string;
 }
 
