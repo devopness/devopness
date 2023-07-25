@@ -3,3 +3,7 @@ type: object
 properties:
   servers:
     $ref: '#/components/schemas/ResourceIdList'
+  branch:
+    description: 'The name of the branch from which the application source code will be retrieved and deployed. Must not be greater than 100 characters.'
+    example: master
+    type: string
