@@ -10,6 +10,7 @@ links:
     related:
     featured:
 required_permissions:
+    - application:read
     - hook:create
 ---
 
