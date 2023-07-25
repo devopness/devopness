@@ -62,24 +62,24 @@ Webhooks, for now, are an API only feature; so this post will guide you through 
 				    "required": false,
     				"default_value": <pipeline_id>
 	    		},
-          {
+ 	    		{
 		    		"name": "pull_request_id",
 		    		"path": "pull_request.number",
 		    		"type": "integer",
 		    		"required": false
-          },
-          {
+	    		},
+	    		{
 		    		"name": "pull_request_title",
 		    		"path": "pull_request.title",
 		    		"type": "string",
 		    		"required": false
-          },
-          {
+	    		},
+	    		{
 		    		"name": "commit_hash",
 		    		"path": "pull_request.head.sha",
 		    		"type": "string",
 		    		"required": false
-          }
+	    		}
 		    ]
     	}
     }'
