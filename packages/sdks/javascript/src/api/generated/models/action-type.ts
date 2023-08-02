@@ -20,10 +20,12 @@
  */
 export enum ActionType {
     Add = 'add',
+    CheckProvisioned = 'check_provisioned',
     Deploy = 'deploy',
     Disable = 'disable',
     Enable = 'enable',
-    GetStatus = 'get-status',
+    GetStatus = 'get_status',
+    Provision = 'provision',
     Redeploy = 'redeploy',
     Reload = 'reload',
     Remove = 'remove',
