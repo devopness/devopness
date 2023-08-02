@@ -12,8 +12,8 @@
  */
 
 
+import { ServerActionData } from './server-action-data';
 import { ServerActionLogStep } from './server-action-log-step';
-import { ServerRelation } from './server-relation';
 
 /**
  * 
@@ -23,10 +23,10 @@ import { ServerRelation } from './server-relation';
 export interface Log {
     /**
      * 
-     * @type {ServerRelation}
+     * @type {ServerActionData}
      * @memberof Log
      */
-    server: ServerRelation | null;
+    server: ServerActionData | null;
     /**
      * 
      * @type {ServerActionLogStep}

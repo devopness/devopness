@@ -10958,10 +10958,12 @@
         "type": "string",
         "enum": [
           "add",
+          "check_provisioned",
           "deploy",
           "disable",
           "enable",
-          "get-status",
+          "get_status",
+          "provision",
           "redeploy",
           "reload",
           "remove",
@@ -14437,7 +14439,7 @@
         "type": "object",
         "properties": {
           "server": {
-            "$ref": "#/components/schemas/ServerRelation"
+            "$ref": "#/components/schemas/ServerActionData"
           },
           "step": {
             "$ref": "#/components/schemas/ServerActionLogStep"
@@ -16233,11 +16235,6 @@
             "description": "The Id of the server on which the action must be performed",
             "example": 4567890
           },
-          "server_name": {
-            "type": "string",
-            "description": "The name of the server on which the action must be performed",
-            "example": "web-srv-1"
-          },
           "status": {
             "$ref": "#/components/schemas/ActionStatus"
           },
@@ -16259,6 +16256,9 @@
           },
           "steps": {
             "$ref": "#/components/schemas/ActionStepList"
+          },
+          "server_data": {
+            "$ref": "#/components/schemas/ServerActionData"
           },
           "started_at": {
             "type": "string",
@@ -16287,6 +16287,58 @@
             "example": "2019-09-25T13:52:04.000000Z"
           }
         }
+      },
+      "ServerActionData": {
+        "type": "object",
+        "nullable": true,
+        "properties": {
+          "id": {
+            "description": "The unique id of the server",
+            "type": "integer",
+            "example": 9654123
+          },
+          "hostname": {
+            "description": "The server's hostname",
+            "type": "string",
+            "example": "web-srv-1"
+          },
+          "provider_name": {
+            "description": "The name of the server's provider.",
+            "type": "string",
+            "example": "self-hosted"
+          },
+          "provider_name_human_readable": {
+            "description": "The human readable version of the provider's name",
+            "type": "string",
+            "example": "VPS/Self Hosted"
+          },
+          "ip_address": {
+            "description": "Public ipv4 address for server access",
+            "type": "string",
+            "example": "200.123.45.67"
+          },
+          "ssh_port": {
+            "description": "The network port to which the SSH daemon is listening to SSH connections on the server",
+            "type": "integer",
+            "example": 22
+          },
+          "os_version_code": {
+            "$ref": "#/components/schemas/CloudOsVersionCode"
+          },
+          "provision_settings": {
+            "$ref": "#/components/schemas/ServerProvisionSettingsInput"
+          }
+        },
+        "required": [
+          "id",
+          "hostname",
+          "provider_name",
+          "provider_name_human_readable",
+          "ip_address",
+          "ssh_port",
+          "os_version_code",
+          "provision_settings"
+        ]
       },
       "ServerActionList": {
         "type": "array",

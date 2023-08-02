@@ -14,6 +14,7 @@
 
 import { ActionStatus } from './action-status';
 import { ActionStep } from './action-step';
+import { ServerActionData } from './server-action-data';
 
 /**
  * An object representing the action dispatched to a specific server
@@ -27,12 +28,6 @@ export interface ServerAction {
      * @memberof ServerAction
      */
     server_id?: number;
-    /**
-     * The name of the server on which the action must be performed
-     * @type {string}
-     * @memberof ServerAction
-     */
-    server_name?: string;
     /**
      * 
      * @type {ActionStatus}
@@ -63,6 +58,12 @@ export interface ServerAction {
      * @memberof ServerAction
      */
     steps?: Array<ActionStep>;
+    /**
+     * 
+     * @type {ServerActionData}
+     * @memberof ServerAction
+     */
+    server_data?: ServerActionData | null;
     /**
      * The date and time when the action started execution (i.e., left the `pending/queued` status)
      * @type {string}
