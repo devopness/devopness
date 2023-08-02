@@ -2,7 +2,7 @@
 type: object
 properties:
   server:
-    $ref: '#/components/schemas/ServerRelation'
+    $ref: '#/components/schemas/ServerActionData'
   step:
     $ref: '#/components/schemas/ServerActionLogStep'
   updated_at:

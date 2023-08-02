@@ -377,6 +377,8 @@ Server:
   $ref: ./auto-generated/models/server.yaml
 ServerAction:
   $ref: ./auto-generated/models/server-action.yaml
+ServerActionData:
+  $ref: ./auto-generated/models/server-action-data.yaml
 ServerActionList:
   $ref: ./auto-generated/models/server-action-list.yaml
 ServerActionLogStep:

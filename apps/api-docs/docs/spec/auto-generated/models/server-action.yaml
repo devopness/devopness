@@ -6,10 +6,6 @@ properties:
     type: integer
     description: 'The Id of the server on which the action must be performed'
     example: 4567890
-  server_name:
-    type: string
-    description: 'The name of the server on which the action must be performed'
-    example: web-srv-1
   status:
     $ref: '#/components/schemas/ActionStatus'
   status_human_readable:
@@ -27,6 +23,8 @@ properties:
     $ref: '#/components/schemas/ActionStep'
   steps:
     $ref: '#/components/schemas/ActionStepList'
+  server_data:
+    $ref: '#/components/schemas/ServerActionData'
   started_at:
     type: string
     format: date-time

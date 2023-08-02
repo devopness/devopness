@@ -2,10 +2,12 @@
 type: string
 enum:
   - add
+  - check_provisioned
   - deploy
   - disable
   - enable
-  - get-status
+  - get_status
+  - provision
   - redeploy
   - reload
   - remove
