@@ -15,7 +15,7 @@ By streamlining essential DevOps practices, we're making first-class software de
 
 # Architecture Design goals:
 ## Be a consistent API and easy to integrate with
-Every developer in the world, by just following instructions on this API documentation, should be able to integrate with Devopness API.
+Every developer in the world should, just by following the instructions on this API documentation, be able to integrate with the Devopness API.
 
 ## Standardized
 Each endpoint documented here must have a consistent operation name defined by its `operationId`.
