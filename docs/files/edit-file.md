@@ -1,5 +1,5 @@
 ---
-title: Edit a Configuration File
+title: Edit a File
 intro: Editing configuration files is crucial for ensuring accurate and up-to-date information is included in the resource deployment process, as needed.
 links:
     overview:

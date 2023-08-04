@@ -7,7 +7,7 @@ links:
     previous:
         - /docs/applications/add-application
     next:
-        - /docs/configuration-files/add-configuration-file
+        - /docs/files/add-file
     guides:
     related:
     featured:

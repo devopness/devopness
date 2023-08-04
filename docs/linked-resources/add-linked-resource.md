@@ -5,7 +5,7 @@ links:
     overview:
     quickstart:
     previous:
-        - /docs/configuration-files/add-configuration-file
+        - /docs/files/add-file
     next:
         - /docs/applications/deploy-application
     guides:
