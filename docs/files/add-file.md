@@ -5,7 +5,7 @@ links:
     overview:
     quickstart:
     previous:
-        - /docs/pipelines/add-pipeline-step
+        - /docs/pipelines/steps/add-step
     next:
         - /docs/linked-resources/add-linked-resource
     guides:
