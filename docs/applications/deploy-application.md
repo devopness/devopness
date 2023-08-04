@@ -5,9 +5,9 @@ links:
     overview:
     quickstart:
     previous:
-        - /docs/applications/link-server-to-application
+        - /docs/linked-resources/add-linked-resource
     next:
-        - /docs/applications/add-ssl-certificate
+        - /docs/ssl-certificates/add-ssl-certificate
     guides:
     related:
     featured:

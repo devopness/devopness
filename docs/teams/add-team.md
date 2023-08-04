@@ -5,7 +5,7 @@ links:
     overview: Project owners can create teams as a initial step to manage permissions and collaboration on environment resources.
     quickstart:
     previous:
-        - /docs/applications/add-ssl-certificate
+        - /docs/ssl-certificates/add-ssl-certificate
     next:
         - /docs/teams/add-member-to-team
     guides:

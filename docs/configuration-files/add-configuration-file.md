@@ -7,7 +7,7 @@ links:
     previous:
         - /docs/pipelines/add-pipeline-step
     next:
-        - /docs/applications/link-server-to-application
+        - /docs/linked-resources/add-linked-resource
     guides:
     related:
     featured:
