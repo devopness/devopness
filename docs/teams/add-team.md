@@ -7,7 +7,7 @@ links:
     previous:
         - /docs/ssl-certificates/add-ssl-certificate
     next:
-        - /docs/teams/add-member-to-team
+        - /docs/teams/members/add-member
     guides:
     related:
     featured:
