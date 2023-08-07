@@ -11332,9 +11332,6 @@
       "ApplicationOptions": {
         "type": "object",
         "properties": {
-          "deployment_steps": {
-            "$ref": "#/components/schemas/DeploymentDefaultStepList"
-          },
           "language_runtimes": {
             "$ref": "#/components/schemas/LanguageRuntimeList"
           },
@@ -11343,7 +11340,6 @@
           }
         },
         "required": [
-          "deployment_steps",
           "language_runtimes",
           "script_runners"
         ]
