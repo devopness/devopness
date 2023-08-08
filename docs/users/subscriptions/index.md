@@ -8,7 +8,7 @@ links:
     next:
     guides:
     related:
-        - /docs/billing-and-plans/upgrade-subscription
-        - /docs/billing-and-plans/cancel-subscription
+        - /docs/users/subscriptions/upgrade-subscription
+        - /docs/users/subscriptions/cancel-subscription
     featured:
 ---
