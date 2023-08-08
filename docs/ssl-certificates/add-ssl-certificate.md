@@ -1,5 +1,5 @@
 ---
-title: Add an SSL Certificate to an Application
+title: Add an SSL Certificate
 intro: Add an SSL certificate to an application to allow HTTPS requests to it.
 links:
     overview:
