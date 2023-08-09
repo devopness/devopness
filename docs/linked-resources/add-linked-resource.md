@@ -1,11 +1,11 @@
 ---
-title: Link a Server to an Application
+title: Add a Linked Resource
 intro: Link a server to an application to select which servers an application can be deployed.
 links:
     overview:
     quickstart:
     previous:
-        - /docs/configuration-files/add-configuration-file
+        - /docs/files/add-file
     next:
         - /docs/applications/deploy-application
     guides:

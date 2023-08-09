@@ -1,5 +1,5 @@
 ---
-title: Add member to a team
+title: Add member
 intro: Add members to a team so people can collaborate to all project environments on which the team has permissions.
 links:
     overview: Project owners can add members to multiple teams and invite non-members to join a project team.
@@ -7,7 +7,7 @@ links:
     previous:
         - /docs/teams/add-team
     next:
-        - /docs/environments/add-teams-to-environment
+        - /docs/environments/team-memberships/add-team-membership
     guides:
     related:
     featured:
