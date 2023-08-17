@@ -5,7 +5,7 @@ links:
     overview:
     quickstart:
     previous:
-        - /docs/servers
+        - /docs/servers/add-server
     next:
         - /docs/servers/check-server-provision-logs
     guides:
