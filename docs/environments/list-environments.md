@@ -1,6 +1,6 @@
 ---
 title: List Environments
-intro: Access the list of project environment to see details of an environment.
+intro: Find and view details of project environments you have access to.
 links:
     overview:
     quickstart:
@@ -8,6 +8,7 @@ links:
     next:
     guides:
     related:
+      - /docs/environments/add-environment
       - /docs/environments/find-archived-environment
     featured:
 ---
@@ -16,5 +17,4 @@ links:
 1. Select a `Project`
 1. Find the `Environments` card
 1. Click `View` in the `Environments` card to see a list of existing `Environments`
-1. Find the `Environment` you want to inspect and click `View`
-1. The `Environment` resources list will be displayed containing all the environment's resources
+1. The `Environments` list will be displayed, containing all environments you have access to.
