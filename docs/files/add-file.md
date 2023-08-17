@@ -1,13 +1,13 @@
 ---
-title: Add a Configuration File
+title: Add a File
 intro: By adding configuration files you ensure a more consistent resource deployment, as they can contain crucial information and settings for each environment.
 links:
     overview:
     quickstart:
     previous:
-        - /docs/pipelines/add-pipeline-step
+        - /docs/pipelines/steps/add-step
     next:
-        - /docs/applications/link-server-to-application
+        - /docs/linked-resources/add-linked-resource
     guides:
     related:
     featured:

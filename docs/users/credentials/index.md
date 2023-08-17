@@ -6,13 +6,13 @@ links:
     quickstart:
     previous:
     next:
-        - /docs/cloud-provider-credentials/add-cloud-provider-credential
+        - /docs/users/credentials/add-credential
     guides:
-        - /docs/cloud-provider-credentials/add-cloud-provider-credential
-        - /docs/cloud-provider-credentials/remove-cloud-provider-credential
-        - /docs/cloud-provider-credentials/add-gcp-credential
+        - /docs/users/credentials/add-credential
+        - /docs/users/credentials/remove-credential
+        - /docs/users/credentials/add-gcp-credential
     related:
-        - /docs/cloud-provider-credentials/add-aws-credential
-        - /docs/cloud-provider-credentials/add-gcp-credential
+        - /docs/users/credentials/add-aws-credential
+        - /docs/users/credentials/add-gcp-credential
     featured:
 ---

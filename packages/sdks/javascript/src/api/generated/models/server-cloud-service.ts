@@ -12,9 +12,10 @@
  */
 
 
-import { CloudAwsEc2Settings } from './cloud-aws-ec2-settings';
-import { CloudDigitalOceanDropletSettings } from './cloud-digital-ocean-droplet-settings';
-import { CloudGcpSettings } from './cloud-gcp-settings';
+import { CloudServiceSettingsAwsEc2 } from './cloud-service-settings-aws-ec2';
+import { CloudServiceSettingsDigitalOceanDroplet } from './cloud-service-settings-digital-ocean-droplet';
+import { CloudServiceSettingsGcpGce } from './cloud-service-settings-gcp-gce';
+import { CloudServiceSettingsSelfHostedCustom } from './cloud-service-settings-self-hosted-custom';
 import { ServerCloudServiceName } from './server-cloud-service-name';
 
 /**
@@ -28,12 +29,12 @@ export interface ServerCloudService {
      * @type {ServerCloudServiceName}
      * @memberof ServerCloudService
      */
-    name?: ServerCloudServiceName;
+    name: ServerCloudServiceName;
     /**
      * The configurations used to cloud service
-     * @type {CloudAwsEc2Settings | CloudDigitalOceanDropletSettings | CloudGcpSettings}
+     * @type {CloudServiceSettingsAwsEc2 | CloudServiceSettingsDigitalOceanDroplet | CloudServiceSettingsGcpGce | CloudServiceSettingsSelfHostedCustom}
      * @memberof ServerCloudService
      */
-    settings?: CloudAwsEc2Settings | CloudDigitalOceanDropletSettings | CloudGcpSettings;
+    settings: CloudServiceSettingsAwsEc2 | CloudServiceSettingsDigitalOceanDroplet | CloudServiceSettingsGcpGce | CloudServiceSettingsSelfHostedCustom;
 }
 

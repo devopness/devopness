@@ -7,7 +7,7 @@ links:
     previous:
         - /docs/servers/ssh-into-server
     next:
-        - /docs/pipelines/add-pipeline-step
+        - /docs/pipelines/steps/add-step
     guides:
     related:
     featured:

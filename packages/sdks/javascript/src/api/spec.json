@@ -10472,6 +10472,11 @@
         "properties": {
           "servers": {
             "$ref": "#/components/schemas/ResourceIdList"
+          },
+          "branch": {
+            "description": "The name of the branch from which the application source code will be retrieved and deployed. Must not be greater than 100 characters.",
+            "example": "master",
+            "type": "string"
           }
         }
       },
@@ -10953,10 +10958,12 @@
         "type": "string",
         "enum": [
           "add",
+          "check_provisioned",
           "deploy",
           "disable",
           "enable",
-          "get-status",
+          "get_status",
+          "provision",
           "redeploy",
           "reload",
           "remove",
@@ -11325,9 +11332,6 @@
       "ApplicationOptions": {
         "type": "object",
         "properties": {
-          "deployment_steps": {
-            "$ref": "#/components/schemas/DeploymentDefaultStepList"
-          },
           "language_runtimes": {
             "$ref": "#/components/schemas/LanguageRuntimeList"
           },
@@ -11336,7 +11340,6 @@
           }
         },
         "required": [
-          "deployment_steps",
           "language_runtimes",
           "script_runners"
         ]
@@ -11740,81 +11743,6 @@
           "$ref": "#/components/schemas/BlueprintService"
         }
       },
-      "CloudAwsEc2Settings": {
-        "type": "object",
-        "properties": {
-          "instance_type": {
-            "type": "string",
-            "description": "The instance type to be launched on the cloud provider",
-            "example": "a1.medium"
-          },
-          "region": {
-            "type": "string",
-            "description": "Datacenter region where the cloud instance will be launched",
-            "example": "us-east-1"
-          },
-          "storage_size": {
-            "type": "integer",
-            "description": "The storage's size of the cloud instance",
-            "example": 32
-          },
-          "os_version_code": {
-            "$ref": "#/components/schemas/CloudOsVersionCode"
-          }
-        },
-        "required": [
-          "region",
-          "instance_type",
-          "storage_size",
-          "os_version_code"
-        ]
-      },
-      "CloudDigitalOceanDropletSettings": {
-        "type": "object",
-        "properties": {
-          "instance_type": {
-            "type": "string",
-            "description": "The instance type to be launched on the cloud provider",
-            "example": "s-1vcpu-1gb"
-          },
-          "region": {
-            "type": "string",
-            "description": "Datacenter region where the cloud instance will be launched",
-            "example": "nyc1"
-          },
-          "os_version_code": {
-            "$ref": "#/components/schemas/CloudOsVersionCode"
-          }
-        },
-        "required": [
-          "instance_type",
-          "region",
-          "os_version_code"
-        ]
-      },
-      "CloudGcpSettings": {
-        "type": "object",
-        "properties": {
-          "instance_type": {
-            "type": "string",
-            "description": "The instance type to be launched on the cloud provider",
-            "example": "f1-micro"
-          },
-          "region": {
-            "type": "string",
-            "description": "Datacenter region where the cloud instance will be launched",
-            "example": "us-east1"
-          },
-          "os_version_code": {
-            "$ref": "#/components/schemas/CloudOsVersionCode"
-          }
-        },
-        "required": [
-          "instance_type",
-          "region",
-          "os_version_code"
-        ]
-      },
       "CloudInstanceList": {
         "type": "array",
         "items": {
@@ -12164,6 +12092,92 @@
             "$ref": "#/components/schemas/CloudProviderCredentialSettingsList"
           }
         }
+      },
+      "CloudServiceSettingsAwsEc2": {
+        "type": "object",
+        "properties": {
+          "instance_type": {
+            "type": "string",
+            "description": "The instance type to be launched on the cloud provider",
+            "example": "a1.medium"
+          },
+          "region": {
+            "type": "string",
+            "description": "Datacenter region where the cloud instance will be launched",
+            "example": "us-east-1"
+          },
+          "storage_size": {
+            "type": "integer",
+            "description": "The storage's size of the cloud instance",
+            "example": 32
+          },
+          "os_version_code": {
+            "$ref": "#/components/schemas/CloudOsVersionCode"
+          }
+        },
+        "required": [
+          "region",
+          "instance_type",
+          "storage_size",
+          "os_version_code"
+        ]
+      },
+      "CloudServiceSettingsDigitalOceanDroplet": {
+        "type": "object",
+        "properties": {
+          "instance_type": {
+            "type": "string",
+            "description": "The instance type to be launched on the cloud provider",
+            "example": "s-1vcpu-1gb"
+          },
+          "region": {
+            "type": "string",
+            "description": "Datacenter region where the cloud instance will be launched",
+            "example": "nyc1"
+          },
+          "os_version_code": {
+            "$ref": "#/components/schemas/CloudOsVersionCode"
+          }
+        },
+        "required": [
+          "instance_type",
+          "region",
+          "os_version_code"
+        ]
+      },
+      "CloudServiceSettingsGcpGce": {
+        "type": "object",
+        "properties": {
+          "instance_type": {
+            "type": "string",
+            "description": "The instance type to be launched on the cloud provider",
+            "example": "f1-micro"
+          },
+          "region": {
+            "type": "string",
+            "description": "Datacenter region where the cloud instance will be launched",
+            "example": "us-east1"
+          },
+          "os_version_code": {
+            "$ref": "#/components/schemas/CloudOsVersionCode"
+          }
+        },
+        "required": [
+          "instance_type",
+          "region",
+          "os_version_code"
+        ]
+      },
+      "CloudServiceSettingsSelfHostedCustom": {
+        "type": "object",
+        "properties": {
+          "os_version_code": {
+            "$ref": "#/components/schemas/CloudOsVersionCode"
+          }
+        },
+        "required": [
+          "os_version_code"
+        ]
       },
       "Commit": {
         "type": "object",
@@ -14421,7 +14435,7 @@
         "type": "object",
         "properties": {
           "server": {
-            "$ref": "#/components/schemas/ServerRelation"
+            "$ref": "#/components/schemas/ServerActionData"
           },
           "step": {
             "$ref": "#/components/schemas/ServerActionLogStep"
@@ -16217,11 +16231,6 @@
             "description": "The Id of the server on which the action must be performed",
             "example": 4567890
           },
-          "server_name": {
-            "type": "string",
-            "description": "The name of the server on which the action must be performed",
-            "example": "web-srv-1"
-          },
           "status": {
             "$ref": "#/components/schemas/ActionStatus"
           },
@@ -16243,6 +16252,9 @@
           },
           "steps": {
             "$ref": "#/components/schemas/ActionStepList"
+          },
+          "server_data": {
+            "$ref": "#/components/schemas/ServerActionData"
           },
           "started_at": {
             "type": "string",
@@ -16271,6 +16283,58 @@
             "example": "2019-09-25T13:52:04.000000Z"
           }
         }
+      },
+      "ServerActionData": {
+        "type": "object",
+        "nullable": true,
+        "properties": {
+          "id": {
+            "description": "The unique id of the server",
+            "type": "integer",
+            "example": 9654123
+          },
+          "hostname": {
+            "description": "The server's hostname",
+            "type": "string",
+            "example": "web-srv-1"
+          },
+          "provider_name": {
+            "description": "The name of the server's provider.",
+            "type": "string",
+            "example": "self-hosted"
+          },
+          "provider_name_human_readable": {
+            "description": "The human readable version of the provider's name",
+            "type": "string",
+            "example": "VPS/Self Hosted"
+          },
+          "ip_address": {
+            "description": "Public ipv4 address for server access",
+            "type": "string",
+            "example": "200.123.45.67"
+          },
+          "ssh_port": {
+            "description": "The network port to which the SSH daemon is listening to SSH connections on the server",
+            "type": "integer",
+            "example": 22
+          },
+          "os_version_code": {
+            "$ref": "#/components/schemas/CloudOsVersionCode"
+          },
+          "provision_settings": {
+            "$ref": "#/components/schemas/ServerProvisionSettingsInput"
+          }
+        },
+        "required": [
+          "id",
+          "hostname",
+          "provider_name",
+          "provider_name_human_readable",
+          "ip_address",
+          "ssh_port",
+          "os_version_code",
+          "provision_settings"
+        ]
       },
       "ServerActionList": {
         "type": "array",
@@ -16367,17 +16431,24 @@
             "description": "The configurations used to cloud service",
             "anyOf": [
               {
-                "$ref": "#/components/schemas/CloudAwsEc2Settings"
+                "$ref": "#/components/schemas/CloudServiceSettingsAwsEc2"
               },
               {
-                "$ref": "#/components/schemas/CloudDigitalOceanDropletSettings"
+                "$ref": "#/components/schemas/CloudServiceSettingsDigitalOceanDroplet"
               },
               {
-                "$ref": "#/components/schemas/CloudGcpSettings"
+                "$ref": "#/components/schemas/CloudServiceSettingsGcpGce"
+              },
+              {
+                "$ref": "#/components/schemas/CloudServiceSettingsSelfHostedCustom"
               }
             ]
           }
-        }
+        },
+        "required": [
+          "name",
+          "settings"
+        ]
       },
       "ServerCloudServiceName": {
         "type": "string",
@@ -16460,7 +16531,10 @@
           "cloud_service": {
             "$ref": "#/components/schemas/ServerCloudService"
           }
-        }
+        },
+        "required": [
+          "cloud_service"
+        ]
       },
       "ServerProvisionSettingsInput": {
         "type": "object",
@@ -18077,6 +18151,9 @@
             "format": "date-time",
             "description": "The date and time when the record was last updated",
             "example": "2019-09-25T13:52:04.000000Z"
+          },
+          "current_balance": {
+            "$ref": "#/components/schemas/SubscriptionBalance"
           },
           "balances": {
             "$ref": "#/components/schemas/SubscriptionBalanceList"

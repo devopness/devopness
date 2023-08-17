@@ -37,6 +37,6 @@ export interface ServerProvisionSettings {
      * @type {ServerCloudService}
      * @memberof ServerProvisionSettings
      */
-    cloud_service?: ServerCloudService;
+    cloud_service: ServerCloudService;
 }
 
