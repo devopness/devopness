@@ -8,6 +8,9 @@ links:
     next:
     guides:
     related:
+        - /docs/users/credentials/add-aws-credential
+        - /docs/users/credentials/add-digitalocean-credential
+        - /docs/users/credentials/add-gcp-credential
         - /docs/users/credentials/remove-credential
     featured:
 ---
@@ -17,6 +20,7 @@ links:
 1. On the upper-right corner of the list, click `ADD CLOUD PROVIDER`
 1. Use the drop-down menu to choose a Cloud Provider
 1. Provide a name to your new `Cloud Provider Credential`. For example, "Company X cloud provider key"
-1. Follow the [Cloud Provider specific instructions](../) to get the credentials of the chosen Cloud Provider
+1. Follow the Cloud Provider specific instructions to get the credentials of the chosen Cloud Provider
+    - See related posts section for Cloud Provider specific instructions
 1. Paste in your credentials to the appropriate fields in the form
 1. Click `CONFIRM`

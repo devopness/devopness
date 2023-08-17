@@ -10,10 +10,6 @@ links:
     guides:
         - /docs/users/credentials/add-credential
         - /docs/users/credentials/remove-credential
-        - /docs/users/credentials/add-gcp-credential
     related:
-        - /docs/users/credentials/add-aws-credential
-        - /docs/users/credentials/add-digitalocean-credential
-        - /docs/users/credentials/add-gcp-credential
     featured:
 ---
