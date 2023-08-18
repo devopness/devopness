@@ -21,6 +21,6 @@ links:
 1. On the upper-right corner of the `Team memberships` list, click `ADD TEAM MEMBERSHIP`
 1. Select a `Team`
 1. Assign a `Role` to the team to grant team members permissions on the environment
-    - To check a role's details, please follow the guide [Check Role Permissions](/docs/role/check-role-permissions)
+    - To check a role's details, please follow the guide [Check Role Permissions](/docs/roles/check-role-permissions)
     - If no role listed satisfies the permissions needed for the team, please follow the guide [Add a Role](/docs/roles/add-role)
 1. Click `CONFIRM`
