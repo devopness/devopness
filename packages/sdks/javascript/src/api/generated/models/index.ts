@@ -80,6 +80,7 @@ export * from './hook-incoming-settings';
 export * from './hook-outgoing-request-header';
 export * from './hook-outgoing-settings';
 export * from './hook-outgoing-trigger-when-condition';
+export * from './hook-pipeline-create';
 export * from './hook-relation';
 export * from './hook-request';
 export * from './hook-request-relation';
