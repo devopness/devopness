@@ -195,6 +195,8 @@ HookOutgoingSettings:
   $ref: ./auto-generated/models/hook-outgoing-settings.yaml
 HookOutgoingTriggerWhenCondition:
   $ref: ./auto-generated/models/hook-outgoing-trigger-when-condition.yaml
+HookPipelineCreate:
+  $ref: ./auto-generated/models/hook-pipeline-create.yaml
 HookRelation:
   $ref: ./auto-generated/models/hook-relation.yaml
 HookRequest:

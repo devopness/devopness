@@ -120,6 +120,8 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     // initial transaction graph definitions
     const initialAdjacencyList = new Set<TransactionGraphEdge>([
         // variable tests should run before deleteApplication
+        ['deleteHook204', 'deletePipeline204'],
+        ['deleteHook204', 'deleteApplication204'],
         ['deleteVariable204', 'deleteApplication204'],
         ['triggerHook202', 'deleteApplication204'],
         // unlinkServerFromEnvironment requires deleting the associated ssh key, network rule, daemon, service, cron job and application

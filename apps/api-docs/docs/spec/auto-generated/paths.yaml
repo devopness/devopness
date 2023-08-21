@@ -168,6 +168,12 @@
     $ref: ./auto-generated/endpoints/list-pipeline-actions.yaml
   post:
     $ref: ./auto-generated/endpoints/add-pipeline-action.yaml
+'/pipelines/{pipeline_id}/hooks':
+  get:
+    $ref: ./auto-generated/endpoints/list-pipeline-hooks.yaml
+'/pipelines/{pipeline_id}/hooks/{hook_type}':
+  post:
+    $ref: ./auto-generated/endpoints/add-pipeline-hook.yaml
 '/pipelines/{pipeline_id}/steps':
   post:
     $ref: ./auto-generated/endpoints/add-pipeline-step.yaml

@@ -47,6 +47,11 @@ properties:
     description: 'The ID of the environment'
     type: integer
     example: 579085
+  pipeline_id:
+    description: 'The ID of the pipeline executed by this hook'
+    type: integer
+    example: 289542
+    nullable: true
   resource_type:
     $ref: '#/components/schemas/ResourceType'
   resource_id:
@@ -84,6 +89,7 @@ required:
   - active
   - project_id
   - environment_id
+  - pipeline_id
   - resource_type
   - resource_id
   - settings
