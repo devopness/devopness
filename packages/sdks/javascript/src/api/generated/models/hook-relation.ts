@@ -98,6 +98,12 @@ export interface HookRelation {
      */
     environment_id: number;
     /**
+     * The ID of the pipeline executed by this hook
+     * @type {number}
+     * @memberof HookRelation
+     */
+    pipeline_id: number | null;
+    /**
      * 
      * @type {ResourceType}
      * @memberof HookRelation
