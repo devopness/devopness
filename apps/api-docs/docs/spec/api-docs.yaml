@@ -216,6 +216,7 @@ tags:
   - name: Network Rules
   - name: Pipelines
   - name: Pipelines - Actions
+  - name: Pipelines - Hooks
   - name: Pipelines - Resources
   - name: Projects
   - name: Projects - Actions
@@ -316,6 +317,7 @@ x-tagGroups:
     tags:
       - Pipelines
       - Pipelines - Actions
+      - Pipelines - Hooks
       - Pipelines - Steps
   - name: Projects
     tags:
