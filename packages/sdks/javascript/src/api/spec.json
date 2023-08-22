@@ -4142,7 +4142,7 @@
     },
     "/pipelines/{pipeline_id}/hooks": {
       "get": {
-        "summary": "List all hooks in an pipeline",
+        "summary": "List all hooks in a pipeline",
         "operationId": "listPipelineHooks",
         "description": {
           "$ref": "../spec/descriptions/list-pipeline-hooks.md"
