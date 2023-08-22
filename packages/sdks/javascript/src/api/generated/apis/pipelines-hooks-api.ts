@@ -51,7 +51,7 @@ export class PipelinesHooksApiService extends ApiBaseService {
 
     /**
      * 
-     * @summary List all hooks in an pipeline
+     * @summary List all hooks in a pipeline
      * @param {number} pipelineId The ID of the pipeline.
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
