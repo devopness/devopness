@@ -9986,6 +9986,9 @@
       "name": "Pipelines - Actions"
     },
     {
+      "name": "Pipelines - Hooks"
+    },
+    {
       "name": "Pipelines - Resources"
     },
     {
@@ -10168,6 +10171,7 @@
       "tags": [
         "Pipelines",
         "Pipelines - Actions",
+        "Pipelines - Hooks",
         "Pipelines - Steps"
       ]
     },
