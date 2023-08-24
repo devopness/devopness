@@ -15,6 +15,7 @@
 import { ActionTargetNetworkData } from './action-target-network-data';
 import { ActionTargetServerData } from './action-target-server-data';
 import { CloudOsVersionCode } from './cloud-os-version-code';
+import { NetworkProvisionInput } from './network-provision-input';
 import { ServerProvisionSettingsInput } from './server-provision-settings-input';
 
 /**

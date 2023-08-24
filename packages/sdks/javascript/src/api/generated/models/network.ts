@@ -14,6 +14,7 @@
 
 import { ActionRelation } from './action-relation';
 import { EnvironmentRelation } from './environment-relation';
+import { NetworkProvisionInput } from './network-provision-input';
 import { ProjectRelation } from './project-relation';
 import { UserRelation } from './user-relation';
 
@@ -48,17 +49,11 @@ export interface Network {
      */
     name: string;
     /**
-     * The cloud provider region where the network are created
-     * @type {string}
+     * 
+     * @type {NetworkProvisionInput}
      * @memberof Network
      */
-    region: string;
-    /**
-     * The IP CIDR range of the network
-     * @type {string}
-     * @memberof Network
-     */
-    cidr_block: string | null;
+    provision_input: NetworkProvisionInput;
     /**
      * 
      * @type {UserRelation}
