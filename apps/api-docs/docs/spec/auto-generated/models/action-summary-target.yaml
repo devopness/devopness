@@ -3,23 +3,23 @@ type: object
 properties:
   count:
     type: integer
-    description: 'The total number of server actions'
+    description: 'The total number of action targets'
     example: 4
   pending:
     type: integer
-    description: 'The number of server actions pending'
+    description: 'The number of action targets pending'
     example: 2
   in_progress:
     type: integer
-    description: 'The number of server actions in progress'
+    description: 'The number of action targets in progress'
     example: 1
   completed:
     type: integer
-    description: 'The number of server actions completed'
+    description: 'The number of action targets completed'
     example: 1
   failed:
     type: integer
-    description: 'The number of server actions failed'
+    description: 'The number of action targets failed'
     example: 0
 required:
   - count

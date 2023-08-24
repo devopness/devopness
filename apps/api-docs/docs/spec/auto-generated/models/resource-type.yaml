@@ -6,6 +6,7 @@ enum:
   - cronjob
   - daemon
   - deployment
+  - network
   - network-rule
   - server
   - service

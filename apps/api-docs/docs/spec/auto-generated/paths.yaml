@@ -8,7 +8,7 @@
 '/actions/{action_id}/retry':
   post:
     $ref: ./auto-generated/endpoints/retry-action.yaml
-'/actions/{action_id}/servers/{server_id}/steps/{action_step_order}/logs':
+'/actions/{action_id}/targets/{action_target_id}/steps/{action_step_order}/logs':
   get:
     $ref: ./auto-generated/endpoints/get-action-log.yaml
 '/actions/{resource_type}/{resource_id}':
@@ -98,6 +98,11 @@
     $ref: ./auto-generated/endpoints/list-environment-network-rules.yaml
   post:
     $ref: ./auto-generated/endpoints/add-environment-network-rule.yaml
+'/environments/{environment_id}/networks':
+  get:
+    $ref: ./auto-generated/endpoints/list-environment-networks.yaml
+  post:
+    $ref: ./auto-generated/endpoints/add-environment-network.yaml
 '/environments/{environment_id}/servers':
   get:
     $ref: ./auto-generated/endpoints/list-environment-servers.yaml
@@ -156,6 +161,9 @@
     $ref: ./auto-generated/endpoints/get-network-rule.yaml
   put:
     $ref: ./auto-generated/endpoints/update-network-rule.yaml
+'/networks/{network_id}':
+  get:
+    $ref: ./auto-generated/endpoints/get-network.yaml
 '/pipelines/{pipeline_id}':
   delete:
     $ref: ./auto-generated/endpoints/delete-pipeline.yaml

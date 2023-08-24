@@ -200,6 +200,7 @@ tags:
   - name: Environments - Cron Jobs
   - name: Environments - Daemons
   - name: Environments - Members
+  - name: Environments - Networks
   - name: Environments - Network Rules
   - name: Environments - Servers
   - name: Environments - Services
@@ -213,6 +214,7 @@ tags:
       An outgoing hook is a webhook that trigger a request when an action of a resource has your state updated.
   - name: Invitations
   - name: Logs
+  - name: Networks
   - name: Network Rules
   - name: Pipelines
   - name: Pipelines - Actions
@@ -309,6 +311,10 @@ x-tagGroups:
       - Hooks
       - Hooks - Requests
       - Hook Requests
+  - name: Networks
+    tags:
+      - Networks
+      - Environments - Networks
   - name: Network Rules
     tags:
       - Network Rules

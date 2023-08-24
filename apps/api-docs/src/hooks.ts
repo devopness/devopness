@@ -110,6 +110,8 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
 
             // An `ssl_certificate` is returned by `addApplicationSslCertificate201`
             'ssl_certificate': ['addApplicationSslCertificate201'],
+
+            'network': ['addEnvironmentNetwork201'],
         },
         fixtureTerminalTransactions: {
             // a successful `logout` transaction destroys user tokens
@@ -254,7 +256,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         const usePredefinedCredentials = true;
         let credentials: UserCredentials
         if (usePredefinedCredentials) {
-            credentials = { id: 21, email: 'test@test.com', password: 'testes' }
+            credentials = { id: 8, email: 'test@test.com', password: 'testes' }
         } else {
             credentials = randomCredentials
         }
@@ -305,7 +307,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     //// source providers
     // use a static source_provider fixture, associated manually to the static user account
     // @todo: mock source provider
-    const staticSourceProviderId = 11;
+    const staticSourceProviderId = 7;
     before('addSourceProvider201', (transaction: Transaction) => {
         hooks.log(`=> 'source_provider' (id=${staticSourceProviderId})`)
         fixtures.put('source_provider', { id: `${staticSourceProviderId}` });
@@ -319,7 +321,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         transaction.skip = true;
     })
 
-    const staticCloudCredentialId = 1;
+    const staticCloudCredentialId = 6;
     before('addCloudProviderCredential201', (transaction: Transaction) => {
         hooks.log(`=> 'credential' (id=${staticCloudCredentialId})`)
         fixtures.put('credential', { id: `${staticCloudCredentialId}` });
@@ -358,6 +360,18 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     before('addTeamToEnvironment201', utils.rewriteTransactionRequestBody((body: any) => {
         body['name'] = `team-${new Date().getTime()}`;
     }));
+
+    //// networks
+    before('addEnvironmentNetwork201', utils.rewriteTransactionRequestBody((body: any) => {
+        body['provision_input'] = {
+            credential_id: staticCloudCredentialId,
+            cloud_service_code: 'aws-ec2',
+            settings: {
+                region: 'us-east-1',
+                cidr_block: '10.0.0.0/24',
+            },
+        };
+    }))
 
     before('listPipelinesByResourceType200', utils.rewriteTransactionRequestUriResourceId(['application']));
     before('addPipeline201', utils.rewriteTransactionRequestUriResourceId(['application']));

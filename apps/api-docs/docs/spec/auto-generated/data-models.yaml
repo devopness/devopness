@@ -29,8 +29,20 @@ ActionStepList:
   $ref: ./auto-generated/models/action-step-list.yaml
 ActionSummary:
   $ref: ./auto-generated/models/action-summary.yaml
-ActionSummaryServer:
-  $ref: ./auto-generated/models/action-summary-server.yaml
+ActionSummaryTarget:
+  $ref: ./auto-generated/models/action-summary-target.yaml
+ActionTarget:
+  $ref: ./auto-generated/models/action-target.yaml
+ActionTargetData:
+  $ref: ./auto-generated/models/action-target-data.yaml
+ActionTargetList:
+  $ref: ./auto-generated/models/action-target-list.yaml
+ActionTargetLogStep:
+  $ref: ./auto-generated/models/action-target-log-step.yaml
+ActionTargetNetworkData:
+  $ref: ./auto-generated/models/action-target-network-data.yaml
+ActionTargetServerData:
+  $ref: ./auto-generated/models/action-target-server-data.yaml
 ActionTriggerType:
   $ref: ./auto-generated/models/action-trigger-type.yaml
 ActionTriggeredFrom:
@@ -251,6 +263,24 @@ MemberList:
   $ref: ./auto-generated/models/member-list.yaml
 MemberRelation:
   $ref: ./auto-generated/models/member-relation.yaml
+Network:
+  $ref: ./auto-generated/models/network.yaml
+NetworkEnvironmentCreate:
+  $ref: ./auto-generated/models/network-environment-create.yaml
+NetworkList:
+  $ref: ./auto-generated/models/network-list.yaml
+NetworkProvisionInput:
+  $ref: ./auto-generated/models/network-provision-input.yaml
+NetworkProvisionInputSettings:
+  $ref: ./auto-generated/models/network-provision-input-settings.yaml
+NetworkProvisionInputSettingsAws:
+  $ref: ./auto-generated/models/network-provision-input-settings-aws.yaml
+NetworkProvisionInputSettingsDigitalOcean:
+  $ref: ./auto-generated/models/network-provision-input-settings-digital-ocean.yaml
+NetworkProvisionInputSettingsGcp:
+  $ref: ./auto-generated/models/network-provision-input-settings-gcp.yaml
+NetworkRelation:
+  $ref: ./auto-generated/models/network-relation.yaml
 NetworkRule:
   $ref: ./auto-generated/models/network-rule.yaml
 NetworkRuleEnvironmentCreate:
@@ -377,14 +407,6 @@ ScriptRunnerList:
   $ref: ./auto-generated/models/script-runner-list.yaml
 Server:
   $ref: ./auto-generated/models/server.yaml
-ServerAction:
-  $ref: ./auto-generated/models/server-action.yaml
-ServerActionData:
-  $ref: ./auto-generated/models/server-action-data.yaml
-ServerActionList:
-  $ref: ./auto-generated/models/server-action-list.yaml
-ServerActionLogStep:
-  $ref: ./auto-generated/models/server-action-log-step.yaml
 ServerBlueprint:
   $ref: ./auto-generated/models/server-blueprint.yaml
 ServerCloudService:

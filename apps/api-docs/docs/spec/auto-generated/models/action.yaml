@@ -49,8 +49,8 @@ properties:
     $ref: '#/components/schemas/EnvironmentRelation'
   project:
     $ref: '#/components/schemas/ProjectRelation'
-  servers:
-    $ref: '#/components/schemas/ServerActionList'
+  targets:
+    $ref: '#/components/schemas/ActionTargetList'
   hook_requests:
     $ref: '#/components/schemas/ActionHookRequest'
   started_at:

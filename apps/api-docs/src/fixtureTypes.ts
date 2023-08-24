@@ -123,6 +123,7 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
         { path: 'team_id', fixture: 'team', field: 'id' },
         { path: 'member_id', fixture: 'user', field: 'id' },
     ],
+    'network': [],
     'network_rule': [],
     'network_rule_environment_create': [
         { path: 'servers[0]', fixture: 'server', field: 'id' },
