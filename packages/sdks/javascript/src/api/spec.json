@@ -184,9 +184,9 @@
         }
       }
     },
-    "/actions/{action_id}/servers/{server_id}/steps/{action_step_order}/logs": {
+    "/actions/{action_id}/targets/{action_target_id}/steps/{action_step_order}/logs": {
       "get": {
-        "summary": "Get action server step log",
+        "summary": "Get action target step log",
         "operationId": "getActionLog",
         "description": {
           "$ref": "../spec/descriptions/get-action-log.md"
@@ -228,8 +228,8 @@
           },
           {
             "in": "path",
-            "name": "server_id",
-            "description": "The ID of the server.",
+            "name": "action_target_id",
+            "description": "The ID of the action target.",
             "example": 123,
             "required": true,
             "schema": {
@@ -2363,9 +2363,152 @@
         }
       }
     },
+    "/environments/{environment_id}/networks": {
+      "get": {
+        "summary": "Return a list of all networks belonging to an environment",
+        "operationId": "listEnvironmentNetworks",
+        "description": {
+          "$ref": "../spec/descriptions/list-environment-networks.md"
+        },
+        "tags": [
+          "Environments - Networks"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "environment_id",
+            "description": "The ID of the environment.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NetworkList"
+                }
+              }
+            },
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new network for the given environment",
+        "operationId": "addEnvironmentNetwork",
+        "description": {
+          "$ref": "../spec/descriptions/add-environment-network.md"
+        },
+        "tags": [
+          "Environments - Networks"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "environment_id",
+            "description": "The ID of the environment.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Network"
+                }
+              }
+            },
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NetworkEnvironmentCreate"
+              }
+            }
+          }
+        }
+      }
+    },
     "/environments/{environment_id}/servers": {
       "get": {
-        "summary": "Return a list of all servers belonging to a environment",
+        "summary": "Return a list of all servers belonging to an environment",
         "operationId": "listEnvironmentServers",
         "description": {
           "$ref": "../spec/descriptions/list-environment-servers.md"
@@ -3828,6 +3971,62 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/NetworkRuleUpdate"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/networks/{network_id}": {
+      "get": {
+        "summary": "Get a network by ID",
+        "operationId": "getNetwork",
+        "description": {
+          "$ref": "../spec/descriptions/get-network.md"
+        },
+        "tags": [
+          "Networks"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "network_id",
+            "description": "The ID of the network.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Network"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
               }
             }
           }
@@ -9946,6 +10145,9 @@
       "name": "Environments - Members"
     },
     {
+      "name": "Environments - Networks"
+    },
+    {
       "name": "Environments - Network Rules"
     },
     {
@@ -9975,6 +10177,9 @@
     },
     {
       "name": "Logs"
+    },
+    {
+      "name": "Networks"
     },
     {
       "name": "Network Rules"
@@ -10157,6 +10362,13 @@
         "Hooks",
         "Hooks - Requests",
         "Hook Requests"
+      ]
+    },
+    {
+      "name": "Networks",
+      "tags": [
+        "Networks",
+        "Environments - Networks"
       ]
     },
     {
@@ -10397,8 +10609,8 @@
           "project": {
             "$ref": "#/components/schemas/ProjectRelation"
           },
-          "servers": {
-            "$ref": "#/components/schemas/ServerActionList"
+          "targets": {
+            "$ref": "#/components/schemas/ActionTargetList"
           },
           "hook_requests": {
             "$ref": "#/components/schemas/ActionHookRequest"
@@ -10672,8 +10884,8 @@
           "summary": {
             "$ref": "#/components/schemas/ActionSummary"
           },
-          "servers": {
-            "$ref": "#/components/schemas/ServerActionList"
+          "targets": {
+            "$ref": "#/components/schemas/ActionTargetList"
           },
           "started_at": {
             "description": "The date and time when the action started execution (i.e., left the `pending/queued` status)",
@@ -10839,8 +11051,8 @@
           "project": {
             "$ref": "#/components/schemas/ProjectRelation"
           },
-          "servers": {
-            "$ref": "#/components/schemas/ServerActionList"
+          "targets": {
+            "$ref": "#/components/schemas/ActionTargetList"
           },
           "hook_requests": {
             "$ref": "#/components/schemas/ActionHookRequest"
@@ -10918,15 +11130,10 @@
             "description": "The unique id of the action linked to this step",
             "example": 98412
           },
-          "action_server_id": {
+          "action_target_id": {
             "type": "integer",
-            "description": "The unique id of the action server linked to this step",
+            "description": "The unique id of the action target linked to this step",
             "example": 65712
-          },
-          "server_id": {
-            "type": "integer",
-            "description": "The Id of the server on which the action must be performed",
-            "example": 4567890
           },
           "name": {
             "type": "string",
@@ -10976,8 +11183,7 @@
         "required": [
           "id",
           "action_id",
-          "action_server_id",
-          "server_id",
+          "action_target_id",
           "name",
           "order",
           "status"
@@ -10993,40 +11199,40 @@
       "ActionSummary": {
         "type": "object",
         "properties": {
-          "servers": {
-            "$ref": "#/components/schemas/ActionSummaryServer"
+          "targets": {
+            "$ref": "#/components/schemas/ActionSummaryTarget"
           }
         },
         "required": [
-          "servers"
+          "targets"
         ]
       },
-      "ActionSummaryServer": {
+      "ActionSummaryTarget": {
         "type": "object",
         "properties": {
           "count": {
             "type": "integer",
-            "description": "The total number of server actions",
+            "description": "The total number of action targets",
             "example": 4
           },
           "pending": {
             "type": "integer",
-            "description": "The number of server actions pending",
+            "description": "The number of action targets pending",
             "example": 2
           },
           "in_progress": {
             "type": "integer",
-            "description": "The number of server actions in progress",
+            "description": "The number of action targets in progress",
             "example": 1
           },
           "completed": {
             "type": "integer",
-            "description": "The number of server actions completed",
+            "description": "The number of action targets completed",
             "example": 1
           },
           "failed": {
             "type": "integer",
-            "description": "The number of server actions failed",
+            "description": "The number of action targets failed",
             "example": 0
           }
         },
@@ -11036,6 +11242,225 @@
           "in_progress",
           "completed",
           "failed"
+        ]
+      },
+      "ActionTarget": {
+        "type": "object",
+        "description": "An object representing the action dispatched to a specific cloud resource target",
+        "properties": {
+          "resource_type": {
+            "type": "string",
+            "description": "The type of the cloud resource on which the action must be performed",
+            "example": "server"
+          },
+          "resource_id": {
+            "type": "integer",
+            "description": "The Id of the cloud resource on which the action must be performed",
+            "example": 4567890
+          },
+          "status": {
+            "$ref": "#/components/schemas/ActionStatus"
+          },
+          "status_human_readable": {
+            "description": "Human readable version of the action status",
+            "type": "string",
+            "example": "Pending"
+          },
+          "total_steps": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 127,
+            "description": "The total number of steps to complete the action",
+            "nullable": true,
+            "example": 5
+          },
+          "current_step": {
+            "$ref": "#/components/schemas/ActionStep"
+          },
+          "steps": {
+            "$ref": "#/components/schemas/ActionStepList"
+          },
+          "resource_data": {
+            "$ref": "#/components/schemas/ActionTargetData"
+          },
+          "started_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the action started execution (i.e., left the `pending/queued` status)",
+            "nullable": true,
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "completed_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the action has finished execution",
+            "nullable": true,
+            "example": "2019-09-25T13:52:04.000000Z"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25T13:52:04.000000Z"
+          }
+        }
+      },
+      "ActionTargetData": {
+        "type": "object",
+        "nullable": true,
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/ActionTargetNetworkData"
+          },
+          {
+            "$ref": "#/components/schemas/ActionTargetServerData"
+          }
+        ]
+      },
+      "ActionTargetList": {
+        "type": "array",
+        "description": "List of actions dispatched to cloud resource targets",
+        "items": {
+          "$ref": "#/components/schemas/ActionTarget"
+        }
+      },
+      "ActionTargetLogStep": {
+        "type": "object",
+        "nullable": true,
+        "properties": {
+          "order": {
+            "type": "integer",
+            "description": "The execution order of the given step",
+            "example": 3
+          },
+          "started_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the step started execution (i.e., left the `pending/queued` status)",
+            "example": "2019-09-25T15:50:48.000000Z",
+            "nullable": true
+          },
+          "completed_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the step has finished execution",
+            "example": "2019-09-25T13:52:04.000000Z",
+            "nullable": true
+          },
+          "output": {
+            "type": "string",
+            "description": "The full text output log",
+            "nullable": true
+          }
+        },
+        "required": [
+          "order",
+          "started_at",
+          "completed_at",
+          "output"
+        ]
+      },
+      "ActionTargetNetworkData": {
+        "type": "object",
+        "nullable": true,
+        "properties": {
+          "id": {
+            "description": "The unique id of the network",
+            "type": "integer",
+            "example": 9654123
+          },
+          "name": {
+            "description": "The networks's name",
+            "type": "string",
+            "example": "my-network"
+          },
+          "provider_name": {
+            "description": "The name of the network's provider.",
+            "type": "string",
+            "example": "aws"
+          },
+          "provider_name_human_readable": {
+            "description": "The human readable version of the provider's name",
+            "type": "string",
+            "example": "Amazon Web Services"
+          },
+          "region": {
+            "description": "The cloud provider region where the network are created",
+            "type": "string",
+            "example": "us-east-1"
+          },
+          "cidr_block": {
+            "description": "The IP CIDR range of the network",
+            "type": "string",
+            "example": "10.0.0.0/24",
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "provider_name",
+          "provider_name_human_readable",
+          "region",
+          "cidr_block"
+        ]
+      },
+      "ActionTargetServerData": {
+        "type": "object",
+        "nullable": true,
+        "properties": {
+          "id": {
+            "description": "The unique id of the server",
+            "type": "integer",
+            "example": 9654123
+          },
+          "hostname": {
+            "description": "The server's hostname",
+            "type": "string",
+            "example": "web-srv-1"
+          },
+          "provider_name": {
+            "description": "The name of the server's provider.",
+            "type": "string",
+            "example": "self-hosted"
+          },
+          "provider_name_human_readable": {
+            "description": "The human readable version of the provider's name",
+            "type": "string",
+            "example": "VPS/Self Hosted"
+          },
+          "ip_address": {
+            "description": "Public ipv4 address for server access",
+            "type": "string",
+            "example": "200.123.45.67"
+          },
+          "ssh_port": {
+            "description": "The network port to which the SSH daemon is listening to SSH connections on the server",
+            "type": "integer",
+            "example": 22
+          },
+          "os_version_code": {
+            "$ref": "#/components/schemas/CloudOsVersionCode"
+          },
+          "provision_settings": {
+            "$ref": "#/components/schemas/ServerProvisionSettingsInput"
+          }
+        },
+        "required": [
+          "id",
+          "hostname",
+          "provider_name",
+          "provider_name_human_readable",
+          "ip_address",
+          "ssh_port",
+          "os_version_code",
+          "provision_settings"
         ]
       },
       "ActionTriggerType": {
@@ -14660,11 +15085,11 @@
       "Log": {
         "type": "object",
         "properties": {
-          "server": {
-            "$ref": "#/components/schemas/ServerActionData"
+          "target": {
+            "$ref": "#/components/schemas/ActionTargetData"
           },
           "step": {
-            "$ref": "#/components/schemas/ServerActionLogStep"
+            "$ref": "#/components/schemas/ActionTargetLogStep"
           },
           "updated_at": {
             "description": "The date and time when the requested log record was last updated",
@@ -14674,7 +15099,7 @@
           }
         },
         "required": [
-          "server",
+          "target",
           "step",
           "updated_at"
         ]
@@ -14731,6 +15156,265 @@
         },
         "required": [
           "user",
+          "created_at",
+          "updated_at"
+        ],
+        "nullable": true
+      },
+      "Network": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "The unique id of the given record",
+            "type": "integer",
+            "example": 6721
+          },
+          "provider_name": {
+            "description": "The name of the cloud provider",
+            "type": "string",
+            "example": "aws"
+          },
+          "provider_name_human_readable": {
+            "description": "The human readable version of the provider's name",
+            "type": "string",
+            "example": "Amazon Web Services"
+          },
+          "name": {
+            "description": "The networks's name",
+            "type": "string",
+            "example": "my-network"
+          },
+          "region": {
+            "description": "The cloud provider region where the network are created",
+            "type": "string",
+            "example": "us-east-1"
+          },
+          "cidr_block": {
+            "description": "The IP CIDR range of the network",
+            "type": "string",
+            "example": "10.0.0.0/24",
+            "nullable": true
+          },
+          "created_by_user": {
+            "$ref": "#/components/schemas/UserRelation"
+          },
+          "project": {
+            "$ref": "#/components/schemas/ProjectRelation"
+          },
+          "environment": {
+            "$ref": "#/components/schemas/EnvironmentRelation"
+          },
+          "last_action": {
+            "$ref": "#/components/schemas/ActionRelation"
+          },
+          "created_at": {
+            "description": "The date and time when the record was created",
+            "type": "string",
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "description": "The date and time when the record was last updated",
+            "type": "string",
+            "example": "2019-09-25T13:52:04.000000Z"
+          }
+        },
+        "required": [
+          "id",
+          "provider_name",
+          "provider_name_human_readable",
+          "name",
+          "region",
+          "cidr_block",
+          "created_by_user",
+          "project",
+          "environment",
+          "last_action",
+          "created_at",
+          "updated_at"
+        ]
+      },
+      "NetworkEnvironmentCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "The network's name. The value format is invalid. Must be between 1 and 64 characters.",
+            "example": "my-network",
+            "type": "string"
+          },
+          "provision_input": {
+            "$ref": "#/components/schemas/NetworkProvisionInput"
+          }
+        },
+        "required": [
+          "name",
+          "provision_input"
+        ]
+      },
+      "NetworkList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/NetworkRelation"
+        }
+      },
+      "NetworkProvisionInput": {
+        "type": "object",
+        "description": "Network provision input parameters",
+        "properties": {
+          "cloud_service_code": {
+            "type": "string",
+            "description": "The cloud service of the cloud provicer",
+            "example": "aws-ec2"
+          },
+          "credential_id": {
+            "type": "integer",
+            "description": "The ID of the cloud credential",
+            "example": 123
+          },
+          "settings": {
+            "$ref": "#/components/schemas/NetworkProvisionInputSettings"
+          }
+        },
+        "required": [
+          "cloud_service_code",
+          "credential_id",
+          "settings"
+        ]
+      },
+      "NetworkProvisionInputSettings": {
+        "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/NetworkProvisionInputSettingsAws"
+          },
+          {
+            "$ref": "#/components/schemas/NetworkProvisionInputSettingsDigitalOcean"
+          },
+          {
+            "$ref": "#/components/schemas/NetworkProvisionInputSettingsGcp"
+          }
+        ]
+      },
+      "NetworkProvisionInputSettingsAws": {
+        "type": "object",
+        "properties": {
+          "region": {
+            "description": "The cloud provider region where the network will be created",
+            "type": "string",
+            "example": "us-east-1"
+          },
+          "cidr_block": {
+            "description": "The IP CIDR range of the network",
+            "type": "string",
+            "example": "10.0.0.0/24"
+          }
+        },
+        "required": [
+          "region",
+          "cidr_block"
+        ]
+      },
+      "NetworkProvisionInputSettingsDigitalOcean": {
+        "type": "object",
+        "properties": {
+          "region": {
+            "description": "The cloud provider region where the network will be created",
+            "type": "string",
+            "example": "ams2"
+          },
+          "cidr_block": {
+            "description": "The IP CIDR range of the network",
+            "type": "string",
+            "example": "10.0.0.0/24"
+          }
+        },
+        "required": [
+          "region",
+          "cidr_block"
+        ]
+      },
+      "NetworkProvisionInputSettingsGcp": {
+        "type": "object",
+        "properties": {
+          "region": {
+            "description": "The cloud provider region where the network will be created",
+            "type": "string",
+            "example": "global"
+          }
+        },
+        "required": [
+          "region"
+        ]
+      },
+      "NetworkRelation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "The unique id of the given record",
+            "type": "integer",
+            "example": 6721
+          },
+          "project_id": {
+            "description": "Numeric ID of the project to which the network belongs to",
+            "type": "integer",
+            "example": 123
+          },
+          "environment_id": {
+            "description": "Numeric ID of the environment to which the network belongs to",
+            "type": "integer",
+            "example": 456
+          },
+          "created_by": {
+            "description": "The id of the user who created the network",
+            "type": "integer",
+            "example": 789
+          },
+          "provider_name": {
+            "description": "The name of the cloud provider",
+            "type": "string",
+            "example": "aws"
+          },
+          "provider_name_human_readable": {
+            "description": "The human readable version of the provider's name",
+            "type": "string",
+            "example": "Amazon Web Services"
+          },
+          "name": {
+            "description": "The networks's name",
+            "type": "string",
+            "example": "my-network"
+          },
+          "region": {
+            "description": "The cloud provider region where the network are created",
+            "type": "string",
+            "example": "us-east-1"
+          },
+          "cidr_block": {
+            "description": "The IP CIDR range of the network",
+            "type": "string",
+            "example": "10.0.0.0/24",
+            "nullable": true
+          },
+          "created_at": {
+            "description": "The date and time when the record was created",
+            "type": "string",
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "description": "The date and time when the record was last updated",
+            "type": "string",
+            "example": "2019-09-25T13:52:04.000000Z"
+          }
+        },
+        "required": [
+          "id",
+          "project_id",
+          "environment_id",
+          "created_by",
+          "provider_name",
+          "provider_name_human_readable",
+          "name",
+          "region",
+          "cidr_block",
           "created_at",
           "updated_at"
         ],
@@ -16090,6 +16774,7 @@
           "cronjob",
           "daemon",
           "deployment",
+          "network",
           "network-rule",
           "server",
           "service",
@@ -16446,163 +17131,6 @@
           "environment",
           "created_at",
           "updated_at"
-        ]
-      },
-      "ServerAction": {
-        "type": "object",
-        "description": "An object representing the action dispatched to a specific server",
-        "properties": {
-          "server_id": {
-            "type": "integer",
-            "description": "The Id of the server on which the action must be performed",
-            "example": 4567890
-          },
-          "status": {
-            "$ref": "#/components/schemas/ActionStatus"
-          },
-          "status_human_readable": {
-            "description": "Human readable version of the action status",
-            "type": "string",
-            "example": "Pending"
-          },
-          "total_steps": {
-            "type": "integer",
-            "minimum": 0,
-            "maximum": 127,
-            "description": "The total number of steps to complete the action",
-            "nullable": true,
-            "example": 5
-          },
-          "current_step": {
-            "$ref": "#/components/schemas/ActionStep"
-          },
-          "steps": {
-            "$ref": "#/components/schemas/ActionStepList"
-          },
-          "server_data": {
-            "$ref": "#/components/schemas/ServerActionData"
-          },
-          "started_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the action started execution (i.e., left the `pending/queued` status)",
-            "nullable": true,
-            "example": "2019-09-25T15:50:48.000000Z"
-          },
-          "completed_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the action has finished execution",
-            "nullable": true,
-            "example": "2019-09-25T13:52:04.000000Z"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the record was created",
-            "example": "2019-09-25T15:50:48.000000Z"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the record was last updated",
-            "example": "2019-09-25T13:52:04.000000Z"
-          }
-        }
-      },
-      "ServerActionData": {
-        "type": "object",
-        "nullable": true,
-        "properties": {
-          "id": {
-            "description": "The unique id of the server",
-            "type": "integer",
-            "example": 9654123
-          },
-          "hostname": {
-            "description": "The server's hostname",
-            "type": "string",
-            "example": "web-srv-1"
-          },
-          "provider_name": {
-            "description": "The name of the server's provider.",
-            "type": "string",
-            "example": "self-hosted"
-          },
-          "provider_name_human_readable": {
-            "description": "The human readable version of the provider's name",
-            "type": "string",
-            "example": "VPS/Self Hosted"
-          },
-          "ip_address": {
-            "description": "Public ipv4 address for server access",
-            "type": "string",
-            "example": "200.123.45.67"
-          },
-          "ssh_port": {
-            "description": "The network port to which the SSH daemon is listening to SSH connections on the server",
-            "type": "integer",
-            "example": 22
-          },
-          "os_version_code": {
-            "$ref": "#/components/schemas/CloudOsVersionCode"
-          },
-          "provision_settings": {
-            "$ref": "#/components/schemas/ServerProvisionSettingsInput"
-          }
-        },
-        "required": [
-          "id",
-          "hostname",
-          "provider_name",
-          "provider_name_human_readable",
-          "ip_address",
-          "ssh_port",
-          "os_version_code",
-          "provision_settings"
-        ]
-      },
-      "ServerActionList": {
-        "type": "array",
-        "description": "List of actions dispatched to servers",
-        "items": {
-          "$ref": "#/components/schemas/ServerAction"
-        }
-      },
-      "ServerActionLogStep": {
-        "type": "object",
-        "nullable": true,
-        "properties": {
-          "order": {
-            "type": "integer",
-            "description": "The execution order of the given step",
-            "example": 3
-          },
-          "started_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the step started execution (i.e., left the `pending/queued` status)",
-            "example": "2019-09-25T15:50:48.000000Z",
-            "nullable": true
-          },
-          "completed_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the step has finished execution",
-            "example": "2019-09-25T13:52:04.000000Z",
-            "nullable": true
-          },
-          "output": {
-            "type": "string",
-            "description": "The full text output log",
-            "nullable": true
-          }
-        },
-        "required": [
-          "order",
-          "started_at",
-          "completed_at",
-          "output"
         ]
       },
       "ServerBlueprint": {
