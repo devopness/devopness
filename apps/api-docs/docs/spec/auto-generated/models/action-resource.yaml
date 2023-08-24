@@ -25,6 +25,8 @@ properties:
       -
         $ref: '#/components/schemas/DaemonRelation'
       -
+        $ref: '#/components/schemas/NetworkRelation'
+      -
         $ref: '#/components/schemas/NetworkRuleRelation'
       -
         $ref: '#/components/schemas/ServerRelation'

@@ -25,6 +25,8 @@ properties:
     $ref: '#/components/schemas/CronJobList'
   daemons:
     $ref: '#/components/schemas/DaemonList'
+  networks:
+    $ref: '#/components/schemas/NetworkList'
   network_rules:
     $ref: '#/components/schemas/NetworkRuleList'
   applications:
@@ -56,6 +58,7 @@ required:
   - servers
   - cron_jobs
   - daemons
+  - networks
   - network_rules
   - applications
   - services
