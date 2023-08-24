@@ -9,12 +9,14 @@ import { EnvironmentsServicesApiService } from '../api/generated/apis/environmen
 import { EnvironmentsSSHKeysApiService } from '../api/generated/apis/environments-sshkeys-api';
 import { EnvironmentsTeamMembershipsApiService } from '../api/generated/apis/environments-team-memberships-api';
 import { EnvironmentsTeamsApiService } from '../api/generated/apis/environments-teams-api';
+import { EnvironmentsNetworksApiService } from '../api/generated/apis/environments-networks-api';
 
 export class EnvironmentService extends EnvironmentsApiService {
     public actions = new EnvironmentsActionsApiService();
     public applications = new EnvironmentsApplicationsApiService();
     public cronjobs = new EnvironmentsCronJobsApiService();
     public daemons = new EnvironmentsDaemonsApiService();
+    public networks = new EnvironmentsNetworksApiService();
     public networkRules = new EnvironmentsNetworkRulesApiService();
     public servers = new EnvironmentsServersApiService();
     public services = new EnvironmentsServicesApiService();
