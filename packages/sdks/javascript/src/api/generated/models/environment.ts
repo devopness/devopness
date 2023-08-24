@@ -16,6 +16,7 @@ import { ApplicationRelation } from './application-relation';
 import { CronJobRelation } from './cron-job-relation';
 import { DaemonRelation } from './daemon-relation';
 import { EnvironmentType } from './environment-type';
+import { NetworkRelation } from './network-relation';
 import { NetworkRuleRelation } from './network-rule-relation';
 import { ServerRelation } from './server-relation';
 import { ServiceRelation } from './service-relation';
@@ -77,6 +78,12 @@ export interface Environment {
      * @memberof Environment
      */
     daemons: Array<DaemonRelation>;
+    /**
+     * 
+     * @type {Array<NetworkRelation>}
+     * @memberof Environment
+     */
+    networks: Array<NetworkRelation>;
     /**
      * 
      * @type {Array<NetworkRuleRelation>}
