@@ -16,37 +16,37 @@
 /**
  * 
  * @export
- * @interface ActionSummaryServer
+ * @interface ActionSummaryTarget
  */
-export interface ActionSummaryServer {
+export interface ActionSummaryTarget {
     /**
-     * The total number of server actions
+     * The total number of action targets
      * @type {number}
-     * @memberof ActionSummaryServer
+     * @memberof ActionSummaryTarget
      */
     count: number;
     /**
-     * The number of server actions pending
+     * The number of action targets pending
      * @type {number}
-     * @memberof ActionSummaryServer
+     * @memberof ActionSummaryTarget
      */
     pending: number;
     /**
-     * The number of server actions in progress
+     * The number of action targets in progress
      * @type {number}
-     * @memberof ActionSummaryServer
+     * @memberof ActionSummaryTarget
      */
     in_progress: number;
     /**
-     * The number of server actions completed
+     * The number of action targets completed
      * @type {number}
-     * @memberof ActionSummaryServer
+     * @memberof ActionSummaryTarget
      */
     completed: number;
     /**
-     * The number of server actions failed
+     * The number of action targets failed
      * @type {number}
-     * @memberof ActionSummaryServer
+     * @memberof ActionSummaryTarget
      */
     failed: number;
 }

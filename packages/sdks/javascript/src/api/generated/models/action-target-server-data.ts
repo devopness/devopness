@@ -18,55 +18,55 @@ import { ServerProvisionSettingsInput } from './server-provision-settings-input'
 /**
  * 
  * @export
- * @interface ServerActionData
+ * @interface ActionTargetServerData
  */
-export interface ServerActionData {
+export interface ActionTargetServerData {
     /**
      * The unique id of the server
      * @type {number}
-     * @memberof ServerActionData
+     * @memberof ActionTargetServerData
      */
     id: number;
     /**
      * The server\'s hostname
      * @type {string}
-     * @memberof ServerActionData
+     * @memberof ActionTargetServerData
      */
     hostname: string;
     /**
      * The name of the server\'s provider.
      * @type {string}
-     * @memberof ServerActionData
+     * @memberof ActionTargetServerData
      */
     provider_name: string;
     /**
      * The human readable version of the provider\'s name
      * @type {string}
-     * @memberof ServerActionData
+     * @memberof ActionTargetServerData
      */
     provider_name_human_readable: string;
     /**
      * Public ipv4 address for server access
      * @type {string}
-     * @memberof ServerActionData
+     * @memberof ActionTargetServerData
      */
     ip_address: string;
     /**
      * The network port to which the SSH daemon is listening to SSH connections on the server
      * @type {number}
-     * @memberof ServerActionData
+     * @memberof ActionTargetServerData
      */
     ssh_port: number;
     /**
      * 
      * @type {CloudOsVersionCode}
-     * @memberof ServerActionData
+     * @memberof ActionTargetServerData
      */
     os_version_code: CloudOsVersionCode | null;
     /**
      * 
      * @type {ServerProvisionSettingsInput}
-     * @memberof ServerActionData
+     * @memberof ActionTargetServerData
      */
     provision_settings: ServerProvisionSettingsInput;
 }

@@ -14,78 +14,84 @@
 
 import { ActionStatus } from './action-status';
 import { ActionStep } from './action-step';
-import { ServerActionData } from './server-action-data';
+import { ActionTargetData } from './action-target-data';
 
 /**
- * An object representing the action dispatched to a specific server
+ * An object representing the action dispatched to a specific cloud resource target
  * @export
- * @interface ServerAction
+ * @interface ActionTarget
  */
-export interface ServerAction {
+export interface ActionTarget {
     /**
-     * The Id of the server on which the action must be performed
-     * @type {number}
-     * @memberof ServerAction
+     * The type of the cloud resource on which the action must be performed
+     * @type {string}
+     * @memberof ActionTarget
      */
-    server_id?: number;
+    resource_type?: string;
+    /**
+     * The Id of the cloud resource on which the action must be performed
+     * @type {number}
+     * @memberof ActionTarget
+     */
+    resource_id?: number;
     /**
      * 
      * @type {ActionStatus}
-     * @memberof ServerAction
+     * @memberof ActionTarget
      */
     status?: ActionStatus;
     /**
      * Human readable version of the action status
      * @type {string}
-     * @memberof ServerAction
+     * @memberof ActionTarget
      */
     status_human_readable?: string;
     /**
      * The total number of steps to complete the action
      * @type {number}
-     * @memberof ServerAction
+     * @memberof ActionTarget
      */
     total_steps?: number | null;
     /**
      * 
      * @type {ActionStep}
-     * @memberof ServerAction
+     * @memberof ActionTarget
      */
     current_step?: ActionStep | null;
     /**
      * The list of action steps
      * @type {Array<ActionStep>}
-     * @memberof ServerAction
+     * @memberof ActionTarget
      */
     steps?: Array<ActionStep>;
     /**
      * 
-     * @type {ServerActionData}
-     * @memberof ServerAction
+     * @type {ActionTargetData}
+     * @memberof ActionTarget
      */
-    server_data?: ServerActionData | null;
+    resource_data?: ActionTargetData | null;
     /**
      * The date and time when the action started execution (i.e., left the `pending/queued` status)
      * @type {string}
-     * @memberof ServerAction
+     * @memberof ActionTarget
      */
     started_at?: string | null;
     /**
      * The date and time when the action has finished execution
      * @type {string}
-     * @memberof ServerAction
+     * @memberof ActionTarget
      */
     completed_at?: string | null;
     /**
      * The date and time when the record was created
      * @type {string}
-     * @memberof ServerAction
+     * @memberof ActionTarget
      */
     created_at?: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
-     * @memberof ServerAction
+     * @memberof ActionTarget
      */
     updated_at?: string;
 }

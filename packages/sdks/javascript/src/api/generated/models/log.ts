@@ -12,8 +12,8 @@
  */
 
 
-import { ServerActionData } from './server-action-data';
-import { ServerActionLogStep } from './server-action-log-step';
+import { ActionTargetData } from './action-target-data';
+import { ActionTargetLogStep } from './action-target-log-step';
 
 /**
  * 
@@ -23,16 +23,16 @@ import { ServerActionLogStep } from './server-action-log-step';
 export interface Log {
     /**
      * 
-     * @type {ServerActionData}
+     * @type {ActionTargetData}
      * @memberof Log
      */
-    server: ServerActionData | null;
+    target: ActionTargetData | null;
     /**
      * 
-     * @type {ServerActionLogStep}
+     * @type {ActionTargetLogStep}
      * @memberof Log
      */
-    step: ServerActionLogStep | null;
+    step: ActionTargetLogStep | null;
     /**
      * The date and time when the requested log record was last updated
      * @type {string}
