@@ -17,15 +17,8 @@ properties:
     description: 'The networks''s name'
     type: string
     example: my-network
-  region:
-    description: 'The cloud provider region where the network are created'
-    type: string
-    example: us-east-1
-  cidr_block:
-    description: 'The IP CIDR range of the network'
-    type: string
-    example: 10.0.0.0/24
-    nullable: true
+  provision_input:
+    $ref: '#/components/schemas/NetworkProvisionInput'
   created_by_user:
     $ref: '#/components/schemas/UserRelation'
   project:
@@ -47,8 +40,7 @@ required:
   - provider_name
   - provider_name_human_readable
   - name
-  - region
-  - cidr_block
+  - provision_input
   - created_by_user
   - project
   - environment

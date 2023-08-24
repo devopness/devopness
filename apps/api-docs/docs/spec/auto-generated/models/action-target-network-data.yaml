@@ -11,26 +11,18 @@ properties:
     type: string
     example: my-network
   provider_name:
-    description: 'The name of the network''s provider.'
+    description: 'The name of the network''s cloud provider.'
     type: string
     example: aws
   provider_name_human_readable:
-    description: 'The human readable version of the provider''s name'
+    description: 'The human readable version of the cloud provider''s name'
     type: string
     example: 'Amazon Web Services'
-  region:
-    description: 'The cloud provider region where the network are created'
-    type: string
-    example: us-east-1
-  cidr_block:
-    description: 'The IP CIDR range of the network'
-    type: string
-    example: 10.0.0.0/24
-    nullable: true
+  provision_input:
+    $ref: '#/components/schemas/NetworkProvisionInput'
 required:
   - id
   - name
   - provider_name
   - provider_name_human_readable
-  - region
-  - cidr_block
+  - provision_input
