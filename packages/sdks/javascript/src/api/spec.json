@@ -10960,6 +10960,9 @@
                 "$ref": "#/components/schemas/DaemonRelation"
               },
               {
+                "$ref": "#/components/schemas/NetworkRelation"
+              },
+              {
                 "$ref": "#/components/schemas/NetworkRuleRelation"
               },
               {
@@ -13644,6 +13647,9 @@
           "daemons": {
             "$ref": "#/components/schemas/DaemonList"
           },
+          "networks": {
+            "$ref": "#/components/schemas/NetworkList"
+          },
           "network_rules": {
             "$ref": "#/components/schemas/NetworkRuleList"
           },
@@ -13685,6 +13691,7 @@
           "servers",
           "cron_jobs",
           "daemons",
+          "networks",
           "network_rules",
           "applications",
           "services",
