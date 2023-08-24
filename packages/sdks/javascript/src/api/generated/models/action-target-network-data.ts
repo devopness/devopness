@@ -12,6 +12,7 @@
  */
 
 
+import { NetworkProvisionInput } from './network-provision-input';
 
 /**
  * 
@@ -32,28 +33,22 @@ export interface ActionTargetNetworkData {
      */
     name: string;
     /**
-     * The name of the network\'s provider.
+     * The name of the network\'s cloud provider.
      * @type {string}
      * @memberof ActionTargetNetworkData
      */
     provider_name: string;
     /**
-     * The human readable version of the provider\'s name
+     * The human readable version of the cloud provider\'s name
      * @type {string}
      * @memberof ActionTargetNetworkData
      */
     provider_name_human_readable: string;
     /**
-     * The cloud provider region where the network are created
-     * @type {string}
+     * 
+     * @type {NetworkProvisionInput}
      * @memberof ActionTargetNetworkData
      */
-    region: string;
-    /**
-     * The IP CIDR range of the network
-     * @type {string}
-     * @memberof ActionTargetNetworkData
-     */
-    cidr_block: string | null;
+    provision_input: NetworkProvisionInput;
 }
 

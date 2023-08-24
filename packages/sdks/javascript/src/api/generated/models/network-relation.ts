@@ -12,6 +12,7 @@
  */
 
 
+import { NetworkProvisionInput } from './network-provision-input';
 
 /**
  * 
@@ -62,17 +63,11 @@ export interface NetworkRelation {
      */
     name: string;
     /**
-     * The cloud provider region where the network are created
-     * @type {string}
+     * 
+     * @type {NetworkProvisionInput}
      * @memberof NetworkRelation
      */
-    region: string;
-    /**
-     * The IP CIDR range of the network
-     * @type {string}
-     * @memberof NetworkRelation
-     */
-    cidr_block: string | null;
+    provision_input: NetworkProvisionInput;
     /**
      * The date and time when the record was created
      * @type {string}
