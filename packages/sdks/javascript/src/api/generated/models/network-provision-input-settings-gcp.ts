@@ -12,19 +12,18 @@
  */
 
 
-import { ActionSummaryTarget } from './action-summary-target';
 
 /**
  * 
  * @export
- * @interface ActionSummary
+ * @interface NetworkProvisionInputSettingsGcp
  */
-export interface ActionSummary {
+export interface NetworkProvisionInputSettingsGcp {
     /**
-     * 
-     * @type {ActionSummaryTarget}
-     * @memberof ActionSummary
+     * The cloud provider region where the network will be created
+     * @type {string}
+     * @memberof NetworkProvisionInputSettingsGcp
      */
-    targets: ActionSummaryTarget;
+    region: string;
 }
 

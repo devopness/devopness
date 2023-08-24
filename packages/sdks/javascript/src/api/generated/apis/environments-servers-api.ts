@@ -47,7 +47,7 @@ export class EnvironmentsServersApiService extends ApiBaseService {
 
     /**
      * 
-     * @summary Return a list of all servers belonging to a environment
+     * @summary Return a list of all servers belonging to an environment
      * @param {number} environmentId The ID of the environment.
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page

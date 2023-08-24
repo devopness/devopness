@@ -16,31 +16,31 @@
 /**
  * 
  * @export
- * @interface ServerActionLogStep
+ * @interface ActionTargetLogStep
  */
-export interface ServerActionLogStep {
+export interface ActionTargetLogStep {
     /**
      * The execution order of the given step
      * @type {number}
-     * @memberof ServerActionLogStep
+     * @memberof ActionTargetLogStep
      */
     order: number;
     /**
      * The date and time when the step started execution (i.e., left the `pending/queued` status)
      * @type {string}
-     * @memberof ServerActionLogStep
+     * @memberof ActionTargetLogStep
      */
     started_at: string | null;
     /**
      * The date and time when the step has finished execution
      * @type {string}
-     * @memberof ServerActionLogStep
+     * @memberof ActionTargetLogStep
      */
     completed_at: string | null;
     /**
      * The full text output log
      * @type {string}
-     * @memberof ServerActionLogStep
+     * @memberof ActionTargetLogStep
      */
     output: string | null;
 }
