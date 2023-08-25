@@ -21,7 +21,7 @@ links:
 1. On the upper-right corner of the list click `ADD SERVER`
 1. Choose `DigitalOcean` as cloud provider
 1. Select an DigitalOcean credential using the drop-down menu
-    > If no credential is listed or you want to use a different one, please follow the [Add a Cloud Provider Credential](/docs/cloud-provider-credentials/add-cloud-provider-credential/) guide
+    > If no credential is listed or you want to use a different one, follow the guide [Add a Cloud Provider Credential](/docs/users/credentials/add-credential)
 1. Click `NEXT`
 1. Select an available region using the drop-down menu
 1. Select an available instance type using the drop-down menu
