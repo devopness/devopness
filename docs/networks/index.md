@@ -1,7 +1,7 @@
 ---
 draft: true
 title: Networks
-intro: In this section you will learn how to provision and manage your networks/virtual private cloud (VPC)
+intro: Learn how to provision and manage cloud networks, also known as Virtual Private Clouds (VPCs)
 links:
     overview:
     quickstart:

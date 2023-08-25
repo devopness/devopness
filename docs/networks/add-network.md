@@ -1,7 +1,7 @@
 ---
 draft: true
 title: Add a Network
-intro: By default, every cloud provider provisions at least one network/VPC (Virtual Private Cloud) in each region to which a user's account has access. However there are cases where you might need to define custom network topology, for example to isolate resources that should not be directly connected. Add a network to define a custom network topology.
+intro: Add a network to your environment when you need to define custom network topology. Resources (such as Servers and Applications) deployed to different networks, will be completely isolated from each other.
 links:
     overview:
     quickstart:
