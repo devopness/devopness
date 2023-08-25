@@ -16,9 +16,9 @@ import { ActionData } from './action-data';
 import { ActionResource } from './action-resource';
 import { ActionStatus } from './action-status';
 import { ActionSummary } from './action-summary';
+import { ActionTarget } from './action-target';
 import { ActionTriggeredFrom } from './action-triggered-from';
 import { ActionType } from './action-type';
-import { ServerAction } from './server-action';
 
 /**
  * 
@@ -87,11 +87,11 @@ export interface ActionRelation {
      */
     summary?: ActionSummary;
     /**
-     * List of actions dispatched to servers
-     * @type {Array<ServerAction>}
+     * List of actions dispatched to cloud resource targets
+     * @type {Array<ActionTarget>}
      * @memberof ActionRelation
      */
-    servers?: Array<ServerAction>;
+    targets?: Array<ActionTarget>;
     /**
      * The date and time when the action started execution (i.e., left the `pending/queued` status)
      * @type {string}

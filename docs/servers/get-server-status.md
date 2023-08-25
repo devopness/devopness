@@ -1,5 +1,4 @@
 ---
-draft: true
 title: Get a Server’s Status
 intro: Sometimes you might want to check if a server is currently running. Get the server status to check if a server is currently running, stopped or deleted.
 links:

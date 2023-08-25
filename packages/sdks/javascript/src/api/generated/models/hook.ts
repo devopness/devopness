@@ -99,6 +99,12 @@ export interface Hook {
      */
     environment_id: number;
     /**
+     * The ID of the pipeline executed by this hook
+     * @type {number}
+     * @memberof Hook
+     */
+    pipeline_id: number | null;
+    /**
      * 
      * @type {ResourceType}
      * @memberof Hook

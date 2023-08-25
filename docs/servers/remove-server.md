@@ -1,5 +1,4 @@
 ---
-draft: true
 title: Remove a Server
 intro: Sometimes you may want to delete a server that has not been used recently. Remove a server to delete all the server data from the cloud provider.
 links:

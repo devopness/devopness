@@ -22,27 +22,27 @@ import { Log } from '../../generated/models';
 export class ActionsLogsApiService extends ApiBaseService {
     /**
      * 
-     * @summary Get action server step log
+     * @summary Get action target step log
      * @param {number} actionId The ID of the action.
      * @param {number} actionStepOrder The action step order.
-     * @param {number} serverId The ID of the server.
+     * @param {number} actionTargetId The ID of the action target.
      */
-    public async getActionLog(actionId: number, actionStepOrder: number, serverId: number): Promise<ApiResponse<Log>> {
+    public async getActionLog(actionId: number, actionStepOrder: number, actionTargetId: number): Promise<ApiResponse<Log>> {
         if (actionId === null || actionId === undefined) {
             throw new ArgumentNullException('actionId', 'getActionLog');
         }
         if (actionStepOrder === null || actionStepOrder === undefined) {
             throw new ArgumentNullException('actionStepOrder', 'getActionLog');
         }
-        if (serverId === null || serverId === undefined) {
-            throw new ArgumentNullException('serverId', 'getActionLog');
+        if (actionTargetId === null || actionTargetId === undefined) {
+            throw new ArgumentNullException('actionTargetId', 'getActionLog');
         }
         
         let queryString = '';
 
-        const requestUrl = '/actions/{action_id}/servers/{server_id}/steps/{action_step_order}/logs' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/actions/{action_id}/targets/{action_target_id}/steps/{action_step_order}/logs' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Log>(requestUrl.replace(`{${"action_id"}}`, encodeURIComponent(String(actionId))).replace(`{${"action_step_order"}}`, encodeURIComponent(String(actionStepOrder))).replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))));
+        const response = await this.get <Log>(requestUrl.replace(`{${"action_id"}}`, encodeURIComponent(String(actionId))).replace(`{${"action_step_order"}}`, encodeURIComponent(String(actionStepOrder))).replace(`{${"action_target_id"}}`, encodeURIComponent(String(actionTargetId))));
         return new ApiResponse(response);
     }
 }

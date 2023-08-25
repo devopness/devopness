@@ -17,12 +17,12 @@ import { ActionHookRequest } from './action-hook-request';
 import { ActionResource } from './action-resource';
 import { ActionStatus } from './action-status';
 import { ActionSummary } from './action-summary';
+import { ActionTarget } from './action-target';
 import { ActionTriggeredFrom } from './action-triggered-from';
 import { ActionType } from './action-type';
 import { EnvironmentRelation } from './environment-relation';
 import { ProjectRelation } from './project-relation';
 import { RelatedAction } from './related-action';
-import { ServerAction } from './server-action';
 import { UserRelation } from './user-relation';
 
 /**
@@ -134,11 +134,11 @@ export interface ActionRetryResponse {
      */
     project?: ProjectRelation | null;
     /**
-     * List of actions dispatched to servers
-     * @type {Array<ServerAction>}
+     * List of actions dispatched to cloud resource targets
+     * @type {Array<ActionTarget>}
      * @memberof ActionRetryResponse
      */
-    servers?: Array<ServerAction>;
+    targets?: Array<ActionTarget>;
     /**
      * 
      * @type {ActionHookRequest}

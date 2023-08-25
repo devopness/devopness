@@ -23,6 +23,7 @@ export enum ResourceType {
     Cronjob = 'cronjob',
     Daemon = 'daemon',
     Deployment = 'deployment',
+    Network = 'network',
     NetworkRule = 'network-rule',
     Server = 'server',
     Service = 'service',

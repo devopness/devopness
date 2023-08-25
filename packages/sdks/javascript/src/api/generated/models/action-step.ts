@@ -33,17 +33,11 @@ export interface ActionStep {
      */
     action_id: number;
     /**
-     * The unique id of the action server linked to this step
+     * The unique id of the action target linked to this step
      * @type {number}
      * @memberof ActionStep
      */
-    action_server_id: number;
-    /**
-     * The Id of the server on which the action must be performed
-     * @type {number}
-     * @memberof ActionStep
-     */
-    server_id: number;
+    action_target_id: number;
     /**
      * Name of the action describing your purpose
      * @type {string}
