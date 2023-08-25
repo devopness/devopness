@@ -1,4 +1,5 @@
 ---
+draft: true
 title: Networks
 intro: In this section you will learn how to provision and manage your networks/virtual private cloud (VPC)
 links:
