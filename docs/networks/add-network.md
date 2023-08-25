@@ -23,3 +23,4 @@ required_permissions:
 1. Follow the prompts to complete the configuration of the new `Network`
 1. Click `CONFIRM`
 1. In the `Networks` list, the recently created `Network` can be seen.
+    - If you want to add a server to the `Network`, it is required to first follow the guide [Add a Subnet](/docs/subnets/add-subnet)
