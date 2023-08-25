@@ -18,8 +18,8 @@ required_permissions:
 1. Find the `Networks` card
 1. Click `View` in the `Networks` card to see a list of existing `Networks`
 1. On the upper-right corner of the list click `ADD NETWORK`
-1. Select a connected `Source Provider` account
-    > If no source provider account is listed or you want to use a different one, follow the guide [Add a Cloud Provider Credential](/docs/users/credentials/add-credential)
+1. Select a `Cloud Provider Credential`
+    > If no credential is listed or you want to use a different one, follow the guide [Add a Cloud Provider Credential](/docs/users/credentials/add-credential)
 1. Follow the prompts to complete the configuration of the new `Network`
 1. Click `CONFIRM`
 1. In the `Networks` list, the recently created `Network` can be seen.
