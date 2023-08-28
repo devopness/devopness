@@ -1,6 +1,6 @@
 ---
 title: Remove a Pipeline
-intro: By removing unused pipelines can help ensure that only relevant pipelines are active and properly managed.
+intro: Removing unused pipelines can help ensure that only relevant pipelines are active and properly managed.
 links:
     overview:
     quickstart:
@@ -22,4 +22,4 @@ required_permissions:
 1. In the list of pipelines find the pipeline you want to remove and click `DETAILS`
 1. On the upper-right corner of the pipeline details view details click `...`
 1. Use the drop-down menu to choose `REMOVE`
-1. Follow the instructions in the delete form then click `REMOVE`
+1. Follow the instructions in the remove form then click `REMOVE`
