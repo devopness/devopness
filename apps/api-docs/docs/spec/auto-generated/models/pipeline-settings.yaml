@@ -2,6 +2,12 @@
 type: object
 description: 'Settings that can be customized for a pipeline'
 properties:
+  max_pipelines_per_resource:
+    type: integer
+    example: 1
+  allow_custom_steps:
+    type: boolean
+    example: true
   stages:
     $ref: '#/components/schemas/PipelineSettingsStageList'
   variables:
