@@ -13,7 +13,6 @@
 
 
 import { ApplicationLastDeployments } from './application-last-deployments';
-import { ApplicationPipeline } from './application-pipeline';
 import { ApplicationType } from './application-type';
 import { EnvironmentRelation } from './environment-relation';
 import { ServerRelation } from './server-relation';
@@ -165,12 +164,6 @@ export interface Application {
      * @memberof Application
      */
     requires_daemon: boolean;
-    /**
-     * 
-     * @type {ApplicationPipeline}
-     * @memberof Application
-     */
-    default_pipeline: ApplicationPipeline | null;
     /**
      * 
      * @type {UserRelation}
