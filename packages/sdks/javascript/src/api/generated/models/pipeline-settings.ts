@@ -22,6 +22,18 @@ import { PipelineSettingsVariable } from './pipeline-settings-variable';
  */
 export interface PipelineSettings {
     /**
+     * 
+     * @type {number}
+     * @memberof PipelineSettings
+     */
+    max_pipelines_per_resource?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PipelineSettings
+     */
+    allow_custom_steps?: boolean;
+    /**
      * The list of pipeline setting stage
      * @type {Array<PipelineSettingsStage>}
      * @memberof PipelineSettings
