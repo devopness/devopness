@@ -81,12 +81,6 @@ export interface ApplicationUpdate {
      */
     repository?: string;
     /**
-     * Numeric ID of the pipeline used as default on deploy the application.
-     * @type {string}
-     * @memberof ApplicationUpdate
-     */
-    default_pipeline_id?: string;
-    /**
      * Numeric ID of the source provider account where the repository is hosted. This field is required when <code>repository</code> is present.
      * @type {number}
      * @memberof ApplicationUpdate
