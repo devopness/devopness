@@ -11698,9 +11698,6 @@
             "type": "boolean",
             "example": false
           },
-          "default_pipeline": {
-            "$ref": "#/components/schemas/ApplicationPipeline"
-          },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
           },
@@ -11754,7 +11751,6 @@
           "install_dependencies_dev",
           "install_dependencies_prod",
           "requires_daemon",
-          "default_pipeline",
           "created_by_user",
           "last_deployments",
           "environment",
@@ -12154,11 +12150,6 @@
           "repository": {
             "description": "The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed. Must not be greater than 60 characters.",
             "example": "devopness-api-tests/tester",
-            "type": "string"
-          },
-          "default_pipeline_id": {
-            "description": "Numeric ID of the pipeline used as default on deploy the application.",
-            "example": 347106,
             "type": "string"
           },
           "source_provider_id": {
@@ -16072,6 +16063,14 @@
         "type": "object",
         "description": "Settings that can be customized for a pipeline",
         "properties": {
+          "max_pipelines_per_resource": {
+            "type": "integer",
+            "example": 1
+          },
+          "allow_custom_steps": {
+            "type": "boolean",
+            "example": true
+          },
           "stages": {
             "$ref": "#/components/schemas/PipelineSettingsStageList"
           },
