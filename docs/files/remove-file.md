@@ -1,6 +1,6 @@
 ---
 title: Remove a File
-intro: Removing unused configuration files can ensure that only relevant and necessary information is utilized, thereby reducing the risk of errors during the deployment process.
+intro: Learn how to remove a file when it's no longer needed
 links:
     overview:
     quickstart:
@@ -17,13 +17,14 @@ required_permissions:
 
 1. On Devopness, navigate to a project then select an environment
 1. Find the `Applications` card
-1. Click `View` in the `Applications` card to see a list of existing `Applications`
-1. In the list of applications find the application with the pipeline you want to manage and click `DETAILS`
-1. On the upper-right corner of the applications details view click `SETTINGS`
-1. Use the drop-down menu to choose `CONFIGURATION FILES`
-1. In the list of pipelines find the pipeline you want to remove and click `DETAILS`
-1. On the upper-right corner of the configuration file details click `...`
+1. Click `View` in the `Applications` card, to see a list of existing `Applications`
+1. In the list of applications, find the application with the file you want to remove and click `DETAILS`
+1. On the upper-right corner of the applications details view, click `SETTINGS`
+1. Use the drop-down menu to choose `CONFIGURATION FILES`, to see a list of existing `Files`
+1. In the list of files, find the file you want to remove and click `DETAILS`
+1. On the upper-right corner of the file details view, click `...`
 1. Use the drop-down menu to choose `REMOVE`
-1. Follow the instructions in the delete form then click `REMOVE`
+1. Follow the prompts then click `REMOVE`
+1. In the list of files, the recently removed `File` will be gone
     > A new deployment is required for your changes to take effect.
       - Follow the guide [Deploy Application](/docs/applications/deploy-application/)
