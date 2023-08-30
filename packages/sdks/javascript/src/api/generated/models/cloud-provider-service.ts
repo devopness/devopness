@@ -12,8 +12,10 @@
  */
 
 
+import { CloudProviderRelation } from './cloud-provider-relation';
 import { CloudProviderServiceCode } from './cloud-provider-service-code';
 import { CloudProviderServiceRegion } from './cloud-provider-service-region';
+import { CloudProviderServiceResourceType } from './cloud-provider-service-resource-type';
 import { OperatingSystem } from './operating-system';
 
 /**
@@ -36,6 +38,12 @@ export interface CloudProviderService {
     name: string;
     /**
      * 
+     * @type {CloudProviderRelation}
+     * @memberof CloudProviderService
+     */
+    cloud_provider: CloudProviderRelation;
+    /**
+     * 
      * @type {Array<CloudProviderServiceRegion>}
      * @memberof CloudProviderService
      */
@@ -46,5 +54,11 @@ export interface CloudProviderService {
      * @memberof CloudProviderService
      */
     os?: Array<OperatingSystem>;
+    /**
+     * 
+     * @type {Array<CloudProviderServiceResourceType>}
+     * @memberof CloudProviderService
+     */
+    resource_types?: Array<CloudProviderServiceResourceType>;
 }
 

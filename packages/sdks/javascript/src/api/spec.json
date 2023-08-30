@@ -3978,6 +3978,61 @@
       }
     },
     "/networks/{network_id}": {
+      "delete": {
+        "summary": "Delete a given network",
+        "operationId": "deleteNetwork",
+        "description": {
+          "$ref": "../spec/descriptions/delete-network.md"
+        },
+        "tags": [
+          "Networks"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "network_id",
+            "description": "The ID of the network.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      },
       "get": {
         "summary": "Get a network by ID",
         "operationId": "getNetwork",
@@ -4027,6 +4082,149 @@
                 "schema": {
                   "$ref": "#/components/schemas/ApiError"
                 }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/networks/{network_id}/subnets": {
+      "get": {
+        "summary": "Return a list of all subnets belonging to a network",
+        "operationId": "listNetworkSubnets",
+        "description": {
+          "$ref": "../spec/descriptions/list-network-subnets.md"
+        },
+        "tags": [
+          "Networks - Subnets"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "network_id",
+            "description": "The ID of the network.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubnetList"
+                }
+              }
+            },
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new subnet for the given network",
+        "operationId": "addNetworkSubnet",
+        "description": {
+          "$ref": "../spec/descriptions/add-network-subnet.md"
+        },
+        "tags": [
+          "Networks - Subnets"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "network_id",
+            "description": "The ID of the network.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Subnet"
+                }
+              }
+            },
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubnetNetworkCreate"
               }
             }
           }
@@ -8619,6 +8817,62 @@
         }
       }
     },
+    "/subnets/{subnet_id}": {
+      "get": {
+        "summary": "Get a subnet by ID",
+        "operationId": "getSubnet",
+        "description": {
+          "$ref": "../spec/descriptions/get-subnet.md"
+        },
+        "tags": [
+          "Subnets"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "subnet_id",
+            "description": "The ID of the subnet.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Subnet"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/team-invitations/{team_invitation_id}/accept": {
       "post": {
         "summary": "Accept a pending team invitation",
@@ -10182,6 +10436,9 @@
       "name": "Networks"
     },
     {
+      "name": "Networks - Subnets"
+    },
+    {
       "name": "Network Rules"
     },
     {
@@ -10260,6 +10517,9 @@
     {
       "name": "SSL Certificates",
       "description": "Throughout the `devopness` documentation the term `SSL Certificate` refers to a public key certificate adhering to `X.509` standard. While TLS is the protocol more used nowadays for web encryption, for historical reasons web encryption is often referred to simply as SSL. A SSL Certificate managed by `devopness` might be used as an HTTPS/SSL/TLS and other internet protocols to establish encrypted connections between client apps (e.g. browsers) and the web application servers managed through `devopness`, but it's not limited to be used for authenticating server's identity.\n"
+    },
+    {
+      "name": "Subnets"
     },
     {
       "name": "Teams"
@@ -10368,6 +10628,7 @@
       "name": "Networks",
       "tags": [
         "Networks",
+        "Networks - Subnets",
         "Environments - Networks"
       ]
     },
@@ -10451,6 +10712,12 @@
       "name": "SSL Certificates",
       "tags": [
         "SSL Certificates"
+      ]
+    },
+    {
+      "name": "Subnets",
+      "tags": [
+        "Subnets"
       ]
     },
     {
@@ -11255,6 +11522,11 @@
             "type": "string",
             "description": "The type of the cloud resource on which the action must be performed",
             "example": "server"
+          },
+          "resource_type_human_readable": {
+            "description": "Human readable version of the resource type",
+            "type": "string",
+            "example": "Server"
           },
           "resource_id": {
             "type": "integer",
@@ -12430,7 +12702,7 @@
         ],
         "example": "aws"
       },
-      "CloudProviderCredentialSettings": {
+      "CloudProviderInputSettings": {
         "type": "object",
         "description": "Cloud provider credential settings",
         "properties": {
@@ -12477,11 +12749,11 @@
           "validation"
         ]
       },
-      "CloudProviderCredentialSettingsList": {
+      "CloudProviderInputSettingsList": {
         "type": "array",
         "description": "Settings of the cloud provider credential",
         "items": {
-          "$ref": "#/components/schemas/CloudProviderCredentialSettings"
+          "$ref": "#/components/schemas/CloudProviderInputSettings"
         }
       },
       "CloudProviderOptionsList": {
@@ -12504,7 +12776,7 @@
           "hint": {
             "description": "Text describing what is the provider",
             "type": "string",
-            "example": "Cloud Server provided by Amazon Web Services"
+            "example": "Cloud services provided by Amazon Web Services"
           },
           "logo_url": {
             "description": "The provider's logo URL",
@@ -12574,6 +12846,37 @@
           "allowed_values"
         ]
       },
+      "CloudProviderRelation": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "description": "Cloud provider code",
+            "type": "string",
+            "example": "aws"
+          },
+          "name": {
+            "description": "Cloud provider name",
+            "type": "string",
+            "example": "Amazon Web Services"
+          },
+          "hint": {
+            "type": "string",
+            "description": "Text describing what is the provider",
+            "example": "Cloud services provided by Amazon Web Services"
+          },
+          "logo_url": {
+            "type": "string",
+            "description": "The provider's logo URL.",
+            "example": "https://assets.devopness.com/images/icons/cloud-providers/aws.svg"
+          }
+        },
+        "required": [
+          "code",
+          "name",
+          "hint",
+          "logo_url"
+        ]
+      },
       "CloudProviderService": {
         "type": "object",
         "properties": {
@@ -12581,20 +12884,27 @@
             "$ref": "#/components/schemas/CloudProviderServiceCode"
           },
           "name": {
-            "type": "string",
             "description": "The full name of the cloud service",
+            "type": "string",
             "example": "Amazon Elastic Compute Cloud"
+          },
+          "cloud_provider": {
+            "$ref": "#/components/schemas/CloudProviderRelation"
           },
           "regions": {
             "$ref": "#/components/schemas/CloudProviderServiceRegionList"
           },
           "os": {
             "$ref": "#/components/schemas/OperatingSystems"
+          },
+          "resource_types": {
+            "$ref": "#/components/schemas/CloudProviderServiceResourceTypeList"
           }
         },
         "required": [
           "code",
-          "name"
+          "name",
+          "cloud_provider"
         ]
       },
       "CloudProviderServiceCode": {
@@ -12631,12 +12941,16 @@
             "type": "string",
             "description": "Text describing the region",
             "example": "us-east-1: US East (N. Virginia)"
+          },
+          "zones": {
+            "$ref": "#/components/schemas/CloudProviderServiceRegionZones"
           }
         },
         "required": [
           "code",
           "name",
-          "hint"
+          "hint",
+          "zones"
         ]
       },
       "CloudProviderServiceRegionList": {
@@ -12645,12 +12959,68 @@
           "$ref": "#/components/schemas/CloudProviderServiceRegion"
         }
       },
+      "CloudProviderServiceRegionZones": {
+        "type": "array",
+        "description": "List of availability zones of the cloud provider region",
+        "items": {
+          "type": "string"
+        },
+        "example": [
+          "us-east-1a",
+          "us-east-1b",
+          "us-east-1c"
+        ]
+      },
+      "CloudProviderServiceResourceType": {
+        "type": "object",
+        "description": "Resource type details",
+        "properties": {
+          "provider_resource_type": {
+            "type": "string",
+            "description": "The resource type's name on the cloud provider",
+            "example": "vpc"
+          },
+          "devopness_resource_type": {
+            "type": "string",
+            "description": "The resource type's name on Devopness",
+            "example": "network"
+          },
+          "scope": {
+            "$ref": "#/components/schemas/CloudProviderServiceResourceTypeScope"
+          },
+          "input_settings": {
+            "$ref": "#/components/schemas/CloudProviderInputSettingsList"
+          }
+        },
+        "required": [
+          "provider_resource_type",
+          "devopness_resource_type",
+          "scope",
+          "input_settings"
+        ]
+      },
+      "CloudProviderServiceResourceTypeList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/CloudProviderServiceResourceType"
+        }
+      },
+      "CloudProviderServiceResourceTypeScope": {
+        "type": "string",
+        "description": "The resource type's scope",
+        "enum": [
+          "global",
+          "region",
+          "zone"
+        ],
+        "example": "region"
+      },
       "CloudProviderSettingsList": {
         "type": "object",
         "description": "Settings of the cloud provider",
         "properties": {
           "credential": {
-            "$ref": "#/components/schemas/CloudProviderCredentialSettingsList"
+            "$ref": "#/components/schemas/CloudProviderInputSettingsList"
           }
         }
       },
@@ -15217,7 +15587,7 @@
         "type": "object",
         "properties": {
           "name": {
-            "description": "The network's name. The value format is invalid. Must be between 1 and 64 characters.",
+            "description": "The network's name. Must be between 1 and 63 characters.",
             "example": "my-network",
             "type": "string"
           },
@@ -16758,7 +17128,8 @@
           "server",
           "service",
           "ssh-key",
-          "ssl-certificate"
+          "ssl-certificate",
+          "subnet"
         ],
         "example": "application"
       },
@@ -17210,7 +17581,7 @@
         "type": "object",
         "properties": {
           "hostname": {
-            "description": "The hostname to be set on Linux servers. Accepts numbers (0-9), dash (-) and lower case non accented characters. Must contain only letters, numbers, dashes and underscores. Must not be greater than 60 characters.",
+            "description": "The hostname to be set on Linux servers. Accepts numbers (0-9), dash (-) and lower case non accented characters. Must not be greater than 60 characters.",
             "example": "web-srv-1",
             "type": "string"
           },
@@ -18813,6 +19184,266 @@
           "name",
           "command",
           "runner"
+        ]
+      },
+      "Subnet": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "The unique id of the given record",
+            "type": "integer",
+            "example": 7641
+          },
+          "name": {
+            "description": "The subnet's name",
+            "type": "string",
+            "example": "my-subnet"
+          },
+          "type": {
+            "$ref": "#/components/schemas/SubnetType"
+          },
+          "is_auto_generated": {
+            "description": "True if this subnet is auto-generated or false if this was created by the user",
+            "type": "boolean",
+            "example": false
+          },
+          "provision_input": {
+            "$ref": "#/components/schemas/SubnetProvisionInput"
+          },
+          "created_by_user": {
+            "$ref": "#/components/schemas/UserRelation"
+          },
+          "project": {
+            "$ref": "#/components/schemas/ProjectRelation"
+          },
+          "environment": {
+            "$ref": "#/components/schemas/EnvironmentRelation"
+          },
+          "network": {
+            "$ref": "#/components/schemas/NetworkRelation"
+          },
+          "last_action": {
+            "$ref": "#/components/schemas/ActionRelation"
+          },
+          "created_at": {
+            "description": "The date and time when the record was created",
+            "type": "string",
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "description": "The date and time when the record was last updated",
+            "type": "string",
+            "example": "2019-09-25T13:52:04.000000Z"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "type",
+          "is_auto_generated",
+          "provision_input",
+          "created_by_user",
+          "project",
+          "environment",
+          "network",
+          "last_action",
+          "created_at",
+          "updated_at"
+        ]
+      },
+      "SubnetList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/SubnetRelation"
+        }
+      },
+      "SubnetNetworkCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "The subnet's name. Must be between 1 and 63 characters.",
+            "example": "my-subnet",
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/SubnetType"
+          },
+          "provision_input": {
+            "$ref": "#/components/schemas/SubnetProvisionInput"
+          }
+        },
+        "required": [
+          "name",
+          "type",
+          "provision_input"
+        ]
+      },
+      "SubnetProvisionInput": {
+        "type": "object",
+        "description": "Subnet provision input parameters",
+        "properties": {
+          "credential_id": {
+            "type": "integer",
+            "description": "The ID of the cloud credential",
+            "example": 123
+          },
+          "settings": {
+            "$ref": "#/components/schemas/SubnetProvisionInputSettings"
+          }
+        },
+        "required": [
+          "credential_id",
+          "settings"
+        ]
+      },
+      "SubnetProvisionInputSettings": {
+        "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/SubnetProvisionInputSettingsAws"
+          },
+          {
+            "$ref": "#/components/schemas/SubnetProvisionInputSettingsDigitalOcean"
+          },
+          {
+            "$ref": "#/components/schemas/SubnetProvisionInputSettingsGcp"
+          }
+        ]
+      },
+      "SubnetProvisionInputSettingsAws": {
+        "type": "object",
+        "properties": {
+          "zone": {
+            "description": "The cloud provider availability zone where the subnet will be created",
+            "type": "string",
+            "example": "us-east-1a"
+          },
+          "cidr_block": {
+            "description": "The IP CIDR range of the subnet",
+            "type": "string",
+            "example": "10.2.0.0/24"
+          }
+        },
+        "required": [
+          "zone",
+          "cidr_block"
+        ]
+      },
+      "SubnetProvisionInputSettingsDigitalOcean": {
+        "type": "object",
+        "properties": {
+          "cidr_block": {
+            "description": "The IP CIDR range of the subnet",
+            "type": "string",
+            "example": "10.2.0.0/24"
+          }
+        },
+        "required": [
+          "cidr_block"
+        ]
+      },
+      "SubnetProvisionInputSettingsGcp": {
+        "type": "object",
+        "properties": {
+          "region": {
+            "description": "The cloud provider region where the subnet will be created",
+            "type": "string",
+            "example": "us-west1"
+          },
+          "zone": {
+            "description": "The cloud provider availability zone where the subnet will be created",
+            "type": "string",
+            "example": "us-west1-a"
+          },
+          "cidr_block": {
+            "description": "The IP CIDR range of the subnet",
+            "type": "string",
+            "example": "10.2.0.0/24"
+          }
+        },
+        "required": [
+          "region",
+          "zone",
+          "cidr_block"
+        ]
+      },
+      "SubnetRelation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "The unique id of the given record",
+            "type": "integer",
+            "example": 7641
+          },
+          "project_id": {
+            "description": "Numeric ID of the project to which the subnet belongs to",
+            "type": "integer",
+            "example": 123
+          },
+          "environment_id": {
+            "description": "Numeric ID of the environment to which the subnet belongs to",
+            "type": "integer",
+            "example": 456
+          },
+          "created_by": {
+            "description": "The id of the user who created the subnet",
+            "type": "integer",
+            "example": 789
+          },
+          "network_id": {
+            "description": "Numeric ID of the network to which the subnet belongs to",
+            "type": "integer",
+            "example": 6721
+          },
+          "name": {
+            "description": "The subnet's name",
+            "type": "string",
+            "example": "my-subnet"
+          },
+          "type": {
+            "$ref": "#/components/schemas/SubnetType"
+          },
+          "is_auto_generated": {
+            "description": "True if this subnet is auto-generated or false if this was created by the user",
+            "type": "boolean",
+            "example": false
+          },
+          "provision_input": {
+            "$ref": "#/components/schemas/SubnetProvisionInput"
+          },
+          "created_at": {
+            "description": "The date and time when the record was created",
+            "type": "string",
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "description": "The date and time when the record was last updated",
+            "type": "string",
+            "example": "2019-09-25T13:52:04.000000Z"
+          }
+        },
+        "required": [
+          "id",
+          "project_id",
+          "environment_id",
+          "created_by",
+          "network_id",
+          "name",
+          "type",
+          "is_auto_generated",
+          "provision_input",
+          "created_at",
+          "updated_at"
+        ],
+        "nullable": true
+      },
+      "SubnetType": {
+        "type": "string",
+        "description": "The subnet's type. The `public` type means an internet visible subnet, and `private` means a subnet visible only from the subnet's network",
+        "example": "public",
+        "enum": [
+          "private",
+          "public"
         ]
       },
       "Subscription": {

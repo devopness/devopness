@@ -23,6 +23,7 @@ import { SourceProviderService } from './services/SourceProviderService'
 import { SshKeyService } from './services/SshKeyService';
 import { SslCertificateService } from './services/SslCertificateService';
 import { StaticService } from './services/StaticService';
+import { SubnetService } from './services/SubnetService';
 import { TeamInvitationService } from './services/TeamInvitationService';
 import { TeamService } from './services/TeamService';
 import { UserService } from './services/UserService';
@@ -53,6 +54,7 @@ export class DevopnessApiClient {
   sshKeys: SshKeyService;
   sslCertificates: SslCertificateService;
   static: StaticService;
+  subnets: SubnetService;
   teamInvitations: TeamInvitationService;
   teams: TeamService;
   users: UserService;
@@ -88,6 +90,7 @@ export class DevopnessApiClient {
     this.sshKeys = new SshKeyService();
     this.sslCertificates = new SslCertificateService();
     this.static = new StaticService();
+    this.subnets = new SubnetService();
     this.teamInvitations = new TeamInvitationService();
     this.teams = new TeamService();
     this.users = new UserService();

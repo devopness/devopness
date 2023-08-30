@@ -12,25 +12,24 @@
  */
 
 
-import { NetworkProvisionInput } from './network-provision-input';
 
 /**
  * 
  * @export
- * @interface NetworkEnvironmentCreate
+ * @interface SubnetProvisionInputSettingsAws
  */
-export interface NetworkEnvironmentCreate {
+export interface SubnetProvisionInputSettingsAws {
     /**
-     * The network\'s name. Must be between 1 and 63 characters.
+     * The cloud provider availability zone where the subnet will be created
      * @type {string}
-     * @memberof NetworkEnvironmentCreate
+     * @memberof SubnetProvisionInputSettingsAws
      */
-    name: string;
+    zone: string;
     /**
-     * 
-     * @type {NetworkProvisionInput}
-     * @memberof NetworkEnvironmentCreate
+     * The IP CIDR range of the subnet
+     * @type {string}
+     * @memberof SubnetProvisionInputSettingsAws
      */
-    provision_input: NetworkProvisionInput;
+    cidr_block: string;
 }
 

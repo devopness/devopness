@@ -28,7 +28,8 @@ export enum ResourceType {
     Server = 'server',
     Service = 'service',
     SshKey = 'ssh-key',
-    SslCertificate = 'ssl-certificate'
+    SslCertificate = 'ssl-certificate',
+    Subnet = 'subnet'
 }
 
 

@@ -16,32 +16,32 @@
 /**
  * 
  * @export
- * @interface CloudProviderServiceRegion
+ * @interface CloudProviderRelation
  */
-export interface CloudProviderServiceRegion {
+export interface CloudProviderRelation {
     /**
-     * The code name of the region
+     * Cloud provider code
      * @type {string}
-     * @memberof CloudProviderServiceRegion
+     * @memberof CloudProviderRelation
      */
     code: string;
     /**
-     * The formatted name of the region
+     * Cloud provider name
      * @type {string}
-     * @memberof CloudProviderServiceRegion
+     * @memberof CloudProviderRelation
      */
     name: string;
     /**
-     * Text describing the region
+     * Text describing what is the provider
      * @type {string}
-     * @memberof CloudProviderServiceRegion
+     * @memberof CloudProviderRelation
      */
     hint: string;
     /**
-     * List of availability zones of the cloud provider region
-     * @type {Array<string>}
-     * @memberof CloudProviderServiceRegion
+     * The provider\'s logo URL.
+     * @type {string}
+     * @memberof CloudProviderRelation
      */
-    zones: Array<string>;
+    logo_url: string;
 }
 

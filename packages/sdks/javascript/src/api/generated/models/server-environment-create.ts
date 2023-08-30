@@ -22,7 +22,7 @@ import { ServerProvisionSettings } from './server-provision-settings';
  */
 export interface ServerEnvironmentCreate {
     /**
-     * The hostname to be set on Linux servers. Accepts numbers (0-9), dash (-) and lower case non accented characters. Must contain only letters, numbers, dashes and underscores. Must not be greater than 60 characters.
+     * The hostname to be set on Linux servers. Accepts numbers (0-9), dash (-) and lower case non accented characters. Must not be greater than 60 characters.
      * @type {string}
      * @memberof ServerEnvironmentCreate
      */
