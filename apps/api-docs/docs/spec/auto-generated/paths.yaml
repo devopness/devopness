@@ -162,8 +162,15 @@
   put:
     $ref: ./auto-generated/endpoints/update-network-rule.yaml
 '/networks/{network_id}':
+  delete:
+    $ref: ./auto-generated/endpoints/delete-network.yaml
   get:
     $ref: ./auto-generated/endpoints/get-network.yaml
+'/networks/{network_id}/subnets':
+  get:
+    $ref: ./auto-generated/endpoints/list-network-subnets.yaml
+  post:
+    $ref: ./auto-generated/endpoints/add-network-subnet.yaml
 '/pipelines/{pipeline_id}':
   delete:
     $ref: ./auto-generated/endpoints/delete-pipeline.yaml
@@ -373,6 +380,9 @@
 /static/user-profile-options:
   get:
     $ref: ./auto-generated/endpoints/get-static-user-profile-options.yaml
+'/subnets/{subnet_id}':
+  get:
+    $ref: ./auto-generated/endpoints/get-subnet.yaml
 '/team-invitations/{team_invitation_id}/accept':
   post:
     $ref: ./auto-generated/endpoints/accept-team-invitation.yaml

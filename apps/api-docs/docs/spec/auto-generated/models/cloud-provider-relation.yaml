@@ -2,28 +2,23 @@
 type: object
 properties:
   code:
-    $ref: '#/components/schemas/StaticCloudProviderCode'
+    description: 'Cloud provider code'
+    type: string
+    example: aws
   name:
     description: 'Cloud provider name'
     type: string
     example: 'Amazon Web Services'
   hint:
-    description: 'Text describing what is the provider'
     type: string
+    description: 'Text describing what is the provider'
     example: 'Cloud services provided by Amazon Web Services'
   logo_url:
-    description: 'The provider''s logo URL'
     type: string
+    description: 'The provider''s logo URL.'
     example: 'https://assets.devopness.com/images/icons/cloud-providers/aws.svg'
-  cloud_services:
-    $ref: '#/components/schemas/CloudProviderServiceList'
-  settings:
-    $ref: '#/components/schemas/CloudProviderSettingsList'
 required:
   - code
   - name
   - hint
   - logo_url
-  - cloud_services
-  - settings
-nullable: true

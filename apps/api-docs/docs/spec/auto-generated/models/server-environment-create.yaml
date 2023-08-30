@@ -2,7 +2,7 @@
 type: object
 properties:
   hostname:
-    description: 'The hostname to be set on Linux servers. Accepts numbers (0-9), dash (-) and lower case non accented characters. Must contain only letters, numbers, dashes and underscores. Must not be greater than 60 characters.'
+    description: 'The hostname to be set on Linux servers. Accepts numbers (0-9), dash (-) and lower case non accented characters. Must not be greater than 60 characters.'
     example: web-srv-1
     type: string
   ip_address:

@@ -3,4 +3,4 @@ type: object
 description: 'Settings of the cloud provider'
 properties:
   credential:
-    $ref: '#/components/schemas/CloudProviderCredentialSettingsList'
+    $ref: '#/components/schemas/CloudProviderInputSettingsList'

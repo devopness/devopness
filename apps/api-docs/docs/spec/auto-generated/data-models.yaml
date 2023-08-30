@@ -87,10 +87,10 @@ CloudProvider:
   $ref: ./auto-generated/models/cloud-provider.yaml
 CloudProviderCode:
   $ref: ./auto-generated/models/cloud-provider-code.yaml
-CloudProviderCredentialSettings:
-  $ref: ./auto-generated/models/cloud-provider-credential-settings.yaml
-CloudProviderCredentialSettingsList:
-  $ref: ./auto-generated/models/cloud-provider-credential-settings-list.yaml
+CloudProviderInputSettings:
+  $ref: ./auto-generated/models/cloud-provider-input-settings.yaml
+CloudProviderInputSettingsList:
+  $ref: ./auto-generated/models/cloud-provider-input-settings-list.yaml
 CloudProviderOptionsList:
   $ref: ./auto-generated/models/cloud-provider-options-list.yaml
 CloudProviderOptionsRelation:
@@ -99,6 +99,8 @@ CloudProviderPropertyType:
   $ref: ./auto-generated/models/cloud-provider-property-type.yaml
 CloudProviderPropertyValidation:
   $ref: ./auto-generated/models/cloud-provider-property-validation.yaml
+CloudProviderRelation:
+  $ref: ./auto-generated/models/cloud-provider-relation.yaml
 CloudProviderService:
   $ref: ./auto-generated/models/cloud-provider-service.yaml
 CloudProviderServiceCode:
@@ -109,6 +111,14 @@ CloudProviderServiceRegion:
   $ref: ./auto-generated/models/cloud-provider-service-region.yaml
 CloudProviderServiceRegionList:
   $ref: ./auto-generated/models/cloud-provider-service-region-list.yaml
+CloudProviderServiceRegionZones:
+  $ref: ./auto-generated/models/cloud-provider-service-region-zones.yaml
+CloudProviderServiceResourceType:
+  $ref: ./auto-generated/models/cloud-provider-service-resource-type.yaml
+CloudProviderServiceResourceTypeList:
+  $ref: ./auto-generated/models/cloud-provider-service-resource-type-list.yaml
+CloudProviderServiceResourceTypeScope:
+  $ref: ./auto-generated/models/cloud-provider-service-resource-type-scope.yaml
 CloudProviderSettingsList:
   $ref: ./auto-generated/models/cloud-provider-settings-list.yaml
 CloudServiceSettingsAwsEc2:
@@ -539,6 +549,26 @@ StepPipelineCreate:
   $ref: ./auto-generated/models/step-pipeline-create.yaml
 StepPipelineUpdate:
   $ref: ./auto-generated/models/step-pipeline-update.yaml
+Subnet:
+  $ref: ./auto-generated/models/subnet.yaml
+SubnetList:
+  $ref: ./auto-generated/models/subnet-list.yaml
+SubnetNetworkCreate:
+  $ref: ./auto-generated/models/subnet-network-create.yaml
+SubnetProvisionInput:
+  $ref: ./auto-generated/models/subnet-provision-input.yaml
+SubnetProvisionInputSettings:
+  $ref: ./auto-generated/models/subnet-provision-input-settings.yaml
+SubnetProvisionInputSettingsAws:
+  $ref: ./auto-generated/models/subnet-provision-input-settings-aws.yaml
+SubnetProvisionInputSettingsDigitalOcean:
+  $ref: ./auto-generated/models/subnet-provision-input-settings-digital-ocean.yaml
+SubnetProvisionInputSettingsGcp:
+  $ref: ./auto-generated/models/subnet-provision-input-settings-gcp.yaml
+SubnetRelation:
+  $ref: ./auto-generated/models/subnet-relation.yaml
+SubnetType:
+  $ref: ./auto-generated/models/subnet-type.yaml
 Subscription:
   $ref: ./auto-generated/models/subscription.yaml
 SubscriptionBalance:

@@ -6,6 +6,10 @@ properties:
     type: string
     description: 'The type of the cloud resource on which the action must be performed'
     example: server
+  resource_type_human_readable:
+    description: 'Human readable version of the resource type'
+    type: string
+    example: Server
   resource_id:
     type: integer
     description: 'The Id of the cloud resource on which the action must be performed'

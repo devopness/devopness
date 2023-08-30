@@ -70,6 +70,9 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         'stopServer204',
         // Pending actions cannot be retried, so we can't test this endpoint
         'retryAction201',
+        // We can't create subnet because we can't have a provisioned network
+        'addNetworkSubnet201',
+        'getSubnet200',
     ];
 
     // transactions listed here are skipped with a `before` hook

@@ -12,4 +12,5 @@ enum:
   - service
   - ssh-key
   - ssl-certificate
+  - subnet
 example: application

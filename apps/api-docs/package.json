@@ -12,6 +12,7 @@
     "api-convert-spec-to-dredd": "api-spec-converter --from=openapi_3 --to=swagger_2 --syntax=yaml --order=alpha docs/build/api-docs-output.yaml > docs/build/api-docs-output-v2.yaml",
     "api-convert-spec-to-json": "yaml-convert docs/build/api-docs-output.yaml --pretty --output docs/build/spec.json",
     "api-docs-export-page": "redoc-cli build docs/build/api-docs-output.yaml --title 'Devopness API Docs' --output public/index.html --cdn true -t docs/template.hbs",
+    "api-docs-make-description-files": "for endpoint in $(find docs/spec/auto-generated/endpoints -type f); do touch -a docs/spec/descriptions/$(basename ${endpoint%%.yaml}).md; done",
     "api-docs-serve": "npm run api-build-spec && redoc-cli serve docs/build/api-docs-output.yaml --port 9090 --title 'Devopness API Docs - Local' -t docs/template.hbs",
     "api-docs-zip-download": "aws s3 cp s3://devopness-api-docs/api-docs.zip ./docs/api-docs.zip",
     "api-docs-zip-extract": "rm -rf ./docs/spec/auto-generated && extract-zip ./docs/api-docs.zip $(pwd)/docs/spec",

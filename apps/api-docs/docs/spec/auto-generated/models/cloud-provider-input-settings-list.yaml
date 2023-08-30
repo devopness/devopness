@@ -2,4 +2,4 @@
 type: array
 description: 'Settings of the cloud provider credential'
 items:
-  $ref: '#/components/schemas/CloudProviderCredentialSettings'
+  $ref: '#/components/schemas/CloudProviderInputSettings'

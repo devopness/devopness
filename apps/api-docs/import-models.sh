@@ -18,6 +18,7 @@ fi
 
 npm run api-docs-zip-download
 npm run api-docs-zip-extract
+npm run api-docs-make-description-files
 
 if [ -z "$(git status --porcelain)" ]; then
     echo "Auto generated models are up to date. Nothing to commit!"

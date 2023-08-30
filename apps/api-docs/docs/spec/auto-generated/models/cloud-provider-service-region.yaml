@@ -13,7 +13,10 @@ properties:
     type: string
     description: 'Text describing the region'
     example: 'us-east-1: US East (N. Virginia)'
+  zones:
+    $ref: '#/components/schemas/CloudProviderServiceRegionZones'
 required:
   - code
   - name
   - hint
+  - zones

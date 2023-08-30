@@ -2,7 +2,7 @@
 type: object
 properties:
   name:
-    description: 'The network''s name. The value format is invalid. Must be between 1 and 64 characters.'
+    description: 'The network''s name. Must be between 1 and 63 characters.'
     example: my-network
     type: string
   provision_input:
