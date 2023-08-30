@@ -203,8 +203,6 @@ EnvironmentUpdate:
   $ref: ./auto-generated/models/environment-update.yaml
 Hook:
   $ref: ./auto-generated/models/hook.yaml
-HookCreate:
-  $ref: ./auto-generated/models/hook-create.yaml
 HookIncomingSettings:
   $ref: ./auto-generated/models/hook-incoming-settings.yaml
 HookIncomingTriggerVariables:

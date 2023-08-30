@@ -141,9 +141,6 @@
 '/hooks/{hook_id}/trigger':
   post:
     $ref: ./auto-generated/endpoints/trigger-hook.yaml
-'/hooks/{hook_type}':
-  post:
-    $ref: ./auto-generated/endpoints/add-hook.yaml
 '/hooks/{hook_type}/{hook_id}':
   delete:
     $ref: ./auto-generated/endpoints/delete-hook.yaml
