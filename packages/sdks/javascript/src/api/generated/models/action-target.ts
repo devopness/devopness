@@ -29,6 +29,12 @@ export interface ActionTarget {
      */
     resource_type?: string;
     /**
+     * Human readable version of the resource type
+     * @type {string}
+     * @memberof ActionTarget
+     */
+    resource_type_human_readable?: string;
+    /**
      * The Id of the cloud resource on which the action must be performed
      * @type {number}
      * @memberof ActionTarget

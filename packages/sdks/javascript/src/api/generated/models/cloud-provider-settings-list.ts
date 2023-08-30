@@ -12,7 +12,7 @@
  */
 
 
-import { CloudProviderCredentialSettings } from './cloud-provider-credential-settings';
+import { CloudProviderInputSettings } from './cloud-provider-input-settings';
 
 /**
  * Settings of the cloud provider
@@ -22,9 +22,9 @@ import { CloudProviderCredentialSettings } from './cloud-provider-credential-set
 export interface CloudProviderSettingsList {
     /**
      * Settings of the cloud provider credential
-     * @type {Array<CloudProviderCredentialSettings>}
+     * @type {Array<CloudProviderInputSettings>}
      * @memberof CloudProviderSettingsList
      */
-    credential?: Array<CloudProviderCredentialSettings>;
+    credential?: Array<CloudProviderInputSettings>;
 }
 

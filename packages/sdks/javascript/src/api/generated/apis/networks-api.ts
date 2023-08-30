@@ -23,6 +23,24 @@ import { Network } from '../../generated/models';
 export class NetworksApiService extends ApiBaseService {
     /**
      * 
+     * @summary Delete a given network
+     * @param {number} networkId The ID of the network.
+     */
+    public async deleteNetwork(networkId: number): Promise<ApiResponse<void>> {
+        if (networkId === null || networkId === undefined) {
+            throw new ArgumentNullException('networkId', 'deleteNetwork');
+        }
+        
+        let queryString = '';
+
+        const requestUrl = '/networks/{network_id}' + (queryString? `?${queryString}` : '');
+
+        const response = await this.delete <void>(requestUrl.replace(`{${"network_id"}}`, encodeURIComponent(String(networkId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
      * @summary Get a network by ID
      * @param {number} networkId The ID of the network.
      */
