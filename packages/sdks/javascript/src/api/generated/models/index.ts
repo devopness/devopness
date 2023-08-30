@@ -83,7 +83,6 @@ export * from './environment-relation';
 export * from './environment-type';
 export * from './environment-update';
 export * from './hook';
-export * from './hook-create';
 export * from './hook-incoming-settings';
 export * from './hook-outgoing-request-header';
 export * from './hook-outgoing-settings';

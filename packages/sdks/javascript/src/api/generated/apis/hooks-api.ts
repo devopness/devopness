@@ -16,7 +16,6 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { Hook } from '../../generated/models';
-import { HookCreate } from '../../generated/models';
 import { HookTriggerResponse } from '../../generated/models';
 import { HookUpdate } from '../../generated/models';
 
@@ -24,28 +23,6 @@ import { HookUpdate } from '../../generated/models';
  * HooksApiService - Auto-generated
  */
 export class HooksApiService extends ApiBaseService {
-    /**
-     * 
-     * @summary Create a hook to a specific resource
-     * @param {string} hookType The hook type.
-     * @param {HookCreate} hookCreate A JSON object containing the resource data
-     */
-    public async addHook(hookType: string, hookCreate: HookCreate): Promise<ApiResponse<Hook>> {
-        if (hookType === null || hookType === undefined) {
-            throw new ArgumentNullException('hookType', 'addHook');
-        }
-        if (hookCreate === null || hookCreate === undefined) {
-            throw new ArgumentNullException('hookCreate', 'addHook');
-        }
-        
-        let queryString = '';
-
-        const requestUrl = '/hooks/{hook_type}' + (queryString? `?${queryString}` : '');
-
-        const response = await this.post <Hook, HookCreate>(requestUrl.replace(`{${"hook_type"}}`, encodeURIComponent(String(hookType))), hookCreate);
-        return new ApiResponse(response);
-    }
-
     /**
      * 
      * @summary Delete a given hook
