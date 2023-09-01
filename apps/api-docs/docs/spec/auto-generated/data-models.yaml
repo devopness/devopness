@@ -395,6 +395,10 @@ ResourceType:
   $ref: ./auto-generated/models/resource-type.yaml
 ResourceTypeList:
   $ref: ./auto-generated/models/resource-type-list.yaml
+ResourceTypeRelated:
+  $ref: ./auto-generated/models/resource-type-related.yaml
+ResourceTypeRelatedList:
+  $ref: ./auto-generated/models/resource-type-related-list.yaml
 ResourceTypeRelation:
   $ref: ./auto-generated/models/resource-type-relation.yaml
 Role:
@@ -427,8 +431,8 @@ ServerEnvironmentCreate:
   $ref: ./auto-generated/models/server-environment-create.yaml
 ServerList:
   $ref: ./auto-generated/models/server-list.yaml
-ServerProvisionSettings:
-  $ref: ./auto-generated/models/server-provision-settings.yaml
+ServerProvisionInput:
+  $ref: ./auto-generated/models/server-provision-input.yaml
 ServerProvisionSettingsInput:
   $ref: ./auto-generated/models/server-provision-settings-input.yaml
 ServerRelation:

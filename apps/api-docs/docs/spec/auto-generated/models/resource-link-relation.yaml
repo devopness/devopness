@@ -17,6 +17,10 @@ properties:
     description: 'The linked resource ID'
     type: string
     example: 123
+  can_be_unlinked:
+    description: 'If false, the link cannot be manually removed'
+    type: boolean
+    example: true
   linked_resource_data:
     $ref: '#/components/schemas/LinkedResourceData'
   children:
@@ -26,5 +30,6 @@ required:
   - resource_type_human_readable
   - resource_type
   - resource_id
+  - can_be_unlinked
   - linked_resource_data
 nullable: true

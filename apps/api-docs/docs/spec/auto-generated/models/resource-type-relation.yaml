@@ -13,9 +13,15 @@ properties:
     example: Applications
   supported_operations:
     $ref: '#/components/schemas/ResourceOperationList'
+  can_be_child_of:
+    $ref: '#/components/schemas/ResourceTypeRelatedList'
+  can_be_parent_of:
+    $ref: '#/components/schemas/ResourceTypeRelatedList'
 required:
   - resource_type
   - resource_type_human_readable
   - resource_type_human_readable_plural
   - supported_operations
+  - can_be_child_of
+  - can_be_parent_of
 nullable: true

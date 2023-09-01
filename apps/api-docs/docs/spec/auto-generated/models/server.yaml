@@ -47,7 +47,7 @@ properties:
     example: 1
   blueprint:
     $ref: '#/components/schemas/ServerBlueprint'
-  provision_settings:
+  provision_input:
     $ref: '#/components/schemas/ServerProvisionSettingsInput'
   created_by_user:
     $ref: '#/components/schemas/UserRelation'
@@ -79,7 +79,7 @@ required:
   - status
   - max_parallel_actions
   - blueprint
-  - provision_settings
+  - provision_input
   - created_by_user
   - project
   - last_action

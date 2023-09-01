@@ -378,6 +378,8 @@
   get:
     $ref: ./auto-generated/endpoints/get-static-user-profile-options.yaml
 '/subnets/{subnet_id}':
+  delete:
+    $ref: ./auto-generated/endpoints/delete-subnet.yaml
   get:
     $ref: ./auto-generated/endpoints/get-subnet.yaml
 '/team-invitations/{team_invitation_id}/accept':

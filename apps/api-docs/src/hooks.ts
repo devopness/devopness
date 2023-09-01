@@ -72,6 +72,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         'retryAction201',
         // We can't create subnet because we can't have a provisioned network
         'addNetworkSubnet201',
+        'deleteSubnet204',
         'getSubnet200',
     ];
 
