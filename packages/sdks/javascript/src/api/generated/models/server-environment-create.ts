@@ -13,7 +13,7 @@
 
 
 import { BlueprintService } from './blueprint-service';
-import { ServerProvisionSettings } from './server-provision-settings';
+import { ServerProvisionInput } from './server-provision-input';
 
 /**
  * 
@@ -28,13 +28,13 @@ export interface ServerEnvironmentCreate {
      */
     hostname: string;
     /**
-     * Public ipv4 address for server access. This field is required when <code>provision_settings.self_hosted</code> is <code>true</code>.
+     * Public ipv4 address for server access. This field is required when <code>provision_input.self_hosted</code> is <code>true</code>.
      * @type {string}
      * @memberof ServerEnvironmentCreate
      */
     ip_address?: string;
     /**
-     * The network port to which the SSH daemon is listening to SSH connections on the server. This field is required when <code>provision_settings.self_hosted</code> is <code>true</code>. Must be between 22 and 65535.
+     * The network port to which the SSH daemon is listening to SSH connections on the server. This field is required when <code>provision_input.self_hosted</code> is <code>true</code>. Must be between 22 and 65535.
      * @type {number}
      * @memberof ServerEnvironmentCreate
      */
@@ -53,9 +53,9 @@ export interface ServerEnvironmentCreate {
     blueprint?: Array<BlueprintService>;
     /**
      * 
-     * @type {ServerProvisionSettings}
+     * @type {ServerProvisionInput}
      * @memberof ServerEnvironmentCreate
      */
-    provision_settings: ServerProvisionSettings;
+    provision_input: ServerProvisionInput;
 }
 

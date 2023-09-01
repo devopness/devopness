@@ -14,6 +14,7 @@
 
 import { ResourceOperation } from './resource-operation';
 import { ResourceType } from './resource-type';
+import { ResourceTypeRelated } from './resource-type-related';
 
 /**
  * 
@@ -45,5 +46,17 @@ export interface ResourceTypeRelation {
      * @memberof ResourceTypeRelation
      */
     supported_operations: Array<ResourceOperation>;
+    /**
+     * A list of related resources
+     * @type {Array<ResourceTypeRelated>}
+     * @memberof ResourceTypeRelation
+     */
+    can_be_child_of: Array<ResourceTypeRelated>;
+    /**
+     * A list of related resources
+     * @type {Array<ResourceTypeRelated>}
+     * @memberof ResourceTypeRelation
+     */
+    can_be_parent_of: Array<ResourceTypeRelated>;
 }
 

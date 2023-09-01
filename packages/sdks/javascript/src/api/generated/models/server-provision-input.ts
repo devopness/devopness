@@ -17,25 +17,25 @@ import { ServerCloudService } from './server-cloud-service';
 /**
  * Configuration used to launch cloud instance
  * @export
- * @interface ServerProvisionSettings
+ * @interface ServerProvisionInput
  */
-export interface ServerProvisionSettings {
+export interface ServerProvisionInput {
     /**
      * Determines if the server is `self-hosted` or from a cloud service
      * @type {boolean}
-     * @memberof ServerProvisionSettings
+     * @memberof ServerProvisionInput
      */
     self_hosted?: boolean;
     /**
      * The unique id of the cloud provider credential to be used on connect to cloud provider
      * @type {number}
-     * @memberof ServerProvisionSettings
+     * @memberof ServerProvisionInput
      */
     credential_id?: number;
     /**
      * 
      * @type {ServerCloudService}
-     * @memberof ServerProvisionSettings
+     * @memberof ServerProvisionInput
      */
     cloud_service: ServerCloudService;
 }

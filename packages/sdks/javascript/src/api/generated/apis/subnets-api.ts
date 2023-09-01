@@ -23,6 +23,24 @@ import { Subnet } from '../../generated/models';
 export class SubnetsApiService extends ApiBaseService {
     /**
      * 
+     * @summary Delete a given subnet
+     * @param {number} subnetId The ID of the subnet.
+     */
+    public async deleteSubnet(subnetId: number): Promise<ApiResponse<void>> {
+        if (subnetId === null || subnetId === undefined) {
+            throw new ArgumentNullException('subnetId', 'deleteSubnet');
+        }
+        
+        let queryString = '';
+
+        const requestUrl = '/subnets/{subnet_id}' + (queryString? `?${queryString}` : '');
+
+        const response = await this.delete <void>(requestUrl.replace(`{${"subnet_id"}}`, encodeURIComponent(String(subnetId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
      * @summary Get a subnet by ID
      * @param {number} subnetId The ID of the subnet.
      */

@@ -110,7 +110,7 @@ export interface Server {
      * @type {ServerProvisionSettingsInput}
      * @memberof Server
      */
-    provision_settings: ServerProvisionSettingsInput;
+    provision_input: ServerProvisionSettingsInput;
     /**
      * 
      * @type {UserRelation}
