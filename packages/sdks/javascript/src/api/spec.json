@@ -11693,8 +11693,8 @@
           "os_version_code": {
             "$ref": "#/components/schemas/CloudOsVersionCode"
           },
-          "provision_settings": {
-            "$ref": "#/components/schemas/ServerProvisionSettingsInput"
+          "provision_input": {
+            "$ref": "#/components/schemas/ServerProvisionInput"
           }
         },
         "required": [
@@ -11705,7 +11705,7 @@
           "ip_address",
           "ssh_port",
           "os_version_code",
-          "provision_settings"
+          "provision_input"
         ]
       },
       "ActionTriggerType": {
@@ -17368,6 +17368,11 @@
             "type": "string",
             "example": "VPS/Self Hosted"
           },
+          "cloud_service_code": {
+            "description": "The cloud service code",
+            "type": "string",
+            "example": "self-hosted-custom"
+          },
           "ip_address": {
             "description": "Public ipv4 address for server access",
             "type": "string",
@@ -17398,7 +17403,7 @@
             "$ref": "#/components/schemas/ServerBlueprint"
           },
           "provision_input": {
-            "$ref": "#/components/schemas/ServerProvisionSettingsInput"
+            "$ref": "#/components/schemas/ServerProvisionInput"
           },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
@@ -17430,6 +17435,7 @@
           "hostname",
           "provider_name",
           "provider_name_human_readable",
+          "cloud_service_code",
           "ip_address",
           "ssh_port",
           "os_version_code",
@@ -17488,43 +17494,15 @@
           }
         }
       },
-      "ServerCloudService": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "$ref": "#/components/schemas/ServerCloudServiceName"
-          },
-          "settings": {
-            "description": "The configurations used to cloud service",
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/CloudServiceSettingsAwsEc2"
-              },
-              {
-                "$ref": "#/components/schemas/CloudServiceSettingsDigitalOceanDroplet"
-              },
-              {
-                "$ref": "#/components/schemas/CloudServiceSettingsGcpGce"
-              },
-              {
-                "$ref": "#/components/schemas/CloudServiceSettingsSelfHostedCustom"
-              }
-            ]
-          }
-        },
-        "required": [
-          "name",
-          "settings"
-        ]
-      },
-      "ServerCloudServiceName": {
+      "ServerCloudServiceCode": {
         "type": "string",
         "description": "The name of the cloud service used to provide the cloud instance",
         "example": "aws-ec2",
         "enum": [
-          "digitalocean-droplet",
           "aws-ec2",
-          "gcp-gce"
+          "digitalocean-droplet",
+          "gcp-gce",
+          "self-hosted-custom"
         ]
       },
       "ServerCommand": {
@@ -17549,12 +17527,12 @@
             "type": "string"
           },
           "ip_address": {
-            "description": "Public ipv4 address for server access. This field is required when <code>provision_input.self_hosted</code> is <code>true</code>.",
+            "description": "Public ipv4 address for server access. This field is required when <code>provision_input.cloud_service_code</code> is <code>self-hosted-custom</code>.",
             "example": "200.123.45.67",
             "type": "string"
           },
           "ssh_port": {
-            "description": "The network port to which the SSH daemon is listening to SSH connections on the server. This field is required when <code>provision_input.self_hosted</code> is <code>true</code>. Must be between 22 and 65535.",
+            "description": "The network port to which the SSH daemon is listening to SSH connections on the server. This field is required when <code>provision_input.cloud_service_code</code> is <code>self-hosted-custom</code>. Must be between 22 and 65535.",
             "example": 22,
             "type": "integer"
           },
@@ -17585,39 +17563,39 @@
         "type": "object",
         "description": "Configuration used to launch cloud instance",
         "properties": {
-          "self_hosted": {
-            "type": "boolean",
-            "description": "Determines if the server is `self-hosted` or from a cloud service",
-            "example": false
-          },
           "credential_id": {
             "type": "integer",
             "description": "The unique id of the cloud provider credential to be used on connect to cloud provider",
             "example": 8430015757
           },
-          "cloud_service": {
-            "$ref": "#/components/schemas/ServerCloudService"
-          }
-        },
-        "required": [
-          "cloud_service"
-        ]
-      },
-      "ServerProvisionSettingsInput": {
-        "type": "object",
-        "description": "Configuration used to launch this server",
-        "properties": {
-          "cloud_service": {
-            "nullable": true,
-            "oneOf": [
+          "subnet_id": {
+            "type": "integer",
+            "description": "The ID of the subnet where to create the server. If not defined, create the server on the default subnet of the cloud provider",
+            "example": 7414831
+          },
+          "cloud_service_code": {
+            "$ref": "#/components/schemas/ServerCloudServiceCode"
+          },
+          "settings": {
+            "description": "The configurations used to cloud service",
+            "anyOf": [
               {
-                "$ref": "#/components/schemas/ServerCloudService"
+                "$ref": "#/components/schemas/CloudServiceSettingsAwsEc2"
+              },
+              {
+                "$ref": "#/components/schemas/CloudServiceSettingsDigitalOceanDroplet"
+              },
+              {
+                "$ref": "#/components/schemas/CloudServiceSettingsGcpGce"
+              },
+              {
+                "$ref": "#/components/schemas/CloudServiceSettingsSelfHostedCustom"
               }
             ]
           }
         },
         "required": [
-          "cloud_service"
+          "cloud_service_code"
         ]
       },
       "ServerRelation": {
