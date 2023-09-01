@@ -18,7 +18,7 @@ import { CloudOsVersionCode } from './cloud-os-version-code';
 import { EnvironmentRelation } from './environment-relation';
 import { ProjectRelation } from './project-relation';
 import { ServerBlueprint } from './server-blueprint';
-import { ServerProvisionSettingsInput } from './server-provision-settings-input';
+import { ServerProvisionInput } from './server-provision-input';
 import { UserRelation } from './user-relation';
 
 /**
@@ -64,6 +64,12 @@ export interface Server {
      */
     provider_name_human_readable: string;
     /**
+     * The cloud service code
+     * @type {string}
+     * @memberof Server
+     */
+    cloud_service_code: string;
+    /**
      * Public ipv4 address for server access
      * @type {string}
      * @memberof Server
@@ -107,10 +113,10 @@ export interface Server {
     blueprint: ServerBlueprint;
     /**
      * 
-     * @type {ServerProvisionSettingsInput}
+     * @type {ServerProvisionInput}
      * @memberof Server
      */
-    provision_input: ServerProvisionSettingsInput;
+    provision_input: ServerProvisionInput;
     /**
      * 
      * @type {UserRelation}

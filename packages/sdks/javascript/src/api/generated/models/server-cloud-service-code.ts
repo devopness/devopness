@@ -12,19 +12,17 @@
  */
 
 
-import { ServerCloudService } from './server-cloud-service';
 
 /**
- * Configuration used to launch this server
+ * The name of the cloud service used to provide the cloud instance
  * @export
- * @interface ServerProvisionSettingsInput
+ * @enum {string}
  */
-export interface ServerProvisionSettingsInput {
-    /**
-     * 
-     * @type {ServerCloudService}
-     * @memberof ServerProvisionSettingsInput
-     */
-    cloud_service: ServerCloudService | null;
+export enum ServerCloudServiceCode {
+    AwsEc2 = 'aws-ec2',
+    DigitaloceanDroplet = 'digitalocean-droplet',
+    GcpGce = 'gcp-gce',
+    SelfHostedCustom = 'self-hosted-custom'
 }
+
 
