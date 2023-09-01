@@ -2,15 +2,26 @@
 type: object
 description: 'Configuration used to launch cloud instance'
 properties:
-  self_hosted:
-    type: boolean
-    description: 'Determines if the server is `self-hosted` or from a cloud service'
-    example: false
   credential_id:
     type: integer
     description: 'The unique id of the cloud provider credential to be used on connect to cloud provider'
     example: 8430015757
-  cloud_service:
-    $ref: '#/components/schemas/ServerCloudService'
+  subnet_id:
+    type: integer
+    description: 'The ID of the subnet where to create the server. If not defined, create the server on the default subnet of the cloud provider'
+    example: 7414831
+  cloud_service_code:
+    $ref: '#/components/schemas/ServerCloudServiceCode'
+  settings:
+    description: 'The configurations used to cloud service'
+    anyOf:
+      -
+        $ref: '#/components/schemas/CloudServiceSettingsAwsEc2'
+      -
+        $ref: '#/components/schemas/CloudServiceSettingsDigitalOceanDroplet'
+      -
+        $ref: '#/components/schemas/CloudServiceSettingsGcpGce'
+      -
+        $ref: '#/components/schemas/CloudServiceSettingsSelfHostedCustom'
 required:
-  - cloud_service
+  - cloud_service_code

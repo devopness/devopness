@@ -28,8 +28,8 @@ properties:
     example: 22
   os_version_code:
     $ref: '#/components/schemas/CloudOsVersionCode'
-  provision_settings:
-    $ref: '#/components/schemas/ServerProvisionSettingsInput'
+  provision_input:
+    $ref: '#/components/schemas/ServerProvisionInput'
 required:
   - id
   - hostname
@@ -38,4 +38,4 @@ required:
   - ip_address
   - ssh_port
   - os_version_code
-  - provision_settings
+  - provision_input

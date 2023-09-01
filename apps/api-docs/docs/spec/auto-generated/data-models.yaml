@@ -421,10 +421,8 @@ Server:
   $ref: ./auto-generated/models/server.yaml
 ServerBlueprint:
   $ref: ./auto-generated/models/server-blueprint.yaml
-ServerCloudService:
-  $ref: ./auto-generated/models/server-cloud-service.yaml
-ServerCloudServiceName:
-  $ref: ./auto-generated/models/server-cloud-service-name.yaml
+ServerCloudServiceCode:
+  $ref: ./auto-generated/models/server-cloud-service-code.yaml
 ServerCommand:
   $ref: ./auto-generated/models/server-command.yaml
 ServerEnvironmentCreate:
@@ -433,8 +431,6 @@ ServerList:
   $ref: ./auto-generated/models/server-list.yaml
 ServerProvisionInput:
   $ref: ./auto-generated/models/server-provision-input.yaml
-ServerProvisionSettingsInput:
-  $ref: ./auto-generated/models/server-provision-settings-input.yaml
 ServerRelation:
   $ref: ./auto-generated/models/server-relation.yaml
 ServerUpdate:

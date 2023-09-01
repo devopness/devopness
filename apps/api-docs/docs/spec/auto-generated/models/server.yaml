@@ -25,6 +25,10 @@ properties:
     description: 'The human readable version of the provider''s name'
     type: string
     example: 'VPS/Self Hosted'
+  cloud_service_code:
+    description: 'The cloud service code'
+    type: string
+    example: self-hosted-custom
   ip_address:
     description: 'Public ipv4 address for server access'
     type: string
@@ -48,7 +52,7 @@ properties:
   blueprint:
     $ref: '#/components/schemas/ServerBlueprint'
   provision_input:
-    $ref: '#/components/schemas/ServerProvisionSettingsInput'
+    $ref: '#/components/schemas/ServerProvisionInput'
   created_by_user:
     $ref: '#/components/schemas/UserRelation'
   project:
@@ -72,6 +76,7 @@ required:
   - hostname
   - provider_name
   - provider_name_human_readable
+  - cloud_service_code
   - ip_address
   - ssh_port
   - os_version_code

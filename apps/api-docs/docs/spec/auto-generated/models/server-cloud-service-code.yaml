@@ -3,6 +3,7 @@ type: string
 description: 'The name of the cloud service used to provide the cloud instance'
 example: aws-ec2
 enum:
-  - digitalocean-droplet
   - aws-ec2
+  - digitalocean-droplet
   - gcp-gce
+  - self-hosted-custom
