@@ -8742,6 +8742,61 @@
       }
     },
     "/subnets/{subnet_id}": {
+      "delete": {
+        "summary": "Delete a given subnet",
+        "operationId": "deleteSubnet",
+        "description": {
+          "$ref": "../spec/descriptions/delete-subnet.md"
+        },
+        "tags": [
+          "Subnets"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "subnet_id",
+            "description": "The ID of the subnet.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      },
       "get": {
         "summary": "Get a subnet by ID",
         "operationId": "getSubnet",
@@ -16938,6 +16993,11 @@
             "type": "string",
             "example": 123
           },
+          "can_be_unlinked": {
+            "description": "If false, the link cannot be manually removed",
+            "type": "boolean",
+            "example": true
+          },
           "linked_resource_data": {
             "$ref": "#/components/schemas/LinkedResourceData"
           },
@@ -16950,6 +17010,7 @@
           "resource_type_human_readable",
           "resource_type",
           "resource_id",
+          "can_be_unlinked",
           "linked_resource_data"
         ],
         "nullable": true
@@ -17002,6 +17063,37 @@
           "$ref": "#/components/schemas/ResourceTypeRelation"
         }
       },
+      "ResourceTypeRelated": {
+        "type": "object",
+        "description": "A related resource type",
+        "properties": {
+          "resource_type": {
+            "$ref": "#/components/schemas/ResourceType"
+          },
+          "resource_type_human_readable": {
+            "type": "string",
+            "description": "Human readable version of the resource type name",
+            "example": "Application"
+          },
+          "resource_type_human_readable_plural": {
+            "type": "string",
+            "description": "Plural human readable version of the resource type name",
+            "example": "Applications"
+          },
+          "can_be_linked": {
+            "type": "boolean",
+            "description": "If true, the relation with this resource type can be changed manually by the user",
+            "example": true
+          }
+        }
+      },
+      "ResourceTypeRelatedList": {
+        "description": "A list of related resources",
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/ResourceTypeRelated"
+        }
+      },
       "ResourceTypeRelation": {
         "type": "object",
         "properties": {
@@ -17020,13 +17112,21 @@
           },
           "supported_operations": {
             "$ref": "#/components/schemas/ResourceOperationList"
+          },
+          "can_be_child_of": {
+            "$ref": "#/components/schemas/ResourceTypeRelatedList"
+          },
+          "can_be_parent_of": {
+            "$ref": "#/components/schemas/ResourceTypeRelatedList"
           }
         },
         "required": [
           "resource_type",
           "resource_type_human_readable",
           "resource_type_human_readable_plural",
-          "supported_operations"
+          "supported_operations",
+          "can_be_child_of",
+          "can_be_parent_of"
         ],
         "nullable": true
       },
@@ -17297,7 +17397,7 @@
           "blueprint": {
             "$ref": "#/components/schemas/ServerBlueprint"
           },
-          "provision_settings": {
+          "provision_input": {
             "$ref": "#/components/schemas/ServerProvisionSettingsInput"
           },
           "created_by_user": {
@@ -17337,7 +17437,7 @@
           "status",
           "max_parallel_actions",
           "blueprint",
-          "provision_settings",
+          "provision_input",
           "created_by_user",
           "project",
           "last_action",
@@ -17449,12 +17549,12 @@
             "type": "string"
           },
           "ip_address": {
-            "description": "Public ipv4 address for server access. This field is required when <code>provision_settings.self_hosted</code> is <code>true</code>.",
+            "description": "Public ipv4 address for server access. This field is required when <code>provision_input.self_hosted</code> is <code>true</code>.",
             "example": "200.123.45.67",
             "type": "string"
           },
           "ssh_port": {
-            "description": "The network port to which the SSH daemon is listening to SSH connections on the server. This field is required when <code>provision_settings.self_hosted</code> is <code>true</code>. Must be between 22 and 65535.",
+            "description": "The network port to which the SSH daemon is listening to SSH connections on the server. This field is required when <code>provision_input.self_hosted</code> is <code>true</code>. Must be between 22 and 65535.",
             "example": 22,
             "type": "integer"
           },
@@ -17466,13 +17566,13 @@
           "blueprint": {
             "$ref": "#/components/schemas/BlueprintServiceList"
           },
-          "provision_settings": {
-            "$ref": "#/components/schemas/ServerProvisionSettings"
+          "provision_input": {
+            "$ref": "#/components/schemas/ServerProvisionInput"
           }
         },
         "required": [
           "hostname",
-          "provision_settings"
+          "provision_input"
         ]
       },
       "ServerList": {
@@ -17481,7 +17581,7 @@
           "$ref": "#/components/schemas/ServerRelation"
         }
       },
-      "ServerProvisionSettings": {
+      "ServerProvisionInput": {
         "type": "object",
         "description": "Configuration used to launch cloud instance",
         "properties": {
