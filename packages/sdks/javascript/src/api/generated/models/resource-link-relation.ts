@@ -45,6 +45,12 @@ export interface ResourceLinkRelation {
      */
     resource_id: string;
     /**
+     * If false, the link cannot be manually removed
+     * @type {boolean}
+     * @memberof ResourceLinkRelation
+     */
+    can_be_unlinked: boolean;
+    /**
      * 
      * @type {LinkedResourceData}
      * @memberof ResourceLinkRelation

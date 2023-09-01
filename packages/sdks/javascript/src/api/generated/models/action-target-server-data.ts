@@ -13,7 +13,7 @@
 
 
 import { CloudOsVersionCode } from './cloud-os-version-code';
-import { ServerProvisionSettingsInput } from './server-provision-settings-input';
+import { ServerProvisionInput } from './server-provision-input';
 
 /**
  * 
@@ -65,9 +65,9 @@ export interface ActionTargetServerData {
     os_version_code: CloudOsVersionCode | null;
     /**
      * 
-     * @type {ServerProvisionSettingsInput}
+     * @type {ServerProvisionInput}
      * @memberof ActionTargetServerData
      */
-    provision_settings: ServerProvisionSettingsInput;
+    provision_input: ServerProvisionInput;
 }
 
