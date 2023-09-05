@@ -121,6 +121,10 @@ CloudProviderServiceResourceTypeScope:
   $ref: ./auto-generated/models/cloud-provider-service-resource-type-scope.yaml
 CloudProviderSettingsList:
   $ref: ./auto-generated/models/cloud-provider-settings-list.yaml
+CloudResourceType:
+  $ref: ./auto-generated/models/cloud-resource-type.yaml
+CloudResourceTypeList:
+  $ref: ./auto-generated/models/cloud-resource-type-list.yaml
 CloudServiceSettingsAwsEc2:
   $ref: ./auto-generated/models/cloud-service-settings-aws-ec2.yaml
 CloudServiceSettingsDigitalOceanDroplet:

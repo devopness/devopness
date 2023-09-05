@@ -15,6 +15,8 @@ properties:
     description: 'The provider''s logo URL'
     type: string
     example: 'https://assets.devopness.com/images/icons/cloud-providers/aws.svg'
+  supported_resource_types:
+    $ref: '#/components/schemas/CloudResourceTypeList'
   cloud_services:
     $ref: '#/components/schemas/CloudProviderServiceList'
   settings:
@@ -24,6 +26,7 @@ required:
   - name
   - hint
   - logo_url
+  - supported_resource_types
   - cloud_services
   - settings
 nullable: true

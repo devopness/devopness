@@ -12,7 +12,7 @@ properties:
   hint:
     type: string
     description: 'Text describing what is the provider'
-    example: 'Cloud Server provided by Amazon Web Services'
+    example: 'Cloud services provided by Amazon Web Services'
   logo_url:
     type: string
     description: 'The provider''s logo URL.'
