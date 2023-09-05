@@ -16,7 +16,6 @@ import { ActionType } from './action-type';
 import { HookIncomingSettings } from './hook-incoming-settings';
 import { HookOutgoingSettings } from './hook-outgoing-settings';
 import { HookTriggerWhen } from './hook-trigger-when';
-import { ResourceType } from './resource-type';
 
 /**
  * 
@@ -30,18 +29,6 @@ export interface HookPipelineCreate {
      * @memberof HookPipelineCreate
      */
     name: string;
-    /**
-     * 
-     * @type {ResourceType}
-     * @memberof HookPipelineCreate
-     */
-    resource_type: ResourceType;
-    /**
-     * The hooks\' resource ID.
-     * @type {number}
-     * @memberof HookPipelineCreate
-     */
-    resource_id: number;
     /**
      * 
      * @type {ActionType}
