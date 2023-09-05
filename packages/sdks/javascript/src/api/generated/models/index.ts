@@ -48,6 +48,7 @@ export * from './cloud-provider-service-region';
 export * from './cloud-provider-service-resource-type';
 export * from './cloud-provider-service-resource-type-scope';
 export * from './cloud-provider-settings-list';
+export * from './cloud-resource-type';
 export * from './cloud-service-settings-aws-ec2';
 export * from './cloud-service-settings-digital-ocean-droplet';
 export * from './cloud-service-settings-gcp-gce';

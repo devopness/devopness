@@ -12651,7 +12651,7 @@
           "hint": {
             "type": "string",
             "description": "Text describing what is the provider",
-            "example": "Cloud Server provided by Amazon Web Services"
+            "example": "Cloud services provided by Amazon Web Services"
           },
           "logo_url": {
             "type": "string",
@@ -12762,6 +12762,9 @@
             "type": "string",
             "example": "https://assets.devopness.com/images/icons/cloud-providers/aws.svg"
           },
+          "supported_resource_types": {
+            "$ref": "#/components/schemas/CloudResourceTypeList"
+          },
           "cloud_services": {
             "$ref": "#/components/schemas/CloudProviderServiceList"
           },
@@ -12774,6 +12777,7 @@
           "name",
           "hint",
           "logo_url",
+          "supported_resource_types",
           "cloud_services",
           "settings"
         ],
@@ -13001,6 +13005,22 @@
           "credential": {
             "$ref": "#/components/schemas/CloudProviderInputSettingsList"
           }
+        }
+      },
+      "CloudResourceType": {
+        "type": "string",
+        "description": "The name of a cloud resource type",
+        "example": "server",
+        "enum": [
+          "network",
+          "server",
+          "subnet"
+        ]
+      },
+      "CloudResourceTypeList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/CloudResourceType"
         }
       },
       "CloudServiceSettingsAwsEc2": {
