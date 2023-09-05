@@ -14,6 +14,7 @@
 
 import { CloudProviderService } from './cloud-provider-service';
 import { CloudProviderSettingsList } from './cloud-provider-settings-list';
+import { CloudResourceType } from './cloud-resource-type';
 import { StaticCloudProviderCode } from './static-cloud-provider-code';
 
 /**
@@ -46,6 +47,12 @@ export interface CloudProviderOptionsRelation {
      * @memberof CloudProviderOptionsRelation
      */
     logo_url: string;
+    /**
+     * 
+     * @type {Array<CloudResourceType>}
+     * @memberof CloudProviderOptionsRelation
+     */
+    supported_resource_types: Array<CloudResourceType>;
     /**
      * 
      * @type {Array<CloudProviderService>}
