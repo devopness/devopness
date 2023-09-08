@@ -14,12 +14,11 @@
 
 
 /**
- * The subnet\'s type. The `public` type means an internet visible subnet, and `private` means a subnet visible only from the subnet\'s network
+ * The subnet\'s type: `public` or `private`. A `public` subnet is typically used to host resources that have a public IP address and are accessible from the public internet. `Example`: a server hosting an API or web app. A `private` subnet is typically used to host resources that should not be accessible from the public internet, such as database servers or internal applications. A server in a private subnet will not have a public IP address associated to it.
  * @export
  * @enum {string}
  */
 export enum SubnetType {
-    Private = 'private',
     Public = 'public'
 }
 

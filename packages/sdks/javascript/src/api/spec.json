@@ -10607,7 +10607,6 @@
       "name": "Networks",
       "tags": [
         "Networks",
-        "Networks - Subnets",
         "Environments - Networks"
       ]
     },
@@ -10696,7 +10695,8 @@
     {
       "name": "Subnets",
       "tags": [
-        "Subnets"
+        "Subnets",
+        "Networks - Subnets"
       ]
     },
     {
@@ -19301,11 +19301,6 @@
             "type": "string",
             "example": "us-west1"
           },
-          "zone": {
-            "description": "The cloud provider availability zone where the subnet will be created",
-            "type": "string",
-            "example": "us-west1-a"
-          },
           "cidr_block": {
             "description": "The IP CIDR range of the subnet",
             "type": "string",
@@ -19314,7 +19309,6 @@
         },
         "required": [
           "region",
-          "zone",
           "cidr_block"
         ]
       },
@@ -19390,10 +19384,9 @@
       },
       "SubnetType": {
         "type": "string",
-        "description": "The subnet's type. The `public` type means an internet visible subnet, and `private` means a subnet visible only from the subnet's network",
+        "description": "The subnet's type: `public` or `private`. A `public` subnet is typically used to host resources that have a public IP address and are accessible from the public internet. `Example`: a server hosting an API or web app.\nA `private` subnet is typically used to host resources that should not be accessible from the public internet, such as database servers or internal applications. A server in a private subnet will not have a public IP address associated to it.",
         "example": "public",
         "enum": [
-          "private",
           "public"
         ]
       },
