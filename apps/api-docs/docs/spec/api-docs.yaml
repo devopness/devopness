@@ -316,7 +316,6 @@ x-tagGroups:
   - name: Networks
     tags:
       - Networks
-      - Networks - Subnets
       - Environments - Networks
   - name: Network Rules
     tags:
@@ -367,6 +366,7 @@ x-tagGroups:
   - name: Subnets
     tags:
       - Subnets
+      - Networks - Subnets
   - name: Teams
     tags:
       - Projects - Teams

@@ -5,15 +5,10 @@ properties:
     description: 'The cloud provider region where the subnet will be created'
     type: string
     example: us-west1
-  zone:
-    description: 'The cloud provider availability zone where the subnet will be created'
-    type: string
-    example: us-west1-a
   cidr_block:
     description: 'The IP CIDR range of the subnet'
     type: string
     example: 10.2.0.0/24
 required:
   - region
-  - zone
   - cidr_block
