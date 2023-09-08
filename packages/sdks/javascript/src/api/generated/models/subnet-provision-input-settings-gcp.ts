@@ -26,12 +26,6 @@ export interface SubnetProvisionInputSettingsGcp {
      */
     region: string;
     /**
-     * The cloud provider availability zone where the subnet will be created
-     * @type {string}
-     * @memberof SubnetProvisionInputSettingsGcp
-     */
-    zone: string;
-    /**
      * The IP CIDR range of the subnet
      * @type {string}
      * @memberof SubnetProvisionInputSettingsGcp
