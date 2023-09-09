@@ -12877,9 +12877,6 @@
           "regions": {
             "$ref": "#/components/schemas/CloudProviderServiceRegionList"
           },
-          "os": {
-            "$ref": "#/components/schemas/OperatingSystems"
-          },
           "resource_types": {
             "$ref": "#/components/schemas/CloudProviderServiceResourceTypeList"
           }
@@ -12973,6 +12970,9 @@
           },
           "input_settings": {
             "$ref": "#/components/schemas/CloudProviderInputSettingsList"
+          },
+          "os": {
+            "$ref": "#/components/schemas/OperatingSystems"
           }
         },
         "required": [

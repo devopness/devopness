@@ -16,7 +16,6 @@ import { CloudProviderRelation } from './cloud-provider-relation';
 import { CloudProviderServiceCode } from './cloud-provider-service-code';
 import { CloudProviderServiceRegion } from './cloud-provider-service-region';
 import { CloudProviderServiceResourceType } from './cloud-provider-service-resource-type';
-import { OperatingSystem } from './operating-system';
 
 /**
  * 
@@ -48,12 +47,6 @@ export interface CloudProviderService {
      * @memberof CloudProviderService
      */
     regions?: Array<CloudProviderServiceRegion>;
-    /**
-     * 
-     * @type {Array<OperatingSystem>}
-     * @memberof CloudProviderService
-     */
-    os?: Array<OperatingSystem>;
     /**
      * 
      * @type {Array<CloudProviderServiceResourceType>}
