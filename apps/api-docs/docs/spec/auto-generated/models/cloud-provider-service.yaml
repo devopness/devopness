@@ -11,8 +11,6 @@ properties:
     $ref: '#/components/schemas/CloudProviderRelation'
   regions:
     $ref: '#/components/schemas/CloudProviderServiceRegionList'
-  os:
-    $ref: '#/components/schemas/OperatingSystems'
   resource_types:
     $ref: '#/components/schemas/CloudProviderServiceResourceTypeList'
 required:

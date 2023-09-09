@@ -14,6 +14,8 @@ properties:
     $ref: '#/components/schemas/CloudProviderServiceResourceTypeScope'
   input_settings:
     $ref: '#/components/schemas/CloudProviderInputSettingsList'
+  os:
+    $ref: '#/components/schemas/OperatingSystems'
 required:
   - provider_resource_type
   - devopness_resource_type
