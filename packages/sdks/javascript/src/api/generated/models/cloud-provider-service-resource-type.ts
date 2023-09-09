@@ -14,6 +14,7 @@
 
 import { CloudProviderInputSettings } from './cloud-provider-input-settings';
 import { CloudProviderServiceResourceTypeScope } from './cloud-provider-service-resource-type-scope';
+import { OperatingSystem } from './operating-system';
 
 /**
  * Resource type details
@@ -45,5 +46,11 @@ export interface CloudProviderServiceResourceType {
      * @memberof CloudProviderServiceResourceType
      */
     input_settings: Array<CloudProviderInputSettings>;
+    /**
+     * 
+     * @type {Array<OperatingSystem>}
+     * @memberof CloudProviderServiceResourceType
+     */
+    os?: Array<OperatingSystem>;
 }
 
