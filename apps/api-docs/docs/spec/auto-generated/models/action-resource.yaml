@@ -36,6 +36,8 @@ properties:
         $ref: '#/components/schemas/SshKeyRelation'
       -
         $ref: '#/components/schemas/SslCertificateRelation'
+      -
+        $ref: '#/components/schemas/SubnetRelation'
 required:
   - id
   - type
