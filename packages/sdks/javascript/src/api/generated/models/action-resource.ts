@@ -22,6 +22,7 @@ import { ServerRelation } from './server-relation';
 import { ServiceRelation } from './service-relation';
 import { SshKeyRelation } from './ssh-key-relation';
 import { SslCertificateRelation } from './ssl-certificate-relation';
+import { SubnetRelation } from './subnet-relation';
 
 /**
  * The resource that triggered an action
@@ -49,9 +50,9 @@ export interface ActionResource {
     type_human_readable: string;
     /**
      * The resource data of type specified on `resource.type`
-     * @type {ApplicationRelation | CronJobRelation | DaemonRelation | NetworkRelation | NetworkRuleRelation | ServerRelation | ServiceRelation | SshKeyRelation | SslCertificateRelation}
+     * @type {ApplicationRelation | CronJobRelation | DaemonRelation | NetworkRelation | NetworkRuleRelation | ServerRelation | ServiceRelation | SshKeyRelation | SslCertificateRelation | SubnetRelation}
      * @memberof ActionResource
      */
-    data?: ApplicationRelation | CronJobRelation | DaemonRelation | NetworkRelation | NetworkRuleRelation | ServerRelation | ServiceRelation | SshKeyRelation | SslCertificateRelation | null;
+    data?: ApplicationRelation | CronJobRelation | DaemonRelation | NetworkRelation | NetworkRuleRelation | ServerRelation | ServiceRelation | SshKeyRelation | SslCertificateRelation | SubnetRelation | null;
 }
 
