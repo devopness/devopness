@@ -11222,6 +11222,9 @@
               },
               {
                 "$ref": "#/components/schemas/SslCertificateRelation"
+              },
+              {
+                "$ref": "#/components/schemas/SubnetRelation"
               }
             ]
           }
