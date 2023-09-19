@@ -3,9 +3,12 @@ description: 'The target defining how the variable key/value pair will be deploy
 type: string
 enum:
   - resource-config-file
+  - nginx-http-server
   - my-cnf
   - newrelic-infra-yml
   - nginx-conf
+  - nginx-main
+  - nginx-http
   - os-env-var
   - php-cli_php-ini
   - php-fpm_php-fpm-conf

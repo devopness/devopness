@@ -517,6 +517,8 @@ SslCertificateType:
   $ref: ./auto-generated/models/ssl-certificate-type.yaml
 SslCertificateValidationLevel:
   $ref: ./auto-generated/models/ssl-certificate-validation-level.yaml
+StaticApplicationType:
+  $ref: ./auto-generated/models/static-application-type.yaml
 StaticBillingInfo:
   $ref: ./auto-generated/models/static-billing-info.yaml
 StaticCloudProviderCode:
@@ -667,6 +669,8 @@ VariableServiceCreate:
   $ref: ./auto-generated/models/variable-service-create.yaml
 VariableTarget:
   $ref: ./auto-generated/models/variable-target.yaml
+VariableTargetList:
+  $ref: ./auto-generated/models/variable-target-list.yaml
 VariableType:
   $ref: ./auto-generated/models/variable-type.yaml
 VariableUpdate:
