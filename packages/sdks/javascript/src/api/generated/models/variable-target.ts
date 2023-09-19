@@ -20,9 +20,12 @@
  */
 export enum VariableTarget {
     ResourceConfigFile = 'resource-config-file',
+    NginxHttpServer = 'nginx-http-server',
     MyCnf = 'my-cnf',
     NewrelicInfraYml = 'newrelic-infra-yml',
     NginxConf = 'nginx-conf',
+    NginxMain = 'nginx-main',
+    NginxHttp = 'nginx-http',
     OsEnvVar = 'os-env-var',
     PhpCliPhpIni = 'php-cli_php-ini',
     PhpFpmPhpFpmConf = 'php-fpm_php-fpm-conf',

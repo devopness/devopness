@@ -12157,11 +12157,15 @@
           },
           "script_runners": {
             "$ref": "#/components/schemas/ScriptRunnerList"
+          },
+          "application_types": {
+            "$ref": "#/components/schemas/StaticApplicationType"
           }
         },
         "required": [
           "language_runtimes",
-          "script_runners"
+          "script_runners",
+          "application_types"
         ]
       },
       "ApplicationPipeline": {
@@ -18787,6 +18791,31 @@
         ],
         "example": "DV"
       },
+      "StaticApplicationType": {
+        "type": "object",
+        "properties": {
+          "public": {
+            "type": "object",
+            "properties": {
+              "variables_targets": {
+                "$ref": "#/components/schemas/VariableTargetList"
+              }
+            }
+          },
+          "private": {
+            "type": "object",
+            "properties": {
+              "variables_targets": {
+                "$ref": "#/components/schemas/VariableTargetList"
+              }
+            }
+          }
+        },
+        "required": [
+          "public",
+          "private"
+        ]
+      },
       "StaticBillingInfo": {
         "type": "object",
         "description": "Information about billing, such as subscription plans.",
@@ -18947,6 +18976,9 @@
                   "type": "string",
                   "description": "The service's version that is supported",
                   "example": "5.7"
+                },
+                "variable_targets": {
+                  "$ref": "#/components/schemas/VariableTargetList"
                 }
               }
             }
@@ -20667,9 +20699,12 @@
         "type": "string",
         "enum": [
           "resource-config-file",
+          "nginx-http-server",
           "my-cnf",
           "newrelic-infra-yml",
           "nginx-conf",
+          "nginx-main",
+          "nginx-http",
           "os-env-var",
           "php-cli_php-ini",
           "php-fpm_php-fpm-conf",
@@ -20679,6 +20714,46 @@
           "supervisord-conf"
         ],
         "example": "resource-config-file"
+      },
+      "VariableTargetList": {
+        "type": "array",
+        "description": "The array of target defining how the variable key/value pair will be deployed",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "enum": [
+                "resource-config-file",
+                "nginx-http-server",
+                "my-cnf",
+                "newrelic-infra-yml",
+                "nginx-conf",
+                "nginx-main",
+                "nginx-http",
+                "os-env-var",
+                "php-cli_php-ini",
+                "php-fpm_php-fpm-conf",
+                "php-fpm_php-ini",
+                "php-fpm_pool-d-www-conf",
+                "redis-conf",
+                "supervisord-conf"
+              ],
+              "description": "The variable target name",
+              "example": "my-cnf"
+            },
+            "name_human_readable": {
+              "type": "string",
+              "description": "Human readable version of the variable target name",
+              "example": "MySQL Configuration (my.cnf)"
+            },
+            "hint": {
+              "type": "string",
+              "description": "Text describing what is the variable targe",
+              "example": "Configuration file for MySQL (my.cnf)."
+            }
+          }
+        }
       },
       "VariableType": {
         "description": "The type of the key/value pair",
