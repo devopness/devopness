@@ -16,20 +16,14 @@
 /**
  * 
  * @export
- * @interface StaticServiceTypeSupportedVersions
+ * @interface StaticApplicationTypePublic
  */
-export interface StaticServiceTypeSupportedVersions {
-    /**
-     * The service\'s version that is supported
-     * @type {string}
-     * @memberof StaticServiceTypeSupportedVersions
-     */
-    version?: string;
+export interface StaticApplicationTypePublic {
     /**
      * The array of target defining how the variable key/value pair will be deployed
      * @type {Array<object>}
-     * @memberof StaticServiceTypeSupportedVersions
+     * @memberof StaticApplicationTypePublic
      */
-    variable_targets?: Array<object>;
+    variables_targets?: Array<object>;
 }
 

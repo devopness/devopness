@@ -202,6 +202,8 @@ export * from './ssl-certificate-issuer';
 export * from './ssl-certificate-relation';
 export * from './ssl-certificate-type';
 export * from './ssl-certificate-validation-level';
+export * from './static-application-type';
+export * from './static-application-type-public';
 export * from './static-billing-info';
 export * from './static-cloud-provider-code';
 export * from './static-cron-job-frequency';
