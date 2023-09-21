@@ -356,7 +356,15 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
           },
           "403": {
             "description": "Forbidden/Unauthorized",
@@ -1204,7 +1212,15 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
           },
           "403": {
             "description": "Forbidden/Unauthorized",
@@ -1375,7 +1391,15 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
           },
           "403": {
             "description": "Forbidden/Unauthorized",
@@ -3764,7 +3788,15 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
           },
           "403": {
             "description": "Forbidden/Unauthorized",
@@ -6859,7 +6891,15 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
           },
           "403": {
             "description": "Forbidden/Unauthorized",
@@ -8086,7 +8126,15 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
           },
           "403": {
             "description": "Forbidden/Unauthorized",
@@ -16257,7 +16305,7 @@
             "type": "string"
           },
           "max_parallel_actions": {
-            "description": "Maximum number of actions that can run in parallel for this pipeline. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run this pipeline. Must be between 0 and 65535.",
+            "description": "Maximum number of actions that can run in parallel for this pipeline. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run this pipeline. Must be between 0 and 10.",
             "example": 1,
             "type": "integer"
           },
@@ -16483,7 +16531,7 @@
             "type": "string"
           },
           "max_parallel_actions": {
-            "description": "Maximum number of actions that can run in parallel for this pipeline. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run this pipeline. Must be between 0 and 65535.",
+            "description": "Maximum number of actions that can run in parallel for this pipeline. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run this pipeline. Must be between 0 and 10.",
             "example": 1,
             "type": "integer"
           },
@@ -17554,7 +17602,7 @@
             "type": "integer"
           },
           "max_parallel_actions": {
-            "description": "Maximum number of actions that can run in parallel on this server. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run on this server. Must be between 0 and 65535.",
+            "description": "Maximum number of actions that can run in parallel on this server. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run on this server. Must be between 0 and 10.",
             "example": 1,
             "type": "integer"
           },
@@ -17716,7 +17764,7 @@
             "type": "integer"
           },
           "max_parallel_actions": {
-            "description": "Maximum number of actions that can run in parallel on this server. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run on this server. Must be between 0 and 65535.",
+            "description": "Maximum number of actions that can run in parallel on this server. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run on this server. Must be between 0 and 10.",
             "example": 1,
             "type": "integer"
           }
@@ -20749,7 +20797,7 @@
             },
             "hint": {
               "type": "string",
-              "description": "Text describing what is the variable targe",
+              "description": "Text describing what is the variable target",
               "example": "Configuration file for MySQL (my.cnf)."
             }
           }
