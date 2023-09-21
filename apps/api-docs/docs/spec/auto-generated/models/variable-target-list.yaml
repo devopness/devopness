@@ -29,5 +29,5 @@ items:
       example: 'MySQL Configuration (my.cnf)'
     hint:
       type: string
-      description: 'Text describing what is the variable targe'
+      description: 'Text describing what is the variable target'
       example: 'Configuration file for MySQL (my.cnf).'
