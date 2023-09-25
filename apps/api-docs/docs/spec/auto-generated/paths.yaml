@@ -2,6 +2,9 @@
 /actions:
   get:
     $ref: ./auto-generated/endpoints/list-actions.yaml
+'/actions/targets/{target_resource_type}/{target_resource_id}':
+  get:
+    $ref: ./auto-generated/endpoints/list-actions-by-target-resource-type.yaml
 '/actions/{action_id}':
   get:
     $ref: ./auto-generated/endpoints/get-action.yaml
