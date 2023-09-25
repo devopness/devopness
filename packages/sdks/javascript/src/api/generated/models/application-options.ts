@@ -12,9 +12,9 @@
  */
 
 
+import { ApplicationTypes } from './application-types';
 import { LanguageRuntime } from './language-runtime';
 import { ScriptRunner } from './script-runner';
-import { StaticApplicationType } from './static-application-type';
 
 /**
  * 
@@ -36,9 +36,9 @@ export interface ApplicationOptions {
     script_runners: Array<ScriptRunner>;
     /**
      * 
-     * @type {StaticApplicationType}
+     * @type {ApplicationTypes}
      * @memberof ApplicationOptions
      */
-    application_types: StaticApplicationType;
+    application_types: ApplicationTypes;
 }
 
