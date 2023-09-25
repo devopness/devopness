@@ -72,6 +72,76 @@
         }
       }
     },
+    "/actions/targets/{target_resource_type}/{target_resource_id}": {
+      "get": {
+        "summary": "List actions triggered to a given action target resource",
+        "operationId": "listActionsByTargetResourceType",
+        "description": {
+          "$ref": "../spec/descriptions/list-actions-by-target-resource-type.md"
+        },
+        "tags": [
+          "Actions"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "target_resource_id",
+            "description": "The resource ID of the action target.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "in": "path",
+            "name": "target_resource_type",
+            "description": "The resource type of the action target on which this action will be executed to perform operations on the action resource.",
+            "example": "server",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActionList"
+                }
+              }
+            },
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            }
+          }
+        }
+      }
+    },
     "/actions/{action_id}": {
       "get": {
         "summary": "Get an action by ID",
