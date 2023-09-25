@@ -67,6 +67,8 @@ ApplicationRelation:
   $ref: ./auto-generated/models/application-relation.yaml
 ApplicationType:
   $ref: ./auto-generated/models/application-type.yaml
+ApplicationTypes:
+  $ref: ./auto-generated/models/application-types.yaml
 ApplicationUpdate:
   $ref: ./auto-generated/models/application-update.yaml
 ArchivedEnvironmentList:
@@ -517,8 +519,6 @@ SslCertificateType:
   $ref: ./auto-generated/models/ssl-certificate-type.yaml
 SslCertificateValidationLevel:
   $ref: ./auto-generated/models/ssl-certificate-validation-level.yaml
-StaticApplicationType:
-  $ref: ./auto-generated/models/static-application-type.yaml
 StaticBillingInfo:
   $ref: ./auto-generated/models/static-billing-info.yaml
 StaticCloudProviderCode:
@@ -671,6 +671,8 @@ VariableTarget:
   $ref: ./auto-generated/models/variable-target.yaml
 VariableTargetList:
   $ref: ./auto-generated/models/variable-target-list.yaml
+VariableTargets:
+  $ref: ./auto-generated/models/variable-targets.yaml
 VariableType:
   $ref: ./auto-generated/models/variable-type.yaml
 VariableUpdate:

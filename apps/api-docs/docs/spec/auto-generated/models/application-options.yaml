@@ -6,7 +6,7 @@ properties:
   script_runners:
     $ref: '#/components/schemas/ScriptRunnerList'
   application_types:
-    $ref: '#/components/schemas/StaticApplicationType'
+    $ref: '#/components/schemas/ApplicationTypes'
 required:
   - language_runtimes
   - script_runners
