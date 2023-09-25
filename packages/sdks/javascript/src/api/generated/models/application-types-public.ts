@@ -12,18 +12,19 @@
  */
 
 
+import { VariableTargets } from './variable-targets';
 
 /**
  * 
  * @export
- * @interface StaticApplicationTypePublic
+ * @interface ApplicationTypesPublic
  */
-export interface StaticApplicationTypePublic {
+export interface ApplicationTypesPublic {
     /**
-     * The array of target defining how the variable key/value pair will be deployed
-     * @type {Array<object>}
-     * @memberof StaticApplicationTypePublic
+     * The list of VariableTarget
+     * @type {Array<VariableTargets>}
+     * @memberof ApplicationTypesPublic
      */
-    variables_targets?: Array<object>;
+    variables_targets?: Array<VariableTargets>;
 }
 

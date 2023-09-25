@@ -12,6 +12,7 @@
  */
 
 
+import { VariableTargets } from './variable-targets';
 
 /**
  * 
@@ -26,10 +27,10 @@ export interface StaticServiceTypeSupportedVersions {
      */
     version?: string;
     /**
-     * The array of target defining how the variable key/value pair will be deployed
-     * @type {Array<object>}
+     * The list of VariableTarget
+     * @type {Array<VariableTargets>}
      * @memberof StaticServiceTypeSupportedVersions
      */
-    variable_targets?: Array<object>;
+    variable_targets?: Array<VariableTargets>;
 }
 
