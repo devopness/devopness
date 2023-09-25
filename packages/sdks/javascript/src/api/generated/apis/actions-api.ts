@@ -99,6 +99,38 @@ export class ActionsApiService extends ApiBaseService {
 
     /**
      * 
+     * @summary List actions triggered to a given action target resource
+     * @param {number} targetResourceId The resource ID of the action target.
+     * @param {string} targetResourceType The resource type of the action target on which this action will be executed to perform operations on the action resource.
+     * @param {number} [page] Number of the page to be retrieved
+     * @param {number} [perPage] Number of items returned per page
+     */
+    public async listActionsByTargetResourceType(targetResourceId: number, targetResourceType: string, page?: number, perPage?: number): Promise<ApiResponse<Array<ActionRelation>>> {
+        if (targetResourceId === null || targetResourceId === undefined) {
+            throw new ArgumentNullException('targetResourceId', 'listActionsByTargetResourceType');
+        }
+        if (targetResourceType === null || targetResourceType === undefined) {
+            throw new ArgumentNullException('targetResourceType', 'listActionsByTargetResourceType');
+        }
+        
+        let queryString = '';
+        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
+        const requestUrl = '/actions/targets/{target_resource_type}/{target_resource_id}' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <Array<ActionRelation>>(requestUrl.replace(`{${"target_resource_id"}}`, encodeURIComponent(String(targetResourceId))).replace(`{${"target_resource_type"}}`, encodeURIComponent(String(targetResourceType))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
      * @summary Retry an action
      * @param {number} actionId The ID of the action.
      */
