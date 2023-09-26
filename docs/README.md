@@ -1,7 +1,7 @@
 # Devopness documentation
 Devopness maintains its documentation in an open source repository, so feel free to contribute to this project!
 
-# Contribution guildelines
+# Contribution guidelines
 Make sure all files created in this folder adhere to the following basic rules:
 1. Are defined as `Markdown` files (.md)
 2. Use front matter headers, see the list of available headers in [this topic](#predefined-variables)
