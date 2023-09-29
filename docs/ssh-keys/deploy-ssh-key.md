@@ -1,6 +1,6 @@
 ---
 title: Deploy SSH Key
-intro: Deploy your SSH Keys to each of the servers you want the keys on.
+intro: Deploy your SSH Keys to each of the servers you want to give access to using those keys.
 links:
     overview:
     quickstart:
