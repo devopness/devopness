@@ -1,5 +1,5 @@
 ---
-title: Add a Linked SSH Key
+title: Link an SSH Key to a Server
 intro: Link an SSH Key to a server to select which SSH keys a server can have deployed.
 links:
     overview:
