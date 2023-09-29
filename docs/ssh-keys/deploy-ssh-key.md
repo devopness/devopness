@@ -19,7 +19,7 @@ required_permissions:
 1. Find the `SSH Keys` card
 1. Click `View` in the `SSH Keys` card to see a list of existing `SSH Keys`
 1. Click `DEPLOY` on the SSH Key you want to deploy
-1. Choose the branch and the pipeline to be deployed, then click `Next`
+1. Choose the pipeline to be deployed, then click `Next`
 1. Review deploy information then click `Confirm`
    > A notification popup will be displayed, confirming that the deployment has been triggered
 1. Wait for the `Ssh-key:Deploy` action to be completed
