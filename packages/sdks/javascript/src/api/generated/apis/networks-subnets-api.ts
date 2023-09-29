@@ -51,14 +51,16 @@ export class NetworksSubnetsApiService extends ApiBaseService {
      * @param {number} networkId The ID of the network.
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
+     * @param {string} [region] Filter by subnet\&#39;s region.
+     * @param {string} [zone] Filter by subnet\&#39;s zone.
      */
-    public async listNetworkSubnets(networkId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<SubnetRelation>>> {
+    public async listNetworkSubnets(networkId: number, page?: number, perPage?: number, region?: string, zone?: string): Promise<ApiResponse<Array<SubnetRelation>>> {
         if (networkId === null || networkId === undefined) {
             throw new ArgumentNullException('networkId', 'listNetworkSubnets');
         }
         
         let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
+        const queryParams = { page: page, per_page: perPage, region: region, zone: zone, } as { [key: string]: any };
         for (const key in queryParams) {
             if (queryParams[key] === undefined || queryParams[key] === null) {
                 continue;

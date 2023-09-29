@@ -51,14 +51,17 @@ export class EnvironmentsNetworksApiService extends ApiBaseService {
      * @param {number} environmentId The ID of the environment.
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
+     * @param {boolean} [includeDefaultNetwork] If true, include a \&#39;default\&#39; network in the list.
+     * @param {string} [providerName] Filter by network\&#39;s cloud provider.
+     * @param {string} [region] Filter by network\&#39;s region.
      */
-    public async listEnvironmentNetworks(environmentId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<NetworkRelation>>> {
+    public async listEnvironmentNetworks(environmentId: number, page?: number, perPage?: number, includeDefaultNetwork?: boolean, providerName?: string, region?: string): Promise<ApiResponse<Array<NetworkRelation>>> {
         if (environmentId === null || environmentId === undefined) {
             throw new ArgumentNullException('environmentId', 'listEnvironmentNetworks');
         }
         
         let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
+        const queryParams = { page: page, per_page: perPage, include_default_network: includeDefaultNetwork, provider_name: providerName, region: region, } as { [key: string]: any };
         for (const key in queryParams) {
             if (queryParams[key] === undefined || queryParams[key] === null) {
                 continue;

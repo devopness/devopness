@@ -21,7 +21,7 @@ import { NetworkProvisionInputSettings } from './network-provision-input-setting
  */
 export interface NetworkProvisionInput {
     /**
-     * The cloud service of the cloud provicer
+     * The cloud service of the cloud provider
      * @type {string}
      * @memberof NetworkProvisionInput
      */

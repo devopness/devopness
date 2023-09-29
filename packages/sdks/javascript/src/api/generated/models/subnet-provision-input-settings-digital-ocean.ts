@@ -20,6 +20,12 @@
  */
 export interface SubnetProvisionInputSettingsDigitalOcean {
     /**
+     * The cloud provider region where the subnet will be created
+     * @type {string}
+     * @memberof SubnetProvisionInputSettingsDigitalOcean
+     */
+    region: string;
+    /**
      * The IP CIDR range of the subnet
      * @type {string}
      * @memberof SubnetProvisionInputSettingsDigitalOcean
