@@ -21,5 +21,4 @@ required_permissions:
 1. Click `DEPLOY` on the SSH Key you want to deploy
 1. Choose the pipeline to be deployed, then click `Next`
 1. Review deploy information then click `Confirm`
-   > A notification popup will be displayed, confirming that the deployment has been triggered
 1. Wait for the `Ssh-key:Deploy` action to be completed
