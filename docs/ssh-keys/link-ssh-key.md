@@ -19,6 +19,7 @@ links:
 1. Click `DETAILS` on the SSH key you want to link to a server
 1. On the upper-right corner of the SSH key details view, click `...`
 1. Use the drop-down menu to choose `Linked resources`
-1. On the upper-right corner of the `Linked resources` list, click `LINK TO`. On the drop-down menu, click on `Servers`
+1. On the upper-right corner of the `Linked resources` list, click `LINK TO`
+1. Use the drop-down menu to choose `Servers`
 1. Follow the prompts then click `Link`
 1. In the `Linked Resource` list, the recently linked server can be seen in the `DEPENDS ON` table
