@@ -12,7 +12,7 @@ links:
     related:
     featured:
 required_permissions:
-    - application:deploy
+    - ssh-key:deploy
 ---
 
 1. On Devopness, navigate to a project then select an environment
