@@ -45,6 +45,12 @@ export interface NetworkRelation {
      */
     created_by: number;
     /**
+     * If true, the network is auto-generated
+     * @type {boolean}
+     * @memberof NetworkRelation
+     */
+    is_auto_generated: boolean;
+    /**
      * The name of the cloud provider
      * @type {string}
      * @memberof NetworkRelation
