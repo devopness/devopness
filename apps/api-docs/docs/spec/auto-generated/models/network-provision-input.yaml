@@ -4,7 +4,7 @@ description: 'Network provision input parameters'
 properties:
   cloud_service_code:
     type: string
-    description: 'The cloud service of the cloud provicer'
+    description: 'The cloud service of the cloud provider'
     example: aws-ec2
   credential_id:
     type: integer

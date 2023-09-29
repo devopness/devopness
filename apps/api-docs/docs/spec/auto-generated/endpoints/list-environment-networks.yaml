@@ -25,6 +25,30 @@ parameters:
     schema:
       type: integer
       minimum: 1
+  -
+    in: query
+    name: include_default_network
+    description: 'If true, include a ''default'' network in the list.'
+    example: false
+    required: false
+    schema:
+      type: boolean
+  -
+    in: query
+    name: provider_name
+    description: 'Filter by network''s cloud provider.'
+    example: aws
+    required: false
+    schema:
+      type: string
+  -
+    in: query
+    name: region
+    description: 'Filter by network''s region.'
+    example: us-east-1
+    required: false
+    schema:
+      type: string
 responses:
   200:
     description: Ok

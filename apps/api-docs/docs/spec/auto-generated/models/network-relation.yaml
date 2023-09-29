@@ -17,6 +17,10 @@ properties:
     description: 'The id of the user who created the network'
     type: integer
     example: 789
+  is_auto_generated:
+    description: 'If true, the network is auto-generated'
+    type: boolean
+    example: false
   provider_name:
     description: 'The name of the cloud provider'
     type: string
@@ -44,6 +48,7 @@ required:
   - project_id
   - environment_id
   - created_by
+  - is_auto_generated
   - provider_name
   - provider_name_human_readable
   - name

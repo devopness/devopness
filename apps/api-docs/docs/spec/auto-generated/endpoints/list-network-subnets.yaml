@@ -25,6 +25,22 @@ parameters:
     schema:
       type: integer
       minimum: 1
+  -
+    in: query
+    name: region
+    description: 'Filter by subnet''s region.'
+    example: us-east-1
+    required: false
+    schema:
+      type: string
+  -
+    in: query
+    name: zone
+    description: 'Filter by subnet''s zone.'
+    example: us-east-1a
+    required: false
+    schema:
+      type: string
 responses:
   200:
     description: Ok
