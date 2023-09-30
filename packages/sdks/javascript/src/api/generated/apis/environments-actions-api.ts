@@ -22,6 +22,34 @@ import { ActionRelation } from '../../generated/models';
 export class EnvironmentsActionsApiService extends ApiBaseService {
     /**
      * 
+     * @summary List environment actions
+     * @param {number} environmentId The ID of the environment.
+     * @param {number} [page] Number of the page to be retrieved
+     * @param {number} [perPage] Number of items returned per page
+     */
+    public async listEnvironmentActions(environmentId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<ActionRelation>>> {
+        if (environmentId === null || environmentId === undefined) {
+            throw new ArgumentNullException('environmentId', 'listEnvironmentActions');
+        }
+        
+        let queryString = '';
+        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
+        const requestUrl = '/environments/{environment_id}/actions' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <Array<ActionRelation>>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
      * @summary List environment actions of a resource type
      * @param {number} environmentId The ID of the environment.
      * @param {string} resourceType The resource type to get related actions.
