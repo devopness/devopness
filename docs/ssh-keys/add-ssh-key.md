@@ -7,7 +7,7 @@ links:
     previous:
         - /docs/ssh-keys/create-ssh-key-pair
     next:
-        - /docs/servers/ssh-into-server
+        - /docs/ssh-keys/link-ssh-key
     guides:
     related:
         - /docs/ssh-keys/create-ssh-key-pair
