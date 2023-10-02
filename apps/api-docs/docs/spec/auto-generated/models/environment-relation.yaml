@@ -15,6 +15,10 @@ properties:
     description: 'The human readable version of the type'
     type: string
     example: Staging
+  used_credits:
+    description: 'Number of credits used in the current monthly billing cycle by actions of resources in the environment.'
+    type: integer
+    example: 50
   created_at:
     description: 'The date and time when the record was created'
     type: string

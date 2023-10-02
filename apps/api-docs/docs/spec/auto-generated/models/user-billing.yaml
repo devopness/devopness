@@ -3,5 +3,8 @@ type: object
 properties:
   active_subscription:
     $ref: '#/components/schemas/Subscription'
+  environments:
+    $ref: '#/components/schemas/EnvironmentList'
 required:
   - active_subscription
+  - environments
