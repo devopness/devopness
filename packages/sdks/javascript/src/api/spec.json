@@ -8688,7 +8688,7 @@
     },
     "/static/cloud-provider-service-options/{cloud_provider_service_code}/regions/{region_code}/instances": {
       "get": {
-        "summary": "List `Cloud Provider Service` instances by region",
+        "summary": "List `Cloud Provider Service` instance types by region",
         "operationId": "listStaticCloudInstancesByCloudProviderServiceCodeAndRegionCode",
         "description": {
           "$ref": "../spec/descriptions/list-static-cloud-instances-by-cloud-provider-service-code-and-region-code.md"
@@ -12755,6 +12755,11 @@
             "type": "string",
             "example": "Staging"
           },
+          "used_credits": {
+            "description": "Number of credits used in the current monthly billing cycle by actions of resources in the environment.",
+            "type": "integer",
+            "example": 50
+          },
           "created_at": {
             "description": "The date and time when the record was created",
             "type": "string",
@@ -14404,6 +14409,11 @@
             "description": "The human readable version of the type",
             "type": "string",
             "example": "Staging"
+          },
+          "used_credits": {
+            "description": "Number of credits used in the current monthly billing cycle by actions of resources in the environment.",
+            "type": "integer",
+            "example": 50
           },
           "created_at": {
             "description": "The date and time when the record was created",
@@ -20331,10 +20341,14 @@
         "properties": {
           "active_subscription": {
             "$ref": "#/components/schemas/Subscription"
+          },
+          "environments": {
+            "$ref": "#/components/schemas/EnvironmentList"
           }
         },
         "required": [
-          "active_subscription"
+          "active_subscription",
+          "environments"
         ]
       },
       "UserCreate": {
