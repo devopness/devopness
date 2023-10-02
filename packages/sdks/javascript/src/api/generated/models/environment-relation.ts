@@ -45,6 +45,12 @@ export interface EnvironmentRelation {
      */
     type_human_readable: string;
     /**
+     * Number of credits used in the current monthly billing cycle by actions of resources in the environment.
+     * @type {number}
+     * @memberof EnvironmentRelation
+     */
+    used_credits?: number;
+    /**
      * The date and time when the record was created
      * @type {string}
      * @memberof EnvironmentRelation
