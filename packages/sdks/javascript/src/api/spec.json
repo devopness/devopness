@@ -1808,6 +1808,66 @@
         }
       }
     },
+    "/environments/{environment_id}/actions": {
+      "get": {
+        "summary": "List environment actions",
+        "operationId": "listEnvironmentActions",
+        "description": {
+          "$ref": "../spec/descriptions/list-environment-actions.md"
+        },
+        "tags": [
+          "Environments - Actions"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "environment_id",
+            "description": "The ID of the environment.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActionList"
+                }
+              }
+            },
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            }
+          }
+        }
+      }
+    },
     "/environments/{environment_id}/actions/{resource_type}": {
       "get": {
         "summary": "List environment actions of a resource type",
@@ -2492,6 +2552,36 @@
             "schema": {
               "type": "integer",
               "minimum": 1
+            }
+          },
+          {
+            "in": "query",
+            "name": "include_default_network",
+            "description": "If true, include a 'default' network in the list.",
+            "example": false,
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "provider_name",
+            "description": "Filter by network's cloud provider.",
+            "example": "aws",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "region",
+            "description": "Filter by network's region.",
+            "example": "us-east-1",
+            "required": false,
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -4149,6 +4239,26 @@
             "schema": {
               "type": "integer",
               "minimum": 1
+            }
+          },
+          {
+            "in": "query",
+            "name": "region",
+            "description": "Filter by subnet's region.",
+            "example": "us-east-1",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "zone",
+            "description": "Filter by subnet's zone.",
+            "example": "us-east-1a",
+            "required": false,
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -8578,7 +8688,7 @@
     },
     "/static/cloud-provider-service-options/{cloud_provider_service_code}/regions/{region_code}/instances": {
       "get": {
-        "summary": "List `Cloud Provider Service` instances by region",
+        "summary": "List `Cloud Provider Service` instance types by region",
         "operationId": "listStaticCloudInstancesByCloudProviderServiceCodeAndRegionCode",
         "description": {
           "$ref": "../spec/descriptions/list-static-cloud-instances-by-cloud-provider-service-code-and-region-code.md"
@@ -12645,6 +12755,11 @@
             "type": "string",
             "example": "Staging"
           },
+          "used_credits": {
+            "description": "Number of credits used in the current monthly billing cycle by actions of resources in the environment.",
+            "type": "integer",
+            "example": 50
+          },
           "created_at": {
             "description": "The date and time when the record was created",
             "type": "string",
@@ -14295,6 +14410,11 @@
             "type": "string",
             "example": "Staging"
           },
+          "used_credits": {
+            "description": "Number of credits used in the current monthly billing cycle by actions of resources in the environment.",
+            "type": "integer",
+            "example": 50
+          },
           "created_at": {
             "description": "The date and time when the record was created",
             "type": "string",
@@ -15665,7 +15785,7 @@
         "type": "object",
         "properties": {
           "name": {
-            "description": "The network's name. Must be between 1 and 63 characters.",
+            "description": "The network's name. Must not be one of <code>default</code> Must be between 1 and 63 characters.",
             "example": "my-network",
             "type": "string"
           },
@@ -15690,7 +15810,7 @@
         "properties": {
           "cloud_service_code": {
             "type": "string",
-            "description": "The cloud service of the cloud provicer",
+            "description": "The cloud service of the cloud provider",
             "example": "aws-ec2"
           },
           "credential_id": {
@@ -15796,6 +15916,11 @@
             "type": "integer",
             "example": 789
           },
+          "is_auto_generated": {
+            "description": "If true, the network is auto-generated",
+            "type": "boolean",
+            "example": false
+          },
           "provider_name": {
             "description": "The name of the cloud provider",
             "type": "string",
@@ -15830,6 +15955,7 @@
           "project_id",
           "environment_id",
           "created_by",
+          "is_auto_generated",
           "provider_name",
           "provider_name_human_readable",
           "name",
@@ -19436,13 +19562,19 @@
       "SubnetProvisionInputSettingsDigitalOcean": {
         "type": "object",
         "properties": {
+          "region": {
+            "description": "The cloud provider region where the subnet will be created",
+            "type": "string",
+            "example": "ams2"
+          },
           "cidr_block": {
             "description": "The IP CIDR range of the subnet",
             "type": "string",
-            "example": "10.2.0.0/24"
+            "example": "10.0.0.0/24"
           }
         },
         "required": [
+          "region",
           "cidr_block"
         ]
       },
@@ -20209,10 +20341,14 @@
         "properties": {
           "active_subscription": {
             "$ref": "#/components/schemas/Subscription"
+          },
+          "environments": {
+            "$ref": "#/components/schemas/EnvironmentList"
           }
         },
         "required": [
-          "active_subscription"
+          "active_subscription",
+          "environments"
         ]
       },
       "UserCreate": {
