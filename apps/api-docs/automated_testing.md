@@ -2,7 +2,7 @@
 
 ## Overview
 Dredd generates requests and verifies responses of all API routes according to the schemas in the OpenAPI specification used to generate the Devopness documentation.
-API routes have dependencies that need to be satisfied before they could be successfully called, ie.: `addApplicationToProject` needs a valid project
+API routes have dependencies that need to be satisfied before they could be successfully called, i.e.: `addApplicationToProject` needs a valid project
 id in its parameter, or the transaction will fail.
 The dredd documentation recommends keeping transactions self-contained, using custom testing code in the backend to insert
 the necessary fixtures directly on the database before running a test.
@@ -17,7 +17,7 @@ With the ability to modify and reorder transactions, the following API automated
 4. Store fixtures from the response body of transactions
 5. Rewrite request URL and body parameters using stored fixtures
 
-### 1. Identifying inputs and ouputs
+### 1. Identifying inputs and outputs
 Transaction dependencies are encoded in the `FixtureKey` type (`fixtureKey.ts`).
 The valid values for this type match the transaction inputs and outputs in the OpenAPI specification, in different parts:
 * **Request header** the auth dependency is specified by the presence of the `Authorization` header. Sets the `requiresAuth` boolean field.
@@ -35,15 +35,15 @@ This auxiliary graph is then folded into the final transaction graph on a separa
 The fixture-transaction graph is formed of two kinds of nodes, representing transactions and fixtures, and directed edges representing the fixture inputs and outputs required by transactions.
 The `TransactionGraph.fixtureTransactionGraphFromTransactionSpecs` method converts an array of `TransactionMetadata` objects into a graph by creating a node per transaction, and connecting these to the fixtures specified in the spec.
 
-There are some corner cases: 
+There are some corner cases:
 * Transactions returning `FixtureListKey` types, such as `getApplications` or `getProjects`, are considered as only having a fixture input, instead of having fixture outputs. As these transactions don't create or modify fixtures, and require at least one fixture of the type to exist in the return value, they're inserted in the graph as only one edge: with one input fixture of the type of the element they return.
 * The `FixtureDependency` array in the body input of a transaction is resolved to a `FixtureKey` array containing all the fixtures used in composing those dependencies, which corresponds to the fixture nodes in the graph connected to this transaction node.
-* The topological sorting algorithm requires that the source graph is acyclical. For this reason, transaction output edges to fixture nodes are skipped if the same fixture is already connnected as by input edge.
+* The topological sorting algorithm requires that the source graph is acyclical. For this reason, transaction output edges to fixture nodes are skipped if the same fixture is already connected as by input edge.
 * Input edges to DELETE transactions are stored in a separate adjacency list, as this will come in handy in the next step.
 * As the only header parameter in the devopness API is the `Authorization` header, the transaction dependencies to the `user_tokens` fixture type are pre-encoded in the `TransactionGraph` constructor.
 
 #### Transaction adjacency list
-The `TransactionGraph.populateAdjacencyList` method does the final step in converting the fixture-transaction graph into a transaction adjency list by collapsing fixture nodes and rewiring their edges between the transaction nodes that it connects. This process requires two passes: one for unreachable fixture identification, then another for creating transaction-transaction edges.
+The `TransactionGraph.populateAdjacencyList` method does the final step in converting the fixture-transaction graph into a transaction adjacency list by collapsing fixture nodes and rewiring their edges between the transaction nodes that it connects. This process requires two passes: one for unreachable fixture identification, then another for creating transaction-transaction edges.
 
 Unreachable fixtures are those that don't contain a transaction that outputs it and does not contain itself as an input: a so-called generator transaction.
 It's essential to remove the transactions associated with those fixtures from the graph, as the running orders derived from this graph would not satisfy the dependencies of these transactions and result in runtime errors.
@@ -53,7 +53,7 @@ In the fixture lifecycle on an API test run, DELETE transactions need to be a te
 To ensure this, edges are inserted between all transactions around a fixture (as both input and output) and its corresponding DELETE transaction.
 
 ### 3. Computing transaction order
-Computing a transaction order transalates to finding a valid transversal of the transaction dependency graph.
+Computing a transaction order translates to finding a valid transversal of the transaction dependency graph.
 That task can also be seen as finding a sorting order for a transaction array satisfying a set of constraints: a so called topological sort.
 
 The set of constraints is the adjency list representing the acyclical directed graph of transaction dependencies. That list serves as the input to the [toposort](https://npmjs.com/package/toposort) package, used to find a valid transaction order.
@@ -72,7 +72,7 @@ This is done in `hooks.ts` using the `TransactionUtils.setTransactionRequestAuth
 
 #### URL path
 URL paths in the Devopness API follow a REST structure, carrying ids to objects being referenced by a route.
-The `TransactionUtils.writeFixtureIdsInTransactionPath` handles this fixture rewrite, taking the original path from the `transaction.fullSpec` field, 
+The `TransactionUtils.writeFixtureIdsInTransactionPath` handles this fixture rewrite, taking the original path from the `transaction.fullSpec` field,
 and successively replacing path slices in the form `{fixture}_id` with the corresponding fixture ID in the store.
 
 #### Body payload
@@ -80,7 +80,7 @@ Body parameters are modified in specific paths, according to a `FixtureDependenc
 The `TransactionUtils.applyTransactionRequestBodyFixtureDependencies` transformation applies these dependencies over the dredd-generated payload.
 
 ## Some gotchas of dredd hook programming
-* Transaction array has to be sorted in place, abusing the existance of a reference to it in the `beforeEach` hook.
+* Transaction array has to be sorted in place, abusing the existence of a reference to it in the `beforeEach` hook.
 * Log function has to be passed around, as modules are compiled internally by dredd on execution.
 * Non 2xx route transactions are automatically skipped.
 * Exit-on-fail is implemented as an after-hook that skips all transactions after the first failure, as erasing after execution started results in a crash.
@@ -109,7 +109,7 @@ If the route is still not being executed properly after the basic setup, refer t
 ## Skipped transactions
 Some transactions may show up as `skipped` in dredd logs. The origin of those skips is one of the following:
 ### Non-2xx transactions
-Dredd automatically skips non-2xx transactions. The automated process described here doesn't cover unscessuful route responses.
+Dredd automatically skips non-2xx transactions. The automated process described here doesn't cover unsuccessful route responses.
 ### Unreachable transactions
 Transactions that can't have their dependencies satisfied in the dependency graph are considered unreachable and are skipped.
 For more details about unreachable transactions, refer to the subsection "2. Transaction adjacency list" of the "Overview" section of this document.
