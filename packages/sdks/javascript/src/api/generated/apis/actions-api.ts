@@ -25,7 +25,7 @@ import { ApiError } from '../../generated/models';
 export class ActionsApiService extends ApiBaseService {
     /**
      * 
-     * @summary Get an action by ID
+     * @summary Get an action by its ID
      * @param {number} actionId The ID of the action.
      */
     public async getAction(actionId: number): Promise<ApiResponse<Action>> {
