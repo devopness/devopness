@@ -144,7 +144,7 @@
     },
     "/actions/{action_id}": {
       "get": {
-        "summary": "Get an action by ID",
+        "summary": "Get an action by its ID",
         "operationId": "getAction",
         "description": {
           "$ref": "../spec/descriptions/get-action.md"
