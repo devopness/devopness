@@ -9,19 +9,16 @@ properties:
     description: 'The rule''s name/description/reminder. Must be at least 3 characters. Must not be greater than 60 characters.'
     example: 'Open MySQL port for remote access'
     type: string
-  type:
-    $ref: '#/components/schemas/NetworkRuleType'
+  direction:
+    $ref: '#/components/schemas/NetworkRuleDirection'
   protocol:
     $ref: '#/components/schemas/NetworkRuleProtocol'
-  ip_address_from:
-    description: 'Starting range of the public ipv4 or ipv6 addresses that can access this rule. Must be a valid IP address.'
-    example: 200.123.45.67
-    type: string
-  ip_address_to:
-    description: 'Ending range of the public ipv4 or ipv6 addresses that can access this rule. Must be a valid IP address.'
-    example: 200.123.45.99
+  cidr_block:
+    description: 'IP address range this rule applies for, defined using CIDR notation.'
+    example: 10.0.0.0/24
     type: string
 required:
   - id
   - name
-  - type
+  - direction
+  - cidr_block

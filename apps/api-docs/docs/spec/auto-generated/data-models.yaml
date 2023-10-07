@@ -297,6 +297,8 @@ NetworkRelation:
   $ref: ./auto-generated/models/network-relation.yaml
 NetworkRule:
   $ref: ./auto-generated/models/network-rule.yaml
+NetworkRuleDirection:
+  $ref: ./auto-generated/models/network-rule-direction.yaml
 NetworkRuleEnvironmentCreate:
   $ref: ./auto-generated/models/network-rule-environment-create.yaml
 NetworkRuleList:
@@ -305,8 +307,6 @@ NetworkRuleProtocol:
   $ref: ./auto-generated/models/network-rule-protocol.yaml
 NetworkRuleRelation:
   $ref: ./auto-generated/models/network-rule-relation.yaml
-NetworkRuleType:
-  $ref: ./auto-generated/models/network-rule-type.yaml
 NetworkRuleUpdate:
   $ref: ./auto-generated/models/network-rule-update.yaml
 OperatingSystem:
