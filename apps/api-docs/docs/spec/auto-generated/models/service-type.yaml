@@ -9,4 +9,5 @@ enum:
   - php
   - redis
   - supervisor
+  - ufw
 example: mysql
