@@ -25,7 +25,8 @@ export enum ServiceType {
     Nginx = 'nginx',
     Php = 'php',
     Redis = 'redis',
-    Supervisor = 'supervisor'
+    Supervisor = 'supervisor',
+    Ufw = 'ufw'
 }
 
 
