@@ -71,14 +71,6 @@ links:
        "trigger_when": {
          "events": [
            "action.started"
-         ],
-         "conditions": [
-           {
-             "path": "action.triggered_from.hook_parsed_variables.pipeline_id",
-             "accepted_values": [
-               <pipeline_id>
-             ]
-           }
          ]
        }
      }'
@@ -119,14 +111,6 @@ links:
        "trigger_when": {
          "events": [
            "action.failed"
-         ],
-         "conditions": [
-           {
-             "path": "action.triggered_from.hook_parsed_variables.pipeline_id",
-             "accepted_values": [
-               <pipeline_id>
-             ]
-           }
          ]
        }
      }'
@@ -169,14 +153,6 @@ links:
        "trigger_when": {
          "events": [
            "action.completed"
-         ],
-         "conditions": [
-           {
-             "path": "action.triggered_from.hook_parsed_variables.pipeline_id",
-             "accepted_values": [
-               <pipeline_id>
-             ]
-           }
          ]
        }
      }'
