@@ -24,7 +24,7 @@ Webhooks, for now, are an API only feature; so this post will guide you through 
 
 ## Step 1: Get the data needed for creating a webhook
 
-1. Copy the `Application ID` (`<application_id>`) and `Deploy Pipeline ID` (`<pipeline_id>`) from the application which you want to run pipelines programatically
+1. Copy the `Deploy Pipeline ID` (`<pipeline_id>`) from the application which you want to run pipelines programatically
     > Follow the [Deploy Application using an Incoming Hook](/docs/applications/deploy-application-using-incoming-hook) guide for detailed instructions
 1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /users/login` using your Devopness account email and password
     ```bash
@@ -41,10 +41,10 @@ Webhooks, for now, are an API only feature; so this post will guide you through 
 
 ## Step 2: Create the webhook
 
-1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /hooks/incoming`, replacing `<application_id>` and `<pipeline_id>`.
+1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /pipelines/:id/hooks/incoming`, replacing `<pipeline_id>`.
     ```bash
     curl --request POST \
-      --url https://api.devopness.com/hooks/incoming \
+      --url https://api.devopness.com/pipelines/<pipeline_id>/hooks/incoming \
       --header 'Accept: application/json' \
       --header 'Authorization: Bearer <access_token>' \
       --header 'Content-Type: application/json' \
@@ -54,8 +54,6 @@ Webhooks, for now, are an API only feature; so this post will guide you through 
     	"secret_algorithm": "sha256",
     	"secret_header_name": "x-hub-signature-256",
     	"action_type": "deploy",
-    	"resource_type": "application",
-    	"resource_id": <application_id>,
     	"settings": {
     		"variables": [
     			{
@@ -64,12 +62,6 @@ Webhooks, for now, are an API only feature; so this post will guide you through 
 		    		"required": false,
 			    	"default_value": "main"
     			},
-	    		{
-		    		"name": "pipeline_id",
-			    	"type": "integer",
-				    "required": false,
-    				"default_value": <pipeline_id>
-	    		},
  	    		{
 		    		"name": "pull_request_id",
 		    		"path": "pull_request.number",
@@ -98,10 +90,10 @@ Webhooks, for now, are an API only feature; so this post will guide you through 
 
 ## Step 3: Ensure the webhook was created correctly
 
-1. On your local machine, in a terminal window, run command to list all the application hooks, replacing `<application_id>`.
+1. On your local machine, in a terminal window, run command to list all the application hooks, replacing `<pipeline_id>`.
     ```bash
     curl --request GET \
-      --url https://api.devopness.com/applications/<application_id>/hooks \
+      --url https://api.devopness.com/pipelines/<pipeline_id>/hooks \
       --header 'Accept: application/json' \
       --header 'Authorization: Bearer <access_token>' \
       --header 'Content-Type: application/json'
