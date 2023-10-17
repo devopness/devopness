@@ -11,10 +11,10 @@ links:
     featured:
 ---
 
-Before creating our application deploy incoming webhook, we need the `Deploy Pipeline ID` (`<pipeline_id>`) to use as parameters in our API calls.
+Before creating an incoming webhook to trigger an `application:deploy`, we need the ID of a pipeline that runs the `deploy` operation for an application. The ID (`<pipeline_id>`) will be used as input parameter in the requests to be sent to Devopness API.
 
 <details open>
-  <summary>Steps to find `Deploy Pipeline ID`</summary>
+  <summary>Steps to find the `<pipeline_id>` of an `application:deploy` pipeline</summary>
 
 1. On Devopness, navigate to a project then select an environment
 1. Find the `Applications` card
@@ -24,14 +24,14 @@ Before creating our application deploy incoming webhook, we need the `Deploy Pip
 1. Use the drop-down menu to choose `PIPELINES`
 1. In the list of pipelines, find the pipeline you want to manage and click `DETAILS`
     > If you haven't created a pipeline yet, follow the [Add a Pipeline](/docs/pipelines/add-pipeline) guide
-1. Copy the `Deploy Pipeline ID` from the URL, considering the following URL format:
+1. Copy the `<pipeline_id>` from the pipeline details URL, considering the following URL format:
     ```bash
     https://app.devopness.com/projects/<project_id>/environments/<environment_id>/applications/<application_id>/pipelines/<pipeline_id>
     ```
 
 </details>
 
-Once you have your `Deploy Pipeline ID` (`<pipeline_id>`), please follow the instructions below to add an incoming webhook to your application that triggers the deploy pipeline:
+Once you have your `<pipeline_id>`, please follow the instructions below to add an incoming webhook to your application that triggers the deploy pipeline:
 
 1. Follow the steps on [Create an Incoming Webhook](/docs/webhooks/create-incoming-webhook) guide
 1. Once your web hook is created, copy the webhook the hook's unique URL (`url` field)
