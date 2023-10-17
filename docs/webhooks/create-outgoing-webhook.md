@@ -27,7 +27,7 @@ links:
 {% endnote %}
 
 
-1. Take note of the `Deploy Pipeline ID` (`<pipeline_id>`) from the application which you want to watch the action statuses
+1. Take note of the ID (`<pipeline_id>`) of a pipeline that runs the `deploy` operation for the application which you want to watch the action statuses
     - Follow the [Deploy Application using an Incoming Hook](/docs/applications/deploy-application-using-incoming-hook) guide for detailed instructions
 1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /users/login` using your Devopness account email and password
     ```bash
