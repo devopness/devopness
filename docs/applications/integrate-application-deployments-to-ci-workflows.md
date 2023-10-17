@@ -27,7 +27,7 @@ links:
 {% endnote %}
 
 
-1. Take note of the `Deploy Pipeline ID` (`<pipeline_id>`) from the application which you want to watch the action statuses
+1. Take note of the `<pipeline_id>` from the application which you want to watch the action statuses
    - Follow the [Deploy Application using an Incoming Hook](/docs/applications/deploy-application-using-incoming-hook) guide for detailed instructions
 
 1. Take note of the `Target URL` (`<target_url>`), `Request Headers` (`<request_headers>`) and `Request Body` (`<request_body>`) fields according to the source provider where the application' source code is hosted, by following the source provider's instructions on the links bellow:
