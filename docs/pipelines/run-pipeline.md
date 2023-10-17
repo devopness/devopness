@@ -15,7 +15,7 @@ required_permissions:
 
 {% note %}
 
-**NOTE**: A network rule and deploy pipeline were chosen as examples, the steps are the same to run pipelines of all operations in all environment's modules
+**NOTE**: A network rule and deploy pipeline were chosen as examples, the steps are the same to run pipelines of all operations in all environment's resources
 
 {% endnote %}
 

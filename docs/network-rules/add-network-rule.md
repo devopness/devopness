@@ -1,6 +1,6 @@
 ---
 title: Add a Network Rule
-intro: Add network rules to define which ports to open on servers or if you want to restrict the opening of a port through a specific IP.
+intro: Add network rules to control incoming and outgoing network traffic that is allowed to and from your servers, based on network port and source/destination IP address range. 
 links:
     overview:
     quickstart:
