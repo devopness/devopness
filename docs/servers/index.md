@@ -7,7 +7,6 @@ links:
     previous:
     next:
         - /docs/servers/add-server
-        - /docs/servers/remove-server
     guides:
         - /docs/servers/check-server-provision-logs
         - /docs/servers/ssh-into-server
