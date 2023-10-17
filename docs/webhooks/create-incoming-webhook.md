@@ -90,7 +90,7 @@ Webhooks, for now, are an API only feature; so this post will guide you through 
 
 ## Step 3: Ensure the webhook was created correctly
 
-1. On your local machine, in a terminal window, run command to list all the application hooks, replacing `<pipeline_id>`.
+1. On your local machine, in a terminal window, run command to list all the pipeline webhooks, replacing `<pipeline_id>`.
     ```bash
     curl --request GET \
       --url https://api.devopness.com/pipelines/<pipeline_id>/hooks \

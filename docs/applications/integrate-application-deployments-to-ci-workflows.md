@@ -35,7 +35,7 @@ links:
    - [Github](https://docs.github.com/en/rest/commits/statuses#create-a-commit-status)
    - [Gitlab](https://docs.gitlab.com/ee/api/commits.html#set-the-pipeline-status-of-a-commit)
 
-1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /pipelines/:id/hooks/outgoing` to create a outgoing for the `action.started` event, replacing `<pipeline_id>`, `<target_url>`, `<request_headers>` and `<request_body>`
+1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /pipelines/:id/hooks/outgoing` to create an outgoing webhook for the `action.started` event. In the example below, replace `<pipeline_id>`, `<target_url>`, `<request_headers>` and `<request_body>` with the actual values of each parameter before submitting the request.
 
    - For further instructions, follow the guide [Create an Outgoing Webhook](/docs/webhooks/create-outgoing-webhook)
 
@@ -77,7 +77,7 @@ links:
    ```
    {% endraw %}
 
-1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /pipelines/:id/hooks/outgoing` to create a outgoing for the `action.failed` event, replacing `<pipeline_id>`, `<target_url>`, `<request_headers>` and `<request_body>`
+1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /pipelines/:id/hooks/outgoing` to create an outgoing webhook for the `action.failed` event. In the example below, replace `<pipeline_id>`, `<target_url>`, `<request_headers>` and `<request_body>` with the actual values of each parameter before submitting the request.
 
    {% raw %}
    ```bash
@@ -119,7 +119,7 @@ links:
 
    - NOTE: the field `request_body.context` needs to be the same for all the action status; this way the same commit status will be updated, instead of creating a new entry for every state.
 
-1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /pipelines/:id/hooks/outgoing` to create a outgoing for the `action.completed` event, replacing `<pipeline_id>`, `<target_url>`, `<request_headers>` and `<request_body>`
+1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /pipelines/:id/hooks/outgoing` to create an outgoing webhook for the `action.completed` event. In the example below, replace `<pipeline_id>`, `<target_url>`, `<request_headers>` and `<request_body>` with the actual values of each parameter before submitting the request.
 
    {% raw %}
    ```bash
@@ -159,7 +159,7 @@ links:
    ```
    {% endraw %}
 
-1. On your local machine, in a terminal window, run command to list all the application hooks, replacing `<pipeline_id>`.
+1. On your local machine, in a terminal window, run command to list all the pipeline webhooks, replacing `<pipeline_id>`.
 
    ```bash
    curl --request GET \

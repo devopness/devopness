@@ -45,7 +45,7 @@ links:
    - [Bitbucket](https://developer.atlassian.com/cloud/bitbucket/rest/api-group-pullrequests/#api-repositories-workspace-repo-slug-pullrequests-pull-request-id-comments-post)
    - [Github](https://docs.github.com/en/rest/issues/comments#create-an-issue-comment)
    - [Gitlab](https://docs.gitlab.com/ee/api/notes.html#create-new-issue-note)
-1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /pipelines/:id/hooks/outgoing` to create a outgoing webhook to comment on the Pull Request using the source provider where the application' source code is hosted, replacing `<pipeline_id>`, `<target_url>`, `<request_headers>` and `<request_body>`.
+1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /pipelines/:id/hooks/outgoing` to create an outgoing webhook to comment on the Pull Request using the source provider where the application' source code is hosted. In the example below, replace `<pipeline_id>`, `<target_url>`, `<request_headers>` and `<request_body>` with the actual values of each parameter before submitting the request.
     {% raw %}
     ```bash
     curl --request POST \
@@ -78,7 +78,7 @@ links:
       }'
     ```
     {% endraw %}
-1. On your local machine, in a terminal window, run command to list all the application hooks, replacing `<pipeline_id>`.
+1. On your local machine, in a terminal window, run command to list all the pipeline webhooks, replacing `<pipeline_id>`.
     ```bash
     curl --request GET \
       --url https://api.devopness.com/pipelines/<pipeline_id>/hooks \
