@@ -6533,6 +6533,16 @@
             "$ref": "#/components/parameters/contentTypeHeader"
           },
           {
+            "in": "query",
+            "name": "destroy_server_disks",
+            "description": "Indicates whether disks associated with a cloud server should be deleted after the server is destroyed",
+            "example": true,
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
             "in": "path",
             "name": "server_id",
             "description": "The ID of the server.",
@@ -10352,6 +10362,78 @@
                 }
               }
             }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{user_id}/environments": {
+      "get": {
+        "summary": "Get current user's environments, projects and the amount of credits used",
+        "operationId": "listUserEnvironments",
+        "description": {
+          "$ref": "../spec/descriptions/list-user-environments.md"
+        },
+        "tags": [
+          "Users - Environments"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "user_id",
+            "description": "The ID of the user.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EnvironmentList"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
           }
         }
       }
@@ -10751,6 +10833,9 @@
       "name": "Users"
     },
     {
+      "name": "Users - Environments"
+    },
+    {
       "name": "Users - Passwords"
     },
     {
@@ -10952,6 +11037,7 @@
       "name": "Users",
       "tags": [
         "Users",
+        "Users - Environments",
         "Users - Passwords",
         "Users - Team Invitations"
       ]
@@ -12750,7 +12836,7 @@
           "id": {
             "description": "Unique id of the given record",
             "type": "integer",
-            "example": 16523
+            "example": 2
           },
           "name": {
             "description": "Environment's name",
@@ -12785,6 +12871,9 @@
             "type": "string",
             "example": "2019-09-26T10:45:42.000000Z",
             "nullable": true
+          },
+          "project": {
+            "$ref": "#/components/schemas/ProjectRelation"
           }
         },
         "required": [
@@ -12794,7 +12883,8 @@
           "type_human_readable",
           "created_at",
           "updated_at",
-          "archived_at"
+          "archived_at",
+          "project"
         ],
         "nullable": true
       },
@@ -14405,7 +14495,7 @@
           "id": {
             "description": "Unique id of the given record",
             "type": "integer",
-            "example": 16523
+            "example": 2
           },
           "name": {
             "description": "Environment's name",
@@ -14440,6 +14530,9 @@
             "type": "string",
             "example": "2019-09-26T10:45:42.000000Z",
             "nullable": true
+          },
+          "project": {
+            "$ref": "#/components/schemas/ProjectRelation"
           }
         },
         "required": [
@@ -14449,7 +14542,8 @@
           "type_human_readable",
           "created_at",
           "updated_at",
-          "archived_at"
+          "archived_at",
+          "project"
         ],
         "nullable": true
       },
@@ -16052,7 +16146,6 @@
         "type": "string",
         "description": "The direction of network traffic a network rule is applied. `Inbound` applies to ingress/incoming traffic originating from outside into your network. `Outbound` applies to egress traffic, originating inside your network to external networks.",
         "enum": [
-          "any",
           "inbound",
           "outbound"
         ],
@@ -17135,7 +17228,7 @@
           },
           "resource_id": {
             "description": "The resource ID.",
-            "type": "string",
+            "type": "integer",
             "example": "paddle"
           },
           "resource_data": {
@@ -17245,7 +17338,7 @@
           },
           "resource_id": {
             "description": "The linked resource ID",
-            "type": "string",
+            "type": "integer",
             "example": 123
           },
           "can_be_unlinked": {
@@ -20311,14 +20404,10 @@
         "properties": {
           "active_subscription": {
             "$ref": "#/components/schemas/Subscription"
-          },
-          "environments": {
-            "$ref": "#/components/schemas/EnvironmentList"
           }
         },
         "required": [
-          "active_subscription",
-          "environments"
+          "active_subscription"
         ]
       },
       "UserCreate": {

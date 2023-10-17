@@ -49,13 +49,22 @@ export class ServersApiService extends ApiBaseService {
      * 
      * @summary Delete a given server
      * @param {number} serverId The ID of the server.
+     * @param {boolean} [destroyServerDisks] Indicates whether disks associated with a cloud server should be deleted after the server is destroyed
      */
-    public async deleteServer(serverId: number): Promise<ApiResponse<void>> {
+    public async deleteServer(serverId: number, destroyServerDisks?: boolean): Promise<ApiResponse<void>> {
         if (serverId === null || serverId === undefined) {
             throw new ArgumentNullException('serverId', 'deleteServer');
         }
         
         let queryString = '';
+        const queryParams = { destroy_server_disks: destroyServerDisks, } as { [key: string]: any };
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
 
         const requestUrl = '/servers/{server_id}' + (queryString? `?${queryString}` : '');
 

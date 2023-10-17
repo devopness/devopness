@@ -13,6 +13,7 @@
 
 
 import { EnvironmentType } from './environment-type';
+import { ProjectRelation } from './project-relation';
 
 /**
  * 
@@ -68,5 +69,11 @@ export interface ArchivedEnvironmentRelation {
      * @memberof ArchivedEnvironmentRelation
      */
     archived_at: string | null;
+    /**
+     * 
+     * @type {ProjectRelation}
+     * @memberof ArchivedEnvironmentRelation
+     */
+    project: ProjectRelation | null;
 }
 
