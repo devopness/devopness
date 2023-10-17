@@ -19,7 +19,6 @@
  * @enum {string}
  */
 export enum NetworkRuleDirection {
-    Any = 'any',
     Inbound = 'inbound',
     Outbound = 'outbound'
 }

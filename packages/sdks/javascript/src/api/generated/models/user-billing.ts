@@ -12,7 +12,6 @@
  */
 
 
-import { EnvironmentRelation } from './environment-relation';
 import { Subscription } from './subscription';
 
 /**
@@ -27,11 +26,5 @@ export interface UserBilling {
      * @memberof UserBilling
      */
     active_subscription: Subscription | null;
-    /**
-     * 
-     * @type {Array<EnvironmentRelation>}
-     * @memberof UserBilling
-     */
-    environments: Array<EnvironmentRelation>;
 }
 
