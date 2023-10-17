@@ -27,7 +27,7 @@ links:
 {% endnote %}
 
 
-1. Take note of the `Application ID` (`<application_id>`) and `Deploy Pipeline ID` (`<pipeline_id>`) from the application which you want to watch the action statuses
+1. Take note of the ID (`<pipeline_id>`) of a pipeline that runs the `deploy` operation for the application which you want to watch the action statuses
    - Follow the [Deploy Application using an Incoming Hook](/docs/applications/deploy-application-using-incoming-hook) guide for detailed instructions
 
 1. Take note of the `Target URL` (`<target_url>`), `Request Headers` (`<request_headers>`) and `Request Body` (`<request_body>`) fields according to the source provider where the application' source code is hosted, by following the source provider's instructions on the links bellow:
@@ -35,22 +35,20 @@ links:
    - [Github](https://docs.github.com/en/rest/commits/statuses#create-a-commit-status)
    - [Gitlab](https://docs.gitlab.com/ee/api/commits.html#set-the-pipeline-status-of-a-commit)
 
-1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /hooks/outgoing` to create a outgoing for the `action.started` event, replacing `<application_id>`, `<pipeline_id>`, `<target_url>`, `<request_headers>` and `<request_body>`
+1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /pipelines/:id/hooks/outgoing` to create an outgoing webhook for the `action.started` event. In the example below, replace `<pipeline_id>`, `<target_url>`, `<request_headers>` and `<request_body>` with the actual values of each parameter before submitting the request.
 
    - For further instructions, follow the guide [Create an Outgoing Webhook](/docs/webhooks/create-outgoing-webhook)
 
    {% raw %}
    ```bash
    curl --request POST \
-     --url https://api.devopness.com/hooks/outgoing \
+     --url https://api.devopness.com/pipelines/<pipeline_id>/hooks/outgoing \
      --header 'Accept: application/json' \
      --header 'Authorization: Bearer <access_token>' \
      --header 'Content-Type: application/json' \
      --data '{
        "name": "CI(build)",
        "action_type": "deploy",
-       "resource_type": "application",
-       "resource_id": <application_id>,
        "target_url": "https://<target_url>/{{ action.triggered_from.hook_parsed_variables.commit_hash }}",
        "settings": {
          "request_headers": [
@@ -73,34 +71,24 @@ links:
        "trigger_when": {
          "events": [
            "action.started"
-         ],
-         "conditions": [
-           {
-             "path": "action.triggered_from.hook_parsed_variables.pipeline_id",
-             "accepted_values": [
-               <pipeline_id>
-             ]
-           }
          ]
        }
      }'
    ```
    {% endraw %}
 
-1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /hooks/outgoing` to create a outgoing for the `action.failed` event, replacing `<application_id>`, `<pipeline_id>`, `<target_url>`, `<request_headers>` and `<request_body>`
+1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /pipelines/:id/hooks/outgoing` to create an outgoing webhook for the `action.failed` event. In the example below, replace `<pipeline_id>`, `<target_url>`, `<request_headers>` and `<request_body>` with the actual values of each parameter before submitting the request.
 
    {% raw %}
    ```bash
    curl --request POST \
-     --url https://api.devopness.com/hooks/outgoing \
+     --url https://api.devopness.com/pipelines/<pipeline_id>/hooks/outgoing \
      --header 'Accept: application/json' \
      --header 'Authorization: Bearer <access_token>' \
      --header 'Content-Type: application/json' \
      --data '{
        "name": "CI(build)",
        "action_type": "deploy",
-       "resource_type": "application",
-       "resource_id": <application_id>,
        "target_url": "https://<target_url>/{{ action.triggered_from.hook_parsed_variables.commit_hash }}",
        "settings": {
          "request_headers": [
@@ -123,14 +111,6 @@ links:
        "trigger_when": {
          "events": [
            "action.failed"
-         ],
-         "conditions": [
-           {
-             "path": "action.triggered_from.hook_parsed_variables.pipeline_id",
-             "accepted_values": [
-               <pipeline_id>
-             ]
-           }
          ]
        }
      }'
@@ -139,20 +119,18 @@ links:
 
    - NOTE: the field `request_body.context` needs to be the same for all the action status; this way the same commit status will be updated, instead of creating a new entry for every state.
 
-1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /hooks/outgoing` to create a outgoing for the `action.completed` event, replacing `<application_id>`, `<pipeline_id>`, `<target_url>`, `<request_headers>` and `<request_body>`
+1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /pipelines/:id/hooks/outgoing` to create an outgoing webhook for the `action.completed` event. In the example below, replace `<pipeline_id>`, `<target_url>`, `<request_headers>` and `<request_body>` with the actual values of each parameter before submitting the request.
 
    {% raw %}
    ```bash
    curl --request POST \
-     --url https://api.devopness.com/hooks/outgoing \
+     --url https://api.devopness.com/pipelines/<pipeline_id>/hooks/outgoing \
      --header 'Accept: application/json' \
      --header 'Authorization: Bearer <access_token>' \
      --header 'Content-Type: application/json' \
      --data '{
        "name": "CI(build)",
        "action_type": "deploy",
-       "resource_type": "application",
-       "resource_id": <application_id>,
        "target_url": "https://<target_url>/{{ action.triggered_from.hook_parsed_variables.commit_hash }}",
        "settings": {
          "request_headers": [
@@ -175,25 +153,17 @@ links:
        "trigger_when": {
          "events": [
            "action.completed"
-         ],
-         "conditions": [
-           {
-             "path": "action.triggered_from.hook_parsed_variables.pipeline_id",
-             "accepted_values": [
-               <pipeline_id>
-             ]
-           }
          ]
        }
      }'
    ```
    {% endraw %}
 
-1. On your local machine, in a terminal window, run command to list all the application hooks, replacing `<application_id>`.
+1. On your local machine, in a terminal window, run command to list all the pipeline webhooks, replacing `<pipeline_id>`.
 
    ```bash
    curl --request GET \
-     --url https://api.devopness.com/applications/<application_id>/hooks \
+     --url https://api.devopness.com/pipelines/<pipeline_id>/hooks \
      --header 'Accept: application/json' \
      --header 'Authorization: Bearer <access_token>' \
      --header 'Content-Type: application/json'
