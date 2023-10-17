@@ -256,6 +256,7 @@ tags:
   - name: Teams - Invitations
   - name: Teams - Members
   - name: Users
+  - name: Users - Environments
   - name: Users - Passwords
   - name: Users - Team Invitations
 
@@ -378,6 +379,7 @@ x-tagGroups:
   - name: Users
     tags:
       - Users
+      - Users - Environments
       - Users - Passwords
       - Users - Team Invitations
   - name: Variables

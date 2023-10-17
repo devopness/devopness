@@ -13,6 +13,14 @@ parameters:
   -
     $ref: '#/components/parameters/contentTypeHeader'
   -
+    in: query
+    name: destroy_server_disks
+    description: 'Indicates whether disks associated with a cloud server should be deleted after the server is destroyed'
+    example: true
+    required: false
+    schema:
+      type: boolean
+  -
     in: path
     name: server_id
     description: 'The ID of the server.'

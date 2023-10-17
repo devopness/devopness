@@ -7,7 +7,7 @@ properties:
     example: payment_provider
   resource_id:
     description: 'The resource ID.'
-    type: string
+    type: integer
     example: paddle
   resource_data:
     $ref: '#/components/schemas/Subscription'

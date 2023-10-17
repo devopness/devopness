@@ -15,7 +15,7 @@ properties:
     example: server
   resource_id:
     description: 'The linked resource ID'
-    type: string
+    type: integer
     example: 123
   can_be_unlinked:
     description: 'If false, the link cannot be manually removed'
