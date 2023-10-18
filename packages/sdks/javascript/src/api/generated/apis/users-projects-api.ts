@@ -15,23 +15,23 @@ import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
-import { EnvironmentRelation } from '../../generated/models';
+import { ProjectRelation } from '../../generated/models';
 
 /**
- * UsersEnvironmentsApiService - Auto-generated
+ * UsersProjectsApiService - Auto-generated
  */
-export class UsersEnvironmentsApiService extends ApiBaseService {
+export class UsersProjectsApiService extends ApiBaseService {
     /**
      * 
-     * @summary Return a list of all environments owned by the current user
+     * @summary Return a list of all projects owned by the current user
      * @param {number} userId The ID of the user.
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
-     * @param {number} [subscriptionId] ID of a user subscription to calculate the amount of credits used from that subscription on each user environment. If provided, and being a valid subscription belonging to current user, the \&#39;used_credits\&#39; field will be added to the response.
+     * @param {number} [subscriptionId] ID of a user subscription to calculate the amount of credits used from that subscription on each user project. If provided, and being a valid subscription belonging to current user, the \&#39;used_credits\&#39; field will be added to the response.
      */
-    public async listUserEnvironments(userId: number, page?: number, perPage?: number, subscriptionId?: number): Promise<ApiResponse<Array<EnvironmentRelation>>> {
+    public async listUserProjects(userId: number, page?: number, perPage?: number, subscriptionId?: number): Promise<ApiResponse<Array<ProjectRelation>>> {
         if (userId === null || userId === undefined) {
-            throw new ArgumentNullException('userId', 'listUserEnvironments');
+            throw new ArgumentNullException('userId', 'listUserProjects');
         }
         
         let queryString = '';
@@ -44,9 +44,9 @@ export class UsersEnvironmentsApiService extends ApiBaseService {
             queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
         }
 
-        const requestUrl = '/users/{user_id}/environments' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/users/{user_id}/projects' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<EnvironmentRelation>>(requestUrl.replace(`{${"user_id"}}`, encodeURIComponent(String(userId))));
+        const response = await this.get <Array<ProjectRelation>>(requestUrl.replace(`{${"user_id"}}`, encodeURIComponent(String(userId))));
         return new ApiResponse(response);
     }
 }
