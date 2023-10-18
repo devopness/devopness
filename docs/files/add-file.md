@@ -24,4 +24,4 @@ required_permissions:
 1. On the right corner of the list click `ADD CONFIGURATION FILE`
 1. Follow the instructions in the add configuration file step form then click `CONFIRM`
     > A new deployment is required for your changes to take effect.
-      - Follow the guide [Deploy Application](/docs/applications/deploy-application/)
+      - Follow the guide {% mentionPost "/docs/applications/deploy-application" %}

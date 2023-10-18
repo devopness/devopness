@@ -24,4 +24,4 @@ required_permissions:
 1. Follow the prompts to complete the configuration of the new `Pipeline`
 1. Click `CONFIRM`
     > A new deployment is required for your changes to take effect.
-      - Follow the guide [Deploy Application](/docs/applications/deploy-application/)
+      - Follow the guide {% mentionPost "/docs/applications/deploy-application" %}

@@ -30,5 +30,5 @@ links:
 3. On the upper-right corner of the server details view click `ACTIONS`
 4. Use the drop-down menu to choose `Stop`
 5. Wait for the `Server:stop` action to be completed
-6. Follow the guide [Get a Server’s Status](/docs/servers/get-server-status)
+6. Follow the guide {% mentionPost "/docs/servers/get-server-status" %}
     > The server status will be "stopped"

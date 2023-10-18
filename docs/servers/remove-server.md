@@ -19,6 +19,6 @@ links:
 1. Use the drop-down menu to choose `REMOVE`
 1. Follow the prompts then click `REMOVE`
 5. Wait for the `Server:delete` action to be completed
-    > If this action fails, maybe your server status is different from "stopped", if this is the case follow the guide [Stop a Server](/docs/servers/stop-server)
-6. Follow the guide [Get a Server’s Status](/docs/servers/get-server-status)
+    > If this action fails, maybe your server status is different from "stopped", if this is the case follow the guide {% mentionPost "/docs/servers/stop-server" %}
+6. Follow the guide {% mentionPost "/docs/servers/get-server-status" %}
     > The server status will be "deleted"

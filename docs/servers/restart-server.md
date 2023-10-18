@@ -18,5 +18,5 @@ links:
 3. On the upper-right corner of the server details view click `ACTIONS`
 4. Use the drop-down menu to choose `Restart`
 5. Wait for the `Server:restart` action to be completed
-6. Follow the guide [Get a Server’s Status](/docs/server/get-server-status)
+6. Follow the guide {% mentionPost "/docs/servers/get-server-status" %}
     > The server status will be "running"
