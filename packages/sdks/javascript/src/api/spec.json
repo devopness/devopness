@@ -10378,7 +10378,7 @@
     },
     "/users/{user_id}/environments": {
       "get": {
-        "summary": "Get current user's environments, projects and the amount of credits used",
+        "summary": "Return a list of all environments owned by the current user",
         "operationId": "listUserEnvironments",
         "description": {
           "$ref": "../spec/descriptions/list-user-environments.md"
@@ -10403,6 +10403,16 @@
             "$ref": "#/components/parameters/pageSize"
           },
           {
+            "in": "query",
+            "name": "subscription_id",
+            "description": "ID of a user subscription to calculate the amount of credits used from that subscription on each user environment. If provided, and being a valid subscription belonging to current user, the 'used_credits' field will be added to the response.",
+            "example": 432,
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
             "in": "path",
             "name": "user_id",
             "description": "The ID of the user.",
@@ -10421,6 +10431,78 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/EnvironmentList"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{user_id}/projects": {
+      "get": {
+        "summary": "Return a list of all projects owned by the current user",
+        "operationId": "listUserProjects",
+        "description": {
+          "$ref": "../spec/descriptions/list-user-projects.md"
+        },
+        "tags": [
+          "Users - Projects"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "query",
+            "name": "subscription_id",
+            "description": "ID of a user subscription to calculate the amount of credits used from that subscription on each user project. If provided, and being a valid subscription belonging to current user, the 'used_credits' field will be added to the response.",
+            "example": 9876,
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "path",
+            "name": "user_id",
+            "description": "The ID of the user.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectList"
                 }
               }
             }
@@ -10839,6 +10921,9 @@
       "name": "Users - Passwords"
     },
     {
+      "name": "Users - Projects"
+    },
+    {
       "name": "Users - Team Invitations"
     }
   ],
@@ -11039,6 +11124,7 @@
         "Users",
         "Users - Environments",
         "Users - Passwords",
+        "Users - Projects",
         "Users - Team Invitations"
       ]
     },
@@ -16941,6 +17027,11 @@
           },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
+          },
+          "used_credits": {
+            "description": "Number of credits used in the current monthly billing cycle by actions of resources in the project.",
+            "type": "integer",
+            "example": 123
           },
           "created_at": {
             "description": "The date and time when the record was created",
