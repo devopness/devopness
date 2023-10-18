@@ -258,6 +258,7 @@ tags:
   - name: Users
   - name: Users - Environments
   - name: Users - Passwords
+  - name: Users - Projects
   - name: Users - Team Invitations
 
 x-tagGroups:
@@ -381,6 +382,7 @@ x-tagGroups:
       - Users
       - Users - Environments
       - Users - Passwords
+      - Users - Projects
       - Users - Team Invitations
   - name: Variables
     tags:

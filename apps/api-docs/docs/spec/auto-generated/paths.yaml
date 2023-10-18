@@ -458,6 +458,9 @@
 '/users/{user_id}/environments':
   get:
     $ref: ./auto-generated/endpoints/list-user-environments.yaml
+'/users/{user_id}/projects':
+  get:
+    $ref: ./auto-generated/endpoints/list-user-projects.yaml
 '/variables/{variable_id}':
   delete:
     $ref: ./auto-generated/endpoints/delete-variable.yaml
