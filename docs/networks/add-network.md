@@ -1,5 +1,4 @@
 ---
-draft: true
 title: Add a Network
 intro: Add a network to your environment when you need to define custom network topology. Resources (such as Servers and Applications) deployed to different networks, will be completely isolated from each other.
 links:

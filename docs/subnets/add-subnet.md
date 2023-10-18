@@ -1,5 +1,4 @@
 ---
-draft: true
 title: Add a Subnet
 intro: Add a subnet to your network when you need to define custom network topology within a network.
 links:

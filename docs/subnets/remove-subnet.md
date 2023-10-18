@@ -1,5 +1,4 @@
 ---
-draft: true
 title: Remove a Subnet
 intro: Learn how to remove a subnet when it's no longer needed
 links:
