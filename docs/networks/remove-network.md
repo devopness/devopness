@@ -1,5 +1,4 @@
 ---
-draft: true
 title: Remove a Network
 intro: Learn how to remove a network when it's no longer needed
 links:

@@ -33,7 +33,7 @@ required_permissions:
 
     **NOTE**: To run a deploy pipeline at least one server must be linked to the resource.
 
-    If there are no servers linked to the network rule, follow the guide [Add a Linked Resource](/docs/linked-resources/add-linked-resource)
+    If there are no servers linked to the network rule, follow the guide {% mentionPost "/docs/linked-resources/add-linked-resource" %}
 
     {% endnote %}
 

@@ -27,6 +27,6 @@ links:
 1. Copy the value of `token`
     - It will be the text prefixed with `dop_v1_`
     - Be sure to record your personal access token. For security purposes, it will not be shown again.
-1. To add the copied credentials to Devopness see [Add a Cloud Provider Credential](/docs/users/credentials/add-credential/)
+1. To add the copied credentials to Devopness see {% mentionPost "/docs/users/credentials/add-credential" %}
 
 > For further details on how to create a DigitalOcean token, please refer to [DigitalOcean documentation](https://docs.digitalocean.com/reference/api/create-personal-access-token/)

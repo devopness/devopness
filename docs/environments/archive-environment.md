@@ -21,7 +21,7 @@ links:
 
 **NOTE**: Archived environments can only be accessible, in read-only mode, by the user who owns the project to which the environment belongs to.
 
-The project owner can unarchive an archived environment, making it active and accessible to other team members. For more information, see [Unarchive an Environment](/docs/environments/unarchive-environment)
+The project owner can unarchive an archived environment, making it active and accessible to other team members. For more information, see {% mentionPost "/docs/environments/unarchive-environment" %}
 
 {% endnote %}
 

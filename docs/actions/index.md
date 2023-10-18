@@ -1,6 +1,6 @@
 ---
-title: Subnets
-intro: Learn how to provision and manage cloud subnetworks
+title: Actions
+intro:
 links:
     overview:
     quickstart:
