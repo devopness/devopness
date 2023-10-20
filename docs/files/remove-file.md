@@ -1,5 +1,5 @@
 ---
-title: Remove a Configuration File
+title: Remove a File
 intro: Learn how to remove a configuration file when it's no longer needed
 links:
     overview:
@@ -7,7 +7,7 @@ links:
     previous:
         - /docs/applications/add-application
     next:
-        - /docs/configuration-files/add-configuration-file
+        - /docs/files/add-file
     guides:
     related:
     featured:
