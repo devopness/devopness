@@ -533,6 +533,14 @@ StaticEnvironmentTypeList:
   $ref: ./auto-generated/models/static-environment-type-list.yaml
 StaticLanguageList:
   $ref: ./auto-generated/models/static-language-list.yaml
+StaticNetworkRuleOption:
+  $ref: ./auto-generated/models/static-network-rule-option.yaml
+StaticNetworkRuleProtocol:
+  $ref: ./auto-generated/models/static-network-rule-protocol.yaml
+StaticNetworkRuleProtocolDefaults:
+  $ref: ./auto-generated/models/static-network-rule-protocol-defaults.yaml
+StaticNetworkRuleProtocolList:
+  $ref: ./auto-generated/models/static-network-rule-protocol-list.yaml
 StaticPermission:
   $ref: ./auto-generated/models/static-permission.yaml
 StaticPermissionList:

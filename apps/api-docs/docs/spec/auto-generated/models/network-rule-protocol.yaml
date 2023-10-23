@@ -3,6 +3,7 @@ type: string
 description: 'The network protocol to which this rule is applied.'
 enum:
   - any
+  - icmp
   - tcp
   - udp
 example: any

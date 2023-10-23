@@ -371,6 +371,9 @@
 /static/environment-options:
   get:
     $ref: ./auto-generated/endpoints/get-static-environment-options.yaml
+/static/network-rule-options:
+  get:
+    $ref: ./auto-generated/endpoints/get-static-network-rule-options.yaml
 /static/permissions:
   get:
     $ref: ./auto-generated/endpoints/list-static-permissions.yaml
