@@ -14,15 +14,16 @@
 
 
 /**
- * The network protocol to which this rule is applied.
+ * List of default values for this protocol
  * @export
- * @enum {string}
+ * @interface StaticNetworkRuleProtocolDefaults
  */
-export enum NetworkRuleProtocol {
-    Any = 'any',
-    Icmp = 'icmp',
-    Tcp = 'tcp',
-    Udp = 'udp'
+export interface StaticNetworkRuleProtocolDefaults {
+    /**
+     * The default port for the protocol
+     * @type {number}
+     * @memberof StaticNetworkRuleProtocolDefaults
+     */
+    port: number | null;
 }
-
 
