@@ -8837,6 +8837,41 @@
         }
       }
     },
+    "/static/network-rule-options": {
+      "get": {
+        "summary": "List `Network Rule` options",
+        "operationId": "getStaticNetworkRuleOptions",
+        "description": {
+          "$ref": "../spec/descriptions/get-static-network-rule-options.md"
+        },
+        "tags": [
+          "Static Data"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StaticNetworkRuleOption"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/static/permissions": {
       "get": {
         "summary": "List available `Role` permissions",
@@ -10720,6 +10755,9 @@
       "name": "Static Data - Environment Options"
     },
     {
+      "name": "Static Data - Network Rule Options"
+    },
+    {
       "name": "Static Data - Permissions"
     },
     {
@@ -10943,6 +10981,7 @@
         "Static Data - Cloud Provider Services",
         "Static Data - Cron Job Options",
         "Static Data - Environment Options",
+        "Static Data - Network Rule Options",
         "Static Data - Permissions",
         "Static Data - Resource Types",
         "Static Data - Service Options",
@@ -16280,6 +16319,7 @@
         "description": "The network protocol to which this rule is applied.",
         "enum": [
           "any",
+          "icmp",
           "tcp",
           "udp"
         ],
@@ -19301,6 +19341,60 @@
         "items": {
           "type": "string",
           "example": "PT-BR"
+        }
+      },
+      "StaticNetworkRuleOption": {
+        "type": "object",
+        "properties": {
+          "protocols": {
+            "$ref": "#/components/schemas/StaticNetworkRuleProtocolList"
+          }
+        },
+        "required": [
+          "protocols"
+        ]
+      },
+      "StaticNetworkRuleProtocol": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "$ref": "#/components/schemas/NetworkRuleProtocol"
+          },
+          "human_readable": {
+            "type": "string",
+            "description": "The formatted name to be displayed in user interfaces",
+            "example": "Any"
+          },
+          "defaults": {
+            "$ref": "#/components/schemas/StaticNetworkRuleProtocolDefaults"
+          }
+        },
+        "required": [
+          "value",
+          "human_readable",
+          "defaults"
+        ]
+      },
+      "StaticNetworkRuleProtocolDefaults": {
+        "description": "List of default values for this protocol",
+        "type": "object",
+        "properties": {
+          "port": {
+            "type": "integer",
+            "nullable": true,
+            "description": "The default port for the protocol",
+            "example": 3306
+          }
+        },
+        "required": [
+          "port"
+        ]
+      },
+      "StaticNetworkRuleProtocolList": {
+        "description": "The supported network rules protocols",
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/StaticNetworkRuleProtocol"
         }
       },
       "StaticPermission": {
