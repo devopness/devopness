@@ -19,7 +19,7 @@ Devopness usage is free for everyone, without any limits on the amount of projec
 Paid subscription plans are available for users and teams who want to increase their productivity by taking the most of Devopness additional features.
 
 Independently of the subscription plan of a Devopness project, the main usage is controlled by credits.
-You pay for action steps when Devopness executes your pipelines for you.
+> Devopness consumes one credit per action step completed in a project pipeline
 
 Each Devopness user account receives a certain amount of credits monthly, depending on the user’s active subscription plan.
 
