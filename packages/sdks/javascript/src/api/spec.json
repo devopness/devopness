@@ -8845,7 +8845,7 @@
           "$ref": "../spec/descriptions/get-static-network-rule-options.md"
         },
         "tags": [
-          "Static Data"
+          "Static Data - Network Rule Options"
         ],
         "parameters": [
           {
@@ -8864,7 +8864,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/StaticNetworkRuleOption"
+                  "$ref": "#/components/schemas/NetworkRuleOptions"
                 }
               }
             }
@@ -16314,6 +16314,17 @@
           "$ref": "#/components/schemas/NetworkRuleRelation"
         }
       },
+      "NetworkRuleOptions": {
+        "type": "object",
+        "properties": {
+          "protocols": {
+            "$ref": "#/components/schemas/StaticNetworkRuleProtocolList"
+          }
+        },
+        "required": [
+          "protocols"
+        ]
+      },
       "NetworkRuleProtocol": {
         "type": "string",
         "description": "The network protocol to which this rule is applied.",
@@ -19342,17 +19353,6 @@
           "type": "string",
           "example": "PT-BR"
         }
-      },
-      "StaticNetworkRuleOption": {
-        "type": "object",
-        "properties": {
-          "protocols": {
-            "$ref": "#/components/schemas/StaticNetworkRuleProtocolList"
-          }
-        },
-        "required": [
-          "protocols"
-        ]
       },
       "StaticNetworkRuleProtocol": {
         "type": "object",
