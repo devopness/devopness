@@ -12,17 +12,19 @@
  */
 
 
+import { StaticNetworkRuleProtocol } from './static-network-rule-protocol';
 
 /**
- * The network protocol to which this rule is applied.
+ * 
  * @export
- * @enum {string}
+ * @interface NetworkRuleOptions
  */
-export enum NetworkRuleProtocol {
-    Any = 'any',
-    Icmp = 'icmp',
-    Tcp = 'tcp',
-    Udp = 'udp'
+export interface NetworkRuleOptions {
+    /**
+     * The supported network rules protocols
+     * @type {Array<StaticNetworkRuleProtocol>}
+     * @memberof NetworkRuleOptions
+     */
+    protocols: Array<StaticNetworkRuleProtocol>;
 }
-
 

@@ -4,6 +4,7 @@ import { StaticDataCloudProviderServiceInstancesApiService } from "../api/genera
 import { StaticDataCloudProviderServicesApiService } from "../api/generated/apis/static-data-cloud-provider-services-api";
 import { StaticDataCronJobOptionsApiService } from "../api/generated/apis/static-data-cron-job-options-api";
 import { StaticDataEnvironmentOptionsApiService } from "../api/generated/apis/static-data-environment-options-api";
+import { StaticDataNetworkRuleOptionsApiService } from "../api/generated/apis/static-data-network-rule-options-api";
 import { StaticDataPermissionsApiService } from "../api/generated/apis/static-data-permissions-api";
 import { StaticDataResourceTypesApiService } from "../api/generated/apis/static-data-resource-types-api";
 import { StaticDataServiceOptionsApiService } from "../api/generated/apis/static-data-service-options-api";
@@ -16,6 +17,7 @@ export class StaticService {
   public cloudProviderServices = new StaticDataCloudProviderServicesApiService();
   public cronJobOptions = new StaticDataCronJobOptionsApiService();
   public environmentOptions = new StaticDataEnvironmentOptionsApiService();
+  public networkRuleOptions = new StaticDataNetworkRuleOptionsApiService();
   public permissions = new StaticDataPermissionsApiService();
   public resourceTypes = new StaticDataResourceTypesApiService();
   public serviceOptions = new StaticDataServiceOptionsApiService();
