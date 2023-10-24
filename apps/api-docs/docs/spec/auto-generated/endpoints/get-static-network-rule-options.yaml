@@ -4,7 +4,7 @@ operationId: getStaticNetworkRuleOptions
 description:
   $ref: ../spec/descriptions/get-static-network-rule-options.md
 tags:
-  - 'Static Data'
+  - 'Static Data - Network Rule Options'
 parameters:
   -
     $ref: '#/components/parameters/acceptHeader'
@@ -18,4 +18,4 @@ responses:
     content:
       application/json:
         schema:
-          $ref: '#/components/schemas/StaticNetworkRuleOption'
+          $ref: '#/components/schemas/NetworkRuleOptions'

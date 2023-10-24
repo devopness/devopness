@@ -303,6 +303,8 @@ NetworkRuleEnvironmentCreate:
   $ref: ./auto-generated/models/network-rule-environment-create.yaml
 NetworkRuleList:
   $ref: ./auto-generated/models/network-rule-list.yaml
+NetworkRuleOptions:
+  $ref: ./auto-generated/models/network-rule-options.yaml
 NetworkRuleProtocol:
   $ref: ./auto-generated/models/network-rule-protocol.yaml
 NetworkRuleRelation:
@@ -533,8 +535,6 @@ StaticEnvironmentTypeList:
   $ref: ./auto-generated/models/static-environment-type-list.yaml
 StaticLanguageList:
   $ref: ./auto-generated/models/static-language-list.yaml
-StaticNetworkRuleOption:
-  $ref: ./auto-generated/models/static-network-rule-option.yaml
 StaticNetworkRuleProtocol:
   $ref: ./auto-generated/models/static-network-rule-protocol.yaml
 StaticNetworkRuleProtocolDefaults:
