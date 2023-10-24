@@ -47,7 +47,7 @@ You can see the amount of credits included in your account's billing settings at
 
 ## Usage limits
 There are some limits when using Devopness actions, depending on the subscription plan.
-These limits are subject to change every time our plans are updated. For details, see our pricing page https://www.devopness.com/pricing/
+These limits are subject to change every time our plans are updated. For details, see our [pricing page](/pricing)
 
 Below you have a table with the current applied limits, per plan, followed by an explanation on the impact of each limit:
 |                                                             | Free       | Standard             |
@@ -65,4 +65,4 @@ Below you have a table with the current applied limits, per plan, followed by an
 - **Max execution time, per action step**: Each pipeline step executed by an action can run for up to 15 minutes of execution time. If an action step reaches this limit, the step is moved to the “failed” status and the action fails to complete.
 
 ## Usage policy
-In addition to the usage limits, you must ensure that you use Devopness within our {% mentionPost "/docs/legal/terms-of-service/" %}
+In addition to the usage limits, you must ensure that you use Devopness within our {% mentionPost "/docs/legal/terms-of-service" %}
