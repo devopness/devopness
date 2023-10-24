@@ -17,13 +17,13 @@ import { StaticNetworkRuleProtocol } from './static-network-rule-protocol';
 /**
  * 
  * @export
- * @interface StaticNetworkRuleOption
+ * @interface NetworkRuleOptions
  */
-export interface StaticNetworkRuleOption {
+export interface NetworkRuleOptions {
     /**
      * The supported network rules protocols
      * @type {Array<StaticNetworkRuleProtocol>}
-     * @memberof StaticNetworkRuleOption
+     * @memberof NetworkRuleOptions
      */
     protocols: Array<StaticNetworkRuleProtocol>;
 }
