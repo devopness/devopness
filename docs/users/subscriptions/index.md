@@ -32,7 +32,7 @@ Credits are consumed from the project owner’s account: if you are collaboratin
 
 For details, see Usage limits and our {% mentionPost "/docs/users/subscriptions/faq" %}
 
-### Billing date and subscription renewal
+## Billing date and subscription renewal
 You can view your account's subscription details, payment history and your next billing date in your account's billing settings at {% mentionPost "/docs/users/subscriptions/upgrade-subscription" %}
 
 ## Billing settings
