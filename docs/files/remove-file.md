@@ -4,10 +4,8 @@ intro: Learn how to remove a configuration file when it's no longer needed
 links:
     overview:
     quickstart:
-    previous:
-        - /docs/applications/add-application
-    next:
-        - /docs/files/add-file
+    previous: /docs/applications/add-application
+    next: /docs/files/add-file
     guides:
     related:
     featured:

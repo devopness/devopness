@@ -4,10 +4,8 @@ intro: Link an SSH Key to a server to select which SSH keys a server can have de
 links:
     overview:
     quickstart:
-    previous:
-        - /docs/ssh-keys/add-ssh-key
-    next:
-        - /docs/ssh-keys/deploy-ssh-key
+    previous: /docs/ssh-keys/add-ssh-key
+    next: /docs/ssh-keys/deploy-ssh-key
     guides:
     related:
     featured:

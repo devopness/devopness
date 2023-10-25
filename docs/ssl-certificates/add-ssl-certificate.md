@@ -4,10 +4,8 @@ intro: Add an SSL certificate to an application to allow HTTPS requests to it.
 links:
     overview:
     quickstart:
-    previous:
-        - /docs/applications/deploy-application
-    next:
-        - /docs/teams/add-team
+    previous: /docs/applications/deploy-application
+    next: /docs/teams/add-team
     guides:
     related:
     featured:

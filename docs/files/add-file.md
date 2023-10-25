@@ -4,10 +4,8 @@ intro: By adding configuration files you ensure a more consistent resource deplo
 links:
     overview:
     quickstart:
-    previous:
-        - /docs/pipelines/steps/add-step
-    next:
-        - /docs/linked-resources/add-linked-resource
+    previous: /docs/pipelines/steps/add-step
+    next: /docs/linked-resources/add-linked-resource
     guides:
     related:
     featured:

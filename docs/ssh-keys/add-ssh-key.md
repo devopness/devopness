@@ -4,10 +4,8 @@ intro: Sometimes you and your team members need to connect to your servers to ru
 links:
     overview:
     quickstart:
-    previous:
-        - /docs/ssh-keys/create-ssh-key-pair
-    next:
-        - /docs/ssh-keys/link-ssh-key
+    previous: /docs/ssh-keys/create-ssh-key-pair
+    next: /docs/ssh-keys/link-ssh-key
     guides:
     related:
         - /docs/ssh-keys/create-ssh-key-pair
