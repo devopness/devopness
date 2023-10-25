@@ -5,8 +5,7 @@ links:
     overview:
     quickstart:
     previous:
-    next:
-        - /docs/pipelines/steps/add-step
+    next: /docs/pipelines/steps/add-step
     guides:
     related:
     featured:

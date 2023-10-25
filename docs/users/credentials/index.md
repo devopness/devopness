@@ -5,8 +5,7 @@ links:
     overview:
     quickstart:
     previous:
-    next:
-        - /docs/users/credentials/add-credential
+    next: /docs/users/credentials/add-credential
     guides:
         - /docs/users/credentials/add-credential
         - /docs/users/credentials/remove-credential

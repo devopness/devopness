@@ -4,10 +4,8 @@ intro: Sometimes you and your team members need to connect to your servers to ru
 links:
     overview:
     quickstart:
-    previous:
-        - /docs/servers/check-server-provision-logs
-    next:
-        - /docs/applications/add-application
+    previous: /docs/servers/check-server-provision-logs
+    next: /docs/applications/add-application
     guides:
     related:
         - /docs/ssh-keys/add-ssh-key

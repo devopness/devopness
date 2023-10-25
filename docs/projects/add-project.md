@@ -4,10 +4,8 @@ intro: Add one or multiple projects to group your infrastructure resources in a 
 links:
     overview:
     quickstart:
-    previous:
-        - /docs
-    next:
-        - /docs/environments/add-environment
+    previous: /docs
+    next: /docs/environments/add-environment
     guides:
     related:
     featured:

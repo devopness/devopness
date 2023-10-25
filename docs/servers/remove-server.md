@@ -4,10 +4,8 @@ intro: Learn how to remove a server when it's no longer needed. As Devopness all
 links:
     overview:
     quickstart:
-    previous:
-        - /docs/servers/add-server
-    next:
-        - /docs/environments/archive-environment
+    previous: /docs/servers/add-server
+    next: /docs/environments/archive-environment
     guides:
     related:
         - /docs/servers/remove-selfhosted-server

@@ -4,10 +4,8 @@ intro: Devopness allows you to provision a server on AWS using Elastic Compute C
 links:
     overview:
     quickstart:
-    previous:
-        - /docs/servers/add-server
-    next:
-        - /docs/servers/check-server-provision-logs
+    previous: /docs/servers/add-server
+    next: /docs/servers/check-server-provision-logs
     guides:
     related:
     featured:

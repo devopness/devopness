@@ -4,10 +4,8 @@ intro: Sometimes you may need to connect to your servers using an SSH client to 
 links:
     overview:
     quickstart:
-    previous:
-        - /docs/ssh-keys
-    next:
-        - /docs/ssh-keys/add-ssh-key
+    previous: /docs/ssh-keys
+    next: /docs/ssh-keys/add-ssh-key
     guides:
     related:
         - /docs/ssh-keys/add-ssh-key
