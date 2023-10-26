@@ -16038,9 +16038,7 @@
         "description": "Network provision input parameters",
         "properties": {
           "cloud_service_code": {
-            "type": "string",
-            "description": "The cloud service of the cloud provider",
-            "example": "aws-ec2"
+            "$ref": "#/components/schemas/ServerCloudServiceCode"
           },
           "credential_id": {
             "type": "integer",
@@ -17851,17 +17849,15 @@
           "provider_name": {
             "description": "The name of the server's provider.",
             "type": "string",
-            "example": "self-hosted"
+            "example": "aws"
           },
           "provider_name_human_readable": {
             "description": "The human readable version of the provider's name",
             "type": "string",
-            "example": "VPS/Self Hosted"
+            "example": "Amazon Web Services"
           },
           "cloud_service_code": {
-            "description": "The cloud service code",
-            "type": "string",
-            "example": "self-hosted-custom"
+            "$ref": "#/components/schemas/ServerCloudServiceCode"
           },
           "ip_address": {
             "description": "Public ipv4 address for server access",
