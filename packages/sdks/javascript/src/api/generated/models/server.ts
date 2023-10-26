@@ -18,6 +18,7 @@ import { CloudOsVersionCode } from './cloud-os-version-code';
 import { EnvironmentRelation } from './environment-relation';
 import { ProjectRelation } from './project-relation';
 import { ServerBlueprint } from './server-blueprint';
+import { ServerCloudServiceCode } from './server-cloud-service-code';
 import { ServerProvisionInput } from './server-provision-input';
 import { UserRelation } from './user-relation';
 
@@ -64,11 +65,11 @@ export interface Server {
      */
     provider_name_human_readable: string;
     /**
-     * The cloud service code
-     * @type {string}
+     * 
+     * @type {ServerCloudServiceCode}
      * @memberof Server
      */
-    cloud_service_code: string;
+    cloud_service_code: ServerCloudServiceCode;
     /**
      * Public ipv4 address for server access
      * @type {string}
