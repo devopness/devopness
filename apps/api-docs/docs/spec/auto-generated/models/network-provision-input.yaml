@@ -3,9 +3,7 @@ type: object
 description: 'Network provision input parameters'
 properties:
   cloud_service_code:
-    type: string
-    description: 'The cloud service of the cloud provider'
-    example: aws-ec2
+    $ref: '#/components/schemas/ServerCloudServiceCode'
   credential_id:
     type: integer
     description: 'The ID of the cloud credential'
