@@ -33,7 +33,7 @@ export interface OperatingSystem {
      */
     name: string;
     /**
-     * Text describing the operating system
+     * Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
      * @type {string}
      * @memberof OperatingSystem
      */

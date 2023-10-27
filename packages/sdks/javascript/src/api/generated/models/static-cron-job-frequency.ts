@@ -33,7 +33,7 @@ export interface StaticCronJobFrequency {
      */
     human_readable: CronJobPattern;
     /**
-     * Text hint describing the frequency
+     * Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
      * @type {string}
      * @memberof StaticCronJobFrequency
      */

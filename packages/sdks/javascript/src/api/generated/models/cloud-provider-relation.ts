@@ -32,7 +32,7 @@ export interface CloudProviderRelation {
      */
     name: string;
     /**
-     * Text describing what is the provider
+     * Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
      * @type {string}
      * @memberof CloudProviderRelation
      */
