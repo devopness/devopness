@@ -13139,9 +13139,7 @@
             "example": "Amazon Web Services"
           },
           "hint": {
-            "type": "string",
-            "description": "Text describing what is the provider",
-            "example": "Cloud services provided by Amazon Web Services"
+            "$ref": "#/components/schemas/FieldHint"
           },
           "logo_url": {
             "type": "string",
@@ -13333,9 +13331,7 @@
             "example": "Amazon Web Services"
           },
           "hint": {
-            "type": "string",
-            "description": "Text describing what is the provider",
-            "example": "Cloud services provided by Amazon Web Services"
+            "$ref": "#/components/schemas/FieldHint"
           },
           "logo_url": {
             "type": "string",
@@ -13408,9 +13404,7 @@
             "example": "us-east-1: US East (N. Virginia)"
           },
           "hint": {
-            "type": "string",
-            "description": "Text describing the region",
-            "example": "us-east-1: US East (N. Virginia)"
+            "$ref": "#/components/schemas/FieldHint"
           },
           "zones": {
             "$ref": "#/components/schemas/CloudProviderServiceRegionZones"
@@ -14426,9 +14420,7 @@
             "example": "Install dependencies"
           },
           "hint": {
-            "description": "Text describing when the event is triggered",
-            "type": "string",
-            "example": "Triggered on running a package manager to install repository dependencies"
+            "$ref": "#/components/schemas/FieldHint"
           }
         },
         "required": [
@@ -14704,6 +14696,11 @@
           "type",
           "name"
         ]
+      },
+      "FieldHint": {
+        "description": "Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field",
+        "type": "string",
+        "example": "Some text here describing this field for end users"
       },
       "Hook": {
         "type": "object",
@@ -16315,11 +16312,15 @@
       "NetworkRuleOptions": {
         "type": "object",
         "properties": {
+          "directions": {
+            "$ref": "#/components/schemas/StaticNetworkRuleDirectionList"
+          },
           "protocols": {
             "$ref": "#/components/schemas/StaticNetworkRuleProtocolList"
           }
         },
         "required": [
+          "directions",
           "protocols"
         ]
       },
@@ -16442,9 +16443,7 @@
             "example": "Ubuntu"
           },
           "hint": {
-            "type": "string",
-            "description": "Text describing the operating system",
-            "example": "Ubuntu"
+            "$ref": "#/components/schemas/FieldHint"
           },
           "supported_versions": {
             "$ref": "#/components/schemas/OperatingSystemVersions"
@@ -16863,8 +16862,7 @@
             "example": "Remove old releases"
           },
           "hint": {
-            "type": "string",
-            "example": "Remove outdated releases from application directory"
+            "$ref": "#/components/schemas/FieldHint"
           }
         }
       },
@@ -16889,8 +16887,7 @@
             "example": "Branch"
           },
           "hint": {
-            "type": "string",
-            "example": "The name of the branch from which the application source code will be retrieved and deployed. If not provided, the application default branch will be used."
+            "$ref": "#/components/schemas/FieldHint"
           },
           "type": {
             "type": "string",
@@ -17806,9 +17803,7 @@
             "example": "Composer"
           },
           "hint": {
-            "type": "string",
-            "description": "A brief description about the runner",
-            "example": "Composer is a tool for dependency management in PHP"
+            "$ref": "#/components/schemas/FieldHint"
           }
         },
         "required": [
@@ -19293,9 +19288,7 @@
             "$ref": "#/components/schemas/CronJobPattern"
           },
           "hint": {
-            "type": "string",
-            "description": "Text hint describing the frequency",
-            "example": "Run once a month at midnight on the first day of month"
+            "$ref": "#/components/schemas/FieldHint"
           }
         },
         "required": [
@@ -19324,9 +19317,7 @@
             "example": "Development"
           },
           "hint": {
-            "type": "string",
-            "description": "Text describing the environment purpose",
-            "example": "Environment used for dev testing"
+            "$ref": "#/components/schemas/FieldHint"
           }
         },
         "required": [
@@ -19348,6 +19339,34 @@
         "items": {
           "type": "string",
           "example": "PT-BR"
+        }
+      },
+      "StaticNetworkRuleDirection": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "$ref": "#/components/schemas/NetworkRuleDirection"
+          },
+          "human_readable": {
+            "type": "string",
+            "description": "The formatted name to be displayed in user interfaces",
+            "example": "Inbound"
+          },
+          "hint": {
+            "$ref": "#/components/schemas/FieldHint"
+          }
+        },
+        "required": [
+          "value",
+          "human_readable",
+          "hint"
+        ]
+      },
+      "StaticNetworkRuleDirectionList": {
+        "description": "The supported network rule's traffic directions",
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/StaticNetworkRuleDirection"
         }
       },
       "StaticNetworkRuleProtocol": {
@@ -19387,7 +19406,7 @@
         ]
       },
       "StaticNetworkRuleProtocolList": {
-        "description": "The supported network rules protocols",
+        "description": "The supported network rule's protocols",
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/StaticNetworkRuleProtocol"
@@ -19407,9 +19426,7 @@
             "example": "Add"
           },
           "hint": {
-            "type": "string",
-            "description": "Description of what a role is allowed to do with a resource if she has this permission",
-            "example": "Authorize to create new applications"
+            "$ref": "#/components/schemas/FieldHint"
           },
           "required_permissions": {
             "$ref": "#/components/schemas/StaticRequiredPermissions"
@@ -19450,9 +19467,7 @@
             "example": "MySQL"
           },
           "hint": {
-            "type": "string",
-            "description": "Text describing the service",
-            "example": "MySQL Community Server"
+            "$ref": "#/components/schemas/FieldHint"
           },
           "supported_versions": {
             "type": "array",
@@ -21247,9 +21262,7 @@
             "example": "MySQL Configuration (my.cnf)"
           },
           "hint": {
-            "type": "string",
-            "description": "Text describing what is the variable target",
-            "example": "Configuration file for MySQL (my.cnf)."
+            "$ref": "#/components/schemas/FieldHint"
           }
         }
       },
