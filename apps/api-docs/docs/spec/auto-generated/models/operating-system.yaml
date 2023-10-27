@@ -10,9 +10,7 @@ properties:
     description: 'The formatted name of the operating system'
     example: Ubuntu
   hint:
-    type: string
-    description: 'Text describing the operating system'
-    example: Ubuntu
+    $ref: '#/components/schemas/FieldHint'
   supported_versions:
     $ref: '#/components/schemas/OperatingSystemVersions'
 required:

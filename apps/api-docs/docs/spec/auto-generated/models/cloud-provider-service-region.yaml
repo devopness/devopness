@@ -10,9 +10,7 @@ properties:
     type: string
     example: 'us-east-1: US East (N. Virginia)'
   hint:
-    type: string
-    description: 'Text describing the region'
-    example: 'us-east-1: US East (N. Virginia)'
+    $ref: '#/components/schemas/FieldHint'
   zones:
     $ref: '#/components/schemas/CloudProviderServiceRegionZones'
 required:

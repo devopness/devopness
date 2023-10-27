@@ -10,9 +10,7 @@ properties:
     description: 'Human readable permission name'
     example: Add
   hint:
-    type: string
-    description: 'Description of what a role is allowed to do with a resource if she has this permission'
-    example: 'Authorize to create new applications'
+    $ref: '#/components/schemas/FieldHint'
   required_permissions:
     $ref: '#/components/schemas/StaticRequiredPermissions'
 required:

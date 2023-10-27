@@ -8,9 +8,7 @@ properties:
     description: 'Displayable version of the service name'
     example: MySQL
   hint:
-    type: string
-    description: 'Text describing the service'
-    example: 'MySQL Community Server'
+    $ref: '#/components/schemas/FieldHint'
   supported_versions:
     type: array
     description: 'List of service versions supported by Devopness'

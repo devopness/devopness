@@ -9,5 +9,4 @@ properties:
     type: string
     example: 'Remove old releases'
   hint:
-    type: string
-    example: 'Remove outdated releases from application directory'
+    $ref: '#/components/schemas/FieldHint'

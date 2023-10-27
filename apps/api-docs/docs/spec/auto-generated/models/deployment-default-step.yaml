@@ -8,9 +8,7 @@ properties:
     type: string
     example: 'Install dependencies'
   hint:
-    description: 'Text describing when the event is triggered'
-    type: string
-    example: 'Triggered on running a package manager to install repository dependencies'
+    $ref: '#/components/schemas/FieldHint'
 required:
   - value
   - human_readable

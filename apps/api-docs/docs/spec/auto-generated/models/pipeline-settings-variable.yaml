@@ -9,8 +9,7 @@ properties:
     type: string
     example: Branch
   hint:
-    type: string
-    example: 'The name of the branch from which the application source code will be retrieved and deployed. If not provided, the application default branch will be used.'
+    $ref: '#/components/schemas/FieldHint'
   type:
     type: string
     example: string

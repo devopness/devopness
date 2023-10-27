@@ -10,9 +10,7 @@ properties:
     type: string
     example: 'Amazon Web Services'
   hint:
-    type: string
-    description: 'Text describing what is the provider'
-    example: 'Cloud services provided by Amazon Web Services'
+    $ref: '#/components/schemas/FieldHint'
   logo_url:
     type: string
     description: 'The provider''s logo URL.'

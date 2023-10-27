@@ -10,9 +10,7 @@ properties:
     description: 'The formatted name of the runner'
     example: Composer
   hint:
-    type: string
-    description: 'A brief description about the runner'
-    example: 'Composer is a tool for dependency management in PHP'
+    $ref: '#/components/schemas/FieldHint'
 required:
   - value
   - human_readable

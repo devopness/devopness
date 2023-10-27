@@ -207,6 +207,8 @@ EnvironmentType:
   $ref: ./auto-generated/models/environment-type.yaml
 EnvironmentUpdate:
   $ref: ./auto-generated/models/environment-update.yaml
+FieldHint:
+  $ref: ./auto-generated/models/field-hint.yaml
 Hook:
   $ref: ./auto-generated/models/hook.yaml
 HookIncomingSettings:
@@ -535,6 +537,10 @@ StaticEnvironmentTypeList:
   $ref: ./auto-generated/models/static-environment-type-list.yaml
 StaticLanguageList:
   $ref: ./auto-generated/models/static-language-list.yaml
+StaticNetworkRuleDirection:
+  $ref: ./auto-generated/models/static-network-rule-direction.yaml
+StaticNetworkRuleDirectionList:
+  $ref: ./auto-generated/models/static-network-rule-direction-list.yaml
 StaticNetworkRuleProtocol:
   $ref: ./auto-generated/models/static-network-rule-protocol.yaml
 StaticNetworkRuleProtocolDefaults:

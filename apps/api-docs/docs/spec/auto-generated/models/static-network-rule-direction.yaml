@@ -2,13 +2,11 @@
 type: object
 properties:
   value:
-    type: string
-    description: 'The internal name of the environment'
-    example: development
+    $ref: '#/components/schemas/NetworkRuleDirection'
   human_readable:
     type: string
     description: 'The formatted name to be displayed in user interfaces'
-    example: Development
+    example: Inbound
   hint:
     $ref: '#/components/schemas/FieldHint'
 required:

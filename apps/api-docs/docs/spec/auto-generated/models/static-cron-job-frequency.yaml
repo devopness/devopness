@@ -8,9 +8,7 @@ properties:
   human_readable:
     $ref: '#/components/schemas/CronJobPattern'
   hint:
-    type: string
-    description: 'Text hint describing the frequency'
-    example: 'Run once a month at midnight on the first day of month'
+    $ref: '#/components/schemas/FieldHint'
 required:
   - value
   - human_readable

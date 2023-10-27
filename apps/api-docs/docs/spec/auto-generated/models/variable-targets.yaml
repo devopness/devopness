@@ -26,6 +26,4 @@ properties:
     description: 'Human readable version of the variable target name'
     example: 'MySQL Configuration (my.cnf)'
   hint:
-    type: string
-    description: 'Text describing what is the variable target'
-    example: 'Configuration file for MySQL (my.cnf).'
+    $ref: '#/components/schemas/FieldHint'
