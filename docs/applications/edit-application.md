@@ -1,7 +1,7 @@
 ---
 draft: true
 title: Edit an Application
-intro: Editing applications is crucial for ensuring accurate and up-to-date information is included in the resource deployment process, as needed. Learn how to edit an application's repository.
+intro: Learn how to edit an application to keep its configuration up to date, specially the settings that define how the application is deployed, such as source provider, repository, dependencies to be installed, directories and the application entrypoint.
 links:
     overview:
     quickstart:
