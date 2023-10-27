@@ -32,7 +32,7 @@ export interface StaticPermission {
      */
     human_readable: string;
     /**
-     * Description of what a role is allowed to do with a resource if she has this permission
+     * Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
      * @type {string}
      * @memberof StaticPermission
      */

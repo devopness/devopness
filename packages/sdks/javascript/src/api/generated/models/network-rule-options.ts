@@ -12,6 +12,7 @@
  */
 
 
+import { StaticNetworkRuleDirection } from './static-network-rule-direction';
 import { StaticNetworkRuleProtocol } from './static-network-rule-protocol';
 
 /**
@@ -21,7 +22,13 @@ import { StaticNetworkRuleProtocol } from './static-network-rule-protocol';
  */
 export interface NetworkRuleOptions {
     /**
-     * The supported network rules protocols
+     * The supported network rule\'s traffic directions
+     * @type {Array<StaticNetworkRuleDirection>}
+     * @memberof NetworkRuleOptions
+     */
+    directions: Array<StaticNetworkRuleDirection>;
+    /**
+     * The supported network rule\'s protocols
      * @type {Array<StaticNetworkRuleProtocol>}
      * @memberof NetworkRuleOptions
      */

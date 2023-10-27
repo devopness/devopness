@@ -209,6 +209,7 @@ export * from './static-billing-info';
 export * from './static-cloud-provider-code';
 export * from './static-cron-job-frequency';
 export * from './static-environment-type';
+export * from './static-network-rule-direction';
 export * from './static-network-rule-protocol';
 export * from './static-network-rule-protocol-defaults';
 export * from './static-permission';

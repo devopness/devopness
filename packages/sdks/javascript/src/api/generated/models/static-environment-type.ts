@@ -32,7 +32,7 @@ export interface StaticEnvironmentType {
      */
     human_readable: string;
     /**
-     * Text describing the environment purpose
+     * Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
      * @type {string}
      * @memberof StaticEnvironmentType
      */

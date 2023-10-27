@@ -12,30 +12,30 @@
  */
 
 
-import { TriggerEvent } from './trigger-event';
+import { NetworkRuleDirection } from './network-rule-direction';
 
 /**
  * 
  * @export
- * @interface DeploymentDefaultStep
+ * @interface StaticNetworkRuleDirection
  */
-export interface DeploymentDefaultStep {
+export interface StaticNetworkRuleDirection {
     /**
      * 
-     * @type {TriggerEvent}
-     * @memberof DeploymentDefaultStep
+     * @type {NetworkRuleDirection}
+     * @memberof StaticNetworkRuleDirection
      */
-    value: TriggerEvent;
+    value: NetworkRuleDirection;
     /**
-     * Formatted name of the event
+     * The formatted name to be displayed in user interfaces
      * @type {string}
-     * @memberof DeploymentDefaultStep
+     * @memberof StaticNetworkRuleDirection
      */
     human_readable: string;
     /**
      * Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
      * @type {string}
-     * @memberof DeploymentDefaultStep
+     * @memberof StaticNetworkRuleDirection
      */
     hint: string;
 }
