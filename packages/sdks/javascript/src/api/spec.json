@@ -18485,6 +18485,7 @@
           "newrelic-infra",
           "nginx",
           "php",
+          "postgresql",
           "redis",
           "supervisor",
           "ufw"
