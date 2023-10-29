@@ -24,6 +24,7 @@ export enum ServiceType {
     NewrelicInfra = 'newrelic-infra',
     Nginx = 'nginx',
     Php = 'php',
+    Postgresql = 'postgresql',
     Redis = 'redis',
     Supervisor = 'supervisor',
     Ufw = 'ufw'
