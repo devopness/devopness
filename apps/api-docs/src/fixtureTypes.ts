@@ -140,6 +140,9 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
         { path: 'id', fixture: 'daemon', field: 'id' },
         { path: 'servers[0]', fixture: 'server', field: 'id' }
     ],
+    'daemon_get_status': [
+      { path: 'servers[0]', fixture: 'server', field: 'id' },
+    ],
     'daemon_restart': [
         { path: 'environment_id', fixture: 'environment', field: 'id' },
         { path: 'servers[0]', fixture: 'server', field: 'id' }
