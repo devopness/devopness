@@ -1606,6 +1606,84 @@
         }
       }
     },
+    "/daemons/{daemon_id}/get-status": {
+      "post": {
+        "summary": "Get current status of a daemon",
+        "operationId": "getStatusDaemon",
+        "description": {
+          "$ref": "../spec/descriptions/get-status-daemon.md"
+        },
+        "tags": [
+          "Daemons"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "daemon_id",
+            "description": "The ID of the daemon.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DaemonGetStatus"
+              }
+            }
+          }
+        }
+      }
+    },
     "/daemons/{daemon_id}/restart": {
       "post": {
         "summary": "Restart a Daemon",
@@ -14241,6 +14319,14 @@
           "run_as_user",
           "name"
         ]
+      },
+      "DaemonGetStatus": {
+        "type": "object",
+        "properties": {
+          "servers": {
+            "$ref": "#/components/schemas/ResourceIdList"
+          }
+        }
       },
       "DaemonList": {
         "type": "array",
