@@ -72,6 +72,7 @@ export * from './cron-job-relation';
 export * from './cron-job-update';
 export * from './daemon';
 export * from './daemon-environment-create';
+export * from './daemon-get-status';
 export * from './daemon-relation';
 export * from './daemon-restart';
 export * from './daemon-update';
