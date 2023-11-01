@@ -173,6 +173,8 @@ Daemon:
   $ref: ./auto-generated/models/daemon.yaml
 DaemonEnvironmentCreate:
   $ref: ./auto-generated/models/daemon-environment-create.yaml
+DaemonGetStatus:
+  $ref: ./auto-generated/models/daemon-get-status.yaml
 DaemonList:
   $ref: ./auto-generated/models/daemon-list.yaml
 DaemonRelation:
