@@ -13535,6 +13535,14 @@
           },
           "os": {
             "$ref": "#/components/schemas/OperatingSystems"
+          },
+          "can_keep_disk_after_server_delete": {
+            "type": "boolean",
+            "description": "Tells if this cloud service allows keeping server's persistent disks after a server is deleted. If true, Devopness API will allow users to send a parameter when deleting a server to indicate if the server persistent disks must be retained, keeping data in the disk volumes - possibly incurring extra costs on the user's cloud provider account. For cloud services that do not support this option, server disks will always be deleted when a server is deleted.",
+            "example": true
+          },
+          "operation_custom_settings": {
+            "$ref": "#/components/schemas/OperationCustomSettings"
           }
         },
         "required": [
@@ -16601,6 +16609,32 @@
           "$ref": "#/components/schemas/OperatingSystem"
         }
       },
+      "OperationCustomSettings": {
+        "type": "object",
+        "properties": {
+          "operation": {
+            "type": "string",
+            "description": "The resource's custom operation that are CSP specific",
+            "example": "remove"
+          },
+          "operation_human_readable": {
+            "type": "string",
+            "description": "Human redable version of the resource's custom operation",
+            "example": "Delete"
+          },
+          "triggers_action": {
+            "type": "boolean",
+            "description": "Whether the `server:remove` operation will trigger an action or not",
+            "example": true
+          }
+        }
+      },
+      "OperationCustomSettingsList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/OperationCustomSettings"
+        }
+      },
       "OsUsers": {
         "description": "The list of the operating system users found in all the servers linked to a project",
         "type": "array",
@@ -17056,7 +17090,7 @@
           "user_id": {
             "description": "The id of the user that own the project",
             "type": "integer",
-            "example": 45678
+            "example": 984123
           },
           "name": {
             "description": "The project's name",
