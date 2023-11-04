@@ -323,6 +323,10 @@ OperatingSystemVersions:
   $ref: ./auto-generated/models/operating-system-versions.yaml
 OperatingSystems:
   $ref: ./auto-generated/models/operating-systems.yaml
+OperationCustomSettings:
+  $ref: ./auto-generated/models/operation-custom-settings.yaml
+OperationCustomSettingsList:
+  $ref: ./auto-generated/models/operation-custom-settings-list.yaml
 OsUsers:
   $ref: ./auto-generated/models/os-users.yaml
 PasswordResetResponse:

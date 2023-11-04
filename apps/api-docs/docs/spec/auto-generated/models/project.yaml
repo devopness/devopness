@@ -8,7 +8,7 @@ properties:
   user_id:
     description: 'The id of the user that own the project'
     type: integer
-    example: 45678
+    example: 984123
   name:
     description: 'The project''s name'
     type: string
