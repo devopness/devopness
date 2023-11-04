@@ -130,6 +130,7 @@ export * from './network-rule-relation';
 export * from './network-rule-update';
 export * from './operating-system';
 export * from './operating-system-version';
+export * from './operation-custom-settings';
 export * from './password-reset-response';
 export * from './password-user-reset';
 export * from './password-user-send-reset-link';
