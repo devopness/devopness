@@ -12584,7 +12584,7 @@
             "type": "string"
           },
           "repository": {
-            "description": "The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed. Must not be greater than 60 characters.",
+            "description": "The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed. Must not be greater than 100 characters.",
             "example": "devopness-api-tests/tester",
             "type": "string"
           },
@@ -12958,7 +12958,7 @@
             "type": "string"
           },
           "repository": {
-            "description": "The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed. Must not be greater than 60 characters.",
+            "description": "The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed. Must not be greater than 100 characters.",
             "example": "devopness-api-tests/tester",
             "type": "string"
           },
@@ -17338,6 +17338,9 @@
           },
           "branches": {
             "$ref": "#/components/schemas/RepositoryBranchList"
+          },
+          "tags": {
+            "$ref": "#/components/schemas/RepositoryTagList"
           }
         },
         "required": [
@@ -17345,7 +17348,8 @@
           "user_name",
           "full_name",
           "html_url",
-          "branches"
+          "branches",
+          "tags"
         ]
       },
       "RepositoryBranch": {
@@ -17416,6 +17420,27 @@
           "html_url"
         ],
         "nullable": true
+      },
+      "RepositoryTag": {
+        "description": "A repository tag",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the tag",
+            "example": "v1.0.0"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "RepositoryTagList": {
+        "description": "List of repository tags",
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/RepositoryTag"
+        }
       },
       "RequestList": {
         "type": "array",
