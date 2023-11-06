@@ -69,7 +69,7 @@ export interface ApplicationEnvironmentCreate {
      */
     listening_address?: string;
     /**
-     * The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed. Must not be greater than 60 characters.
+     * The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed. Must not be greater than 100 characters.
      * @type {string}
      * @memberof ApplicationEnvironmentCreate
      */

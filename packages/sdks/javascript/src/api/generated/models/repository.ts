@@ -13,6 +13,7 @@
 
 
 import { RepositoryBranch } from './repository-branch';
+import { RepositoryTag } from './repository-tag';
 
 /**
  * 
@@ -50,5 +51,11 @@ export interface Repository {
      * @memberof Repository
      */
     branches: Array<RepositoryBranch>;
+    /**
+     * List of repository tags
+     * @type {Array<RepositoryTag>}
+     * @memberof Repository
+     */
+    tags: Array<RepositoryTag>;
 }
 
