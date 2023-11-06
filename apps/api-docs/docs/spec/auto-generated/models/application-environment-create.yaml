@@ -32,7 +32,7 @@ properties:
     example: 'http://unix:/tmp/backend3:/my/path'
     type: string
   repository:
-    description: 'The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed. Must not be greater than 60 characters.'
+    description: 'The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed. Must not be greater than 100 characters.'
     example: devopness-api-tests/tester
     type: string
   source_provider_id:

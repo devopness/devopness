@@ -19,9 +19,12 @@ properties:
     example: 'https://github.com/myusername/myrepo'
   branches:
     $ref: '#/components/schemas/RepositoryBranchList'
+  tags:
+    $ref: '#/components/schemas/RepositoryTagList'
 required:
   - name
   - user_name
   - full_name
   - html_url
   - branches
+  - tags
