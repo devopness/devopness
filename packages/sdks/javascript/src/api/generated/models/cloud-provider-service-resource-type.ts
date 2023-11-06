@@ -58,7 +58,7 @@ export interface CloudProviderServiceResourceType {
      * @type {boolean}
      * @memberof CloudProviderServiceResourceType
      */
-    can_keep_disk_after_server_delete?: boolean;
+    can_keep_disk_after_delete_server?: boolean;
     /**
      * 
      * @type {OperationCustomSettings}
