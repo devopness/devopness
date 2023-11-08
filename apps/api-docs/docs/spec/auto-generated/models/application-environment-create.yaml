@@ -48,7 +48,7 @@ properties:
     example: /public
     type: string
   default_branch:
-    description: 'The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed. Must not be greater than 100 characters.'
+    description: 'The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed. Must not be greater than 200 characters.'
     example: develop
     type: string
   deployments_keep:
