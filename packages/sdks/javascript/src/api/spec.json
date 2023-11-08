@@ -11610,7 +11610,7 @@
             "$ref": "#/components/schemas/ResourceIdList"
           },
           "branch": {
-            "description": "The name of the branch from which the application source code will be retrieved and deployed. Must not be greater than 100 characters.",
+            "description": "The name of the branch from which the application source code will be retrieved and deployed. Must not be greater than 200 characters.",
             "example": "master",
             "type": "string"
           }
@@ -12604,7 +12604,7 @@
             "type": "string"
           },
           "default_branch": {
-            "description": "The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed. Must not be greater than 100 characters.",
+            "description": "The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed. Must not be greater than 200 characters.",
             "example": "develop",
             "type": "string"
           },
@@ -12978,7 +12978,7 @@
             "type": "string"
           },
           "default_branch": {
-            "description": "The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed. Must not be greater than 100 characters.",
+            "description": "The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed. Must not be greater than 200 characters.",
             "example": "develop",
             "type": "string"
           },
@@ -14480,7 +14480,7 @@
             "$ref": "#/components/schemas/DeploymentType"
           },
           "branch": {
-            "description": "The name of the branch from which the application source code will be retrieved and deployed.This field is required when <code>hash</code> is not present. Must not be greater than 100 characters.",
+            "description": "The name of the branch from which the application source code will be retrieved and deployed.This field is required when <code>hash</code> is not present. Must not be greater than 200 characters.",
             "example": "master",
             "type": "string"
           },
@@ -18442,7 +18442,7 @@
             "$ref": "#/components/schemas/ServiceType"
           },
           "version": {
-            "description": "The service version to be installed. Must be one of <code></code> Must be at least 3 characters. Must not be greater than 30 characters.",
+            "description": "The service version to be installed. Must be one of <code></code> Must be at least 1 characters. Must not be greater than 30 characters.",
             "example": "5.7",
             "type": "string"
           }

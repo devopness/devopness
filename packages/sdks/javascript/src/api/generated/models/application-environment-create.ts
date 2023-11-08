@@ -93,7 +93,7 @@ export interface ApplicationEnvironmentCreate {
      */
     public_directory: string;
     /**
-     * The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed. Must not be greater than 100 characters.
+     * The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed. Must not be greater than 200 characters.
      * @type {string}
      * @memberof ApplicationEnvironmentCreate
      */
