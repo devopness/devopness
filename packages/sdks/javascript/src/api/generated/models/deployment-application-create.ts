@@ -33,7 +33,7 @@ export interface DeploymentApplicationCreate {
      */
     type: DeploymentType;
     /**
-     * The name of the branch from which the application source code will be retrieved and deployed.This field is required when <code>hash</code> is not present. Must not be greater than 100 characters.
+     * The name of the branch from which the application source code will be retrieved and deployed.This field is required when <code>hash</code> is not present. Must not be greater than 200 characters.
      * @type {string}
      * @memberof DeploymentApplicationCreate
      */
