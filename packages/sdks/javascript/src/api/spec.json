@@ -899,7 +899,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       },
       "post": {
         "summary": "Create a new variable linked to an application",
@@ -974,7 +975,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       }
     },
     "/cloud-providers/{cloud_provider_code}/credentials": {
@@ -7721,7 +7723,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       },
       "post": {
         "summary": "Create a new variable linked to a service",
@@ -7796,7 +7799,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       }
     },
     "/social-accounts": {
