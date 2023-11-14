@@ -47,3 +47,4 @@ requestBody:
     application/json:
       schema:
         $ref: '#/components/schemas/VariableServiceCreate'
+deprecated: true

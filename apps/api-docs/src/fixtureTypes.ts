@@ -236,6 +236,9 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     ],
     'user_verify': [],
     'variable': [],
+    'variable_create': [
+      { path: 'resource_id', fixture: 'variable', field: 'id' },
+    ],
     'variable_update': [
         { path: 'id', fixture: 'variable', field: 'id' }
     ],
