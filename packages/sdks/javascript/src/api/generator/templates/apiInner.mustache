@@ -33,6 +33,9 @@ export class {{classname}}Service extends ApiBaseService {
      * @param {{=<% %>=}}{<%&dataType%>}<%={{ }}=%> {{^required}}[{{/required}}{{paramName}}{{^required}}]{{/required}} {{description}}
         {{/isHeaderParam}}
      {{/allParams}}
+     {{#isDeprecated}}
+     * @deprecated
+     {{/isDeprecated}}
      */
     public async {{nickname}}({{#allParams}}{{^isHeaderParam}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}{{^-last}}, {{/-last}}{{/isHeaderParam}}{{/allParams}}): Promise<ApiResponse<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}void{{/returnType}}>> {
     {{#allParams}}
@@ -44,7 +47,7 @@ export class {{classname}}Service extends ApiBaseService {
     {{/required}}
     {{/isHeaderParam}}
     {{/allParams}}
-        
+
         let queryString = '';
     {{#hasQueryParams}}
         const queryParams = { {{#queryParams}}{{baseName}}: {{paramName}}, {{/queryParams}}} as { [key: string]: any };
