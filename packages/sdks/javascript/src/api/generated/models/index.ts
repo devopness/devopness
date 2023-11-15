@@ -267,6 +267,7 @@ export * from './user-url';
 export * from './user-verify';
 export * from './variable';
 export * from './variable-application-create';
+export * from './variable-create';
 export * from './variable-relation';
 export * from './variable-service-create';
 export * from './variable-target';
