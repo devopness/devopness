@@ -10637,6 +10637,161 @@
         }
       }
     },
+    "/variables/{resource_type}/{resource_id}": {
+      "get": {
+        "summary": "Return a list of variables belonging to a resource",
+        "operationId": "listVariablesByResourceType",
+        "description": {
+          "$ref": "../spec/descriptions/list-variables-by-resource-type.md"
+        },
+        "tags": [
+          "Variables"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "resource_id",
+            "description": "The resource ID.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "in": "path",
+            "name": "resource_type",
+            "description": "The resource type to get variables from.",
+            "example": "server",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VariableList"
+                }
+              }
+            },
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new variable linked to a resource",
+        "operationId": "addVariable",
+        "description": {
+          "$ref": "../spec/descriptions/add-variable.md"
+        },
+        "tags": [
+          "Variables"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "resource_id",
+            "description": "The resource ID.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "in": "path",
+            "name": "resource_type",
+            "description": "The resource type to get variables from.",
+            "example": "server",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Variable"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VariableCreate"
+              }
+            }
+          }
+        }
+      }
+    },
     "/variables/{variable_id}": {
       "delete": {
         "summary": "Delete a variable by ID",
@@ -21233,6 +21388,44 @@
           "hidden"
         ]
       },
+      "VariableCreate": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "description": "The unique key used to identify the variable on the target. Must not be greater than 100 characters.",
+            "example": "APP_URL",
+            "type": "string"
+          },
+          "value": {
+            "description": "The value to be assigned to this variable when deployed to its target.\n                When variable is of type `file`, this is the file content. Must not be greater than 21504 characters.",
+            "example": "https://staging.devopness.com",
+            "type": "string"
+          },
+          "description": {
+            "description": "A text describing the variable, provided by the end user.",
+            "example": "Sample variable description",
+            "type": "string"
+          },
+          "target": {
+            "$ref": "#/components/schemas/VariableTarget"
+          },
+          "type": {
+            "$ref": "#/components/schemas/VariableType"
+          },
+          "hidden": {
+            "description": "Indicates if the variable value should be visible or not in the deployment logs.",
+            "example": false,
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "key",
+          "value",
+          "target",
+          "type",
+          "hidden"
+        ]
+      },
       "VariableList": {
         "type": "array",
         "items": {
@@ -21370,7 +21563,8 @@
           "php-fpm_php-ini",
           "php-fpm_pool-d-www-conf",
           "redis-conf",
-          "supervisord-conf"
+          "supervisord-conf",
+          "sysctl-conf"
         ],
         "example": "resource-config-file"
       },
@@ -21401,7 +21595,8 @@
               "php-fpm_php-ini",
               "php-fpm_pool-d-www-conf",
               "redis-conf",
-              "supervisord-conf"
+              "supervisord-conf",
+              "sysctl-conf"
             ],
             "description": "The variable target name",
             "example": "my-cnf"
