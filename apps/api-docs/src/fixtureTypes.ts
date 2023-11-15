@@ -141,7 +141,7 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
         { path: 'servers[0]', fixture: 'server', field: 'id' }
     ],
     'daemon_get_status': [
-      { path: 'servers[0]', fixture: 'server', field: 'id' },
+        { path: 'servers[0]', fixture: 'server', field: 'id' },
     ],
     'daemon_restart': [
         { path: 'environment_id', fixture: 'environment', field: 'id' },
@@ -237,7 +237,7 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     'user_verify': [],
     'variable': [],
     'variable_create': [
-      { path: 'resource_id', fixture: 'variable', field: 'id' },
+        { path: 'resource_id', fixture: 'server', field: 'id' },
     ],
     'variable_update': [
         { path: 'id', fixture: 'variable', field: 'id' }

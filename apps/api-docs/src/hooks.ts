@@ -116,6 +116,8 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
             'ssl_certificate': ['addApplicationSslCertificate201'],
 
             'network': ['addEnvironmentNetwork201'],
+
+            'variable': ['addVariable201'],
         },
         fixtureTerminalTransactions: {
             // a successful `logout` transaction destroys user tokens
@@ -130,6 +132,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         ['deleteHook204', 'deleteApplication204'],
         ['deleteVariable204', 'deleteApplication204'],
         ['triggerHook202', 'deleteApplication204'],
+        ['addVariable201', 'deleteServer204'],
         // unlinkServerFromEnvironment requires deleting the associated ssh key, network rule, daemon, service, cron job and application
         ['deleteSshKey204', 'unlinkServerFromEnvironment204'],
         ['deleteNetworkRule204', 'unlinkServerFromEnvironment204'],
@@ -381,6 +384,6 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     before('addPipeline201', utils.rewriteTransactionRequestUriResourceId(['application']));
     before('unlinkResourceLinkFromResourceLink204', utils.rewriteTransactionRequestUriResourceId(['application']));
     before('linkResourceLinkToResourceLink204', utils.rewriteTransactionRequestUriResourceId(['application', 'daemon']));
-
+    before('addVariable201', utils.rewriteTransactionRequestUriResourceId(['server']));
     done();
 })
