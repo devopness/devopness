@@ -25,6 +25,9 @@ export class {{classname}}Service extends ApiBaseService {
     {{#operation}}
     /**
      * {{&notes}}
+     {{#isDeprecated}}
+     * @deprecated
+     {{/isDeprecated}}
      {{#summary}}
      * @summary {{&summary}}
      {{/summary}}
