@@ -36,7 +36,6 @@ export class PipelinesActionsApiService extends ApiBaseService {
         if (actionPipelineCreate === null || actionPipelineCreate === undefined) {
             throw new ArgumentNullException('actionPipelineCreate', 'addPipelineAction');
         }
-
         let queryString = '';
 
         const requestUrl = '/pipelines/{pipeline_id}/actions' + (queryString? `?${queryString}` : '');
@@ -56,7 +55,6 @@ export class PipelinesActionsApiService extends ApiBaseService {
         if (pipelineId === null || pipelineId === undefined) {
             throw new ArgumentNullException('pipelineId', 'listPipelineActions');
         }
-
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {

@@ -40,7 +40,6 @@ export class PipelinesHooksApiService extends ApiBaseService {
         if (hookPipelineCreate === null || hookPipelineCreate === undefined) {
             throw new ArgumentNullException('hookPipelineCreate', 'addPipelineHook');
         }
-
         let queryString = '';
 
         const requestUrl = '/pipelines/{pipeline_id}/hooks/{hook_type}' + (queryString? `?${queryString}` : '');
@@ -60,7 +59,6 @@ export class PipelinesHooksApiService extends ApiBaseService {
         if (pipelineId === null || pipelineId === undefined) {
             throw new ArgumentNullException('pipelineId', 'listPipelineHooks');
         }
-
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {

@@ -36,7 +36,6 @@ export class NetworksSubnetsApiService extends ApiBaseService {
         if (subnetNetworkCreate === null || subnetNetworkCreate === undefined) {
             throw new ArgumentNullException('subnetNetworkCreate', 'addNetworkSubnet');
         }
-
         let queryString = '';
 
         const requestUrl = '/networks/{network_id}/subnets' + (queryString? `?${queryString}` : '');
@@ -58,7 +57,6 @@ export class NetworksSubnetsApiService extends ApiBaseService {
         if (networkId === null || networkId === undefined) {
             throw new ArgumentNullException('networkId', 'listNetworkSubnets');
         }
-
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, region: region, zone: zone, } as { [key: string]: any };
         for (const key in queryParams) {

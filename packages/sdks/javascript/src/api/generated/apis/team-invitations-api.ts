@@ -29,7 +29,6 @@ export class TeamInvitationsApiService extends ApiBaseService {
         if (teamInvitationId === null || teamInvitationId === undefined) {
             throw new ArgumentNullException('teamInvitationId', 'acceptTeamInvitation');
         }
-
         let queryString = '';
 
         const requestUrl = '/team-invitations/{team_invitation_id}/accept' + (queryString? `?${queryString}` : '');

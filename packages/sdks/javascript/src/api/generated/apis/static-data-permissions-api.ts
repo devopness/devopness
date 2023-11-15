@@ -27,7 +27,6 @@ export class StaticDataPermissionsApiService extends ApiBaseService {
      * @param {number} [perPage] Number of items returned per page
      */
     public async listStaticPermissions(page?: number, perPage?: number): Promise<ApiResponse<Array<PermissionRelation>>> {
-
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {

@@ -42,7 +42,6 @@ export class UsersApiService extends ApiBaseService {
         if (userCreate === null || userCreate === undefined) {
             throw new ArgumentNullException('userCreate', 'addUser');
         }
-
         let queryString = '';
 
         const requestUrl = '/users' + (queryString? `?${queryString}` : '');
@@ -60,7 +59,6 @@ export class UsersApiService extends ApiBaseService {
         if (userId === null || userId === undefined) {
             throw new ArgumentNullException('userId', 'getUser');
         }
-
         let queryString = '';
 
         const requestUrl = '/users/{user_id}' + (queryString? `?${queryString}` : '');
@@ -78,7 +76,6 @@ export class UsersApiService extends ApiBaseService {
         if (userId === null || userId === undefined) {
             throw new ArgumentNullException('userId', 'getUserActivity');
         }
-
         let queryString = '';
 
         const requestUrl = '/users/{user_id}/activity' + (queryString? `?${queryString}` : '');
@@ -92,7 +89,6 @@ export class UsersApiService extends ApiBaseService {
      * @summary Get current user\'s billing info for active subscription
      */
     public async getUserBilling(): Promise<ApiResponse<UserBilling>> {
-
         let queryString = '';
 
         const requestUrl = '/users/billing' + (queryString? `?${queryString}` : '');
@@ -106,7 +102,6 @@ export class UsersApiService extends ApiBaseService {
      * @summary Logout/revoke an existing token
      */
     public async getUserLogout(): Promise<ApiResponse<void>> {
-
         let queryString = '';
 
         const requestUrl = '/users/logout' + (queryString? `?${queryString}` : '');
@@ -120,7 +115,6 @@ export class UsersApiService extends ApiBaseService {
      * @summary Get details of the current user
      */
     public async getUserMe(): Promise<ApiResponse<UserMe>> {
-
         let queryString = '';
 
         const requestUrl = '/users/me' + (queryString? `?${queryString}` : '');
@@ -134,7 +128,6 @@ export class UsersApiService extends ApiBaseService {
      * @summary Get the authenticated user\'s URLs
      */
     public async getUserUrls(): Promise<ApiResponse<UserUrl>> {
-
         let queryString = '';
 
         const requestUrl = '/users/urls' + (queryString? `?${queryString}` : '');
@@ -152,7 +145,6 @@ export class UsersApiService extends ApiBaseService {
         if (userLogin === null || userLogin === undefined) {
             throw new ArgumentNullException('userLogin', 'loginUser');
         }
-
         let queryString = '';
 
         const requestUrl = '/users/login' + (queryString? `?${queryString}` : '');
@@ -170,7 +162,6 @@ export class UsersApiService extends ApiBaseService {
         if (userRefreshToken === null || userRefreshToken === undefined) {
             throw new ArgumentNullException('userRefreshToken', 'refreshTokenUser');
         }
-
         let queryString = '';
 
         const requestUrl = '/users/refresh-token' + (queryString? `?${queryString}` : '');
@@ -188,7 +179,6 @@ export class UsersApiService extends ApiBaseService {
         if (userResendVerification === null || userResendVerification === undefined) {
             throw new ArgumentNullException('userResendVerification', 'resendVerificationUser');
         }
-
         let queryString = '';
 
         const requestUrl = '/users/account/resend-verification' + (queryString? `?${queryString}` : '');
@@ -210,7 +200,6 @@ export class UsersApiService extends ApiBaseService {
         if (userUpdate === null || userUpdate === undefined) {
             throw new ArgumentNullException('userUpdate', 'updateUser');
         }
-
         let queryString = '';
 
         const requestUrl = '/users/{user_id}' + (queryString? `?${queryString}` : '');
@@ -228,7 +217,6 @@ export class UsersApiService extends ApiBaseService {
         if (userVerify === null || userVerify === undefined) {
             throw new ArgumentNullException('userVerify', 'verifyUser');
         }
-
         let queryString = '';
 
         const requestUrl = '/users/account/verify' + (queryString? `?${queryString}` : '');

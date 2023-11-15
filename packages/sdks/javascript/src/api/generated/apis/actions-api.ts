@@ -32,7 +32,6 @@ export class ActionsApiService extends ApiBaseService {
         if (actionId === null || actionId === undefined) {
             throw new ArgumentNullException('actionId', 'getAction');
         }
-
         let queryString = '';
 
         const requestUrl = '/actions/{action_id}' + (queryString? `?${queryString}` : '');
@@ -48,7 +47,6 @@ export class ActionsApiService extends ApiBaseService {
      * @param {number} [perPage] Number of items returned per page
      */
     public async listActions(page?: number, perPage?: number): Promise<ApiResponse<Array<ActionRelation>>> {
-
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {
@@ -80,7 +78,6 @@ export class ActionsApiService extends ApiBaseService {
         if (resourceType === null || resourceType === undefined) {
             throw new ArgumentNullException('resourceType', 'listActionsByResourceType');
         }
-
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {
@@ -112,7 +109,6 @@ export class ActionsApiService extends ApiBaseService {
         if (targetResourceType === null || targetResourceType === undefined) {
             throw new ArgumentNullException('targetResourceType', 'listActionsByTargetResourceType');
         }
-
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {
@@ -138,7 +134,6 @@ export class ActionsApiService extends ApiBaseService {
         if (actionId === null || actionId === undefined) {
             throw new ArgumentNullException('actionId', 'retryAction');
         }
-
         let queryString = '';
 
         const requestUrl = '/actions/{action_id}/retry' + (queryString? `?${queryString}` : '');

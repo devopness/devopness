@@ -41,7 +41,6 @@ export class VariablesApiService extends ApiBaseService {
         if (variableCreate === null || variableCreate === undefined) {
             throw new ArgumentNullException('variableCreate', 'addVariable');
         }
-
         let queryString = '';
 
         const requestUrl = '/variables/{resource_type}/{resource_id}' + (queryString? `?${queryString}` : '');
@@ -59,7 +58,6 @@ export class VariablesApiService extends ApiBaseService {
         if (variableId === null || variableId === undefined) {
             throw new ArgumentNullException('variableId', 'deleteVariable');
         }
-
         let queryString = '';
 
         const requestUrl = '/variables/{variable_id}' + (queryString? `?${queryString}` : '');
@@ -77,7 +75,6 @@ export class VariablesApiService extends ApiBaseService {
         if (variableId === null || variableId === undefined) {
             throw new ArgumentNullException('variableId', 'getVariable');
         }
-
         let queryString = '';
 
         const requestUrl = '/variables/{variable_id}' + (queryString? `?${queryString}` : '');
@@ -101,7 +98,6 @@ export class VariablesApiService extends ApiBaseService {
         if (resourceType === null || resourceType === undefined) {
             throw new ArgumentNullException('resourceType', 'listVariablesByResourceType');
         }
-
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {
@@ -131,7 +127,6 @@ export class VariablesApiService extends ApiBaseService {
         if (variableUpdate === null || variableUpdate === undefined) {
             throw new ArgumentNullException('variableUpdate', 'updateVariable');
         }
-
         let queryString = '';
 
         const requestUrl = '/variables/{variable_id}' + (queryString? `?${queryString}` : '');

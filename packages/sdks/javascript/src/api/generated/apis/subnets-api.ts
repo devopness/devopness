@@ -30,7 +30,6 @@ export class SubnetsApiService extends ApiBaseService {
         if (subnetId === null || subnetId === undefined) {
             throw new ArgumentNullException('subnetId', 'deleteSubnet');
         }
-
         let queryString = '';
 
         const requestUrl = '/subnets/{subnet_id}' + (queryString? `?${queryString}` : '');
@@ -48,7 +47,6 @@ export class SubnetsApiService extends ApiBaseService {
         if (subnetId === null || subnetId === undefined) {
             throw new ArgumentNullException('subnetId', 'getSubnet');
         }
-
         let queryString = '';
 
         const requestUrl = '/subnets/{subnet_id}' + (queryString? `?${queryString}` : '');

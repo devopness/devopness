@@ -36,7 +36,6 @@ export class TeamsInvitationsApiService extends ApiBaseService {
         if (invitationTeamCreate === null || invitationTeamCreate === undefined) {
             throw new ArgumentNullException('invitationTeamCreate', 'addTeamInvitation');
         }
-
         let queryString = '';
 
         const requestUrl = '/teams/{team_id}/invitations' + (queryString? `?${queryString}` : '');
@@ -56,7 +55,6 @@ export class TeamsInvitationsApiService extends ApiBaseService {
         if (teamId === null || teamId === undefined) {
             throw new ArgumentNullException('teamId', 'listTeamInvitations');
         }
-
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {

@@ -32,7 +32,6 @@ export class UsersPasswordsApiService extends ApiBaseService {
         if (passwordUserReset === null || passwordUserReset === undefined) {
             throw new ArgumentNullException('passwordUserReset', 'resetUserPassword');
         }
-
         let queryString = '';
 
         const requestUrl = '/users/password/reset' + (queryString? `?${queryString}` : '');
@@ -50,7 +49,6 @@ export class UsersPasswordsApiService extends ApiBaseService {
         if (passwordUserSendResetLink === null || passwordUserSendResetLink === undefined) {
             throw new ArgumentNullException('passwordUserSendResetLink', 'sendResetLinkUserPassword');
         }
-
         let queryString = '';
 
         const requestUrl = '/users/password/send-reset-link' + (queryString? `?${queryString}` : '');

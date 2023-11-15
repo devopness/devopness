@@ -31,7 +31,6 @@ export class SSHKeysApiService extends ApiBaseService {
         if (sshKeyId === null || sshKeyId === undefined) {
             throw new ArgumentNullException('sshKeyId', 'deleteSshKey');
         }
-
         let queryString = '';
 
         const requestUrl = '/ssh-keys/{ssh_key_id}' + (queryString? `?${queryString}` : '');
@@ -49,7 +48,6 @@ export class SSHKeysApiService extends ApiBaseService {
         if (sshKeyId === null || sshKeyId === undefined) {
             throw new ArgumentNullException('sshKeyId', 'getSshKey');
         }
-
         let queryString = '';
 
         const requestUrl = '/ssh-keys/{ssh_key_id}' + (queryString? `?${queryString}` : '');
@@ -71,7 +69,6 @@ export class SSHKeysApiService extends ApiBaseService {
         if (sshKeyUpdate === null || sshKeyUpdate === undefined) {
             throw new ArgumentNullException('sshKeyUpdate', 'updateSshKey');
         }
-
         let queryString = '';
 
         const requestUrl = '/ssh-keys/{ssh_key_id}' + (queryString? `?${queryString}` : '');

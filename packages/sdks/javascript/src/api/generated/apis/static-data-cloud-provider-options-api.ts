@@ -27,7 +27,6 @@ export class StaticDataCloudProviderOptionsApiService extends ApiBaseService {
      * @param {number} [perPage] Number of items returned per page
      */
     public async listStaticCloudProviderOptions(page?: number, perPage?: number): Promise<ApiResponse<Array<CloudProviderOptionsRelation>>> {
-
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {

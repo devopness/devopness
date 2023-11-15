@@ -31,7 +31,6 @@ export class EnvironmentsActionsApiService extends ApiBaseService {
         if (environmentId === null || environmentId === undefined) {
             throw new ArgumentNullException('environmentId', 'listEnvironmentActions');
         }
-
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {
@@ -63,7 +62,6 @@ export class EnvironmentsActionsApiService extends ApiBaseService {
         if (resourceType === null || resourceType === undefined) {
             throw new ArgumentNullException('resourceType', 'listEnvironmentActionsByResourceType');
         }
-
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {

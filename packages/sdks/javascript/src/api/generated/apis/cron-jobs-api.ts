@@ -31,7 +31,6 @@ export class CronJobsApiService extends ApiBaseService {
         if (cronJobId === null || cronJobId === undefined) {
             throw new ArgumentNullException('cronJobId', 'deleteCronJob');
         }
-
         let queryString = '';
 
         const requestUrl = '/cron-jobs/{cron_job_id}' + (queryString? `?${queryString}` : '');
@@ -49,7 +48,6 @@ export class CronJobsApiService extends ApiBaseService {
         if (cronJobId === null || cronJobId === undefined) {
             throw new ArgumentNullException('cronJobId', 'getCronJob');
         }
-
         let queryString = '';
 
         const requestUrl = '/cron-jobs/{cron_job_id}' + (queryString? `?${queryString}` : '');
@@ -71,7 +69,6 @@ export class CronJobsApiService extends ApiBaseService {
         if (cronJobUpdate === null || cronJobUpdate === undefined) {
             throw new ArgumentNullException('cronJobUpdate', 'updateCronJob');
         }
-
         let queryString = '';
 
         const requestUrl = '/cron-jobs/{cron_job_id}' + (queryString? `?${queryString}` : '');

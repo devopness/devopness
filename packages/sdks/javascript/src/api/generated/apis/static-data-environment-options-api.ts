@@ -25,7 +25,6 @@ export class StaticDataEnvironmentOptionsApiService extends ApiBaseService {
      * @summary List `Environment` options
      */
     public async getStaticEnvironmentOptions(): Promise<ApiResponse<EnvironmentOptions>> {
-
         let queryString = '';
 
         const requestUrl = '/static/environment-options' + (queryString? `?${queryString}` : '');

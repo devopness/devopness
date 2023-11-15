@@ -32,7 +32,6 @@ export class SourceProvidersApiService extends ApiBaseService {
         if (sourceProviderCreate === null || sourceProviderCreate === undefined) {
             throw new ArgumentNullException('sourceProviderCreate', 'addSourceProvider');
         }
-
         let queryString = '';
 
         const requestUrl = '/source-providers' + (queryString? `?${queryString}` : '');
@@ -50,7 +49,6 @@ export class SourceProvidersApiService extends ApiBaseService {
         if (sourceProviderId === null || sourceProviderId === undefined) {
             throw new ArgumentNullException('sourceProviderId', 'deleteSourceProvider');
         }
-
         let queryString = '';
 
         const requestUrl = '/source-providers/{source_provider_id}' + (queryString? `?${queryString}` : '');
@@ -68,7 +66,6 @@ export class SourceProvidersApiService extends ApiBaseService {
         if (sourceProviderId === null || sourceProviderId === undefined) {
             throw new ArgumentNullException('sourceProviderId', 'getSourceProvider');
         }
-
         let queryString = '';
 
         const requestUrl = '/source-providers/{source_provider_id}' + (queryString? `?${queryString}` : '');
@@ -84,7 +81,6 @@ export class SourceProvidersApiService extends ApiBaseService {
      * @param {number} [perPage] Number of items returned per page
      */
     public async listSourceProviders(page?: number, perPage?: number): Promise<ApiResponse<Array<SourceProviderRelation>>> {
-
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {

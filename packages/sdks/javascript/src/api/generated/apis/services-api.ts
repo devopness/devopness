@@ -36,7 +36,6 @@ export class ServicesApiService extends ApiBaseService {
         if (serviceId === null || serviceId === undefined) {
             throw new ArgumentNullException('serviceId', 'deleteService');
         }
-
         let queryString = '';
 
         const requestUrl = '/services/{service_id}' + (queryString? `?${queryString}` : '');
@@ -54,7 +53,6 @@ export class ServicesApiService extends ApiBaseService {
         if (serviceId === null || serviceId === undefined) {
             throw new ArgumentNullException('serviceId', 'getService');
         }
-
         let queryString = '';
 
         const requestUrl = '/services/{service_id}' + (queryString? `?${queryString}` : '');
@@ -76,7 +74,6 @@ export class ServicesApiService extends ApiBaseService {
         if (serviceReload === null || serviceReload === undefined) {
             throw new ArgumentNullException('serviceReload', 'reloadService');
         }
-
         let queryString = '';
 
         const requestUrl = '/services/{service_id}/reload' + (queryString? `?${queryString}` : '');
@@ -98,7 +95,6 @@ export class ServicesApiService extends ApiBaseService {
         if (serviceRestart === null || serviceRestart === undefined) {
             throw new ArgumentNullException('serviceRestart', 'restartService');
         }
-
         let queryString = '';
 
         const requestUrl = '/services/{service_id}/restart' + (queryString? `?${queryString}` : '');
@@ -120,7 +116,6 @@ export class ServicesApiService extends ApiBaseService {
         if (serviceStart === null || serviceStart === undefined) {
             throw new ArgumentNullException('serviceStart', 'startService');
         }
-
         let queryString = '';
 
         const requestUrl = '/services/{service_id}/start' + (queryString? `?${queryString}` : '');
@@ -142,7 +137,6 @@ export class ServicesApiService extends ApiBaseService {
         if (serviceStop === null || serviceStop === undefined) {
             throw new ArgumentNullException('serviceStop', 'stopService');
         }
-
         let queryString = '';
 
         const requestUrl = '/services/{service_id}/stop' + (queryString? `?${queryString}` : '');
@@ -164,7 +158,6 @@ export class ServicesApiService extends ApiBaseService {
         if (serviceUpdate === null || serviceUpdate === undefined) {
             throw new ArgumentNullException('serviceUpdate', 'updateService');
         }
-
         let queryString = '';
 
         const requestUrl = '/services/{service_id}' + (queryString? `?${queryString}` : '');
@@ -186,7 +179,6 @@ export class ServicesApiService extends ApiBaseService {
         if (serviceUpdateStatus === null || serviceUpdateStatus === undefined) {
             throw new ArgumentNullException('serviceUpdateStatus', 'updateStatusService');
         }
-
         let queryString = '';
 
         const requestUrl = '/services/{service_id}/update-status' + (queryString? `?${queryString}` : '');

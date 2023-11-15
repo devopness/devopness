@@ -31,7 +31,6 @@ export class TeamsApiService extends ApiBaseService {
         if (teamId === null || teamId === undefined) {
             throw new ArgumentNullException('teamId', 'deleteTeam');
         }
-
         let queryString = '';
 
         const requestUrl = '/teams/{team_id}' + (queryString? `?${queryString}` : '');
@@ -49,7 +48,6 @@ export class TeamsApiService extends ApiBaseService {
         if (teamId === null || teamId === undefined) {
             throw new ArgumentNullException('teamId', 'getTeam');
         }
-
         let queryString = '';
 
         const requestUrl = '/teams/{team_id}' + (queryString? `?${queryString}` : '');
@@ -71,7 +69,6 @@ export class TeamsApiService extends ApiBaseService {
         if (teamUpdate === null || teamUpdate === undefined) {
             throw new ArgumentNullException('teamUpdate', 'updateTeam');
         }
-
         let queryString = '';
 
         const requestUrl = '/teams/{team_id}' + (queryString? `?${queryString}` : '');

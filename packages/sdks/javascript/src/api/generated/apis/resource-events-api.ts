@@ -35,7 +35,6 @@ export class ResourceEventsApiService extends ApiBaseService {
         if (resourceType === null || resourceType === undefined) {
             throw new ArgumentNullException('resourceType', 'addResourceEvent');
         }
-
         let queryString = '';
 
         const requestUrl = '/events/{resource_type}/{resource_id}' + (queryString? `?${queryString}` : '');
@@ -59,7 +58,6 @@ export class ResourceEventsApiService extends ApiBaseService {
         if (resourceType === null || resourceType === undefined) {
             throw new ArgumentNullException('resourceType', 'listResourceEventsByResourceType');
         }
-
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {

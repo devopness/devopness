@@ -37,7 +37,6 @@ export class ServicesVariablesApiService extends ApiBaseService {
         if (variableServiceCreate === null || variableServiceCreate === undefined) {
             throw new ArgumentNullException('variableServiceCreate', 'addServiceVariable');
         }
-
         let queryString = '';
 
         const requestUrl = '/services/{service_id}/variables' + (queryString? `?${queryString}` : '');
@@ -58,7 +57,6 @@ export class ServicesVariablesApiService extends ApiBaseService {
         if (serviceId === null || serviceId === undefined) {
             throw new ArgumentNullException('serviceId', 'listServiceVariables');
         }
-
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {
