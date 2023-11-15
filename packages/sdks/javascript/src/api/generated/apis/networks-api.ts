@@ -30,7 +30,7 @@ export class NetworksApiService extends ApiBaseService {
         if (networkId === null || networkId === undefined) {
             throw new ArgumentNullException('networkId', 'deleteNetwork');
         }
-            
+        
         let queryString = '';
 
         const requestUrl = '/networks/{network_id}' + (queryString? `?${queryString}` : '');
@@ -48,7 +48,7 @@ export class NetworksApiService extends ApiBaseService {
         if (networkId === null || networkId === undefined) {
             throw new ArgumentNullException('networkId', 'getNetwork');
         }
-            
+        
         let queryString = '';
 
         const requestUrl = '/networks/{network_id}' + (queryString? `?${queryString}` : '');

@@ -34,7 +34,7 @@ export class ApplicationsDeploymentsApiService extends ApiBaseService {
         if (deploymentApplicationCreate === null || deploymentApplicationCreate === undefined) {
             throw new ArgumentNullException('deploymentApplicationCreate', 'addApplicationDeployment');
         }
-            
+        
         let queryString = '';
 
         const requestUrl = '/applications/{application_id}/deployments' + (queryString? `?${queryString}` : '');

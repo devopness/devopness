@@ -35,7 +35,7 @@ export class HooksRequestsApiService extends ApiBaseService {
         if (hookType === null || hookType === undefined) {
             throw new ArgumentNullException('hookType', 'listHookRequestsByHookType');
         }
-            
+        
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {

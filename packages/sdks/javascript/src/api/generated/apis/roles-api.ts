@@ -31,7 +31,7 @@ export class RolesApiService extends ApiBaseService {
         if (roleId === null || roleId === undefined) {
             throw new ArgumentNullException('roleId', 'deleteRole');
         }
-            
+        
         let queryString = '';
 
         const requestUrl = '/roles/{role_id}' + (queryString? `?${queryString}` : '');
@@ -49,7 +49,7 @@ export class RolesApiService extends ApiBaseService {
         if (roleId === null || roleId === undefined) {
             throw new ArgumentNullException('roleId', 'getRole');
         }
-            
+        
         let queryString = '';
 
         const requestUrl = '/roles/{role_id}' + (queryString? `?${queryString}` : '');
@@ -71,7 +71,7 @@ export class RolesApiService extends ApiBaseService {
         if (roleUpdate === null || roleUpdate === undefined) {
             throw new ArgumentNullException('roleUpdate', 'updateRole');
         }
-            
+        
         let queryString = '';
 
         const requestUrl = '/roles/{role_id}' + (queryString? `?${queryString}` : '');

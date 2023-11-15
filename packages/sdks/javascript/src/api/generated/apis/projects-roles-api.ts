@@ -36,7 +36,7 @@ export class ProjectsRolesApiService extends ApiBaseService {
         if (roleProjectCreate === null || roleProjectCreate === undefined) {
             throw new ArgumentNullException('roleProjectCreate', 'addProjectRole');
         }
-            
+        
         let queryString = '';
 
         const requestUrl = '/projects/{project_id}/roles' + (queryString? `?${queryString}` : '');
@@ -56,7 +56,7 @@ export class ProjectsRolesApiService extends ApiBaseService {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'listProjectRoles');
         }
-            
+        
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {

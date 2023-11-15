@@ -36,7 +36,7 @@ export class CloudProvidersCredentialsApiService extends ApiBaseService {
         if (credentialCloudProviderCreate === null || credentialCloudProviderCreate === undefined) {
             throw new ArgumentNullException('credentialCloudProviderCreate', 'addCloudProviderCredential');
         }
-            
+        
         let queryString = '';
 
         const requestUrl = '/cloud-providers/{cloud_provider_code}/credentials' + (queryString? `?${queryString}` : '');
@@ -56,7 +56,7 @@ export class CloudProvidersCredentialsApiService extends ApiBaseService {
         if (cloudProviderCode === null || cloudProviderCode === undefined) {
             throw new ArgumentNullException('cloudProviderCode', 'listCloudProviderCredentialsByCloudProviderCode');
         }
-            
+        
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {

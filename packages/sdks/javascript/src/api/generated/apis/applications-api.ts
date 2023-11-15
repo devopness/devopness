@@ -31,7 +31,7 @@ export class ApplicationsApiService extends ApiBaseService {
         if (applicationId === null || applicationId === undefined) {
             throw new ArgumentNullException('applicationId', 'deleteApplication');
         }
-            
+        
         let queryString = '';
 
         const requestUrl = '/applications/{application_id}' + (queryString? `?${queryString}` : '');
@@ -49,7 +49,7 @@ export class ApplicationsApiService extends ApiBaseService {
         if (applicationId === null || applicationId === undefined) {
             throw new ArgumentNullException('applicationId', 'getApplication');
         }
-            
+        
         let queryString = '';
 
         const requestUrl = '/applications/{application_id}' + (queryString? `?${queryString}` : '');
@@ -71,7 +71,7 @@ export class ApplicationsApiService extends ApiBaseService {
         if (applicationUpdate === null || applicationUpdate === undefined) {
             throw new ArgumentNullException('applicationUpdate', 'updateApplication');
         }
-            
+        
         let queryString = '';
 
         const requestUrl = '/applications/{application_id}' + (queryString? `?${queryString}` : '');

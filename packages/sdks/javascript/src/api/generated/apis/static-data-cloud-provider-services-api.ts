@@ -29,7 +29,7 @@ export class StaticDataCloudProviderServicesApiService extends ApiBaseService {
         if (cloudProviderServiceCode === null || cloudProviderServiceCode === undefined) {
             throw new ArgumentNullException('cloudProviderServiceCode', 'getStaticCloudProviderService');
         }
-            
+        
         let queryString = '';
 
         const requestUrl = '/static/cloud-provider-service-options/{cloud_provider_service_code}' + (queryString? `?${queryString}` : '');

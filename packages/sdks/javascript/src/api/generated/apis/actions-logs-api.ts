@@ -37,7 +37,7 @@ export class ActionsLogsApiService extends ApiBaseService {
         if (actionTargetId === null || actionTargetId === undefined) {
             throw new ArgumentNullException('actionTargetId', 'getActionLog');
         }
-            
+        
         let queryString = '';
 
         const requestUrl = '/actions/{action_id}/targets/{action_target_id}/steps/{action_step_order}/logs' + (queryString? `?${queryString}` : '');

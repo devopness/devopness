@@ -36,7 +36,7 @@ export class ApplicationsVariablesApiService extends ApiBaseService {
         if (variableApplicationCreate === null || variableApplicationCreate === undefined) {
             throw new ArgumentNullException('variableApplicationCreate', 'addApplicationVariable');
         }
-            
+        
         let queryString = '';
 
         const requestUrl = '/applications/{application_id}/variables' + (queryString? `?${queryString}` : '');
@@ -56,7 +56,7 @@ export class ApplicationsVariablesApiService extends ApiBaseService {
         if (applicationId === null || applicationId === undefined) {
             throw new ArgumentNullException('applicationId', 'listApplicationVariables');
         }
-            
+        
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {

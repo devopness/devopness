@@ -35,7 +35,7 @@ export class StaticDataCloudProviderServiceInstancesApiService extends ApiBaseSe
         if (regionCode === null || regionCode === undefined) {
             throw new ArgumentNullException('regionCode', 'listStaticCloudInstancesByCloudProviderServiceCodeAndRegionCode');
         }
-            
+        
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {

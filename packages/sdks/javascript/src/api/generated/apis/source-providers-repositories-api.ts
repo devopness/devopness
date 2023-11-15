@@ -38,7 +38,7 @@ export class SourceProvidersRepositoriesApiService extends ApiBaseService {
         if (sourceProviderId === null || sourceProviderId === undefined) {
             throw new ArgumentNullException('sourceProviderId', 'getSourceProviderRepository');
         }
-            
+        
         let queryString = '';
 
         const requestUrl = '/source-providers/{source_provider_id}/repositories/{repository_owner}/{repository_name}' + (queryString? `?${queryString}` : '');
@@ -58,7 +58,7 @@ export class SourceProvidersRepositoriesApiService extends ApiBaseService {
         if (sourceProviderId === null || sourceProviderId === undefined) {
             throw new ArgumentNullException('sourceProviderId', 'listSourceProviderRepositories');
         }
-            
+        
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {

@@ -25,7 +25,7 @@ export class StaticDataApplicationOptionsApiService extends ApiBaseService {
      * @summary List `Application` resource options
      */
     public async getStaticApplicationOptions(): Promise<ApiResponse<ApplicationOptions>> {
-            
+        
         let queryString = '';
 
         const requestUrl = '/static/application-options' + (queryString? `?${queryString}` : '');

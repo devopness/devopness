@@ -33,7 +33,7 @@ export class SocialAccountsApiService extends ApiBaseService {
         if (socialAccountCreate === null || socialAccountCreate === undefined) {
             throw new ArgumentNullException('socialAccountCreate', 'addSocialAccount');
         }
-            
+        
         let queryString = '';
 
         const requestUrl = '/social-accounts' + (queryString? `?${queryString}` : '');
@@ -51,7 +51,7 @@ export class SocialAccountsApiService extends ApiBaseService {
         if (socialAccountId === null || socialAccountId === undefined) {
             throw new ArgumentNullException('socialAccountId', 'deleteSocialAccount');
         }
-            
+        
         let queryString = '';
 
         const requestUrl = '/social-accounts/{social_account_id}' + (queryString? `?${queryString}` : '');
@@ -69,7 +69,7 @@ export class SocialAccountsApiService extends ApiBaseService {
         if (socialAccountProvider === null || socialAccountProvider === undefined) {
             throw new ArgumentNullException('socialAccountProvider', 'getSocialAccount');
         }
-            
+        
         let queryString = '';
 
         const requestUrl = '/social-accounts/{social_account_provider}' + (queryString? `?${queryString}` : '');
@@ -87,7 +87,7 @@ export class SocialAccountsApiService extends ApiBaseService {
         if (socialAccountProvider === null || socialAccountProvider === undefined) {
             throw new ArgumentNullException('socialAccountProvider', 'getSocialAccountStatus');
         }
-            
+        
         let queryString = '';
 
         const requestUrl = '/social-accounts/{social_account_provider}/status' + (queryString? `?${queryString}` : '');
@@ -103,7 +103,7 @@ export class SocialAccountsApiService extends ApiBaseService {
      * @param {number} [perPage] Number of items returned per page
      */
     public async listSocialAccounts(page?: number, perPage?: number): Promise<ApiResponse<Array<SocialAccountRelation>>> {
-            
+        
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {

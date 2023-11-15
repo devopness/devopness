@@ -31,7 +31,7 @@ export class NetworkRulesApiService extends ApiBaseService {
         if (networkRuleId === null || networkRuleId === undefined) {
             throw new ArgumentNullException('networkRuleId', 'deleteNetworkRule');
         }
-            
+        
         let queryString = '';
 
         const requestUrl = '/network-rules/{network_rule_id}' + (queryString? `?${queryString}` : '');
@@ -49,7 +49,7 @@ export class NetworkRulesApiService extends ApiBaseService {
         if (networkRuleId === null || networkRuleId === undefined) {
             throw new ArgumentNullException('networkRuleId', 'getNetworkRule');
         }
-            
+        
         let queryString = '';
 
         const requestUrl = '/network-rules/{network_rule_id}' + (queryString? `?${queryString}` : '');
@@ -71,7 +71,7 @@ export class NetworkRulesApiService extends ApiBaseService {
         if (networkRuleUpdate === null || networkRuleUpdate === undefined) {
             throw new ArgumentNullException('networkRuleUpdate', 'updateNetworkRule');
         }
-            
+        
         let queryString = '';
 
         const requestUrl = '/network-rules/{network_rule_id}' + (queryString? `?${queryString}` : '');
