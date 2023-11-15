@@ -27,7 +27,7 @@ export class StaticDataResourceTypesApiService extends ApiBaseService {
      * @param {number} [perPage] Number of items returned per page
      */
     public async listStaticResourceTypes(page?: number, perPage?: number): Promise<ApiResponse<Array<ResourceTypeRelation>>> {
-        
+
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {

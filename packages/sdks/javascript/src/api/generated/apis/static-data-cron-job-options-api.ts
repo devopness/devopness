@@ -25,7 +25,7 @@ export class StaticDataCronJobOptionsApiService extends ApiBaseService {
      * @summary List `CronJob` resource options
      */
     public async getStaticCronJobOptions(): Promise<ApiResponse<CronJobOptions>> {
-        
+
         let queryString = '';
 
         const requestUrl = '/static/cronjob-options' + (queryString? `?${queryString}` : '');

@@ -25,6 +25,7 @@ import { VariableRelation } from '../../generated/models';
 export class ApplicationsVariablesApiService extends ApiBaseService {
     /**
      * 
+     * @deprecated
      * @summary Create a new variable linked to an application
      * @param {number} applicationId The ID of the application.
      * @param {VariableApplicationCreate} variableApplicationCreate A JSON object containing the resource data
@@ -36,7 +37,7 @@ export class ApplicationsVariablesApiService extends ApiBaseService {
         if (variableApplicationCreate === null || variableApplicationCreate === undefined) {
             throw new ArgumentNullException('variableApplicationCreate', 'addApplicationVariable');
         }
-        
+
         let queryString = '';
 
         const requestUrl = '/applications/{application_id}/variables' + (queryString? `?${queryString}` : '');
@@ -47,6 +48,7 @@ export class ApplicationsVariablesApiService extends ApiBaseService {
 
     /**
      * 
+     * @deprecated
      * @summary Return a list of variables belonging to an application
      * @param {number} applicationId The ID of the application.
      * @param {number} [page] Number of the page to be retrieved
@@ -56,7 +58,7 @@ export class ApplicationsVariablesApiService extends ApiBaseService {
         if (applicationId === null || applicationId === undefined) {
             throw new ArgumentNullException('applicationId', 'listApplicationVariables');
         }
-        
+
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {

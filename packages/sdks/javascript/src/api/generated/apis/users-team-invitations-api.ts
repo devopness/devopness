@@ -27,7 +27,7 @@ export class UsersTeamInvitationsApiService extends ApiBaseService {
      * @param {number} [perPage] Number of items returned per page
      */
     public async listUserTeamInvitations(page?: number, perPage?: number): Promise<ApiResponse<Array<TeamInvitationRelation>>> {
-        
+
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {
