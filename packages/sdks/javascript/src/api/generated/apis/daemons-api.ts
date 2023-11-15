@@ -33,7 +33,7 @@ export class DaemonsApiService extends ApiBaseService {
         if (daemonId === null || daemonId === undefined) {
             throw new ArgumentNullException('daemonId', 'deleteDaemon');
         }
-        
+
         let queryString = '';
 
         const requestUrl = '/daemons/{daemon_id}' + (queryString? `?${queryString}` : '');
@@ -51,7 +51,7 @@ export class DaemonsApiService extends ApiBaseService {
         if (daemonId === null || daemonId === undefined) {
             throw new ArgumentNullException('daemonId', 'getDaemon');
         }
-        
+
         let queryString = '';
 
         const requestUrl = '/daemons/{daemon_id}' + (queryString? `?${queryString}` : '');
@@ -73,7 +73,7 @@ export class DaemonsApiService extends ApiBaseService {
         if (daemonGetStatus === null || daemonGetStatus === undefined) {
             throw new ArgumentNullException('daemonGetStatus', 'getStatusDaemon');
         }
-        
+
         let queryString = '';
 
         const requestUrl = '/daemons/{daemon_id}/get-status' + (queryString? `?${queryString}` : '');
@@ -95,7 +95,7 @@ export class DaemonsApiService extends ApiBaseService {
         if (daemonRestart === null || daemonRestart === undefined) {
             throw new ArgumentNullException('daemonRestart', 'restartDaemon');
         }
-        
+
         let queryString = '';
 
         const requestUrl = '/daemons/{daemon_id}/restart' + (queryString? `?${queryString}` : '');
@@ -117,7 +117,7 @@ export class DaemonsApiService extends ApiBaseService {
         if (daemonUpdate === null || daemonUpdate === undefined) {
             throw new ArgumentNullException('daemonUpdate', 'updateDaemon');
         }
-        
+
         let queryString = '';
 
         const requestUrl = '/daemons/{daemon_id}' + (queryString? `?${queryString}` : '');

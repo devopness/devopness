@@ -25,6 +25,9 @@ export class {{classname}}Service extends ApiBaseService {
     {{#operation}}
     /**
      * {{&notes}}
+     {{#isDeprecated}}
+     * @deprecated
+     {{/isDeprecated}}
      {{#summary}}
      * @summary {{&summary}}
      {{/summary}}
@@ -44,7 +47,7 @@ export class {{classname}}Service extends ApiBaseService {
     {{/required}}
     {{/isHeaderParam}}
     {{/allParams}}
-        
+
         let queryString = '';
     {{#hasQueryParams}}
         const queryParams = { {{#queryParams}}{{baseName}}: {{paramName}}, {{/queryParams}}} as { [key: string]: any };

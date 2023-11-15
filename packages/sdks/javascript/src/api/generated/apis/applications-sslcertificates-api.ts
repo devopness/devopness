@@ -36,7 +36,7 @@ export class ApplicationsSSLCertificatesApiService extends ApiBaseService {
         if (sslCertificateApplicationCreate === null || sslCertificateApplicationCreate === undefined) {
             throw new ArgumentNullException('sslCertificateApplicationCreate', 'addApplicationSslCertificate');
         }
-        
+
         let queryString = '';
 
         const requestUrl = '/applications/{application_id}/ssl-certificates' + (queryString? `?${queryString}` : '');
@@ -56,7 +56,7 @@ export class ApplicationsSSLCertificatesApiService extends ApiBaseService {
         if (applicationId === null || applicationId === undefined) {
             throw new ArgumentNullException('applicationId', 'listApplicationSslCertificates');
         }
-        
+
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {
