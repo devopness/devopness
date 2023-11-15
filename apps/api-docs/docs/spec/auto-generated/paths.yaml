@@ -467,6 +467,11 @@
 '/users/{user_id}/projects':
   get:
     $ref: ./auto-generated/endpoints/list-user-projects.yaml
+'/variables/{resource_type}/{resource_id}':
+  get:
+    $ref: ./auto-generated/endpoints/list-variables-by-resource-type.yaml
+  post:
+    $ref: ./auto-generated/endpoints/add-variable.yaml
 '/variables/{variable_id}':
   delete:
     $ref: ./auto-generated/endpoints/delete-variable.yaml

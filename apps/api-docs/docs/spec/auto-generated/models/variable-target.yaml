@@ -16,4 +16,5 @@ enum:
   - php-fpm_pool-d-www-conf
   - redis-conf
   - supervisord-conf
+  - sysctl-conf
 example: resource-config-file

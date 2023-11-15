@@ -685,6 +685,8 @@ Variable:
   $ref: ./auto-generated/models/variable.yaml
 VariableApplicationCreate:
   $ref: ./auto-generated/models/variable-application-create.yaml
+VariableCreate:
+  $ref: ./auto-generated/models/variable-create.yaml
 VariableList:
   $ref: ./auto-generated/models/variable-list.yaml
 VariableRelation:

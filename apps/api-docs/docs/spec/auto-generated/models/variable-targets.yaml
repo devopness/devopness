@@ -19,6 +19,7 @@ properties:
       - php-fpm_pool-d-www-conf
       - redis-conf
       - supervisord-conf
+      - sysctl-conf
     description: 'The variable target name'
     example: my-cnf
   name_human_readable:
