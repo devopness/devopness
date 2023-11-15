@@ -16,12 +16,40 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { Variable } from '../../generated/models';
+import { VariableCreate } from '../../generated/models';
+import { VariableRelation } from '../../generated/models';
 import { VariableUpdate } from '../../generated/models';
 
 /**
  * VariablesApiService - Auto-generated
  */
 export class VariablesApiService extends ApiBaseService {
+    /**
+     * 
+     * @summary Create a new variable linked to a resource
+     * @param {number} resourceId The resource ID.
+     * @param {string} resourceType The resource type to get variables from.
+     * @param {VariableCreate} variableCreate A JSON object containing the resource data
+     */
+    public async addVariable(resourceId: number, resourceType: string, variableCreate: VariableCreate): Promise<ApiResponse<Variable>> {
+        if (resourceId === null || resourceId === undefined) {
+            throw new ArgumentNullException('resourceId', 'addVariable');
+        }
+        if (resourceType === null || resourceType === undefined) {
+            throw new ArgumentNullException('resourceType', 'addVariable');
+        }
+        if (variableCreate === null || variableCreate === undefined) {
+            throw new ArgumentNullException('variableCreate', 'addVariable');
+        }
+        
+        let queryString = '';
+
+        const requestUrl = '/variables/{resource_type}/{resource_id}' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <Variable, VariableCreate>(requestUrl.replace(`{${"resource_id"}}`, encodeURIComponent(String(resourceId))).replace(`{${"resource_type"}}`, encodeURIComponent(String(resourceType))), variableCreate);
+        return new ApiResponse(response);
+    }
+
     /**
      * 
      * @summary Delete a variable by ID
@@ -55,6 +83,38 @@ export class VariablesApiService extends ApiBaseService {
         const requestUrl = '/variables/{variable_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Variable>(requestUrl.replace(`{${"variable_id"}}`, encodeURIComponent(String(variableId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Return a list of variables belonging to a resource
+     * @param {number} resourceId The resource ID.
+     * @param {string} resourceType The resource type to get variables from.
+     * @param {number} [page] Number of the page to be retrieved
+     * @param {number} [perPage] Number of items returned per page
+     */
+    public async listVariablesByResourceType(resourceId: number, resourceType: string, page?: number, perPage?: number): Promise<ApiResponse<Array<VariableRelation>>> {
+        if (resourceId === null || resourceId === undefined) {
+            throw new ArgumentNullException('resourceId', 'listVariablesByResourceType');
+        }
+        if (resourceType === null || resourceType === undefined) {
+            throw new ArgumentNullException('resourceType', 'listVariablesByResourceType');
+        }
+        
+        let queryString = '';
+        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
+        const requestUrl = '/variables/{resource_type}/{resource_id}' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <Array<VariableRelation>>(requestUrl.replace(`{${"resource_id"}}`, encodeURIComponent(String(resourceId))).replace(`{${"resource_type"}}`, encodeURIComponent(String(resourceType))));
         return new ApiResponse(response);
     }
 

@@ -57,7 +57,8 @@ export enum VariableTargetsNameEnum {
     PhpFpmPhpIni = 'php-fpm_php-ini',
     PhpFpmPoolDWwwConf = 'php-fpm_pool-d-www-conf',
     RedisConf = 'redis-conf',
-    SupervisordConf = 'supervisord-conf'
+    SupervisordConf = 'supervisord-conf',
+    SysctlConf = 'sysctl-conf'
 }
 
 
