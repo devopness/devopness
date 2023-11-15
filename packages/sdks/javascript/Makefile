@@ -22,7 +22,7 @@ help: ## Show this help.
 
 npm-ci: ## Install project dependencies without updating `package-lock.json`
 	$(info NPM - Installing dependencies ...)
-	@docker run --rm -v $(PWD):/$(WORKDIR) --name npm_install $(IMAGE):$(TAG) npm ci
+	@docker run --rm -v $(PWD):/$(WORKDIR) --name npm_ci $(IMAGE):$(TAG) npm ci
 
 npm-install: ## Install project dependencies and update `package-lock.json`
 	$(info NPM - Installing dependencies ...)
