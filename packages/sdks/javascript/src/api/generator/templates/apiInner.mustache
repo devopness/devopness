@@ -47,7 +47,6 @@ export class {{classname}}Service extends ApiBaseService {
     {{/required}}
     {{/isHeaderParam}}
     {{/allParams}}
-
         let queryString = '';
     {{#hasQueryParams}}
         const queryParams = { {{#queryParams}}{{baseName}}: {{paramName}}, {{/queryParams}}} as { [key: string]: any };
