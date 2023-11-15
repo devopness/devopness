@@ -36,6 +36,7 @@ export class EnvironmentsSSHKeysApiService extends ApiBaseService {
         if (sshKeyEnvironmentCreate === null || sshKeyEnvironmentCreate === undefined) {
             throw new ArgumentNullException('sshKeyEnvironmentCreate', 'addEnvironmentSshKey');
         }
+            
         let queryString = '';
 
         const requestUrl = '/environments/{environment_id}/ssh-keys' + (queryString? `?${queryString}` : '');
@@ -55,6 +56,7 @@ export class EnvironmentsSSHKeysApiService extends ApiBaseService {
         if (environmentId === null || environmentId === undefined) {
             throw new ArgumentNullException('environmentId', 'listEnvironmentSshKeys');
         }
+            
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {

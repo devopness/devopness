@@ -25,6 +25,7 @@ export class StaticDataUserProfileOptionsApiService extends ApiBaseService {
      * @summary List `User profile` options
      */
     public async getStaticUserProfileOptions(): Promise<ApiResponse<UserProfileOptions>> {
+            
         let queryString = '';
 
         const requestUrl = '/static/user-profile-options' + (queryString? `?${queryString}` : '');

@@ -36,6 +36,7 @@ export class EnvironmentsServersApiService extends ApiBaseService {
         if (serverEnvironmentCreate === null || serverEnvironmentCreate === undefined) {
             throw new ArgumentNullException('serverEnvironmentCreate', 'addEnvironmentServer');
         }
+            
         let queryString = '';
 
         const requestUrl = '/environments/{environment_id}/servers' + (queryString? `?${queryString}` : '');
@@ -55,6 +56,7 @@ export class EnvironmentsServersApiService extends ApiBaseService {
         if (environmentId === null || environmentId === undefined) {
             throw new ArgumentNullException('environmentId', 'listEnvironmentServers');
         }
+            
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {

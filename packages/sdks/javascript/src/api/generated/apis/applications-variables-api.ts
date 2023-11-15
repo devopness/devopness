@@ -28,7 +28,6 @@ export class ApplicationsVariablesApiService extends ApiBaseService {
      * @summary Create a new variable linked to an application
      * @param {number} applicationId The ID of the application.
      * @param {VariableApplicationCreate} variableApplicationCreate A JSON object containing the resource data
-     * @deprecated
      */
     public async addApplicationVariable(applicationId: number, variableApplicationCreate: VariableApplicationCreate): Promise<ApiResponse<Variable>> {
         if (applicationId === null || applicationId === undefined) {
@@ -37,6 +36,7 @@ export class ApplicationsVariablesApiService extends ApiBaseService {
         if (variableApplicationCreate === null || variableApplicationCreate === undefined) {
             throw new ArgumentNullException('variableApplicationCreate', 'addApplicationVariable');
         }
+            
         let queryString = '';
 
         const requestUrl = '/applications/{application_id}/variables' + (queryString? `?${queryString}` : '');
@@ -51,12 +51,12 @@ export class ApplicationsVariablesApiService extends ApiBaseService {
      * @param {number} applicationId The ID of the application.
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
-     * @deprecated
      */
     public async listApplicationVariables(applicationId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<VariableRelation>>> {
         if (applicationId === null || applicationId === undefined) {
             throw new ArgumentNullException('applicationId', 'listApplicationVariables');
         }
+            
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {

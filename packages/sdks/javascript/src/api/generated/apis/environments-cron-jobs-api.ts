@@ -36,6 +36,7 @@ export class EnvironmentsCronJobsApiService extends ApiBaseService {
         if (cronJobEnvironmentCreate === null || cronJobEnvironmentCreate === undefined) {
             throw new ArgumentNullException('cronJobEnvironmentCreate', 'addEnvironmentCronJob');
         }
+            
         let queryString = '';
 
         const requestUrl = '/environments/{environment_id}/cron-jobs' + (queryString? `?${queryString}` : '');
@@ -55,6 +56,7 @@ export class EnvironmentsCronJobsApiService extends ApiBaseService {
         if (environmentId === null || environmentId === undefined) {
             throw new ArgumentNullException('environmentId', 'listEnvironmentCronJobs');
         }
+            
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {

@@ -33,6 +33,7 @@ export class UsersEnvironmentsApiService extends ApiBaseService {
         if (userId === null || userId === undefined) {
             throw new ArgumentNullException('userId', 'listUserEnvironments');
         }
+            
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, subscription_id: subscriptionId, } as { [key: string]: any };
         for (const key in queryParams) {

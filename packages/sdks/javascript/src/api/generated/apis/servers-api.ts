@@ -36,6 +36,7 @@ export class ServersApiService extends ApiBaseService {
         if (serverId === null || serverId === undefined) {
             throw new ArgumentNullException('serverId', 'connectServer');
         }
+            
         let queryString = '';
 
         const requestUrl = '/servers/{server_id}/connect/{activation_token}' + (queryString? `?${queryString}` : '');
@@ -54,6 +55,7 @@ export class ServersApiService extends ApiBaseService {
         if (serverId === null || serverId === undefined) {
             throw new ArgumentNullException('serverId', 'deleteServer');
         }
+            
         let queryString = '';
         const queryParams = { destroy_server_disks: destroyServerDisks, } as { [key: string]: any };
         for (const key in queryParams) {
@@ -79,6 +81,7 @@ export class ServersApiService extends ApiBaseService {
         if (serverId === null || serverId === undefined) {
             throw new ArgumentNullException('serverId', 'getServer');
         }
+            
         let queryString = '';
 
         const requestUrl = '/servers/{server_id}' + (queryString? `?${queryString}` : '');
@@ -96,6 +99,7 @@ export class ServersApiService extends ApiBaseService {
         if (serverId === null || serverId === undefined) {
             throw new ArgumentNullException('serverId', 'getServerCommands');
         }
+            
         let queryString = '';
 
         const requestUrl = '/servers/{server_id}/commands' + (queryString? `?${queryString}` : '');
@@ -113,6 +117,7 @@ export class ServersApiService extends ApiBaseService {
         if (serverId === null || serverId === undefined) {
             throw new ArgumentNullException('serverId', 'getStatusServer');
         }
+            
         let queryString = '';
 
         const requestUrl = '/servers/{server_id}/get-status' + (queryString? `?${queryString}` : '');
@@ -130,6 +135,7 @@ export class ServersApiService extends ApiBaseService {
         if (serverId === null || serverId === undefined) {
             throw new ArgumentNullException('serverId', 'restartServer');
         }
+            
         let queryString = '';
 
         const requestUrl = '/servers/{server_id}/restart' + (queryString? `?${queryString}` : '');
@@ -147,6 +153,7 @@ export class ServersApiService extends ApiBaseService {
         if (serverId === null || serverId === undefined) {
             throw new ArgumentNullException('serverId', 'startServer');
         }
+            
         let queryString = '';
 
         const requestUrl = '/servers/{server_id}/start' + (queryString? `?${queryString}` : '');
@@ -164,6 +171,7 @@ export class ServersApiService extends ApiBaseService {
         if (serverId === null || serverId === undefined) {
             throw new ArgumentNullException('serverId', 'stopServer');
         }
+            
         let queryString = '';
 
         const requestUrl = '/servers/{server_id}/stop' + (queryString? `?${queryString}` : '');
@@ -185,6 +193,7 @@ export class ServersApiService extends ApiBaseService {
         if (serverUpdate === null || serverUpdate === undefined) {
             throw new ArgumentNullException('serverUpdate', 'updateServer');
         }
+            
         let queryString = '';
 
         const requestUrl = '/servers/{server_id}' + (queryString? `?${queryString}` : '');

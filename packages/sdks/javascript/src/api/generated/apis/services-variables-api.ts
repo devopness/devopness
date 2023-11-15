@@ -28,7 +28,6 @@ export class ServicesVariablesApiService extends ApiBaseService {
      * @summary Create a new variable linked to a service
      * @param {number} serviceId The ID of the service.
      * @param {VariableServiceCreate} variableServiceCreate A JSON object containing the resource data
-     * @deprecated
      */
     public async addServiceVariable(serviceId: number, variableServiceCreate: VariableServiceCreate): Promise<ApiResponse<Variable>> {
         if (serviceId === null || serviceId === undefined) {
@@ -37,6 +36,7 @@ export class ServicesVariablesApiService extends ApiBaseService {
         if (variableServiceCreate === null || variableServiceCreate === undefined) {
             throw new ArgumentNullException('variableServiceCreate', 'addServiceVariable');
         }
+            
         let queryString = '';
 
         const requestUrl = '/services/{service_id}/variables' + (queryString? `?${queryString}` : '');
@@ -51,12 +51,12 @@ export class ServicesVariablesApiService extends ApiBaseService {
      * @param {number} serviceId The ID of the service.
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
-     * @deprecated
      */
     public async listServiceVariables(serviceId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<VariableRelation>>> {
         if (serviceId === null || serviceId === undefined) {
             throw new ArgumentNullException('serviceId', 'listServiceVariables');
         }
+            
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {

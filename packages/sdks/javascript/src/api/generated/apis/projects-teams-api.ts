@@ -36,6 +36,7 @@ export class ProjectsTeamsApiService extends ApiBaseService {
         if (teamProjectCreate === null || teamProjectCreate === undefined) {
             throw new ArgumentNullException('teamProjectCreate', 'addProjectTeam');
         }
+            
         let queryString = '';
 
         const requestUrl = '/projects/{project_id}/teams' + (queryString? `?${queryString}` : '');
@@ -55,6 +56,7 @@ export class ProjectsTeamsApiService extends ApiBaseService {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'listProjectTeams');
         }
+            
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {

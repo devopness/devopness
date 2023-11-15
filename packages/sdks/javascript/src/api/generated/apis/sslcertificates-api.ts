@@ -30,6 +30,7 @@ export class SSLCertificatesApiService extends ApiBaseService {
         if (sslCertificateId === null || sslCertificateId === undefined) {
             throw new ArgumentNullException('sslCertificateId', 'deleteSslCertificate');
         }
+            
         let queryString = '';
 
         const requestUrl = '/ssl-certificates/{ssl_certificate_id}' + (queryString? `?${queryString}` : '');
@@ -47,6 +48,7 @@ export class SSLCertificatesApiService extends ApiBaseService {
         if (sslCertificateId === null || sslCertificateId === undefined) {
             throw new ArgumentNullException('sslCertificateId', 'getSslCertificate');
         }
+            
         let queryString = '';
 
         const requestUrl = '/ssl-certificates/{ssl_certificate_id}' + (queryString? `?${queryString}` : '');

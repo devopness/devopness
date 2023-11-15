@@ -30,6 +30,7 @@ export class HookRequestsApiService extends ApiBaseService {
         if (hookRequestId === null || hookRequestId === undefined) {
             throw new ArgumentNullException('hookRequestId', 'getHookRequest');
         }
+            
         let queryString = '';
 
         const requestUrl = '/hook-requests/{hook_request_id}' + (queryString? `?${queryString}` : '');

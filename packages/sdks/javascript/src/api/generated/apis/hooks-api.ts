@@ -36,6 +36,7 @@ export class HooksApiService extends ApiBaseService {
         if (hookType === null || hookType === undefined) {
             throw new ArgumentNullException('hookType', 'deleteHook');
         }
+            
         let queryString = '';
 
         const requestUrl = '/hooks/{hook_type}/{hook_id}' + (queryString? `?${queryString}` : '');
@@ -57,6 +58,7 @@ export class HooksApiService extends ApiBaseService {
         if (hookType === null || hookType === undefined) {
             throw new ArgumentNullException('hookType', 'getHook');
         }
+            
         let queryString = '';
 
         const requestUrl = '/hooks/{hook_type}/{hook_id}' + (queryString? `?${queryString}` : '');
@@ -74,6 +76,7 @@ export class HooksApiService extends ApiBaseService {
         if (hookId === null || hookId === undefined) {
             throw new ArgumentNullException('hookId', 'triggerHook');
         }
+            
         let queryString = '';
 
         const requestUrl = '/hooks/{hook_id}/trigger' + (queryString? `?${queryString}` : '');
@@ -99,6 +102,7 @@ export class HooksApiService extends ApiBaseService {
         if (hookUpdate === null || hookUpdate === undefined) {
             throw new ArgumentNullException('hookUpdate', 'updateHook');
         }
+            
         let queryString = '';
 
         const requestUrl = '/hooks/{hook_type}/{hook_id}' + (queryString? `?${queryString}` : '');

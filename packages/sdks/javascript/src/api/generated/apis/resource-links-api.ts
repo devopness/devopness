@@ -42,6 +42,7 @@ export class ResourceLinksApiService extends ApiBaseService {
         if (resourceType === null || resourceType === undefined) {
             throw new ArgumentNullException('resourceType', 'linkResourceLinkToResourceLink');
         }
+            
         let queryString = '';
 
         const requestUrl = '/resource-links/{resource_type}/{resource_id}/{child_type}/{child_id}/link' + (queryString? `?${queryString}` : '');
@@ -65,6 +66,7 @@ export class ResourceLinksApiService extends ApiBaseService {
         if (resourceType === null || resourceType === undefined) {
             throw new ArgumentNullException('resourceType', 'listResourceLinksByResourceType');
         }
+            
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {
@@ -100,6 +102,7 @@ export class ResourceLinksApiService extends ApiBaseService {
         if (resourceType === null || resourceType === undefined) {
             throw new ArgumentNullException('resourceType', 'listResourceLinksByResourceTypeAndLinkType');
         }
+            
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {
@@ -137,6 +140,7 @@ export class ResourceLinksApiService extends ApiBaseService {
         if (resourceType === null || resourceType === undefined) {
             throw new ArgumentNullException('resourceType', 'unlinkResourceLinkFromResourceLink');
         }
+            
         let queryString = '';
 
         const requestUrl = '/resource-links/{resource_type}/{resource_id}/{child_type}/{child_id}/unlink' + (queryString? `?${queryString}` : '');

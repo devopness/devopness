@@ -41,6 +41,7 @@ export class PipelinesApiService extends ApiBaseService {
         if (pipelineCreate === null || pipelineCreate === undefined) {
             throw new ArgumentNullException('pipelineCreate', 'addPipeline');
         }
+            
         let queryString = '';
 
         const requestUrl = '/pipelines/{resource_type}/{resource_id}' + (queryString? `?${queryString}` : '');
@@ -58,6 +59,7 @@ export class PipelinesApiService extends ApiBaseService {
         if (pipelineId === null || pipelineId === undefined) {
             throw new ArgumentNullException('pipelineId', 'deletePipeline');
         }
+            
         let queryString = '';
 
         const requestUrl = '/pipelines/{pipeline_id}' + (queryString? `?${queryString}` : '');
@@ -75,6 +77,7 @@ export class PipelinesApiService extends ApiBaseService {
         if (pipelineId === null || pipelineId === undefined) {
             throw new ArgumentNullException('pipelineId', 'getPipeline');
         }
+            
         let queryString = '';
 
         const requestUrl = '/pipelines/{pipeline_id}' + (queryString? `?${queryString}` : '');
@@ -98,6 +101,7 @@ export class PipelinesApiService extends ApiBaseService {
         if (resourceType === null || resourceType === undefined) {
             throw new ArgumentNullException('resourceType', 'listPipelinesByResourceType');
         }
+            
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {
@@ -127,6 +131,7 @@ export class PipelinesApiService extends ApiBaseService {
         if (pipelineUpdate === null || pipelineUpdate === undefined) {
             throw new ArgumentNullException('pipelineUpdate', 'updatePipeline');
         }
+            
         let queryString = '';
 
         const requestUrl = '/pipelines/{pipeline_id}' + (queryString? `?${queryString}` : '');

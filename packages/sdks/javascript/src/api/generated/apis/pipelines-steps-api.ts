@@ -36,6 +36,7 @@ export class PipelinesStepsApiService extends ApiBaseService {
         if (stepPipelineCreate === null || stepPipelineCreate === undefined) {
             throw new ArgumentNullException('stepPipelineCreate', 'addPipelineStep');
         }
+            
         let queryString = '';
 
         const requestUrl = '/pipelines/{pipeline_id}/steps' + (queryString? `?${queryString}` : '');
@@ -57,6 +58,7 @@ export class PipelinesStepsApiService extends ApiBaseService {
         if (stepId === null || stepId === undefined) {
             throw new ArgumentNullException('stepId', 'linkStepToPipeline');
         }
+            
         let queryString = '';
 
         const requestUrl = '/pipelines/{pipeline_id}/steps/{step_id}/link' + (queryString? `?${queryString}` : '');
@@ -78,6 +80,7 @@ export class PipelinesStepsApiService extends ApiBaseService {
         if (stepId === null || stepId === undefined) {
             throw new ArgumentNullException('stepId', 'unlinkStepFromPipeline');
         }
+            
         let queryString = '';
 
         const requestUrl = '/pipelines/{pipeline_id}/steps/{step_id}/unlink' + (queryString? `?${queryString}` : '');
@@ -103,6 +106,7 @@ export class PipelinesStepsApiService extends ApiBaseService {
         if (stepPipelineUpdate === null || stepPipelineUpdate === undefined) {
             throw new ArgumentNullException('stepPipelineUpdate', 'updatePipelineStep');
         }
+            
         let queryString = '';
 
         const requestUrl = '/pipelines/{pipeline_id}/steps/{step_id}' + (queryString? `?${queryString}` : '');

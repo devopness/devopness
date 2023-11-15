@@ -30,6 +30,7 @@ export class CredentialsApiService extends ApiBaseService {
         if (credentialId === null || credentialId === undefined) {
             throw new ArgumentNullException('credentialId', 'deleteCredential');
         }
+            
         let queryString = '';
 
         const requestUrl = '/credentials/{credential_id}' + (queryString? `?${queryString}` : '');
@@ -47,6 +48,7 @@ export class CredentialsApiService extends ApiBaseService {
         if (credentialId === null || credentialId === undefined) {
             throw new ArgumentNullException('credentialId', 'getCredential');
         }
+            
         let queryString = '';
 
         const requestUrl = '/credentials/{credential_id}' + (queryString? `?${queryString}` : '');
@@ -62,6 +64,7 @@ export class CredentialsApiService extends ApiBaseService {
      * @param {number} [perPage] Number of items returned per page
      */
     public async listCredentials(page?: number, perPage?: number): Promise<ApiResponse<Array<CredentialRelation>>> {
+            
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {

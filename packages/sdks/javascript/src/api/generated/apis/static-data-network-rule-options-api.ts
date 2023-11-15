@@ -25,6 +25,7 @@ export class StaticDataNetworkRuleOptionsApiService extends ApiBaseService {
      * @summary List `Network Rule` options
      */
     public async getStaticNetworkRuleOptions(): Promise<ApiResponse<NetworkRuleOptions>> {
+            
         let queryString = '';
 
         const requestUrl = '/static/network-rule-options' + (queryString? `?${queryString}` : '');
