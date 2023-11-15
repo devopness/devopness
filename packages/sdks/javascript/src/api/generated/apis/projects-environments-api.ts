@@ -36,7 +36,7 @@ export class ProjectsEnvironmentsApiService extends ApiBaseService {
         if (environmentProjectCreate === null || environmentProjectCreate === undefined) {
             throw new ArgumentNullException('environmentProjectCreate', 'addProjectEnvironment');
         }
-        
+
         let queryString = '';
 
         const requestUrl = '/projects/{project_id}/environments' + (queryString? `?${queryString}` : '');
@@ -56,7 +56,7 @@ export class ProjectsEnvironmentsApiService extends ApiBaseService {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'listProjectEnvironments');
         }
-        
+
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {

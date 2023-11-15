@@ -38,7 +38,7 @@ export class EnvironmentsTeamsApiService extends ApiBaseService {
         if (teamEnvironmentLink === null || teamEnvironmentLink === undefined) {
             throw new ArgumentNullException('teamEnvironmentLink', 'linkTeamToEnvironment');
         }
-        
+
         let queryString = '';
 
         const requestUrl = '/environments/{environment_id}/teams/{team_id}/link' + (queryString? `?${queryString}` : '');
@@ -60,7 +60,7 @@ export class EnvironmentsTeamsApiService extends ApiBaseService {
         if (teamId === null || teamId === undefined) {
             throw new ArgumentNullException('teamId', 'unlinkTeamFromEnvironment');
         }
-        
+
         let queryString = '';
 
         const requestUrl = '/environments/{environment_id}/teams/{team_id}/unlink' + (queryString? `?${queryString}` : '');

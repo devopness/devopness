@@ -36,7 +36,7 @@ export class EnvironmentsNetworksApiService extends ApiBaseService {
         if (networkEnvironmentCreate === null || networkEnvironmentCreate === undefined) {
             throw new ArgumentNullException('networkEnvironmentCreate', 'addEnvironmentNetwork');
         }
-        
+
         let queryString = '';
 
         const requestUrl = '/environments/{environment_id}/networks' + (queryString? `?${queryString}` : '');
@@ -59,7 +59,7 @@ export class EnvironmentsNetworksApiService extends ApiBaseService {
         if (environmentId === null || environmentId === undefined) {
             throw new ArgumentNullException('environmentId', 'listEnvironmentNetworks');
         }
-        
+
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, include_default_network: includeDefaultNetwork, provider_name: providerName, region: region, } as { [key: string]: any };
         for (const key in queryParams) {

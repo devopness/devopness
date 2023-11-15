@@ -36,7 +36,7 @@ export class EnvironmentsNetworkRulesApiService extends ApiBaseService {
         if (networkRuleEnvironmentCreate === null || networkRuleEnvironmentCreate === undefined) {
             throw new ArgumentNullException('networkRuleEnvironmentCreate', 'addEnvironmentNetworkRule');
         }
-        
+
         let queryString = '';
 
         const requestUrl = '/environments/{environment_id}/network-rules' + (queryString? `?${queryString}` : '');
@@ -56,7 +56,7 @@ export class EnvironmentsNetworkRulesApiService extends ApiBaseService {
         if (environmentId === null || environmentId === undefined) {
             throw new ArgumentNullException('environmentId', 'listEnvironmentNetworkRules');
         }
-        
+
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {
