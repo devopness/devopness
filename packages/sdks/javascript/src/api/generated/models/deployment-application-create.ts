@@ -33,17 +33,17 @@ export interface DeploymentApplicationCreate {
      */
     type: DeploymentType;
     /**
-     * The name of the branch from which the application source code will be retrieved and deployed.This field is required when <code>hash</code> is not present. Must not be greater than 200 characters.
+     * The \'source type\' from which the application source code will be retrieved and deployed. It can be one of `branch`, `tag` or `commit`. If not provided, the application\'s default branch will be used. This field is required when <code>source_ref</code> is present.  Must be one of <code>branch</code>, <code>tag</code>, or <code>commit</code>.
      * @type {string}
      * @memberof DeploymentApplicationCreate
      */
-    branch?: string;
+    source_type?: string;
     /**
-     * The commit hash from which the application source code will be retrieved and deployed.This field is required when <code>branch</code> is not present.  Must contain only letters and numbers. Must be at least 7 characters. Must not be greater than 40 characters.
+     * A git reference pointing to a commit in a source provider repository from which the application source code will be retrieved and deployed. It can be a branch name, tag name or a specific commit hash. This field is required when <code>source_type</code> is present. Must not be greater than 200 characters.
      * @type {string}
      * @memberof DeploymentApplicationCreate
      */
-    hash?: string;
+    source_ref?: string;
     /**
      * The pipeline\'s ID to use for deployment.
      * @type {number}
