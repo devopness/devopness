@@ -20,41 +20,11 @@
  */
 export interface ActionDeploymentCommit {
     /**
-     * The ID of the source provider
-     * @type {number}
-     * @memberof ActionDeploymentCommit
-     */
-    source_provider_id: number;
-    /**
-     * The source provider\'s name
-     * @type {string}
-     * @memberof ActionDeploymentCommit
-     */
-    provider: string;
-    /**
      * The repository of the deployed application
      * @type {string}
      * @memberof ActionDeploymentCommit
      */
     repository: string;
-    /**
-     * The branch used on deployment
-     * @type {string}
-     * @memberof ActionDeploymentCommit
-     */
-    branch: string;
-    /**
-     * The commit hash used on deployment
-     * @type {string}
-     * @memberof ActionDeploymentCommit
-     */
-    hash: string;
-    /**
-     * The commit message
-     * @type {string}
-     * @memberof ActionDeploymentCommit
-     */
-    message: string;
     /**
      * The author of the commit
      * @type {string}
@@ -73,6 +43,18 @@ export interface ActionDeploymentCommit {
      * @memberof ActionDeploymentCommit
      */
     committed_at: string;
+    /**
+     * The commit hash used on deployment
+     * @type {string}
+     * @memberof ActionDeploymentCommit
+     */
+    hash: string;
+    /**
+     * The commit message
+     * @type {string}
+     * @memberof ActionDeploymentCommit
+     */
+    message: string;
     /**
      * The commit URL on the source provider
      * @type {string}

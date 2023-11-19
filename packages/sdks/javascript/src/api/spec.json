@@ -11603,35 +11603,10 @@
         "type": "object",
         "description": "Informations about the commit used on this deployment",
         "properties": {
-          "source_provider_id": {
-            "type": "integer",
-            "description": "The ID of the source provider",
-            "example": 4687921
-          },
-          "provider": {
-            "type": "string",
-            "description": "The source provider's name",
-            "example": "github"
-          },
           "repository": {
             "type": "string",
             "description": "The repository of the deployed application",
             "example": "devopness/example"
-          },
-          "branch": {
-            "type": "string",
-            "description": "The branch used on deployment",
-            "example": "develop"
-          },
-          "hash": {
-            "type": "string",
-            "description": "The commit hash used on deployment",
-            "example": "d433e4622fde4b59a48586ed94082e2d76e855c1"
-          },
-          "message": {
-            "type": "string",
-            "description": "The commit message",
-            "example": "fix: some bug"
           },
           "author_name": {
             "type": "string",
@@ -11648,6 +11623,16 @@
             "format": "date-time",
             "description": "The date and time when the commit was created",
             "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "hash": {
+            "type": "string",
+            "description": "The commit hash used on deployment",
+            "example": "d433e4622fde4b59a48586ed94082e2d76e855c1"
+          },
+          "message": {
+            "type": "string",
+            "description": "The commit message",
+            "example": "fix: some bug"
           },
           "url": {
             "type": "string",
@@ -11666,15 +11651,12 @@
           }
         },
         "required": [
-          "source_provider_id",
-          "provider",
           "repository",
-          "branch",
-          "hash",
-          "message",
           "author_name",
           "author_email",
           "committed_at",
+          "hash",
+          "message",
           "url",
           "clone_url",
           "download_url"
@@ -11683,6 +11665,24 @@
       "ActionDeploymentContent": {
         "type": "object",
         "properties": {
+          "type": {
+            "$ref": "#/components/schemas/DeploymentType"
+          },
+          "source_type": {
+            "type": "string",
+            "description": "The 'source type' from which the application source code will be retrieved and deployed. It can be one of `branch`, `tag` or `commit`. If not provided, the application's default branch will be used.",
+            "example": "branch"
+          },
+          "source_ref": {
+            "type": "string",
+            "description": "A git reference pointing to a commit in a source provider repository from which the application source code will be retrieved and deployed. It can be a branch name, tag name or a specific commit hash.",
+            "example": "develop"
+          },
+          "repository": {
+            "type": "string",
+            "description": "The repository of the deployed application",
+            "example": "devopness/example"
+          },
           "provider_id": {
             "type": "integer",
             "description": "The ID of the source provider",
@@ -11693,33 +11693,20 @@
             "description": "The source provider's name",
             "example": "github"
           },
-          "type": {
-            "$ref": "#/components/schemas/DeploymentType"
-          },
-          "repository": {
-            "type": "string",
-            "description": "The repository of the deployed application",
-            "example": "devopness/example"
-          },
-          "branch": {
-            "type": "string",
-            "description": "The branch used on deployment",
-            "example": "develop"
-          },
-          "hash": {
-            "type": "string",
-            "nullable": true,
-            "description": "The commit hash defined to be used on deployment",
-            "example": "d433e4622fde4b59a48586ed94082e2d76e855c1"
+          "pipeline_id": {
+            "type": "integer",
+            "description": "The ID of the pipeline",
+            "example": 23439
           }
         },
         "required": [
+          "type",
+          "source_type",
+          "source_ref",
+          "repository",
           "provider_id",
           "provider_name",
-          "type",
-          "repository",
-          "branch",
-          "hash"
+          "pipeline_id"
         ]
       },
       "ActionDeploymentData": {
@@ -13877,12 +13864,13 @@
           },
           "author_email": {
             "type": "string",
-            "description": "The e-mail of the commit's author"
+            "description": "The e-mail of the commit's author",
+            "example": "myusername@email.com"
           },
           "author_name": {
             "type": "string",
             "description": "The name of the commit's author",
-            "example": "feature/some-branch"
+            "example": "myusername"
           }
         },
         "required": [
@@ -17164,11 +17152,11 @@
         "properties": {
           "name": {
             "type": "string",
-            "example": "branch"
+            "example": "source_type"
           },
           "human_readable": {
             "type": "string",
-            "example": "Branch"
+            "example": "Source type"
           },
           "hint": {
             "$ref": "#/components/schemas/FieldHint"
@@ -17593,10 +17581,34 @@
             "type": "string",
             "description": "The name of the tag",
             "example": "v1.0.0"
+          },
+          "commit": {
+            "$ref": "#/components/schemas/RepositoryTagCommit"
           }
         },
         "required": [
-          "name"
+          "name",
+          "commit"
+        ]
+      },
+      "RepositoryTagCommit": {
+        "type": "object",
+        "properties": {
+          "hash": {
+            "type": "string",
+            "description": "The commit comment's full hash that uniquely identify it",
+            "example": "4a03b9d21edeef8434c45818594a5d72027c14e7"
+          },
+          "url": {
+            "type": "string",
+            "format": "url",
+            "description": "The direct URL for accessing commit details on the provider's web application",
+            "example": "https://github.com/myusername/myrepo/commit/4a03b9d21edeef8434c45818594a5d72027c14e7"
+          }
+        },
+        "required": [
+          "hash",
+          "url"
         ]
       },
       "RepositoryTagList": {

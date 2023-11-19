@@ -153,6 +153,7 @@ export * from './repository';
 export * from './repository-branch';
 export * from './repository-relation';
 export * from './repository-tag';
+export * from './repository-tag-commit';
 export * from './request-relation';
 export * from './resource-event';
 export * from './resource-event-relation';
