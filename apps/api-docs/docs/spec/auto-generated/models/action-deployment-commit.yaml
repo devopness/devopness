@@ -2,30 +2,10 @@
 type: object
 description: 'Informations about the commit used on this deployment'
 properties:
-  source_provider_id:
-    type: integer
-    description: 'The ID of the source provider'
-    example: 4687921
-  provider:
-    type: string
-    description: 'The source provider''s name'
-    example: github
   repository:
     type: string
     description: 'The repository of the deployed application'
     example: devopness/example
-  branch:
-    type: string
-    description: 'The branch used on deployment'
-    example: develop
-  hash:
-    type: string
-    description: 'The commit hash used on deployment'
-    example: d433e4622fde4b59a48586ed94082e2d76e855c1
-  message:
-    type: string
-    description: 'The commit message'
-    example: 'fix: some bug'
   author_name:
     type: string
     description: 'The author of the commit'
@@ -39,6 +19,14 @@ properties:
     format: date-time
     description: 'The date and time when the commit was created'
     example: '2019-09-25T15:50:48.000000Z'
+  hash:
+    type: string
+    description: 'The commit hash used on deployment'
+    example: d433e4622fde4b59a48586ed94082e2d76e855c1
+  message:
+    type: string
+    description: 'The commit message'
+    example: 'fix: some bug'
   url:
     type: string
     description: 'The commit URL on the source provider'
@@ -52,15 +40,12 @@ properties:
     description: 'The URL to download the commit source code'
     example: 'https://source-provider.com/commit/d433e4622fde4b59a48586ed94082e2d76e855c1.tar.gz'
 required:
-  - source_provider_id
-  - provider
   - repository
-  - branch
-  - hash
-  - message
   - author_name
   - author_email
   - committed_at
+  - hash
+  - message
   - url
   - clone_url
   - download_url

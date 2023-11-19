@@ -4,10 +4,10 @@ description: 'Variables used in pipeline'
 properties:
   name:
     type: string
-    example: branch
+    example: source_type
   human_readable:
     type: string
-    example: Branch
+    example: 'Source type'
   hint:
     $ref: '#/components/schemas/FieldHint'
   type:

@@ -389,6 +389,8 @@ RepositoryRelation:
   $ref: ./auto-generated/models/repository-relation.yaml
 RepositoryTag:
   $ref: ./auto-generated/models/repository-tag.yaml
+RepositoryTagCommit:
+  $ref: ./auto-generated/models/repository-tag-commit.yaml
 RepositoryTagList:
   $ref: ./auto-generated/models/repository-tag-list.yaml
 RequestList:
