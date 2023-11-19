@@ -21,6 +21,30 @@ import { DeploymentType } from './deployment-type';
  */
 export interface ActionDeploymentContent {
     /**
+     * 
+     * @type {DeploymentType}
+     * @memberof ActionDeploymentContent
+     */
+    type: DeploymentType;
+    /**
+     * The \'source type\' from which the application source code will be retrieved and deployed. It can be one of `branch`, `tag` or `commit`. If not provided, the application\'s default branch will be used.
+     * @type {string}
+     * @memberof ActionDeploymentContent
+     */
+    source_type: string;
+    /**
+     * A git reference pointing to a commit in a source provider repository from which the application source code will be retrieved and deployed. It can be a branch name, tag name or a specific commit hash.
+     * @type {string}
+     * @memberof ActionDeploymentContent
+     */
+    source_ref: string;
+    /**
+     * The repository of the deployed application
+     * @type {string}
+     * @memberof ActionDeploymentContent
+     */
+    repository: string;
+    /**
      * The ID of the source provider
      * @type {number}
      * @memberof ActionDeploymentContent
@@ -33,28 +57,10 @@ export interface ActionDeploymentContent {
      */
     provider_name: string;
     /**
-     * 
-     * @type {DeploymentType}
+     * The ID of the pipeline
+     * @type {number}
      * @memberof ActionDeploymentContent
      */
-    type: DeploymentType;
-    /**
-     * The repository of the deployed application
-     * @type {string}
-     * @memberof ActionDeploymentContent
-     */
-    repository: string;
-    /**
-     * The branch used on deployment
-     * @type {string}
-     * @memberof ActionDeploymentContent
-     */
-    branch: string;
-    /**
-     * The commit hash defined to be used on deployment
-     * @type {string}
-     * @memberof ActionDeploymentContent
-     */
-    hash: string | null;
+    pipeline_id: number;
 }
 

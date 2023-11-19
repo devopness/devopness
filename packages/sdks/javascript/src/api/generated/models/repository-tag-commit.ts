@@ -12,25 +12,24 @@
  */
 
 
-import { RepositoryTagCommit } from './repository-tag-commit';
 
 /**
- * A repository tag
+ * 
  * @export
- * @interface RepositoryTag
+ * @interface RepositoryTagCommit
  */
-export interface RepositoryTag {
+export interface RepositoryTagCommit {
     /**
-     * The name of the tag
+     * The commit comment\'s full hash that uniquely identify it
      * @type {string}
-     * @memberof RepositoryTag
+     * @memberof RepositoryTagCommit
      */
-    name: string;
+    hash: string;
     /**
-     * 
-     * @type {RepositoryTagCommit}
-     * @memberof RepositoryTag
+     * The direct URL for accessing commit details on the provider\'s web application
+     * @type {string}
+     * @memberof RepositoryTagCommit
      */
-    commit: RepositoryTagCommit;
+    url: string;
 }
 
