@@ -123,7 +123,7 @@ cd packages/sdks/javascript/
 ```
 
 #### 2. Install missing dependencies
-This command will install all modules listed as dependencies in [package.json](package.json). **A working Java Runtime Environment is also required.** Please, check out the installation instructions 
+This command will install all modules listed as dependencies in [package.json](package.json). **A working Java Runtime Environment is also required.** Please, check out the installation instructions
 for your operating system.
 ```
 npm install
