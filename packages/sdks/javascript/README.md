@@ -62,8 +62,8 @@ async function getUserProfile() {
     await authenticate('user@email.com', 'secret-password');
 
     // Now that we're authenticated, we can invoke methods on any services.
-    // Here we're invoking the `getCurrentUser()` method on the `users` service
-    const currentUser = await devopnessApi.users.getUserCurrent();
+    // Here we're invoking the `getUserMe()` method on the `users` service
+    const currentUser = await devopnessApi.users.getUserMe();
     console.log('Successfully retrieved user profile: ', currentUser);
 }
 
@@ -123,7 +123,7 @@ cd packages/sdks/javascript/
 ```
 
 #### 2. Install missing dependencies
-This command will install all modules listed as dependencies in [package.json](package.json). **A working Java Runtime Environment is also required.** Please, check out the installation instructions 
+This command will install all modules listed as dependencies in [package.json](package.json). **A working Java Runtime Environment is also required.** Please, check out the installation instructions
 for your operating system.
 ```
 npm install
