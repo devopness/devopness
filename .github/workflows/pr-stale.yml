@@ -1,0 +1,22 @@
+name: "Stale issues handler"
+
+on:
+  workflow_dispatch: # allows workflow to be manually triggered from GitHub UI
+  schedule:
+    - cron: "0 5 * * *" # runs at 5am UTC
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v8
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          debug-only: true
+          days-before-issue-stale: 1
+          days-before-issue-close: 1
+          stale-issue-label: "no-issue-activity"
+          labels-to-remove-when-unstale: "no-issue-activity"
+          stale-issue-message: |
+            This issue is stale because it has been open 1 day with no activity.
+            Please comment or this issue will be automatically closed in 1 day.
