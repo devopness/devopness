@@ -1,0 +1,52 @@
+name: Bug report
+description: File a bug report
+title: '[Bug]: '
+labels: [bug]
+assignees: ''
+body:
+  - type: input
+    attributes:
+      label: SDK Version
+      description: |
+        The SDK/npm package version being used when the bug was detected. E.g.: 0.9.3
+      validations:
+        required: false
+  - type: textarea
+    attributes:
+      label: Expected behavior
+      description: |
+        A clear and concise description of what you expected to happen.
+      validations:
+        required: true
+  - type: textarea
+    attributes:
+      label: What is actually happening?
+      description: |
+        A clear and concise description of what the bug is.
+      validations:
+        required: true
+  - type: input
+    attributes:
+      label: Reproduction link
+      description: |
+        A link to real code in jsfiddle.net, codesandbox.io etc is very helpful to speed up bug resolution
+      validations:
+        required: true
+  - type: textarea
+    attributes:
+      label: Steps to reproduce
+      description: |
+      Steps to reproduce the behavior:
+      1. Go to '...'
+      2. Click on '...'
+      3. Scroll down to '...'
+      4. See error
+    validations:
+      required: false
+  - type: textarea
+    attributes:
+      label: Additional details
+      description: |
+      Browser version, framework being used, where is the SDK being consumed from (Node.js, Browser, ReactNative, ...). If applicable, add screenshots to help explain your problem.
+    validations:
+      required: false
