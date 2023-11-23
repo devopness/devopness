@@ -18,5 +18,12 @@ jobs:
           stale-issue-label: "no-issue-activity"
           labels-to-remove-when-unstale: "no-issue-activity"
           stale-issue-message: |
-            This issue is stale because it has been open 1 day with no activity.
-            Please comment or this issue will be automatically closed in 1 day.
+            👋 Hi there!
+            This issue has been automatically marked as stale because there wasn't any activity in the past
+            3 weeks.
+            * Please check if it is still relevant in the latest version of Devopness
+            * If so, please update the issue with new details
+            If this issue remains without activity for another week (completing a month without activity), it'll be automatically closed.
+          close-issue-message: |
+            ❌ This issue was closed because it has been open and inactive for a month.
+            If you feel this is still a high-priority issue, or are interested in contributing, please open a new issue or pull request linking to this one, for context.
