@@ -20,8 +20,8 @@ body:
         - SDK-JS
         - Don't know / other
       multiple: true
-      validations:
-        required: true
+    validations:
+      required: true
   - type: input
     attributes:
       label: SDK Version
