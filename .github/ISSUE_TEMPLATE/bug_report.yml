@@ -1,5 +1,5 @@
 name: 🐞 Bug Report
-description: File a bug report
+description: Report a bug/issue on Devopness platform, website, SDKs or documentation
 title: '[Bug]: '
 labels: [bug]
 assignees: ''
@@ -48,7 +48,7 @@ body:
       3. Scroll down to '...'
       4. See error
     validations:
-      required: false
+      required: true
   - type: textarea
     attributes:
       label: Additional details
