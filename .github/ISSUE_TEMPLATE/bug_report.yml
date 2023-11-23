@@ -14,7 +14,7 @@ body:
     attributes:
       label: SDK Version
       description: |
-        The SDK/npm package version being used when the bug was detected. E.g.: 0.9.3
+        If your issue is SDK related, please inform the SDK/npm package version being used when the bug was detected. E.g.: 0.9.3.
       validations:
         required: false
   - type: textarea
@@ -35,7 +35,7 @@ body:
     attributes:
       label: Reproduction link
       description: |
-        A link to real code in jsfiddle.net, codesandbox.io etc is very helpful to speed up bug resolution
+        If you're having issues consuming one of our SDKs, a link to real code in jsfiddle.net, codesandbox.io etc is very helpful to speed up bug reproduction and resolution
       validations:
         required: true
   - type: textarea
