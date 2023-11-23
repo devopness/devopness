@@ -15,29 +15,29 @@ body:
       label: SDK Version
       description: |
         If your issue is SDK related, please inform the SDK/npm package version being used when the bug was detected. E.g.: 0.9.3.
-      validations:
-        required: false
+    validations:
+      required: false
   - type: textarea
     attributes:
       label: Expected behavior
       description: |
         A clear and concise description of what you expected to happen.
-      validations:
-        required: true
+    validations:
+      required: true
   - type: textarea
     attributes:
       label: What is actually happening?
       description: |
         A clear and concise description of what is actually happening.
-      validations:
-        required: true
+    validations:
+      required: true
   - type: input
     attributes:
       label: Reproduction link
       description: |
         If you're having issues consuming one of our SDKs, a link to real code in jsfiddle.net, codesandbox.io etc is very helpful to speed up bug reproduction and resolution
-      validations:
-        required: true
+    validations:
+      required: true
   - type: textarea
     attributes:
       label: Steps to reproduce
