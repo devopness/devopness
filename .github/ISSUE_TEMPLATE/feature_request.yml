@@ -1,8 +1,7 @@
 name: Feature request
 description: Suggest an idea for this project
 title: '[Feature request]: '
-labels:
-assignees: ''
+labels: [enhancement]
 body:
   - type: textarea
     attributes:
@@ -10,19 +9,19 @@ body:
       description: |
         A clear and concise description of what the problem is.
       placeholder: "e.g: I'm always frustrated when I try to [...] but [...]"
-      validations:
-        required: false
+    validations:
+      required: false
   - type: textarea
     attributes:
       label: Describe the solution you'd like.
       description: |
         A clear and concise description of what you want to happen.
-      validations:
-        required: true
+    validations:
+      required: true
   - type: textarea
     attributes:
       label: Additional context
       description: |
         Add any other context or screenshots about the feature request here.
-      validations:
-        required: false
+    validations:
+      required: false
