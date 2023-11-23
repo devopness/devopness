@@ -4,6 +4,12 @@ title: '[Bug]: '
 labels: [bug]
 assignees: ''
 body:
+  - type: markdown
+    attributes:
+      value: |
+         **To report a Devopness security vulnerability, please [send an email to `social@devopness.com`](mailto:social@devopness.com) with all the details.**
+
+         ⚠️ Do **NOT** create a public issue on GitHub for security vulnerabilities. See our [security policy]( <LINK TO BE UPDATED SOON>) for more details. ⚠️
   - type: input
     attributes:
       label: SDK Version
