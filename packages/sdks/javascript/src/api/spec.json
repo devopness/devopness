@@ -11669,9 +11669,7 @@
             "$ref": "#/components/schemas/DeploymentType"
           },
           "source_type": {
-            "type": "string",
-            "description": "The 'source type' from which the application source code will be retrieved and deployed. It can be one of `branch`, `tag` or `commit`. If not provided, the application's default branch will be used.",
-            "example": "branch"
+            "$ref": "#/components/schemas/SourceType"
           },
           "source_ref": {
             "type": "string",
@@ -11756,13 +11754,11 @@
             "$ref": "#/components/schemas/ResourceIdList"
           },
           "source_type": {
-            "description": "The 'source type' from which the application source code will be retrieved and deployed. It can be one of `branch`, `tag` or `commit`. If not provided, the application's default branch will be used. Must be one of <code>branch</code>, <code>tag</code>, or <code>commit</code>.",
-            "example": "branch",
-            "type": "string"
+            "$ref": "#/components/schemas/SourceType"
           },
           "source_ref": {
             "description": "A git reference pointing to a commit in a source provider repository from which the application source code will be retrieved and deployed. It can be a branch name, tag name or a specific commit hash. Must not be greater than 200 characters.",
-            "example": "master",
+            "example": "main",
             "type": "string"
           }
         }
@@ -12553,17 +12549,17 @@
           "repository": {
             "description": "The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed.",
             "type": "string",
-            "example": "devopness-api-tests/tester"
+            "example": "devopness/devopness"
           },
           "repository_name": {
             "description": "The name part of a repository full name (`repository_owner/repository_name`)",
             "type": "string",
-            "example": "tester"
+            "example": "devopness"
           },
           "repository_owner": {
             "description": "The owner part of a repository full name (`repository_owner/repository_name`)",
             "type": "string",
-            "example": "devopness-api-tests"
+            "example": "devopness"
           },
           "default_branch": {
             "description": "The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed.",
@@ -12736,7 +12732,7 @@
           },
           "repository": {
             "description": "The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed. Must not be greater than 100 characters.",
-            "example": "devopness-api-tests/tester",
+            "example": "devopness/devopness",
             "type": "string"
           },
           "source_provider_id": {
@@ -12905,17 +12901,17 @@
           "repository": {
             "description": "The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed.",
             "type": "string",
-            "example": "devopness-api-tests/tester"
+            "example": "devopness/devopness"
           },
           "repository_name": {
             "description": "The name part of a repository full name (`repository_owner/repository_name`)",
             "type": "string",
-            "example": "tester"
+            "example": "devopness"
           },
           "repository_owner": {
             "description": "The owner part of a repository full name (`repository_owner/repository_name`)",
             "type": "string",
-            "example": "devopness-api-tests"
+            "example": "devopness"
           },
           "default_branch": {
             "description": "The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed.",
@@ -13110,7 +13106,7 @@
           },
           "repository": {
             "description": "The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed. Must not be greater than 100 characters.",
-            "example": "devopness-api-tests/tester",
+            "example": "devopness/devopness",
             "type": "string"
           },
           "source_provider_id": {
@@ -19178,6 +19174,16 @@
           "updated_at"
         ],
         "nullable": true
+      },
+      "SourceType": {
+        "type": "string",
+        "description": "The 'source type' from which the application source code will be retrieved and deployed. It can be one of `branch`, `tag` or `commit`. If not provided, the application's default branch will be used.",
+        "example": "branch",
+        "enum": [
+          "branch",
+          "commit",
+          "tag"
+        ]
       },
       "SshKey": {
         "type": "object",

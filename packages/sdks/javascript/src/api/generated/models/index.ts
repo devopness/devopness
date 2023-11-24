@@ -199,6 +199,7 @@ export * from './source-provider-create';
 export * from './source-provider-displayable-name';
 export * from './source-provider-name';
 export * from './source-provider-relation';
+export * from './source-type';
 export * from './ssh-key';
 export * from './ssh-key-environment-create';
 export * from './ssh-key-relation';
