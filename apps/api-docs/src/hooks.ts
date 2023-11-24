@@ -337,7 +337,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
 
     //// repositories
     before('getSourceProviderRepository200', (transaction: Transaction) => {
-        transaction.fullPath = `/source-providers/${staticSourceProviderId}/repositories/devopness-api-tests/tester`
+        transaction.fullPath = `/source-providers/${staticSourceProviderId}/repositories/devopness/devopness`
     })
 
     //// applications
