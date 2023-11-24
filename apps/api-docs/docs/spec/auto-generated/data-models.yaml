@@ -509,6 +509,8 @@ SourceProviderName:
   $ref: ./auto-generated/models/source-provider-name.yaml
 SourceProviderRelation:
   $ref: ./auto-generated/models/source-provider-relation.yaml
+SourceType:
+  $ref: ./auto-generated/models/source-type.yaml
 SshKey:
   $ref: ./auto-generated/models/ssh-key.yaml
 SshKeyEnvironmentCreate:

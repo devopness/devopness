@@ -37,7 +37,7 @@ properties:
     type: string
   repository:
     description: 'The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed. Must not be greater than 100 characters.'
-    example: devopness-api-tests/tester
+    example: devopness/devopness
     type: string
   source_provider_id:
     description: 'Numeric ID of the source provider account where the repository is hosted. This field is required when <code>repository</code> is present.'

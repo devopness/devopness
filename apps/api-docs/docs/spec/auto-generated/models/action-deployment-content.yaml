@@ -4,9 +4,7 @@ properties:
   type:
     $ref: '#/components/schemas/DeploymentType'
   source_type:
-    type: string
-    description: 'The ''source type'' from which the application source code will be retrieved and deployed. It can be one of `branch`, `tag` or `commit`. If not provided, the application''s default branch will be used.'
-    example: branch
+    $ref: '#/components/schemas/SourceType'
   source_ref:
     type: string
     description: 'A git reference pointing to a commit in a source provider repository from which the application source code will be retrieved and deployed. It can be a branch name, tag name or a specific commit hash.'

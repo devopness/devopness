@@ -30,15 +30,15 @@ properties:
   repository:
     description: 'The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed.'
     type: string
-    example: devopness-api-tests/tester
+    example: devopness/devopness
   repository_name:
     description: 'The name part of a repository full name (`repository_owner/repository_name`)'
     type: string
-    example: tester
+    example: devopness
   repository_owner:
     description: 'The owner part of a repository full name (`repository_owner/repository_name`)'
     type: string
-    example: devopness-api-tests
+    example: devopness
   default_branch:
     description: 'The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed.'
     type: string
