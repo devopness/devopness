@@ -49,7 +49,7 @@ body:
       description: |
         If you're having issues consuming one of our SDKs, a link to real code in jsfiddle.net, codesandbox.io etc is very helpful to speed up bug reproduction and resolution
     validations:
-      required: true
+      required: false
   - type: textarea
     attributes:
       label: Steps to reproduce
