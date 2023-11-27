@@ -15,8 +15,8 @@ jobs:
           debug-only: true
           days-before-pr-stale: -1 # This option is to keep the action workflow from meddling with Pull Requests for now
           days-before-pr-close: -1 # This option is to keep the action workflow from meddling with Pull Requests for now
-          days-before-issue-stale: 1
-          days-before-issue-close: 1
+          days-before-issue-stale: 21
+          days-before-issue-close: 14
           stale-issue-label: "no-issue-activity"
           labels-to-remove-when-unstale: "no-issue-activity"
           stale-issue-message: |
