@@ -1,0 +1,12 @@
+api:
+  - '(Devopness API)'
+website:
+  - '(Devopness website)'
+web-app:
+  - '(Devopness web app)'
+docs:
+  - '(Documentation)'
+sdk-js:
+  - '(SDK-JS)'
+other:
+  - "(Don't know / other)"
