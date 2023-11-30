@@ -1,7 +1,7 @@
 name: 🐞 Bug Report
 description: Report a bug/issue on Devopness platform, website, SDKs or documentation
 title: '[Bug]: '
-labels: [bug]
+labels: [bug, needs-triage]
 body:
   - type: markdown
     attributes:
