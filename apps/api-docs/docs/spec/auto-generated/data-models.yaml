@@ -451,6 +451,8 @@ ServerEnvironmentCreate:
   $ref: ./auto-generated/models/server-environment-create.yaml
 ServerList:
   $ref: ./auto-generated/models/server-list.yaml
+ServerOptions:
+  $ref: ./auto-generated/models/server-options.yaml
 ServerProvisionInput:
   $ref: ./auto-generated/models/server-provision-input.yaml
 ServerRelation:

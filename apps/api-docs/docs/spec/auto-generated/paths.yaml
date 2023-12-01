@@ -383,6 +383,9 @@
 /static/resource-types:
   get:
     $ref: ./auto-generated/endpoints/list-static-resource-types.yaml
+/static/server-options:
+  get:
+    $ref: ./auto-generated/endpoints/get-static-server-options.yaml
 /static/service-options:
   get:
     $ref: ./auto-generated/endpoints/get-static-service-options.yaml
