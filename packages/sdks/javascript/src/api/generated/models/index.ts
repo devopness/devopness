@@ -173,6 +173,7 @@ export * from './server-blueprint-spec';
 export * from './server-cloud-service-code';
 export * from './server-command';
 export * from './server-environment-create';
+export * from './server-options';
 export * from './server-provision-input';
 export * from './server-relation';
 export * from './server-update';

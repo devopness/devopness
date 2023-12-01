@@ -9036,6 +9036,41 @@
         }
       }
     },
+    "/static/server-options": {
+      "get": {
+        "summary": "List `Server` options",
+        "operationId": "getStaticServerOptions",
+        "description": {
+          "$ref": "../spec/descriptions/get-static-server-options.md"
+        },
+        "tags": [
+          "Static Data - Server Options"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerOptions"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/static/service-options": {
       "get": {
         "summary": "List `Service` resource options",
@@ -18356,6 +18391,17 @@
         "items": {
           "$ref": "#/components/schemas/ServerRelation"
         }
+      },
+      "ServerOptions": {
+        "type": "object",
+        "properties": {
+          "variables_targets": {
+            "$ref": "#/components/schemas/VariableTargetList"
+          }
+        },
+        "required": [
+          "variables_targets"
+        ]
       },
       "ServerProvisionInput": {
         "type": "object",
