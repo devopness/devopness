@@ -1,3 +1,5 @@
+needs-triage:
+  - '/.*/'
 api:
   - '(Devopness API)'
 website:
