@@ -2,7 +2,7 @@ name: SDK JavaScript - Release
 on:
   push:
     paths:
-      - packages/sdks/javascript/dist
+      - packages/sdks/javascript/src
       - packages/sdks/javascript/package.json
     branches:
       - main
