@@ -6,5 +6,7 @@ web-app:
   - '(Devopness web app)'
 docs:
   - '(Documentation)'
-sdk-js:
+sdk:
+  - '(SDK)'
+sdk-javascript:
   - '(SDK-JS)'
