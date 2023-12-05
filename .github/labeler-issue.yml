@@ -9,6 +9,6 @@ web-app:
 docs:
   - '(Documentation)'
 sdk:
-  - 'SDK'
+  - 'SDK-'
 sdk-javascript:
   - '(SDK-JS)'
