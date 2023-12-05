@@ -45,11 +45,11 @@ export interface ApplicationEnvironmentCreate {
      */
     build_command?: string;
     /**
-     * The language runtime engine version to be used to execute this application on the deployed servers. This field is required unless <code>programming_language</code> is in <code>html</code>.  Must be one of <code></code> Must be at least 1 characters. Must not be greater than 10 characters.
+     * The language runtime engine version to be used to execute this application on the deployed servers. Must be one of <code></code> Must be at least 1 characters. Must not be greater than 10 characters.
      * @type {string}
      * @memberof ApplicationEnvironmentCreate
      */
-    engine_version?: string;
+    engine_version: string;
     /**
      * The base framework on top of which the application has been implemented - it might have impact on the steps to be performed during application deployment. Must not be greater than 30 characters.
      * @type {string}
