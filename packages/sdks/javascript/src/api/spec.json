@@ -21651,26 +21651,7 @@
         "description": "The object of target defining how the variable key/value pair will be deployed",
         "properties": {
           "name": {
-            "type": "string",
-            "enum": [
-              "resource-config-file",
-              "nginx-http-server",
-              "my-cnf",
-              "newrelic-infra-yml",
-              "nginx-conf",
-              "nginx-main",
-              "nginx-http",
-              "os-env-var",
-              "php-cli_php-ini",
-              "php-fpm_php-fpm-conf",
-              "php-fpm_php-ini",
-              "php-fpm_pool-d-www-conf",
-              "redis-conf",
-              "supervisord-conf",
-              "sysctl-conf"
-            ],
-            "description": "The variable target name",
-            "example": "my-cnf"
+            "$ref": "#/components/schemas/VariableTarget"
           },
           "name_human_readable": {
             "type": "string",
