@@ -12,6 +12,7 @@
  */
 
 
+import { VariableTarget } from './variable-target';
 
 /**
  * The object of target defining how the variable key/value pair will be deployed
@@ -20,11 +21,11 @@
  */
 export interface VariableTargets {
     /**
-     * The variable target name
-     * @type {string}
+     * 
+     * @type {VariableTarget}
      * @memberof VariableTargets
      */
-    name?: VariableTargetsNameEnum;
+    name?: VariableTarget;
     /**
      * Human readable version of the variable target name
      * @type {string}
@@ -38,27 +39,4 @@ export interface VariableTargets {
      */
     hint?: string;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum VariableTargetsNameEnum {
-    ResourceConfigFile = 'resource-config-file',
-    NginxHttpServer = 'nginx-http-server',
-    MyCnf = 'my-cnf',
-    NewrelicInfraYml = 'newrelic-infra-yml',
-    NginxConf = 'nginx-conf',
-    NginxMain = 'nginx-main',
-    NginxHttp = 'nginx-http',
-    OsEnvVar = 'os-env-var',
-    PhpCliPhpIni = 'php-cli_php-ini',
-    PhpFpmPhpFpmConf = 'php-fpm_php-fpm-conf',
-    PhpFpmPhpIni = 'php-fpm_php-ini',
-    PhpFpmPoolDWwwConf = 'php-fpm_pool-d-www-conf',
-    RedisConf = 'redis-conf',
-    SupervisordConf = 'supervisord-conf',
-    SysctlConf = 'sysctl-conf'
-}
-
 
