@@ -1,7 +1,7 @@
 name: Help Needed
 description: Ask a question
 title: "[Help Needed] "
-labels: [help-needed]
+labels: [question]
 
 body:
 - type: markdown
