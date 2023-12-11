@@ -1,0 +1,18 @@
+name: Help Needed
+description: Ask a question
+title: "[Help Needed] "
+labels: [help-needed]
+
+body:
+- type: markdown
+  attributes:
+    value: |
+      We are here to help you and we will try to respond as quickly as possible.
+      Your question might already have an answer, ensure this is not the case checking the [existing issues](https://github.com/devopness/devopness/issues)
+- type: textarea
+  attributes:
+    label: How can we help?
+    description: "Describe what you are struggling with"
+    placeholder: "Provide as much context as possible. Include screenshots, screen recordings, links, references, or anything else you may consider relevant."
+  validations:
+    required: true
