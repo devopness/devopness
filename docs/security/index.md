@@ -1,6 +1,6 @@
 ---
 title: Security
-intro: This directory contains all documentation related to the product's security topics.
+intro: This section contains all documentation related to the product's security topics.
 links:
     overview:
     quickstart:
