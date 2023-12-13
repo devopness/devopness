@@ -12,7 +12,7 @@ body:
 - type: textarea
   attributes:
     label: How can we help?
-    description: "Describe what you are struggling with"
+    description: "Describe what you are trying to accomplish and the issues you encountered"
     placeholder: "Provide as much context as possible. Include screenshots, screen recordings, links, references, or anything else you may consider relevant."
   validations:
     required: true
