@@ -13074,16 +13074,18 @@
       "ApplicationTypes": {
         "type": "object",
         "properties": {
-          "public": {
+          "public_application": {
             "type": "object",
+            "description": "An application of type `public_application` is configured by Devopness to be accessed through a web server/reverse proxy to handle network requests and response, so it can be exposed as an `internet-facing` application. All applications that are intented to be accessible from the internet, exposed via a DNS record pointing to the application's server IP address, should be defined as `public_application`.",
             "properties": {
               "variables_targets": {
                 "$ref": "#/components/schemas/VariableTargetList"
               }
             }
           },
-          "private": {
+          "private_application": {
             "type": "object",
+            "description": "An application of type `private_application` does not use a web server/reverse proxy to serve public content. All appplications that are intented to be accessible only locally in their own servers, or from servers in the same internal network, should be defined as `private_application`.",
             "properties": {
               "variables_targets": {
                 "$ref": "#/components/schemas/VariableTargetList"
@@ -13092,8 +13094,8 @@
           }
         },
         "required": [
-          "public",
-          "private"
+          "public_application",
+          "private_application"
         ]
       },
       "ApplicationUpdate": {
