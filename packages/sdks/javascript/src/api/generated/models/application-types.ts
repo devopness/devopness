@@ -12,7 +12,8 @@
  */
 
 
-import { ApplicationTypesPublic } from './application-types-public';
+import { ApplicationTypesPrivateApplication } from './application-types-private-application';
+import { ApplicationTypesPublicApplication } from './application-types-public-application';
 
 /**
  * 
@@ -22,15 +23,15 @@ import { ApplicationTypesPublic } from './application-types-public';
 export interface ApplicationTypes {
     /**
      * 
-     * @type {ApplicationTypesPublic}
+     * @type {ApplicationTypesPublicApplication}
      * @memberof ApplicationTypes
      */
-    _public: ApplicationTypesPublic;
+    public_application: ApplicationTypesPublicApplication;
     /**
      * 
-     * @type {ApplicationTypesPublic}
+     * @type {ApplicationTypesPrivateApplication}
      * @memberof ApplicationTypes
      */
-    _private: ApplicationTypesPublic;
+    private_application: ApplicationTypesPrivateApplication;
 }
 

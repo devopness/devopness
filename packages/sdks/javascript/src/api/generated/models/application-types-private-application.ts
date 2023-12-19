@@ -15,15 +15,15 @@
 import { VariableTargets } from './variable-targets';
 
 /**
- * 
+ * An application of type `private_application` does not use a web server/reverse proxy to serve public content. All appplications that are intented to be accessible only locally in their own servers, or from servers in the same internal network, should be defined as `private_application`.
  * @export
- * @interface ApplicationTypesPublic
+ * @interface ApplicationTypesPrivateApplication
  */
-export interface ApplicationTypesPublic {
+export interface ApplicationTypesPrivateApplication {
     /**
      * The list of VariableTarget
      * @type {Array<VariableTargets>}
-     * @memberof ApplicationTypesPublic
+     * @memberof ApplicationTypesPrivateApplication
      */
     variables_targets?: Array<VariableTargets>;
 }
