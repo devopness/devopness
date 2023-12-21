@@ -7,6 +7,14 @@ If the PR is still in draft state, please add a **Why draft?** section clarifyin
 -->
 - [ ] <add one check list item here for each meaningful change on this PR>
 
+## GitHub issues resolved by this PR
+<!-- 
+Check list box of GitHub issues completed by this PR.
+Use `N/A` if this PR is not fixing any existing issue.
+-->
+
+- [ ] closes #ISSUE-NUMBER
+
 ## Quality Assurance
 
 <!-- Please complete this checklist before requesting a review of your pull request. -->
