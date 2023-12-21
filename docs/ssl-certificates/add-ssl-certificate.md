@@ -4,10 +4,8 @@ intro: Add an SSL certificate to an application to allow HTTPS requests to it.
 links:
     overview:
     quickstart:
-    previous:
-        - /docs/applications/deploy-application
-    next:
-        - /docs/teams/add-team
+    previous: /docs/applications/deploy-application
+    next: /docs/teams/add-team
     guides:
     related:
     featured:
@@ -21,7 +19,7 @@ Before an SSL certificate can be issued a valid DNS record must point to the ser
   <summary>Steps to configure a DNS record pointing to your servers:</summary>
 
 1. Copy the IP Address of the server where the application is running
-    > Follow the [Find the IP Address of the server](/docs/servers/find-server-ip-address) guide for detailed instructions
+    > Follow the {% mentionPost "/docs/servers/find-server-ip-address" %} guide for detailed instructions
 1. Access your DNS service management panel
     > If you don't have your own domains configured with a DNS service, you can use free services such as [FreeDNS](https://freedns.afraid.org/) or hire paid managed DNS services such as [AWS Route53](https://aws.amazon.com/route53/), [Cloudflare DNS](https://www.cloudflare.com/dns/), or any [notable managed DNS service provider](https://en.wikipedia.org/wiki/List_of_managed_DNS_providers) that suits your needs.
 1. Configure a DNS record for your application domain

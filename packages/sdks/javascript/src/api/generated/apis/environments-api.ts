@@ -31,7 +31,7 @@ export class EnvironmentsApiService extends ApiBaseService {
         if (environmentId === null || environmentId === undefined) {
             throw new ArgumentNullException('environmentId', 'archiveEnvironment');
         }
-        
+
         let queryString = '';
 
         const requestUrl = '/environments/{environment_id}/archive' + (queryString? `?${queryString}` : '');
@@ -49,7 +49,7 @@ export class EnvironmentsApiService extends ApiBaseService {
         if (environmentId === null || environmentId === undefined) {
             throw new ArgumentNullException('environmentId', 'getEnvironment');
         }
-        
+
         let queryString = '';
 
         const requestUrl = '/environments/{environment_id}' + (queryString? `?${queryString}` : '');
@@ -67,7 +67,7 @@ export class EnvironmentsApiService extends ApiBaseService {
         if (environmentId === null || environmentId === undefined) {
             throw new ArgumentNullException('environmentId', 'unarchiveEnvironment');
         }
-        
+
         let queryString = '';
 
         const requestUrl = '/environments/{environment_id}/unarchive' + (queryString? `?${queryString}` : '');
@@ -89,7 +89,7 @@ export class EnvironmentsApiService extends ApiBaseService {
         if (environmentUpdate === null || environmentUpdate === undefined) {
             throw new ArgumentNullException('environmentUpdate', 'updateEnvironment');
         }
-        
+
         let queryString = '';
 
         const requestUrl = '/environments/{environment_id}' + (queryString? `?${queryString}` : '');

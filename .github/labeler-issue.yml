@@ -1,0 +1,14 @@
+needs-triage:
+  - '/.*/'
+api:
+  - '(Devopness API)'
+website:
+  - '(Devopness website)'
+web-app:
+  - '(Devopness web app)'
+docs:
+  - '(Documentation)'
+sdk:
+  - 'SDK-'
+sdk-javascript:
+  - '(SDK-JS)'

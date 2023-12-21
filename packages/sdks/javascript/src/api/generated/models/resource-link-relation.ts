@@ -40,10 +40,10 @@ export interface ResourceLinkRelation {
     resource_type: string;
     /**
      * The linked resource ID
-     * @type {string}
+     * @type {number}
      * @memberof ResourceLinkRelation
      */
-    resource_id: string;
+    resource_id: number;
     /**
      * If false, the link cannot be manually removed
      * @type {boolean}

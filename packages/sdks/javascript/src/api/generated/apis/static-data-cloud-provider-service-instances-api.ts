@@ -22,7 +22,7 @@ import { CloudInstanceRelation } from '../../generated/models';
 export class StaticDataCloudProviderServiceInstancesApiService extends ApiBaseService {
     /**
      * 
-     * @summary List `Cloud Provider Service` instances by region
+     * @summary List `Cloud Provider Service` instance types by region
      * @param {string} cloudProviderServiceCode The cloud provider service code.
      * @param {string} regionCode The region of the cloud provider to get related instances.
      * @param {number} [page] Number of the page to be retrieved
@@ -35,7 +35,7 @@ export class StaticDataCloudProviderServiceInstancesApiService extends ApiBaseSe
         if (regionCode === null || regionCode === undefined) {
             throw new ArgumentNullException('regionCode', 'listStaticCloudInstancesByCloudProviderServiceCodeAndRegionCode');
         }
-        
+
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {

@@ -1,5 +1,4 @@
 ---
-draft: true
 title: Subnets
 intro: Learn how to provision and manage cloud subnetworks
 links:

@@ -13,6 +13,7 @@
 
 
 import { NetworkProvisionInputSettings } from './network-provision-input-settings';
+import { ServerCloudServiceCode } from './server-cloud-service-code';
 
 /**
  * Network provision input parameters
@@ -21,11 +22,11 @@ import { NetworkProvisionInputSettings } from './network-provision-input-setting
  */
 export interface NetworkProvisionInput {
     /**
-     * The cloud service of the cloud provicer
-     * @type {string}
+     * 
+     * @type {ServerCloudServiceCode}
      * @memberof NetworkProvisionInput
      */
-    cloud_service_code: string;
+    cloud_service_code: ServerCloudServiceCode;
     /**
      * The ID of the cloud credential
      * @type {number}

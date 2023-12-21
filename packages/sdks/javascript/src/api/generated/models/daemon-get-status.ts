@@ -12,19 +12,18 @@
  */
 
 
-import { VariableTargets } from './variable-targets';
 
 /**
  * 
  * @export
- * @interface ApplicationTypesPublic
+ * @interface DaemonGetStatus
  */
-export interface ApplicationTypesPublic {
+export interface DaemonGetStatus {
     /**
-     * The list of VariableTarget
-     * @type {Array<VariableTargets>}
-     * @memberof ApplicationTypesPublic
+     * List of valid resource IDs
+     * @type {Array<number>}
+     * @memberof DaemonGetStatus
      */
-    variables_targets?: Array<VariableTargets>;
+    servers?: Array<number>;
 }
 

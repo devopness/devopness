@@ -15,8 +15,8 @@ links:
 1. Find the `Servers` card
 1. Click the `View` in the `Servers` card to see a list of existing `Servers`
 1. In the list of servers, find the server you want to start and click `DETAILS`
-3. On the upper-right corner of the server details view click `ACTIONS`
-4. Use the drop-down menu to choose `Start`
-5. Wait for the `Server:start` action to be completed
-6. Follow the guide [Get a Server’s Status](/docs/server/get-server-status)
+1. On the upper-right corner of the server details view click `ACTIONS`
+1. Use the drop-down menu to choose `Start`
+1. Wait for the `Server:start` action to be completed
+1. Follow the guide {% mentionPost "/docs/servers/get-server-status" %}
     > The server status will be "running"

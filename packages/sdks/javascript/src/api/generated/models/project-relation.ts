@@ -57,6 +57,12 @@ export interface ProjectRelation {
      */
     created_by_user: UserRelation;
     /**
+     * Number of credits used in the current monthly billing cycle by actions of resources in the project.
+     * @type {number}
+     * @memberof ProjectRelation
+     */
+    used_credits?: number;
+    /**
      * The date and time when the record was created
      * @type {string}
      * @memberof ProjectRelation

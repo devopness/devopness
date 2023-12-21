@@ -20,6 +20,7 @@
  */
 export enum NetworkRuleProtocol {
     Any = 'any',
+    Icmp = 'icmp',
     Tcp = 'tcp',
     Udp = 'udp'
 }

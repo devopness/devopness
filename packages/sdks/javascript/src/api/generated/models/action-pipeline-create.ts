@@ -12,6 +12,7 @@
  */
 
 
+import { SourceType } from './source-type';
 
 /**
  * 
@@ -26,10 +27,16 @@ export interface ActionPipelineCreate {
      */
     servers?: Array<number>;
     /**
-     * The name of the branch from which the application source code will be retrieved and deployed. Must not be greater than 100 characters.
+     * 
+     * @type {SourceType}
+     * @memberof ActionPipelineCreate
+     */
+    source_type?: SourceType;
+    /**
+     * A git reference pointing to a commit in a source provider repository from which the application source code will be retrieved and deployed. It can be a branch name, tag name or a specific commit hash. Must not be greater than 200 characters.
      * @type {string}
      * @memberof ActionPipelineCreate
      */
-    branch?: string;
+    source_ref?: string;
 }
 

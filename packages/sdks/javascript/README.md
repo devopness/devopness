@@ -62,8 +62,8 @@ async function getUserProfile() {
     await authenticate('user@email.com', 'secret-password');
 
     // Now that we're authenticated, we can invoke methods on any services.
-    // Here we're invoking the `getCurrentUser()` method on the `users` service
-    const currentUser = await devopnessApi.users.getUserCurrent();
+    // Here we're invoking the `getUserMe()` method on the `users` service
+    const currentUser = await devopnessApi.users.getUserMe();
     console.log('Successfully retrieved user profile: ', currentUser);
 }
 
@@ -74,7 +74,7 @@ getUserProfile();
 This package includes TypeScript declarations for every method.
 TypeScript versions `>= 4.4` are supported.
 
->Some methods in `Devopness SDK JavaScript` accept and return objects from the Devopness API. The type declarations for these objects will always track the latest version of the API. Therefore, if you'e using the latest version of this package, you can rely on the Devopness API documentation for checking the input and return types of each API endpoint.
+>Some methods in `Devopness SDK JavaScript` accept and return objects from the Devopness API. The type declarations for these objects will always track the latest version of the API. Therefore, if you're using the latest version of this package, you can rely on the Devopness API documentation for checking the input and return types of each API endpoint.
 
 ## Development & Testing
 To build and test the SDK locally, [**fork this repository**](https://github.com/devopness/devopness/fork) and follow these steps:
@@ -123,7 +123,7 @@ cd packages/sdks/javascript/
 ```
 
 #### 2. Install missing dependencies
-This command will install all modules listed as dependencies in [package.json](package.json). **A working Java Runtime Environment is also required.** Please, check out the installation instructions 
+This command will install all modules listed as dependencies in [package.json](package.json). **A working Java Runtime Environment is also required.** Please, check out the installation instructions
 for your operating system.
 ```
 npm install

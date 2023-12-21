@@ -4,10 +4,8 @@ intro: Add a pipeline step to perform a specific task in a defined order during 
 links:
     overview:
     quickstart:
-    previous:
-        - /docs/applications/add-application
-    next:
-        - /docs/files/add-file
+    previous: /docs/applications/add-application
+    next: /docs/files/add-file
     guides:
     related:
     featured:
@@ -26,4 +24,4 @@ required_permissions:
 1. On the upper-right corner of the list click `ADD STEP`
 1. Follow the instructions in the add pipeline step form then click `CONFIRM`
     > A new deployment is required for your changes to take effect.
-      - Follow the guide [Deploy Application](/docs/applications/deploy-application/)
+      - Follow the guide {% mentionPost "/docs/applications/deploy-application" %}

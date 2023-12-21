@@ -12,8 +12,8 @@
  */
 
 
+import { NetworkRuleDirection } from './network-rule-direction';
 import { NetworkRuleProtocol } from './network-rule-protocol';
-import { NetworkRuleType } from './network-rule-type';
 
 /**
  * 
@@ -35,10 +35,10 @@ export interface NetworkRuleUpdate {
     name: string;
     /**
      * 
-     * @type {NetworkRuleType}
+     * @type {NetworkRuleDirection}
      * @memberof NetworkRuleUpdate
      */
-    type: NetworkRuleType;
+    direction: NetworkRuleDirection;
     /**
      * 
      * @type {NetworkRuleProtocol}
@@ -46,16 +46,10 @@ export interface NetworkRuleUpdate {
      */
     protocol?: NetworkRuleProtocol;
     /**
-     * Starting range of the public ipv4 or ipv6 addresses that can access this rule. Must be a valid IP address.
+     * IP address range this rule applies for, defined using CIDR notation.
      * @type {string}
      * @memberof NetworkRuleUpdate
      */
-    ip_address_from?: string;
-    /**
-     * Ending range of the public ipv4 or ipv6 addresses that can access this rule. Must be a valid IP address.
-     * @type {string}
-     * @memberof NetworkRuleUpdate
-     */
-    ip_address_to?: string;
+    cidr_block: string;
 }
 

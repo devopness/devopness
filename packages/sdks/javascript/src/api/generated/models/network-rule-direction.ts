@@ -14,11 +14,11 @@
 
 
 /**
- * The type of network traffic to which this rule is applied
+ * The direction of network traffic a network rule is applied. `Inbound` applies to ingress/incoming traffic originating from outside into your network. `Outbound` applies to egress traffic, originating inside your network to external networks.
  * @export
  * @enum {string}
  */
-export enum NetworkRuleType {
+export enum NetworkRuleDirection {
     Inbound = 'inbound',
     Outbound = 'outbound'
 }

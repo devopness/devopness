@@ -5,8 +5,7 @@ links:
     overview:
     quickstart:
     previous:
-    next:
-        - /docs/users/credentials/add-credential
+    next: /docs/users/credentials/add-credential
     guides:
     related:
     featured:
@@ -28,4 +27,4 @@ links:
 1. Choose `Other` and click `Next`
 1. Click `Create access key`
 1. Copy the values of `Access key ID` and `Secret access key`
-1. To add the copied credentials to Devopness see [Add a Cloud Provider Credential](/docs/users/credentials/add-credential)
+1. To add the copied credentials to Devopness see {% mentionPost "/docs/users/credentials/add-credential" %}

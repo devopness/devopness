@@ -21,7 +21,7 @@ import { NetworkProvisionInput } from './network-provision-input';
  */
 export interface NetworkEnvironmentCreate {
     /**
-     * The network\'s name. Must be between 1 and 63 characters.
+     * The network\'s name. Must not be one of <code>default</code> Must be between 1 and 63 characters.
      * @type {string}
      * @memberof NetworkEnvironmentCreate
      */

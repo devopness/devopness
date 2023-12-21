@@ -4,10 +4,8 @@ intro: Add teams to organize groups of people in any way that makes it more conv
 links:
     overview: Project owners can create teams as a initial step to manage permissions and collaboration on environment resources.
     quickstart:
-    previous:
-        - /docs/ssl-certificates/add-ssl-certificate
-    next:
-        - /docs/teams/members/add-member
+    previous: /docs/ssl-certificates/add-ssl-certificate
+    next: /docs/teams/members/add-member
     guides:
     related:
     featured:

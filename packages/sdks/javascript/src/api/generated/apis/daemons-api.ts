@@ -16,6 +16,7 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { Daemon } from '../../generated/models';
+import { DaemonGetStatus } from '../../generated/models';
 import { DaemonRestart } from '../../generated/models';
 import { DaemonUpdate } from '../../generated/models';
 
@@ -32,7 +33,7 @@ export class DaemonsApiService extends ApiBaseService {
         if (daemonId === null || daemonId === undefined) {
             throw new ArgumentNullException('daemonId', 'deleteDaemon');
         }
-        
+
         let queryString = '';
 
         const requestUrl = '/daemons/{daemon_id}' + (queryString? `?${queryString}` : '');
@@ -50,12 +51,34 @@ export class DaemonsApiService extends ApiBaseService {
         if (daemonId === null || daemonId === undefined) {
             throw new ArgumentNullException('daemonId', 'getDaemon');
         }
-        
+
         let queryString = '';
 
         const requestUrl = '/daemons/{daemon_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Daemon>(requestUrl.replace(`{${"daemon_id"}}`, encodeURIComponent(String(daemonId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Get current status of a daemon
+     * @param {number} daemonId The ID of the daemon.
+     * @param {DaemonGetStatus} daemonGetStatus A JSON object containing the resource data
+     */
+    public async getStatusDaemon(daemonId: number, daemonGetStatus: DaemonGetStatus): Promise<ApiResponse<void>> {
+        if (daemonId === null || daemonId === undefined) {
+            throw new ArgumentNullException('daemonId', 'getStatusDaemon');
+        }
+        if (daemonGetStatus === null || daemonGetStatus === undefined) {
+            throw new ArgumentNullException('daemonGetStatus', 'getStatusDaemon');
+        }
+
+        let queryString = '';
+
+        const requestUrl = '/daemons/{daemon_id}/get-status' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <void, DaemonGetStatus>(requestUrl.replace(`{${"daemon_id"}}`, encodeURIComponent(String(daemonId))), daemonGetStatus);
         return new ApiResponse(response);
     }
 
@@ -72,7 +95,7 @@ export class DaemonsApiService extends ApiBaseService {
         if (daemonRestart === null || daemonRestart === undefined) {
             throw new ArgumentNullException('daemonRestart', 'restartDaemon');
         }
-        
+
         let queryString = '';
 
         const requestUrl = '/daemons/{daemon_id}/restart' + (queryString? `?${queryString}` : '');
@@ -94,7 +117,7 @@ export class DaemonsApiService extends ApiBaseService {
         if (daemonUpdate === null || daemonUpdate === undefined) {
             throw new ArgumentNullException('daemonUpdate', 'updateDaemon');
         }
-        
+
         let queryString = '';
 
         const requestUrl = '/daemons/{daemon_id}' + (queryString? `?${queryString}` : '');

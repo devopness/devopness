@@ -4,10 +4,8 @@ intro: Add applications to your infrastructure environments so they can be manag
 links:
     overview:
     quickstart:
-    previous:
-        - /docs/servers/ssh-into-server
-    next:
-        - /docs/pipelines/steps/add-step
+    previous: /docs/servers/ssh-into-server
+    next: /docs/pipelines/steps/add-step
     guides:
     related:
     featured:

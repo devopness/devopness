@@ -25,6 +25,7 @@ import { VariableServiceCreate } from '../../generated/models';
 export class ServicesVariablesApiService extends ApiBaseService {
     /**
      * 
+     * @deprecated
      * @summary Create a new variable linked to a service
      * @param {number} serviceId The ID of the service.
      * @param {VariableServiceCreate} variableServiceCreate A JSON object containing the resource data
@@ -36,7 +37,7 @@ export class ServicesVariablesApiService extends ApiBaseService {
         if (variableServiceCreate === null || variableServiceCreate === undefined) {
             throw new ArgumentNullException('variableServiceCreate', 'addServiceVariable');
         }
-        
+
         let queryString = '';
 
         const requestUrl = '/services/{service_id}/variables' + (queryString? `?${queryString}` : '');
@@ -47,6 +48,7 @@ export class ServicesVariablesApiService extends ApiBaseService {
 
     /**
      * 
+     * @deprecated
      * @summary Return a list of variables belonging to a service
      * @param {number} serviceId The ID of the service.
      * @param {number} [page] Number of the page to be retrieved
@@ -56,7 +58,7 @@ export class ServicesVariablesApiService extends ApiBaseService {
         if (serviceId === null || serviceId === undefined) {
             throw new ArgumentNullException('serviceId', 'listServiceVariables');
         }
-        
+
         let queryString = '';
         const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
         for (const key in queryParams) {

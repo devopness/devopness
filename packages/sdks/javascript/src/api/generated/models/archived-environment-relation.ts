@@ -13,6 +13,7 @@
 
 
 import { EnvironmentType } from './environment-type';
+import { ProjectRelation } from './project-relation';
 
 /**
  * 
@@ -45,6 +46,12 @@ export interface ArchivedEnvironmentRelation {
      */
     type_human_readable: string;
     /**
+     * Number of credits used in the current monthly billing cycle by actions of resources in the environment.
+     * @type {number}
+     * @memberof ArchivedEnvironmentRelation
+     */
+    used_credits?: number;
+    /**
      * The date and time when the record was created
      * @type {string}
      * @memberof ArchivedEnvironmentRelation
@@ -62,5 +69,11 @@ export interface ArchivedEnvironmentRelation {
      * @memberof ArchivedEnvironmentRelation
      */
     archived_at: string | null;
+    /**
+     * 
+     * @type {ProjectRelation}
+     * @memberof ArchivedEnvironmentRelation
+     */
+    project: ProjectRelation | null;
 }
 

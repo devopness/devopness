@@ -15,6 +15,7 @@
 import { CloudProviderInputSettings } from './cloud-provider-input-settings';
 import { CloudProviderServiceResourceTypeScope } from './cloud-provider-service-resource-type-scope';
 import { OperatingSystem } from './operating-system';
+import { OperationCustomSettings } from './operation-custom-settings';
 
 /**
  * Resource type details
@@ -52,5 +53,17 @@ export interface CloudProviderServiceResourceType {
      * @memberof CloudProviderServiceResourceType
      */
     os?: Array<OperatingSystem>;
+    /**
+     * Tells if this cloud service allows keeping server\'s persistent disks after a server is deleted. If true, Devopness API will allow users to send a parameter when deleting a server to indicate if the server persistent disks must be retained, keeping data in the disk volumes - possibly incurring extra costs on the user\'s cloud provider account. For cloud services that do not support this option, server disks will always be deleted when a server is deleted.
+     * @type {boolean}
+     * @memberof CloudProviderServiceResourceType
+     */
+    can_keep_disk_after_delete_server?: boolean;
+    /**
+     * 
+     * @type {OperationCustomSettings}
+     * @memberof CloudProviderServiceResourceType
+     */
+    operation_custom_settings?: OperationCustomSettings;
 }
 

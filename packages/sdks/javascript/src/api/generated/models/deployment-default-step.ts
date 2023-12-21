@@ -33,7 +33,7 @@ export interface DeploymentDefaultStep {
      */
     human_readable: string;
     /**
-     * Text describing when the event is triggered
+     * Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
      * @type {string}
      * @memberof DeploymentDefaultStep
      */

@@ -899,7 +899,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       },
       "post": {
         "summary": "Create a new variable linked to an application",
@@ -974,7 +975,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       }
     },
     "/cloud-providers/{cloud_provider_code}/credentials": {
@@ -1606,6 +1608,84 @@
         }
       }
     },
+    "/daemons/{daemon_id}/get-status": {
+      "post": {
+        "summary": "Get current status of a daemon",
+        "operationId": "getStatusDaemon",
+        "description": {
+          "$ref": "../spec/descriptions/get-status-daemon.md"
+        },
+        "tags": [
+          "Daemons"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "daemon_id",
+            "description": "The ID of the daemon.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DaemonGetStatus"
+              }
+            }
+          }
+        }
+      }
+    },
     "/daemons/{daemon_id}/restart": {
       "post": {
         "summary": "Restart a Daemon",
@@ -1802,6 +1882,66 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/EnvironmentUpdate"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/environments/{environment_id}/actions": {
+      "get": {
+        "summary": "List environment actions",
+        "operationId": "listEnvironmentActions",
+        "description": {
+          "$ref": "../spec/descriptions/list-environment-actions.md"
+        },
+        "tags": [
+          "Environments - Actions"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "environment_id",
+            "description": "The ID of the environment.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActionList"
+                }
+              }
+            },
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
               }
             }
           }
@@ -2492,6 +2632,36 @@
             "schema": {
               "type": "integer",
               "minimum": 1
+            }
+          },
+          {
+            "in": "query",
+            "name": "include_default_network",
+            "description": "If true, include a 'default' network in the list.",
+            "example": false,
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "provider_name",
+            "description": "Filter by network's cloud provider.",
+            "example": "aws",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "region",
+            "description": "Filter by network's region.",
+            "example": "us-east-1",
+            "required": false,
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -4150,6 +4320,26 @@
               "type": "integer",
               "minimum": 1
             }
+          },
+          {
+            "in": "query",
+            "name": "region",
+            "description": "Filter by subnet's region.",
+            "example": "us-east-1",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "zone",
+            "description": "Filter by subnet's zone.",
+            "example": "us-east-1a",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -4617,6 +4807,16 @@
                   "type": "string"
                 },
                 "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
               }
             }
           }
@@ -6413,6 +6613,16 @@
             "$ref": "#/components/parameters/contentTypeHeader"
           },
           {
+            "in": "query",
+            "name": "destroy_server_disks",
+            "description": "Indicates whether disks associated with a cloud server should be deleted after the server is destroyed",
+            "example": true,
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
             "in": "path",
             "name": "server_id",
             "description": "The ID of the server.",
@@ -7513,7 +7723,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       },
       "post": {
         "summary": "Create a new variable linked to a service",
@@ -7588,7 +7799,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       }
     },
     "/social-accounts": {
@@ -8578,7 +8790,7 @@
     },
     "/static/cloud-provider-service-options/{cloud_provider_service_code}/regions/{region_code}/instances": {
       "get": {
-        "summary": "List `Cloud Provider Service` instances by region",
+        "summary": "List `Cloud Provider Service` instance types by region",
         "operationId": "listStaticCloudInstancesByCloudProviderServiceCodeAndRegionCode",
         "description": {
           "$ref": "../spec/descriptions/list-static-cloud-instances-by-cloud-provider-service-code-and-region-code.md"
@@ -8707,6 +8919,41 @@
         }
       }
     },
+    "/static/network-rule-options": {
+      "get": {
+        "summary": "List `Network Rule` options",
+        "operationId": "getStaticNetworkRuleOptions",
+        "description": {
+          "$ref": "../spec/descriptions/get-static-network-rule-options.md"
+        },
+        "tags": [
+          "Static Data - Network Rule Options"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NetworkRuleOptions"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/static/permissions": {
       "get": {
         "summary": "List available `Role` permissions",
@@ -8782,6 +9029,41 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ResourceTypeList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/static/server-options": {
+      "get": {
+        "summary": "List `Server` options",
+        "operationId": "getStaticServerOptions",
+        "description": {
+          "$ref": "../spec/descriptions/get-static-server-options.md"
+        },
+        "tags": [
+          "Static Data - Server Options"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerOptions"
                 }
               }
             }
@@ -10232,6 +10514,315 @@
                 }
               }
             }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{user_id}/environments": {
+      "get": {
+        "summary": "Return a list of all environments owned by the current user",
+        "operationId": "listUserEnvironments",
+        "description": {
+          "$ref": "../spec/descriptions/list-user-environments.md"
+        },
+        "tags": [
+          "Users - Environments"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "query",
+            "name": "subscription_id",
+            "description": "ID of a user subscription to calculate the amount of credits used from that subscription on each user environment. If provided, and being a valid subscription belonging to current user, the 'used_credits' field will be added to the response.",
+            "example": 432,
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "path",
+            "name": "user_id",
+            "description": "The ID of the user.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EnvironmentList"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{user_id}/projects": {
+      "get": {
+        "summary": "Return a list of all projects owned by the current user",
+        "operationId": "listUserProjects",
+        "description": {
+          "$ref": "../spec/descriptions/list-user-projects.md"
+        },
+        "tags": [
+          "Users - Projects"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "query",
+            "name": "subscription_id",
+            "description": "ID of a user subscription to calculate the amount of credits used from that subscription on each user project. If provided, and being a valid subscription belonging to current user, the 'used_credits' field will be added to the response.",
+            "example": 9876,
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "path",
+            "name": "user_id",
+            "description": "The ID of the user.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectList"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/variables/{resource_type}/{resource_id}": {
+      "get": {
+        "summary": "Return a list of variables belonging to a resource",
+        "operationId": "listVariablesByResourceType",
+        "description": {
+          "$ref": "../spec/descriptions/list-variables-by-resource-type.md"
+        },
+        "tags": [
+          "Variables"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "resource_id",
+            "description": "The resource ID.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "in": "path",
+            "name": "resource_type",
+            "description": "The resource type to get variables from.",
+            "example": "server",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VariableList"
+                }
+              }
+            },
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new variable linked to a resource",
+        "operationId": "addVariable",
+        "description": {
+          "$ref": "../spec/descriptions/add-variable.md"
+        },
+        "tags": [
+          "Variables"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "resource_id",
+            "description": "The resource ID.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "in": "path",
+            "name": "resource_type",
+            "description": "The resource type to get variables from.",
+            "example": "server",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Variable"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VariableCreate"
+              }
+            }
           }
         }
       }
@@ -10436,6 +11027,9 @@
       "name": "Static Data - Environment Options"
     },
     {
+      "name": "Static Data - Network Rule Options"
+    },
+    {
       "name": "Static Data - Permissions"
     },
     {
@@ -10631,7 +11225,13 @@
       "name": "Users"
     },
     {
+      "name": "Users - Environments"
+    },
+    {
       "name": "Users - Passwords"
+    },
+    {
+      "name": "Users - Projects"
     },
     {
       "name": "Users - Team Invitations"
@@ -10653,6 +11253,7 @@
         "Static Data - Cloud Provider Services",
         "Static Data - Cron Job Options",
         "Static Data - Environment Options",
+        "Static Data - Network Rule Options",
         "Static Data - Permissions",
         "Static Data - Resource Types",
         "Static Data - Service Options",
@@ -10832,7 +11433,9 @@
       "name": "Users",
       "tags": [
         "Users",
+        "Users - Environments",
         "Users - Passwords",
+        "Users - Projects",
         "Users - Team Invitations"
       ]
     },
@@ -11025,6 +11628,8 @@
       },
       "ActionData": {
         "description": "Data related to action resource.",
+        "nullable": true,
+        "type": "object",
         "oneOf": [
           {
             "$ref": "#/components/schemas/ActionDeploymentData"
@@ -11035,35 +11640,10 @@
         "type": "object",
         "description": "Informations about the commit used on this deployment",
         "properties": {
-          "source_provider_id": {
-            "type": "integer",
-            "description": "The ID of the source provider",
-            "example": 4687921
-          },
-          "provider": {
-            "type": "string",
-            "description": "The source provider's name",
-            "example": "github"
-          },
           "repository": {
             "type": "string",
             "description": "The repository of the deployed application",
             "example": "devopness/example"
-          },
-          "branch": {
-            "type": "string",
-            "description": "The branch used on deployment",
-            "example": "develop"
-          },
-          "hash": {
-            "type": "string",
-            "description": "The commit hash used on deployment",
-            "example": "d433e4622fde4b59a48586ed94082e2d76e855c1"
-          },
-          "message": {
-            "type": "string",
-            "description": "The commit message",
-            "example": "fix: some bug"
           },
           "author_name": {
             "type": "string",
@@ -11080,6 +11660,16 @@
             "format": "date-time",
             "description": "The date and time when the commit was created",
             "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "hash": {
+            "type": "string",
+            "description": "The commit hash used on deployment",
+            "example": "d433e4622fde4b59a48586ed94082e2d76e855c1"
+          },
+          "message": {
+            "type": "string",
+            "description": "The commit message",
+            "example": "fix: some bug"
           },
           "url": {
             "type": "string",
@@ -11098,15 +11688,12 @@
           }
         },
         "required": [
-          "source_provider_id",
-          "provider",
           "repository",
-          "branch",
-          "hash",
-          "message",
           "author_name",
           "author_email",
           "committed_at",
+          "hash",
+          "message",
           "url",
           "clone_url",
           "download_url"
@@ -11115,6 +11702,22 @@
       "ActionDeploymentContent": {
         "type": "object",
         "properties": {
+          "type": {
+            "$ref": "#/components/schemas/DeploymentType"
+          },
+          "source_type": {
+            "$ref": "#/components/schemas/SourceType"
+          },
+          "source_ref": {
+            "type": "string",
+            "description": "A git reference pointing to a commit in a source provider repository from which the application source code will be retrieved and deployed. It can be a branch name, tag name or a specific commit hash.",
+            "example": "develop"
+          },
+          "repository": {
+            "type": "string",
+            "description": "The repository of the deployed application",
+            "example": "devopness/example"
+          },
           "provider_id": {
             "type": "integer",
             "description": "The ID of the source provider",
@@ -11125,33 +11728,20 @@
             "description": "The source provider's name",
             "example": "github"
           },
-          "type": {
-            "$ref": "#/components/schemas/DeploymentType"
-          },
-          "repository": {
-            "type": "string",
-            "description": "The repository of the deployed application",
-            "example": "devopness/example"
-          },
-          "branch": {
-            "type": "string",
-            "description": "The branch used on deployment",
-            "example": "develop"
-          },
-          "hash": {
-            "type": "string",
-            "nullable": true,
-            "description": "The commit hash defined to be used on deployment",
-            "example": "d433e4622fde4b59a48586ed94082e2d76e855c1"
+          "pipeline_id": {
+            "type": "integer",
+            "description": "The ID of the pipeline",
+            "example": 23439
           }
         },
         "required": [
+          "type",
+          "source_type",
+          "source_ref",
+          "repository",
           "provider_id",
           "provider_name",
-          "type",
-          "repository",
-          "branch",
-          "hash"
+          "pipeline_id"
         ]
       },
       "ActionDeploymentData": {
@@ -11200,9 +11790,12 @@
           "servers": {
             "$ref": "#/components/schemas/ResourceIdList"
           },
-          "branch": {
-            "description": "The name of the branch from which the application source code will be retrieved and deployed. Must not be greater than 100 characters.",
-            "example": "master",
+          "source_type": {
+            "$ref": "#/components/schemas/SourceType"
+          },
+          "source_ref": {
+            "description": "A git reference pointing to a commit in a source provider repository from which the application source code will be retrieved and deployed. It can be a branch name, tag name or a specific commit hash. Must not be greater than 200 characters.",
+            "example": "main",
             "type": "string"
           }
         }
@@ -11993,17 +12586,17 @@
           "repository": {
             "description": "The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed.",
             "type": "string",
-            "example": "devopness-api-tests/tester"
+            "example": "devopness/devopness"
           },
           "repository_name": {
             "description": "The name part of a repository full name (`repository_owner/repository_name`)",
             "type": "string",
-            "example": "tester"
+            "example": "devopness"
           },
           "repository_owner": {
             "description": "The owner part of a repository full name (`repository_owner/repository_name`)",
             "type": "string",
-            "example": "devopness-api-tests"
+            "example": "devopness"
           },
           "default_branch": {
             "description": "The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed.",
@@ -12155,8 +12748,8 @@
             "type": "string"
           },
           "engine_version": {
-            "description": "The language runtime engine version to be used to execute this application on the deployed servers. This field is required unless <code>programming_language</code> is in <code>html</code>.  Must be one of <code></code> Must be at least 1 characters. Must not be greater than 10 characters.",
-            "example": "3.8",
+            "description": "The language runtime engine version to be used to execute this application on the deployed servers. Must be one of <code></code> Must be at least 1 characters. Must not be greater than 10 characters.",
+            "example": "3.12",
             "type": "string"
           },
           "framework": {
@@ -12165,7 +12758,7 @@
             "type": "string"
           },
           "programming_language": {
-            "description": "The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`. Must be one of <code>docker</code>, <code>dotnetcore</code>, <code>html</code>, <code>nodejs</code>, <code>php</code>, or <code>python</code> Must not be greater than 30 characters.",
+            "description": "The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`. Must be one of <code>docker</code>, <code>dotnetcore</code>, <code>html</code>, <code>java</code>, <code>nodejs</code>, <code>php</code>, <code>python</code>, or <code>ruby</code> Must not be greater than 30 characters.",
             "example": "python",
             "type": "string"
           },
@@ -12175,8 +12768,8 @@
             "type": "string"
           },
           "repository": {
-            "description": "The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed. Must not be greater than 60 characters.",
-            "example": "devopness-api-tests/tester",
+            "description": "The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed. Must not be greater than 100 characters.",
+            "example": "devopness/devopness",
             "type": "string"
           },
           "source_provider_id": {
@@ -12195,7 +12788,7 @@
             "type": "string"
           },
           "default_branch": {
-            "description": "The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed. Must not be greater than 100 characters.",
+            "description": "The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed. Must not be greater than 200 characters.",
             "example": "develop",
             "type": "string"
           },
@@ -12233,6 +12826,7 @@
         "required": [
           "name",
           "type",
+          "engine_version",
           "framework",
           "programming_language",
           "repository",
@@ -12345,17 +12939,17 @@
           "repository": {
             "description": "The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed.",
             "type": "string",
-            "example": "devopness-api-tests/tester"
+            "example": "devopness/devopness"
           },
           "repository_name": {
             "description": "The name part of a repository full name (`repository_owner/repository_name`)",
             "type": "string",
-            "example": "tester"
+            "example": "devopness"
           },
           "repository_owner": {
             "description": "The owner part of a repository full name (`repository_owner/repository_name`)",
             "type": "string",
-            "example": "devopness-api-tests"
+            "example": "devopness"
           },
           "default_branch": {
             "description": "The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed.",
@@ -12480,16 +13074,18 @@
       "ApplicationTypes": {
         "type": "object",
         "properties": {
-          "public": {
+          "public_application": {
             "type": "object",
+            "description": "An application of type `public_application` is configured by Devopness to be accessed through a web server/reverse proxy to handle network requests and response, so it can be exposed as an `internet-facing` application. All applications that are intented to be accessible from the internet, exposed via a DNS record pointing to the application's server IP address, should be defined as `public_application`.",
             "properties": {
               "variables_targets": {
                 "$ref": "#/components/schemas/VariableTargetList"
               }
             }
           },
-          "private": {
+          "private_application": {
             "type": "object",
+            "description": "An application of type `private_application` does not use a web server/reverse proxy to serve public content. All appplications that are intented to be accessible only locally in their own servers, or from servers in the same internal network, should be defined as `private_application`.",
             "properties": {
               "variables_targets": {
                 "$ref": "#/components/schemas/VariableTargetList"
@@ -12498,8 +13094,8 @@
           }
         },
         "required": [
-          "public",
-          "private"
+          "public_application",
+          "private_application"
         ]
       },
       "ApplicationUpdate": {
@@ -12529,8 +13125,8 @@
             "type": "string"
           },
           "engine_version": {
-            "description": "The language runtime engine version to be used to execute this application on the deployed servers. This field is required unless <code>programming_language</code> is in <code>html</code>.  Must be one of <code></code> Must be at least 1 characters. Must not be greater than 10 characters.",
-            "example": "3.8",
+            "description": "The language runtime engine version to be used to execute this application on the deployed servers. Must be one of <code></code> Must be at least 1 characters. Must not be greater than 10 characters.",
+            "example": "3.12",
             "type": "string"
           },
           "framework": {
@@ -12539,7 +13135,7 @@
             "type": "string"
           },
           "programming_language": {
-            "description": "The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`. Must be one of <code>docker</code>, <code>dotnetcore</code>, <code>html</code>, <code>nodejs</code>, <code>php</code>, or <code>python</code> Must not be greater than 30 characters.",
+            "description": "The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`. Must be one of <code>docker</code>, <code>dotnetcore</code>, <code>html</code>, <code>java</code>, <code>nodejs</code>, <code>php</code>, <code>python</code>, or <code>ruby</code> Must not be greater than 30 characters.",
             "example": "python",
             "type": "string"
           },
@@ -12549,8 +13145,8 @@
             "type": "string"
           },
           "repository": {
-            "description": "The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed. Must not be greater than 60 characters.",
-            "example": "devopness-api-tests/tester",
+            "description": "The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed. Must not be greater than 100 characters.",
+            "example": "devopness/devopness",
             "type": "string"
           },
           "source_provider_id": {
@@ -12569,7 +13165,7 @@
             "type": "string"
           },
           "default_branch": {
-            "description": "The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed. Must not be greater than 100 characters.",
+            "description": "The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed. Must not be greater than 200 characters.",
             "example": "develop",
             "type": "string"
           },
@@ -12608,6 +13204,7 @@
           "id",
           "name",
           "type",
+          "engine_version",
           "framework",
           "programming_language",
           "public_directory",
@@ -12630,7 +13227,7 @@
           "id": {
             "description": "Unique id of the given record",
             "type": "integer",
-            "example": 16523
+            "example": 2
           },
           "name": {
             "description": "Environment's name",
@@ -12644,6 +13241,11 @@
             "description": "The human readable version of the type",
             "type": "string",
             "example": "Staging"
+          },
+          "used_credits": {
+            "description": "Number of credits used in the current monthly billing cycle by actions of resources in the environment.",
+            "type": "integer",
+            "example": 50
           },
           "created_at": {
             "description": "The date and time when the record was created",
@@ -12660,6 +13262,9 @@
             "type": "string",
             "example": "2019-09-26T10:45:42.000000Z",
             "nullable": true
+          },
+          "project": {
+            "$ref": "#/components/schemas/ProjectRelation"
           }
         },
         "required": [
@@ -12669,7 +13274,8 @@
           "type_human_readable",
           "created_at",
           "updated_at",
-          "archived_at"
+          "archived_at",
+          "project"
         ],
         "nullable": true
       },
@@ -12799,9 +13405,7 @@
             "example": "Amazon Web Services"
           },
           "hint": {
-            "type": "string",
-            "description": "Text describing what is the provider",
-            "example": "Cloud services provided by Amazon Web Services"
+            "$ref": "#/components/schemas/FieldHint"
           },
           "logo_url": {
             "type": "string",
@@ -12993,9 +13597,7 @@
             "example": "Amazon Web Services"
           },
           "hint": {
-            "type": "string",
-            "description": "Text describing what is the provider",
-            "example": "Cloud services provided by Amazon Web Services"
+            "$ref": "#/components/schemas/FieldHint"
           },
           "logo_url": {
             "type": "string",
@@ -13068,9 +13670,7 @@
             "example": "us-east-1: US East (N. Virginia)"
           },
           "hint": {
-            "type": "string",
-            "description": "Text describing the region",
-            "example": "us-east-1: US East (N. Virginia)"
+            "$ref": "#/components/schemas/FieldHint"
           },
           "zones": {
             "$ref": "#/components/schemas/CloudProviderServiceRegionZones"
@@ -13123,6 +13723,14 @@
           },
           "os": {
             "$ref": "#/components/schemas/OperatingSystems"
+          },
+          "can_keep_disk_after_delete_server": {
+            "type": "boolean",
+            "description": "Tells if this cloud service allows keeping server's persistent disks after a server is deleted. If true, Devopness API will allow users to send a parameter when deleting a server to indicate if the server persistent disks must be retained, keeping data in the disk volumes - possibly incurring extra costs on the user's cloud provider account. For cloud services that do not support this option, server disks will always be deleted when a server is deleted.",
+            "example": true
+          },
+          "operation_custom_settings": {
+            "$ref": "#/components/schemas/OperationCustomSettings"
           }
         },
         "required": [
@@ -13293,12 +13901,13 @@
           },
           "author_email": {
             "type": "string",
-            "description": "The e-mail of the commit's author"
+            "description": "The e-mail of the commit's author",
+            "example": "myusername@email.com"
           },
           "author_name": {
             "type": "string",
             "description": "The name of the commit's author",
-            "example": "feature/some-branch"
+            "example": "myusername"
           }
         },
         "required": [
@@ -13908,6 +14517,14 @@
           "name"
         ]
       },
+      "DaemonGetStatus": {
+        "type": "object",
+        "properties": {
+          "servers": {
+            "$ref": "#/components/schemas/ResourceIdList"
+          }
+        }
+      },
       "DaemonList": {
         "type": "array",
         "items": {
@@ -14051,13 +14668,13 @@
           "type": {
             "$ref": "#/components/schemas/DeploymentType"
           },
-          "branch": {
-            "description": "The name of the branch from which the application source code will be retrieved and deployed.This field is required when <code>hash</code> is not present. Must not be greater than 100 characters.",
-            "example": "master",
+          "source_type": {
+            "description": "The 'source type' from which the application source code will be retrieved and deployed. It can be one of `branch`, `tag` or `commit`. If not provided, the application's default branch will be used. This field is required when <code>source_ref</code> is present.  Must be one of <code>branch</code>, <code>tag</code>, or <code>commit</code>.",
+            "example": "commit",
             "type": "string"
           },
-          "hash": {
-            "description": "The commit hash from which the application source code will be retrieved and deployed.This field is required when <code>branch</code> is not present.  Must contain only letters and numbers. Must be at least 7 characters. Must not be greater than 40 characters.",
+          "source_ref": {
+            "description": "A git reference pointing to a commit in a source provider repository from which the application source code will be retrieved and deployed. It can be a branch name, tag name or a specific commit hash. This field is required when <code>source_type</code> is present. Must not be greater than 200 characters.",
             "example": "7ff09b0f2ed07625222f689d1afc29aa322b03a2",
             "type": "string"
           },
@@ -14086,9 +14703,7 @@
             "example": "Install dependencies"
           },
           "hint": {
-            "description": "Text describing when the event is triggered",
-            "type": "string",
-            "example": "Triggered on running a package manager to install repository dependencies"
+            "$ref": "#/components/schemas/FieldHint"
           }
         },
         "required": [
@@ -14280,7 +14895,7 @@
           "id": {
             "description": "Unique id of the given record",
             "type": "integer",
-            "example": 16523
+            "example": 2
           },
           "name": {
             "description": "Environment's name",
@@ -14294,6 +14909,11 @@
             "description": "The human readable version of the type",
             "type": "string",
             "example": "Staging"
+          },
+          "used_credits": {
+            "description": "Number of credits used in the current monthly billing cycle by actions of resources in the environment.",
+            "type": "integer",
+            "example": 50
           },
           "created_at": {
             "description": "The date and time when the record was created",
@@ -14310,6 +14930,9 @@
             "type": "string",
             "example": "2019-09-26T10:45:42.000000Z",
             "nullable": true
+          },
+          "project": {
+            "$ref": "#/components/schemas/ProjectRelation"
           }
         },
         "required": [
@@ -14319,7 +14942,8 @@
           "type_human_readable",
           "created_at",
           "updated_at",
-          "archived_at"
+          "archived_at",
+          "project"
         ],
         "nullable": true
       },
@@ -14355,6 +14979,11 @@
           "type",
           "name"
         ]
+      },
+      "FieldHint": {
+        "description": "Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field",
+        "type": "string",
+        "example": "Some text here describing this field for end users"
       },
       "Hook": {
         "type": "object",
@@ -15665,7 +16294,7 @@
         "type": "object",
         "properties": {
           "name": {
-            "description": "The network's name. Must be between 1 and 63 characters.",
+            "description": "The network's name. Must not be one of <code>default</code> Must be between 1 and 63 characters.",
             "example": "my-network",
             "type": "string"
           },
@@ -15689,9 +16318,7 @@
         "description": "Network provision input parameters",
         "properties": {
           "cloud_service_code": {
-            "type": "string",
-            "description": "The cloud service of the cloud provicer",
-            "example": "aws-ec2"
+            "$ref": "#/components/schemas/ServerCloudServiceCode"
           },
           "credential_id": {
             "type": "integer",
@@ -15796,6 +16423,11 @@
             "type": "integer",
             "example": 789
           },
+          "is_auto_generated": {
+            "description": "If true, the network is auto-generated",
+            "type": "boolean",
+            "example": false
+          },
           "provider_name": {
             "description": "The name of the cloud provider",
             "type": "string",
@@ -15830,6 +16462,7 @@
           "project_id",
           "environment_id",
           "created_by",
+          "is_auto_generated",
           "provider_name",
           "provider_name_human_readable",
           "name",
@@ -15852,33 +16485,21 @@
             "type": "string",
             "example": "Opening MySQL port so desktop apps can access it remotely"
           },
-          "type": {
-            "$ref": "#/components/schemas/NetworkRuleType"
+          "direction": {
+            "$ref": "#/components/schemas/NetworkRuleDirection"
           },
           "protocol": {
             "$ref": "#/components/schemas/NetworkRuleProtocol"
           },
-          "port_from": {
-            "description": "Starting range of network ports to be considered by this rule",
+          "port": {
+            "description": "Network port to be considered by this rule",
             "type": "integer",
-            "example": 6123
+            "example": 3306
           },
-          "port_to": {
-            "description": "Ending range of network ports to be considered by this rule",
-            "type": "integer",
-            "example": 7654
-          },
-          "ip_address_from": {
-            "description": "Starting range of the public ipv4 or ipv6 addresses that can access this rule",
+          "cidr_block": {
+            "description": "IP address range this rule applies for, defined using CIDR notation",
             "type": "string",
-            "example": "200.123.45.67",
-            "nullable": true
-          },
-          "ip_address_to": {
-            "description": "Ending range of the public ipv4 or ipv6 addresses that can access this rule",
-            "type": "string",
-            "example": "200.123.45.99",
-            "nullable": true
+            "example": "10.0.0.0/24"
           },
           "auto_generated": {
             "description": "Indicates if the network rule was auto_generated by `devopness` itself",
@@ -15911,12 +16532,10 @@
         "required": [
           "id",
           "name",
-          "type",
+          "direction",
           "protocol",
-          "port_from",
-          "port_to",
-          "ip_address_from",
-          "ip_address_to",
+          "port",
+          "cidr_block",
           "auto_generated",
           "last_action",
           "created_by_user",
@@ -15926,6 +16545,15 @@
           "updated_at"
         ]
       },
+      "NetworkRuleDirection": {
+        "type": "string",
+        "description": "The direction of network traffic a network rule is applied. `Inbound` applies to ingress/incoming traffic originating from outside into your network. `Outbound` applies to egress traffic, originating inside your network to external networks.",
+        "enum": [
+          "inbound",
+          "outbound"
+        ],
+        "example": "inbound"
+      },
       "NetworkRuleEnvironmentCreate": {
         "type": "object",
         "properties": {
@@ -15934,38 +16562,28 @@
             "example": "Open MySQL port for remote access",
             "type": "string"
           },
-          "type": {
-            "$ref": "#/components/schemas/NetworkRuleType"
+          "direction": {
+            "$ref": "#/components/schemas/NetworkRuleDirection"
           },
           "protocol": {
             "$ref": "#/components/schemas/NetworkRuleProtocol"
           },
-          "ip_address_from": {
-            "description": "Starting range of the public ipv4 or ipv6 addresses that can access this rule. Must be a valid IP address.",
-            "example": "200.123.45.67",
+          "cidr_block": {
+            "description": "IP address range this rule applies for, defined using CIDR notation.",
+            "example": "10.0.0.0/24",
             "type": "string"
           },
-          "ip_address_to": {
-            "description": "Ending range of the public ipv4 or ipv6 addresses that can access this rule. Must be a valid IP address.",
-            "example": "200.123.45.99",
-            "type": "string"
-          },
-          "port_from": {
-            "description": "Starting range of network ports to be considered by this rule. Must be at least 1. Must not be greater than 65535.",
-            "example": 6123,
-            "type": "integer"
-          },
-          "port_to": {
-            "description": "Ending range of network ports to be considered by this rule. Must be at least 1. Must not be greater than 65535.",
-            "example": 7654,
+          "port": {
+            "description": "Network port to be considered by this rule. Must be at least 1. Must not be greater than 65535.",
+            "example": 3306,
             "type": "integer"
           }
         },
         "required": [
           "name",
-          "type",
-          "port_from",
-          "port_to"
+          "direction",
+          "cidr_block",
+          "port"
         ]
       },
       "NetworkRuleList": {
@@ -15974,11 +16592,27 @@
           "$ref": "#/components/schemas/NetworkRuleRelation"
         }
       },
+      "NetworkRuleOptions": {
+        "type": "object",
+        "properties": {
+          "directions": {
+            "$ref": "#/components/schemas/StaticNetworkRuleDirectionList"
+          },
+          "protocols": {
+            "$ref": "#/components/schemas/StaticNetworkRuleProtocolList"
+          }
+        },
+        "required": [
+          "directions",
+          "protocols"
+        ]
+      },
       "NetworkRuleProtocol": {
         "type": "string",
         "description": "The network protocol to which this rule is applied.",
         "enum": [
           "any",
+          "icmp",
           "tcp",
           "udp"
         ],
@@ -15997,33 +16631,21 @@
             "type": "string",
             "example": "Opening MySQL port so desktop apps can access it remotely"
           },
-          "type": {
-            "$ref": "#/components/schemas/NetworkRuleType"
+          "direction": {
+            "$ref": "#/components/schemas/NetworkRuleDirection"
           },
           "protocol": {
             "$ref": "#/components/schemas/NetworkRuleProtocol"
           },
-          "port_from": {
-            "description": "Starting range of network ports to be considered by this rule",
+          "port": {
+            "description": "Network port to be considered by this rule",
             "type": "integer",
-            "example": 6123
+            "example": 3306
           },
-          "port_to": {
-            "description": "Ending range of network ports to be considered by this rule",
-            "type": "integer",
-            "example": 7654
-          },
-          "ip_address_from": {
-            "description": "Starting range of the public ipv4 or ipv6 addresses that can access this rule",
+          "cidr_block": {
+            "description": "IP address range this rule applies for, defined using CIDR notation",
             "type": "string",
-            "example": "200.123.45.67",
-            "nullable": true
-          },
-          "ip_address_to": {
-            "description": "Ending range of the public ipv4 or ipv6 addresses that can access this rule",
-            "type": "string",
-            "example": "200.123.45.99",
-            "nullable": true
+            "example": "10.0.0.0/24"
           },
           "auto_generated": {
             "description": "Indicates if the network rule was auto_generated by `devopness` itself",
@@ -16047,27 +16669,16 @@
         "required": [
           "id",
           "name",
-          "type",
+          "direction",
           "protocol",
-          "port_from",
-          "port_to",
-          "ip_address_from",
-          "ip_address_to",
+          "port",
+          "cidr_block",
           "auto_generated",
           "last_action",
           "created_at",
           "updated_at"
         ],
         "nullable": true
-      },
-      "NetworkRuleType": {
-        "type": "string",
-        "description": "The type of network traffic to which this rule is applied",
-        "enum": [
-          "inbound",
-          "outbound"
-        ],
-        "example": "inbound"
       },
       "NetworkRuleUpdate": {
         "type": "object",
@@ -16082,27 +16693,23 @@
             "example": "Open MySQL port for remote access",
             "type": "string"
           },
-          "type": {
-            "$ref": "#/components/schemas/NetworkRuleType"
+          "direction": {
+            "$ref": "#/components/schemas/NetworkRuleDirection"
           },
           "protocol": {
             "$ref": "#/components/schemas/NetworkRuleProtocol"
           },
-          "ip_address_from": {
-            "description": "Starting range of the public ipv4 or ipv6 addresses that can access this rule. Must be a valid IP address.",
-            "example": "200.123.45.67",
-            "type": "string"
-          },
-          "ip_address_to": {
-            "description": "Ending range of the public ipv4 or ipv6 addresses that can access this rule. Must be a valid IP address.",
-            "example": "200.123.45.99",
+          "cidr_block": {
+            "description": "IP address range this rule applies for, defined using CIDR notation.",
+            "example": "10.0.0.0/24",
             "type": "string"
           }
         },
         "required": [
           "id",
           "name",
-          "type"
+          "direction",
+          "cidr_block"
         ]
       },
       "OperatingSystem": {
@@ -16119,9 +16726,7 @@
             "example": "Ubuntu"
           },
           "hint": {
-            "type": "string",
-            "description": "Text describing the operating system",
-            "example": "Ubuntu"
+            "$ref": "#/components/schemas/FieldHint"
           },
           "supported_versions": {
             "$ref": "#/components/schemas/OperatingSystemVersions"
@@ -16191,6 +16796,32 @@
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/OperatingSystem"
+        }
+      },
+      "OperationCustomSettings": {
+        "type": "object",
+        "properties": {
+          "operation": {
+            "type": "string",
+            "description": "The resource's custom operation that are CSP specific",
+            "example": "remove"
+          },
+          "operation_human_readable": {
+            "type": "string",
+            "description": "Human redable version of the resource's custom operation",
+            "example": "Delete"
+          },
+          "triggers_action": {
+            "type": "boolean",
+            "description": "Whether the `server:remove` operation will trigger an action or not",
+            "example": true
+          }
+        }
+      },
+      "OperationCustomSettingsList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/OperationCustomSettings"
         }
       },
       "OsUsers": {
@@ -16540,8 +17171,7 @@
             "example": "Remove old releases"
           },
           "hint": {
-            "type": "string",
-            "example": "Remove outdated releases from application directory"
+            "$ref": "#/components/schemas/FieldHint"
           }
         }
       },
@@ -16559,15 +17189,14 @@
         "properties": {
           "name": {
             "type": "string",
-            "example": "branch"
+            "example": "source_type"
           },
           "human_readable": {
             "type": "string",
-            "example": "Branch"
+            "example": "Source type"
           },
           "hint": {
-            "type": "string",
-            "example": "The name of the branch from which the application source code will be retrieved and deployed. If not provided, the application default branch will be used."
+            "$ref": "#/components/schemas/FieldHint"
           },
           "type": {
             "type": "string",
@@ -16650,7 +17279,7 @@
           "user_id": {
             "description": "The id of the user that own the project",
             "type": "integer",
-            "example": 45678
+            "example": 984123
           },
           "name": {
             "description": "The project's name",
@@ -16753,6 +17382,11 @@
           },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
+          },
+          "used_credits": {
+            "description": "Number of credits used in the current monthly billing cycle by actions of resources in the project.",
+            "type": "integer",
+            "example": 123
           },
           "created_at": {
             "description": "The date and time when the record was created",
@@ -16893,6 +17527,9 @@
           },
           "branches": {
             "$ref": "#/components/schemas/RepositoryBranchList"
+          },
+          "tags": {
+            "$ref": "#/components/schemas/RepositoryTagList"
           }
         },
         "required": [
@@ -16900,7 +17537,8 @@
           "user_name",
           "full_name",
           "html_url",
-          "branches"
+          "branches",
+          "tags"
         ]
       },
       "RepositoryBranch": {
@@ -16972,6 +17610,51 @@
         ],
         "nullable": true
       },
+      "RepositoryTag": {
+        "description": "A repository tag",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the tag",
+            "example": "v1.0.0"
+          },
+          "commit": {
+            "$ref": "#/components/schemas/RepositoryTagCommit"
+          }
+        },
+        "required": [
+          "name",
+          "commit"
+        ]
+      },
+      "RepositoryTagCommit": {
+        "type": "object",
+        "properties": {
+          "hash": {
+            "type": "string",
+            "description": "The commit comment's full hash that uniquely identify it",
+            "example": "4a03b9d21edeef8434c45818594a5d72027c14e7"
+          },
+          "url": {
+            "type": "string",
+            "format": "url",
+            "description": "The direct URL for accessing commit details on the provider's web application",
+            "example": "https://github.com/myusername/myrepo/commit/4a03b9d21edeef8434c45818594a5d72027c14e7"
+          }
+        },
+        "required": [
+          "hash",
+          "url"
+        ]
+      },
+      "RepositoryTagList": {
+        "description": "List of repository tags",
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/RepositoryTag"
+        }
+      },
       "RequestList": {
         "type": "array",
         "items": {
@@ -17040,7 +17723,7 @@
           },
           "resource_id": {
             "description": "The resource ID.",
-            "type": "string",
+            "type": "integer",
             "example": "paddle"
           },
           "resource_data": {
@@ -17150,7 +17833,7 @@
           },
           "resource_id": {
             "description": "The linked resource ID",
-            "type": "string",
+            "type": "integer",
             "example": 123
           },
           "can_be_unlinked": {
@@ -17478,9 +18161,7 @@
             "example": "Composer"
           },
           "hint": {
-            "type": "string",
-            "description": "A brief description about the runner",
-            "example": "Composer is a tool for dependency management in PHP"
+            "$ref": "#/components/schemas/FieldHint"
           }
         },
         "required": [
@@ -17521,17 +18202,15 @@
           "provider_name": {
             "description": "The name of the server's provider.",
             "type": "string",
-            "example": "self-hosted"
+            "example": "aws"
           },
           "provider_name_human_readable": {
             "description": "The human readable version of the provider's name",
             "type": "string",
-            "example": "VPS/Self Hosted"
+            "example": "Amazon Web Services"
           },
           "cloud_service_code": {
-            "description": "The cloud service code",
-            "type": "string",
-            "example": "self-hosted-custom"
+            "$ref": "#/components/schemas/ServerCloudServiceCode"
           },
           "ip_address": {
             "description": "Public ipv4 address for server access",
@@ -17718,6 +18397,17 @@
         "items": {
           "$ref": "#/components/schemas/ServerRelation"
         }
+      },
+      "ServerOptions": {
+        "type": "object",
+        "properties": {
+          "variables_targets": {
+            "$ref": "#/components/schemas/VariableTargetList"
+          }
+        },
+        "required": [
+          "variables_targets"
+        ]
       },
       "ServerProvisionInput": {
         "type": "object",
@@ -17976,7 +18666,7 @@
             "$ref": "#/components/schemas/ServiceType"
           },
           "version": {
-            "description": "The service version to be installed. Must be one of <code></code> Must be at least 3 characters. Must not be greater than 30 characters.",
+            "description": "The service version to be installed. Must be one of <code></code> Must be at least 1 characters. Must not be greater than 30 characters.",
             "example": "5.7",
             "type": "string"
           }
@@ -18164,8 +18854,10 @@
           "newrelic-infra",
           "nginx",
           "php",
+          "postgresql",
           "redis",
-          "supervisor"
+          "supervisor",
+          "ufw"
         ],
         "example": "mysql"
       },
@@ -18534,6 +19226,16 @@
           "updated_at"
         ],
         "nullable": true
+      },
+      "SourceType": {
+        "type": "string",
+        "description": "The 'source type' from which the application source code will be retrieved and deployed. It can be one of `branch`, `tag` or `commit`. If not provided, the application's default branch will be used.",
+        "example": "branch",
+        "enum": [
+          "branch",
+          "commit",
+          "tag"
+        ]
       },
       "SshKey": {
         "type": "object",
@@ -18966,9 +19668,7 @@
             "$ref": "#/components/schemas/CronJobPattern"
           },
           "hint": {
-            "type": "string",
-            "description": "Text hint describing the frequency",
-            "example": "Run once a month at midnight on the first day of month"
+            "$ref": "#/components/schemas/FieldHint"
           }
         },
         "required": [
@@ -18997,9 +19697,7 @@
             "example": "Development"
           },
           "hint": {
-            "type": "string",
-            "description": "Text describing the environment purpose",
-            "example": "Environment used for dev testing"
+            "$ref": "#/components/schemas/FieldHint"
           }
         },
         "required": [
@@ -19023,6 +19721,77 @@
           "example": "PT-BR"
         }
       },
+      "StaticNetworkRuleDirection": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "$ref": "#/components/schemas/NetworkRuleDirection"
+          },
+          "human_readable": {
+            "type": "string",
+            "description": "The formatted name to be displayed in user interfaces",
+            "example": "Inbound"
+          },
+          "hint": {
+            "$ref": "#/components/schemas/FieldHint"
+          }
+        },
+        "required": [
+          "value",
+          "human_readable",
+          "hint"
+        ]
+      },
+      "StaticNetworkRuleDirectionList": {
+        "description": "The supported network rule's traffic directions",
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/StaticNetworkRuleDirection"
+        }
+      },
+      "StaticNetworkRuleProtocol": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "$ref": "#/components/schemas/NetworkRuleProtocol"
+          },
+          "human_readable": {
+            "type": "string",
+            "description": "The formatted name to be displayed in user interfaces",
+            "example": "Any"
+          },
+          "defaults": {
+            "$ref": "#/components/schemas/StaticNetworkRuleProtocolDefaults"
+          }
+        },
+        "required": [
+          "value",
+          "human_readable",
+          "defaults"
+        ]
+      },
+      "StaticNetworkRuleProtocolDefaults": {
+        "description": "List of default values for this protocol",
+        "type": "object",
+        "properties": {
+          "port": {
+            "type": "integer",
+            "nullable": true,
+            "description": "The default port for the protocol",
+            "example": 3306
+          }
+        },
+        "required": [
+          "port"
+        ]
+      },
+      "StaticNetworkRuleProtocolList": {
+        "description": "The supported network rule's protocols",
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/StaticNetworkRuleProtocol"
+        }
+      },
       "StaticPermission": {
         "type": "object",
         "properties": {
@@ -19037,9 +19806,7 @@
             "example": "Add"
           },
           "hint": {
-            "type": "string",
-            "description": "Description of what a role is allowed to do with a resource if she has this permission",
-            "example": "Authorize to create new applications"
+            "$ref": "#/components/schemas/FieldHint"
           },
           "required_permissions": {
             "$ref": "#/components/schemas/StaticRequiredPermissions"
@@ -19080,9 +19847,7 @@
             "example": "MySQL"
           },
           "hint": {
-            "type": "string",
-            "description": "Text describing the service",
-            "example": "MySQL Community Server"
+            "$ref": "#/components/schemas/FieldHint"
           },
           "supported_versions": {
             "type": "array",
@@ -19436,13 +20201,19 @@
       "SubnetProvisionInputSettingsDigitalOcean": {
         "type": "object",
         "properties": {
+          "region": {
+            "description": "The cloud provider region where the subnet will be created",
+            "type": "string",
+            "example": "ams2"
+          },
           "cidr_block": {
             "description": "The IP CIDR range of the subnet",
             "type": "string",
-            "example": "10.2.0.0/24"
+            "example": "10.0.0.0/24"
           }
         },
         "required": [
+          "region",
           "cidr_block"
         ]
       },
@@ -20692,6 +21463,44 @@
           "hidden"
         ]
       },
+      "VariableCreate": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "description": "The unique key used to identify the variable on the target. Must not be greater than 100 characters.",
+            "example": "APP_URL",
+            "type": "string"
+          },
+          "value": {
+            "description": "The value to be assigned to this variable when deployed to its target.\n                When variable is of type `file`, this is the file content. Must not be greater than 21504 characters.",
+            "example": "https://staging.devopness.com",
+            "type": "string"
+          },
+          "description": {
+            "description": "A text describing the variable, provided by the end user.",
+            "example": "Sample variable description",
+            "type": "string"
+          },
+          "target": {
+            "$ref": "#/components/schemas/VariableTarget"
+          },
+          "type": {
+            "$ref": "#/components/schemas/VariableType"
+          },
+          "hidden": {
+            "description": "Indicates if the variable value should be visible or not in the deployment logs.",
+            "example": false,
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "key",
+          "value",
+          "target",
+          "type",
+          "hidden"
+        ]
+      },
       "VariableList": {
         "type": "array",
         "items": {
@@ -20829,7 +21638,8 @@
           "php-fpm_php-ini",
           "php-fpm_pool-d-www-conf",
           "redis-conf",
-          "supervisord-conf"
+          "supervisord-conf",
+          "sysctl-conf"
         ],
         "example": "resource-config-file"
       },
@@ -20845,25 +21655,7 @@
         "description": "The object of target defining how the variable key/value pair will be deployed",
         "properties": {
           "name": {
-            "type": "string",
-            "enum": [
-              "resource-config-file",
-              "nginx-http-server",
-              "my-cnf",
-              "newrelic-infra-yml",
-              "nginx-conf",
-              "nginx-main",
-              "nginx-http",
-              "os-env-var",
-              "php-cli_php-ini",
-              "php-fpm_php-fpm-conf",
-              "php-fpm_php-ini",
-              "php-fpm_pool-d-www-conf",
-              "redis-conf",
-              "supervisord-conf"
-            ],
-            "description": "The variable target name",
-            "example": "my-cnf"
+            "$ref": "#/components/schemas/VariableTarget"
           },
           "name_human_readable": {
             "type": "string",
@@ -20871,9 +21663,7 @@
             "example": "MySQL Configuration (my.cnf)"
           },
           "hint": {
-            "type": "string",
-            "description": "Text describing what is the variable target",
-            "example": "Configuration file for MySQL (my.cnf)."
+            "$ref": "#/components/schemas/FieldHint"
           }
         }
       },

@@ -4,15 +4,13 @@ intro: Deploy your code changes in smaller chunks to make it easier to validate 
 links:
     overview:
     quickstart:
-    previous:
-        - /docs/linked-resources/add-linked-resource
-    next:
-        - /docs/ssl-certificates/add-ssl-certificate
+    previous: /docs/linked-resources/add-linked-resource
+    next: /docs/ssl-certificates/add-ssl-certificate
     guides:
     related:
     featured:
 required_permissions:
-    - application:pipeline_run
+    - application:deploy
 ---
 
 1. On Devopness, navigate to a project then select an environment

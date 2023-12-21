@@ -5,10 +5,10 @@ links:
     overview:
     quickstart:
     previous:
-    next:
+    next: /docs/servers/add-server
     guides:
-        - /docs/servers/add-existing-server
-        - /docs/servers/add-gcp-server
+        - /docs/servers/check-server-provision-logs
+        - /docs/servers/ssh-into-server
     related:
     featured:
 ---

@@ -28,10 +28,10 @@ export interface ResourceEvent {
     resource_type: string;
     /**
      * The resource ID.
-     * @type {string}
+     * @type {number}
      * @memberof ResourceEvent
      */
-    resource_id: string;
+    resource_id: number;
     /**
      * 
      * @type {Subscription}

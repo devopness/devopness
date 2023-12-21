@@ -12,8 +12,8 @@
  */
 
 
+import { NetworkRuleDirection } from './network-rule-direction';
 import { NetworkRuleProtocol } from './network-rule-protocol';
-import { NetworkRuleType } from './network-rule-type';
 
 /**
  * 
@@ -29,10 +29,10 @@ export interface NetworkRuleEnvironmentCreate {
     name: string;
     /**
      * 
-     * @type {NetworkRuleType}
+     * @type {NetworkRuleDirection}
      * @memberof NetworkRuleEnvironmentCreate
      */
-    type: NetworkRuleType;
+    direction: NetworkRuleDirection;
     /**
      * 
      * @type {NetworkRuleProtocol}
@@ -40,28 +40,16 @@ export interface NetworkRuleEnvironmentCreate {
      */
     protocol?: NetworkRuleProtocol;
     /**
-     * Starting range of the public ipv4 or ipv6 addresses that can access this rule. Must be a valid IP address.
+     * IP address range this rule applies for, defined using CIDR notation.
      * @type {string}
      * @memberof NetworkRuleEnvironmentCreate
      */
-    ip_address_from?: string;
+    cidr_block: string;
     /**
-     * Ending range of the public ipv4 or ipv6 addresses that can access this rule. Must be a valid IP address.
-     * @type {string}
-     * @memberof NetworkRuleEnvironmentCreate
-     */
-    ip_address_to?: string;
-    /**
-     * Starting range of network ports to be considered by this rule. Must be at least 1. Must not be greater than 65535.
+     * Network port to be considered by this rule. Must be at least 1. Must not be greater than 65535.
      * @type {number}
      * @memberof NetworkRuleEnvironmentCreate
      */
-    port_from: number;
-    /**
-     * Ending range of network ports to be considered by this rule. Must be at least 1. Must not be greater than 65535.
-     * @type {number}
-     * @memberof NetworkRuleEnvironmentCreate
-     */
-    port_to: number;
+    port: number;
 }
 

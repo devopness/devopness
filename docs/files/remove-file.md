@@ -1,13 +1,11 @@
 ---
-title: Remove a Configuration File
+title: Remove a File
 intro: Learn how to remove a configuration file when it's no longer needed
 links:
     overview:
     quickstart:
-    previous:
-        - /docs/applications/add-application
-    next:
-        - /docs/configuration-files/add-configuration-file
+    previous: /docs/applications/add-application
+    next: /docs/files/add-file
     guides:
     related:
     featured:
@@ -27,4 +25,4 @@ required_permissions:
 1. Follow the prompts then click `REMOVE`
 1. In the list of configuration files, the recently removed `Configuration File` will be gone
     > A new deployment is required for your changes to take effect.
-      - Follow the guide [Deploy Application](/docs/applications/deploy-application/)
+      - Follow the guide {% mentionPost "/docs/applications/deploy-application" %}
