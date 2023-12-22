@@ -15,7 +15,7 @@ links:
 
 1. Access a GCP project or create a new one: [https://console.cloud.google.com/project](https://console.cloud.google.com/project)
     > If you created a new project, a notification modal will appear showing your new project creation status.
-    > Reload the console page if your new project is not listed a few seconds after its creation is succeded.
+    > Reload the console page if your new project is not listed a few seconds after its creation is succeeded.
 1. Make sure `Compute Engine API` is enabled on the selected Project:
     - On GCP console, click on the dropdown menu and select [APIs and Services](https://console.cloud.google.com/apis/dashboard)
     - Make sure the correct project is selected in GCP console's header left side
@@ -28,7 +28,7 @@ links:
 1. On the left side menu under `IAM & Admin`, select the `Service Accounts` option
 1. Make sure a service account named as `<project-id>-compute@developer.gserviceaccount.com` is listed
 1. If you do not have a service account, [create a new one](https://cloud.google.com/iam/docs/creating-managing-service-account-keys):
-    - Click `+ CREATE SERVICE ACCOUNT` option bellow the search bar
+    - Click `+ CREATE SERVICE ACCOUNT` option below the search bar
     - Name your new service account
     - Click `DONE`
 1. Having your service account listed, go to the `Actions` column, click the three dot menu on your service account and choose `Manage details` option
@@ -44,7 +44,7 @@ links:
     - Click `SAVE`
 1. On the left side menu under `IAM & Admin`, select the `IAM` option
 1. Having your service account listed, edit its roles:
-    - Click the edit icon on yout service account
+    - Click the edit icon on your service account
     - Click `ADD ANOTHER ROLE`
     - Select the `Compute Instance Admin (v1)` role to this email
     - Click `SAVE`
@@ -55,5 +55,5 @@ links:
     - Select `Create new key` option
     - Pick `JSON` key type
     - Click `CREATE`
-1. A JSON file containing your service account credentials will be downloaded, copy it's content to your clipboard
+1. A JSON file containing your service account credentials will be downloaded, copy its content to your clipboard
 1. To add the copied credentials to Devopness see {% mentionPost "/docs/users/credentials/add-credential" %}
