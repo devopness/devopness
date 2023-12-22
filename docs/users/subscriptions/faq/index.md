@@ -28,10 +28,13 @@ As an action running a pipeline can have a variable number of steps, Devopness w
 
 See also:
 - [What are actions and action steps?](#)
-- [What are credits?.](#)
+- [What are credits?](#)
 
 ## How do I pay?
-You can pay {% mentionPost "/docs/users/subscriptions/upgrade-subscription" %}.
+You can pay inside the Devopness web app. 
+
+For detailed instructions, see:
+- {% mentionPost "/docs/users/subscriptions/upgrade-subscription" %}.
 
 ## What are actions and action steps?
 An “action” is the execution of a pipeline.
@@ -60,7 +63,7 @@ After the action is finished, 95 credits will remain available to be used in any
 
 See also:
 - [What are actions and action steps?](#)
-- [What are credits?.](#)
+- [What are credits?](#)
 
 ## Am I charged for `failed` and `skipped` action steps?
 No.
@@ -83,7 +86,10 @@ For detailed instructions, see:
 ## What happens when I run out of credits?
 If you run out of credits you can keep using Devopness to manage your environment resources and all features on your paid plans will remain accessible.
 
-However, new actions will not be able to be created in your projects until you add credits to your account. See How do I add credits to my account?
+However, new actions will not be able to be created in your projects until you add credits to your account. 
+
+For more information, see:
+- [How do I add credits to my account?](#)
 
 ## How do I add credits to my account?
 To add credits to your account, {% mentionPost "/docs/users/subscriptions/upgrade-subscription" %}.
@@ -94,7 +100,10 @@ Monthly. The exact date may vary as months have different number of days. We cur
 ## What happens if my subscription cannot be renewed?
 Subscriptions are renewed automatically on their expiry date, using your chosen payment method.
 
-If for some reason your subscription could not be renewed, the current subscription will be canceled. See [What happens after my subscription is canceled?](#).
+If for some reason your subscription could not be renewed, the current subscription will be canceled. 
+
+See also:
+- [What happens after my subscription is canceled?](#)
 
 ## How do I cancel my subscription?
 Subscriptions on Devopness are for an indefinite term, unless you unsubscribe.
@@ -102,8 +111,8 @@ Subscriptions on Devopness are for an indefinite term, unless you unsubscribe.
 Upon cancellation, your subscription will remain active and its credits can be used until the end of the current paid term.
 
 See also:
-- {% mentionPost "/docs/users/subscriptions/cancel-subscription" %}.
-- [What happens after my subscription is canceled?](#).
+- {% mentionPost "/docs/users/subscriptions/cancel-subscription" %}
+- [What happens after my subscription is canceled?](#)
 
 ## What happens after my subscription is canceled?
 When your subscription is canceled you’ll still be able to use your subscription exclusive features and remaining credits for the time you’ve already paid for.
