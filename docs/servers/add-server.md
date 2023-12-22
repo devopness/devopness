@@ -5,7 +5,7 @@ links:
     overview:
     quickstart:
     previous: /docs/environments/add-environment
-    next:
+    next: /docs/servers/check-server-provision-logs
     guides:
     related:
         - /docs/servers/add-aws-server
