@@ -86,7 +86,7 @@ For detailed instructions, see:
 ## What happens when I run out of credits?
 If you run out of credits you can keep using Devopness to manage your environment resources and all features on your paid plans will remain accessible.
 
-However, new actions will not be able to be created in your projects until you add credits to your account. 
+However, new actions will not be created in your projects until you add credits to your account. 
 
 For more information, see:
 - [How do I add credits to my account?](#)
