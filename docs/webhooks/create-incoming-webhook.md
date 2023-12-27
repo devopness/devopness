@@ -57,7 +57,14 @@ Webhooks, for now, are an API only feature; so this post will guide you through 
     	"settings": {
     		"variables": [
     			{
-    				"name": "branch",
+    				"name": "source_type",
+	    			"type": "string",
+		    		"required": false,
+			    	"default_value": "branch"
+    			},
+    			{
+    				"name": "source_ref",
+    				"path": "pull_request.head.ref",
 	    			"type": "string",
 		    		"required": false,
 			    	"default_value": "main"
