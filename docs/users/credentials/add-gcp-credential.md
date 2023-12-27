@@ -15,7 +15,8 @@ links:
 
 1. Access a GCP project or create a new one: [https://console.cloud.google.com/project](https://console.cloud.google.com/project)
     > If you created a new project, a notification modal will appear showing your new project creation status.
-    > Reload the console page if your new project is not listed a few seconds after its creation is succeeded.
+    > Note: It might take a few seconds for the new project to be visible in the project list.
+    > If your new project is not listed a few seconds after its creation, reload the console page.
 1. Make sure `Compute Engine API` is enabled on the selected Project:
     - On GCP console, click on the dropdown menu and select [APIs and Services](https://console.cloud.google.com/apis/dashboard)
     - Make sure the correct project is selected in GCP console's header left side
