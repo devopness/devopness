@@ -17,7 +17,7 @@ required_permissions:
 1. Find the `Applications` card
 1. Click `View` in the `Applications` card to see a list of existing `Applications`
 1. Click `DEPLOY` on the application you want to deploy
-1. Choose the branch and the pipeline to be deployed, then click `Next`
+1. Follow the prompts, then click `Next`
 1. Review deploy information then click `Confirm`
    > A notification popup will be displayed, confirming that the deployment has been triggered
 1. Wait for the `Application:Deploy` action to be completed
