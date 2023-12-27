@@ -67,7 +67,7 @@ links:
           ],
           "request_body": {
             // NOTE: review the fields below according to Request Body (`<request_body>`)
-            "body": "Deployed pipeline for `PR #{{ action.triggered_from.hook_parsed_variables.pull_request_id }} ({{ action.triggered_from.hook_parsed_variables.pull_request_title }})`: Devopness application `{{ application.name }}` deployment **{{ action.status }}** on action <https:\/\/{{ application.name }}>"
+            "body": "Deployed pipeline for `PR #{{ action.triggered_from.hook_parsed_variables.pull_request_id }} ({{ action.triggered_from.hook_parsed_variables.pull_request_title }})`: Devopness application `{{ application.name }}` deployment **{{ action.status }}** on action <https:\/\/{{ application.name }}> using [commit](https://github.com/devopness/devopness-site/commit/{{ action.triggered_from.hook_parsed_variables.commit_hash }})"
           }
         },
         "trigger_when": {
