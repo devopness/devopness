@@ -3,3 +3,9 @@ contact_links:
   - name: 💡 Ideas & Feature Requests
     url: https://github.com/devopness/devopness/discussions/categories/ideas-feature-requests
     about: Discuss ideas or request features you want to see added to Devopness
+  - name: 💬 General Discussions
+    url: https://github.com/devopness/devopness/discussions/categories/general
+    about: Chat about anything related to Devopness
+  - name: ❓ Ask for help
+    url: https://github.com/devopness/devopness/discussions/categories/help
+    about: Ask the community for help or ask questions about the product
