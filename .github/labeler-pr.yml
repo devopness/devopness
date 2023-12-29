@@ -1,6 +1,3 @@
-"scope: repo":
-  - "*"
-
 "scope: ci":
   - ".github/**/*"
 
@@ -12,6 +9,9 @@
 
 "scope: packages":
   - packages/**/*
+
+"scope: repo":
+  - "*"
 
 "scope: sdk":
   - packages/sdks/**/*

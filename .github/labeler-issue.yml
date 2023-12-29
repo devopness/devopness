@@ -1,14 +1,14 @@
-"status: needs triage":
-  - '/.*/'
 "scope: api":
   - '(Devopness API)'
-"scope: website":
-  - '(Devopness website)'
-"scope: web-app":
-  - '(Devopness web app)'
 "scope: docs":
   - '(Documentation)'
 "scope: sdk":
   - 'SDK-'
 "scope: sdk-javascript":
   - '(SDK-JS)'
+"scope: web-app":
+  - '(Devopness web app)'
+"scope: website":
+  - '(Devopness website)'
+"status: needs triage":
+  - '/.*/'
