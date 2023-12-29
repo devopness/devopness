@@ -1,5 +1,5 @@
 blank_issues_enabled: false
 contact_links:
-  - name: 💬 Questions & Discussions
-    url: https://github.com/orgs/devopness/discussions
-    about: Ask questions and discuss ideas and best practices with other Devopness community members
+  - name: 💬 Ideas & Feature Requests
+    url: https://github.com/devopness/devopness/discussions/categories/ideas-feature-requests
+    about: Share your ideas and request features you want to see added to Devopness
