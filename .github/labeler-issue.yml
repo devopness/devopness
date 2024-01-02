@@ -2,7 +2,7 @@
   - '(Devopness API)'
 "scope: docs":
   - '(Documentation)'
-"scope: sdk":
+"scope: sdks":
   - 'SDK-'
 "scope: sdk-javascript":
   - '(SDK-JS)'
