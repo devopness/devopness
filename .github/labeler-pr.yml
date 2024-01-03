@@ -1,20 +1,20 @@
-repo:
-  - "*"
-
-ci:
+"scope: ci":
   - ".github/**/*"
 
-applications:
+"scope: application":
   - applications/**/*
 
-docs:
+"scope: docs":
   - docs/**/*
 
-packages:
+"scope: packages":
   - packages/**/*
 
-sdk:
+"scope: repo":
+  - "*"
+
+"scope: sdks":
   - packages/sdks/**/*
 
-sdk-javascript:
+"scope: sdk-javascript":
   - packages/sdks/javascript/**/*
