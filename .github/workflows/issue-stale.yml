@@ -16,8 +16,8 @@ jobs:
           days-before-pr-close: -1 # This option is to keep the action workflow from meddling with Pull Requests for now
           days-before-issue-stale: 21
           days-before-issue-close: 14
-          stale-issue-label: "no-issue-activity"
-          labels-to-remove-when-unstale: "no-issue-activity"
+          stale-issue-label: "status: no issue activity"
+          labels-to-remove-when-unstale: "status: no issue activity"
           stale-issue-message: |
             👋 Hi there!
             This issue has been automatically marked as stale because there wasn't any activity in the past
