@@ -17,7 +17,7 @@ To get started with Devopness, follow the guide {% mentionPost "/docs/projects/a
 
 ## Get Help
 
-If you run into an issue, contact our [Community Support](https://github.com/orgs/devopness/discussions)
+If you run into an issue, contact our [Community Support](https://github.com/devopness/devopness/discussions)
 
 ## Report a Vulnerability
 
