@@ -20,8 +20,7 @@ required_permissions:
 1. On the upper-right corner of the applications details view click `SETTINGS`
 1. Use the drop-down menu to choose `CONFIGURATION FILES`
 1. In the list of configuration files find the configuration file you want to edit and click `DETAILS`
-1. On the upper-right corner of the key details click `...`
-1. Use the drop-down menu to choose `EDIT`
+1. On the upper-right corner of the key details, click `EDIT`
 1. Follow the instructions in the configuration file edit form then click `CONFIRM`
     > A new deployment is required for your changes to take effect.
       - Follow the guide {% mentionPost "/docs/applications/deploy-application" %}

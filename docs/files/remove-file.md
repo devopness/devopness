@@ -20,9 +20,8 @@ required_permissions:
 1. On the upper-right corner of the applications details view, click `SETTINGS`
 1. Use the drop-down menu to choose `CONFIGURATION FILES`, to see a list of existing `Configuration Files`
 1. In the list of configuration files, find the file you want to remove and click `DETAILS`
-1. On the upper-right corner of the configuration file details view, click `...`
-1. Use the drop-down menu to choose `REMOVE`
-1. Follow the prompts then click `REMOVE`
+1. On the upper-right corner of the configuration file details view, click `REMOVE`
+1. Follow the prompts then click `REMOVE CONFIGURATION FILE`
 1. In the list of configuration files, the recently removed `Configuration File` will be gone
     > A new deployment is required for your changes to take effect.
       - Follow the guide {% mentionPost "/docs/applications/deploy-application" %}
