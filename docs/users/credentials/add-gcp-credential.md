@@ -24,6 +24,13 @@ links:
     - On the Search box, enter “Compute Engine API” and select it from search results
     - If `Compute Engine API` is already activated, you will see the `Manage` button at the screen
     - Otherwise, click `Enable` button
+1. Make sure `Cloud Asset API` is enabled on the selected Project:
+    - On GCP console, click on the dropdown menu and select [APIs and Services](https://console.cloud.google.com/apis/dashboard)
+    - Make sure the correct project is selected in GCP console's header left side
+    - Click on **Enable APIs and Services** on top of the page
+    - On the Search box, enter “Cloud Asset API” and select it from search results
+    - If `Cloud Asset API` is already activated, you will see the `Manage` button at the screen
+    - Otherwise, click `Enable` button
 1. Go back to [projects console](https://console.cloud.google.com/project)
 1. Having your project listed, click the three dot button on it and pick the `Settings` option
 1. On the left side menu under `IAM & Admin`, select the `Service Accounts` option
