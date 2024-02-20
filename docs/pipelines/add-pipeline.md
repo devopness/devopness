@@ -20,9 +20,9 @@ required_permissions:
 1. On the left corner of the list click `PIPELINES`
 1. On the right corner of the list click `MANAGE`
 1. Provide a name for the new pipeline
-1. Select the operation
-    > Don't use the `CUSTOM` operation, it is not fully supported yet
-1. Provide the max parallel instances
+1. Select an `Operation`
+    > Don't use the `Custom` operation, it is not fully supported yet
+1. Provide a value for the `Max parallel actions` field
 1. Click `CONFIRM`
     > A new deployment is required for your changes to take effect.
       - Follow the guide {% mentionPost "/docs/applications/deploy-application" %}
