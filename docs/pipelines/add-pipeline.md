@@ -18,7 +18,7 @@ required_permissions:
 1. Click `View` in the `Applications` card to see a list of existing `Applications`
 1. In the list of applications find the application where you want to add a pipeline and click the `NAME` of the application
 1. Click the `Pipelines` tab
-1. On the right corner of the list click `MANAGE`
+1. On the upper-right corner of the pipelines tab click `MANAGE`
 1. Provide a name for the new pipeline
 1. Select an `Operation`
     > Don't use the `Custom` operation, it is not fully supported yet
