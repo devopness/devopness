@@ -16,14 +16,13 @@ required_permissions:
 1. On Devopness, navigate to a project then select an environment
 1. Find the `Applications` card
 1. Click `View` in the `Applications` card to see a list of existing `Applications`
-1. In the list of applications find the application where you want to add a pipeline and click `DETAILS`
-1. On the upper-right corner of the applications details view click `SETTINGS`
-1. Use the drop-down menu to choose `PIPELINES`
+1. In the list of applications find the application where you want to add a pipeline and click in the `NAME` of the application
+1. On the left corner of the list click in `PIPELINES`
 1. On the right corner of the list click `MANAGE`
-1. Provide a name for the new pipeline
+1. Provide a `name` for the new pipeline
 1. Select the `OPERATION`
-    > Don't use the `CUSTOM` operation, it is not fully supported
-1. Provide the limit for max parallel instances of this pipeline
+    > Don't use the `CUSTOM` operation, it is not fully supported yet
+1. Provide the `max parallel instances` for the pipeline
 1. Click `CONFIRM`
     > A new deployment is required for your changes to take effect.
       - Follow the guide {% mentionPost "/docs/applications/deploy-application" %}
