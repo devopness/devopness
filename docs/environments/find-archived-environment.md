@@ -15,7 +15,7 @@ links:
 1. Select a `Project`
 1. Find the `Environments` card
 1. Click `View` in the `Environments` card to see a list of existing `Environments`
-1. On the upper-left corner click the `Active environments` to view resource options
+1. On the upper-left corner click `Active environments` to view resource options
 1. Use the drop-down menu to choose `Archived environments`
 1. Find the `Archived Environment` you want to inspect and click `View`
 1. The `Environment` resources list will be displayed containing all the environment's resources
