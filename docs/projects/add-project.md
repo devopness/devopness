@@ -15,4 +15,5 @@ links:
 1. On the upper-right corner of the list click `ADD PROJECT`
 1. Provide a name to the `Project` being added. For example, "My Product"
 1. Click `CONFIRM`
-1. Check the project details view to see the project's current resources
+  - You will be redirected to the `Project resources` page, with details of your newly created project
+  - You can now manage `Environments`, `Teams` and `Roles` in your new project
