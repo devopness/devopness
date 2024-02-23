@@ -509,6 +509,10 @@ SourceProviderList:
   $ref: ./auto-generated/models/source-provider-list.yaml
 SourceProviderName:
   $ref: ./auto-generated/models/source-provider-name.yaml
+SourceProviderOptionsList:
+  $ref: ./auto-generated/models/source-provider-options-list.yaml
+SourceProviderOptionsRelation:
+  $ref: ./auto-generated/models/source-provider-options-relation.yaml
 SourceProviderRelation:
   $ref: ./auto-generated/models/source-provider-relation.yaml
 SourceType:

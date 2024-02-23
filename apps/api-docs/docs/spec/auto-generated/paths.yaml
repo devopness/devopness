@@ -389,6 +389,9 @@
 /static/service-options:
   get:
     $ref: ./auto-generated/endpoints/get-static-service-options.yaml
+/static/source-provider-options:
+  get:
+    $ref: ./auto-generated/endpoints/list-static-source-provider-options.yaml
 /static/user-profile-options:
   get:
     $ref: ./auto-generated/endpoints/get-static-user-profile-options.yaml
