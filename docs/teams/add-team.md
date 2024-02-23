@@ -5,7 +5,7 @@ links:
     overview: Project owners can create teams as a initial step to manage permissions and collaboration on environment resources.
     quickstart:
     previous: /docs/ssl-certificates/add-ssl-certificate
-    next: /docs/teams/members/add-member
+    next: /docs/teams/invitations/add-invitation
     guides:
     related:
     featured:
@@ -18,3 +18,5 @@ links:
 1. On the upper-right corner of the list click `ADD TEAM`
 1. Provide a name to the `Team` being added. Example: "Backend Developers"
 1. Click `CONFIRM`
+    - In the `Teams` list, the recently created `Team` can be seen
+    - To invite members to join this `Team` follow the guide {% mentionPost "/docs/teams/add-team" %}
