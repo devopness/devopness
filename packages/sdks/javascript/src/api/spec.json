@@ -9106,6 +9106,47 @@
         }
       }
     },
+    "/static/source-provider-options": {
+      "get": {
+        "summary": "List `Source provider` options",
+        "operationId": "listStaticSourceProviderOptions",
+        "description": {
+          "$ref": "../spec/descriptions/list-static-source-provider-options.md"
+        },
+        "tags": [
+          "Static Data - Source Provider Options"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SourceProviderOptionsList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/static/user-profile-options": {
       "get": {
         "summary": "List `User profile` options",
@@ -19165,6 +19206,38 @@
           "gitlab"
         ],
         "example": "bitbucket"
+      },
+      "SourceProviderOptionsList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/SourceProviderOptionsRelation"
+        }
+      },
+      "SourceProviderOptionsRelation": {
+        "type": "object",
+        "properties": {
+          "provider_name": {
+            "description": "Name of source provider",
+            "type": "string",
+            "example": "github"
+          },
+          "provider_name_human_readable": {
+            "description": "Human readable version of the provider name",
+            "type": "string",
+            "example": "GitHub"
+          },
+          "connect_url": {
+            "description": "URL of the connection",
+            "type": "string",
+            "example": "https://gitlab.com/oauth/authorize"
+          }
+        },
+        "required": [
+          "provider_name",
+          "provider_name_human_readable",
+          "connect_url"
+        ],
+        "nullable": true
       },
       "SourceProviderRelation": {
         "type": "object",
