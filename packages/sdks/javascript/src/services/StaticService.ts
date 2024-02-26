@@ -9,6 +9,7 @@ import { StaticDataPermissionsApiService } from "../api/generated/apis/static-da
 import { StaticDataResourceTypesApiService } from "../api/generated/apis/static-data-resource-types-api";
 import { StaticDataServerOptionsApiService } from "../api/generated/apis/static-data-server-options-api";
 import { StaticDataServiceOptionsApiService } from "../api/generated/apis/static-data-service-options-api";
+import { StaticDataSourceProviderOptionsApiService } from "../api/generated/apis/static-data-source-provider-options-api";
 import { StaticDataUserProfileOptionsApiService } from "../api/generated/apis/static-data-user-profile-options-api";
 
 export class StaticService {
@@ -23,5 +24,6 @@ export class StaticService {
   public resourceTypes = new StaticDataResourceTypesApiService();
   public serverOptions = new StaticDataServerOptionsApiService();
   public serviceOptions = new StaticDataServiceOptionsApiService();
+  public sourceProviderOptions = new StaticDataSourceProviderOptionsApiService();
   public userProfileOptions = new StaticDataUserProfileOptionsApiService();
 }

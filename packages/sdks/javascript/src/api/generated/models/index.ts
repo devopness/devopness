@@ -200,6 +200,7 @@ export * from './source-provider';
 export * from './source-provider-create';
 export * from './source-provider-displayable-name';
 export * from './source-provider-name';
+export * from './source-provider-options-relation';
 export * from './source-provider-relation';
 export * from './source-type';
 export * from './ssh-key';
