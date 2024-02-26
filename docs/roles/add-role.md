@@ -5,7 +5,7 @@ links:
     overview: Project owners can create roles to be used when managing environments team permissions.
     quickstart:
     previous:
-    next:
+    next: /docs/teams/add-team
     guides:
     related:
     featured:
@@ -20,5 +20,5 @@ links:
 1. Optionally type a `Description` explaining the purpose of the role
 1. Click `NEXT`
 1. In the `Permissions` step select the permissions for each resource type
-    > Make sure the `VIEW` permission in the resource type `SERVER` is marked, otherwise the team member will not have direct access to the environment through the web app.
 1. Click `CONFIRM`
+    - In the `Roles` list, the recently created `Role` can be seen

@@ -4,7 +4,7 @@ intro: Set team memberships to give team members permissions to access and manag
 links:
     overview: Project owners can establish team memberships, granting access to team members based on the assigned role.
     quickstart:
-    previous: /docs/teams/members/add-member
+    previous: /docs/teams/invitations/add-invitation
     next:
     guides:
     related:
@@ -23,3 +23,4 @@ links:
     - To check a role's details, please follow the guide {% mentionPost "/docs/roles/view-role" %}
     - If no role listed satisfies the permissions needed for the team, please follow the guide {% mentionPost "/docs/roles/add-role" %}
 1. Click `CONFIRM`
+    - In the `Team membership` list, the recently created `Team membership` can be seen
