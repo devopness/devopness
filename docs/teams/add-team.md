@@ -19,4 +19,3 @@ links:
 1. Provide a name to the `Team` being added. Example: "Backend Developers"
 1. Click `CONFIRM`
     - In the `Teams` list, the recently created `Team` can be seen
-    - To invite members to join this `Team` follow the guide {% mentionPost "/docs/teams/add-team" %}

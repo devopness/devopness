@@ -19,5 +19,4 @@ links:
 1. On the upper-right corner of the `Invitations` list, click `INVITE MEMBER`
 1. Provide the email of the member to be invited
 1. Click `CONFIRM`
-    - To give team members permissions to view and manage environment's resources, a team membership is required
-        - Follow the guide {% mentionPost "/docs/environments/team-memberships/add-team-membership" %}
+    - In the `Invitations` list, the recently created `Invitation` can be seen

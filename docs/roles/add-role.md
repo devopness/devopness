@@ -22,5 +22,3 @@ links:
 1. In the `Permissions` step select the permissions for each resource type
 1. Click `CONFIRM`
     - In the `Roles` list, the recently created `Role` can be seen
-    - A Team is required for a user to use this role's permissions in a environment's resources
-        - Follow the guide {% mentionPost "/docs/teams/add-team" %}
