@@ -267,6 +267,8 @@ LanguageRuntime:
   $ref: ./auto-generated/models/language-runtime.yaml
 LanguageRuntimeFramework:
   $ref: ./auto-generated/models/language-runtime-framework.yaml
+LanguageRuntimeFrameworkCommands:
+  $ref: ./auto-generated/models/language-runtime-framework-commands.yaml
 LanguageRuntimeFrameworkDefaults:
   $ref: ./auto-generated/models/language-runtime-framework-defaults.yaml
 LanguageRuntimeList:
