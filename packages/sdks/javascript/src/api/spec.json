@@ -16072,6 +16072,40 @@
           "defaults"
         ]
       },
+      "LanguageRuntimeFrameworkCommands": {
+        "description": "List of available commands to be chosen by user to be executed when building and deploying an application of a given stack",
+        "type": "object",
+        "properties": {
+          "build": {
+            "description": "Available build command options for the stack",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "npm build",
+              "yarn build",
+              "custom",
+              "none"
+            ]
+          },
+          "dependencies": {
+            "description": "Available dependencies installation command options for the stack",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "npm install",
+              "npm install --production",
+              "npm ci",
+              "yarn install",
+              "custom",
+              "none"
+            ]
+          }
+        }
+      },
       "LanguageRuntimeFrameworkDefaults": {
         "description": "Default values that apply to apps created in devopness using this framework",
         "type": "object",
@@ -16121,25 +16155,13 @@
             "type": "string",
             "example": "http://unix:/tmp/backend3:/my/path"
           },
-          "build_command": {
-            "description": "The optional command that should be executed once during deployment to build the source code and get the application in a ready state.",
-            "type": "string",
-            "example": "`docker build -t my_image_name .`, `yarn build`, `jekyll build`, `python build.py`"
-          },
           "deployments_keep": {
             "type": "integer",
             "description": "The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers",
             "example": 4
           },
-          "install_dependencies_dev": {
-            "description": "Indicates if at deployment time we should execute package manager command to install dependencies used in development mode",
-            "type": "boolean",
-            "example": false
-          },
-          "install_dependencies_prod": {
-            "description": "Indicates if at deployment time we should execute package manager command to install dependencies used in production mode",
-            "type": "boolean",
-            "example": true
+          "commands": {
+            "$ref": "#/components/schemas/LanguageRuntimeFrameworkCommands"
           }
         }
       },
