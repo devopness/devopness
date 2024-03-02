@@ -79,14 +79,10 @@ properties:
     description: 'The number of deployment history, logs and artifacts to keep stored in both devopness servers and user''s servers. OR The number of deployment artifacts to be retained in the user''s servers, making it easier and faster to rollback to previous versions'
     type: integer
     example: 4
-  install_dependencies_dev:
-    description: 'Indicates if at deployment time Devopness should execute package manager commands to install dependencies used in development mode'
-    type: boolean
-    example: false
-  install_dependencies_prod:
-    description: 'Indicates if at deployment time Devopness should execute package manager commands to install dependencies used in production mode'
-    type: boolean
-    example: true
+  install_dependencies_command:
+    description: 'Indicates command that Devopness must execute to install application dependencies'
+    type: string
+    example: 'npm install'
   requires_daemon:
     description: 'Indicates if the application requires a daemon to keep it alive'
     type: boolean
@@ -132,8 +128,6 @@ required:
   - entrypoint
   - listening_address
   - deployments_keep
-  - install_dependencies_dev
-  - install_dependencies_prod
   - requires_daemon
   - created_by_user
   - last_deployments

@@ -3,6 +3,7 @@ type: string
 description: 'The application deployment event to which it''s attached'
 enum:
   - activate-new-release
+  - build-application
   - check-app-environment
   - get-new-release
   - install-dependencies

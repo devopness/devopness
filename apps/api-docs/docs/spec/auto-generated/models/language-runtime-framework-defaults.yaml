@@ -44,3 +44,8 @@ properties:
     example: 4
   commands:
     $ref: '#/components/schemas/LanguageRuntimeFrameworkCommands'
+  install_dependencies_command:
+    description: 'Indicates command that Devopness must execute to install application dependencies'
+    type: string
+    example: 'npm install'
+    nullable: true
