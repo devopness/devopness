@@ -86,5 +86,11 @@ export interface LanguageRuntimeFrameworkDefaults {
      * @memberof LanguageRuntimeFrameworkDefaults
      */
     commands?: LanguageRuntimeFrameworkCommands;
+    /**
+     * Indicates command that Devopness must execute to install application dependencies
+     * @type {string}
+     * @memberof LanguageRuntimeFrameworkDefaults
+     */
+    install_dependencies_command?: string | null;
 }
 
