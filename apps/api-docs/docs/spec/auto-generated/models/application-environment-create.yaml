@@ -12,8 +12,8 @@ properties:
     example: test.my-app.co.uk
     type: string
   build_command:
-    description: 'The optional command that should be executed once during deployment to build the source code and get the application in a ready state. Must be at least 10 characters. Must not be greater than 300 characters.'
-    example: '`npm run build`, `yarn build`, `docker build -t my_image_name .`, `python build.py`'
+    description: 'The optional command that should be executed once during deployment to build the source code and get the application in a ready state.'
+    example: 'npm run build'
     type: string
   engine_version:
     description: 'The language runtime engine version to be used to execute this application on the deployed servers. Must be one of <code></code> Must be at least 1 characters. Must not be greater than 10 characters.'

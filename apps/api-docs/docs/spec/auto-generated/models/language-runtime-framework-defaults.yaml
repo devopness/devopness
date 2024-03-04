@@ -49,3 +49,8 @@ properties:
     type: string
     example: 'npm install'
     nullable: true
+  build_command:
+    description: 'The optional command that should be executed once during deployment to build the source code and get the application in a ready state'
+    type: string
+    example: 'npm run build'
+    nullable: true
