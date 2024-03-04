@@ -29,6 +29,6 @@ The project owner can unarchive an archived environment, making it active and ac
 1. In the list of `Projects` find the Project with the Team you want to manage and click View
 1. Click `View` in the `Environments` card to see a list of existing `Environments`
 1. Find the `Environment` you want to archive and click `View`
-1. On the upper-right corner of the `Environment` resources list, click **SETTINGS**
-1. Use the drop-down menu to choose `Archive`
+1. On the upper-right corner of the `Environment` resources list, click `SETTINGS`
+1. Select the option `Archived environments` 
 1. Follow the instructions in the form then click `Archive`
