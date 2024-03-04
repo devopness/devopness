@@ -39,7 +39,7 @@ export interface ApplicationEnvironmentCreate {
      */
     domain_name?: string;
     /**
-     * The optional command that should be executed once during deployment to build the source code and get the application in a ready state. Must be at least 10 characters. Must not be greater than 300 characters.
+     * The optional command that should be executed once during deployment to build the source code and get the application in a ready state.
      * @type {string}
      * @memberof ApplicationEnvironmentCreate
      */

@@ -92,5 +92,11 @@ export interface LanguageRuntimeFrameworkDefaults {
      * @memberof LanguageRuntimeFrameworkDefaults
      */
     install_dependencies_command?: string | null;
+    /**
+     * The optional command that should be executed once during deployment to build the source code and get the application in a ready state
+     * @type {string}
+     * @memberof LanguageRuntimeFrameworkDefaults
+     */
+    build_command?: string | null;
 }
 
