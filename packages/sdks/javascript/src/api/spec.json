@@ -12694,6 +12694,11 @@
             "type": "string",
             "example": "npm install"
           },
+          "build_command": {
+            "description": "The optional command that should be executed once during deployment to build the source code and get the application in a ready state",
+            "type": "string",
+            "example": "npm run build"
+          },
           "requires_daemon": {
             "description": "Indicates if the application requires a daemon to keep it alive",
             "type": "boolean",
@@ -12777,8 +12782,8 @@
             "type": "string"
           },
           "build_command": {
-            "description": "The optional command that should be executed once during deployment to build the source code and get the application in a ready state. Must be at least 10 characters. Must not be greater than 300 characters.",
-            "example": "`npm run build`, `yarn build`, `docker build -t my_image_name .`, `python build.py`",
+            "description": "The optional command that should be executed once during deployment to build the source code and get the application in a ready state.",
+            "example": "npm run build",
             "type": "string"
           },
           "engine_version": {
@@ -13033,6 +13038,11 @@
             "type": "string",
             "example": "npm install"
           },
+          "build_command": {
+            "description": "The optional command that should be executed once during deployment to build the source code and get the application in a ready state",
+            "type": "string",
+            "example": "npm run build"
+          },
           "requires_daemon": {
             "description": "Indicates if the application requires a daemon to keep it alive",
             "type": "boolean",
@@ -13140,8 +13150,8 @@
             "type": "string"
           },
           "build_command": {
-            "description": "The optional command that should be executed once during deployment to build the source code and get the application in a ready state. Must be at least 10 characters. Must not be greater than 300 characters.",
-            "example": "`npm run build`, `yarn build`, `docker build -t my_image_name .`, `python build.py`",
+            "description": "The optional command that should be executed once during deployment to build the source code and get the application in a ready state.",
+            "example": "npm run build",
             "type": "string"
           },
           "engine_version": {
@@ -16139,6 +16149,12 @@
             "description": "Indicates command that Devopness must execute to install application dependencies",
             "type": "string",
             "example": "npm install",
+            "nullable": true
+          },
+          "build_command": {
+            "description": "The optional command that should be executed once during deployment to build the source code and get the application in a ready state",
+            "type": "string",
+            "example": "npm run build",
             "nullable": true
           }
         }
