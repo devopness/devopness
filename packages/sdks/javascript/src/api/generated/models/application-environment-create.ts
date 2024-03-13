@@ -39,7 +39,7 @@ export interface ApplicationEnvironmentCreate {
      */
     domain_name?: string;
     /**
-     * The optional command that should be executed once during deployment to build the source code and get the application in a ready state. Must be at least 10 characters. Must not be greater than 300 characters.
+     * The optional command that should be executed once during deployment to build the source code and get the application in a ready state.
      * @type {string}
      * @memberof ApplicationEnvironmentCreate
      */
@@ -111,17 +111,11 @@ export interface ApplicationEnvironmentCreate {
      */
     entrypoint: string;
     /**
-     * Indicates if at deployment time Devopness should execute package manager commands to install dependencies used in development mode.
-     * @type {boolean}
+     * Indicates command that Devopness must execute to install application dependencies.
+     * @type {string}
      * @memberof ApplicationEnvironmentCreate
      */
-    install_dependencies_dev: boolean;
-    /**
-     * Indicates if at deployment time Devopness should execute package manager commands to install dependencies used in production mode.
-     * @type {boolean}
-     * @memberof ApplicationEnvironmentCreate
-     */
-    install_dependencies_prod: boolean;
+    install_dependencies_command?: string;
     /**
      * Indicates if push to deploy webhooks are enabled for this application. If enabled an app deployment will be automatically triggered when new changes are committed to the `default_branch`.
      * @type {boolean}

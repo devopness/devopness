@@ -12,6 +12,7 @@
  */
 
 
+import { LanguageRuntimeFrameworkCommands } from './language-runtime-framework-commands';
 
 /**
  * Default values that apply to apps created in devopness using this framework
@@ -74,28 +75,28 @@ export interface LanguageRuntimeFrameworkDefaults {
      */
     listening_address?: string;
     /**
-     * The optional command that should be executed once during deployment to build the source code and get the application in a ready state.
-     * @type {string}
-     * @memberof LanguageRuntimeFrameworkDefaults
-     */
-    build_command?: string;
-    /**
      * The number of deployment history, logs and artifacts to keep stored in both devopness servers and user\'s servers
      * @type {number}
      * @memberof LanguageRuntimeFrameworkDefaults
      */
     deployments_keep?: number;
     /**
-     * Indicates if at deployment time we should execute package manager command to install dependencies used in development mode
-     * @type {boolean}
+     * 
+     * @type {LanguageRuntimeFrameworkCommands}
      * @memberof LanguageRuntimeFrameworkDefaults
      */
-    install_dependencies_dev?: boolean;
+    commands?: LanguageRuntimeFrameworkCommands;
     /**
-     * Indicates if at deployment time we should execute package manager command to install dependencies used in production mode
-     * @type {boolean}
+     * Indicates command that Devopness must execute to install application dependencies
+     * @type {string}
      * @memberof LanguageRuntimeFrameworkDefaults
      */
-    install_dependencies_prod?: boolean;
+    install_dependencies_command?: string | null;
+    /**
+     * The optional command that should be executed once during deployment to build the source code and get the application in a ready state
+     * @type {string}
+     * @memberof LanguageRuntimeFrameworkDefaults
+     */
+    build_command?: string | null;
 }
 

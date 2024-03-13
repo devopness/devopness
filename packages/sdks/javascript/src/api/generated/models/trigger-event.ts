@@ -20,6 +20,7 @@
  */
 export enum TriggerEvent {
     ActivateNewRelease = 'activate-new-release',
+    BuildApplication = 'build-application',
     CheckAppEnvironment = 'check-app-environment',
     GetNewRelease = 'get-new-release',
     InstallDependencies = 'install-dependencies',

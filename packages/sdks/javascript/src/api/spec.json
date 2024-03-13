@@ -12689,15 +12689,15 @@
             "type": "integer",
             "example": 4
           },
-          "install_dependencies_dev": {
-            "description": "Indicates if at deployment time Devopness should execute package manager commands to install dependencies used in development mode",
-            "type": "boolean",
-            "example": false
+          "install_dependencies_command": {
+            "description": "Indicates command that Devopness must execute to install application dependencies",
+            "type": "string",
+            "example": "npm install"
           },
-          "install_dependencies_prod": {
-            "description": "Indicates if at deployment time Devopness should execute package manager commands to install dependencies used in production mode",
-            "type": "boolean",
-            "example": true
+          "build_command": {
+            "description": "The optional command that should be executed once during deployment to build the source code and get the application in a ready state",
+            "type": "string",
+            "example": "npm run build"
           },
           "requires_daemon": {
             "description": "Indicates if the application requires a daemon to keep it alive",
@@ -12754,8 +12754,6 @@
           "entrypoint",
           "listening_address",
           "deployments_keep",
-          "install_dependencies_dev",
-          "install_dependencies_prod",
           "requires_daemon",
           "created_by_user",
           "last_deployments",
@@ -12784,8 +12782,8 @@
             "type": "string"
           },
           "build_command": {
-            "description": "The optional command that should be executed once during deployment to build the source code and get the application in a ready state. Must be at least 10 characters. Must not be greater than 300 characters.",
-            "example": "`npm run build`, `yarn build`, `docker build -t my_image_name .`, `python build.py`",
+            "description": "The optional command that should be executed once during deployment to build the source code and get the application in a ready state.",
+            "example": "npm run build",
             "type": "string"
           },
           "engine_version": {
@@ -12843,15 +12841,10 @@
             "example": "`index.html`, `index.php`, `server.php`, `default.htm`, `node server.js`, `yarn start`, `npm run production`, `docker run -d -P --name my_container_name my_image_name`, `php artisan serve –-host=192.168.2.20 --port=8000`",
             "type": "string"
           },
-          "install_dependencies_dev": {
-            "description": "Indicates if at deployment time Devopness should execute package manager commands to install dependencies used in development mode.",
-            "example": false,
-            "type": "boolean"
-          },
-          "install_dependencies_prod": {
-            "description": "Indicates if at deployment time Devopness should execute package manager commands to install dependencies used in production mode.",
-            "example": false,
-            "type": "boolean"
+          "install_dependencies_command": {
+            "description": "Indicates command that Devopness must execute to install application dependencies.",
+            "example": "npm install",
+            "type": "string"
           },
           "push_to_deploy": {
             "description": "Indicates if push to deploy webhooks are enabled for this application. If enabled an app deployment will be automatically triggered when new changes are committed to the `default_branch`.",
@@ -12875,8 +12868,6 @@
           "public_directory",
           "default_branch",
           "entrypoint",
-          "install_dependencies_dev",
-          "install_dependencies_prod",
           "requires_daemon"
         ]
       },
@@ -13042,15 +13033,15 @@
             "type": "integer",
             "example": 4
           },
-          "install_dependencies_dev": {
-            "description": "Indicates if at deployment time Devopness should execute package manager commands to install dependencies used in development mode",
-            "type": "boolean",
-            "example": false
+          "install_dependencies_command": {
+            "description": "Indicates command that Devopness must execute to install application dependencies",
+            "type": "string",
+            "example": "npm install"
           },
-          "install_dependencies_prod": {
-            "description": "Indicates if at deployment time Devopness should execute package manager commands to install dependencies used in production mode",
-            "type": "boolean",
-            "example": true
+          "build_command": {
+            "description": "The optional command that should be executed once during deployment to build the source code and get the application in a ready state",
+            "type": "string",
+            "example": "npm run build"
           },
           "requires_daemon": {
             "description": "Indicates if the application requires a daemon to keep it alive",
@@ -13095,8 +13086,6 @@
           "entrypoint",
           "listening_address",
           "deployments_keep",
-          "install_dependencies_dev",
-          "install_dependencies_prod",
           "requires_daemon",
           "created_at",
           "updated_at"
@@ -13161,8 +13150,8 @@
             "type": "string"
           },
           "build_command": {
-            "description": "The optional command that should be executed once during deployment to build the source code and get the application in a ready state. Must be at least 10 characters. Must not be greater than 300 characters.",
-            "example": "`npm run build`, `yarn build`, `docker build -t my_image_name .`, `python build.py`",
+            "description": "The optional command that should be executed once during deployment to build the source code and get the application in a ready state.",
+            "example": "npm run build",
             "type": "string"
           },
           "engine_version": {
@@ -13220,15 +13209,10 @@
             "example": "`index.html`, `index.php`, `server.php`, `default.htm`, `node server.js`, `yarn start`, `npm run production`, `docker run -d -P --name my_container_name my_image_name`, `php artisan serve –-host=192.168.2.20 --port=8000`",
             "type": "string"
           },
-          "install_dependencies_dev": {
-            "description": "Indicates if at deployment time Devopness should execute package manager commands to install dependencies used in development mode.",
-            "example": false,
-            "type": "boolean"
-          },
-          "install_dependencies_prod": {
-            "description": "Indicates if at deployment time Devopness should execute package manager commands to install dependencies used in production mode.",
-            "example": false,
-            "type": "boolean"
+          "install_dependencies_command": {
+            "description": "Indicates command that Devopness must execute to install application dependencies.",
+            "example": "npm install",
+            "type": "string"
           },
           "push_to_deploy": {
             "description": "Indicates if push to deploy webhooks are enabled for this application. If enabled an app deployment will be automatically triggered when new changes are committed to the `default_branch`.",
@@ -13251,8 +13235,6 @@
           "public_directory",
           "default_branch",
           "entrypoint",
-          "install_dependencies_dev",
-          "install_dependencies_prod",
           "requires_daemon"
         ]
       },
@@ -16072,6 +16054,40 @@
           "defaults"
         ]
       },
+      "LanguageRuntimeFrameworkCommands": {
+        "description": "List of available commands to be chosen by user to be executed when building and deploying an application of a given stack",
+        "type": "object",
+        "properties": {
+          "build": {
+            "description": "Available build command options for the stack",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "npm build",
+              "yarn build",
+              "custom",
+              "none"
+            ]
+          },
+          "dependencies": {
+            "description": "Available dependencies installation command options for the stack",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "npm install",
+              "npm install --production",
+              "npm ci",
+              "yarn install",
+              "custom",
+              "none"
+            ]
+          }
+        }
+      },
       "LanguageRuntimeFrameworkDefaults": {
         "description": "Default values that apply to apps created in devopness using this framework",
         "type": "object",
@@ -16121,25 +16137,25 @@
             "type": "string",
             "example": "http://unix:/tmp/backend3:/my/path"
           },
-          "build_command": {
-            "description": "The optional command that should be executed once during deployment to build the source code and get the application in a ready state.",
-            "type": "string",
-            "example": "`docker build -t my_image_name .`, `yarn build`, `jekyll build`, `python build.py`"
-          },
           "deployments_keep": {
             "type": "integer",
             "description": "The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers",
             "example": 4
           },
-          "install_dependencies_dev": {
-            "description": "Indicates if at deployment time we should execute package manager command to install dependencies used in development mode",
-            "type": "boolean",
-            "example": false
+          "commands": {
+            "$ref": "#/components/schemas/LanguageRuntimeFrameworkCommands"
           },
-          "install_dependencies_prod": {
-            "description": "Indicates if at deployment time we should execute package manager command to install dependencies used in production mode",
-            "type": "boolean",
-            "example": true
+          "install_dependencies_command": {
+            "description": "Indicates command that Devopness must execute to install application dependencies",
+            "type": "string",
+            "example": "npm install",
+            "nullable": true
+          },
+          "build_command": {
+            "description": "The optional command that should be executed once during deployment to build the source code and get the application in a ready state",
+            "type": "string",
+            "example": "npm run build",
+            "nullable": true
           }
         }
       },
@@ -20822,6 +20838,7 @@
         "description": "The application deployment event to which it's attached",
         "enum": [
           "activate-new-release",
+          "build-application",
           "check-app-environment",
           "get-new-release",
           "install-dependencies",
