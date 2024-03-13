@@ -4,7 +4,7 @@
 # Devopness - Official open-source repository
 
 ## About Devopness
-`Devopness` aims to drastically simplify the way we manage cloud applications and multi-cloud infrastructure in a secure and productive way.
+`Devopness` aims to drastically simplify the way we manage cloud applications and multi cloud infrastructure in a secure and productive way.
 
 By streamlining essential DevOps practices, we're making first-class software deployment and cloud infrastructure management tools accessible and affordable to everyone in the world who is involved in software projects.
 ## 📚 <a id="docs"></a>Documentation
@@ -36,7 +36,7 @@ This repository has the following packages/sub-projects:
 ### Packages
 | Subpath                    | Package                   | Description                     |
 |:---------------------------|:--------------------------|:--------------------------------|
-| [/docs](docs/)             | 📚 Documentation          | End-user product documentation  |
+| [/docs](docs/)             | 📚 Documentation          | End user product documentation  |
 | [/packages/sdks/javascript](packages/sdks/javascript/) | API SDK JavaScript  | API SDK to interact with Devopness using JavaScript and TypeScript |
 
 
