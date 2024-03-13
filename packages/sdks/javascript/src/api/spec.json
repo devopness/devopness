@@ -12692,12 +12692,14 @@
           "install_dependencies_command": {
             "description": "Indicates command that Devopness must execute to install application dependencies",
             "type": "string",
-            "example": "npm install"
+            "example": "npm install",
+            "nullable": true
           },
           "build_command": {
             "description": "The optional command that should be executed once during deployment to build the source code and get the application in a ready state",
             "type": "string",
-            "example": "npm run build"
+            "example": "npm run build",
+            "nullable": true
           },
           "requires_daemon": {
             "description": "Indicates if the application requires a daemon to keep it alive",
@@ -12754,6 +12756,8 @@
           "entrypoint",
           "listening_address",
           "deployments_keep",
+          "install_dependencies_command",
+          "build_command",
           "requires_daemon",
           "created_by_user",
           "last_deployments",
@@ -13036,12 +13040,14 @@
           "install_dependencies_command": {
             "description": "Indicates command that Devopness must execute to install application dependencies",
             "type": "string",
-            "example": "npm install"
+            "example": "npm install",
+            "nullable": true
           },
           "build_command": {
             "description": "The optional command that should be executed once during deployment to build the source code and get the application in a ready state",
             "type": "string",
-            "example": "npm run build"
+            "example": "npm run build",
+            "nullable": true
           },
           "requires_daemon": {
             "description": "Indicates if the application requires a daemon to keep it alive",
@@ -13086,6 +13092,8 @@
           "entrypoint",
           "listening_address",
           "deployments_keep",
+          "install_dependencies_command",
+          "build_command",
           "requires_daemon",
           "created_at",
           "updated_at"
