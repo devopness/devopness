@@ -151,13 +151,13 @@ export interface Application {
      * @type {string}
      * @memberof Application
      */
-    install_dependencies_command?: string;
+    install_dependencies_command: string | null;
     /**
      * The optional command that should be executed once during deployment to build the source code and get the application in a ready state
      * @type {string}
      * @memberof Application
      */
-    build_command?: string;
+    build_command: string | null;
     /**
      * Indicates if the application requires a daemon to keep it alive
      * @type {boolean}
