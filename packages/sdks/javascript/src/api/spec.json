@@ -19241,14 +19241,10 @@
         "type": "object",
         "properties": {
           "provider_name": {
-            "description": "Name of source provider",
-            "type": "string",
-            "example": "github"
+            "$ref": "#/components/schemas/SourceProviderName"
           },
           "provider_name_human_readable": {
-            "description": "Human readable version of the provider name",
-            "type": "string",
-            "example": "GitHub"
+            "$ref": "#/components/schemas/SourceProviderDisplayableName"
           },
           "connect_url": {
             "description": "URL of the connection",
