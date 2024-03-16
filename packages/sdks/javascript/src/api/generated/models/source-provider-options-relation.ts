@@ -12,6 +12,8 @@
  */
 
 
+import { SourceProviderDisplayableName } from './source-provider-displayable-name';
+import { SourceProviderName } from './source-provider-name';
 
 /**
  * 
@@ -20,17 +22,17 @@
  */
 export interface SourceProviderOptionsRelation {
     /**
-     * Name of source provider
-     * @type {string}
+     * 
+     * @type {SourceProviderName}
      * @memberof SourceProviderOptionsRelation
      */
-    provider_name: string;
+    provider_name: SourceProviderName;
     /**
-     * Human readable version of the provider name
-     * @type {string}
+     * 
+     * @type {SourceProviderDisplayableName}
      * @memberof SourceProviderOptionsRelation
      */
-    provider_name_human_readable: string;
+    provider_name_human_readable: SourceProviderDisplayableName;
     /**
      * URL of the connection
      * @type {string}
