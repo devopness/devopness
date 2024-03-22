@@ -178,6 +178,7 @@ tags:
   - name: Static Data - Network Rule Options
   - name: Static Data - Permissions
   - name: Static Data - Resource Types
+  - name: Static Data - Server Options
   - name: Static Data - Service Options
   - name: Static Data - User Profile Options
   - name: Actions
@@ -277,6 +278,7 @@ x-tagGroups:
       - Static Data - Network Rule Options
       - Static Data - Permissions
       - Static Data - Resource Types
+      - Static Data - Server Options
       - Static Data - Service Options
       - Static Data - User Profile Options
   - name: Actions
