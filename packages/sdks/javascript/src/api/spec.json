@@ -11077,6 +11077,9 @@
       "name": "Static Data - Resource Types"
     },
     {
+      "name": "Static Data - Server Options"
+    },
+    {
       "name": "Static Data - Service Options"
     },
     {
@@ -11297,6 +11300,7 @@
         "Static Data - Network Rule Options",
         "Static Data - Permissions",
         "Static Data - Resource Types",
+        "Static Data - Server Options",
         "Static Data - Service Options",
         "Static Data - User Profile Options"
       ]
