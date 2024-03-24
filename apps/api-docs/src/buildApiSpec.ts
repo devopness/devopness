@@ -11,11 +11,11 @@ import { OpenAPIV3 } from 'openapi-types';
  * @param destPath path of the output YAML file
  */
 async function buildYamlSpec(srcPath: string, destPath: string) {
-    const srcYaml = YAML.load(fs.readFileSync(srcPath).toString());
+    const srcYaml = YAML.load(fs.readFileSync(srcPath).toString()) as object;
     const options = {
         loaderOptions: {
             processContent: (res: { text: string }, callback: Function) => {
-                callback(YAML.safeLoad(res.text));
+                callback(YAML.load(res.text));
             }
         },
         location: srcPath
