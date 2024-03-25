@@ -20,7 +20,7 @@ required_permissions:
 1. On the upper-right corner of network details view, click `SUBNETS`
 1. On the upper-right corner of subnets list, click `ADD SUBNET`
 1. Click `NEXT`
-1. Provide a name to the Network being added. Example: "Automate Net Subnet"
+1. Provide a name to the Subnet being added. Example: "Public Subnet A", "Private Subnet B"
 1. Select a `Type`
 1. Click `NEXT`
 1. Select a `ZONE` and click `NEXT`
