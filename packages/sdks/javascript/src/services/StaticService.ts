@@ -11,6 +11,7 @@ import { StaticDataServerOptionsApiService } from "../api/generated/apis/static-
 import { StaticDataServiceOptionsApiService } from "../api/generated/apis/static-data-service-options-api";
 import { StaticDataSourceProviderOptionsApiService } from "../api/generated/apis/static-data-source-provider-options-api";
 import { StaticDataUserProfileOptionsApiService } from "../api/generated/apis/static-data-user-profile-options-api";
+import { StaticDataVirtualHostOptionsApiService } from "../api/generated/apis/static-data-virtual-host-options-api";
 
 export class StaticService {
   public applicationOptions = new StaticDataApplicationOptionsApiService();
@@ -26,4 +27,5 @@ export class StaticService {
   public serviceOptions = new StaticDataServiceOptionsApiService();
   public sourceProviderOptions = new StaticDataSourceProviderOptionsApiService();
   public userProfileOptions = new StaticDataUserProfileOptionsApiService();
+  public virtualHostOptions = new StaticDataVirtualHostOptionsApiService();
 }

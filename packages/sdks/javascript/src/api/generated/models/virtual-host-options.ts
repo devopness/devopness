@@ -17,13 +17,13 @@ import { VariableTargets } from './variable-targets';
 /**
  * 
  * @export
- * @interface ServerOptions
+ * @interface VirtualHostOptions
  */
-export interface ServerOptions {
+export interface VirtualHostOptions {
     /**
      * The list of VariableTarget
      * @type {Array<VariableTargets>}
-     * @memberof ServerOptions
+     * @memberof VirtualHostOptions
      */
     variable_targets: Array<VariableTargets>;
 }
