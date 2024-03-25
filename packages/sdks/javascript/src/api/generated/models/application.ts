@@ -147,17 +147,17 @@ export interface Application {
      */
     deployments_keep: number;
     /**
-     * Indicates if at deployment time Devopness should execute package manager commands to install dependencies used in development mode
-     * @type {boolean}
+     * Indicates command that Devopness must execute to install application dependencies
+     * @type {string}
      * @memberof Application
      */
-    install_dependencies_dev: boolean;
+    install_dependencies_command: string | null;
     /**
-     * Indicates if at deployment time Devopness should execute package manager commands to install dependencies used in production mode
-     * @type {boolean}
+     * The optional command that should be executed once during deployment to build the source code and get the application in a ready state
+     * @type {string}
      * @memberof Application
      */
-    install_dependencies_prod: boolean;
+    build_command: string | null;
     /**
      * Indicates if the application requires a daemon to keep it alive
      * @type {boolean}

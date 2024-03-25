@@ -19,7 +19,6 @@ required_permissions:
 1. In the list of networks, find the network with the subnet you want to remove and click `DETAILS`
 1. On the upper-right corner of network details view, click `SUBNETS`, to see a list of existing `Subnets`
 1. In the list of subnets, find the subnet you want to remove and click `DETAILS`
-1. On the upper-right corner of the network details view, click `...`
-1. Use the drop-down menu to choose `REMOVE`
-1. Follow the prompts then click `REMOVE`
+1. On the upper-right corner of the network details view, click `REMOVE`
+1. Follow the prompts then click `REMOVE SUBNET`
 1. In the `Subnets` list, the recently removed `Subnet` will be gone
