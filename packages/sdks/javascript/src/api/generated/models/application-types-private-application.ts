@@ -25,6 +25,6 @@ export interface ApplicationTypesPrivateApplication {
      * @type {Array<VariableTargets>}
      * @memberof ApplicationTypesPrivateApplication
      */
-    variables_targets?: Array<VariableTargets>;
+    variable_targets?: Array<VariableTargets>;
 }
 
