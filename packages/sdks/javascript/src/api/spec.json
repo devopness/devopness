@@ -9182,6 +9182,41 @@
         }
       }
     },
+    "/static/virtual-host-options": {
+      "get": {
+        "summary": "List `Virtual Host` options",
+        "operationId": "getStaticVirtualHostOptions",
+        "description": {
+          "$ref": "../spec/descriptions/get-static-virtual-host-options.md"
+        },
+        "tags": [
+          "Static Data - Virtual Host Options"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VirtualHostOptions"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/subnets/{subnet_id}": {
       "delete": {
         "summary": "Delete a given subnet",
@@ -11086,6 +11121,9 @@
       "name": "Static Data - User Profile Options"
     },
     {
+      "name": "Static Data - Virtual Host Options"
+    },
+    {
       "name": "Actions"
     },
     {
@@ -11302,7 +11340,8 @@
         "Static Data - Resource Types",
         "Static Data - Server Options",
         "Static Data - Service Options",
-        "Static Data - User Profile Options"
+        "Static Data - User Profile Options",
+        "Static Data - Virtual Host Options"
       ]
     },
     {
@@ -13120,7 +13159,7 @@
             "type": "object",
             "description": "An application of type `public_application` is configured by Devopness to be accessed through a web server/reverse proxy to handle network requests and response, so it can be exposed as an `internet-facing` application. All applications that are intented to be accessible from the internet, exposed via a DNS record pointing to the application's server IP address, should be defined as `public_application`.",
             "properties": {
-              "variables_targets": {
+              "variable_targets": {
                 "$ref": "#/components/schemas/VariableTargetList"
               }
             }
@@ -13129,7 +13168,7 @@
             "type": "object",
             "description": "An application of type `private_application` does not use a web server/reverse proxy to serve public content. All appplications that are intented to be accessible only locally in their own servers, or from servers in the same internal network, should be defined as `private_application`.",
             "properties": {
-              "variables_targets": {
+              "variable_targets": {
                 "$ref": "#/components/schemas/VariableTargetList"
               }
             }
@@ -18462,12 +18501,12 @@
       "ServerOptions": {
         "type": "object",
         "properties": {
-          "variables_targets": {
+          "variable_targets": {
             "$ref": "#/components/schemas/VariableTargetList"
           }
         },
         "required": [
-          "variables_targets"
+          "variable_targets"
         ]
       },
       "ServerProvisionInput": {
@@ -21808,6 +21847,17 @@
           "target",
           "type",
           "hidden"
+        ]
+      },
+      "VirtualHostOptions": {
+        "type": "object",
+        "properties": {
+          "variable_targets": {
+            "$ref": "#/components/schemas/VariableTargetList"
+          }
+        },
+        "required": [
+          "variable_targets"
         ]
       }
     },
