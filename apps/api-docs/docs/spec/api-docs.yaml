@@ -181,6 +181,7 @@ tags:
   - name: Static Data - Server Options
   - name: Static Data - Service Options
   - name: Static Data - User Profile Options
+  - name: Static Data - Virtual Host Options
   - name: Actions
   - name: Applications
   - name: Applications - Deployments
@@ -281,6 +282,7 @@ x-tagGroups:
       - Static Data - Server Options
       - Static Data - Service Options
       - Static Data - User Profile Options
+      - Static Data - Virtual Host Options
   - name: Actions
     tags:
       - Actions
