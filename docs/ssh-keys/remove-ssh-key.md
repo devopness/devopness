@@ -17,7 +17,7 @@ required_permissions:
 1. On Devopness, navigate to a project then select an environment
 1. Find the `SSH Keys` card
 1. Click the `View` in the `SSH Keys` card, to see a list of existing `SSH Keys`
-1. In the list of keys, find the key you want to remove and click `DETAILS`
+1. In the list of keys, find the key you want to remove and click the `NAME` of the key
 1. On the upper-right corner of the key details view, click `REMOVE`
-1. Follow the prompts then click `REMOVE`
+1. Follow the prompts then click `REMOVE SSH KEY`
 1. In the list of keys, the recently removed `SSH Key` will be gone
