@@ -280,3 +280,4 @@ export * from './variable-target';
 export * from './variable-targets';
 export * from './variable-type';
 export * from './variable-update';
+export * from './virtual-host-options';
