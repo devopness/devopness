@@ -120,6 +120,8 @@ export class DevopnessApiClient {
   }
 
   public set onTokenExpired(callback: (accessToken: string) => void) {
-    ApiBaseService.onTokenExpired = callback;
+    if (callback) {
+      ApiBaseService.onTokenExpired = callback;
+    }
   }
 }
