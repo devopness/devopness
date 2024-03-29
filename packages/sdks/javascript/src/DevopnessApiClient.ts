@@ -95,6 +95,9 @@ export class DevopnessApiClient {
     this.teams = new TeamService();
     this.users = new UserService();
     this.variables = new VariableService();
+    this.onTokenExpired = () => {
+      // do nothing.
+    };
   }
 
   public get accessToken(): string {
@@ -114,5 +117,9 @@ export class DevopnessApiClient {
     }
 
     ApiBaseService.accessToken = accessToken;
+  }
+
+  public set onTokenExpired(callback: (accessToken: string) => void) {
+    ApiBaseService.onTokenExpired = callback;
   }
 }
