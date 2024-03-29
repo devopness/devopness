@@ -1,0 +1,14 @@
+"scope: api":
+  - '(Devopness API)'
+"scope: docs":
+  - '(Documentation)'
+"scope: sdks":
+  - 'SDK-'
+"scope: sdk-javascript":
+  - '(SDK-JS)'
+"scope: web-app":
+  - '(Devopness web app)'
+"scope: website":
+  - '(Devopness website)'
+"status: needs triage":
+  - '/.*/'

@@ -1,6 +1,6 @@
 ---
 title: Deploy Application using an Incoming Hook
-intro: As project users base grow, there's a need to rely more on processes and automation; Devopness helps by providing, among other tools, customizable CI/CD pipelines, empowering our users to automate common and repetitive tasks to improve code quality and their code review processes. Create a incoming webhook to trigger a application deploy programmatically.
+intro: As project users base grow, there's a need to rely more on processes and automation; Devopness helps by providing, among other tools, customizable CI/CD pipelines, empowering our users to automate common and repetitive tasks to improve code quality and their code review processes. Create an incoming webhook to trigger an application deploy programmatically.
 links:
     overview:
     quickstart:
@@ -34,8 +34,8 @@ Before creating an incoming webhook to trigger an `application:deploy`, we need 
 Once you have your `<pipeline_id>`, please follow the instructions below to add an incoming webhook to your application that triggers the deploy pipeline:
 
 1. Follow the steps on {% mentionPost "/docs/webhooks/create-incoming-webhook" %} guide
-1. Once your web hook is created, copy the webhook the hook's unique URL (`url` field)
-1. Take note of the hook secret signature key (`secret` field)
+1. Once your web hook is created, copy the hook's unique URL (`url` field)
+1. Take note of the hook's secret signature key (`secret` field)
     > If the hook was created without a `secret` (non recommended), you can skip this step
 1. Add your webhook to the source provider where each application's source code is hosted, by following the source provider's instructions on the links below:
     - Bitbucket: [Manage webhooks: create webhooks](https://support.atlassian.com/bitbucket-cloud/docs/manage-webhooks/#Create-webhooks)

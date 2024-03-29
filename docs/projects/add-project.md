@@ -15,8 +15,5 @@ links:
 1. On the upper-right corner of the list click `ADD PROJECT`
 1. Provide a name to the `Project` being added. For example, "My Product"
 1. Click `CONFIRM`
-1. Once the project is created, a new `Environment` will be added to the project
-1. You will be redirected to the `Environment` edit form
-1. Review and update the `Name` of the environment
-1. Review and update the `Environment Type`
-1. Click `CONFIRM`
+  - You will be redirected to the `Project resources` page, with details of your newly created project
+  - You can now manage `Environments`, `Teams` and `Roles` in your new project

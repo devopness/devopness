@@ -2,7 +2,8 @@ name: SDK JavaScript - Release
 on:
   push:
     paths:
-      - packages/sdks/javascript/**
+      - packages/sdks/javascript/src/**
+      - packages/sdks/javascript/package.json
     branches:
       - main
       - '*.x' # maintenance releases
@@ -21,7 +22,7 @@ jobs:
         with:
           node-version: '18.x'
       - run: npm ci
-      - run: npx semantic-release
+      - run: npx semantic-release@22.0.12
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

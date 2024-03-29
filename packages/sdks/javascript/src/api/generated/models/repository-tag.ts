@@ -12,6 +12,7 @@
  */
 
 
+import { RepositoryTagCommit } from './repository-tag-commit';
 
 /**
  * A repository tag
@@ -25,5 +26,11 @@ export interface RepositoryTag {
      * @memberof RepositoryTag
      */
     name: string;
+    /**
+     * 
+     * @type {RepositoryTagCommit}
+     * @memberof RepositoryTag
+     */
+    commit: RepositoryTagCommit;
 }
 

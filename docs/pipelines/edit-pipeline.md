@@ -20,8 +20,7 @@ required_permissions:
 1. On the upper-right corner of the applications details view click `SETTINGS`
 1. Use the drop-down menu to choose `PIPELINES`
 1. In the list of pipelines find the pipeline you want to edit and click `DETAILS`
-1. On the upper-right corner of the key details click `...`
-1. Use the drop-down menu to choose `EDIT`
+1. On the upper-right corner of the pipeline details view, click `EDIT`
 1. Follow the instructions in the pipeline edit form then click `CONFIRM`
     > A new deployment is required for your changes to take effect.
       - Follow the guide {% mentionPost "/docs/applications/deploy-application" %}

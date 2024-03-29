@@ -9036,6 +9036,41 @@
         }
       }
     },
+    "/static/server-options": {
+      "get": {
+        "summary": "List `Server` options",
+        "operationId": "getStaticServerOptions",
+        "description": {
+          "$ref": "../spec/descriptions/get-static-server-options.md"
+        },
+        "tags": [
+          "Static Data - Server Options"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerOptions"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/static/service-options": {
       "get": {
         "summary": "List `Service` resource options",
@@ -9071,6 +9106,47 @@
         }
       }
     },
+    "/static/source-provider-options": {
+      "get": {
+        "summary": "List `Source provider` options",
+        "operationId": "listStaticSourceProviderOptions",
+        "description": {
+          "$ref": "../spec/descriptions/list-static-source-provider-options.md"
+        },
+        "tags": [
+          "Static Data - Source Provider Options"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SourceProviderOptionsList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/static/user-profile-options": {
       "get": {
         "summary": "List `User profile` options",
@@ -9099,6 +9175,41 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/UserProfileOptions"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/static/virtual-host-options": {
+      "get": {
+        "summary": "List `Virtual Host` options",
+        "operationId": "getStaticVirtualHostOptions",
+        "description": {
+          "$ref": "../spec/descriptions/get-static-virtual-host-options.md"
+        },
+        "tags": [
+          "Static Data - Virtual Host Options"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VirtualHostOptions"
                 }
               }
             }
@@ -11001,10 +11112,16 @@
       "name": "Static Data - Resource Types"
     },
     {
+      "name": "Static Data - Server Options"
+    },
+    {
       "name": "Static Data - Service Options"
     },
     {
       "name": "Static Data - User Profile Options"
+    },
+    {
+      "name": "Static Data - Virtual Host Options"
     },
     {
       "name": "Actions"
@@ -11221,8 +11338,10 @@
         "Static Data - Network Rule Options",
         "Static Data - Permissions",
         "Static Data - Resource Types",
+        "Static Data - Server Options",
         "Static Data - Service Options",
-        "Static Data - User Profile Options"
+        "Static Data - User Profile Options",
+        "Static Data - Virtual Host Options"
       ]
     },
     {
@@ -11593,6 +11712,8 @@
       },
       "ActionData": {
         "description": "Data related to action resource.",
+        "nullable": true,
+        "type": "object",
         "oneOf": [
           {
             "$ref": "#/components/schemas/ActionDeploymentData"
@@ -11603,35 +11724,10 @@
         "type": "object",
         "description": "Informations about the commit used on this deployment",
         "properties": {
-          "source_provider_id": {
-            "type": "integer",
-            "description": "The ID of the source provider",
-            "example": 4687921
-          },
-          "provider": {
-            "type": "string",
-            "description": "The source provider's name",
-            "example": "github"
-          },
           "repository": {
             "type": "string",
             "description": "The repository of the deployed application",
             "example": "devopness/example"
-          },
-          "branch": {
-            "type": "string",
-            "description": "The branch used on deployment",
-            "example": "develop"
-          },
-          "hash": {
-            "type": "string",
-            "description": "The commit hash used on deployment",
-            "example": "d433e4622fde4b59a48586ed94082e2d76e855c1"
-          },
-          "message": {
-            "type": "string",
-            "description": "The commit message",
-            "example": "fix: some bug"
           },
           "author_name": {
             "type": "string",
@@ -11648,6 +11744,16 @@
             "format": "date-time",
             "description": "The date and time when the commit was created",
             "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "hash": {
+            "type": "string",
+            "description": "The commit hash used on deployment",
+            "example": "d433e4622fde4b59a48586ed94082e2d76e855c1"
+          },
+          "message": {
+            "type": "string",
+            "description": "The commit message",
+            "example": "fix: some bug"
           },
           "url": {
             "type": "string",
@@ -11666,15 +11772,12 @@
           }
         },
         "required": [
-          "source_provider_id",
-          "provider",
           "repository",
-          "branch",
-          "hash",
-          "message",
           "author_name",
           "author_email",
           "committed_at",
+          "hash",
+          "message",
           "url",
           "clone_url",
           "download_url"
@@ -11683,6 +11786,22 @@
       "ActionDeploymentContent": {
         "type": "object",
         "properties": {
+          "type": {
+            "$ref": "#/components/schemas/DeploymentType"
+          },
+          "source_type": {
+            "$ref": "#/components/schemas/SourceType"
+          },
+          "source_ref": {
+            "type": "string",
+            "description": "A git reference pointing to a commit in a source provider repository from which the application source code will be retrieved and deployed. It can be a branch name, tag name or a specific commit hash.",
+            "example": "develop"
+          },
+          "repository": {
+            "type": "string",
+            "description": "The repository of the deployed application",
+            "example": "devopness/example"
+          },
           "provider_id": {
             "type": "integer",
             "description": "The ID of the source provider",
@@ -11693,33 +11812,20 @@
             "description": "The source provider's name",
             "example": "github"
           },
-          "type": {
-            "$ref": "#/components/schemas/DeploymentType"
-          },
-          "repository": {
-            "type": "string",
-            "description": "The repository of the deployed application",
-            "example": "devopness/example"
-          },
-          "branch": {
-            "type": "string",
-            "description": "The branch used on deployment",
-            "example": "develop"
-          },
-          "hash": {
-            "type": "string",
-            "nullable": true,
-            "description": "The commit hash defined to be used on deployment",
-            "example": "d433e4622fde4b59a48586ed94082e2d76e855c1"
+          "pipeline_id": {
+            "type": "integer",
+            "description": "The ID of the pipeline",
+            "example": 23439
           }
         },
         "required": [
+          "type",
+          "source_type",
+          "source_ref",
+          "repository",
           "provider_id",
           "provider_name",
-          "type",
-          "repository",
-          "branch",
-          "hash"
+          "pipeline_id"
         ]
       },
       "ActionDeploymentData": {
@@ -11768,9 +11874,12 @@
           "servers": {
             "$ref": "#/components/schemas/ResourceIdList"
           },
-          "branch": {
-            "description": "The name of the branch from which the application source code will be retrieved and deployed. Must not be greater than 200 characters.",
-            "example": "master",
+          "source_type": {
+            "$ref": "#/components/schemas/SourceType"
+          },
+          "source_ref": {
+            "description": "A git reference pointing to a commit in a source provider repository from which the application source code will be retrieved and deployed. It can be a branch name, tag name or a specific commit hash. Must not be greater than 200 characters.",
+            "example": "main",
             "type": "string"
           }
         }
@@ -12561,17 +12670,17 @@
           "repository": {
             "description": "The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed.",
             "type": "string",
-            "example": "devopness-api-tests/tester"
+            "example": "devopness/devopness"
           },
           "repository_name": {
             "description": "The name part of a repository full name (`repository_owner/repository_name`)",
             "type": "string",
-            "example": "tester"
+            "example": "devopness"
           },
           "repository_owner": {
             "description": "The owner part of a repository full name (`repository_owner/repository_name`)",
             "type": "string",
-            "example": "devopness-api-tests"
+            "example": "devopness"
           },
           "default_branch": {
             "description": "The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed.",
@@ -12623,15 +12732,17 @@
             "type": "integer",
             "example": 4
           },
-          "install_dependencies_dev": {
-            "description": "Indicates if at deployment time Devopness should execute package manager commands to install dependencies used in development mode",
-            "type": "boolean",
-            "example": false
+          "install_dependencies_command": {
+            "description": "Indicates command that Devopness must execute to install application dependencies",
+            "type": "string",
+            "example": "npm install",
+            "nullable": true
           },
-          "install_dependencies_prod": {
-            "description": "Indicates if at deployment time Devopness should execute package manager commands to install dependencies used in production mode",
-            "type": "boolean",
-            "example": true
+          "build_command": {
+            "description": "The optional command that should be executed once during deployment to build the source code and get the application in a ready state",
+            "type": "string",
+            "example": "npm run build",
+            "nullable": true
           },
           "requires_daemon": {
             "description": "Indicates if the application requires a daemon to keep it alive",
@@ -12688,8 +12799,8 @@
           "entrypoint",
           "listening_address",
           "deployments_keep",
-          "install_dependencies_dev",
-          "install_dependencies_prod",
+          "install_dependencies_command",
+          "build_command",
           "requires_daemon",
           "created_by_user",
           "last_deployments",
@@ -12718,13 +12829,13 @@
             "type": "string"
           },
           "build_command": {
-            "description": "The optional command that should be executed once during deployment to build the source code and get the application in a ready state. Must be at least 10 characters. Must not be greater than 300 characters.",
-            "example": "`npm run build`, `yarn build`, `docker build -t my_image_name .`, `python build.py`",
+            "description": "The optional command that should be executed once during deployment to build the source code and get the application in a ready state.",
+            "example": "npm run build",
             "type": "string"
           },
           "engine_version": {
-            "description": "The language runtime engine version to be used to execute this application on the deployed servers. This field is required unless <code>programming_language</code> is in <code>html</code>.  Must be one of <code></code> Must be at least 1 characters. Must not be greater than 10 characters.",
-            "example": "3.8",
+            "description": "The language runtime engine version to be used to execute this application on the deployed servers. Must be one of <code></code> Must be at least 1 characters. Must not be greater than 10 characters.",
+            "example": "3.12",
             "type": "string"
           },
           "framework": {
@@ -12733,7 +12844,7 @@
             "type": "string"
           },
           "programming_language": {
-            "description": "The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`. Must be one of <code>docker</code>, <code>dotnetcore</code>, <code>html</code>, <code>java</code>, <code>nodejs</code>, <code>php</code>, or <code>python</code> Must not be greater than 30 characters.",
+            "description": "The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`. Must be one of <code>docker</code>, <code>dotnetcore</code>, <code>html</code>, <code>java</code>, <code>nodejs</code>, <code>php</code>, <code>python</code>, or <code>ruby</code> Must not be greater than 30 characters.",
             "example": "python",
             "type": "string"
           },
@@ -12744,7 +12855,7 @@
           },
           "repository": {
             "description": "The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed. Must not be greater than 100 characters.",
-            "example": "devopness-api-tests/tester",
+            "example": "devopness/devopness",
             "type": "string"
           },
           "source_provider_id": {
@@ -12777,15 +12888,10 @@
             "example": "`index.html`, `index.php`, `server.php`, `default.htm`, `node server.js`, `yarn start`, `npm run production`, `docker run -d -P --name my_container_name my_image_name`, `php artisan serve –-host=192.168.2.20 --port=8000`",
             "type": "string"
           },
-          "install_dependencies_dev": {
-            "description": "Indicates if at deployment time Devopness should execute package manager commands to install dependencies used in development mode.",
-            "example": false,
-            "type": "boolean"
-          },
-          "install_dependencies_prod": {
-            "description": "Indicates if at deployment time Devopness should execute package manager commands to install dependencies used in production mode.",
-            "example": false,
-            "type": "boolean"
+          "install_dependencies_command": {
+            "description": "Indicates command that Devopness must execute to install application dependencies.",
+            "example": "npm install",
+            "type": "string"
           },
           "push_to_deploy": {
             "description": "Indicates if push to deploy webhooks are enabled for this application. If enabled an app deployment will be automatically triggered when new changes are committed to the `default_branch`.",
@@ -12801,6 +12907,7 @@
         "required": [
           "name",
           "type",
+          "engine_version",
           "framework",
           "programming_language",
           "repository",
@@ -12808,8 +12915,6 @@
           "public_directory",
           "default_branch",
           "entrypoint",
-          "install_dependencies_dev",
-          "install_dependencies_prod",
           "requires_daemon"
         ]
       },
@@ -12913,17 +13018,17 @@
           "repository": {
             "description": "The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed.",
             "type": "string",
-            "example": "devopness-api-tests/tester"
+            "example": "devopness/devopness"
           },
           "repository_name": {
             "description": "The name part of a repository full name (`repository_owner/repository_name`)",
             "type": "string",
-            "example": "tester"
+            "example": "devopness"
           },
           "repository_owner": {
             "description": "The owner part of a repository full name (`repository_owner/repository_name`)",
             "type": "string",
-            "example": "devopness-api-tests"
+            "example": "devopness"
           },
           "default_branch": {
             "description": "The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed.",
@@ -12975,15 +13080,17 @@
             "type": "integer",
             "example": 4
           },
-          "install_dependencies_dev": {
-            "description": "Indicates if at deployment time Devopness should execute package manager commands to install dependencies used in development mode",
-            "type": "boolean",
-            "example": false
+          "install_dependencies_command": {
+            "description": "Indicates command that Devopness must execute to install application dependencies",
+            "type": "string",
+            "example": "npm install",
+            "nullable": true
           },
-          "install_dependencies_prod": {
-            "description": "Indicates if at deployment time Devopness should execute package manager commands to install dependencies used in production mode",
-            "type": "boolean",
-            "example": true
+          "build_command": {
+            "description": "The optional command that should be executed once during deployment to build the source code and get the application in a ready state",
+            "type": "string",
+            "example": "npm run build",
+            "nullable": true
           },
           "requires_daemon": {
             "description": "Indicates if the application requires a daemon to keep it alive",
@@ -13028,8 +13135,8 @@
           "entrypoint",
           "listening_address",
           "deployments_keep",
-          "install_dependencies_dev",
-          "install_dependencies_prod",
+          "install_dependencies_command",
+          "build_command",
           "requires_daemon",
           "created_at",
           "updated_at"
@@ -13048,26 +13155,28 @@
       "ApplicationTypes": {
         "type": "object",
         "properties": {
-          "public": {
+          "public_application": {
             "type": "object",
+            "description": "An application of type `public_application` is configured by Devopness to be accessed through a web server/reverse proxy to handle network requests and response, so it can be exposed as an `internet-facing` application. All applications that are intented to be accessible from the internet, exposed via a DNS record pointing to the application's server IP address, should be defined as `public_application`.",
             "properties": {
-              "variables_targets": {
+              "variable_targets": {
                 "$ref": "#/components/schemas/VariableTargetList"
               }
             }
           },
-          "private": {
+          "private_application": {
             "type": "object",
+            "description": "An application of type `private_application` does not use a web server/reverse proxy to serve public content. All appplications that are intented to be accessible only locally in their own servers, or from servers in the same internal network, should be defined as `private_application`.",
             "properties": {
-              "variables_targets": {
+              "variable_targets": {
                 "$ref": "#/components/schemas/VariableTargetList"
               }
             }
           }
         },
         "required": [
-          "public",
-          "private"
+          "public_application",
+          "private_application"
         ]
       },
       "ApplicationUpdate": {
@@ -13092,13 +13201,13 @@
             "type": "string"
           },
           "build_command": {
-            "description": "The optional command that should be executed once during deployment to build the source code and get the application in a ready state. Must be at least 10 characters. Must not be greater than 300 characters.",
-            "example": "`npm run build`, `yarn build`, `docker build -t my_image_name .`, `python build.py`",
+            "description": "The optional command that should be executed once during deployment to build the source code and get the application in a ready state.",
+            "example": "npm run build",
             "type": "string"
           },
           "engine_version": {
-            "description": "The language runtime engine version to be used to execute this application on the deployed servers. This field is required unless <code>programming_language</code> is in <code>html</code>.  Must be one of <code></code> Must be at least 1 characters. Must not be greater than 10 characters.",
-            "example": "3.8",
+            "description": "The language runtime engine version to be used to execute this application on the deployed servers. Must be one of <code></code> Must be at least 1 characters. Must not be greater than 10 characters.",
+            "example": "3.12",
             "type": "string"
           },
           "framework": {
@@ -13107,7 +13216,7 @@
             "type": "string"
           },
           "programming_language": {
-            "description": "The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`. Must be one of <code>docker</code>, <code>dotnetcore</code>, <code>html</code>, <code>java</code>, <code>nodejs</code>, <code>php</code>, or <code>python</code> Must not be greater than 30 characters.",
+            "description": "The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`. Must be one of <code>docker</code>, <code>dotnetcore</code>, <code>html</code>, <code>java</code>, <code>nodejs</code>, <code>php</code>, <code>python</code>, or <code>ruby</code> Must not be greater than 30 characters.",
             "example": "python",
             "type": "string"
           },
@@ -13118,7 +13227,7 @@
           },
           "repository": {
             "description": "The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed. Must not be greater than 100 characters.",
-            "example": "devopness-api-tests/tester",
+            "example": "devopness/devopness",
             "type": "string"
           },
           "source_provider_id": {
@@ -13151,15 +13260,10 @@
             "example": "`index.html`, `index.php`, `server.php`, `default.htm`, `node server.js`, `yarn start`, `npm run production`, `docker run -d -P --name my_container_name my_image_name`, `php artisan serve –-host=192.168.2.20 --port=8000`",
             "type": "string"
           },
-          "install_dependencies_dev": {
-            "description": "Indicates if at deployment time Devopness should execute package manager commands to install dependencies used in development mode.",
-            "example": false,
-            "type": "boolean"
-          },
-          "install_dependencies_prod": {
-            "description": "Indicates if at deployment time Devopness should execute package manager commands to install dependencies used in production mode.",
-            "example": false,
-            "type": "boolean"
+          "install_dependencies_command": {
+            "description": "Indicates command that Devopness must execute to install application dependencies.",
+            "example": "npm install",
+            "type": "string"
           },
           "push_to_deploy": {
             "description": "Indicates if push to deploy webhooks are enabled for this application. If enabled an app deployment will be automatically triggered when new changes are committed to the `default_branch`.",
@@ -13176,13 +13280,12 @@
           "id",
           "name",
           "type",
+          "engine_version",
           "framework",
           "programming_language",
           "public_directory",
           "default_branch",
           "entrypoint",
-          "install_dependencies_dev",
-          "install_dependencies_prod",
           "requires_daemon"
         ]
       },
@@ -13872,12 +13975,13 @@
           },
           "author_email": {
             "type": "string",
-            "description": "The e-mail of the commit's author"
+            "description": "The e-mail of the commit's author",
+            "example": "myusername@email.com"
           },
           "author_name": {
             "type": "string",
             "description": "The name of the commit's author",
-            "example": "feature/some-branch"
+            "example": "myusername"
           }
         },
         "required": [
@@ -14638,13 +14742,13 @@
           "type": {
             "$ref": "#/components/schemas/DeploymentType"
           },
-          "branch": {
-            "description": "The name of the branch from which the application source code will be retrieved and deployed.This field is required when <code>hash</code> is not present. Must not be greater than 200 characters.",
-            "example": "master",
+          "source_type": {
+            "description": "The 'source type' from which the application source code will be retrieved and deployed. It can be one of `branch`, `tag` or `commit`. If not provided, the application's default branch will be used. This field is required when <code>source_ref</code> is present.  Must be one of <code>branch</code>, <code>tag</code>, or <code>commit</code>.",
+            "example": "commit",
             "type": "string"
           },
-          "hash": {
-            "description": "The commit hash from which the application source code will be retrieved and deployed.This field is required when <code>branch</code> is not present.  Must contain only letters and numbers. Must be at least 7 characters. Must not be greater than 40 characters.",
+          "source_ref": {
+            "description": "A git reference pointing to a commit in a source provider repository from which the application source code will be retrieved and deployed. It can be a branch name, tag name or a specific commit hash. This field is required when <code>source_type</code> is present. Must not be greater than 200 characters.",
             "example": "7ff09b0f2ed07625222f689d1afc29aa322b03a2",
             "type": "string"
           },
@@ -15639,14 +15743,6 @@
             "example": "lets-go-fishing",
             "type": "string"
           },
-          "resource_type": {
-            "$ref": "#/components/schemas/ResourceType"
-          },
-          "resource_id": {
-            "description": "The hooks' resource ID.",
-            "example": 3453412,
-            "type": "integer"
-          },
           "action_type": {
             "$ref": "#/components/schemas/ActionType"
           },
@@ -16009,6 +16105,40 @@
           "defaults"
         ]
       },
+      "LanguageRuntimeFrameworkCommands": {
+        "description": "List of available commands to be chosen by user to be executed when building and deploying an application of a given stack",
+        "type": "object",
+        "properties": {
+          "build": {
+            "description": "Available build command options for the stack",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "npm build",
+              "yarn build",
+              "custom",
+              "none"
+            ]
+          },
+          "dependencies": {
+            "description": "Available dependencies installation command options for the stack",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "npm install",
+              "npm install --production",
+              "npm ci",
+              "yarn install",
+              "custom",
+              "none"
+            ]
+          }
+        }
+      },
       "LanguageRuntimeFrameworkDefaults": {
         "description": "Default values that apply to apps created in devopness using this framework",
         "type": "object",
@@ -16058,25 +16188,25 @@
             "type": "string",
             "example": "http://unix:/tmp/backend3:/my/path"
           },
-          "build_command": {
-            "description": "The optional command that should be executed once during deployment to build the source code and get the application in a ready state.",
-            "type": "string",
-            "example": "`docker build -t my_image_name .`, `yarn build`, `jekyll build`, `python build.py`"
-          },
           "deployments_keep": {
             "type": "integer",
             "description": "The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers",
             "example": 4
           },
-          "install_dependencies_dev": {
-            "description": "Indicates if at deployment time we should execute package manager command to install dependencies used in development mode",
-            "type": "boolean",
-            "example": false
+          "commands": {
+            "$ref": "#/components/schemas/LanguageRuntimeFrameworkCommands"
           },
-          "install_dependencies_prod": {
-            "description": "Indicates if at deployment time we should execute package manager command to install dependencies used in production mode",
-            "type": "boolean",
-            "example": true
+          "install_dependencies_command": {
+            "description": "Indicates command that Devopness must execute to install application dependencies",
+            "type": "string",
+            "example": "npm install",
+            "nullable": true
+          },
+          "build_command": {
+            "description": "The optional command that should be executed once during deployment to build the source code and get the application in a ready state",
+            "type": "string",
+            "example": "npm run build",
+            "nullable": true
           }
         }
       },
@@ -16084,6 +16214,33 @@
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/LanguageRuntime"
+        }
+      },
+      "LinkedResourceAttribute": {
+        "type": "object",
+        "properties": {
+          "field_name": {
+            "description": "The attribute name",
+            "type": "string",
+            "example": "command"
+          },
+          "field_name_human_readable": {
+            "description": "Human redable version of the attribute name",
+            "type": "string",
+            "example": "Command"
+          },
+          "value": {
+            "description": "The attribute value",
+            "type": "string",
+            "example": "echo 'devopness rocks!' | tee -a /tmp/task-output.log"
+          }
+        }
+      },
+      "LinkedResourceAttributeList": {
+        "description": "The list of linked resource attributes",
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/LinkedResourceAttribute"
         }
       },
       "LinkedResourceData": {
@@ -16099,6 +16256,9 @@
             "type": "string",
             "description": "Resource name",
             "example": "my-server"
+          },
+          "extra_attributes": {
+            "$ref": "#/components/schemas/LinkedResourceAttributeList"
           },
           "created_at": {
             "type": "string",
@@ -17159,11 +17319,11 @@
         "properties": {
           "name": {
             "type": "string",
-            "example": "branch"
+            "example": "source_type"
           },
           "human_readable": {
             "type": "string",
-            "example": "Branch"
+            "example": "Source type"
           },
           "hint": {
             "$ref": "#/components/schemas/FieldHint"
@@ -17588,10 +17748,34 @@
             "type": "string",
             "description": "The name of the tag",
             "example": "v1.0.0"
+          },
+          "commit": {
+            "$ref": "#/components/schemas/RepositoryTagCommit"
           }
         },
         "required": [
-          "name"
+          "name",
+          "commit"
+        ]
+      },
+      "RepositoryTagCommit": {
+        "type": "object",
+        "properties": {
+          "hash": {
+            "type": "string",
+            "description": "The commit comment's full hash that uniquely identify it",
+            "example": "4a03b9d21edeef8434c45818594a5d72027c14e7"
+          },
+          "url": {
+            "type": "string",
+            "format": "url",
+            "description": "The direct URL for accessing commit details on the provider's web application",
+            "example": "https://github.com/myusername/myrepo/commit/4a03b9d21edeef8434c45818594a5d72027c14e7"
+          }
+        },
+        "required": [
+          "hash",
+          "url"
         ]
       },
       "RepositoryTagList": {
@@ -18343,6 +18527,17 @@
         "items": {
           "$ref": "#/components/schemas/ServerRelation"
         }
+      },
+      "ServerOptions": {
+        "type": "object",
+        "properties": {
+          "variable_targets": {
+            "$ref": "#/components/schemas/VariableTargetList"
+          }
+        },
+        "required": [
+          "variable_targets"
+        ]
       },
       "ServerProvisionInput": {
         "type": "object",
@@ -19109,6 +19304,34 @@
         ],
         "example": "bitbucket"
       },
+      "SourceProviderOptionsList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/SourceProviderOptionsRelation"
+        }
+      },
+      "SourceProviderOptionsRelation": {
+        "type": "object",
+        "properties": {
+          "provider_name": {
+            "$ref": "#/components/schemas/SourceProviderName"
+          },
+          "provider_name_human_readable": {
+            "$ref": "#/components/schemas/SourceProviderDisplayableName"
+          },
+          "connect_url": {
+            "description": "URL of the connection",
+            "type": "string",
+            "example": "https://gitlab.com/oauth/authorize"
+          }
+        },
+        "required": [
+          "provider_name",
+          "provider_name_human_readable",
+          "connect_url"
+        ],
+        "nullable": true
+      },
       "SourceProviderRelation": {
         "type": "object",
         "properties": {
@@ -19161,6 +19384,16 @@
           "updated_at"
         ],
         "nullable": true
+      },
+      "SourceType": {
+        "type": "string",
+        "description": "The 'source type' from which the application source code will be retrieved and deployed. It can be one of `branch`, `tag` or `commit`. If not provided, the application's default branch will be used.",
+        "example": "branch",
+        "enum": [
+          "branch",
+          "commit",
+          "tag"
+        ]
       },
       "SshKey": {
         "type": "object",
@@ -20682,6 +20915,7 @@
         "description": "The application deployment event to which it's attached",
         "enum": [
           "activate-new-release",
+          "build-application",
           "check-app-environment",
           "get-new-release",
           "install-dependencies",
@@ -21580,26 +21814,7 @@
         "description": "The object of target defining how the variable key/value pair will be deployed",
         "properties": {
           "name": {
-            "type": "string",
-            "enum": [
-              "resource-config-file",
-              "nginx-http-server",
-              "my-cnf",
-              "newrelic-infra-yml",
-              "nginx-conf",
-              "nginx-main",
-              "nginx-http",
-              "os-env-var",
-              "php-cli_php-ini",
-              "php-fpm_php-fpm-conf",
-              "php-fpm_php-ini",
-              "php-fpm_pool-d-www-conf",
-              "redis-conf",
-              "supervisord-conf",
-              "sysctl-conf"
-            ],
-            "description": "The variable target name",
-            "example": "my-cnf"
+            "$ref": "#/components/schemas/VariableTarget"
           },
           "name_human_readable": {
             "type": "string",
@@ -21662,6 +21877,17 @@
           "target",
           "type",
           "hidden"
+        ]
+      },
+      "VirtualHostOptions": {
+        "type": "object",
+        "properties": {
+          "variable_targets": {
+            "$ref": "#/components/schemas/VariableTargetList"
+          }
+        },
+        "required": [
+          "variable_targets"
         ]
       }
     },

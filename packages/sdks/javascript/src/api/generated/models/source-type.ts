@@ -12,19 +12,16 @@
  */
 
 
-import { VariableTargets } from './variable-targets';
 
 /**
- * 
+ * The \'source type\' from which the application source code will be retrieved and deployed. It can be one of `branch`, `tag` or `commit`. If not provided, the application\'s default branch will be used.
  * @export
- * @interface ApplicationTypesPublic
+ * @enum {string}
  */
-export interface ApplicationTypesPublic {
-    /**
-     * The list of VariableTarget
-     * @type {Array<VariableTargets>}
-     * @memberof ApplicationTypesPublic
-     */
-    variables_targets?: Array<VariableTargets>;
+export enum SourceType {
+    Branch = 'branch',
+    Commit = 'commit',
+    Tag = 'tag'
 }
+
 

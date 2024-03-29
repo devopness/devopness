@@ -39,17 +39,17 @@ export interface ApplicationEnvironmentCreate {
      */
     domain_name?: string;
     /**
-     * The optional command that should be executed once during deployment to build the source code and get the application in a ready state. Must be at least 10 characters. Must not be greater than 300 characters.
+     * The optional command that should be executed once during deployment to build the source code and get the application in a ready state.
      * @type {string}
      * @memberof ApplicationEnvironmentCreate
      */
     build_command?: string;
     /**
-     * The language runtime engine version to be used to execute this application on the deployed servers. This field is required unless <code>programming_language</code> is in <code>html</code>.  Must be one of <code></code> Must be at least 1 characters. Must not be greater than 10 characters.
+     * The language runtime engine version to be used to execute this application on the deployed servers. Must be one of <code></code> Must be at least 1 characters. Must not be greater than 10 characters.
      * @type {string}
      * @memberof ApplicationEnvironmentCreate
      */
-    engine_version?: string;
+    engine_version: string;
     /**
      * The base framework on top of which the application has been implemented - it might have impact on the steps to be performed during application deployment. Must not be greater than 30 characters.
      * @type {string}
@@ -57,7 +57,7 @@ export interface ApplicationEnvironmentCreate {
      */
     framework: string;
     /**
-     * The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`. Must be one of <code>docker</code>, <code>dotnetcore</code>, <code>html</code>, <code>java</code>, <code>nodejs</code>, <code>php</code>, or <code>python</code> Must not be greater than 30 characters.
+     * The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`. Must be one of <code>docker</code>, <code>dotnetcore</code>, <code>html</code>, <code>java</code>, <code>nodejs</code>, <code>php</code>, <code>python</code>, or <code>ruby</code> Must not be greater than 30 characters.
      * @type {string}
      * @memberof ApplicationEnvironmentCreate
      */
@@ -111,17 +111,11 @@ export interface ApplicationEnvironmentCreate {
      */
     entrypoint: string;
     /**
-     * Indicates if at deployment time Devopness should execute package manager commands to install dependencies used in development mode.
-     * @type {boolean}
+     * Indicates command that Devopness must execute to install application dependencies.
+     * @type {string}
      * @memberof ApplicationEnvironmentCreate
      */
-    install_dependencies_dev: boolean;
-    /**
-     * Indicates if at deployment time Devopness should execute package manager commands to install dependencies used in production mode.
-     * @type {boolean}
-     * @memberof ApplicationEnvironmentCreate
-     */
-    install_dependencies_prod: boolean;
+    install_dependencies_command?: string;
     /**
      * Indicates if push to deploy webhooks are enabled for this application. If enabled an app deployment will be automatically triggered when new changes are committed to the `default_branch`.
      * @type {boolean}

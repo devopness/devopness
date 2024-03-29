@@ -17,8 +17,7 @@ required_permissions:
 1. Find the `Applications` card
 1. Click `View` in the `Applications` card to see a list of existing `Applications`
 1. Click `DETAILS` on the application you want to edit
-1. On the upper right corner of the application details view click `...`
-1. Use the drop-down menu to choose `EDIT`
+1. On the upper right corner of the application details view, click `EDIT`
 1. Follow the prompts then click `CONFIRM`
 1. Check the applications details view to see the applications's current settings
     - On the repository section, the new repository information can be seen

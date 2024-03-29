@@ -1,0 +1,25 @@
+# Configuration for welcome - https://github.com/behaviorbot/welcome
+
+# Configuration for new-issue-welcome - https://github.com/behaviorbot/new-issue-welcome
+
+# Comment to be posted to on first time issues
+newIssueWelcomeComment: |
+  Thank you 💖 and congrats 🎉 for reporting your first issue in this repository.
+
+  A maintainer will review this issue and apply the corresponding labels shortly.
+
+# Configuration for new-pr-welcome - https://github.com/behaviorbot/new-pr-welcome
+
+# Comment to be posted to on PRs from first time contributors in your repository
+newPRWelcomeComment: |
+  Welcome to Devopness open source projects! 👋
+
+  Thank you 💖 and congrats 🎉 for opening your very first pull request in this repository.
+  Hope you have a great time contributing and learning around here! 😄
+  
+  The first step is to ensure all automated checks have passed, after that a repo mantainer will review this PR
+# Configuration for first-pr-merge - https://github.com/behaviorbot/first-pr-merge
+
+# Comment to be posted to on pull requests merged by a first time user
+firstPRMergeComment: >
+  Congrats on merging your first pull request! 🎉🎉🎉

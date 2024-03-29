@@ -40,8 +40,8 @@ export class DevopnessApiClient {
   hookRequests: HookRequestService;
   hooks: HookService;
   logs: LogService;
-  networks: NetworkService;
   networkRules: NetworkRuleService;
+  networks: NetworkService;
   pipelines: PipelineService;
   projects: ProjectService;
   resourceEvents: ResourceEventService;
@@ -76,8 +76,8 @@ export class DevopnessApiClient {
     this.hookRequests = new HookRequestService();
     this.hooks = new HookService();
     this.logs = new LogService();
-    this.networks = new NetworkService();
     this.networkRules = new NetworkRuleService();
+    this.networks = new NetworkService();
     this.pipelines = new PipelineService();
     this.projects = new ProjectService();
     this.resourceEvents = new ResourceEventService();
