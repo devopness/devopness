@@ -12,6 +12,7 @@
  */
 
 
+import { LinkedResourceAttribute } from './linked-resource-attribute';
 
 /**
  * Object with common attributes that identify a linked resource
@@ -31,6 +32,12 @@ export interface LinkedResourceData {
      * @memberof LinkedResourceData
      */
     name: string;
+    /**
+     * The list of linked resource attributes
+     * @type {Array<LinkedResourceAttribute>}
+     * @memberof LinkedResourceData
+     */
+    extra_attributes?: Array<LinkedResourceAttribute>;
     /**
      * The date and time when the record was created
      * @type {string}
