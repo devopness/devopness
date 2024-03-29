@@ -111,6 +111,7 @@ export * from './language-runtime-engine-versions';
 export * from './language-runtime-framework';
 export * from './language-runtime-framework-commands';
 export * from './language-runtime-framework-defaults';
+export * from './linked-resource-attribute';
 export * from './linked-resource-data';
 export * from './log';
 export * from './member';

@@ -16216,6 +16216,33 @@
           "$ref": "#/components/schemas/LanguageRuntime"
         }
       },
+      "LinkedResourceAttribute": {
+        "type": "object",
+        "properties": {
+          "field_name": {
+            "description": "The attribute name",
+            "type": "string",
+            "example": "command"
+          },
+          "field_name_human_readable": {
+            "description": "Human redable version of the attribute name",
+            "type": "string",
+            "example": "Command"
+          },
+          "value": {
+            "description": "The attribute value",
+            "type": "string",
+            "example": "echo 'devopness rocks!' | tee -a /tmp/task-output.log"
+          }
+        }
+      },
+      "LinkedResourceAttributeList": {
+        "description": "The list of linked resource attributes",
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/LinkedResourceAttribute"
+        }
+      },
       "LinkedResourceData": {
         "type": "object",
         "description": "Object with common attributes that identify a linked resource",
@@ -16229,6 +16256,9 @@
             "type": "string",
             "description": "Resource name",
             "example": "my-server"
+          },
+          "extra_attributes": {
+            "$ref": "#/components/schemas/LinkedResourceAttributeList"
           },
           "created_at": {
             "type": "string",
