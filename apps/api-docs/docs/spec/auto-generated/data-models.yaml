@@ -273,6 +273,10 @@ LanguageRuntimeFrameworkDefaults:
   $ref: ./auto-generated/models/language-runtime-framework-defaults.yaml
 LanguageRuntimeList:
   $ref: ./auto-generated/models/language-runtime-list.yaml
+LinkedResourceAttribute:
+  $ref: ./auto-generated/models/linked-resource-attribute.yaml
+LinkedResourceAttributeList:
+  $ref: ./auto-generated/models/linked-resource-attribute-list.yaml
 LinkedResourceData:
   $ref: ./auto-generated/models/linked-resource-data.yaml
 Log:
