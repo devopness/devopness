@@ -1,5 +1,14 @@
 # Contributor Covenant Code of Conduct
 
+## TL;DR
+
+- Participants will be tolerant of opposing views
+- Participants must ensure that their language and actions are free of
+personal attacks and disparaging personal remarks.
+- When interpreting the words and actions of others, participants should always
+assume good intentions
+- Behaviour which can be reasonably considered harassment will not be tolerated
+
 ## Our Pledge
 
 We as members, contributors, and leaders pledge to make participation in our
@@ -114,9 +123,12 @@ the community.
 
 ## Attribution
 
-This Code of Conduct is adapted from the [Contributor Covenant][homepage],
-version 2.0, available at
-https://www.contributor-covenant.org/version/2/0/code_of_conduct.html.
+This Code of Conduct is adapted from:
+1. the [Contributor Covenant][homepage], version 2.0, available at
+https://www.contributor-covenant.org/version/2/0/code_of_conduct.html
+
+2. [The Ruby Language](https://www.ruby-lang.org) Community Conduct Guideline
+available at https://www.ruby-lang.org/en/conduct/
 
 Community Impact Guidelines were inspired by [Mozilla's code of conduct
 enforcement ladder](https://github.com/mozilla/diversity).
