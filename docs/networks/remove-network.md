@@ -16,7 +16,7 @@ required_permissions:
 1. On Devopness, navigate to a project then select an environment
 1. Find the `Networks` card
 1. Click `View` in the `Networks` card, to see a list of existing `Networks`
-1. In the list of networks, find the network you want to remove and click `DETAILS`
-1. On the upper-right corner of the network details view, click `REMOVE`
-1. Follow the prompts then click `REMOVE NETWORK`
-1. In the `Networks` list, the recently removed `Network` will be gone
+2. In the list of networks, find the network you want to remove and click the `NAME` of the network
+3. On the upper-right corner of the network details view, click `REMOVE`
+4. Follow the prompts then click `REMOVE NETWORK`
+5. In the `Networks` list, the recently removed `Network` will be gone
