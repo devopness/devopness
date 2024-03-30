@@ -124,10 +124,10 @@ the community.
 ## Attribution
 
 This Code of Conduct is adapted from:
-1. the [Contributor Covenant][homepage], version 2.0, available at
+1. The [Contributor Covenant][homepage], version 2.0, available at
 https://www.contributor-covenant.org/version/2/0/code_of_conduct.html
 
-2. [The Ruby Language](https://www.ruby-lang.org) Community Conduct Guideline
+2. The [Ruby Language](https://www.ruby-lang.org) Community Conduct Guideline
 available at https://www.ruby-lang.org/en/conduct/
 
 Community Impact Guidelines were inspired by [Mozilla's code of conduct
