@@ -10,6 +10,7 @@ import { EnvironmentsSSHKeysApiService } from '../api/generated/apis/environment
 import { EnvironmentsTeamMembershipsApiService } from '../api/generated/apis/environments-team-memberships-api';
 import { EnvironmentsTeamsApiService } from '../api/generated/apis/environments-teams-api';
 import { EnvironmentsNetworksApiService } from '../api/generated/apis/environments-networks-api';
+import { EnvironmentsVirtualHostsApiService } from '../api/generated/apis/environments-virtual-hosts-api';
 
 export class EnvironmentService extends EnvironmentsApiService {
     public actions = new EnvironmentsActionsApiService();
@@ -23,4 +24,5 @@ export class EnvironmentService extends EnvironmentsApiService {
     public sshKeys = new EnvironmentsSSHKeysApiService();
     public teams = new EnvironmentsTeamsApiService();
     public teamMemberships = new EnvironmentsTeamMembershipsApiService();
+    public virtualHosts = new EnvironmentsVirtualHostsApiService();
 }

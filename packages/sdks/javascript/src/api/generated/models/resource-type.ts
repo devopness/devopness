@@ -29,7 +29,8 @@ export enum ResourceType {
     Service = 'service',
     SshKey = 'ssh-key',
     SslCertificate = 'ssl-certificate',
-    Subnet = 'subnet'
+    Subnet = 'subnet',
+    VirtualHost = 'virtual-host'
 }
 
 
