@@ -3453,6 +3453,141 @@
         }
       }
     },
+    "/environments/{environment_id}/virtual-hosts": {
+      "get": {
+        "summary": "Return a list of all Virtual Hosts belonging to an environment",
+        "operationId": "listEnvironmentVirtualHosts",
+        "description": {
+          "$ref": "../spec/descriptions/list-environment-virtual-hosts.md"
+        },
+        "tags": [
+          "Environments - Virtual Hosts"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "environment_id",
+            "description": "The ID of the environment.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VirtualHostList"
+                }
+              }
+            },
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new virtual host",
+        "operationId": "addEnvironmentVirtualHost",
+        "description": {
+          "$ref": "../spec/descriptions/add-environment-virtual-host.md"
+        },
+        "tags": [
+          "Environments - Virtual Hosts"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "environment_id",
+            "description": "The ID of the environment.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VirtualHost"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VirtualHostEnvironmentCreate"
+              }
+            }
+          }
+        }
+      }
+    },
     "/events/{resource_type}/{resource_id}": {
       "get": {
         "summary": "List events of a resource type",
@@ -11073,6 +11208,115 @@
           }
         }
       }
+    },
+    "/virtual-hosts/{virtual_host_id}": {
+      "delete": {
+        "summary": "Delete a given virtual host",
+        "operationId": "deleteVirtualHost",
+        "description": {
+          "$ref": "../spec/descriptions/delete-virtual-host.md"
+        },
+        "tags": [
+          "Virtual Hosts"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "virtual_host_id",
+            "description": "The ID of the virtual host.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified resource was not found"
+          }
+        }
+      },
+      "get": {
+        "summary": "Get an virtual host by ID",
+        "operationId": "getVirtualHost",
+        "description": {
+          "$ref": "../spec/descriptions/get-virtual-host.md"
+        },
+        "tags": [
+          "Virtual Hosts"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "virtual_host_id",
+            "description": "The ID of the virtual host.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VirtualHost"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified resource was not found"
+          }
+        }
+      }
     }
   },
   "tags": [
@@ -11191,6 +11435,9 @@
     },
     {
       "name": "Environments - Team Memberships"
+    },
+    {
+      "name": "Environments - Virtual Hosts"
     },
     {
       "name": "Credentials"
@@ -11317,6 +11564,9 @@
     },
     {
       "name": "Users - Team Invitations"
+    },
+    {
+      "name": "Virtual Hosts"
     }
   ],
   "x-tagGroups": [
@@ -11527,6 +11777,13 @@
       "name": "Variables",
       "tags": [
         "Variables"
+      ]
+    },
+    {
+      "name": "Virtual Hosts",
+      "tags": [
+        "Virtual Hosts",
+        "Environments - Virtual Hosts"
       ]
     }
   ],
@@ -16222,17 +16479,17 @@
           "field_name": {
             "description": "The attribute name",
             "type": "string",
-            "example": "command"
+            "example": "ip_address"
           },
           "field_name_human_readable": {
             "description": "Human redable version of the attribute name",
             "type": "string",
-            "example": "Command"
+            "example": "IP address"
           },
           "value": {
             "description": "The attribute value",
             "type": "string",
-            "example": "echo 'devopness rocks!' | tee -a /tmp/task-output.log"
+            "example": "200.123.45.67"
           }
         }
       },
@@ -18026,7 +18283,8 @@
           "service",
           "ssh-key",
           "ssl-certificate",
-          "subnet"
+          "subnet",
+          "virtual-host"
         ],
         "example": "application"
       },
@@ -21879,6 +22137,89 @@
           "hidden"
         ]
       },
+      "VirtualHost": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "Unique ID of the Virtual Host",
+            "type": "integer",
+            "example": 1
+          },
+          "name": {
+            "description": "The name of the Virtual Host",
+            "type": "string",
+            "example": "my-site.example.com"
+          },
+          "root_directory": {
+            "description": "The relative path to the root directory of the Virtual Host",
+            "type": "string",
+            "example": "/public"
+          },
+          "forward_server_address": {
+            "description": "The address of the forward server",
+            "type": "string",
+            "example": "http://localhost:3000"
+          },
+          "created_by_user": {
+            "$ref": "#/components/schemas/UserRelation"
+          },
+          "created_at": {
+            "description": "The date and time when the record was created",
+            "type": "string",
+            "example": "2019-09-25T13:22:37.000000Z"
+          },
+          "updated_at": {
+            "description": "The date and time when the record was updated",
+            "type": "string",
+            "example": "2019-09-25T13:22:37.000000Z"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "root_directory",
+          "forward_server_address",
+          "created_by_user",
+          "created_at",
+          "updated_at"
+        ]
+      },
+      "VirtualHostEnvironmentCreate": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "description": "The type of virtual host to be created. Must be one of <code>ip-based</code> or <code>name-based</code>.",
+            "example": "name-based",
+            "type": "string"
+          },
+          "name": {
+            "description": "The name of the virtual host. Must not be greater than 255 characters.",
+            "example": "my-site.example.com",
+            "type": "string"
+          },
+          "root_directory": {
+            "description": "The relative path for the application root directory. Must start with one of <code>/</code> Must not be greater than 255 characters.",
+            "example": "/public",
+            "type": "string"
+          },
+          "forward_server_address": {
+            "description": "The IP address of the server that will be used for forwarding. Must not be greater than 255 characters.",
+            "example": "http://localhost:3000",
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "name",
+          "root_directory"
+        ]
+      },
+      "VirtualHostList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/VirtualHostRelation"
+        }
+      },
       "VirtualHostOptions": {
         "type": "object",
         "properties": {
@@ -21889,6 +22230,54 @@
         "required": [
           "variable_targets"
         ]
+      },
+      "VirtualHostRelation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "Unique ID of the Virtual Host",
+            "type": "integer",
+            "example": 1
+          },
+          "name": {
+            "description": "The name of the Virtual Host",
+            "type": "string",
+            "example": "my-site.example.com"
+          },
+          "root_directory": {
+            "description": "The relative path to the root directory of the Virtual Host",
+            "type": "string",
+            "example": "/public"
+          },
+          "forward_server_address": {
+            "description": "The address of the forward server",
+            "type": "string",
+            "example": "http://localhost:3000"
+          },
+          "created_by_user": {
+            "$ref": "#/components/schemas/UserRelation"
+          },
+          "created_at": {
+            "description": "The date and time when the record was created",
+            "type": "string",
+            "example": "2019-09-25T13:22:37.000000Z"
+          },
+          "updated_at": {
+            "description": "The date and time when the record was updated",
+            "type": "string",
+            "example": "2019-09-25T13:22:37.000000Z"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "root_directory",
+          "forward_server_address",
+          "created_by_user",
+          "created_at",
+          "updated_at"
+        ],
+        "nullable": true
       }
     },
     "responses": {
