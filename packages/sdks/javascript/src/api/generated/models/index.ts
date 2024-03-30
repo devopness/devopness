@@ -281,4 +281,7 @@ export * from './variable-target';
 export * from './variable-targets';
 export * from './variable-type';
 export * from './variable-update';
+export * from './virtual-host';
+export * from './virtual-host-environment-create';
 export * from './virtual-host-options';
+export * from './virtual-host-relation';
