@@ -139,6 +139,11 @@
 '/environments/{environment_id}/unarchive':
   post:
     $ref: ./auto-generated/endpoints/unarchive-environment.yaml
+'/environments/{environment_id}/virtual-hosts':
+  get:
+    $ref: ./auto-generated/endpoints/list-environment-virtual-hosts.yaml
+  post:
+    $ref: ./auto-generated/endpoints/add-environment-virtual-host.yaml
 '/events/{resource_type}/{resource_id}':
   get:
     $ref: ./auto-generated/endpoints/list-resource-events-by-resource-type.yaml
@@ -488,3 +493,8 @@
     $ref: ./auto-generated/endpoints/get-variable.yaml
   put:
     $ref: ./auto-generated/endpoints/update-variable.yaml
+'/virtual-hosts/{virtual_host_id}':
+  delete:
+    $ref: ./auto-generated/endpoints/delete-virtual-host.yaml
+  get:
+    $ref: ./auto-generated/endpoints/get-virtual-host.yaml

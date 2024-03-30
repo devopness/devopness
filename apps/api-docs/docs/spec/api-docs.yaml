@@ -210,6 +210,7 @@ tags:
   - name: Environments - SSH Keys
   - name: Environments - Teams
   - name: Environments - Team Memberships
+  - name: Environments - Virtual Hosts
   - name: Credentials
   - name: Hooks
     description: |
@@ -263,6 +264,7 @@ tags:
   - name: Users - Passwords
   - name: Users - Projects
   - name: Users - Team Invitations
+  - name: Virtual Hosts
 
 x-tagGroups:
   - name: API
@@ -393,6 +395,10 @@ x-tagGroups:
   - name: Variables
     tags:
       - Variables
+  - name: Virtual Hosts
+    tags:
+      - Virtual Hosts
+      - Environments - Virtual Hosts
 
 components:
   securitySchemes:

@@ -4,12 +4,12 @@ properties:
   field_name:
     description: 'The attribute name'
     type: string
-    example: command
+    example: ip_address
   field_name_human_readable:
     description: 'Human redable version of the attribute name'
     type: string
-    example: Command
+    example: 'IP address'
   value:
     description: 'The attribute value'
     type: string
-    example: 'echo ''devopness rocks!'' | tee -a /tmp/task-output.log'
+    example: 200.123.45.67

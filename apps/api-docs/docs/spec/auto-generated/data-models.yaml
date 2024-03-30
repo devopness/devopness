@@ -719,5 +719,13 @@ VariableType:
   $ref: ./auto-generated/models/variable-type.yaml
 VariableUpdate:
   $ref: ./auto-generated/models/variable-update.yaml
+VirtualHost:
+  $ref: ./auto-generated/models/virtual-host.yaml
+VirtualHostEnvironmentCreate:
+  $ref: ./auto-generated/models/virtual-host-environment-create.yaml
+VirtualHostList:
+  $ref: ./auto-generated/models/virtual-host-list.yaml
 VirtualHostOptions:
   $ref: ./auto-generated/models/virtual-host-options.yaml
+VirtualHostRelation:
+  $ref: ./auto-generated/models/virtual-host-relation.yaml

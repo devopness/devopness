@@ -13,4 +13,5 @@ enum:
   - ssh-key
   - ssl-certificate
   - subnet
+  - virtual-host
 example: application
