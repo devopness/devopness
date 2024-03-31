@@ -35,4 +35,4 @@ Once you have your application DNS record correctly pointing to the IP Address o
 1. In the list of applications, find the application you want to add an SSL certificate to and click the `NAME` of the application
 1. On the upper-right corner click `SSL`
 1. Choose the certificate authority and click `CONFIRM`
-1. Wait for the ssl-certificate:deploy action to be completed
+2. Wait for the `ssl-certificate:deploy` action to be completed
