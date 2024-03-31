@@ -14,15 +14,14 @@ links:
 Before creating an incoming webhook to trigger an `application:deploy`, we need the ID of a pipeline that runs the `deploy` operation for an application. The ID (`<pipeline_id>`) will be used as input parameter in the requests to be sent to Devopness API.
 
 <details open>
-  <summary>Steps to find the `<pipeline_id>` of an `application:deploy` pipeline</summary>
+  <summary>Steps to find the `pipeline_id` of an `application:deploy` pipeline</summary>
 
 1. On Devopness, navigate to a project then select an environment
 1. Find the `Applications` card
 1. Click `View` in the `Applications` card to see a list of existing `Applications`
-1. In the list of applications, find the application with the pipeline you want to manage and click `DETAILS`
-1. On the upper-right corner of the applications details view click `SETTINGS`
-1. Use the drop-down menu to choose `PIPELINES`
-1. In the list of pipelines, find the pipeline you want to manage and click `DETAILS`
+1. In the list of applications, find the application with the pipeline you want to manage and click the `NAME` of the application
+1. Click the `Pipelines` tab
+1. In the list of pipelines, find the pipeline you want to manage and click the `NAME` of the pipeline
     > If you haven't created a pipeline yet, follow the {% mentionPost "/docs/pipelines/add-pipeline" %} guide
 1. Copy the `<pipeline_id>` from the pipeline details URL, considering the following URL format:
     ```bash
@@ -43,7 +42,7 @@ Once you have your `<pipeline_id>`, please follow the instructions below to add 
     - Gitlab: [Webhooks: configure a webhook in GitLab](https://docs.gitlab.com/ee/user/project/integrations/webhooks.html#configure-a-webhook-in-gitlab)
 1. Trigger the webhook, using the configured source provider event trigger options
 1. On the chosen Devopness environment, click `View` in the `Applications` card to see a list of existing `Applications`
-1. Click `DETAILS` on the application you triggered the pipeline
+1. In the list of applications, find the application you triggered the pipeline and click the `NAME` of the application
 1. On the upper-right corner click `DEPLOYMENTS`
 1. Click `LOGS` on the action triggered by incoming hook
     > In `START TIME` column, the name of the subject, user or incoming hook, that triggered the action will be visible, e.g: run pipeline 'deploy' on application 'website' using main branch
