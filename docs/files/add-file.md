@@ -18,7 +18,7 @@ required_permissions:
 1. Click `View` in the `Applications` card to see a list of existing `Applications`
 1. In the list of applications, find the application where you want to add a configuration and click the `NAME` of the application
 1. Click the `CONFIGURATION FILES` tab
-1. On the right corner of the applications tab click `MANAGE`
+1. On the right corner of the configuration files tab click `MANAGE`
 1. Follow the instructions in the add configuration file step form then click `CONFIRM`
     > A new deployment is required for your changes to take effect.
       - Follow the guide {% mentionPost "/docs/applications/deploy-application" %}
