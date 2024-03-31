@@ -14,7 +14,7 @@ links:
 Before creating an incoming webhook to trigger an `application:deploy`, we need the ID of a pipeline that runs the `deploy` operation for an application. The ID (`<pipeline_id>`) will be used as input parameter in the requests to be sent to Devopness API.
 
 <details open>
-  <summary>Steps to find the `<pipeline_id>` of an `application:deploy` pipeline</summary>
+  <summary>Steps to find the <code>&lt;pipeline_id&gt;</code> of an <code>application:deploy</code> pipeline</summary>
 
 1. On Devopness, navigate to a project then select an environment
 1. Find the `Applications` card
