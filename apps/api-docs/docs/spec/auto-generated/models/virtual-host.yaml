@@ -5,6 +5,10 @@ properties:
     description: 'Unique ID of the Virtual Host'
     type: integer
     example: 1
+  type:
+    description: 'The type of Virtual Host (`name-based` or `ip-based`)'
+    type: string
+    example: name-based
   name:
     description: 'The name of the Virtual Host'
     type: string
@@ -12,7 +16,7 @@ properties:
   root_directory:
     description: 'The relative path to the root directory of the Virtual Host'
     type: string
-    example: /public
+    example: public
   forward_server_address:
     description: 'The address of the forward server'
     type: string
@@ -29,6 +33,7 @@ properties:
     example: '2019-09-25T13:22:37.000000Z'
 required:
   - id
+  - type
   - name
   - root_directory
   - forward_server_address

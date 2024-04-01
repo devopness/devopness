@@ -243,6 +243,9 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
         { path: 'id', fixture: 'variable', field: 'id' }
     ],
     'virtual_host': [],
+    'virtual_host_update': [
+          { path: 'id', fixture: 'virtual_host', field: 'id' },
+    ],
 };
 
 /**

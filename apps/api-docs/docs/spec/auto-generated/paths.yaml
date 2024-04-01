@@ -498,3 +498,5 @@
     $ref: ./auto-generated/endpoints/delete-virtual-host.yaml
   get:
     $ref: ./auto-generated/endpoints/get-virtual-host.yaml
+  put:
+    $ref: ./auto-generated/endpoints/update-virtual-host.yaml

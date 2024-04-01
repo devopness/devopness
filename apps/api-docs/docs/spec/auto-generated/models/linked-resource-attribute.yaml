@@ -13,3 +13,6 @@ properties:
     description: 'The attribute value'
     type: string
     example: 200.123.45.67
+required:
+  - field_name
+  - field_name_human_readable

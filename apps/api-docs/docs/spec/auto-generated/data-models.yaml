@@ -729,3 +729,5 @@ VirtualHostOptions:
   $ref: ./auto-generated/models/virtual-host-options.yaml
 VirtualHostRelation:
   $ref: ./auto-generated/models/virtual-host-relation.yaml
+VirtualHostUpdate:
+  $ref: ./auto-generated/models/virtual-host-update.yaml
