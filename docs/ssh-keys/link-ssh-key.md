@@ -14,10 +14,8 @@ links:
 1. On Devopness, navigate to a project then select an environment
 1. Find the `SSH Keys` card
 1. Click `View` in the `SSH Keys` card to see a list of existing `SSH Keys`
-1. Click `DETAILS` on the SSH key you want to link to a server
-1. On the upper-right corner of the SSH key details view, click `SETTINGS`
-1. Use the drop-down menu to choose `Linked resources`
-1. On the upper-right corner of the `Linked resources` list, click `LINK TO`
-1. Use the drop-down menu to choose `Servers`
-1. Follow the prompts then click `Link`
-1. In the `Linked Resource` list, the recently linked server can be seen in the `DEPENDS ON` table
+1. In the list of SSH keys, find the SSH key you want to link to a server and click the `NAME` of the SSH key
+1. Click the `Servers` tab
+1. On the upper-right corner of the servers tab click `MANAGE`
+1. Follow the prompts, then click `Link`
+1. In the `Servers` list, the recently linked server can be seen
