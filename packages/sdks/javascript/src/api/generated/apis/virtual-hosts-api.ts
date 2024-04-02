@@ -16,6 +16,7 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { VirtualHost } from '../../generated/models';
+import { VirtualHostUpdate } from '../../generated/models';
 
 /**
  * VirtualHostsApiService - Auto-generated
@@ -54,6 +55,28 @@ export class VirtualHostsApiService extends ApiBaseService {
         const requestUrl = '/virtual-hosts/{virtual_host_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <VirtualHost>(requestUrl.replace(`{${"virtual_host_id"}}`, encodeURIComponent(String(virtualHostId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Update an existing virtual host
+     * @param {number} virtualHostId The ID of the virtual host.
+     * @param {VirtualHostUpdate} virtualHostUpdate A JSON object containing the resource data
+     */
+    public async updateVirtualHost(virtualHostId: number, virtualHostUpdate: VirtualHostUpdate): Promise<ApiResponse<void>> {
+        if (virtualHostId === null || virtualHostId === undefined) {
+            throw new ArgumentNullException('virtualHostId', 'updateVirtualHost');
+        }
+        if (virtualHostUpdate === null || virtualHostUpdate === undefined) {
+            throw new ArgumentNullException('virtualHostUpdate', 'updateVirtualHost');
+        }
+
+        let queryString = '';
+
+        const requestUrl = '/virtual-hosts/{virtual_host_id}' + (queryString? `?${queryString}` : '');
+
+        const response = await this.put <void, VirtualHostUpdate>(requestUrl.replace(`{${"virtual_host_id"}}`, encodeURIComponent(String(virtualHostId))), virtualHostUpdate);
         return new ApiResponse(response);
     }
 }
