@@ -22,9 +22,8 @@ required_permissions:
 1. On Devopness, navigate to a project then select an environment
 1. Find the `Network Rules` card
 1. Click `View` in the `Network Rules` card to see a list of existing `Network Rules`
-1. Click `DETAILS` on the network rule you want to run a pipeline
-1. On the upper-right corner of the network rule details view, click `SETTINGS`
-1. Use the drop-down menu to choose `PIPELINES`, to see a list of existing `Pipelines`
+1. In the list of network rules, find the network rule you want to run a pipeline and click the `NAME` of the network rule
+1. Click the `PIPELINES` tab
 1. In the list of pipelines, find the deploy pipeline you want to run and click `DEPLOY`
 1. Follow the prompts then click `DEPLOY`
     - The form confirm button will be labeled according to the pipeline operation
@@ -37,4 +36,4 @@ required_permissions:
 
     {% endnote %}
 
-1. Wait for the action `Network-rule:Deploy` to be completed
+1. Wait for the action `network-rule:deploy` to be completed
