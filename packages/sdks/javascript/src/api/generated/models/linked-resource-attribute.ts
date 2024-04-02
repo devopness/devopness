@@ -24,13 +24,13 @@ export interface LinkedResourceAttribute {
      * @type {string}
      * @memberof LinkedResourceAttribute
      */
-    field_name?: string;
+    field_name: string;
     /**
      * Human redable version of the attribute name
      * @type {string}
      * @memberof LinkedResourceAttribute
      */
-    field_name_human_readable?: string;
+    field_name_human_readable: string;
     /**
      * The attribute value
      * @type {string}
