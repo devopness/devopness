@@ -22,7 +22,7 @@ required_permissions:
 1. On Devopness, navigate to a project then select an environment
 1. Find the `Servers` card
 1. Click the `View` in the `Servers` card, to see a list of existing `Servers`
-1. In the list of servers, find the server you want to remove and click `DETAILS`
+1. In the list of servers, find the server you want to remove and click the `NAME` of the server
 1. On the upper-right corner of the server details view, click `REMOVE`
 1. Follow the prompts then click `REMOVE SERVER`
 1. Wait for the `server:remove` action to be completed
