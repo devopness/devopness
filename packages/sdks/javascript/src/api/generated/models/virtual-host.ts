@@ -27,6 +27,12 @@ export interface VirtualHost {
      */
     id: number;
     /**
+     * The type of Virtual Host (`name-based` or `ip-based`)
+     * @type {string}
+     * @memberof VirtualHost
+     */
+    type: string;
+    /**
      * The name of the Virtual Host
      * @type {string}
      * @memberof VirtualHost
