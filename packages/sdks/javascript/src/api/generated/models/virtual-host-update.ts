@@ -16,31 +16,31 @@
 /**
  * 
  * @export
- * @interface VirtualHostEnvironmentCreate
+ * @interface VirtualHostUpdate
  */
-export interface VirtualHostEnvironmentCreate {
+export interface VirtualHostUpdate {
     /**
-     * The type of virtual host to be created. Must be one of <code>ip-based</code> or <code>name-based</code>.
-     * @type {string}
-     * @memberof VirtualHostEnvironmentCreate
+     * The unique ID of the given virtual host.
+     * @type {number}
+     * @memberof VirtualHostUpdate
      */
-    type: string;
+    id: number;
     /**
      * The name of the virtual host. Must not be greater than 255 characters.
      * @type {string}
-     * @memberof VirtualHostEnvironmentCreate
+     * @memberof VirtualHostUpdate
      */
-    name: string;
+    name?: string;
     /**
-     * The relative path for the virtual host root directory. Must not be greater than 255 characters.
+     * The relative path to the virtual host root directory. Must not be greater than 255 characters.
      * @type {string}
-     * @memberof VirtualHostEnvironmentCreate
+     * @memberof VirtualHostUpdate
      */
-    root_directory: string;
+    root_directory?: string;
     /**
      * The IP address of the server that will be used for forwarding. Must not be greater than 255 characters.
      * @type {string}
-     * @memberof VirtualHostEnvironmentCreate
+     * @memberof VirtualHostUpdate
      */
     forward_server_address?: string;
 }
