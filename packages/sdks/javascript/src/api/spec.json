@@ -11316,6 +11316,77 @@
             "description": "The specified resource was not found"
           }
         }
+      },
+      "put": {
+        "summary": "Update an existing virtual host",
+        "operationId": "updateVirtualHost",
+        "description": {
+          "$ref": "../spec/descriptions/update-virtual-host.md"
+        },
+        "tags": [
+          "Virtual Hosts"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "virtual_host_id",
+            "description": "The ID of the virtual host.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified resource was not found"
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VirtualHostUpdate"
+              }
+            }
+          }
+        }
       }
     }
   },
@@ -16491,7 +16562,11 @@
             "type": "string",
             "example": "200.123.45.67"
           }
-        }
+        },
+        "required": [
+          "field_name",
+          "field_name_human_readable"
+        ]
       },
       "LinkedResourceAttributeList": {
         "description": "The list of linked resource attributes",
@@ -22145,6 +22220,11 @@
             "type": "integer",
             "example": 1
           },
+          "type": {
+            "description": "The type of Virtual Host (`name-based` or `ip-based`)",
+            "type": "string",
+            "example": "name-based"
+          },
           "name": {
             "description": "The name of the Virtual Host",
             "type": "string",
@@ -22153,7 +22233,7 @@
           "root_directory": {
             "description": "The relative path to the root directory of the Virtual Host",
             "type": "string",
-            "example": "/public"
+            "example": "public"
           },
           "forward_server_address": {
             "description": "The address of the forward server",
@@ -22176,6 +22256,7 @@
         },
         "required": [
           "id",
+          "type",
           "name",
           "root_directory",
           "forward_server_address",
@@ -22198,8 +22279,8 @@
             "type": "string"
           },
           "root_directory": {
-            "description": "The relative path for the application root directory. Must start with one of <code>/</code> Must not be greater than 255 characters.",
-            "example": "/public",
+            "description": "The relative path for the virtual host root directory. Must not be greater than 255 characters.",
+            "example": "public",
             "type": "string"
           },
           "forward_server_address": {
@@ -22239,6 +22320,11 @@
             "type": "integer",
             "example": 1
           },
+          "type": {
+            "description": "The type of the Virtual Host (`name-based` or `ip-based`)",
+            "type": "string",
+            "example": "name-based"
+          },
           "name": {
             "description": "The name of the Virtual Host",
             "type": "string",
@@ -22247,7 +22333,7 @@
           "root_directory": {
             "description": "The relative path to the root directory of the Virtual Host",
             "type": "string",
-            "example": "/public"
+            "example": "public"
           },
           "forward_server_address": {
             "description": "The address of the forward server",
@@ -22270,6 +22356,7 @@
         },
         "required": [
           "id",
+          "type",
           "name",
           "root_directory",
           "forward_server_address",
@@ -22278,6 +22365,34 @@
           "updated_at"
         ],
         "nullable": true
+      },
+      "VirtualHostUpdate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "The unique ID of the given virtual host.",
+            "example": 37292,
+            "type": "integer"
+          },
+          "name": {
+            "description": "The name of the virtual host. Must not be greater than 255 characters.",
+            "example": "my-site.example.com",
+            "type": "string"
+          },
+          "root_directory": {
+            "description": "The relative path to the virtual host root directory. Must not be greater than 255 characters.",
+            "example": "public",
+            "type": "string"
+          },
+          "forward_server_address": {
+            "description": "The IP address of the server that will be used for forwarding. Must not be greater than 255 characters.",
+            "example": "http://localhost:3000",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
       }
     },
     "responses": {
