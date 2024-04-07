@@ -119,6 +119,13 @@ export class DevopnessApiClient {
     ApiBaseService.accessToken = accessToken;
   }
 
+  /**
+   *
+   * @summary Sets the callback function to be executed when the access token expires.
+   * @static
+   * @param {function(string)} callback - The callback function to be executed.
+   * This function should accept a single string parameter representing the expired access token.
+   */
   public set onTokenExpired(callback: (accessToken: string) => void) {
     if (callback) {
       ApiBaseService.onTokenExpired = callback;
