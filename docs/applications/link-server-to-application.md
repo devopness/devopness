@@ -20,7 +20,7 @@ links:
 1. On Devopness, navigate to a project then select an environment
 1. Find the `Applications` card
 1. Click `View` in the `Applications` card to see a list of existing `Applications`
-1. In the list of applications, find the application you want to link a server and click the `NAME` of the application
+1. In the list of applications, find the application you want to link to a server and click the `NAME` of the application
 1. Click the `Servers` tab
 1. On the upper-right corner of the servers tab click `MANAGE`
 1. Follow the prompts then click `Link`
