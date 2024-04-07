@@ -19,7 +19,7 @@ links:
 
 {% warning %}
 
-**WARNING**: Your server's public IP address will be updated the next time the server is started, unless you have configured an elastic IP on your cloud provider management panel; meaning, the next time this server is started, you will need to update any domains pointing to this server.
+**WARNING**: Your server's public IP address will be updated the next time the server is started, unless you have a static IP address set configured for the selected instance on your cloud provider. That means that if your server does not have a static IP address associated to it, the next time this server is started all domains that point to this server's old IP address will need to be updated to point to the server's new IP address.
 
 {% endwarning %}
 
