@@ -28,6 +28,7 @@ import { TeamInvitationService } from './services/TeamInvitationService';
 import { TeamService } from './services/TeamService';
 import { UserService } from './services/UserService';
 import { VariableService } from './services/VariableService';
+import { VirtualHostService } from './services/VirtualHostService';
 
 export class DevopnessApiClient {
   actions: ActionService;
@@ -59,6 +60,7 @@ export class DevopnessApiClient {
   teams: TeamService;
   users: UserService;
   variables: VariableService;
+  virtualHosts: VirtualHostService;
 
   constructor(options?: ConfigurationOptions) {
     ApiBaseService.configuration = new Configuration(options || {});
@@ -95,6 +97,7 @@ export class DevopnessApiClient {
     this.teams = new TeamService();
     this.users = new UserService();
     this.variables = new VariableService();
+    this.virtualHosts = new VirtualHostService();
     this.onTokenExpired = () => {
       // do nothing.
     };
