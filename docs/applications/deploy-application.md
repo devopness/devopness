@@ -4,7 +4,7 @@ intro: Deploy your code changes in smaller chunks to make it easier to validate 
 links:
     overview:
     quickstart:
-    previous: /docs/linked-resources/add-linked-resource
+    previous: /docs/applications/link-server-to-application
     next: /docs/ssl-certificates/add-ssl-certificate
     guides:
     related:
