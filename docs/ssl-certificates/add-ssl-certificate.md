@@ -32,7 +32,7 @@ Before an SSL certificate can be issued a valid DNS record must point to the ser
 Once you have your application DNS record correctly pointing to the IP Address of your Devopness managed server, please follow the instructions below to issue a SSL Certificate to your application:
 
 1. On the chosen Devopness environment, click `View` in the `Applications` card to see a list of existing `Applications`
-1. Click `DETAILS` on the application you want to add an SSL certificate to
-1. On the upper-right corner click `SSL` (open lock icon)
+1. In the list of applications, find the application you want to add an SSL certificate to and click the `NAME` of the application
+1. On the upper-right corner click `SSL`
 1. Choose the certificate authority and click `CONFIRM`
-1. An action to install the SSL certificate will start
+2. Wait for the `ssl-certificate:deploy` action to be completed
