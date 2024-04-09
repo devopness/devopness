@@ -139,7 +139,7 @@ export class ApiBaseService {
             Buffer.from(ApiBaseService.accessToken?.split(".")?.[1], "base64").toString()
         );
 
-        return response?.status === 401 && decodedToken.exp < new Date().getTime() / 1000;
+        return response?.status === 401 && decodedToken.exp < (new Date().getTime() / 1000);
     }
 
     public baseURL(): string {
