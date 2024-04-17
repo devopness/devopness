@@ -1,6 +1,6 @@
 ---
 title: Edit a Virtual host
-intro: Edit a Virtual host to link to your `Applications` so you can access them via IP address or domain
+intro: Edit a Virtual host to change how your applications are accessible on the internet by IP address or domain name
 links:
     overview:
     quickstart:
