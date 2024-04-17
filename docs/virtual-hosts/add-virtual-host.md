@@ -1,6 +1,6 @@
 ---
 title: Add a Virtual host
-intro: Add a Virtual host to define how your applications accessible on the internet by IP address or domain name
+intro: Add a Virtual Host to make an application accessible on the internet, by server IP address or a domain name
 links:
     overview:
     quickstart:
