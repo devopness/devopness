@@ -1,6 +1,6 @@
 ---
 title: Virtual Hosts
-intro: Learn how to configure virtual hosts to have one or more applications publicly accessible on the internet by IP address or domain name
+intro: Learn how to configure Virtual Hosts to have one or more applications accessible on the internet, by server IP address or a domain name
 links:
     overview:
     quickstart:
