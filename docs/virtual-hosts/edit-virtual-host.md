@@ -1,6 +1,6 @@
 ---
 title: Edit a Virtual host
-intro: Edit a Virtual host to change how your applications are accessible on the internet by IP address or domain name
+intro: Edit a Virtual Host to change how an application is accessible on the internet , by server IP address or a domain name
 links:
     overview:
     quickstart:
