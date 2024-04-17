@@ -1,6 +1,6 @@
 ---
 title: Virtual Hosts
-intro: Learn how to configure virtual hosts to register domains and assign IPs for application access
+intro: Learn how to configure virtual hosts to have one or more applications publicly accessible on the internet by IP address or domain name
 links:
     overview:
     quickstart:
