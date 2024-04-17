@@ -1,6 +1,6 @@
 ---
 title: Add a Virtual host
-intro: Add a Virtual host to link to your `Applications` so you can access them via IP address or domain
+intro: Add a Virtual host to define how your applications accessible on the internet by IP address or domain name
 links:
     overview:
     quickstart:
