@@ -8,8 +8,8 @@ links:
     next:
     guides:
     related:
-        - /docs/virtual-hosts/add-virtual-hosts
-        - /docs/virtual-hosts/edit-virtual-hosts
+        - /docs/virtual-hosts/add-virtual-host
+        - /docs/virtual-hosts/edit-virtual-host
     featured:
 required_permissions:
 ---
