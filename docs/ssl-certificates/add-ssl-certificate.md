@@ -19,5 +19,5 @@ required_permissions:
 4. On the upper-right corner of the list, click `ADD SSL CERTIFICATE`
 5. On the Virtual host dropdown menu, choose a Virtual Host.
    > The name of your SSL certificate will be the name of the chosen Virtual Host.
-6. Choose the certificate authority and click `CONFIRM`
+6. Choose the certificate authority, for example `Let's Encrypt`, and click `CONFIRM`
 7. An action to install the SSL Certificate will start
