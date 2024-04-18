@@ -20,4 +20,4 @@ required_permissions:
 5. On the Virtual host dropdown menu, choose a Virtual Host.
    > The name of your SSL certificate will be the name of the chosen Virtual Host.
 6. Choose the certificate authority, for example `Let's Encrypt`, and click `CONFIRM`
-7. An action to install the SSL Certificate will start
+7. An action will be started by Devopness to issue an SSL Certificate and install it for the chosen Virtual Host
