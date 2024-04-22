@@ -6,13 +6,13 @@ properties:
     type: integer
     example: 1
   type:
-    description: 'The type of the Virtual Host (`name-based` or `ip-based`)'
-    type: string
-    example: name-based
+    $ref: '#/components/schemas/VirtualHostType'
   name:
     description: 'The name of the Virtual Host'
     type: string
     example: my-site.example.com
+  application:
+    $ref: '#/components/schemas/ApplicationRelation'
   root_directory:
     description: 'The relative path to the root directory of the Virtual Host'
     type: string
@@ -35,6 +35,7 @@ required:
   - id
   - type
   - name
+  - application
   - root_directory
   - forward_server_address
   - created_by_user
