@@ -17,7 +17,9 @@ newPRWelcomeComment: |
   Thank you 💖 and congrats 🎉 for opening your very first pull request in this repository.
   Hope you have a great time contributing and learning around here! 😄
   
-  The first step is to ensure all automated checks have passed, after that a repo mantainer will review this PR
+  The first step is to ensure all automated checks have passed, after that a repo mantainer will review this PR.
+
+  Remember, contributions to this repository should follow our [contributing guidelines](https://github.com/devopness/.github/blob/main/CONTRIBUTING.md).
 # Configuration for first-pr-merge - https://github.com/behaviorbot/first-pr-merge
 
 # Comment to be posted to on pull requests merged by a first time user
