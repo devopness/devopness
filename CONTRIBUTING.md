@@ -1,46 +1,70 @@
-# How to contribute
+# Contributing to Devopness
 
-Support and contributions from the open source community are essential for keeping
-`@devopness/sdk-js` up to date and always improving! There are a few guidelines that we need
-contributors to follow in order to keep the project consistent and allow us to keep
-maintaining `@devopness/sdk-js` in a reasonable amount of time.
+Thank you for considering contributing to Devopness!
 
-Please note that this project is released with a [Contributor Code of Conduct][coc].
-By participating in this project you agree to abide by its terms.
+We appreciate the help!
 
-[coc]: ./CODE_OF_CONDUCT.md
+All community contributions are welcome! Being them:
+- 🐛 Opening [a bug report](https://github.com/devopness/devopness/issues/new/choose)
+- 📚 Improving [our documentation](https://github.com/devopness/devopness/tree/main/docs)
+- 🆕 Submitting [ideas and feature requests](https://github.com/devopness/devopness/discussions/categories/ideas-feature-requests)
+- ❓ Asking questions and helping other Devopness users with open [discussions](https://github.com/devopness/devopness/discussions)
+... every small contribution matters a lot to our team and for the Devopness community!
 
-## Creating an Issue
+## Not ready to start contributing?
+No problem!
+If you like Devopness, but just don't have time to contribute yet, that's fine.
+There are other easy ways to support Devopness and show your appreciation:
+- ⭐ Star this repository
+- 📣 Post about Devopness on social networks, Discord, LinkedIn, Slack, Twitter, ...
 
-Before you create a new Issue:
+## Code of Conduct
 
-1. Please search existing issues to ensure the same issue hasn't been reported before and avoid opening a duplicate.
-2. If it is a bug report, include the steps needed to reproduce the issue and please create a reproducible test case on [codesandbox.io](https://codesandbox.io/), [jsfiddle.net](https://jsfiddle.net/) or [runkit.com](https://runkit.com/). Example: https://runkit.com/gr2m/5aa034f1440b420012a6eebf
-3. If it is a feature request, please share the motivation for the new feature and how you would implement it.
-4. Please include links to the corresponding GitHub documentation.
+Please make sure to read and observe our [Contributor Code of Conduct](./CODE-OF-CONDUCT.md).
 
-## Tests
+## Contributing Guidelines
 
-If you want to submit a bug fix or new feature, make sure that all tests are passing by locally running `npm run build`.
+### Getting Started
+`Good first issues` are a great way to start contributing to the project and get familiar with the codebase.
+Here's how to find them:
 
-## Making Changes and submitting Pull Requests
+1. Visit the "[Issues](https://github.com/devopness/devopness/issues)" tab on the main [repository](https://github.com/devopness/devopness)
+2. Use the "Labels" filter and select "[Good First Issue](https://github.com/devopness/devopness/labels/good%20first%20issue)" to see a list of beginner-friendly tasks
+3. Choose an issue that interests you
 
-- Keep git commit messages clear and appropriate. Ideally, follow commit conventions described below.
-- Push your changes to your topic branch in your fork of the repo.
-- Submit a pull request from your topic branch to the main branch in the `@devopness/devopness` repository.
-- Be sure to tag any issues your pull request is taking care of / contributing to. \* Adding "Closes #123" to a pull request description will auto close the issue once the pull request is merged in.
-- Ensure the pull request passes all `checks`. If not, please fix the code until you get a green check mark on the PR.
+### Forking this repository
+1. [Fork the repository](https://github.com/devopness/devopness/fork) and start working on it
+2. To become familiar working with forks, please read and follow the [standard fork based workflow](https://gist.github.com/Chaser324/ce0505fbed06b947d962), which could be summarized with the following steps:
+  - Fork Devopness repository
+  - Create a branch
+  - When the changes in a branch are tested, open a pull request from your fork
 
-## Merging the Pull Request & releasing a new version
+### Submitting a Pull Request
+1. Once you implemented a new feature or a fix for an issue, open a pull request for review
+  - Please ensure all automated checks on your PR are passing, otherwise the PR will not be considered ready to be reviewed
+2. **Code Review:** Your pull request will be reviewed
+  - Note: you might need to make changes on your pull request based on reviewers's feedbacks
+3. **Merge:** Once approved, maintainers will merge your pull request into the main repository branch
 
-Releases are automated using [semantic-release](https://github.com/semantic-release/semantic-release).
-The following commit message conventions determine which version is released:
+### Pull request title are the changelog messages
+The messages that appear in our changelogs are the messages defined as titles of the pull requests.
 
-1. `fix: ...` or `fix(scope name): ...` prefix in subject: bumps fix version, e.g. `1.2.3` → `0.2.4`
-2. `feat: ...` or `feat(scope name): ...` prefix in subject: bumps feature version, e.g. `1.2.3` → `1.3.0`
-3. `BREAKING CHANGE:` in body: bumps breaking version, e.g. `1.2.3` → `2.0.0`
+**Pull request titles should**:
+- be written in the active imperative form
+- not end with a period (`.`)
+- be read in natural language. As a simple rule one can pretend the message kn a pull request title starts with `"This change will ..."`
+  - **Example**: for a pull request that has the title `fix broken links on user profile page`, it could be read as `This change will ... fix broken links on user profile page`
 
-Only one version number is bumped at a time, the highest version change trumps the others.
-Besides publishing a new version to npm, semantic-release also creates a git tag and a release on GitHub, generates changelogs from the commit messages and puts them into the release notes.
+Here are some **bad examples** of pull requests titles we're trying to avoid:
+- `Fixes a bug`
+- `Adds a feature`
+- `Feature now does something`
 
-If the pull request looks good but does not follow the commit conventions, use the "Squash & merge" button.
+### Feature Work
+For larger features, we would appreciate it if you open a [new issue](https://github.com/devopness/devopness/issues/new/choose) before investing a lot of your time trying to solve it, so we can discuss and plan the feature together.
+
+Please also be sure to browse current issues to make sure your issue is unique, to lighten the triage burden on our maintainers.
+Finally, please limit your pull requests to contain only one feature at a time. Separating feature work into individual pull requests helps speed up code review and reduces the barrier to merge.
+
+## Getting Help
+If you want to talk with other folks in the Devopness community (including members of the Devopness team) please [start a discussion](https://github.com/devopness/devopness/discussions) and we will soon get in touch with you.
