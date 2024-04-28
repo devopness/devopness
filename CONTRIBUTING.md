@@ -52,7 +52,7 @@ The messages that appear in our changelogs are the messages defined as titles of
 **Pull request titles should**:
 - be written in the active imperative form
 - not end with a period (`.`)
-- be read in natural language. As a simple rule one can pretend the message kn a pull request title starts with `"This change will ..."`
+- be read in natural language. As a simple rule one can pretend the message in a pull request title starts with `"This change will ..."`
   - **Example**: for a pull request that has the title `fix broken links on user profile page`, it could be read as `This change will ... fix broken links on user profile page`
 
 Here are some **bad examples** of pull requests titles we're trying to avoid:
