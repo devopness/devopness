@@ -20,7 +20,7 @@ There are other easy ways to support Devopness and show your appreciation:
 
 ## Code of Conduct
 
-Please make sure to read and observe our [Contributor Code of Conduct](./CODE-OF-CONDUCT.md).
+Please make sure to read and observe our [Contributor Code of Conduct](./CODE_OF_CONDUCT.md).
 
 ## Contributing Guidelines
 
