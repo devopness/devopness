@@ -14,12 +14,24 @@ newIssueWelcomeComment: |
 newPRWelcomeComment: |
   Welcome to Devopness open source projects! 👋
 
-  Thank you 💖 and congrats 🎉 for opening your very first pull request in this repository.
+  Thank you 💖 and congrats 🎉 for opening your first pull request in this repository!
   Hope you have a great time contributing and learning around here! 😄
   
-  The first step is to ensure all automated checks have passed, after that a repo mantainer will review this PR.
+  Someone from the Devopness team will review this PR once all its automated checks are passing. ✅ 
+  
+  Please be patient! 🙏 
+  * We might take a few days, but we always review all PRs as soon as we can. :-)
+  
+  In the meantime, if you haven't already: 
+  - Sign up for a free Devopness account at https://www.devopness.com/
+  - Read our [Code of Conduct](https://github.com/devopness/devopness/blob/main/CODE_OF_CONDUCT.md)
+  - Read our [Contributing guidelines](https://github.com/devopness/devopness/blob/main/CONTRIBUTING.md)
 
-  Remember, contributions to this repository should follow our [contributing guidelines](https://github.com/devopness/.github/blob/main/CONTRIBUTING.md).
+  Also, **please consider**:
+  - ⭐ Star this repository
+  - 📣 Post about Devopness on social networks, Discord, LinkedIn, Slack, Twitter, ...
+
+  Hope you have a great time contributing and learning around here! 😄
 # Configuration for first-pr-merge - https://github.com/behaviorbot/first-pr-merge
 
 # Comment to be posted to on pull requests merged by a first time user
