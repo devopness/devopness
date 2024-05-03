@@ -1,4 +1,4 @@
-name: "CLA Assistant"
+name: "Validate CLA Signature - PR"
 
 on:
   issue_comment:
@@ -11,7 +11,7 @@ on:
       - synchronize
 
 jobs:
-  cla_assistant:
-    name: CLA Assistant
+  check_cla_signatures:
+    name: Check CLA signatures
     uses: devopness/devopness/.github/workflows/cla-assistant.yml@main
     secrets: inherit
