@@ -1,11 +1,19 @@
 name: "CLA Assistant"
 
 on:
+  issue_comment:
+    types:
+      - created
+  pull_request_target:
+    types:
+      - opened
+      - closed
+      - synchronize
   workflow_call:
 
 jobs:
-  cla_assistant:
-    name: CLA Assistant
+  check_cla_signatures:
+    name: Check CLA signatures
     runs-on: ubuntu-latest
     steps:
       - name: "Ensure PR author has signed CLA"
