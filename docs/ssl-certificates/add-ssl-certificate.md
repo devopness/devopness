@@ -14,7 +14,7 @@ required_permissions:
 ---
 
 1. On Devopness, navigate to a project then select an environment
-2. Find the `SSL Certificates` card`
+1. Find the `SSL Certificates` card
 3. Click `View` in the `SSL Certificates` card to see a list of existing `SSL Certificates`
 4. On the upper-right corner of the list, click `ADD SSL CERTIFICATE`
 5. On the `Virtual Host` dropdown menu, choose a virtual host
