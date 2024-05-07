@@ -19,7 +19,7 @@ Before an SSL certificate can be issued, a valid DNS record must point to the se
   <summary>Steps to configure a DNS record pointing to your servers:</summary>
 
 1. Copy the IP Address of the server where the virtual host is running
-    - Follow the {% mentionPost "/docs/servers/find-server-ip-address" %} guide for detailed instructions
+    - Follow the guide {% mentionPost "/docs/servers/find-server-ip-address" %}
 1. Access your DNS service management panel
     - If you don't have your own domains configured with a DNS service, you can use free services such as [FreeDNS](https://freedns.afraid.org/) or hire paid managed DNS services such as [AWS Route53](https://aws.amazon.com/route53/), [Cloudflare DNS](https://www.cloudflare.com/dns/), or any [notable managed DNS service provider](https://en.wikipedia.org/wiki/List_of_managed_DNS_providers) that suits your needs.
 1. Configure a DNS record for your virtual host domain
