@@ -65,10 +65,6 @@ ApplicationPipeline:
   $ref: ./auto-generated/models/application-pipeline.yaml
 ApplicationRelation:
   $ref: ./auto-generated/models/application-relation.yaml
-ApplicationType:
-  $ref: ./auto-generated/models/application-type.yaml
-ApplicationTypes:
-  $ref: ./auto-generated/models/application-types.yaml
 ApplicationUpdate:
   $ref: ./auto-generated/models/application-update.yaml
 ArchivedEnvironmentList:
@@ -535,10 +531,10 @@ SshKeyUpdate:
   $ref: ./auto-generated/models/ssh-key-update.yaml
 SslCertificate:
   $ref: ./auto-generated/models/ssl-certificate.yaml
-SslCertificateApplicationCreate:
-  $ref: ./auto-generated/models/ssl-certificate-application-create.yaml
 SslCertificateDomainList:
   $ref: ./auto-generated/models/ssl-certificate-domain-list.yaml
+SslCertificateEnvironmentCreate:
+  $ref: ./auto-generated/models/ssl-certificate-environment-create.yaml
 SslCertificateIssuer:
   $ref: ./auto-generated/models/ssl-certificate-issuer.yaml
 SslCertificateList:

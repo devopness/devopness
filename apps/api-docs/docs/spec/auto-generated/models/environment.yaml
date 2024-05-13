@@ -35,8 +35,12 @@ properties:
     $ref: '#/components/schemas/ServiceList'
   ssh_keys:
     $ref: '#/components/schemas/SshKeyList'
+  ssl_certificates:
+    $ref: '#/components/schemas/SslCertificateList'
   teams:
     $ref: '#/components/schemas/TeamList'
+  virtual_hosts:
+    $ref: '#/components/schemas/VirtualHostList'
   created_by_user:
     $ref: '#/components/schemas/UserRelation'
   current_user_permissions:
@@ -63,7 +67,9 @@ required:
   - applications
   - services
   - ssh_keys
+  - ssl_certificates
   - teams
+  - virtual_hosts
   - created_by_user
   - current_user_permissions
   - created_at

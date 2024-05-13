@@ -186,7 +186,6 @@ tags:
   - name: Applications
   - name: Applications - Deployments
   - name: Applications - Hooks
-  - name: Applications - SSL Certificates
   - name: Applications - Variables
     description: |
       Throughout the `devopness` documentation the term `SSL Certificate` refers to a public key certificate adhering to `X.509` standard. While TLS is the protocol more used nowadays for web encryption, for historical reasons web encryption is often referred to simply as SSL. A SSL Certificate managed by `devopness` might be used as an HTTPS/SSL/TLS and other internet protocols to establish encrypted connections between client apps (e.g. browsers) and the web application servers managed through `devopness`, but it's not limited to be used for authenticating server's identity.
@@ -208,6 +207,7 @@ tags:
   - name: Environments - Servers
   - name: Environments - Services
   - name: Environments - SSH Keys
+  - name: Environments - SSL Certificates
   - name: Environments - Teams
   - name: Environments - Team Memberships
   - name: Environments - Virtual Hosts
@@ -296,7 +296,6 @@ x-tagGroups:
       - Applications
       - Applications - Deployments
       - Applications - Hooks
-      - Applications - SSL Certificates
       - Applications - Variables
       - Environments - Applications
   - name: Cloud Providers
@@ -373,6 +372,7 @@ x-tagGroups:
   - name: SSL Certificates
     tags:
       - SSL Certificates
+      - Environments - SSL Certificates
   - name: Subnets
     tags:
       - Subnets

@@ -30,11 +30,6 @@
 '/applications/{application_id}/hooks':
   get:
     $ref: ./auto-generated/endpoints/list-application-hooks.yaml
-'/applications/{application_id}/ssl-certificates':
-  get:
-    $ref: ./auto-generated/endpoints/list-application-ssl-certificates.yaml
-  post:
-    $ref: ./auto-generated/endpoints/add-application-ssl-certificate.yaml
 '/applications/{application_id}/variables':
   get:
     $ref: ./auto-generated/endpoints/list-application-variables.yaml
@@ -127,6 +122,11 @@
     $ref: ./auto-generated/endpoints/list-environment-ssh-keys.yaml
   post:
     $ref: ./auto-generated/endpoints/add-environment-ssh-key.yaml
+'/environments/{environment_id}/ssl-certificates':
+  get:
+    $ref: ./auto-generated/endpoints/list-environment-ssl-certificates.yaml
+  post:
+    $ref: ./auto-generated/endpoints/add-environment-ssl-certificate.yaml
 '/environments/{environment_id}/team-memberships':
   get:
     $ref: ./auto-generated/endpoints/list-environment-team-memberships.yaml

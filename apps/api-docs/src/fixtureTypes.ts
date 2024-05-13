@@ -207,6 +207,9 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
         { path: 'servers[0]', fixture: 'server', field: 'id' },
     ],
     'ssl_certificate': [],
+    'ssl_certificate_environment_create': [
+        { path: 'virtual_host_id', fixture: 'virtual_host', field: 'id' }
+    ],
     'step': [],
     'step_pipeline_update': [
         { path: 'id', fixture: 'step', field: 'id' },
@@ -244,7 +247,10 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     ],
     'virtual_host': [],
     'virtual_host_update': [
-          { path: 'id', fixture: 'virtual_host', field: 'id' },
+        { path: 'id', fixture: 'virtual_host', field: 'id' },
+    ],
+    'virtual_host_environment_create': [
+        { path: 'application_id', fixture: 'application', field: 'id' },
     ],
 };
 

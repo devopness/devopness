@@ -14,13 +14,15 @@ properties:
   application:
     $ref: '#/components/schemas/ApplicationRelation'
   root_directory:
-    description: 'The relative path to the root directory of the Virtual Host'
+    description: 'The document root location, within the application directory, that contains the public files to be served when a user visits the domain name associated with this virtual host'
     type: string
     example: public
-  forward_server_address:
-    description: 'The address of the forward server'
+  application_listen_address:
+    description: 'The network name or IP address on which the application linked to this virtual host is configured to listen for incoming requests. A valid address has `http` or `https` protocol, a domain name or IP address, an optional port and optional path. You can also specify a UNIX-socket using `unix:` protocol. Examples: `http://127.0.0.1:8080` (for applications exposing port `8080`, for example running in a Docker container), `http://127.0.0.1:3000` (for applications kept alive by a daemon/background process that listens on port `3000`), `unix:/var/run/example.sock` (for applications listening on a custom socket)'
     type: string
     example: 'http://localhost:3000'
+  last_action:
+    $ref: '#/components/schemas/ActionRelation'
   created_by_user:
     $ref: '#/components/schemas/UserRelation'
   created_at:
@@ -37,7 +39,8 @@ required:
   - name
   - application
   - root_directory
-  - forward_server_address
+  - application_listen_address
+  - last_action
   - created_by_user
   - created_at
   - updated_at

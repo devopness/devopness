@@ -19,8 +19,6 @@ properties:
     description: 'Tells if the certificate is active for all linked servers and applications'
     type: boolean
     example: true
-  domains:
-    $ref: '#/components/schemas/SslCertificateDomainList'
   last_action:
     $ref: '#/components/schemas/ActionRelation'
   expires_at:
@@ -48,7 +46,6 @@ required:
   - issuer
   - validation_level
   - active
-  - domains
   - last_action
   - expires_at
   - last_renewed_at
