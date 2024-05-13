@@ -699,149 +699,6 @@
         }
       }
     },
-    "/applications/{application_id}/ssl-certificates": {
-      "get": {
-        "summary": "Return a list of SSL certificates issued to an application",
-        "operationId": "listApplicationSslCertificates",
-        "description": {
-          "$ref": "../spec/descriptions/list-application-ssl-certificates.md"
-        },
-        "tags": [
-          "Applications - SSL Certificates"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "$ref": "#/components/parameters/pageNumber"
-          },
-          {
-            "$ref": "#/components/parameters/pageSize"
-          },
-          {
-            "in": "path",
-            "name": "application_id",
-            "description": "The ID of the application.",
-            "example": 123,
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SslCertificateList"
-                }
-              }
-            },
-            "headers": {
-              "Link": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "summary": "Add a new SSL certificate to the current application",
-        "operationId": "addApplicationSslCertificate",
-        "description": {
-          "$ref": "../spec/descriptions/add-application-ssl-certificate.md"
-        },
-        "tags": [
-          "Applications - SSL Certificates"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "application_id",
-            "description": "The ID of the application.",
-            "example": 123,
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SslCertificate"
-                }
-              }
-            },
-            "headers": {
-              "X-Devopness-Action-Id": {
-                "schema": {
-                  "type": "integer"
-                },
-                "description": "The dispatched action ID of the resource"
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden/Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Unprocessable Entity/Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "description": "A JSON object containing the resource data",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SslCertificateApplicationCreate"
-              }
-            }
-          }
-        }
-      }
-    },
     "/applications/{application_id}/variables": {
       "get": {
         "summary": "Return a list of variables belonging to an application",
@@ -3187,6 +3044,141 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/SshKeyEnvironmentCreate"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/environments/{environment_id}/ssl-certificates": {
+      "get": {
+        "summary": "Return a list of all SSL Certificates belonging to an environment",
+        "operationId": "listEnvironmentSslCertificates",
+        "description": {
+          "$ref": "../spec/descriptions/list-environment-ssl-certificates.md"
+        },
+        "tags": [
+          "Environments - SSL Certificates"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "environment_id",
+            "description": "The ID of the environment.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SslCertificateList"
+                }
+              }
+            },
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new ssl certificate",
+        "operationId": "addEnvironmentSslCertificate",
+        "description": {
+          "$ref": "../spec/descriptions/add-environment-ssl-certificate.md"
+        },
+        "tags": [
+          "Environments - SSL Certificates"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "environment_id",
+            "description": "The ID of the environment.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SslCertificate"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SslCertificateEnvironmentCreate"
               }
             }
           }
@@ -11243,7 +11235,15 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
           },
           "403": {
             "description": "Forbidden/Unauthorized",
@@ -11261,7 +11261,7 @@
         }
       },
       "get": {
-        "summary": "Get an virtual host by ID",
+        "summary": "Get a virtual host by ID",
         "operationId": "getVirtualHost",
         "description": {
           "$ref": "../spec/descriptions/get-virtual-host.md"
@@ -11451,9 +11451,6 @@
       "name": "Applications - Hooks"
     },
     {
-      "name": "Applications - SSL Certificates"
-    },
-    {
       "name": "Applications - Variables",
       "description": "Throughout the `devopness` documentation the term `SSL Certificate` refers to a public key certificate adhering to `X.509` standard. While TLS is the protocol more used nowadays for web encryption, for historical reasons web encryption is often referred to simply as SSL. A SSL Certificate managed by `devopness` might be used as an HTTPS/SSL/TLS and other internet protocols to establish encrypted connections between client apps (e.g. browsers) and the web application servers managed through `devopness`, but it's not limited to be used for authenticating server's identity.\n"
     },
@@ -11500,6 +11497,9 @@
     },
     {
       "name": "Environments - SSH Keys"
+    },
+    {
+      "name": "Environments - SSL Certificates"
     },
     {
       "name": "Environments - Teams"
@@ -11680,7 +11680,6 @@
         "Applications",
         "Applications - Deployments",
         "Applications - Hooks",
-        "Applications - SSL Certificates",
         "Applications - Variables",
         "Environments - Applications"
       ]
@@ -11813,7 +11812,8 @@
     {
       "name": "SSL Certificates",
       "tags": [
-        "SSL Certificates"
+        "SSL Certificates",
+        "Environments - SSL Certificates"
       ]
     },
     {
@@ -12987,14 +12987,6 @@
             "type": "string",
             "example": "my-awesome-app"
           },
-          "type": {
-            "$ref": "#/components/schemas/ApplicationType"
-          },
-          "domain_name": {
-            "description": "The domain or sub-domain through which the application deployed with these settings will be accessible. It can be a naked domain or any subdomain. If app has domain names `testing.my-app.com`, `staging.my-app.com` and `www.my-app.com` a possible good candidate for the application name would be the \"naked\" domain `my-app.com`",
-            "type": "string",
-            "example": "test.my-app.co.uk"
-          },
           "repository": {
             "description": "The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed.",
             "type": "string",
@@ -13040,20 +13032,10 @@
             "type": "string",
             "example": "/src"
           },
-          "public_directory": {
-            "description": "The relative web directory where publicly accessible assets are located and the web content should be served from",
-            "type": "string",
-            "example": "/public"
-          },
           "entrypoint": {
             "description": "The application's entrypoint",
             "type": "string",
             "example": "`index.html`, `index.php`, `server.php`, `default.htm`, `node server.js`, `yarn start`, `npm run production`, `docker run -d -P --name my_container_name my_image_name`, `php artisan serve –-host=192.168.2.20 --port=8000`"
-          },
-          "listening_address": {
-            "description": "Application's listening address",
-            "type": "string",
-            "example": "http://unix:/tmp/backend3:/my/path"
           },
           "deployments_keep": {
             "description": "The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers. OR The number of deployment artifacts to be retained in the user's servers, making it easier and faster to rollback to previous versions",
@@ -13092,9 +13074,6 @@
           "source_provider": {
             "$ref": "#/components/schemas/SourceProvider"
           },
-          "ssl_certificates": {
-            "$ref": "#/components/schemas/SslCertificateList"
-          },
           "created_at": {
             "description": "The date and time when the record was created",
             "type": "string",
@@ -13112,8 +13091,6 @@
           "environment_id",
           "created_by",
           "name",
-          "type",
-          "domain_name",
           "repository",
           "repository_name",
           "repository_owner",
@@ -13123,9 +13100,7 @@
           "engine_version",
           "framework",
           "root_directory",
-          "public_directory",
           "entrypoint",
-          "listening_address",
           "deployments_keep",
           "install_dependencies_command",
           "build_command",
@@ -13135,7 +13110,6 @@
           "environment",
           "servers",
           "source_provider",
-          "ssl_certificates",
           "created_at",
           "updated_at"
         ]
@@ -13146,14 +13120,6 @@
           "name": {
             "description": "The application's unique name. Must not be greater than 60 characters.",
             "example": "my-awesome-app",
-            "type": "string"
-          },
-          "type": {
-            "$ref": "#/components/schemas/ApplicationType"
-          },
-          "domain_name": {
-            "description": "The domain or sub-domain through which the application deployed with these settings will be accessible. It can be a naked domain or any subdomain. If app has domain names `testing.my-app.com`, `staging.my-app.com` and `www.my-app.com` a possible good candidate for the application name would be the \"naked\" domain `my-app.com`. Must not be greater than 60 characters.",
-            "example": "test.my-app.co.uk",
             "type": "string"
           },
           "build_command": {
@@ -13176,11 +13142,6 @@
             "example": "python",
             "type": "string"
           },
-          "listening_address": {
-            "description": "Required for CGI|FastCGI|SCGI|WSGI based applications or `docker` containerized applications. It tells `devopness` the private address at which the application listens to external calls.The address has `http` or `https` protocol, an domain name or IP address, optional port and optional path. Or you can specify a UNIX-socket using `unix:` prefix after protocol.",
-            "example": "http://unix:/tmp/backend3:/my/path",
-            "type": "string"
-          },
           "repository": {
             "description": "The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed. Must not be greater than 100 characters.",
             "example": "devopness/devopness",
@@ -13194,11 +13155,6 @@
           "root_directory": {
             "description": "The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository. Must start with one of <code>/</code>.",
             "example": "/src",
-            "type": "string"
-          },
-          "public_directory": {
-            "description": "The relative web directory where publicly accessible assets are located and the web content should be served from. Must start with one of <code>/</code>.",
-            "example": "/public",
             "type": "string"
           },
           "default_branch": {
@@ -13234,13 +13190,11 @@
         },
         "required": [
           "name",
-          "type",
           "engine_version",
           "framework",
           "programming_language",
           "repository",
           "source_provider_id",
-          "public_directory",
           "default_branch",
           "entrypoint",
           "requires_daemon"
@@ -13276,15 +13230,11 @@
           },
           "script_runners": {
             "$ref": "#/components/schemas/ScriptRunnerList"
-          },
-          "application_types": {
-            "$ref": "#/components/schemas/ApplicationTypes"
           }
         },
         "required": [
           "language_runtimes",
-          "script_runners",
-          "application_types"
+          "script_runners"
         ]
       },
       "ApplicationPipeline": {
@@ -13335,14 +13285,6 @@
             "type": "string",
             "example": "my-awesome-app"
           },
-          "type": {
-            "$ref": "#/components/schemas/ApplicationType"
-          },
-          "domain_name": {
-            "description": "The domain or sub-domain through which the application deployed with these settings will be accessible. It can be a naked domain or any subdomain. If app has domain names `testing.my-app.com`, `staging.my-app.com` and `www.my-app.com` a possible good candidate for the application name would be the \"naked\" domain `my-app.com`",
-            "type": "string",
-            "example": "test.my-app.co.uk"
-          },
           "repository": {
             "description": "The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed.",
             "type": "string",
@@ -13388,20 +13330,10 @@
             "type": "string",
             "example": "/src"
           },
-          "public_directory": {
-            "description": "The relative web directory where publicly accessible assets are located and the web content should be served from",
-            "type": "string",
-            "example": "/public"
-          },
           "entrypoint": {
             "description": "The application's entrypoint",
             "type": "string",
             "example": "`index.html`, `index.php`, `server.php`, `default.htm`, `node server.js`, `yarn start`, `npm run production`, `docker run -d -P --name my_container_name my_image_name`, `php artisan serve –-host=192.168.2.20 --port=8000`"
-          },
-          "listening_address": {
-            "description": "Application's listening address",
-            "type": "string",
-            "example": "http://unix:/tmp/backend3:/my/path"
           },
           "deployments_keep": {
             "description": "The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers. OR The number of deployment artifacts to be retained in the user's servers, making it easier and faster to rollback to previous versions",
@@ -13448,8 +13380,6 @@
           "environment_id",
           "created_by",
           "name",
-          "type",
-          "domain_name",
           "repository",
           "repository_name",
           "repository_owner",
@@ -13459,9 +13389,7 @@
           "engine_version",
           "framework",
           "root_directory",
-          "public_directory",
           "entrypoint",
-          "listening_address",
           "deployments_keep",
           "install_dependencies_command",
           "build_command",
@@ -13470,42 +13398,6 @@
           "updated_at"
         ],
         "nullable": true
-      },
-      "ApplicationType": {
-        "description": "The application's type, which will mainly define if it is publicly accessible through a web domain or not",
-        "type": "string",
-        "enum": [
-          "web",
-          "non-web"
-        ],
-        "example": "web"
-      },
-      "ApplicationTypes": {
-        "type": "object",
-        "properties": {
-          "public_application": {
-            "type": "object",
-            "description": "An application of type `public_application` is configured by Devopness to be accessed through a web server/reverse proxy to handle network requests and response, so it can be exposed as an `internet-facing` application. All applications that are intented to be accessible from the internet, exposed via a DNS record pointing to the application's server IP address, should be defined as `public_application`.",
-            "properties": {
-              "variable_targets": {
-                "$ref": "#/components/schemas/VariableTargetList"
-              }
-            }
-          },
-          "private_application": {
-            "type": "object",
-            "description": "An application of type `private_application` does not use a web server/reverse proxy to serve public content. All appplications that are intented to be accessible only locally in their own servers, or from servers in the same internal network, should be defined as `private_application`.",
-            "properties": {
-              "variable_targets": {
-                "$ref": "#/components/schemas/VariableTargetList"
-              }
-            }
-          }
-        },
-        "required": [
-          "public_application",
-          "private_application"
-        ]
       },
       "ApplicationUpdate": {
         "type": "object",
@@ -13518,14 +13410,6 @@
           "name": {
             "description": "The application's unique name. Must not be greater than 60 characters.",
             "example": "my-awesome-app",
-            "type": "string"
-          },
-          "type": {
-            "$ref": "#/components/schemas/ApplicationType"
-          },
-          "domain_name": {
-            "description": "The domain or sub-domain through which the application deployed with these settings will be accessible. It can be a naked domain or any subdomain. If app has domain names `testing.my-app.com`, `staging.my-app.com` and `www.my-app.com` a possible good candidate for the application name would be the \"naked\" domain `my-app.com`. Must not be greater than 60 characters.",
-            "example": "test.my-app.co.uk",
             "type": "string"
           },
           "build_command": {
@@ -13548,11 +13432,6 @@
             "example": "python",
             "type": "string"
           },
-          "listening_address": {
-            "description": "Required for CGI|FastCGI|SCGI|WSGI based applications or `docker` containerized applications. It tells `devopness` the private address at which the application listens to external calls.The address has `http` or `https` protocol, an domain name or IP address, optional port and optional path. Or you can specify a UNIX-socket using `unix:` prefix after protocol.",
-            "example": "http://unix:/tmp/backend3:/my/path",
-            "type": "string"
-          },
           "repository": {
             "description": "The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed. Must not be greater than 100 characters.",
             "example": "devopness/devopness",
@@ -13566,11 +13445,6 @@
           "root_directory": {
             "description": "The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository. Must start with one of <code>/</code>.",
             "example": "/src",
-            "type": "string"
-          },
-          "public_directory": {
-            "description": "The relative web directory where publicly accessible assets are located and the web content should be served from. Must start with one of <code>/</code>.",
-            "example": "/public",
             "type": "string"
           },
           "default_branch": {
@@ -13607,11 +13481,9 @@
         "required": [
           "id",
           "name",
-          "type",
           "engine_version",
           "framework",
           "programming_language",
-          "public_directory",
           "default_branch",
           "entrypoint",
           "requires_daemon"
@@ -15180,8 +15052,14 @@
           "ssh_keys": {
             "$ref": "#/components/schemas/SshKeyList"
           },
+          "ssl_certificates": {
+            "$ref": "#/components/schemas/SslCertificateList"
+          },
           "teams": {
             "$ref": "#/components/schemas/TeamList"
+          },
+          "virtual_hosts": {
+            "$ref": "#/components/schemas/VirtualHostList"
           },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
@@ -15214,7 +15092,9 @@
           "applications",
           "services",
           "ssh_keys",
+          "ssl_certificates",
           "teams",
+          "virtual_hosts",
           "created_by_user",
           "current_user_permissions",
           "created_at",
@@ -19921,20 +19801,11 @@
             "type": "boolean",
             "example": true
           },
-          "domains": {
-            "$ref": "#/components/schemas/SslCertificateDomainList"
-          },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
           },
           "last_action": {
             "$ref": "#/components/schemas/ActionRelation"
-          },
-          "application": {
-            "$ref": "#/components/schemas/ApplicationRelation"
-          },
-          "servers": {
-            "$ref": "#/components/schemas/ServerList"
           },
           "expires_at": {
             "description": "The date and time when this certificate will no longer be valid, down to minute precision",
@@ -19966,25 +19837,36 @@
           "issuer",
           "validation_level",
           "active",
-          "domains",
           "created_by_user",
           "last_action",
-          "application",
-          "servers",
           "expires_at",
           "last_renewed_at",
           "created_at",
           "updated_at"
         ]
       },
-      "SslCertificateApplicationCreate": {
+      "SslCertificateDomainList": {
+        "description": "The list of domain names to which the SSL certificate refers to",
+        "type": "array",
+        "example": [
+          "my-subdomain.example.com",
+          "example.com",
+          "*.example.com"
+        ],
+        "items": {
+          "type": "string"
+        }
+      },
+      "SslCertificateEnvironmentCreate": {
         "type": "object",
         "properties": {
+          "virtual_host_id": {
+            "description": "The ID of the virtual host to which this SSL certificate will be issued.",
+            "example": 123,
+            "type": "integer"
+          },
           "issuer": {
             "$ref": "#/components/schemas/SslCertificateIssuer"
-          },
-          "domains": {
-            "$ref": "#/components/schemas/SslCertificateDomainList"
           },
           "type": {
             "$ref": "#/components/schemas/SslCertificateType"
@@ -20004,21 +19886,9 @@
           }
         },
         "required": [
-          "issuer",
-          "domains"
+          "virtual_host_id",
+          "issuer"
         ]
-      },
-      "SslCertificateDomainList": {
-        "description": "The list of domain names to which the SSL certificate refers to",
-        "type": "array",
-        "example": [
-          "my-subdomain.example.com",
-          "example.com",
-          "*.example.com"
-        ],
-        "items": {
-          "type": "string"
-        }
       },
       "SslCertificateIssuer": {
         "type": "string",
@@ -20062,9 +19932,6 @@
             "type": "boolean",
             "example": true
           },
-          "domains": {
-            "$ref": "#/components/schemas/SslCertificateDomainList"
-          },
           "last_action": {
             "$ref": "#/components/schemas/ActionRelation"
           },
@@ -20098,7 +19965,6 @@
           "issuer",
           "validation_level",
           "active",
-          "domains",
           "last_action",
           "expires_at",
           "last_renewed_at",
@@ -22221,24 +22087,28 @@
             "example": 1
           },
           "type": {
-            "description": "The type of Virtual Host (`name-based` or `ip-based`)",
-            "type": "string",
-            "example": "name-based"
+            "$ref": "#/components/schemas/VirtualHostType"
           },
           "name": {
             "description": "The name of the Virtual Host",
             "type": "string",
             "example": "my-site.example.com"
           },
+          "application": {
+            "$ref": "#/components/schemas/ApplicationRelation"
+          },
           "root_directory": {
-            "description": "The relative path to the root directory of the Virtual Host",
+            "description": "The document root location, within the application directory, that contains the public files to be served when a user visits the domain name associated with this virtual host",
             "type": "string",
             "example": "public"
           },
-          "forward_server_address": {
-            "description": "The address of the forward server",
+          "application_listen_address": {
+            "description": "The network name or IP address on which the application linked to this virtual host is configured to listen for incoming requests. A valid address has `http` or `https` protocol, a domain name or IP address, an optional port and optional path. You can also specify a UNIX-socket using `unix:` protocol. Examples: `http://127.0.0.1:8080` (for applications exposing port `8080`, for example running in a Docker container), `http://127.0.0.1:3000` (for applications kept alive by a daemon/background process that listens on port `3000`), `unix:/var/run/example.sock` (for applications listening on a custom socket)",
             "type": "string",
             "example": "http://localhost:3000"
+          },
+          "last_action": {
+            "$ref": "#/components/schemas/ActionRelation"
           },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
@@ -22258,8 +22128,10 @@
           "id",
           "type",
           "name",
+          "application",
           "root_directory",
-          "forward_server_address",
+          "application_listen_address",
+          "last_action",
           "created_by_user",
           "created_at",
           "updated_at"
@@ -22279,20 +22151,24 @@
             "type": "string"
           },
           "root_directory": {
-            "description": "The relative path for the virtual host root directory. Must not be greater than 255 characters.",
+            "description": "The document root location, within the application directory, that contains the public files to be served when a user visits the domain name associated with this virtual host. Must not be greater than 255 characters.",
             "example": "public",
             "type": "string"
           },
-          "forward_server_address": {
-            "description": "The IP address of the server that will be used for forwarding. Must not be greater than 255 characters.",
-            "example": "http://localhost:3000",
+          "application_listen_address": {
+            "description": "The network name or IP address on which the application linked to this virtual host is configured to listen for incoming requests. A valid address has `http` or `https` protocol, a domain name or IP address, an optional port and optional path. You can also specify a UNIX-socket using `unix:` protocol. Examples: `http://127.0.0.1:8080` (for applications exposing port `8080`, for example running in a Docker container), `http://127.0.0.1:3000` (for applications kept alive by a daemon/background process that listens on port `3000`), `unix:/var/run/example.sock` (for applications listening on a custom socket). Must not be greater than 255 characters.",
+            "example": "http://127.0.0.1:3000",
             "type": "string"
+          },
+          "application_id": {
+            "description": "The ID of the application to be associated with the virtual host. The value of `root_directory` will be relative to this application directory.",
+            "example": 1,
+            "type": "integer"
           }
         },
         "required": [
           "type",
-          "name",
-          "root_directory"
+          "name"
         ]
       },
       "VirtualHostList": {
@@ -22321,24 +22197,28 @@
             "example": 1
           },
           "type": {
-            "description": "The type of the Virtual Host (`name-based` or `ip-based`)",
-            "type": "string",
-            "example": "name-based"
+            "$ref": "#/components/schemas/VirtualHostType"
           },
           "name": {
             "description": "The name of the Virtual Host",
             "type": "string",
             "example": "my-site.example.com"
           },
+          "application": {
+            "$ref": "#/components/schemas/ApplicationRelation"
+          },
           "root_directory": {
-            "description": "The relative path to the root directory of the Virtual Host",
+            "description": "The document root location, within the application directory, that contains the public files to be served when a user visits the domain name associated with this virtual host",
             "type": "string",
             "example": "public"
           },
-          "forward_server_address": {
-            "description": "The address of the forward server",
+          "application_listen_address": {
+            "description": "The network name or IP address on which the application linked to this virtual host is configured to listen for incoming requests. A valid address has `http` or `https` protocol, a domain name or IP address, an optional port and optional path. You can also specify a UNIX-socket using `unix:` protocol. Examples: `http://127.0.0.1:8080` (for applications exposing port `8080`, for example running in a Docker container), `http://127.0.0.1:3000` (for applications kept alive by a daemon/background process that listens on port `3000`), `unix:/var/run/example.sock` (for applications listening on a custom socket)",
             "type": "string",
             "example": "http://localhost:3000"
+          },
+          "last_action": {
+            "$ref": "#/components/schemas/ActionRelation"
           },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
@@ -22358,13 +22238,24 @@
           "id",
           "type",
           "name",
+          "application",
           "root_directory",
-          "forward_server_address",
+          "application_listen_address",
+          "last_action",
           "created_by_user",
           "created_at",
           "updated_at"
         ],
         "nullable": true
+      },
+      "VirtualHostType": {
+        "type": "string",
+        "description": "The type of Virtual Host",
+        "enum": [
+          "ip-based",
+          "name-based"
+        ],
+        "example": "name-based"
       },
       "VirtualHostUpdate": {
         "type": "object",
@@ -22380,14 +22271,19 @@
             "type": "string"
           },
           "root_directory": {
-            "description": "The relative path to the virtual host root directory. Must not be greater than 255 characters.",
+            "description": "The document root location, within the application directory, that contains the public files to be served when a user visits the domain name associated with this virtual host. Must not be greater than 255 characters.",
             "example": "public",
             "type": "string"
           },
-          "forward_server_address": {
-            "description": "The IP address of the server that will be used for forwarding. Must not be greater than 255 characters.",
-            "example": "http://localhost:3000",
+          "application_listen_address": {
+            "description": "The network name or IP address on which the application linked to this virtual host is configured to listen for incoming requests. A valid address has `http` or `https` protocol, a domain name or IP address, an optional port and optional path. You can also specify a UNIX-socket using `unix:` protocol. Examples: `http://127.0.0.1:8080` (for applications exposing port `8080`, for example running in a Docker container), `http://127.0.0.1:3000` (for applications kept alive by a daemon/background process that listens on port `3000`), `unix:/var/run/example.sock` (for applications listening on a custom socket). Must not be greater than 255 characters.",
+            "example": "http://127.0.0.1:3000",
             "type": "string"
+          },
+          "application_id": {
+            "description": "The ID of the application to be associated with the virtual host. The value of `root_directory` will be relative to this application directory.",
+            "example": 1,
+            "type": "integer"
           }
         },
         "required": [
