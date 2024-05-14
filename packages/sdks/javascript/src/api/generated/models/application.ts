@@ -13,11 +13,9 @@
 
 
 import { ApplicationLastDeployments } from './application-last-deployments';
-import { ApplicationType } from './application-type';
 import { EnvironmentRelation } from './environment-relation';
 import { ServerRelation } from './server-relation';
 import { SourceProvider } from './source-provider';
-import { SslCertificateRelation } from './ssl-certificate-relation';
 import { UserRelation } from './user-relation';
 
 /**
@@ -56,18 +54,6 @@ export interface Application {
      * @memberof Application
      */
     name: string;
-    /**
-     * 
-     * @type {ApplicationType}
-     * @memberof Application
-     */
-    type: ApplicationType;
-    /**
-     * The domain or sub-domain through which the application deployed with these settings will be accessible. It can be a naked domain or any subdomain. If app has domain names `testing.my-app.com`, `staging.my-app.com` and `www.my-app.com` a possible good candidate for the application name would be the \"naked\" domain `my-app.com`
-     * @type {string}
-     * @memberof Application
-     */
-    domain_name: string;
     /**
      * The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed.
      * @type {string}
@@ -123,23 +109,11 @@ export interface Application {
      */
     root_directory: string;
     /**
-     * The relative web directory where publicly accessible assets are located and the web content should be served from
-     * @type {string}
-     * @memberof Application
-     */
-    public_directory: string;
-    /**
      * The application\'s entrypoint
      * @type {string}
      * @memberof Application
      */
     entrypoint: string;
-    /**
-     * Application\'s listening address
-     * @type {string}
-     * @memberof Application
-     */
-    listening_address: string;
     /**
      * The number of deployment history, logs and artifacts to keep stored in both devopness servers and user\'s servers. OR The number of deployment artifacts to be retained in the user\'s servers, making it easier and faster to rollback to previous versions
      * @type {number}
@@ -194,12 +168,6 @@ export interface Application {
      * @memberof Application
      */
     source_provider: SourceProvider;
-    /**
-     * 
-     * @type {Array<SslCertificateRelation>}
-     * @memberof Application
-     */
-    ssl_certificates: Array<SslCertificateRelation>;
     /**
      * The date and time when the record was created
      * @type {string}

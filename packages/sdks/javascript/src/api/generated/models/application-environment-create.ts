@@ -12,7 +12,6 @@
  */
 
 
-import { ApplicationType } from './application-type';
 
 /**
  * 
@@ -26,18 +25,6 @@ export interface ApplicationEnvironmentCreate {
      * @memberof ApplicationEnvironmentCreate
      */
     name: string;
-    /**
-     * 
-     * @type {ApplicationType}
-     * @memberof ApplicationEnvironmentCreate
-     */
-    type: ApplicationType;
-    /**
-     * The domain or sub-domain through which the application deployed with these settings will be accessible. It can be a naked domain or any subdomain. If app has domain names `testing.my-app.com`, `staging.my-app.com` and `www.my-app.com` a possible good candidate for the application name would be the \"naked\" domain `my-app.com`. Must not be greater than 60 characters.
-     * @type {string}
-     * @memberof ApplicationEnvironmentCreate
-     */
-    domain_name?: string;
     /**
      * The optional command that should be executed once during deployment to build the source code and get the application in a ready state.
      * @type {string}
@@ -63,12 +50,6 @@ export interface ApplicationEnvironmentCreate {
      */
     programming_language: string;
     /**
-     * Required for CGI|FastCGI|SCGI|WSGI based applications or `docker` containerized applications. It tells `devopness` the private address at which the application listens to external calls.The address has `http` or `https` protocol, an domain name or IP address, optional port and optional path. Or you can specify a UNIX-socket using `unix:` prefix after protocol.
-     * @type {string}
-     * @memberof ApplicationEnvironmentCreate
-     */
-    listening_address?: string;
-    /**
      * The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed. Must not be greater than 100 characters.
      * @type {string}
      * @memberof ApplicationEnvironmentCreate
@@ -86,12 +67,6 @@ export interface ApplicationEnvironmentCreate {
      * @memberof ApplicationEnvironmentCreate
      */
     root_directory?: string;
-    /**
-     * The relative web directory where publicly accessible assets are located and the web content should be served from. Must start with one of <code>/</code>.
-     * @type {string}
-     * @memberof ApplicationEnvironmentCreate
-     */
-    public_directory: string;
     /**
      * The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed. Must not be greater than 200 characters.
      * @type {string}

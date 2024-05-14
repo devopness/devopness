@@ -13,8 +13,6 @@
 
 
 import { ActionRelation } from './action-relation';
-import { ApplicationRelation } from './application-relation';
-import { ServerRelation } from './server-relation';
 import { SslCertificateIssuer } from './ssl-certificate-issuer';
 import { SslCertificateType } from './ssl-certificate-type';
 import { SslCertificateValidationLevel } from './ssl-certificate-validation-level';
@@ -63,12 +61,6 @@ export interface SslCertificate {
      */
     active: boolean;
     /**
-     * The list of domain names to which the SSL certificate refers to
-     * @type {Array<string>}
-     * @memberof SslCertificate
-     */
-    domains: Array<string>;
-    /**
      * 
      * @type {UserRelation}
      * @memberof SslCertificate
@@ -80,18 +72,6 @@ export interface SslCertificate {
      * @memberof SslCertificate
      */
     last_action: ActionRelation | null;
-    /**
-     * 
-     * @type {ApplicationRelation}
-     * @memberof SslCertificate
-     */
-    application: ApplicationRelation | null;
-    /**
-     * 
-     * @type {Array<ServerRelation>}
-     * @memberof SslCertificate
-     */
-    servers: Array<ServerRelation>;
     /**
      * The date and time when this certificate will no longer be valid, down to minute precision
      * @type {string}

@@ -32,16 +32,22 @@ export interface VirtualHostUpdate {
      */
     name?: string;
     /**
-     * The relative path to the virtual host root directory. Must not be greater than 255 characters.
+     * The document root location, within the application directory, that contains the public files to be served when a user visits the domain name associated with this virtual host. Must not be greater than 255 characters.
      * @type {string}
      * @memberof VirtualHostUpdate
      */
     root_directory?: string;
     /**
-     * The IP address of the server that will be used for forwarding. Must not be greater than 255 characters.
+     * The network name or IP address on which the application linked to this virtual host is configured to listen for incoming requests. A valid address has `http` or `https` protocol, a domain name or IP address, an optional port and optional path. You can also specify a UNIX-socket using `unix:` protocol. Examples: `http://127.0.0.1:8080` (for applications exposing port `8080`, for example running in a Docker container), `http://127.0.0.1:3000` (for applications kept alive by a daemon/background process that listens on port `3000`), `unix:/var/run/example.sock` (for applications listening on a custom socket). Must not be greater than 255 characters.
      * @type {string}
      * @memberof VirtualHostUpdate
      */
-    forward_server_address?: string;
+    application_listen_address?: string;
+    /**
+     * The ID of the application to be associated with the virtual host. The value of `root_directory` will be relative to this application directory.
+     * @type {number}
+     * @memberof VirtualHostUpdate
+     */
+    application_id?: number;
 }
 
