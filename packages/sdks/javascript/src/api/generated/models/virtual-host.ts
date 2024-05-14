@@ -58,7 +58,7 @@ export interface VirtualHost {
      * @type {string}
      * @memberof VirtualHost
      */
-    application_listen_address: string;
+    application_listen_address: string | null;
     /**
      * 
      * @type {ActionRelation}
