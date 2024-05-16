@@ -20,6 +20,9 @@ jobs:
       - name: Convert OpenAPI spec to JSON
         run: npm run api-convert-spec-to-json
 
+      - name: Remove endpoint descriptions in JSON spec
+        run: npm run remove-descriptions-in-json-spec
+
       - name: Checkout devopness/devopness repository
         uses: actions/checkout@v3
         with:

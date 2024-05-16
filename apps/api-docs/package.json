@@ -21,6 +21,7 @@
     "api-test": "npm run tsc && npm run test && npm run remove-descriptions && dredd",
     "update-paths-and-schemas": "rm -rf ./data-models.yaml ./paths.yaml && cp -R ./docs/spec/auto-generated/data-models.yaml ./docs/spec/data-models.yaml && cp -R ./docs/spec/auto-generated/paths.yaml ./docs/spec/paths.yaml",
     "remove-descriptions": "node src/utils/create-dredd-compatible-openapi-v2.js ",
+    "remove-descriptions-in-json-spec": "node src/utils/remove-descriptions-in-json-spec.js",
     "ensure_index_file_is_on_size_limit": "[ `du -h public/index.html | grep -oE '^[0-9]+'` -le 7 ]",
     "test": "jest",
     "tsc": "tsc"
