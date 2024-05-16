@@ -52,7 +52,7 @@ export interface VirtualHost {
      * @type {string}
      * @memberof VirtualHost
      */
-    root_directory: string;
+    root_directory: string | null;
     /**
      * The network name or IP address on which the application linked to this virtual host is configured to listen for incoming requests. A valid address has `http` or `https` protocol, a domain name or IP address, an optional port and optional path. You can also specify a UNIX-socket using `unix:` protocol. Examples: `http://127.0.0.1:8080` (for applications exposing port `8080`, for example running in a Docker container), `http://127.0.0.1:3000` (for applications kept alive by a daemon/background process that listens on port `3000`), `unix:/var/run/example.sock` (for applications listening on a custom socket)
      * @type {string}

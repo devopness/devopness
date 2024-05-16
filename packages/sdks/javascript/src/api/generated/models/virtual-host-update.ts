@@ -42,12 +42,12 @@ export interface VirtualHostUpdate {
      * @type {string}
      * @memberof VirtualHostUpdate
      */
-    application_listen_address?: string;
+    application_listen_address?: string | null;
     /**
      * The ID of the application to be associated with the virtual host. The value of `root_directory` will be relative to this application directory.
      * @type {number}
      * @memberof VirtualHostUpdate
      */
-    application_id?: number;
+    application_id?: number | null;
 }
 

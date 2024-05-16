@@ -42,12 +42,12 @@ export interface VirtualHostEnvironmentCreate {
      * @type {string}
      * @memberof VirtualHostEnvironmentCreate
      */
-    application_listen_address?: string;
+    application_listen_address?: string | null;
     /**
      * The ID of the application to be associated with the virtual host. The value of `root_directory` will be relative to this application directory.
      * @type {number}
      * @memberof VirtualHostEnvironmentCreate
      */
-    application_id?: number;
+    application_id?: number | null;
 }
 
