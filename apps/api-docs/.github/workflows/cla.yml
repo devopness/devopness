@@ -13,5 +13,5 @@ on:
 jobs:
   cla_assistant:
     name: CLA Assistant
-    uses: devopness/clabot-config/.github/workflows/cla.yml@main
+    uses: devopness/devopness/.github/workflows/cla-assistant.yml@main
     secrets: inherit
