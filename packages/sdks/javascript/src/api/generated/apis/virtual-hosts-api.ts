@@ -42,7 +42,7 @@ export class VirtualHostsApiService extends ApiBaseService {
 
     /**
      * 
-     * @summary Get an virtual host by ID
+     * @summary Get a virtual host by ID
      * @param {number} virtualHostId The ID of the virtual host.
      */
     public async getVirtualHost(virtualHostId: number): Promise<ApiResponse<VirtualHost>> {

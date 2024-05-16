@@ -27,9 +27,6 @@
       "get": {
         "summary": "Return a list of all actions belonging to current user",
         "operationId": "listActions",
-        "description": {
-          "$ref": "../spec/descriptions/list-actions.md"
-        },
         "tags": [
           "Actions"
         ],
@@ -76,9 +73,6 @@
       "get": {
         "summary": "List actions triggered to a given action target resource",
         "operationId": "listActionsByTargetResourceType",
-        "description": {
-          "$ref": "../spec/descriptions/list-actions-by-target-resource-type.md"
-        },
         "tags": [
           "Actions"
         ],
@@ -146,9 +140,6 @@
       "get": {
         "summary": "Get an action by ID",
         "operationId": "getAction",
-        "description": {
-          "$ref": "../spec/descriptions/get-action.md"
-        },
         "tags": [
           "Actions"
         ],
@@ -202,9 +193,6 @@
       "post": {
         "summary": "Retry an action",
         "operationId": "retryAction",
-        "description": {
-          "$ref": "../spec/descriptions/retry-action.md"
-        },
         "tags": [
           "Actions"
         ],
@@ -258,9 +246,6 @@
       "get": {
         "summary": "Get action target step log",
         "operationId": "getActionLog",
-        "description": {
-          "$ref": "../spec/descriptions/get-action-log.md"
-        },
         "tags": [
           "Actions - Logs"
         ],
@@ -326,9 +311,6 @@
       "get": {
         "summary": "List resource actions of an action type",
         "operationId": "listActionsByResourceType",
-        "description": {
-          "$ref": "../spec/descriptions/list-actions-by-resource-type.md"
-        },
         "tags": [
           "Actions"
         ],
@@ -396,9 +378,6 @@
       "delete": {
         "summary": "Delete a given application",
         "operationId": "deleteApplication",
-        "description": {
-          "$ref": "../spec/descriptions/delete-application.md"
-        },
         "tags": [
           "Applications"
         ],
@@ -451,9 +430,6 @@
       "get": {
         "summary": "Get an application by ID",
         "operationId": "getApplication",
-        "description": {
-          "$ref": "../spec/descriptions/get-application.md"
-        },
         "tags": [
           "Applications"
         ],
@@ -505,9 +481,6 @@
       "put": {
         "summary": "Update an existing application",
         "operationId": "updateApplication",
-        "description": {
-          "$ref": "../spec/descriptions/update-application.md"
-        },
         "tags": [
           "Applications"
         ],
@@ -565,9 +538,6 @@
       "post": {
         "summary": "Trigger a new deployment for current application",
         "operationId": "addApplicationDeployment",
-        "description": {
-          "$ref": "../spec/descriptions/add-application-deployment.md"
-        },
         "tags": [
           "Applications - Deployments"
         ],
@@ -643,9 +613,6 @@
       "get": {
         "summary": "List all hooks in an application",
         "operationId": "listApplicationHooks",
-        "description": {
-          "$ref": "../spec/descriptions/list-application-hooks.md"
-        },
         "tags": [
           "Applications - Hooks"
         ],
@@ -699,156 +666,10 @@
         }
       }
     },
-    "/applications/{application_id}/ssl-certificates": {
-      "get": {
-        "summary": "Return a list of SSL certificates issued to an application",
-        "operationId": "listApplicationSslCertificates",
-        "description": {
-          "$ref": "../spec/descriptions/list-application-ssl-certificates.md"
-        },
-        "tags": [
-          "Applications - SSL Certificates"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "$ref": "#/components/parameters/pageNumber"
-          },
-          {
-            "$ref": "#/components/parameters/pageSize"
-          },
-          {
-            "in": "path",
-            "name": "application_id",
-            "description": "The ID of the application.",
-            "example": 123,
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SslCertificateList"
-                }
-              }
-            },
-            "headers": {
-              "Link": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "summary": "Add a new SSL certificate to the current application",
-        "operationId": "addApplicationSslCertificate",
-        "description": {
-          "$ref": "../spec/descriptions/add-application-ssl-certificate.md"
-        },
-        "tags": [
-          "Applications - SSL Certificates"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "application_id",
-            "description": "The ID of the application.",
-            "example": 123,
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SslCertificate"
-                }
-              }
-            },
-            "headers": {
-              "X-Devopness-Action-Id": {
-                "schema": {
-                  "type": "integer"
-                },
-                "description": "The dispatched action ID of the resource"
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden/Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Unprocessable Entity/Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "description": "A JSON object containing the resource data",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SslCertificateApplicationCreate"
-              }
-            }
-          }
-        }
-      }
-    },
     "/applications/{application_id}/variables": {
       "get": {
         "summary": "Return a list of variables belonging to an application",
         "operationId": "listApplicationVariables",
-        "description": {
-          "$ref": "../spec/descriptions/list-application-variables.md"
-        },
         "tags": [
           "Applications - Variables"
         ],
@@ -905,9 +726,6 @@
       "post": {
         "summary": "Create a new variable linked to an application",
         "operationId": "addApplicationVariable",
-        "description": {
-          "$ref": "../spec/descriptions/add-application-variable.md"
-        },
         "tags": [
           "Applications - Variables"
         ],
@@ -983,9 +801,6 @@
       "get": {
         "summary": "List credentials of the given cloud provider",
         "operationId": "listCloudProviderCredentialsByCloudProviderCode",
-        "description": {
-          "$ref": "../spec/descriptions/list-cloud-provider-credentials-by-cloud-provider-code.md"
-        },
         "tags": [
           "Cloud Providers - Credentials"
         ],
@@ -1040,9 +855,6 @@
       "post": {
         "summary": "Add a cloud provider credential",
         "operationId": "addCloudProviderCredential",
-        "description": {
-          "$ref": "../spec/descriptions/add-cloud-provider-credential.md"
-        },
         "tags": [
           "Cloud Providers - Credentials"
         ],
@@ -1116,9 +928,6 @@
       "get": {
         "summary": "List credentials",
         "operationId": "listCredentials",
-        "description": {
-          "$ref": "../spec/descriptions/list-credentials.md"
-        },
         "tags": [
           "Credentials"
         ],
@@ -1165,9 +974,6 @@
       "delete": {
         "summary": "Delete a given credential",
         "operationId": "deleteCredential",
-        "description": {
-          "$ref": "../spec/descriptions/delete-credential.md"
-        },
         "tags": [
           "Credentials"
         ],
@@ -1205,9 +1011,6 @@
       "get": {
         "summary": "Get a credential by ID",
         "operationId": "getCredential",
-        "description": {
-          "$ref": "../spec/descriptions/get-credential.md"
-        },
         "tags": [
           "Credentials"
         ],
@@ -1254,9 +1057,6 @@
       "delete": {
         "summary": "Delete a given Cron Job",
         "operationId": "deleteCronJob",
-        "description": {
-          "$ref": "../spec/descriptions/delete-cron-job.md"
-        },
         "tags": [
           "Cron Jobs"
         ],
@@ -1309,9 +1109,6 @@
       "get": {
         "summary": "Get a Cron Job by ID",
         "operationId": "getCronJob",
-        "description": {
-          "$ref": "../spec/descriptions/get-cron-job.md"
-        },
         "tags": [
           "Cron Jobs"
         ],
@@ -1363,9 +1160,6 @@
       "put": {
         "summary": "Update an existing Cron Job",
         "operationId": "updateCronJob",
-        "description": {
-          "$ref": "../spec/descriptions/update-cron-job.md"
-        },
         "tags": [
           "Cron Jobs"
         ],
@@ -1433,9 +1227,6 @@
       "delete": {
         "summary": "Delete a given Daemon",
         "operationId": "deleteDaemon",
-        "description": {
-          "$ref": "../spec/descriptions/delete-daemon.md"
-        },
         "tags": [
           "Daemons"
         ],
@@ -1488,9 +1279,6 @@
       "get": {
         "summary": "Get a Daemon by ID",
         "operationId": "getDaemon",
-        "description": {
-          "$ref": "../spec/descriptions/get-daemon.md"
-        },
         "tags": [
           "Daemons"
         ],
@@ -1542,9 +1330,6 @@
       "put": {
         "summary": "Update an existing Daemon",
         "operationId": "updateDaemon",
-        "description": {
-          "$ref": "../spec/descriptions/update-daemon.md"
-        },
         "tags": [
           "Daemons"
         ],
@@ -1612,9 +1397,6 @@
       "post": {
         "summary": "Get current status of a daemon",
         "operationId": "getStatusDaemon",
-        "description": {
-          "$ref": "../spec/descriptions/get-status-daemon.md"
-        },
         "tags": [
           "Daemons"
         ],
@@ -1690,9 +1472,6 @@
       "post": {
         "summary": "Restart a Daemon",
         "operationId": "restartDaemon",
-        "description": {
-          "$ref": "../spec/descriptions/restart-daemon.md"
-        },
         "tags": [
           "Daemons"
         ],
@@ -1768,9 +1547,6 @@
       "get": {
         "summary": "Get an environment by ID",
         "operationId": "getEnvironment",
-        "description": {
-          "$ref": "../spec/descriptions/get-environment.md"
-        },
         "tags": [
           "Environments"
         ],
@@ -1822,9 +1598,6 @@
       "put": {
         "summary": "Update a given environment",
         "operationId": "updateEnvironment",
-        "description": {
-          "$ref": "../spec/descriptions/update-environment.md"
-        },
         "tags": [
           "Environments"
         ],
@@ -1892,9 +1665,6 @@
       "get": {
         "summary": "List environment actions",
         "operationId": "listEnvironmentActions",
-        "description": {
-          "$ref": "../spec/descriptions/list-environment-actions.md"
-        },
         "tags": [
           "Environments - Actions"
         ],
@@ -1952,9 +1722,6 @@
       "get": {
         "summary": "List environment actions of a resource type",
         "operationId": "listEnvironmentActionsByResourceType",
-        "description": {
-          "$ref": "../spec/descriptions/list-environment-actions-by-resource-type.md"
-        },
         "tags": [
           "Environments - Actions"
         ],
@@ -2022,9 +1789,6 @@
       "get": {
         "summary": "Return a list of all Applications belonging to an environment",
         "operationId": "listEnvironmentApplications",
-        "description": {
-          "$ref": "../spec/descriptions/list-environment-applications.md"
-        },
         "tags": [
           "Environments - Applications"
         ],
@@ -2080,9 +1844,6 @@
       "post": {
         "summary": "Create a new application",
         "operationId": "addEnvironmentApplication",
-        "description": {
-          "$ref": "../spec/descriptions/add-environment-application.md"
-        },
         "tags": [
           "Environments - Applications"
         ],
@@ -2147,9 +1908,6 @@
       "post": {
         "summary": "Archive an environment",
         "operationId": "archiveEnvironment",
-        "description": {
-          "$ref": "../spec/descriptions/archive-environment.md"
-        },
         "tags": [
           "Environments"
         ],
@@ -2196,9 +1954,6 @@
       "get": {
         "summary": "Return a list of all Cron Jobs belonging to an environment",
         "operationId": "listEnvironmentCronJobs",
-        "description": {
-          "$ref": "../spec/descriptions/list-environment-cron-jobs.md"
-        },
         "tags": [
           "Environments - Cron Jobs"
         ],
@@ -2254,9 +2009,6 @@
       "post": {
         "summary": "Add a Cron Job to the given environment",
         "operationId": "addEnvironmentCronJob",
-        "description": {
-          "$ref": "../spec/descriptions/add-environment-cron-job.md"
-        },
         "tags": [
           "Environments - Cron Jobs"
         ],
@@ -2331,9 +2083,6 @@
       "get": {
         "summary": "Return a list of all Daemons belonging to an environment",
         "operationId": "listEnvironmentDaemons",
-        "description": {
-          "$ref": "../spec/descriptions/list-environment-daemons.md"
-        },
         "tags": [
           "Environments - Daemons"
         ],
@@ -2389,9 +2138,6 @@
       "post": {
         "summary": "Add a Daemon to the given environment",
         "operationId": "addEnvironmentDaemon",
-        "description": {
-          "$ref": "../spec/descriptions/add-environment-daemon.md"
-        },
         "tags": [
           "Environments - Daemons"
         ],
@@ -2466,9 +2212,6 @@
       "get": {
         "summary": "Return a list of all Network Rules belonging to an environment",
         "operationId": "listEnvironmentNetworkRules",
-        "description": {
-          "$ref": "../spec/descriptions/list-environment-network-rules.md"
-        },
         "tags": [
           "Environments - Network Rules"
         ],
@@ -2524,9 +2267,6 @@
       "post": {
         "summary": "Add a Network Rule to the given environment",
         "operationId": "addEnvironmentNetworkRule",
-        "description": {
-          "$ref": "../spec/descriptions/add-environment-network-rule.md"
-        },
         "tags": [
           "Environments - Network Rules"
         ],
@@ -2601,9 +2341,6 @@
       "get": {
         "summary": "Return a list of all networks belonging to an environment",
         "operationId": "listEnvironmentNetworks",
-        "description": {
-          "$ref": "../spec/descriptions/list-environment-networks.md"
-        },
         "tags": [
           "Environments - Networks"
         ],
@@ -2689,9 +2426,6 @@
       "post": {
         "summary": "Create a new network for the given environment",
         "operationId": "addEnvironmentNetwork",
-        "description": {
-          "$ref": "../spec/descriptions/add-environment-network.md"
-        },
         "tags": [
           "Environments - Networks"
         ],
@@ -2774,9 +2508,6 @@
       "get": {
         "summary": "Return a list of all servers belonging to an environment",
         "operationId": "listEnvironmentServers",
-        "description": {
-          "$ref": "../spec/descriptions/list-environment-servers.md"
-        },
         "tags": [
           "Environments - Servers"
         ],
@@ -2832,9 +2563,6 @@
       "post": {
         "summary": "Creates a server and link it to the given environment",
         "operationId": "addEnvironmentServer",
-        "description": {
-          "$ref": "../spec/descriptions/add-environment-server.md"
-        },
         "tags": [
           "Environments - Servers"
         ],
@@ -2917,9 +2645,6 @@
       "get": {
         "summary": "Return a list of all services belonging to a environment",
         "operationId": "listEnvironmentServices",
-        "description": {
-          "$ref": "../spec/descriptions/list-environment-services.md"
-        },
         "tags": [
           "Environments - Services"
         ],
@@ -2975,9 +2700,6 @@
       "post": {
         "summary": "Add a Service to the given environment",
         "operationId": "addEnvironmentService",
-        "description": {
-          "$ref": "../spec/descriptions/add-environment-service.md"
-        },
         "tags": [
           "Environments - Services"
         ],
@@ -3052,9 +2774,6 @@
       "get": {
         "summary": "Return a list of all SSH keys added to an environment",
         "operationId": "listEnvironmentSshKeys",
-        "description": {
-          "$ref": "../spec/descriptions/list-environment-ssh-keys.md"
-        },
         "tags": [
           "Environments - SSH Keys"
         ],
@@ -3120,9 +2839,6 @@
       "post": {
         "summary": "Create an SSH key and link it to the given environment",
         "operationId": "addEnvironmentSshKey",
-        "description": {
-          "$ref": "../spec/descriptions/add-environment-ssh-key.md"
-        },
         "tags": [
           "Environments - SSH Keys"
         ],
@@ -3193,13 +2909,139 @@
         }
       }
     },
+    "/environments/{environment_id}/ssl-certificates": {
+      "get": {
+        "summary": "Return a list of all SSL Certificates belonging to an environment",
+        "operationId": "listEnvironmentSslCertificates",
+        "tags": [
+          "Environments - SSL Certificates"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "environment_id",
+            "description": "The ID of the environment.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SslCertificateList"
+                }
+              }
+            },
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new ssl certificate",
+        "operationId": "addEnvironmentSslCertificate",
+        "tags": [
+          "Environments - SSL Certificates"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "environment_id",
+            "description": "The ID of the environment.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SslCertificate"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SslCertificateEnvironmentCreate"
+              }
+            }
+          }
+        }
+      }
+    },
     "/environments/{environment_id}/team-memberships": {
       "get": {
         "summary": "Return a list of teams with access to an environment",
         "operationId": "listEnvironmentTeamMemberships",
-        "description": {
-          "$ref": "../spec/descriptions/list-environment-team-memberships.md"
-        },
         "tags": [
           "Environments - Team Memberships"
         ],
@@ -3257,9 +3099,6 @@
       "post": {
         "summary": "Link team to a given environment",
         "operationId": "linkTeamToEnvironment",
-        "description": {
-          "$ref": "../spec/descriptions/link-team-to-environment.md"
-        },
         "tags": [
           "Environments - Teams"
         ],
@@ -3338,9 +3177,6 @@
       "delete": {
         "summary": "Unlink team from the environment",
         "operationId": "unlinkTeamFromEnvironment",
-        "description": {
-          "$ref": "../spec/descriptions/unlink-team-from-environment.md"
-        },
         "tags": [
           "Environments - Teams"
         ],
@@ -3408,9 +3244,6 @@
       "post": {
         "summary": "Unarchive an environment",
         "operationId": "unarchiveEnvironment",
-        "description": {
-          "$ref": "../spec/descriptions/unarchive-environment.md"
-        },
         "tags": [
           "Environments"
         ],
@@ -3457,9 +3290,6 @@
       "get": {
         "summary": "Return a list of all Virtual Hosts belonging to an environment",
         "operationId": "listEnvironmentVirtualHosts",
-        "description": {
-          "$ref": "../spec/descriptions/list-environment-virtual-hosts.md"
-        },
         "tags": [
           "Environments - Virtual Hosts"
         ],
@@ -3515,9 +3345,6 @@
       "post": {
         "summary": "Create a new virtual host",
         "operationId": "addEnvironmentVirtualHost",
-        "description": {
-          "$ref": "../spec/descriptions/add-environment-virtual-host.md"
-        },
         "tags": [
           "Environments - Virtual Hosts"
         ],
@@ -3592,9 +3419,6 @@
       "get": {
         "summary": "List events of a resource type",
         "operationId": "listResourceEventsByResourceType",
-        "description": {
-          "$ref": "../spec/descriptions/list-resource-events-by-resource-type.md"
-        },
         "tags": [
           "Resource Events"
         ],
@@ -3660,9 +3484,6 @@
       "post": {
         "summary": "Process event for a resource",
         "operationId": "addResourceEvent",
-        "description": {
-          "$ref": "../spec/descriptions/add-resource-event.md"
-        },
         "tags": [
           "Resource Events"
         ],
@@ -3735,9 +3556,6 @@
       "get": {
         "summary": "Get a hook request by ID",
         "operationId": "getHookRequest",
-        "description": {
-          "$ref": "../spec/descriptions/get-hook-request.md"
-        },
         "tags": [
           "Hook Requests"
         ],
@@ -3793,9 +3611,6 @@
       "post": {
         "summary": "Trigger an incoming hook associated action",
         "operationId": "triggerHook",
-        "description": {
-          "$ref": "../spec/descriptions/trigger-hook.md"
-        },
         "tags": [
           "Hooks"
         ],
@@ -3866,9 +3681,6 @@
       "delete": {
         "summary": "Delete a given hook",
         "operationId": "deleteHook",
-        "description": {
-          "$ref": "../spec/descriptions/delete-hook.md"
-        },
         "tags": [
           "Hooks"
         ],
@@ -3922,9 +3734,6 @@
       "get": {
         "summary": "Get a hook by ID",
         "operationId": "getHook",
-        "description": {
-          "$ref": "../spec/descriptions/get-hook.md"
-        },
         "tags": [
           "Hooks"
         ],
@@ -3985,9 +3794,6 @@
       "put": {
         "summary": "Update an existing hook",
         "operationId": "updateHook",
-        "description": {
-          "$ref": "../spec/descriptions/update-hook.md"
-        },
         "tags": [
           "Hooks"
         ],
@@ -4064,9 +3870,6 @@
       "get": {
         "summary": "Returns a list of all hook requests belonging to a hook",
         "operationId": "listHookRequestsByHookType",
-        "description": {
-          "$ref": "../spec/descriptions/list-hook-requests-by-hook-type.md"
-        },
         "tags": [
           "Hooks - Requests"
         ],
@@ -4133,9 +3936,6 @@
       "delete": {
         "summary": "Delete a given Network Rule",
         "operationId": "deleteNetworkRule",
-        "description": {
-          "$ref": "../spec/descriptions/delete-network-rule.md"
-        },
         "tags": [
           "Network Rules"
         ],
@@ -4188,9 +3988,6 @@
       "get": {
         "summary": "Get a Network Rule by ID",
         "operationId": "getNetworkRule",
-        "description": {
-          "$ref": "../spec/descriptions/get-network-rule.md"
-        },
         "tags": [
           "Network Rules"
         ],
@@ -4242,9 +4039,6 @@
       "put": {
         "summary": "Update an existing Network Rule",
         "operationId": "updateNetworkRule",
-        "description": {
-          "$ref": "../spec/descriptions/update-network-rule.md"
-        },
         "tags": [
           "Network Rules"
         ],
@@ -4312,9 +4106,6 @@
       "delete": {
         "summary": "Delete a given network",
         "operationId": "deleteNetwork",
-        "description": {
-          "$ref": "../spec/descriptions/delete-network.md"
-        },
         "tags": [
           "Networks"
         ],
@@ -4367,9 +4158,6 @@
       "get": {
         "summary": "Get a network by ID",
         "operationId": "getNetwork",
-        "description": {
-          "$ref": "../spec/descriptions/get-network.md"
-        },
         "tags": [
           "Networks"
         ],
@@ -4423,9 +4211,6 @@
       "get": {
         "summary": "Return a list of all subnets belonging to a network",
         "operationId": "listNetworkSubnets",
-        "description": {
-          "$ref": "../spec/descriptions/list-network-subnets.md"
-        },
         "tags": [
           "Networks - Subnets"
         ],
@@ -4501,9 +4286,6 @@
       "post": {
         "summary": "Create a new subnet for the given network",
         "operationId": "addNetworkSubnet",
-        "description": {
-          "$ref": "../spec/descriptions/add-network-subnet.md"
-        },
         "tags": [
           "Networks - Subnets"
         ],
@@ -4586,9 +4368,6 @@
       "delete": {
         "summary": "Delete a given Pipeline",
         "operationId": "deletePipeline",
-        "description": {
-          "$ref": "../spec/descriptions/delete-pipeline.md"
-        },
         "tags": [
           "Pipelines"
         ],
@@ -4633,9 +4412,6 @@
       "get": {
         "summary": "Get a Pipeline by ID",
         "operationId": "getPipeline",
-        "description": {
-          "$ref": "../spec/descriptions/get-pipeline.md"
-        },
         "tags": [
           "Pipelines"
         ],
@@ -4687,9 +4463,6 @@
       "put": {
         "summary": "Update an existing Pipeline",
         "operationId": "updatePipeline",
-        "description": {
-          "$ref": "../spec/descriptions/update-pipeline.md"
-        },
         "tags": [
           "Pipelines"
         ],
@@ -4757,9 +4530,6 @@
       "get": {
         "summary": "Return a list of pipeline's actions",
         "operationId": "listPipelineActions",
-        "description": {
-          "$ref": "../spec/descriptions/list-pipeline-actions.md"
-        },
         "tags": [
           "Pipelines - Actions"
         ],
@@ -4815,9 +4585,6 @@
       "post": {
         "summary": "Create an action to run a Pipeline",
         "operationId": "addPipelineAction",
-        "description": {
-          "$ref": "../spec/descriptions/add-pipeline-action.md"
-        },
         "tags": [
           "Pipelines - Actions"
         ],
@@ -4892,9 +4659,6 @@
       "get": {
         "summary": "List all hooks in a pipeline",
         "operationId": "listPipelineHooks",
-        "description": {
-          "$ref": "../spec/descriptions/list-pipeline-hooks.md"
-        },
         "tags": [
           "Pipelines - Hooks"
         ],
@@ -4962,9 +4726,6 @@
       "post": {
         "summary": "Create a hook to a specific pipeline",
         "operationId": "addPipelineHook",
-        "description": {
-          "$ref": "../spec/descriptions/add-pipeline-hook.md"
-        },
         "tags": [
           "Pipelines - Hooks"
         ],
@@ -5049,9 +4810,6 @@
       "post": {
         "summary": "Add a step to a pipeline",
         "operationId": "addPipelineStep",
-        "description": {
-          "$ref": "../spec/descriptions/add-pipeline-step.md"
-        },
         "tags": [
           "Pipelines - Steps"
         ],
@@ -5126,9 +4884,6 @@
       "put": {
         "summary": "Update an existing Pipeline Step",
         "operationId": "updatePipelineStep",
-        "description": {
-          "$ref": "../spec/descriptions/update-pipeline-step.md"
-        },
         "tags": [
           "Pipelines - Steps"
         ],
@@ -5207,9 +4962,6 @@
       "post": {
         "summary": "Link a step to a Pipeline",
         "operationId": "linkStepToPipeline",
-        "description": {
-          "$ref": "../spec/descriptions/link-step-to-pipeline.md"
-        },
         "tags": [
           "Pipelines - Steps"
         ],
@@ -5267,9 +5019,6 @@
       "delete": {
         "summary": "Unlink a step from a Pipeline",
         "operationId": "unlinkStepFromPipeline",
-        "description": {
-          "$ref": "../spec/descriptions/unlink-step-from-pipeline.md"
-        },
         "tags": [
           "Pipelines - Steps"
         ],
@@ -5327,9 +5076,6 @@
       "get": {
         "summary": "Return a list of pipelines to a resource",
         "operationId": "listPipelinesByResourceType",
-        "description": {
-          "$ref": "../spec/descriptions/list-pipelines-by-resource-type.md"
-        },
         "tags": [
           "Pipelines"
         ],
@@ -5395,9 +5141,6 @@
       "post": {
         "summary": "Add a Pipeline to a resource",
         "operationId": "addPipeline",
-        "description": {
-          "$ref": "../spec/descriptions/add-pipeline.md"
-        },
         "tags": [
           "Pipelines"
         ],
@@ -5482,9 +5225,6 @@
       "get": {
         "summary": "Return a list of all projects the current user has access to",
         "operationId": "listProjects",
-        "description": {
-          "$ref": "../spec/descriptions/list-projects.md"
-        },
         "tags": [
           "Projects"
         ],
@@ -5529,9 +5269,6 @@
       "post": {
         "summary": "Create a project",
         "operationId": "addProject",
-        "description": {
-          "$ref": "../spec/descriptions/add-project.md"
-        },
         "tags": [
           "Projects"
         ],
@@ -5595,9 +5332,6 @@
       "get": {
         "summary": "Get a Project by ID",
         "operationId": "getProject",
-        "description": {
-          "$ref": "../spec/descriptions/get-project.md"
-        },
         "tags": [
           "Projects"
         ],
@@ -5649,9 +5383,6 @@
       "put": {
         "summary": "Update an existing Project",
         "operationId": "updateProject",
-        "description": {
-          "$ref": "../spec/descriptions/update-project.md"
-        },
         "tags": [
           "Projects"
         ],
@@ -5719,9 +5450,6 @@
       "get": {
         "summary": "List project actions of a resource type",
         "operationId": "listProjectActionsByResourceType",
-        "description": {
-          "$ref": "../spec/descriptions/list-project-actions-by-resource-type.md"
-        },
         "tags": [
           "Projects - Actions"
         ],
@@ -5789,9 +5517,6 @@
       "get": {
         "summary": "Return a list of all environments belonging to a project",
         "operationId": "listProjectEnvironments",
-        "description": {
-          "$ref": "../spec/descriptions/list-project-environments.md"
-        },
         "tags": [
           "Projects - Environments"
         ],
@@ -5857,9 +5582,6 @@
       "post": {
         "summary": "Create a new environment on the current project",
         "operationId": "addProjectEnvironment",
-        "description": {
-          "$ref": "../spec/descriptions/add-project-environment.md"
-        },
         "tags": [
           "Projects - Environments"
         ],
@@ -5924,9 +5646,6 @@
       "get": {
         "summary": "Return a list of all archived environments belonging to a project",
         "operationId": "listProjectArchivedEnvironments",
-        "description": {
-          "$ref": "../spec/descriptions/list-project-archived-environments.md"
-        },
         "tags": [
           "Projects - Archived Environments"
         ],
@@ -5994,9 +5713,6 @@
       "get": {
         "summary": "List all roles from a project",
         "operationId": "listProjectRoles",
-        "description": {
-          "$ref": "../spec/descriptions/list-project-roles.md"
-        },
         "tags": [
           "Projects - Roles"
         ],
@@ -6052,9 +5768,6 @@
       "post": {
         "summary": "Create a role to a given project",
         "operationId": "addProjectRole",
-        "description": {
-          "$ref": "../spec/descriptions/add-project-role.md"
-        },
         "tags": [
           "Projects - Roles"
         ],
@@ -6129,9 +5842,6 @@
       "get": {
         "summary": "Return a list of all teams belonging to a project",
         "operationId": "listProjectTeams",
-        "description": {
-          "$ref": "../spec/descriptions/list-project-teams.md"
-        },
         "tags": [
           "Projects - Teams"
         ],
@@ -6187,9 +5897,6 @@
       "post": {
         "summary": "Create a team to the given project",
         "operationId": "addProjectTeam",
-        "description": {
-          "$ref": "../spec/descriptions/add-project-team.md"
-        },
         "tags": [
           "Projects - Teams"
         ],
@@ -6264,9 +5971,6 @@
       "get": {
         "summary": "List linked resources of the given resource",
         "operationId": "listResourceLinksByResourceType",
-        "description": {
-          "$ref": "../spec/descriptions/list-resource-links-by-resource-type.md"
-        },
         "tags": [
           "Resource Links"
         ],
@@ -6334,9 +6038,6 @@
       "post": {
         "summary": "Link the given resources",
         "operationId": "linkResourceLinkToResourceLink",
-        "description": {
-          "$ref": "../spec/descriptions/link-resource-link-to-resource-link.md"
-        },
         "tags": [
           "Resource Links"
         ],
@@ -6424,9 +6125,6 @@
       "delete": {
         "summary": "Delete a given resource link",
         "operationId": "unlinkResourceLinkFromResourceLink",
-        "description": {
-          "$ref": "../spec/descriptions/unlink-resource-link-from-resource-link.md"
-        },
         "tags": [
           "Resource Links"
         ],
@@ -6504,9 +6202,6 @@
       "get": {
         "summary": "List linked resources of specified link type",
         "operationId": "listResourceLinksByResourceTypeAndLinkType",
-        "description": {
-          "$ref": "../spec/descriptions/list-resource-links-by-resource-type-and-link-type.md"
-        },
         "tags": [
           "Resource Links"
         ],
@@ -6584,9 +6279,6 @@
       "delete": {
         "summary": "Delete a given role",
         "operationId": "deleteRole",
-        "description": {
-          "$ref": "../spec/descriptions/delete-role.md"
-        },
         "tags": [
           "Roles"
         ],
@@ -6624,9 +6316,6 @@
       "get": {
         "summary": "Get a role by ID",
         "operationId": "getRole",
-        "description": {
-          "$ref": "../spec/descriptions/get-role.md"
-        },
         "tags": [
           "Roles"
         ],
@@ -6671,9 +6360,6 @@
       "put": {
         "summary": "Update an existing role",
         "operationId": "updateRole",
-        "description": {
-          "$ref": "../spec/descriptions/update-role.md"
-        },
         "tags": [
           "Roles"
         ],
@@ -6731,9 +6417,6 @@
       "delete": {
         "summary": "Delete a given server",
         "operationId": "deleteServer",
-        "description": {
-          "$ref": "../spec/descriptions/delete-server.md"
-        },
         "tags": [
           "Servers"
         ],
@@ -6796,9 +6479,6 @@
       "get": {
         "summary": "Get a server by ID",
         "operationId": "getServer",
-        "description": {
-          "$ref": "../spec/descriptions/get-server.md"
-        },
         "tags": [
           "Servers"
         ],
@@ -6850,9 +6530,6 @@
       "put": {
         "summary": "Update an existing server",
         "operationId": "updateServer",
-        "description": {
-          "$ref": "../spec/descriptions/update-server.md"
-        },
         "tags": [
           "Servers"
         ],
@@ -6920,9 +6597,6 @@
       "get": {
         "summary": "Get commands to be executed on the given server",
         "operationId": "getServerCommands",
-        "description": {
-          "$ref": "../spec/descriptions/get-server-commands.md"
-        },
         "tags": [
           "Servers"
         ],
@@ -6976,9 +6650,6 @@
       "post": {
         "summary": "Connect a server to devopness platform",
         "operationId": "connectServer",
-        "description": {
-          "$ref": "../spec/descriptions/connect-server.md"
-        },
         "tags": [
           "Servers"
         ],
@@ -7048,9 +6719,6 @@
       "post": {
         "summary": "Get current status of the server on the cloud provider",
         "operationId": "getStatusServer",
-        "description": {
-          "$ref": "../spec/descriptions/get-status-server.md"
-        },
         "tags": [
           "Servers"
         ],
@@ -7105,9 +6773,6 @@
       "post": {
         "summary": "Restart a current running server",
         "operationId": "restartServer",
-        "description": {
-          "$ref": "../spec/descriptions/restart-server.md"
-        },
         "tags": [
           "Servers"
         ],
@@ -7162,9 +6827,6 @@
       "post": {
         "summary": "Start a previously stopped server",
         "operationId": "startServer",
-        "description": {
-          "$ref": "../spec/descriptions/start-server.md"
-        },
         "tags": [
           "Servers"
         ],
@@ -7219,9 +6881,6 @@
       "post": {
         "summary": "Stop a running server",
         "operationId": "stopServer",
-        "description": {
-          "$ref": "../spec/descriptions/stop-server.md"
-        },
         "tags": [
           "Servers"
         ],
@@ -7276,9 +6935,6 @@
       "delete": {
         "summary": "Delete a given service",
         "operationId": "deleteService",
-        "description": {
-          "$ref": "../spec/descriptions/delete-service.md"
-        },
         "tags": [
           "Services"
         ],
@@ -7331,9 +6987,6 @@
       "get": {
         "summary": "Get details of a single service",
         "operationId": "getService",
-        "description": {
-          "$ref": "../spec/descriptions/get-service.md"
-        },
         "tags": [
           "Services"
         ],
@@ -7385,9 +7038,6 @@
       "put": {
         "summary": "Update an existing service",
         "operationId": "updateService",
-        "description": {
-          "$ref": "../spec/descriptions/update-service.md"
-        },
         "tags": [
           "Services"
         ],
@@ -7455,9 +7105,6 @@
       "post": {
         "summary": "Reload a service",
         "operationId": "reloadService",
-        "description": {
-          "$ref": "../spec/descriptions/reload-service.md"
-        },
         "tags": [
           "Services"
         ],
@@ -7525,9 +7172,6 @@
       "post": {
         "summary": "Restart a service",
         "operationId": "restartService",
-        "description": {
-          "$ref": "../spec/descriptions/restart-service.md"
-        },
         "tags": [
           "Services"
         ],
@@ -7595,9 +7239,6 @@
       "post": {
         "summary": "Start a service",
         "operationId": "startService",
-        "description": {
-          "$ref": "../spec/descriptions/start-service.md"
-        },
         "tags": [
           "Services"
         ],
@@ -7665,9 +7306,6 @@
       "post": {
         "summary": "Stop a service",
         "operationId": "stopService",
-        "description": {
-          "$ref": "../spec/descriptions/stop-service.md"
-        },
         "tags": [
           "Services"
         ],
@@ -7735,9 +7373,6 @@
       "post": {
         "summary": "Update status of a service",
         "operationId": "updateStatusService",
-        "description": {
-          "$ref": "../spec/descriptions/update-status-service.md"
-        },
         "tags": [
           "Services"
         ],
@@ -7805,9 +7440,6 @@
       "get": {
         "summary": "Return a list of variables belonging to a service",
         "operationId": "listServiceVariables",
-        "description": {
-          "$ref": "../spec/descriptions/list-service-variables.md"
-        },
         "tags": [
           "Services - Variables"
         ],
@@ -7864,9 +7496,6 @@
       "post": {
         "summary": "Create a new variable linked to a service",
         "operationId": "addServiceVariable",
-        "description": {
-          "$ref": "../spec/descriptions/add-service-variable.md"
-        },
         "tags": [
           "Services - Variables"
         ],
@@ -7942,9 +7571,6 @@
       "get": {
         "summary": "Return a list of all social accounts of the current user",
         "operationId": "listSocialAccounts",
-        "description": {
-          "$ref": "../spec/descriptions/list-social-accounts.md"
-        },
         "tags": [
           "Social Accounts"
         ],
@@ -7989,9 +7615,6 @@
       "post": {
         "summary": "Add a social account",
         "operationId": "addSocialAccount",
-        "description": {
-          "$ref": "../spec/descriptions/add-social-account.md"
-        },
         "tags": [
           "Social Accounts"
         ],
@@ -8045,9 +7668,6 @@
       "delete": {
         "summary": "Delete a given social account",
         "operationId": "deleteSocialAccount",
-        "description": {
-          "$ref": "../spec/descriptions/delete-social-account.md"
-        },
         "tags": [
           "Social Accounts"
         ],
@@ -8087,9 +7707,6 @@
       "get": {
         "summary": "Get a social account by provider name",
         "operationId": "getSocialAccount",
-        "description": {
-          "$ref": "../spec/descriptions/get-social-account.md"
-        },
         "tags": [
           "Social Accounts"
         ],
@@ -8135,9 +7752,6 @@
       "get": {
         "summary": "Get status of a social account",
         "operationId": "getSocialAccountStatus",
-        "description": {
-          "$ref": "../spec/descriptions/get-social-account-status.md"
-        },
         "tags": [
           "Social Accounts"
         ],
@@ -8183,9 +7797,6 @@
       "get": {
         "summary": "Return a list of all source code providers linked to current user",
         "operationId": "listSourceProviders",
-        "description": {
-          "$ref": "../spec/descriptions/list-source-providers.md"
-        },
         "tags": [
           "Source Providers"
         ],
@@ -8230,9 +7841,6 @@
       "post": {
         "summary": "Add a new source provider to the current user's profile",
         "operationId": "addSourceProvider",
-        "description": {
-          "$ref": "../spec/descriptions/add-source-provider.md"
-        },
         "tags": [
           "Source Providers"
         ],
@@ -8296,9 +7904,6 @@
       "delete": {
         "summary": "Delete a given source provider from current user's account",
         "operationId": "deleteSourceProvider",
-        "description": {
-          "$ref": "../spec/descriptions/delete-source-provider.md"
-        },
         "tags": [
           "Source Providers"
         ],
@@ -8343,9 +7948,6 @@
       "get": {
         "summary": "Get a source provider by ID",
         "operationId": "getSourceProvider",
-        "description": {
-          "$ref": "../spec/descriptions/get-source-provider.md"
-        },
         "tags": [
           "Source Providers"
         ],
@@ -8392,9 +7994,6 @@
       "get": {
         "summary": "Return a list of all repositories belonging to the current user social provider account",
         "operationId": "listSourceProviderRepositories",
-        "description": {
-          "$ref": "../spec/descriptions/list-source-provider-repositories.md"
-        },
         "tags": [
           "Source Providers - Repositories"
         ],
@@ -8444,9 +8043,6 @@
       "get": {
         "summary": "Get details of a repository by its name",
         "operationId": "getSourceProviderRepository",
-        "description": {
-          "$ref": "../spec/descriptions/get-source-provider-repository.md"
-        },
         "tags": [
           "Source Providers - Repositories"
         ],
@@ -8513,9 +8109,6 @@
       "delete": {
         "summary": "Delete a given SSH key",
         "operationId": "deleteSshKey",
-        "description": {
-          "$ref": "../spec/descriptions/delete-ssh-key.md"
-        },
         "tags": [
           "SSH Keys"
         ],
@@ -8568,9 +8161,6 @@
       "get": {
         "summary": "Get a SSH key by ID",
         "operationId": "getSshKey",
-        "description": {
-          "$ref": "../spec/descriptions/get-ssh-key.md"
-        },
         "tags": [
           "SSH Keys"
         ],
@@ -8622,9 +8212,6 @@
       "put": {
         "summary": "Update an existing SSH key",
         "operationId": "updateSshKey",
-        "description": {
-          "$ref": "../spec/descriptions/update-ssh-key.md"
-        },
         "tags": [
           "SSH Keys"
         ],
@@ -8692,9 +8279,6 @@
       "delete": {
         "summary": "Delete a given SSL Certificate",
         "operationId": "deleteSslCertificate",
-        "description": {
-          "$ref": "../spec/descriptions/delete-ssl-certificate.md"
-        },
         "tags": [
           "SSL Certificates"
         ],
@@ -8747,9 +8331,6 @@
       "get": {
         "summary": "Get details of a single SSL certificate",
         "operationId": "getSslCertificate",
-        "description": {
-          "$ref": "../spec/descriptions/get-ssl-certificate.md"
-        },
         "tags": [
           "SSL Certificates"
         ],
@@ -8803,9 +8384,6 @@
       "get": {
         "summary": "List `Application` resource options",
         "operationId": "getStaticApplicationOptions",
-        "description": {
-          "$ref": "../spec/descriptions/get-static-application-options.md"
-        },
         "tags": [
           "Static Data - Application Options"
         ],
@@ -8838,9 +8416,6 @@
       "get": {
         "summary": "List `Cloud Provider` service options",
         "operationId": "listStaticCloudProviderOptions",
-        "description": {
-          "$ref": "../spec/descriptions/list-static-cloud-provider-options.md"
-        },
         "tags": [
           "Static Data - Cloud Provider Options"
         ],
@@ -8879,9 +8454,6 @@
       "get": {
         "summary": "Get details of a single `Cloud Provider Service`",
         "operationId": "getStaticCloudProviderService",
-        "description": {
-          "$ref": "../spec/descriptions/get-static-cloud-provider-service.md"
-        },
         "tags": [
           "Static Data - Cloud Provider Services"
         ],
@@ -8927,9 +8499,6 @@
       "get": {
         "summary": "List `Cloud Provider Service` instance types by region",
         "operationId": "listStaticCloudInstancesByCloudProviderServiceCodeAndRegionCode",
-        "description": {
-          "$ref": "../spec/descriptions/list-static-cloud-instances-by-cloud-provider-service-code-and-region-code.md"
-        },
         "tags": [
           "Static Data - Cloud Provider Service Instances"
         ],
@@ -8988,9 +8557,6 @@
       "get": {
         "summary": "List `CronJob` resource options",
         "operationId": "getStaticCronJobOptions",
-        "description": {
-          "$ref": "../spec/descriptions/get-static-cron-job-options.md"
-        },
         "tags": [
           "Static Data - Cron Job Options"
         ],
@@ -9023,9 +8589,6 @@
       "get": {
         "summary": "List `Environment` options",
         "operationId": "getStaticEnvironmentOptions",
-        "description": {
-          "$ref": "../spec/descriptions/get-static-environment-options.md"
-        },
         "tags": [
           "Static Data - Environment Options"
         ],
@@ -9058,9 +8621,6 @@
       "get": {
         "summary": "List `Network Rule` options",
         "operationId": "getStaticNetworkRuleOptions",
-        "description": {
-          "$ref": "../spec/descriptions/get-static-network-rule-options.md"
-        },
         "tags": [
           "Static Data - Network Rule Options"
         ],
@@ -9093,9 +8653,6 @@
       "get": {
         "summary": "List available `Role` permissions",
         "operationId": "listStaticPermissions",
-        "description": {
-          "$ref": "../spec/descriptions/list-static-permissions.md"
-        },
         "tags": [
           "Static Data - Permissions"
         ],
@@ -9134,9 +8691,6 @@
       "get": {
         "summary": "List available resource types",
         "operationId": "listStaticResourceTypes",
-        "description": {
-          "$ref": "../spec/descriptions/list-static-resource-types.md"
-        },
         "tags": [
           "Static Data - Resource Types"
         ],
@@ -9175,9 +8729,6 @@
       "get": {
         "summary": "List `Server` options",
         "operationId": "getStaticServerOptions",
-        "description": {
-          "$ref": "../spec/descriptions/get-static-server-options.md"
-        },
         "tags": [
           "Static Data - Server Options"
         ],
@@ -9210,9 +8761,6 @@
       "get": {
         "summary": "List `Service` resource options",
         "operationId": "getStaticServiceOptions",
-        "description": {
-          "$ref": "../spec/descriptions/get-static-service-options.md"
-        },
         "tags": [
           "Static Data - Service Options"
         ],
@@ -9245,9 +8793,6 @@
       "get": {
         "summary": "List `Source provider` options",
         "operationId": "listStaticSourceProviderOptions",
-        "description": {
-          "$ref": "../spec/descriptions/list-static-source-provider-options.md"
-        },
         "tags": [
           "Static Data - Source Provider Options"
         ],
@@ -9286,9 +8831,6 @@
       "get": {
         "summary": "List `User profile` options",
         "operationId": "getStaticUserProfileOptions",
-        "description": {
-          "$ref": "../spec/descriptions/get-static-user-profile-options.md"
-        },
         "tags": [
           "Static Data - User Profile Options"
         ],
@@ -9321,9 +8863,6 @@
       "get": {
         "summary": "List `Virtual Host` options",
         "operationId": "getStaticVirtualHostOptions",
-        "description": {
-          "$ref": "../spec/descriptions/get-static-virtual-host-options.md"
-        },
         "tags": [
           "Static Data - Virtual Host Options"
         ],
@@ -9356,9 +8895,6 @@
       "delete": {
         "summary": "Delete a given subnet",
         "operationId": "deleteSubnet",
-        "description": {
-          "$ref": "../spec/descriptions/delete-subnet.md"
-        },
         "tags": [
           "Subnets"
         ],
@@ -9411,9 +8947,6 @@
       "get": {
         "summary": "Get a subnet by ID",
         "operationId": "getSubnet",
-        "description": {
-          "$ref": "../spec/descriptions/get-subnet.md"
-        },
         "tags": [
           "Subnets"
         ],
@@ -9467,9 +9000,6 @@
       "post": {
         "summary": "Accept a pending team invitation",
         "operationId": "acceptTeamInvitation",
-        "description": {
-          "$ref": "../spec/descriptions/accept-team-invitation.md"
-        },
         "tags": [
           "Team Invitations"
         ],
@@ -9515,9 +9045,6 @@
       "delete": {
         "summary": "Delete a given team",
         "operationId": "deleteTeam",
-        "description": {
-          "$ref": "../spec/descriptions/delete-team.md"
-        },
         "tags": [
           "Teams"
         ],
@@ -9562,9 +9089,6 @@
       "get": {
         "summary": "Get a team by ID",
         "operationId": "getTeam",
-        "description": {
-          "$ref": "../spec/descriptions/get-team.md"
-        },
         "tags": [
           "Teams"
         ],
@@ -9609,9 +9133,6 @@
       "put": {
         "summary": "Update an existing team",
         "operationId": "updateTeam",
-        "description": {
-          "$ref": "../spec/descriptions/update-team.md"
-        },
         "tags": [
           "Teams"
         ],
@@ -9679,9 +9200,6 @@
       "get": {
         "summary": "Return a list of pending invitations belonging to a team",
         "operationId": "listTeamInvitations",
-        "description": {
-          "$ref": "../spec/descriptions/list-team-invitations.md"
-        },
         "tags": [
           "Teams - Invitations"
         ],
@@ -9737,9 +9255,6 @@
       "post": {
         "summary": "Send invitation to user email to participate to a team",
         "operationId": "addTeamInvitation",
-        "description": {
-          "$ref": "../spec/descriptions/add-team-invitation.md"
-        },
         "tags": [
           "Teams - Invitations"
         ],
@@ -9814,9 +9329,6 @@
       "get": {
         "summary": "Return a list of all members belonging to a team",
         "operationId": "listTeamMembers",
-        "description": {
-          "$ref": "../spec/descriptions/list-team-members.md"
-        },
         "tags": [
           "Teams - Members"
         ],
@@ -9874,9 +9386,6 @@
       "delete": {
         "summary": "Delete a given team member",
         "operationId": "deleteTeamMember",
-        "description": {
-          "$ref": "../spec/descriptions/delete-team-member.md"
-        },
         "tags": [
           "Teams - Members"
         ],
@@ -9925,9 +9434,6 @@
       "get": {
         "summary": "Get a member of team by ID",
         "operationId": "getTeamMember",
-        "description": {
-          "$ref": "../spec/descriptions/get-team-member.md"
-        },
         "tags": [
           "Teams - Members"
         ],
@@ -9985,9 +9491,6 @@
       "post": {
         "summary": "Sign up/register a new user",
         "operationId": "addUser",
-        "description": {
-          "$ref": "../spec/descriptions/add-user.md"
-        },
         "tags": [
           "Users"
         ],
@@ -10031,9 +9534,6 @@
       "post": {
         "summary": "Resend the verification email",
         "operationId": "resendVerificationUser",
-        "description": {
-          "$ref": "../spec/descriptions/resend-verification-user.md"
-        },
         "tags": [
           "Users"
         ],
@@ -10080,9 +9580,6 @@
       "post": {
         "summary": "Activate the user account",
         "operationId": "verifyUser",
-        "description": {
-          "$ref": "../spec/descriptions/verify-user.md"
-        },
         "tags": [
           "Users"
         ],
@@ -10136,9 +9633,6 @@
       "get": {
         "summary": "Get current user's billing info for active subscription",
         "operationId": "getUserBilling",
-        "description": {
-          "$ref": "../spec/descriptions/get-user-billing.md"
-        },
         "tags": [
           "Users"
         ],
@@ -10171,9 +9665,6 @@
       "post": {
         "summary": "Login/create a new token for the given credentials",
         "operationId": "loginUser",
-        "description": {
-          "$ref": "../spec/descriptions/login-user.md"
-        },
         "tags": [
           "Users"
         ],
@@ -10244,9 +9735,6 @@
       "get": {
         "summary": "Logout/revoke an existing token",
         "operationId": "getUserLogout",
-        "description": {
-          "$ref": "../spec/descriptions/get-user-logout.md"
-        },
         "tags": [
           "Users"
         ],
@@ -10282,9 +9770,6 @@
       "get": {
         "summary": "Get details of the current user",
         "operationId": "getUserMe",
-        "description": {
-          "$ref": "../spec/descriptions/get-user-me.md"
-        },
         "tags": [
           "Users"
         ],
@@ -10317,9 +9802,6 @@
       "post": {
         "summary": "Reset the user password",
         "operationId": "resetUserPassword",
-        "description": {
-          "$ref": "../spec/descriptions/reset-user-password.md"
-        },
         "tags": [
           "Users - Passwords"
         ],
@@ -10370,9 +9852,6 @@
       "post": {
         "summary": "Send the password reset link to user's email",
         "operationId": "sendResetLinkUserPassword",
-        "description": {
-          "$ref": "../spec/descriptions/send-reset-link-user-password.md"
-        },
         "tags": [
           "Users - Passwords"
         ],
@@ -10416,9 +9895,6 @@
       "post": {
         "summary": "Refresh an existing user access token",
         "operationId": "refreshTokenUser",
-        "description": {
-          "$ref": "../spec/descriptions/refresh-token-user.md"
-        },
         "tags": [
           "Users"
         ],
@@ -10479,9 +9955,6 @@
       "get": {
         "summary": "Return a list of all pending team invitations for the authenticated user",
         "operationId": "listUserTeamInvitations",
-        "description": {
-          "$ref": "../spec/descriptions/list-user-team-invitations.md"
-        },
         "tags": [
           "Users - Team Invitations"
         ],
@@ -10528,9 +10001,6 @@
       "get": {
         "summary": "Get the authenticated user's URLs",
         "operationId": "getUserUrls",
-        "description": {
-          "$ref": "../spec/descriptions/get-user-urls.md"
-        },
         "tags": [
           "Users"
         ],
@@ -10563,9 +10033,6 @@
       "get": {
         "summary": "Get a user by ID",
         "operationId": "getUser",
-        "description": {
-          "$ref": "../spec/descriptions/get-user.md"
-        },
         "tags": [
           "Users"
         ],
@@ -10617,9 +10084,6 @@
       "put": {
         "summary": "Update an existing user",
         "operationId": "updateUser",
-        "description": {
-          "$ref": "../spec/descriptions/update-user.md"
-        },
         "tags": [
           "Users"
         ],
@@ -10687,9 +10151,6 @@
       "get": {
         "summary": "Get current user's activity info",
         "operationId": "getUserActivity",
-        "description": {
-          "$ref": "../spec/descriptions/get-user-activity.md"
-        },
         "tags": [
           "Users"
         ],
@@ -10743,9 +10204,6 @@
       "get": {
         "summary": "Return a list of all environments owned by the current user",
         "operationId": "listUserEnvironments",
-        "description": {
-          "$ref": "../spec/descriptions/list-user-environments.md"
-        },
         "tags": [
           "Users - Environments"
         ],
@@ -10815,9 +10273,6 @@
       "get": {
         "summary": "Return a list of all projects owned by the current user",
         "operationId": "listUserProjects",
-        "description": {
-          "$ref": "../spec/descriptions/list-user-projects.md"
-        },
         "tags": [
           "Users - Projects"
         ],
@@ -10887,9 +10342,6 @@
       "get": {
         "summary": "Return a list of variables belonging to a resource",
         "operationId": "listVariablesByResourceType",
-        "description": {
-          "$ref": "../spec/descriptions/list-variables-by-resource-type.md"
-        },
         "tags": [
           "Variables"
         ],
@@ -10955,9 +10407,6 @@
       "post": {
         "summary": "Create a new variable linked to a resource",
         "operationId": "addVariable",
-        "description": {
-          "$ref": "../spec/descriptions/add-variable.md"
-        },
         "tags": [
           "Variables"
         ],
@@ -11042,9 +10491,6 @@
       "delete": {
         "summary": "Delete a variable by ID",
         "operationId": "deleteVariable",
-        "description": {
-          "$ref": "../spec/descriptions/delete-variable.md"
-        },
         "tags": [
           "Variables"
         ],
@@ -11089,9 +10535,6 @@
       "get": {
         "summary": "Get a variable by ID",
         "operationId": "getVariable",
-        "description": {
-          "$ref": "../spec/descriptions/get-variable.md"
-        },
         "tags": [
           "Variables"
         ],
@@ -11143,9 +10586,6 @@
       "put": {
         "summary": "Update an existing variable",
         "operationId": "updateVariable",
-        "description": {
-          "$ref": "../spec/descriptions/update-variable.md"
-        },
         "tags": [
           "Variables"
         ],
@@ -11213,9 +10653,6 @@
       "delete": {
         "summary": "Delete a given virtual host",
         "operationId": "deleteVirtualHost",
-        "description": {
-          "$ref": "../spec/descriptions/delete-virtual-host.md"
-        },
         "tags": [
           "Virtual Hosts"
         ],
@@ -11243,7 +10680,15 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
           },
           "403": {
             "description": "Forbidden/Unauthorized",
@@ -11261,11 +10706,8 @@
         }
       },
       "get": {
-        "summary": "Get an virtual host by ID",
+        "summary": "Get a virtual host by ID",
         "operationId": "getVirtualHost",
-        "description": {
-          "$ref": "../spec/descriptions/get-virtual-host.md"
-        },
         "tags": [
           "Virtual Hosts"
         ],
@@ -11320,9 +10762,6 @@
       "put": {
         "summary": "Update an existing virtual host",
         "operationId": "updateVirtualHost",
-        "description": {
-          "$ref": "../spec/descriptions/update-virtual-host.md"
-        },
         "tags": [
           "Virtual Hosts"
         ],
@@ -11451,9 +10890,6 @@
       "name": "Applications - Hooks"
     },
     {
-      "name": "Applications - SSL Certificates"
-    },
-    {
       "name": "Applications - Variables",
       "description": "Throughout the `devopness` documentation the term `SSL Certificate` refers to a public key certificate adhering to `X.509` standard. While TLS is the protocol more used nowadays for web encryption, for historical reasons web encryption is often referred to simply as SSL. A SSL Certificate managed by `devopness` might be used as an HTTPS/SSL/TLS and other internet protocols to establish encrypted connections between client apps (e.g. browsers) and the web application servers managed through `devopness`, but it's not limited to be used for authenticating server's identity.\n"
     },
@@ -11500,6 +10936,9 @@
     },
     {
       "name": "Environments - SSH Keys"
+    },
+    {
+      "name": "Environments - SSL Certificates"
     },
     {
       "name": "Environments - Teams"
@@ -11680,7 +11119,6 @@
         "Applications",
         "Applications - Deployments",
         "Applications - Hooks",
-        "Applications - SSL Certificates",
         "Applications - Variables",
         "Environments - Applications"
       ]
@@ -11813,7 +11251,8 @@
     {
       "name": "SSL Certificates",
       "tags": [
-        "SSL Certificates"
+        "SSL Certificates",
+        "Environments - SSL Certificates"
       ]
     },
     {
@@ -12987,14 +12426,6 @@
             "type": "string",
             "example": "my-awesome-app"
           },
-          "type": {
-            "$ref": "#/components/schemas/ApplicationType"
-          },
-          "domain_name": {
-            "description": "The domain or sub-domain through which the application deployed with these settings will be accessible. It can be a naked domain or any subdomain. If app has domain names `testing.my-app.com`, `staging.my-app.com` and `www.my-app.com` a possible good candidate for the application name would be the \"naked\" domain `my-app.com`",
-            "type": "string",
-            "example": "test.my-app.co.uk"
-          },
           "repository": {
             "description": "The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed.",
             "type": "string",
@@ -13040,20 +12471,10 @@
             "type": "string",
             "example": "/src"
           },
-          "public_directory": {
-            "description": "The relative web directory where publicly accessible assets are located and the web content should be served from",
-            "type": "string",
-            "example": "/public"
-          },
           "entrypoint": {
             "description": "The application's entrypoint",
             "type": "string",
             "example": "`index.html`, `index.php`, `server.php`, `default.htm`, `node server.js`, `yarn start`, `npm run production`, `docker run -d -P --name my_container_name my_image_name`, `php artisan serve –-host=192.168.2.20 --port=8000`"
-          },
-          "listening_address": {
-            "description": "Application's listening address",
-            "type": "string",
-            "example": "http://unix:/tmp/backend3:/my/path"
           },
           "deployments_keep": {
             "description": "The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers. OR The number of deployment artifacts to be retained in the user's servers, making it easier and faster to rollback to previous versions",
@@ -13092,9 +12513,6 @@
           "source_provider": {
             "$ref": "#/components/schemas/SourceProvider"
           },
-          "ssl_certificates": {
-            "$ref": "#/components/schemas/SslCertificateList"
-          },
           "created_at": {
             "description": "The date and time when the record was created",
             "type": "string",
@@ -13112,8 +12530,6 @@
           "environment_id",
           "created_by",
           "name",
-          "type",
-          "domain_name",
           "repository",
           "repository_name",
           "repository_owner",
@@ -13123,9 +12539,7 @@
           "engine_version",
           "framework",
           "root_directory",
-          "public_directory",
           "entrypoint",
-          "listening_address",
           "deployments_keep",
           "install_dependencies_command",
           "build_command",
@@ -13135,7 +12549,6 @@
           "environment",
           "servers",
           "source_provider",
-          "ssl_certificates",
           "created_at",
           "updated_at"
         ]
@@ -13146,14 +12559,6 @@
           "name": {
             "description": "The application's unique name. Must not be greater than 60 characters.",
             "example": "my-awesome-app",
-            "type": "string"
-          },
-          "type": {
-            "$ref": "#/components/schemas/ApplicationType"
-          },
-          "domain_name": {
-            "description": "The domain or sub-domain through which the application deployed with these settings will be accessible. It can be a naked domain or any subdomain. If app has domain names `testing.my-app.com`, `staging.my-app.com` and `www.my-app.com` a possible good candidate for the application name would be the \"naked\" domain `my-app.com`. Must not be greater than 60 characters.",
-            "example": "test.my-app.co.uk",
             "type": "string"
           },
           "build_command": {
@@ -13176,11 +12581,6 @@
             "example": "python",
             "type": "string"
           },
-          "listening_address": {
-            "description": "Required for CGI|FastCGI|SCGI|WSGI based applications or `docker` containerized applications. It tells `devopness` the private address at which the application listens to external calls.The address has `http` or `https` protocol, an domain name or IP address, optional port and optional path. Or you can specify a UNIX-socket using `unix:` prefix after protocol.",
-            "example": "http://unix:/tmp/backend3:/my/path",
-            "type": "string"
-          },
           "repository": {
             "description": "The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed. Must not be greater than 100 characters.",
             "example": "devopness/devopness",
@@ -13194,11 +12594,6 @@
           "root_directory": {
             "description": "The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository. Must start with one of <code>/</code>.",
             "example": "/src",
-            "type": "string"
-          },
-          "public_directory": {
-            "description": "The relative web directory where publicly accessible assets are located and the web content should be served from. Must start with one of <code>/</code>.",
-            "example": "/public",
             "type": "string"
           },
           "default_branch": {
@@ -13234,13 +12629,11 @@
         },
         "required": [
           "name",
-          "type",
           "engine_version",
           "framework",
           "programming_language",
           "repository",
           "source_provider_id",
-          "public_directory",
           "default_branch",
           "entrypoint",
           "requires_daemon"
@@ -13276,15 +12669,11 @@
           },
           "script_runners": {
             "$ref": "#/components/schemas/ScriptRunnerList"
-          },
-          "application_types": {
-            "$ref": "#/components/schemas/ApplicationTypes"
           }
         },
         "required": [
           "language_runtimes",
-          "script_runners",
-          "application_types"
+          "script_runners"
         ]
       },
       "ApplicationPipeline": {
@@ -13335,14 +12724,6 @@
             "type": "string",
             "example": "my-awesome-app"
           },
-          "type": {
-            "$ref": "#/components/schemas/ApplicationType"
-          },
-          "domain_name": {
-            "description": "The domain or sub-domain through which the application deployed with these settings will be accessible. It can be a naked domain or any subdomain. If app has domain names `testing.my-app.com`, `staging.my-app.com` and `www.my-app.com` a possible good candidate for the application name would be the \"naked\" domain `my-app.com`",
-            "type": "string",
-            "example": "test.my-app.co.uk"
-          },
           "repository": {
             "description": "The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed.",
             "type": "string",
@@ -13388,20 +12769,10 @@
             "type": "string",
             "example": "/src"
           },
-          "public_directory": {
-            "description": "The relative web directory where publicly accessible assets are located and the web content should be served from",
-            "type": "string",
-            "example": "/public"
-          },
           "entrypoint": {
             "description": "The application's entrypoint",
             "type": "string",
             "example": "`index.html`, `index.php`, `server.php`, `default.htm`, `node server.js`, `yarn start`, `npm run production`, `docker run -d -P --name my_container_name my_image_name`, `php artisan serve –-host=192.168.2.20 --port=8000`"
-          },
-          "listening_address": {
-            "description": "Application's listening address",
-            "type": "string",
-            "example": "http://unix:/tmp/backend3:/my/path"
           },
           "deployments_keep": {
             "description": "The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers. OR The number of deployment artifacts to be retained in the user's servers, making it easier and faster to rollback to previous versions",
@@ -13448,8 +12819,6 @@
           "environment_id",
           "created_by",
           "name",
-          "type",
-          "domain_name",
           "repository",
           "repository_name",
           "repository_owner",
@@ -13459,9 +12828,7 @@
           "engine_version",
           "framework",
           "root_directory",
-          "public_directory",
           "entrypoint",
-          "listening_address",
           "deployments_keep",
           "install_dependencies_command",
           "build_command",
@@ -13470,42 +12837,6 @@
           "updated_at"
         ],
         "nullable": true
-      },
-      "ApplicationType": {
-        "description": "The application's type, which will mainly define if it is publicly accessible through a web domain or not",
-        "type": "string",
-        "enum": [
-          "web",
-          "non-web"
-        ],
-        "example": "web"
-      },
-      "ApplicationTypes": {
-        "type": "object",
-        "properties": {
-          "public_application": {
-            "type": "object",
-            "description": "An application of type `public_application` is configured by Devopness to be accessed through a web server/reverse proxy to handle network requests and response, so it can be exposed as an `internet-facing` application. All applications that are intented to be accessible from the internet, exposed via a DNS record pointing to the application's server IP address, should be defined as `public_application`.",
-            "properties": {
-              "variable_targets": {
-                "$ref": "#/components/schemas/VariableTargetList"
-              }
-            }
-          },
-          "private_application": {
-            "type": "object",
-            "description": "An application of type `private_application` does not use a web server/reverse proxy to serve public content. All appplications that are intented to be accessible only locally in their own servers, or from servers in the same internal network, should be defined as `private_application`.",
-            "properties": {
-              "variable_targets": {
-                "$ref": "#/components/schemas/VariableTargetList"
-              }
-            }
-          }
-        },
-        "required": [
-          "public_application",
-          "private_application"
-        ]
       },
       "ApplicationUpdate": {
         "type": "object",
@@ -13518,14 +12849,6 @@
           "name": {
             "description": "The application's unique name. Must not be greater than 60 characters.",
             "example": "my-awesome-app",
-            "type": "string"
-          },
-          "type": {
-            "$ref": "#/components/schemas/ApplicationType"
-          },
-          "domain_name": {
-            "description": "The domain or sub-domain through which the application deployed with these settings will be accessible. It can be a naked domain or any subdomain. If app has domain names `testing.my-app.com`, `staging.my-app.com` and `www.my-app.com` a possible good candidate for the application name would be the \"naked\" domain `my-app.com`. Must not be greater than 60 characters.",
-            "example": "test.my-app.co.uk",
             "type": "string"
           },
           "build_command": {
@@ -13548,11 +12871,6 @@
             "example": "python",
             "type": "string"
           },
-          "listening_address": {
-            "description": "Required for CGI|FastCGI|SCGI|WSGI based applications or `docker` containerized applications. It tells `devopness` the private address at which the application listens to external calls.The address has `http` or `https` protocol, an domain name or IP address, optional port and optional path. Or you can specify a UNIX-socket using `unix:` prefix after protocol.",
-            "example": "http://unix:/tmp/backend3:/my/path",
-            "type": "string"
-          },
           "repository": {
             "description": "The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed. Must not be greater than 100 characters.",
             "example": "devopness/devopness",
@@ -13566,11 +12884,6 @@
           "root_directory": {
             "description": "The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository. Must start with one of <code>/</code>.",
             "example": "/src",
-            "type": "string"
-          },
-          "public_directory": {
-            "description": "The relative web directory where publicly accessible assets are located and the web content should be served from. Must start with one of <code>/</code>.",
-            "example": "/public",
             "type": "string"
           },
           "default_branch": {
@@ -13607,11 +12920,9 @@
         "required": [
           "id",
           "name",
-          "type",
           "engine_version",
           "framework",
           "programming_language",
-          "public_directory",
           "default_branch",
           "entrypoint",
           "requires_daemon"
@@ -15180,8 +14491,14 @@
           "ssh_keys": {
             "$ref": "#/components/schemas/SshKeyList"
           },
+          "ssl_certificates": {
+            "$ref": "#/components/schemas/SslCertificateList"
+          },
           "teams": {
             "$ref": "#/components/schemas/TeamList"
+          },
+          "virtual_hosts": {
+            "$ref": "#/components/schemas/VirtualHostList"
           },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
@@ -15214,7 +14531,9 @@
           "applications",
           "services",
           "ssh_keys",
+          "ssl_certificates",
           "teams",
+          "virtual_hosts",
           "created_by_user",
           "current_user_permissions",
           "created_at",
@@ -19921,20 +19240,11 @@
             "type": "boolean",
             "example": true
           },
-          "domains": {
-            "$ref": "#/components/schemas/SslCertificateDomainList"
-          },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
           },
           "last_action": {
             "$ref": "#/components/schemas/ActionRelation"
-          },
-          "application": {
-            "$ref": "#/components/schemas/ApplicationRelation"
-          },
-          "servers": {
-            "$ref": "#/components/schemas/ServerList"
           },
           "expires_at": {
             "description": "The date and time when this certificate will no longer be valid, down to minute precision",
@@ -19966,25 +19276,36 @@
           "issuer",
           "validation_level",
           "active",
-          "domains",
           "created_by_user",
           "last_action",
-          "application",
-          "servers",
           "expires_at",
           "last_renewed_at",
           "created_at",
           "updated_at"
         ]
       },
-      "SslCertificateApplicationCreate": {
+      "SslCertificateDomainList": {
+        "description": "The list of domain names to which the SSL certificate refers to",
+        "type": "array",
+        "example": [
+          "my-subdomain.example.com",
+          "example.com",
+          "*.example.com"
+        ],
+        "items": {
+          "type": "string"
+        }
+      },
+      "SslCertificateEnvironmentCreate": {
         "type": "object",
         "properties": {
+          "virtual_host_id": {
+            "description": "The ID of the virtual host to which this SSL certificate will be issued.",
+            "example": 123,
+            "type": "integer"
+          },
           "issuer": {
             "$ref": "#/components/schemas/SslCertificateIssuer"
-          },
-          "domains": {
-            "$ref": "#/components/schemas/SslCertificateDomainList"
           },
           "type": {
             "$ref": "#/components/schemas/SslCertificateType"
@@ -20004,21 +19325,9 @@
           }
         },
         "required": [
-          "issuer",
-          "domains"
+          "virtual_host_id",
+          "issuer"
         ]
-      },
-      "SslCertificateDomainList": {
-        "description": "The list of domain names to which the SSL certificate refers to",
-        "type": "array",
-        "example": [
-          "my-subdomain.example.com",
-          "example.com",
-          "*.example.com"
-        ],
-        "items": {
-          "type": "string"
-        }
       },
       "SslCertificateIssuer": {
         "type": "string",
@@ -20062,9 +19371,6 @@
             "type": "boolean",
             "example": true
           },
-          "domains": {
-            "$ref": "#/components/schemas/SslCertificateDomainList"
-          },
           "last_action": {
             "$ref": "#/components/schemas/ActionRelation"
           },
@@ -20098,7 +19404,6 @@
           "issuer",
           "validation_level",
           "active",
-          "domains",
           "last_action",
           "expires_at",
           "last_renewed_at",
@@ -22221,24 +21526,30 @@
             "example": 1
           },
           "type": {
-            "description": "The type of Virtual Host (`name-based` or `ip-based`)",
-            "type": "string",
-            "example": "name-based"
+            "$ref": "#/components/schemas/VirtualHostType"
           },
           "name": {
             "description": "The name of the Virtual Host",
             "type": "string",
             "example": "my-site.example.com"
           },
-          "root_directory": {
-            "description": "The relative path to the root directory of the Virtual Host",
-            "type": "string",
-            "example": "public"
+          "application": {
+            "$ref": "#/components/schemas/ApplicationRelation"
           },
-          "forward_server_address": {
-            "description": "The address of the forward server",
+          "root_directory": {
+            "description": "The document root location, within the application directory, that contains the public files to be served when a user visits the domain name associated with this virtual host",
             "type": "string",
-            "example": "http://localhost:3000"
+            "example": "public",
+            "nullable": true
+          },
+          "application_listen_address": {
+            "description": "The network name or IP address on which the application linked to this virtual host is configured to listen for incoming requests. A valid address has `http` or `https` protocol, a domain name or IP address, an optional port and optional path. You can also specify a UNIX-socket using `unix:` protocol. Examples: `http://127.0.0.1:8080` (for applications exposing port `8080`, for example running in a Docker container), `http://127.0.0.1:3000` (for applications kept alive by a daemon/background process that listens on port `3000`), `unix:/var/run/example.sock` (for applications listening on a custom socket)",
+            "type": "string",
+            "example": "http://localhost:3000",
+            "nullable": true
+          },
+          "last_action": {
+            "$ref": "#/components/schemas/ActionRelation"
           },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
@@ -22258,8 +21569,10 @@
           "id",
           "type",
           "name",
+          "application",
           "root_directory",
-          "forward_server_address",
+          "application_listen_address",
+          "last_action",
           "created_by_user",
           "created_at",
           "updated_at"
@@ -22279,20 +21592,26 @@
             "type": "string"
           },
           "root_directory": {
-            "description": "The relative path for the virtual host root directory. Must not be greater than 255 characters.",
+            "description": "The document root location, within the application directory, that contains the public files to be served when a user visits the domain name associated with this virtual host. Must not be greater than 255 characters.",
             "example": "public",
             "type": "string"
           },
-          "forward_server_address": {
-            "description": "The IP address of the server that will be used for forwarding. Must not be greater than 255 characters.",
-            "example": "http://localhost:3000",
-            "type": "string"
+          "application_listen_address": {
+            "description": "The network name or IP address on which the application linked to this virtual host is configured to listen for incoming requests. A valid address has `http` or `https` protocol, a domain name or IP address, an optional port and optional path. You can also specify a UNIX-socket using `unix:` protocol. Examples: `http://127.0.0.1:8080` (for applications exposing port `8080`, for example running in a Docker container), `http://127.0.0.1:3000` (for applications kept alive by a daemon/background process that listens on port `3000`), `unix:/var/run/example.sock` (for applications listening on a custom socket). Must not be greater than 255 characters.",
+            "example": "http://127.0.0.1:3000",
+            "type": "string",
+            "nullable": true
+          },
+          "application_id": {
+            "description": "The ID of the application to be associated with the virtual host. The value of `root_directory` will be relative to this application directory.",
+            "example": 1,
+            "type": "integer",
+            "nullable": true
           }
         },
         "required": [
           "type",
-          "name",
-          "root_directory"
+          "name"
         ]
       },
       "VirtualHostList": {
@@ -22321,24 +21640,30 @@
             "example": 1
           },
           "type": {
-            "description": "The type of the Virtual Host (`name-based` or `ip-based`)",
-            "type": "string",
-            "example": "name-based"
+            "$ref": "#/components/schemas/VirtualHostType"
           },
           "name": {
             "description": "The name of the Virtual Host",
             "type": "string",
             "example": "my-site.example.com"
           },
-          "root_directory": {
-            "description": "The relative path to the root directory of the Virtual Host",
-            "type": "string",
-            "example": "public"
+          "application": {
+            "$ref": "#/components/schemas/ApplicationRelation"
           },
-          "forward_server_address": {
-            "description": "The address of the forward server",
+          "root_directory": {
+            "description": "The document root location, within the application directory, that contains the public files to be served when a user visits the domain name associated with this virtual host",
             "type": "string",
-            "example": "http://localhost:3000"
+            "example": "public",
+            "nullable": true
+          },
+          "application_listen_address": {
+            "description": "The network name or IP address on which the application linked to this virtual host is configured to listen for incoming requests. A valid address has `http` or `https` protocol, a domain name or IP address, an optional port and optional path. You can also specify a UNIX-socket using `unix:` protocol. Examples: `http://127.0.0.1:8080` (for applications exposing port `8080`, for example running in a Docker container), `http://127.0.0.1:3000` (for applications kept alive by a daemon/background process that listens on port `3000`), `unix:/var/run/example.sock` (for applications listening on a custom socket)",
+            "type": "string",
+            "example": "http://localhost:3000",
+            "nullable": true
+          },
+          "last_action": {
+            "$ref": "#/components/schemas/ActionRelation"
           },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
@@ -22358,13 +21683,24 @@
           "id",
           "type",
           "name",
+          "application",
           "root_directory",
-          "forward_server_address",
+          "application_listen_address",
+          "last_action",
           "created_by_user",
           "created_at",
           "updated_at"
         ],
         "nullable": true
+      },
+      "VirtualHostType": {
+        "type": "string",
+        "description": "The type of Virtual Host",
+        "enum": [
+          "ip-based",
+          "name-based"
+        ],
+        "example": "name-based"
       },
       "VirtualHostUpdate": {
         "type": "object",
@@ -22380,14 +21716,21 @@
             "type": "string"
           },
           "root_directory": {
-            "description": "The relative path to the virtual host root directory. Must not be greater than 255 characters.",
+            "description": "The document root location, within the application directory, that contains the public files to be served when a user visits the domain name associated with this virtual host. Must not be greater than 255 characters.",
             "example": "public",
             "type": "string"
           },
-          "forward_server_address": {
-            "description": "The IP address of the server that will be used for forwarding. Must not be greater than 255 characters.",
-            "example": "http://localhost:3000",
-            "type": "string"
+          "application_listen_address": {
+            "description": "The network name or IP address on which the application linked to this virtual host is configured to listen for incoming requests. A valid address has `http` or `https` protocol, a domain name or IP address, an optional port and optional path. You can also specify a UNIX-socket using `unix:` protocol. Examples: `http://127.0.0.1:8080` (for applications exposing port `8080`, for example running in a Docker container), `http://127.0.0.1:3000` (for applications kept alive by a daemon/background process that listens on port `3000`), `unix:/var/run/example.sock` (for applications listening on a custom socket). Must not be greater than 255 characters.",
+            "example": "http://127.0.0.1:3000",
+            "type": "string",
+            "nullable": true
+          },
+          "application_id": {
+            "description": "The ID of the application to be associated with the virtual host. The value of `root_directory` will be relative to this application directory.",
+            "example": 1,
+            "type": "integer",
+            "nullable": true
           }
         },
         "required": [

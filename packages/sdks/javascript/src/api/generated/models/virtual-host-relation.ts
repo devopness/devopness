@@ -12,7 +12,10 @@
  */
 
 
+import { ActionRelation } from './action-relation';
+import { ApplicationRelation } from './application-relation';
 import { UserRelation } from './user-relation';
+import { VirtualHostType } from './virtual-host-type';
 
 /**
  * 
@@ -27,11 +30,11 @@ export interface VirtualHostRelation {
      */
     id: number;
     /**
-     * The type of the Virtual Host (`name-based` or `ip-based`)
-     * @type {string}
+     * 
+     * @type {VirtualHostType}
      * @memberof VirtualHostRelation
      */
-    type: string;
+    type: VirtualHostType;
     /**
      * The name of the Virtual Host
      * @type {string}
@@ -39,17 +42,29 @@ export interface VirtualHostRelation {
      */
     name: string;
     /**
-     * The relative path to the root directory of the Virtual Host
-     * @type {string}
+     * 
+     * @type {ApplicationRelation}
      * @memberof VirtualHostRelation
      */
-    root_directory: string;
+    application: ApplicationRelation | null;
     /**
-     * The address of the forward server
+     * The document root location, within the application directory, that contains the public files to be served when a user visits the domain name associated with this virtual host
      * @type {string}
      * @memberof VirtualHostRelation
      */
-    forward_server_address: string;
+    root_directory: string | null;
+    /**
+     * The network name or IP address on which the application linked to this virtual host is configured to listen for incoming requests. A valid address has `http` or `https` protocol, a domain name or IP address, an optional port and optional path. You can also specify a UNIX-socket using `unix:` protocol. Examples: `http://127.0.0.1:8080` (for applications exposing port `8080`, for example running in a Docker container), `http://127.0.0.1:3000` (for applications kept alive by a daemon/background process that listens on port `3000`), `unix:/var/run/example.sock` (for applications listening on a custom socket)
+     * @type {string}
+     * @memberof VirtualHostRelation
+     */
+    application_listen_address: string | null;
+    /**
+     * 
+     * @type {ActionRelation}
+     * @memberof VirtualHostRelation
+     */
+    last_action: ActionRelation | null;
     /**
      * 
      * @type {UserRelation}

@@ -21,8 +21,10 @@ import { NetworkRuleRelation } from './network-rule-relation';
 import { ServerRelation } from './server-relation';
 import { ServiceRelation } from './service-relation';
 import { SshKeyRelation } from './ssh-key-relation';
+import { SslCertificateRelation } from './ssl-certificate-relation';
 import { TeamRelation } from './team-relation';
 import { UserRelation } from './user-relation';
+import { VirtualHostRelation } from './virtual-host-relation';
 
 /**
  * 
@@ -110,10 +112,22 @@ export interface Environment {
     ssh_keys: Array<SshKeyRelation>;
     /**
      * 
+     * @type {Array<SslCertificateRelation>}
+     * @memberof Environment
+     */
+    ssl_certificates: Array<SslCertificateRelation>;
+    /**
+     * 
      * @type {Array<TeamRelation>}
      * @memberof Environment
      */
     teams: Array<TeamRelation>;
+    /**
+     * 
+     * @type {Array<VirtualHostRelation>}
+     * @memberof Environment
+     */
+    virtual_hosts: Array<VirtualHostRelation>;
     /**
      * 
      * @type {UserRelation}

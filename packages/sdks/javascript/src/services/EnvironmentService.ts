@@ -7,6 +7,7 @@ import { EnvironmentsNetworkRulesApiService } from '../api/generated/apis/enviro
 import { EnvironmentsServersApiService } from '../api/generated/apis/environments-servers-api';
 import { EnvironmentsServicesApiService } from '../api/generated/apis/environments-services-api';
 import { EnvironmentsSSHKeysApiService } from '../api/generated/apis/environments-sshkeys-api';
+import { EnvironmentsSSLCertificatesApiService } from '../api/generated/apis/environments-sslcertificates-api';
 import { EnvironmentsTeamMembershipsApiService } from '../api/generated/apis/environments-team-memberships-api';
 import { EnvironmentsTeamsApiService } from '../api/generated/apis/environments-teams-api';
 import { EnvironmentsNetworksApiService } from '../api/generated/apis/environments-networks-api';
@@ -22,6 +23,7 @@ export class EnvironmentService extends EnvironmentsApiService {
     public servers = new EnvironmentsServersApiService();
     public services = new EnvironmentsServicesApiService();
     public sshKeys = new EnvironmentsSSHKeysApiService();
+    public sslCertificates = new EnvironmentsSSLCertificatesApiService();
     public teams = new EnvironmentsTeamsApiService();
     public teamMemberships = new EnvironmentsTeamMembershipsApiService();
     public virtualHosts = new EnvironmentsVirtualHostsApiService();
