@@ -10827,6 +10827,81 @@
           }
         }
       }
+    },
+    "/virtual-hosts/{virtual_host_id}/get-status": {
+      "post": {
+        "summary": "Get current status of a virtual host",
+        "operationId": "getStatusVirtualHost",
+        "tags": [
+          "Virtual Hosts"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "virtual_host_id",
+            "description": "The ID of the virtual host.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VirtualHostGetStatus"
+              }
+            }
+          }
+        }
+      }
     }
   },
   "tags": [
@@ -12513,6 +12588,9 @@
           "source_provider": {
             "$ref": "#/components/schemas/SourceProvider"
           },
+          "virtual_hosts": {
+            "$ref": "#/components/schemas/VirtualHostList"
+          },
           "created_at": {
             "description": "The date and time when the record was created",
             "type": "string",
@@ -12549,6 +12627,7 @@
           "environment",
           "servers",
           "source_provider",
+          "virtual_hosts",
           "created_at",
           "updated_at"
         ]
@@ -21548,6 +21627,9 @@
             "example": "http://localhost:3000",
             "nullable": true
           },
+          "ssl_certificate": {
+            "$ref": "#/components/schemas/SslCertificateRelation"
+          },
           "last_action": {
             "$ref": "#/components/schemas/ActionRelation"
           },
@@ -21572,6 +21654,7 @@
           "application",
           "root_directory",
           "application_listen_address",
+          "ssl_certificate",
           "last_action",
           "created_by_user",
           "created_at",
@@ -21613,6 +21696,14 @@
           "type",
           "name"
         ]
+      },
+      "VirtualHostGetStatus": {
+        "type": "object",
+        "properties": {
+          "servers": {
+            "$ref": "#/components/schemas/ResourceIdList"
+          }
+        }
       },
       "VirtualHostList": {
         "type": "array",
@@ -21662,6 +21753,9 @@
             "example": "http://localhost:3000",
             "nullable": true
           },
+          "ssl_certificate": {
+            "$ref": "#/components/schemas/SslCertificateRelation"
+          },
           "last_action": {
             "$ref": "#/components/schemas/ActionRelation"
           },
@@ -21686,6 +21780,7 @@
           "application",
           "root_directory",
           "application_listen_address",
+          "ssl_certificate",
           "last_action",
           "created_by_user",
           "created_at",
