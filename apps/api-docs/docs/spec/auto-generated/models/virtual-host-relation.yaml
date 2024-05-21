@@ -23,6 +23,8 @@ properties:
     type: string
     example: 'http://localhost:3000'
     nullable: true
+  ssl_certificate:
+    $ref: '#/components/schemas/SslCertificateRelation'
   last_action:
     $ref: '#/components/schemas/ActionRelation'
   created_by_user:
@@ -42,6 +44,7 @@ required:
   - application
   - root_directory
   - application_listen_address
+  - ssl_certificate
   - last_action
   - created_by_user
   - created_at

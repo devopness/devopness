@@ -719,6 +719,8 @@ VirtualHost:
   $ref: ./auto-generated/models/virtual-host.yaml
 VirtualHostEnvironmentCreate:
   $ref: ./auto-generated/models/virtual-host-environment-create.yaml
+VirtualHostGetStatus:
+  $ref: ./auto-generated/models/virtual-host-get-status.yaml
 VirtualHostList:
   $ref: ./auto-generated/models/virtual-host-list.yaml
 VirtualHostOptions:

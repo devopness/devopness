@@ -500,3 +500,6 @@
     $ref: ./auto-generated/endpoints/get-virtual-host.yaml
   put:
     $ref: ./auto-generated/endpoints/update-virtual-host.yaml
+'/virtual-hosts/{virtual_host_id}/get-status':
+  post:
+    $ref: ./auto-generated/endpoints/get-status-virtual-host.yaml

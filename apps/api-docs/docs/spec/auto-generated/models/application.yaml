@@ -89,6 +89,8 @@ properties:
     $ref: '#/components/schemas/ServerList'
   source_provider:
     $ref: '#/components/schemas/SourceProvider'
+  virtual_hosts:
+    $ref: '#/components/schemas/VirtualHostList'
   created_at:
     description: 'The date and time when the record was created'
     type: string
@@ -122,5 +124,6 @@ required:
   - environment
   - servers
   - source_provider
+  - virtual_hosts
   - created_at
   - updated_at
