@@ -14,6 +14,7 @@
 
 import { ActionRelation } from './action-relation';
 import { ApplicationRelation } from './application-relation';
+import { SslCertificateRelation } from './ssl-certificate-relation';
 import { UserRelation } from './user-relation';
 import { VirtualHostType } from './virtual-host-type';
 
@@ -59,6 +60,12 @@ export interface VirtualHost {
      * @memberof VirtualHost
      */
     application_listen_address: string | null;
+    /**
+     * 
+     * @type {SslCertificateRelation}
+     * @memberof VirtualHost
+     */
+    ssl_certificate: SslCertificateRelation | null;
     /**
      * 
      * @type {ActionRelation}

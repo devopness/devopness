@@ -16,6 +16,7 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { VirtualHost } from '../../generated/models';
+import { VirtualHostGetStatus } from '../../generated/models';
 import { VirtualHostUpdate } from '../../generated/models';
 
 /**
@@ -37,6 +38,28 @@ export class VirtualHostsApiService extends ApiBaseService {
         const requestUrl = '/virtual-hosts/{virtual_host_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.delete <void>(requestUrl.replace(`{${"virtual_host_id"}}`, encodeURIComponent(String(virtualHostId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Get current status of a virtual host
+     * @param {number} virtualHostId The ID of the virtual host.
+     * @param {VirtualHostGetStatus} virtualHostGetStatus A JSON object containing the resource data
+     */
+    public async getStatusVirtualHost(virtualHostId: number, virtualHostGetStatus: VirtualHostGetStatus): Promise<ApiResponse<void>> {
+        if (virtualHostId === null || virtualHostId === undefined) {
+            throw new ArgumentNullException('virtualHostId', 'getStatusVirtualHost');
+        }
+        if (virtualHostGetStatus === null || virtualHostGetStatus === undefined) {
+            throw new ArgumentNullException('virtualHostGetStatus', 'getStatusVirtualHost');
+        }
+
+        let queryString = '';
+
+        const requestUrl = '/virtual-hosts/{virtual_host_id}/get-status' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <void, VirtualHostGetStatus>(requestUrl.replace(`{${"virtual_host_id"}}`, encodeURIComponent(String(virtualHostId))), virtualHostGetStatus);
         return new ApiResponse(response);
     }
 
