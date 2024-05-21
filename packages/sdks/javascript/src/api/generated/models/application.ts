@@ -17,6 +17,7 @@ import { EnvironmentRelation } from './environment-relation';
 import { ServerRelation } from './server-relation';
 import { SourceProvider } from './source-provider';
 import { UserRelation } from './user-relation';
+import { VirtualHostRelation } from './virtual-host-relation';
 
 /**
  * 
@@ -168,6 +169,12 @@ export interface Application {
      * @memberof Application
      */
     source_provider: SourceProvider;
+    /**
+     * 
+     * @type {Array<VirtualHostRelation>}
+     * @memberof Application
+     */
+    virtual_hosts: Array<VirtualHostRelation>;
     /**
      * The date and time when the record was created
      * @type {string}
