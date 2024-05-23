@@ -80,28 +80,10 @@ export interface ApplicationEnvironmentCreate {
      */
     deployments_keep?: number;
     /**
-     * The entrypoint tells devopness how an application should be started and has basically two forms: 1) `File`: if it\'s a simple file name/path a web app will be served using the entrypoint value as its index file. Example: `index.html` 2) `Command`: if a command line instruction is provided as the entrypoint value, it will be handled as the start up command that initializes the application. It will be assumed that the user is an advanced user that knows what she/he is doing, therefore the command specified here will be run - as is - every time the application needs to be started. Must not be greater than 120 characters.
-     * @type {string}
-     * @memberof ApplicationEnvironmentCreate
-     */
-    entrypoint: string;
-    /**
      * Indicates command that Devopness must execute to install application dependencies.
      * @type {string}
      * @memberof ApplicationEnvironmentCreate
      */
     install_dependencies_command?: string;
-    /**
-     * Indicates if push to deploy webhooks are enabled for this application. If enabled an app deployment will be automatically triggered when new changes are committed to the `default_branch`.
-     * @type {boolean}
-     * @memberof ApplicationEnvironmentCreate
-     */
-    push_to_deploy?: boolean;
-    /**
-     * Indicates if the application requires a daemon to keep it alive.
-     * @type {boolean}
-     * @memberof ApplicationEnvironmentCreate
-     */
-    requires_daemon: boolean;
 }
 
