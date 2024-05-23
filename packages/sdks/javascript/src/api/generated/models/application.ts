@@ -80,12 +80,6 @@ export interface Application {
      */
     default_branch: string;
     /**
-     * Indicates if push to deploy webhooks are enabled for this application. If enabled an app deployment will be automatically triggered when new changes are committed to the `default_branch`
-     * @type {boolean}
-     * @memberof Application
-     */
-    push_to_deploy: boolean;
-    /**
      * The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`.
      * @type {string}
      * @memberof Application
@@ -110,12 +104,6 @@ export interface Application {
      */
     root_directory: string;
     /**
-     * The application\'s entrypoint
-     * @type {string}
-     * @memberof Application
-     */
-    entrypoint: string;
-    /**
      * The number of deployment history, logs and artifacts to keep stored in both devopness servers and user\'s servers. OR The number of deployment artifacts to be retained in the user\'s servers, making it easier and faster to rollback to previous versions
      * @type {number}
      * @memberof Application
@@ -133,12 +121,6 @@ export interface Application {
      * @memberof Application
      */
     build_command: string | null;
-    /**
-     * Indicates if the application requires a daemon to keep it alive
-     * @type {boolean}
-     * @memberof Application
-     */
-    requires_daemon: boolean;
     /**
      * 
      * @type {UserRelation}
