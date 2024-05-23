@@ -37,10 +37,6 @@ properties:
     description: 'The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed.'
     type: string
     example: develop
-  push_to_deploy:
-    description: 'Indicates if push to deploy webhooks are enabled for this application. If enabled an app deployment will be automatically triggered when new changes are committed to the `default_branch`'
-    type: boolean
-    example: false
   programming_language:
     description: 'The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`.'
     type: string
@@ -57,10 +53,6 @@ properties:
     description: 'The relative directory where package manager''s manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository.'
     type: string
     example: /src
-  entrypoint:
-    description: 'The application''s entrypoint'
-    type: string
-    example: '`index.html`, `index.php`, `server.php`, `default.htm`, `node server.js`, `yarn start`, `npm run production`, `docker run -d -P --name my_container_name my_image_name`, `php artisan serve –-host=192.168.2.20 --port=8000`'
   deployments_keep:
     description: 'The number of deployment history, logs and artifacts to keep stored in both devopness servers and user''s servers. OR The number of deployment artifacts to be retained in the user''s servers, making it easier and faster to rollback to previous versions'
     type: integer
@@ -75,10 +67,6 @@ properties:
     type: string
     example: 'npm run build'
     nullable: true
-  requires_daemon:
-    description: 'Indicates if the application requires a daemon to keep it alive'
-    type: boolean
-    example: false
   created_by_user:
     $ref: '#/components/schemas/UserRelation'
   last_deployments:
@@ -109,16 +97,13 @@ required:
   - repository_name
   - repository_owner
   - default_branch
-  - push_to_deploy
   - programming_language
   - engine_version
   - framework
   - root_directory
-  - entrypoint
   - deployments_keep
   - install_dependencies_command
   - build_command
-  - requires_daemon
   - created_by_user
   - last_deployments
   - environment
