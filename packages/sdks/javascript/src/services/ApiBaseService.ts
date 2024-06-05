@@ -23,6 +23,7 @@ export class Configuration implements ConfigurationOptions {
 export class ApiBaseService {
     private api: AxiosInstance;
     private static _accessToken: string;
+    private static _onTokenExpired: (accessToken: string) => void;
 
     public static configuration: Configuration;
 
@@ -98,6 +99,11 @@ export class ApiBaseService {
                 return response;
             },
             (error: AxiosError) => {
+                if (this.isTokenExpired(error.response)) {
+                    // access_token is expired
+                    ApiBaseService._onTokenExpired(ApiBaseService._accessToken);
+                    return error.response
+                }
                 if (error.response) {
                     // server responded, but with a status code other than 2xx
                     throw new ApiError(error);
@@ -118,6 +124,22 @@ export class ApiBaseService {
 
     public static set accessToken(value: string) {
         ApiBaseService._accessToken = value;
+    }
+
+    public static set onTokenExpired(callback: (accessToken: string) => void) {
+        ApiBaseService._onTokenExpired = callback;
+    }
+
+    protected isTokenExpired(response: AxiosResponse | undefined): boolean {
+        if (!ApiBaseService.accessToken) {
+            return false;
+        }
+
+        const decodedToken = JSON.parse(
+            Buffer.from(ApiBaseService.accessToken?.split(".")?.[1], "base64").toString()
+        );
+
+        return response?.status === 401 && decodedToken.exp < (new Date().getTime() / 1000);
     }
 
     public baseURL(): string {

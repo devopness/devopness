@@ -98,6 +98,9 @@ export class DevopnessApiClient {
     this.users = new UserService();
     this.variables = new VariableService();
     this.virtualHosts = new VirtualHostService();
+    this.onTokenExpired = () => {
+      // do nothing.
+    };
   }
 
   public get accessToken(): string {
@@ -117,5 +120,16 @@ export class DevopnessApiClient {
     }
 
     ApiBaseService.accessToken = accessToken;
+  }
+
+  /**
+   *
+   * @summary Sets the callback function to be executed when the access token expires.
+   * @static
+   * @param {function(string)} callback - The callback function to be executed.
+   * This function should accept a single string parameter representing the expired access token.
+   */
+  public set onTokenExpired(callback: (accessToken: string) => void) {
+    ApiBaseService.onTokenExpired = callback;
   }
 }

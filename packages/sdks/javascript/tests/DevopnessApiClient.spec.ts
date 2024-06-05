@@ -1,4 +1,9 @@
+import axios from 'axios';
+import MockAdapter from 'axios-mock-adapter';
+
 import { DevopnessApiClient } from '../src/DevopnessApiClient'
+
+const reqMock = new MockAdapter(axios)
 
 test("base URL defaults to production environment", () => {
   const apiClient = new DevopnessApiClient();
@@ -56,4 +61,20 @@ test("base URL is configurable on initialization", () => {
   expect(apiClient.users).toHaveProperty('passwords')
 
   expect(apiClient).toHaveProperty('variables')
+
+  expect(apiClient).toHaveProperty('onTokenExpired')
 })
+
+test("expired access_token should trigger callback function", async () => {
+  const mockRefreshTokenCallback = jest.fn(token => token);
+
+  const apiClient = new DevopnessApiClient();
+  apiClient.accessToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhcGkuZGV2b3BuZXNzLmNvbSIsImlhdCI6MTcxMjYyMTYwMywiZXhwIjoxNzEyNTg5MjAzLCJhdWQiOiJ3d3cubXktcHJvZHVjdC5jb20iLCJzdWIiOiJzb21lb25lQGV4YW1wbGUuY29tIiwic2NvcGUiOlsic2VydmVyOnJlYWQiLCJzZXJ2ZXI6Z2V0X3N0YXR1cyIsImFwcGxpY2F0aW9uOmRlcGxveSIsImFwcGxpY2F0aW9uOmVkaXQiLCJjcm9uam9iOnJlYWQiLCJjcm9uam9iOmRlcGxveSIsInNzbC1jZXJ0aWZpY2F0ZTpkZXBsb3kiXX0.GirkUv0UI1kUORKpcWSrSKsfbM-s5Hwd1LSlDpExgbg';
+  apiClient.onTokenExpired = mockRefreshTokenCallback;
+
+  reqMock.onGet('/users/me').replyOnce(401, {});
+  await (apiClient.users.getUserMe());
+
+  expect(mockRefreshTokenCallback).toHaveBeenCalled()
+  expect(mockRefreshTokenCallback.mock.calls).toHaveLength(1)
+});
