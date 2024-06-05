@@ -130,8 +130,6 @@ export class DevopnessApiClient {
    * This function should accept a single string parameter representing the expired access token.
    */
   public set onTokenExpired(callback: (accessToken: string) => void) {
-    if (callback) {
-      ApiBaseService.onTokenExpired = callback;
-    }
+    ApiBaseService.onTokenExpired = callback;
   }
 }
