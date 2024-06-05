@@ -12,7 +12,6 @@
  */
 
 
-import { ApplicationType } from './application-type';
 
 /**
  * 
@@ -32,18 +31,6 @@ export interface ApplicationUpdate {
      * @memberof ApplicationUpdate
      */
     name: string;
-    /**
-     * 
-     * @type {ApplicationType}
-     * @memberof ApplicationUpdate
-     */
-    type: ApplicationType;
-    /**
-     * The domain or sub-domain through which the application deployed with these settings will be accessible. It can be a naked domain or any subdomain. If app has domain names `testing.my-app.com`, `staging.my-app.com` and `www.my-app.com` a possible good candidate for the application name would be the \"naked\" domain `my-app.com`. Must not be greater than 60 characters.
-     * @type {string}
-     * @memberof ApplicationUpdate
-     */
-    domain_name?: string;
     /**
      * The optional command that should be executed once during deployment to build the source code and get the application in a ready state.
      * @type {string}
@@ -69,12 +56,6 @@ export interface ApplicationUpdate {
      */
     programming_language: string;
     /**
-     * Required for CGI|FastCGI|SCGI|WSGI based applications or `docker` containerized applications. It tells `devopness` the private address at which the application listens to external calls.The address has `http` or `https` protocol, an domain name or IP address, optional port and optional path. Or you can specify a UNIX-socket using `unix:` prefix after protocol.
-     * @type {string}
-     * @memberof ApplicationUpdate
-     */
-    listening_address?: string;
-    /**
      * The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed. Must not be greater than 100 characters.
      * @type {string}
      * @memberof ApplicationUpdate
@@ -93,12 +74,6 @@ export interface ApplicationUpdate {
      */
     root_directory?: string;
     /**
-     * The relative web directory where publicly accessible assets are located and the web content should be served from. Must start with one of <code>/</code>.
-     * @type {string}
-     * @memberof ApplicationUpdate
-     */
-    public_directory: string;
-    /**
      * The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed. Must not be greater than 200 characters.
      * @type {string}
      * @memberof ApplicationUpdate
@@ -111,28 +86,10 @@ export interface ApplicationUpdate {
      */
     deployments_keep?: number;
     /**
-     * The entrypoint tells devopness how an application should be started and has basically two forms: 1) `File`: if it\'s a simple file name/path a web app will be served using the entrypoint value as its index file. Example: `index.html` 2) `Command`: if a command line instruction is provided as the entrypoint value, it will be handled as the start up command that initializes the application. It will be assumed that the user is an advanced user that knows what she/he is doing, therefore the command specified here will be run - as is - every time the application needs to be started. Must not be greater than 120 characters.
-     * @type {string}
-     * @memberof ApplicationUpdate
-     */
-    entrypoint: string;
-    /**
      * Indicates command that Devopness must execute to install application dependencies.
      * @type {string}
      * @memberof ApplicationUpdate
      */
     install_dependencies_command?: string;
-    /**
-     * Indicates if push to deploy webhooks are enabled for this application. If enabled an app deployment will be automatically triggered when new changes are committed to the `default_branch`.
-     * @type {boolean}
-     * @memberof ApplicationUpdate
-     */
-    push_to_deploy?: boolean;
-    /**
-     * Indicates if the application requires a daemon to keep it alive.
-     * @type {boolean}
-     * @memberof ApplicationUpdate
-     */
-    requires_daemon: boolean;
 }
 

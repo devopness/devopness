@@ -19,43 +19,43 @@ import { SslCertificateValidationLevel } from './ssl-certificate-validation-leve
 /**
  * 
  * @export
- * @interface SslCertificateApplicationCreate
+ * @interface SslCertificateEnvironmentCreate
  */
-export interface SslCertificateApplicationCreate {
+export interface SslCertificateEnvironmentCreate {
+    /**
+     * The ID of the virtual host to which this SSL certificate will be issued.
+     * @type {number}
+     * @memberof SslCertificateEnvironmentCreate
+     */
+    virtual_host_id: number;
     /**
      * 
      * @type {SslCertificateIssuer}
-     * @memberof SslCertificateApplicationCreate
+     * @memberof SslCertificateEnvironmentCreate
      */
     issuer: SslCertificateIssuer;
     /**
-     * The list of domain names to which the SSL certificate refers to
-     * @type {Array<string>}
-     * @memberof SslCertificateApplicationCreate
-     */
-    domains: Array<string>;
-    /**
      * 
      * @type {SslCertificateType}
-     * @memberof SslCertificateApplicationCreate
+     * @memberof SslCertificateEnvironmentCreate
      */
     type?: SslCertificateType;
     /**
      * 
      * @type {SslCertificateValidationLevel}
-     * @memberof SslCertificateApplicationCreate
+     * @memberof SslCertificateEnvironmentCreate
      */
     validation_level?: SslCertificateValidationLevel;
     /**
      * The private key provided by the Certification Authority, when the certificate has not been automatically issued through `devopness`. This field is required when <code>issuer</code> is <code>custom</code>. Must be at least 100 characters. Must not be greater than 4096 characters.
      * @type {string}
-     * @memberof SslCertificateApplicationCreate
+     * @memberof SslCertificateEnvironmentCreate
      */
     custom_private_key?: string;
     /**
      * The contents of the certificate provided by the Certification Authority, when the certificate has not been automatically issued through `devopness`. This field is required when <code>issuer</code> is <code>custom</code>. Must be at least 100 characters. Must not be greater than 4096 characters.
      * @type {string}
-     * @memberof SslCertificateApplicationCreate
+     * @memberof SslCertificateEnvironmentCreate
      */
     custom_certificate?: string;
 }

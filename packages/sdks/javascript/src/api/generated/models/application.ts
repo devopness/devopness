@@ -13,12 +13,11 @@
 
 
 import { ApplicationLastDeployments } from './application-last-deployments';
-import { ApplicationType } from './application-type';
 import { EnvironmentRelation } from './environment-relation';
 import { ServerRelation } from './server-relation';
 import { SourceProvider } from './source-provider';
-import { SslCertificateRelation } from './ssl-certificate-relation';
 import { UserRelation } from './user-relation';
+import { VirtualHostRelation } from './virtual-host-relation';
 
 /**
  * 
@@ -57,18 +56,6 @@ export interface Application {
      */
     name: string;
     /**
-     * 
-     * @type {ApplicationType}
-     * @memberof Application
-     */
-    type: ApplicationType;
-    /**
-     * The domain or sub-domain through which the application deployed with these settings will be accessible. It can be a naked domain or any subdomain. If app has domain names `testing.my-app.com`, `staging.my-app.com` and `www.my-app.com` a possible good candidate for the application name would be the \"naked\" domain `my-app.com`
-     * @type {string}
-     * @memberof Application
-     */
-    domain_name: string;
-    /**
      * The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed.
      * @type {string}
      * @memberof Application
@@ -92,12 +79,6 @@ export interface Application {
      * @memberof Application
      */
     default_branch: string;
-    /**
-     * Indicates if push to deploy webhooks are enabled for this application. If enabled an app deployment will be automatically triggered when new changes are committed to the `default_branch`
-     * @type {boolean}
-     * @memberof Application
-     */
-    push_to_deploy: boolean;
     /**
      * The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`.
      * @type {string}
@@ -123,24 +104,6 @@ export interface Application {
      */
     root_directory: string;
     /**
-     * The relative web directory where publicly accessible assets are located and the web content should be served from
-     * @type {string}
-     * @memberof Application
-     */
-    public_directory: string;
-    /**
-     * The application\'s entrypoint
-     * @type {string}
-     * @memberof Application
-     */
-    entrypoint: string;
-    /**
-     * Application\'s listening address
-     * @type {string}
-     * @memberof Application
-     */
-    listening_address: string;
-    /**
      * The number of deployment history, logs and artifacts to keep stored in both devopness servers and user\'s servers. OR The number of deployment artifacts to be retained in the user\'s servers, making it easier and faster to rollback to previous versions
      * @type {number}
      * @memberof Application
@@ -158,12 +121,6 @@ export interface Application {
      * @memberof Application
      */
     build_command: string | null;
-    /**
-     * Indicates if the application requires a daemon to keep it alive
-     * @type {boolean}
-     * @memberof Application
-     */
-    requires_daemon: boolean;
     /**
      * 
      * @type {UserRelation}
@@ -196,10 +153,10 @@ export interface Application {
     source_provider: SourceProvider;
     /**
      * 
-     * @type {Array<SslCertificateRelation>}
+     * @type {Array<VirtualHostRelation>}
      * @memberof Application
      */
-    ssl_certificates: Array<SslCertificateRelation>;
+    virtual_hosts: Array<VirtualHostRelation>;
     /**
      * The date and time when the record was created
      * @type {string}

@@ -60,12 +60,6 @@ export interface SslCertificateRelation {
      */
     active: boolean;
     /**
-     * The list of domain names to which the SSL certificate refers to
-     * @type {Array<string>}
-     * @memberof SslCertificateRelation
-     */
-    domains: Array<string>;
-    /**
      * 
      * @type {ActionRelation}
      * @memberof SslCertificateRelation

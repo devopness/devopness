@@ -12,7 +12,11 @@
  */
 
 
+import { ActionRelation } from './action-relation';
+import { ApplicationRelation } from './application-relation';
+import { SslCertificateRelation } from './ssl-certificate-relation';
 import { UserRelation } from './user-relation';
+import { VirtualHostType } from './virtual-host-type';
 
 /**
  * 
@@ -27,11 +31,11 @@ export interface VirtualHost {
      */
     id: number;
     /**
-     * The type of Virtual Host (`name-based` or `ip-based`)
-     * @type {string}
+     * 
+     * @type {VirtualHostType}
      * @memberof VirtualHost
      */
-    type: string;
+    type: VirtualHostType;
     /**
      * The name of the Virtual Host
      * @type {string}
@@ -39,17 +43,35 @@ export interface VirtualHost {
      */
     name: string;
     /**
-     * The relative path to the root directory of the Virtual Host
-     * @type {string}
+     * 
+     * @type {ApplicationRelation}
      * @memberof VirtualHost
      */
-    root_directory: string;
+    application: ApplicationRelation | null;
     /**
-     * The address of the forward server
+     * The document root location, within the application directory, that contains the public files to be served when a user visits the domain name associated with this virtual host
      * @type {string}
      * @memberof VirtualHost
      */
-    forward_server_address: string;
+    root_directory: string | null;
+    /**
+     * The network name or IP address on which the application linked to this virtual host is configured to listen for incoming requests. A valid address has `http` or `https` protocol, a domain name or IP address, an optional port and optional path. You can also specify a UNIX-socket using `unix:` protocol. Examples: `http://127.0.0.1:8080` (for applications exposing port `8080`, for example running in a Docker container), `http://127.0.0.1:3000` (for applications kept alive by a daemon/background process that listens on port `3000`), `unix:/var/run/example.sock` (for applications listening on a custom socket)
+     * @type {string}
+     * @memberof VirtualHost
+     */
+    application_listen_address: string | null;
+    /**
+     * 
+     * @type {SslCertificateRelation}
+     * @memberof VirtualHost
+     */
+    ssl_certificate: SslCertificateRelation | null;
+    /**
+     * 
+     * @type {ActionRelation}
+     * @memberof VirtualHost
+     */
+    last_action: ActionRelation | null;
     /**
      * 
      * @type {UserRelation}

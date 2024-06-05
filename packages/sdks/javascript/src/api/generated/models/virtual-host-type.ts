@@ -14,13 +14,13 @@
 
 
 /**
- * The application\'s type, which will mainly define if it is publicly accessible through a web domain or not
+ * The type of Virtual Host
  * @export
  * @enum {string}
  */
-export enum ApplicationType {
-    Web = 'web',
-    NonWeb = 'non-web'
+export enum VirtualHostType {
+    IpBased = 'ip-based',
+    NameBased = 'name-based'
 }
 
 
