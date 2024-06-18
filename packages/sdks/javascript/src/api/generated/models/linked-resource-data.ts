@@ -12,7 +12,7 @@
  */
 
 
-import { LinkedResourceAttribute } from './linked-resource-attribute';
+import { LinkedResourceSummaryField } from './linked-resource-summary-field';
 
 /**
  * Object with common attributes that identify a linked resource
@@ -33,11 +33,11 @@ export interface LinkedResourceData {
      */
     name: string;
     /**
-     * The list of linked resource attributes
-     * @type {Array<LinkedResourceAttribute>}
+     * The summary of linked resource fields
+     * @type {Array<LinkedResourceSummaryField>}
      * @memberof LinkedResourceData
      */
-    extra_attributes?: Array<LinkedResourceAttribute>;
+    summary_fields?: Array<LinkedResourceSummaryField>;
     /**
      * The date and time when the record was created
      * @type {string}
