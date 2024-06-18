@@ -16,26 +16,26 @@
 /**
  * 
  * @export
- * @interface LinkedResourceAttribute
+ * @interface LinkedResourceSummaryField
  */
-export interface LinkedResourceAttribute {
+export interface LinkedResourceSummaryField {
     /**
-     * The attribute name
+     * The field name
      * @type {string}
-     * @memberof LinkedResourceAttribute
+     * @memberof LinkedResourceSummaryField
      */
     field_name: string;
     /**
-     * Human redable version of the attribute name
+     * Human readable version of the field name
      * @type {string}
-     * @memberof LinkedResourceAttribute
+     * @memberof LinkedResourceSummaryField
      */
     field_name_human_readable: string;
     /**
-     * The attribute value
+     * The field value
      * @type {string}
-     * @memberof LinkedResourceAttribute
+     * @memberof LinkedResourceSummaryField
      */
-    value?: string;
+    value: string;
 }
 

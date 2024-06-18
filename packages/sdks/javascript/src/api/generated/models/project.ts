@@ -13,6 +13,8 @@
 
 
 import { EnvironmentRelation } from './environment-relation';
+import { RoleRelation } from './role-relation';
+import { TeamRelation } from './team-relation';
 import { UserRelation } from './user-relation';
 
 /**
@@ -63,6 +65,18 @@ export interface Project {
      * @memberof Project
      */
     environments: Array<EnvironmentRelation>;
+    /**
+     * 
+     * @type {Array<TeamRelation>}
+     * @memberof Project
+     */
+    teams: Array<TeamRelation>;
+    /**
+     * 
+     * @type {Array<RoleRelation>}
+     * @memberof Project
+     */
+    roles: Array<RoleRelation>;
     /**
      * The date and time when the record was created
      * @type {string}

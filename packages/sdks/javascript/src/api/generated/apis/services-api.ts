@@ -16,12 +16,12 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { Service } from '../../generated/models';
+import { ServiceGetStatus } from '../../generated/models';
 import { ServiceReload } from '../../generated/models';
 import { ServiceRestart } from '../../generated/models';
 import { ServiceStart } from '../../generated/models';
 import { ServiceStop } from '../../generated/models';
 import { ServiceUpdate } from '../../generated/models';
-import { ServiceUpdateStatus } from '../../generated/models';
 
 /**
  * ServicesApiService - Auto-generated
@@ -60,6 +60,28 @@ export class ServicesApiService extends ApiBaseService {
         const requestUrl = '/services/{service_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Service>(requestUrl.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Get current status of a service
+     * @param {number} serviceId The ID of the service.
+     * @param {ServiceGetStatus} serviceGetStatus A JSON object containing the resource data
+     */
+    public async getStatusService(serviceId: number, serviceGetStatus: ServiceGetStatus): Promise<ApiResponse<void>> {
+        if (serviceId === null || serviceId === undefined) {
+            throw new ArgumentNullException('serviceId', 'getStatusService');
+        }
+        if (serviceGetStatus === null || serviceGetStatus === undefined) {
+            throw new ArgumentNullException('serviceGetStatus', 'getStatusService');
+        }
+
+        let queryString = '';
+
+        const requestUrl = '/services/{service_id}/get-status' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <void, ServiceGetStatus>(requestUrl.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))), serviceGetStatus);
         return new ApiResponse(response);
     }
 
@@ -170,28 +192,6 @@ export class ServicesApiService extends ApiBaseService {
         const requestUrl = '/services/{service_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.put <void, ServiceUpdate>(requestUrl.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))), serviceUpdate);
-        return new ApiResponse(response);
-    }
-
-    /**
-     * 
-     * @summary Update status of a service
-     * @param {number} serviceId The ID of the service.
-     * @param {ServiceUpdateStatus} serviceUpdateStatus A JSON object containing the resource data
-     */
-    public async updateStatusService(serviceId: number, serviceUpdateStatus: ServiceUpdateStatus): Promise<ApiResponse<void>> {
-        if (serviceId === null || serviceId === undefined) {
-            throw new ArgumentNullException('serviceId', 'updateStatusService');
-        }
-        if (serviceUpdateStatus === null || serviceUpdateStatus === undefined) {
-            throw new ArgumentNullException('serviceUpdateStatus', 'updateStatusService');
-        }
-
-        let queryString = '';
-
-        const requestUrl = '/services/{service_id}/update-status' + (queryString? `?${queryString}` : '');
-
-        const response = await this.post <void, ServiceUpdateStatus>(requestUrl.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))), serviceUpdateStatus);
         return new ApiResponse(response);
     }
 }

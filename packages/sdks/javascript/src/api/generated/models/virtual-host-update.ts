@@ -26,7 +26,7 @@ export interface VirtualHostUpdate {
      */
     id: number;
     /**
-     * The name of the virtual host. Must not be greater than 255 characters.
+     * The name of the virtual host, unique within the environment. For `name-based` type, it must be a valid domain name (e.g., `my-app.example.com`). For `ip-based` type, it must be a valid IPv4 address or an IPv4 address with port (e.g., `127.0.0.1:3000`). Must not be greater than 255 characters.
      * @type {string}
      * @memberof VirtualHostUpdate
      */

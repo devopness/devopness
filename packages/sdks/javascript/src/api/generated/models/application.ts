@@ -13,6 +13,7 @@
 
 
 import { ApplicationLastDeployments } from './application-last-deployments';
+import { DaemonRelation } from './daemon-relation';
 import { EnvironmentRelation } from './environment-relation';
 import { ServerRelation } from './server-relation';
 import { SourceProvider } from './source-provider';
@@ -157,6 +158,12 @@ export interface Application {
      * @memberof Application
      */
     virtual_hosts: Array<VirtualHostRelation>;
+    /**
+     * 
+     * @type {Array<DaemonRelation>}
+     * @memberof Application
+     */
+    daemons: Array<DaemonRelation>;
     /**
      * The date and time when the record was created
      * @type {string}
