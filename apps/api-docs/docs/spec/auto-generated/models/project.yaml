@@ -24,6 +24,10 @@ properties:
     $ref: '#/components/schemas/UserRelation'
   environments:
     $ref: '#/components/schemas/EnvironmentList'
+  teams:
+    $ref: '#/components/schemas/TeamList'
+  roles:
+    $ref: '#/components/schemas/RoleList'
   created_at:
     description: 'The date and time when the record was created'
     type: string
@@ -40,5 +44,7 @@ required:
   - os_users
   - created_by_user
   - environments
+  - teams
+  - roles
   - created_at
   - updated_at

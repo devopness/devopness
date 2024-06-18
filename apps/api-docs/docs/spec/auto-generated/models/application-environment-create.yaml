@@ -35,7 +35,7 @@ properties:
     type: string
   default_branch:
     description: 'The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed. Must not be greater than 200 characters.'
-    example: develop
+    example: main
     type: string
   deployments_keep:
     description: 'The number of deployment history, logs and artifacts to keep stored in both devopness servers and user''s servers. OR The number of deployment artifacts to be retained in the user''s servers, making it easier and faster to rollback to previous versions. Must be at least 1. Must not be greater than 10.'

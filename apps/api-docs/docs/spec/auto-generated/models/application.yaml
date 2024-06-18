@@ -36,7 +36,7 @@ properties:
   default_branch:
     description: 'The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed.'
     type: string
-    example: develop
+    example: main
   programming_language:
     description: 'The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`.'
     type: string
@@ -79,6 +79,8 @@ properties:
     $ref: '#/components/schemas/SourceProvider'
   virtual_hosts:
     $ref: '#/components/schemas/VirtualHostList'
+  daemons:
+    $ref: '#/components/schemas/DaemonList'
   created_at:
     description: 'The date and time when the record was created'
     type: string
@@ -110,5 +112,6 @@ required:
   - servers
   - source_provider
   - virtual_hosts
+  - daemons
   - created_at
   - updated_at

@@ -10,8 +10,8 @@ properties:
     type: string
     description: 'Resource name'
     example: my-server
-  extra_attributes:
-    $ref: '#/components/schemas/LinkedResourceAttributeList'
+  summary_fields:
+    $ref: '#/components/schemas/LinkedResourceSummaryFieldList'
   created_at:
     type: string
     format: date-time

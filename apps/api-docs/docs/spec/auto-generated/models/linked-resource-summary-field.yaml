@@ -2,17 +2,18 @@
 type: object
 properties:
   field_name:
-    description: 'The attribute name'
+    description: 'The field name'
     type: string
     example: ip_address
   field_name_human_readable:
-    description: 'Human redable version of the attribute name'
+    description: 'Human readable version of the field name'
     type: string
     example: 'IP address'
   value:
-    description: 'The attribute value'
+    description: 'The field value'
     type: string
     example: 200.123.45.67
 required:
   - field_name
   - field_name_human_readable
+  - value

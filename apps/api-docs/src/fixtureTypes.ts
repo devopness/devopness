@@ -173,6 +173,9 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     ],
     'service': [],
     'service_environment_create': [],
+    'service_get_status': [
+        { path: 'servers[0]', fixture: 'server', field: 'id' },
+    ],
     'service_reload': [
         { path: 'environment_id', fixture: 'environment', field: 'id' },
         { path: 'servers[0]', fixture: 'server', field: 'id' },

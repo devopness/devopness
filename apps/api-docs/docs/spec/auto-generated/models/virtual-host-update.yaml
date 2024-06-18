@@ -6,8 +6,8 @@ properties:
     example: 37292
     type: integer
   name:
-    description: 'The name of the virtual host. Must not be greater than 255 characters.'
-    example: my-site.example.com
+    description: 'The name of the virtual host, unique within the environment. For `name-based` type, it must be a valid domain name (e.g., `my-app.example.com`). For `ip-based` type, it must be a valid IPv4 address or an IPv4 address with port (e.g., `127.0.0.1:3000`). Must not be greater than 255 characters.'
+    example: my-app.example.com
     type: string
   root_directory:
     description: 'The document root location, within the application directory, that contains the public files to be served when a user visits the domain name associated with this virtual host. Must not be greater than 255 characters.'

@@ -299,6 +299,9 @@
     $ref: ./auto-generated/endpoints/get-service.yaml
   put:
     $ref: ./auto-generated/endpoints/update-service.yaml
+'/services/{service_id}/get-status':
+  post:
+    $ref: ./auto-generated/endpoints/get-status-service.yaml
 '/services/{service_id}/reload':
   post:
     $ref: ./auto-generated/endpoints/reload-service.yaml
@@ -311,9 +314,6 @@
 '/services/{service_id}/stop':
   post:
     $ref: ./auto-generated/endpoints/stop-service.yaml
-'/services/{service_id}/update-status':
-  post:
-    $ref: ./auto-generated/endpoints/update-status-service.yaml
 '/services/{service_id}/variables':
   get:
     $ref: ./auto-generated/endpoints/list-service-variables.yaml

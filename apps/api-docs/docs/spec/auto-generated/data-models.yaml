@@ -269,12 +269,12 @@ LanguageRuntimeFrameworkDefaults:
   $ref: ./auto-generated/models/language-runtime-framework-defaults.yaml
 LanguageRuntimeList:
   $ref: ./auto-generated/models/language-runtime-list.yaml
-LinkedResourceAttribute:
-  $ref: ./auto-generated/models/linked-resource-attribute.yaml
-LinkedResourceAttributeList:
-  $ref: ./auto-generated/models/linked-resource-attribute-list.yaml
 LinkedResourceData:
   $ref: ./auto-generated/models/linked-resource-data.yaml
+LinkedResourceSummaryField:
+  $ref: ./auto-generated/models/linked-resource-summary-field.yaml
+LinkedResourceSummaryFieldList:
+  $ref: ./auto-generated/models/linked-resource-summary-field-list.yaml
 Log:
   $ref: ./auto-generated/models/log.yaml
 Member:
@@ -465,6 +465,8 @@ Service:
   $ref: ./auto-generated/models/service.yaml
 ServiceEnvironmentCreate:
   $ref: ./auto-generated/models/service-environment-create.yaml
+ServiceGetStatus:
+  $ref: ./auto-generated/models/service-get-status.yaml
 ServiceInitialState:
   $ref: ./auto-generated/models/service-initial-state.yaml
 ServiceList:
@@ -485,8 +487,6 @@ ServiceType:
   $ref: ./auto-generated/models/service-type.yaml
 ServiceUpdate:
   $ref: ./auto-generated/models/service-update.yaml
-ServiceUpdateStatus:
-  $ref: ./auto-generated/models/service-update-status.yaml
 SocialAccount:
   $ref: ./auto-generated/models/social-account.yaml
 SocialAccountCreate:
