@@ -581,6 +581,10 @@ StaticServiceTypeList:
   $ref: ./auto-generated/models/static-service-type-list.yaml
 StaticTimeZoneList:
   $ref: ./auto-generated/models/static-time-zone-list.yaml
+StaticVirtualHostType:
+  $ref: ./auto-generated/models/static-virtual-host-type.yaml
+StaticVirtualHostTypeList:
+  $ref: ./auto-generated/models/static-virtual-host-type-list.yaml
 Step:
   $ref: ./auto-generated/models/step.yaml
 StepList:

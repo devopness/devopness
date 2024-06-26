@@ -3,5 +3,8 @@ type: object
 properties:
   variable_targets:
     $ref: '#/components/schemas/VariableTargetList'
+  virtual_host_types:
+    $ref: '#/components/schemas/StaticVirtualHostTypeList'
 required:
   - variable_targets
+  - virtual_host_types
