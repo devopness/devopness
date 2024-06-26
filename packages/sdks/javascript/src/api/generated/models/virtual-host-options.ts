@@ -12,6 +12,7 @@
  */
 
 
+import { StaticVirtualHostType } from './static-virtual-host-type';
 import { VariableTargets } from './variable-targets';
 
 /**
@@ -26,5 +27,11 @@ export interface VirtualHostOptions {
      * @memberof VirtualHostOptions
      */
     variable_targets: Array<VariableTargets>;
+    /**
+     * 
+     * @type {Array<StaticVirtualHostType>}
+     * @memberof VirtualHostOptions
+     */
+    virtual_host_types: Array<StaticVirtualHostType>;
 }
 
