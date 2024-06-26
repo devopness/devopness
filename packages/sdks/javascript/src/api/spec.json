@@ -19683,6 +19683,33 @@
           "example": "America/Sao_Paulo"
         }
       },
+      "StaticVirtualHostType": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "$ref": "#/components/schemas/VirtualHostType"
+          },
+          "name_human_readable": {
+            "type": "string",
+            "description": "Human readable version of the virtual host type",
+            "example": "Domain name (name-based virtual host)"
+          },
+          "hint": {
+            "$ref": "#/components/schemas/FieldHint"
+          }
+        },
+        "required": [
+          "name",
+          "name_human_readable",
+          "hint"
+        ]
+      },
+      "StaticVirtualHostTypeList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/StaticVirtualHostType"
+        }
+      },
       "Step": {
         "type": "object",
         "properties": {
@@ -21526,6 +21553,11 @@
           "type": {
             "$ref": "#/components/schemas/VirtualHostType"
           },
+          "type_human_readable": {
+            "description": "The human readable version of the type",
+            "type": "string",
+            "example": "Domain name (name-based virtual host)"
+          },
           "name": {
             "description": "The name of the Virtual Host",
             "type": "string",
@@ -21569,6 +21601,7 @@
         "required": [
           "id",
           "type",
+          "type_human_readable",
           "name",
           "application",
           "root_directory",
@@ -21635,10 +21668,14 @@
         "properties": {
           "variable_targets": {
             "$ref": "#/components/schemas/VariableTargetList"
+          },
+          "virtual_host_types": {
+            "$ref": "#/components/schemas/StaticVirtualHostTypeList"
           }
         },
         "required": [
-          "variable_targets"
+          "variable_targets",
+          "virtual_host_types"
         ]
       },
       "VirtualHostRelation": {
@@ -21651,6 +21688,11 @@
           },
           "type": {
             "$ref": "#/components/schemas/VirtualHostType"
+          },
+          "type_human_readable": {
+            "description": "The human readable version of the type",
+            "type": "string",
+            "example": "Domain name (name-based virtual host)"
           },
           "name": {
             "description": "The name of the Virtual Host",
@@ -21695,6 +21737,7 @@
         "required": [
           "id",
           "type",
+          "type_human_readable",
           "name",
           "application",
           "root_directory",
