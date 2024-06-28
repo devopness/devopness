@@ -149,6 +149,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         ['addPipeline201', 'listPipelinesByResourceType200'],
         ['addEnvironmentApplication201', 'linkResourceLinkToResourceLink204'],
         ['linkResourceLinkToResourceLink204', 'unlinkResourceLinkFromResourceLink204'],
+        ['addEnvironmentDaemon201', 'linkResourceLinkToResourceLink204'],
     ]);
 
     let apiSpec = new OpenAPISpec(logger);
