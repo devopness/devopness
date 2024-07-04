@@ -49,5 +49,11 @@ export interface DaemonEnvironmentCreate {
      * @memberof DaemonEnvironmentCreate
      */
     name: string;
+    /**
+     * The ID of the application to be linked to the daemon. The value of `working_directory` will be relative to the application directory.
+     * @type {number}
+     * @memberof DaemonEnvironmentCreate
+     */
+    application_id?: number;
 }
 
