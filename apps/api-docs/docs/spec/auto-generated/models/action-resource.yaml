@@ -38,6 +38,8 @@ properties:
         $ref: '#/components/schemas/SslCertificateRelation'
       -
         $ref: '#/components/schemas/SubnetRelation'
+      -
+        $ref: '#/components/schemas/VirtualHostRelation'
 required:
   - id
   - type
