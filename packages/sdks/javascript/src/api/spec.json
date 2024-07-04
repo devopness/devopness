@@ -11863,6 +11863,9 @@
               },
               {
                 "$ref": "#/components/schemas/SubnetRelation"
+              },
+              {
+                "$ref": "#/components/schemas/VirtualHostRelation"
               }
             ]
           }
@@ -14235,7 +14238,6 @@
             "example": "we-all-have-daemons-inside",
             "type": "string"
           },
-          
           "application_id": {
             "description": "The ID of the application to be linked to the daemon. The value of `working_directory` will be relative to the application directory.",
             "example": 1,
@@ -14376,7 +14378,7 @@
             "type": "string"
           },
           "application_id": {
-            "description": "Numeric ID of the project to which the daemon belongs to.",
+            "description": "The ID of the application to be linked to the daemon. The value of `working_directory` will be relative to the application directory.",
             "example": 8594323,
             "type": "integer"
           }
