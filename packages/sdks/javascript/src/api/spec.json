@@ -14241,7 +14241,8 @@
           "application_id": {
             "description": "The ID of the application to be linked to the daemon. The value of `working_directory` will be relative to the application directory.",
             "example": 1,
-            "type": "integer"
+            "type": "integer",
+            "nullable": true
           }
         },
         "required": [
@@ -14380,7 +14381,8 @@
           "application_id": {
             "description": "The ID of the application to be linked to the daemon. The value of `working_directory` will be relative to the application directory.",
             "example": 8594323,
-            "type": "integer"
+            "type": "integer",
+            "nullable": true
           }
         },
         "required": [
