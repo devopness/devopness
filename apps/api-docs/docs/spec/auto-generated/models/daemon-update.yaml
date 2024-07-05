@@ -29,6 +29,7 @@ properties:
     description: 'The ID of the application to be linked to the daemon. The value of `working_directory` will be relative to the application directory.'
     example: 8594323
     type: integer
+    nullable: true
 required:
   - id
   - command
