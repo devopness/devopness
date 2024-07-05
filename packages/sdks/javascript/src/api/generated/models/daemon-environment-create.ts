@@ -54,6 +54,6 @@ export interface DaemonEnvironmentCreate {
      * @type {number}
      * @memberof DaemonEnvironmentCreate
      */
-    application_id?: number;
+    application_id?: number | null;
 }
 

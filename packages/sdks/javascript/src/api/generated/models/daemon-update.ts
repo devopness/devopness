@@ -60,6 +60,6 @@ export interface DaemonUpdate {
      * @type {number}
      * @memberof DaemonUpdate
      */
-    application_id?: number;
+    application_id?: number | null;
 }
 
