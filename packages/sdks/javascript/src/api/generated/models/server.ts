@@ -16,6 +16,7 @@ import { ActionRelation } from './action-relation';
 import { ActionStatus } from './action-status';
 import { CloudOsVersionCode } from './cloud-os-version-code';
 import { EnvironmentRelation } from './environment-relation';
+import { OperatingSystemVersion } from './operating-system-version';
 import { ProjectRelation } from './project-relation';
 import { ServerBlueprint } from './server-blueprint';
 import { ServerCloudServiceCode } from './server-cloud-service-code';
@@ -82,6 +83,12 @@ export interface Server {
      * @memberof Server
      */
     ssh_port: number;
+    /**
+     * 
+     * @type {OperatingSystemVersion}
+     * @memberof Server
+     */
+    os: OperatingSystemVersion;
     /**
      * 
      * @type {CloudOsVersionCode}
