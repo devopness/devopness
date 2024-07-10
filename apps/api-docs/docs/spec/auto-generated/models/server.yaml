@@ -35,6 +35,8 @@ properties:
     description: 'The network port to which the SSH daemon is listening to SSH connections on the server'
     type: integer
     example: 22
+  os:
+    $ref: '#/components/schemas/OperatingSystemVersion'
   os_version_code:
     $ref: '#/components/schemas/CloudOsVersionCode'
   active:
@@ -77,6 +79,7 @@ required:
   - cloud_service_code
   - ip_address
   - ssh_port
+  - os
   - os_version_code
   - active
   - status

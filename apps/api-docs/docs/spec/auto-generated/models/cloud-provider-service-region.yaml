@@ -8,7 +8,7 @@ properties:
   name:
     description: 'The formatted name of the region'
     type: string
-    example: 'us-east-1: US East (N. Virginia)'
+    example: 'US East (N. Virginia) us-east-1'
   hint:
     $ref: '#/components/schemas/FieldHint'
   zones:

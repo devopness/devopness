@@ -15,6 +15,10 @@ properties:
     example: '22.04'
   os_version_code:
     $ref: '#/components/schemas/CloudOsVersionCode'
+  os_version_code_human_readable:
+    type: string
+    description: 'Human readable version of the operating system version'
+    example: 'Ubuntu 22.04 LTS (Jammy Jellyfish)'
   released_at:
     type: string
     description: 'Release date'
