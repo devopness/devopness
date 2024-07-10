@@ -45,6 +45,12 @@ export interface OperatingSystemVersion {
      */
     os_version_code: CloudOsVersionCode | null;
     /**
+     * Human readable version of the operating system version
+     * @type {string}
+     * @memberof OperatingSystemVersion
+     */
+    os_version_code_human_readable?: string;
+    /**
      * Release date
      * @type {string}
      * @memberof OperatingSystemVersion
