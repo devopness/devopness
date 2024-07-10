@@ -13397,7 +13397,7 @@
           "name": {
             "description": "The formatted name of the region",
             "type": "string",
-            "example": "us-east-1: US East (N. Virginia)"
+            "example": "US East (N. Virginia) us-east-1"
           },
           "hint": {
             "$ref": "#/components/schemas/FieldHint"
@@ -16541,6 +16541,11 @@
           "os_version_code": {
             "$ref": "#/components/schemas/CloudOsVersionCode"
           },
+          "os_version_code_human_readable": {
+            "type": "string",
+            "description": "Human readable version of the operating system version",
+            "example": "Ubuntu 22.04 LTS (Jammy Jellyfish)"
+          },
           "released_at": {
             "type": "string",
             "description": "Release date",
@@ -18012,6 +18017,9 @@
             "type": "integer",
             "example": 22
           },
+          "os": {
+            "$ref": "#/components/schemas/OperatingSystemVersion"
+          },
           "os_version_code": {
             "$ref": "#/components/schemas/CloudOsVersionCode"
           },
@@ -18067,6 +18075,7 @@
           "cloud_service_code",
           "ip_address",
           "ssh_port",
+          "os",
           "os_version_code",
           "active",
           "status",
