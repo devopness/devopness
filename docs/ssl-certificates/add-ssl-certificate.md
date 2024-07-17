@@ -4,7 +4,7 @@ intro: Add an SSL Certificate to secure communication between clients and server
 links:
     overview:
     quickstart:
-    previous: /docs/applications/deploy-application
+    previous: /docs/virtual-hosts/add-virtual-host
     next: /docs/teams/add-team
     guides:
     related:
