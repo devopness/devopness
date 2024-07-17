@@ -24,6 +24,6 @@ required_permissions:
 
 {% note %}
 
-**NOTE**: To make the application publicly accessible over the internet, you need to create a virtual host. This can be done using a web domain; if you don't already have one registered, you can create a virtual host for the server's IP address instead, for quick access to test your application.
+**NOTE**: To make the application publicly accessible over the internet, follow the guide on how to [Add a Virtual host](https://www.devopness.com/docs/virtual-hosts/add-virtual-host/) in Devopness.
 
 {% endnote %}
