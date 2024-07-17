@@ -5,7 +5,7 @@ links:
     overview:
     quickstart:
     previous:
-    next:
+    next: /docs/ssl-certificates/add-ssl-certificate
     guides:
     related:
     featured:
@@ -18,7 +18,6 @@ required_permissions:
 1. Click `View` in the `Virtual hosts` card to see a list of existing `Virtual hosts`
 1. On the upper-right corner of the list click `ADD VIRTUAL HOST`
 1. Follow the prompts then click `CONFIRM`
-1. In the `Virtual hosts` list, the recently created virtual host can be seen
+1. In the `Virtual hosts` list, the recently created virtual host can be seen
     - A new deployment is required for your changes to take effect
         - Follow the guide {% mentionPost "/docs/pipelines/run-pipeline" %}
-
