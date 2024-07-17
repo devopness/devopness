@@ -5,7 +5,7 @@ links:
     overview:
     quickstart:
     previous: /docs/applications/link-server-to-application
-    next: /docs/ssl-certificates/add-ssl-certificate
+    next: /docs/virtual-hosts/add-virtual-host
     guides:
     related:
     featured:
@@ -21,3 +21,9 @@ required_permissions:
 1. Review deploy information then click `Confirm`
    > A notification popup will be displayed, confirming that the deployment has been triggered
 1. Wait for the `Application:Deploy` action to be completed
+
+{% note %}
+
+**NOTE**: To make the application publicly accessible over the internet, you need to create a virtual host. This can be done using a web domain; if you don't already have one registered, you can create a virtual host for the server's IP address instead, for quick access to test your application.
+
+{% endnote %}
