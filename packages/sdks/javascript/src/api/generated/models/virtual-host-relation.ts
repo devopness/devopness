@@ -37,6 +37,12 @@ export interface VirtualHostRelation {
      */
     type: VirtualHostType;
     /**
+     * The human readable version of the type
+     * @type {string}
+     * @memberof VirtualHostRelation
+     */
+    type_human_readable: string;
+    /**
      * The name of the Virtual Host
      * @type {string}
      * @memberof VirtualHostRelation

@@ -221,6 +221,7 @@ export * from './static-network-rule-protocol-defaults';
 export * from './static-permission';
 export * from './static-service-type';
 export * from './static-service-type-supported-versions';
+export * from './static-virtual-host-type';
 export * from './step';
 export * from './step-pipeline-create';
 export * from './step-pipeline-update';

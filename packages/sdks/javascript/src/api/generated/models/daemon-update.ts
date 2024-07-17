@@ -56,10 +56,10 @@ export interface DaemonUpdate {
      */
     name: string;
     /**
-     * Numeric ID of the project to which the daemon belongs to.
+     * The ID of the application to be linked to the daemon. The value of `working_directory` will be relative to the application directory.
      * @type {number}
      * @memberof DaemonUpdate
      */
-    application_id?: number;
+    application_id?: number | null;
 }
 
