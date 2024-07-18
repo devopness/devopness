@@ -14,6 +14,7 @@
 
 import { ActionRelation } from './action-relation';
 import { ApplicationRelation } from './application-relation';
+import { UserRelation } from './user-relation';
 
 /**
  * 
@@ -75,6 +76,12 @@ export interface DaemonRelation {
      * @memberof DaemonRelation
      */
     application: ApplicationRelation | null;
+    /**
+     * 
+     * @type {UserRelation}
+     * @memberof DaemonRelation
+     */
+    created_by_user: UserRelation;
     /**
      * The date and time when the record was created
      * @type {string}
