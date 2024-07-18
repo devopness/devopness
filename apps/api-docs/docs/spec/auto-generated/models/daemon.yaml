@@ -39,6 +39,8 @@ properties:
     $ref: '#/components/schemas/EnvironmentRelation'
   servers:
     $ref: '#/components/schemas/ServerList'
+  created_by_user:
+    $ref: '#/components/schemas/UserRelation'
   created_at:
     description: 'The date and time when the record was created'
     type: string
@@ -60,5 +62,6 @@ required:
   - application
   - environment
   - servers
+  - created_by_user
   - created_at
   - updated_at

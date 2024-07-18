@@ -33,6 +33,8 @@ properties:
     $ref: '#/components/schemas/ActionRelation'
   application:
     $ref: '#/components/schemas/ApplicationRelation'
+  created_by_user:
+    $ref: '#/components/schemas/UserRelation'
   created_at:
     description: 'The date and time when the record was created'
     type: string
@@ -51,6 +53,7 @@ required:
   - auto_generated
   - last_action
   - application
+  - created_by_user
   - created_at
   - updated_at
 nullable: true
