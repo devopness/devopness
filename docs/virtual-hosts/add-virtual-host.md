@@ -36,3 +36,9 @@ required_permissions:
     - This can be verified using a DNS propagation checker such as [whatsmydns](https://www.whatsmydns.net/) or [DNS Checker](https://dnschecker.org/)
 
 {% endnote %}
+
+{% note %}
+
+**NOTE**: To make all communication with your virtual host secure, follow the guide on how to {% mentionPost "/docs/ssl-certificates/add-ssl-certificate" %} on Devopness.
+
+{% endnote %}
