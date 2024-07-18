@@ -17,6 +17,7 @@ import { ApplicationRelation } from './application-relation';
 import { EnvironmentRelation } from './environment-relation';
 import { ProjectRelation } from './project-relation';
 import { ServerRelation } from './server-relation';
+import { UserRelation } from './user-relation';
 
 /**
  * 
@@ -96,6 +97,12 @@ export interface Daemon {
      * @memberof Daemon
      */
     servers: Array<ServerRelation>;
+    /**
+     * 
+     * @type {UserRelation}
+     * @memberof Daemon
+     */
+    created_by_user: UserRelation;
     /**
      * The date and time when the record was created
      * @type {string}
