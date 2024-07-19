@@ -1,5 +1,5 @@
-import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
-import { ArgumentNullException, ApiError, NetworkError } from "../common/Exceptions";
+import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosRequestHeaders, AxiosResponse, InternalAxiosRequestConfig } from "axios";
+import { ApiError, ArgumentNullException, NetworkError } from "../common/Exceptions";
 
 declare const window: unknown;
 
@@ -75,9 +75,9 @@ export class ApiBaseService {
 
     private setupAxiosRequestInterceptors(): void {
         this.api.interceptors.request.use(
-            (config: AxiosRequestConfig) => {
+            (config: InternalAxiosRequestConfig) => {
                 if (!config.headers) {
-                    config.headers = {};
+                    config.headers = <AxiosRequestHeaders>{};
                 }
                 if (ApiBaseService._accessToken) {
                     config.headers.Authorization = `Bearer ${ApiBaseService._accessToken}`;
