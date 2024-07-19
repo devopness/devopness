@@ -14182,6 +14182,9 @@
           "servers": {
             "$ref": "#/components/schemas/ServerList"
           },
+          "created_by_user": {
+            "$ref": "#/components/schemas/UserRelation"
+          },
           "created_at": {
             "description": "The date and time when the record was created",
             "type": "string",
@@ -14206,6 +14209,7 @@
           "application",
           "environment",
           "servers",
+          "created_by_user",
           "created_at",
           "updated_at"
         ]
@@ -14311,6 +14315,9 @@
           "application": {
             "$ref": "#/components/schemas/ApplicationRelation"
           },
+          "created_by_user": {
+            "$ref": "#/components/schemas/UserRelation"
+          },
           "created_at": {
             "description": "The date and time when the record was created",
             "type": "string",
@@ -14332,6 +14339,7 @@
           "auto_generated",
           "last_action",
           "application",
+          "created_by_user",
           "created_at",
           "updated_at"
         ],
