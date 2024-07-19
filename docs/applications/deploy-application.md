@@ -24,6 +24,6 @@ required_permissions:
 
 {% note %}
 
-**NOTE**: To make the application publicly accessible over the internet, follow the guide on how to {% mentionPost "/docs/virtual-hosts/add-virtual-host" %} in Devopness.
+**NOTE**: To make an application publicly accessible over the internet, follow the guide on how to {% mentionPost "/docs/virtual-hosts/add-virtual-host" %}
 
 {% endnote %}

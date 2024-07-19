@@ -39,6 +39,6 @@ required_permissions:
 
 {% note %}
 
-**NOTE**: To make all communication with your virtual host secure, follow the guide on how to {% mentionPost "/docs/ssl-certificates/add-ssl-certificate" %} on Devopness.
+**NOTE**: in order to secure all network connections with your virtual host  and ensure all data submitted to your domain name is encrypted over the HTTPS protocol, follow the guide on how to {% mentionPost "/docs/ssl-certificates/add-ssl-certificate" %}
 
 {% endnote %}
