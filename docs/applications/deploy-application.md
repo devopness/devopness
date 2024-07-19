@@ -5,7 +5,7 @@ links:
     overview:
     quickstart:
     previous: /docs/applications/link-server-to-application
-    next: /docs/ssl-certificates/add-ssl-certificate
+    next: /docs/virtual-hosts/add-virtual-host
     guides:
     related:
     featured:
@@ -21,3 +21,9 @@ required_permissions:
 1. Review deploy information then click `Confirm`
    > A notification popup will be displayed, confirming that the deployment has been triggered
 1. Wait for the `Application:Deploy` action to be completed
+
+{% note %}
+
+**NOTE**: To make an application publicly accessible over the internet, follow the guide on how to {% mentionPost "/docs/virtual-hosts/add-virtual-host" %}
+
+{% endnote %}
