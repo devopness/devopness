@@ -24,7 +24,11 @@ required_permissions:
 
 {% note %}
 
-**NOTE**: If the virtual host type is domain name, follow the guide below to ensure a valid domain:
+**NOTE**: For virtual hosts of type `Domain name` ("name-based virtual host")` please make sure:
+- a DNS record with the same name of the "name-based virtual host" exists
+- the DNS record is pointing to the IP address of the server to which the virtual host was successfully deployed
+
+Follow the steps below to configure a DNS record pointing to your server:
 
 1. Copy the IP Address of the server to which the virtual host has been deployed
     - Follow the guide {% mentionPost "/docs/servers/find-server-ip-address" %}
