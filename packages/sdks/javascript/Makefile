@@ -13,7 +13,11 @@ build-image: ## Build Docker Image
 
 build-sdk-js: build-image npm-ci ## Build Javascript SDK
 	$(info Docker - Building Javascript SDK ...)
-	@docker run --rm -v $(PWD):/$(WORKDIR) --name sdk-js-build $(IMAGE):$(TAG) npm run build
+	@docker run --rm \
+	-v $(PWD):/$(WORKDIR) \
+	--name devopness-sdk-js-build \
+	$(IMAGE):$(TAG) \
+	npm run build
 
 help: ## Show this help.
 # `help' function obtained from GitHub gist: https://gist.github.com/prwhite/8168133?permalink_comment_id=4160123#gistcomment-4160123
@@ -30,14 +34,26 @@ npm: ## Run npm with the provided ARGS. e.g.: `make npm`, `make npm ARGS=version
 
 npm-ci: ## Install project dependencies without updating `package-lock.json`
 	$(info NPM - Installing dependencies ...)
-	@docker run --rm -v $(PWD):/$(WORKDIR) --name npm_ci $(IMAGE):$(TAG) npm ci
+	@docker run --rm \
+	-v $(PWD):/$(WORKDIR) \
+	--name devopness-sdk-js-npm-ci \
+	$(IMAGE):$(TAG) \
+	npm ci
 
 npm-install: ## Install project dependencies and update `package-lock.json`
 	$(info NPM - Installing dependencies ...)
-	@docker run --rm -v $(PWD):/$(WORKDIR) --name npm_install $(IMAGE):$(TAG) npm install
+	@docker run --rm \
+	-v $(PWD):/$(WORKDIR) \
+	--name devopness-sdk-js-npm-install \
+	$(IMAGE):$(TAG) \
+	npm install
 
 test: ## Run tests
 	$(info NPM - Running Tests ...)
-	@docker run --rm -v $(PWD):/$(WORKDIR) --name sdk-js-tests $(IMAGE):$(TAG) npm run test
+	@docker run --rm \
+	-v $(PWD):/$(WORKDIR) \
+	--name devopness-sdk-js-tests \
+	$(IMAGE):$(TAG) \
+	npm run test
 
 .DEFAULT_GOAL=help
