@@ -24,7 +24,7 @@ required_permissions:
 
 {% note %}
 
-**NOTE**: For virtual hosts of type `Domain name` ("name-based virtual host")` please make sure:
+**NOTE**: For virtual hosts of type `Domain name` ("name-based virtual host") please make sure:
 
 - &#45; a DNS record with the same name of the "name-based virtual host" exists
 - &#45; the DNS record is pointing to the IP address of the server to which the virtual host was successfully deployed
