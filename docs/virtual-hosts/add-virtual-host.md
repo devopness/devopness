@@ -4,7 +4,7 @@ intro: Add a Virtual Host to make an application accessible on the internet, by 
 links:
     overview:
     quickstart:
-    previous:
+    previous: /docs/applications/deploy-application
     next: /docs/ssl-certificates/add-ssl-certificate
     guides:
     related:
