@@ -22,6 +22,16 @@ required_permissions:
     - A new deployment is required for your changes to take effect
         - Follow the guide {% mentionPost "/docs/pipelines/run-pipeline" %}
 
+&nbsp;
+
+{% note %}
+
+**NOTE**: For virtual hosts of type `Server IP address` ("ip-based virtual host"), please make sure:
+
+- &#45; the virtual host *hostname* is the IP address of the server to which the virtual host was successfully deployed
+
+{% endnote %}
+
 {% note %}
 
 **NOTE**: For virtual hosts of type `Domain name` ("name-based virtual host") please make sure:
