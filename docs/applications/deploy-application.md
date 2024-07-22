@@ -22,8 +22,14 @@ required_permissions:
    > A notification popup will be displayed, confirming that the deployment has been triggered
 1. Wait for the `Application:Deploy` action to be completed
 
+&nbsp;
+
 {% note %}
 
-**NOTE**: To make an application publicly accessible over the internet, follow the guide on how to {% mentionPost "/docs/virtual-hosts/add-virtual-host" %}
+**NOTE**: Now that your application has been deployed, it can be accessed over the internet by setting up a DNS record, or testing access to the application via server IP address.
+
+&nbsp;
+
+- For details on how to make an application public, follow the instructions in {% mentionPost "/docs/virtual-hosts/add-virtual-host" %}.
 
 {% endnote %}
