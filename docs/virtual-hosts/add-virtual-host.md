@@ -26,7 +26,7 @@ required_permissions:
 
 **NOTE**: For virtual hosts of type `Server IP address` ("ip-based virtual host"), please make sure:
 
-- &#45; the virtual host *hostname* is the IP address of the server to which the virtual host was successfully deployed
+    - the virtual host *hostname* is the IP address of the server to which the virtual host was successfully deployed
 
 {% endnote %}
 
@@ -34,8 +34,9 @@ required_permissions:
 
 **NOTE**: For virtual hosts of type `Domain name` ("name-based virtual host") please make sure:
 
-- &#45; a DNS record with the same name of the "name-based virtual host" exists
-- &#45; the DNS record is pointing to the IP address of the server to which the virtual host was successfully deployed
+    - a DNS record with the same name of the "name-based virtual host" exists
+
+    - the DNS record is pointing to the IP address of the server to which the virtual host was successfully deployed
 
 &nbsp;
 
