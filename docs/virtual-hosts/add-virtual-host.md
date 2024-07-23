@@ -38,8 +38,6 @@ required_permissions:
 
     - the DNS record is pointing to the IP address of the server to which the virtual host was successfully deployed
 
-&nbsp;
-
 Follow the steps below to configure a DNS record pointing to your server:
 
 1. Copy the IP Address of the server to which the virtual host has been deployed
