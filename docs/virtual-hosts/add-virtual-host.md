@@ -4,7 +4,7 @@ intro: Add a Virtual Host to make an application accessible on the internet, by 
 links:
     overview:
     quickstart:
-    previous:
+    previous: /docs/applications/deploy-application
     next: /docs/ssl-certificates/add-ssl-certificate
     guides:
     related:
@@ -24,12 +24,19 @@ required_permissions:
 
 {% note %}
 
+**NOTE**: For virtual hosts of type `Server IP address` ("ip-based virtual host"), please make sure:
+
+    - the virtual host *hostname* is the IP address of the server to which the virtual host was successfully deployed
+
+{% endnote %}
+
+{% note %}
+
 **NOTE**: For virtual hosts of type `Domain name` ("name-based virtual host") please make sure:
 
-- &#45; a DNS record with the same name of the "name-based virtual host" exists
-- &#45; the DNS record is pointing to the IP address of the server to which the virtual host was successfully deployed
+    - a DNS record with the same name of the "name-based virtual host" exists
 
-&nbsp;
+    - the DNS record is pointing to the IP address of the server to which the virtual host was successfully deployed
 
 Follow the steps below to configure a DNS record pointing to your server:
 
