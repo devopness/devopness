@@ -19,6 +19,9 @@ required_permissions:
 1. In the list of networks find the network where you want to add a subnet and click the `NAME` of the network
 1. On the upper-right corner of network details view, click the `Subnets` tab
 1. On the upper-right corner of subnets tab click `MANAGE`
-1. Follow the prompts then click `CONFIRM`
+1. Follow the prompts
+1. Provide a name to the Subnet being added. Example: "Public Subnet A", "Private Subnet B"
+1. Provide a CIDR block to the Subnet being added. Example: "10.108.0.0/20"
+1. Click `CONFIRM`
     - For the new `Subnet`, it will be started the provision action
 1. In the `Subnets` tab, the recently created `Subnet` can be seen
