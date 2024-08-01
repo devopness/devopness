@@ -21,6 +21,7 @@ required_permissions:
 1. On the upper-right corner of subnets tab click `MANAGE`
 1. Follow the prompts
 1. Provide a name to the Subnet being added. Example: "Public Subnet A", "Private Subnet B"
+1. Select a `Type` and click `NEXT`
 1. Provide a CIDR block to the Subnet being added. Example: "10.108.0.0/20"
 1. Click `CONFIRM`
     - For the new `Subnet`, it will be started the provision action
