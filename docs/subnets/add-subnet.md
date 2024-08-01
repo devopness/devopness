@@ -25,4 +25,3 @@ required_permissions:
 1. Provide a CIDR block to the Subnet being added. Example: "10.108.0.0/20"
 1. Click `CONFIRM`
     - After the Subnet is created an action will be automatically started to provision the Subnet on the chosen cloud provider
-1. In the `Subnets` tab, the recently created `Subnet` can be seen
