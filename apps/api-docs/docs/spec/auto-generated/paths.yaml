@@ -68,6 +68,12 @@
 '/daemons/{daemon_id}/restart':
   post:
     $ref: ./auto-generated/endpoints/restart-daemon.yaml
+'/daemons/{daemon_id}/start':
+  post:
+    $ref: ./auto-generated/endpoints/start-daemon.yaml
+'/daemons/{daemon_id}/stop':
+  post:
+    $ref: ./auto-generated/endpoints/stop-daemon.yaml
 '/environments/{environment_id}':
   get:
     $ref: ./auto-generated/endpoints/get-environment.yaml

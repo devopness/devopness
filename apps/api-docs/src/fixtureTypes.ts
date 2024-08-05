@@ -147,6 +147,14 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
         { path: 'environment_id', fixture: 'environment', field: 'id' },
         { path: 'servers[0]', fixture: 'server', field: 'id' }
     ],
+    'daemon_start': [
+        { path: 'environment_id', fixture: 'environment', field: 'id' },
+        { path: 'servers[0]', fixture: 'server', field: 'id' }
+    ],
+    'daemon_stop': [
+        { path: 'environment_id', fixture: 'environment', field: 'id' },
+        { path: 'servers[0]', fixture: 'server', field: 'id' }
+    ],
     'pipeline': [],
     'pipeline_create': [
         { path: 'resource_id', fixture: 'application', field: 'id' },

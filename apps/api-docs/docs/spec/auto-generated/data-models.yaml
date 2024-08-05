@@ -177,6 +177,10 @@ DaemonRelation:
   $ref: ./auto-generated/models/daemon-relation.yaml
 DaemonRestart:
   $ref: ./auto-generated/models/daemon-restart.yaml
+DaemonStart:
+  $ref: ./auto-generated/models/daemon-start.yaml
+DaemonStop:
+  $ref: ./auto-generated/models/daemon-stop.yaml
 DaemonUpdate:
   $ref: ./auto-generated/models/daemon-update.yaml
 DeploymentApplicationCreate:
