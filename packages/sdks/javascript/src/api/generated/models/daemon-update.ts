@@ -38,11 +38,11 @@ export interface DaemonUpdate {
      */
     process_count: number;
     /**
-     * The working directory where the daemon will be relative to when performing disk i/o. Must start with one of <code>/</code>.
+     * The working directory where the Daemon command will be executed. If the Daemon is linked to an application, the path must be a relative path to the application root directory. If the Daemon is not linked to an application, the value must be an absolute path. Must start with one of <code>/</code> Must not be greater than 255 characters.
      * @type {string}
      * @memberof DaemonUpdate
      */
-    working_directory: string;
+    working_directory: string | null;
     /**
      * The name of the Unix user on behalf of which the daemon will run. Must not be greater than 60 characters.
      * @type {string}
