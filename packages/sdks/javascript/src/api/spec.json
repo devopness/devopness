@@ -1543,6 +1543,156 @@
         }
       }
     },
+    "/daemons/{daemon_id}/start": {
+      "post": {
+        "summary": "Start a Daemon",
+        "operationId": "startDaemon",
+        "tags": [
+          "Daemons"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "daemon_id",
+            "description": "The ID of the daemon.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DaemonStart"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/daemons/{daemon_id}/stop": {
+      "post": {
+        "summary": "Stop a Daemon",
+        "operationId": "stopDaemon",
+        "tags": [
+          "Daemons"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "daemon_id",
+            "description": "The ID of the daemon.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DaemonStop"
+              }
+            }
+          }
+        }
+      }
+    },
     "/environments/{environment_id}": {
       "get": {
         "summary": "Get an environment by ID",
@@ -14145,7 +14295,7 @@
           "command": {
             "description": "The command line to be executed to start the daemon",
             "type": "string",
-            "example": "/usr/bin/example --parameter=%(ENV_VAR_TO_GET_PARAM_VALUE_FROM)s"
+            "example": "node app.js"
           },
           "run_as_user": {
             "description": "The name of the Unix user on behalf of which the daemon will be executed",
@@ -14153,9 +14303,10 @@
             "example": "root-of-all-evil"
           },
           "working_directory": {
-            "description": "The working directory where the daemon will be relative to when performing disk i/o",
+            "description": "The working directory where the Daemon command will be executed. If the Daemon is linked to an application, the path must be a relative path to the application root directory. If the Daemon is not linked to an application, the value must be an absolute path. Must not be greater than 255 characters",
             "type": "string",
-            "example": "/path/to/your/app"
+            "example": "relative-path/within/application/folder",
+            "nullable": true
           },
           "process_count": {
             "description": "The number of daemon process instances of the program to run simultaneously",
@@ -14228,9 +14379,10 @@
             "type": "integer"
           },
           "working_directory": {
-            "description": "The working directory where the daemon will be relative to when performing disk i/o. Must start with one of <code>/</code>.",
-            "example": "/path/to/your/app",
-            "type": "string"
+            "description": "The working directory where the Daemon command will be executed. If the Daemon is linked to an application, the path must be a relative path to the application root directory. If the Daemon is not linked to an application, the value must be an absolute path. Must start with one of <code>/</code> Must not be greater than 255 characters.",
+            "example": "relative-path/within/application/folder",
+            "type": "string",
+            "nullable": true
           },
           "run_as_user": {
             "description": "The name of the Unix user on behalf of which the daemon will run. Must not be greater than 60 characters.",
@@ -14287,7 +14439,7 @@
           "command": {
             "description": "The command line to be executed to start the daemon",
             "type": "string",
-            "example": "/usr/bin/example --parameter=%(ENV_VAR_TO_GET_PARAM_VALUE_FROM)s"
+            "example": "node app.js"
           },
           "run_as_user": {
             "description": "The name of the Unix user on behalf of which the daemon will be executed",
@@ -14295,9 +14447,10 @@
             "example": "root-of-all-evil"
           },
           "working_directory": {
-            "description": "The working directory where the daemon will be relative to when performing disk i/o",
+            "description": "The working directory where the Daemon command will be executed. If the Daemon is linked to an application, the path must be a relative path to the application root directory. If the Daemon is not linked to an application, the value must be an absolute path. Must not be greater than 255 characters",
             "type": "string",
-            "example": "/path/to/your/app"
+            "example": "relative-path/within/application/folder",
+            "nullable": true
           },
           "process_count": {
             "description": "The number of daemon process instances of the program to run simultaneously",
@@ -14353,6 +14506,22 @@
           }
         }
       },
+      "DaemonStart": {
+        "type": "object",
+        "properties": {
+          "servers": {
+            "$ref": "#/components/schemas/ResourceIdList"
+          }
+        }
+      },
+      "DaemonStop": {
+        "type": "object",
+        "properties": {
+          "servers": {
+            "$ref": "#/components/schemas/ResourceIdList"
+          }
+        }
+      },
       "DaemonUpdate": {
         "type": "object",
         "properties": {
@@ -14372,9 +14541,10 @@
             "type": "integer"
           },
           "working_directory": {
-            "description": "The working directory where the daemon will be relative to when performing disk i/o. Must start with one of <code>/</code>.",
-            "example": "/path/to/your/app",
-            "type": "string"
+            "description": "The working directory where the Daemon command will be executed. If the Daemon is linked to an application, the path must be a relative path to the application root directory. If the Daemon is not linked to an application, the value must be an absolute path. Must start with one of <code>/</code> Must not be greater than 255 characters.",
+            "example": "relative-path/within/application/folder",
+            "type": "string",
+            "nullable": true
           },
           "run_as_user": {
             "description": "The name of the Unix user on behalf of which the daemon will run. Must not be greater than 60 characters.",
