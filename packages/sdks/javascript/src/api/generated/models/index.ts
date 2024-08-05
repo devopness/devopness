@@ -72,6 +72,8 @@ export * from './daemon-environment-create';
 export * from './daemon-get-status';
 export * from './daemon-relation';
 export * from './daemon-restart';
+export * from './daemon-start';
+export * from './daemon-stop';
 export * from './daemon-update';
 export * from './deployment-application-create';
 export * from './deployment-default-step';

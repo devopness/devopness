@@ -18,6 +18,8 @@ import { ApiError } from '../../generated/models';
 import { Daemon } from '../../generated/models';
 import { DaemonGetStatus } from '../../generated/models';
 import { DaemonRestart } from '../../generated/models';
+import { DaemonStart } from '../../generated/models';
+import { DaemonStop } from '../../generated/models';
 import { DaemonUpdate } from '../../generated/models';
 
 /**
@@ -101,6 +103,50 @@ export class DaemonsApiService extends ApiBaseService {
         const requestUrl = '/daemons/{daemon_id}/restart' + (queryString? `?${queryString}` : '');
 
         const response = await this.post <void, DaemonRestart>(requestUrl.replace(`{${"daemon_id"}}`, encodeURIComponent(String(daemonId))), daemonRestart);
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Start a Daemon
+     * @param {number} daemonId The ID of the daemon.
+     * @param {DaemonStart} daemonStart A JSON object containing the resource data
+     */
+    public async startDaemon(daemonId: number, daemonStart: DaemonStart): Promise<ApiResponse<void>> {
+        if (daemonId === null || daemonId === undefined) {
+            throw new ArgumentNullException('daemonId', 'startDaemon');
+        }
+        if (daemonStart === null || daemonStart === undefined) {
+            throw new ArgumentNullException('daemonStart', 'startDaemon');
+        }
+
+        let queryString = '';
+
+        const requestUrl = '/daemons/{daemon_id}/start' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <void, DaemonStart>(requestUrl.replace(`{${"daemon_id"}}`, encodeURIComponent(String(daemonId))), daemonStart);
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Stop a Daemon
+     * @param {number} daemonId The ID of the daemon.
+     * @param {DaemonStop} daemonStop A JSON object containing the resource data
+     */
+    public async stopDaemon(daemonId: number, daemonStop: DaemonStop): Promise<ApiResponse<void>> {
+        if (daemonId === null || daemonId === undefined) {
+            throw new ArgumentNullException('daemonId', 'stopDaemon');
+        }
+        if (daemonStop === null || daemonStop === undefined) {
+            throw new ArgumentNullException('daemonStop', 'stopDaemon');
+        }
+
+        let queryString = '';
+
+        const requestUrl = '/daemons/{daemon_id}/stop' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <void, DaemonStop>(requestUrl.replace(`{${"daemon_id"}}`, encodeURIComponent(String(daemonId))), daemonStop);
         return new ApiResponse(response);
     }
 
