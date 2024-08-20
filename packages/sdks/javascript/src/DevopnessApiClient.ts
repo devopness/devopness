@@ -1,7 +1,6 @@
 import { ActionService } from './services/ActionService';
-import { ApiBaseService, ConfigurationOptions, Configuration } from './services/ApiBaseService';
+import { ApiBaseService, Configuration, ConfigurationOptions } from './services/ApiBaseService';
 import { ApplicationService } from './services/ApplicationService';
-import { CloudProviderCredentialService } from './services/CloudProviderCredentialService';
 import { CredentialService } from './services/CredentialService';
 import { CronJobService } from './services/CronJobService';
 import { DaemonService } from './services/DaemonService';
@@ -19,7 +18,6 @@ import { RoleService } from './services/RoleService';
 import { ServerService } from './services/ServerService';
 import { ServiceService } from './services/ServiceService';
 import { SocialAccountService } from './services/SocialAccountService';
-import { SourceProviderService } from './services/SourceProviderService'
 import { SshKeyService } from './services/SshKeyService';
 import { SslCertificateService } from './services/SslCertificateService';
 import { StaticService } from './services/StaticService';
@@ -33,7 +31,6 @@ import { VirtualHostService } from './services/VirtualHostService';
 export class DevopnessApiClient {
   actions: ActionService;
   applications: ApplicationService;
-  cloudProviderCredentials: CloudProviderCredentialService;
   credentials: CredentialService;
   cronjobs: CronJobService;
   daemons: DaemonService;
@@ -51,7 +48,6 @@ export class DevopnessApiClient {
   servers: ServerService;
   services: ServiceService;
   socialAccounts: SocialAccountService;
-  sourceProviders: SourceProviderService;
   sshKeys: SshKeyService;
   sslCertificates: SslCertificateService;
   static: StaticService;
@@ -70,7 +66,6 @@ export class DevopnessApiClient {
     // for non provided required parameters are quickly returned to the end user before spending time loading extra resources
     this.actions = new ActionService();
     this.applications = new ApplicationService();
-    this.cloudProviderCredentials = new CloudProviderCredentialService();
     this.credentials = new CredentialService();
     this.cronjobs = new CronJobService();
     this.daemons = new DaemonService();
@@ -88,7 +83,6 @@ export class DevopnessApiClient {
     this.servers = new ServerService();
     this.services = new ServiceService();
     this.socialAccounts = new SocialAccountService();
-    this.sourceProviders = new SourceProviderService();
     this.sshKeys = new SshKeyService();
     this.sslCertificates = new SslCertificateService();
     this.static = new StaticService();
