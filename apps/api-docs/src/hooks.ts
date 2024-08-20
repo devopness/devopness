@@ -1,14 +1,14 @@
 import hooks, { Transaction, TransactionHook } from 'hooks';
 import { v1, v4 } from 'uuid';
 
-import DevopnessAPI from './DevopnessAPI';
-import { UserCredentials, UserTokens, isFixtureKey, Identifiable } from './fixtureTypes';
-import FixtureStore from './FixtureStore';
-import TransactionUtils from './TransactionUtils';
-import TransactionGraph, { TransactionGraphEdge, FixtureTransactionAdjacencyList } from './TransactionGraph';
-import Logger from './Logger';
 import './augmentTransactionWithMetadata';
+import DevopnessAPI from './DevopnessAPI';
+import FixtureStore from './FixtureStore';
+import { Identifiable, UserCredentials, UserTokens, isFixtureKey } from './fixtureTypes';
+import Logger from './Logger';
 import OpenAPISpec from './OpenAPISpec';
+import TransactionGraph, { FixtureTransactionAdjacencyList, TransactionGraphEdge } from './TransactionGraph';
+import TransactionUtils from './TransactionUtils';
 
 // transaction names can be obtained by running `npx dredd --names`
 const transactionSlugToName: { [id: string]: string } = {};
@@ -99,6 +99,9 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
             'user_login': ['loginUser200'],
         },
         fixtureTransactionOutputs: {
+            'credential_cloud_provider': ['addEnvironmentNetwork201'],
+            'credential_source_provider': ['addEnvironmentApplication201'],
+
             // `user`, `user_credentials` and `user_login` are available after successful
             // `addUser202` transaction, which hardcodes values for those two
             // fixtures, replacing the value defined on `fixtureTypes.ts`
@@ -131,6 +134,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         ['deleteHook204', 'deletePipeline204'],
         ['deleteHook204', 'deleteApplication204'],
         ['deleteVariable204', 'deleteApplication204'],
+        ['deleteVariable204', 'deleteService204'],
         ['triggerHook202', 'deleteApplication204'],
         ['addVariable201', 'deleteServer204'],
         // unlinkServerFromEnvironment requires deleting the associated ssh key, network rule, daemon, service, cron job and application
@@ -305,11 +309,17 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     before('updateProject204', utils.rewriteTransactionRequestBody(randomizeName));
 
     before('addEnvironmentApplication201', utils.rewriteTransactionRequestBody((body: any) => {
+        const credential = fixtures.get<Identifiable>('credential_source_provider');
+
         body['entrypoint'] = 'index.html'
+        body['credential_id'] = credential?.id ?? body.credential_id
     }))
 
     before('updateApplication204', utils.rewriteTransactionRequestBody((body: any) => {
+        const credential = fixtures.get<Identifiable>('credential_source_provider');
+
         body['entrypoint'] = 'index.html'
+        body['credential_id'] = credential?.id ?? body.credential_id
     }))
 
     //// source providers
@@ -336,9 +346,56 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         transaction.skip = true;
     })
 
+    // This function modifies the request to create a credential using a fake 
+    // endpoint. This is necessary because credentials are validated by providers, 
+    // so we need to create fake credentials to be used by other endpoints.
+    const beforeCreateCredential = (transaction: Transaction) => {
+        const tag = `[fake-credentials]`
+
+        if (transaction.request.body) {
+            const environment = fixtures.get<Identifiable>('environment');
+
+            if (environment) {
+                const path = `/dev-tests/fake-credentials/${environment.id}`;
+                const bodySchema = JSON.parse(String(transaction.expected.bodySchema))
+                delete bodySchema.allOf
+
+                hooks.log(`${tag} rewrite path '${transaction.fullPath}' => '${path}'`);
+                bodySchema.type = "array"
+                bodySchema.items = {
+                    allOf: [{ $ref: "#/definitions/Credential" }]
+                }
+                transaction.expected.bodySchema = JSON.stringify(bodySchema) as any
+                transaction.expected.body = `[\n${transaction.expected.body}\n]`
+                transaction.fullPath = path;
+            } else {
+                hooks.log(`${tag} transaction '${transaction.id}' requires 'environment' fixture`);
+            }
+        }
+    }
+
+    // After creating credentials, we need to save them in the fixture. The endpoint 
+    // dev-tests/fake-credentials returns two credentials: one for the source provider
+    // and another for the cloud provider. The first one in the array is the cloud-
+    // provider credential, which is also used to update the credential.
+    const afterCreateCredential = (transaction: Transaction) => {
+        const body = JSON.parse(transaction.real.body)
+
+        fixtures.put(`credential`, { id: `${body[0].id}` });
+
+        body.forEach((credential: any) => {
+            fixtures.put(`credential_${credential.type}`, { id: `${credential.id}` });
+        })
+    }
+
+    before('addEnvironmentCredential201', beforeCreateCredential)
+    after('addEnvironmentCredential201', afterCreateCredential)
+
     //// repositories
-    before('getSourceProviderRepository200', (transaction: Transaction) => {
-        transaction.fullPath = `/source-providers/${staticSourceProviderId}/repositories/devopness/devopness`
+    before('getCredentialRepository200', (transaction: Transaction) => {
+        const credential = fixtures.get<Identifiable>('credential_source_provider');
+
+        transaction.fullPath = `/credentials/${credential?.id}/repositories/devopness/devopness`
     })
 
     //// applications
@@ -372,13 +429,17 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     //// networks
     before('addEnvironmentNetwork201', utils.rewriteTransactionRequestBody((body: any) => {
         body['provision_input'] = {
-            credential_id: staticCloudCredentialId,
             cloud_service_code: 'aws-ec2',
             settings: {
                 region: 'us-east-1',
                 cidr_block: '10.0.0.0/24',
             },
         };
+    }))
+
+    before('updateCredential204', utils.rewriteTransactionRequestBody((body: any) => {
+        // Removed the `settings` field so that only the credential name is updated
+        delete body.settings
     }))
 
     before('listPipelinesByResourceType200', utils.rewriteTransactionRequestUriResourceId(['application']));

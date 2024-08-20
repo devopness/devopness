@@ -22,7 +22,7 @@ properties:
     type: string
     example: my-awesome-app
   repository:
-    description: 'The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed.'
+    description: 'The full name of a repository (`repository_owner/repository_name`) containing the application source code.'
     type: string
     example: devopness/devopness
   repository_name:
@@ -69,8 +69,8 @@ properties:
     nullable: true
   last_deployments:
     $ref: '#/components/schemas/ApplicationLastDeployments'
-  source_provider:
-    $ref: '#/components/schemas/SourceProvider'
+  credential:
+    $ref: '#/components/schemas/Credential'
   created_at:
     description: 'The date and time when the record was created'
     type: string

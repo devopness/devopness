@@ -2,10 +2,6 @@
 type: object
 description: 'Configuration used to launch cloud instance'
 properties:
-  credential_id:
-    type: integer
-    description: 'The unique id of the cloud provider credential to be used on connect to cloud provider'
-    example: 8430015757
   subnet_id:
     type: integer
     description: 'The ID of the subnet where to create the server. If not defined, create the server on the default subnet of the cloud provider'

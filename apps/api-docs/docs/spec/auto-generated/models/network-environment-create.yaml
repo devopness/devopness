@@ -7,6 +7,11 @@ properties:
     type: string
   provision_input:
     $ref: '#/components/schemas/NetworkProvisionInput'
+  credential_id:
+    description: 'The ID of the cloud credential.'
+    example: 123
+    type: integer
 required:
   - name
   - provision_input
+  - credential_id

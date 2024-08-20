@@ -72,16 +72,22 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     'application_pipeline': [],
     'application_environment_create': [
         { path: 'servers[0]', fixture: 'server', field: 'id' },
+        { path: 'environment_id', fixture: 'environment', field: 'id' },
+        { path: 'credential_id', fixture: 'credential_source_provider', field: 'id' },
     ],
     'application_update': [
         { path: 'id', fixture: 'application', field: 'id' },
         { path: 'default_pipeline_id', fixture: 'pipeline', field: 'id' },
         { path: 'servers[0]', fixture: 'server', field: 'id' },
+        { path: 'credential_id', fixture: 'credential_source_provider', field: 'id' },
     ],
     'application_deploy': [
         { path: 'environments[0].id', fixture: 'environment', field: 'id' },
     ],
     'credential': [],
+    'credential_update': [
+        { path: 'id', fixture: 'credential', field: 'id' },
+    ],
     'cron_job': [],
     'cron_job_environment_create': [
         { path: 'servers[0]', fixture: 'server', field: 'id' },
@@ -92,7 +98,8 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     ],
     'deployment_application_create': [
         { path: 'servers[0]', fixture: 'server', field: 'id' },
-        { path: 'pipeline_id', fixture: 'pipeline', field: 'id' }
+        { path: 'pipeline_id', fixture: 'pipeline', field: 'id' },
+        { path: 'credential_id', fixture: 'credential_source_provider', field: 'id' },
     ],
     'environment': [],
     'environment_link_item': [
@@ -124,6 +131,14 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
         { path: 'member_id', fixture: 'user', field: 'id' },
     ],
     'network': [],
+    'network_environment_create': [
+        { path: 'environment_id', fixture: 'environment', field: 'id' },
+        { path: 'credential_id', fixture: 'credential_cloud_provider', field: 'id' },
+    ],
+    'network_update': [
+        { path: 'id', fixture: 'network', field: 'id' },
+        { path: 'credential_id', fixture: 'credential_cloud_provider', field: 'id' },
+    ],
     'network_rule': [],
     'network_rule_environment_create': [
         { path: 'servers[0]', fixture: 'server', field: 'id' },
@@ -304,6 +319,7 @@ export function addFixtureDependency(key: FixtureKey, dep: FixtureDependency) {
 const fixtureListKeys = {
     'actions': 'action',
     'applications': 'application',
+    'credentials': 'credential',
     'cron_jobs': 'cron_job',
     'daemons': 'daemon',
     'deployments': 'deployment',

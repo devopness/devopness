@@ -170,9 +170,9 @@ tags:
       Client API applications might need to retrieve possible accepted values to fulfill their forms and allow end users to pick values from a list of valid data.
       All static data that need to be used through `devopness` API client applications is provided through the `/static/*` endpoints.
   - name: Static Data - Application Options
-  - name: Static Data - Cloud Provider Options
   - name: Static Data - Cloud Provider Service Instances
   - name: Static Data - Cloud Provider Services
+  - name: Static Data - Credential Options
   - name: Static Data - Cron Job Options
   - name: Static Data - Environment Options
   - name: Static Data - Network Rule Options
@@ -189,7 +189,6 @@ tags:
   - name: Applications - Variables
     description: |
       Throughout the `devopness` documentation the term `SSL Certificate` refers to a public key certificate adhering to `X.509` standard. While TLS is the protocol more used nowadays for web encryption, for historical reasons web encryption is often referred to simply as SSL. A SSL Certificate managed by `devopness` might be used as an HTTPS/SSL/TLS and other internet protocols to establish encrypted connections between client apps (e.g. browsers) and the web application servers managed through `devopness`, but it's not limited to be used for authenticating server's identity.
-  - name: Cloud Providers - Credentials
   - name: Cron Jobs
     description: |
       A cronjob is a scheduled command to be set on one or more project servers to ensure a given routine will be executed on time. Cronjobs are useful for creating periodic and recurring tasks, like running backups or sending emails. Cronjobs can also schedule individual tasks for a specific time, such as if you want to schedule a job for a low activity period.
@@ -247,10 +246,6 @@ tags:
   - name: Social Accounts
     description: |
       A social account is a third party login/authorization service connected to the current user's account. e.g.: Facebook, Google, GitHub
-  - name: Source Providers
-    description: |
-      A source provider is a Version Control System (VCS)/Source Code Management (SCM) connected to the current user's account. e.g.: BitBucket, GitHub, GitLab
-  - name: Source Providers - Repositories
   - name: SSH Keys
   - name: SSL Certificates
     description: |
@@ -273,9 +268,9 @@ x-tagGroups:
   - name: Static Data
     tags:
       - Static Data - Application Options
-      - Static Data - Cloud Provider Options
       - Static Data - Cloud Provider Service Instances
       - Static Data - Cloud Provider Services
+      - Static Data - Credential Options
       - Static Data - Cron Job Options
       - Static Data - Environment Options
       - Static Data - Network Rule Options
@@ -298,12 +293,10 @@ x-tagGroups:
       - Applications - Hooks
       - Applications - Variables
       - Environments - Applications
-  - name: Cloud Providers
-    tags:
-      - Cloud Providers - Credentials
   - name: Credentials
     tags:
       - Credentials
+      - Environments - Credentials
   - name: Cron Jobs
     tags:
       - Cron Jobs
@@ -361,10 +354,6 @@ x-tagGroups:
   - name: Social Accounts
     tags:
       - Social Accounts
-  - name: Source Providers
-    tags:
-      - Source Providers
-      - Source Providers - Repositories
   - name: SSH Keys
     tags:
       - SSH Keys

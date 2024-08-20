@@ -21,6 +21,8 @@ properties:
     example: false
   servers:
     $ref: '#/components/schemas/ServerList'
+  credentials:
+    $ref: '#/components/schemas/CredentialList'
   cron_jobs:
     $ref: '#/components/schemas/CronJobList'
   daemons:
@@ -60,6 +62,7 @@ required:
   - type_human_readable
   - is_archived
   - servers
+  - credentials
   - cron_jobs
   - daemons
   - networks

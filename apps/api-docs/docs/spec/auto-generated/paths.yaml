@@ -35,19 +35,22 @@
     $ref: ./auto-generated/endpoints/list-application-variables.yaml
   post:
     $ref: ./auto-generated/endpoints/add-application-variable.yaml
-'/cloud-providers/{cloud_provider_code}/credentials':
-  get:
-    $ref: ./auto-generated/endpoints/list-cloud-provider-credentials-by-cloud-provider-code.yaml
-  post:
-    $ref: ./auto-generated/endpoints/add-cloud-provider-credential.yaml
-/credentials:
-  get:
-    $ref: ./auto-generated/endpoints/list-credentials.yaml
 '/credentials/{credential_id}':
   delete:
     $ref: ./auto-generated/endpoints/delete-credential.yaml
   get:
     $ref: ./auto-generated/endpoints/get-credential.yaml
+  put:
+    $ref: ./auto-generated/endpoints/update-credential.yaml
+'/credentials/{credential_id}/get-status':
+  post:
+    $ref: ./auto-generated/endpoints/get-status-credential.yaml
+'/credentials/{credential_id}/repositories':
+  get:
+    $ref: ./auto-generated/endpoints/list-credential-repositories.yaml
+'/credentials/{credential_id}/repositories/{repository_owner}/{repository_name}':
+  get:
+    $ref: ./auto-generated/endpoints/get-credential-repository.yaml
 '/cron-jobs/{cron_job_id}':
   delete:
     $ref: ./auto-generated/endpoints/delete-cron-job.yaml
@@ -93,6 +96,14 @@
 '/environments/{environment_id}/archive':
   post:
     $ref: ./auto-generated/endpoints/archive-environment.yaml
+'/environments/{environment_id}/credentials':
+  get:
+    $ref: ./auto-generated/endpoints/list-environment-credentials.yaml
+  post:
+    $ref: ./auto-generated/endpoints/add-environment-credential.yaml
+'/environments/{environment_id}/credentials/{provider_code}/settings':
+  get:
+    $ref: ./auto-generated/endpoints/get-environment-credential-settings.yaml
 '/environments/{environment_id}/cron-jobs':
   get:
     $ref: ./auto-generated/endpoints/list-environment-cron-jobs.yaml
@@ -183,6 +194,8 @@
     $ref: ./auto-generated/endpoints/delete-network.yaml
   get:
     $ref: ./auto-generated/endpoints/get-network.yaml
+  put:
+    $ref: ./auto-generated/endpoints/update-network.yaml
 '/networks/{network_id}/subnets':
   get:
     $ref: ./auto-generated/endpoints/list-network-subnets.yaml
@@ -339,22 +352,6 @@
 '/social-accounts/{social_account_provider}/status':
   get:
     $ref: ./auto-generated/endpoints/get-social-account-status.yaml
-/source-providers:
-  get:
-    $ref: ./auto-generated/endpoints/list-source-providers.yaml
-  post:
-    $ref: ./auto-generated/endpoints/add-source-provider.yaml
-'/source-providers/{source_provider_id}':
-  delete:
-    $ref: ./auto-generated/endpoints/delete-source-provider.yaml
-  get:
-    $ref: ./auto-generated/endpoints/get-source-provider.yaml
-'/source-providers/{source_provider_id}/repositories':
-  get:
-    $ref: ./auto-generated/endpoints/list-source-provider-repositories.yaml
-'/source-providers/{source_provider_id}/repositories/{repository_owner}/{repository_name}':
-  get:
-    $ref: ./auto-generated/endpoints/get-source-provider-repository.yaml
 '/ssh-keys/{ssh_key_id}':
   delete:
     $ref: ./auto-generated/endpoints/delete-ssh-key.yaml
@@ -370,15 +367,15 @@
 /static/application-options:
   get:
     $ref: ./auto-generated/endpoints/get-static-application-options.yaml
-/static/cloud-provider-options:
-  get:
-    $ref: ./auto-generated/endpoints/list-static-cloud-provider-options.yaml
 '/static/cloud-provider-service-options/{cloud_provider_service_code}':
   get:
     $ref: ./auto-generated/endpoints/get-static-cloud-provider-service.yaml
 '/static/cloud-provider-service-options/{cloud_provider_service_code}/regions/{region_code}/instances':
   get:
     $ref: ./auto-generated/endpoints/list-static-cloud-instances-by-cloud-provider-service-code-and-region-code.yaml
+/static/credential-options:
+  get:
+    $ref: ./auto-generated/endpoints/get-static-credential-options.yaml
 /static/cronjob-options:
   get:
     $ref: ./auto-generated/endpoints/get-static-cron-job-options.yaml
@@ -400,9 +397,6 @@
 /static/service-options:
   get:
     $ref: ./auto-generated/endpoints/get-static-service-options.yaml
-/static/source-provider-options:
-  get:
-    $ref: ./auto-generated/endpoints/list-static-source-provider-options.yaml
 /static/user-profile-options:
   get:
     $ref: ./auto-generated/endpoints/get-static-user-profile-options.yaml

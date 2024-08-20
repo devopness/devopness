@@ -89,10 +89,6 @@ CloudProviderInputSettings:
   $ref: ./auto-generated/models/cloud-provider-input-settings.yaml
 CloudProviderInputSettingsList:
   $ref: ./auto-generated/models/cloud-provider-input-settings-list.yaml
-CloudProviderOptionsList:
-  $ref: ./auto-generated/models/cloud-provider-options-list.yaml
-CloudProviderOptionsRelation:
-  $ref: ./auto-generated/models/cloud-provider-options-relation.yaml
 CloudProviderPropertyType:
   $ref: ./auto-generated/models/cloud-provider-property-type.yaml
 CloudProviderPropertyValidation:
@@ -137,18 +133,32 @@ Credential:
   $ref: ./auto-generated/models/credential.yaml
 CredentialAws:
   $ref: ./auto-generated/models/credential-aws.yaml
-CredentialCloudProviderCreate:
-  $ref: ./auto-generated/models/credential-cloud-provider-create.yaml
 CredentialDigitalOcean:
   $ref: ./auto-generated/models/credential-digital-ocean.yaml
+CredentialEnvironmentCreate:
+  $ref: ./auto-generated/models/credential-environment-create.yaml
 CredentialGoogleCloud:
   $ref: ./auto-generated/models/credential-google-cloud.yaml
+CredentialInputSettings:
+  $ref: ./auto-generated/models/credential-input-settings.yaml
+CredentialInputSettingsList:
+  $ref: ./auto-generated/models/credential-input-settings-list.yaml
 CredentialList:
   $ref: ./auto-generated/models/credential-list.yaml
+CredentialOptions:
+  $ref: ./auto-generated/models/credential-options.yaml
+CredentialProviderType:
+  $ref: ./auto-generated/models/credential-provider-type.yaml
+CredentialProviderTypeList:
+  $ref: ./auto-generated/models/credential-provider-type-list.yaml
 CredentialRelation:
   $ref: ./auto-generated/models/credential-relation.yaml
 CredentialSetting:
   $ref: ./auto-generated/models/credential-setting.yaml
+CredentialSourceProvider:
+  $ref: ./auto-generated/models/credential-source-provider.yaml
+CredentialUpdate:
+  $ref: ./auto-generated/models/credential-update.yaml
 Credits:
   $ref: ./auto-generated/models/credits.yaml
 CronJob:
@@ -321,6 +331,8 @@ NetworkRuleRelation:
   $ref: ./auto-generated/models/network-rule-relation.yaml
 NetworkRuleUpdate:
   $ref: ./auto-generated/models/network-rule-update.yaml
+NetworkUpdate:
+  $ref: ./auto-generated/models/network-update.yaml
 OperatingSystem:
   $ref: ./auto-generated/models/operating-system.yaml
 OperatingSystemVersion:
@@ -379,6 +391,16 @@ ProjectRelation:
   $ref: ./auto-generated/models/project-relation.yaml
 ProjectUpdate:
   $ref: ./auto-generated/models/project-update.yaml
+ProviderCode:
+  $ref: ./auto-generated/models/provider-code.yaml
+ProviderRelation:
+  $ref: ./auto-generated/models/provider-relation.yaml
+ProviderSettings:
+  $ref: ./auto-generated/models/provider-settings.yaml
+ProviderType:
+  $ref: ./auto-generated/models/provider-type.yaml
+ProviderTypeList:
+  $ref: ./auto-generated/models/provider-type-list.yaml
 RelatedAction:
   $ref: ./auto-generated/models/related-action.yaml
 RelatedActionList:
@@ -505,22 +527,10 @@ SocialAccountRelation:
   $ref: ./auto-generated/models/social-account-relation.yaml
 SocialAccountStatus:
   $ref: ./auto-generated/models/social-account-status.yaml
-SourceProvider:
-  $ref: ./auto-generated/models/source-provider.yaml
-SourceProviderCreate:
-  $ref: ./auto-generated/models/source-provider-create.yaml
 SourceProviderDisplayableName:
   $ref: ./auto-generated/models/source-provider-displayable-name.yaml
-SourceProviderList:
-  $ref: ./auto-generated/models/source-provider-list.yaml
 SourceProviderName:
   $ref: ./auto-generated/models/source-provider-name.yaml
-SourceProviderOptionsList:
-  $ref: ./auto-generated/models/source-provider-options-list.yaml
-SourceProviderOptionsRelation:
-  $ref: ./auto-generated/models/source-provider-options-relation.yaml
-SourceProviderRelation:
-  $ref: ./auto-generated/models/source-provider-relation.yaml
 SourceType:
   $ref: ./auto-generated/models/source-type.yaml
 SshKey:

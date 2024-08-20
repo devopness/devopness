@@ -25,6 +25,8 @@ properties:
     $ref: '#/components/schemas/EnvironmentRelation'
   network:
     $ref: '#/components/schemas/NetworkRelation'
+  credential:
+    $ref: '#/components/schemas/CredentialRelation'
   last_action:
     $ref: '#/components/schemas/ActionRelation'
   created_at:
@@ -45,6 +47,7 @@ required:
   - project
   - environment
   - network
+  - credential
   - last_action
   - created_at
   - updated_at

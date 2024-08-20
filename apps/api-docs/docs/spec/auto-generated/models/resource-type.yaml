@@ -3,6 +3,7 @@ description: 'Type of an infrastructure resource managed through a Devopness env
 type: string
 enum:
   - application
+  - credential
   - cronjob
   - daemon
   - deployment

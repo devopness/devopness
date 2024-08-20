@@ -22,11 +22,11 @@ properties:
     example: python
     type: string
   repository:
-    description: 'The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed. Must not be greater than 100 characters.'
+    description: 'The full name of a repository (`repository_owner/repository_name`) containing the application source code. Must not be greater than 100 characters.'
     example: devopness/devopness
     type: string
-  source_provider_id:
-    description: 'Numeric ID of the source provider account where the repository is hosted. Required when the `repository` field is informed.'
+  credential_id:
+    description: 'Numeric ID of the credential to source provider where the repository is hosted.'
     example: 9732156
     type: integer
   root_directory:
@@ -51,5 +51,5 @@ required:
   - framework
   - programming_language
   - repository
-  - source_provider_id
+  - credential_id
   - default_branch

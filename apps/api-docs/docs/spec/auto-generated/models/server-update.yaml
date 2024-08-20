@@ -10,12 +10,16 @@ properties:
     example: 200.123.45.67
     type: string
   ssh_port:
-    description: 'The network port to which the SSH daemon is listening to SSH connections on the server. Must be between 0 and 65535.'
+    description: 'The network port to which the SSH daemon is listening to SSH connections on the server. Must be between 22 and 65535.'
     example: 22
     type: integer
   max_parallel_actions:
     description: 'Maximum number of actions that can run in parallel on this server. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run on this server. Must be between 0 and 10.'
     example: 1
     type: integer
+  credential_id:
+    description: 'The ID of the cloud credential.'
+    example: 123
+    type: string
 required:
   - id

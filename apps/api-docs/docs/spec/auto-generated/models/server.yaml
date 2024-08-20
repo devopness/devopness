@@ -61,6 +61,8 @@ properties:
     $ref: '#/components/schemas/ActionRelation'
   environment:
     $ref: '#/components/schemas/EnvironmentRelation'
+  credential:
+    $ref: '#/components/schemas/CredentialRelation'
   created_at:
     description: 'The date and time when the record was created'
     type: string
@@ -90,5 +92,6 @@ required:
   - project
   - last_action
   - environment
+  - credential
   - created_at
   - updated_at

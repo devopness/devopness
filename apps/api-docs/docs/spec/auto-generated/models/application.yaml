@@ -22,7 +22,7 @@ properties:
     type: string
     example: my-awesome-app
   repository:
-    description: 'The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed.'
+    description: 'The full name of a repository (`repository_owner/repository_name`) containing the application source code.'
     type: string
     example: devopness/devopness
   repository_name:
@@ -75,8 +75,8 @@ properties:
     $ref: '#/components/schemas/EnvironmentRelation'
   servers:
     $ref: '#/components/schemas/ServerList'
-  source_provider:
-    $ref: '#/components/schemas/SourceProvider'
+  credential:
+    $ref: '#/components/schemas/CredentialRelation'
   virtual_hosts:
     $ref: '#/components/schemas/VirtualHostList'
   daemons:
@@ -110,7 +110,7 @@ required:
   - last_deployments
   - environment
   - servers
-  - source_provider
+  - credential
   - virtual_hosts
   - daemons
   - created_at

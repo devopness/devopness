@@ -9,7 +9,12 @@ properties:
     $ref: '#/components/schemas/SubnetType'
   provision_input:
     $ref: '#/components/schemas/SubnetProvisionInput'
+  credential_id:
+    description: 'The ID of the cloud credential.'
+    example: 123
+    type: integer
 required:
   - name
   - type
   - provision_input
+  - credential_id

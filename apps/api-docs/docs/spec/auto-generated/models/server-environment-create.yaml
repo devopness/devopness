@@ -21,6 +21,10 @@ properties:
     $ref: '#/components/schemas/BlueprintServiceList'
   provision_input:
     $ref: '#/components/schemas/ServerProvisionInput'
+  credential_id:
+    description: 'The ID of the cloud credential. This field is required unless <code>provision_input.cloud_service_code</code> is in <code>self-hosted-custom</code>.'
+    example: 123
+    type: string
 required:
   - hostname
   - provision_input
