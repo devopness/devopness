@@ -12,8 +12,9 @@
  */
 
 
-import { CloudProvider } from './cloud-provider';
-import { CloudProviderCode } from './cloud-provider-code';
+import { ProviderRelation } from './provider-relation';
+import { ProviderType } from './provider-type';
+import { UserRelation } from './user-relation';
 
 /**
  * 
@@ -22,17 +23,11 @@ import { CloudProviderCode } from './cloud-provider-code';
  */
 export interface CredentialRelation {
     /**
-     * The unique ID of the given pipeline
+     * The unique ID of the credential
      * @type {number}
      * @memberof CredentialRelation
      */
     id: number;
-    /**
-     * The user id that created the credential
-     * @type {number}
-     * @memberof CredentialRelation
-     */
-    created_by: number;
     /**
      * The name of the credential
      * @type {string}
@@ -41,22 +36,34 @@ export interface CredentialRelation {
     name: string;
     /**
      * 
-     * @type {CloudProviderCode}
+     * @type {ProviderRelation}
      * @memberof CredentialRelation
      */
-    cloud_provider_code: CloudProviderCode;
+    provider: ProviderRelation;
     /**
      * 
-     * @type {CloudProvider}
+     * @type {ProviderType}
      * @memberof CredentialRelation
      */
-    cloud_provider: CloudProvider;
+    type: ProviderType;
+    /**
+     * The human readable version of the type of the credential
+     * @type {string}
+     * @memberof CredentialRelation
+     */
+    type_human_readable: string;
     /**
      * If this credential is active or not
      * @type {boolean}
      * @memberof CredentialRelation
      */
     active: boolean;
+    /**
+     * 
+     * @type {UserRelation}
+     * @memberof CredentialRelation
+     */
+    created_by_user: UserRelation;
     /**
      * The date and time when the record was created
      * @type {string}

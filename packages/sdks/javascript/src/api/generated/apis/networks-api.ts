@@ -16,6 +16,7 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { Network } from '../../generated/models';
+import { NetworkUpdate } from '../../generated/models';
 
 /**
  * NetworksApiService - Auto-generated
@@ -54,6 +55,28 @@ export class NetworksApiService extends ApiBaseService {
         const requestUrl = '/networks/{network_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Network>(requestUrl.replace(`{${"network_id"}}`, encodeURIComponent(String(networkId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Update an existing Network
+     * @param {number} networkId The ID of the network.
+     * @param {NetworkUpdate} networkUpdate A JSON object containing the resource data
+     */
+    public async updateNetwork(networkId: number, networkUpdate: NetworkUpdate): Promise<ApiResponse<void>> {
+        if (networkId === null || networkId === undefined) {
+            throw new ArgumentNullException('networkId', 'updateNetwork');
+        }
+        if (networkUpdate === null || networkUpdate === undefined) {
+            throw new ArgumentNullException('networkUpdate', 'updateNetwork');
+        }
+
+        let queryString = '';
+
+        const requestUrl = '/networks/{network_id}' + (queryString? `?${queryString}` : '');
+
+        const response = await this.put <void, NetworkUpdate>(requestUrl.replace(`{${"network_id"}}`, encodeURIComponent(String(networkId))), networkUpdate);
         return new ApiResponse(response);
     }
 }

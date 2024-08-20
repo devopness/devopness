@@ -56,17 +56,17 @@ export interface ApplicationUpdate {
      */
     programming_language: string;
     /**
-     * The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed. Must not be greater than 100 characters.
+     * The full name of a repository (`repository_owner/repository_name`) containing the application source code. Must not be greater than 100 characters.
      * @type {string}
      * @memberof ApplicationUpdate
      */
     repository?: string;
     /**
-     * Numeric ID of the source provider account where the repository is hosted. This field is required when <code>repository</code> is present.
+     * Numeric ID of the credential to source provider where the repository is hosted. This field is required when <code>repository</code> is present.
      * @type {number}
      * @memberof ApplicationUpdate
      */
-    source_provider_id?: number;
+    credential_id?: number;
     /**
      * The relative directory where package manager\'s manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository. Must start with one of <code>/</code>.
      * @type {string}

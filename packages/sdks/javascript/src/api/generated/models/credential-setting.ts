@@ -12,9 +12,8 @@
  */
 
 
-import { CredentialAws } from './credential-aws';
-import { CredentialDigitalOcean } from './credential-digital-ocean';
-import { CredentialGoogleCloud } from './credential-google-cloud';
+import { CredentialProviderType } from './credential-provider-type';
+import { ProviderSettings } from './provider-settings';
 
 /**
  * 
@@ -23,10 +22,22 @@ import { CredentialGoogleCloud } from './credential-google-cloud';
  */
 export interface CredentialSetting {
     /**
-     * Cloud provider credential
-     * @type {CredentialAws | CredentialDigitalOcean | CredentialGoogleCloud}
+     * 
+     * @type {CredentialProviderType}
      * @memberof CredentialSetting
      */
-    credential: CredentialAws | CredentialDigitalOcean | CredentialGoogleCloud;
+    provider: CredentialProviderType;
+    /**
+     * Numeric ID of the environment to which the network belongs to
+     * @type {number}
+     * @memberof CredentialSetting
+     */
+    environment_id: number;
+    /**
+     * 
+     * @type {ProviderSettings}
+     * @memberof CredentialSetting
+     */
+    settings: ProviderSettings;
 }
 

@@ -12,10 +12,10 @@
  */
 
 
-import { CloudProviderRelation } from './cloud-provider-relation';
 import { CloudProviderServiceCode } from './cloud-provider-service-code';
 import { CloudProviderServiceRegion } from './cloud-provider-service-region';
 import { CloudProviderServiceResourceType } from './cloud-provider-service-resource-type';
+import { ProviderRelation } from './provider-relation';
 
 /**
  * 
@@ -37,10 +37,10 @@ export interface CloudProviderService {
     name: string;
     /**
      * 
-     * @type {CloudProviderRelation}
+     * @type {ProviderRelation}
      * @memberof CloudProviderService
      */
-    cloud_provider: CloudProviderRelation;
+    provider?: ProviderRelation;
     /**
      * 
      * @type {Array<CloudProviderServiceRegion>}

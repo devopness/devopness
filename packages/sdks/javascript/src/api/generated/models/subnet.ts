@@ -13,6 +13,7 @@
 
 
 import { ActionRelation } from './action-relation';
+import { CredentialRelation } from './credential-relation';
 import { EnvironmentRelation } from './environment-relation';
 import { NetworkRelation } from './network-relation';
 import { ProjectRelation } from './project-relation';
@@ -80,6 +81,12 @@ export interface Subnet {
      * @memberof Subnet
      */
     network: NetworkRelation | null;
+    /**
+     * 
+     * @type {CredentialRelation}
+     * @memberof Subnet
+     */
+    credential: CredentialRelation | null;
     /**
      * 
      * @type {ActionRelation}

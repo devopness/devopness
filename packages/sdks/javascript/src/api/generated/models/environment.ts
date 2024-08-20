@@ -13,6 +13,7 @@
 
 
 import { ApplicationRelation } from './application-relation';
+import { CredentialRelation } from './credential-relation';
 import { CronJobRelation } from './cron-job-relation';
 import { DaemonRelation } from './daemon-relation';
 import { EnvironmentType } from './environment-type';
@@ -68,6 +69,12 @@ export interface Environment {
      * @memberof Environment
      */
     servers: Array<ServerRelation>;
+    /**
+     * 
+     * @type {Array<CredentialRelation>}
+     * @memberof Environment
+     */
+    credentials: Array<CredentialRelation>;
     /**
      * 
      * @type {Array<CronJobRelation>}

@@ -28,12 +28,6 @@ export interface NetworkProvisionInput {
      */
     cloud_service_code: ServerCloudServiceCode;
     /**
-     * The ID of the cloud credential
-     * @type {number}
-     * @memberof NetworkProvisionInput
-     */
-    credential_id: number;
-    /**
      * 
      * @type {NetworkProvisionInputSettings}
      * @memberof NetworkProvisionInput
