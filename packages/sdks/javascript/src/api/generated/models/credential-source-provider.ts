@@ -12,19 +12,18 @@
  */
 
 
-import { SubnetProvisionInputSettings } from './subnet-provision-input-settings';
 
 /**
- * Subnet provision input parameters
+ * 
  * @export
- * @interface SubnetProvisionInput
+ * @interface CredentialSourceProvider
  */
-export interface SubnetProvisionInput {
+export interface CredentialSourceProvider {
     /**
-     * 
-     * @type {SubnetProvisionInputSettings}
-     * @memberof SubnetProvisionInput
+     * The temporary code forwarded by the OAuth provider as a parameter to our callback URL
+     * @type {string}
+     * @memberof CredentialSourceProvider
      */
-    settings: SubnetProvisionInputSettings;
+    callback_code: string;
 }
 

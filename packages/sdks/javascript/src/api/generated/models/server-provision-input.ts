@@ -25,12 +25,6 @@ import { ServerCloudServiceCode } from './server-cloud-service-code';
  */
 export interface ServerProvisionInput {
     /**
-     * The unique id of the cloud provider credential to be used on connect to cloud provider
-     * @type {number}
-     * @memberof ServerProvisionInput
-     */
-    credential_id?: number;
-    /**
      * The ID of the subnet where to create the server. If not defined, create the server on the default subnet of the cloud provider
      * @type {number}
      * @memberof ServerProvisionInput

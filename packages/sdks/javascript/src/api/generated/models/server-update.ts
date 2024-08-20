@@ -32,7 +32,7 @@ export interface ServerUpdate {
      */
     ip_address?: string;
     /**
-     * The network port to which the SSH daemon is listening to SSH connections on the server. Must be between 0 and 65535.
+     * The network port to which the SSH daemon is listening to SSH connections on the server. Must be between 22 and 65535.
      * @type {number}
      * @memberof ServerUpdate
      */
@@ -43,5 +43,11 @@ export interface ServerUpdate {
      * @memberof ServerUpdate
      */
     max_parallel_actions?: number;
+    /**
+     * The ID of the cloud credential.
+     * @type {string}
+     * @memberof ServerUpdate
+     */
+    credential_id?: string;
 }
 

@@ -12,19 +12,15 @@
  */
 
 
-import { SubnetProvisionInputSettings } from './subnet-provision-input-settings';
 
 /**
- * Subnet provision input parameters
+ * Type of provider.
  * @export
- * @interface SubnetProvisionInput
+ * @enum {string}
  */
-export interface SubnetProvisionInput {
-    /**
-     * 
-     * @type {SubnetProvisionInputSettings}
-     * @memberof SubnetProvisionInput
-     */
-    settings: SubnetProvisionInputSettings;
+export enum ProviderType {
+    CloudProvider = 'cloud_provider',
+    SourceProvider = 'source_provider'
 }
+
 

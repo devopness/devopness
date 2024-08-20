@@ -12,19 +12,24 @@
  */
 
 
-import { SubnetProvisionInputSettings } from './subnet-provision-input-settings';
 
 /**
- * Subnet provision input parameters
+ * 
  * @export
- * @interface SubnetProvisionInput
+ * @interface NetworkUpdate
  */
-export interface SubnetProvisionInput {
+export interface NetworkUpdate {
     /**
-     * 
-     * @type {SubnetProvisionInputSettings}
-     * @memberof SubnetProvisionInput
+     * The ID of the network.
+     * @type {number}
+     * @memberof NetworkUpdate
      */
-    settings: SubnetProvisionInputSettings;
+    id: number;
+    /**
+     * The ID of the cloud credential.
+     * @type {number}
+     * @memberof NetworkUpdate
+     */
+    credential_id: number;
 }
 

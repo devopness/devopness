@@ -12,19 +12,19 @@
  */
 
 
-import { SubnetProvisionInputSettings } from './subnet-provision-input-settings';
 
 /**
- * Subnet provision input parameters
+ * The code of the service provider
  * @export
- * @interface SubnetProvisionInput
+ * @enum {string}
  */
-export interface SubnetProvisionInput {
-    /**
-     * 
-     * @type {SubnetProvisionInputSettings}
-     * @memberof SubnetProvisionInput
-     */
-    settings: SubnetProvisionInputSettings;
+export enum ProviderCode {
+    Aws = 'aws',
+    Bitbucket = 'bitbucket',
+    Digitalocean = 'digitalocean',
+    Gcp = 'gcp',
+    Github = 'github',
+    Gitlab = 'gitlab'
 }
+
 

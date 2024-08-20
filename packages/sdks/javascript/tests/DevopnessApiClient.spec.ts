@@ -1,7 +1,7 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
-import { DevopnessApiClient } from '../src/DevopnessApiClient'
+import { DevopnessApiClient } from '../src/DevopnessApiClient';
 
 const reqMock = new MockAdapter(axios)
 
@@ -18,8 +18,8 @@ test("base URL is configurable on initialization", () => {
 
   expect(apiClient).toHaveProperty('actions')
   expect(apiClient).toHaveProperty('applications')
-  expect(apiClient).toHaveProperty('cloudProviderCredentials')
   expect(apiClient).toHaveProperty('cronjobs')
+  expect(apiClient).toHaveProperty('credentials')
   expect(apiClient).toHaveProperty('daemons')
   expect(apiClient).toHaveProperty('environments')
   expect(apiClient).toHaveProperty('hookRequests')
@@ -33,19 +33,17 @@ test("base URL is configurable on initialization", () => {
   expect(apiClient).toHaveProperty('servers')
   expect(apiClient).toHaveProperty('services')
   expect(apiClient).toHaveProperty('socialAccounts')
-  expect(apiClient).toHaveProperty('sourceProviders')
   expect(apiClient).toHaveProperty('sshKeys')
   expect(apiClient).toHaveProperty('sslCertificates')
   expect(apiClient).toHaveProperty('virtualHosts')
 
   expect(apiClient).toHaveProperty('static')
   expect(apiClient.static).toHaveProperty('applicationOptions')
-  expect(apiClient.static).toHaveProperty('cloudProviderOptions')
   expect(apiClient.static).toHaveProperty('cloudProviderServiceInstances')
   expect(apiClient.static).toHaveProperty('cloudProviderServices')
+  expect(apiClient.static).toHaveProperty('credentialOptions')
   expect(apiClient.static).toHaveProperty('cronJobOptions')
   expect(apiClient.static).toHaveProperty('environmentOptions')
-  expect(apiClient.static).toHaveProperty('sourceProviderOptions')
   expect(apiClient.static).toHaveProperty('networkRuleOptions')
   expect(apiClient.static).toHaveProperty('permissions')
   expect(apiClient.static).toHaveProperty('serviceOptions')
