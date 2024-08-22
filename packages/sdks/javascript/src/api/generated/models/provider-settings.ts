@@ -13,7 +13,7 @@
 
 
 import { CloudProviderService } from './cloud-provider-service';
-import { CredentialInputSettings } from './credential-input-settings';
+import { ProviderInputSettings } from './provider-input-settings';
 
 /**
  * Settings of supported provider
@@ -29,10 +29,10 @@ export interface ProviderSettings {
     connect_url?: string;
     /**
      * The list of input settings for credential cloud provider
-     * @type {Array<CredentialInputSettings>}
+     * @type {Array<ProviderInputSettings>}
      * @memberof ProviderSettings
      */
-    input_settings: Array<CredentialInputSettings>;
+    input_settings: Array<ProviderInputSettings>;
     /**
      * 
      * @type {Array<CloudProviderService>}
