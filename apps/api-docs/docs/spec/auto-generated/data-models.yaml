@@ -141,8 +141,6 @@ CredentialGoogleCloud:
   $ref: ./auto-generated/models/credential-google-cloud.yaml
 CredentialInputSettings:
   $ref: ./auto-generated/models/credential-input-settings.yaml
-CredentialInputSettingsList:
-  $ref: ./auto-generated/models/credential-input-settings-list.yaml
 CredentialList:
   $ref: ./auto-generated/models/credential-list.yaml
 CredentialOptions:
@@ -393,6 +391,10 @@ ProjectUpdate:
   $ref: ./auto-generated/models/project-update.yaml
 ProviderCode:
   $ref: ./auto-generated/models/provider-code.yaml
+ProviderInputSettings:
+  $ref: ./auto-generated/models/provider-input-settings.yaml
+ProviderInputSettingsList:
+  $ref: ./auto-generated/models/provider-input-settings-list.yaml
 ProviderRelation:
   $ref: ./auto-generated/models/provider-relation.yaml
 ProviderSettings:

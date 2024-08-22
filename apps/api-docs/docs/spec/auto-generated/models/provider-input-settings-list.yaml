@@ -2,4 +2,4 @@
 type: array
 description: 'The list of input settings for credential cloud provider'
 items:
-  $ref: '#/components/schemas/CredentialInputSettings'
+  $ref: '#/components/schemas/ProviderInputSettings'
