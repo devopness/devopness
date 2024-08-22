@@ -16,37 +16,37 @@
 /**
  * The validation of the input setting
  * @export
- * @interface CredentialInputSettingsValidation
+ * @interface ProviderInputSettingsValidation
  */
-export interface CredentialInputSettingsValidation {
+export interface ProviderInputSettingsValidation {
     /**
      * 
      * @type {boolean}
-     * @memberof CredentialInputSettingsValidation
+     * @memberof ProviderInputSettingsValidation
      */
     required?: boolean;
     /**
      * 
      * @type {string}
-     * @memberof CredentialInputSettingsValidation
+     * @memberof ProviderInputSettingsValidation
      */
     type?: string;
     /**
      * 
      * @type {number}
-     * @memberof CredentialInputSettingsValidation
+     * @memberof ProviderInputSettingsValidation
      */
     min?: number;
     /**
      * 
      * @type {number}
-     * @memberof CredentialInputSettingsValidation
+     * @memberof ProviderInputSettingsValidation
      */
     max?: number;
     /**
      * 
      * @type {Array<string>}
-     * @memberof CredentialInputSettingsValidation
+     * @memberof ProviderInputSettingsValidation
      */
     allowed_values?: Array<string>;
 }

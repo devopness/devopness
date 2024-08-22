@@ -12,43 +12,22 @@
  */
 
 
-import { CredentialInputSettingsValidation } from './credential-input-settings-validation';
+import { CredentialAws } from './credential-aws';
+import { CredentialDigitalOcean } from './credential-digital-ocean';
+import { CredentialGoogleCloud } from './credential-google-cloud';
+import { CredentialSourceProvider } from './credential-source-provider';
 
 /**
- * A input setting for credential cloud provider
+ * 
  * @export
  * @interface CredentialInputSettings
  */
 export interface CredentialInputSettings {
     /**
-     * The name of the input setting
-     * @type {string}
+     * Cloud provider credential
+     * @type {CredentialAws | CredentialDigitalOcean | CredentialGoogleCloud | CredentialSourceProvider}
      * @memberof CredentialInputSettings
      */
-    name: string;
-    /**
-     * The human readable version of the input setting name
-     * @type {string}
-     * @memberof CredentialInputSettings
-     */
-    name_human_readable: string;
-    /**
-     * 
-     * @type {CredentialInputSettingsValidation}
-     * @memberof CredentialInputSettings
-     */
-    validation: CredentialInputSettingsValidation;
-    /**
-     * The default value of the input setting
-     * @type {string}
-     * @memberof CredentialInputSettings
-     */
-    default_value: string | null;
-    /**
-     * Defines if the input setting data is a sensitive content
-     * @type {boolean}
-     * @memberof CredentialInputSettings
-     */
-    sensitive: boolean;
+    credential: CredentialAws | CredentialDigitalOcean | CredentialGoogleCloud | CredentialSourceProvider;
 }
 

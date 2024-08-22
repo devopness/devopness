@@ -13877,73 +13877,28 @@
       },
       "CredentialInputSettings": {
         "type": "object",
-        "description": "A input setting for credential cloud provider",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "The name of the input setting",
-            "example": "access_key"
-          },
-          "name_human_readable": {
-            "type": "string",
-            "description": "The human readable version of the input setting name",
-            "example": "Access Key"
-          },
-          "validation": {
-            "type": "object",
-            "description": "The validation of the input setting",
-            "properties": {
-              "required": {
-                "type": "boolean",
-                "example": true
+          "credential": {
+            "description": "Cloud provider credential",
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CredentialAws"
               },
-              "type": {
-                "type": "string",
-                "example": "string"
+              {
+                "$ref": "#/components/schemas/CredentialDigitalOcean"
               },
-              "min": {
-                "type": "integer",
-                "example": 10
+              {
+                "$ref": "#/components/schemas/CredentialGoogleCloud"
               },
-              "max": {
-                "type": "integer",
-                "example": 20
-              },
-              "allowed_values": {
-                "type": "array",
-                "items": {
-                  "type": "string",
-                  "example": ""
-                }
+              {
+                "$ref": "#/components/schemas/CredentialSourceProvider"
               }
-            }
-          },
-          "default_value": {
-            "type": "string",
-            "description": "The default value of the input setting",
-            "example": null,
-            "nullable": true
-          },
-          "sensitive": {
-            "type": "boolean",
-            "description": "Defines if the input setting data is a sensitive content",
-            "example": false
+            ]
           }
         },
         "required": [
-          "name",
-          "name_human_readable",
-          "validation",
-          "default_value",
-          "sensitive"
+          "credential"
         ]
-      },
-      "CredentialInputSettingsList": {
-        "type": "array",
-        "description": "The list of input settings for credential cloud provider",
-        "items": {
-          "$ref": "#/components/schemas/CredentialInputSettings"
-        }
       },
       "CredentialList": {
         "type": "array",
@@ -17585,6 +17540,76 @@
         ],
         "example": "aws"
       },
+      "ProviderInputSettings": {
+        "type": "object",
+        "description": "A input setting for credential cloud provider",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the input setting",
+            "example": "access_key"
+          },
+          "name_human_readable": {
+            "type": "string",
+            "description": "The human readable version of the input setting name",
+            "example": "Access Key"
+          },
+          "validation": {
+            "type": "object",
+            "description": "The validation of the input setting",
+            "properties": {
+              "required": {
+                "type": "boolean",
+                "example": true
+              },
+              "type": {
+                "type": "string",
+                "example": "string"
+              },
+              "min": {
+                "type": "integer",
+                "example": 10
+              },
+              "max": {
+                "type": "integer",
+                "example": 20
+              },
+              "allowed_values": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "example": ""
+                }
+              }
+            }
+          },
+          "default_value": {
+            "type": "string",
+            "description": "The default value of the input setting",
+            "example": null,
+            "nullable": true
+          },
+          "sensitive": {
+            "type": "boolean",
+            "description": "Defines if the input setting data is a sensitive content",
+            "example": false
+          }
+        },
+        "required": [
+          "name",
+          "name_human_readable",
+          "validation",
+          "default_value",
+          "sensitive"
+        ]
+      },
+      "ProviderInputSettingsList": {
+        "type": "array",
+        "description": "The list of input settings for credential cloud provider",
+        "items": {
+          "$ref": "#/components/schemas/ProviderInputSettings"
+        }
+      },
       "ProviderRelation": {
         "type": "object",
         "properties": {
@@ -17632,7 +17657,7 @@
             "example": "https://gitlab.com/oauth/authorize?client_id=%3CSET-DEVOPNESS-GITLAB-CLIENT-ID-HERE%3E&redirect_uri=http%3A%2F%2Flocalhost%3A9000%2Fprofile%2Fsource-providers%2Fadd%3Fprovider%3Dgitlab&scope=read_user+email+api&response_type=code"
           },
           "input_settings": {
-            "$ref": "#/components/schemas/CredentialInputSettingsList"
+            "$ref": "#/components/schemas/ProviderInputSettingsList"
           },
           "cloud_services": {
             "$ref": "#/components/schemas/CloudProviderServiceList"
