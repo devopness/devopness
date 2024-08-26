@@ -17,3 +17,6 @@ docs/api-docs.zip
 # Auto-generated/copied files. For details, see `api-*` scripts in package.json
 docs/spec/data-models.yaml
 docs/spec/paths.yaml
+
+# dotenv file
+.env

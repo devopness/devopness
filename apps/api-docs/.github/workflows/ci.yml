@@ -16,16 +16,23 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [20.x]
         os: [ubuntu-latest]
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create `.env` file
+        # DEV_API_DOCS_ENV_FILE: contents of a `.env` to be used when executing this job
+        run: |
+          echo "${{ secrets.DEV_API_DOCS_ENV_FILE }}" > .env
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+          cache: "npm"
 
       - name: Install dependencies
         run: npm ci
@@ -40,7 +47,7 @@ jobs:
       - name: Extract downloaded content
         run: npm run api-docs-zip-extract
 
-      - uses: stefanzweifel/git-auto-commit-action@v4
+      - uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "docs: Update API generated files"
           file_pattern: "docs/spec/*"

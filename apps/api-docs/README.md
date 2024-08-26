@@ -24,6 +24,8 @@ For more details and reference see the existing [endpoints specs](docs/spec).
 
 # Usage
 
+Make a copy of `.env.example` and name it `.env`, placing it at the root of the project.
+
 ## Build and run, with Docker
 ### Prerequisites
 - [Docker](https://www.docker.com/products/docker-desktop/)

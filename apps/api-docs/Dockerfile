@@ -1,4 +1,4 @@
-FROM node:18-buster as builder
+FROM node:20-bookworm AS builder
 
 WORKDIR /app
 
@@ -7,7 +7,7 @@ COPY . .
 RUN npm ci
 RUN npm run build
 
-FROM node:18-buster
+FROM node:20-bookworm
 
 WORKDIR /api-docs
 

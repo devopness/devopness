@@ -2,9 +2,10 @@ import hooks, { Transaction, TransactionHook } from 'hooks';
 import { v1, v4 } from 'uuid';
 
 import './augmentTransactionWithMetadata';
-import DevopnessAPI from './DevopnessAPI';
-import FixtureStore from './FixtureStore';
 import { Identifiable, UserCredentials, UserTokens, isFixtureKey } from './fixtureTypes';
+import DevopnessAPI from './DevopnessAPI';
+import env from './envLoader';
+import FixtureStore from './FixtureStore';
 import Logger from './Logger';
 import OpenAPISpec from './OpenAPISpec';
 import TransactionGraph, { FixtureTransactionAdjacencyList, TransactionGraphEdge } from './TransactionGraph';
@@ -339,59 +340,59 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         transaction.skip = true;
     })
 
-    const staticCloudCredentialId = 6;
-    before('addCloudProviderCredential201', (transaction: Transaction) => {
-        hooks.log(`=> 'credential' (id=${staticCloudCredentialId})`)
-        fixtures.put('credential', { id: `${staticCloudCredentialId}` });
-        transaction.skip = true;
-    })
-
-    // This function modifies the request to create a credential using a fake 
-    // endpoint. This is necessary because credentials are validated by providers, 
+    // This function modifies the request to create a credential using a fake
+    // endpoint. This is necessary because credentials are validated by providers,
     // so we need to create fake credentials to be used by other endpoints.
     const beforeCreateCredential = (transaction: Transaction) => {
         const tag = `[fake-credentials]`
 
-        if (transaction.request.body) {
-            const environment = fixtures.get<Identifiable>('environment');
-
-            if (environment) {
-                const path = `/dev-tests/fake-credentials/${environment.id}`;
-                const bodySchema = JSON.parse(String(transaction.expected.bodySchema))
-                delete bodySchema.allOf
-
-                hooks.log(`${tag} rewrite path '${transaction.fullPath}' => '${path}'`);
-                bodySchema.type = "array"
-                bodySchema.items = {
-                    allOf: [{ $ref: "#/definitions/Credential" }]
-                }
-                transaction.expected.bodySchema = JSON.stringify(bodySchema) as any
-                transaction.expected.body = `[\n${transaction.expected.body}\n]`
-                transaction.fullPath = path;
-            } else {
-                hooks.log(`${tag} transaction '${transaction.id}' requires 'environment' fixture`);
-            }
+        const environment = fixtures.get<Identifiable>('environment');
+        if (!environment) {
+          hooks.log(`${tag} transaction '${transaction.id}' requires 'environment' fixture`);
+          return;
         }
+
+        transaction.expected.body = "";
+        transaction.expected.bodySchema = {};
+
+        transaction.fullPath = `/dev-tests/fake-credentials/${environment.id}`;
+
+        transaction.request.body = JSON.stringify({
+          cloud: {
+            name: "fake-cloud-credential",
+            access_key: env.CREDENTIAL_AWS_ACCESS_KEY_ID,
+            secret_key: env.CREDENTIAL_AWS_SECRET_ACCESS_KEY,
+          },
+          source: {
+            name: "fake-source-credential",
+            access_token: env.CREDENTIAL_GITHUB_ACCESS_TOKEN,
+            provider_code: "github",
+          },
+        });
+
+        hooks.log(`:: ${tag} creating credentials...`);
     }
 
-    // After creating credentials, we need to save them in the fixture. The endpoint 
+    // After creating credentials, we need to save them in the fixture. The endpoint
     // dev-tests/fake-credentials returns two credentials: one for the source provider
     // and another for the cloud provider. The first one in the array is the cloud-
     // provider credential, which is also used to update the credential.
     const afterCreateCredential = (transaction: Transaction) => {
-        const body = JSON.parse(transaction.real.body)
+        const tag = `[fake-credentials]`
+        const credentials = JSON.parse(transaction.real.body);
 
-        fixtures.put(`credential`, { id: `${body[0].id}` });
+        fixtures.put("credential", { id: credentials[0].id });
 
-        body.forEach((credential: any) => {
-            fixtures.put(`credential_${credential.type}`, { id: `${credential.id}` });
-        })
+        fixtures.put("credential_cloud_provider",  { id: credentials[0].id });
+        fixtures.put("credential_source_provider", { id: credentials[1].id });
+
+        hooks.log(`:: ${tag} saved credentials...`);
     }
 
     before('addEnvironmentCredential201', beforeCreateCredential)
     after('addEnvironmentCredential201', afterCreateCredential)
 
-    //// repositories
+    // //// repositories
     before('getCredentialRepository200', (transaction: Transaction) => {
         const credential = fixtures.get<Identifiable>('credential_source_provider');
 
