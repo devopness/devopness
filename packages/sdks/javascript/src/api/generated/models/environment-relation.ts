@@ -28,12 +28,6 @@ export interface EnvironmentRelation {
      */
     id: number;
     /**
-     * Environment\'s name
-     * @type {string}
-     * @memberof EnvironmentRelation
-     */
-    name: string;
-    /**
      * 
      * @type {EnvironmentType}
      * @memberof EnvironmentRelation
@@ -45,6 +39,18 @@ export interface EnvironmentRelation {
      * @memberof EnvironmentRelation
      */
     type_human_readable: string;
+    /**
+     * Environment\'s name
+     * @type {string}
+     * @memberof EnvironmentRelation
+     */
+    name: string;
+    /**
+     * Environment\'s description
+     * @type {string}
+     * @memberof EnvironmentRelation
+     */
+    description: string | null;
     /**
      * Number of credits used in the current monthly billing cycle by actions of resources in the environment.
      * @type {number}

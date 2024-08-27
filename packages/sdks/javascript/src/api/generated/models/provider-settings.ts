@@ -16,19 +16,19 @@ import { CloudProviderService } from './cloud-provider-service';
 import { ProviderInputSettings } from './provider-input-settings';
 
 /**
- * Settings of supported provider
+ * Settings related to a supported provider
  * @export
  * @interface ProviderSettings
  */
 export interface ProviderSettings {
     /**
-     * The URL to connect to the source provider
+     * The URL used to connect Devopness to a credential provider of type `source_provider`
      * @type {string}
      * @memberof ProviderSettings
      */
     connect_url?: string;
     /**
-     * The list of input settings for credential cloud provider
+     * The list of input settings for credentials of specific provider
      * @type {Array<ProviderInputSettings>}
      * @memberof ProviderSettings
      */

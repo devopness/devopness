@@ -2220,8 +2220,8 @@
           },
           {
             "in": "query",
-            "name": "provider",
-            "description": "Filter by credential provider.",
+            "name": "provider_code",
+            "description": "Filter credentials by provider code.",
             "example": "aws",
             "required": false,
             "schema": {
@@ -2230,8 +2230,8 @@
           },
           {
             "in": "query",
-            "name": "type",
-            "description": "Filter by credential type.",
+            "name": "provider_type",
+            "description": "Filter credentials by provider type.",
             "example": "cloud_provider",
             "required": false,
             "schema": {
@@ -4715,6 +4715,73 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/NetworkUpdate"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/networks/{network_id}/get-status": {
+      "post": {
+        "summary": "Get current status of a network",
+        "operationId": "getStatusNetwork",
+        "tags": [
+          "Networks"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "network_id",
+            "description": "The ID of the network.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified resource was not found"
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
               }
             }
           }
@@ -13095,11 +13162,6 @@
             "type": "integer",
             "example": 2
           },
-          "name": {
-            "description": "Environment's name",
-            "type": "string",
-            "example": "My staging"
-          },
           "type": {
             "$ref": "#/components/schemas/EnvironmentType"
           },
@@ -13107,6 +13169,17 @@
             "description": "The human readable version of the type",
             "type": "string",
             "example": "Staging"
+          },
+          "name": {
+            "description": "Environment's name",
+            "type": "string",
+            "example": "My staging"
+          },
+          "description": {
+            "description": "Environment's description",
+            "type": "string",
+            "example": "My staging environment",
+            "nullable": true
           },
           "used_credits": {
             "description": "Number of credits used in the current monthly billing cycle by actions of resources in the environment.",
@@ -13135,9 +13208,10 @@
         },
         "required": [
           "id",
-          "name",
           "type",
           "type_human_readable",
+          "name",
+          "description",
           "created_at",
           "updated_at",
           "archived_at",
@@ -13754,12 +13828,12 @@
           "provider": {
             "$ref": "#/components/schemas/ProviderRelation"
           },
-          "type": {
+          "provider_type": {
             "description": "The type of the credential",
             "type": "string",
             "example": "cloud_provider"
           },
-          "type_human_readable": {
+          "provider_type_human_readable": {
             "description": "The human readable version of the type of the credential",
             "type": "string",
             "example": "Cloud Provider"
@@ -13787,8 +13861,8 @@
           "id",
           "name",
           "provider",
-          "type",
-          "type_human_readable",
+          "provider_type",
+          "provider_type_human_readable",
           "active",
           "created_by_user",
           "created_at",
@@ -13840,7 +13914,7 @@
             "example": "b",
             "type": "string"
           },
-          "type": {
+          "provider_type": {
             "description": "Must be one of <code>cloud_provider</code> or <code>source_provider</code>.",
             "example": "source_provider",
             "type": "string"
@@ -13857,7 +13931,7 @@
         "required": [
           "name",
           "provider_code",
-          "type",
+          "provider_type",
           "active",
           "settings"
         ]
@@ -13910,10 +13984,10 @@
         "type": "object",
         "properties": {
           "provider_types": {
-            "$ref": "#/components/schemas/ProviderTypeList"
+            "$ref": "#/components/schemas/CredentialProviderTypeList"
           },
           "supported_providers": {
-            "$ref": "#/components/schemas/CredentialProviderTypeList"
+            "$ref": "#/components/schemas/CredentialProviderList"
           }
         },
         "required": [
@@ -13921,24 +13995,22 @@
           "supported_providers"
         ]
       },
-      "CredentialProviderType": {
+      "CredentialProvider": {
         "type": "object",
-        "description": "A cloud provider for credential cloud service",
+        "description": "The provider on which a credential was issued and belongs to",
         "properties": {
           "code": {
             "type": "string",
-            "description": "The code of the cloud provider",
+            "description": "The provider code",
             "example": "aws"
           },
           "name": {
             "type": "string",
-            "description": "The name of the cloud provider",
+            "description": "The provider name",
             "example": "Amazon Web Services"
           },
           "hint": {
-            "type": "string",
-            "description": "Text describing the cloud provider",
-            "example": "Cloud services provided by Amazon Web Services"
+            "$ref": "#/components/schemas/FieldHint"
           },
           "type": {
             "description": "Type of provider.",
@@ -13963,9 +14035,40 @@
           "type_human_readable"
         ]
       },
+      "CredentialProviderList": {
+        "type": "array",
+        "description": "The list of supported credential providers",
+        "items": {
+          "$ref": "#/components/schemas/CredentialProvider"
+        }
+      },
+      "CredentialProviderType": {
+        "type": "object",
+        "description": "The type of the provider on which a credential was issued and belongs to",
+        "properties": {
+          "type": {
+            "description": "Type of provider.",
+            "type": "string",
+            "enum": [
+              "cloud_provider",
+              "source_provider"
+            ],
+            "example": "cloud_provider"
+          },
+          "type_human_readable": {
+            "description": "Human readable version of provider type",
+            "type": "string",
+            "example": "Cloud Provider"
+          }
+        },
+        "required": [
+          "type",
+          "type_human_readable"
+        ]
+      },
       "CredentialProviderTypeList": {
         "type": "array",
-        "description": "The list of supported providers",
+        "description": "The list of credential provider types",
         "items": {
           "$ref": "#/components/schemas/CredentialProviderType"
         }
@@ -13986,10 +14089,10 @@
           "provider": {
             "$ref": "#/components/schemas/ProviderRelation"
           },
-          "type": {
+          "provider_type": {
             "$ref": "#/components/schemas/ProviderType"
           },
-          "type_human_readable": {
+          "provider_type_human_readable": {
             "description": "The human readable version of the type of the credential",
             "type": "string",
             "example": "Cloud Provider"
@@ -14017,8 +14120,8 @@
           "id",
           "name",
           "provider",
-          "type",
-          "type_human_readable",
+          "provider_type",
+          "provider_type_human_readable",
           "active",
           "created_by_user",
           "created_at",
@@ -14739,11 +14842,6 @@
             "type": "integer",
             "example": 16523
           },
-          "name": {
-            "description": "Environment's name",
-            "type": "string",
-            "example": "My staging"
-          },
           "type": {
             "$ref": "#/components/schemas/EnvironmentType"
           },
@@ -14751,6 +14849,17 @@
             "description": "The human readable version of the type",
             "type": "string",
             "example": "Staging"
+          },
+          "name": {
+            "description": "Environment's name",
+            "type": "string",
+            "example": "My staging"
+          },
+          "description": {
+            "description": "Environment's description",
+            "type": "string",
+            "example": "My staging environment",
+            "nullable": true
           },
           "is_archived": {
             "description": "Indicates whether the record was archived",
@@ -14812,9 +14921,10 @@
         },
         "required": [
           "id",
-          "name",
           "type",
           "type_human_readable",
+          "name",
+          "description",
           "is_archived",
           "servers",
           "credentials",
@@ -14895,7 +15005,12 @@
           },
           "name": {
             "description": "The environment's name. Must not be greater than 60 characters.",
-            "example": "my project - staging",
+            "example": "My staging",
+            "type": "string"
+          },
+          "description": {
+            "description": "The environment's description. Must not be greater than 255 characters.",
+            "example": "My staging environment",
             "type": "string"
           }
         },
@@ -14912,11 +15027,6 @@
             "type": "integer",
             "example": 2
           },
-          "name": {
-            "description": "Environment's name",
-            "type": "string",
-            "example": "My staging"
-          },
           "type": {
             "$ref": "#/components/schemas/EnvironmentType"
           },
@@ -14924,6 +15034,17 @@
             "description": "The human readable version of the type",
             "type": "string",
             "example": "Staging"
+          },
+          "name": {
+            "description": "Environment's name",
+            "type": "string",
+            "example": "My staging"
+          },
+          "description": {
+            "description": "Environment's description",
+            "type": "string",
+            "example": "My staging environment",
+            "nullable": true
           },
           "used_credits": {
             "description": "Number of credits used in the current monthly billing cycle by actions of resources in the environment.",
@@ -14952,9 +15073,10 @@
         },
         "required": [
           "id",
-          "name",
           "type",
           "type_human_readable",
+          "name",
+          "description",
           "created_at",
           "updated_at",
           "archived_at",
@@ -14985,7 +15107,12 @@
           },
           "name": {
             "description": "The environment's name. Must not be greater than 60 characters.",
-            "example": "my project - staging",
+            "example": "My staging",
+            "type": "string"
+          },
+          "description": {
+            "description": "The environment's description. Must not be greater than 255 characters.",
+            "example": "My staging environment",
             "type": "string"
           }
         },
@@ -17542,21 +17669,21 @@
       },
       "ProviderInputSettings": {
         "type": "object",
-        "description": "A input setting for credential cloud provider",
+        "description": "Input settings for credentials of specific provider",
         "properties": {
           "name": {
             "type": "string",
-            "description": "The name of the input setting",
+            "description": "The name of a credential input field",
             "example": "access_key"
           },
           "name_human_readable": {
             "type": "string",
-            "description": "The human readable version of the input setting name",
+            "description": "The human readable version of the input field name",
             "example": "Access Key"
           },
           "validation": {
             "type": "object",
-            "description": "The validation of the input setting",
+            "description": "The validation rules that apply for the input field",
             "properties": {
               "required": {
                 "type": "boolean",
@@ -17585,13 +17712,13 @@
           },
           "default_value": {
             "type": "string",
-            "description": "The default value of the input setting",
+            "description": "The default value of the input field",
             "example": null,
             "nullable": true
           },
           "sensitive": {
             "type": "boolean",
-            "description": "Defines if the input setting data is a sensitive content",
+            "description": "Defines if the input field data is a sensitive content",
             "example": false
           }
         },
@@ -17605,7 +17732,7 @@
       },
       "ProviderInputSettingsList": {
         "type": "array",
-        "description": "The list of input settings for credential cloud provider",
+        "description": "The list of input settings for credentials of specific provider",
         "items": {
           "$ref": "#/components/schemas/ProviderInputSettings"
         }
@@ -17649,11 +17776,11 @@
       },
       "ProviderSettings": {
         "type": "object",
-        "description": "Settings of supported provider",
+        "description": "Settings related to a supported provider",
         "properties": {
           "connect_url": {
             "type": "string",
-            "description": "The URL to connect to the source provider",
+            "description": "The URL used to connect Devopness to a credential provider of type `source_provider`",
             "example": "https://gitlab.com/oauth/authorize?client_id=%3CSET-DEVOPNESS-GITLAB-CLIENT-ID-HERE%3E&redirect_uri=http%3A%2F%2Flocalhost%3A9000%2Fprofile%2Fsource-providers%2Fadd%3Fprovider%3Dgitlab&scope=read_user+email+api&response_type=code"
           },
           "input_settings": {

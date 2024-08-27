@@ -40,12 +40,6 @@ export interface Environment {
      */
     id: number;
     /**
-     * Environment\'s name
-     * @type {string}
-     * @memberof Environment
-     */
-    name: string;
-    /**
      * 
      * @type {EnvironmentType}
      * @memberof Environment
@@ -57,6 +51,18 @@ export interface Environment {
      * @memberof Environment
      */
     type_human_readable: string;
+    /**
+     * Environment\'s name
+     * @type {string}
+     * @memberof Environment
+     */
+    name: string;
+    /**
+     * Environment\'s description
+     * @type {string}
+     * @memberof Environment
+     */
+    description: string | null;
     /**
      * Indicates whether the record was archived
      * @type {boolean}
