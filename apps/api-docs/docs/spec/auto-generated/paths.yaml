@@ -196,6 +196,9 @@
     $ref: ./auto-generated/endpoints/get-network.yaml
   put:
     $ref: ./auto-generated/endpoints/update-network.yaml
+'/networks/{network_id}/get-status':
+  post:
+    $ref: ./auto-generated/endpoints/get-status-network.yaml
 '/networks/{network_id}/subnets':
   get:
     $ref: ./auto-generated/endpoints/list-network-subnets.yaml

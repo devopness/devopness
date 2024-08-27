@@ -5,16 +5,21 @@ properties:
     description: 'Unique id of the given record'
     type: integer
     example: 2
-  name:
-    description: 'Environment''s name'
-    type: string
-    example: 'My staging'
   type:
     $ref: '#/components/schemas/EnvironmentType'
   type_human_readable:
     description: 'The human readable version of the type'
     type: string
     example: Staging
+  name:
+    description: 'Environment''s name'
+    type: string
+    example: 'My staging'
+  description:
+    description: 'Environment''s description'
+    type: string
+    example: 'My staging environment'
+    nullable: true
   used_credits:
     description: 'Number of credits used in the current monthly billing cycle by actions of resources in the environment.'
     type: integer
@@ -36,9 +41,10 @@ properties:
     $ref: '#/components/schemas/ProjectRelation'
 required:
   - id
-  - name
   - type
   - type_human_readable
+  - name
+  - description
   - created_at
   - updated_at
   - archived_at

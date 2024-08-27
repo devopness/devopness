@@ -145,6 +145,10 @@ CredentialList:
   $ref: ./auto-generated/models/credential-list.yaml
 CredentialOptions:
   $ref: ./auto-generated/models/credential-options.yaml
+CredentialProvider:
+  $ref: ./auto-generated/models/credential-provider.yaml
+CredentialProviderList:
+  $ref: ./auto-generated/models/credential-provider-list.yaml
 CredentialProviderType:
   $ref: ./auto-generated/models/credential-provider-type.yaml
 CredentialProviderTypeList:

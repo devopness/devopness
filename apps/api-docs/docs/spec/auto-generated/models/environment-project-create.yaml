@@ -5,7 +5,11 @@ properties:
     $ref: '#/components/schemas/EnvironmentType'
   name:
     description: 'The environment''s name. Must not be greater than 60 characters.'
-    example: 'my project - staging'
+    example: 'My staging'
+    type: string
+  description:
+    description: 'The environment''s description. Must not be greater than 255 characters.'
+    example: 'My staging environment'
     type: string
 required:
   - type
