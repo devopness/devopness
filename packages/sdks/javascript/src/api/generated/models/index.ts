@@ -59,6 +59,7 @@ export * from './credential-environment-create';
 export * from './credential-google-cloud';
 export * from './credential-input-settings';
 export * from './credential-options';
+export * from './credential-provider';
 export * from './credential-provider-type';
 export * from './credential-relation';
 export * from './credential-setting';

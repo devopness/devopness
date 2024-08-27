@@ -38,5 +38,11 @@ export interface EnvironmentUpdate {
      * @memberof EnvironmentUpdate
      */
     name: string;
+    /**
+     * The environment\'s description. Must not be greater than 255 characters.
+     * @type {string}
+     * @memberof EnvironmentUpdate
+     */
+    description?: string;
 }
 

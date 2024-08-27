@@ -74,16 +74,16 @@ export class EnvironmentsCredentialsApiService extends ApiBaseService {
      * @param {number} environmentId The ID of the environment.
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
-     * @param {string} [provider] Filter by credential provider.
-     * @param {string} [type] Filter by credential type.
+     * @param {string} [providerCode] Filter credentials by provider code.
+     * @param {string} [providerType] Filter credentials by provider type.
      */
-    public async listEnvironmentCredentials(environmentId: number, page?: number, perPage?: number, provider?: string, type?: string): Promise<ApiResponse<Array<CredentialRelation>>> {
+    public async listEnvironmentCredentials(environmentId: number, page?: number, perPage?: number, providerCode?: string, providerType?: string): Promise<ApiResponse<Array<CredentialRelation>>> {
         if (environmentId === null || environmentId === undefined) {
             throw new ArgumentNullException('environmentId', 'listEnvironmentCredentials');
         }
 
         let queryString = '';
-        const queryParams = { page: page, per_page: perPage, provider: provider, type: type, } as { [key: string]: any };
+        const queryParams = { page: page, per_page: perPage, provider_code: providerCode, provider_type: providerType, } as { [key: string]: any };
         for (const key in queryParams) {
             if (queryParams[key] === undefined || queryParams[key] === null) {
                 continue;

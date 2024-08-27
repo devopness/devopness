@@ -14,29 +14,11 @@
 
 
 /**
- * A cloud provider for credential cloud service
+ * The type of the provider on which a credential was issued and belongs to
  * @export
  * @interface CredentialProviderType
  */
 export interface CredentialProviderType {
-    /**
-     * The code of the cloud provider
-     * @type {string}
-     * @memberof CredentialProviderType
-     */
-    code: string;
-    /**
-     * The name of the cloud provider
-     * @type {string}
-     * @memberof CredentialProviderType
-     */
-    name: string;
-    /**
-     * Text describing the cloud provider
-     * @type {string}
-     * @memberof CredentialProviderType
-     */
-    hint: string;
     /**
      * Type of provider.
      * @type {string}

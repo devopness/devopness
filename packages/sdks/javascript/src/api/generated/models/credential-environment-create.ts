@@ -37,7 +37,7 @@ export interface CredentialEnvironmentCreate {
      * @type {string}
      * @memberof CredentialEnvironmentCreate
      */
-    type: string;
+    provider_type: string;
     /**
      * If this credential is active or not.
      * @type {boolean}

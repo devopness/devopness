@@ -60,6 +60,24 @@ export class NetworksApiService extends ApiBaseService {
 
     /**
      * 
+     * @summary Get current status of a network
+     * @param {number} networkId The ID of the network.
+     */
+    public async getStatusNetwork(networkId: number): Promise<ApiResponse<void>> {
+        if (networkId === null || networkId === undefined) {
+            throw new ArgumentNullException('networkId', 'getStatusNetwork');
+        }
+
+        let queryString = '';
+
+        const requestUrl = '/networks/{network_id}/get-status' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <void>(requestUrl.replace(`{${"network_id"}}`, encodeURIComponent(String(networkId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
      * @summary Update an existing Network
      * @param {number} networkId The ID of the network.
      * @param {NetworkUpdate} networkUpdate A JSON object containing the resource data

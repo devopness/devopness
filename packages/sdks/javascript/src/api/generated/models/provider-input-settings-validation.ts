@@ -14,7 +14,7 @@
 
 
 /**
- * The validation of the input setting
+ * The validation rules that apply for the input field
  * @export
  * @interface ProviderInputSettingsValidation
  */

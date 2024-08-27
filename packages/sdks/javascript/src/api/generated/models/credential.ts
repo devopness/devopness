@@ -44,13 +44,13 @@ export interface Credential {
      * @type {string}
      * @memberof Credential
      */
-    type: string;
+    provider_type: string;
     /**
      * The human readable version of the type of the credential
      * @type {string}
      * @memberof Credential
      */
-    type_human_readable: string;
+    provider_type_human_readable: string;
     /**
      * If this credential is active or not
      * @type {boolean}

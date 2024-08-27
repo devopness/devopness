@@ -32,5 +32,11 @@ export interface EnvironmentProjectCreate {
      * @memberof EnvironmentProjectCreate
      */
     name: string;
+    /**
+     * The environment\'s description. Must not be greater than 255 characters.
+     * @type {string}
+     * @memberof EnvironmentProjectCreate
+     */
+    description?: string;
 }
 

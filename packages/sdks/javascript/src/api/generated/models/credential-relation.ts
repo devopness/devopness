@@ -45,13 +45,13 @@ export interface CredentialRelation {
      * @type {ProviderType}
      * @memberof CredentialRelation
      */
-    type: ProviderType;
+    provider_type: ProviderType;
     /**
      * The human readable version of the type of the credential
      * @type {string}
      * @memberof CredentialRelation
      */
-    type_human_readable: string;
+    provider_type_human_readable: string;
     /**
      * If this credential is active or not
      * @type {boolean}

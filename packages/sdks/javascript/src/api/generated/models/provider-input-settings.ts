@@ -15,19 +15,19 @@
 import { ProviderInputSettingsValidation } from './provider-input-settings-validation';
 
 /**
- * A input setting for credential cloud provider
+ * Input settings for credentials of specific provider
  * @export
  * @interface ProviderInputSettings
  */
 export interface ProviderInputSettings {
     /**
-     * The name of the input setting
+     * The name of a credential input field
      * @type {string}
      * @memberof ProviderInputSettings
      */
     name: string;
     /**
-     * The human readable version of the input setting name
+     * The human readable version of the input field name
      * @type {string}
      * @memberof ProviderInputSettings
      */
@@ -39,13 +39,13 @@ export interface ProviderInputSettings {
      */
     validation: ProviderInputSettingsValidation;
     /**
-     * The default value of the input setting
+     * The default value of the input field
      * @type {string}
      * @memberof ProviderInputSettings
      */
     default_value: string | null;
     /**
-     * Defines if the input setting data is a sensitive content
+     * Defines if the input field data is a sensitive content
      * @type {boolean}
      * @memberof ProviderInputSettings
      */
