@@ -11,16 +11,16 @@ links:
     featured:
 ---
 
-> If you don't have a GCP credential, please follow the guide {% mentionPost "/docs/users/credentials/add-gcp-credential" %}
+> If you don't have a GCP credential, please follow the guide {% mentionPost "/docs/credentials/add-gcp-credential" %}
 
 1. On Devopness, navigate to a project then select an environment
 1. If there's no other server in the selected environment, just click `ADD SERVER`
 1. If a list of resource cards is displayed, find the `Servers` card and click View on it
 1. On the upper-right corner of the list click `ADD SERVER`
 1. Choose `Google Cloud Platform` as cloud provider
-1. Select a GCP credential using the drop-down menu
-    > If no credential is listed or you want to use a different one, follow the guide {% mentionPost "/docs/users/credentials/add-credential" %}
-1. Click `NEXT`
+1. With the `Cloud Provider` selected, the drop-down `Credentials` list all credentials of this `Cloud Provider`, select a credential 
+    > If no credential is listed or you want to use a different one, click `Create a new credential` and follow the guide {% mentionPost "/docs/credentials/add-credential" %}
+1. Once a `Cloud Provider Credential` is selected, click in `Next` button
 1. Select an available region using the drop-down menu
 1. Select an available instance type using the drop-down menu
 1. Set the `Disk size`
