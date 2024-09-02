@@ -22,5 +22,5 @@ required_permissions:
     > If no credential is listed or you want to use a different one, click `Create a new credential` and follow the guide {% mentionPost "/docs/credentials/add-credential" %}
 1. Once a `Cloud Provider Credential` is selected, click in `Next` button
 1. Follow the prompts then click `CONFIRM`
-1. In the `Networks` list, the recently created `Network` can be seen
+1. Wait for the `network:provision` action to be completed
     - If you want to add a server to the `Network`, it is required to first follow the guide {% mentionPost "/docs/subnets/add-subnet" %}

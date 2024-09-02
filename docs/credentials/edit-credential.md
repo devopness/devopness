@@ -1,6 +1,6 @@
 ---
 title: Edit a Credential
-intro: Editing credential is used for example when you need to rotate credential keys for security reasons.
+intro: Sometimes you may need to update a credential name or rotate access keys. Edit a credential to update its name and settings.
 links:
     overview:
     quickstart:
@@ -18,4 +18,4 @@ required_permissions:
 1. Click `View` in the `Credentials` card to see a list of existing `Credentials`
 1. In the list of credentials, find the credential you want to edit and click the `NAME` of the credential
 1. On the upper-right corner of the credential details view, click `EDIT`
-1. Follow the instructions in the credential edit form then click `CONFIRM`
+1. Follow the prompts then click `CONFIRM`
