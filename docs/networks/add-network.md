@@ -17,7 +17,7 @@ required_permissions:
 1. Find the `Networks` card
 1. Click `View` in the `Networks` card to see a list of existing `Networks`
 1. On the upper-right corner of the list click `ADD NETWORK`
-1. Select a `Cloud Provider` card
+1. Select a `Cloud Provider`
 1. With the `Cloud Provider` selected, the drop-down `Credentials` list all credentials of this `Cloud Provider`, select a credential 
     > If no credential is listed or you want to use a different one, click `Create a new credential` and follow the guide {% mentionPost "/docs/credentials/add-credential" %}
 1. Once a `Cloud Provider Credential` is selected, click in `Next` button

@@ -35,4 +35,3 @@ links:
     - Log in to [DigitalOcean Control Panel](https://cloud.digitalocean.com/)
     - Find the droplets section
     - A `droplet` instance will be listed, with the name of the new `Server` you provisioned on Devopness
-- ```
