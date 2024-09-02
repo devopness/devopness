@@ -1,6 +1,6 @@
 ---
 title: Edit a Credential
-intro: Editing credential is used for example when you need to rotate credential keys for security reasons.
+intro: Sometimes you may need to update a credential name or rotate access keys. Edit a credential to update its name and settings.
 links:
     overview:
     quickstart:
