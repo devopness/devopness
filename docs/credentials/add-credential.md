@@ -1,6 +1,6 @@
 ---
 title: Add a Credential
-intro: Devopness allows you to manage multiple provider accounts from a single platform. Add Cloud/Source Provider Credentials to your Devopness account to provision and manage cloud infrastructure resources and deploy your applications with increased productivity.
+intro: Devopness allows you to manage multiple provider accounts from a single platform. Add Cloud Provider and Source Provider credentials to your environment to allow you and your team to provision, manage cloud infrastructure resources and deploy your applications with increased productivity.
 links:
     overview:
     quickstart:
