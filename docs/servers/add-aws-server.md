@@ -20,16 +20,10 @@ links:
 1. Choose `Amazon Web Services` as cloud provider
 1. With the `Cloud Provider` selected, the drop-down `Credentials` list all credentials of this `Cloud Provider`, select a credential 
     > If no credential is listed or you want to use a different one, click `Create a new credential` and follow the guide {% mentionPost "/docs/credentials/add-credential" %}
-1. Once a `Cloud Provider Credential` is selected, click in `Next` button
-1. Select an available region using the drop-down menu
-1. Select an available instance type using the drop-down menu
-1. Set the `Disk size`
-1. Click `NEXT`
-1. Provide your server name, OS and hostname and click `NEXT`
 1. Follow the prompts to complete the configuration of the new `Server`
 1. Review server information and settings. If everything is correct, click `CONFIRM`
     > Use the `PREVIOUS` button if you need to modify any server details
-1. Wait for your server provision to finish
+1. Wait for the `server:provision` action to be completed
 1. After the server is successfully provisioned it will be visible on `AWS` console
 1. If you want to access the server on `AWS` console:
     - Access [AWS console](https://console.aws.amazon.com/)
