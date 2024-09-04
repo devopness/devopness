@@ -22,4 +22,3 @@ required_permissions:
     > If no credential is listed or you want to use a different one, click `Create a new Credential` and follow the guide {% mentionPost "/docs/credentials/add-credential" %}
 1. Follow the prompts then click `CONFIRM`
 1. In the `Application` details view, the recently created `Application` details can be seen
-1. Click `CONFIRM`
