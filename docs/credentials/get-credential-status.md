@@ -1,5 +1,5 @@
 ---
-title: Get a Credentials’s Status
+title: Get a Credential’s Status
 intro: Get the credential status to check if a credential is active or expired and has the necessary permissions to work correctly on Devopness.
 links:
     overview:
