@@ -18,7 +18,7 @@ links:
 1. If a list of resource cards is displayed, find the `Servers` card and click View on it
 1. On the upper-right corner of the list click `ADD SERVER`
 1. Choose `DigitalOcean` as cloud provider
-1. With the `Cloud Provider` selected, the drop-down `Credentials` list all credentials of this `Cloud Provider`, select a credential 
+1. Select a `Credential`
     > If no credential is listed or you want to use a different one, click `Create a new credential` and follow the guide {% mentionPost "/docs/credentials/add-credential" %}
 1. Follow the prompts to complete the configuration of the new `Server`
 1. Review server information and settings. If everything is correct, click `CONFIRM`
