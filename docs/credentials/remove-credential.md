@@ -28,6 +28,6 @@ links:
 
 {% note %}
 
-**NOTE**: If you need to rotate the credential keys for security reasons, you can only edit this credential. 
+**NOTE**: In case you need to rotate the credential keys, you can edit the credential. Follow the guide {% mentionPost "/docs/credentials/edit-credential" %}
 
 {% endnote %}
