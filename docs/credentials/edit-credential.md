@@ -19,3 +19,4 @@ required_permissions:
 1. In the list of credentials, find the credential you want to edit and click the `NAME` of the credential
 1. On the upper-right corner of the credential details view, click `EDIT`
 1. Follow the prompts then click `CONFIRM`
+1. In the `Credential` details view, the recently updated `Credential` details can be seen
