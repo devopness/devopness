@@ -1,6 +1,6 @@
 ---
 title: Get a Credential’s Status
-intro: Get the credential status to check if a credential is active or expired and has the necessary permissions to work correctly on Devopness.
+intro: Sometimes you may want to verify if a credential currently has the required permissions and access in a given provider. Get the Credential Status to validate if a credential is still active and has the necessary permissions.
 links:
     overview:
     quickstart:
