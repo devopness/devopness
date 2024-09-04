@@ -22,7 +22,7 @@ links:
 
 {% note %}
 
-**NOTE**: To remove a credential, this credential can’t be used by any resource. If you really want to remove this credential, you should first remove or change the credential used in the related resources before removing the credential.  
+**NOTE**: To remove a credential, it cannot be used by any environment resource. Before removing a credential, you should edit the resources that use the credential you want to remove to use another credential.
 
 {% endnote %}
 
