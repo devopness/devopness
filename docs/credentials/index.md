@@ -1,6 +1,6 @@
 ---
 title: Credentials
-intro: In this section you will learn how to connect multiple Providers accounts to Devopness by adding Providers Credentials to allow Devopness to safely provision and manage resources on your behalf, connecting to your Providers accounts and projects in a secure way.
+intro: In this section you will learn how to connect multiple Provider accounts to allow you and your team to provision, manage cloud resources and read source provider repositories.
 links:
     overview:
     quickstart:
