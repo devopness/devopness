@@ -17,8 +17,9 @@ required_permissions:
 1. Find the `Networks` card
 1. Click `View` in the `Networks` card to see a list of existing `Networks`
 1. On the upper-right corner of the list click `ADD NETWORK`
-1. Select a `Cloud Provider Credential`
-    > If no credential is listed or you want to use a different one, follow the guide {% mentionPost "/docs/users/credentials/add-credential" %}
+1. Select a `Cloud Provider`
+1. Select a `Credential`
+    > If no credential is listed or you want to use a different one, click `Create a new credential` and follow the guide {% mentionPost "/docs/credentials/add-credential" %}
 1. Follow the prompts then click `CONFIRM`
-1. In the `Networks` list, the recently created `Network` can be seen
+1. Wait for the `network:provision` action to be completed
     - If you want to add a server to the `Network`, it is required to first follow the guide {% mentionPost "/docs/subnets/add-subnet" %}
