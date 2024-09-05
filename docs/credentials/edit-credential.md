@@ -1,6 +1,6 @@
 ---
 title: Edit a Credential
-intro: Sometimes you may need to update a credential name or rotate access keys. Edit a credential to update its name and settings.
+intro: Sometimes you may need to update a credential name or rotate keys and secrets. Edit a credential to update its name and settings.
 links:
     overview:
     quickstart:
