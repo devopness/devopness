@@ -14,13 +14,16 @@ links:
 
 {% note %}
 
-**NOTE**: To remove a credential, it cannot be used by any environment resource. Before removing a credential, you should edit the resources that use the credential you want to remove to use another credential.
+**NOTE**: In case you need to rotate credential keys, you can edit a credential instead of removing a credential and create a new one. To edit a credential, follow the guide {% mentionPost "/docs/credentials/edit-credential" %}
 
 {% endnote %}
 
-{% note %}
+{% warning %} 
 
-**NOTE**: In case you need to rotate the credential keys, you can edit the credential. Follow the guide {% mentionPost "/docs/credentials/edit-credential" %}
+**WARNING**: If you are really sure you want to remove a credential, that cannot be done if the credential to be removed is currently in use by any environment resource.
+To remove a credential that is currently in use you should edit each resource using that credential to use another credential.
+
+{% endwarning %}
 
 {% endnote %}
 
