@@ -1,6 +1,6 @@
 ---
 title: Get a Credential’s Status
-intro: Sometimes you may want to verify if a credential currently has the required permissions and access in a given provider. Get a Credential's Status to validate if a credential is still active and has the necessary permissions.
+intro: Get a Credential's Status to validate if a credential is still active and remains accepted by its provider.
 links:
     overview:
     quickstart:
