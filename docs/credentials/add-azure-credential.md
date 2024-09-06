@@ -39,6 +39,6 @@ links:
 1. In the **Members** tab, click `Select members`
 1. In the `Select members` search bar, type the name of **application** and select it
 1. Click `Select` and click `Review + assign`
-1. Ensure the correct **role** is selected, and the correct **application** is selected
+1. Ensure the **Role** `Contributor` and the expected **application** are selected
 1. Click `Review + assign` again
 1. To add the credential to Devopness see {% mentionPost "/docs/credentials/add-credential" %}
