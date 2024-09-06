@@ -18,7 +18,7 @@ links:
 1. In the navigation bar, select `New registration`
 1. Type the **Name** of the application
    - Tip: you might want to name the application as `devopness` to make it easier to track its activities
-1. Under **Supported account types**, select `Accounts in this organizational directory only` 
+1. Under **Supported account types**, select `Accounts in this organizational directory only`
 1. Under **Redirect URI**, select platform `Web`
 1. Click `Register`
 1. Copy the `Application (client) ID` as the value of `client_id`
@@ -32,7 +32,7 @@ links:
 1. In the search bar, type and select `Subscriptions`
 1. Click on the `Subscription name` link of one of the subscriptions in the list
 1. Copy the `Subscription ID` as the value of `subscription_id`
-1. In the navigation pane on the left side, select `Access control (IAM)`
+1. In the navigation panel on the left side, select `Access control (IAM)`
 1. In the navigation bar, click on `Add` and select `Add role assignment`
 1. In the **Role - Privileged administrator roles** tab, select `Contributor` role
 1. Click `Next`
