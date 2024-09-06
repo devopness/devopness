@@ -19,7 +19,7 @@ links:
 1. On the upper-right corner of the list click `ADD SERVER`
 1. Choose `Microsoft Azure` as cloud provider
 1. Select a `Credential`
-    > If no credential is listed or you want to use a different one, click `Create a new credential` and follow the guide {% mentionPost "/docs/credentials/add-credential" %}
+    > If no credential is listed or you want to use a different one, click `Create a new Credential` and follow the guide {% mentionPost "/docs/credentials/add-credential" %}
 1. Follow the prompts to complete the configuration of the new `Server`
 1. Review server information and settings. If everything is correct, click `CONFIRM`
     > Use the `PREVIOUS` button if you need to modify any server details
