@@ -23,7 +23,7 @@ links:
 1. Click `Register`
 1. Copy the `Application (client) ID` as the value of `client_id`
 1. Copy the `Directory (tenant) ID` as the value of `tenant_id`
-1. In the navigation pane on the left side, select `Certificates & secrets`
+1. In the navigation panel search bar on the left side, type and select `Certificates \& secrets`
 1. In the **Client secrets** tab, click `New client secret`
 1. Type the **Description** of the client secret
 1. Choose one option for **Expires** time
