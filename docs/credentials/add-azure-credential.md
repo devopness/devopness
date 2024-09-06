@@ -36,7 +36,7 @@ links:
 1. In the navigation bar, click on `Add` and select `Add role assignment`
 1. In the **Role - Privileged administrator roles** tab, select `Contributor` role
 1. Click `Next`
-1. In the **Members** tab, select `Select members`
+1. In the **Members** tab, click `Select members`
 1. Type the name of **application** and select it
 1. Click `Select` and click `Review + assign`
 1. Ensure the correct **role** is selected, and the correct **application** is selected
