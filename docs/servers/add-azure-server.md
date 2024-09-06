@@ -1,5 +1,5 @@
 ---
-title: Add a Server to Azure
+title: Add a Server to Microsoft Azure
 intro: Devopness allows you to provision a server on Azure Resource Manager (RM) and manage it through Devopness.
 links:
     overview:
