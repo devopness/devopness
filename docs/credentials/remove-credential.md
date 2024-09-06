@@ -25,7 +25,6 @@ To remove a credential that is currently in use you should edit each resource us
 
 {% endwarning %}
 
-{% endnote %}
 
 1. On Devopness, navigate to a project and select an environment.
 1. Find the `Credentials` card.
