@@ -11,25 +11,19 @@ links:
     featured:
 ---
 
-> If you don't have a GCP credential, please follow the guide {% mentionPost "/docs/users/credentials/add-gcp-credential" %}
+> If you don't have a GCP credential, please follow the guide {% mentionPost "/docs/credentials/add-gcp-credential" %}
 
 1. On Devopness, navigate to a project then select an environment
 1. If there's no other server in the selected environment, just click `ADD SERVER`
 1. If a list of resource cards is displayed, find the `Servers` card and click View on it
 1. On the upper-right corner of the list click `ADD SERVER`
 1. Choose `Google Cloud Platform` as cloud provider
-1. Select a GCP credential using the drop-down menu
-    > If no credential is listed or you want to use a different one, follow the guide {% mentionPost "/docs/users/credentials/add-credential" %}
-1. Click `NEXT`
-1. Select an available region using the drop-down menu
-1. Select an available instance type using the drop-down menu
-1. Set the `Disk size`
-1. Click `NEXT`
-1. Provide your server name, OS and hostname and click `NEXT`
+1. Select a `Credential` 
+    > If no credential is listed or you want to use a different one, click `Create a new credential` and follow the guide {% mentionPost "/docs/credentials/add-credential" %}
 1. Follow the prompts to complete the configuration of the new `Server`
 1. Review server information and settings. If everything is correct, click `CONFIRM`
     > Use the `PREVIOUS` button if you need to modify any server details
-1. Wait for your server provision to finish
+1. Wait for the `server:provision` action to be completed
 1. After the server is successfully provisioned it will be visible on GCP console
 1. If you want to access the server on GCP console:
     - Access [GCP Console](https://console.cloud.google.com/)

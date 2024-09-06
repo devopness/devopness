@@ -17,10 +17,9 @@ required_permissions:
 1. Find the `Applications` card
 1. Click `View` in the `Applications` card to see a list of existing `Applications`
 1. On the upper-right corner of the list click `ADD APPLICATION`
-1. Select a connected `Source Provider` account
-    > If no source provider account is listed or you want to use a different one, click `Connect a new source provider account` and follow the prompts
-1. Once a `Source Provider` account is selected, choose a repository using the drop-down menu
-1. Select the `Application Type`
-1. Provide a name to the application and click `NEXT`
-1. Follow the prompts to complete the configuration of the new `Application`
-1. Click `CONFIRM`
+1. Select a `Source Provider`
+1. Select a `Credential`
+    > If no credential is listed or you want to use a different one, click `Create a new Credential` and follow the guide {% mentionPost "/docs/credentials/add-credential" %}
+1. Once a `Credential` is selected, select the git repository where the application source code is hosted
+1. Follow the prompts then click `CONFIRM`
+1. In the `Application` details view, the recently created `Application` details can be seen
