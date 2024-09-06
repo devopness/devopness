@@ -18,7 +18,7 @@ links:
 
 {% endnote %}
 
-{% warning %} 
+{% warning %}
 
 **WARNING**: If you are really sure you want to remove a credential, that cannot be done if the credential to be removed is currently in use by any environment resource.
 To remove a credential that is currently in use you should edit each resource using that credential to use another credential.
