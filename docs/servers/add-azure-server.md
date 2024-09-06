@@ -14,8 +14,8 @@ links:
 > If you don't have an Azure credential, please follow the guide {% mentionPost "/docs/credentials/add-azure-credential" %}
 
 1. On Devopness, navigate to a project then select an environment
-1. If there's no other server in the selected environment, just click `ADD SERVER`
-1. If a list of resource cards is displayed, find the `Servers` card and click View on it
+1. Find the `Servers` card
+1. Click `View` in the `Servers` card to see a list of existing `Servers`
 1. On the upper-right corner of the list click `ADD SERVER`
 1. Choose `Microsoft Azure` as cloud provider
 1. Select a `Credential`
