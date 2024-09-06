@@ -30,7 +30,7 @@ links:
 1. Click `Add`
 1. Copy the `Value` of the client secret as the value of `client_secret`
 1. In the search bar, type and select `Subscriptions`
-1. Access one of the subscriptions in the list
+1. Click on the `Subscription name` link of one of the subscriptions in the list
 1. Copy the `Subscription ID` as the value of `subscription_id`
 1. In the navigation pane on the left side, select `Access control (IAM)`
 1. In the navigation bar, click on `Add` and select `Add role assignment`
