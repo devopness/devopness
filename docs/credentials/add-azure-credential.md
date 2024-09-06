@@ -18,8 +18,8 @@ links:
 1. In the navigation bar, select `New registration`
 1. Type the **Name** of the application
    - Tip: you might want to name the application as `devopness` to make it easier to track its activities
-1. Select `Accounts in this organizational directory only` option in the **Supported account types**
-1. Select `Web` in platform option in the **Redirect URI**
+1. Under **Supported account types**, select `Accounts in this organizational directory only` 
+1. Under **Redirect URI**, select platform `Web`
 1. Click `Register`
 1. Copy the `Application (client) ID` as the value of `client_id`
 1. Copy the `Directory (tenant) ID` as the value of `tenant_id`
