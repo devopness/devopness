@@ -9,6 +9,7 @@ links:
     guides:
     related:
         - /docs/credentials/add-aws-credential
+        - /docs/credentials/add-azure-credential
         - /docs/credentials/add-digitalocean-credential
         - /docs/credentials/add-gcp-credential
         - /docs/credentials/remove-credential
