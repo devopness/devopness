@@ -61,6 +61,9 @@ links:
       1. Click `Next`
       1. In the navigation bar, click on `Add permissions`
       1. Add each of the following **permissions** to the role:
+
+            <details><summary>Permissions</summary>
+
             -     - **Microsoft.Authorization/roleAssignments {read}**
             -     - **Microsoft.Authorization/roleDefinitions {read}**
             -     - **Microsoft.Compute/disks {write}**
@@ -72,6 +75,9 @@ links:
             -     - **Microsoft.Network/virtualNetworks {delete, read, write}**
             -     - **Microsoft.Network/virtualNetworks/subnets {delete, join/action, read, write}**
             -     - **Microsoft.Resources/subscriptions/resourceGroups {read, write}**
+
+            </details>
+
       1. After adding the **permissions**, click `Review + create` in the navigation bar
       1. Click `Create`
       1. In **Access control (IAM)** page, in the navigation bar, click on `Add` and select `Add role assignment`
