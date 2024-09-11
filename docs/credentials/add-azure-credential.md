@@ -14,7 +14,7 @@ links:
 > If you don't have access to an Azure account, you can create an account for free following the cloud provider specific guide [Azure Free Services](https://azure.microsoft.com/en-us/pricing/free-services)
 
 1. Log in to [Azure Portal](https://portal.azure.com/)
-1. In the search bar, type and select `App registrations`
+1. In the search bar, enter `App registrations` and select it
 1. In the navigation bar, select `New registration`
 1. Type the **Name** of the application
    - Tip: you might want to name the application as `devopness` to make it easier to track its activities
@@ -23,13 +23,13 @@ links:
 1. Click `Register`
 1. Copy the `Application (client) ID` as the value of `client_id`
 1. Copy the `Directory (tenant) ID` as the value of `tenant_id`
-1. In the navigation panel search bar on the left side, type and select `Certificates & secrets`
+1. In the navigation panel search bar on the left side, enter `Certificates & secrets` and select it
 1. In the **Client secrets** tab, click `New client secret`
 1. Type the **Description** of the client secret
 1. Choose one option for **Expires** time
 1. Click `Add`
 1. Copy the `Value` of the client secret as the value of `client_secret`
-1. In the search bar, type and select `Subscriptions`
+1. In the search bar, enter `Subscriptions` and select it
 1. Click on the `Subscription name` link of one of the subscriptions in the list
 1. Copy the `Subscription ID` as the value of `subscription_id`
 1. In the navigation panel on the left side, select `Access control (IAM)`
