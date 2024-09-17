@@ -25,3 +25,4 @@ properties:
     nullable: true
 required:
   - id
+  - name

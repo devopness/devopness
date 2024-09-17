@@ -20,5 +20,6 @@ properties:
 required:
   - name
   - direction
+  - protocol
   - cidr_block
   - port

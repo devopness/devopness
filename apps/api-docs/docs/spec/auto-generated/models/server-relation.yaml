@@ -18,13 +18,19 @@ properties:
     type: string
     example: web-srv-1
   provider_name:
-    description: 'strubg The name of the server''s provider.'
+    description: 'The name of the server''s provider.'
     type: string
     example: self-hosted
   provider_name_human_readable:
     description: 'The human readable version of the provider''s name'
     type: string
     example: 'VPS/Self Hosted'
+  credential:
+    $ref: '#/components/schemas/Credential'
+  region:
+    description: 'The region in which the server is located'
+    type: string
+    example: us-east-1
   ip_address:
     description: 'Public ipv4 address for server access'
     type: string
@@ -56,6 +62,7 @@ required:
   - hostname
   - provider_name
   - provider_name_human_readable
+  - region
   - ip_address
   - ssh_port
   - active
