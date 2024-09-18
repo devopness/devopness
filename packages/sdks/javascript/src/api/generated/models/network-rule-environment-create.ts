@@ -38,7 +38,7 @@ export interface NetworkRuleEnvironmentCreate {
      * @type {NetworkRuleProtocol}
      * @memberof NetworkRuleEnvironmentCreate
      */
-    protocol?: NetworkRuleProtocol;
+    protocol: NetworkRuleProtocol;
     /**
      * IP address range this rule applies for, defined using CIDR notation.
      * @type {string}
