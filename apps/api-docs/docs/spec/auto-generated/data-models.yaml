@@ -447,6 +447,10 @@ ResourceOperation:
   $ref: ./auto-generated/models/resource-operation.yaml
 ResourceOperationList:
   $ref: ./auto-generated/models/resource-operation-list.yaml
+ResourceToBeLinked:
+  $ref: ./auto-generated/models/resource-to-be-linked.yaml
+ResourceToBeLinkedList:
+  $ref: ./auto-generated/models/resource-to-be-linked-list.yaml
 ResourceType:
   $ref: ./auto-generated/models/resource-type.yaml
 ResourceTypeList:

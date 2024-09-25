@@ -2,8 +2,8 @@
 type: object
 properties:
   id:
-    description: 'The unique ID of the given daemon.'
-    example: 970371
+    description: 'The unique ID of the given Daemon.'
+    example: 1
     type: integer
   command:
     description: 'The command line to be executed to start the daemon. Must not be greater than 255 characters.'

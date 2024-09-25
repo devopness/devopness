@@ -2,8 +2,8 @@
 type: object
 properties:
   id:
-    description: 'The unique ID of the given network rule.'
-    example: 37292
+    description: 'The unique ID of the given Network Rule.'
+    example: 1
     type: integer
   name:
     description: 'The rule''s name/description/reminder. Must be at least 3 characters. Must not be greater than 60 characters.'

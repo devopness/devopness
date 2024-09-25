@@ -2,8 +2,8 @@
 type: object
 properties:
   id:
-    description: 'The unique ID of the given user.'
-    example: 48039
+    description: 'The unique ID of the given User.'
+    example: 1
     type: integer
   name:
     description: 'User''s full name. Must be at least 5 characters. Must not be greater than 60 characters.'

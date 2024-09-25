@@ -2,8 +2,8 @@
 type: object
 properties:
   id:
-    description: 'The ID of the project.'
-    example: 45678
+    description: 'The unique ID of the given Project.'
+    example: 1
     type: integer
   name:
     description: 'The name of the project. Must not be greater than 60 characters.'

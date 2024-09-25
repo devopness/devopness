@@ -2,8 +2,8 @@
 type: object
 properties:
   id:
-    description: 'The unique ID of the given server.'
-    example: 37292
+    description: 'The unique ID of the given Server.'
+    example: 1
     type: integer
   ip_address:
     description: 'Public ipv4 address for server access.'

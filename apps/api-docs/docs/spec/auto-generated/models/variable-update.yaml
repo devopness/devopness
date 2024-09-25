@@ -2,15 +2,15 @@
 type: object
 properties:
   id:
-    description: 'The unique ID of the variable.'
-    example: 53283
+    description: 'The unique ID of the given Variable.'
+    example: 1
     type: integer
   key:
-    description: "The unique key used to identify the variable on the target.\n                When variable is of type `file`, this is the relative path\n                to the file within the application directory. Must not be greater than 100 characters."
+    description: "The unique key used to identify the variable on the target.\n                    When variable is of type `file`, this is the relative path\n                    to the file within the application directory. Must not be greater than 100 characters."
     example: APP_URL
     type: string
   value:
-    description: "The value to be assigned to this variable when deployed to its target.\n                When variable is of type `file`, this is the file content. Must not be greater than 21504 characters."
+    description: "The value to be assigned to this variable when deployed to its target.\n                    When variable is of type `file`, this is the file content. Must not be greater than 21504 characters."
     example: 'https://staging.devopness.com'
     type: string
   description:

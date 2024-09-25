@@ -2,8 +2,8 @@
 type: object
 properties:
   id:
-    description: 'The ID of the network.'
-    example: 123
+    description: 'The unique ID of the given Network.'
+    example: 1
     type: integer
   credential_id:
     description: 'The ID of the cloud credential.'

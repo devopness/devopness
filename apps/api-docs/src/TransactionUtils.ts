@@ -283,4 +283,21 @@ export default class TransactionUtils {
             this.logger.log(transaction.slug, JSON.stringify(transaction, null, 2));
         }
     }
+
+   /**
+   * Removes the 'linked_resources' field from the request body of a given transaction.
+   * This ensures that the resource is created without automatically linking it to other resources.
+   *
+   * @param {Transaction} transaction - The transaction object whose request body is to be modified.
+   */
+    removeLinkedResourcesFromRequestBody(transaction: Transaction): void {
+      if (!transaction.request.body) return;
+      
+      let body = JSON.parse(transaction.request.body);
+
+      if (!body.linked_resources) return;
+
+      delete body.linked_resources
+      transaction.request.body = JSON.stringify(body);
+    }
 }

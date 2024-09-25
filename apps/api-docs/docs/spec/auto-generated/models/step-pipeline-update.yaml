@@ -2,8 +2,8 @@
 type: object
 properties:
   id:
-    description: 'The unique ID of the given pipeline step.'
-    example: 37292
+    description: 'The unique ID of the given Pipeline Step.'
+    example: 1
     type: integer
   name:
     description: 'Name/short description of the script. Must be at least 4 characters. Must not be greater than 60 characters.'

@@ -448,5 +448,14 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     before('unlinkResourceLinkFromResourceLink204', utils.rewriteTransactionRequestUriResourceId(['application']));
     before('linkResourceLinkToResourceLink204', utils.rewriteTransactionRequestUriResourceId(['application', 'daemon']));
     before('addVariable201', utils.rewriteTransactionRequestUriResourceId(['server']));
+
+    before('addEnvironmentApplication201', utils.removeLinkedResourcesFromRequestBody);
+    before('addEnvironmentCronJob201', utils.removeLinkedResourcesFromRequestBody);
+    before('addEnvironmentDaemon201', utils.removeLinkedResourcesFromRequestBody);
+    before('addEnvironmentNetworkRule201', utils.removeLinkedResourcesFromRequestBody);
+    before('addEnvironmentService201', utils.removeLinkedResourcesFromRequestBody);
+    before('addEnvironmentSshKey201', utils.removeLinkedResourcesFromRequestBody);
+    before('addEnvironmentVirtualHost201', utils.removeLinkedResourcesFromRequestBody);
+
     done();
 })

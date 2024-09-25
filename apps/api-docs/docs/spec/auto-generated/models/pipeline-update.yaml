@@ -2,8 +2,8 @@
 type: object
 properties:
   id:
-    description: 'The unique ID of the given pipeline.'
-    example: 3780609
+    description: 'The unique ID of the given Pipeline.'
+    example: 1
     type: integer
   name:
     description: 'The pipeline''s name. Must be at least 3 characters. Must not be greater than 80 characters.'

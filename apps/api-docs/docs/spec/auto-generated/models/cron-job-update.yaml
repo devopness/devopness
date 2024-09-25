@@ -2,8 +2,8 @@
 type: object
 properties:
   id:
-    description: 'The unique ID of the given cron job.'
-    example: 970371
+    description: 'The unique ID of the given Cron Job.'
+    example: 1
     type: integer
   pattern:
     description: 'A cron expression consisting of Minute, Hour, Day of Month, Month and Day of Week subexpressions.'

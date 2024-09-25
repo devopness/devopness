@@ -2,8 +2,8 @@
 type: object
 properties:
   id:
-    description: 'Environment''s unique ID.'
-    example: 867
+    description: 'The unique ID of the given Environment.'
+    example: 1
     type: integer
   type:
     $ref: '#/components/schemas/EnvironmentType'

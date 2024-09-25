@@ -2,8 +2,8 @@
 type: object
 properties:
   id:
-    description: 'The unique id of the given application.'
-    example: 445678964
+    description: 'The unique ID of the given Application.'
+    example: 1
     type: integer
   name:
     description: 'The application''s unique name. Must not be greater than 60 characters.'
@@ -11,15 +11,15 @@ properties:
     type: string
   build_command:
     description: 'The optional command that should be executed once during deployment to build the source code and get the application in a ready state.'
-    example: 'npm run build'
+    example: '`npm run build`, `yarn build`, `docker build -t my_image_name .`, `python build.py`'
     type: string
   engine_version:
     description: 'The language runtime engine version to be used to execute this application on the deployed servers. Must be one of <code></code> Must be at least 1 characters. Must not be greater than 10 characters.'
     example: '3.12'
     type: string
   framework:
-    description: 'The base framework on top of which the application has been implemented - it might have impact on the steps to be performed during application deployment. Must not be greater than 30 characters.'
-    example: drupal
+    description: 'The base framework on top of which the application has been implemented - it might have impact on the steps to be performed during application deployment. Must be one of <code></code> Must not be greater than 30 characters.'
+    example: fastapi
     type: string
   programming_language:
     description: 'The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`. Must be one of <code>docker</code>, <code>dotnetcore</code>, <code>html</code>, <code>java</code>, <code>nodejs</code>, <code>php</code>, <code>python</code>, or <code>ruby</code> Must not be greater than 30 characters.'

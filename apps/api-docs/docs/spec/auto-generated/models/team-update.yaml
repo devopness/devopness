@@ -2,8 +2,8 @@
 type: object
 properties:
   id:
-    description: 'The unique ID of the given team.'
-    example: 37292
+    description: 'The unique ID of the given Team.'
+    example: 1
     type: integer
   name:
     description: 'The name of the team. Must not be greater than 255 characters.'

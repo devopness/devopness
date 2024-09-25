@@ -2,7 +2,7 @@
 type: object
 properties:
   id:
-    description: 'The ssh key''s ID.'
+    description: 'The unique ID of the given SSH Key.'
     example: 1
     type: integer
   name:
