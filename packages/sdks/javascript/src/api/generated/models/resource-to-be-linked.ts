@@ -16,14 +16,20 @@
 /**
  * 
  * @export
- * @interface ServiceUpdate
+ * @interface ResourceToBeLinked
  */
-export interface ServiceUpdate {
+export interface ResourceToBeLinked {
     /**
-     * The unique ID of the given Service.
-     * @type {number}
-     * @memberof ServiceUpdate
+     * The type of the resource to be linked
+     * @type {string}
+     * @memberof ResourceToBeLinked
      */
-    id: number;
+    resource_type: string;
+    /**
+     * The ID of the resource to be linked
+     * @type {number}
+     * @memberof ResourceToBeLinked
+     */
+    resource_id: number;
 }
 

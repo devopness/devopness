@@ -12,6 +12,7 @@
  */
 
 
+import { ResourceToBeLinked } from './resource-to-be-linked';
 
 /**
  * 
@@ -19,6 +20,12 @@
  * @interface CronJobEnvironmentCreate
  */
 export interface CronJobEnvironmentCreate {
+    /**
+     * The resources to be linked with this resource
+     * @type {Array<ResourceToBeLinked>}
+     * @memberof CronJobEnvironmentCreate
+     */
+    linked_resources?: Array<ResourceToBeLinked>;
     /**
      * The name of the cron job. Must not be greater than 60 characters.
      * @type {string}

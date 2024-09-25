@@ -21,7 +21,7 @@ import { EnvironmentType } from './environment-type';
  */
 export interface EnvironmentUpdate {
     /**
-     * Environment\'s unique ID.
+     * The unique ID of the given Environment.
      * @type {number}
      * @memberof EnvironmentUpdate
      */

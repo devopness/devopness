@@ -20,7 +20,7 @@
  */
 export interface UserUpdate {
     /**
-     * The unique ID of the given user.
+     * The unique ID of the given User.
      * @type {number}
      * @memberof UserUpdate
      */

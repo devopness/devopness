@@ -20,7 +20,7 @@
  */
 export interface CronJobUpdate {
     /**
-     * The unique ID of the given cron job.
+     * The unique ID of the given Cron Job.
      * @type {number}
      * @memberof CronJobUpdate
      */

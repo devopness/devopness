@@ -22,19 +22,19 @@ import { VariableType } from './variable-type';
  */
 export interface VariableUpdate {
     /**
-     * The unique ID of the variable.
+     * The unique ID of the given Variable.
      * @type {number}
      * @memberof VariableUpdate
      */
     id: number;
     /**
-     * The unique key used to identify the variable on the target.                 When variable is of type `file`, this is the relative path                 to the file within the application directory. Must not be greater than 100 characters.
+     * The unique key used to identify the variable on the target.                     When variable is of type `file`, this is the relative path                     to the file within the application directory. Must not be greater than 100 characters.
      * @type {string}
      * @memberof VariableUpdate
      */
     key: string;
     /**
-     * The value to be assigned to this variable when deployed to its target.                 When variable is of type `file`, this is the file content. Must not be greater than 21504 characters.
+     * The value to be assigned to this variable when deployed to its target.                     When variable is of type `file`, this is the file content. Must not be greater than 21504 characters.
      * @type {string}
      * @memberof VariableUpdate
      */

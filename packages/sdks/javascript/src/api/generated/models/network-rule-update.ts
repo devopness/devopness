@@ -22,7 +22,7 @@ import { NetworkRuleProtocol } from './network-rule-protocol';
  */
 export interface NetworkRuleUpdate {
     /**
-     * The unique ID of the given network rule.
+     * The unique ID of the given Network Rule.
      * @type {number}
      * @memberof NetworkRuleUpdate
      */

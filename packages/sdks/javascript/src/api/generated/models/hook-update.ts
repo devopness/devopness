@@ -24,6 +24,12 @@ import { HookTriggerWhen } from './hook-trigger-when';
  */
 export interface HookUpdate {
     /**
+     * The unique ID of the given Hook. Must be a valid UUID.
+     * @type {string}
+     * @memberof HookUpdate
+     */
+    id: string;
+    /**
      * The name of the outgoing hook. Must not be greater than 60 characters.
      * @type {string}
      * @memberof HookUpdate

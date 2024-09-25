@@ -12,6 +12,8 @@
  */
 
 
+import { EnvironmentLink } from './environment-link';
+import { ResourceToBeLinked } from './resource-to-be-linked';
 
 /**
  * 
@@ -19,6 +21,12 @@
  * @interface ApplicationEnvironmentCreate
  */
 export interface ApplicationEnvironmentCreate {
+    /**
+     * The resources to be linked with this resource
+     * @type {Array<ResourceToBeLinked>}
+     * @memberof ApplicationEnvironmentCreate
+     */
+    linked_resources?: Array<ResourceToBeLinked>;
     /**
      * The application\'s unique name. Must not be greater than 60 characters.
      * @type {string}
@@ -38,7 +46,7 @@ export interface ApplicationEnvironmentCreate {
      */
     engine_version: string;
     /**
-     * The base framework on top of which the application has been implemented - it might have impact on the steps to be performed during application deployment. Must not be greater than 30 characters.
+     * The base framework on top of which the application has been implemented - it might have impact on the steps to be performed during application deployment. Must be one of <code></code> Must not be greater than 30 characters.
      * @type {string}
      * @memberof ApplicationEnvironmentCreate
      */
@@ -85,5 +93,11 @@ export interface ApplicationEnvironmentCreate {
      * @memberof ApplicationEnvironmentCreate
      */
     install_dependencies_command?: string;
+    /**
+     * 
+     * @type {Array<EnvironmentLink>}
+     * @memberof ApplicationEnvironmentCreate
+     */
+    environments?: Array<EnvironmentLink>;
 }
 
