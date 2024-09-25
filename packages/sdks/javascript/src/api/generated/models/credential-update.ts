@@ -21,7 +21,7 @@ import { CredentialInputSettings } from './credential-input-settings';
  */
 export interface CredentialUpdate {
     /**
-     * The unique ID of the given credential.
+     * The unique ID of the given Credential.
      * @type {number}
      * @memberof CredentialUpdate
      */

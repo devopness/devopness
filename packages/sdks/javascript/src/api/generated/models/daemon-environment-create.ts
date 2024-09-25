@@ -12,6 +12,7 @@
  */
 
 
+import { ResourceToBeLinked } from './resource-to-be-linked';
 
 /**
  * 
@@ -19,6 +20,12 @@
  * @interface DaemonEnvironmentCreate
  */
 export interface DaemonEnvironmentCreate {
+    /**
+     * The resources to be linked with this resource
+     * @type {Array<ResourceToBeLinked>}
+     * @memberof DaemonEnvironmentCreate
+     */
+    linked_resources?: Array<ResourceToBeLinked>;
     /**
      * The command line to be executed to start the daemon. Must not be greater than 255 characters.
      * @type {string}

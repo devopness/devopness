@@ -20,7 +20,7 @@
  */
 export interface DaemonUpdate {
     /**
-     * The unique ID of the given daemon.
+     * The unique ID of the given Daemon.
      * @type {number}
      * @memberof DaemonUpdate
      */

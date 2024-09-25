@@ -20,7 +20,7 @@
  */
 export interface ApplicationUpdate {
     /**
-     * The unique id of the given application.
+     * The unique ID of the given Application.
      * @type {number}
      * @memberof ApplicationUpdate
      */
@@ -44,7 +44,7 @@ export interface ApplicationUpdate {
      */
     engine_version: string;
     /**
-     * The base framework on top of which the application has been implemented - it might have impact on the steps to be performed during application deployment. Must not be greater than 30 characters.
+     * The base framework on top of which the application has been implemented - it might have impact on the steps to be performed during application deployment. Must be one of <code></code> Must not be greater than 30 characters.
      * @type {string}
      * @memberof ApplicationUpdate
      */

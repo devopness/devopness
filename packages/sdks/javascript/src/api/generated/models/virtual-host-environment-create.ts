@@ -12,6 +12,7 @@
  */
 
 
+import { ResourceToBeLinked } from './resource-to-be-linked';
 
 /**
  * 
@@ -19,6 +20,12 @@
  * @interface VirtualHostEnvironmentCreate
  */
 export interface VirtualHostEnvironmentCreate {
+    /**
+     * The resources to be linked with this resource
+     * @type {Array<ResourceToBeLinked>}
+     * @memberof VirtualHostEnvironmentCreate
+     */
+    linked_resources?: Array<ResourceToBeLinked>;
     /**
      * The type of virtual host to be created. Must be one of <code>ip-based</code> or <code>name-based</code>.
      * @type {string}

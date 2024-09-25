@@ -12,6 +12,7 @@
  */
 
 
+import { ResourceToBeLinked } from './resource-to-be-linked';
 
 /**
  * 
@@ -19,6 +20,12 @@
  * @interface SshKeyEnvironmentCreate
  */
 export interface SshKeyEnvironmentCreate {
+    /**
+     * The resources to be linked with this resource
+     * @type {Array<ResourceToBeLinked>}
+     * @memberof SshKeyEnvironmentCreate
+     */
+    linked_resources?: Array<ResourceToBeLinked>;
     /**
      * The ssh key\'s name. Must not be greater than 60 characters.
      * @type {string}

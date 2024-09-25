@@ -20,7 +20,7 @@
  */
 export interface TeamUpdate {
     /**
-     * The unique ID of the given team.
+     * The unique ID of the given Team.
      * @type {number}
      * @memberof TeamUpdate
      */

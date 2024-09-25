@@ -20,7 +20,7 @@
  */
 export interface NetworkUpdate {
     /**
-     * The ID of the network.
+     * The unique ID of the given Network.
      * @type {number}
      * @memberof NetworkUpdate
      */

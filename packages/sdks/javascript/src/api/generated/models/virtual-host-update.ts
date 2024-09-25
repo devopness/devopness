@@ -20,7 +20,7 @@
  */
 export interface VirtualHostUpdate {
     /**
-     * The unique ID of the given virtual host.
+     * The unique ID of the given Virtual Host.
      * @type {number}
      * @memberof VirtualHostUpdate
      */

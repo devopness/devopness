@@ -172,6 +172,7 @@ export * from './resource-event';
 export * from './resource-event-relation';
 export * from './resource-link-relation';
 export * from './resource-operation';
+export * from './resource-to-be-linked';
 export * from './resource-type';
 export * from './resource-type-related';
 export * from './resource-type-relation';

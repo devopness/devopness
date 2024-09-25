@@ -20,7 +20,7 @@
  */
 export interface ProjectUpdate {
     /**
-     * The ID of the project.
+     * The unique ID of the given Project.
      * @type {number}
      * @memberof ProjectUpdate
      */

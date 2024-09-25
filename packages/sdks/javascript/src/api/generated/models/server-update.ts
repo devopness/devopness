@@ -20,7 +20,7 @@
  */
 export interface ServerUpdate {
     /**
-     * The unique ID of the given server.
+     * The unique ID of the given Server.
      * @type {number}
      * @memberof ServerUpdate
      */

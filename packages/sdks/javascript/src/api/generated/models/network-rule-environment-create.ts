@@ -14,6 +14,7 @@
 
 import { NetworkRuleDirection } from './network-rule-direction';
 import { NetworkRuleProtocol } from './network-rule-protocol';
+import { ResourceToBeLinked } from './resource-to-be-linked';
 
 /**
  * 
@@ -21,6 +22,12 @@ import { NetworkRuleProtocol } from './network-rule-protocol';
  * @interface NetworkRuleEnvironmentCreate
  */
 export interface NetworkRuleEnvironmentCreate {
+    /**
+     * The resources to be linked with this resource
+     * @type {Array<ResourceToBeLinked>}
+     * @memberof NetworkRuleEnvironmentCreate
+     */
+    linked_resources?: Array<ResourceToBeLinked>;
     /**
      * The rule\'s name/description/reminder. Must be at least 3 characters. Must not be greater than 60 characters.
      * @type {string}

@@ -20,7 +20,7 @@
  */
 export interface SshKeyUpdate {
     /**
-     * The ssh key\'s ID.
+     * The unique ID of the given SSH Key.
      * @type {number}
      * @memberof SshKeyUpdate
      */
