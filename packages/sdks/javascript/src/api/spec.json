@@ -12828,6 +12828,9 @@
       "ApplicationEnvironmentCreate": {
         "type": "object",
         "properties": {
+          "linked_resources": {
+            "$ref": "#/components/schemas/ResourceToBeLinkedList"
+          },
           "name": {
             "description": "The application's unique name. Must not be greater than 60 characters.",
             "example": "my-awesome-app",
@@ -12835,7 +12838,7 @@
           },
           "build_command": {
             "description": "The optional command that should be executed once during deployment to build the source code and get the application in a ready state.",
-            "example": "npm run build",
+            "example": "`npm run build`, `yarn build`, `docker build -t my_image_name .`, `python build.py`",
             "type": "string"
           },
           "engine_version": {
@@ -12844,8 +12847,8 @@
             "type": "string"
           },
           "framework": {
-            "description": "The base framework on top of which the application has been implemented - it might have impact on the steps to be performed during application deployment. Must not be greater than 30 characters.",
-            "example": "drupal",
+            "description": "The base framework on top of which the application has been implemented - it might have impact on the steps to be performed during application deployment. Must be one of <code></code> Must not be greater than 30 characters.",
+            "example": "none",
             "type": "string"
           },
           "programming_language": {
@@ -12882,6 +12885,9 @@
             "description": "Indicates command that Devopness must execute to install application dependencies.",
             "example": "npm install",
             "type": "string"
+          },
+          "environments": {
+            "$ref": "#/components/schemas/EnvironmentLinkList"
           }
         },
         "required": [
@@ -13079,8 +13085,8 @@
         "type": "object",
         "properties": {
           "id": {
-            "description": "The unique id of the given application.",
-            "example": 445678964,
+            "description": "The unique ID of the given Application.",
+            "example": 1,
             "type": "integer"
           },
           "name": {
@@ -13090,7 +13096,7 @@
           },
           "build_command": {
             "description": "The optional command that should be executed once during deployment to build the source code and get the application in a ready state.",
-            "example": "npm run build",
+            "example": "`npm run build`, `yarn build`, `docker build -t my_image_name .`, `python build.py`",
             "type": "string"
           },
           "engine_version": {
@@ -13099,8 +13105,8 @@
             "type": "string"
           },
           "framework": {
-            "description": "The base framework on top of which the application has been implemented - it might have impact on the steps to be performed during application deployment. Must not be greater than 30 characters.",
-            "example": "drupal",
+            "description": "The base framework on top of which the application has been implemented - it might have impact on the steps to be performed during application deployment. Must be one of <code></code> Must not be greater than 30 characters.",
+            "example": "fastapi",
             "type": "string"
           },
           "programming_language": {
@@ -14168,8 +14174,8 @@
         "type": "object",
         "properties": {
           "id": {
-            "description": "The unique ID of the given credential.",
-            "example": 123,
+            "description": "The unique ID of the given Credential.",
+            "example": 1,
             "type": "integer"
           },
           "name": {
@@ -14293,6 +14299,9 @@
       "CronJobEnvironmentCreate": {
         "type": "object",
         "properties": {
+          "linked_resources": {
+            "$ref": "#/components/schemas/ResourceToBeLinkedList"
+          },
           "name": {
             "description": "The name of the cron job. Must not be greater than 60 characters.",
             "example": "My cool cron job",
@@ -14433,8 +14442,8 @@
         "type": "object",
         "properties": {
           "id": {
-            "description": "The unique ID of the given cron job.",
-            "example": 970371,
+            "description": "The unique ID of the given Cron Job.",
+            "example": 1,
             "type": "integer"
           },
           "pattern": {
@@ -14560,6 +14569,9 @@
       "DaemonEnvironmentCreate": {
         "type": "object",
         "properties": {
+          "linked_resources": {
+            "$ref": "#/components/schemas/ResourceToBeLinkedList"
+          },
           "command": {
             "description": "The command line to be executed to start the daemon. Must not be greater than 255 characters.",
             "example": "/usr/bin/example --parameter=%(ENV_VAR_TO_GET_PARAM_VALUE_FROM)s",
@@ -14718,8 +14730,8 @@
         "type": "object",
         "properties": {
           "id": {
-            "description": "The unique ID of the given daemon.",
-            "example": 970371,
+            "description": "The unique ID of the given Daemon.",
+            "example": 1,
             "type": "integer"
           },
           "command": {
@@ -15099,8 +15111,8 @@
         "type": "object",
         "properties": {
           "id": {
-            "description": "Environment's unique ID.",
-            "example": 867,
+            "description": "The unique ID of the given Environment.",
+            "example": 1,
             "type": "integer"
           },
           "type": {
@@ -15807,6 +15819,11 @@
       "HookUpdate": {
         "type": "object",
         "properties": {
+          "id": {
+            "description": "The unique ID of the given Hook. Must be a valid UUID.",
+            "example": 1,
+            "type": "string"
+          },
           "name": {
             "description": "The name of the outgoing hook. Must not be greater than 60 characters.",
             "example": "lets-go-fishing",
@@ -15851,6 +15868,7 @@
           }
         },
         "required": [
+          "id",
           "name"
         ]
       },
@@ -16740,6 +16758,9 @@
       "NetworkRuleEnvironmentCreate": {
         "type": "object",
         "properties": {
+          "linked_resources": {
+            "$ref": "#/components/schemas/ResourceToBeLinkedList"
+          },
           "name": {
             "description": "The rule's name/description/reminder. Must be at least 3 characters. Must not be greater than 60 characters.",
             "example": "Open MySQL port for remote access",
@@ -16868,8 +16889,8 @@
         "type": "object",
         "properties": {
           "id": {
-            "description": "The unique ID of the given network rule.",
-            "example": 37292,
+            "description": "The unique ID of the given Network Rule.",
+            "example": 1,
             "type": "integer"
           },
           "name": {
@@ -16900,8 +16921,8 @@
         "type": "object",
         "properties": {
           "id": {
-            "description": "The ID of the network.",
-            "example": 123,
+            "description": "The unique ID of the given Network.",
+            "example": 1,
             "type": "integer"
           },
           "credential_id": {
@@ -17453,8 +17474,8 @@
         "type": "object",
         "properties": {
           "id": {
-            "description": "The unique ID of the given pipeline.",
-            "example": 3780609,
+            "description": "The unique ID of the given Pipeline.",
+            "example": 1,
             "type": "integer"
           },
           "name": {
@@ -17631,8 +17652,8 @@
         "type": "object",
         "properties": {
           "id": {
-            "description": "The ID of the project.",
-            "example": 45678,
+            "description": "The unique ID of the given Project.",
+            "example": 1,
             "type": "integer"
           },
           "name": {
@@ -18268,6 +18289,32 @@
           "$ref": "#/components/schemas/ResourceOperation"
         }
       },
+      "ResourceToBeLinked": {
+        "type": "object",
+        "properties": {
+          "resource_type": {
+            "type": "string",
+            "description": "The type of the resource to be linked",
+            "example": "server"
+          },
+          "resource_id": {
+            "type": "integer",
+            "description": "The ID of the resource to be linked",
+            "example": 1
+          }
+        },
+        "required": [
+          "resource_type",
+          "resource_id"
+        ]
+      },
+      "ResourceToBeLinkedList": {
+        "type": "array",
+        "description": "The resources to be linked with this resource",
+        "items": {
+          "$ref": "#/components/schemas/ResourceToBeLinked"
+        }
+      },
       "ResourceType": {
         "description": "Type of an infrastructure resource managed through a Devopness environment.",
         "type": "string",
@@ -18516,6 +18563,11 @@
       "RoleUpdate": {
         "type": "object",
         "properties": {
+          "id": {
+            "description": "The unique ID of the given Role.",
+            "example": 1,
+            "type": "integer"
+          },
           "name": {
             "description": "The role's name. Must be at least 2 characters. Must not be greater than 60 characters.",
             "example": "admin",
@@ -18531,6 +18583,7 @@
           }
         },
         "required": [
+          "id",
           "name",
           "permissions"
         ]
@@ -18939,8 +18992,8 @@
         "type": "object",
         "properties": {
           "id": {
-            "description": "The unique ID of the given server.",
-            "example": 37292,
+            "description": "The unique ID of the given Server.",
+            "example": 1,
             "type": "integer"
           },
           "ip_address": {
@@ -19064,6 +19117,9 @@
       "ServiceEnvironmentCreate": {
         "type": "object",
         "properties": {
+          "linked_resources": {
+            "$ref": "#/components/schemas/ResourceToBeLinkedList"
+          },
           "auto_start": {
             "description": "Tells if the service should start automatically on operating system boot.",
             "example": false,
@@ -19291,8 +19347,8 @@
         "type": "object",
         "properties": {
           "id": {
-            "description": "The unique ID of the service.",
-            "example": 53283,
+            "description": "The unique ID of the given Service.",
+            "example": 1,
             "type": "integer"
           }
         },
@@ -19589,6 +19645,9 @@
       "SshKeyEnvironmentCreate": {
         "type": "object",
         "properties": {
+          "linked_resources": {
+            "$ref": "#/components/schemas/ResourceToBeLinkedList"
+          },
           "name": {
             "description": "The ssh key's name. Must not be greater than 60 characters.",
             "example": "my-ssh-key",
@@ -19670,7 +19729,7 @@
         "type": "object",
         "properties": {
           "id": {
-            "description": "The ssh key's ID.",
+            "description": "The unique ID of the given SSH Key.",
             "example": 1,
             "type": "integer"
           },
@@ -20310,8 +20369,8 @@
         "type": "object",
         "properties": {
           "id": {
-            "description": "The unique ID of the given pipeline step.",
-            "example": 37292,
+            "description": "The unique ID of the given Pipeline Step.",
+            "example": 1,
             "type": "integer"
           },
           "name": {
@@ -21031,8 +21090,8 @@
         "type": "object",
         "properties": {
           "id": {
-            "description": "The unique ID of the given team.",
-            "example": 37292,
+            "description": "The unique ID of the given Team.",
+            "example": 1,
             "type": "integer"
           },
           "name": {
@@ -21580,8 +21639,8 @@
         "type": "object",
         "properties": {
           "id": {
-            "description": "The unique ID of the given user.",
-            "example": 48039,
+            "description": "The unique ID of the given User.",
+            "example": 1,
             "type": "integer"
           },
           "name": {
@@ -21980,17 +22039,17 @@
         "type": "object",
         "properties": {
           "id": {
-            "description": "The unique ID of the variable.",
-            "example": 53283,
+            "description": "The unique ID of the given Variable.",
+            "example": 1,
             "type": "integer"
           },
           "key": {
-            "description": "The unique key used to identify the variable on the target.\n                When variable is of type `file`, this is the relative path\n                to the file within the application directory. Must not be greater than 100 characters.",
+            "description": "The unique key used to identify the variable on the target.\n                    When variable is of type `file`, this is the relative path\n                    to the file within the application directory. Must not be greater than 100 characters.",
             "example": "APP_URL",
             "type": "string"
           },
           "value": {
-            "description": "The value to be assigned to this variable when deployed to its target.\n                When variable is of type `file`, this is the file content. Must not be greater than 21504 characters.",
+            "description": "The value to be assigned to this variable when deployed to its target.\n                    When variable is of type `file`, this is the file content. Must not be greater than 21504 characters.",
             "example": "https://staging.devopness.com",
             "type": "string"
           },
@@ -22094,6 +22153,9 @@
       "VirtualHostEnvironmentCreate": {
         "type": "object",
         "properties": {
+          "linked_resources": {
+            "$ref": "#/components/schemas/ResourceToBeLinkedList"
+          },
           "type": {
             "description": "The type of virtual host to be created. Must be one of <code>ip-based</code> or <code>name-based</code>.",
             "example": "name-based",
@@ -22241,8 +22303,8 @@
         "type": "object",
         "properties": {
           "id": {
-            "description": "The unique ID of the given virtual host.",
-            "example": 37292,
+            "description": "The unique ID of the given Virtual Host.",
+            "example": 1,
             "type": "integer"
           },
           "name": {
