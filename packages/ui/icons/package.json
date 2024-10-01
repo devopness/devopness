@@ -45,7 +45,6 @@
   "devDependencies": {
     "@types/node": "^22.7.4",
     "@types/react": "^18.3.10",
-    "@types/react-icons": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^5.31.0",
     "eslint": "^7.32.0",
     "eslint-plugin-import": "^2.29.1",
