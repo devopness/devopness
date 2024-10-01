@@ -104,7 +104,7 @@ const typeHierarchySuperSVG = getImageAssetUrl(
 )
 const javaSVG = getImageAssetUrl('icons_svgs/java.svg')
 const rubySVG = getImageAssetUrl('icons_svgs/ruby.svg')
-const MdOutlineShieldLockSVG = getImageAssetUrl(
+const mdOutlineShieldLockSVG = getImageAssetUrl(
   'icons_svgs/outline-shield-lock.svg'
 )
 
@@ -206,7 +206,7 @@ const iconList = [
   { type: 'image', accessor: 'children', component: typeHierarchySuperSVG },
   { type: 'image', accessor: 'java', component: javaSVG },
   { type: 'image', accessor: 'ruby', component: rubySVG },
-  { type: 'image', accessor: 'shieldLock', component: MdOutlineShieldLockSVG },
+  { type: 'image', accessor: 'shieldLock', component: mdOutlineShieldLockSVG },
   { type: 'image', accessor: 'devopness', component: devopnessSymbolSVG },
   { type: 'icon', accessor: 'close', component: GrClose },
   { type: 'icon', accessor: 'eye', component: IoMdEye },
