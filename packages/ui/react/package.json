@@ -19,7 +19,7 @@
   },
   "scripts": {
     "build": "tsc -b && vite build",
-    "lint": "eslint . && prettier --check .",
+    "lint": "eslint src && prettier --check src",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
