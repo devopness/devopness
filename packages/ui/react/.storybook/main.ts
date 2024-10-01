@@ -13,7 +13,7 @@ const config: StorybookConfig = {
   },
   typescript: {
     check: false,
-  }
+  },
 }
 
 export default config
