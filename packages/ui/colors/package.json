@@ -43,6 +43,7 @@
   },
   "homepage": "https://github.com/devopness/devopness#readme",
   "devDependencies": {
+    "@types/lodash": "^4.17.9",
     "@typescript-eslint/eslint-plugin": "^5.31.0",
     "eslint": "^7.32.0",
     "eslint-plugin-import": "^2.29.1",
@@ -50,5 +51,8 @@
     "prettier": "^3.3.3",
     "prettier-plugin-multiline-arrays": "^3.0.6",
     "typescript": "^5.5.3"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
   }
 }
