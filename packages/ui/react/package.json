@@ -52,17 +52,22 @@
   },
   "homepage": "https://github.com/devopness/devopness#readme",
   "dependencies": {
+    "@react-icons/all-files": "https://github.com/react-icons/react-icons/releases/download/v5.2.1/react-icons-all-files-5.2.1.tgz",
+    "path-browserify": "^1.0.1",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-css-loaders": "^0.0.6",
+    "react-dom": "^18.3.1",
+    "styled-components": "^6.1.13"
   },
   "devDependencies": {
-    "@devopness/ui-icons": "1.0.0",
     "@eslint/js": "^9.9.0",
     "@storybook/addon-essentials": "^8.3.4",
     "@storybook/blocks": "^8.3.4",
     "@storybook/react": "^8.3.4",
     "@storybook/react-vite": "^8.3.4",
     "@storybook/test": "^8.3.4",
+    "@types/node": "^22.7.4",
+    "@types/path-browserify": "^1.0.3",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react-swc": "^3.7.1",

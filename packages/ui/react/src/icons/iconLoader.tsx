@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { AiOutlineCheck } from '@react-icons/all-files/ai/AiOutlineCheck'
 import { AiOutlineCloudServer } from '@react-icons/all-files/ai/AiOutlineCloudServer'
 import { AiOutlineDeploymentUnit } from '@react-icons/all-files/ai/AiOutlineDeploymentUnit'
@@ -72,42 +74,41 @@ import { RiShieldCheckFill } from '@react-icons/all-files/ri/RiShieldCheckFill'
 import { RiTeamLine } from '@react-icons/all-files/ri/RiTeamLine'
 import { RxOpenInNewWindow } from '@react-icons/all-files/rx/RxOpenInNewWindow'
 
-import { getImageAssetURLFor } from './utils'
-export { getImageAssetURLFor } from './utils'
 import { CircleBubble } from './CircleBubble'
+import { getImageAssetUrl } from './getImageAssetUrl'
 
-const bitbucketSVG = getImageAssetURLFor('icons_svgs/bitbucket.svg')
-const bitbucketWhiteSVG = getImageAssetURLFor('icons_svgs/bitbucket_white.svg')
-const c_sharpSVGsvg = getImageAssetURLFor('icons_svgs/c_sharp.svg')
-const dockerSVG = getImageAssetURLFor('icons_svgs/docker.svg')
-const dotnetSVG = getImageAssetURLFor('icons_svgs/dotnet.svg')
-const githubSVG = getImageAssetURLFor('icons_svgs/github.svg')
-const githubWhiteSVG = getImageAssetURLFor('icons_svgs/github_white.svg')
-const gitlabSVG = getImageAssetURLFor('icons_svgs/gitlab.svg')
-const htmlSVG = getImageAssetURLFor('icons_svgs/html.svg')
-const laravelSVG = getImageAssetURLFor('icons_svgs/laravel.svg')
-const nodejsSVG = getImageAssetURLFor('icons_svgs/nodejs.svg')
-const phpSVG = getImageAssetURLFor('icons_svgs/php.svg')
-const pythonSVG = getImageAssetURLFor('icons_svgs/python.svg')
-const ubuntuSVG = getImageAssetURLFor('icons_svgs/ubuntu.svg')
-const centosSVG = getImageAssetURLFor('icons_svgs/centos.svg')
-const awsSVG = getImageAssetURLFor('icons_svgs/aws.svg')
-const gcpSVG = getImageAssetURLFor('icons_svgs/gcp.svg')
-const azureSVG = getImageAssetURLFor('icons_svgs/azure.svg')
-const digitaloceanSVG = getImageAssetURLFor('icons_svgs/digitalocean.svg')
-const typeHierarchySubSVG = getImageAssetURLFor(
+const bitbucketSVG = getImageAssetUrl('icons_svgs/bitbucket.svg')
+const bitbucketWhiteSVG = getImageAssetUrl('icons_svgs/bitbucket_white.svg')
+const c_sharpSVGsvg = getImageAssetUrl('icons_svgs/c_sharp.svg')
+const dockerSVG = getImageAssetUrl('icons_svgs/docker.svg')
+const dotnetSVG = getImageAssetUrl('icons_svgs/dotnet.svg')
+const githubSVG = getImageAssetUrl('icons_svgs/github.svg')
+const githubWhiteSVG = getImageAssetUrl('icons_svgs/github_white.svg')
+const gitlabSVG = getImageAssetUrl('icons_svgs/gitlab.svg')
+const htmlSVG = getImageAssetUrl('icons_svgs/html.svg')
+const laravelSVG = getImageAssetUrl('icons_svgs/laravel.svg')
+const nodejsSVG = getImageAssetUrl('icons_svgs/nodejs.svg')
+const phpSVG = getImageAssetUrl('icons_svgs/php.svg')
+const pythonSVG = getImageAssetUrl('icons_svgs/python.svg')
+const ubuntuSVG = getImageAssetUrl('icons_svgs/ubuntu.svg')
+const centosSVG = getImageAssetUrl('icons_svgs/centos.svg')
+const awsSVG = getImageAssetUrl('icons_svgs/aws.svg')
+const gcpSVG = getImageAssetUrl('icons_svgs/gcp.svg')
+const azureSVG = getImageAssetUrl('icons_svgs/azure.svg')
+const digitaloceanSVG = getImageAssetUrl('icons_svgs/digitalocean.svg')
+const typeHierarchySubSVG = getImageAssetUrl(
   'icons_svgs/type-hierarchy-sub.svg'
 )
-const typeHierarchySuperSVG = getImageAssetURLFor(
+const typeHierarchySuperSVG = getImageAssetUrl(
   'icons_svgs/type-hierarchy-super.svg'
 )
-const javaSVG = getImageAssetURLFor('icons_svgs/java.svg')
-const rubySVG = getImageAssetURLFor('icons_svgs/ruby.svg')
-const MdOutlineShieldLockSVG = getImageAssetURLFor(
+const javaSVG = getImageAssetUrl('icons_svgs/java.svg')
+const rubySVG = getImageAssetUrl('icons_svgs/ruby.svg')
+const MdOutlineShieldLockSVG = getImageAssetUrl(
   'icons_svgs/outline-shield-lock.svg'
 )
 
-const devopnessSymbolSVG = getImageAssetURLFor('logo-symbol-devopness.svg')
+const devopnessSymbolSVG = getImageAssetUrl('logo-symbol-devopness.svg')
 
 const iconList = [
   { type: 'icon', accessor: 'link', component: AiOutlineLink },
@@ -241,12 +242,12 @@ const iconLoader = (
   color = '',
   opacity = 1,
   label = ''
-): JSX.Element => {
+): React.JSX.Element => {
   const [
     Icon,
   ] = iconList.filter(({ accessor }) => accessor === accessorName)
 
-  switch (Icon?.type) {
+  switch (Icon.type) {
     case 'icon':
       return (
         <Icon.component
@@ -260,8 +261,8 @@ const iconLoader = (
       return (
         <img
           aria-label={label}
-          width={`${Math.max(size, ICON_MIN_SIZE)}px`}
-          height={`${Math.max(size, ICON_MIN_SIZE)}px`}
+          width={`${Math.max(size, ICON_MIN_SIZE).toString()}px`}
+          height={`${Math.max(size, ICON_MIN_SIZE).toString()}px`}
           src={Icon.component}
         />
       )
@@ -269,9 +270,9 @@ const iconLoader = (
       return (
         <img
           aria-label={label}
-          width={`${Math.max(size, ICON_MIN_SIZE)}px`}
-          height={`${Math.max(size, ICON_MIN_SIZE)}px`}
-          src={getImageAssetURLFor(`icons_svgs/${accessorName}.svg`)}
+          width={`${Math.max(size, ICON_MIN_SIZE).toString()}px`}
+          height={`${Math.max(size, ICON_MIN_SIZE).toString()}px`}
+          src={getImageAssetUrl(`icons_svgs/${String(accessorName)}.svg`)}
         />
       )
   }

@@ -5,7 +5,7 @@ import path from 'path'
  *
  * @param imageAssetPath - Image asset path relative to CDN /images/ path.
  */
-function getImageAssetURLFor(imageAssetPath: string) {
+function getImageAssetUrl(imageAssetPath: string) {
   const assetsCdnUrl = new URL(process.env.DEVOPNESS_URL_ASSETS ?? '#')
   const assetUrl = new URL(
     path.join(assetsCdnUrl.pathname, 'images', imageAssetPath),
@@ -14,4 +14,4 @@ function getImageAssetURLFor(imageAssetPath: string) {
   return assetUrl.href
 }
 
-export { getImageAssetURLFor }
+export { getImageAssetUrl }
