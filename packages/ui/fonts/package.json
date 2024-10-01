@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "build": "rm -Rf ./dist && npm run lint && tsc",
-    "lint": "eslint . --ext .ts"
+    "lint": "eslint . --ext .ts && prettier --check ."
   },
   "repository": {
     "type": "git",
