@@ -128,16 +128,12 @@ type Color = keyof ColorToHexMapper
  *
  * @param name Color name on format <color>.<shade>
  */
-const getColor =
-  <TColor extends Color>(name: TColor): ColorToHexMapper[TColor] => {
-    return get(
-      colors,
-      name
-    ) as unknown as ColorToHexMapper[TColor]
-  }
+const getColor = <TColor extends Color>(
+  name: TColor
+): ColorToHexMapper[TColor] => {
+  return get(colors, name) as unknown as ColorToHexMapper[TColor]
+}
 
 export type { Color }
 
-export {
-  getColor,
-}
+export { getColor }

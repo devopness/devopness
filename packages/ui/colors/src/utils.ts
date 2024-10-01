@@ -38,6 +38,4 @@ type Flatten<T extends object> = object extends T
       : never
     : never
 
-export type {
-  Flatten
-}
+export type { Flatten }
