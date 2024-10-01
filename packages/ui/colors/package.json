@@ -1,0 +1,53 @@
+{
+  "name": "@devopness/ui-colors",
+  "version": "0.0.0-development",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "Devopness Design System Colors - Painless essential DevOps to everyone",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rm -Rf ./dist && npm run lint && tsc",
+    "lint": "eslint . --ext .ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devopness/devopness.git"
+  },
+  "keywords": [
+    "Cloud Engineering",
+    "Cloud Infrastructure Management",
+    "Cloud Platform Engineering",
+    "Configuration Management",
+    "DevOps",
+    "Devopness",
+    "Deploy",
+    "Deployment",
+    "Platform Engineering",
+    "Zero Downtime Deploy",
+    "Server Management"
+  ],
+  "author": "Devopness (https://www.devopness.com)",
+  "license": "MIT",
+  "release": {
+    "branches": [
+      "main"
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/devopness/devopness/issues"
+  },
+  "homepage": "https://github.com/devopness/devopness#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.31.0",
+    "eslint": "^7.32.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-promise": "^6.4.0",
+    "typescript": "^5.5.3"
+  },
+  "dependencies": {}
+}
