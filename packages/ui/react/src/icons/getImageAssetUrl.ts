@@ -1,4 +1,4 @@
-import path from 'path'
+import path from 'path-browserify'
 
 /**
  * Get URL for the given image asset on Devopness' CDN.

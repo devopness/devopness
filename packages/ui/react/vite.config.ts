@@ -13,10 +13,8 @@ export default defineConfig({
     }),
     tsconfigPaths(),
   ],
-  resolve: {
-    alias: {
-      path: 'path-browserify',
-    },
+  define: {
+    'process.env': process.env
   },
   build: {
     lib: {
