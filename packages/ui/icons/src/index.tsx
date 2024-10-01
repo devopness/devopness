@@ -73,6 +73,7 @@ import { RiTeamLine } from '@react-icons/all-files/ri/RiTeamLine'
 import { RxOpenInNewWindow } from '@react-icons/all-files/rx/RxOpenInNewWindow'
 
 import { getImageAssetURLFor } from './utils'
+export { getImageAssetURLFor } from './utils'
 import { CircleBubble } from './CircleBubble'
 
 const bitbucketSVG = getImageAssetURLFor('icons_svgs/bitbucket.svg')
