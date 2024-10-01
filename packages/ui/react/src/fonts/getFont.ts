@@ -15,7 +15,7 @@ type Font = keyof typeof fonts
  * Gets the font' CSS Font Family list
  */
 const getFont = <TFont extends Font>(name: TFont): (typeof fonts)[TFont] =>
-  get(fonts, name) as (typeof fonts)[TFont]
+  get(fonts, name)
 
 export type { Font }
 
