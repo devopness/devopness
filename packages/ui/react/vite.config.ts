@@ -11,8 +11,13 @@ export default defineConfig({
     dts({
       insertTypesEntry: true,
     }),
-    tsconfigPaths()
+    tsconfigPaths(),
   ],
+  resolve: {
+    alias: {
+      path: 'path-browserify',
+    },
+  },
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
