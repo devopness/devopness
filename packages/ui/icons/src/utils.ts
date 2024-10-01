@@ -1,4 +1,4 @@
-import path from "path"
+import path from 'path'
 
 /**
  * Get URL for the given image asset on Devopness' CDN.
