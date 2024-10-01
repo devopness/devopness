@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { AiOutlineCheck } from '@react-icons/all-files/ai/AiOutlineCheck'
 import { AiOutlineCloudServer } from '@react-icons/all-files/ai/AiOutlineCloudServer'
 import { AiOutlineDeploymentUnit } from '@react-icons/all-files/ai/AiOutlineDeploymentUnit'
@@ -219,7 +217,10 @@ const iconList = [
   { type: 'icon', accessor: 'folder', component: MdOutlineFolder },
 ] as const
 
-type IconType = (typeof iconList)[number]['accessor']
+/**
+ * Lists all valid icon accessors
+ */
+type Icon = (typeof iconList)[number]['accessor']
 
 /**
  * icon 'loading' uses CircleBubble component, instead of an icon
@@ -231,8 +232,10 @@ type IconType = (typeof iconList)[number]['accessor']
  */
 const LOADING_ICON_DEFAULT_SIZE = 2
 
+const ICON_MIN_SIZE = 12
+
 const iconLoader = (
-  accessorName?: IconType,
+  accessorName?: Icon,
   size = 13,
   color = '',
   opacity = 1,
@@ -246,7 +249,7 @@ const iconLoader = (
     case 'icon':
       return (
         <Icon.component
-          aria-label={label || ''}
+          aria-label={label}
           opacity={opacity}
           size={size}
           color={color}
@@ -255,23 +258,23 @@ const iconLoader = (
     case 'image':
       return (
         <img
-          aria-label={label || ''}
-          width={`${Math.max(size, 12)}px`}
-          height={`${Math.max(size, 12)}px`}
+          aria-label={label}
+          width={`${Math.max(size, ICON_MIN_SIZE)}px`}
+          height={`${Math.max(size, ICON_MIN_SIZE)}px`}
           src={Icon.component}
         />
       )
     default:
       return (
         <img
-          aria-label={label || ''}
-          width={`${Math.max(size, 12)}px`}
-          height={`${Math.max(size, 12)}px`}
+          aria-label={label}
+          width={`${Math.max(size, ICON_MIN_SIZE)}px`}
+          height={`${Math.max(size, ICON_MIN_SIZE)}px`}
           src={getImageAssetURLFor(`icons_svgs/${accessorName}.svg`)}
         />
       )
   }
 }
 
-export type { IconType }
+export type { Icon }
 export { iconLoader, LOADING_ICON_DEFAULT_SIZE }
