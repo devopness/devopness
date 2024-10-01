@@ -1,6 +1,6 @@
 import get from 'lodash/get'
 
-import type { Flatten } from './utils'
+import type { Flatten } from './types'
 
 const colors = {
   amber: {
@@ -130,9 +130,7 @@ type Color = keyof ColorToHexMapper
  */
 const getColor = <TColor extends Color>(
   name: TColor
-): ColorToHexMapper[TColor] => {
-  return get(colors, name) as unknown as ColorToHexMapper[TColor]
-}
+): ColorToHexMapper[TColor] => get(colors, name) as unknown as ColorToHexMapper[TColor]
 
 export type { Color }
 

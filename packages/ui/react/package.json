@@ -53,6 +53,7 @@
   "homepage": "https://github.com/devopness/devopness#readme",
   "dependencies": {
     "@react-icons/all-files": "https://github.com/react-icons/react-icons/releases/download/v5.2.1/react-icons-all-files-5.2.1.tgz",
+    "lodash": "^4.17.21",
     "path-browserify": "^1.0.1",
     "react": "^18.3.1",
     "react-css-loaders": "^0.0.6",
@@ -66,6 +67,7 @@
     "@storybook/react": "^8.3.4",
     "@storybook/react-vite": "^8.3.4",
     "@storybook/test": "^8.3.4",
+    "@types/lodash": "^4.17.9",
     "@types/node": "^22.7.4",
     "@types/path-browserify": "^1.0.3",
     "@types/react": "^18.3.3",
