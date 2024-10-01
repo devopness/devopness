@@ -1,6 +1,6 @@
 import get from 'lodash/get'
 
-import type { Flatten } from './types'
+import type { Flatten } from 'src/types'
 
 const colors = {
   amber: {
