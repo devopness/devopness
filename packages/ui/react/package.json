@@ -1,8 +1,22 @@
 {
-  "name": "react",
-  "private": true,
-  "version": "0.0.0",
+  "name": "@devopness/ui-react",
   "type": "module",
+  "version": "0.0.0-development",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "Devopness Design System React Components - Painless essential DevOps to everyone",
+  "main": "dist/ui-react.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "dist/ui-react.js",
+      "types": "dist/index.d.ts"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -11,6 +25,34 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devopness/devopness.git"
+  },
+  "keywords": [
+    "Cloud Engineering",
+    "Cloud Infrastructure Management",
+    "Cloud Platform Engineering",
+    "Configuration Management",
+    "DevOps",
+    "Devopness",
+    "Deploy",
+    "Deployment",
+    "Platform Engineering",
+    "Zero Downtime Deploy",
+    "Server Management"
+  ],
+  "author": "Devopness (https://www.devopness.com)",
+  "license": "MIT",
+  "release": {
+    "branches": [
+      "main"
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/devopness/devopness/issues"
+  },
+  "homepage": "https://github.com/devopness/devopness#readme",
   "dependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
@@ -37,7 +79,8 @@
     "storybook": "^8.3.4",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.1",
-    "vite": "^5.4.1"
+    "vite": "^5.4.1",
+    "vite-plugin-dts": "^4.2.3"
   },
   "eslintConfig": {
     "extends": [
