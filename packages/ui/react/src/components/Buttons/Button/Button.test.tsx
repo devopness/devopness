@@ -59,7 +59,7 @@ describe('Button', () => {
           <Button
             type="button"
             typeSize={typeSize}
-            buttonType='outlinedSecondary'
+            buttonType="outlinedSecondary"
           >
             Click me!
           </Button>
@@ -86,7 +86,7 @@ describe('Button', () => {
           <Button
             type="button"
             typeSize={typeSize}
-            buttonType='borderless'
+            buttonType="borderless"
           >
             Click me!
           </Button>
@@ -116,7 +116,7 @@ describe('Button', () => {
           <Button
             type="button"
             typeSize={typeSize}
-            buttonType='outlinedAuxiliary'
+            buttonType="outlinedAuxiliary"
           >
             Click me!
           </Button>
@@ -188,4 +188,3 @@ describe('Button', () => {
     )
   })
 })
-

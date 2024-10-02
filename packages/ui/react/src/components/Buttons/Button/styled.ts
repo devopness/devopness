@@ -88,8 +88,10 @@ const getTypeSize = (typeSize: StyledProps['size']) => {
 }
 
 const ContentIcon = styled.div<
-  Pick<ButtonProps, 'noIconMargin'> &
-    { reversed: ButtonProps['revertOrientation'], size: Required<ButtonProps['iconSize']> }
+  Pick<ButtonProps, 'noIconMargin'> & {
+    reversed: ButtonProps['revertOrientation']
+    size: Required<ButtonProps['iconSize']>
+  }
 >`
   ${({ noIconMargin, reversed: revertOrientation, size: iconSize }) => css`
     display: flex;
@@ -170,10 +172,4 @@ const SmallWrapper = styled.div<StyledProps>`
   `}
 `
 
-export {
-  ContentIcon,
-  Label,
-  WrapperButtons,
-  BaseButton,
-  SmallWrapper,
-}
+export { ContentIcon, Label, WrapperButtons, BaseButton, SmallWrapper }
