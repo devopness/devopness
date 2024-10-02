@@ -279,4 +279,4 @@ const iconLoader = (
 }
 
 export type { Icon }
-export { iconLoader, LOADING_ICON_DEFAULT_SIZE }
+export { iconLoader, LOADING_ICON_DEFAULT_SIZE, iconList }

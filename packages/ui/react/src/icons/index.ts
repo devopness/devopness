@@ -1,2 +1,3 @@
 export * from './getImageAssetUrl'
-export * from './iconLoader'
+export type { Icon } from './iconLoader'
+export { iconLoader } from './iconLoader'
