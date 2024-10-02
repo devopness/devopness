@@ -1,26 +1,13 @@
-import { BubbleSpinLoader } from 'react-css-loaders'
+import { dotSpinner } from 'ldrs'
 
-import styled from 'styled-components'
+dotSpinner.register()
 
-const BubbleSpinLoaderCustom = styled(BubbleSpinLoader)`
-  color: ${(props) => (props.color as string | undefined) ?? '#000'};
-  fill: ${(props) => (props.color as string | undefined) ?? '#000'};
-  &&& {
-    margin: 5px;
-  }
-`
-
-const CircleBubble = ({
-  color,
-  ...restProps
-}: {
-  color: string
-  size: number
-}) => (
-  <BubbleSpinLoaderCustom
+const CircleBubble = ({ color, size }: { color: string; size: number }) => (
+  <l-dot-spinner
+    size={size}
+    speed="0.9"
     color={color}
-    {...restProps}
-  />
+  ></l-dot-spinner>
 )
 
 export { CircleBubble }

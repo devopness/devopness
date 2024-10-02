@@ -87,7 +87,7 @@ const getTypeSize = (typeSize: StyledProps['size']) => {
   }
 }
 
-const ContentLoading = styled.div<
+const ContentIcon = styled.div<
   Pick<ButtonProps, 'noIconMargin' | 'revertOrientation'> &
     Required<Pick<ButtonProps, 'iconSize'>>
 >`
@@ -103,8 +103,6 @@ const ContentLoading = styled.div<
         : 'margin-right: 10px;'}
   `}
 `
-
-const ContentIcon = ContentLoading
 
 const Label = styled.span``
 
@@ -173,7 +171,6 @@ const SmallWrapper = styled.div<StyledProps>`
 `
 
 export {
-  ContentLoading,
   ContentIcon,
   Label,
   WrapperButtons,

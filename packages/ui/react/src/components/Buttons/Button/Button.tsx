@@ -1,13 +1,11 @@
 import type { ButtonHTMLAttributes } from 'react'
 
-import { BaseButton, ContentLoading, ContentIcon, Label } from './styled'
+import { BaseButton, ContentIcon, Label } from './styled'
 import { getColor } from 'src/colors/getColor'
 import type { Icon } from 'src/icons/iconLoader'
 import { iconLoader } from 'src/icons/iconLoader'
 
 const DEFAULT_ICON_SIZE = 16
-const MIN_LOADING_ICON_SIZE = 2
-const LOADING_ICON_SIZE_RATIO = 8
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   /**
@@ -71,7 +69,7 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   iconColor?: ReturnType<typeof getColor>
 }
 
-const getTextColor = (buttonType?: string) => {
+const getLoadingColor = (buttonType?: string) => {
   switch (buttonType) {
     case 'borderless':
     case 'outlinedSecondary':
@@ -93,7 +91,7 @@ const Button = ({
   disabled,
   onClick,
   tabIndex,
-  loading,
+  loading: isLoading,
   icon,
   children,
   revertOrientation = false,
@@ -104,41 +102,23 @@ const Button = ({
   iconColor,
   ...props
 }: ButtonProps) => {
-  const handleLoadingAndIcons = ({
-    noIconMargin = false,
-    revertOrientation = false,
-  }) => {
-    if (loading) {
-      return (
-        <ContentLoading
-          data-testid="loading"
-          revertOrientation={revertOrientation}
-          iconSize={iconSize ?? DEFAULT_ICON_SIZE}
-        >
-          {iconLoader(
-            'loading',
-            Math.max(
-              (iconSize ?? DEFAULT_ICON_SIZE) / LOADING_ICON_SIZE_RATIO,
-              MIN_LOADING_ICON_SIZE
-            ),
-            getTextColor(buttonType)
-          )}
-        </ContentLoading>
-      )
-    }
+  const Icon = () => {
+    if (isLoading === undefined && icon === undefined) return <></>
 
-    if (icon) {
-      return (
-        <ContentIcon
-          data-testid="icon"
-          revertOrientation={revertOrientation}
-          noIconMargin={noIconMargin}
-          iconSize={iconSize ?? DEFAULT_ICON_SIZE}
-        >
-          {iconLoader(icon, iconSize ?? DEFAULT_ICON_SIZE, iconColor)}
-        </ContentIcon>
-      )
-    }
+    return (
+      <ContentIcon
+        data-testid={isLoading ? 'loading' : 'icon'}
+        revertOrientation={revertOrientation}
+        noIconMargin={noIconMargin}
+        iconSize={iconSize ?? DEFAULT_ICON_SIZE}
+      >
+        {iconLoader(
+          isLoading ? 'loading' : icon,
+          iconSize ?? DEFAULT_ICON_SIZE,
+          isLoading ? getLoadingColor(buttonType) : iconColor
+        )}
+      </ContentIcon>
+    )
   }
 
   return (
@@ -164,8 +144,7 @@ const Button = ({
       tabIndex={tabIndex}
       {...props}
     >
-      {(!!loading || !!icon) &&
-        handleLoadingAndIcons({ noIconMargin, revertOrientation })}
+      <Icon />
       {children && <Label className="translate">{children}</Label>}
     </BaseButton>
   )

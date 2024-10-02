@@ -224,16 +224,6 @@ const iconList = [
  */
 type Icon = (typeof iconList)[number]['accessor']
 
-/**
- * icon 'loading' uses CircleBubble component, instead of an icon
- * from react-icons, as such, the size prop works differently
- * from the other icons; and bubblespinloader size that works
- * best to visually match the default icon size is 2px.
- *
- * @see {@link https://www.npmjs.com/package/react-css-loaders#bubblespinloader bubblespinloader}
- */
-const LOADING_ICON_DEFAULT_SIZE = 2
-
 const ICON_MIN_SIZE = 12
 
 const iconLoader = (
@@ -279,4 +269,4 @@ const iconLoader = (
 }
 
 export type { Icon }
-export { iconLoader, LOADING_ICON_DEFAULT_SIZE, iconList }
+export { iconLoader, iconList }
