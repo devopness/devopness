@@ -53,6 +53,8 @@
   },
   "homepage": "https://github.com/devopness/devopness#readme",
   "dependencies": {
+    "@mui/material": "^6.1.2",
+    "@mui/styled-engine-sc": "^6.1.2",
     "@react-icons/all-files": "https://github.com/react-icons/react-icons/releases/download/v5.2.1/react-icons-all-files-5.2.1.tgz",
     "framer-motion": "^11.9.0",
     "ldrs": "^1.0.2",
