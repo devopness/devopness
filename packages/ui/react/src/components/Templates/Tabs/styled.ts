@@ -28,9 +28,6 @@ const StyledTabs = styled(MuiTabs)`
 const StyledTab = styled(MuiTab)`
   &.MuiTab-root {
     min-width: auto;
-  }
-
-  & .MuiTab-wrapper {
     color: ${getColor('blue.950')};
     text-transform: capitalize;
     font-family: ${getFont('roboto')};
@@ -38,15 +35,12 @@ const StyledTab = styled(MuiTab)`
     font-weight: 500;
     line-height: 100%;
     letter-spacing: normal;
+    opacity: 1;
   }
 
-  &.Mui-selected .MuiTab-wrapper {
+  &.Mui-selected {
     color: ${getColor('purple.800')};
     font-weight: 600;
-  }
-
-  &.MuiTab-textColorInherit {
-    opacity: 1;
   }
 `
 

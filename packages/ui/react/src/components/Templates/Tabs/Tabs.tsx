@@ -29,6 +29,7 @@ const Tabs = ({
         value={currentTabIndex}
         variant="scrollable"
         scrollButtons="auto"
+        allowScrollButtonsMobile
       >
         {tabsData.map(({ label }, index) => (
           <StyledTab
