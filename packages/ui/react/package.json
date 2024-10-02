@@ -53,6 +53,7 @@
   "homepage": "https://github.com/devopness/devopness#readme",
   "dependencies": {
     "@react-icons/all-files": "https://github.com/react-icons/react-icons/releases/download/v5.2.1/react-icons-all-files-5.2.1.tgz",
+    "framer-motion": "^11.9.0",
     "lodash": "^4.17.21",
     "path-browserify": "^1.0.1",
     "react": "^18.3.1",
