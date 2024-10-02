@@ -108,9 +108,9 @@ const Button = ({
     return (
       <ContentIcon
         data-testid={isLoading ? 'loading' : 'icon'}
-        revertOrientation={revertOrientation}
+        reversed={revertOrientation}
         noIconMargin={noIconMargin}
-        iconSize={iconSize ?? DEFAULT_ICON_SIZE}
+        size={iconSize ?? DEFAULT_ICON_SIZE}
       >
         {iconLoader(
           isLoading ? 'loading' : icon,
@@ -125,7 +125,7 @@ const Button = ({
     <BaseButton
       data-testid="button"
       size={typeSize}
-      buttonType={buttonType}
+      variant={buttonType}
       reversed={revertOrientation}
       noPointerEvents={noPointerEvents}
       custom={{

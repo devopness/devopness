@@ -14,7 +14,7 @@ type StyledProps = {
   noMargin?: boolean
   noPadding?: boolean
   size: NonNullable<ButtonProps['typeSize']>
-  buttonType?: string
+  variant?: string
   custom?: CustomButton
   icon?: boolean
   alignEnd?: boolean
@@ -88,10 +88,10 @@ const getTypeSize = (typeSize: StyledProps['size']) => {
 }
 
 const ContentIcon = styled.div<
-  Pick<ButtonProps, 'noIconMargin' | 'revertOrientation'> &
-    Required<Pick<ButtonProps, 'iconSize'>>
+  Pick<ButtonProps, 'noIconMargin'> &
+    { reversed: ButtonProps['revertOrientation'], size: Required<ButtonProps['iconSize']> }
 >`
-  ${({ noIconMargin, revertOrientation, iconSize }) => css`
+  ${({ noIconMargin, reversed: revertOrientation, size: iconSize }) => css`
     display: flex;
     align-items: center;
     width: ${iconSize}px;
@@ -120,7 +120,7 @@ const WrapperButtons = styled.div<StyledProps>`
 const BaseButton = styled.button<StyledProps>`
   ${({
     size: typeSize,
-    buttonType,
+    variant: buttonType,
     custom,
     noMargin,
     reversed: revertOrientation,
