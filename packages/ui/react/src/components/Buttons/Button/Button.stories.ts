@@ -36,7 +36,7 @@ const Primary: Story = {
     icon: 'plus',
     children: 'Add Application',
     typeSize: 'default',
-    buttonType: 'Default'
+    buttonType: 'Default',
   },
 }
 

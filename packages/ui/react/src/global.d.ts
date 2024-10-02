@@ -3,4 +3,3 @@
 // if the libraries mentioned here eventually provide type definition files, the respective
 // module can safely be removed from there
 declare module 'react-css-loaders'
-

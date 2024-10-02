@@ -130,7 +130,8 @@ type Color = keyof ColorToHexMapper
  */
 const getColor = <TColor extends Color>(
   name: TColor
-): ColorToHexMapper[TColor] => get(colors, name) as unknown as ColorToHexMapper[TColor]
+): ColorToHexMapper[TColor] =>
+  get(colors, name) as unknown as ColorToHexMapper[TColor]
 
 export type { Color }
 
