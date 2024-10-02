@@ -6,9 +6,6 @@ import { iconList } from 'src/icons/iconLoader'
 
 const meta = {
   component: Button,
-  parameters: {
-    layout: 'centered',
-  },
   argTypes: {
     icon: {
       control: 'select',
