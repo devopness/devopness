@@ -21,7 +21,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint . && prettier --check .",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "NODE_ENV=production storybook build -c .storybook -o ./storybook-static"
   },
   "repository": {
     "type": "git",
