@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components'
 
-import { ButtonProps } from './index'
-import { getColor } from 'src/colors/getColor'
-import { getFont } from 'src/fonts/getFont'
+import type { ButtonProps } from '.'
+import { getColor } from 'src/colors'
+import { getFont } from 'src/fonts'
 
 type CustomButton = {
   backgroundColor?: string

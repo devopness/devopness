@@ -7,7 +7,7 @@ import MuiTooltip, { tooltipClasses } from '@mui/material/Tooltip'
 import { ContentChildren } from './Tooltip.styled'
 import { getColor } from 'src/colors'
 import { getFont } from 'src/fonts'
-import { useWindowSize } from 'src/hooks/useWindowSize'
+import { useWindowSize } from 'src/hooks'
 
 type Nullable<T extends object> = { [K in keyof T]: T[K] | null | undefined }
 

@@ -1,9 +1,9 @@
 import type { ButtonHTMLAttributes } from 'react'
 
 import { BaseButton, ContentIcon, Label } from './Button.styled'
-import { getColor } from 'src/colors/getColor'
-import type { Icon } from 'src/icons/iconLoader'
-import { iconLoader } from 'src/icons/iconLoader'
+import { getColor } from 'src/colors'
+import type { Icon } from 'src/icons'
+import { iconLoader } from 'src/icons'
 
 const DEFAULT_ICON_SIZE = 16
 
