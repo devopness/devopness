@@ -13,6 +13,10 @@ type Nullable<T extends object> = { [K in keyof T]: T[K] | null | undefined }
 
 type TooltipComponentProps = {
   /**
+   * Tooltip reference element.
+   */
+  children: React.ReactNode
+  /**
    * Define component styles
    */
   styles?: {
@@ -40,7 +44,7 @@ type TooltipComponentProps = {
    * in the controlled way
    */
   open?: boolean
-} & Omit<TooltipProps, 'title'> &
+} & Omit<TooltipProps, 'title' | 'children'> &
   Nullable<Pick<TooltipProps, 'title'>>
 
 const DEFAULT_BACKGROUND_COLOR = getColor('blue.950')
