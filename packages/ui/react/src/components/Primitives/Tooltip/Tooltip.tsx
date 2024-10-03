@@ -72,6 +72,7 @@ const StyledTooltip = ({
   return <WrappedTooltip {...props} />
 }
 
+/** Display informative text when users hover over a child element */
 const Tooltip = ({
   disableHover = false,
   enableOnlyWithEllipsisPoints = false,

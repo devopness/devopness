@@ -14,6 +14,7 @@ type TabsProps = {
   onTabClick?: (event: { index: number; label: string }) => void
 }
 
+/** Switch between different views on the same page */
 const Tabs = ({
   data: tabsData,
   currentTabIndex,
