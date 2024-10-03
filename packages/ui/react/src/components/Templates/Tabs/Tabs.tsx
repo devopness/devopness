@@ -9,7 +9,7 @@ type TabsProps = {
    * - When data has only one tab, Tabs selector becomes hidden
    * - When data is empty, this component returns null
    */
-  data: ({ label: string; component: React.ReactNode })[]
+  data: { label: string; component: React.ReactNode }[]
   currentTabIndex: number
   onTabClick?: (event: { index: number; label: string }) => void
 }
@@ -34,7 +34,9 @@ const Tabs = ({
           <StyledTab
             key={label}
             label={label}
-            onClick={() => { onTabClick({ index, label }); }}
+            onClick={() => {
+              onTabClick({ index, label })
+            }}
           />
         ))}
       </StyledTabs>

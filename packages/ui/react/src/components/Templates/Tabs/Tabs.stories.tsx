@@ -26,7 +26,10 @@ const Details: Story = {
                 When <code>data</code> array only has one tab available, Tabs
                 selector is hidden
               </li>
-              <li>Try changing the <code>currentTabIndex</code> value or deleting a item from data array</li>
+              <li>
+                Try changing the <code>currentTabIndex</code> value or deleting
+                a item from data array
+              </li>
             </ul>
           </>
         ),
@@ -45,4 +48,3 @@ const Details: Story = {
 
 export default meta
 export { Details }
-

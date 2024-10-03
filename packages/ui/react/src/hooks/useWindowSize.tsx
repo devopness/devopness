@@ -29,4 +29,3 @@ const useWindowSize = () => {
 }
 
 export { useWindowSize }
-

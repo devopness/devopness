@@ -45,13 +45,18 @@ type TooltipComponentProps = {
 
 const DEFAULT_BACKGROUND_COLOR = getColor('blue.950')
 
-const StyledTooltip = ({ styles, ...props }: Pick<TooltipComponentProps, 'styles'> & TooltipProps) => {
-  const WrappedTooltip = styled(({ className, ...tooltipProps }: TooltipProps) => (
-    <MuiTooltip
-      {...tooltipProps}
-      classes={{ popper: className }}
-    />
-  ))(() => ({
+const StyledTooltip = ({
+  styles,
+  ...props
+}: Pick<TooltipComponentProps, 'styles'> & TooltipProps) => {
+  const WrappedTooltip = styled(
+    ({ className, ...tooltipProps }: TooltipProps) => (
+      <MuiTooltip
+        {...tooltipProps}
+        classes={{ popper: className }}
+      />
+    )
+  )(() => ({
     [`& .${tooltipClasses.tooltip}`]: {
       color: styles?.color,
       backgroundColor: styles?.backgroundColor ?? DEFAULT_BACKGROUND_COLOR,
@@ -60,7 +65,7 @@ const StyledTooltip = ({ styles, ...props }: Pick<TooltipComponentProps, 'styles
     },
   }))
 
-  return <WrappedTooltip {...props}/>
+  return <WrappedTooltip {...props} />
 }
 
 const Tooltip = ({
