@@ -1,6 +1,6 @@
 import type { ButtonHTMLAttributes } from 'react'
 
-import { BaseButton, ContentIcon, Label } from './styled'
+import { BaseButton, ContentIcon, Label } from './Button.styled'
 import { getColor } from 'src/colors/getColor'
 import type { Icon } from 'src/icons/iconLoader'
 import { iconLoader } from 'src/icons/iconLoader'
