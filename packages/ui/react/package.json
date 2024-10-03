@@ -22,7 +22,8 @@
     "lint": "eslint . && prettier --check .",
     "test": "vitest",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "NODE_ENV=production storybook build -c .storybook -o ./storybook-static"
+    "build-storybook": "NODE_ENV=production storybook build -c .storybook -o ./storybook-static",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
