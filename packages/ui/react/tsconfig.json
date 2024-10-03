@@ -26,6 +26,7 @@
     "moduleDetection": "force",
     "noEmit": true,
     "jsx": "react-jsx",
+    "removeComments": false,
 
     /* Linting */
     "strict": true,
