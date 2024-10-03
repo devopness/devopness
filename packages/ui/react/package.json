@@ -60,8 +60,6 @@
     "ldrs": "^1.0.2",
     "lodash": "^4.17.21",
     "path-browserify": "^1.0.1",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
     "styled-components": "^6.1.13"
   },
   "devDependencies": {
@@ -91,6 +89,8 @@
     "jsdom": "^25.0.1",
     "prettier": "^3.3.3",
     "prettier-plugin-multiline-arrays": "^3.0.6",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "storybook": "^8.3.4",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.1",
@@ -98,6 +98,10 @@
     "vite-plugin-dts": "^4.2.3",
     "vite-tsconfig-paths": "^5.0.1",
     "vitest": "^2.1.2"
+  },
+  "peerDependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "eslintConfig": {
     "extends": [
