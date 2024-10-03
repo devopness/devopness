@@ -1,7 +1,7 @@
 /// <reference types="vitest/config" />
 import react from '@vitejs/plugin-react-swc'
 import { resolve } from 'path'
-import { defineConfig, loadEnv } from 'vite'
+import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 import tsconfigPaths from 'vite-tsconfig-paths'
 
@@ -19,14 +19,10 @@ export default defineConfig({
       '@mui/styled-engine': '@mui/styled-engine-sc',
     },
   },
-  define: {
-    'process.env': process.env,
-  },
   test: {
     globals: true,
     environment: 'jsdom',
     setupFiles: resolve(__dirname, 'src/setupTest.ts'),
-    env: loadEnv('', process.cwd(), ''),
   },
   build: {
     lib: {
