@@ -5,14 +5,16 @@ import { Tooltip } from '.'
 
 describe('Tooltip', () => {
   it('renders properly', async () => {
-    const tooltipTitle = 'test'
+    const tooltipTitle = 'tooltip title'
+    const triggerTitle = 'tooltip trigger'
+
     render(
       <Tooltip title={tooltipTitle}>
-        <p>content</p>
+        <p>{triggerTitle}</p>
       </Tooltip>
     )
 
-    const tooltipBase = screen.getByTitle(tooltipTitle)
+    const tooltipBase = screen.getByText(triggerTitle)
     fireEvent.mouseOver(tooltipBase)
     const tooltip = await screen.findByText(tooltipTitle)
     expect(tooltip).toBeInTheDocument()
