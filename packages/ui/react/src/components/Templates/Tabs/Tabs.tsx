@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { StyledTabs, StyledTab } from './styled'
+import { StyledTabs, StyledTab } from './Tabs.styled'
 
 type TabsProps = {
   /**

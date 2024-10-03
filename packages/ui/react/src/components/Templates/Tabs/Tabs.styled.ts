@@ -1,12 +1,12 @@
-import MuiTab from '@mui/material/Tab'
-import MuiTabs from '@mui/material/Tabs'
+import MuiTab, { tabClasses } from '@mui/material/Tab'
+import MuiTabs, { tabsClasses } from '@mui/material/Tabs'
 import styled from 'styled-components'
 
 import { getColor } from 'src/colors'
 import { getFont } from 'src/fonts'
 
 const StyledTabs = styled(MuiTabs)`
-  &.MuiTabs-root {
+  &.${tabsClasses.root} {
     height: 40px;
     min-height: 40px;
     position: -webkit-sticky; /* Safari */
@@ -16,17 +16,17 @@ const StyledTabs = styled(MuiTabs)`
     z-index: 998; /* same z-index as Submenu component */
   }
 
-  & .MuiTabScrollButton-root {
+  & .${tabsClasses.scrollButtons} {
     width: 1.25rem; /* => 20px */
   }
 
-  & .MuiTabs-indicator {
+  & .${tabsClasses.indicator} {
     background-color: ${getColor('purple.800')};
   }
 `
 
 const StyledTab = styled(MuiTab)`
-  &.MuiTab-root {
+  &.${tabClasses.root} {
     min-width: auto;
     color: ${getColor('blue.950')};
     text-transform: capitalize;
@@ -38,7 +38,7 @@ const StyledTab = styled(MuiTab)`
     opacity: 1;
   }
 
-  &.Mui-selected {
+  &.${tabClasses.selected} {
     color: ${getColor('purple.800')};
     font-weight: 600;
   }
