@@ -11,6 +11,13 @@ export default defineConfig({
     react(),
     dts({
       insertTypesEntry: true,
+      exclude: [
+        'vite.config.ts',
+        'src/**/*.test.*',
+        'src/**/*.stories.*',
+        'src/setupTest.ts',
+        '.storybook/**/*.ts',
+      ],
     }),
     tsconfigPaths(),
   ],
@@ -34,7 +41,7 @@ export default defineConfig({
     rollupOptions: {
       external: [
         'react',
-        'react/jsx-runtime'
+        'react/jsx-runtime',
       ],
     },
   },

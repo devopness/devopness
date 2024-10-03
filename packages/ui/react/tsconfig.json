@@ -38,12 +38,5 @@
     "src",
     "vite.config.ts",
     ".storybook/**/*.ts"
-  ],
-  "exclude": [
-    "vite.config.ts",
-    "src/**/*.test.*",
-    "src/**/*.stories.*",
-    "src/setupTest.ts",
-    ".storybook/**/*.ts"
   ]
 }
