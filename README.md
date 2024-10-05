@@ -38,6 +38,7 @@ This repository has the following packages/sub-projects:
 |:---------------------------|:--------------------------|:--------------------------------|
 | [/docs](docs/)             | 📚 Documentation          | End user product documentation  |
 | [/packages/sdks/javascript](packages/sdks/javascript/) | API SDK JavaScript  | API SDK to interact with Devopness using JavaScript and TypeScript |
+| [/packages/ui/react](packages/ui/react/) | UI React Components  | Devopness Design System UI components for React |
 
 
 
