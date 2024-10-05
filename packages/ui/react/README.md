@@ -40,7 +40,7 @@ As well as a few others tools configured:
 
 ## Development & Testing
 
-Installing on ``Linux`` or ``macOS`` systems.
+Installing on `Linux` or `macOS` systems.
 
 #### 1. Navigate to the project directory
 
@@ -57,6 +57,7 @@ npm install
 ```
 
 #### 3. Build UI package
+
 ```
 npm run build
 ```
@@ -72,4 +73,3 @@ npm run test
 ```
 npm run storybook
 ```
-
