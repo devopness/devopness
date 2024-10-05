@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { AiOutlineCheck } from '@react-icons/all-files/ai/AiOutlineCheck'
 import { AiOutlineCloudServer } from '@react-icons/all-files/ai/AiOutlineCloudServer'
 import { AiOutlineDeploymentUnit } from '@react-icons/all-files/ai/AiOutlineDeploymentUnit'
