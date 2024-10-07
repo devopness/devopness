@@ -1,4 +1,4 @@
-name: SDK JavaScript - Release
+name: UI React - Release
 on:
   push:
     paths:
