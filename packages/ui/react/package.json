@@ -23,7 +23,9 @@
     "test": "vitest",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "NODE_ENV=production storybook build -c .storybook -o ./storybook-static",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm test",
+    "prepare": "npm run build",
+    "preversion": "npm run lint"
   },
   "repository": {
     "type": "git",
