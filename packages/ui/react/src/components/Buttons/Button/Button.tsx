@@ -89,7 +89,6 @@ const Button = ({
   backgroundColor,
   borderColor,
   disabled,
-  onClick,
   tabIndex,
   loading: isLoading,
   icon,
@@ -138,11 +137,6 @@ const Button = ({
       noMargin={noMargin}
       disabled={disabled}
       type={type}
-      onClick={(event) => {
-        if (onClick) {
-          onClick(event)
-        }
-      }}
       tabIndex={tabIndex}
       {...props}
     >
