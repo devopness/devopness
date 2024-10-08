@@ -231,11 +231,13 @@ const iconLoader = (
   opacity = 1,
   label = ''
 ): React.JSX.Element => {
-  const [
-    Icon,
-  ] = iconList.filter(({ accessor }) => accessor === accessorName)
+  if(accessorName === undefined){
+    return <></>
+  }
 
-  switch (Icon.type) {
+  const Icon = iconList.find(({ accessor }) => accessor === accessorName)
+
+  switch (Icon?.type) {
     case 'icon':
       return (
         <Icon.component
