@@ -234,7 +234,7 @@ const iconLoader = (
   /**
    * If no acessorName is provided,
    * avoid searching iconList and
-   * returns empty React.Fragment
+   * return empty React.Fragment
    */
   if(accessorName === undefined){
     return <></>
