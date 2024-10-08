@@ -3,6 +3,7 @@ import '@testing-library/jest-dom'
 import { render } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
+import { getImageAssetUrl } from './getImageAssetUrl'
 import { iconList, iconLoader } from './iconLoader'
 
 describe('iconLoader', () => {
@@ -66,6 +67,28 @@ describe('iconLoader', () => {
 
       expect(icon).toBeInTheDocument()
       expect(icon).toEqual(queryByRole('img'))
+    })
+
+    it('an image from Devopness assets CDN, not specified in iconList', () => {
+      const iconName = 'dotnet'
+      const { getByLabelText, queryByRole } = render(
+        iconLoader(
+          // @ts-expect-error using an Icon not declared in iconList
+          iconName,
+          defaultProps.size,
+          defaultProps.color,
+          defaultProps.opacity,
+          defaultProps.label
+        )
+      )
+      const icon = getByLabelText(defaultProps.label)
+
+      expect(icon).toBeInTheDocument()
+      expect(icon).toEqual(queryByRole('img'))
+      expect(icon).toHaveAttribute(
+        'src',
+        getImageAssetUrl(`icons_svgs/${iconName}.svg`)
+      )
     })
   })
 })
