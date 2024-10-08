@@ -89,7 +89,6 @@ const Button = ({
   backgroundColor,
   borderColor,
   disabled,
-  onClick,
   tabIndex,
   loading: isLoading,
   icon,
@@ -103,7 +102,9 @@ const Button = ({
   ...props
 }: ButtonProps) => {
   const Icon = () => {
-    if (isLoading === undefined && icon === undefined) return <></>
+    const noDefinedIcons = isLoading === undefined && icon === undefined
+    const noVisibleIcons = !isLoading && icon === undefined
+    if (noDefinedIcons || noVisibleIcons) return <></>
 
     return (
       <ContentIcon
@@ -136,11 +137,6 @@ const Button = ({
       noMargin={noMargin}
       disabled={disabled}
       type={type}
-      onClick={(event) => {
-        if (onClick) {
-          onClick(event)
-        }
-      }}
       tabIndex={tabIndex}
       {...props}
     >

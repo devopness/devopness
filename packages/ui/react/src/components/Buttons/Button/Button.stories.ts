@@ -21,7 +21,6 @@ type Story = StoryObj<typeof meta>
 
 const Primary: Story = {
   args: {
-    icon: 'plus',
     children: 'Add Application',
     typeSize: 'default',
     buttonType: 'Default',
