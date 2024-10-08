@@ -231,6 +231,11 @@ const iconLoader = (
   opacity = 1,
   label = ''
 ): React.JSX.Element => {
+  /**
+   * If no acessorName is provided,
+   * avoid searching iconList and
+   * returns empty React.Fragment
+   */
   if(accessorName === undefined){
     return <></>
   }
