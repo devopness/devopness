@@ -1,4 +1,3 @@
-import React from 'react'
 import '@testing-library/jest-dom'
 
 import { render } from '@testing-library/react'
@@ -49,7 +48,7 @@ describe('iconLoader', () => {
 
       expect(icon).toBeInTheDocument()
       expect(icon).toEqual(
-        render(iconFromList.component as React.JSX.Element).getByLabelText(defaultProps.label)
+        render(<iconFromList.component />).getByLabelText(defaultProps.label)
       )
     })
 
