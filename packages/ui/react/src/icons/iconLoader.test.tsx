@@ -8,7 +8,6 @@ import { iconList, iconLoader } from './iconLoader'
 
 describe('iconLoader', () => {
   const defaultProps = {
-    accessorName: undefined,
     size: 13,
     color: 'purple',
     opacity: 1,
