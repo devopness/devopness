@@ -103,7 +103,9 @@ const Button = ({
   ...props
 }: ButtonProps) => {
   const Icon = () => {
-    if (isLoading === undefined && icon === undefined) return <></>
+    const noDefinedIcons = isLoading === undefined && icon === undefined
+    const noVisibleIcons = !isLoading && icon === undefined
+    if (noDefinedIcons || noVisibleIcons) return <></>
 
     return (
       <ContentIcon
