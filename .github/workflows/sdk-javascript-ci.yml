@@ -33,7 +33,7 @@ jobs:
           node-version: ${{ matrix.node }}
           registry-url: https://registry.npmjs.org
       - name: install
-        run: npm ci
+        run: npm ci --ignore-scripts
 
       - name: build
         run: npm run build-api-models

@@ -21,7 +21,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: "20.x"
-      - run: npm ci
+      - run: npm ci --ignore-scripts
       - run: npx semantic-release@22.0.12
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
