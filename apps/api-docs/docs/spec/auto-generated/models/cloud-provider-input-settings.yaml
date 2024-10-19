@@ -8,7 +8,7 @@ properties:
     example: access_key
   name_human_readable:
     type: string
-    description: 'Human readable version of the property''s name'
+    description: "Human readable version of the property's name"
     example: 'Access Key'
   default_value:
     anyOf:
@@ -19,7 +19,7 @@ properties:
       -
         type: boolean
     nullable: true
-    description: 'Default property''s value'
+    description: "Default property's value"
     example: default_access_key
   sensitive:
     type: boolean

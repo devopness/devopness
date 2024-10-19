@@ -3,20 +3,20 @@ type: object
 properties:
   token_type:
     description: 'The type of the authorization token being issued'
-    type: string
     example: Bearer
+    type: string
   expires_in:
     description: 'The number of seconds remaining to the token expiration time, to be counted since the token issue date and time'
-    type: integer
     example: 3600
+    type: integer
   access_token:
     description: 'The issued JWT access token'
-    type: string
     example: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImYwYjQxZjk1MTdiYWExOTg4Zjk...
+    type: string
   refresh_token:
     description: 'A token to be used after the original access token has expired, to issue a new token without requiring a new request to the /users/login endpoint'
-    type: string
     example: def50200a757a1c4dbc4859a4c47195632f4df60ebb521ac5a28a0b7553101f08f8b9...
+    type: string
 required:
   - token_type
   - expires_in

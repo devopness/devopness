@@ -7,15 +7,15 @@ properties:
     type: integer
     example: 9654123
   hostname:
-    description: 'The server''s hostname'
+    description: "The server's hostname"
     type: string
     example: web-srv-1
   provider_name:
-    description: 'The name of the server''s provider.'
+    description: "The name of the server's provider."
     type: string
     example: self-hosted
   provider_name_human_readable:
-    description: 'The human readable version of the provider''s name'
+    description: "The human readable version of the provider's name"
     type: string
     example: 'VPS/Self Hosted'
   ip_address:

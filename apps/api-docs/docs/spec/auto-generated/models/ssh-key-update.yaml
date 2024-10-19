@@ -6,7 +6,7 @@ properties:
     example: 1
     type: integer
   name:
-    description: 'The ssh key''s name. Must not be greater than 60 characters.'
+    description: "The ssh key's name. Must not be greater than 60 characters."
     example: my-ssh-key
     type: string
 required:

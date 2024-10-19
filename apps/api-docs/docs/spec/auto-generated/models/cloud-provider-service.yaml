@@ -5,8 +5,8 @@ properties:
     $ref: '#/components/schemas/CloudProviderServiceCode'
   name:
     description: 'The full name of the cloud service'
-    type: string
     example: 'Amazon Elastic Compute Cloud'
+    type: string
   provider:
     $ref: '#/components/schemas/ProviderRelation'
   regions:

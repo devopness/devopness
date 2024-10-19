@@ -3,11 +3,11 @@ type: object
 properties:
   id:
     type: integer
-    description: 'Environment''s unique id'
+    description: "Environment's unique id"
     example: 867
   name:
     type: string
-    description: 'Environment''s name'
+    description: "Environment's name"
     example: 'my project - staging'
     nullable: true
   servers:

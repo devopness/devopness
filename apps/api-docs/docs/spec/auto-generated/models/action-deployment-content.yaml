@@ -19,7 +19,7 @@ properties:
     example: 4687921
   provider_name:
     type: string
-    description: 'The source provider''s name'
+    description: "The source provider's name"
     example: github
   pipeline_id:
     type: integer

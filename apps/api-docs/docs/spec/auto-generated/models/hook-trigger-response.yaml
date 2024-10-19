@@ -3,12 +3,12 @@ type: object
 properties:
   message:
     description: 'Message containing information about the hook being triggered'
-    type: string
     example: 'Hook successfully triggered'
+    type: string
   errors:
     description: 'Optional error object containing details of the server error'
-    type: object
     example: null
+    type: object
     nullable: true
 required:
   - message

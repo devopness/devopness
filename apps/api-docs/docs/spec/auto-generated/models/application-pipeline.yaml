@@ -8,7 +8,7 @@ properties:
     example: 4578
   name:
     type: string
-    description: 'The pipeline''s name'
+    description: "The pipeline's name"
     example: 'my pipeline'
 required:
   - id

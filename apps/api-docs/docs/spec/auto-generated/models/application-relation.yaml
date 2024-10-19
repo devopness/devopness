@@ -3,69 +3,69 @@ type: object
 properties:
   id:
     description: 'Unique ID of the application'
-    type: integer
     example: 4654019
+    type: integer
   project_id:
     description: 'Numeric ID of the project to which the application belongs to'
-    type: integer
     example: 4654019
+    type: integer
   environment_id:
     description: 'Numeric ID of the environment to which the application belongs to'
-    type: integer
     example: 4654121
+    type: integer
   created_by:
     description: 'The id of the user who created the application and to whom the application belongs'
-    type: integer
     example: 1
+    type: integer
   name:
-    description: 'The application''s unique name'
-    type: string
+    description: "The application's unique name"
     example: my-awesome-app
+    type: string
   repository:
     description: 'The full name of a repository (`repository_owner/repository_name`) containing the application source code.'
-    type: string
     example: devopness/devopness
+    type: string
   repository_name:
     description: 'The name part of a repository full name (`repository_owner/repository_name`)'
-    type: string
     example: devopness
+    type: string
   repository_owner:
     description: 'The owner part of a repository full name (`repository_owner/repository_name`)'
-    type: string
     example: devopness
+    type: string
   default_branch:
     description: 'The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed.'
-    type: string
     example: main
+    type: string
   programming_language:
     description: 'The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`.'
-    type: string
     example: python
+    type: string
   engine_version:
     description: 'The language runtime engine version to be used to execute this application on the deployed servers'
-    type: string
     example: 19.03.2
+    type: string
   framework:
     description: 'The base framework on top of which the application has been implemented - it might have impact on the steps to be performed during application deployment'
-    type: string
     example: drupal
-  root_directory:
-    description: 'The relative directory where package manager''s manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository.'
     type: string
+  root_directory:
+    description: "The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository."
     example: /src
+    type: string
   deployments_keep:
-    description: 'The number of deployment history, logs and artifacts to keep stored in both devopness servers and user''s servers. OR The number of deployment artifacts to be retained in the user''s servers, making it easier and faster to rollback to previous versions'
-    type: integer
+    description: "The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers. OR The number of deployment artifacts to be retained in the user's servers, making it easier and faster to rollback to previous versions"
     example: 4
+    type: integer
   install_dependencies_command:
     description: 'Indicates command that Devopness must execute to install application dependencies'
-    type: string
     example: 'npm install'
+    type: string
     nullable: true
   build_command:
     description: 'The optional command that should be executed once during deployment to build the source code and get the application in a ready state'
-    type: string
     example: 'npm run build'
+    type: string
     nullable: true
   last_deployments:
     $ref: '#/components/schemas/ApplicationLastDeployments'
@@ -73,12 +73,12 @@ properties:
     $ref: '#/components/schemas/Credential'
   created_at:
     description: 'The date and time when the record was created'
-    type: string
     example: '2019-09-25T15:50:48.000000Z'
+    type: string
   updated_at:
     description: 'The date and time when the record was last updated'
-    type: string
     example: '2019-09-25T13:52:04.000000Z'
+    type: string
 required:
   - id
   - project_id

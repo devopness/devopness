@@ -9,7 +9,7 @@ properties:
     type: string
   command:
     description: 'The command line to be executed when running the cron job. Must be at least 5 characters. Must not be greater than 255 characters.'
-    example: 'echo ''devopness rocks!'' | tee -a /tmp/task-output.log'
+    example: "echo 'devopness rocks!' | tee -a /tmp/task-output.log"
     type: string
   pattern:
     description: 'A cron expression consisting of Minute, Hour, Day of Month, Month and Day of Week subexpressions.'

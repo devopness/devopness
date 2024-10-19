@@ -6,7 +6,7 @@ properties:
     example: 1
     type: integer
   name:
-    description: 'User''s full name. Must be at least 5 characters. Must not be greater than 60 characters.'
+    description: "User's full name. Must be at least 5 characters. Must not be greater than 60 characters."
     example: 'Com Truise'
     type: string
   email:
@@ -14,9 +14,7 @@ properties:
     example: user@example.com
     type: string
   language:
-    description: 'Must be one of <code>en</code> or <code>pt</code>.'
-    example: en
-    type: string
+    $ref: '#/components/schemas/Language'
 required:
   - id
   - name

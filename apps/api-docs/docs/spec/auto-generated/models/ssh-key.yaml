@@ -3,28 +3,28 @@ type: object
 properties:
   id:
     description: 'The Id of the given SSH public key'
-    type: integer
     example: 643
+    type: integer
   created_by:
     description: 'The id of the user to which the SSH key belongs to'
-    type: integer
     example: 35131
+    type: integer
   project_id:
     description: 'The project id to which the SSH public key belongs to'
-    type: integer
     example: 16642
+    type: integer
   environment_id:
     description: 'The environment id to which the SSH public key belongs to'
-    type: integer
     example: 76441
+    type: integer
   name:
     description: 'The name entered by the user to uniquely identify the public SSH key'
-    type: string
     example: my-ssh-key
+    type: string
   fingerprint:
     description: 'The hashed fingerprint of the public key'
-    type: string
     example: '74:2a:d5:75:8a:9b:64:4c:21:18:54:3f:c5:0a:59:f0'
+    type: string
   created_by_user:
     $ref: '#/components/schemas/UserRelation'
   environment:
@@ -35,12 +35,12 @@ properties:
     $ref: '#/components/schemas/ActionRelation'
   created_at:
     description: 'The date and time when the record was created'
-    type: string
     example: '2022-09-26T15:30:31.000000Z'
+    type: string
   updated_at:
     description: 'The date and time when the record was last updated'
-    type: string
     example: '2022-09-26T15:30:58.000000Z'
+    type: string
 required:
   - id
   - environment_id

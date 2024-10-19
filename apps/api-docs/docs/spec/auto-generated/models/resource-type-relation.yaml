@@ -5,12 +5,12 @@ properties:
     $ref: '#/components/schemas/ResourceType'
   resource_type_human_readable:
     description: 'Human readable version of the resource type'
-    type: string
     example: Application
+    type: string
   resource_type_human_readable_plural:
     description: 'Human readable version of the resource type, in plural form'
-    type: string
     example: Applications
+    type: string
   supported_operations:
     $ref: '#/components/schemas/ResourceOperationList'
   can_be_child_of:

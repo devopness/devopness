@@ -3,20 +3,20 @@ type: object
 properties:
   id:
     description: 'The unique id of the given record'
-    type: integer
     example: 6721
+    type: integer
   provider_name:
     description: 'The name of the cloud provider'
-    type: string
     example: aws
+    type: string
   provider_name_human_readable:
-    description: 'The human readable version of the provider''s name'
-    type: string
+    description: "The human readable version of the provider's name"
     example: 'Amazon Web Services'
-  name:
-    description: 'The networks''s name'
     type: string
+  name:
+    description: "The networks's name"
     example: my-network
+    type: string
   provision_input:
     $ref: '#/components/schemas/NetworkProvisionInput'
   created_by_user:
@@ -31,12 +31,12 @@ properties:
     $ref: '#/components/schemas/ActionRelation'
   created_at:
     description: 'The date and time when the record was created'
-    type: string
     example: '2019-09-25T15:50:48.000000Z'
+    type: string
   updated_at:
     description: 'The date and time when the record was last updated'
-    type: string
     example: '2019-09-25T13:52:04.000000Z'
+    type: string
 required:
   - id
   - provider_name

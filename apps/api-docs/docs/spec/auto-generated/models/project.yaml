@@ -3,20 +3,20 @@ type: object
 properties:
   id:
     description: 'The Id of the project'
-    type: integer
     example: 45678
+    type: integer
   user_id:
     description: 'The id of the user that own the project'
-    type: integer
     example: 984123
+    type: integer
   name:
-    description: 'The project''s name'
-    type: string
+    description: "The project's name"
     example: 'my project'
-  logo_url:
-    description: 'A URL path to the project''s logo image'
     type: string
+  logo_url:
+    description: "A URL path to the project's logo image"
     example: 'https://example.com/projects-beautiful-logo.png'
+    type: string
     nullable: true
   os_users:
     $ref: '#/components/schemas/OsUsers'
@@ -30,12 +30,12 @@ properties:
     $ref: '#/components/schemas/RoleList'
   created_at:
     description: 'The date and time when the record was created'
-    type: string
     example: '2022-09-26T15:30:31.000000Z'
+    type: string
   updated_at:
     description: 'The date and time when the record was last updated'
-    type: string
     example: '2022-09-26T15:30:58.000000Z'
+    type: string
 required:
   - id
   - user_id

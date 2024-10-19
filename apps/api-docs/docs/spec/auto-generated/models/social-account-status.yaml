@@ -3,16 +3,16 @@ type: object
 properties:
   provider:
     description: 'Name of the provider'
-    type: string
     example: gitlab
+    type: string
   connected:
     description: 'If the account is currently connected'
-    type: boolean
     example: false
+    type: boolean
   connect_url:
     description: 'URL of the connection'
-    type: string
     example: 'https://gitlab.com/oauth/authorize?client_id=%3CSET-DEVOPNESS-GITLAB-CLIENT-ID-HERE%3E&redirect_uri=http%3A%2F%2Fd2-social-provider-redirect-url.com%3Fprovider%3Dgitlab&scope=read_user+email+api&response_type=code'
+    type: string
 required:
   - provider
   - connected

@@ -16,11 +16,11 @@ properties:
     example: drupal
   root_directory:
     type: string
-    description: 'The relative directory where package manager''s manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository.'
+    description: "The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository."
     example: '/ or /src or /lib/src or /code or /app'
   deployments_keep:
     type: integer
-    description: 'The number of deployment history, logs and artifacts to keep stored in both devopness servers and user''s servers'
+    description: "The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers"
     example: 4
   commands:
     $ref: '#/components/schemas/LanguageRuntimeFrameworkCommands'

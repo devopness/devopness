@@ -3,12 +3,12 @@ type: object
 properties:
   hash:
     type: string
-    description: 'The commit comment''s full hash that uniquely identify it'
+    description: "The commit comment's full hash that uniquely identify it"
     example: 4a03b9d21edeef8434c45818594a5d72027c14e7
   url:
     type: string
     format: url
-    description: 'The direct URL for accessing commit details on the provider''s web application'
+    description: "The direct URL for accessing commit details on the provider's web application"
     example: 'https://github.com/myusername/myrepo/commit/4a03b9d21edeef8434c45818594a5d72027c14e7'
 required:
   - hash

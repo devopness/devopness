@@ -3,7 +3,7 @@ type: object
 properties:
   billing_management_url:
     description: 'The URL leading to a billing management page'
-    type: string
     example: 'http://billing.url.example'
+    type: string
 required:
   - billing_management_url

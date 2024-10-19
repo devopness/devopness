@@ -3,40 +3,40 @@ type: object
 properties:
   name:
     description: 'The name of the cloud instance'
-    type: string
     example: m5.large
+    type: string
   type:
     description: 'The type of the cloud instance'
-    type: string
     example: m5
+    type: string
   family:
     description: 'The family to which the instance belongs'
-    type: string
     example: 'Memory Optimized'
+    type: string
   default_disk_size:
     description: 'The default disk size (in GB) used to instance'
-    type: integer
     example: 25
+    type: integer
   price_hourly:
     description: 'The price per hour of the instance'
-    type: number
     example: 0.096
+    type: number
   price_monthly:
     description: 'The price per month of the instance'
-    type: number
     example: 70.28
+    type: number
   price_currency:
     description: 'The currency of the prices'
-    type: string
     example: USD
+    type: string
   vcpus:
     description: 'The number of virtual CPU of the instance'
-    type: integer
     example: 2
+    type: integer
   memory:
     description: 'The RAM memory size (in MB) of the instance'
-    type: integer
     example: 8192
+    type: integer
 required:
   - name
   - type

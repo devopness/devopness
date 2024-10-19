@@ -3,24 +3,24 @@ type: object
 properties:
   id:
     description: 'The Id of the given action'
-    type: integer
     example: 567819876
+    type: integer
   status:
     $ref: '#/components/schemas/ActionStatus'
   status_human_readable:
     description: 'Current item status human readable'
-    type: string
     example: Pending
+    type: string
   type:
     $ref: '#/components/schemas/ActionType'
   type_human_readable:
     description: 'Human readable version of the action type'
-    type: string
     example: Deploy
+    type: string
   url_web_permalink:
     description: 'The permalink URL to the action details on Devopness web app'
-    type: string
     example: 'https://devopness.com/actions/567819876'
+    type: string
   action_data:
     $ref: '#/components/schemas/ActionData'
   triggered_from:
@@ -33,22 +33,22 @@ properties:
     $ref: '#/components/schemas/ActionTargetList'
   started_at:
     description: 'The date and time when the action started execution (i.e., left the `pending/queued` status)'
-    type: string
     example: '2019-09-25T15:50:48.000000Z'
+    type: string
     nullable: true
   completed_at:
     description: 'The date and time when the action has finished execution'
-    type: string
     example: '2019-09-25T13:52:04.000000Z'
+    type: string
     nullable: true
   created_at:
     description: 'The date and time when the record was created'
-    type: string
     example: '2019-09-25T15:50:48.000000Z'
+    type: string
   updated_at:
     description: 'The date and time when the record was last updated'
-    type: string
     example: '2019-09-25T13:52:04.000000Z'
+    type: string
 required:
   - id
   - status

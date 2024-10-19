@@ -20,7 +20,7 @@ properties:
               example: field_9
         description: 'Error message specific to each field included in the errors object'
     example:
-      field_1: 'The field ''field_1'' is required'
-      field_2: 'The field ''field_2'' is not of the expected type'
+      field_1: "The field 'field_1' is required"
+      field_2: "The field 'field_2' is not of the expected type"
 required:
   - message

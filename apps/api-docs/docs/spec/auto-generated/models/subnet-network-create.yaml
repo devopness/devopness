@@ -2,7 +2,7 @@
 type: object
 properties:
   name:
-    description: 'The subnet''s name. Must be between 1 and 63 characters.'
+    description: "The subnet's name. Must be between 1 and 63 characters."
     example: my-subnet
     type: string
   type:

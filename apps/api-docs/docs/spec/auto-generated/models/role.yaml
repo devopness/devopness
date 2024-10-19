@@ -3,37 +3,37 @@ type: object
 properties:
   id:
     description: 'The unique ID of the given role'
-    type: integer
     example: 45678
+    type: integer
   name:
     description: 'The name of the given role'
-    type: string
     example: admin
+    type: string
   description:
     description: 'Description of this role'
-    type: string
     example: 'Has total access to resources'
+    type: string
   project_id:
     description: 'The ID of the project this role belongs to'
-    type: integer
     example: 984123
+    type: integer
     nullable: true
   is_predefined:
     description: 'Defines if the role is predefined or custom'
-    type: boolean
     example: false
+    type: boolean
   permissions:
     $ref: '#/components/schemas/RolePermissions'
   parent:
     $ref: '#/components/schemas/RoleRelation'
   created_at:
     description: 'The date and time when the record was created'
-    type: string
     example: '2019-09-25T13:22:37.000000Z'
+    type: string
   updated_at:
     description: 'The date and time when the record was last updated'
-    type: string
     example: '2019-09-25T13:22:37.000000Z'
+    type: string
 required:
   - id
   - name

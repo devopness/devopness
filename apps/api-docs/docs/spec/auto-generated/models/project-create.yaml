@@ -10,7 +10,7 @@ properties:
     example: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACA.../AgwAgJqsE2/7ccAAAAAASUVORK5CYII='
     type: string
   logo_url:
-    description: 'A URL path to the project''s logo image. Must be a valid URL.'
+    description: "A URL path to the project's logo image. Must be a valid URL."
     example: 'https://example.com/projects-beautiful-logo.png'
     type: string
 required:

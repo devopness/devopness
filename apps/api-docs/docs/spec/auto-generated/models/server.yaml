@@ -3,52 +3,52 @@ type: object
 properties:
   id:
     description: 'The unique id of the given record'
-    type: integer
     example: 9654123
+    type: integer
   created_by:
     description: 'The id of the user who created the server and to whom the server belongs'
-    type: integer
     example: 1
+    type: integer
   name:
-    description: 'The server''s name'
-    type: string
+    description: "The server's name"
     example: web-srv-1
+    type: string
   hostname:
-    description: 'The server''s hostname'
-    type: string
+    description: "The server's hostname"
     example: web-srv-1
+    type: string
   provider_name:
-    description: 'The name of the server''s provider.'
-    type: string
+    description: "The name of the server's provider."
     example: aws
-  provider_name_human_readable:
-    description: 'The human readable version of the provider''s name'
     type: string
+  provider_name_human_readable:
+    description: "The human readable version of the provider's name"
     example: 'Amazon Web Services'
+    type: string
   cloud_service_code:
     $ref: '#/components/schemas/ServerCloudServiceCode'
   ip_address:
     description: 'Public ipv4 address for server access'
-    type: string
     example: 200.123.45.67
+    type: string
   ssh_port:
     description: 'The network port to which the SSH daemon is listening to SSH connections on the server'
-    type: integer
     example: 22
+    type: integer
   os:
     $ref: '#/components/schemas/OperatingSystemVersion'
   os_version_code:
     $ref: '#/components/schemas/CloudOsVersionCode'
   active:
     description: 'Tells if the server is active or not'
-    type: boolean
     example: true
+    type: boolean
   status:
     $ref: '#/components/schemas/ActionStatus'
   max_parallel_actions:
     description: 'Maximum number of actions that can run in parallel on this server. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run on this server,'
-    type: integer
     example: 1
+    type: integer
   blueprint:
     $ref: '#/components/schemas/ServerBlueprint'
   provision_input:
@@ -65,12 +65,12 @@ properties:
     $ref: '#/components/schemas/CredentialRelation'
   created_at:
     description: 'The date and time when the record was created'
-    type: string
     example: '2019-09-25T15:50:48.000000Z'
+    type: string
   updated_at:
     description: 'The date and time when the record was last updated'
-    type: string
     example: '2019-09-25T13:52:04.000000Z'
+    type: string
 required:
   - id
   - created_by

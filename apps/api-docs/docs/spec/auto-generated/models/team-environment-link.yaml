@@ -2,7 +2,7 @@
 type: object
 properties:
   role_id:
-    description: 'The role''s ID to use for this team on environment.'
+    description: "The role's ID to use for this team on environment."
     example: 430
     type: integer
 required:

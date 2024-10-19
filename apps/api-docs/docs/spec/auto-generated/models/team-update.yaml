@@ -10,7 +10,7 @@ properties:
     example: 'Development Team'
     type: string
   photo_url:
-    description: 'The URL to team''s image. Must be a valid URL.'
+    description: "The URL to team's image. Must be a valid URL."
     example: 'https://example.com/images/my_team.png'
     type: string
 required:

@@ -38,7 +38,7 @@ properties:
             -
               type: object
     nullable: true
-    description: 'Optional variable assumes the default value if it''s not given on the request to trigger the hook'
+    description: "Optional variable assumes the default value if it's not given on the request to trigger the hook"
     example: null
     required:
       - name

@@ -19,7 +19,7 @@ parameters:
   -
     in: query
     name: subscription_id
-    description: 'ID of a user subscription to calculate the amount of credits used from that subscription on each user project. If provided, and being a valid subscription belonging to current user, the ''used_credits'' field will be added to the response.'
+    description: "ID of a user subscription to calculate the amount of credits used from that subscription on each user project. If provided, and being a valid subscription belonging to current user, the 'used_credits' field will be added to the response."
     example: 9876
     required: false
     schema:

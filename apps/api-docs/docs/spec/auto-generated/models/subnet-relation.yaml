@@ -3,44 +3,44 @@ type: object
 properties:
   id:
     description: 'The unique id of the given record'
-    type: integer
     example: 7641
+    type: integer
   project_id:
     description: 'Numeric ID of the project to which the subnet belongs to'
-    type: integer
     example: 123
+    type: integer
   environment_id:
     description: 'Numeric ID of the environment to which the subnet belongs to'
-    type: integer
     example: 456
+    type: integer
   created_by:
     description: 'The id of the user who created the subnet'
-    type: integer
     example: 789
+    type: integer
   network_id:
     description: 'Numeric ID of the network to which the subnet belongs to'
-    type: integer
     example: 6721
+    type: integer
   name:
-    description: 'The subnet''s name'
-    type: string
+    description: "The subnet's name"
     example: my-subnet
+    type: string
   type:
     $ref: '#/components/schemas/SubnetType'
   is_auto_generated:
     description: 'True if this subnet is auto-generated or false if this was created by the user'
-    type: boolean
     example: false
+    type: boolean
   provision_input:
     $ref: '#/components/schemas/SubnetProvisionInput'
   created_at:
     description: 'The date and time when the record was created'
-    type: string
     example: '2019-09-25T15:50:48.000000Z'
+    type: string
   updated_at:
     description: 'The date and time when the record was last updated'
-    type: string
     example: '2019-09-25T13:52:04.000000Z'
+    type: string
 required:
   - id
   - project_id

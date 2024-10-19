@@ -3,12 +3,12 @@ type: object
 properties:
   resource_type:
     description: 'The resource type to create events for.'
-    type: string
     example: payment_provider
+    type: string
   resource_id:
     description: 'The resource ID.'
-    type: integer
     example: paddle
+    type: integer
   resource_data:
     $ref: '#/components/schemas/Subscription'
 required:

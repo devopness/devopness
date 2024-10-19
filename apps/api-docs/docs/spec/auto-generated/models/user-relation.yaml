@@ -7,7 +7,7 @@ properties:
     example: 1
   name:
     type: string
-    description: 'User''s full name'
+    description: "User's full name"
     minLength: 5
     maxLength: 60
   email:

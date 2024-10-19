@@ -3,18 +3,18 @@ type: object
 properties:
   id:
     description: 'The unique id of the given record'
-    type: integer
     example: 7641
+    type: integer
   name:
-    description: 'The subnet''s name'
-    type: string
+    description: "The subnet's name"
     example: my-subnet
+    type: string
   type:
     $ref: '#/components/schemas/SubnetType'
   is_auto_generated:
     description: 'True if this subnet is auto-generated or false if this was created by the user'
-    type: boolean
     example: false
+    type: boolean
   provision_input:
     $ref: '#/components/schemas/SubnetProvisionInput'
   created_by_user:
@@ -31,12 +31,12 @@ properties:
     $ref: '#/components/schemas/ActionRelation'
   created_at:
     description: 'The date and time when the record was created'
-    type: string
     example: '2019-09-25T15:50:48.000000Z'
+    type: string
   updated_at:
     description: 'The date and time when the record was last updated'
-    type: string
     example: '2019-09-25T13:52:04.000000Z'
+    type: string
 required:
   - id
   - name

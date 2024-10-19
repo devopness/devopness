@@ -6,7 +6,7 @@ properties:
     example: 1
     type: integer
   name:
-    description: 'The application''s unique name. Must not be greater than 60 characters.'
+    description: "The application's unique name. Must not be greater than 60 characters."
     example: my-awesome-app
     type: string
   build_command:
@@ -14,15 +14,15 @@ properties:
     example: '`npm run build`, `yarn build`, `docker build -t my_image_name .`, `python build.py`'
     type: string
   engine_version:
-    description: 'The language runtime engine version to be used to execute this application on the deployed servers. Must be one of <code></code> Must be at least 1 characters. Must not be greater than 10 characters.'
+    description: 'The language runtime engine version to be used to execute this application on the deployed servers. Must be at least 1 character. Must not be greater than 10 characters.'
     example: '3.12'
     type: string
   framework:
-    description: 'The base framework on top of which the application has been implemented - it might have impact on the steps to be performed during application deployment. Must be one of <code></code> Must not be greater than 30 characters.'
+    description: 'The base framework on top of which the application has been implemented - it might have impact on the steps to be performed during application deployment. Must not be greater than 30 characters.'
     example: fastapi
     type: string
   programming_language:
-    description: 'The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`. Must be one of <code>docker</code>, <code>dotnetcore</code>, <code>html</code>, <code>java</code>, <code>nodejs</code>, <code>php</code>, <code>python</code>, or <code>ruby</code> Must not be greater than 30 characters.'
+    description: 'The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`. Must not be greater than 30 characters.'
     example: python
     type: string
   repository:
@@ -34,7 +34,7 @@ properties:
     example: 9732156
     type: integer
   root_directory:
-    description: 'The relative directory where package manager''s manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository. Must start with one of <code>/</code>.'
+    description: "The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository. Must start with one of <code>/</code>."
     example: /src
     type: string
   default_branch:
@@ -42,7 +42,7 @@ properties:
     example: main
     type: string
   deployments_keep:
-    description: 'The number of deployment history, logs and artifacts to keep stored in both devopness servers and user''s servers. OR The number of deployment artifacts to be retained in the user''s servers, making it easier and faster to rollback to previous versions. Must be at least 1. Must not be greater than 10.'
+    description: "The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers. OR The number of deployment artifacts to be retained in the user's servers, making it easier and faster to rollback to previous versions. Must be at least 1. Must not be greater than 10."
     example: 4
     type: integer
   install_dependencies_command:

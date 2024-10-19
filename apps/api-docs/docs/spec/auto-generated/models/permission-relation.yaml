@@ -3,12 +3,12 @@ type: object
 properties:
   resource_type:
     description: 'The type of resource this permission affects'
-    type: string
     example: application
+    type: string
   human_readable:
     description: 'Human readable resource name'
-    type: string
     example: Application
+    type: string
   permissions:
     $ref: '#/components/schemas/StaticPermissionList'
 required:

@@ -15,7 +15,7 @@ properties:
     type: string
   command:
     description: 'The command line to be executed when running the cron job. Must be at least 5 characters. Must not be greater than 255 characters.'
-    example: 'echo ''devopness rocks!'' | tee -a /tmp/task-output.log'
+    example: "echo 'devopness rocks!' | tee -a /tmp/task-output.log"
     type: string
   run_as_user:
     description: 'The name of the system user on behalf of which the cron job will be executed. Must not be greater than 60 characters.'

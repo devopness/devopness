@@ -44,4 +44,4 @@ responses:
       Link:
         schema:
           type: string
-        description: 'Link header with `first`, `last`, `previous` and `next` page''s links'
+        description: "Link header with `first`, `last`, `previous` and `next` page's links"

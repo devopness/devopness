@@ -3,20 +3,20 @@ type: object
 properties:
   name:
     description: 'The name of the repository'
-    type: string
     example: myrepo
+    type: string
   user_name:
     description: 'The name of the user/account on the Version Control System'
-    type: string
     example: myusername
+    type: string
   full_name:
     description: 'The fully qualified repository name. Usually composed of user_name/name'
-    type: string
     example: myusername/myrepo
-  html_url:
-    description: 'The URL for viewing repository details on the provider''s web application'
     type: string
+  html_url:
+    description: "The URL for viewing repository details on the provider's web application"
     example: 'https://github.com/myusername/myrepo'
+    type: string
   branches:
     $ref: '#/components/schemas/RepositoryBranchList'
   tags:

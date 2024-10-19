@@ -5,12 +5,12 @@ properties:
     $ref: '#/components/schemas/UserRelation'
   created_at:
     description: 'The date and time when the record was created'
-    type: string
     example: '2019-09-25T13:22:37.000000Z'
+    type: string
   updated_at:
     description: 'The date and time when the record was last updated'
-    type: string
     example: '2019-09-25T13:22:37.000000Z'
+    type: string
 required:
   - user
   - created_at

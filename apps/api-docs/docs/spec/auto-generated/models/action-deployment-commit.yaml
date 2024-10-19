@@ -12,7 +12,7 @@ properties:
     example: 'Author Name'
   author_email:
     type: string
-    description: 'The commit author''s email'
+    description: "The commit author's email"
     example: email@example.com
   committed_at:
     type: string

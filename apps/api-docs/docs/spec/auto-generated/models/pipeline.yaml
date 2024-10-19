@@ -3,42 +3,42 @@ type: object
 properties:
   id:
     description: 'The unique ID of the given pipeline'
-    type: integer
     example: 342390
+    type: integer
   name:
-    description: 'The pipeline''s name'
-    type: string
+    description: "The pipeline's name"
     example: 'My pied piper-line'
+    type: string
   environment_id:
     description: 'ID of the environment this pipeline belongs to'
-    type: integer
     example: 4532342
+    type: integer
   project_id:
     description: 'ID of the project this pipeline belongs to'
-    type: integer
     example: 97063242
+    type: integer
   resource_type:
     $ref: '#/components/schemas/ResourceType'
   resource_type_human_readable:
     description: 'Human readable version of the resource type'
-    type: string
     example: Application
+    type: string
   resource_id:
-    description: 'The pipeline''s resource ID'
-    type: integer
+    description: "The pipeline's resource ID"
     example: 5324234
+    type: integer
   operation:
     description: 'The resource operation associated to the pipeline.'
-    type: string
     example: deploy
+    type: string
   operation_human_readable:
     description: 'Human readable version of the operation'
-    type: string
     example: Deploy
+    type: string
   max_parallel_actions:
     description: 'Maximum number of actions that can run in parallel for this pipeline. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run this pipeline.'
-    type: integer
     example: 1
+    type: integer
   trigger_when:
     $ref: '#/components/schemas/PipelineTriggerWhen'
   steps:
@@ -47,12 +47,12 @@ properties:
     $ref: '#/components/schemas/UserRelation'
   created_at:
     description: 'The date and time when the record was created'
-    type: string
     example: '2022-09-26T15:30:31.000000Z'
+    type: string
   updated_at:
     description: 'The date and time when the record was last updated'
-    type: string
     example: '2022-09-26T15:30:58.000000Z'
+    type: string
 required:
   - id
   - name

@@ -3,38 +3,38 @@ type: object
 properties:
   id:
     description: 'The unique UUID of the hook request'
-    type: string
     example: 6fa16226-9dc4-4367-88aa-e689ad2bc580
+    type: string
   hook_id:
     description: 'The UUID of the hook that the request belongs to'
-    type: string
     example: f1a61a4e-4d08-11eb-9481-0242ac130004
+    type: string
   action_id:
     description: 'The ID of the action that the request belongs to'
-    type: integer
     example: 1985239
+    type: integer
     nullable: true
   retry_of:
     description: 'The UUID of the request that this request is a retry of'
-    type: string
     example: 002afd04-e3af-4dad-bf46-b2b25978482a
+    type: string
     nullable: true
   ip_address:
     description: 'The IP address of the source that triggered the hook'
-    type: string
     example: 172.17.0.4
+    type: string
   url:
     description: 'Original URL used on the request'
-    type: string
     example: 'https://api.devopness.com/hooks-incoming/f1a61a4e-4d08-11eb-9481-0242ac130004'
+    type: string
   request_headers:
     $ref: '#/components/schemas/HookRequestRequestHeaders'
   request_body:
     $ref: '#/components/schemas/HookRequestRequestBody'
   response_status_code:
     description: 'The response status code'
-    type: integer
     example: 200
+    type: integer
   response_headers:
     $ref: '#/components/schemas/HookRequestResponseHeaders'
   response_body:
@@ -43,12 +43,12 @@ properties:
     $ref: '#/components/schemas/HookRelation'
   created_at:
     description: 'The date and time when the record was created'
-    type: string
     example: '2022-09-26T15:30:31.000000Z'
+    type: string
   updated_at:
     description: 'The date and time when the record was last updated'
-    type: string
     example: '2022-09-26T15:30:58.000000Z'
+    type: string
 required:
   - id
   - hook_id

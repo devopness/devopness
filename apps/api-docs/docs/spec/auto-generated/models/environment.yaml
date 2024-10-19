@@ -3,27 +3,27 @@ type: object
 properties:
   id:
     description: 'Unique id of the given record'
-    type: integer
     example: 16523
+    type: integer
   type:
     $ref: '#/components/schemas/EnvironmentType'
   type_human_readable:
     description: 'The human readable version of the type'
-    type: string
     example: Staging
+    type: string
   name:
-    description: 'Environment''s name'
-    type: string
+    description: "Environment's name"
     example: 'My staging'
-  description:
-    description: 'Environment''s description'
     type: string
+  description:
+    description: "Environment's description"
     example: 'My staging environment'
+    type: string
     nullable: true
   is_archived:
     description: 'Indicates whether the record was archived'
-    type: boolean
     example: false
+    type: boolean
   servers:
     $ref: '#/components/schemas/ServerList'
   credentials:
@@ -54,12 +54,12 @@ properties:
     $ref: '#/components/schemas/RolePermissions'
   created_at:
     description: 'The date and time when the record was created'
-    type: string
     example: '2019-09-25T15:50:48.000000Z'
+    type: string
   updated_at:
     description: 'The date and time when the record was last updated'
-    type: string
     example: '2019-09-25T13:52:04.000000Z'
+    type: string
 required:
   - id
   - type

@@ -2,13 +2,13 @@
 type: object
 properties:
   environment:
-    description: 'The environment type of the deployment. Must be one of <code>development</code>, <code>testing</code>, <code>staging</code>, or <code>production</code>.'
+    description: 'The environment type of the deployment.'
     example: staging
     type: string
   type:
     $ref: '#/components/schemas/DeploymentType'
   source_type:
-    description: 'The ''source type'' from which the application source code will be retrieved and deployed. It can be one of `branch`, `tag` or `commit`. If not provided, the application''s default branch will be used. This field is required when <code>source_ref</code> is present.  Must be one of <code>branch</code>, <code>tag</code>, or <code>commit</code>.'
+    description: "The 'source type' from which the application source code will be retrieved and deployed. It can be one of `branch`, `tag` or `commit`. If not provided, the application's default branch will be used. This field is required when <code>source_ref</code> is present."
     example: commit
     type: string
   source_ref:
@@ -16,7 +16,7 @@ properties:
     example: 7ff09b0f2ed07625222f689d1afc29aa322b03a2
     type: string
   pipeline_id:
-    description: 'The pipeline''s ID to use for deployment.'
+    description: "The pipeline's ID to use for deployment."
     example: 59387
     type: integer
   servers:

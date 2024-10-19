@@ -3,7 +3,7 @@ type: object
 properties:
   connect_command:
     description: 'The Shell Script command to be executed in an existing Linux server in order to connect it to the `devopness`'
+    example: "echo '# devopness:' | ..."
     type: string
-    example: 'echo ''# devopness:'' | ...'
 required:
   - connect_command

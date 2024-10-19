@@ -2,7 +2,7 @@
 type: object
 properties:
   email:
-    description: 'The email of the user''s account. Must be a valid email address. Must not be greater than 255 characters.'
+    description: "The email of the user's account. Must be a valid email address. Must not be greater than 255 characters."
     example: my-email@devopness.com
     type: string
   token:

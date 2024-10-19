@@ -3,48 +3,48 @@ type: object
 properties:
   id:
     description: 'The ID of the given variable'
-    type: integer
     example: 93023
+    type: integer
   key:
     description: 'The unique key used to identify the variable on the target'
-    type: string
     example: APP_URL
+    type: string
   type:
     $ref: '#/components/schemas/VariableType'
   description:
     description: 'A text describing the variable, provided by the end user'
-    type: string
     example: 'Sample variable description'
+    type: string
     nullable: true
   value:
     description: 'The value to be assigned to this variable when deployed to its target'
-    type: string
     example: 'https://staging.devopness.com'
+    type: string
   target:
     $ref: '#/components/schemas/VariableTarget'
   resource_id:
     description: 'The ID of the resource this variable is linked to'
-    type: integer
     example: 3426
+    type: integer
     nullable: true
   resource_type:
     description: 'The name of the resource this variable is linked to'
-    type: string
     example: application
+    type: string
   hidden:
     description: 'Indicates if the variable value should be visible or not in the deployment logs'
-    type: boolean
     example: false
+    type: boolean
   created_by_user:
     $ref: '#/components/schemas/UserRelation'
   created_at:
     description: 'The date and time when the record was created'
-    type: string
     example: '2022-09-26T15:30:31.000000Z'
+    type: string
   updated_at:
     description: 'The date and time when the record was last updated'
-    type: string
     example: '2022-09-26T15:30:58.000000Z'
+    type: string
 required:
   - id
   - key

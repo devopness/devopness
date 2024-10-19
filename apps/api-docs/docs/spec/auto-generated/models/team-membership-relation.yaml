@@ -3,26 +3,26 @@ type: object
 properties:
   id:
     description: 'The unique ID of the given team'
-    type: integer
     example: 626
+    type: integer
   name:
     description: 'The name of the given team'
-    type: string
     example: 'Team Rocket'
-  photo_url:
-    description: 'The URL to team''s image'
     type: string
+  photo_url:
+    description: "The URL to team's image"
     example: 'https://example.com/images/team_rocket.png'
+    type: string
   role:
     $ref: '#/components/schemas/RoleRelation'
   created_at:
     description: 'The date and time when the record was created'
-    type: string
     example: '2019-09-25T13:22:37.000000Z'
+    type: string
   updated_at:
     description: 'The date and time when the record was last updated'
-    type: string
     example: '2019-09-25T13:22:37.000000Z'
+    type: string
 required:
   - id
   - name

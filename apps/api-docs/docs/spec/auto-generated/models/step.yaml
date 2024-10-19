@@ -3,54 +3,54 @@ type: object
 properties:
   id:
     description: 'The unique ID of the given pipeline step'
-    type: integer
     example: 45678
+    type: integer
   name:
-    description: 'The pipeline step''s name'
-    type: string
+    description: "The pipeline step's name"
     example: 'Extra step before build app'
-  type:
-    description: 'The pipeline step''s type'
     type: string
+  type:
+    description: "The pipeline step's type"
     example: default-step
+    type: string
   run_as_user:
     description: 'The name of the Unix user on behalf of which the script will be executed'
-    type: string
     example: devopness
+    type: string
   command:
     description: 'A command line or multiline bash pipeline step'
+    example: "echo 'Deploy with devopness is a breeze!' | tee -a /tmp/build-started.log"
     type: string
-    example: 'echo ''Deploy with devopness is a breeze!'' | tee -a /tmp/build-started.log'
   runner:
     $ref: '#/components/schemas/PipelineStepRunnerName'
   script_id:
-    description: 'The script''s ID of this pipeline step'
-    type: integer
+    description: "The script's ID of this pipeline step"
     example: 3452033
-  pipeline_id:
-    description: 'The pipeline''s ID'
     type: integer
+  pipeline_id:
+    description: "The pipeline's ID"
     example: 7869450
+    type: integer
   trigger_order:
     description: 'The relative order of the step execution in case of multiple steps attached to pipeline'
-    type: integer
     example: 1001
+    type: integer
   is_auto_generated:
     description: 'True if this step is auto-generated or false if this was created by the user'
-    type: boolean
     example: false
+    type: boolean
   is_default_step:
     description: 'True if this step is a default step of the pipeline and cannot be updated/deleted'
-    type: boolean
     example: false
+    type: boolean
   created_at:
     description: 'The date and time when the record was created'
-    type: string
     example: '2019-09-25T13:22:37.000000Z'
+    type: string
   updated_at:
     description: 'The date and time when the record was last updated'
-    type: string
     example: '2019-09-25T13:22:37.000000Z'
+    type: string
 required:
   - id
   - name

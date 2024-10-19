@@ -2,7 +2,7 @@
 type: object
 properties:
   name:
-    description: 'The role''s name. Must be at least 2 characters. Must not be greater than 60 characters.'
+    description: "The role's name. Must be at least 2 characters. Must not be greater than 60 characters."
     example: admin
     type: string
   description:

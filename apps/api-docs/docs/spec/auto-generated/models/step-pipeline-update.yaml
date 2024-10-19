@@ -10,12 +10,12 @@ properties:
     example: 'Extra step before build app'
     type: string
   type:
-    description: 'The pipeline step''s type. Must not be greater than 20 characters.'
+    description: "The pipeline step's type. Must not be greater than 20 characters."
     example: default-step
     type: string
   command:
     description: 'A command line or multiline bash script. Must be at least 10 characters. Must not be greater than 300 characters.'
-    example: 'echo ''Deploy with devopness is a breeze!'' | tee -a /tmp/build-started.log'
+    example: "echo 'Deploy with devopness is a breeze!' | tee -a /tmp/build-started.log"
     type: string
   runner:
     $ref: '#/components/schemas/PipelineStepRunnerName'

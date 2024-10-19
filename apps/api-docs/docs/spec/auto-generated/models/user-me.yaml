@@ -3,32 +3,32 @@ type: object
 properties:
   id:
     description: 'The unique ID of the given user'
-    type: integer
     example: 45678
+    type: integer
   name:
-    description: 'User''s full name'
-    type: string
+    description: "User's full name"
     example: 'Some One'
+    type: string
   email:
     description: 'The e-mail that will uniquely identify the user on the system and become its login credential'
-    type: string
     example: user@example.com
+    type: string
   language:
     $ref: '#/components/schemas/Language'
   active:
     description: 'Tells if the user is active or not'
-    type: boolean
     example: true
+    type: boolean
   social_accounts:
     $ref: '#/components/schemas/SocialAccountList'
   created_at:
     description: 'The date and time when the record was created'
-    type: string
     example: '2019-09-25T13:22:37.000000Z'
+    type: string
   updated_at:
     description: 'The date and time when the record was last updated'
-    type: string
     example: '2019-09-25T13:22:37.000000Z'
+    type: string
 required:
   - id
   - name

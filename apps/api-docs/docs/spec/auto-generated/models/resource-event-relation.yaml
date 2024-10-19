@@ -3,38 +3,38 @@ type: object
 properties:
   id:
     description: 'The ID of the given resource event'
-    type: integer
     example: 652674
+    type: integer
   event_type:
     description: 'The type of resource event'
-    type: string
     example: testtype
-  resource_type:
-    description: 'The event''s resource type'
     type: string
+  resource_type:
+    description: "The event's resource type"
     example: service
+    type: string
   resource_id:
-    description: 'The event''s resource ID'
-    type: integer
+    description: "The event's resource ID"
     example: 652674
+    type: integer
   message:
     description: ''
-    type: string
     example: 'Test message'
+    type: string
     nullable: true
   triggered_by:
     description: ''
-    type: integer
     example: 2
+    type: integer
     nullable: true
   created_at:
     description: 'The date and time when the record was created'
-    type: string
     example: '2020-04-16T15:50:48.000000Z'
+    type: string
   updated_at:
     description: 'The date and time when the record was last updated'
-    type: string
     example: '2020-04-16T15:50:48.000000Z'
+    type: string
 required:
   - id
   - event_type

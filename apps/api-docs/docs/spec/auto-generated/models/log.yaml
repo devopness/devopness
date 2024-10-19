@@ -7,8 +7,8 @@ properties:
     $ref: '#/components/schemas/ActionTargetLogStep'
   updated_at:
     description: 'The date and time when the requested log record was last updated'
-    type: string
     example: '2019-09-25T13:52:04.000000Z'
+    type: string
     nullable: true
 required:
   - target

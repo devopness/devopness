@@ -3,24 +3,24 @@ type: object
 properties:
   link_type:
     description: 'The link type to related resource (`child` or `parent`)'
-    type: string
     example: parent
+    type: string
   resource_type_human_readable:
     description: 'The human readable resource type'
-    type: string
     example: Server
+    type: string
   resource_type:
     description: 'The linked resource type'
-    type: string
     example: server
+    type: string
   resource_id:
     description: 'The linked resource ID'
-    type: integer
     example: 123
+    type: integer
   can_be_unlinked:
     description: 'If false, the link cannot be manually removed'
-    type: boolean
     example: true
+    type: boolean
   linked_resource_data:
     $ref: '#/components/schemas/LinkedResourceData'
   children:

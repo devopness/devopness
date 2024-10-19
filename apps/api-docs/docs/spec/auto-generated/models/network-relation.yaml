@@ -3,46 +3,46 @@ type: object
 properties:
   id:
     description: 'The unique id of the given record'
-    type: integer
     example: 6721
+    type: integer
   project_id:
     description: 'Numeric ID of the project to which the network belongs to'
-    type: integer
     example: 123
+    type: integer
   environment_id:
     description: 'Numeric ID of the environment to which the network belongs to'
-    type: integer
     example: 456
+    type: integer
   created_by:
     description: 'The id of the user who created the network'
-    type: integer
     example: 789
+    type: integer
   is_auto_generated:
     description: 'If true, the network is auto-generated'
-    type: boolean
     example: false
+    type: boolean
   provider_name:
     description: 'The name of the cloud provider'
-    type: string
     example: aws
+    type: string
   provider_name_human_readable:
-    description: 'The human readable version of the provider''s name'
-    type: string
+    description: "The human readable version of the provider's name"
     example: 'Amazon Web Services'
-  name:
-    description: 'The networks''s name'
     type: string
+  name:
+    description: "The networks's name"
     example: my-network
+    type: string
   provision_input:
     $ref: '#/components/schemas/NetworkProvisionInput'
   created_at:
     description: 'The date and time when the record was created'
-    type: string
     example: '2019-09-25T15:50:48.000000Z'
+    type: string
   updated_at:
     description: 'The date and time when the record was last updated'
-    type: string
     example: '2019-09-25T13:52:04.000000Z'
+    type: string
 required:
   - id
   - project_id

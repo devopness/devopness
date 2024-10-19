@@ -4,7 +4,7 @@ properties:
   linked_resources:
     $ref: '#/components/schemas/ResourceToBeLinkedList'
   type:
-    description: 'The type of virtual host to be created. Must be one of <code>ip-based</code> or <code>name-based</code>.'
+    description: 'The type of virtual host to be created.'
     example: name-based
     type: string
   name:

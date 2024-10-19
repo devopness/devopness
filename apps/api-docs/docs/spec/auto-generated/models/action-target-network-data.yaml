@@ -7,15 +7,15 @@ properties:
     type: integer
     example: 9654123
   name:
-    description: 'The networks''s name'
+    description: "The networks's name"
     type: string
     example: my-network
   provider_name:
-    description: 'The name of the network''s cloud provider.'
+    description: "The name of the network's cloud provider."
     type: string
     example: aws
   provider_name_human_readable:
-    description: 'The human readable version of the cloud provider''s name'
+    description: "The human readable version of the cloud provider's name"
     type: string
     example: 'Amazon Web Services'
   provision_input:

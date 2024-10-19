@@ -2,7 +2,7 @@
 type: object
 properties:
   email:
-    description: 'The user''s registered e-mail address. Must be a valid email address.'
+    description: "The user's registered e-mail address. Must be a valid email address."
     example: user@example.com
     type: string
   password:

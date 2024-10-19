@@ -6,7 +6,7 @@ properties:
     example: 1
     type: integer
   name:
-    description: 'The rule''s name/description/reminder. Must be at least 3 characters. Must not be greater than 60 characters.'
+    description: "The rule's name/description/reminder. Must be at least 3 characters. Must not be greater than 60 characters."
     example: 'Open MySQL port for remote access'
     type: string
   direction:

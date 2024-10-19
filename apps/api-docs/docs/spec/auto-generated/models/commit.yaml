@@ -3,11 +3,11 @@ type: object
 properties:
   hash:
     type: string
-    description: 'The commit comment''s full hash that uniquely identify it'
+    description: "The commit comment's full hash that uniquely identify it"
     example: 4a03b9d21edeef8434c45818594a5d72027c14e7
   message:
     type: string
-    description: 'The commit''s comment message'
+    description: "The commit's comment message"
     example: 'Good developers always add messages to their commits'
   committed_at:
     type: string
@@ -22,15 +22,15 @@ properties:
   url:
     type: string
     format: url
-    description: 'The direct URL for accessing commit details on the provider''s web application'
+    description: "The direct URL for accessing commit details on the provider's web application"
     example: 'https://github.com/myusername/myrepo'
   author_email:
     type: string
-    description: 'The e-mail of the commit''s author'
+    description: "The e-mail of the commit's author"
     example: myusername@email.com
   author_name:
     type: string
-    description: 'The name of the commit''s author'
+    description: "The name of the commit's author"
     example: myusername
 required:
   - hash

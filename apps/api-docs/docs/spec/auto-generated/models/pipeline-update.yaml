@@ -6,7 +6,7 @@ properties:
     example: 1
     type: integer
   name:
-    description: 'The pipeline''s name. Must be at least 3 characters. Must not be greater than 80 characters.'
+    description: "The pipeline's name. Must be at least 3 characters. Must not be greater than 80 characters."
     example: 'My pipeline'
     type: string
   max_parallel_actions:

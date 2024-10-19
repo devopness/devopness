@@ -13,7 +13,7 @@ properties:
     $ref: '#/components/schemas/FieldHint'
   logo_url:
     type: string
-    description: 'The provider''s logo URL.'
+    description: "The provider's logo URL."
     example: 'https://assets.devopness.com/images/icons/cloud-providers/aws.svg'
 required:
   - code
