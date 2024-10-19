@@ -27,7 +27,7 @@ export interface VirtualHostEnvironmentCreate {
      */
     linked_resources?: Array<ResourceToBeLinked>;
     /**
-     * The type of virtual host to be created. Must be one of <code>ip-based</code> or <code>name-based</code>.
+     * The type of virtual host to be created.
      * @type {string}
      * @memberof VirtualHostEnvironmentCreate
      */

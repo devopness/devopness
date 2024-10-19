@@ -48,7 +48,7 @@ export interface HookPipelineCreate {
      */
     requires_secret?: boolean;
     /**
-     * The cryptographic hash function to be used by Devopness when validating digitally signed incoming requests for hooks that require secret validation. This field is required when <code>requires_secret</code> is <code>true</code>.  Must be one of <code>sha256</code> Must not be greater than 20 characters.
+     * The cryptographic hash function to be used by Devopness when validating digitally signed incoming requests for hooks that require secret validation. This field is required when <code>requires_secret</code> is <code>true</code>. Must not be greater than 20 characters.
      * @type {string}
      * @memberof HookPipelineCreate
      */

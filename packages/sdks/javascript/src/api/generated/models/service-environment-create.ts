@@ -47,7 +47,7 @@ export interface ServiceEnvironmentCreate {
      */
     type: ServiceType;
     /**
-     * The service version to be installed. Must be one of <code></code> Must be at least 1 characters. Must not be greater than 30 characters.
+     * The service version to be installed. Must be at least 1 character. Must not be greater than 30 characters.
      * @type {string}
      * @memberof ServiceEnvironmentCreate
      */

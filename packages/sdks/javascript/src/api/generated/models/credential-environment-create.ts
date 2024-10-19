@@ -13,6 +13,8 @@
 
 
 import { CredentialInputSettings } from './credential-input-settings';
+import { ProviderCode } from './provider-code';
+import { ProviderType } from './provider-type';
 
 /**
  * 
@@ -27,17 +29,17 @@ export interface CredentialEnvironmentCreate {
      */
     name: string;
     /**
-     * Must not be one of <code>self-hosted</code> Must not be greater than 20 characters.
-     * @type {string}
+     * 
+     * @type {ProviderCode}
      * @memberof CredentialEnvironmentCreate
      */
-    provider_code: string;
+    provider_code: ProviderCode;
     /**
-     * Must be one of <code>cloud_provider</code> or <code>source_provider</code>.
-     * @type {string}
+     * 
+     * @type {ProviderType}
      * @memberof CredentialEnvironmentCreate
      */
-    provider_type: string;
+    provider_type: ProviderType;
     /**
      * If this credential is active or not.
      * @type {boolean}
