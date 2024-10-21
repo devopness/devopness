@@ -9,6 +9,7 @@ export * from './action-relation';
 export * from './action-resource';
 export * from './action-retry-response';
 export * from './action-status';
+export * from './action-status-reason-code';
 export * from './action-step';
 export * from './action-summary';
 export * from './action-summary-target';
