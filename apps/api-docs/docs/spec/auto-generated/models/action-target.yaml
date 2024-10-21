@@ -20,6 +20,12 @@ properties:
     description: 'Human readable version of the action status'
     type: string
     example: Pending
+  status_reason_code:
+    $ref: '#/components/schemas/ActionStatusReasonCode'
+  status_reason_human_readable:
+    description: 'Human readable version of the status reason code'
+    type: string
+    example: 'Pending: Target created successfully but has not yet been queued for execution. It will be added to a queue once their dependencies are resolved.'
   total_steps:
     type: integer
     minimum: 0

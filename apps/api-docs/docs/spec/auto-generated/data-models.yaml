@@ -23,6 +23,8 @@ ActionRetryResponse:
   $ref: ./auto-generated/models/action-retry-response.yaml
 ActionStatus:
   $ref: ./auto-generated/models/action-status.yaml
+ActionStatusReasonCode:
+  $ref: ./auto-generated/models/action-status-reason-code.yaml
 ActionStep:
   $ref: ./auto-generated/models/action-step.yaml
 ActionStepList:

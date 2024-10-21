@@ -8,8 +8,14 @@ properties:
   status:
     $ref: '#/components/schemas/ActionStatus'
   status_human_readable:
-    description: 'Current item status human readable'
+    description: 'Human readable version of action status'
     example: Pending
+    type: string
+  status_reason_code:
+    $ref: '#/components/schemas/ActionStatusReasonCode'
+  status_reason_human_readable:
+    description: 'Human readable version of the status reason code'
+    example: 'Pending: Action created successfully but has not yet been queued for execution. It will be added to a queue once their dependencies are resolved.'
     type: string
   type:
     $ref: '#/components/schemas/ActionType'
@@ -53,6 +59,8 @@ required:
   - id
   - status
   - status_human_readable
+  - status_reason_code
+  - status_reason_human_readable
   - type
   - type_human_readable
   - url_web_permalink
