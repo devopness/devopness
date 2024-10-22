@@ -11671,7 +11671,7 @@
           },
           "status_reason_human_readable": {
             "description": "Human readable version of the status reason code",
-            "example": "Pending: Action created successfully but has not yet been queued for execution. It will be added to a queue once their dependencies are resolved.",
+            "example": "Pending: Action created successfully but has not yet been queued for execution. It will be added to an execution queue once their dependencies are resolved.",
             "type": "string"
           },
           "type": {
@@ -11961,7 +11961,7 @@
           },
           "status_reason_human_readable": {
             "description": "Human readable version of the status reason code",
-            "example": "Pending: Action created successfully but has not yet been queued for execution. It will be added to a queue once their dependencies are resolved.",
+            "example": "Pending: Action created successfully but has not yet been queued for execution. It will be added to an execution queue once their dependencies are resolved.",
             "type": "string"
           },
           "type": {
@@ -12132,7 +12132,7 @@
           },
           "status_reason_human_readable": {
             "description": "Human readable version of the status reason code",
-            "example": "Pending: Action created successfully but has not yet been queued for execution. It will be added to a queue once their dependencies are resolved.",
+            "example": "Pending: Action created successfully but has not yet been queued for execution. It will be added to an execution queue once their dependencies are resolved.",
             "type": "string"
           },
           "type": {
@@ -12301,7 +12301,7 @@
           "status_reason_human_readable": {
             "description": "Human readable version of the status reason code",
             "type": "string",
-            "example": "Pending: Step created successfully but has not yet been queued for execution. It will be added to a queue once their dependencies are resolved."
+            "example": "Pending: Step created successfully but has not yet been queued for execution. It will be added to an execution queue once their dependencies are resolved."
           },
           "started_at": {
             "type": "string",
@@ -12427,7 +12427,7 @@
           "status_reason_human_readable": {
             "description": "Human readable version of the status reason code",
             "type": "string",
-            "example": "Pending: Target created successfully but has not yet been queued for execution. It will be added to a queue once their dependencies are resolved."
+            "example": "Pending: Target created successfully but has not yet been queued for execution. It will be added to an execution queue once their dependencies are resolved."
           },
           "total_steps": {
             "type": "integer",
