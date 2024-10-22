@@ -15,7 +15,7 @@ properties:
     $ref: '#/components/schemas/ActionStatusReasonCode'
   status_reason_human_readable:
     description: 'Human readable version of the status reason code'
-    example: 'Pending: Action created successfully but has not yet been queued for execution. It will be added to a queue once their dependencies are resolved.'
+    example: 'Pending: Action created successfully but has not yet been queued for execution. It will be added to an execution queue once their dependencies are resolved.'
     type: string
   type:
     $ref: '#/components/schemas/ActionType'

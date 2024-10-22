@@ -34,7 +34,7 @@ properties:
   status_reason_human_readable:
     description: 'Human readable version of the status reason code'
     type: string
-    example: 'Pending: Step created successfully but has not yet been queued for execution. It will be added to a queue once their dependencies are resolved.'
+    example: 'Pending: Step created successfully but has not yet been queued for execution. It will be added to an execution queue once their dependencies are resolved.'
   started_at:
     type: string
     format: date-time
