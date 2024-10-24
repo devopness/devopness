@@ -1,5 +1,7 @@
 # Devopness UI - React
 
+[![NPM](https://nodei.co/npm/@devopness/ui-react.png?downloads=true&stars=true)](https://nodei.co/npm/@devopness/ui-react/)
+
 The official Devopness UI components for React
 
 <!-- TODO: enable this section once package is available in npm registry
