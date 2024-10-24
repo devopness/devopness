@@ -120,14 +120,14 @@ tags:
       | 204           | No content - The request was successful. There is no content to return, but the headers may be useful
       | 400           | Bad Request - The server could not understand the request due to invalid syntax
       | 401           | Unauthenticated - It is usally caused by using wrong or expired credentials
-      | 402           | Project Limit Exceeded - Usage limit has been reached. Ask project owner to increase project's credits
+      | 402           | Payment Required - Usage limit has been reached on the project's subscription. Ask project owner to upgrade subscription plan
       | 403           | Forbidden/Unauthorized - The used credentials do not allow access to the resource
       | 404           | Not Found - The server cannot find the requested resource
       | 405           | Method not allowed - The request method has been disabled and cannot be used
       | 409           | Conflict - The current request conflicts with the current state of the server
       | 415           | Unsupported Media Type - The request's `Content-Type` or `Accept` headers are not set to a valid format
       | 422           | Unprocessable Entity - The request was unable to be processed due to validation errors
-      | 429           | Too many requests - The client exceeded the requests limit in a window of time
+      | 429           | Too many requests - Requests rate limit reached by the client application in a period of time
       | 500           | Internal Server Error. Please contact the `devopness` team
 
       ### Pagination
