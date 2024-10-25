@@ -2,8 +2,6 @@
 
 The official Devopness UI components for React
 
-<!-- TODO: enable this section once package is available in npm registry
-
 ## Usage
 
 ### Install/Upgrade
@@ -18,7 +16,15 @@ npm install @devopness/ui-react
 yarn add @devopness/ui-react
 ```
 
- -->
+## ✍️ <a id="contributing"></a>Contributing
+
+Improvements and contributions are highly encouraged! 🙏👊
+
+See the [contributing guide](../../../CONTRIBUTING.md) for details on how to participate.
+
+All communication and contributions to Devopness projects are subject to the [Devopness Code of Conduct](../../../CODE_OF_CONDUCT.md).
+
+Not yet ready to contribute but do like the project? Support Devopness with a ⭐!
 
 ## Dependencies
 
