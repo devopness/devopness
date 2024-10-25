@@ -13,6 +13,7 @@
 
 
 import { ActionStatus } from './action-status';
+import { ActionStatusReasonCode } from './action-status-reason-code';
 
 /**
  * Action step executed on server
@@ -62,6 +63,18 @@ export interface ActionStep {
      * @memberof ActionStep
      */
     status_human_readable?: string;
+    /**
+     * 
+     * @type {ActionStatusReasonCode}
+     * @memberof ActionStep
+     */
+    status_reason_code?: ActionStatusReasonCode;
+    /**
+     * Human readable version of the status reason code
+     * @type {string}
+     * @memberof ActionStep
+     */
+    status_reason_human_readable?: string;
     /**
      * The date and time when the action started execution (i.e., left the `pending/queued` status)
      * @type {string}

@@ -11133,7 +11133,7 @@
   "tags": [
     {
       "name": "API Reference",
-      "description": "This page contains the documentation on how to use `devopness` through API calls.\n> Note: This documentation is not complete, so for missing parts or inaccurate API description please\n> reach out to the `devopness` API team on [our GitHub open source repository](https://github.com/devopness/devopness/issues/new/choose).\n\n## Introduction\ndevopness's API exposes all `devopness` features via a standardized programmatic interface. Through devopness API a registered Devopness user can perform every operation you can do on https://www.devopness.com web interfaces and mobile apps.\n\n## Getting started\nAll you need to obtain a token and start consuming this API is a valid email/password registered with devopness.com.\n\n\nThe `devopness` API is based on HTTPS requests and JSON responses, organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API has predictable resource-oriented URLs, accepts requests with [JSON-encoded](http://www.json.org/) bodies with arguments, returns [JSON-encoded](http://www.json.org/) responses, and uses standard HTTP response codes, authentication, and verbs.\n\n## Date format\nAll dates in the API use UTC and are strings in the [ISO 8601 \"combined date and time representation\" format](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations):\n```\n2015-05-12T15:50:38.000000Z\n```\n\n## Errors\nThe devopness API uses standard HTTP status codes to indicate the success or failure of an API call. In general: Codes in the `2xx` range indicate success. Codes in the `4xx` range indicate an error that failed given the information provided (e.g., a required parameter was omitted). Codes in the `5xx` range indicate an error on the API servers and are very rare.\n\nThe body of the error response is a JSON in the following format:\n\n```\n{\n  \"message\": \"The given request data was invalid\"\n  \"errors\": { // Optional errors object, returned only when there are detailed error message to be shared\n      \"field_1\": [\n          \"Optional error message related to field_1\"\n      ],\n      \"field_2\": [\n          \"Optional error message related to field_2\"\n      ],\n  }\n}\n```\n\n## Requests\n### Routes and Endpoints\nA route is a URI which can be mapped to different HTTP methods. The mapping of an individual HTTP method to a route is known as an endpoint. `devopness` API exposes, as much as posible, well standardized endpoints with resources and segments leading the path to access the desired resource data.\n\nEach resource mentioned in an endpoint segment has its name written in the plural form, as we are always referencing a collection of objects, that might or might not be filtered by a single ID or extra query string parameters.\n\n### Resources and nested resources endpoints\nBasically there are two types of endpoints used in `devopness` API:\n1) Resource endpoints:\n\n**Pattern:**\n\n`/collection/{resource_id}/[{action}]`\n\n**Examples:**\n\n| HTTP Method   | Example                            | Purpose       |\n| -------------:|------------------------------------|---------------|\n| POST          | /projects                          | Create new item\n| GET           | /social-accounts                   | List all items\n| GET           | /social-accounts/{account}/status  | Perform a custom action (`status`) for a single item\n| GET           | /cron-jobs/{id}                    | Get a single item by id\n| PUT           | /applications/{id}                 | Modify an item\n| DELETE        | /daemons/{id}                      | Remove an item permanently\n\n2) Nested resources endpoints:\n\nNested resources are used when there is a clear hierarchy between the parent resource and the subresource, or for convenience, to make it easy and predictable to filter subresources belonging to a parent resource.\nIn `devopness` API design we strive to avoid nesting resources more than 1 level deep + one action related to the child resource or to the relationship between parent and child.\n\n**Pattern:**\n\n`/parent-collection/{parent_id}/{child-collection}/{child_id}/[{action}]`\n\n**Examples:**\n\n| HTTP Method   | Example                        | Purpose       |\n| -------------:|--------------------------------|---------------|\n| GET           | /projects/{id}/servers         | List all items belonging/linked to the parent resource\n| POST          | /projects/{id}/servers         | Create a new subresource item and link it to the parent object\n| POST          | /parent/{id}/child/{id}/link   | Create a relationship between parent and child object when both items already existed but were not linked.\n| DELETE        | /parent/{id}/child/{id}/unlink | Remove the relationship between parent and child resources, without deleting any item\n\n## Responses\nWhen a request is successful, a response body will typically be sent back in the form of a JSON object.\nException to this rule is when a DELETE request is processed, which will result in a successful HTTP 204 status and an empty response body.\n\n### Response codes\nResponse codes indicate success or failure of request processing.\nStatus codes from the `2xx` range indicate that request has been accepted.\nIf the returned code is from the `4xx` or `5xx` range then it reveals either problem with the request or inability to process data.\nSee below for a list of HTTP Status codes used by `devopness` API:\n\n| Status Code   | Description   |\n| -------------:|---------------|\n| 200           | Ok - The request was successful\n| 201           | Created - The request was successful and a new resource has been created as a result\n| 202           | Accepted - The request has been received but not yet completely processed\n| 204           | No content - The request was successful. There is no content to return, but the headers may be useful\n| 400           | Bad Request - The server could not understand the request due to invalid syntax\n| 401           | Unauthenticated - It is usally caused by using wrong or expired credentials\n| 402           | Project Limit Exceeded - Usage limit has been reached. Ask project owner to increase project's credits\n| 403           | Forbidden/Unauthorized - The used credentials do not allow access to the resource\n| 404           | Not Found - The server cannot find the requested resource\n| 405           | Method not allowed - The request method has been disabled and cannot be used\n| 409           | Conflict - The current request conflicts with the current state of the server\n| 415           | Unsupported Media Type - The request's `Content-Type` or `Accept` headers are not set to a valid format\n| 422           | Unprocessable Entity - The request was unable to be processed due to validation errors\n| 429           | Too many requests - The client exceeded the requests limit in a window of time\n| 500           | Internal Server Error. Please contact the `devopness` team\n\n### Pagination\nRequests that return multiple items are paginated by default. Specific pages can be requested setting the `page` parameter.\nWhen `page` parameter is not present, the first page will be returned.\nBy default 20 items are returned per page. A custom page size up to 100 can be set with the `per_page` parameter.\n\nNote: some endpoints ignore the `per_page` parameter, returning all results at once. e.g.: `/static/*` endpoints.\n\n**Example:**\n\n| HTTP Method | Path                                      |\n|------------:|-------------------------------------------|\n| GET         | /projects/{id}/servers?page=5&per_page=15 |\n\nIn the example above, we retrieve items of page `5` setting the size of `15` items per page.\n\n### Browsing paged results\nThe [Link header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Link)\nin paged responses carry links to pages for navigation purpose. Devopness API adopts the [RFC 8288](https://tools.ietf.org/html/rfc8288) as the reference for our implementation of `Link` header contents.\n\nLinks to the `first`, `next`, `previous` and `last` pages are included such that API clients don't have to hardcode or construct any links.\nThe page links that may be present in the `Link` response header are listed below:\n\n| Optional? | Example content                                             | Description   |\n|-----------|:------------------------------------------------------------|---------------|\n| **No**    | `<https://api.devopness.com/projects?page=1>; rel=\"first\"`  | First page    |\n| **No**    | `<https://api.devopness.com/projects?page=6>; rel=\"last\"`   | Last page     |\n| **Yes**   | `<https://api.devopness.com/projects?page=3>; rel=\"prev\"`   | Previous page |\n| **Yes**   | `<https://api.devopness.com/projects?page=5>; rel=\"next\"`   | Next page     |\n\nOptional links are not present if the currently requested page has no relative links to point to:\n  - Lack of a `previous` link in the response indicates the beginning of the collection\n  - Lack of a `next` link in the response indicates the end of the collection\n\n## Expanding objects\n`TO DO:` define the rules for object expansion and document it here\n"
+      "description": "This page contains the documentation on how to use `devopness` through API calls.\n> Note: This documentation is not complete, so for missing parts or inaccurate API description please\n> reach out to the `devopness` API team on [our GitHub open source repository](https://github.com/devopness/devopness/issues/new/choose).\n\n## Introduction\ndevopness's API exposes all `devopness` features via a standardized programmatic interface. Through devopness API a registered Devopness user can perform every operation you can do on https://www.devopness.com web interfaces and mobile apps.\n\n## Getting started\nAll you need to obtain a token and start consuming this API is a valid email/password registered with devopness.com.\n\n\nThe `devopness` API is based on HTTPS requests and JSON responses, organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API has predictable resource-oriented URLs, accepts requests with [JSON-encoded](http://www.json.org/) bodies with arguments, returns [JSON-encoded](http://www.json.org/) responses, and uses standard HTTP response codes, authentication, and verbs.\n\n## Date format\nAll dates in the API use UTC and are strings in the [ISO 8601 \"combined date and time representation\" format](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations):\n```\n2015-05-12T15:50:38.000000Z\n```\n\n## Errors\nThe devopness API uses standard HTTP status codes to indicate the success or failure of an API call. In general: Codes in the `2xx` range indicate success. Codes in the `4xx` range indicate an error that failed given the information provided (e.g., a required parameter was omitted). Codes in the `5xx` range indicate an error on the API servers and are very rare.\n\nThe body of the error response is a JSON in the following format:\n\n```\n{\n  \"message\": \"The given request data was invalid\"\n  \"errors\": { // Optional errors object, returned only when there are detailed error message to be shared\n      \"field_1\": [\n          \"Optional error message related to field_1\"\n      ],\n      \"field_2\": [\n          \"Optional error message related to field_2\"\n      ],\n  }\n}\n```\n\n## Requests\n### Routes and Endpoints\nA route is a URI which can be mapped to different HTTP methods. The mapping of an individual HTTP method to a route is known as an endpoint. `devopness` API exposes, as much as posible, well standardized endpoints with resources and segments leading the path to access the desired resource data.\n\nEach resource mentioned in an endpoint segment has its name written in the plural form, as we are always referencing a collection of objects, that might or might not be filtered by a single ID or extra query string parameters.\n\n### Resources and nested resources endpoints\nBasically there are two types of endpoints used in `devopness` API:\n1) Resource endpoints:\n\n**Pattern:**\n\n`/collection/{resource_id}/[{action}]`\n\n**Examples:**\n\n| HTTP Method   | Example                            | Purpose       |\n| -------------:|------------------------------------|---------------|\n| POST          | /projects                          | Create new item\n| GET           | /social-accounts                   | List all items\n| GET           | /social-accounts/{account}/status  | Perform a custom action (`status`) for a single item\n| GET           | /cron-jobs/{id}                    | Get a single item by id\n| PUT           | /applications/{id}                 | Modify an item\n| DELETE        | /daemons/{id}                      | Remove an item permanently\n\n2) Nested resources endpoints:\n\nNested resources are used when there is a clear hierarchy between the parent resource and the subresource, or for convenience, to make it easy and predictable to filter subresources belonging to a parent resource.\nIn `devopness` API design we strive to avoid nesting resources more than 1 level deep + one action related to the child resource or to the relationship between parent and child.\n\n**Pattern:**\n\n`/parent-collection/{parent_id}/{child-collection}/{child_id}/[{action}]`\n\n**Examples:**\n\n| HTTP Method   | Example                        | Purpose       |\n| -------------:|--------------------------------|---------------|\n| GET           | /projects/{id}/servers         | List all items belonging/linked to the parent resource\n| POST          | /projects/{id}/servers         | Create a new subresource item and link it to the parent object\n| POST          | /parent/{id}/child/{id}/link   | Create a relationship between parent and child object when both items already existed but were not linked.\n| DELETE        | /parent/{id}/child/{id}/unlink | Remove the relationship between parent and child resources, without deleting any item\n\n## Responses\nWhen a request is successful, a response body will typically be sent back in the form of a JSON object.\nException to this rule is when a DELETE request is processed, which will result in a successful HTTP 204 status and an empty response body.\n\n### Response codes\nResponse codes indicate success or failure of request processing.\nStatus codes from the `2xx` range indicate that request has been accepted.\nIf the returned code is from the `4xx` or `5xx` range then it reveals either problem with the request or inability to process data.\nSee below for a list of HTTP Status codes used by `devopness` API:\n\n| Status Code   | Description   |\n| -------------:|---------------|\n| 200           | Ok - The request was successful\n| 201           | Created - The request was successful and a new resource has been created as a result\n| 202           | Accepted - The request has been received but not yet completely processed\n| 204           | No content - The request was successful. There is no content to return, but the headers may be useful\n| 400           | Bad Request - The server could not understand the request due to invalid syntax\n| 401           | Unauthenticated - It is usally caused by using wrong or expired credentials\n| 402           | Payment Required - Usage limit has been reached on the project's subscription. Ask project owner to upgrade subscription plan\n| 403           | Forbidden/Unauthorized - The used credentials do not allow access to the resource\n| 404           | Not Found - The server cannot find the requested resource\n| 405           | Method not allowed - The request method has been disabled and cannot be used\n| 409           | Conflict - The current request conflicts with the current state of the server\n| 415           | Unsupported Media Type - The request's `Content-Type` or `Accept` headers are not set to a valid format\n| 422           | Unprocessable Entity - The request was unable to be processed due to validation errors\n| 429           | Too many requests - Requests rate limit reached by the client application in a period of time\n| 500           | Internal Server Error. Please contact the `devopness` team\n\n### Pagination\nRequests that return multiple items are paginated by default. Specific pages can be requested setting the `page` parameter.\nWhen `page` parameter is not present, the first page will be returned.\nBy default 20 items are returned per page. A custom page size up to 100 can be set with the `per_page` parameter.\n\nNote: some endpoints ignore the `per_page` parameter, returning all results at once. e.g.: `/static/*` endpoints.\n\n**Example:**\n\n| HTTP Method | Path                                      |\n|------------:|-------------------------------------------|\n| GET         | /projects/{id}/servers?page=5&per_page=15 |\n\nIn the example above, we retrieve items of page `5` setting the size of `15` items per page.\n\n### Browsing paged results\nThe [Link header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Link)\nin paged responses carry links to pages for navigation purpose. Devopness API adopts the [RFC 8288](https://tools.ietf.org/html/rfc8288) as the reference for our implementation of `Link` header contents.\n\nLinks to the `first`, `next`, `previous` and `last` pages are included such that API clients don't have to hardcode or construct any links.\nThe page links that may be present in the `Link` response header are listed below:\n\n| Optional? | Example content                                             | Description   |\n|-----------|:------------------------------------------------------------|---------------|\n| **No**    | `<https://api.devopness.com/projects?page=1>; rel=\"first\"`  | First page    |\n| **No**    | `<https://api.devopness.com/projects?page=6>; rel=\"last\"`   | Last page     |\n| **Yes**   | `<https://api.devopness.com/projects?page=3>; rel=\"prev\"`   | Previous page |\n| **Yes**   | `<https://api.devopness.com/projects?page=5>; rel=\"next\"`   | Next page     |\n\nOptional links are not present if the currently requested page has no relative links to point to:\n  - Lack of a `previous` link in the response indicates the beginning of the collection\n  - Lack of a `next` link in the response indicates the end of the collection\n\n## Expanding objects\n`TO DO:` define the rules for object expansion and document it here\n"
     },
     {
       "name": "Static Data",
@@ -11643,41 +11643,49 @@
         "properties": {
           "id": {
             "description": "The Id of the given action",
-            "type": "integer",
-            "example": 567819876
+            "example": 567819876,
+            "type": "integer"
           },
           "pipeline_id": {
             "description": "The ID of the pipeline executed by this action",
-            "type": "integer",
             "example": 567819876,
+            "type": "integer",
             "nullable": true
           },
           "retry_of": {
             "description": "The Id of the parent action that this action is a retry of",
-            "type": "integer",
             "example": 764123,
+            "type": "integer",
             "nullable": true
           },
           "status": {
             "$ref": "#/components/schemas/ActionStatus"
           },
           "status_human_readable": {
-            "description": "Current item status human readable",
-            "type": "string",
-            "example": "Pending"
+            "description": "Human readable version of action status",
+            "example": "Pending",
+            "type": "string"
+          },
+          "status_reason_code": {
+            "$ref": "#/components/schemas/ActionStatusReasonCode"
+          },
+          "status_reason_human_readable": {
+            "description": "Human readable version of the status reason code",
+            "example": "Pending: Action created successfully but has not yet been queued for execution. It will be added to an execution queue once their dependencies are resolved.",
+            "type": "string"
           },
           "type": {
             "$ref": "#/components/schemas/ActionType"
           },
           "type_human_readable": {
             "description": "Human readable version of the action type",
-            "type": "string",
-            "example": "Deploy"
+            "example": "Deploy",
+            "type": "string"
           },
           "url_web_permalink": {
             "description": "The permalink URL to the action details on Devopness web app",
-            "type": "string",
-            "example": "https://devopness.com/actions/567819876"
+            "example": "https://devopness.com/actions/567819876",
+            "type": "string"
           },
           "action_data": {
             "$ref": "#/components/schemas/ActionData"
@@ -11714,25 +11722,25 @@
           },
           "started_at": {
             "description": "The date and time when the action started execution (i.e., left the `pending/queued` status)",
-            "type": "string",
             "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string",
             "nullable": true
           },
           "completed_at": {
             "description": "The date and time when the action has finished execution",
-            "type": "string",
             "example": "2019-09-25T13:52:04.000000Z",
+            "type": "string",
             "nullable": true
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2019-09-25T15:50:48.000000Z"
+            "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2019-09-25T13:52:04.000000Z"
+            "example": "2019-09-25T13:52:04.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -11741,6 +11749,8 @@
           "retry_of",
           "status",
           "status_human_readable",
+          "status_reason_code",
+          "status_reason_human_readable",
           "type",
           "type_human_readable",
           "url_web_permalink",
@@ -11935,29 +11945,37 @@
         "properties": {
           "id": {
             "description": "The Id of the given action",
-            "type": "integer",
-            "example": 567819876
+            "example": 567819876,
+            "type": "integer"
           },
           "status": {
             "$ref": "#/components/schemas/ActionStatus"
           },
           "status_human_readable": {
-            "description": "Current item status human readable",
-            "type": "string",
-            "example": "Pending"
+            "description": "Human readable version of action status",
+            "example": "Pending",
+            "type": "string"
+          },
+          "status_reason_code": {
+            "$ref": "#/components/schemas/ActionStatusReasonCode"
+          },
+          "status_reason_human_readable": {
+            "description": "Human readable version of the status reason code",
+            "example": "Pending: Action created successfully but has not yet been queued for execution. It will be added to an execution queue once their dependencies are resolved.",
+            "type": "string"
           },
           "type": {
             "$ref": "#/components/schemas/ActionType"
           },
           "type_human_readable": {
             "description": "Human readable version of the action type",
-            "type": "string",
-            "example": "Deploy"
+            "example": "Deploy",
+            "type": "string"
           },
           "url_web_permalink": {
             "description": "The permalink URL to the action details on Devopness web app",
-            "type": "string",
-            "example": "https://devopness.com/actions/567819876"
+            "example": "https://devopness.com/actions/567819876",
+            "type": "string"
           },
           "action_data": {
             "$ref": "#/components/schemas/ActionData"
@@ -11976,31 +11994,33 @@
           },
           "started_at": {
             "description": "The date and time when the action started execution (i.e., left the `pending/queued` status)",
-            "type": "string",
             "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string",
             "nullable": true
           },
           "completed_at": {
             "description": "The date and time when the action has finished execution",
-            "type": "string",
             "example": "2019-09-25T13:52:04.000000Z",
+            "type": "string",
             "nullable": true
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2019-09-25T15:50:48.000000Z"
+            "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2019-09-25T13:52:04.000000Z"
+            "example": "2019-09-25T13:52:04.000000Z",
+            "type": "string"
           }
         },
         "required": [
           "id",
           "status",
           "status_human_readable",
+          "status_reason_code",
+          "status_reason_human_readable",
           "type",
           "type_human_readable",
           "url_web_permalink",
@@ -12084,41 +12104,49 @@
         "properties": {
           "id": {
             "description": "The Id of the given action",
-            "type": "integer",
-            "example": 567819876
+            "example": 567819876,
+            "type": "integer"
           },
           "pipeline_id": {
             "description": "The ID of the pipeline executed by this action",
-            "type": "integer",
             "example": 567819876,
+            "type": "integer",
             "nullable": true
           },
           "retry_of": {
             "description": "The Id of the parent action that this action is a retry of",
-            "type": "integer",
             "example": 764123,
+            "type": "integer",
             "nullable": true
           },
           "status": {
             "$ref": "#/components/schemas/ActionStatus"
           },
           "status_human_readable": {
-            "description": "Current item status human readable",
-            "type": "string",
-            "example": "Pending"
+            "description": "Human readable version of action status",
+            "example": "Pending",
+            "type": "string"
+          },
+          "status_reason_code": {
+            "$ref": "#/components/schemas/ActionStatusReasonCode"
+          },
+          "status_reason_human_readable": {
+            "description": "Human readable version of the status reason code",
+            "example": "Pending: Action created successfully but has not yet been queued for execution. It will be added to an execution queue once their dependencies are resolved.",
+            "type": "string"
           },
           "type": {
             "$ref": "#/components/schemas/ActionType"
           },
           "type_human_readable": {
             "description": "Human readable version of the action type",
-            "type": "string",
-            "example": "Deploy"
+            "example": "Deploy",
+            "type": "string"
           },
           "url_web_permalink": {
             "description": "The permalink URL to the action details on Devopness web app",
-            "type": "string",
-            "example": "https://devopness.com/actions/567819876"
+            "example": "https://devopness.com/actions/567819876",
+            "type": "string"
           },
           "action_data": {
             "$ref": "#/components/schemas/ActionData"
@@ -12155,25 +12183,25 @@
           },
           "started_at": {
             "description": "The date and time when the action started execution (i.e., left the `pending/queued` status)",
-            "type": "string",
             "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string",
             "nullable": true
           },
           "completed_at": {
             "description": "The date and time when the action has finished execution",
-            "type": "string",
             "example": "2019-09-25T13:52:04.000000Z",
+            "type": "string",
             "nullable": true
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2019-09-25T15:50:48.000000Z"
+            "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2019-09-25T13:52:04.000000Z"
+            "example": "2019-09-25T13:52:04.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -12182,6 +12210,8 @@
           "retry_of",
           "status",
           "status_human_readable",
+          "status_reason_code",
+          "status_reason_human_readable",
           "type",
           "type_human_readable",
           "url_web_permalink",
@@ -12210,6 +12240,22 @@
           "failed"
         ],
         "example": "in-progress"
+      },
+      "ActionStatusReasonCode": {
+        "type": "string",
+        "description": "The reason code of the action status",
+        "example": "PENDING",
+        "enum": [
+          "COMPLETED",
+          "FAILED_INSUFFICIENT_CREDITS",
+          "FAILED",
+          "IN_PROGRESS",
+          "PENDING",
+          "QUEUED",
+          "SKIPPED",
+          "WAITING_CONCURRENCY_PIPELINE",
+          "WAITING_CONCURRENCY_TARGET"
+        ]
       },
       "ActionStep": {
         "type": "object",
@@ -12248,6 +12294,14 @@
             "description": "Human readable version of the action status",
             "type": "string",
             "example": "Pending"
+          },
+          "status_reason_code": {
+            "$ref": "#/components/schemas/ActionStatusReasonCode"
+          },
+          "status_reason_human_readable": {
+            "description": "Human readable version of the status reason code",
+            "type": "string",
+            "example": "Pending: Step created successfully but has not yet been queued for execution. It will be added to an execution queue once their dependencies are resolved."
           },
           "started_at": {
             "type": "string",
@@ -12366,6 +12420,14 @@
             "description": "Human readable version of the action status",
             "type": "string",
             "example": "Pending"
+          },
+          "status_reason_code": {
+            "$ref": "#/components/schemas/ActionStatusReasonCode"
+          },
+          "status_reason_human_readable": {
+            "description": "Human readable version of the status reason code",
+            "type": "string",
+            "example": "Pending: Target created successfully but has not yet been queued for execution. It will be added to an execution queue once their dependencies are resolved."
           },
           "total_steps": {
             "type": "integer",
@@ -12685,84 +12747,84 @@
         "properties": {
           "id": {
             "description": "Unique ID of the application",
-            "type": "integer",
-            "example": 4654019
+            "example": 4654019,
+            "type": "integer"
           },
           "project_id": {
             "description": "Numeric ID of the project to which the application belongs to",
-            "type": "integer",
-            "example": 4654019
+            "example": 4654019,
+            "type": "integer"
           },
           "environment_id": {
             "description": "Numeric ID of the environment to which the application belongs to",
-            "type": "integer",
-            "example": 4654121
+            "example": 4654121,
+            "type": "integer"
           },
           "created_by": {
             "description": "The id of the user who created the application and to whom the application belongs",
-            "type": "integer",
-            "example": 1
+            "example": 1,
+            "type": "integer"
           },
           "name": {
             "description": "The application's unique name",
-            "type": "string",
-            "example": "my-awesome-app"
+            "example": "my-awesome-app",
+            "type": "string"
           },
           "repository": {
             "description": "The full name of a repository (`repository_owner/repository_name`) containing the application source code.",
-            "type": "string",
-            "example": "devopness/devopness"
+            "example": "devopness/devopness",
+            "type": "string"
           },
           "repository_name": {
             "description": "The name part of a repository full name (`repository_owner/repository_name`)",
-            "type": "string",
-            "example": "devopness"
+            "example": "devopness",
+            "type": "string"
           },
           "repository_owner": {
             "description": "The owner part of a repository full name (`repository_owner/repository_name`)",
-            "type": "string",
-            "example": "devopness"
+            "example": "devopness",
+            "type": "string"
           },
           "default_branch": {
             "description": "The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed.",
-            "type": "string",
-            "example": "main"
+            "example": "main",
+            "type": "string"
           },
           "programming_language": {
             "description": "The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`.",
-            "type": "string",
-            "example": "python"
+            "example": "python",
+            "type": "string"
           },
           "engine_version": {
             "description": "The language runtime engine version to be used to execute this application on the deployed servers",
-            "type": "string",
-            "example": "19.03.2"
+            "example": "19.03.2",
+            "type": "string"
           },
           "framework": {
             "description": "The base framework on top of which the application has been implemented - it might have impact on the steps to be performed during application deployment",
-            "type": "string",
-            "example": "drupal"
+            "example": "drupal",
+            "type": "string"
           },
           "root_directory": {
             "description": "The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository.",
-            "type": "string",
-            "example": "/src"
+            "example": "/src",
+            "type": "string"
           },
           "deployments_keep": {
             "description": "The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers. OR The number of deployment artifacts to be retained in the user's servers, making it easier and faster to rollback to previous versions",
-            "type": "integer",
-            "example": 4
+            "example": 4,
+            "type": "integer"
           },
           "install_dependencies_command": {
             "description": "Indicates command that Devopness must execute to install application dependencies",
-            "type": "string",
             "example": "npm install",
+            "type": "string",
             "nullable": true
           },
           "build_command": {
             "description": "The optional command that should be executed once during deployment to build the source code and get the application in a ready state",
-            "type": "string",
             "example": "npm run build",
+            "type": "string",
             "nullable": true
           },
           "created_by_user": {
@@ -12788,13 +12850,13 @@
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2019-09-25T15:50:48.000000Z"
+            "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2019-09-25T13:52:04.000000Z"
+            "example": "2019-09-25T13:52:04.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -12842,17 +12904,17 @@
             "type": "string"
           },
           "engine_version": {
-            "description": "The language runtime engine version to be used to execute this application on the deployed servers. Must be one of <code></code> Must be at least 1 characters. Must not be greater than 10 characters.",
+            "description": "The language runtime engine version to be used to execute this application on the deployed servers. Must be at least 1 character. Must not be greater than 10 characters.",
             "example": "3.12",
             "type": "string"
           },
           "framework": {
-            "description": "The base framework on top of which the application has been implemented - it might have impact on the steps to be performed during application deployment. Must be one of <code></code> Must not be greater than 30 characters.",
+            "description": "The base framework on top of which the application has been implemented - it might have impact on the steps to be performed during application deployment. Must not be greater than 30 characters.",
             "example": "none",
             "type": "string"
           },
           "programming_language": {
-            "description": "The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`. Must be one of <code>docker</code>, <code>dotnetcore</code>, <code>html</code>, <code>java</code>, <code>nodejs</code>, <code>php</code>, <code>python</code>, or <code>ruby</code> Must not be greater than 30 characters.",
+            "description": "The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`. Must not be greater than 30 characters.",
             "example": "python",
             "type": "string"
           },
@@ -12962,84 +13024,84 @@
         "properties": {
           "id": {
             "description": "Unique ID of the application",
-            "type": "integer",
-            "example": 4654019
+            "example": 4654019,
+            "type": "integer"
           },
           "project_id": {
             "description": "Numeric ID of the project to which the application belongs to",
-            "type": "integer",
-            "example": 4654019
+            "example": 4654019,
+            "type": "integer"
           },
           "environment_id": {
             "description": "Numeric ID of the environment to which the application belongs to",
-            "type": "integer",
-            "example": 4654121
+            "example": 4654121,
+            "type": "integer"
           },
           "created_by": {
             "description": "The id of the user who created the application and to whom the application belongs",
-            "type": "integer",
-            "example": 1
+            "example": 1,
+            "type": "integer"
           },
           "name": {
             "description": "The application's unique name",
-            "type": "string",
-            "example": "my-awesome-app"
+            "example": "my-awesome-app",
+            "type": "string"
           },
           "repository": {
             "description": "The full name of a repository (`repository_owner/repository_name`) containing the application source code.",
-            "type": "string",
-            "example": "devopness/devopness"
+            "example": "devopness/devopness",
+            "type": "string"
           },
           "repository_name": {
             "description": "The name part of a repository full name (`repository_owner/repository_name`)",
-            "type": "string",
-            "example": "devopness"
+            "example": "devopness",
+            "type": "string"
           },
           "repository_owner": {
             "description": "The owner part of a repository full name (`repository_owner/repository_name`)",
-            "type": "string",
-            "example": "devopness"
+            "example": "devopness",
+            "type": "string"
           },
           "default_branch": {
             "description": "The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed.",
-            "type": "string",
-            "example": "main"
+            "example": "main",
+            "type": "string"
           },
           "programming_language": {
             "description": "The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`.",
-            "type": "string",
-            "example": "python"
+            "example": "python",
+            "type": "string"
           },
           "engine_version": {
             "description": "The language runtime engine version to be used to execute this application on the deployed servers",
-            "type": "string",
-            "example": "19.03.2"
+            "example": "19.03.2",
+            "type": "string"
           },
           "framework": {
             "description": "The base framework on top of which the application has been implemented - it might have impact on the steps to be performed during application deployment",
-            "type": "string",
-            "example": "drupal"
+            "example": "drupal",
+            "type": "string"
           },
           "root_directory": {
             "description": "The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository.",
-            "type": "string",
-            "example": "/src"
+            "example": "/src",
+            "type": "string"
           },
           "deployments_keep": {
             "description": "The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers. OR The number of deployment artifacts to be retained in the user's servers, making it easier and faster to rollback to previous versions",
-            "type": "integer",
-            "example": 4
+            "example": 4,
+            "type": "integer"
           },
           "install_dependencies_command": {
             "description": "Indicates command that Devopness must execute to install application dependencies",
-            "type": "string",
             "example": "npm install",
+            "type": "string",
             "nullable": true
           },
           "build_command": {
             "description": "The optional command that should be executed once during deployment to build the source code and get the application in a ready state",
-            "type": "string",
             "example": "npm run build",
+            "type": "string",
             "nullable": true
           },
           "last_deployments": {
@@ -13050,13 +13112,13 @@
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2019-09-25T15:50:48.000000Z"
+            "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2019-09-25T13:52:04.000000Z"
+            "example": "2019-09-25T13:52:04.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -13100,17 +13162,17 @@
             "type": "string"
           },
           "engine_version": {
-            "description": "The language runtime engine version to be used to execute this application on the deployed servers. Must be one of <code></code> Must be at least 1 characters. Must not be greater than 10 characters.",
+            "description": "The language runtime engine version to be used to execute this application on the deployed servers. Must be at least 1 character. Must not be greater than 10 characters.",
             "example": "3.12",
             "type": "string"
           },
           "framework": {
-            "description": "The base framework on top of which the application has been implemented - it might have impact on the steps to be performed during application deployment. Must be one of <code></code> Must not be greater than 30 characters.",
+            "description": "The base framework on top of which the application has been implemented - it might have impact on the steps to be performed during application deployment. Must not be greater than 30 characters.",
             "example": "fastapi",
             "type": "string"
           },
           "programming_language": {
-            "description": "The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`. Must be one of <code>docker</code>, <code>dotnetcore</code>, <code>html</code>, <code>java</code>, <code>nodejs</code>, <code>php</code>, <code>python</code>, or <code>ruby</code> Must not be greater than 30 characters.",
+            "description": "The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`. Must not be greater than 30 characters.",
             "example": "python",
             "type": "string"
           },
@@ -13165,47 +13227,47 @@
         "properties": {
           "id": {
             "description": "Unique id of the given record",
-            "type": "integer",
-            "example": 2
+            "example": 2,
+            "type": "integer"
           },
           "type": {
             "$ref": "#/components/schemas/EnvironmentType"
           },
           "type_human_readable": {
             "description": "The human readable version of the type",
-            "type": "string",
-            "example": "Staging"
+            "example": "Staging",
+            "type": "string"
           },
           "name": {
             "description": "Environment's name",
-            "type": "string",
-            "example": "My staging"
+            "example": "My staging",
+            "type": "string"
           },
           "description": {
             "description": "Environment's description",
-            "type": "string",
             "example": "My staging environment",
+            "type": "string",
             "nullable": true
           },
           "used_credits": {
             "description": "Number of credits used in the current monthly billing cycle by actions of resources in the environment.",
-            "type": "integer",
-            "example": 50
+            "example": 50,
+            "type": "integer"
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2019-09-25T15:50:48.000000Z"
+            "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2019-09-25T13:52:04.000000Z"
+            "example": "2019-09-25T13:52:04.000000Z",
+            "type": "string"
           },
           "archived_at": {
             "description": "The date and time when the record was archived",
-            "type": "string",
             "example": "2019-09-26T10:45:42.000000Z",
+            "type": "string",
             "nullable": true
           },
           "project": {
@@ -13268,48 +13330,48 @@
         "properties": {
           "name": {
             "description": "The name of the cloud instance",
-            "type": "string",
-            "example": "m5.large"
+            "example": "m5.large",
+            "type": "string"
           },
           "type": {
             "description": "The type of the cloud instance",
-            "type": "string",
-            "example": "m5"
+            "example": "m5",
+            "type": "string"
           },
           "family": {
             "description": "The family to which the instance belongs",
-            "type": "string",
-            "example": "Memory Optimized"
+            "example": "Memory Optimized",
+            "type": "string"
           },
           "default_disk_size": {
             "description": "The default disk size (in GB) used to instance",
-            "type": "integer",
-            "example": 25
+            "example": 25,
+            "type": "integer"
           },
           "price_hourly": {
             "description": "The price per hour of the instance",
-            "type": "number",
-            "example": 0.096
+            "example": 0.096,
+            "type": "number"
           },
           "price_monthly": {
             "description": "The price per month of the instance",
-            "type": "number",
-            "example": 70.28
+            "example": 70.28,
+            "type": "number"
           },
           "price_currency": {
             "description": "The currency of the prices",
-            "type": "string",
-            "example": "USD"
+            "example": "USD",
+            "type": "string"
           },
           "vcpus": {
             "description": "The number of virtual CPU of the instance",
-            "type": "integer",
-            "example": 2
+            "example": 2,
+            "type": "integer"
           },
           "memory": {
             "description": "The RAM memory size (in MB) of the instance",
-            "type": "integer",
-            "example": 8192
+            "example": 8192,
+            "type": "integer"
           }
         },
         "required": [
@@ -13519,8 +13581,8 @@
           },
           "name": {
             "description": "The full name of the cloud service",
-            "type": "string",
-            "example": "Amazon Elastic Compute Cloud"
+            "example": "Amazon Elastic Compute Cloud",
+            "type": "string"
           },
           "provider": {
             "$ref": "#/components/schemas/ProviderRelation"
@@ -13824,44 +13886,44 @@
         "properties": {
           "id": {
             "description": "The unique ID of the credential",
-            "type": "integer",
-            "example": 85324
+            "example": 85324,
+            "type": "integer"
           },
           "name": {
             "description": "The name of the credential",
-            "type": "string",
-            "example": "My cool credential"
+            "example": "My cool credential",
+            "type": "string"
           },
           "provider": {
             "$ref": "#/components/schemas/ProviderRelation"
           },
           "provider_type": {
             "description": "The type of the credential",
-            "type": "string",
-            "example": "cloud_provider"
+            "example": "cloud_provider",
+            "type": "string"
           },
           "provider_type_human_readable": {
             "description": "The human readable version of the type of the credential",
-            "type": "string",
-            "example": "Cloud Provider"
+            "example": "Cloud Provider",
+            "type": "string"
           },
           "active": {
             "description": "If this credential is active or not",
-            "type": "boolean",
-            "example": true
+            "example": true,
+            "type": "boolean"
           },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2019-09-25T15:50:48.000000Z"
+            "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2019-09-25T15:50:48.000000Z"
+            "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -13917,14 +13979,10 @@
             "type": "string"
           },
           "provider_code": {
-            "description": "Must not be one of <code>self-hosted</code> Must not be greater than 20 characters.",
-            "example": "b",
-            "type": "string"
+            "$ref": "#/components/schemas/ProviderCode"
           },
           "provider_type": {
-            "description": "Must be one of <code>cloud_provider</code> or <code>source_provider</code>.",
-            "example": "source_provider",
-            "type": "string"
+            "$ref": "#/components/schemas/ProviderType"
           },
           "active": {
             "description": "If this credential is active or not.",
@@ -14085,13 +14143,13 @@
         "properties": {
           "id": {
             "description": "The unique ID of the credential",
-            "type": "integer",
-            "example": 85324
+            "example": 85324,
+            "type": "integer"
           },
           "name": {
             "description": "The name of the credential",
-            "type": "string",
-            "example": "My cool credential"
+            "example": "My cool credential",
+            "type": "string"
           },
           "provider": {
             "$ref": "#/components/schemas/ProviderRelation"
@@ -14101,26 +14159,26 @@
           },
           "provider_type_human_readable": {
             "description": "The human readable version of the type of the credential",
-            "type": "string",
-            "example": "Cloud Provider"
+            "example": "Cloud Provider",
+            "type": "string"
           },
           "active": {
             "description": "If this credential is active or not",
-            "type": "boolean",
-            "example": true
+            "example": true,
+            "type": "boolean"
           },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2019-09-25T15:50:48.000000Z"
+            "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2019-09-25T15:50:48.000000Z"
+            "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -14144,8 +14202,8 @@
           },
           "environment_id": {
             "description": "Numeric ID of the environment to which the network belongs to",
-            "type": "integer",
-            "example": 123
+            "example": 123,
+            "type": "integer"
           },
           "settings": {
             "$ref": "#/components/schemas/ProviderSettings"
@@ -14218,36 +14276,36 @@
         "properties": {
           "id": {
             "description": "The ID of the given cron job",
-            "type": "integer",
-            "example": 85324
+            "example": 85324,
+            "type": "integer"
           },
           "name": {
             "description": "The name of the cron job",
-            "type": "string",
-            "example": "My cool cron job"
+            "example": "My cool cron job",
+            "type": "string"
           },
           "command": {
             "description": "The command line to be executed when running the cron job",
-            "type": "string",
-            "example": "echo 'devopness rocks!' | tee -a /tmp/task-output.log"
+            "example": "echo 'devopness rocks!' | tee -a /tmp/task-output.log",
+            "type": "string"
           },
           "run_as_user": {
             "description": "The name of the Unix user on behalf of which the cron job will be executed",
-            "type": "string",
-            "example": "root"
+            "example": "root",
+            "type": "string"
           },
           "pattern": {
             "description": "A cron expression consisting of Minute, Hour, Day of Month, Month and Day of Week subexpressions",
-            "type": "string",
-            "example": "0 0 * * *"
+            "example": "0 0 * * *",
+            "type": "string"
           },
           "pattern_human_readable": {
             "$ref": "#/components/schemas/CronJobPattern"
           },
           "auto_generated": {
             "description": "Indicates if the cron job was auto_generated by `devopness` itself",
-            "type": "boolean",
-            "example": false
+            "example": false,
+            "type": "boolean"
           },
           "last_action": {
             "$ref": "#/components/schemas/ActionRelation"
@@ -14269,13 +14327,13 @@
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2019-09-25T15:50:48.000000Z"
+            "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2019-09-25T15:50:48.000000Z"
+            "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -14371,36 +14429,36 @@
         "properties": {
           "id": {
             "description": "The ID of the given cron job",
-            "type": "integer",
-            "example": 85324
+            "example": 85324,
+            "type": "integer"
           },
           "name": {
             "description": "The name of the cron job",
-            "type": "string",
-            "example": "My cool cron job"
+            "example": "My cool cron job",
+            "type": "string"
           },
           "command": {
             "description": "The command line to be executed when running the cron job",
-            "type": "string",
-            "example": "echo 'devopness rocks!' | tee -a /tmp/task-output.log"
+            "example": "echo 'devopness rocks!' | tee -a /tmp/task-output.log",
+            "type": "string"
           },
           "run_as_user": {
             "description": "The name of the Unix user on behalf of which the cron job will be executed",
-            "type": "string",
-            "example": "root"
+            "example": "root",
+            "type": "string"
           },
           "pattern": {
             "description": "A cron expression consisting of Minute, Hour, Day of Month, Month and Day of Week subexpressions",
-            "type": "string",
-            "example": "0 0 * * *"
+            "example": "0 0 * * *",
+            "type": "string"
           },
           "pattern_human_readable": {
             "$ref": "#/components/schemas/CronJobPattern"
           },
           "auto_generated": {
             "description": "Indicates if the cron job was auto_generated by `devopness` itself",
-            "type": "boolean",
-            "example": false
+            "example": false,
+            "type": "boolean"
           },
           "last_action": {
             "$ref": "#/components/schemas/ActionRelation"
@@ -14413,13 +14471,13 @@
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2019-09-25T15:50:48.000000Z"
+            "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2019-09-25T15:50:48.000000Z"
+            "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -14485,39 +14543,39 @@
         "properties": {
           "id": {
             "description": "The ID of the given daemon",
-            "type": "integer",
-            "example": 85324
+            "example": 85324,
+            "type": "integer"
           },
           "name": {
             "description": "The name entered by the user (or auto-generated by `devopness`) to uniquely identify the daemon",
-            "type": "string",
-            "example": "we-all-have-daemons-inside"
+            "example": "we-all-have-daemons-inside",
+            "type": "string"
           },
           "command": {
             "description": "The command line to be executed to start the daemon",
-            "type": "string",
-            "example": "node app.js"
+            "example": "node app.js",
+            "type": "string"
           },
           "run_as_user": {
             "description": "The name of the Unix user on behalf of which the daemon will be executed",
-            "type": "string",
-            "example": "root-of-all-evil"
+            "example": "root-of-all-evil",
+            "type": "string"
           },
           "working_directory": {
             "description": "The working directory where the Daemon command will be executed. If the Daemon is linked to an application, the path must be a relative path to the application root directory. If the Daemon is not linked to an application, the value must be an absolute path. Must not be greater than 255 characters",
-            "type": "string",
             "example": "relative-path/within/application/folder",
+            "type": "string",
             "nullable": true
           },
           "process_count": {
             "description": "The number of daemon process instances of the program to run simultaneously",
-            "type": "integer",
-            "example": 6
+            "example": 6,
+            "type": "integer"
           },
           "auto_generated": {
             "description": "Indicates if the daemon was auto_generated by `devopness` itself",
-            "type": "boolean",
-            "example": false
+            "example": false,
+            "type": "boolean"
           },
           "project": {
             "$ref": "#/components/schemas/ProjectRelation"
@@ -14539,13 +14597,13 @@
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2019-09-25T15:50:48.000000Z"
+            "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2019-09-25T15:50:48.000000Z"
+            "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -14632,39 +14690,39 @@
         "properties": {
           "id": {
             "description": "The ID of the given daemon",
-            "type": "integer",
-            "example": 85324
+            "example": 85324,
+            "type": "integer"
           },
           "name": {
             "description": "The name entered by the user (or auto-generated by `devopness`) to uniquely identify the daemon",
-            "type": "string",
-            "example": "we-all-have-daemons-inside"
+            "example": "we-all-have-daemons-inside",
+            "type": "string"
           },
           "command": {
             "description": "The command line to be executed to start the daemon",
-            "type": "string",
-            "example": "node app.js"
+            "example": "node app.js",
+            "type": "string"
           },
           "run_as_user": {
             "description": "The name of the Unix user on behalf of which the daemon will be executed",
-            "type": "string",
-            "example": "root-of-all-evil"
+            "example": "root-of-all-evil",
+            "type": "string"
           },
           "working_directory": {
             "description": "The working directory where the Daemon command will be executed. If the Daemon is linked to an application, the path must be a relative path to the application root directory. If the Daemon is not linked to an application, the value must be an absolute path. Must not be greater than 255 characters",
-            "type": "string",
             "example": "relative-path/within/application/folder",
+            "type": "string",
             "nullable": true
           },
           "process_count": {
             "description": "The number of daemon process instances of the program to run simultaneously",
-            "type": "integer",
-            "example": 6
+            "example": 6,
+            "type": "integer"
           },
           "auto_generated": {
             "description": "Indicates if the daemon was auto_generated by `devopness` itself",
-            "type": "boolean",
-            "example": false
+            "example": false,
+            "type": "boolean"
           },
           "last_action": {
             "$ref": "#/components/schemas/ActionRelation"
@@ -14677,13 +14735,13 @@
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2019-09-25T15:50:48.000000Z"
+            "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2019-09-25T15:50:48.000000Z"
+            "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -14780,7 +14838,7 @@
         "type": "object",
         "properties": {
           "environment": {
-            "description": "The environment type of the deployment. Must be one of <code>development</code>, <code>testing</code>, <code>staging</code>, or <code>production</code>.",
+            "description": "The environment type of the deployment.",
             "example": "staging",
             "type": "string"
           },
@@ -14788,7 +14846,7 @@
             "$ref": "#/components/schemas/DeploymentType"
           },
           "source_type": {
-            "description": "The 'source type' from which the application source code will be retrieved and deployed. It can be one of `branch`, `tag` or `commit`. If not provided, the application's default branch will be used. This field is required when <code>source_ref</code> is present.  Must be one of <code>branch</code>, <code>tag</code>, or <code>commit</code>.",
+            "description": "The 'source type' from which the application source code will be retrieved and deployed. It can be one of `branch`, `tag` or `commit`. If not provided, the application's default branch will be used. This field is required when <code>source_ref</code> is present.",
             "example": "commit",
             "type": "string"
           },
@@ -14852,32 +14910,32 @@
         "properties": {
           "id": {
             "description": "Unique id of the given record",
-            "type": "integer",
-            "example": 16523
+            "example": 16523,
+            "type": "integer"
           },
           "type": {
             "$ref": "#/components/schemas/EnvironmentType"
           },
           "type_human_readable": {
             "description": "The human readable version of the type",
-            "type": "string",
-            "example": "Staging"
+            "example": "Staging",
+            "type": "string"
           },
           "name": {
             "description": "Environment's name",
-            "type": "string",
-            "example": "My staging"
+            "example": "My staging",
+            "type": "string"
           },
           "description": {
             "description": "Environment's description",
-            "type": "string",
             "example": "My staging environment",
+            "type": "string",
             "nullable": true
           },
           "is_archived": {
             "description": "Indicates whether the record was archived",
-            "type": "boolean",
-            "example": false
+            "example": false,
+            "type": "boolean"
           },
           "servers": {
             "$ref": "#/components/schemas/ServerList"
@@ -14923,13 +14981,13 @@
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2019-09-25T15:50:48.000000Z"
+            "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2019-09-25T13:52:04.000000Z"
+            "example": "2019-09-25T13:52:04.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -15037,47 +15095,47 @@
         "properties": {
           "id": {
             "description": "Unique id of the given record",
-            "type": "integer",
-            "example": 2
+            "example": 2,
+            "type": "integer"
           },
           "type": {
             "$ref": "#/components/schemas/EnvironmentType"
           },
           "type_human_readable": {
             "description": "The human readable version of the type",
-            "type": "string",
-            "example": "Staging"
+            "example": "Staging",
+            "type": "string"
           },
           "name": {
             "description": "Environment's name",
-            "type": "string",
-            "example": "My staging"
+            "example": "My staging",
+            "type": "string"
           },
           "description": {
             "description": "Environment's description",
-            "type": "string",
             "example": "My staging environment",
+            "type": "string",
             "nullable": true
           },
           "used_credits": {
             "description": "Number of credits used in the current monthly billing cycle by actions of resources in the environment.",
-            "type": "integer",
-            "example": 50
+            "example": 50,
+            "type": "integer"
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2019-09-25T15:50:48.000000Z"
+            "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2019-09-25T13:52:04.000000Z"
+            "example": "2019-09-25T13:52:04.000000Z",
+            "type": "string"
           },
           "archived_at": {
             "description": "The date and time when the record was archived",
-            "type": "string",
             "example": "2019-09-26T10:45:42.000000Z",
+            "type": "string",
             "nullable": true
           },
           "project": {
@@ -15145,13 +15203,13 @@
         "properties": {
           "id": {
             "description": "The UUID of the given hook",
-            "type": "string",
-            "example": "f1a61a4e-4d08-11eb-9481-0242ac130004"
+            "example": "f1a61a4e-4d08-11eb-9481-0242ac130004",
+            "type": "string"
           },
           "name": {
             "description": "The name entered by the user (or auto-generated by `Devopness`) to uniquely identify the hook",
-            "type": "string",
-            "example": "my-app deploy"
+            "example": "my-app deploy",
+            "type": "string"
           },
           "type": {
             "$ref": "#/components/schemas/HookType"
@@ -15161,50 +15219,50 @@
           },
           "url": {
             "description": "URL that triggers incoming hooks",
-            "type": "string",
             "example": "http://localhost/hooks/incoming/0a2f9b84-e9bb-4fef-b146-51847bb9e569",
+            "type": "string",
             "nullable": true
           },
           "target_url": {
             "description": "URL that outgoing hooks make a request to",
-            "type": "string",
             "example": "https://fake-url-test.com/hook/12345",
+            "type": "string",
             "nullable": true
           },
           "auto_generated": {
             "description": "Indicates if the record was auto_generated by `devopness` itself",
-            "type": "boolean",
-            "example": false
+            "example": false,
+            "type": "boolean"
           },
           "requires_secret": {
             "description": "Tells if requests to this hook must only be accepted when a HTTP header is sent with a message authentication code ([HMAC](https://en.wikipedia.org/wiki/HMAC)) generated based on the secret provided by Devopness and shared by user with external sources",
-            "type": "boolean",
-            "example": true
+            "example": true,
+            "type": "boolean"
           },
           "verify_ssl": {
             "description": "Indicates if the Devopness must be verify the SSL certificate of the request",
-            "type": "boolean",
-            "example": true
+            "example": true,
+            "type": "boolean"
           },
           "active": {
             "description": "Determines if the hook is currently active",
-            "type": "boolean",
-            "example": true
+            "example": true,
+            "type": "boolean"
           },
           "project_id": {
             "description": "The ID of the project",
-            "type": "integer",
-            "example": 34985723
+            "example": 34985723,
+            "type": "integer"
           },
           "environment_id": {
             "description": "The ID of the environment",
-            "type": "integer",
-            "example": 579085
+            "example": 579085,
+            "type": "integer"
           },
           "pipeline_id": {
             "description": "The ID of the pipeline executed by this hook",
-            "type": "integer",
             "example": 289542,
+            "type": "integer",
             "nullable": true
           },
           "resource_type": {
@@ -15212,8 +15270,8 @@
           },
           "resource_id": {
             "description": "The hooks' resource ID",
-            "type": "integer",
-            "example": 9056412
+            "example": 9056412,
+            "type": "integer"
           },
           "settings": {
             "description": "",
@@ -15232,19 +15290,19 @@
           },
           "secret": {
             "description": "The secret generated by Devopness to be used to digitally sign incoming requests. This value is returned only once after a hook is created and cannot be retrieved again after that.",
-            "type": "string",
-            "example": "*****"
+            "example": "*****",
+            "type": "string"
           },
           "secret_algorithm": {
             "description": "The cryptographic hash function to be used by Devopness when validating digitally signed incoming requests for hooks that require secret validation",
-            "type": "string",
             "example": "sha256",
+            "type": "string",
             "nullable": true
           },
           "secret_header_name": {
             "description": "The name of the HTTP request header from which the request digital signature should be extracted",
-            "type": "string",
             "example": "X-Custom-Header",
+            "type": "string",
             "nullable": true
           },
           "created_by_user": {
@@ -15252,13 +15310,13 @@
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2022-09-26T15:30:31.000000Z"
+            "example": "2022-09-26T15:30:31.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2022-09-26T15:30:58.000000Z"
+            "example": "2022-09-26T15:30:58.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -15415,7 +15473,7 @@
             "type": "boolean"
           },
           "secret_algorithm": {
-            "description": "The cryptographic hash function to be used by Devopness when validating digitally signed incoming requests for hooks that require secret validation. This field is required when <code>requires_secret</code> is <code>true</code>.  Must be one of <code>sha256</code> Must not be greater than 20 characters.",
+            "description": "The cryptographic hash function to be used by Devopness when validating digitally signed incoming requests for hooks that require secret validation. This field is required when <code>requires_secret</code> is <code>true</code>. Must not be greater than 20 characters.",
             "example": "sha256",
             "type": "string"
           },
@@ -15449,13 +15507,13 @@
         "properties": {
           "id": {
             "description": "The UUID of the given hook",
-            "type": "string",
-            "example": "f1a61a4e-4d08-11eb-9481-0242ac130004"
+            "example": "f1a61a4e-4d08-11eb-9481-0242ac130004",
+            "type": "string"
           },
           "name": {
             "description": "The name entered by the user (or auto-generated by `Devopness`) to uniquely identify the hook",
-            "type": "string",
-            "example": "my-app deploy"
+            "example": "my-app deploy",
+            "type": "string"
           },
           "type": {
             "$ref": "#/components/schemas/HookType"
@@ -15465,50 +15523,50 @@
           },
           "url": {
             "description": "URL that triggers incoming hooks",
-            "type": "string",
             "example": "http://localhost/hooks/incoming/0a2f9b84-e9bb-4fef-b146-51847bb9e569",
+            "type": "string",
             "nullable": true
           },
           "target_url": {
             "description": "URL that outgoing hooks make a request to",
-            "type": "string",
             "example": "https://fake-url-test.com/hook/12345",
+            "type": "string",
             "nullable": true
           },
           "auto_generated": {
             "description": "Indicates if the record was auto_generated by `devopness` itself",
-            "type": "boolean",
-            "example": false
+            "example": false,
+            "type": "boolean"
           },
           "requires_secret": {
             "description": "Tells if requests to this hook must only be accepted when a HTTP header is sent with a message authentication code ([HMAC](https://en.wikipedia.org/wiki/HMAC)) generated based on the secret provided by Devopness and shared by user with external sources",
-            "type": "boolean",
-            "example": true
+            "example": true,
+            "type": "boolean"
           },
           "verify_ssl": {
             "description": "Indicates if the Devopness must be verify the SSL certificate of the request",
-            "type": "boolean",
-            "example": true
+            "example": true,
+            "type": "boolean"
           },
           "active": {
             "description": "Determines if the hook is currently active",
-            "type": "boolean",
-            "example": true
+            "example": true,
+            "type": "boolean"
           },
           "project_id": {
             "description": "The ID of the project",
-            "type": "integer",
-            "example": 34985723
+            "example": 34985723,
+            "type": "integer"
           },
           "environment_id": {
             "description": "The ID of the environment",
-            "type": "integer",
-            "example": 579085
+            "example": 579085,
+            "type": "integer"
           },
           "pipeline_id": {
             "description": "The ID of the pipeline executed by this hook",
-            "type": "integer",
             "example": 289542,
+            "type": "integer",
             "nullable": true
           },
           "resource_type": {
@@ -15516,8 +15574,8 @@
           },
           "resource_id": {
             "description": "The hooks' resource ID",
-            "type": "integer",
-            "example": 9056412
+            "example": 9056412,
+            "type": "integer"
           },
           "settings": {
             "description": "",
@@ -15536,13 +15594,13 @@
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2019-09-25T15:50:48.000000Z"
+            "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2019-09-25T15:50:48.000000Z"
+            "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -15573,35 +15631,35 @@
         "properties": {
           "id": {
             "description": "The unique UUID of the hook request",
-            "type": "string",
-            "example": "6fa16226-9dc4-4367-88aa-e689ad2bc580"
+            "example": "6fa16226-9dc4-4367-88aa-e689ad2bc580",
+            "type": "string"
           },
           "hook_id": {
             "description": "The UUID of the hook that the request belongs to",
-            "type": "string",
-            "example": "f1a61a4e-4d08-11eb-9481-0242ac130004"
+            "example": "f1a61a4e-4d08-11eb-9481-0242ac130004",
+            "type": "string"
           },
           "action_id": {
             "description": "The ID of the action that the request belongs to",
-            "type": "integer",
             "example": 1985239,
+            "type": "integer",
             "nullable": true
           },
           "retry_of": {
             "description": "The UUID of the request that this request is a retry of",
-            "type": "string",
             "example": "002afd04-e3af-4dad-bf46-b2b25978482a",
+            "type": "string",
             "nullable": true
           },
           "ip_address": {
             "description": "The IP address of the source that triggered the hook",
-            "type": "string",
-            "example": "172.17.0.4"
+            "example": "172.17.0.4",
+            "type": "string"
           },
           "url": {
             "description": "Original URL used on the request",
-            "type": "string",
-            "example": "https://api.devopness.com/hooks-incoming/f1a61a4e-4d08-11eb-9481-0242ac130004"
+            "example": "https://api.devopness.com/hooks-incoming/f1a61a4e-4d08-11eb-9481-0242ac130004",
+            "type": "string"
           },
           "request_headers": {
             "$ref": "#/components/schemas/HookRequestRequestHeaders"
@@ -15611,8 +15669,8 @@
           },
           "response_status_code": {
             "description": "The response status code",
-            "type": "integer",
-            "example": 200
+            "example": 200,
+            "type": "integer"
           },
           "response_headers": {
             "$ref": "#/components/schemas/HookRequestResponseHeaders"
@@ -15625,13 +15683,13 @@
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2022-09-26T15:30:31.000000Z"
+            "example": "2022-09-26T15:30:31.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2022-09-26T15:30:58.000000Z"
+            "example": "2022-09-26T15:30:58.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -15750,13 +15808,13 @@
         "properties": {
           "message": {
             "description": "Message containing information about the hook being triggered",
-            "type": "string",
-            "example": "Hook successfully triggered"
+            "example": "Hook successfully triggered",
+            "type": "string"
           },
           "errors": {
             "description": "Optional error object containing details of the server error",
-            "type": "object",
             "example": null,
+            "type": "object",
             "nullable": true
           }
         },
@@ -15843,7 +15901,7 @@
             "type": "boolean"
           },
           "secret_algorithm": {
-            "description": "The cryptographic hash function to be used by Devopness when validating digitally signed incoming requests for hooks that require secret validation. This field is required when <code>requires_secret</code> is <code>true</code>.  Must be one of <code>sha256</code> Must not be greater than 20 characters.",
+            "description": "The cryptographic hash function to be used by Devopness when validating digitally signed incoming requests for hooks that require secret validation. This field is required when <code>requires_secret</code> is <code>true</code>. Must not be greater than 20 characters.",
             "example": "sha256",
             "type": "string"
           },
@@ -15953,26 +16011,26 @@
         "properties": {
           "id": {
             "description": "The unique UUID of the given invitation",
-            "type": "string",
-            "example": "e57996b5-3cf3-4cae-a925-e2e2ada52732"
+            "example": "e57996b5-3cf3-4cae-a925-e2e2ada52732",
+            "type": "string"
           },
           "email": {
             "description": "The email of the user that has been invited to team",
-            "type": "string",
-            "example": "invited.user@email.com"
+            "example": "invited.user@email.com",
+            "type": "string"
           },
           "status": {
             "$ref": "#/components/schemas/TeamInvitationStatus"
           },
           "status_human_readable": {
             "description": "Human readable version of the invitation status",
-            "type": "string",
-            "example": "Pending invitation"
+            "example": "Pending invitation",
+            "type": "string"
           },
           "accepted_from_ip": {
             "description": "The IP of the user who accepted the invitation",
-            "type": "string",
             "example": "172.17.0.24",
+            "type": "string",
             "nullable": true
           },
           "created_by_user": {
@@ -15986,24 +16044,24 @@
           },
           "accepted_at": {
             "description": "The date and time when the invitation was accepted",
-            "type": "string",
             "example": "2019-09-26T13:22:37.000000Z",
+            "type": "string",
             "nullable": true
           },
           "expires_at": {
             "description": "The date and time when the invitation will expire",
-            "type": "string",
-            "example": "2019-09-27T13:22:37.000000Z"
+            "example": "2019-09-27T13:22:37.000000Z",
+            "type": "string"
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2019-09-25T13:22:37.000000Z"
+            "example": "2019-09-25T13:22:37.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2019-09-25T13:22:37.000000Z"
+            "example": "2019-09-25T13:22:37.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -16032,26 +16090,26 @@
         "properties": {
           "id": {
             "description": "The unique UUID of the given invitation",
-            "type": "string",
-            "example": "e57996b5-3cf3-4cae-a925-e2e2ada52732"
+            "example": "e57996b5-3cf3-4cae-a925-e2e2ada52732",
+            "type": "string"
           },
           "email": {
             "description": "The email of the user that has been invited to team",
-            "type": "string",
-            "example": "invited.user@email.com"
+            "example": "invited.user@email.com",
+            "type": "string"
           },
           "status": {
             "$ref": "#/components/schemas/TeamInvitationStatus"
           },
           "status_human_readable": {
             "description": "Human readable version of the invitation status",
-            "type": "string",
-            "example": "Pending invitation"
+            "example": "Pending invitation",
+            "type": "string"
           },
           "accepted_from_ip": {
             "description": "The IP of the user who accepted the invitation",
-            "type": "string",
             "example": "172.17.0.24",
+            "type": "string",
             "nullable": true
           },
           "created_by_user": {
@@ -16068,24 +16126,24 @@
           },
           "accepted_at": {
             "description": "The date and time when the invitation was accepted",
-            "type": "string",
             "example": "2019-09-26T13:22:37.000000Z",
+            "type": "string",
             "nullable": true
           },
           "expires_at": {
             "description": "The date and time when the invitation will expire",
-            "type": "string",
-            "example": "2019-09-27T13:22:37.000000Z"
+            "example": "2019-09-27T13:22:37.000000Z",
+            "type": "string"
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2019-09-25T13:22:37.000000Z"
+            "example": "2019-09-25T13:22:37.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2019-09-25T13:22:37.000000Z"
+            "example": "2019-09-25T13:22:37.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -16356,8 +16414,8 @@
           },
           "updated_at": {
             "description": "The date and time when the requested log record was last updated",
-            "type": "string",
             "example": "2019-09-25T13:52:04.000000Z",
+            "type": "string",
             "nullable": true
           }
         },
@@ -16378,13 +16436,13 @@
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2019-09-25T13:22:37.000000Z"
+            "example": "2019-09-25T13:22:37.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2019-09-25T13:22:37.000000Z"
+            "example": "2019-09-25T13:22:37.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -16408,13 +16466,13 @@
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2019-09-25T13:22:37.000000Z"
+            "example": "2019-09-25T13:22:37.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2019-09-25T13:22:37.000000Z"
+            "example": "2019-09-25T13:22:37.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -16429,23 +16487,23 @@
         "properties": {
           "id": {
             "description": "The unique id of the given record",
-            "type": "integer",
-            "example": 6721
+            "example": 6721,
+            "type": "integer"
           },
           "provider_name": {
             "description": "The name of the cloud provider",
-            "type": "string",
-            "example": "aws"
+            "example": "aws",
+            "type": "string"
           },
           "provider_name_human_readable": {
             "description": "The human readable version of the provider's name",
-            "type": "string",
-            "example": "Amazon Web Services"
+            "example": "Amazon Web Services",
+            "type": "string"
           },
           "name": {
             "description": "The networks's name",
-            "type": "string",
-            "example": "my-network"
+            "example": "my-network",
+            "type": "string"
           },
           "provision_input": {
             "$ref": "#/components/schemas/NetworkProvisionInput"
@@ -16467,13 +16525,13 @@
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2019-09-25T15:50:48.000000Z"
+            "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2019-09-25T13:52:04.000000Z"
+            "example": "2019-09-25T13:52:04.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -16606,56 +16664,56 @@
         "properties": {
           "id": {
             "description": "The unique id of the given record",
-            "type": "integer",
-            "example": 6721
+            "example": 6721,
+            "type": "integer"
           },
           "project_id": {
             "description": "Numeric ID of the project to which the network belongs to",
-            "type": "integer",
-            "example": 123
+            "example": 123,
+            "type": "integer"
           },
           "environment_id": {
             "description": "Numeric ID of the environment to which the network belongs to",
-            "type": "integer",
-            "example": 456
+            "example": 456,
+            "type": "integer"
           },
           "created_by": {
             "description": "The id of the user who created the network",
-            "type": "integer",
-            "example": 789
+            "example": 789,
+            "type": "integer"
           },
           "is_auto_generated": {
             "description": "If true, the network is auto-generated",
-            "type": "boolean",
-            "example": false
+            "example": false,
+            "type": "boolean"
           },
           "provider_name": {
             "description": "The name of the cloud provider",
-            "type": "string",
-            "example": "aws"
+            "example": "aws",
+            "type": "string"
           },
           "provider_name_human_readable": {
             "description": "The human readable version of the provider's name",
-            "type": "string",
-            "example": "Amazon Web Services"
+            "example": "Amazon Web Services",
+            "type": "string"
           },
           "name": {
             "description": "The networks's name",
-            "type": "string",
-            "example": "my-network"
+            "example": "my-network",
+            "type": "string"
           },
           "provision_input": {
             "$ref": "#/components/schemas/NetworkProvisionInput"
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2019-09-25T15:50:48.000000Z"
+            "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2019-09-25T13:52:04.000000Z"
+            "example": "2019-09-25T13:52:04.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -16678,13 +16736,13 @@
         "properties": {
           "id": {
             "description": "The ID of the given network rule",
-            "type": "integer",
-            "example": 6548224
+            "example": 6548224,
+            "type": "integer"
           },
           "name": {
             "description": "The rule's name/description/reminder",
-            "type": "string",
-            "example": "Opening MySQL port so desktop apps can access it remotely"
+            "example": "Opening MySQL port so desktop apps can access it remotely",
+            "type": "string"
           },
           "direction": {
             "$ref": "#/components/schemas/NetworkRuleDirection"
@@ -16694,18 +16752,18 @@
           },
           "port": {
             "description": "Network port to be considered by this rule",
-            "type": "integer",
-            "example": 3306
+            "example": 3306,
+            "type": "integer"
           },
           "cidr_block": {
             "description": "IP address range this rule applies for, defined using CIDR notation",
-            "type": "string",
-            "example": "10.0.0.0/24"
+            "example": "10.0.0.0/24",
+            "type": "string"
           },
           "auto_generated": {
             "description": "Indicates if the network rule was auto_generated by `devopness` itself",
-            "type": "boolean",
-            "example": false
+            "example": false,
+            "type": "boolean"
           },
           "last_action": {
             "$ref": "#/components/schemas/ActionRelation"
@@ -16721,13 +16779,13 @@
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2019-09-25T15:50:48.000000Z"
+            "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2019-09-25T15:50:48.000000Z"
+            "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -16828,13 +16886,13 @@
         "properties": {
           "id": {
             "description": "The ID of the given network rule",
-            "type": "integer",
-            "example": 6548224
+            "example": 6548224,
+            "type": "integer"
           },
           "name": {
             "description": "The rule's name/description/reminder",
-            "type": "string",
-            "example": "Opening MySQL port so desktop apps can access it remotely"
+            "example": "Opening MySQL port so desktop apps can access it remotely",
+            "type": "string"
           },
           "direction": {
             "$ref": "#/components/schemas/NetworkRuleDirection"
@@ -16844,31 +16902,31 @@
           },
           "port": {
             "description": "Network port to be considered by this rule",
-            "type": "integer",
-            "example": 3306
+            "example": 3306,
+            "type": "integer"
           },
           "cidr_block": {
             "description": "IP address range this rule applies for, defined using CIDR notation",
-            "type": "string",
-            "example": "10.0.0.0/24"
+            "example": "10.0.0.0/24",
+            "type": "string"
           },
           "auto_generated": {
             "description": "Indicates if the network rule was auto_generated by `devopness` itself",
-            "type": "boolean",
-            "example": false
+            "example": false,
+            "type": "boolean"
           },
           "last_action": {
             "$ref": "#/components/schemas/ActionRelation"
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2019-09-25T15:50:48.000000Z"
+            "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2019-09-25T15:50:48.000000Z"
+            "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -17075,8 +17133,8 @@
         "properties": {
           "message": {
             "description": "Message with information about the response",
-            "type": "string",
-            "example": "Your password has been reset"
+            "example": "Your password has been reset",
+            "type": "string"
           }
         },
         "required": [
@@ -17138,13 +17196,13 @@
         "properties": {
           "resource_type": {
             "description": "The type of resource this permission affects",
-            "type": "string",
-            "example": "application"
+            "example": "application",
+            "type": "string"
           },
           "human_readable": {
             "description": "Human readable resource name",
-            "type": "string",
-            "example": "Application"
+            "example": "Application",
+            "type": "string"
           },
           "permissions": {
             "$ref": "#/components/schemas/StaticPermissionList"
@@ -17162,51 +17220,51 @@
         "properties": {
           "id": {
             "description": "The unique ID of the given pipeline",
-            "type": "integer",
-            "example": 342390
+            "example": 342390,
+            "type": "integer"
           },
           "name": {
             "description": "The pipeline's name",
-            "type": "string",
-            "example": "My pied piper-line"
+            "example": "My pied piper-line",
+            "type": "string"
           },
           "environment_id": {
             "description": "ID of the environment this pipeline belongs to",
-            "type": "integer",
-            "example": 4532342
+            "example": 4532342,
+            "type": "integer"
           },
           "project_id": {
             "description": "ID of the project this pipeline belongs to",
-            "type": "integer",
-            "example": 97063242
+            "example": 97063242,
+            "type": "integer"
           },
           "resource_type": {
             "$ref": "#/components/schemas/ResourceType"
           },
           "resource_type_human_readable": {
             "description": "Human readable version of the resource type",
-            "type": "string",
-            "example": "Application"
+            "example": "Application",
+            "type": "string"
           },
           "resource_id": {
             "description": "The pipeline's resource ID",
-            "type": "integer",
-            "example": 5324234
+            "example": 5324234,
+            "type": "integer"
           },
           "operation": {
             "description": "The resource operation associated to the pipeline.",
-            "type": "string",
-            "example": "deploy"
+            "example": "deploy",
+            "type": "string"
           },
           "operation_human_readable": {
             "description": "Human readable version of the operation",
-            "type": "string",
-            "example": "Deploy"
+            "example": "Deploy",
+            "type": "string"
           },
           "max_parallel_actions": {
             "description": "Maximum number of actions that can run in parallel for this pipeline. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run this pipeline.",
-            "type": "integer",
-            "example": 1
+            "example": 1,
+            "type": "integer"
           },
           "trigger_when": {
             "$ref": "#/components/schemas/PipelineTriggerWhen"
@@ -17219,13 +17277,13 @@
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2022-09-26T15:30:31.000000Z"
+            "example": "2022-09-26T15:30:31.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2022-09-26T15:30:58.000000Z"
+            "example": "2022-09-26T15:30:58.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -17284,53 +17342,53 @@
         "properties": {
           "id": {
             "description": "The unique ID of the given pipeline",
-            "type": "integer",
-            "example": 342390
+            "example": 342390,
+            "type": "integer"
           },
           "name": {
             "description": "The pipeline's name",
-            "type": "string",
-            "example": "My pied piper-line"
+            "example": "My pied piper-line",
+            "type": "string"
           },
           "environment_id": {
             "description": "ID of the environment this pipeline belongs to",
-            "type": "integer",
-            "example": 4532342
+            "example": 4532342,
+            "type": "integer"
           },
           "project_id": {
             "description": "ID of the project this pipeline belongs to",
-            "type": "integer",
-            "example": 97063242
+            "example": 97063242,
+            "type": "integer"
           },
           "resource_type": {
             "description": "The pipeline's resource type",
-            "type": "string",
-            "example": "application"
+            "example": "application",
+            "type": "string"
           },
           "resource_type_human_readable": {
             "description": "Human readable version of the resource type",
-            "type": "string",
-            "example": "Application"
+            "example": "Application",
+            "type": "string"
           },
           "resource_id": {
             "description": "The pipeline's resource ID",
-            "type": "integer",
-            "example": 5324234
+            "example": 5324234,
+            "type": "integer"
           },
           "operation": {
             "description": "The resource operation associated to the pipeline.",
-            "type": "string",
-            "example": "deploy"
+            "example": "deploy",
+            "type": "string"
           },
           "operation_human_readable": {
             "description": "Human readable version of the operation",
-            "type": "string",
-            "example": "Deploy"
+            "example": "Deploy",
+            "type": "string"
           },
           "max_parallel_actions": {
             "description": "Maximum number of actions that can run in parallel for this pipeline. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run this pipeline.",
-            "type": "integer",
-            "example": 1
+            "example": 1,
+            "type": "integer"
           },
           "trigger_when": {
             "$ref": "#/components/schemas/PipelineTriggerWhen"
@@ -17340,13 +17398,13 @@
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2022-09-26T15:30:31.000000Z"
+            "example": "2022-09-26T15:30:31.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2022-09-26T15:30:58.000000Z"
+            "example": "2022-09-26T15:30:58.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -17502,23 +17560,23 @@
         "properties": {
           "id": {
             "description": "The Id of the project",
-            "type": "integer",
-            "example": 45678
+            "example": 45678,
+            "type": "integer"
           },
           "user_id": {
             "description": "The id of the user that own the project",
-            "type": "integer",
-            "example": 984123
+            "example": 984123,
+            "type": "integer"
           },
           "name": {
             "description": "The project's name",
-            "type": "string",
-            "example": "my project"
+            "example": "my project",
+            "type": "string"
           },
           "logo_url": {
             "description": "A URL path to the project's logo image",
-            "type": "string",
             "example": "https://example.com/projects-beautiful-logo.png",
+            "type": "string",
             "nullable": true
           },
           "os_users": {
@@ -17538,13 +17596,13 @@
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2022-09-26T15:30:31.000000Z"
+            "example": "2022-09-26T15:30:31.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2022-09-26T15:30:58.000000Z"
+            "example": "2022-09-26T15:30:58.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -17595,23 +17653,23 @@
         "properties": {
           "id": {
             "description": "The Id of the project",
-            "type": "integer",
-            "example": 45678
+            "example": 45678,
+            "type": "integer"
           },
           "user_id": {
             "description": "The id of the user that own the project",
-            "type": "integer",
-            "example": 45678
+            "example": 45678,
+            "type": "integer"
           },
           "name": {
             "description": "The project's name",
-            "type": "string",
-            "example": "my project"
+            "example": "my project",
+            "type": "string"
           },
           "logo_url": {
             "description": "A URL path to the project's logo image",
-            "type": "string",
             "example": "https://example.com/projects-beautiful-logo.png",
+            "type": "string",
             "nullable": true
           },
           "os_users": {
@@ -17622,18 +17680,18 @@
           },
           "used_credits": {
             "description": "Number of credits used in the current monthly billing cycle by actions of resources in the project.",
-            "type": "integer",
-            "example": 123
+            "example": 123,
+            "type": "integer"
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2022-09-26T15:30:31.000000Z"
+            "example": "2022-09-26T15:30:31.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2022-09-26T15:30:58.000000Z"
+            "example": "2022-09-26T15:30:58.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -17914,23 +17972,23 @@
         "properties": {
           "name": {
             "description": "The name of the repository",
-            "type": "string",
-            "example": "myrepo"
+            "example": "myrepo",
+            "type": "string"
           },
           "user_name": {
             "description": "The name of the user/account on the Version Control System",
-            "type": "string",
-            "example": "myusername"
+            "example": "myusername",
+            "type": "string"
           },
           "full_name": {
             "description": "The fully qualified repository name. Usually composed of user_name/name",
-            "type": "string",
-            "example": "myusername/myrepo"
+            "example": "myusername/myrepo",
+            "type": "string"
           },
           "html_url": {
             "description": "The URL for viewing repository details on the provider's web application",
-            "type": "string",
-            "example": "https://github.com/myusername/myrepo"
+            "example": "https://github.com/myusername/myrepo",
+            "type": "string"
           },
           "branches": {
             "$ref": "#/components/schemas/RepositoryBranchList"
@@ -17990,23 +18048,23 @@
         "properties": {
           "name": {
             "description": "The name of the repository",
-            "type": "string",
-            "example": "myrepo"
+            "example": "myrepo",
+            "type": "string"
           },
           "user_name": {
             "description": "The name of the user/account on the Version Control System",
-            "type": "string",
-            "example": "myusername"
+            "example": "myusername",
+            "type": "string"
           },
           "full_name": {
             "description": "The fully qualified repository name. Usually composed of user_name/name",
-            "type": "string",
-            "example": "myusername/myrepo"
+            "example": "myusername/myrepo",
+            "type": "string"
           },
           "html_url": {
             "description": "The URL for viewing repository details on the provider's web application",
-            "type": "string",
-            "example": "https://github.com/myusername/myrepo"
+            "example": "https://github.com/myusername/myrepo",
+            "type": "string"
           }
         },
         "required": [
@@ -18073,40 +18131,40 @@
         "properties": {
           "id": {
             "description": "The unique UUID of the hook request",
-            "type": "string",
-            "example": "6fa16226-9dc4-4367-88aa-e689ad2bc580"
+            "example": "6fa16226-9dc4-4367-88aa-e689ad2bc580",
+            "type": "string"
           },
           "hook_id": {
             "description": "The UUID of the hook that the request belongs to",
-            "type": "string",
-            "example": "f1a61a4e-4d08-11eb-9481-0242ac130004"
+            "example": "f1a61a4e-4d08-11eb-9481-0242ac130004",
+            "type": "string"
           },
           "action_id": {
             "description": "The ID of the action that the request belongs to",
-            "type": "integer",
             "example": 1985239,
+            "type": "integer",
             "nullable": true
           },
           "retry_of": {
             "description": "The UUID of the request that this request is a retry of",
-            "type": "string",
             "example": "002afd04-e3af-4dad-bf46-b2b25978482a",
+            "type": "string",
             "nullable": true
           },
           "ip_address": {
             "description": "The IP address of the source that triggered the hook",
-            "type": "string",
-            "example": "172.17.0.4"
+            "example": "172.17.0.4",
+            "type": "string"
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2019-09-25T15:50:48.000000Z"
+            "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2019-09-25T15:50:48.000000Z"
+            "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -18125,13 +18183,13 @@
         "properties": {
           "resource_type": {
             "description": "The resource type to create events for.",
-            "type": "string",
-            "example": "payment_provider"
+            "example": "payment_provider",
+            "type": "string"
           },
           "resource_id": {
             "description": "The resource ID.",
-            "type": "integer",
-            "example": "paddle"
+            "example": "paddle",
+            "type": "integer"
           },
           "resource_data": {
             "$ref": "#/components/schemas/Subscription"
@@ -18154,45 +18212,45 @@
         "properties": {
           "id": {
             "description": "The ID of the given resource event",
-            "type": "integer",
-            "example": 652674
+            "example": 652674,
+            "type": "integer"
           },
           "event_type": {
             "description": "The type of resource event",
-            "type": "string",
-            "example": "testtype"
+            "example": "testtype",
+            "type": "string"
           },
           "resource_type": {
             "description": "The event's resource type",
-            "type": "string",
-            "example": "service"
+            "example": "service",
+            "type": "string"
           },
           "resource_id": {
             "description": "The event's resource ID",
-            "type": "integer",
-            "example": 652674
+            "example": 652674,
+            "type": "integer"
           },
           "message": {
             "description": "",
-            "type": "string",
             "example": "Test message",
+            "type": "string",
             "nullable": true
           },
           "triggered_by": {
             "description": "",
-            "type": "integer",
             "example": 2,
+            "type": "integer",
             "nullable": true
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2020-04-16T15:50:48.000000Z"
+            "example": "2020-04-16T15:50:48.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2020-04-16T15:50:48.000000Z"
+            "example": "2020-04-16T15:50:48.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -18225,28 +18283,28 @@
         "properties": {
           "link_type": {
             "description": "The link type to related resource (`child` or `parent`)",
-            "type": "string",
-            "example": "parent"
+            "example": "parent",
+            "type": "string"
           },
           "resource_type_human_readable": {
             "description": "The human readable resource type",
-            "type": "string",
-            "example": "Server"
+            "example": "Server",
+            "type": "string"
           },
           "resource_type": {
             "description": "The linked resource type",
-            "type": "string",
-            "example": "server"
+            "example": "server",
+            "type": "string"
           },
           "resource_id": {
             "description": "The linked resource ID",
-            "type": "integer",
-            "example": 123
+            "example": 123,
+            "type": "integer"
           },
           "can_be_unlinked": {
             "description": "If false, the link cannot be manually removed",
-            "type": "boolean",
-            "example": true
+            "example": true,
+            "type": "boolean"
           },
           "linked_resource_data": {
             "$ref": "#/components/schemas/LinkedResourceData"
@@ -18380,13 +18438,13 @@
           },
           "resource_type_human_readable": {
             "description": "Human readable version of the resource type",
-            "type": "string",
-            "example": "Application"
+            "example": "Application",
+            "type": "string"
           },
           "resource_type_human_readable_plural": {
             "description": "Human readable version of the resource type, in plural form",
-            "type": "string",
-            "example": "Applications"
+            "example": "Applications",
+            "type": "string"
           },
           "supported_operations": {
             "$ref": "#/components/schemas/ResourceOperationList"
@@ -18413,29 +18471,29 @@
         "properties": {
           "id": {
             "description": "The unique ID of the given role",
-            "type": "integer",
-            "example": 45678
+            "example": 45678,
+            "type": "integer"
           },
           "name": {
             "description": "The name of the given role",
-            "type": "string",
-            "example": "admin"
+            "example": "admin",
+            "type": "string"
           },
           "description": {
             "description": "Description of this role",
-            "type": "string",
-            "example": "Has total access to resources"
+            "example": "Has total access to resources",
+            "type": "string"
           },
           "project_id": {
             "description": "The ID of the project this role belongs to",
-            "type": "integer",
             "example": 984123,
+            "type": "integer",
             "nullable": true
           },
           "is_predefined": {
             "description": "Defines if the role is predefined or custom",
-            "type": "boolean",
-            "example": false
+            "example": false,
+            "type": "boolean"
           },
           "permissions": {
             "$ref": "#/components/schemas/RolePermissions"
@@ -18445,13 +18503,13 @@
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2019-09-25T13:22:37.000000Z"
+            "example": "2019-09-25T13:22:37.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2019-09-25T13:22:37.000000Z"
+            "example": "2019-09-25T13:22:37.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -18510,42 +18568,42 @@
         "properties": {
           "id": {
             "description": "The unique ID of the given role",
-            "type": "integer",
-            "example": 45678
+            "example": 45678,
+            "type": "integer"
           },
           "name": {
             "description": "The name of the given role",
-            "type": "string",
-            "example": "admin"
+            "example": "admin",
+            "type": "string"
           },
           "description": {
             "description": "Description of this role",
-            "type": "string",
-            "example": "Has total access to resources"
+            "example": "Has total access to resources",
+            "type": "string"
           },
           "project_id": {
             "description": "The ID of the project this role belongs to",
-            "type": "integer",
             "example": 984123,
+            "type": "integer",
             "nullable": true
           },
           "is_predefined": {
             "description": "Defines if the role is predefined or a custom role for specific project",
-            "type": "boolean",
-            "example": false
+            "example": false,
+            "type": "boolean"
           },
           "permissions": {
             "$ref": "#/components/schemas/RolePermissions"
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2019-09-25T13:22:37.000000Z"
+            "example": "2019-09-25T13:22:37.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2019-09-25T13:22:37.000000Z"
+            "example": "2019-09-25T13:22:37.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -18622,46 +18680,46 @@
         "properties": {
           "id": {
             "description": "The unique id of the given record",
-            "type": "integer",
-            "example": 9654123
+            "example": 9654123,
+            "type": "integer"
           },
           "created_by": {
             "description": "The id of the user who created the server and to whom the server belongs",
-            "type": "integer",
-            "example": 1
+            "example": 1,
+            "type": "integer"
           },
           "name": {
             "description": "The server's name",
-            "type": "string",
-            "example": "web-srv-1"
+            "example": "web-srv-1",
+            "type": "string"
           },
           "hostname": {
             "description": "The server's hostname",
-            "type": "string",
-            "example": "web-srv-1"
+            "example": "web-srv-1",
+            "type": "string"
           },
           "provider_name": {
             "description": "The name of the server's provider.",
-            "type": "string",
-            "example": "aws"
+            "example": "aws",
+            "type": "string"
           },
           "provider_name_human_readable": {
             "description": "The human readable version of the provider's name",
-            "type": "string",
-            "example": "Amazon Web Services"
+            "example": "Amazon Web Services",
+            "type": "string"
           },
           "cloud_service_code": {
             "$ref": "#/components/schemas/ServerCloudServiceCode"
           },
           "ip_address": {
             "description": "Public ipv4 address for server access",
-            "type": "string",
-            "example": "200.123.45.67"
+            "example": "200.123.45.67",
+            "type": "string"
           },
           "ssh_port": {
             "description": "The network port to which the SSH daemon is listening to SSH connections on the server",
-            "type": "integer",
-            "example": 22
+            "example": 22,
+            "type": "integer"
           },
           "os": {
             "$ref": "#/components/schemas/OperatingSystemVersion"
@@ -18671,16 +18729,16 @@
           },
           "active": {
             "description": "Tells if the server is active or not",
-            "type": "boolean",
-            "example": true
+            "example": true,
+            "type": "boolean"
           },
           "status": {
             "$ref": "#/components/schemas/ActionStatus"
           },
           "max_parallel_actions": {
             "description": "Maximum number of actions that can run in parallel on this server. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run on this server,",
-            "type": "integer",
-            "example": 1
+            "example": 1,
+            "type": "integer"
           },
           "blueprint": {
             "$ref": "#/components/schemas/ServerBlueprint"
@@ -18705,13 +18763,13 @@
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2019-09-25T15:50:48.000000Z"
+            "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2019-09-25T13:52:04.000000Z"
+            "example": "2019-09-25T13:52:04.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -18798,8 +18856,8 @@
         "properties": {
           "connect_command": {
             "description": "The Shell Script command to be executed in an existing Linux server in order to connect it to the `devopness`",
-            "type": "string",
-            "example": "echo '# devopness:' | ..."
+            "example": "echo '# devopness:' | ...",
+            "type": "string"
           }
         },
         "required": [
@@ -18902,56 +18960,56 @@
         "properties": {
           "id": {
             "description": "The unique id of the given record",
-            "type": "integer",
-            "example": 9654123
+            "example": 9654123,
+            "type": "integer"
           },
           "created_by": {
             "description": "The id of the user who created the server and to whom the server belongs",
-            "type": "integer",
-            "example": 1
+            "example": 1,
+            "type": "integer"
           },
           "name": {
             "description": "The server's name",
-            "type": "string",
-            "example": "web-srv-1"
+            "example": "web-srv-1",
+            "type": "string"
           },
           "hostname": {
             "description": "The server's hostname",
-            "type": "string",
-            "example": "web-srv-1"
+            "example": "web-srv-1",
+            "type": "string"
           },
           "provider_name": {
             "description": "The name of the server's provider.",
-            "type": "string",
-            "example": "self-hosted"
+            "example": "self-hosted",
+            "type": "string"
           },
           "provider_name_human_readable": {
             "description": "The human readable version of the provider's name",
-            "type": "string",
-            "example": "VPS/Self Hosted"
+            "example": "VPS/Self Hosted",
+            "type": "string"
           },
           "credential": {
             "$ref": "#/components/schemas/Credential"
           },
           "region": {
             "description": "The region in which the server is located",
-            "type": "string",
-            "example": "us-east-1"
+            "example": "us-east-1",
+            "type": "string"
           },
           "ip_address": {
             "description": "Public ipv4 address for server access",
-            "type": "string",
-            "example": "200.123.45.67"
+            "example": "200.123.45.67",
+            "type": "string"
           },
           "ssh_port": {
             "description": "The network port to which the SSH daemon is listening to SSH connections on the server",
-            "type": "integer",
-            "example": 22
+            "example": 22,
+            "type": "integer"
           },
           "active": {
             "description": "Tells if the server is active or not",
-            "type": "boolean",
-            "example": true
+            "example": true,
+            "type": "boolean"
           },
           "status": {
             "$ref": "#/components/schemas/ActionStatus"
@@ -18961,13 +19019,13 @@
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2019-09-25T15:50:48.000000Z"
+            "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2019-09-25T13:52:04.000000Z"
+            "example": "2019-09-25T13:52:04.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -19026,47 +19084,47 @@
         "properties": {
           "id": {
             "description": "The unique ID of the given service",
-            "type": "integer",
-            "example": 48682
+            "example": 48682,
+            "type": "integer"
           },
           "name": {
             "description": "The human readable service name",
-            "type": "string",
-            "example": "MySQL"
+            "example": "MySQL",
+            "type": "string"
           },
           "type": {
             "description": "The service type",
-            "type": "string",
-            "example": "mysql"
+            "example": "mysql",
+            "type": "string"
           },
           "type_human_readable": {
             "description": "Formatted/human readable version of the service type",
-            "type": "string",
-            "example": "MySQL"
+            "example": "MySQL",
+            "type": "string"
           },
           "version": {
             "description": "The service current installed version",
-            "type": "string",
             "example": "5.7",
+            "type": "string",
             "nullable": true
           },
           "auto_generated": {
             "description": "Indicates if the service was auto_generated by `devopness` itself",
-            "type": "boolean",
-            "example": false
+            "example": false,
+            "type": "boolean"
           },
           "auto_start": {
             "description": "Indicates if the service will start automatically on operating system boot",
-            "type": "boolean",
-            "example": false
+            "example": false,
+            "type": "boolean"
           },
           "initial_state": {
             "$ref": "#/components/schemas/ServiceInitialState"
           },
           "description": {
             "description": "A text describing the service, provided by the service author",
-            "type": "string",
             "example": "MySQL Community Server",
+            "type": "string",
             "nullable": true
           },
           "environment": {
@@ -19086,13 +19144,13 @@
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2019-09-25T13:22:37.000000Z"
+            "example": "2019-09-25T13:22:37.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2019-09-25T13:22:37.000000Z"
+            "example": "2019-09-25T13:22:37.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -19132,7 +19190,7 @@
             "$ref": "#/components/schemas/ServiceType"
           },
           "version": {
-            "description": "The service version to be installed. Must be one of <code></code> Must be at least 1 characters. Must not be greater than 30 characters.",
+            "description": "The service version to be installed. Must be at least 1 character. Must not be greater than 30 characters.",
             "example": "5.7",
             "type": "string"
           }
@@ -19190,47 +19248,47 @@
         "properties": {
           "id": {
             "description": "The unique ID of the given service",
-            "type": "integer",
-            "example": 48682
+            "example": 48682,
+            "type": "integer"
           },
           "name": {
             "description": "The human readable service name",
-            "type": "string",
-            "example": "MySQL"
+            "example": "MySQL",
+            "type": "string"
           },
           "type": {
             "description": "The service type",
-            "type": "string",
-            "example": "mysql"
+            "example": "mysql",
+            "type": "string"
           },
           "type_human_readable": {
             "description": "Formatted/human readable version of the service type",
-            "type": "string",
-            "example": "MySQL"
+            "example": "MySQL",
+            "type": "string"
           },
           "version": {
             "description": "The service current installed version",
-            "type": "string",
             "example": "5.7",
+            "type": "string",
             "nullable": true
           },
           "auto_generated": {
             "description": "Indicates if the service was auto_generated by `devopness` itself",
-            "type": "boolean",
-            "example": false
+            "example": false,
+            "type": "boolean"
           },
           "auto_start": {
             "description": "Indicates if the service will start automatically on operating system boot",
-            "type": "boolean",
-            "example": false
+            "example": false,
+            "type": "boolean"
           },
           "initial_state": {
             "$ref": "#/components/schemas/ServiceInitialState"
           },
           "description": {
             "description": "A text describing the service, provided by the service author",
-            "type": "string",
             "example": "MySQL Community Server",
+            "type": "string",
             "nullable": true
           },
           "last_action": {
@@ -19238,13 +19296,13 @@
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2019-09-25T13:22:37.000000Z"
+            "example": "2019-09-25T13:22:37.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2019-09-25T13:22:37.000000Z"
+            "example": "2019-09-25T13:22:37.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -19361,13 +19419,13 @@
         "properties": {
           "id": {
             "description": "The ID of the given social account",
-            "type": "integer",
-            "example": 85324
+            "example": 85324,
+            "type": "integer"
           },
           "user_id": {
             "description": "The current user's ID",
-            "type": "integer",
-            "example": 6589
+            "example": 6589,
+            "type": "integer"
           },
           "provider": {
             "$ref": "#/components/schemas/SocialAccountProvider"
@@ -19377,29 +19435,29 @@
           },
           "provider_user_nickname": {
             "description": "The nickname of the user on the Source Authentication provider",
-            "type": "string",
-            "example": "Joe Smith"
+            "example": "Joe Smith",
+            "type": "string"
           },
           "is_vcs": {
             "description": "Tells if the social account provider is a Source Code Provider/Version Control System. e.g. false for Facebook, true for Github",
-            "type": "boolean",
-            "example": true
+            "example": true,
+            "type": "boolean"
           },
           "token_expires_at": {
             "description": "The date and time indicating when the authentication token will expire at",
-            "type": "string",
             "example": "2020-09-25T15:50:48.000000Z",
+            "type": "string",
             "nullable": true
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2019-09-25T15:50:48.000000Z"
+            "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2019-09-25T15:50:48.000000Z"
+            "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -19466,13 +19524,13 @@
         "properties": {
           "id": {
             "description": "The ID of the given social account",
-            "type": "integer",
-            "example": 85324
+            "example": 85324,
+            "type": "integer"
           },
           "user_id": {
             "description": "The current user's ID",
-            "type": "integer",
-            "example": 6589
+            "example": 6589,
+            "type": "integer"
           },
           "provider": {
             "$ref": "#/components/schemas/SocialAccountProvider"
@@ -19482,29 +19540,29 @@
           },
           "provider_user_nickname": {
             "description": "The nickname of the user on the Source Authentication provider",
-            "type": "string",
-            "example": "Joe Smith"
+            "example": "Joe Smith",
+            "type": "string"
           },
           "is_vcs": {
             "description": "Tells if the social account provider is a Source Code Provider/Version Control System. e.g. false for Facebook, true for Github",
-            "type": "boolean",
-            "example": true
+            "example": true,
+            "type": "boolean"
           },
           "token_expires_at": {
             "description": "The date and time indicating when the authentication token will expire at",
-            "type": "string",
             "example": "2020-09-25T15:50:48.000000Z",
+            "type": "string",
             "nullable": true
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2019-09-25T15:50:48.000000Z"
+            "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2019-09-25T13:52:04.000000Z"
+            "example": "2019-09-25T13:52:04.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -19525,18 +19583,18 @@
         "properties": {
           "provider": {
             "description": "Name of the provider",
-            "type": "string",
-            "example": "gitlab"
+            "example": "gitlab",
+            "type": "string"
           },
           "connected": {
             "description": "If the account is currently connected",
-            "type": "boolean",
-            "example": false
+            "example": false,
+            "type": "boolean"
           },
           "connect_url": {
             "description": "URL of the connection",
-            "type": "string",
-            "example": "https://gitlab.com/oauth/authorize?client_id=%3CSET-DEVOPNESS-GITLAB-CLIENT-ID-HERE%3E&redirect_uri=http%3A%2F%2Fd2-social-provider-redirect-url.com%3Fprovider%3Dgitlab&scope=read_user+email+api&response_type=code"
+            "example": "https://gitlab.com/oauth/authorize?client_id=%3CSET-DEVOPNESS-GITLAB-CLIENT-ID-HERE%3E&redirect_uri=http%3A%2F%2Fd2-social-provider-redirect-url.com%3Fprovider%3Dgitlab&scope=read_user+email+api&response_type=code",
+            "type": "string"
           }
         },
         "required": [
@@ -19580,33 +19638,33 @@
         "properties": {
           "id": {
             "description": "The Id of the given SSH public key",
-            "type": "integer",
-            "example": 643
+            "example": 643,
+            "type": "integer"
           },
           "created_by": {
             "description": "The id of the user to which the SSH key belongs to",
-            "type": "integer",
-            "example": 35131
+            "example": 35131,
+            "type": "integer"
           },
           "project_id": {
             "description": "The project id to which the SSH public key belongs to",
-            "type": "integer",
-            "example": 16642
+            "example": 16642,
+            "type": "integer"
           },
           "environment_id": {
             "description": "The environment id to which the SSH public key belongs to",
-            "type": "integer",
-            "example": 76441
+            "example": 76441,
+            "type": "integer"
           },
           "name": {
             "description": "The name entered by the user to uniquely identify the public SSH key",
-            "type": "string",
-            "example": "my-ssh-key"
+            "example": "my-ssh-key",
+            "type": "string"
           },
           "fingerprint": {
             "description": "The hashed fingerprint of the public key",
-            "type": "string",
-            "example": "74:2a:d5:75:8a:9b:64:4c:21:18:54:3f:c5:0a:59:f0"
+            "example": "74:2a:d5:75:8a:9b:64:4c:21:18:54:3f:c5:0a:59:f0",
+            "type": "string"
           },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
@@ -19622,13 +19680,13 @@
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2022-09-26T15:30:31.000000Z"
+            "example": "2022-09-26T15:30:31.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2022-09-26T15:30:58.000000Z"
+            "example": "2022-09-26T15:30:58.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -19675,46 +19733,46 @@
         "properties": {
           "id": {
             "description": "The Id of the given SSH public key",
-            "type": "integer",
-            "example": 644
+            "example": 644,
+            "type": "integer"
           },
           "created_by": {
             "description": "The Id of the user to which the SSH key belongs to",
-            "type": "integer",
-            "example": 35201
+            "example": 35201,
+            "type": "integer"
           },
           "project_id": {
             "description": "The project id to which the SSH public key belongs to",
-            "type": "integer",
-            "example": 16675
+            "example": 16675,
+            "type": "integer"
           },
           "environment_id": {
             "description": "The environment id to which the SSH public key belongs to",
-            "type": "integer",
-            "example": 76441
+            "example": 76441,
+            "type": "integer"
           },
           "name": {
             "description": "The name entered by the user to uniquely identify the public SSH key",
-            "type": "string",
-            "example": "my-ssh-key"
+            "example": "my-ssh-key",
+            "type": "string"
           },
           "fingerprint": {
             "description": "The hashed fingerprint of the public key",
-            "type": "string",
-            "example": "74:2a:d5:75:8a:9b:64:4c:21:18:54:3f:c5:0a:59:f0"
+            "example": "74:2a:d5:75:8a:9b:64:4c:21:18:54:3f:c5:0a:59:f0",
+            "type": "string"
           },
           "last_action": {
             "$ref": "#/components/schemas/ActionRelation"
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2022-09-26T15:30:31.000000Z"
+            "example": "2022-09-26T15:30:31.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2022-09-26T15:30:58.000000Z"
+            "example": "2022-09-26T15:30:58.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -19749,13 +19807,13 @@
         "properties": {
           "id": {
             "description": "The unique ID of the given SSL certificate",
-            "type": "integer",
-            "example": 8423749
+            "example": 8423749,
+            "type": "integer"
           },
           "name": {
             "description": "The name given to SSL certificate",
-            "type": "string",
-            "example": "my-subdomain.example.com"
+            "example": "my-subdomain.example.com",
+            "type": "string"
           },
           "type": {
             "$ref": "#/components/schemas/SslCertificateType"
@@ -19768,8 +19826,8 @@
           },
           "active": {
             "description": "Tells if the certificate is active for all linked servers and applications",
-            "type": "boolean",
-            "example": true
+            "example": true,
+            "type": "boolean"
           },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
@@ -19779,25 +19837,25 @@
           },
           "expires_at": {
             "description": "The date and time when this certificate will no longer be valid, down to minute precision",
-            "type": "string",
             "example": "2020-04-16T15:50:48.000000Z",
+            "type": "string",
             "nullable": true
           },
           "last_renewed_at": {
             "description": "The date and time when this certificate was renewed for the last time",
-            "type": "string",
             "example": "2020-04-16T15:50:48.000000Z",
+            "type": "string",
             "nullable": true
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2020-04-16T15:50:48.000000Z"
+            "example": "2020-04-16T15:50:48.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2020-04-16T15:50:48.000000Z"
+            "example": "2020-04-16T15:50:48.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -19880,13 +19938,13 @@
         "properties": {
           "id": {
             "description": "The unique ID of the given SSL certificate",
-            "type": "integer",
-            "example": 8423749
+            "example": 8423749,
+            "type": "integer"
           },
           "name": {
             "description": "The name given to SSL certificate",
-            "type": "string",
-            "example": "my-subdomain.example.com"
+            "example": "my-subdomain.example.com",
+            "type": "string"
           },
           "type": {
             "$ref": "#/components/schemas/SslCertificateType"
@@ -19899,33 +19957,33 @@
           },
           "active": {
             "description": "Tells if the certificate is active for all linked servers and applications",
-            "type": "boolean",
-            "example": true
+            "example": true,
+            "type": "boolean"
           },
           "last_action": {
             "$ref": "#/components/schemas/ActionRelation"
           },
           "expires_at": {
             "description": "The date and time when this certificate will no longer be valid, down to minute precision",
-            "type": "string",
             "example": "2020-04-16T15:50:48.000000Z",
+            "type": "string",
             "nullable": true
           },
           "last_renewed_at": {
             "description": "The date and time when this certificate was renewed for the last time",
-            "type": "string",
             "example": "2020-04-16T15:50:48.000000Z",
+            "type": "string",
             "nullable": true
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2020-04-16T15:50:48.000000Z"
+            "example": "2020-04-16T15:50:48.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2020-04-16T15:50:48.000000Z"
+            "example": "2020-04-16T15:50:48.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -20248,66 +20306,66 @@
         "properties": {
           "id": {
             "description": "The unique ID of the given pipeline step",
-            "type": "integer",
-            "example": 45678
+            "example": 45678,
+            "type": "integer"
           },
           "name": {
             "description": "The pipeline step's name",
-            "type": "string",
-            "example": "Extra step before build app"
+            "example": "Extra step before build app",
+            "type": "string"
           },
           "type": {
             "description": "The pipeline step's type",
-            "type": "string",
-            "example": "default-step"
+            "example": "default-step",
+            "type": "string"
           },
           "run_as_user": {
             "description": "The name of the Unix user on behalf of which the script will be executed",
-            "type": "string",
-            "example": "devopness"
+            "example": "devopness",
+            "type": "string"
           },
           "command": {
             "description": "A command line or multiline bash pipeline step",
-            "type": "string",
-            "example": "echo 'Deploy with devopness is a breeze!' | tee -a /tmp/build-started.log"
+            "example": "echo 'Deploy with devopness is a breeze!' | tee -a /tmp/build-started.log",
+            "type": "string"
           },
           "runner": {
             "$ref": "#/components/schemas/PipelineStepRunnerName"
           },
           "script_id": {
             "description": "The script's ID of this pipeline step",
-            "type": "integer",
-            "example": 3452033
+            "example": 3452033,
+            "type": "integer"
           },
           "pipeline_id": {
             "description": "The pipeline's ID",
-            "type": "integer",
-            "example": 7869450
+            "example": 7869450,
+            "type": "integer"
           },
           "trigger_order": {
             "description": "The relative order of the step execution in case of multiple steps attached to pipeline",
-            "type": "integer",
-            "example": 1001
+            "example": 1001,
+            "type": "integer"
           },
           "is_auto_generated": {
             "description": "True if this step is auto-generated or false if this was created by the user",
-            "type": "boolean",
-            "example": false
+            "example": false,
+            "type": "boolean"
           },
           "is_default_step": {
             "description": "True if this step is a default step of the pipeline and cannot be updated/deleted",
-            "type": "boolean",
-            "example": false
+            "example": false,
+            "type": "boolean"
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2019-09-25T13:22:37.000000Z"
+            "example": "2019-09-25T13:22:37.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2019-09-25T13:22:37.000000Z"
+            "example": "2019-09-25T13:22:37.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -20414,21 +20472,21 @@
         "properties": {
           "id": {
             "description": "The unique id of the given record",
-            "type": "integer",
-            "example": 7641
+            "example": 7641,
+            "type": "integer"
           },
           "name": {
             "description": "The subnet's name",
-            "type": "string",
-            "example": "my-subnet"
+            "example": "my-subnet",
+            "type": "string"
           },
           "type": {
             "$ref": "#/components/schemas/SubnetType"
           },
           "is_auto_generated": {
             "description": "True if this subnet is auto-generated or false if this was created by the user",
-            "type": "boolean",
-            "example": false
+            "example": false,
+            "type": "boolean"
           },
           "provision_input": {
             "$ref": "#/components/schemas/SubnetProvisionInput"
@@ -20453,13 +20511,13 @@
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2019-09-25T15:50:48.000000Z"
+            "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2019-09-25T13:52:04.000000Z"
+            "example": "2019-09-25T13:52:04.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -20599,54 +20657,54 @@
         "properties": {
           "id": {
             "description": "The unique id of the given record",
-            "type": "integer",
-            "example": 7641
+            "example": 7641,
+            "type": "integer"
           },
           "project_id": {
             "description": "Numeric ID of the project to which the subnet belongs to",
-            "type": "integer",
-            "example": 123
+            "example": 123,
+            "type": "integer"
           },
           "environment_id": {
             "description": "Numeric ID of the environment to which the subnet belongs to",
-            "type": "integer",
-            "example": 456
+            "example": 456,
+            "type": "integer"
           },
           "created_by": {
             "description": "The id of the user who created the subnet",
-            "type": "integer",
-            "example": 789
+            "example": 789,
+            "type": "integer"
           },
           "network_id": {
             "description": "Numeric ID of the network to which the subnet belongs to",
-            "type": "integer",
-            "example": 6721
+            "example": 6721,
+            "type": "integer"
           },
           "name": {
             "description": "The subnet's name",
-            "type": "string",
-            "example": "my-subnet"
+            "example": "my-subnet",
+            "type": "string"
           },
           "type": {
             "$ref": "#/components/schemas/SubnetType"
           },
           "is_auto_generated": {
             "description": "True if this subnet is auto-generated or false if this was created by the user",
-            "type": "boolean",
-            "example": false
+            "example": false,
+            "type": "boolean"
           },
           "provision_input": {
             "$ref": "#/components/schemas/SubnetProvisionInput"
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2019-09-25T15:50:48.000000Z"
+            "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2019-09-25T13:52:04.000000Z"
+            "example": "2019-09-25T13:52:04.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -20827,18 +20885,18 @@
         "properties": {
           "id": {
             "description": "The unique ID of the given team",
-            "type": "integer",
-            "example": 137
+            "example": 137,
+            "type": "integer"
           },
           "name": {
             "description": "The name of the given team",
-            "type": "string",
-            "example": "One Development Team"
+            "example": "One Development Team",
+            "type": "string"
           },
           "photo_url": {
             "description": "The URL to team's image",
-            "type": "string",
             "example": "https://example.com/images/my_team.png",
+            "type": "string",
             "nullable": true
           },
           "project": {
@@ -20849,13 +20907,13 @@
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2019-09-25T13:22:37.000000Z"
+            "example": "2019-09-25T13:22:37.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2019-09-25T13:22:37.000000Z"
+            "example": "2019-09-25T13:22:37.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -20892,26 +20950,26 @@
         "properties": {
           "id": {
             "description": "The unique UUID of the given invitation",
-            "type": "string",
-            "example": "e57996b5-3cf3-4cae-a925-e2e2ada52732"
+            "example": "e57996b5-3cf3-4cae-a925-e2e2ada52732",
+            "type": "string"
           },
           "email": {
             "description": "The email of the user that has been invited to team",
-            "type": "string",
-            "example": "invited.user@email.com"
+            "example": "invited.user@email.com",
+            "type": "string"
           },
           "status": {
             "$ref": "#/components/schemas/TeamInvitationStatus"
           },
           "status_human_readable": {
             "description": "Human readable version of the invitation status",
-            "type": "string",
-            "example": "Pending invitation"
+            "example": "Pending invitation",
+            "type": "string"
           },
           "accepted_from_ip": {
             "description": "The IP of the user who accepted the invitation",
-            "type": "string",
             "example": "172.17.0.24",
+            "type": "string",
             "nullable": true
           },
           "created_by_user": {
@@ -20928,24 +20986,24 @@
           },
           "accepted_at": {
             "description": "The date and time when the invitation was accepted",
-            "type": "string",
             "example": "2019-09-26T13:22:37.000000Z",
+            "type": "string",
             "nullable": true
           },
           "expires_at": {
             "description": "The date and time when the invitation will expire",
-            "type": "string",
-            "example": "2019-09-27T13:22:37.000000Z"
+            "example": "2019-09-27T13:22:37.000000Z",
+            "type": "string"
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2019-09-25T13:22:37.000000Z"
+            "example": "2019-09-25T13:22:37.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2019-09-25T13:22:37.000000Z"
+            "example": "2019-09-25T13:22:37.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -20992,31 +21050,31 @@
         "properties": {
           "id": {
             "description": "The unique ID of the given team",
-            "type": "integer",
-            "example": 626
+            "example": 626,
+            "type": "integer"
           },
           "name": {
             "description": "The name of the given team",
-            "type": "string",
-            "example": "Team Rocket"
+            "example": "Team Rocket",
+            "type": "string"
           },
           "photo_url": {
             "description": "The URL to team's image",
-            "type": "string",
-            "example": "https://example.com/images/team_rocket.png"
+            "example": "https://example.com/images/team_rocket.png",
+            "type": "string"
           },
           "role": {
             "$ref": "#/components/schemas/RoleRelation"
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2019-09-25T13:22:37.000000Z"
+            "example": "2019-09-25T13:22:37.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2019-09-25T13:22:37.000000Z"
+            "example": "2019-09-25T13:22:37.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -21052,29 +21110,29 @@
         "properties": {
           "id": {
             "description": "The unique ID of the given team",
-            "type": "integer",
-            "example": 137
+            "example": 137,
+            "type": "integer"
           },
           "name": {
             "description": "The name of the given team",
-            "type": "string",
-            "example": "Some Development Team"
+            "example": "Some Development Team",
+            "type": "string"
           },
           "photo_url": {
             "description": "The URL to team's image",
-            "type": "string",
             "example": "https://example.com/images/my_team.png",
+            "type": "string",
             "nullable": true
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2019-09-25T13:22:37.000000Z"
+            "example": "2019-09-25T13:22:37.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2019-09-25T13:22:37.000000Z"
+            "example": "2019-09-25T13:22:37.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -21265,39 +21323,39 @@
         "properties": {
           "id": {
             "description": "The unique ID of the given user",
-            "type": "integer",
-            "example": 45678
+            "example": 45678,
+            "type": "integer"
           },
           "name": {
             "description": "User's full name",
-            "type": "string",
-            "example": "Some One"
+            "example": "Some One",
+            "type": "string"
           },
           "email": {
             "description": "The e-mail that will uniquely identify the user on the system and become its login credential",
-            "type": "string",
-            "example": "user@example.com"
+            "example": "user@example.com",
+            "type": "string"
           },
           "language": {
             "$ref": "#/components/schemas/Language"
           },
           "active": {
             "description": "Tells if the user is active or not",
-            "type": "boolean",
-            "example": true
+            "example": true,
+            "type": "boolean"
           },
           "social_accounts": {
             "$ref": "#/components/schemas/SocialAccountList"
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2019-09-25T13:22:37.000000Z"
+            "example": "2019-09-25T13:22:37.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2019-09-25T13:22:37.000000Z"
+            "example": "2019-09-25T13:22:37.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -21405,23 +21463,23 @@
         "properties": {
           "token_type": {
             "description": "The type of the authorization token being issued",
-            "type": "string",
-            "example": "Bearer"
+            "example": "Bearer",
+            "type": "string"
           },
           "expires_in": {
             "description": "The number of seconds remaining to the token expiration time, to be counted since the token issue date and time",
-            "type": "integer",
-            "example": 3600
+            "example": 3600,
+            "type": "integer"
           },
           "access_token": {
             "description": "The issued JWT access token",
-            "type": "string",
-            "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImYwYjQxZjk1MTdiYWExOTg4Zjk..."
+            "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImYwYjQxZjk1MTdiYWExOTg4Zjk...",
+            "type": "string"
           },
           "refresh_token": {
             "description": "A token to be used after the original access token has expired, to issue a new token without requiring a new request to the /users/login endpoint",
-            "type": "string",
-            "example": "def50200a757a1c4dbc4859a4c47195632f4df60ebb521ac5a28a0b7553101f08f8b9..."
+            "example": "def50200a757a1c4dbc4859a4c47195632f4df60ebb521ac5a28a0b7553101f08f8b9...",
+            "type": "string"
           }
         },
         "required": [
@@ -21436,39 +21494,39 @@
         "properties": {
           "id": {
             "description": "The unique ID of the given user",
-            "type": "integer",
-            "example": 45678
+            "example": 45678,
+            "type": "integer"
           },
           "name": {
             "description": "User's full name",
-            "type": "string",
-            "example": "Some One"
+            "example": "Some One",
+            "type": "string"
           },
           "email": {
             "description": "The e-mail that will uniquely identify the user on the system and become its login credential",
-            "type": "string",
-            "example": "user@example.com"
+            "example": "user@example.com",
+            "type": "string"
           },
           "language": {
             "$ref": "#/components/schemas/Language"
           },
           "active": {
             "description": "Tells if the user is active or not",
-            "type": "boolean",
-            "example": true
+            "example": true,
+            "type": "boolean"
           },
           "social_accounts": {
             "$ref": "#/components/schemas/SocialAccountList"
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2019-09-25T13:22:37.000000Z"
+            "example": "2019-09-25T13:22:37.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2019-09-25T13:22:37.000000Z"
+            "example": "2019-09-25T13:22:37.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -21535,23 +21593,23 @@
         "properties": {
           "token_type": {
             "description": "The type of the authorization token being issued",
-            "type": "string",
-            "example": "Bearer"
+            "example": "Bearer",
+            "type": "string"
           },
           "expires_in": {
             "description": "The number of seconds remaining to the token expiration time, to be counted since the token issue date and time",
-            "type": "integer",
-            "example": 3600
+            "example": 3600,
+            "type": "integer"
           },
           "access_token": {
             "description": "The issued JWT access token",
-            "type": "string",
-            "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImYwYjQxZjk1MTdiYWExOTg4Zjk..."
+            "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImYwYjQxZjk1MTdiYWExOTg4Zjk...",
+            "type": "string"
           },
           "refresh_token": {
             "description": "A token to be used after the original access token has expired, to issue a new token without requiring a new request to the /users/login endpoint",
-            "type": "string",
-            "example": "def50200a757a1c4dbc4859a4c47195632f4df60ebb521ac5a28a0b7553101f08f8b9..."
+            "example": "def50200a757a1c4dbc4859a4c47195632f4df60ebb521ac5a28a0b7553101f08f8b9...",
+            "type": "string"
           }
         },
         "required": [
@@ -21654,9 +21712,7 @@
             "type": "string"
           },
           "language": {
-            "description": "Must be one of <code>en</code> or <code>pt</code>.",
-            "example": "en",
-            "type": "string"
+            "$ref": "#/components/schemas/Language"
           }
         },
         "required": [
@@ -21670,8 +21726,8 @@
         "properties": {
           "billing_management_url": {
             "description": "The URL leading to a billing management page",
-            "type": "string",
-            "example": "http://billing.url.example"
+            "example": "http://billing.url.example",
+            "type": "string"
           }
         },
         "required": [
@@ -21714,59 +21770,59 @@
         "properties": {
           "id": {
             "description": "The ID of the given variable",
-            "type": "integer",
-            "example": 93023
+            "example": 93023,
+            "type": "integer"
           },
           "key": {
             "description": "The unique key used to identify the variable on the target",
-            "type": "string",
-            "example": "APP_URL"
+            "example": "APP_URL",
+            "type": "string"
           },
           "type": {
             "$ref": "#/components/schemas/VariableType"
           },
           "description": {
             "description": "A text describing the variable, provided by the end user",
-            "type": "string",
             "example": "Sample variable description",
+            "type": "string",
             "nullable": true
           },
           "value": {
             "description": "The value to be assigned to this variable when deployed to its target",
-            "type": "string",
-            "example": "https://staging.devopness.com"
+            "example": "https://staging.devopness.com",
+            "type": "string"
           },
           "target": {
             "$ref": "#/components/schemas/VariableTarget"
           },
           "resource_id": {
             "description": "The ID of the resource this variable is linked to",
-            "type": "integer",
             "example": 3426,
+            "type": "integer",
             "nullable": true
           },
           "resource_type": {
             "description": "The name of the resource this variable is linked to",
-            "type": "string",
-            "example": "application"
+            "example": "application",
+            "type": "string"
           },
           "hidden": {
             "description": "Indicates if the variable value should be visible or not in the deployment logs",
-            "type": "boolean",
-            "example": false
+            "example": false,
+            "type": "boolean"
           },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2022-09-26T15:30:31.000000Z"
+            "example": "2022-09-26T15:30:31.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2022-09-26T15:30:58.000000Z"
+            "example": "2022-09-26T15:30:58.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -21871,59 +21927,59 @@
         "properties": {
           "id": {
             "description": "The ID of the given variable",
-            "type": "integer",
-            "example": 93023
+            "example": 93023,
+            "type": "integer"
           },
           "key": {
             "description": "The unique key used to identify the variable on the target",
-            "type": "string",
-            "example": "APP_URL"
+            "example": "APP_URL",
+            "type": "string"
           },
           "type": {
             "$ref": "#/components/schemas/VariableType"
           },
           "description": {
             "description": "A text describing the variable, provided by the end user",
-            "type": "string",
             "example": "Sample variable description",
+            "type": "string",
             "nullable": true
           },
           "value": {
             "description": "The value to be assigned to this variable when deployed to its target",
-            "type": "string",
-            "example": "https://staging.devopness.com"
+            "example": "https://staging.devopness.com",
+            "type": "string"
           },
           "target": {
             "$ref": "#/components/schemas/VariableTarget"
           },
           "resource_id": {
             "description": "The ID of the resource this variable is linked to",
-            "type": "integer",
             "example": 3426,
+            "type": "integer",
             "nullable": true
           },
           "resource_type": {
             "description": "The name of the resource this variable is linked to",
-            "type": "string",
-            "example": "application"
+            "example": "application",
+            "type": "string"
           },
           "hidden": {
             "description": "Indicates if the variable value should be visible or not in the deployment logs",
-            "type": "boolean",
-            "example": false
+            "example": false,
+            "type": "boolean"
           },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2022-09-26T15:30:31.000000Z"
+            "example": "2022-09-26T15:30:31.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was last updated",
-            "type": "string",
-            "example": "2022-09-26T15:30:58.000000Z"
+            "example": "2022-09-26T15:30:58.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -22084,35 +22140,35 @@
         "properties": {
           "id": {
             "description": "Unique ID of the Virtual Host",
-            "type": "integer",
-            "example": 1
+            "example": 1,
+            "type": "integer"
           },
           "type": {
             "$ref": "#/components/schemas/VirtualHostType"
           },
           "type_human_readable": {
             "description": "The human readable version of the type",
-            "type": "string",
-            "example": "Domain name (name-based virtual host)"
+            "example": "Domain name (name-based virtual host)",
+            "type": "string"
           },
           "name": {
             "description": "The name of the Virtual Host",
-            "type": "string",
-            "example": "my-site.example.com"
+            "example": "my-site.example.com",
+            "type": "string"
           },
           "application": {
             "$ref": "#/components/schemas/ApplicationRelation"
           },
           "root_directory": {
             "description": "The document root location, within the application directory, that contains the public files to be served when a user visits the domain name associated with this virtual host",
-            "type": "string",
             "example": "public",
+            "type": "string",
             "nullable": true
           },
           "application_listen_address": {
             "description": "The network name or IP address on which the application linked to this virtual host is configured to listen for incoming requests. A valid address has `http` or `https` protocol, a domain name or IP address, an optional port and optional path. You can also specify a UNIX-socket using `unix:` protocol. Examples: `http://127.0.0.1:8080` (for applications exposing port `8080`, for example running in a Docker container), `http://127.0.0.1:3000` (for applications kept alive by a daemon/background process that listens on port `3000`), `unix:/var/run/example.sock` (for applications listening on a custom socket)",
-            "type": "string",
             "example": "http://localhost:3000",
+            "type": "string",
             "nullable": true
           },
           "ssl_certificate": {
@@ -22126,13 +22182,13 @@
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2019-09-25T13:22:37.000000Z"
+            "example": "2019-09-25T13:22:37.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was updated",
-            "type": "string",
-            "example": "2019-09-25T13:22:37.000000Z"
+            "example": "2019-09-25T13:22:37.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -22157,7 +22213,7 @@
             "$ref": "#/components/schemas/ResourceToBeLinkedList"
           },
           "type": {
-            "description": "The type of virtual host to be created. Must be one of <code>ip-based</code> or <code>name-based</code>.",
+            "description": "The type of virtual host to be created.",
             "example": "name-based",
             "type": "string"
           },
@@ -22223,35 +22279,35 @@
         "properties": {
           "id": {
             "description": "Unique ID of the Virtual Host",
-            "type": "integer",
-            "example": 1
+            "example": 1,
+            "type": "integer"
           },
           "type": {
             "$ref": "#/components/schemas/VirtualHostType"
           },
           "type_human_readable": {
             "description": "The human readable version of the type",
-            "type": "string",
-            "example": "Domain name (name-based virtual host)"
+            "example": "Domain name (name-based virtual host)",
+            "type": "string"
           },
           "name": {
             "description": "The name of the Virtual Host",
-            "type": "string",
-            "example": "my-site.example.com"
+            "example": "my-site.example.com",
+            "type": "string"
           },
           "application": {
             "$ref": "#/components/schemas/ApplicationRelation"
           },
           "root_directory": {
             "description": "The document root location, within the application directory, that contains the public files to be served when a user visits the domain name associated with this virtual host",
-            "type": "string",
             "example": "public",
+            "type": "string",
             "nullable": true
           },
           "application_listen_address": {
             "description": "The network name or IP address on which the application linked to this virtual host is configured to listen for incoming requests. A valid address has `http` or `https` protocol, a domain name or IP address, an optional port and optional path. You can also specify a UNIX-socket using `unix:` protocol. Examples: `http://127.0.0.1:8080` (for applications exposing port `8080`, for example running in a Docker container), `http://127.0.0.1:3000` (for applications kept alive by a daemon/background process that listens on port `3000`), `unix:/var/run/example.sock` (for applications listening on a custom socket)",
-            "type": "string",
             "example": "http://localhost:3000",
+            "type": "string",
             "nullable": true
           },
           "ssl_certificate": {
@@ -22265,13 +22321,13 @@
           },
           "created_at": {
             "description": "The date and time when the record was created",
-            "type": "string",
-            "example": "2019-09-25T13:22:37.000000Z"
+            "example": "2019-09-25T13:22:37.000000Z",
+            "type": "string"
           },
           "updated_at": {
             "description": "The date and time when the record was updated",
-            "type": "string",
-            "example": "2019-09-25T13:22:37.000000Z"
+            "example": "2019-09-25T13:22:37.000000Z",
+            "type": "string"
           }
         },
         "required": [
