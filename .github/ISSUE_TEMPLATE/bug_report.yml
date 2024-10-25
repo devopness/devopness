@@ -56,9 +56,9 @@ body:
       required: true
   - type: input
     attributes:
-      label: SDK Version
+      label: Package Version
       description: |
-        If your issue is SDK related, please inform the SDK/npm package version being used when the bug was detected. E.g.: 0.9.3.
+        If your issue is related to a package, like SDK-JS or UI - Design System / React Components, please inform the package version being used when the bug was detected. E.g.: 0.9.3.
     validations:
       required: false
   - type: input
