@@ -49,7 +49,7 @@ body:
         - Devopness web app
         - Documentation
         - SDK-JS
-        - UI - Design System/React components
+        - UI - Design System / React components
         - Don't know / other
       multiple: true
     validations:
@@ -58,7 +58,7 @@ body:
     attributes:
       label: Package Version
       description: |
-        If your issue is related to a package, like SDK-JS or UI - Design System / React Components, please inform the package version being used when the bug was detected. E.g.: 0.9.3.
+        If your issue is related to a package, such as `SDK-JS` or `UI - Design System / React Components`, please inform the package version being used when the bug was detected. E.g.: 0.9.3.
     validations:
       required: false
   - type: input
