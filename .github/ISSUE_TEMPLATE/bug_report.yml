@@ -6,9 +6,15 @@ body:
   - type: markdown
     attributes:
       value: |
-         **To report a Devopness security vulnerability, please make a submission to our [Security Advisory vulnerability report](https://github.com/devopness/devopness/security/advisories/new).**
+        # Bug Report 🐞
 
-         ⚠️ Do **NOT** create a public issue on GitHub for security vulnerabilities. See our [security policy](https://github.com/devopness/devopness/security/policy) for more details. ⚠️
+        Thanks for taking the time to fill out this bug report!
+
+        Please answer each question below to your best ability.
+
+        To report a Devopness security vulnerability, please make a submission to our [Security Advisory vulnerability report](https://github.com/devopness/devopness/security/advisories/new).
+
+        ⚠️ Do **NOT** create a public issue on GitHub for security vulnerabilities. See our [security policy](https://github.com/devopness/devopness/security/policy) for more details. ⚠️
   - type: textarea
     attributes:
       label: "Problem: What is happening?"
@@ -43,15 +49,16 @@ body:
         - Devopness web app
         - Documentation
         - SDK-JS
+        - UI - Design System / React components
         - Don't know / other
       multiple: true
     validations:
       required: true
   - type: input
     attributes:
-      label: SDK Version
+      label: Package Version
       description: |
-        If your issue is SDK related, please inform the SDK/npm package version being used when the bug was detected. E.g.: 0.9.3.
+        If your issue is related to a package, such as `SDK-JS` or `UI - Design System / React Components`, please inform the package version being used when the bug was detected. E.g.: 0.9.3.
     validations:
       required: false
   - type: input
