@@ -46,9 +46,7 @@ Here's how to find them:
   - Note: you might need to make changes on your pull request based on reviewers's feedbacks
 3. **Merge:** Once approved, maintainers will merge your pull request into the main repository branch
 
-### Pull request title are the changelog messages
-The messages that appear in our changelogs are the messages defined as titles of the pull requests.
-
+### Pull request titles
 **Pull request titles should**:
 - be written in the active imperative form
 - not end with a period (`.`)
@@ -59,6 +57,12 @@ Here are some **bad examples** of pull requests titles we're trying to avoid:
 - `Fixes a bug`
 - `Adds a feature`
 - `Feature now does something`
+
+### Changelogs
+
+The messages that appear in our changelogs are defined using changesets.
+
+[Click here to learn what changesets are, and how to add one.](https://github.com/changesets/changesets/blob/main/docs/adding-a-changeset.md)
 
 ### Feature Work
 For larger features, we would appreciate it if you open a [new issue](https://github.com/devopness/devopness/issues/new/choose) before investing a lot of your time trying to solve it, so we can discuss and plan the feature together.
