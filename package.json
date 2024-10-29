@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json.schemastore.org/package.json",
+  "name": "devopness",
+  "workspaces": [
+    "packages/sdks/*",
+    "packages/ui/*"
+  ],
+  "scripts": {
+    "build:all": "npm run build:release --workspaces",
+    "release": "npm run build:all && npx @changesets/cli@2.27.9 publish"
+  }
+}
+

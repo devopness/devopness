@@ -1,7 +1,7 @@
 {
   "name": "@devopness/ui-react",
   "type": "module",
-  "version": "0.0.0-development",
+  "version": "2.146.0",
   "publishConfig": {
     "access": "public"
   },
@@ -20,6 +20,7 @@
     }
   },
   "scripts": {
+    "build:release": "FILE=$(mktemp); touch -d'-30min' $FILE; if [ 'package.json' -nt $FILE ]; then npm run build; fi",
     "build": "rm -Rf dist && tsc -b && vite build",
     "lint": "eslint . && prettier --check .",
     "test": "vitest",

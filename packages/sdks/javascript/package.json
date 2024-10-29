@@ -1,6 +1,6 @@
 {
   "name": "@devopness/sdk-js",
-  "version": "0.0.0-development",
+  "version": "2.147.0",
   "publishConfig": {
     "access": "public"
   },
@@ -11,6 +11,7 @@
     "dist"
   ],
   "scripts": {
+    "build:release": "FILE=$(mktemp); touch -d'-30min' $FILE; if [ 'package.json' -nt $FILE ]; then npm run build; fi",
     "build": "rm -Rf ./dist && npm run build-api-models && npm run lint && tsc",
     "build-api-models": "rm -Rf ./src/api/generated && JAVA_OPTS=\"${JAVA_OPTS} -Dlog.level=warn\" openapi-generator-cli generate",
     "docs-remove-service-index": "rm -f src/services/index.ts",
