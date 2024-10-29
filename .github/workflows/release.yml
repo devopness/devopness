@@ -1,6 +1,7 @@
-name: Packages Release
+name: Release Packages
 
 on:
+  workflow_dispatch:
   push:
     paths:
       - packages/sdks/javascript/src/**
