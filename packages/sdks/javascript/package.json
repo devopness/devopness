@@ -1,6 +1,6 @@
 {
   "name": "@devopness/sdk-js",
-  "version": "0.0.0-development",
+  "version": "2.147.0",
   "publishConfig": {
     "access": "public"
   },
