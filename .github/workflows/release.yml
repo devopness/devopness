@@ -12,6 +12,10 @@ on:
       - main
       - "*.x" # maintenance releases
 
+permissions:
+  contents: write
+  pull-requests: write
+
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
