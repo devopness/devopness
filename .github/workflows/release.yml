@@ -1,28 +1,34 @@
-name: UI React - Release
+name: Packages Release
+
 on:
   push:
     paths:
+      - packages/sdks/javascript/src/**
+      - packages/sdks/javascript/package.json
       - packages/ui/react/src/**
       - packages/ui/react/package.json
     branches:
       - main
       - "*.x" # maintenance releases
 
-defaults:
-  run:
-    working-directory: packages/ui/react
+concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   release:
     name: release
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: "20.x"
+          node-version: "24.x"
       - run: npm ci --ignore-scripts
-      - run: npx semantic-release@22.0.12
+      - name: Create Release Pull Request
+        uses: changesets/action@v1
+        with:
+          publish: npm run release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+
