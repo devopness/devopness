@@ -7,7 +7,7 @@
   ],
   "scripts": {
     "build:all": "npm run build:release --workspaces",
-    "release": "npm run build:all && npx changeset publish"
+    "release": "npm run build:all && npx @changesets/cli@2.27.9 publish"
   }
 }
 
