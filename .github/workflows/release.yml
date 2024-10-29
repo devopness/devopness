@@ -33,7 +33,7 @@ jobs:
         with:
           publish: npx changeset publish
         env:
-          GITHUB_TOKEN: ${{ secrets.OWNER_PAT_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 
