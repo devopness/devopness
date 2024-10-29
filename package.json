@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
-  "name": "devopness",
+  "name": "thlmenezes",
   "workspaces": [
     "packages/sdks/*",
     "packages/ui/*"
