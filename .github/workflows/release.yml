@@ -28,6 +28,7 @@ jobs:
         uses: changesets/action@v1
         with:
           publish: npx @changesets/cli@2.27.9 publish
+          setupGitUser: false
         env:
           GITHUB_TOKEN: ${{ secrets.OWNER_PAT_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
