@@ -4,10 +4,8 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - packages/sdks/javascript/src/**
-      - packages/sdks/javascript/package.json
-      - packages/ui/react/src/**
-      - packages/ui/react/package.json
+      - packages/**/src/**
+      - packages/**/package.json
     branches:
       - main
       - "*.x" # maintenance releases
