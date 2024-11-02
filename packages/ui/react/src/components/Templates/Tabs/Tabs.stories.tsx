@@ -46,5 +46,6 @@ const Details: Story = {
   },
 }
 
+// eslint-disable-next-line import/no-default-export
 export default meta
 export { Details }
