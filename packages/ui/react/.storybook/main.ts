@@ -1,29 +1,31 @@
-import { dirname, join } from "path";
 import type { StorybookConfig } from '@storybook/react-vite'
+import { dirname, join } from 'path'
+
+function getAbsolutePath(value: string) {
+  return dirname(require.resolve(join(value, 'package.json')))
+}
 
 const config: StorybookConfig = {
   stories: [
     '../src/components/**/*.stories.@(ts|tsx)',
   ],
 
-  addons: [getAbsolutePath("@storybook/addon-essentials"), "@chromatic-com/storybook"],
+  addons: [
+    getAbsolutePath('@storybook/addon-essentials'),
+  ],
 
   framework: {
-    name: getAbsolutePath("@storybook/react-vite"),
+    name: getAbsolutePath('@storybook/react-vite'),
     options: {},
   },
 
   typescript: {
     check: false,
-    reactDocgen: "react-docgen-typescript"
+    reactDocgen: 'react-docgen-typescript',
   },
 
-  docs: {}
+  docs: {},
 }
 
 // eslint-disable-next-line import/no-default-export
 export default config
-
-function getAbsolutePath(value: string): any {
-  return dirname(require.resolve(join(value, "package.json")));
-}

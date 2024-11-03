@@ -21,7 +21,7 @@
   },
   "scripts": {
     "build": "rm -Rf dist && tsc -b && vite build",
-    "lint": "eslint . && prettier --check .",
+    "lint": "eslint --max-warnings=0 . && prettier --check .",
     "test": "vitest",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "NODE_ENV=production storybook build -c .storybook -o ./storybook-static",
