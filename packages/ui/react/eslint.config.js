@@ -144,6 +144,7 @@ export default tseslint.config(
        * Storybook and Vite configuration files use default exports
        *
        * @see {@link https://storybook.js.org/docs/configure/story-rendering#running-code-for-every-story}
+       * @see {@link https://storybook.js.org/docs/writing-stories#default-export}
        * @see {@link https://vitejs.dev/config}
        */
       'import/no-default-export': 'off',
