@@ -135,8 +135,7 @@ export default tseslint.config(
   {
     files: [
       '.storybook/*.ts',
-      'src/components/**/*.stories.ts',
-      'src/components/**/*.stories.tsx',
+      'src/components/**/*.stories.*',
       'vite.config.ts',
     ],
     rules: {
