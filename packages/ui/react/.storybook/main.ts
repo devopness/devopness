@@ -1,8 +1,15 @@
 import type { StorybookConfig } from '@storybook/react-vite'
 import { dirname, join } from 'path'
 
-function getAbsolutePath(value: string) {
-  return dirname(require.resolve(join(value, 'package.json')))
+/**
+ * Ensures modules will reference where the package is installed, even in monorepo environment
+ *
+ * @param packageName Package name to resolve path to file `node_modules/<package>/package.json`
+ *
+ * @see {@link https://storybook.js.org/docs/faq#how-do-i-fix-module-resolution-in-special-environments}
+ */
+function getAbsolutePath(packageName: string) {
+  return dirname(require.resolve(join(packageName, 'package.json')))
 }
 
 const config: StorybookConfig = {
