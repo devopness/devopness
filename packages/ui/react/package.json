@@ -1,7 +1,7 @@
 {
   "name": "@devopness/ui-react",
   "type": "module",
-  "version": "0.0.0-development",
+  "version": "2.146.0",
   "publishConfig": {
     "access": "public"
   },
@@ -21,7 +21,7 @@
   },
   "scripts": {
     "build": "rm -Rf dist && tsc -b && vite build",
-    "lint": "eslint . && prettier --check .",
+    "lint": "eslint --max-warnings=0 . && prettier --check .",
     "test": "vitest",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "NODE_ENV=production storybook build -c .storybook -o ./storybook-static",
@@ -72,9 +72,11 @@
     "@eslint/js": "^9.9.0",
     "@storybook/addon-essentials": "^8.3.4",
     "@storybook/blocks": "^8.3.4",
+    "@storybook/manager-api": "^8.3.4",
     "@storybook/react": "^8.3.4",
     "@storybook/react-vite": "^8.3.4",
     "@storybook/test": "^8.3.4",
+    "@storybook/theming": "^8.3.4",
     "@testing-library/react": "^16.0.1",
     "@types/lodash": "^4.17.9",
     "@types/node": "^22.7.4",

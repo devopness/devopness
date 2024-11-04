@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json.schemastore.org/package.json",
+  "name": "devopness",
+  "workspaces": [
+    "packages/sdks/*",
+    "packages/ui/*"
+  ],
+  "dependencies": {
+    "@changesets/cli": "^2.27.9"
+  }
+}

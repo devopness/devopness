@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import { styled, css } from 'styled-components'
 
 import type { ButtonProps } from '.'
 import { getColor } from 'src/colors'

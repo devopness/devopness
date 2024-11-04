@@ -1,6 +1,6 @@
 import MuiTab, { tabClasses } from '@mui/material/Tab'
 import MuiTabs, { tabsClasses } from '@mui/material/Tabs'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { getColor } from 'src/colors'
 import { getFont } from 'src/fonts'

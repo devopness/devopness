@@ -43,7 +43,7 @@ export default tseslint.config(
       react,
     },
     rules: {
-      ...reactHooks.configs.recommended.rules,
+      // TypeScript related rules
       '@typescript-eslint/no-unused-vars': [
         'error',
         {
@@ -51,12 +51,6 @@ export default tseslint.config(
         },
       ],
       '@typescript-eslint/no-unsafe-assignment': 'off',
-      'react-refresh/only-export-components': [
-        'warn',
-        { allowConstantExport: true },
-      ],
-      ...react.configs.recommended.rules,
-      ...react.configs['jsx-runtime'].rules,
       '@typescript-eslint/consistent-type-definitions': [
         'error',
         'type',
@@ -88,6 +82,14 @@ export default tseslint.config(
         },
       ],
       'array-element-newline': 'error',
+      // React related rules
+      ...reactHooks.configs.recommended.rules,
+      ...react.configs.recommended.rules,
+      ...react.configs['jsx-runtime'].rules,
+      'react-refresh/only-export-components': [
+        'warn',
+        { allowConstantExport: true },
+      ],
       'react/function-component-definition': [
         'error',
         {
@@ -95,16 +97,19 @@ export default tseslint.config(
           unnamedComponents: 'arrow-function',
         },
       ],
+      // Import related rules
+      ...eslintImport.configs.recommended.rules,
+      ...eslintImport.configs.errors.rules,
+      ...eslintImport.configs.typescript.rules,
+      'import/no-unresolved': 'off',
+      'import/first': 'error',
       'import/exports-last': 'error',
       'import/group-exports': 'error',
       'import/no-default-export': 'error',
-      'import/named': 'error',
-      'import/no-duplicates': 'error',
       'import/consistent-type-specifier-style': [
         'error',
         'prefer-top-level',
       ],
-      'import/first': 'error',
       'import-helpers/order-imports': [
         'error',
         {
@@ -125,6 +130,23 @@ export default tseslint.config(
           },
         },
       ],
+    },
+  },
+  {
+    files: [
+      '.storybook/*.ts',
+      'src/components/**/*.stories.*',
+      'vite.config.ts',
+    ],
+    rules: {
+      /**
+       * Storybook and Vite configuration files use default exports
+       *
+       * @see {@link https://storybook.js.org/docs/configure/story-rendering#running-code-for-every-story}
+       * @see {@link https://storybook.js.org/docs/writing-stories#default-export}
+       * @see {@link https://vitejs.dev/config}
+       */
+      'import/no-default-export': 'off',
     },
   }
 )
