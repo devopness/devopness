@@ -15,9 +15,9 @@
   ],
   "exports": {
     ".": {
-      "import": "dist/ui-react.js",
-      "require": "dist/ui-react.cjs",
-      "types": "dist/index.d.ts"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/ui-react.js",
+      "require": "./dist/ui-react.cjs"
     }
   },
   "scripts": {
