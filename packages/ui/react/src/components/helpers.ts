@@ -4,6 +4,9 @@ type ConditionalWrapperProps = {
   children: React.ReactNode
 }
 
+/**
+ * Wraps children if a condition is met
+ */
 const ConditionalWrapper = ({
   condition,
   wrapper,
