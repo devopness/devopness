@@ -1,6 +1,6 @@
 import get from 'lodash/get'
 
-import type { Flatten } from './types'
+import type { Flatten, HexDigit, OpacityFromFloatToHex } from './types'
 
 const colors = {
   amber: {
@@ -133,6 +133,38 @@ const getColor = <TColor extends Color>(
 ): ColorToHexMapper[TColor] =>
   get(colors, name) as unknown as ColorToHexMapper[TColor]
 
+/**
+ * Adds opacity suffix to colors
+ *
+ * @param color string in hexadecimal format #rrggbb
+ *
+ * @param opacity number in range 0.0 to 1.0
+ *
+ * This methods transform opacity from number to a hexadecimal (16) color alpha component, meaning
+ * a number between 0 and ff (255) in base 16
+ *
+ * @returns color with added opacity information #rrggbbaa
+ *
+ * @example
+ *
+ * > getOpacity(#fff1e0, 0.5) // => #fff1e07f, 7f == 0.5
+ *
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/CSS/hex-color#a}
+ */
+const getOpacity = <
+  HexColor extends ColorToHexMapper[Color],
+  Opacity extends number,
+>(
+  color: HexColor,
+  opacity: Opacity
+) => {
+  if (!color.startsWith('#')) return color as Exclude<HexColor, `#${string}`>
+
+  return `${color}${(opacity * 255).toString(16).slice(0, 2)}` as `${Extract<HexColor, `#${string}`>}${Opacity extends keyof OpacityFromFloatToHex
+    ? OpacityFromFloatToHex[Opacity]
+    : `${HexDigit}${HexDigit}`}`
+}
+
 export type { Color }
 
-export { getColor }
+export { getColor, getOpacity }
