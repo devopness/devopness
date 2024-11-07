@@ -48,9 +48,7 @@ Here is a list of predefined variables that can be set in the `front-matter` blo
 
 ## Permissions
 
-List of Role permissions, refer to this documentation when adding `required_permissions` field on frontmatter
-
-see [PERMISSIONS.md](./PERMISSIONS.md)
+see [PERMISSIONS.md](./PERMISSIONS.md) for the List of Role permissions, use this documentation when adding `required_permissions` field on frontmatter
 
 The documentation was generated from Static Permissions Data, using the following commands:
 
