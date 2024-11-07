@@ -44,6 +44,13 @@ links:
 1. Bellow your service account name, go to the `PERMISSIONS` tab
 1. In the permissions table, go to `VIEW BY ROLES` tab
 1. Make sure your service account has the `Compute Engine Service Agent` role
+
+    {% note %}
+
+    **NOTE**: You may need to check the box labeled “Include Google-provided role grants” to see the `Compute Engine Service Agent` role in the list.
+
+    {% endnote %}
+
 1. If the service account doesn't have the `Compute Engine Service Agent` role, set it:
     - Click `GRANT ACCESS` button
     - The `Grant access to "..."` form will be displayed
