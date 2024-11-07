@@ -80,9 +80,9 @@ curl --request GET \
 This command:
 
 1. Authenticates to Devopness API (`POST /users/login`)
-1. Extract `access_token` from response
+1. Extracts `access_token` from response
 1. Using `<access_token>`, requests static permissions (`GET /static/permissions`)
-1. Save response to file `staticPermissions.json`
+1. Saves response to file `staticPermissions.json`
 
 
 #### Run [`generate_permissions_docs.cjs`](./generate_permissions_docs.cjs)
