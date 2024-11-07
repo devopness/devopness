@@ -1,6 +1,7 @@
 import '@testing-library/jest-dom'
 
 import { render, screen } from '@testing-library/react'
+import { describe, expect, it } from 'vitest'
 
 import { Link } from '.'
 import { getColor } from 'src/colors'
