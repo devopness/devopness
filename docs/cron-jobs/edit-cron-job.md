@@ -19,3 +19,4 @@ required_permissions:
 1. In the list of Cron Jobs, find the cron job you want to edit and click the `NAME` of the cron job
 1. On the Cron Job details page, click `EDIT` in the upper-right corner
 1. Follow the prompts then click `CONFIRM`
+1. In the `Cron Job` details view, the recently updated `Cron Job` details can be seen
