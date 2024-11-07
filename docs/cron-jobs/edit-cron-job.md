@@ -18,5 +18,4 @@ required_permissions:
 1. Click `View` in the `Cron Jobs` card to see a list of existing `Cron Jobs`
 1. In the list of Cron Jobs, find the job you want to edit and click the `NAME` of the job
 1. On the Cron Job details page, click `EDIT` in the upper-right corner
-1. Update the settings as needed
-1. Click `CONFIRM`
+1. Follow the prompts then click `CONFIRM`

@@ -17,6 +17,6 @@ links:
 1. In the list of services, find the service you want to link to an application and click the `NAME` of the service
 1. Click the `Applications` tab
 1. On the upper-right corner of the applications tab click `LINK APPLICATION`
-1. Select the desired application, then click `CONFIRM`
+1. Follow the prompts then click `CONFIRM`
 1. In the `Application` list, the recently linked application can be seen
 

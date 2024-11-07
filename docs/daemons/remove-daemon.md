@@ -18,5 +18,5 @@ required_permissions:
 1. Click `View` in the `Daemons` card to see a list of existing `Daemons`
 1. In the list of Daemons, find the daemon you want to remove and click the `NAME` of the daemon
 1. On the upper-right corner of the daemon details view, click `REMOVE`
-1. Follow the prompts, then click `REMOVE DAEMON`
+1. Follow the prompts then click `REMOVE DAEMON`
 1. In the list of Daemons, the recently removed `Daemon` will be gone

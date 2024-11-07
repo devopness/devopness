@@ -17,5 +17,4 @@ required_permissions:
 1. Find the `Daemons` card
 1. Click `View` in the `Daemons` card to see a list of existing `Daemons`
 1. On the upper-right corner of the list, click `ADD DAEMON`
-1. Configure the desired settings, including the command to run and the number of processes
-1. Click `CONFIRM`
+1. Follow the prompts then click `CONFIRM`

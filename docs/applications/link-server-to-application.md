@@ -23,5 +23,5 @@ links:
 1. In the list of applications, find the application you want to link to a server and click the `NAME` of the application
 1. Click the `Servers` tab
 1. On the upper-right corner of the servers tab click `LINK SERVER`
-1. Select the desired server, then click `CONFIRM`
+1. Follow the prompts then click `CONFIRM`
 1. In the `Servers` list, the recently linked server can be seen

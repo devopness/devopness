@@ -17,5 +17,5 @@ links:
 1. In the list of Daemons, find the daemon you want to link to a server and click the `NAME` of the daemon
 1. Click the `Servers` tab
 1. On the upper-right corner of the servers tab, click `LINK SERVER`
-1. Select the desired Server, then click `CONFIRM`
+1. Follow the prompts then click `CONFIRM`
 1. In the `Servers` list, the recently linked server can be seen
