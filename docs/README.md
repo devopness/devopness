@@ -42,7 +42,7 @@ Here is a list of predefined variables that can be set in the `front-matter` blo
 |------------------------|----------------------------------------------------------|----------------|
 | `title`                | The title of the documentation topic                     | Yes            |
 | `intro`                | A short paragraph introducing the topic                  | No             |
-| `required_permissions` | List of Role permissions required to follow the post [1] | No             |
+| `required_permissions` | List of Role permissions required to follow steps [1]    | No             |
 
 [1] For expected format, see section [Permissions](#permissions)
 
