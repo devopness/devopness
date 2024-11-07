@@ -1,6 +1,6 @@
 ---
 title: Add a Daemon
-intro: Add Daemons to Servers and Applications so they can be easily managed in one place.
+intro: Add a Daemon to keep a program alive, always running with the number of configured processes. A daemon run as a background process and can restart the program when it fails or its code/command line is modified.
 links:
     overview:
     quickstart:
