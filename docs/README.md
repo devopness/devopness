@@ -88,5 +88,5 @@ This command:
 #### Run [`generate_permissions_docs.cjs`](./generate_permissions_docs.cjs)
 
 ```bash
-node generate_permissions_docs.cjs ./staticPermissions.json > PERMISSIONS.md 2>/dev/null
+node generate_permissions_docs.cjs ./staticPermissions.json > PERMISSIONS.md
 ```
