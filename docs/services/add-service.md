@@ -1,6 +1,6 @@
 ---
 title: Add a service
-intro: Add services to servers and applications so they can easily be managed in one place.
+intro: Add Linux services to your Devopness environments, so they can be easily managed and linked to all servers and applications that depend on them.
 links:
     overview:
     quickstart:
