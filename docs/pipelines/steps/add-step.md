@@ -22,5 +22,6 @@ required_permissions:
 1. On the upper-right corner of pipeline details view click `STEPS`
 1. On the upper-right corner of the list click `ADD PIPELINE STEP`
 1. Follow the instructions in the add pipeline step form then click `CONFIRM`
+1. In the `Pipeline Steps` list, the recently created `Pipeline Step` can be seen
     > A new deployment is required for your changes to take effect.
       - Follow the guide {% mentionPost "/docs/applications/deploy-application" %}
