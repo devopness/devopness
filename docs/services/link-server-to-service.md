@@ -1,6 +1,6 @@
 ---
 title: Link a server to a server
-intro: Link a server to a server to select which servers a service can be deployed.
+intro: Link a service to a server to ensure the service is installed and configured in that server when a service is deployed.
 links:
     overview:
     quickstart:
