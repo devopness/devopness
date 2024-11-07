@@ -1,6 +1,6 @@
 ---
 title: Link an application to a service
-intro: Link an application to a service to select which applications a service can be deployed.
+intro: Link an application to a service to ensure the service is installed on all servers where that application is deployed.
 links:
     overview:
     quickstart:
