@@ -18,3 +18,4 @@ required_permissions:
 1. Click `View` in the `Cron Jobs` card to see a list of existing `Cron Jobs`
 1. On the upper-right corner of the list, click `ADD CRON JOB`
 1. Follow the prompts then click `CONFIRM`
+1. In the `Cron Job` details view, the recently created `Cron Job` details can be seen
