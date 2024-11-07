@@ -1,6 +1,6 @@
 ---
-title: Add a service
-intro: Add services to servers and applications so they can easily be managed in one place.
+title: Remove a service
+intro: Remove a service when it is no longer needed to keep your environment organized.
 links:
     overview:
     quickstart:
