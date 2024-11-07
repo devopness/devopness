@@ -1,3 +1,10 @@
+/**
+ * Generate Permission Docs
+ *
+ * This file formats the response from GET /static/permission to human readable markdown
+ *
+ * @param {process.argv[2]} Pathname to response JSON file from Devopness API route GET /static/permissions
+ */
 const staticPermissions = require(process.argv[2])
 
 console.log(`<!--
