@@ -1,0 +1,22 @@
+---
+title: Edit a Daemon
+intro: Modify the settings, command, or other configurations of an existing Daemon.
+links:
+    overview:
+    quickstart:
+    previous: /docs/daemons/link-application-to-daemon
+    next: /docs/daemons/remove-daemon
+    guides:
+    related:
+    featured:
+required_permissions:
+    - daemon:edit
+---
+
+1. On Devopness, navigate to a project, then select an environment
+1. Find the `Daemons` card
+1. Click `View` in the `Daemons` card to see a list of existing `Daemons`
+1. In the list of Daemons, find the daemon you want to edit and click the `NAME` of the daemon
+1. On the Daemon details page, click `EDIT` in the upper-right corner
+1. Update the settings, such as the command, process count, or other configurations as needed
+1. Click `CONFIRM`

@@ -1,0 +1,22 @@
+---
+title: Edit a Cron Job
+intro: Modify the schedule, command, or other settings of an existing Cron Job.
+links:
+    overview:
+    quickstart:
+    previous: /docs/cron-jobs/link-application-to-cron-job
+    next: /docs/cron-jobs/remove-cron-job
+    guides:
+    related:
+    featured:
+required_permissions:
+    - cron-job:edit
+---
+
+1. On Devopness, navigate to a project, then select an environment
+1. Find the `Cron Jobs` card
+1. Click `View` in the `Cron Jobs` card to see a list of existing `Cron Jobs`
+1. In the list of Cron Jobs, find the job you want to edit and click the `NAME` of the job
+1. On the Cron Job details page, click `EDIT` in the upper-right corner
+1. Update the settings as needed
+1. Click `CONFIRM`

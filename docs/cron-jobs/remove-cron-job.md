@@ -1,0 +1,22 @@
+---
+title: Remove a Cron Job
+intro: Remove a Cron Job when it is no longer needed to keep your environment organized.
+links:
+    overview:
+    quickstart:
+    previous: /docs/cron-jobs/edit-cron-job
+    next:
+    guides:
+    related:
+    featured:
+required_permissions:
+    - cron-job:remove
+---
+
+1. On Devopness, navigate to a project, then select an environment
+1. Find the `Cron Jobs` card
+1. Click `View` in the `Cron Jobs` card to see a list of existing `Cron Jobs`
+1. In the list of Cron Jobs, find the job you want to remove and click the `NAME` of the job
+1. On the upper-right corner of the job details view, click `REMOVE`
+1. Follow the prompts, then click `REMOVE CRON JOB`
+1. In the list of Cron Jobs, the recently removed `Cron Job` will be gone
