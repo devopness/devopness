@@ -1,6 +1,6 @@
 ---
 title: Add a service
-intro: Add Linux services to your Devopness environments, so they can be easily managed and linked to all servers and applications that depend on them.
+intro: Often applications rely on background processes, such as web servers or databases, to deliver results. Add a Service to manage linux services, such as web servers or databases to all servers and applications that depend on them.
 links:
     overview:
     quickstart:
