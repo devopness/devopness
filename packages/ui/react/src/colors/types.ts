@@ -38,4 +38,40 @@ type Flatten<T extends object> = object extends T
       : never
     : never
 
-export type { Flatten }
+/**
+ * Maps opacity values in range [begin=0,end=1,step=0.1] to Hexadecimal
+ */
+type OpacityFromFloatToHex = {
+  0: '00'
+  0.1: '19'
+  0.2: '33'
+  0.3: '4c'
+  0.4: '66'
+  0.5: '7f'
+  0.6: '99'
+  0.7: 'b2'
+  0.8: 'cc'
+  0.9: 'e5'
+  1: 'ff'
+}
+
+/** Represents a digit of a Hexadecimal value, base 16 */
+type HexDigit =
+  | 0
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 'a'
+  | 'b'
+  | 'c'
+  | 'd'
+  | 'e'
+  | 'f'
+
+export type { Flatten, OpacityFromFloatToHex, HexDigit }

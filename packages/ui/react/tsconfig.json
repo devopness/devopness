@@ -1,10 +1,19 @@
 {
+  /**
+   * JSON Schema enables the confident and reliable use of the JSON data format;
+   * adding a $schema key enables auto completion, validation and help tooltips,
+   * in supported JSON editors
+   *
+   * @see {@link https://json-schema.org/}
+   * @see {@link https://www.schemastore.org/json/}
+   */
+  "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
     "baseUrl": ".",
-    "rootDirs": [
-      "src"
-    ],
     "paths": {
+      "src/*": [
+        "./src/*"
+      ],
       "@mui/styled-engine": [
         "./node_modules/@mui/styled-engine-sc"
       ]

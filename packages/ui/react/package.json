@@ -1,4 +1,5 @@
 {
+  "$schema": "https://json.schemastore.org/package.json",
   "name": "@devopness/ui-react",
   "type": "module",
   "version": "2.146.0",
@@ -14,9 +15,9 @@
   ],
   "exports": {
     ".": {
-      "import": "dist/ui-react.js",
-      "require": "dist/ui-react.cjs",
-      "types": "dist/index.d.ts"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/ui-react.js",
+      "require": "./dist/ui-react.cjs"
     }
   },
   "scripts": {
@@ -64,6 +65,7 @@
     "framer-motion": "^11.9.0",
     "ldrs": "^1.0.2",
     "lodash": "^4.17.21",
+    "material-ui-popup-state": "^5.3.1",
     "path-browserify": "^1.0.1",
     "styled-components": "^6.1.13"
   },
