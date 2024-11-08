@@ -10,7 +10,7 @@ links:
     related:
     featured:
 required_permissions:
-    - service:add
+    - service:create
 ---
 
 1. On Devopness, navigate to a project then select an environment
