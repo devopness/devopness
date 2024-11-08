@@ -6,46 +6,49 @@ import MuiTooltip, { tooltipClasses } from '@mui/material/Tooltip'
 
 import { ContentChildren } from './Tooltip.styled'
 import { getColor } from 'src/colors'
+import { Unwrap } from 'src/components/types'
 import { getFont } from 'src/fonts'
 import { useWindowSize } from 'src/hooks'
 
 type Nullable<T extends object> = { [K in keyof T]: T[K] | null | undefined }
 
-type TooltipComponentProps = {
-  /**
-   * Tooltip reference element.
-   */
-  children: React.ReactNode
-  /**
-   * Define component styles
-   */
-  styles?: {
+type TooltipComponentProps = Unwrap<
+  {
     /**
-     * Tooltip background color.
-     * (Does not work with JSX children)
+     * Tooltip reference element.
      */
-    backgroundColor?: string
+    children: React.ReactNode
     /**
-     * font color
+     * Define component styles
      */
-    color?: string
-  }
-  /**
-   * If `true`, hover in the tooltip is disabled.
-   */
-  disableHover?: boolean
-  /**
-   * If `true`, hover in the tooltip is disabled and enabled only when the
-   * element reaches the limit of the width of the contained element.
-   */
-  enableOnlyWithEllipsisPoints?: boolean
-  /**
-   * It should be defined when the component is going to be used
-   * in the controlled way
-   */
-  open?: boolean
-} & Omit<TooltipProps, 'title' | 'children'> &
-  Nullable<Pick<TooltipProps, 'title'>>
+    styles?: {
+      /**
+       * Tooltip background color.
+       * (Does not work with JSX children)
+       */
+      backgroundColor?: string
+      /**
+       * font color
+       */
+      color?: string
+    }
+    /**
+     * If `true`, hover in the tooltip is disabled.
+     */
+    disableHover?: boolean
+    /**
+     * If `true`, hover in the tooltip is disabled and enabled only when the
+     * element reaches the limit of the width of the contained element.
+     */
+    enableOnlyWithEllipsisPoints?: boolean
+    /**
+     * It should be defined when the component is going to be used
+     * in the controlled way
+     */
+    open?: boolean
+  } & Omit<TooltipProps, 'title' | 'children'> &
+    Nullable<Pick<TooltipProps, 'title'>>
+>
 
 const DEFAULT_BACKGROUND_COLOR = getColor('blue.950')
 
@@ -127,4 +130,5 @@ const Tooltip = ({
   )
 }
 
+export type { TooltipComponentProps as TooltipProps }
 export { Tooltip }
