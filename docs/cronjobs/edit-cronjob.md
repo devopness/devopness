@@ -1,11 +1,11 @@
 ---
 title: Edit a Cron Job
-intro: Modify the schedule, command, or other settings of an existing Cron Job.
+intro: Edit a Cron Job to modify the schedule, command, or other settings of an existing Cron Job.
 links:
     overview:
     quickstart:
-    previous: /docs/cron-jobs/add-cronjob
-    next: /docs/cron-jobs/remove-cron-job
+    previous: /docs/cronjobs/add-cronjob
+    next: /docs/cronjobs/remove-cronjob
     guides:
     related:
     featured:

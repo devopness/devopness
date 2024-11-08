@@ -1,10 +1,10 @@
 ---
 title: Remove a Cron Job
-intro: Remove a Cron Job when it is no longer needed to keep your environment organized.
+intro: Remove a Cron Job when it is no longer needed.
 links:
     overview:
     quickstart:
-    previous: /docs/cron-jobs/edit-cronjob
+    previous: /docs/cronjobs/edit-cronjob
     next:
     guides:
     related:

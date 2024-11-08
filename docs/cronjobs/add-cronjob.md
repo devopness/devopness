@@ -1,11 +1,11 @@
 ---
 title: Add a Cron Job
-intro: Add Cron Jobs to Servers and Applications so they can be easily managed in one place.
+intro: Add a Cron Job to automate your server and application management routine with scheduled tasks running automatically at a specified frequency.
 links:
     overview:
     quickstart:
     previous:
-    next: /docs/cron-jobs/edit-cronjob
+    next: /docs/cronjobs/edit-cronjob
     guides:
     related:
     featured:
