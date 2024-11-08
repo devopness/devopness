@@ -85,8 +85,8 @@ This command:
 1. Saves response to file `staticPermissions.json`
 
 
-#### Run [`generate_permissions_docs.cjs`](./generate_permissions_docs.cjs)
+#### Run [`generate-permissions-docs.js`](./generate-permissions-docs.js)
 
 ```bash
-node generate_permissions_docs.cjs ./staticPermissions.json > PERMISSIONS.md
+node generate-permissions-docs.js ./staticPermissions.json > PERMISSIONS.md
 ```
