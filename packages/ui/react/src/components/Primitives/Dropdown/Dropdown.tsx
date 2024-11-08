@@ -246,7 +246,13 @@ const ElementAnchor = ({
 /**
  * Display a menu with a list of options
  */
-const Dropdown = ({ onToggle, onSelect, content, anchorType, ...props }: DropdownProps) => (
+const Dropdown = ({
+  onToggle,
+  onSelect,
+  content,
+  anchorType,
+  ...props
+}: DropdownProps) => (
   <PopupState
     variant="popover"
     popupId="demo-popup-popover"
