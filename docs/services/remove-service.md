@@ -1,6 +1,6 @@
 ---
-title: Remove a service
-intro: Remove a service when it is no longer needed to keep your environment organized.
+title: Remove a Service
+intro: Remove a Service when it is no longer needed.
 links:
     overview:
     quickstart:
@@ -10,7 +10,7 @@ links:
     related:
     featured:
 required_permissions:
-    - service:remove
+    - service:delete
 ---
 
 1. On Devopness, navigate to a project then select an environment

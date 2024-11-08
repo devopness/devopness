@@ -1,6 +1,6 @@
 ---
 title: Edit a Daemon
-intro: Modify the settings, command, or other configurations of an existing Daemon.
+intro: Edit a Daemon to update the application, settings, command, or other configurations of an existing Daemon.
 links:
     overview:
     quickstart:
@@ -19,3 +19,4 @@ required_permissions:
 1. In the list of Daemons, find the daemon you want to edit and click the `NAME` of the daemon
 1. On the Daemon details page, click `EDIT` in the upper-right corner
 1. Follow the prompts then click `CONFIRM`
+1. In the `Daemon` details view, the recently updated `Daemon` details can be seen

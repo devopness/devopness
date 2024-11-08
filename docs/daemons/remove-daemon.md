@@ -1,6 +1,6 @@
 ---
 title: Remove a Daemon
-intro: Remove a Daemon when it is no longer needed to keep your environment organized.
+intro: Remove a Daemon when it is no longer needed.
 links:
     overview:
     quickstart:
@@ -10,7 +10,7 @@ links:
     related:
     featured:
 required_permissions:
-    - daemon:remove
+    - daemon:delete
 ---
 
 1. On Devopness, navigate to a project, then select an environment

@@ -18,3 +18,4 @@ required_permissions:
 1. Click `View` in the `Services` card to see a list of existing `Services`
 1. On the upper-right corner of the list click `ADD SERVICE`
 1. Follow the prompts then click `CONFIRM`
+1. In the `Service` details view, the recently created `Service` details can be seen
