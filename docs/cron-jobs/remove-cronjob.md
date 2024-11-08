@@ -4,7 +4,7 @@ intro: Remove a Cron Job when it is no longer needed to keep your environment or
 links:
     overview:
     quickstart:
-    previous: /docs/cron-jobs/edit-cron-job
+    previous: /docs/cron-jobs/edit-cronjob
     next:
     guides:
     related:

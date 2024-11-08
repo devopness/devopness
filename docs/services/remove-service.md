@@ -4,7 +4,7 @@ intro: Remove a service when it is no longer needed to keep your environment org
 links:
     overview:
     quickstart:
-    previous: /docs/services/link-application-to-service
+    previous: /docs/services/add-service
     next:
     guides:
     related:

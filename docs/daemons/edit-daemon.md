@@ -4,7 +4,7 @@ intro: Modify the settings, command, or other configurations of an existing Daem
 links:
     overview:
     quickstart:
-    previous: /docs/daemons/link-application-to-daemon
+    previous: /docs/daemons/add-daemon
     next: /docs/daemons/remove-daemon
     guides:
     related:

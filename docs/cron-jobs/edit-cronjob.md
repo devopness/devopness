@@ -4,7 +4,7 @@ intro: Modify the schedule, command, or other settings of an existing Cron Job.
 links:
     overview:
     quickstart:
-    previous: /docs/cron-jobs/link-application-to-cron-job
+    previous: /docs/cron-jobs/add-cronjob
     next: /docs/cron-jobs/remove-cron-job
     guides:
     related:

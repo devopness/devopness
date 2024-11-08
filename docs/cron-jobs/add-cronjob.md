@@ -5,7 +5,7 @@ links:
     overview:
     quickstart:
     previous:
-    next: /docs/cron-jobs/link-server-to-cron-job
+    next: /docs/cron-jobs/edit-cronjob
     guides:
     related:
     featured:
