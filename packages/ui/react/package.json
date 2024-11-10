@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/package.json",
   "name": "@devopness/ui-react",
   "type": "module",
-  "version": "2.146.0",
+  "version": "2.147.0",
   "publishConfig": {
     "access": "public"
   },
