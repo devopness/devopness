@@ -11,7 +11,7 @@ Show your appreciation for Devopness 💜! It means a lot to our team:
 - ⭐ Star this repository
 - [Sign up](https://app.devopness.com/signup/) for a FREE Devopness account
 - Follow [Devopness page on LinkedIn](https://www.linkedin.com/company/devopness/)
-- 📣 Share our LinkedIn posts on social networks, Discord, LinkedIn, Slack, Twitter, ...
+- 📣 Share [our LinkedIn posts](https://www.linkedin.com/company/devopness/posts/) on social networks: Discord, LinkedIn, Slack, Twitter, ...
 
 ## Code of Conduct
 
