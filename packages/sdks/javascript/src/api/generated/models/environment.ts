@@ -13,6 +13,7 @@
 
 
 import { ApplicationRelation } from './application-relation';
+import { CredentialRelation } from './credential-relation';
 import { CronJobRelation } from './cron-job-relation';
 import { DaemonRelation } from './daemon-relation';
 import { EnvironmentType } from './environment-type';
@@ -39,12 +40,6 @@ export interface Environment {
      */
     id: number;
     /**
-     * Environment\'s name
-     * @type {string}
-     * @memberof Environment
-     */
-    name: string;
-    /**
      * 
      * @type {EnvironmentType}
      * @memberof Environment
@@ -57,6 +52,18 @@ export interface Environment {
      */
     type_human_readable: string;
     /**
+     * Environment\'s name
+     * @type {string}
+     * @memberof Environment
+     */
+    name: string;
+    /**
+     * Environment\'s description
+     * @type {string}
+     * @memberof Environment
+     */
+    description: string | null;
+    /**
      * Indicates whether the record was archived
      * @type {boolean}
      * @memberof Environment
@@ -68,6 +75,12 @@ export interface Environment {
      * @memberof Environment
      */
     servers: Array<ServerRelation>;
+    /**
+     * 
+     * @type {Array<CredentialRelation>}
+     * @memberof Environment
+     */
+    credentials: Array<CredentialRelation>;
     /**
      * 
      * @type {Array<CronJobRelation>}

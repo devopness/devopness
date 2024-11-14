@@ -20,7 +20,7 @@
  */
 export interface ServiceUpdate {
     /**
-     * The unique ID of the service.
+     * The unique ID of the given Service.
      * @type {number}
      * @memberof ServiceUpdate
      */

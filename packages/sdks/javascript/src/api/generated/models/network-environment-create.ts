@@ -32,5 +32,11 @@ export interface NetworkEnvironmentCreate {
      * @memberof NetworkEnvironmentCreate
      */
     provision_input: NetworkProvisionInput;
+    /**
+     * The ID of the cloud credential.
+     * @type {number}
+     * @memberof NetworkEnvironmentCreate
+     */
+    credential_id: number;
 }
 

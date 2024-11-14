@@ -21,7 +21,7 @@ import { DeploymentType } from './deployment-type';
  */
 export interface DeploymentApplicationCreate {
     /**
-     * The environment type of the deployment. Must be one of <code>development</code>, <code>testing</code>, <code>staging</code>, or <code>production</code>.
+     * The environment type of the deployment.
      * @type {string}
      * @memberof DeploymentApplicationCreate
      */
@@ -33,7 +33,7 @@ export interface DeploymentApplicationCreate {
      */
     type: DeploymentType;
     /**
-     * The \'source type\' from which the application source code will be retrieved and deployed. It can be one of `branch`, `tag` or `commit`. If not provided, the application\'s default branch will be used. This field is required when <code>source_ref</code> is present.  Must be one of <code>branch</code>, <code>tag</code>, or <code>commit</code>.
+     * The \'source type\' from which the application source code will be retrieved and deployed. It can be one of `branch`, `tag` or `commit`. If not provided, the application\'s default branch will be used. This field is required when <code>source_ref</code> is present.
      * @type {string}
      * @memberof DeploymentApplicationCreate
      */

@@ -15,6 +15,7 @@
 import { ActionRelation } from './action-relation';
 import { ActionStatus } from './action-status';
 import { CloudOsVersionCode } from './cloud-os-version-code';
+import { CredentialRelation } from './credential-relation';
 import { EnvironmentRelation } from './environment-relation';
 import { OperatingSystemVersion } from './operating-system-version';
 import { ProjectRelation } from './project-relation';
@@ -149,6 +150,12 @@ export interface Server {
      * @memberof Server
      */
     environment: EnvironmentRelation | null;
+    /**
+     * 
+     * @type {CredentialRelation}
+     * @memberof Server
+     */
+    credential: CredentialRelation | null;
     /**
      * The date and time when the record was created
      * @type {string}

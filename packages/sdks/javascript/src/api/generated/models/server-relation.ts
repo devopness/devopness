@@ -14,6 +14,7 @@
 
 import { ActionRelation } from './action-relation';
 import { ActionStatus } from './action-status';
+import { Credential } from './credential';
 
 /**
  * 
@@ -46,7 +47,7 @@ export interface ServerRelation {
      */
     hostname: string;
     /**
-     * strubg The name of the server\'s provider.
+     * The name of the server\'s provider.
      * @type {string}
      * @memberof ServerRelation
      */
@@ -57,6 +58,18 @@ export interface ServerRelation {
      * @memberof ServerRelation
      */
     provider_name_human_readable: string;
+    /**
+     * 
+     * @type {Credential}
+     * @memberof ServerRelation
+     */
+    credential?: Credential;
+    /**
+     * The region in which the server is located
+     * @type {string}
+     * @memberof ServerRelation
+     */
+    region: string;
     /**
      * Public ipv4 address for server access
      * @type {string}

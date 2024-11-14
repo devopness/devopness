@@ -12,6 +12,7 @@
  */
 
 
+import { ResourceToBeLinked } from './resource-to-be-linked';
 import { ServiceInitialState } from './service-initial-state';
 import { ServiceType } from './service-type';
 
@@ -21,6 +22,12 @@ import { ServiceType } from './service-type';
  * @interface ServiceEnvironmentCreate
  */
 export interface ServiceEnvironmentCreate {
+    /**
+     * The resources to be linked with this resource
+     * @type {Array<ResourceToBeLinked>}
+     * @memberof ServiceEnvironmentCreate
+     */
+    linked_resources?: Array<ResourceToBeLinked>;
     /**
      * Tells if the service should start automatically on operating system boot.
      * @type {boolean}
@@ -40,7 +47,7 @@ export interface ServiceEnvironmentCreate {
      */
     type: ServiceType;
     /**
-     * The service version to be installed. Must be one of <code></code> Must be at least 1 characters. Must not be greater than 30 characters.
+     * The service version to be installed. Must be at least 1 character. Must not be greater than 30 characters.
      * @type {string}
      * @memberof ServiceEnvironmentCreate
      */

@@ -47,11 +47,11 @@ export interface DaemonRelation {
      */
     run_as_user: string;
     /**
-     * The working directory where the daemon will be relative to when performing disk i/o
+     * The working directory where the Daemon command will be executed. If the Daemon is linked to an application, the path must be a relative path to the application root directory. If the Daemon is not linked to an application, the value must be an absolute path. Must not be greater than 255 characters
      * @type {string}
      * @memberof DaemonRelation
      */
-    working_directory: string;
+    working_directory: string | null;
     /**
      * The number of daemon process instances of the program to run simultaneously
      * @type {number}

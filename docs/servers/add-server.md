@@ -9,6 +9,7 @@ links:
     guides:
     related:
         - /docs/servers/add-aws-server
+        - /docs/servers/add-azure-server
         - /docs/servers/add-digitalocean-server
         - /docs/servers/add-gcp-server
         - /docs/servers/add-existing-server

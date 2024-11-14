@@ -12,6 +12,7 @@
  */
 
 
+import { Language } from './language';
 
 /**
  * 
@@ -20,7 +21,7 @@
  */
 export interface UserUpdate {
     /**
-     * The unique ID of the given user.
+     * The unique ID of the given User.
      * @type {number}
      * @memberof UserUpdate
      */
@@ -38,10 +39,10 @@ export interface UserUpdate {
      */
     email: string;
     /**
-     * Must be one of <code>en</code> or <code>pt</code>.
-     * @type {string}
+     * 
+     * @type {Language}
      * @memberof UserUpdate
      */
-    language?: string;
+    language?: Language | null;
 }
 

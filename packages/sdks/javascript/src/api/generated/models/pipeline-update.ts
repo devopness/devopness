@@ -21,7 +21,7 @@ import { PipelineTriggerWhen } from './pipeline-trigger-when';
  */
 export interface PipelineUpdate {
     /**
-     * The unique ID of the given pipeline.
+     * The unique ID of the given Pipeline.
      * @type {number}
      * @memberof PipelineUpdate
      */

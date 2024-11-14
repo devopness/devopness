@@ -57,5 +57,11 @@ export interface ServerEnvironmentCreate {
      * @memberof ServerEnvironmentCreate
      */
     provision_input: ServerProvisionInput;
+    /**
+     * The ID of the cloud credential. This field is required unless <code>provision_input.cloud_service_code</code> is in <code>self-hosted-custom</code>.
+     * @type {string}
+     * @memberof ServerEnvironmentCreate
+     */
+    credential_id?: string;
 }
 

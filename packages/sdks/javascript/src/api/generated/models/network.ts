@@ -13,6 +13,7 @@
 
 
 import { ActionRelation } from './action-relation';
+import { CredentialRelation } from './credential-relation';
 import { EnvironmentRelation } from './environment-relation';
 import { NetworkProvisionInput } from './network-provision-input';
 import { ProjectRelation } from './project-relation';
@@ -72,6 +73,12 @@ export interface Network {
      * @memberof Network
      */
     environment: EnvironmentRelation | null;
+    /**
+     * 
+     * @type {CredentialRelation}
+     * @memberof Network
+     */
+    credential: CredentialRelation | null;
     /**
      * 
      * @type {ActionRelation}

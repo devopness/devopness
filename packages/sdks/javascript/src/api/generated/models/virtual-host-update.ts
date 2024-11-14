@@ -20,7 +20,7 @@
  */
 export interface VirtualHostUpdate {
     /**
-     * The unique ID of the given virtual host.
+     * The unique ID of the given Virtual Host.
      * @type {number}
      * @memberof VirtualHostUpdate
      */
@@ -30,7 +30,7 @@ export interface VirtualHostUpdate {
      * @type {string}
      * @memberof VirtualHostUpdate
      */
-    name?: string;
+    name: string;
     /**
      * The document root location, within the application directory, that contains the public files to be served when a user visits the domain name associated with this virtual host. Must not be greater than 255 characters.
      * @type {string}

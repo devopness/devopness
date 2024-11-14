@@ -14,8 +14,9 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { ApiError } from '../../generated/models';
 import { Credential } from '../../generated/models';
-import { CredentialRelation } from '../../generated/models';
+import { CredentialUpdate } from '../../generated/models';
 
 /**
  * CredentialsApiService - Auto-generated
@@ -59,25 +60,41 @@ export class CredentialsApiService extends ApiBaseService {
 
     /**
      * 
-     * @summary List credentials
-     * @param {number} [page] Number of the page to be retrieved
-     * @param {number} [perPage] Number of items returned per page
+     * @summary Get current status of a credential on its provider
+     * @param {number} credentialId The ID of the credential.
      */
-    public async listCredentials(page?: number, perPage?: number): Promise<ApiResponse<Array<CredentialRelation>>> {
-
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+    public async getStatusCredential(credentialId: number): Promise<ApiResponse<void>> {
+        if (credentialId === null || credentialId === undefined) {
+            throw new ArgumentNullException('credentialId', 'getStatusCredential');
         }
 
-        const requestUrl = '/credentials' + (queryString? `?${queryString}` : '');
+        let queryString = '';
 
-        const response = await this.get <Array<CredentialRelation>>(requestUrl);
+        const requestUrl = '/credentials/{credential_id}/get-status' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <void>(requestUrl.replace(`{${"credential_id"}}`, encodeURIComponent(String(credentialId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Update an existing Credential
+     * @param {number} credentialId The ID of the credential.
+     * @param {CredentialUpdate} credentialUpdate A JSON object containing the resource data
+     */
+    public async updateCredential(credentialId: number, credentialUpdate: CredentialUpdate): Promise<ApiResponse<void>> {
+        if (credentialId === null || credentialId === undefined) {
+            throw new ArgumentNullException('credentialId', 'updateCredential');
+        }
+        if (credentialUpdate === null || credentialUpdate === undefined) {
+            throw new ArgumentNullException('credentialUpdate', 'updateCredential');
+        }
+
+        let queryString = '';
+
+        const requestUrl = '/credentials/{credential_id}' + (queryString? `?${queryString}` : '');
+
+        const response = await this.put <void, CredentialUpdate>(requestUrl.replace(`{${"credential_id"}}`, encodeURIComponent(String(credentialId))), credentialUpdate);
         return new ApiResponse(response);
     }
 }

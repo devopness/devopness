@@ -16,6 +16,7 @@ import { ActionData } from './action-data';
 import { ActionHookRequest } from './action-hook-request';
 import { ActionResource } from './action-resource';
 import { ActionStatus } from './action-status';
+import { ActionStatusReasonCode } from './action-status-reason-code';
 import { ActionSummary } from './action-summary';
 import { ActionTarget } from './action-target';
 import { ActionTriggeredFrom } from './action-triggered-from';
@@ -56,11 +57,23 @@ export interface ActionRetryResponse {
      */
     status: ActionStatus;
     /**
-     * Current item status human readable
+     * Human readable version of action status
      * @type {string}
      * @memberof ActionRetryResponse
      */
     status_human_readable: string;
+    /**
+     * 
+     * @type {ActionStatusReasonCode}
+     * @memberof ActionRetryResponse
+     */
+    status_reason_code: ActionStatusReasonCode;
+    /**
+     * Human readable version of the status reason code
+     * @type {string}
+     * @memberof ActionRetryResponse
+     */
+    status_reason_human_readable: string;
     /**
      * 
      * @type {ActionType}

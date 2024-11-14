@@ -21,12 +21,6 @@ import { SubnetProvisionInputSettings } from './subnet-provision-input-settings'
  */
 export interface SubnetProvisionInput {
     /**
-     * The ID of the cloud credential
-     * @type {number}
-     * @memberof SubnetProvisionInput
-     */
-    credential_id: number;
-    /**
      * 
      * @type {SubnetProvisionInputSettings}
      * @memberof SubnetProvisionInput

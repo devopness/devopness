@@ -20,6 +20,12 @@
  */
 export interface RoleUpdate {
     /**
+     * The unique ID of the given Role.
+     * @type {number}
+     * @memberof RoleUpdate
+     */
+    id: number;
+    /**
      * The role\'s name. Must be at least 2 characters. Must not be greater than 60 characters.
      * @type {string}
      * @memberof RoleUpdate

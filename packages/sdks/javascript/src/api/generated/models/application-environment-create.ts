@@ -12,6 +12,8 @@
  */
 
 
+import { EnvironmentLink } from './environment-link';
+import { ResourceToBeLinked } from './resource-to-be-linked';
 
 /**
  * 
@@ -19,6 +21,12 @@
  * @interface ApplicationEnvironmentCreate
  */
 export interface ApplicationEnvironmentCreate {
+    /**
+     * The resources to be linked with this resource
+     * @type {Array<ResourceToBeLinked>}
+     * @memberof ApplicationEnvironmentCreate
+     */
+    linked_resources?: Array<ResourceToBeLinked>;
     /**
      * The application\'s unique name. Must not be greater than 60 characters.
      * @type {string}
@@ -32,7 +40,7 @@ export interface ApplicationEnvironmentCreate {
      */
     build_command?: string;
     /**
-     * The language runtime engine version to be used to execute this application on the deployed servers. Must be one of <code></code> Must be at least 1 characters. Must not be greater than 10 characters.
+     * The language runtime engine version to be used to execute this application on the deployed servers. Must be at least 1 character. Must not be greater than 10 characters.
      * @type {string}
      * @memberof ApplicationEnvironmentCreate
      */
@@ -44,23 +52,23 @@ export interface ApplicationEnvironmentCreate {
      */
     framework: string;
     /**
-     * The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`. Must be one of <code>docker</code>, <code>dotnetcore</code>, <code>html</code>, <code>java</code>, <code>nodejs</code>, <code>php</code>, <code>python</code>, or <code>ruby</code> Must not be greater than 30 characters.
+     * The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`. Must not be greater than 30 characters.
      * @type {string}
      * @memberof ApplicationEnvironmentCreate
      */
     programming_language: string;
     /**
-     * The full name of a repository (`repository_owner/repository_name`) containing the application source code. Required when the `source_provider_id` field is informed. Must not be greater than 100 characters.
+     * The full name of a repository (`repository_owner/repository_name`) containing the application source code. Must not be greater than 100 characters.
      * @type {string}
      * @memberof ApplicationEnvironmentCreate
      */
     repository: string;
     /**
-     * Numeric ID of the source provider account where the repository is hosted. Required when the `repository` field is informed.
+     * Numeric ID of the credential to source provider where the repository is hosted.
      * @type {number}
      * @memberof ApplicationEnvironmentCreate
      */
-    source_provider_id: number;
+    credential_id: number;
     /**
      * The relative directory where package manager\'s manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository. Must start with one of <code>/</code>.
      * @type {string}
@@ -85,5 +93,11 @@ export interface ApplicationEnvironmentCreate {
      * @memberof ApplicationEnvironmentCreate
      */
     install_dependencies_command?: string;
+    /**
+     * 
+     * @type {Array<EnvironmentLink>}
+     * @memberof ApplicationEnvironmentCreate
+     */
+    environments?: Array<EnvironmentLink>;
 }
 

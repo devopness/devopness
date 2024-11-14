@@ -39,5 +39,11 @@ export interface SubnetNetworkCreate {
      * @memberof SubnetNetworkCreate
      */
     provision_input: SubnetProvisionInput;
+    /**
+     * The ID of the cloud credential.
+     * @type {number}
+     * @memberof SubnetNetworkCreate
+     */
+    credential_id: number;
 }
 

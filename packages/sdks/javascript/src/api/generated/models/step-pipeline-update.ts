@@ -21,7 +21,7 @@ import { PipelineStepRunnerName } from './pipeline-step-runner-name';
  */
 export interface StepPipelineUpdate {
     /**
-     * The unique ID of the given pipeline step.
+     * The unique ID of the given Pipeline Step.
      * @type {number}
      * @memberof StepPipelineUpdate
      */

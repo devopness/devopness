@@ -20,6 +20,7 @@
  */
 export enum ResourceType {
     Application = 'application',
+    Credential = 'credential',
     Cronjob = 'cronjob',
     Daemon = 'daemon',
     Deployment = 'deployment',

@@ -21,7 +21,7 @@ import { EnvironmentType } from './environment-type';
  */
 export interface EnvironmentUpdate {
     /**
-     * Environment\'s unique ID.
+     * The unique ID of the given Environment.
      * @type {number}
      * @memberof EnvironmentUpdate
      */
@@ -38,5 +38,11 @@ export interface EnvironmentUpdate {
      * @memberof EnvironmentUpdate
      */
     name: string;
+    /**
+     * The environment\'s description. Must not be greater than 255 characters.
+     * @type {string}
+     * @memberof EnvironmentUpdate
+     */
+    description?: string;
 }
 

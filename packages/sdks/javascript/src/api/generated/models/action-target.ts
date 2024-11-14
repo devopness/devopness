@@ -13,6 +13,7 @@
 
 
 import { ActionStatus } from './action-status';
+import { ActionStatusReasonCode } from './action-status-reason-code';
 import { ActionStep } from './action-step';
 import { ActionTargetData } from './action-target-data';
 
@@ -52,6 +53,18 @@ export interface ActionTarget {
      * @memberof ActionTarget
      */
     status_human_readable?: string;
+    /**
+     * 
+     * @type {ActionStatusReasonCode}
+     * @memberof ActionTarget
+     */
+    status_reason_code?: ActionStatusReasonCode;
+    /**
+     * Human readable version of the status reason code
+     * @type {string}
+     * @memberof ActionTarget
+     */
+    status_reason_human_readable?: string;
     /**
      * The total number of steps to complete the action
      * @type {number}
