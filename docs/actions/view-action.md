@@ -17,7 +17,7 @@ You can access details of all actions executed in an environment to which you ha
 1. On Devopness, navigate to a project then select an environment
 1. On the upper-right corner, click `ACTIONS` to see a list of all actions created in the current environment
 1. In the list of actions, find the action you want to inspect and click the link in the `ACTION` column
-1. You will be redirected to the action details view
+    > You will be redirected to the action details view
 1. In the action details view, the header displays:
   - `Status`
   - `Status reason`: a detailed explanation of why the action is in the current `Status`
