@@ -12,9 +12,9 @@ links:
 ---
 
 ## Is Devopness Free?
-All Devopness users and teams get FREE FOREVER access to manage an unlimited number of projects, environments and resources in any supported cloud provider, and can also deploy applications from any supported source provider.
+All Devopness users and teams get FREE FOREVER access to manage a limited number of projects, environments and resources in any supported cloud provider, and can also deploy application code from `git` repositories hosted in any supported source provider.
 
-All your projects can have an unlimited number of users collaborating on it, for FREE.
+All your projects can have teams and users collaborating on it, for FREE.
 
 When your projects grow you may need more deployment options, security controls and collaboration features that may require upgrading to a paid plan.
 
@@ -26,12 +26,15 @@ You pay for action steps that Devopness executes for you.
 
 As an action running a pipeline can have a variable number of steps, Devopness will charge you by consuming one credit for each action step executed.
 
+Paid plans also differ in the number of premium features available to increase your team's productivity.
+
 See also:
 - [What are actions and action steps?](#)
 - [What are credits?](#)
+- [Pricing](/pricing/)
 
 ## How do I pay?
-You can pay inside the Devopness web app. 
+You can pay inside the Devopness web app.
 
 For detailed instructions, see:
 - {% mentionPost "/docs/users/subscriptions/upgrade-subscription" %}.
@@ -71,7 +74,7 @@ Devopness only consumes credits for successfully completed steps.
 
 While an action step in `pending`, `waiting`, `queued` or `in progress` status, no credit is consumed from your subscription balance.
 
-Also, when steps are not successfully completed for being `skipped` or have `failed`  Devopness will not charge you for that action step.
+Also, when steps are not successfully completed for being `skipped` or have `failed` Devopness will not charge you for that action step.
 
 ## Are my credits used when contributing to someone else's project?
 No.
@@ -86,7 +89,13 @@ For detailed instructions, see:
 ## What happens when I run out of credits?
 If you run out of credits you can keep using Devopness to manage your environment resources and all features on your paid plans will remain accessible.
 
-However, new actions will not be created in your projects until you add credits to your account. 
+However, new actions will still be created with status `failed`.
+Those actions will not be executed and you will see the error message below:
+```
+Insufficient credits to run this action
+```
+
+When that happens, you can fix the error by adding more credits to your account.
 
 For more information, see:
 - [How do I add credits to my account?](#)
@@ -100,7 +109,7 @@ Monthly. The exact date may vary as months have different number of days. We cur
 ## What happens if my subscription cannot be renewed?
 Subscriptions are renewed automatically on their expiry date, using your chosen payment method.
 
-If for some reason your subscription could not be renewed, the current subscription will be canceled. 
+If for some reason your subscription could not be renewed, the current subscription will be canceled.
 
 See also:
 - [What happens after my subscription is canceled?](#)
