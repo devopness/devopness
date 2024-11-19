@@ -57,12 +57,16 @@ See also:
 Credit is the unit used to pay for each action step Devopness executes for you when running pipelines in your project environments.
 
 ## How are credits used by Devopness?
-As an action running a pipeline can have a variable number of steps, Devopness will charge the project owner by consuming one credit for each action step completed.
+As an action running a pipeline can have a variable number of steps, Devopness will charge the project owner by consuming one credit for each **successful action step completed**.
+
+By default, many actions involve only one step and therefore consume just 1 credit. However, more complex actions—such as large application deployments or pipelines with multiple steps—will require additional credits based on the number of **successful steps** involved.
 
 For example:
-If an active subscription includes 100 credits and an action is created to run a pipeline with 5 steps, that action will consume 5 credits from the account of the project owner.
 
-After the action is finished, 95 credits will remain available to be used in any project owned by the same user account.
+- A simple action with one successful step, like a basic task or deployment, will consume **1 credit**.
+- A pipeline with 5 successful steps will consume **5 credits**, as one credit is deducted for each successfully completed step.
+
+This ensures that credit consumption reflects the complexity and success of each action.
 
 See also:
 - [What are actions and action steps?](#)
