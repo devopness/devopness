@@ -21795,6 +21795,11 @@
           "target": {
             "$ref": "#/components/schemas/VariableTarget"
           },
+          "target_human_readable": {
+            "description": "Human readable version of target",
+            "example": "Resource Configuration File",
+            "type": "string"
+          },
           "resource_id": {
             "description": "The ID of the resource this variable is linked to",
             "example": 3426,
@@ -21832,6 +21837,7 @@
           "description",
           "value",
           "target",
+          "target_human_readable",
           "resource_id",
           "resource_type",
           "hidden",
@@ -21952,6 +21958,11 @@
           "target": {
             "$ref": "#/components/schemas/VariableTarget"
           },
+          "target_human_readable": {
+            "description": "Human readable version of target",
+            "example": "Resource Configuration File",
+            "type": "string"
+          },
           "resource_id": {
             "description": "The ID of the resource this variable is linked to",
             "example": 3426,
@@ -21989,6 +22000,7 @@
           "description",
           "value",
           "target",
+          "target_human_readable",
           "resource_id",
           "resource_type",
           "hidden",
