@@ -59,6 +59,12 @@ export interface VariableRelation {
      */
     target: VariableTarget;
     /**
+     * Human readable version of target
+     * @type {string}
+     * @memberof VariableRelation
+     */
+    target_human_readable: string;
+    /**
      * The ID of the resource this variable is linked to
      * @type {number}
      * @memberof VariableRelation
