@@ -66,7 +66,7 @@ export interface Daemon {
      * @type {boolean}
      * @memberof Daemon
      */
-    auto_generated: boolean;
+    is_auto_generated: boolean;
     /**
      * 
      * @type {ProjectRelation}

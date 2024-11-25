@@ -21,18 +21,14 @@
 export enum ActionType {
     Add = 'add',
     CheckProvisioned = 'check_provisioned',
+    Delete = 'delete',
     Deploy = 'deploy',
-    Disable = 'disable',
-    Enable = 'enable',
     GetStatus = 'get_status',
     Provision = 'provision',
-    Redeploy = 'redeploy',
     Reload = 'reload',
-    Remove = 'remove',
     Restart = 'restart',
-    Rollback = 'rollback',
+    Setup = 'setup',
     Start = 'start',
-    Status = 'status',
     Stop = 'stop'
 }
 

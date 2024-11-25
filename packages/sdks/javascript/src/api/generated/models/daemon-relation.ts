@@ -63,7 +63,7 @@ export interface DaemonRelation {
      * @type {boolean}
      * @memberof DaemonRelation
      */
-    auto_generated: boolean;
+    is_auto_generated: boolean;
     /**
      * 
      * @type {ActionRelation}
