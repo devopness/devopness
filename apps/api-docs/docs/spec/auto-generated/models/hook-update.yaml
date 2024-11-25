@@ -9,8 +9,6 @@ properties:
     description: 'The name of the outgoing hook. Must not be greater than 60 characters.'
     example: lets-go-fishing
     type: string
-  action_type:
-    $ref: '#/components/schemas/ActionType'
   active:
     description: 'Determines if the hook is currently active.'
     example: false

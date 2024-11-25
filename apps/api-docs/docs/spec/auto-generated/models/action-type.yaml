@@ -3,17 +3,13 @@ type: string
 enum:
   - add
   - check_provisioned
+  - delete
   - deploy
-  - disable
-  - enable
   - get_status
   - provision
-  - redeploy
   - reload
-  - remove
   - restart
-  - rollback
+  - setup
   - start
-  - status
   - stop
 example: deploy

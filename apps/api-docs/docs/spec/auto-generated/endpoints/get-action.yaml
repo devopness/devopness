@@ -28,9 +28,11 @@ responses:
       application/json:
         schema:
           $ref: '#/components/schemas/Action'
-  403:
-    description: Forbidden/Unauthorized
+  402:
+    description: 'Payment Required'
     content:
       application/json:
         schema:
           $ref: '#/components/schemas/ApiError'
+  404:
+    description: 'The specified resource was not found'
