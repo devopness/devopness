@@ -63,7 +63,7 @@ export interface NetworkRuleRelation {
      * @type {boolean}
      * @memberof NetworkRuleRelation
      */
-    auto_generated: boolean;
+    is_auto_generated: boolean;
     /**
      * 
      * @type {ActionRelation}

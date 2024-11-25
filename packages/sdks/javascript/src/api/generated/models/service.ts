@@ -60,7 +60,7 @@ export interface Service {
      * @type {boolean}
      * @memberof Service
      */
-    auto_generated: boolean;
+    is_auto_generated: boolean;
     /**
      * Indicates if the service will start automatically on operating system boot
      * @type {boolean}
