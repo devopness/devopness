@@ -66,7 +66,7 @@ export interface HookRelation {
      * @type {boolean}
      * @memberof HookRelation
      */
-    auto_generated: boolean;
+    is_auto_generated: boolean;
     /**
      * Tells if requests to this hook must only be accepted when a HTTP header is sent with a message authentication code ([HMAC](https://en.wikipedia.org/wiki/HMAC)) generated based on the secret provided by Devopness and shared by user with external sources
      * @type {boolean}

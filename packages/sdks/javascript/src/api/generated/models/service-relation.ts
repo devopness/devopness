@@ -56,7 +56,7 @@ export interface ServiceRelation {
      * @type {boolean}
      * @memberof ServiceRelation
      */
-    auto_generated: boolean;
+    is_auto_generated: boolean;
     /**
      * Indicates if the service will start automatically on operating system boot
      * @type {boolean}

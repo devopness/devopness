@@ -67,7 +67,7 @@ export interface CronJob {
      * @type {boolean}
      * @memberof CronJob
      */
-    auto_generated: boolean;
+    is_auto_generated: boolean;
     /**
      * 
      * @type {ActionRelation}
