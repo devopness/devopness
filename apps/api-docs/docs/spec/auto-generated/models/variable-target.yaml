@@ -2,19 +2,18 @@
 description: 'The target defining how the variable key/value pair will be deployed'
 type: string
 enum:
-  - resource-config-file
-  - nginx-http-server
   - my-cnf
   - newrelic-infra-yml
-  - nginx-conf
-  - nginx-main
+  - nginx-http-server
   - nginx-http
+  - nginx-main
   - os-env-var
   - php-cli_php-ini
   - php-fpm_php-fpm-conf
   - php-fpm_php-ini
   - php-fpm_pool-d-www-conf
   - redis-conf
+  - resource-config-file
   - supervisord-conf
   - sysctl-conf
 example: resource-config-file

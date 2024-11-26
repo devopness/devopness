@@ -20,6 +20,7 @@ properties:
     description: 'The value to be assigned to this variable when deployed to its target'
     example: 'https://staging.devopness.com'
     type: string
+    nullable: true
   target:
     $ref: '#/components/schemas/VariableTarget'
   target_human_readable:

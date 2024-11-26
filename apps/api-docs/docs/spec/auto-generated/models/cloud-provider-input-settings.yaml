@@ -5,7 +5,7 @@ properties:
   name:
     type: string
     description: 'Name of the property'
-    example: access_key
+    example: access_key_id
   name_human_readable:
     type: string
     description: "Human readable version of the property's name"

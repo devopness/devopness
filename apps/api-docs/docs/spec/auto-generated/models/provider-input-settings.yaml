@@ -5,7 +5,7 @@ properties:
   name:
     type: string
     description: 'The name of a credential input field'
-    example: access_key
+    example: access_key_id
   name_human_readable:
     type: string
     description: 'The human readable version of the input field name'
