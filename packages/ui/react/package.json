@@ -80,7 +80,7 @@
     "@storybook/test": "^8.4.5",
     "@storybook/theming": "^8.3.4",
     "@testing-library/react": "^16.0.1",
-    "@types/lodash": "^4.17.9",
+    "@types/lodash": "^4.17.13",
     "@types/node": "^22.7.4",
     "@types/path-browserify": "^1.0.3",
     "@types/react": "^18.3.3",
