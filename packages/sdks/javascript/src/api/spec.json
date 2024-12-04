@@ -13757,10 +13757,49 @@
             "description": "Datacenter region where the cloud instance will be launched",
             "example": "us-east-1"
           },
+          "region_human_readable": {
+            "type": "string",
+            "description": "Human readable version of the server region",
+            "example": "US East (N. Virginia) us-east-1"
+          },
           "storage_size": {
             "type": "integer",
             "description": "The storage's size of the cloud instance",
             "example": 32
+          },
+          "os_version_code": {
+            "$ref": "#/components/schemas/CloudOsVersionCode"
+          }
+        },
+        "required": [
+          "region",
+          "instance_type",
+          "storage_size",
+          "os_version_code"
+        ]
+      },
+      "CloudServiceSettingsAzureRm": {
+        "type": "object",
+        "properties": {
+          "instance_type": {
+            "type": "string",
+            "description": "The instance type to be launched on the cloud provider",
+            "example": "Standard_B1ls"
+          },
+          "region": {
+            "type": "string",
+            "description": "Datacenter region where the cloud instance will be launched",
+            "example": "brazilsouth"
+          },
+          "region_human_readable": {
+            "type": "string",
+            "description": "Human readable version of the server region",
+            "example": "(South America) Brazil South brazilsouth"
+          },
+          "storage_size": {
+            "type": "integer",
+            "description": "The storage's size of the cloud instance",
+            "example": 30
           },
           "os_version_code": {
             "$ref": "#/components/schemas/CloudOsVersionCode"
@@ -13786,6 +13825,11 @@
             "description": "Datacenter region where the cloud instance will be launched",
             "example": "nyc1"
           },
+          "region_human_readable": {
+            "type": "string",
+            "description": "Human readable version of the server region",
+            "example": "New York nyc1"
+          },
           "os_version_code": {
             "$ref": "#/components/schemas/CloudOsVersionCode"
           }
@@ -13808,6 +13852,11 @@
             "type": "string",
             "description": "Datacenter region where the cloud instance will be launched",
             "example": "us-east1"
+          },
+          "region_human_readable": {
+            "type": "string",
+            "description": "Human readable version of the server region",
+            "example": "US East (N. Virginia) us-east1"
           },
           "os_version_code": {
             "$ref": "#/components/schemas/CloudOsVersionCode"
@@ -16597,6 +16646,9 @@
             "$ref": "#/components/schemas/NetworkProvisionInputSettingsAws"
           },
           {
+            "$ref": "#/components/schemas/NetworkProvisionInputSettingsAzure"
+          },
+          {
             "$ref": "#/components/schemas/NetworkProvisionInputSettingsDigitalOcean"
           },
           {
@@ -16611,6 +16663,35 @@
             "description": "The cloud provider region where the network will be created",
             "type": "string",
             "example": "us-east-1"
+          },
+          "region_human_readable": {
+            "description": "Human readable version of the network region",
+            "type": "string",
+            "example": "US East (N. Virginia) us-east-1"
+          },
+          "cidr_block": {
+            "description": "The IP CIDR range of the network",
+            "type": "string",
+            "example": "10.0.0.0/24"
+          }
+        },
+        "required": [
+          "region",
+          "cidr_block"
+        ]
+      },
+      "NetworkProvisionInputSettingsAzure": {
+        "type": "object",
+        "properties": {
+          "region": {
+            "description": "The cloud provider region where the network will be created",
+            "type": "string",
+            "example": "francecentral"
+          },
+          "region_human_readable": {
+            "description": "Human readable version of the network region",
+            "type": "string",
+            "example": "(Europe) France Central francecentral"
           },
           "cidr_block": {
             "description": "The IP CIDR range of the network",
@@ -16631,6 +16712,11 @@
             "type": "string",
             "example": "ams2"
           },
+          "region_human_readable": {
+            "description": "Human readable version of the network region",
+            "type": "string",
+            "example": "Amsterdam 2 ams2"
+          },
           "cidr_block": {
             "description": "The IP CIDR range of the network",
             "type": "string",
@@ -16649,6 +16735,11 @@
             "description": "The cloud provider region where the network will be created",
             "type": "string",
             "example": "global"
+          },
+          "region_human_readable": {
+            "description": "Human readable version of the network region",
+            "type": "string",
+            "example": "Global"
           }
         },
         "required": [
@@ -18948,6 +19039,9 @@
                 "$ref": "#/components/schemas/CloudServiceSettingsAwsEc2"
               },
               {
+                "$ref": "#/components/schemas/CloudServiceSettingsAzureRm"
+              },
+              {
                 "$ref": "#/components/schemas/CloudServiceSettingsDigitalOceanDroplet"
               },
               {
@@ -19002,7 +19096,14 @@
           "region": {
             "description": "The region in which the server is located",
             "example": "us-east-1",
-            "type": "string"
+            "type": "string",
+            "nullable": true
+          },
+          "region_human_readable": {
+            "description": "The human readable version of the region",
+            "example": "US East (N. Virginia) us-east-1",
+            "type": "string",
+            "nullable": true
           },
           "ip_address": {
             "description": "Public ipv4 address for server access",
@@ -19044,6 +19145,7 @@
           "provider_name",
           "provider_name_human_readable",
           "region",
+          "region_human_readable",
           "ip_address",
           "ssh_port",
           "active",
