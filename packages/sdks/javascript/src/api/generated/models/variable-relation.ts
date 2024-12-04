@@ -51,7 +51,7 @@ export interface VariableRelation {
      * @type {string}
      * @memberof VariableRelation
      */
-    value: string;
+    value: string | null;
     /**
      * 
      * @type {VariableTarget}
