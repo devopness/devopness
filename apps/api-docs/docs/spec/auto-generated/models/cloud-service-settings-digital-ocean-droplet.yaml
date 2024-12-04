@@ -9,6 +9,10 @@ properties:
     type: string
     description: 'Datacenter region where the cloud instance will be launched'
     example: nyc1
+  region_human_readable:
+    type: string
+    description: 'Human readable version of the server region'
+    example: 'New York nyc1'
   os_version_code:
     $ref: '#/components/schemas/CloudOsVersionCode'
 required:

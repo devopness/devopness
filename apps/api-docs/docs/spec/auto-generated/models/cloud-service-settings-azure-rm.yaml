@@ -4,18 +4,23 @@ properties:
   instance_type:
     type: string
     description: 'The instance type to be launched on the cloud provider'
-    example: f1-micro
+    example: Standard_B1ls
   region:
     type: string
     description: 'Datacenter region where the cloud instance will be launched'
-    example: us-east1
+    example: brazilsouth
   region_human_readable:
     type: string
     description: 'Human readable version of the server region'
-    example: 'US East (N. Virginia) us-east1'
+    example: '(South America) Brazil South brazilsouth'
+  storage_size:
+    type: integer
+    description: "The storage's size of the cloud instance"
+    example: 30
   os_version_code:
     $ref: '#/components/schemas/CloudOsVersionCode'
 required:
-  - instance_type
   - region
+  - instance_type
+  - storage_size
   - os_version_code

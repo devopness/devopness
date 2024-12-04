@@ -31,6 +31,12 @@ properties:
     description: 'The region in which the server is located'
     example: us-east-1
     type: string
+    nullable: true
+  region_human_readable:
+    description: 'The human readable version of the region'
+    example: 'US East (N. Virginia) us-east-1'
+    type: string
+    nullable: true
   ip_address:
     description: 'Public ipv4 address for server access'
     example: 200.123.45.67
@@ -63,6 +69,7 @@ required:
   - provider_name
   - provider_name_human_readable
   - region
+  - region_human_readable
   - ip_address
   - ssh_port
   - active

@@ -4,11 +4,11 @@ properties:
   region:
     description: 'The cloud provider region where the network will be created'
     type: string
-    example: ams2
+    example: francecentral
   region_human_readable:
     description: 'Human readable version of the network region'
     type: string
-    example: 'Amsterdam 2 ams2'
+    example: '(Europe) France Central francecentral'
   cidr_block:
     description: 'The IP CIDR range of the network'
     type: string

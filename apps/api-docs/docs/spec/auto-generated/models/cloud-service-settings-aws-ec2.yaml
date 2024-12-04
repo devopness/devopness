@@ -9,6 +9,10 @@ properties:
     type: string
     description: 'Datacenter region where the cloud instance will be launched'
     example: us-east-1
+  region_human_readable:
+    type: string
+    description: 'Human readable version of the server region'
+    example: 'US East (N. Virginia) us-east-1'
   storage_size:
     type: integer
     description: "The storage's size of the cloud instance"

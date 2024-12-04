@@ -5,5 +5,9 @@ properties:
     description: 'The cloud provider region where the network will be created'
     type: string
     example: global
+  region_human_readable:
+    description: 'Human readable version of the network region'
+    type: string
+    example: Global
 required:
   - region

@@ -5,6 +5,10 @@ properties:
     description: 'The cloud provider region where the network will be created'
     type: string
     example: us-east-1
+  region_human_readable:
+    description: 'Human readable version of the network region'
+    type: string
+    example: 'US East (N. Virginia) us-east-1'
   cidr_block:
     description: 'The IP CIDR range of the network'
     type: string

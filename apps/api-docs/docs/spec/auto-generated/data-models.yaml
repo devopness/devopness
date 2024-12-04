@@ -123,6 +123,8 @@ CloudResourceTypeList:
   $ref: ./auto-generated/models/cloud-resource-type-list.yaml
 CloudServiceSettingsAwsEc2:
   $ref: ./auto-generated/models/cloud-service-settings-aws-ec2.yaml
+CloudServiceSettingsAzureRm:
+  $ref: ./auto-generated/models/cloud-service-settings-azure-rm.yaml
 CloudServiceSettingsDigitalOceanDroplet:
   $ref: ./auto-generated/models/cloud-service-settings-digital-ocean-droplet.yaml
 CloudServiceSettingsGcpGce:
@@ -313,6 +315,8 @@ NetworkProvisionInputSettings:
   $ref: ./auto-generated/models/network-provision-input-settings.yaml
 NetworkProvisionInputSettingsAws:
   $ref: ./auto-generated/models/network-provision-input-settings-aws.yaml
+NetworkProvisionInputSettingsAzure:
+  $ref: ./auto-generated/models/network-provision-input-settings-azure.yaml
 NetworkProvisionInputSettingsDigitalOcean:
   $ref: ./auto-generated/models/network-provision-input-settings-digital-ocean.yaml
 NetworkProvisionInputSettingsGcp:

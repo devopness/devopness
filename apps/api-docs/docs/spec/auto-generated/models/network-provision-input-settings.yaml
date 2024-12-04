@@ -4,6 +4,8 @@ oneOf:
   -
     $ref: '#/components/schemas/NetworkProvisionInputSettingsAws'
   -
+    $ref: '#/components/schemas/NetworkProvisionInputSettingsAzure'
+  -
     $ref: '#/components/schemas/NetworkProvisionInputSettingsDigitalOcean'
   -
     $ref: '#/components/schemas/NetworkProvisionInputSettingsGcp'
