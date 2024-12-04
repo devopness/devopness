@@ -33,6 +33,12 @@ export interface CloudServiceSettingsAwsEc2 {
      */
     region: string;
     /**
+     * Human readable version of the server region
+     * @type {string}
+     * @memberof CloudServiceSettingsAwsEc2
+     */
+    region_human_readable?: string;
+    /**
      * The storage\'s size of the cloud instance
      * @type {number}
      * @memberof CloudServiceSettingsAwsEc2

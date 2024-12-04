@@ -16,20 +16,26 @@
 /**
  * 
  * @export
- * @interface NetworkProvisionInputSettingsGcp
+ * @interface NetworkProvisionInputSettingsAzure
  */
-export interface NetworkProvisionInputSettingsGcp {
+export interface NetworkProvisionInputSettingsAzure {
     /**
      * The cloud provider region where the network will be created
      * @type {string}
-     * @memberof NetworkProvisionInputSettingsGcp
+     * @memberof NetworkProvisionInputSettingsAzure
      */
     region: string;
     /**
      * Human readable version of the network region
      * @type {string}
-     * @memberof NetworkProvisionInputSettingsGcp
+     * @memberof NetworkProvisionInputSettingsAzure
      */
     region_human_readable?: string;
+    /**
+     * The IP CIDR range of the network
+     * @type {string}
+     * @memberof NetworkProvisionInputSettingsAzure
+     */
+    cidr_block: string;
 }
 

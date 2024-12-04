@@ -26,6 +26,12 @@ export interface NetworkProvisionInputSettingsAws {
      */
     region: string;
     /**
+     * Human readable version of the network region
+     * @type {string}
+     * @memberof NetworkProvisionInputSettingsAws
+     */
+    region_human_readable?: string;
+    /**
      * The IP CIDR range of the network
      * @type {string}
      * @memberof NetworkProvisionInputSettingsAws
