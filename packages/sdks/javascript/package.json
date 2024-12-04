@@ -68,7 +68,7 @@
   },
   "dependencies": {
     "@types/parse-link-header": "^2.0.3",
-    "axios": "^1.7.2",
+    "axios": "^1.7.9",
     "parse-link-header": "^2.0.0"
   }
 }
