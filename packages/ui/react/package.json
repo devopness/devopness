@@ -119,6 +119,8 @@
   },
   "overrides": {
     "styled-components": "$styled-components",
-    "vite": "$vite"
+    "vitest": {
+      "vite": "$vite"
+    }
   }
 }
