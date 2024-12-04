@@ -51,7 +51,7 @@ export interface Variable {
      * @type {string}
      * @memberof Variable
      */
-    value: string;
+    value: string | null;
     /**
      * 
      * @type {VariableTarget}

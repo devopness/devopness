@@ -1,6 +1,6 @@
 {
   "name": "@devopness/sdk-js",
-  "version": "2.149.0",
+  "version": "2.150.0",
   "publishConfig": {
     "access": "public"
   },
@@ -68,7 +68,7 @@
   },
   "dependencies": {
     "@types/parse-link-header": "^2.0.3",
-    "axios": "^1.7.2",
+    "axios": "^1.7.9",
     "parse-link-header": "^2.0.0"
   }
 }
