@@ -77,7 +77,7 @@
     "@storybook/manager-api": "^8.3.4",
     "@storybook/react": "^8.3.4",
     "@storybook/react-vite": "^8.3.4",
-    "@storybook/test": "^8.4.5",
+    "@storybook/test": "^8.4.6",
     "@storybook/theming": "^8.3.4",
     "@testing-library/react": "^16.0.1",
     "@types/lodash": "^4.17.13",
