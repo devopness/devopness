@@ -20423,7 +20423,14 @@
           "name": {
             "description": "The pipeline step's name",
             "example": "Extra step before build app",
-            "type": "string"
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "description": "The pipeline step's description",
+            "example": "This is an extra step before build application.",
+            "type": "string",
+            "nullable": true
           },
           "type": {
             "description": "The pipeline step's type",
@@ -20481,7 +20488,6 @@
         },
         "required": [
           "id",
-          "name",
           "type",
           "run_as_user",
           "command",
@@ -20509,6 +20515,11 @@
             "example": "Extra step before build app",
             "type": "string"
           },
+          "description": {
+            "description": "A short text describing the command. Can be helpful for other team members to understand why a pipeline step is needed. Must not be greater than 255 characters.",
+            "example": "This is an extra step before build application.",
+            "type": "string"
+          },
           "type": {
             "description": "The pipeline step's type. Must not be greater than 20 characters.",
             "example": "default-step",
@@ -20529,7 +20540,6 @@
           }
         },
         "required": [
-          "name",
           "command",
           "runner"
         ]
@@ -20545,6 +20555,11 @@
           "name": {
             "description": "Name/short description of the script. Must be at least 4 characters. Must not be greater than 60 characters.",
             "example": "Extra step before build app",
+            "type": "string"
+          },
+          "description": {
+            "description": "A short text describing the command. Can be helpful for other team members to understand why a pipeline step is needed. Must not be greater than 255 characters.",
+            "example": "This is an extra step before build application.",
             "type": "string"
           },
           "type": {
@@ -20573,7 +20588,6 @@
         },
         "required": [
           "id",
-          "name",
           "command",
           "runner"
         ]
