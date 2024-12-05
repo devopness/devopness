@@ -9,6 +9,12 @@ properties:
     description: "The pipeline step's name"
     example: 'Extra step before build app'
     type: string
+    nullable: true
+  description:
+    description: "The pipeline step's description"
+    example: 'This is an extra step before build application.'
+    type: string
+    nullable: true
   type:
     description: "The pipeline step's type"
     example: default-step
@@ -53,7 +59,6 @@ properties:
     type: string
 required:
   - id
-  - name
   - type
   - run_as_user
   - command

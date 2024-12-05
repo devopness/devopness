@@ -9,6 +9,10 @@ properties:
     description: 'Name/short description of the script. Must be at least 4 characters. Must not be greater than 60 characters.'
     example: 'Extra step before build app'
     type: string
+  description:
+    description: 'A short text describing the command. Can be helpful for other team members to understand why a pipeline step is needed. Must not be greater than 255 characters.'
+    example: 'This is an extra step before build application.'
+    type: string
   type:
     description: "The pipeline step's type. Must not be greater than 20 characters."
     example: default-step
@@ -29,6 +33,5 @@ properties:
     type: integer
 required:
   - id
-  - name
   - command
   - runner
