@@ -5,6 +5,10 @@ properties:
     description: 'The cloud provider region where the subnet will be created'
     type: string
     example: ams2
+  region_human_readable:
+    description: 'Human readable version of the subnet region'
+    type: string
+    example: 'Amsterdam 2 ams2'
   cidr_block:
     description: 'The IP CIDR range of the subnet'
     type: string

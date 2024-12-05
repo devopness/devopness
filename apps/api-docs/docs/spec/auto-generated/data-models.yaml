@@ -635,6 +635,8 @@ SubnetProvisionInputSettings:
   $ref: ./auto-generated/models/subnet-provision-input-settings.yaml
 SubnetProvisionInputSettingsAws:
   $ref: ./auto-generated/models/subnet-provision-input-settings-aws.yaml
+SubnetProvisionInputSettingsAzure:
+  $ref: ./auto-generated/models/subnet-provision-input-settings-azure.yaml
 SubnetProvisionInputSettingsDigitalOcean:
   $ref: ./auto-generated/models/subnet-provision-input-settings-digital-ocean.yaml
 SubnetProvisionInputSettingsGcp:

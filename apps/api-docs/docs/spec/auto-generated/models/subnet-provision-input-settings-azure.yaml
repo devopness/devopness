@@ -4,15 +4,14 @@ properties:
   region:
     description: 'The cloud provider region where the subnet will be created'
     type: string
-    example: us-west1
+    example: southindia
   region_human_readable:
     description: 'Human readable version of the subnet region'
     type: string
-    example: 'Oregon us-west1'
+    example: '(Asia Pacific) South India southindia'
   cidr_block:
     description: 'The IP CIDR range of the subnet'
     type: string
-    example: 10.2.0.0/24
+    example: 10.0.0.0/24
 required:
-  - region
   - cidr_block

@@ -4,6 +4,8 @@ oneOf:
   -
     $ref: '#/components/schemas/SubnetProvisionInputSettingsAws'
   -
+    $ref: '#/components/schemas/SubnetProvisionInputSettingsAzure'
+  -
     $ref: '#/components/schemas/SubnetProvisionInputSettingsDigitalOcean'
   -
     $ref: '#/components/schemas/SubnetProvisionInputSettingsGcp'

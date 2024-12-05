@@ -2,6 +2,7 @@
 type: string
 enum:
   - aws-ec2
+  - azure-rm
   - digitalocean-droplet
   - gcp-gce
   - self-hosted-custom
