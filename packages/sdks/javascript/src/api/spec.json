@@ -13606,6 +13606,7 @@
         "type": "string",
         "enum": [
           "aws-ec2",
+          "azure-rm",
           "digitalocean-droplet",
           "gcp-gce",
           "self-hosted-custom"
@@ -20698,6 +20699,9 @@
             "$ref": "#/components/schemas/SubnetProvisionInputSettingsAws"
           },
           {
+            "$ref": "#/components/schemas/SubnetProvisionInputSettingsAzure"
+          },
+          {
             "$ref": "#/components/schemas/SubnetProvisionInputSettingsDigitalOcean"
           },
           {
@@ -20708,6 +20712,16 @@
       "SubnetProvisionInputSettingsAws": {
         "type": "object",
         "properties": {
+          "region": {
+            "description": "The cloud provider region where the subnet will be created",
+            "type": "string",
+            "example": "us-east-1"
+          },
+          "region_human_readable": {
+            "description": "Human readable version of the subnet region",
+            "type": "string",
+            "example": "US East (N. Virginia) us-east-1"
+          },
           "zone": {
             "description": "The cloud provider availability zone where the subnet will be created",
             "type": "string",
@@ -20724,6 +20738,29 @@
           "cidr_block"
         ]
       },
+      "SubnetProvisionInputSettingsAzure": {
+        "type": "object",
+        "properties": {
+          "region": {
+            "description": "The cloud provider region where the subnet will be created",
+            "type": "string",
+            "example": "southindia"
+          },
+          "region_human_readable": {
+            "description": "Human readable version of the subnet region",
+            "type": "string",
+            "example": "(Asia Pacific) South India southindia"
+          },
+          "cidr_block": {
+            "description": "The IP CIDR range of the subnet",
+            "type": "string",
+            "example": "10.0.0.0/24"
+          }
+        },
+        "required": [
+          "cidr_block"
+        ]
+      },
       "SubnetProvisionInputSettingsDigitalOcean": {
         "type": "object",
         "properties": {
@@ -20731,6 +20768,11 @@
             "description": "The cloud provider region where the subnet will be created",
             "type": "string",
             "example": "ams2"
+          },
+          "region_human_readable": {
+            "description": "Human readable version of the subnet region",
+            "type": "string",
+            "example": "Amsterdam 2 ams2"
           },
           "cidr_block": {
             "description": "The IP CIDR range of the subnet",
@@ -20750,6 +20792,11 @@
             "description": "The cloud provider region where the subnet will be created",
             "type": "string",
             "example": "us-west1"
+          },
+          "region_human_readable": {
+            "description": "Human readable version of the subnet region",
+            "type": "string",
+            "example": "Oregon us-west1"
           },
           "cidr_block": {
             "description": "The IP CIDR range of the subnet",
