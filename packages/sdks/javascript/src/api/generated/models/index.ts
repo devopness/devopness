@@ -244,6 +244,7 @@ export * from './subnet-network-create';
 export * from './subnet-provision-input';
 export * from './subnet-provision-input-settings';
 export * from './subnet-provision-input-settings-aws';
+export * from './subnet-provision-input-settings-azure';
 export * from './subnet-provision-input-settings-digital-ocean';
 export * from './subnet-provision-input-settings-gcp';
 export * from './subnet-relation';
