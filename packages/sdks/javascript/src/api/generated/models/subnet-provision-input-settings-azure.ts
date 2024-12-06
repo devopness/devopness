@@ -16,25 +16,25 @@
 /**
  * 
  * @export
- * @interface SubnetProvisionInputSettingsDigitalOcean
+ * @interface SubnetProvisionInputSettingsAzure
  */
-export interface SubnetProvisionInputSettingsDigitalOcean {
+export interface SubnetProvisionInputSettingsAzure {
     /**
      * The cloud provider region where the subnet will be created
      * @type {string}
-     * @memberof SubnetProvisionInputSettingsDigitalOcean
+     * @memberof SubnetProvisionInputSettingsAzure
      */
-    region: string;
+    region?: string;
     /**
      * Human readable version of the subnet region
      * @type {string}
-     * @memberof SubnetProvisionInputSettingsDigitalOcean
+     * @memberof SubnetProvisionInputSettingsAzure
      */
     region_human_readable?: string;
     /**
      * The IP CIDR range of the subnet
      * @type {string}
-     * @memberof SubnetProvisionInputSettingsDigitalOcean
+     * @memberof SubnetProvisionInputSettingsAzure
      */
     cidr_block: string;
 }

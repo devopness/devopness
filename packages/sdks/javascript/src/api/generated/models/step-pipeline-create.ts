@@ -25,7 +25,13 @@ export interface StepPipelineCreate {
      * @type {string}
      * @memberof StepPipelineCreate
      */
-    name: string;
+    name?: string;
+    /**
+     * A short text describing the command. Can be helpful for other team members to understand why a pipeline step is needed. Must not be greater than 255 characters.
+     * @type {string}
+     * @memberof StepPipelineCreate
+     */
+    description?: string;
     /**
      * The pipeline step\'s type. Must not be greater than 20 characters.
      * @type {string}

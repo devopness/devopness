@@ -13606,6 +13606,7 @@
         "type": "string",
         "enum": [
           "aws-ec2",
+          "azure-rm",
           "digitalocean-droplet",
           "gcp-gce",
           "self-hosted-custom"
@@ -20422,7 +20423,14 @@
           "name": {
             "description": "The pipeline step's name",
             "example": "Extra step before build app",
-            "type": "string"
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "description": "The pipeline step's description",
+            "example": "This is an extra step before build application.",
+            "type": "string",
+            "nullable": true
           },
           "type": {
             "description": "The pipeline step's type",
@@ -20480,7 +20488,6 @@
         },
         "required": [
           "id",
-          "name",
           "type",
           "run_as_user",
           "command",
@@ -20508,6 +20515,11 @@
             "example": "Extra step before build app",
             "type": "string"
           },
+          "description": {
+            "description": "A short text describing the command. Can be helpful for other team members to understand why a pipeline step is needed. Must not be greater than 255 characters.",
+            "example": "This is an extra step before build application.",
+            "type": "string"
+          },
           "type": {
             "description": "The pipeline step's type. Must not be greater than 20 characters.",
             "example": "default-step",
@@ -20528,7 +20540,6 @@
           }
         },
         "required": [
-          "name",
           "command",
           "runner"
         ]
@@ -20544,6 +20555,11 @@
           "name": {
             "description": "Name/short description of the script. Must be at least 4 characters. Must not be greater than 60 characters.",
             "example": "Extra step before build app",
+            "type": "string"
+          },
+          "description": {
+            "description": "A short text describing the command. Can be helpful for other team members to understand why a pipeline step is needed. Must not be greater than 255 characters.",
+            "example": "This is an extra step before build application.",
             "type": "string"
           },
           "type": {
@@ -20572,7 +20588,6 @@
         },
         "required": [
           "id",
-          "name",
           "command",
           "runner"
         ]
@@ -20698,6 +20713,9 @@
             "$ref": "#/components/schemas/SubnetProvisionInputSettingsAws"
           },
           {
+            "$ref": "#/components/schemas/SubnetProvisionInputSettingsAzure"
+          },
+          {
             "$ref": "#/components/schemas/SubnetProvisionInputSettingsDigitalOcean"
           },
           {
@@ -20708,6 +20726,16 @@
       "SubnetProvisionInputSettingsAws": {
         "type": "object",
         "properties": {
+          "region": {
+            "description": "The cloud provider region where the subnet will be created",
+            "type": "string",
+            "example": "us-east-1"
+          },
+          "region_human_readable": {
+            "description": "Human readable version of the subnet region",
+            "type": "string",
+            "example": "US East (N. Virginia) us-east-1"
+          },
           "zone": {
             "description": "The cloud provider availability zone where the subnet will be created",
             "type": "string",
@@ -20724,6 +20752,29 @@
           "cidr_block"
         ]
       },
+      "SubnetProvisionInputSettingsAzure": {
+        "type": "object",
+        "properties": {
+          "region": {
+            "description": "The cloud provider region where the subnet will be created",
+            "type": "string",
+            "example": "southindia"
+          },
+          "region_human_readable": {
+            "description": "Human readable version of the subnet region",
+            "type": "string",
+            "example": "(Asia Pacific) South India southindia"
+          },
+          "cidr_block": {
+            "description": "The IP CIDR range of the subnet",
+            "type": "string",
+            "example": "10.0.0.0/24"
+          }
+        },
+        "required": [
+          "cidr_block"
+        ]
+      },
       "SubnetProvisionInputSettingsDigitalOcean": {
         "type": "object",
         "properties": {
@@ -20731,6 +20782,11 @@
             "description": "The cloud provider region where the subnet will be created",
             "type": "string",
             "example": "ams2"
+          },
+          "region_human_readable": {
+            "description": "Human readable version of the subnet region",
+            "type": "string",
+            "example": "Amsterdam 2 ams2"
           },
           "cidr_block": {
             "description": "The IP CIDR range of the subnet",
@@ -20750,6 +20806,11 @@
             "description": "The cloud provider region where the subnet will be created",
             "type": "string",
             "example": "us-west1"
+          },
+          "region_human_readable": {
+            "description": "Human readable version of the subnet region",
+            "type": "string",
+            "example": "Oregon us-west1"
           },
           "cidr_block": {
             "description": "The IP CIDR range of the subnet",
