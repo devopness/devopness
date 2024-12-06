@@ -4,16 +4,16 @@
 
 ### Minor Changes
 
-- [#1061](https://github.com/devopness/devopness/pull/1061) [`d917573`](https://github.com/devopness/devopness/commit/d917573f811c25f51356830e4808e0e4d9764ccf) Thanks [@devopness-automations](https://github.com/devopness-automations)! - **Add** Azure RM in `CloudProviderServices` highlighting support for Azure RM as a cloud service
+- [#1061](https://github.com/devopness/devopness/pull/1061) [`d917573`](https://github.com/devopness/devopness/commit/d917573f811c25f51356830e4808e0e4d9764ccf) Thanks [@Diegiwg](https://github.com/Diegiwg)! - **Add** Azure RM in `CloudProviderServices` highlighting support for Azure RM as a cloud service
 
-- [#1061](https://github.com/devopness/devopness/pull/1061) [`d917573`](https://github.com/devopness/devopness/commit/d917573f811c25f51356830e4808e0e4d9764ccf) Thanks [@devopness-automations](https://github.com/devopness-automations)! - **Add** the `region_human_readable` field to `SubnetProvisionInput` providing users with more context about the selected region
+- [#1061](https://github.com/devopness/devopness/pull/1061) [`d917573`](https://github.com/devopness/devopness/commit/d917573f811c25f51356830e4808e0e4d9764ccf) Thanks [@Diegiwg](https://github.com/Diegiwg)! - **Add** the `region_human_readable` field to `SubnetProvisionInput` providing users with more context about the selected region
 
-- [#1063](https://github.com/devopness/devopness/pull/1063) [`e8d5df6`](https://github.com/devopness/devopness/commit/e8d5df641b684ceaf9232c5803f5181851d2a357) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Enhancements to Pipeline Step creation and editing
+- [#1063](https://github.com/devopness/devopness/pull/1063) [`e8d5df6`](https://github.com/devopness/devopness/commit/e8d5df641b684ceaf9232c5803f5181851d2a357) Thanks [@souz4-my](https://github.com/souz4-my)! - Enhancements to Pipeline Step creation and editing
 
   - The `Name` field is now optional (nullable) when creating/editing a Pipeline Step.
   - Added a `Description` field for creating/editing Pipeline Steps, also optional (nullable).
 
-- [#1061](https://github.com/devopness/devopness/pull/1061) [`d917573`](https://github.com/devopness/devopness/commit/d917573f811c25f51356830e4808e0e4d9764ccf) Thanks [@devopness-automations](https://github.com/devopness-automations)! - **Create** Azure-specific models for `SubnetProvisionInput` highlighting support for Azure as a cloud provider
+- [#1061](https://github.com/devopness/devopness/pull/1061) [`d917573`](https://github.com/devopness/devopness/commit/d917573f811c25f51356830e4808e0e4d9764ccf) Thanks [@Diegiwg](https://github.com/Diegiwg)! - **Create** Azure-specific models for `SubnetProvisionInput` highlighting support for Azure as a cloud provider
 
 ## 2.150.0
 
