@@ -308,6 +308,9 @@
 '/servers/{server_id}/restart':
   post:
     $ref: ./auto-generated/endpoints/restart-server.yaml
+'/servers/{server_id}/rotate-key':
+  post:
+    $ref: ./auto-generated/endpoints/rotate-key-server.yaml
 '/servers/{server_id}/start':
   post:
     $ref: ./auto-generated/endpoints/start-server.yaml

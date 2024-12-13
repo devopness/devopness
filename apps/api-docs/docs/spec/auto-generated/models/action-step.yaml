@@ -19,6 +19,12 @@ properties:
     type: string
     description: 'Name of the action describing your purpose'
     example: 'Setting up cron job'
+    nullable: true
+  description:
+    type: string
+    description: 'A short text describing the command. Can be helpful for other team members to understand why a pipeline step is needed.'
+    example: 'Setting up cron job for daily execution at 00:00'
+    nullable: true
   order:
     type: integer
     description: 'The execution order of the given step'
