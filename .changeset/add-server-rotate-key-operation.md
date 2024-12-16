@@ -2,4 +2,4 @@
 "@devopness/sdk-js": minor
 ---
 
-- Add operation server:rotote-key
+- Add operation server:rotate-key
