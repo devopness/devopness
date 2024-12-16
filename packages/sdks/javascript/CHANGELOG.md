@@ -1,5 +1,13 @@
 # @devopness/sdk-js
 
+## 2.152.0
+
+### Minor Changes
+
+- [#1087](https://github.com/devopness/devopness/pull/1087) [`10f296c`](https://github.com/devopness/devopness/commit/10f296cb5334e40b4c41e28e0fbdeef1748eed75) Thanks [@devopness-automations](https://github.com/devopness-automations)! - - Added `description` field to `ActionStep` model, so users can understand what's the purpose of a custom pipeline step created by a team member
+
+- [#1087](https://github.com/devopness/devopness/pull/1087) [`10f296c`](https://github.com/devopness/devopness/commit/10f296cb5334e40b4c41e28e0fbdeef1748eed75) Thanks [@devopness-automations](https://github.com/devopness-automations)! - - Add operation server:rotate-key
+
 ## 2.151.0
 
 ### Minor Changes
