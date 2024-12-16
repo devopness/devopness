@@ -7407,6 +7407,63 @@
         }
       }
     },
+    "/servers/{server_id}/rotate-key": {
+      "post": {
+        "summary": "Rotate the key used to access the server",
+        "operationId": "rotateKeyServer",
+        "tags": [
+          "Servers"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "server_id",
+            "description": "The ID of the server.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified resource was not found"
+          }
+        }
+      }
+    },
     "/servers/{server_id}/start": {
       "post": {
         "summary": "Start a previously stopped server",
@@ -12283,7 +12340,14 @@
           "name": {
             "type": "string",
             "description": "Name of the action describing your purpose",
-            "example": "Setting up cron job"
+            "example": "Setting up cron job",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "A short text describing the command. Can be helpful for other team members to understand why a pipeline step is needed.",
+            "example": "Setting up cron job for daily execution at 00:00",
+            "nullable": true
           },
           "order": {
             "type": "integer",
