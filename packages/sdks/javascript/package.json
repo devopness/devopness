@@ -56,7 +56,7 @@
     "@types/jest": "^29.5.12",
     "@typescript-eslint/eslint-plugin": "^5.31.0",
     "axios-mock-adapter": "^2.1.0",
-    "eslint": "^7.32.0",
+    "eslint": "^9.17.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^7.2.1",
