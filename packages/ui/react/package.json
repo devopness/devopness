@@ -65,7 +65,7 @@
     "framer-motion": "^11.13.1",
     "ldrs": "^1.0.2",
     "lodash": "^4.17.21",
-    "material-ui-popup-state": "^5.3.1",
+    "material-ui-popup-state": "^5.3.3",
     "path-browserify": "^1.0.1",
     "styled-components": "^6.1.13"
   },
