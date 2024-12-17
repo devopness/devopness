@@ -62,7 +62,7 @@
     "@mui/material": "^6.2.0",
     "@mui/styled-engine-sc": "^6.2.0",
     "@react-icons/all-files": "https://github.com/react-icons/react-icons/releases/download/v5.2.1/react-icons-all-files-5.2.1.tgz",
-    "framer-motion": "^11.13.1",
+    "framer-motion": "^11.15.0",
     "ldrs": "^1.0.2",
     "lodash": "^4.17.21",
     "material-ui-popup-state": "^5.3.1",
