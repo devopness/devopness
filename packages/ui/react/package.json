@@ -70,7 +70,7 @@
     "styled-components": "^6.1.13"
   },
   "devDependencies": {
-    "@emotion/styled": "^11.13.5",
+    "@emotion/styled": "^11.14.0",
     "@eslint/js": "^9.16.0",
     "@storybook/addon-essentials": "^8.4.7",
     "@storybook/blocks": "^8.4.7",
