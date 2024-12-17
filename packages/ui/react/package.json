@@ -71,7 +71,7 @@
   },
   "devDependencies": {
     "@emotion/styled": "^11.13.5",
-    "@eslint/js": "^9.16.0",
+    "@eslint/js": "^9.17.0",
     "@storybook/addon-essentials": "^8.4.7",
     "@storybook/blocks": "^8.4.7",
     "@storybook/manager-api": "^8.4.7",
