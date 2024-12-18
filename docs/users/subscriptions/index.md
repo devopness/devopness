@@ -30,13 +30,13 @@ Each Devopness user account receives a certain amount of credits monthly, depend
 
 Credits are consumed from the project owner’s account: if you are collaborating on somebody else’s project as a team member, but you’re not the owner of that project, then your credits will not be consumed when working on that project.
 
-For details, see Usage limits and our {% mentionPost "/docs/users/subscriptions/faq" %}
+For details, see Usage limits and our [`/docs/users/subscriptions/faq`](/docs/users/subscriptions/faq)
 
 ## Billing date and subscription renewal
-You can view your account's subscription details, payment history and your next billing date in your account's billing settings at {% mentionPost "/docs/users/subscriptions/upgrade-subscription" %}
+You can view your account's subscription details, payment history and your next billing date in your account's billing settings at [`/docs/users/subscriptions/upgrade-subscription`](/docs/users/subscriptions/upgrade-subscription)
 
 ## Billing settings
-You can manage your billing settings, such as subscription plans and payment methods in your account's billing settings at {% mentionPost "/docs/users/subscriptions/upgrade-subscription" %}
+You can manage your billing settings, such as subscription plans and payment methods in your account's billing settings at [`/docs/users/subscriptions/upgrade-subscription`](/docs/users/subscriptions/upgrade-subscription)
 
 ## Overages
 At the moment Devopness does not allow usage-based billing, so user projects cannot consume more credits than the amount included in the user’s active subscription plan.
@@ -65,4 +65,4 @@ Below you have a table with the current applied limits, per plan, followed by an
 - **Max execution time, per action step**: Each pipeline step executed by an action can run for up to 15 minutes of execution time. If an action step reaches this limit, the step is moved to the “failed” status and the action fails to complete.
 
 ## Usage policy
-In addition to the usage limits, you must ensure that you use Devopness within our {% mentionPost "/docs/legal/terms-of-service" %}
+In addition to the usage limits, you must ensure that you use Devopness within our [`/docs/legal/terms-of-service`](/docs/legal/terms-of-service)

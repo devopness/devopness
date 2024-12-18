@@ -13,7 +13,7 @@ links:
 
 ## Getting Started
 
-To get started with Devopness, follow the guide {% mentionPost "/docs/projects/add-project" %}
+To get started with Devopness, follow the guide [`/docs/projects/add-project`](/docs/projects/add-project)
 
 ## Get Help
 
@@ -21,4 +21,4 @@ If you run into an issue, contact our [Community Support](https://github.com/dev
 
 ## Report a Vulnerability
 
-If you found a vulnerability in our products, follow the guide {% mentionPost "/docs/security/reporting-a-security-vulnerability" %}
+If you found a vulnerability in our products, follow the guide [`/docs/security/reporting-a-security-vulnerability`](/docs/security/reporting-a-security-vulnerability)

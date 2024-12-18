@@ -21,7 +21,7 @@ required_permissions:
 1. On the upper-right corner of the list click `ADD SSH KEY`
 1. Provide a name to the `SSH Key` being added. For example, "Company Laptop"
 1. Paste in the public key
-    - If you want to create a new key, see {% mentionPost "/docs/ssh-keys/create-ssh-key-pair" %} for instruction on how to create a public key
+    - If you want to create a new key, see [`/docs/ssh-keys/create-ssh-key-pair`](/docs/ssh-keys/create-ssh-key-pair) for instruction on how to create a public key
 1. Click `NEXT`
 1. Follow the prompts to complete the configuration of the new `SSH Key`
 1. Click `CONFIRM`
