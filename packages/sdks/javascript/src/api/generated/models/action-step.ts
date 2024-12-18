@@ -44,7 +44,13 @@ export interface ActionStep {
      * @type {string}
      * @memberof ActionStep
      */
-    name: string;
+    name: string | null;
+    /**
+     * A short text describing the command. Can be helpful for other team members to understand why a pipeline step is needed.
+     * @type {string}
+     * @memberof ActionStep
+     */
+    description?: string | null;
     /**
      * The execution order of the given step
      * @type {number}

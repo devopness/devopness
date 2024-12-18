@@ -31,7 +31,13 @@ export interface Step {
      * @type {string}
      * @memberof Step
      */
-    name: string;
+    name?: string | null;
+    /**
+     * The pipeline step\'s description
+     * @type {string}
+     * @memberof Step
+     */
+    description?: string | null;
     /**
      * The pipeline step\'s type
      * @type {string}

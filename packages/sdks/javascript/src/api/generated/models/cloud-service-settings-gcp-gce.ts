@@ -33,6 +33,12 @@ export interface CloudServiceSettingsGcpGce {
      */
     region: string;
     /**
+     * Human readable version of the server region
+     * @type {string}
+     * @memberof CloudServiceSettingsGcpGce
+     */
+    region_human_readable?: string;
+    /**
      * 
      * @type {CloudOsVersionCode}
      * @memberof CloudServiceSettingsGcpGce

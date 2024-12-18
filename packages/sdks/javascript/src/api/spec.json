@@ -7407,6 +7407,63 @@
         }
       }
     },
+    "/servers/{server_id}/rotate-key": {
+      "post": {
+        "summary": "Rotate the key used to access the server",
+        "operationId": "rotateKeyServer",
+        "tags": [
+          "Servers"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "server_id",
+            "description": "The ID of the server.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified resource was not found"
+          }
+        }
+      }
+    },
     "/servers/{server_id}/start": {
       "post": {
         "summary": "Start a previously stopped server",
@@ -12283,7 +12340,14 @@
           "name": {
             "type": "string",
             "description": "Name of the action describing your purpose",
-            "example": "Setting up cron job"
+            "example": "Setting up cron job",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "A short text describing the command. Can be helpful for other team members to understand why a pipeline step is needed.",
+            "example": "Setting up cron job for daily execution at 00:00",
+            "nullable": true
           },
           "order": {
             "type": "integer",
@@ -12986,6 +13050,9 @@
       "ApplicationOptions": {
         "type": "object",
         "properties": {
+          "variable_targets": {
+            "$ref": "#/components/schemas/VariableTargetList"
+          },
           "language_runtimes": {
             "$ref": "#/components/schemas/LanguageRuntimeList"
           },
@@ -12994,6 +13061,7 @@
           }
         },
         "required": [
+          "variable_targets",
           "language_runtimes",
           "script_runners"
         ]
@@ -13450,7 +13518,7 @@
           "name": {
             "type": "string",
             "description": "Name of the property",
-            "example": "access_key"
+            "example": "access_key_id"
           },
           "name_human_readable": {
             "type": "string",
@@ -13602,6 +13670,7 @@
         "type": "string",
         "enum": [
           "aws-ec2",
+          "azure-rm",
           "digitalocean-droplet",
           "gcp-gce",
           "self-hosted-custom"
@@ -13753,10 +13822,49 @@
             "description": "Datacenter region where the cloud instance will be launched",
             "example": "us-east-1"
           },
+          "region_human_readable": {
+            "type": "string",
+            "description": "Human readable version of the server region",
+            "example": "US East (N. Virginia) us-east-1"
+          },
           "storage_size": {
             "type": "integer",
             "description": "The storage's size of the cloud instance",
             "example": 32
+          },
+          "os_version_code": {
+            "$ref": "#/components/schemas/CloudOsVersionCode"
+          }
+        },
+        "required": [
+          "region",
+          "instance_type",
+          "storage_size",
+          "os_version_code"
+        ]
+      },
+      "CloudServiceSettingsAzureRm": {
+        "type": "object",
+        "properties": {
+          "instance_type": {
+            "type": "string",
+            "description": "The instance type to be launched on the cloud provider",
+            "example": "Standard_B1ls"
+          },
+          "region": {
+            "type": "string",
+            "description": "Datacenter region where the cloud instance will be launched",
+            "example": "brazilsouth"
+          },
+          "region_human_readable": {
+            "type": "string",
+            "description": "Human readable version of the server region",
+            "example": "(South America) Brazil South brazilsouth"
+          },
+          "storage_size": {
+            "type": "integer",
+            "description": "The storage's size of the cloud instance",
+            "example": 30
           },
           "os_version_code": {
             "$ref": "#/components/schemas/CloudOsVersionCode"
@@ -13782,6 +13890,11 @@
             "description": "Datacenter region where the cloud instance will be launched",
             "example": "nyc1"
           },
+          "region_human_readable": {
+            "type": "string",
+            "description": "Human readable version of the server region",
+            "example": "New York nyc1"
+          },
           "os_version_code": {
             "$ref": "#/components/schemas/CloudOsVersionCode"
           }
@@ -13804,6 +13917,11 @@
             "type": "string",
             "description": "Datacenter region where the cloud instance will be launched",
             "example": "us-east1"
+          },
+          "region_human_readable": {
+            "type": "string",
+            "description": "Human readable version of the server region",
+            "example": "US East (N. Virginia) us-east1"
           },
           "os_version_code": {
             "$ref": "#/components/schemas/CloudOsVersionCode"
@@ -13940,20 +14058,20 @@
       "CredentialAws": {
         "type": "object",
         "properties": {
-          "access_key": {
+          "access_key_id": {
             "type": "string",
             "description": "The key used to authenticate on AWS cloud provider",
             "example": "3dlxAUgbuTJY0AitQMAFHd6JadVRw3rGml"
           },
-          "secret": {
+          "secret_access_key": {
             "type": "string",
             "description": "The secret used to authenticate on AWS cloud provider",
             "example": "my-secret"
           }
         },
         "required": [
-          "access_key",
-          "secret"
+          "access_key_id",
+          "secret_access_key"
         ]
       },
       "CredentialDigitalOcean": {
@@ -14302,7 +14420,7 @@
             "$ref": "#/components/schemas/CronJobPattern"
           },
           "is_auto_generated": {
-            "description": "Indicates if the cron job was auto_generated by `devopness` itself",
+            "description": "Indicates if the cron job was auto_generated by `Devopness` itself",
             "example": false,
             "type": "boolean"
           },
@@ -14455,7 +14573,7 @@
             "$ref": "#/components/schemas/CronJobPattern"
           },
           "is_auto_generated": {
-            "description": "Indicates if the cron job was auto_generated by `devopness` itself",
+            "description": "Indicates if the cron job was auto_generated by `Devopness` itself",
             "example": false,
             "type": "boolean"
           },
@@ -14572,7 +14690,7 @@
             "type": "integer"
           },
           "is_auto_generated": {
-            "description": "Indicates if the daemon was auto_generated by `devopness` itself",
+            "description": "Indicates if the daemon was auto_generated by `Devopness` itself",
             "example": false,
             "type": "boolean"
           },
@@ -14719,7 +14837,7 @@
             "type": "integer"
           },
           "is_auto_generated": {
-            "description": "Indicates if the daemon was auto_generated by `devopness` itself",
+            "description": "Indicates if the daemon was auto_generated by `Devopness` itself",
             "example": false,
             "type": "boolean"
           },
@@ -15229,7 +15347,7 @@
             "nullable": true
           },
           "is_auto_generated": {
-            "description": "Indicates if the record was auto_generated by `devopness` itself",
+            "description": "Indicates if the record was auto_generated by `Devopness` itself",
             "example": false,
             "type": "boolean"
           },
@@ -15529,7 +15647,7 @@
             "nullable": true
           },
           "is_auto_generated": {
-            "description": "Indicates if the record was auto_generated by `devopness` itself",
+            "description": "Indicates if the record was auto_generated by `Devopness` itself",
             "example": false,
             "type": "boolean"
           },
@@ -16593,6 +16711,9 @@
             "$ref": "#/components/schemas/NetworkProvisionInputSettingsAws"
           },
           {
+            "$ref": "#/components/schemas/NetworkProvisionInputSettingsAzure"
+          },
+          {
             "$ref": "#/components/schemas/NetworkProvisionInputSettingsDigitalOcean"
           },
           {
@@ -16607,6 +16728,35 @@
             "description": "The cloud provider region where the network will be created",
             "type": "string",
             "example": "us-east-1"
+          },
+          "region_human_readable": {
+            "description": "Human readable version of the network region",
+            "type": "string",
+            "example": "US East (N. Virginia) us-east-1"
+          },
+          "cidr_block": {
+            "description": "The IP CIDR range of the network",
+            "type": "string",
+            "example": "10.0.0.0/24"
+          }
+        },
+        "required": [
+          "region",
+          "cidr_block"
+        ]
+      },
+      "NetworkProvisionInputSettingsAzure": {
+        "type": "object",
+        "properties": {
+          "region": {
+            "description": "The cloud provider region where the network will be created",
+            "type": "string",
+            "example": "francecentral"
+          },
+          "region_human_readable": {
+            "description": "Human readable version of the network region",
+            "type": "string",
+            "example": "(Europe) France Central francecentral"
           },
           "cidr_block": {
             "description": "The IP CIDR range of the network",
@@ -16627,6 +16777,11 @@
             "type": "string",
             "example": "ams2"
           },
+          "region_human_readable": {
+            "description": "Human readable version of the network region",
+            "type": "string",
+            "example": "Amsterdam 2 ams2"
+          },
           "cidr_block": {
             "description": "The IP CIDR range of the network",
             "type": "string",
@@ -16645,6 +16800,11 @@
             "description": "The cloud provider region where the network will be created",
             "type": "string",
             "example": "global"
+          },
+          "region_human_readable": {
+            "description": "Human readable version of the network region",
+            "type": "string",
+            "example": "Global"
           }
         },
         "required": [
@@ -16753,7 +16913,7 @@
             "type": "string"
           },
           "is_auto_generated": {
-            "description": "Indicates if the network rule was auto_generated by `devopness` itself",
+            "description": "Indicates if the network rule was auto_generated by `Devopness` itself",
             "example": false,
             "type": "boolean"
           },
@@ -16903,7 +17063,7 @@
             "type": "string"
           },
           "is_auto_generated": {
-            "description": "Indicates if the network rule was auto_generated by `devopness` itself",
+            "description": "Indicates if the network rule was auto_generated by `Devopness` itself",
             "example": false,
             "type": "boolean"
           },
@@ -17253,6 +17413,11 @@
             "example": "Deploy",
             "type": "string"
           },
+          "is_auto_generated": {
+            "description": "Indicates if the pipeline was auto_generated by `Devopness` itself",
+            "example": false,
+            "type": "boolean"
+          },
           "max_parallel_actions": {
             "description": "Maximum number of actions that can run in parallel for this pipeline. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run this pipeline.",
             "example": 1,
@@ -17288,6 +17453,7 @@
           "resource_id",
           "operation",
           "operation_human_readable",
+          "is_auto_generated",
           "max_parallel_actions",
           "trigger_when",
           "steps",
@@ -17377,6 +17543,11 @@
             "example": "Deploy",
             "type": "string"
           },
+          "is_auto_generated": {
+            "description": "Indicates if the pipeline was auto_generated by `Devopness` itself",
+            "example": false,
+            "type": "boolean"
+          },
           "max_parallel_actions": {
             "description": "Maximum number of actions that can run in parallel for this pipeline. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run this pipeline.",
             "example": 1,
@@ -17409,6 +17580,7 @@
           "resource_id",
           "operation",
           "operation_human_readable",
+          "is_auto_generated",
           "max_parallel_actions",
           "trigger_when",
           "created_by_user",
@@ -17747,7 +17919,7 @@
           "name": {
             "type": "string",
             "description": "The name of a credential input field",
-            "example": "access_key"
+            "example": "access_key_id"
           },
           "name_human_readable": {
             "type": "string",
@@ -18932,6 +19104,9 @@
                 "$ref": "#/components/schemas/CloudServiceSettingsAwsEc2"
               },
               {
+                "$ref": "#/components/schemas/CloudServiceSettingsAzureRm"
+              },
+              {
                 "$ref": "#/components/schemas/CloudServiceSettingsDigitalOceanDroplet"
               },
               {
@@ -18986,7 +19161,14 @@
           "region": {
             "description": "The region in which the server is located",
             "example": "us-east-1",
-            "type": "string"
+            "type": "string",
+            "nullable": true
+          },
+          "region_human_readable": {
+            "description": "The human readable version of the region",
+            "example": "US East (N. Virginia) us-east-1",
+            "type": "string",
+            "nullable": true
           },
           "ip_address": {
             "description": "Public ipv4 address for server access",
@@ -19028,6 +19210,7 @@
           "provider_name",
           "provider_name_human_readable",
           "region",
+          "region_human_readable",
           "ip_address",
           "ssh_port",
           "active",
@@ -19101,7 +19284,7 @@
             "nullable": true
           },
           "is_auto_generated": {
-            "description": "Indicates if the service was auto_generated by `devopness` itself",
+            "description": "Indicates if the service was auto_generated by `Devopness` itself",
             "example": false,
             "type": "boolean"
           },
@@ -19265,7 +19448,7 @@
             "nullable": true
           },
           "is_auto_generated": {
-            "description": "Indicates if the service was auto_generated by `devopness` itself",
+            "description": "Indicates if the service was auto_generated by `Devopness` itself",
             "example": false,
             "type": "boolean"
           },
@@ -20304,7 +20487,14 @@
           "name": {
             "description": "The pipeline step's name",
             "example": "Extra step before build app",
-            "type": "string"
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "description": "The pipeline step's description",
+            "example": "This is an extra step before build application.",
+            "type": "string",
+            "nullable": true
           },
           "type": {
             "description": "The pipeline step's type",
@@ -20362,7 +20552,6 @@
         },
         "required": [
           "id",
-          "name",
           "type",
           "run_as_user",
           "command",
@@ -20390,6 +20579,11 @@
             "example": "Extra step before build app",
             "type": "string"
           },
+          "description": {
+            "description": "A short text describing the command. Can be helpful for other team members to understand why a pipeline step is needed. Must not be greater than 255 characters.",
+            "example": "This is an extra step before build application.",
+            "type": "string"
+          },
           "type": {
             "description": "The pipeline step's type. Must not be greater than 20 characters.",
             "example": "default-step",
@@ -20410,7 +20604,6 @@
           }
         },
         "required": [
-          "name",
           "command",
           "runner"
         ]
@@ -20426,6 +20619,11 @@
           "name": {
             "description": "Name/short description of the script. Must be at least 4 characters. Must not be greater than 60 characters.",
             "example": "Extra step before build app",
+            "type": "string"
+          },
+          "description": {
+            "description": "A short text describing the command. Can be helpful for other team members to understand why a pipeline step is needed. Must not be greater than 255 characters.",
+            "example": "This is an extra step before build application.",
             "type": "string"
           },
           "type": {
@@ -20454,7 +20652,6 @@
         },
         "required": [
           "id",
-          "name",
           "command",
           "runner"
         ]
@@ -20580,6 +20777,9 @@
             "$ref": "#/components/schemas/SubnetProvisionInputSettingsAws"
           },
           {
+            "$ref": "#/components/schemas/SubnetProvisionInputSettingsAzure"
+          },
+          {
             "$ref": "#/components/schemas/SubnetProvisionInputSettingsDigitalOcean"
           },
           {
@@ -20590,6 +20790,16 @@
       "SubnetProvisionInputSettingsAws": {
         "type": "object",
         "properties": {
+          "region": {
+            "description": "The cloud provider region where the subnet will be created",
+            "type": "string",
+            "example": "us-east-1"
+          },
+          "region_human_readable": {
+            "description": "Human readable version of the subnet region",
+            "type": "string",
+            "example": "US East (N. Virginia) us-east-1"
+          },
           "zone": {
             "description": "The cloud provider availability zone where the subnet will be created",
             "type": "string",
@@ -20606,6 +20816,29 @@
           "cidr_block"
         ]
       },
+      "SubnetProvisionInputSettingsAzure": {
+        "type": "object",
+        "properties": {
+          "region": {
+            "description": "The cloud provider region where the subnet will be created",
+            "type": "string",
+            "example": "southindia"
+          },
+          "region_human_readable": {
+            "description": "Human readable version of the subnet region",
+            "type": "string",
+            "example": "(Asia Pacific) South India southindia"
+          },
+          "cidr_block": {
+            "description": "The IP CIDR range of the subnet",
+            "type": "string",
+            "example": "10.0.0.0/24"
+          }
+        },
+        "required": [
+          "cidr_block"
+        ]
+      },
       "SubnetProvisionInputSettingsDigitalOcean": {
         "type": "object",
         "properties": {
@@ -20613,6 +20846,11 @@
             "description": "The cloud provider region where the subnet will be created",
             "type": "string",
             "example": "ams2"
+          },
+          "region_human_readable": {
+            "description": "Human readable version of the subnet region",
+            "type": "string",
+            "example": "Amsterdam 2 ams2"
           },
           "cidr_block": {
             "description": "The IP CIDR range of the subnet",
@@ -20632,6 +20870,11 @@
             "description": "The cloud provider region where the subnet will be created",
             "type": "string",
             "example": "us-west1"
+          },
+          "region_human_readable": {
+            "description": "Human readable version of the subnet region",
+            "type": "string",
+            "example": "Oregon us-west1"
           },
           "cidr_block": {
             "description": "The IP CIDR range of the subnet",
@@ -21782,7 +22025,8 @@
           "value": {
             "description": "The value to be assigned to this variable when deployed to its target",
             "example": "https://staging.devopness.com",
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "target": {
             "$ref": "#/components/schemas/VariableTarget"
@@ -21945,7 +22189,8 @@
           "value": {
             "description": "The value to be assigned to this variable when deployed to its target",
             "example": "https://staging.devopness.com",
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "target": {
             "$ref": "#/components/schemas/VariableTarget"
@@ -22044,19 +22289,18 @@
         "description": "The target defining how the variable key/value pair will be deployed",
         "type": "string",
         "enum": [
-          "resource-config-file",
-          "nginx-http-server",
           "my-cnf",
           "newrelic-infra-yml",
-          "nginx-conf",
-          "nginx-main",
+          "nginx-http-server",
           "nginx-http",
+          "nginx-main",
           "os-env-var",
           "php-cli_php-ini",
           "php-fpm_php-fpm-conf",
           "php-fpm_php-ini",
           "php-fpm_pool-d-www-conf",
           "redis-conf",
+          "resource-config-file",
           "supervisord-conf",
           "sysctl-conf"
         ],
