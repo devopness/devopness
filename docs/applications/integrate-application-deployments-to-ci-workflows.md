@@ -39,7 +39,7 @@ links:
 
    - For further instructions, follow the guide {% mentionPost "/docs/webhooks/create-outgoing-webhook" %}
 
-   {% raw %}
+   
    ```bash
    curl --request POST \
      --url https://api.devopness.com/pipelines/<pipeline_id>/hooks/outgoing \
@@ -75,11 +75,11 @@ links:
        }
      }'
    ```
-   {% endraw %}
+   
 
 1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /pipelines/:id/hooks/outgoing` to create an outgoing webhook for the `action.failed` event. In the example below, replace `<pipeline_id>`, `<target_url>`, `<request_headers>` and `<request_body>` with the actual values of each parameter before submitting the request.
 
-   {% raw %}
+   
    ```bash
    curl --request POST \
      --url https://api.devopness.com/pipelines/<pipeline_id>/hooks/outgoing \
@@ -115,13 +115,13 @@ links:
        }
      }'
    ```
-   {% endraw %}
+   
 
    - NOTE: the field `request_body.context` needs to be the same for all the action status; this way the same commit status will be updated, instead of creating a new entry for every state.
 
 1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /pipelines/:id/hooks/outgoing` to create an outgoing webhook for the `action.completed` event. In the example below, replace `<pipeline_id>`, `<target_url>`, `<request_headers>` and `<request_body>` with the actual values of each parameter before submitting the request.
 
-   {% raw %}
+   
    ```bash
    curl --request POST \
      --url https://api.devopness.com/pipelines/<pipeline_id>/hooks/outgoing \
@@ -157,7 +157,7 @@ links:
        }
      }'
    ```
-   {% endraw %}
+   
 
 1. On your local machine, in a terminal window, run command to list all the pipeline webhooks, replacing `<pipeline_id>`.
 
