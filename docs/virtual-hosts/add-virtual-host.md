@@ -22,15 +22,15 @@ required_permissions:
     - A new deployment is required for your changes to take effect
         - Follow the guide {% mentionPost "/docs/pipelines/run-pipeline" %}
 
-{% note %}
+:::note
 
 **NOTE**: For virtual hosts of type `Server IP address` ("ip-based virtual host"), please make sure:
 
     - the virtual host *hostname* is the IP address of the server to which the virtual host was successfully deployed
 
-{% endnote %}
+:::
 
-{% note %}
+:::note
 
 **NOTE**: For virtual hosts of type `Domain name` ("name-based virtual host") please make sure:
 
@@ -49,10 +49,10 @@ Follow the steps below to configure a DNS record pointing to your server:
 1. Verify your DNS record is pointing to your Devopness managed server
     - This can be verified using a DNS propagation checker such as [whatsmydns](https://www.whatsmydns.net/) or [DNS Checker](https://dnschecker.org/)
 
-{% endnote %}
+:::
 
-{% note %}
+:::note
 
 **NOTE**: in order to secure all network connections with your virtual host, and ensure all data submitted to your domain name is encrypted over the HTTPS protocol, follow the guide on how to {% mentionPost "/docs/ssl-certificates/add-ssl-certificate" %}
 
-{% endnote %}
+:::

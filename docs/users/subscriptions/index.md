@@ -20,11 +20,11 @@ Paid subscription plans are available for users and teams who want to increase t
 
 Independently of the subscription plan of a Devopness project, the main usage is controlled by credits.
 
-{% note %}
+:::note
 
 Devopness consumes one credit per completed action step when running a pipeline
 
-{% endnote %}
+:::
 
 Each Devopness user account receives a certain amount of credits monthly, depending on the user’s active subscription plan.
 

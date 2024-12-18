@@ -22,11 +22,11 @@ required_permissions:
 1. Provide the `Public IP address` of your existing server
 1. Enter the `SSH Port` to be used to connect to the server
 
-    {% note %}
+    :::note
 
     **NOTE**: we do not recommend connecting servers that are already being used in production. Server's existing configuration will be lost and replaced by Devopness during the server setup process
 
-    {% endnote %}
+    :::
 
 1. Click `NEXT`
 1. Follow the prompts to complete the configuration of the new `Server`

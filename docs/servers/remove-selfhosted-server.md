@@ -13,11 +13,11 @@ required_permissions:
     - server:delete
 ---
 
-{% note %}
+:::note
 
 **NOTE**: Removing a self hosted server will not delete its data from the host
 
-{% endnote %}
+:::
 
 1. On Devopness, navigate to a project then select an environment
 1. Find the `Servers` card

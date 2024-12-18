@@ -13,11 +13,11 @@ required_permissions:
     - server:delete
 ---
 
-{% danger %}
+:::danger
 
 **DANGER**: This action will delete all server data on the cloud provider
 
-{% enddanger %}
+:::
 
 1. On Devopness, navigate to a project then select an environment
 1. Find the `Servers` card

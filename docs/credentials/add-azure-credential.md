@@ -37,7 +37,7 @@ links:
 
       - Using a pre-defined role:
 
-      {% note %}
+      :::note
 
       1. In the navigation bar, click on `Add` and select `Add role assignment`
       1. In the **Role - Privileged administrator roles** tab, select `Contributor` role
@@ -48,11 +48,11 @@ links:
       1. Ensure the **Role Contributor** and expected **application** are selected
       1. Click `Review + assign` again
 
-      {% endnote %}
+      :::
 
       - Using a custom role:
 
-      {% note %}
+      :::note
 
       1. In the navigation bar, click on `Add` and select `Add custom role`
       1. Type the **Custom role name** of the role
@@ -89,6 +89,6 @@ links:
       1. Ensure the expected **role** and **application** are selected
       1. Click `Review + assign` again
 
-      {% endnote %}
+      :::
 
 1. To add the credential to Devopness see {% mentionPost "/docs/credentials/add-credential" %}
