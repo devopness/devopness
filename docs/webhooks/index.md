@@ -11,3 +11,6 @@ links:
     featured:
 ---
 
+import DocCardList from '@theme/DocCardList';
+
+<DocCardList />

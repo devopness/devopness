@@ -10,3 +10,7 @@ links:
     related:
     featured:
 ---
+
+import DocCardList from '@theme/DocCardList';
+
+<DocCardList />
