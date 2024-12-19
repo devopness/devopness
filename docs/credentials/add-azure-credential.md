@@ -92,4 +92,4 @@ links:
 
       :::
 
-1. To add the credential to Devopness see [`/docs/credentials/add-credential`](/docs/credentials/add-credential)
+1. To add the credential to Devopness see {% mentionPost "/docs/credentials/add-credential" %}

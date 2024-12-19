@@ -71,4 +71,4 @@ links:
     - Pick `JSON` key type
     - Click `CREATE`
 1. A JSON file containing your service account credentials will be downloaded, copy its content to your clipboard
-1. To add the copied credentials to Devopness see [`/docs/credentials/add-credential`](/docs/credentials/add-credential)
+1. To add the copied credentials to Devopness see {% mentionPost "/docs/credentials/add-credential" %}

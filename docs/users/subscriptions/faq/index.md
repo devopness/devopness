@@ -37,7 +37,7 @@ See also:
 You can pay inside the Devopness web app.
 
 For detailed instructions, see:
-- [`/docs/users/subscriptions/upgrade-subscription`](/docs/users/subscriptions/upgrade-subscription).
+- {% mentionPost "/docs/users/subscriptions/upgrade-subscription" %}.
 
 ## What are actions and action steps?
 An “action” is the execution of a pipeline.
@@ -51,7 +51,7 @@ Each step in a pipeline becomes an action step, that is then executed by Devopne
 For your convenience, each action step output log is made available for you in Devopness action details view.
 
 See also:
-- [`/docs/actions`](/docs/actions)
+- {% mentionPost "/docs/actions" %}
 
 ## What are credits?
 Credit is the unit used to pay for each action step Devopness executes for you when running pipelines in your project environments.
@@ -88,7 +88,7 @@ Only the owner of a project is charged for action steps in their projects.
 You can see your total and remaining credits by accessing `Billing and Plans` in your Devopness profile.
 
 For detailed instructions, see:
-- [`/docs/users/subscriptions`](/docs/users/subscriptions)
+- {% mentionPost "/docs/users/subscriptions" %}
 
 ## What happens when I run out of credits?
 If you run out of credits you can keep using Devopness to manage your environment resources and all features on your paid plans will remain accessible.
@@ -105,7 +105,7 @@ For more information, see:
 - [How do I add credits to my account?](#)
 
 ## How do I add credits to my account?
-To add credits to your account, [`/docs/users/subscriptions/upgrade-subscription`](/docs/users/subscriptions/upgrade-subscription).
+To add credits to your account, {% mentionPost "/docs/users/subscriptions/upgrade-subscription" %}.
 
 ## When is my subscription renewed?
 Monthly. The exact date may vary as months have different number of days. We currently renew subscriptions every 30 days from the day an account subscription was updated, upgraded or downgraded
@@ -124,7 +124,7 @@ Subscriptions on Devopness are for an indefinite term, unless you unsubscribe.
 Upon cancellation, your subscription will remain active and its credits can be used until the end of the current paid term.
 
 See also:
-- [`/docs/users/subscriptions/cancel-subscription`](/docs/users/subscriptions/cancel-subscription)
+- {% mentionPost "/docs/users/subscriptions/cancel-subscription" %}
 - [What happens after my subscription is canceled?](#)
 
 ## What happens after my subscription is canceled?
@@ -137,6 +137,6 @@ For example, if you buy a monthly subscription on January 10 and decide to cance
 A few things will happen:
 1. Your subscription will be downgraded to the FREE plan;
 2. You can still access action details and action steps output logs, but limited to actions created in the last 24 hours;
-3. In environments using custom [`/docs/roles`](/docs/roles) in their [`/docs/environments/team-memberships`](/docs/environments/team-memberships), the membership will be updated to use the role “Read”, converting all users to read-only users.
+3. In environments using custom {% mentionPost "/docs/roles" %} in their {% mentionPost "/docs/environments/team-memberships" %}, the membership will be updated to use the role “Read”, converting all users to read-only users.
 
 But don’t worry: your data will not be lost and your configurations, including team membership roles, will be restored once you update your payment methods and upgrade again to a paid plan.

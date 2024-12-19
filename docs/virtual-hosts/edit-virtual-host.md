@@ -20,4 +20,4 @@ required_permissions:
 1. On the upper right corner of the application details view, click `EDIT`
 1. Follow the prompts then click `CONFIRM`
     - A new deployment is required for your changes to take effect
-        - Follow the guide [`/docs/pipelines/run-pipeline`](/docs/pipelines/run-pipeline)
+        - Follow the guide {% mentionPost "/docs/pipelines/run-pipeline" %}
