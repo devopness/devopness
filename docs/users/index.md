@@ -11,7 +11,3 @@ links:
         - /docs/users/find-your-activity-summary
     featured:
 ---
-
-import DocCardList from '@theme/DocCardList';
-
-<DocCardList />

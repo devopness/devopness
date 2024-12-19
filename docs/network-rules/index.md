@@ -12,7 +12,3 @@ links:
     featured:
 required_permissions:
 ---
-
-import DocCardList from '@theme/DocCardList';
-
-<DocCardList />

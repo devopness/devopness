@@ -66,7 +66,3 @@ Below you have a table with the current applied limits, per plan, followed by an
 
 ## Usage policy
 In addition to the usage limits, you must ensure that you use Devopness within our <MentionPost path="/docs/legal/terms-of-service" />
-
-import DocCardList from '@theme/DocCardList';
-
-<DocCardList />
