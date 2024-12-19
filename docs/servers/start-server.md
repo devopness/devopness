@@ -18,5 +18,5 @@ links:
 1. On the upper-right corner of the server details view click `ACTIONS`
 1. Use the drop-down menu to choose `Start`
 1. Wait for the `server:start` action to be completed
-1. Follow the guide {% mentionPost "/docs/servers/get-server-status" %}
+1. Follow the guide <MentionPost path="/docs/servers/get-server-status" />
     > The server status will be "running"

@@ -25,4 +25,4 @@ required_permissions:
 1. Provide a value for the `Max parallel actions` field
 1. Click `CONFIRM`
     > A new deployment is required for your changes to take effect.
-      - Follow the guide {% mentionPost "/docs/applications/deploy-application" %}
+      - Follow the guide <MentionPost path="/docs/applications/deploy-application" />
