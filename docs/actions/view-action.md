@@ -4,11 +4,11 @@ intro: In this section you will learn how to find and understand details of a De
 links:
     overview:
     quickstart:
-    previous: /docs/actions
+    previous: /docs/actions/index
     next:
     guides:
     related:
-        - /docs/actions
+        - /docs/actions/index
     featured:
 ---
 
