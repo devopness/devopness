@@ -30,7 +30,7 @@ Each Devopness user account receives a certain amount of credits monthly, depend
 
 Credits are consumed from the project owner’s account: if you are collaborating on somebody else’s project as a team member, but you’re not the owner of that project, then your credits will not be consumed when working on that project.
 
-For details, see Usage limits and our [/docs/users/subscriptions/faq/index]
+For details, see Usage limits and our [/docs/users/subscriptions/faq]
 
 ## Billing date and subscription renewal
 You can view your account's subscription details, payment history and your next billing date in your account's billing settings at [/docs/users/subscriptions/upgrade-subscription]
