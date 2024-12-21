@@ -14,7 +14,7 @@ links:
 
 :::note
 
-**NOTE**: In case you need to rotate credential keys, you can edit a credential instead of removing a credential and create a new one. To edit a credential, follow the guide <MentionPost path="/docs/credentials/edit-credential" />
+**NOTE**: In case you need to rotate credential keys, you can edit a credential instead of removing a credential and create a new one. To edit a credential, follow the guide [/docs/credentials/edit-credential]
 
 :::
 

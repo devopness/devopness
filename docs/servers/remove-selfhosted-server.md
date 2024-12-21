@@ -26,6 +26,6 @@ required_permissions:
 1. On the upper-right corner of the server details view, click `REMOVE`
 1. Follow the prompts then click `REMOVE SERVER`
 1. Wait for the `server:remove` action to be completed
-    > If this action fails, maybe your server status is different from "stopped", if this is the case follow the guide <MentionPost path="/docs/servers/stop-server" />
-1. Follow the guide <MentionPost path="/docs/servers/get-server-status" />
+    > If this action fails, maybe your server status is different from "stopped", if this is the case follow the guide [/docs/servers/stop-server]
+1. Follow the guide [/docs/servers/get-server-status]
     > The server status will be "deleted"

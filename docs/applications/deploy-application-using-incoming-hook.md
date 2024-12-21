@@ -22,7 +22,7 @@ Before creating an incoming webhook to trigger an `application:deploy`, we need 
 1. In the list of applications, find the application with the pipeline you want to manage and click the `NAME` of the application
 1. Click the `Pipelines` tab
 1. In the list of pipelines, find the pipeline you want to manage and click the `NAME` of the pipeline
-    > If you haven't created a pipeline yet, follow the <MentionPost path="/docs/pipelines/add-pipeline" /> guide
+    > If you haven't created a pipeline yet, follow the [/docs/pipelines/add-pipeline] guide
 1. Copy the `<pipeline_id>` from the pipeline details URL, considering the following URL format:
     ```bash
     https://app.devopness.com/projects/<project_id>/environments/<environment_id>/applications/<application_id>/pipelines/<pipeline_id>
@@ -32,7 +32,7 @@ Before creating an incoming webhook to trigger an `application:deploy`, we need 
 
 Once you have your `<pipeline_id>`, please follow the instructions below to add an incoming webhook to your application that triggers the deploy pipeline:
 
-1. Follow the steps on <MentionPost path="/docs/webhooks/create-incoming-webhook" /> guide
+1. Follow the steps on [/docs/webhooks/create-incoming-webhook] guide
 1. Once your web hook is created, copy the hook's unique URL (`url` field)
 1. Take note of the hook's secret signature key (`secret` field)
     > If the hook was created without a `secret` (non recommended), you can skip this step

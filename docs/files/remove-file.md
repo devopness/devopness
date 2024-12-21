@@ -22,4 +22,4 @@ required_permissions:
 1. Follow the prompts then click `REMOVE CONFIGURATION FILE`
 1. In the list of configuration files, the recently removed `Configuration File` will be gone
     > A new deployment is required for your changes to take effect.
-      - Follow the guide <MentionPost path="/docs/applications/deploy-application" />
+      - Follow the guide [/docs/applications/deploy-application]

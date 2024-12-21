@@ -21,4 +21,4 @@ required_permissions:
 1. On the right corner of the configuration files tab click `MANAGE`
 1. Follow the instructions in the add configuration file step form then click `CONFIRM`
     > A new deployment is required for your changes to take effect.
-      - Follow the guide <MentionPost path="/docs/applications/deploy-application" />
+      - Follow the guide [/docs/applications/deploy-application]
