@@ -114,4 +114,4 @@ You might also want to check our [/docs/api/authentication] guide.
 This will be automatically converted into clickable links in the documentation. The paths should:
 - Start with `/docs/`
 - Match an existing documentation page
-- Use the full path as it appears in the URL
+- Use the full path for the file, without the `.md` extension
