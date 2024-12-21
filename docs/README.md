@@ -100,3 +100,18 @@ pagination_next: advanced-usage
 
 Note: The new pagination variables don't require the `/docs/` prefix as Docusaurus handles this automatically.
 
+## Mentioning Other Posts
+
+You can reference other documentation pages using the markdown reference link syntax: `[/path/to/post]`. The path should be relative to the documentation root.
+
+Example:
+```markdown
+See [/docs/getting-started] for more information on how to begin.
+
+You might also want to check our [/docs/api/authentication] guide.
+```
+
+This will be automatically converted into clickable links in the documentation. The paths should:
+- Start with `/docs/`
+- Match an existing documentation page
+- Use the full path as it appears in the URL
