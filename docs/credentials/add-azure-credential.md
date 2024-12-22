@@ -65,17 +65,17 @@ links:
             <details>
 			<summary>Permissions</summary>
 
-            -     - **Microsoft.Authorization/roleAssignments \{read\}**
-            -     - **Microsoft.Authorization/roleDefinitions \{read\}**
-            -     - **Microsoft.Compute/disks \{write\}**
-            -     - **Microsoft.Compute/virtualMachines \{deallocate/action, delete, read, restart/action, start/action, write\}**
-            -     - **Microsoft.Network/networkInterfaces \{delete, join/action, read, write\}**
-            -     - **Microsoft.Network/networkSecurityGroups \{delete, join/action, read, write\}**
-            -     - **Microsoft.Network/networkSecurityGroups/securityRules \{delete, read, write\}**
-            -     - **Microsoft.Network/publicIPAddresses \{delete, join/action, read, write\}**
-            -     - **Microsoft.Network/virtualNetworks \{delete, read, write\}**
-            -     - **Microsoft.Network/virtualNetworks/subnets \{delete, join/action, read, write\}**
-            -     - **Microsoft.Resources/subscriptions/resourceGroups \{read, write\}**
+            - **Microsoft.Authorization/roleAssignments \{read\}**
+            - **Microsoft.Authorization/roleDefinitions \{read\}**
+            - **Microsoft.Compute/disks \{write\}**
+            - **Microsoft.Compute/virtualMachines \{deallocate/action, delete, read, restart/action, start/action, write\}**
+            - **Microsoft.Network/networkInterfaces \{delete, join/action, read, write\}**
+            - **Microsoft.Network/networkSecurityGroups \{delete, join/action, read, write\}**
+            - **Microsoft.Network/networkSecurityGroups/securityRules \{delete, read, write\}**
+            - **Microsoft.Network/publicIPAddresses \{delete, join/action, read, write\}**
+            - **Microsoft.Network/virtualNetworks \{delete, read, write\}**
+            - **Microsoft.Network/virtualNetworks/subnets \{delete, join/action, read, write\}**
+            - **Microsoft.Resources/subscriptions/resourceGroups \{read, write\}**
 
             </details>
 
