@@ -21,14 +21,14 @@ links:
 
 **NOTE**: The examples below use `cURL`, which is a command line utility to be used from a terminal window. If you're not familiar with running commands on a terminal or you simply don't want to use a terminal you could, alternatively, copy the examples and import the `cURL` command line into your favorite API client platform. Here are links with instructions on how to achieve that on some of the most popular API client platforms:
 
-- [Postman](https://learning.postman.com/docs/getting-started/importing-and-exporting-data/#importing-with-curl-commands)
+- [Postman](https://learning.postman.comgetting-started/importing-and-exporting-data/#importing-with-curl-commands)
 - [Insomnia](https://docs.insomnia.rest/insomnia/import-export-data#import-data)
 
 :::
 
 
 1. Take note of the ID (`<pipeline_id>`) of a pipeline that runs the `deploy` operation for the application which you want to watch the action statuses
-    - Follow the [/docs/applications/deploy-application-using-incoming-hook] guide for detailed instructions
+    - Follow the [applications/deploy-application-using-incoming-hook] guide for detailed instructions
 1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /users/login` using your Devopness account email and password
     ```bash
     curl --request POST \

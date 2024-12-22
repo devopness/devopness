@@ -5,7 +5,7 @@ links:
     overview:
     quickstart:
     previous:
-    next: /docs/credentials/add-credential
+    next: credentials/add-credential
     guides:
     related:
     featured:
@@ -92,4 +92,4 @@ links:
 
       :::
 
-1. To add the credential to Devopness see [/docs/credentials/add-credential]
+1. To add the credential to Devopness see [credentials/add-credential]

@@ -19,7 +19,7 @@ required_permissions:
 1. On the upper-right corner of the list click `ADD NETWORK`
 1. Select a `Cloud Provider`
 1. Select a `Credential`
-    > If no credential is listed or you want to use a different one, click `Create a new credential` and follow the guide [/docs/credentials/add-credential]
+    > If no credential is listed or you want to use a different one, click `Create a new credential` and follow the guide [credentials/add-credential]
 1. Follow the prompts then click `CONFIRM`
 1. Wait for the `network:provision` action to be completed
-    - If you want to add a server to the `Network`, it is required to first follow the guide [/docs/subnets/add-subnet]
+    - If you want to add a server to the `Network`, it is required to first follow the guide [subnets/add-subnet]

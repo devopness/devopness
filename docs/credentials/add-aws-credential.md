@@ -5,7 +5,7 @@ links:
     overview:
     quickstart:
     previous:
-    next: /docs/credentials/add-credential
+    next: credentials/add-credential
     guides:
     related:
     featured:
@@ -27,4 +27,4 @@ links:
 1. Choose `Other` and click `Next`
 1. Click `Create access key`
 1. Copy the values of `Access key ID` and `Secret access key`
-1. To add the copied credentials to Devopness see [/docs/credentials/add-credential]
+1. To add the copied credentials to Devopness see [credentials/add-credential]

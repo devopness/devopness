@@ -4,8 +4,8 @@ intro: By adding configuration files you ensure a more consistent resource deplo
 links:
     overview:
     quickstart:
-    previous: /docs/pipelines/steps/add-step
-    next: /docs/applications/link-server-to-application
+    previous: pipelines/steps/add-step
+    next: applications/link-server-to-application
     guides:
     related:
     featured:
@@ -21,4 +21,4 @@ required_permissions:
 1. On the right corner of the configuration files tab click `MANAGE`
 1. Follow the instructions in the add configuration file step form then click `CONFIRM`
     > A new deployment is required for your changes to take effect.
-      - Follow the guide [/docs/applications/deploy-application]
+      - Follow the guide [applications/deploy-application]

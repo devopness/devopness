@@ -4,8 +4,8 @@ intro: Deploy your code changes in smaller chunks to make it easier to validate 
 links:
     overview:
     quickstart:
-    previous: /docs/applications/link-server-to-application
-    next: /docs/virtual-hosts/add-virtual-host
+    previous: applications/link-server-to-application
+    next: virtual-hosts/add-virtual-host
     guides:
     related:
     featured:
@@ -26,6 +26,6 @@ required_permissions:
 
 **NOTE**: Now that your application has been deployed, it can be accessed over the internet by setting up a DNS record, or testing access to the application via server IP address.
 
-- For details on how to make an application public, follow the instructions in [/docs/virtual-hosts/add-virtual-host].
+- For details on how to make an application public, follow the instructions in [virtual-hosts/add-virtual-host].
 
 :::

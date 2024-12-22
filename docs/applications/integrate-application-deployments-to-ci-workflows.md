@@ -28,7 +28,7 @@ links:
 
 
 1. Take note of the ID (`<pipeline_id>`) of a pipeline that runs the `deploy` operation for the application which you want to watch the action statuses
-   - Follow the [/docs/applications/deploy-application-using-incoming-hook] guide for detailed instructions
+   - Follow the [applications/deploy-application-using-incoming-hook] guide for detailed instructions
 
 1. Take note of the `Target URL` (`<target_url>`), `Request Headers` (`<request_headers>`) and `Request Body` (`<request_body>`) fields according to the source provider where the application' source code is hosted, by following the source provider's instructions on the links bellow:
    - [Bitbucket](https://developer.atlassian.com/cloud/bitbucket/rest/api-group-commit-statuses/#api-repositories-workspace-repo-slug-commit-commit-statuses-build-post)
@@ -37,7 +37,7 @@ links:
 
 1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /pipelines/:id/hooks/outgoing` to create an outgoing webhook for the `action.started` event. In the example below, replace `<pipeline_id>`, `<target_url>`, `<request_headers>` and `<request_body>` with the actual values of each parameter before submitting the request.
 
-   - For further instructions, follow the guide [/docs/webhooks/create-outgoing-webhook]
+   - For further instructions, follow the guide [webhooks/create-outgoing-webhook]
 
    
    ```bash

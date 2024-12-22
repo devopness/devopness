@@ -4,8 +4,8 @@ intro: Link a server to an application to select which servers an application ca
 links:
     overview:
     quickstart:
-    previous: /docs/files/add-file
-    next: /docs/applications/deploy-application
+    previous: files/add-file
+    next: applications/deploy-application
     guides:
     related:
     featured:

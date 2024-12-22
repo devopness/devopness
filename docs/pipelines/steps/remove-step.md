@@ -24,4 +24,4 @@ required_permissions:
 1. Follow the prompts then click `REMOVE`
 1. In the list of pipeline steps, the recently removed `Step` will be gone
     > A new deployment is required for your changes to take effect.
-      - Follow the guide [/docs/applications/deploy-application]
+      - Follow the guide [applications/deploy-application]

@@ -22,4 +22,4 @@ required_permissions:
 1. On the upper-right corner of the pipeline details view, click `EDIT`
 1. Follow the instructions in the pipeline edit form then click `CONFIRM`
     > A new deployment is required for your changes to take effect.
-      - Follow the guide [/docs/applications/deploy-application]
+      - Follow the guide [applications/deploy-application]

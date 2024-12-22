@@ -8,9 +8,9 @@ links:
     next:
     guides:
     related:
-        - /docs/servers/get-server-status
-        - /docs/servers/restart-server
-        - /docs/servers/start-server
-        - /docs/servers/stop-server
+        - servers/get-server-status
+        - servers/restart-server
+        - servers/start-server
+        - servers/stop-server
     featured:
 ---
