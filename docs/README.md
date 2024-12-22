@@ -47,7 +47,7 @@ Here is a list of predefined variables that can be set in the `front-matter` blo
 | `links.related`        | Related links to other topics             | No        |
 | `required_permissions` | Required permissions to follow the steps  | No        |
 
-Links represent a relative path to the documentation root without the file extension, e.g. `actions/view-action` represents `/docs/actions/view-action.md` file.
+Links represent a relative path to the documentation root (`/docs`) without the file extension, e.g. `actions/view-action` represents `/docs/actions/view-action.md` file.
 
 For more details on available frontmatter options, see the [Docusaurus Content Docs Plugin documentation](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-docs#markdown-front-matter).
 
@@ -86,8 +86,8 @@ Before:
 ---
 title: My Document
 links:
-  previous: /docs/getting-started
-  next: /docs/advanced-usage
+  previous: getting-started
+  next: advanced-usage
 ---
 ```
 
@@ -100,51 +100,25 @@ pagination_next: advanced-usage
 ---
 ```
 
-Note: The new pagination variables don't require the `/docs/` prefix as Docusaurus handles this automatically.
-
-#### `links.related`
-
-**Why**: Links should represent a relative path to the documentation root without the file extension
-
-Before:
-```yaml
----
-title: My Document
-links:
-  related:
-    - /docs/actions/view-action
-    - /docs/actions
----
-```
-
-After:
-```yaml
----
-title: My Document
-links:
-  related:
-    - actions/view-action
-    - actions/index
----
-```
-
-Note: Links should be be file paths, that why `/docs/actions` becomes `actions/index` instead.
-
 ## Mentioning Other Posts
 
-You can reference other documentation pages using the markdown reference link syntax: `[/path/to/post]`. The path should be relative to the documentation root.
+You can reference other documentation pages using the markdown reference link syntax: `[id]`. By default, the id is the "file path (including folders, without the extension)", e.g. `/docs/pipelines/run-pipeline.md` becomes `pipelines/run-pipeline`.
 
-Example:
+See [Docusaurus Content Docs Plugin documentation](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-docs#markdown-front-matter) for more details on finding the id of a documentation page.
+
+Examples:
+
 ```markdown
-See [/docs/getting-started] for more information on how to begin.
-
-You might also want to check our [/docs/api/authentication] guide.
+<!-- docs/virtual-hosts/edit-virtual-host.md -->
+Follow the guide [virtual-hosts/edit-virtual-host]
 ```
 
-This will be automatically converted into clickable links in the documentation. The paths should:
-- Start with `/docs/`
-- Match an existing documentation page
-- Use the full path for the file, without the `.md` extension
+```markdown
+<!-- docs/users/subscriptions/faq/index.md -->
+3. In environments using custom [roles/index] in their [environments/team-memberships/index], the membership will be updated to use the role “Read”, converting all users to read-only users.
+```
+
+This reference will be automatically converted into clickable links, using the post title as the link text.
 
 ## How to use Admonitions
 
