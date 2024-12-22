@@ -44,8 +44,10 @@ Here is a list of predefined variables that can be set in the `front-matter` blo
 | `description`          | Page meta description                     | No        |
 | `pagination_prev`      | Previous link in pagination               | No        |
 | `pagination_next`      | Next link in pagination                   | No        |
-| `related`              | Related links to other topics             | No        |
+| `links.related`        | Related links to other topics             | No        |
 | `required_permissions` | Required permissions to follow the steps  | No        |
+
+Links represent a relative path to the documentation root without the file extension, e.g. `actions/view-action` represents `/docs/actions/view-action.md` file.
 
 For more details on available frontmatter options, see the [Docusaurus Content Docs Plugin documentation](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-docs#markdown-front-matter).
 
@@ -99,6 +101,34 @@ pagination_next: advanced-usage
 ```
 
 Note: The new pagination variables don't require the `/docs/` prefix as Docusaurus handles this automatically.
+
+#### `links.related`
+
+**Why**: Links should represent a relative path to the documentation root without the file extension
+
+Before:
+```yaml
+---
+title: My Document
+links:
+  related:
+    - /docs/actions/view-action
+    - /docs/actions
+---
+```
+
+After:
+```yaml
+---
+title: My Document
+links:
+  related:
+    - actions/view-action
+    - actions/index
+---
+```
+
+Note: Links should be be file paths, that why `/docs/actions` becomes `actions/index` instead.
 
 ## Mentioning Other Posts
 
