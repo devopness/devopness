@@ -115,3 +115,17 @@ This will be automatically converted into clickable links in the documentation. 
 - Start with `/docs/`
 - Match an existing documentation page
 - Use the full path for the file, without the `.md` extension
+
+## How to use Admonitions
+
+Admonitions are a way to highlight important information in your documentation. They are a great way to call out important information, warnings, or tips.
+
+To use admonitions, you can use the following syntax:
+
+```markdown
+:::note
+  This is the content of the note.
+:::
+```
+
+To learn more about admonitions, you can check the [Docusaurus Admonitions Plugin documentation](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-docs#admonitions).
