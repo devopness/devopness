@@ -102,7 +102,9 @@ pagination_next: advanced-usage
 
 ## Mentioning Other Posts
 
-You can reference other documentation pages using the markdown reference link syntax: `[id]`. By default, the id is the "file path (including folders, without the extension)", e.g. `/docs/pipelines/run-pipeline.md` becomes `pipelines/run-pipeline`.
+You can reference other documentation pages using the markdown reference link syntax: `[/docs/<id>]`. By default, the `id` is the "file path (including folders, without the extension)", e.g. `/docs/pipelines/run-pipeline.md` becomes `[/docs/pipelines/run-pipeline]`.
+
+The `/docs/` prefix is required to differentiate between internal links and external links.
 
 See [Docusaurus Content Docs Plugin documentation](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-docs#markdown-front-matter) for more details on finding the id of a documentation page.
 
@@ -110,12 +112,12 @@ Examples:
 
 ```markdown
 <!-- docs/virtual-hosts/edit-virtual-host.md -->
-Follow the guide [virtual-hosts/edit-virtual-host]
+Follow the guide [/docs/virtual-hosts/edit-virtual-host]
 ```
 
 ```markdown
 <!-- docs/users/subscriptions/faq/index.md -->
-3. In environments using custom [roles/index] in their [environments/team-memberships/index], the membership will be updated to use the role “Read”, converting all users to read-only users.
+3. In environments using custom [/docs/roles/index] in their [/docs/environments/team-memberships/index], the membership will be updated to use the role “Read”, converting all users to read-only users.
 ```
 
 This reference will be automatically converted into clickable links, using the post title as the link text.

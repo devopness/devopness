@@ -32,7 +32,7 @@ A network rule and deploy pipeline were chosen as examples, the steps are the sa
 
     To run a deploy pipeline at least one server must be linked to the resource.
 
-    If there are no servers linked to the network rule, follow the guide [applications/link-server-to-application]
+    If there are no servers linked to the network rule, follow the guide [/docs/applications/link-server-to-application]
 
     :::
 

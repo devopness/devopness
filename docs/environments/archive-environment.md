@@ -21,7 +21,7 @@ Archiving an environment does not remove its cloud resources from the correspond
 
 Archived environments can only be accessible, in read-only mode, by the user who owns the project to which the environment belongs to.
 
-The project owner can unarchive an archived environment, making it active and accessible to other team members. For more information, see [environments/unarchive-environment]
+The project owner can unarchive an archived environment, making it active and accessible to other team members. For more information, see [/docs/environments/unarchive-environment]
 
 :::
 

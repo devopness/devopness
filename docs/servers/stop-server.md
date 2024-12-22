@@ -30,5 +30,5 @@ Your server's public IP address will be updated the next time the server is star
 1. On the upper-right corner of the server details view click `ACTIONS`
 1. Use the drop-down menu to choose `Stop`
 1. Wait for the `server:stop` action to be completed
-1. Follow the guide [servers/get-server-status]
+1. Follow the guide [/docs/servers/get-server-status]
     > The server status will be "stopped"

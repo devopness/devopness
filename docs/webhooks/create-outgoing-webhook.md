@@ -28,7 +28,7 @@ The examples below use `cURL`, which is a command line utility to be used from a
 
 
 1. Take note of the ID (`<pipeline_id>`) of a pipeline that runs the `deploy` operation for the application which you want to watch the action statuses
-    - Follow the [applications/deploy-application-using-incoming-hook] guide for detailed instructions
+    - Follow the [/docs/applications/deploy-application-using-incoming-hook] guide for detailed instructions
 1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /users/login` using your Devopness account email and password
     ```bash
     curl --request POST \
