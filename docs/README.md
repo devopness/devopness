@@ -134,4 +134,4 @@ This is the content of the note.
 :::
 ```
 
-To learn more about admonitions, you can check the [Docusaurus Admonitions Plugin documentation](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-docs#admonitions).
+To learn more about admonitions, you can check the [Docusaurus Admonitions Plugin documentation](https://docusaurus.io/docs/markdown-features/admonitions).
