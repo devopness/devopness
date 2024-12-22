@@ -63,7 +63,7 @@ links:
       1. Add each of the following **permissions** to the role:
 
             <details>
-			<summary>Permissions</summary>
+            <summary>Permissions</summary>
 
             - **Microsoft.Authorization/roleAssignments \{read\}**
             - **Microsoft.Authorization/roleDefinitions \{read\}**
