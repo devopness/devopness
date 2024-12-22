@@ -15,7 +15,7 @@ required_permissions:
 
 :::note
 
-**NOTE**: A network rule and deploy pipeline were chosen as examples, the steps are the same to run pipelines of all operations in all environment's resources
+A network rule and deploy pipeline were chosen as examples, the steps are the same to run pipelines of all operations in all environment's resources
 
 :::
 
@@ -30,7 +30,7 @@ required_permissions:
 
     :::note
 
-    **NOTE**: To run a deploy pipeline at least one server must be linked to the resource.
+    To run a deploy pipeline at least one server must be linked to the resource.
 
     If there are no servers linked to the network rule, follow the guide [applications/link-server-to-application]
 

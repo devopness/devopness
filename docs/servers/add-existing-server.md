@@ -24,7 +24,7 @@ required_permissions:
 
     :::note
 
-    **NOTE**: we do not recommend connecting servers that are already being used in production. Server's existing configuration will be lost and replaced by Devopness during the server setup process
+    we do not recommend connecting servers that are already being used in production. Server's existing configuration will be lost and replaced by Devopness during the server setup process
 
     :::
 

@@ -15,7 +15,7 @@ required_permissions:
 
 :::danger
 
-**DANGER**: This action will delete all server data on the cloud provider
+This action will delete all server data on the cloud provider
 
 :::
 

@@ -13,7 +13,7 @@ links:
 
 :::note
 
-**NOTE**: Here `server` and `application` were used as examples of resource types. However, the steps to link two resources are the same for any environment's resources that can be linked. Clicking the `LINK TO` dropdown will list all available options of resource types to be linked to the selected resource.
+Here `server` and `application` were used as examples of resource types. However, the steps to link two resources are the same for any environment's resources that can be linked. Clicking the `LINK TO` dropdown will list all available options of resource types to be linked to the selected resource.
 
 :::
 

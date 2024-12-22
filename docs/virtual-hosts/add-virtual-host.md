@@ -24,7 +24,7 @@ required_permissions:
 
 :::note
 
-**NOTE**: For virtual hosts of type `Server IP address` ("ip-based virtual host"), please make sure:
+For virtual hosts of type `Server IP address` ("ip-based virtual host"), please make sure:
 
     - the virtual host *hostname* is the IP address of the server to which the virtual host was successfully deployed
 
@@ -32,7 +32,7 @@ required_permissions:
 
 :::note
 
-**NOTE**: For virtual hosts of type `Domain name` ("name-based virtual host") please make sure:
+For virtual hosts of type `Domain name` ("name-based virtual host") please make sure:
 
     - a DNS record with the same name of the "name-based virtual host" exists
 
@@ -53,6 +53,6 @@ Follow the steps below to configure a DNS record pointing to your server:
 
 :::note
 
-**NOTE**: in order to secure all network connections with your virtual host, and ensure all data submitted to your domain name is encrypted over the HTTPS protocol, follow the guide on how to [ssl-certificates/add-ssl-certificate]
+in order to secure all network connections with your virtual host, and ensure all data submitted to your domain name is encrypted over the HTTPS protocol, follow the guide on how to [ssl-certificates/add-ssl-certificate]
 
 :::

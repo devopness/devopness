@@ -15,7 +15,7 @@ required_permissions:
 
 :::note
 
-**NOTE**: Removing a self hosted server will not delete its data from the host
+Removing a self hosted server will not delete its data from the host
 
 :::
 
