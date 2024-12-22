@@ -128,7 +128,9 @@ To use admonitions, you can use the following syntax:
 
 ```markdown
 :::note
-  This is the content of the note.
+
+This is the content of the note.
+
 :::
 ```
 
