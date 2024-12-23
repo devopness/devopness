@@ -5,7 +5,7 @@ links:
     overview:
     quickstart:
     previous:
-    next: /docs/services/remove-service
+    next: services/remove-service
     guides:
     related:
     featured:

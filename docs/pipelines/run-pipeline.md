@@ -13,11 +13,11 @@ required_permissions:
     - network-rule:deploy
 ---
 
-{% note %}
+:::note
 
-**NOTE**: A network rule and deploy pipeline were chosen as examples, the steps are the same to run pipelines of all operations in all environment's resources
+A network rule and deploy pipeline were chosen as examples, the steps are the same to run pipelines of all operations in all environment's resources
 
-{% endnote %}
+:::
 
 1. On Devopness, navigate to a project then select an environment
 1. Find the `Network Rules` card
@@ -28,12 +28,12 @@ required_permissions:
 1. Follow the prompts then click `DEPLOY`
     - The form confirm button will be labeled according to the pipeline operation
 
-    {% note %}
+    :::note
 
-    **NOTE**: To run a deploy pipeline at least one server must be linked to the resource.
+    To run a deploy pipeline at least one server must be linked to the resource.
 
-    If there are no servers linked to the network rule, follow the guide {% mentionPost "/docs/applications/link-server-to-application" %}
+    If there are no servers linked to the network rule, follow the guide [/docs/applications/link-server-to-application]
 
-    {% endnote %}
+    :::
 
 1. Wait for the action `network-rule:deploy` to be completed

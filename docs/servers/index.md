@@ -5,10 +5,10 @@ links:
     overview:
     quickstart:
     previous:
-    next: /docs/servers/add-server
+    next: servers/add-server
     guides:
-        - /docs/servers/check-server-provision-logs
-        - /docs/servers/ssh-into-server
+        - servers/check-server-provision-logs
+        - servers/ssh-into-server
     related:
     featured:
 ---

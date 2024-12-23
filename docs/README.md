@@ -38,7 +38,102 @@ It is Devopness API responsibility to communicate the validation rules to the en
 ## Predefined variables
 Here is a list of predefined variables that can be set in the `front-matter` block of a documentation topic:
 
-| Variable | Description                               | Required       |
-|----------|-------------------------------------------|----------------|
-| `title`  | The title of the documentation topic      | Yes            |
-| `intro`  | A short paragraph introducing the topic   | No             |
+| Variable               | Description                               | Required  |
+|------------------------|-------------------------------------------|-----------|
+| `title`                | The title of the documentation topic      | Yes       |
+| `description`          | Page meta description                     | No        |
+| `pagination_prev`      | Previous link in pagination               | No        |
+| `pagination_next`      | Next link in pagination                   | No        |
+| `links.related`        | Related links to other topics             | No        |
+| `required_permissions` | Required permissions to follow the steps  | No        |
+
+Links represent a relative path to the documentation root (`/docs`) without the file extension, e.g. `actions/view-action` represents `/docs/actions/view-action.md` file.
+
+For more details on available frontmatter options, see the [Docusaurus Content Docs Plugin documentation](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-docs#markdown-front-matter).
+
+### Deprecated Variables
+
+The following variables are deprecated and are currently being transformed by our configuration. Here's how to migrate:
+
+#### `intro`
+
+**Why**: Content should be part of the main document body, not frontmatter.
+
+Before:
+
+```yaml
+---
+title: My Document
+intro: This is an introduction to my document
+---
+```
+
+After:
+
+```yaml
+---
+title: My Document
+---
+This is an introduction to my document
+```
+
+#### `links.previous` and `links.next`
+
+**Why**: Use standard Docusaurus pagination variables.
+
+Before:
+```yaml
+---
+title: My Document
+links:
+  previous: getting-started
+  next: advanced-usage
+---
+```
+
+After:
+```yaml
+---
+title: My Document
+pagination_prev: getting-started
+pagination_next: advanced-usage
+---
+```
+
+## Mentioning Other Posts
+
+You can reference other documentation pages using the markdown reference link syntax: `[/docs/<id>]`. By default, the `id` is the "file path (including folders, without the extension)", e.g. `/docs/pipelines/run-pipeline.md` becomes `[/docs/pipelines/run-pipeline]`.
+
+The `/docs/` prefix is required to differentiate between internal links and external links.
+
+See [Docusaurus Content Docs Plugin documentation](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-docs#markdown-front-matter) for more details on finding the id of a documentation page.
+
+Examples:
+
+```markdown
+<!-- docs/virtual-hosts/edit-virtual-host.md -->
+Follow the guide [/docs/virtual-hosts/edit-virtual-host]
+```
+
+```markdown
+<!-- docs/users/subscriptions/faq/index.md -->
+3. In environments using custom [/docs/roles/index] in their [/docs/environments/team-memberships/index], the membership will be updated to use the role “Read”, converting all users to read-only users.
+```
+
+This reference will be automatically converted into clickable links, using the post title as the link text.
+
+## How to use Admonitions
+
+Admonitions are a way to highlight important information in your documentation. They are a great way to call out important information, warnings, or tips.
+
+To use admonitions, you can use the following syntax:
+
+```markdown
+:::note
+
+This is the content of the note.
+
+:::
+```
+
+To learn more about admonitions, you can check the [Docusaurus Admonitions Plugin documentation](https://docusaurus.io/docs/markdown-features/admonitions).

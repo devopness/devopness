@@ -4,8 +4,8 @@ intro: Add environments to manage the different stages of your application lifec
 links:
     overview:
     quickstart:
-    previous: /docs/projects/add-project
-    next: /docs/servers/add-server
+    previous: projects/add-project
+    next: servers/add-server
     guides:
     related:
     featured:

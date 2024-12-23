@@ -4,12 +4,12 @@ intro: Sometimes you may need to connect to your servers using an SSH client to 
 links:
     overview:
     quickstart:
-    previous: /docs/ssh-keys
-    next: /docs/ssh-keys/add-ssh-key
+    previous: ssh-keys/index
+    next: ssh-keys/add-ssh-key
     guides:
     related:
-        - /docs/ssh-keys/add-ssh-key
-        - /docs/ssh-keys/remove-ssh-key
+        - ssh-keys/add-ssh-key
+        - ssh-keys/remove-ssh-key
     featured:
 ---
 
@@ -20,4 +20,4 @@ links:
     > This creates a new SSH key, using the provided email as a label.
 1. Follow the prompts to complete the creation of the new SSH Key pair
     > There should be 2 new files inside `$USER/.ssh` directory, `id_rsa` (private key) and `id_rsa.pub` (public key)
-1. To add the public key (`id_rsa.pub`) to Devopness, see {% mentionPost "/docs/ssh-keys/add-ssh-key" %}
+1. To add the public key (`id_rsa.pub`) to Devopness, see [/docs/ssh-keys/add-ssh-key]
