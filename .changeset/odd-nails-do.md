@@ -1,5 +1,5 @@
 ---
-"@devopness/ui-react": minor
+"@devopness/ui-react": patch
 ---
 
-Fixed a bug in Dropdown to inoperate disabled options
+Fixes Dropdown closing after clicking a disabled option
