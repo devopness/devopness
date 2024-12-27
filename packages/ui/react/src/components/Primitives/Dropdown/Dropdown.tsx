@@ -313,18 +313,21 @@ const Dropdown = ({
                         activeBackgroundColor={option.activeBackgroundColor}
                         brokenSequence={option.brokenSequence}
                         onClick={(event) => {
-                          if(!option.isDisabled) {
-                            event.preventDefault()
-                            event.stopPropagation()
 
-                            if (option.onClick) {
-                              option.onClick()
-                            } else if (onSelect) {
-                              onSelect(option)
-                            }
-
-                            popupState.close()
+                          if(option.isDisabled) {
+                            return
                           }
+
+                          event.preventDefault()
+                          event.stopPropagation()
+
+                          if (option.onClick) {
+                            option.onClick()
+                          } else if (onSelect) {
+                            onSelect(option)
+                          }
+
+                          popupState.close()
                         }}
                       >
                         {option.badge && (
