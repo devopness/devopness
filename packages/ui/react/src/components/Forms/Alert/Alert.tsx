@@ -9,7 +9,7 @@ import {
   StyledIcon,
   StyledLabel,
   LabelContentWrapper,
-} from './styled'
+} from './Alert.styled'
 
 import { Button } from 'src/components/Buttons'
 import type { Icon } from 'src/icons'

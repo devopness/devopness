@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import Container, { type ContainerProps } from '.'
+import Container, { type ContainerProps } from './Container'
 import { getColor } from 'src/colors'
 import type { Color } from 'src/colors'
 

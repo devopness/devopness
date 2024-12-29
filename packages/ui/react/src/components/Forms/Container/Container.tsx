@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ContainerStyled, WrapperContent } from './styled'
+import { ContainerStyled, WrapperContent } from './Container.styled'
 
 export interface ContainerProps {
   noTopMargin?: boolean

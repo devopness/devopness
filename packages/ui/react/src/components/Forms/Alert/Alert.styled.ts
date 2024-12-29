@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 import { getColor } from 'src/colors'
 import { getFont } from 'src/fonts'
-import type { AlertProps } from '.'
+import type { AlertProps } from './Alert'
 
 type StyledProps = {
   type: string
