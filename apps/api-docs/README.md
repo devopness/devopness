@@ -8,6 +8,16 @@ In this file we keep internal documentation for API development team and contrib
 For public API documentation, please visit:
 https://staging-api-docs.devopness.com/#tag/API-Reference.
 
+## Table of Contents
+- [About Devopness](#about-devopness)
+- [Architecture Design Goals](#architecture-design-goals)
+- [Usage](#usage)
+  - [Build with Docker](#build-and-run-with-docker)
+  - [Build without Docker](#build-and-run-without-docker)
+- [API Documentation](#add-documentation-for-an-api-endpoint)
+- [Validation & Testing](#validation--testing)
+- [API Naming Conventions](#api-naming-conventions)
+
 ## About Devopness
 `Devopness` aims to drastically change the way people manage applications and cloud infrastructure, in a secure and performant fashion.
 
