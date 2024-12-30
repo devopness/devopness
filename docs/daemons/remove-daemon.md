@@ -4,7 +4,7 @@ intro: Remove a Daemon when it is no longer needed.
 links:
     overview:
     quickstart:
-    previous: /docs/daemons/edit-daemon
+    previous: daemons/edit-daemon
     next:
     guides:
     related:

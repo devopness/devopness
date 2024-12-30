@@ -4,11 +4,11 @@ intro: Learn how to remove an SSH Key when it's no longer needed
 links:
     overview:
     quickstart:
-    previous: /docs/servers/ssh-into-server
+    previous: servers/ssh-into-server
     next:
     guides:
     related:
-        - /docs/ssh-keys/add-ssh-key
+        - ssh-keys/add-ssh-key
     featured:
 required_permissions:
     - ssh-key:delete

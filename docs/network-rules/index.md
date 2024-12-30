@@ -8,7 +8,7 @@ links:
     next:
     guides:
     related:
-        - /docs/network-rules/add-network-rule
+        - network-rules/add-network-rule
     featured:
 required_permissions:
 ---

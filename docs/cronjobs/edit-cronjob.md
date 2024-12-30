@@ -4,8 +4,8 @@ intro: Edit a Cron Job to modify the schedule, command, or other settings of an 
 links:
     overview:
     quickstart:
-    previous: /docs/cronjobs/add-cronjob
-    next: /docs/cronjobs/remove-cronjob
+    previous: cronjobs/add-cronjob
+    next: cronjobs/remove-cronjob
     guides:
     related:
     featured:
