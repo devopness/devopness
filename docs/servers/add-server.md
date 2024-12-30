@@ -4,15 +4,15 @@ intro: Devopness allows you to provision servers on multiple cloud providers or 
 links:
     overview:
     quickstart:
-    previous: /docs/environments/add-environment
-    next: /docs/servers/check-server-provision-logs
+    previous: environments/add-environment
+    next: servers/check-server-provision-logs
     guides:
     related:
-        - /docs/servers/add-aws-server
-        - /docs/servers/add-azure-server
-        - /docs/servers/add-digitalocean-server
-        - /docs/servers/add-gcp-server
-        - /docs/servers/add-existing-server
+        - servers/add-aws-server
+        - servers/add-azure-server
+        - servers/add-digitalocean-server
+        - servers/add-gcp-server
+        - servers/add-existing-server
     featured:
 ---
 

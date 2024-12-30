@@ -11,17 +11,17 @@ links:
     featured:
 ---
 
-{% note %}
+:::note
 
-**NOTE**: Any applications or daemons on this server will stop working as a consequence of the server being stopped.
+Any applications or daemons on this server will stop working as a consequence of the server being stopped.
 
-{% endnote %}
+:::
 
-{% warning %}
+:::warning
 
-**WARNING**: Your server's public IP address will be updated the next time the server is started, unless you have a static IP address set configured for the selected instance on your cloud provider. That means that if your server does not have a static IP address associated to it, the next time this server is started all domains that point to this server's old IP address will need to be updated to point to the server's new IP address.
+Your server's public IP address will be updated the next time the server is started, unless you have a static IP address set configured for the selected instance on your cloud provider. That means that if your server does not have a static IP address associated to it, the next time this server is started all domains that point to this server's old IP address will need to be updated to point to the server's new IP address.
 
-{% endwarning %}
+:::
 
 1. On Devopness, navigate to a project then select an environment
 1. Find the `Servers` card
@@ -30,5 +30,5 @@ links:
 1. On the upper-right corner of the server details view click `ACTIONS`
 1. Use the drop-down menu to choose `Stop`
 1. Wait for the `server:stop` action to be completed
-1. Follow the guide {% mentionPost "/docs/servers/get-server-status" %}
+1. Follow the guide [/docs/servers/get-server-status]
     > The server status will be "stopped"

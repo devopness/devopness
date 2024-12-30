@@ -5,7 +5,7 @@ links:
     overview:
     quickstart:
     previous:
-    next: /docs/cronjobs/edit-cronjob
+    next: cronjobs/edit-cronjob
     guides:
     related:
     featured:

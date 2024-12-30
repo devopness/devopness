@@ -4,8 +4,8 @@ intro: Edit a Daemon to update the application, settings, command, or other conf
 links:
     overview:
     quickstart:
-    previous: /docs/daemons/add-daemon
-    next: /docs/daemons/remove-daemon
+    previous: daemons/add-daemon
+    next: daemons/remove-daemon
     guides:
     related:
     featured:

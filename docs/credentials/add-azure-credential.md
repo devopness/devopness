@@ -5,7 +5,7 @@ links:
     overview:
     quickstart:
     previous:
-    next: /docs/credentials/add-credential
+    next: credentials/add-credential
     guides:
     related:
     featured:
@@ -37,7 +37,7 @@ links:
 
       - Using a pre-defined role:
 
-      {% note %}
+      :::note
 
       1. In the navigation bar, click on `Add` and select `Add role assignment`
       1. In the **Role - Privileged administrator roles** tab, select `Contributor` role
@@ -48,11 +48,11 @@ links:
       1. Ensure the **Role Contributor** and expected **application** are selected
       1. Click `Review + assign` again
 
-      {% endnote %}
+      :::
 
       - Using a custom role:
 
-      {% note %}
+      :::note
 
       1. In the navigation bar, click on `Add` and select `Add custom role`
       1. Type the **Custom role name** of the role
@@ -62,19 +62,20 @@ links:
       1. In the navigation bar, click on `Add permissions`
       1. Add each of the following **permissions** to the role:
 
-            <details><summary>Permissions</summary>
+            <details>
+            <summary>Permissions</summary>
 
-            -     - **Microsoft.Authorization/roleAssignments {read}**
-            -     - **Microsoft.Authorization/roleDefinitions {read}**
-            -     - **Microsoft.Compute/disks {write}**
-            -     - **Microsoft.Compute/virtualMachines {deallocate/action, delete, read, restart/action, start/action, write}**
-            -     - **Microsoft.Network/networkInterfaces {delete, join/action, read, write}**
-            -     - **Microsoft.Network/networkSecurityGroups {delete, join/action, read, write}**
-            -     - **Microsoft.Network/networkSecurityGroups/securityRules {delete, read, write}**
-            -     - **Microsoft.Network/publicIPAddresses {delete, join/action, read, write}**
-            -     - **Microsoft.Network/virtualNetworks {delete, read, write}**
-            -     - **Microsoft.Network/virtualNetworks/subnets {delete, join/action, read, write}**
-            -     - **Microsoft.Resources/subscriptions/resourceGroups {read, write}**
+            - **Microsoft.Authorization/roleAssignments \{read\}**
+            - **Microsoft.Authorization/roleDefinitions \{read\}**
+            - **Microsoft.Compute/disks \{write\}**
+            - **Microsoft.Compute/virtualMachines \{deallocate/action, delete, read, restart/action, start/action, write\}**
+            - **Microsoft.Network/networkInterfaces \{delete, join/action, read, write\}**
+            - **Microsoft.Network/networkSecurityGroups \{delete, join/action, read, write\}**
+            - **Microsoft.Network/networkSecurityGroups/securityRules \{delete, read, write\}**
+            - **Microsoft.Network/publicIPAddresses \{delete, join/action, read, write\}**
+            - **Microsoft.Network/virtualNetworks \{delete, read, write\}**
+            - **Microsoft.Network/virtualNetworks/subnets \{delete, join/action, read, write\}**
+            - **Microsoft.Resources/subscriptions/resourceGroups \{read, write\}**
 
             </details>
 
@@ -89,6 +90,6 @@ links:
       1. Ensure the expected **role** and **application** are selected
       1. Click `Review + assign` again
 
-      {% endnote %}
+      :::
 
-1. To add the credential to Devopness see {% mentionPost "/docs/credentials/add-credential" %}
+1. To add the credential to Devopness see [/docs/credentials/add-credential]
