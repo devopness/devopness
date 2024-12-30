@@ -1,9 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import Container, { type ContainerProps } from './Container'
+
+import type { ContainerProps } from './Container'
+import { Container } from './Container'
 import { getColor } from 'src/colors'
 import type { Color } from 'src/colors'
 
-interface StoryProps extends ContainerProps {
+type StoryProps = ContainerProps & {
   backgroundColor: Color
   height: string
 }

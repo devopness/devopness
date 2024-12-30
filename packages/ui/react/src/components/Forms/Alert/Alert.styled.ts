@@ -1,8 +1,8 @@
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
+import type { AlertProps } from './Alert'
 import { getColor } from 'src/colors'
 import { getFont } from 'src/fonts'
-import type { AlertProps } from './Alert'
 
 type StyledProps = {
   type: string
@@ -45,8 +45,8 @@ const Wrapper = styled.div<Pick<AlertProps, 'noPadding'>>`
   display: flex;
   align-items: center;
   width: 100%;
-  padding-top: ${(props) => (!!props.noPadding ? '' : '42px')};
-  padding-bottom: ${(props) => (!!props.noPadding ? '' : '20px')};
+  padding-top: ${(props) => (props.noPadding ? '' : '42px')};
+  padding-bottom: ${(props) => (props.noPadding ? '' : '20px')};
 `
 
 const StyledContent = styled.div<StyledProps>`

@@ -1,8 +1,5 @@
 import React from 'react'
 
-import type { Color } from 'src/colors'
-import { getColor } from 'src/colors'
-
 import {
   Wrapper,
   StyledContent,
@@ -10,7 +7,8 @@ import {
   StyledLabel,
   LabelContentWrapper,
 } from './Alert.styled'
-
+import type { Color } from 'src/colors'
+import { getColor } from 'src/colors'
 import { Button } from 'src/components/Buttons'
 import type { Icon } from 'src/icons'
 import { iconLoader } from 'src/icons'
@@ -40,37 +38,35 @@ const alertTypeToIconColor = {
 
 const DEFAULT_ICON_SIZE = 13
 
-function Alert(props: AlertProps) {
-  return (
-    <Wrapper noPadding={props.noPadding}>
-      <StyledContent type={props.type}>
-        <StyledIcon type={props.type}>
-          {iconLoader(alertTypeToIcon[props.type], DEFAULT_ICON_SIZE)}
-        </StyledIcon>
-        <StyledLabel
-          fullWidth={props.canClose}
-          className="translate"
-        >
-          <LabelContentWrapper>
-            {props.alertDescription}
-            {props.canClose ? (
-              <Button
-                icon="close"
-                buttonType="borderless"
-                iconColor={getColor(alertTypeToIconColor[props.type])}
-                noPadding
-                noIconMargin
-                onClick={props.onClose}
-              />
-            ) : (
-              <></>
-            )}
-          </LabelContentWrapper>
-        </StyledLabel>
-      </StyledContent>
-    </Wrapper>
-  )
-}
+const AlertComponent = (props: AlertProps) => (
+  <Wrapper noPadding={props.noPadding}>
+    <StyledContent type={props.type}>
+      <StyledIcon type={props.type}>
+        {iconLoader(alertTypeToIcon[props.type], DEFAULT_ICON_SIZE)}
+      </StyledIcon>
+      <StyledLabel
+        fullWidth={props.canClose}
+        className="translate"
+      >
+        <LabelContentWrapper>
+          {props.alertDescription}
+          {props.canClose ? (
+            <Button
+              icon="close"
+              buttonType="borderless"
+              iconColor={getColor(alertTypeToIconColor[props.type])}
+              noPadding
+              noIconMargin
+              onClick={props.onClose}
+            />
+          ) : (
+            <></>
+          )}
+        </LabelContentWrapper>
+      </StyledLabel>
+    </StyledContent>
+  </Wrapper>
+)
 
 export type { AlertProps }
-export default React.memo(Alert)
+export const Alert = React.memo(AlertComponent)

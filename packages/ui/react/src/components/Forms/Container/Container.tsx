@@ -2,7 +2,7 @@ import React from 'react'
 
 import { ContainerStyled, WrapperContent } from './Container.styled'
 
-export interface ContainerProps {
+type ContainerProps = {
   noTopMargin?: boolean
   styles?: {
     bgWrapperContent?: string
@@ -13,10 +13,11 @@ export interface ContainerProps {
 
 const Container = (props: ContainerProps) => (
   <React.Fragment>
-    <ContainerStyled noTopMargin={props?.noTopMargin}>
-      <WrapperContent styles={props?.styles}>{props.children}</WrapperContent>
+    <ContainerStyled noTopMargin={props.noTopMargin}>
+      <WrapperContent styles={props.styles}>{props.children}</WrapperContent>
     </ContainerStyled>
   </React.Fragment>
 )
 
-export default Container
+export type { ContainerProps }
+export { Container }

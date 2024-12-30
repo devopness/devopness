@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react'
 
-import Alert from './Alert'
-import Container from '../Container/Container'
+import { Container } from '../Container/Container'
+import { Alert } from './Alert'
 
 const meta = {
   title: 'Form/Alert',
