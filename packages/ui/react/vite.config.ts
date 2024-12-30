@@ -1,4 +1,3 @@
-/// <reference types="vitest/config" />
 import react from '@vitejs/plugin-react-swc'
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
@@ -25,11 +24,6 @@ export default defineConfig({
     alias: {
       '@mui/styled-engine': '@mui/styled-engine-sc',
     },
-  },
-  test: {
-    globals: true,
-    environment: 'jsdom',
-    setupFiles: resolve(__dirname, 'src/setupTest.ts'),
   },
   build: {
     lib: {

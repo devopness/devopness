@@ -4,8 +4,8 @@ intro: Deploy your SSH Keys to each of the servers you want to give access to us
 links:
     overview:
     quickstart:
-    previous: /docs/ssh-keys/link-ssh-key
-    next: /docs/servers/ssh-into-server
+    previous: ssh-keys/link-ssh-key
+    next: servers/ssh-into-server
     guides:
     related:
     featured:

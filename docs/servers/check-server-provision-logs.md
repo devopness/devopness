@@ -4,8 +4,8 @@ intro: Sometimes you may encounter problems while provisioning your servers. Che
 links:
     overview:
     quickstart:
-    previous: /docs/servers/add-server
-    next: /docs/servers/ssh-into-server
+    previous: servers/add-server
+    next: servers/ssh-into-server
     guides:
     related:
     featured:

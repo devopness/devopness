@@ -12,7 +12,6 @@
  */
 
 
-import { ActionType } from './action-type';
 import { HookIncomingSettings } from './hook-incoming-settings';
 import { HookOutgoingSettings } from './hook-outgoing-settings';
 import { HookTriggerWhen } from './hook-trigger-when';
@@ -35,12 +34,6 @@ export interface HookUpdate {
      * @memberof HookUpdate
      */
     name: string;
-    /**
-     * 
-     * @type {ActionType}
-     * @memberof HookUpdate
-     */
-    action_type?: ActionType;
     /**
      * Determines if the hook is currently active.
      * @type {boolean}

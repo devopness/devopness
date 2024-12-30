@@ -69,7 +69,13 @@ export interface ServerRelation {
      * @type {string}
      * @memberof ServerRelation
      */
-    region: string;
+    region: string | null;
+    /**
+     * The human readable version of the region
+     * @type {string}
+     * @memberof ServerRelation
+     */
+    region_human_readable: string | null;
     /**
      * Public ipv4 address for server access
      * @type {string}

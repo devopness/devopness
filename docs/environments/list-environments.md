@@ -8,8 +8,8 @@ links:
     next:
     guides:
     related:
-      - /docs/environments/add-environment
-      - /docs/environments/find-archived-environment
+      - environments/add-environment
+      - environments/find-archived-environment
     featured:
 ---
 

@@ -5,7 +5,7 @@ links:
     overview: Project owners can create roles to be used when managing environments team permissions.
     quickstart:
     previous:
-    next: /docs/teams/add-team
+    next: teams/add-team
     guides:
     related:
     featured:
