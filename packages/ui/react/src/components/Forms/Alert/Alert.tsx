@@ -49,7 +49,20 @@ const alertTypeToIconColor = {
 
 const DEFAULT_ICON_SIZE = 13
 
-const AlertComponent = (props: AlertProps) => (
+/** 
+ * Alert component for displaying feedback messages to users
+ * 
+ * @example
+ * ```jsx
+ * <Alert 
+ *   type="success"
+ *   alertDescription="Operation completed successfully"
+ *   canClose
+ *   onClose={() => console.log('Alert closed')}
+ * />
+ * ```
+ */
+const Alert = (props: AlertProps) => (
   <Wrapper noPadding={props.noPadding}>
     <StyledContent type={props.type}>
       <StyledIcon type={props.type}>
