@@ -18,17 +18,17 @@ type AlertProps = {
   type: 'error' | 'success' | 'warning'
   /** Content to be displayed inside the alert */
   alertDescription: React.ReactNode
-  /** 
+  /**
    * Disable default padding
    * @default false
    */
   noPadding?: boolean
-  /** 
+  /**
    * Show close button in the alert
    * @default false
    */
   canClose?: boolean
-  /** 
+  /**
    * Callback function triggered when the close button is clicked
    * Only works when canClose is true
    */
@@ -49,12 +49,12 @@ const alertTypeToIconColor = {
 
 const DEFAULT_ICON_SIZE = 13
 
-/** 
+/**
  * Alert component for displaying feedback messages to users
- * 
+ *
  * @example
  * ```jsx
- * <Alert 
+ * <Alert
  *   type="success"
  *   alertDescription="Operation completed successfully"
  *   canClose
@@ -93,4 +93,4 @@ const Alert = (props: AlertProps) => (
 )
 
 export type { AlertProps }
-export const Alert = React.memo(AlertComponent)
+export { Alert }
