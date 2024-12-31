@@ -1,5 +1,11 @@
 # @devopness/ui-react
 
+## 2.148.1
+
+### Patch Changes
+
+- [#1109](https://github.com/devopness/devopness/pull/1109) [`88f83b7`](https://github.com/devopness/devopness/commit/88f83b74b5a81985f1fbe61069767ef9e53be479) Thanks [@pvdevs](https://github.com/pvdevs)! - Fix Alert component export in main index.ts. The component was previously only accessible through direct path import, but now it's properly exported from the package root, allowing users to import it directly from '@devopness/ui-react'.
+
 ## 2.148.0
 
 ### Minor Changes
