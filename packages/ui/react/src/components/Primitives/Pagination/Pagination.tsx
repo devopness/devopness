@@ -1,10 +1,6 @@
-import type { MouseEventHandler, PropsWithChildren } from 'react'
+import type { MouseEventHandler } from 'react'
 
-import {
-  ContainerPagination,
-  PaginationContent,
-  TableGridWithPagination,
-} from './Pagination.styled'
+import { ContainerPagination, PaginationContent } from './Pagination.styled'
 import { Button } from 'src/components/Buttons'
 
 type ConfigurationActionsProps = {
@@ -28,28 +24,6 @@ type PaginationActionsProps = ConfigurationActionsProps & {
   /** Handler for navigating to last page */
   lastPaginateAction: MouseEventHandler<HTMLButtonElement>
 }
-
-type TableGridWithPaginationProps = {
-  /** Custom height for the table grid */
-  height?: string
-}
-
-/**
- * Table grid component with pagination support
- *
- * @example
- * ```jsx
- * <TableGridWithPagination height="500px">
- *   <Table>...</Table>
- * </TableGridWithPagination>
- * ```
- */
-const TableGridWithPaginationComponent = ({
-  height,
-  children,
-}: PropsWithChildren<TableGridWithPaginationProps>) => (
-  <TableGridWithPagination height={height}>{children}</TableGridWithPagination>
-)
 
 /**
  * Pagination controls for navigating through paginated content
@@ -127,4 +101,4 @@ const Pagination = ({
 
 export type { ConfigurationActionsProps, PaginationActionsProps }
 
-export { TableGridWithPaginationComponent, Pagination }
+export { Pagination }

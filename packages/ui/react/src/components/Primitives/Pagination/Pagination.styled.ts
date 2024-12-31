@@ -4,10 +4,6 @@ type PaginationContentProps = {
   hideFirstAndLastButton: boolean
 }
 
-type TableGridWithPaginationProps = {
-  height?: string
-}
-
 const ContainerPagination = styled.div`
   display: flex;
   justify-content: center;
@@ -33,10 +29,4 @@ const PaginationContent = styled.div<PaginationContentProps>`
   ${(props) => props.hideFirstAndLastButton && hideFirstAndLastButton}
 `
 
-const TableGridWithPagination = styled.div<TableGridWithPaginationProps>`
-  display: grid;
-  grid-template-rows: auto 1fr;
-  height: ${(props) => props.height ?? ''};
-`
-
-export { ContainerPagination, PaginationContent, TableGridWithPagination }
+export { ContainerPagination, PaginationContent }
