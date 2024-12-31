@@ -17,31 +17,37 @@ import { CloudOsVersionCode } from './cloud-os-version-code';
 /**
  * 
  * @export
- * @interface CloudServiceSettingsDigitalOceanDroplet
+ * @interface CloudServiceSettingsAzureRm
  */
-export interface CloudServiceSettingsDigitalOceanDroplet {
+export interface CloudServiceSettingsAzureRm {
     /**
      * The instance type to be launched on the cloud provider
      * @type {string}
-     * @memberof CloudServiceSettingsDigitalOceanDroplet
+     * @memberof CloudServiceSettingsAzureRm
      */
     instance_type: string;
     /**
      * Datacenter region where the cloud instance will be launched
      * @type {string}
-     * @memberof CloudServiceSettingsDigitalOceanDroplet
+     * @memberof CloudServiceSettingsAzureRm
      */
     region: string;
     /**
      * Human readable version of the server region
      * @type {string}
-     * @memberof CloudServiceSettingsDigitalOceanDroplet
+     * @memberof CloudServiceSettingsAzureRm
      */
     region_human_readable?: string;
     /**
+     * The storage\'s size of the cloud instance
+     * @type {number}
+     * @memberof CloudServiceSettingsAzureRm
+     */
+    storage_size: number;
+    /**
      * 
      * @type {CloudOsVersionCode}
-     * @memberof CloudServiceSettingsDigitalOceanDroplet
+     * @memberof CloudServiceSettingsAzureRm
      */
     os_version_code: CloudOsVersionCode | null;
 }

@@ -13,6 +13,7 @@
 
 
 import { NetworkProvisionInputSettingsAws } from './network-provision-input-settings-aws';
+import { NetworkProvisionInputSettingsAzure } from './network-provision-input-settings-azure';
 import { NetworkProvisionInputSettingsDigitalOcean } from './network-provision-input-settings-digital-ocean';
 import { NetworkProvisionInputSettingsGcp } from './network-provision-input-settings-gcp';
 
@@ -20,6 +21,6 @@ import { NetworkProvisionInputSettingsGcp } from './network-provision-input-sett
  * @type NetworkProvisionInputSettings
  * @export
  */
-export type NetworkProvisionInputSettings = NetworkProvisionInputSettingsAws | NetworkProvisionInputSettingsDigitalOcean | NetworkProvisionInputSettingsGcp;
+export type NetworkProvisionInputSettings = NetworkProvisionInputSettingsAws | NetworkProvisionInputSettingsAzure | NetworkProvisionInputSettingsDigitalOcean | NetworkProvisionInputSettingsGcp;
 
 

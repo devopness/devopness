@@ -4,7 +4,7 @@ intro: Remove a Service when it is no longer needed.
 links:
     overview:
     quickstart:
-    previous: /docs/services/add-service
+    previous: services/add-service
     next:
     guides:
     related:

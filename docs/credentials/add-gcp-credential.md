@@ -5,7 +5,7 @@ links:
     overview:
     quickstart:
     previous:
-    next: /docs/credentials/add-credential
+    next: credentials/add-credential
     guides:
     related:
     featured:
@@ -45,11 +45,11 @@ links:
 1. In the permissions table, go to `VIEW BY ROLES` tab
 1. Make sure your service account has the `Compute Engine Service Agent` role
 
-    {% note %}
+    :::note
 
-    **NOTE**: You may need to check the box labeled “Include Google-provided role grants” to see the `Compute Engine Service Agent` role in the list.
+    You may need to check the box labeled “Include Google-provided role grants” to see the `Compute Engine Service Agent` role in the list.
 
-    {% endnote %}
+    :::
 
 1. If the service account doesn't have the `Compute Engine Service Agent` role, set it:
     - Click `GRANT ACCESS` button
@@ -71,4 +71,4 @@ links:
     - Pick `JSON` key type
     - Click `CREATE`
 1. A JSON file containing your service account credentials will be downloaded, copy its content to your clipboard
-1. To add the copied credentials to Devopness see {% mentionPost "/docs/credentials/add-credential" %}
+1. To add the copied credentials to Devopness see [/docs/credentials/add-credential]

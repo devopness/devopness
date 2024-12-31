@@ -51,13 +51,19 @@ export interface VariableRelation {
      * @type {string}
      * @memberof VariableRelation
      */
-    value: string;
+    value: string | null;
     /**
      * 
      * @type {VariableTarget}
      * @memberof VariableRelation
      */
     target: VariableTarget;
+    /**
+     * Human readable version of target
+     * @type {string}
+     * @memberof VariableRelation
+     */
+    target_human_readable: string;
     /**
      * The ID of the resource this variable is linked to
      * @type {number}

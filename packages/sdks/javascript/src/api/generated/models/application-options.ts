@@ -14,6 +14,7 @@
 
 import { LanguageRuntime } from './language-runtime';
 import { ScriptRunner } from './script-runner';
+import { VariableTargets } from './variable-targets';
 
 /**
  * 
@@ -21,6 +22,12 @@ import { ScriptRunner } from './script-runner';
  * @interface ApplicationOptions
  */
 export interface ApplicationOptions {
+    /**
+     * The list of VariableTarget
+     * @type {Array<VariableTargets>}
+     * @memberof ApplicationOptions
+     */
+    variable_targets: Array<VariableTargets>;
     /**
      * 
      * @type {Array<LanguageRuntime>}

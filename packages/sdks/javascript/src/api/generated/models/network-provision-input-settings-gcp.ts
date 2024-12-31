@@ -25,5 +25,11 @@ export interface NetworkProvisionInputSettingsGcp {
      * @memberof NetworkProvisionInputSettingsGcp
      */
     region: string;
+    /**
+     * Human readable version of the network region
+     * @type {string}
+     * @memberof NetworkProvisionInputSettingsGcp
+     */
+    region_human_readable?: string;
 }
 
