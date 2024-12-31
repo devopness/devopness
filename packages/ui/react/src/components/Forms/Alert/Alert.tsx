@@ -14,13 +14,24 @@ import type { Icon } from 'src/icons'
 import { iconLoader } from 'src/icons'
 
 type AlertProps = {
+  /** Alert variation type that defines its appearance and icon */
   type: 'error' | 'success' | 'warning'
+  /** Content to be displayed inside the alert */
   alertDescription: React.ReactNode
-  /** Disable default padding, top 42px and bottom 20px */
+  /** 
+   * Disable default padding
+   * @default false
+   */
   noPadding?: boolean
-  /** Show close button */
+  /** 
+   * Show close button in the alert
+   * @default false
+   */
   canClose?: boolean
-  /** Handle close events */
+  /** 
+   * Callback function triggered when the close button is clicked
+   * Only works when canClose is true
+   */
   onClose?: () => void
 }
 
