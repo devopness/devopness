@@ -313,8 +313,7 @@ const Dropdown = ({
                         activeBackgroundColor={option.activeBackgroundColor}
                         brokenSequence={option.brokenSequence}
                         onClick={(event) => {
-
-                          if(option.isDisabled) {
+                          if (option.isDisabled) {
                             return
                           }
 
