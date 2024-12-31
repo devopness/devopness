@@ -1,5 +1,11 @@
 # @devopness/ui-react
 
+## 2.148.0
+
+### Minor Changes
+
+- [#1104](https://github.com/devopness/devopness/pull/1104) [`b2a9a04`](https://github.com/devopness/devopness/commit/b2a9a044e729f1de53e5d65054a64f569fcd14b4) Thanks [@pvdevs](https://github.com/pvdevs)! - add [`components#Alert`](./src/components/Form/Alert/Alert.tsx)
+
 ## 2.147.0
 
 ### Minor Changes
