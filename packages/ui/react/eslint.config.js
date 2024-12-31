@@ -137,6 +137,7 @@ export default tseslint.config(
       '.storybook/*.ts',
       'src/components/**/*.stories.*',
       'vite.config.ts',
+      'vitest.config.ts',
     ],
     rules: {
       /**

@@ -4,16 +4,16 @@ intro: Devopness allows you to provision a server on Azure Resource Manager (RM)
 links:
     overview:
     quickstart:
-    previous: /docs/servers/add-server
-    next: /docs/servers/check-server-provision-logs
+    previous: servers/add-server
+    next: servers/check-server-provision-logs
     guides:
     related:
     featured:
 ---
 
-> If you don't have an Azure credential, please follow the guide {% mentionPost "/docs/credentials/add-azure-credential" %}
+> If you don't have an Azure credential, please follow the guide [/docs/credentials/add-azure-credential]
 
-> Microsoft Azure requires that you create your own custom network and subnet to provision a server, if you don't have one, please follow the guide {% mentionPost "/docs/networks/add-network" %}
+> Microsoft Azure requires that you create your own custom network and subnet to provision a server, if you don't have one, please follow the guide [/docs/networks/add-network]
 
 1. On Devopness, navigate to a project then select an environment
 2. Find the `Servers` card
@@ -21,7 +21,7 @@ links:
 4. On the upper-right corner of the list click `ADD SERVER`
 5. Choose `Microsoft Azure` as cloud provider
 6. Select a `Credential`
-    > If no credential is listed or you want to use a different one, click `Create a new Credential` and follow the guide {% mentionPost "/docs/credentials/add-credential" %}
+    > If no credential is listed or you want to use a different one, click `Create a new Credential` and follow the guide [/docs/credentials/add-credential]
 7. Follow the prompts to complete the configuration of the new `Server`
 8. Review server information and settings. If everything is correct, click `CONFIRM`
     > Use the `PREVIOUS` button if you need to modify any server details

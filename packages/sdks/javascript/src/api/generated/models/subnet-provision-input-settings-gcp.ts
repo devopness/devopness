@@ -26,6 +26,12 @@ export interface SubnetProvisionInputSettingsGcp {
      */
     region: string;
     /**
+     * Human readable version of the subnet region
+     * @type {string}
+     * @memberof SubnetProvisionInputSettingsGcp
+     */
+    region_human_readable?: string;
+    /**
      * The IP CIDR range of the subnet
      * @type {string}
      * @memberof SubnetProvisionInputSettingsGcp

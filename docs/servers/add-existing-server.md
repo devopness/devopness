@@ -4,8 +4,8 @@ intro: If you have servers provisioned outside of your desired environment on De
 links:
     overview:
     quickstart:
-    previous: /docs/servers/add-server
-    next: /docs/servers/check-server-provision-logs
+    previous: servers/add-server
+    next: servers/check-server-provision-logs
     guides:
     related:
     featured:
@@ -22,11 +22,11 @@ required_permissions:
 1. Provide the `Public IP address` of your existing server
 1. Enter the `SSH Port` to be used to connect to the server
 
-    {% note %}
+    :::note
 
-    **NOTE**: we do not recommend connecting servers that are already being used in production. Server's existing configuration will be lost and replaced by Devopness during the server setup process
+    We do not recommend connecting servers that are already being used in production. Server's existing configuration will be lost and replaced by Devopness during the server setup process
 
-    {% endnote %}
+    :::
 
 1. Click `NEXT`
 1. Follow the prompts to complete the configuration of the new `Server`

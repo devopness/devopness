@@ -19,19 +19,18 @@
  * @enum {string}
  */
 export enum VariableTarget {
-    ResourceConfigFile = 'resource-config-file',
-    NginxHttpServer = 'nginx-http-server',
     MyCnf = 'my-cnf',
     NewrelicInfraYml = 'newrelic-infra-yml',
-    NginxConf = 'nginx-conf',
-    NginxMain = 'nginx-main',
+    NginxHttpServer = 'nginx-http-server',
     NginxHttp = 'nginx-http',
+    NginxMain = 'nginx-main',
     OsEnvVar = 'os-env-var',
     PhpCliPhpIni = 'php-cli_php-ini',
     PhpFpmPhpFpmConf = 'php-fpm_php-fpm-conf',
     PhpFpmPhpIni = 'php-fpm_php-ini',
     PhpFpmPoolDWwwConf = 'php-fpm_pool-d-www-conf',
     RedisConf = 'redis-conf',
+    ResourceConfigFile = 'resource-config-file',
     SupervisordConf = 'supervisord-conf',
     SysctlConf = 'sysctl-conf'
 }

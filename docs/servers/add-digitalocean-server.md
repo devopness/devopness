@@ -4,14 +4,14 @@ intro: Devopness allows you to provision a server on DigitalOcean using Droplets
 links:
     overview:
     quickstart:
-    previous: /docs/servers/add-server
-    next: /docs/servers/check-server-provision-logs
+    previous: servers/add-server
+    next: servers/check-server-provision-logs
     guides:
     related:
     featured:
 ---
 
-> If you don't have an DigitalOcean credential, please follow the guide {% mentionPost "/docs/credentials/add-digitalocean-credential" %}
+> If you don't have an DigitalOcean credential, please follow the guide [/docs/credentials/add-digitalocean-credential]
 
 1. On Devopness, navigate to a project then select an environment
 1. If there's no other server in the selected environment, just click `ADD SERVER`
@@ -19,7 +19,7 @@ links:
 1. On the upper-right corner of the list click `ADD SERVER`
 1. Choose `DigitalOcean` as cloud provider
 1. Select a `Credential`
-    > If no credential is listed or you want to use a different one, click `Create a new credential` and follow the guide {% mentionPost "/docs/credentials/add-credential" %}
+    > If no credential is listed or you want to use a different one, click `Create a new credential` and follow the guide [/docs/credentials/add-credential]
 1. Follow the prompts to complete the configuration of the new `Server`
 1. Review server information and settings. If everything is correct, click `CONFIRM`
     > Use the `PREVIOUS` button if you need to modify any server details

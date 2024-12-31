@@ -8,6 +8,6 @@ links:
     next:
     guides:
     related:
-        - /docs/users/find-your-activity-summary
+        - users/find-your-activity-summary
     featured:
 ---

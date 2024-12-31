@@ -20,4 +20,4 @@ required_permissions:
 1. Follow the prompts then click `CONFIRM`
 1. In the `Network Rules` list, the recently create network rule can be seen
     - A new deployment is required for your changes to take effect
-        - Follow the guide {% mentionPost "/docs/pipelines/run-pipeline" %}
+        - Follow the guide [/docs/pipelines/run-pipeline]

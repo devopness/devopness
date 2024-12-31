@@ -20,6 +20,18 @@
  */
 export interface SubnetProvisionInputSettingsAws {
     /**
+     * The cloud provider region where the subnet will be created
+     * @type {string}
+     * @memberof SubnetProvisionInputSettingsAws
+     */
+    region?: string;
+    /**
+     * Human readable version of the subnet region
+     * @type {string}
+     * @memberof SubnetProvisionInputSettingsAws
+     */
+    region_human_readable?: string;
+    /**
      * The cloud provider availability zone where the subnet will be created
      * @type {string}
      * @memberof SubnetProvisionInputSettingsAws
