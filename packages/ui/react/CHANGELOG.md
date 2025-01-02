@@ -1,5 +1,11 @@
 # @devopness/ui-react
 
+## 2.148.2
+
+### Patch Changes
+
+- [#1102](https://github.com/devopness/devopness/pull/1102) [`ad70323`](https://github.com/devopness/devopness/commit/ad70323213650a4bc9e472afc73ba0e4019b319a) Thanks [@mateus2033](https://github.com/mateus2033)! - Fixes Dropdown closing after clicking a disabled option
+
 ## 2.148.1
 
 ### Patch Changes
