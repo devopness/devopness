@@ -46,7 +46,7 @@ const Pagination = ({
   previousPaginateAction,
   nextPaginateAction,
   lastPaginateAction,
-}: PaginationActionsProps) => (
+}: PaginationProps) => (
   <ContainerPagination>
     <PaginationContent hideFirstAndLastButton={hideFirstAndLastButton}>
       <Button
