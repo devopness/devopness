@@ -96,6 +96,6 @@ const Pagination = ({
   </ContainerPagination>
 )
 
-export type { ConfigurationActionsProps, PaginationActionsProps }
+export type { PaginationProps }
 
 export { Pagination }
