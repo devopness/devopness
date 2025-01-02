@@ -19,7 +19,27 @@ export default tseslint.config(
   },
   eslint.configs.recommended,
   tseslint.configs.recommended,
-  pluginImportConfigs.recommended,
   pluginNode.configs['flat/recommended'],
-  pluginPromise.configs['flat/recommended']
+  pluginPromise.configs['flat/recommended'],
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      pluginImportConfigs.recommended,
+    ],
+    rules: {
+      "n/no-missing-import": "off",
+    },
+    settings: {
+      'import/parsers': {
+        '@typescript-eslint/parser': ['.ts', '.tsx']
+      },
+      'import/resolver': {
+        typescript: {
+          alwaysTryTypes: true,
+          project: './tsconfig.json'
+        },
+        node: true
+      }
+    },
+  }
 );
