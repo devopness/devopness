@@ -82,4 +82,43 @@ describe('Dropdown', () => {
 
     expect(onClick).toHaveBeenCalled()
   })
+
+  it('click dropdown disabled option', () => {
+    const onClick = vi.fn(() => null)
+
+    render(
+      <Dropdown
+        id="test-dropdown"
+        anchorType="button"
+        label="Menu"
+        options={[
+          {
+            label: 'Bitbucket',
+            isDisabled: true,
+            badge: { icon: true, name: 'bitbucket' },
+            onClick,
+          },
+        ]}
+      />
+    )
+
+    const subjectDropdown = screen.getByText('Menu')
+    expect(subjectDropdown).toBeInTheDocument()
+
+    expect(onClick).not.toHaveBeenCalled()
+
+    act(() => {
+      subjectDropdown.click()
+    })
+
+    const subjectRemove = screen.getByText('Bitbucket')
+    expect(subjectRemove).toBeInTheDocument()
+
+    act(() => {
+      subjectRemove.click()
+    })
+
+    expect(subjectRemove).toBeInTheDocument()
+    expect(onClick).not.toHaveBeenCalled()
+  })
 })
