@@ -83,7 +83,7 @@
     "@types/lodash": "^4.17.13",
     "@types/node": "^22.10.3",
     "@types/path-browserify": "^1.0.3",
-    "@types/react": "^18.3.13",
+    "@types/react": "^19.0.2",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react-swc": "^3.7.2",
     "eslint": "^8.57.1",
@@ -98,8 +98,8 @@
     "jsdom": "^25.0.1",
     "prettier": "^3.4.2",
     "prettier-plugin-multiline-arrays": "^4.0.1",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "storybook": "^8.4.7",
     "typescript": "^5.7.2",
     "typescript-eslint": "~8.19.0",
@@ -109,8 +109,8 @@
     "vitest": "^2.1.8"
   },
   "peerDependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "eslintConfig": {
     "extends": [
