@@ -1,5 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
+  "type": "module",
   "name": "@devopness/sdk-js",
   "version": "2.152.0",
   "publishConfig": {
