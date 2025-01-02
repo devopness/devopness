@@ -22,13 +22,11 @@
   },
   "scripts": {
     "build": "rm -Rf dist && tsc -b && vite build",
-    "lint": "eslint --max-warnings=0 . && prettier --check .",
-    "test": "vitest",
-    "storybook": "storybook dev -p 6006",
     "build-storybook": "NODE_ENV=production storybook build -c .storybook -o ./storybook-static",
-    "prepublishOnly": "npm test",
-    "prepare": "npm run build",
-    "preversion": "npm run lint"
+    "lint": "eslint --max-warnings=0 . && prettier --check .",
+    "prepublishOnly": "npm run lint && npm test && npm run build",
+    "storybook": "storybook dev -p 6006",
+    "test": "vitest"
   },
   "repository": {
     "type": "git",

@@ -1,4 +1,5 @@
 {
+  "$schema": "https://json.schemastore.org/package.json",
   "name": "@devopness/sdk-js",
   "version": "2.152.0",
   "publishConfig": {
@@ -18,9 +19,7 @@
     "docs-update-service-index": "npm run docs-remove-service-index && npm run docs-export-service-index",
     "docs": "npm run docs-update-service-index && typedoc",
     "lint": "eslint . --ext .ts",
-    "prepublishOnly": "npm test",
-    "prepare": "npm run build",
-    "preversion": "npm run lint",
+    "prepublishOnly": "npm run lint && npm test && npm run build",
     "test": "jest"
   },
   "repository": {
