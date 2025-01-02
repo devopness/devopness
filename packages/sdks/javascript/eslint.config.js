@@ -25,6 +25,7 @@ export default tseslint.config(
   pluginImportConfigs.recommended,
   {
     rules: {
+      // Disable n/no-missing-import since we're using import/no-unresolved
       "n/no-missing-import": "off",
     },
     settings: {
