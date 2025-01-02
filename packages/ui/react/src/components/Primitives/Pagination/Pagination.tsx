@@ -3,7 +3,7 @@ import type { MouseEventHandler } from 'react'
 import { ContainerPagination, PaginationContent } from './Pagination.styled'
 import { Button } from 'src/components/Buttons'
 
-type ConfigurationActionsProps = {
+type PaginationProps = {
   /** Disable all pagination actions */
   disableAllActions?: boolean
   /** Disable only previous/back pagination actions */
@@ -12,9 +12,6 @@ type ConfigurationActionsProps = {
   disableNextActions?: boolean
   /** Hide first page and last page buttons */
   hideFirstAndLastButton?: boolean
-}
-
-type PaginationActionsProps = ConfigurationActionsProps & {
   /** Handler for navigating to first page */
   firstPaginateAction: MouseEventHandler<HTMLButtonElement>
   /** Handler for navigating to previous page */
