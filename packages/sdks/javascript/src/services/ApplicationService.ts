@@ -5,7 +5,9 @@ import { ApplicationsDeploymentsApiService } from '../api/generated/apis/applica
 import { ApplicationsVariablesApiService } from '../api/generated/apis/applications-variables-api';
 import { ApplicationsHooksApiService } from '../api/generated/apis/applications-hooks-api';
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-declaration-merging
 export class ApplicationService extends ApiBaseService { }
+// eslint-disable-next-line @typescript-eslint/no-unsafe-declaration-merging
 export interface ApplicationService extends
     ApplicationsApiService,
     ApplicationsDeploymentsApiService,
