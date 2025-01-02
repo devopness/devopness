@@ -5,6 +5,7 @@ import tseslint from 'typescript-eslint';
 import { flatConfigs as pluginImportConfigs } from 'eslint-plugin-import';
 import pluginNode from "eslint-plugin-n"
 import pluginPromise from 'eslint-plugin-promise'
+import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescript'
 
 export default tseslint.config(
   {
@@ -21,24 +22,14 @@ export default tseslint.config(
   tseslint.configs.recommended,
   pluginNode.configs['flat/recommended'],
   pluginPromise.configs['flat/recommended'],
+  pluginImportConfigs.recommended,
   {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      pluginImportConfigs.recommended,
-    ],
     rules: {
       "n/no-missing-import": "off",
     },
     settings: {
-      'import/parsers': {
-        '@typescript-eslint/parser': ['.ts', '.tsx']
-      },
       'import/resolver': {
-        typescript: {
-          alwaysTryTypes: true,
-          project: './tsconfig.json'
-        },
-        node: true
+        typescript: createTypeScriptImportResolver(),
       }
     },
   }
