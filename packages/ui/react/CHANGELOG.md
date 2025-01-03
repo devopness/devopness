@@ -1,5 +1,13 @@
 # @devopness/ui-react
 
+## 2.150.0
+
+### Minor Changes
+
+- [#1124](https://github.com/devopness/devopness/pull/1124) [`daebe66`](https://github.com/devopness/devopness/commit/daebe666071c26568a26b5267257558c796c4de2) Thanks [@pvdevs](https://github.com/pvdevs)! - ## "@devopness/ui-react": minor
+
+  add [`components#ErrorMessage`](./src/components/Primitives/ErrorMessage/ErrorMessage.tsx)
+
 ## 2.149.0
 
 ### Minor Changes
