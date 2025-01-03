@@ -85,4 +85,5 @@ const ErrorMessage = ({ error, className }: ErrorMessageProps) => {
   )
 }
 
+export type { ErrorMessageProps }
 export { ErrorMessage }
