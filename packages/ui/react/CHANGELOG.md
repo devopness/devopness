@@ -1,5 +1,11 @@
 # @devopness/ui-react
 
+## 2.149.0
+
+### Minor Changes
+
+- [#1107](https://github.com/devopness/devopness/pull/1107) [`88814b5`](https://github.com/devopness/devopness/commit/88814b51b8b8f314c3092935d5e82b7cce0686fe) Thanks [@pvdevs](https://github.com/pvdevs)! - add [`components#Pagination`](./src/components/Primitives/Pagination/Pagination.tsx)
+
 ## 2.148.2
 
 ### Patch Changes
