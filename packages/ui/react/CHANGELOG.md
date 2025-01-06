@@ -1,5 +1,15 @@
 # @devopness/ui-react
 
+## 2.150.1
+
+### Patch Changes
+
+- [#1135](https://github.com/devopness/devopness/pull/1135) [`23606df`](https://github.com/devopness/devopness/commit/23606dfed3d3671465c000e10b3fea67535cf8d9) Thanks [@pvdevs](https://github.com/pvdevs)! - enhance ErrorMessage component type definitions:
+
+  - add support for custom error types using Record<string,any>
+  - update JSDoc documentation for error formats
+  - add linter exceptions with proper documentation
+
 ## 2.150.0
 
 ### Minor Changes
