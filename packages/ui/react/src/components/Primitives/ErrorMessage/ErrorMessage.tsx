@@ -18,10 +18,19 @@ type ErrorMessageProps = {
    *
    * 3. { errors: { message: string } } [1]
    *
+   * 4. Record<string, any> [2]
+   *
    * [1] API Error response
+   * [2] Generic error objects
    */
-  error?: ErrorWithType | ErrorWithMessage | APIError | null
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // Allow Record<string,any> to support various error formats
+  error?:
+    | ErrorWithType
+    | ErrorWithMessage
+    | APIError
+    | Record<string, any>
+    | null
   /** Additional CSS classes to apply to the error message container */
   className?: string
 }
