@@ -95,7 +95,7 @@
     "globals": "^15.14.0",
     "jsdom": "^25.0.1",
     "prettier": "^3.4.2",
-    "prettier-plugin-multiline-arrays": "^4.0.1",
+    "prettier-plugin-multiline-arrays": "^4.0.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "storybook": "^8.4.7",
