@@ -65,7 +65,7 @@
     "lodash": "^4.17.21",
     "material-ui-popup-state": "^5.3.3",
     "path-browserify": "^1.0.1",
-    "styled-components": "^6.1.13"
+    "styled-components": "^6.1.14"
   },
   "devDependencies": {
     "@emotion/styled": "^11.14.0",
