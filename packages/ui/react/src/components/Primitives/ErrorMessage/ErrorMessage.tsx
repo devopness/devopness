@@ -18,10 +18,18 @@ type ErrorMessageProps = {
    *
    * 3. { errors: { message: string } } [1]
    *
+   * 4. Record<string, any> [2]
+   *
    * [1] API Error response
+   * [2] Custom error objects
    */
-  error?: ErrorWithType | ErrorWithMessage | APIError | null
-
+  error?:
+    | ErrorWithType
+    | ErrorWithMessage
+    | APIError
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    | Record<string, any>
+    | null
   /** Additional CSS classes to apply to the error message container */
   className?: string
 }
@@ -45,10 +53,14 @@ function handleErrorMessage(error: ErrorMessageProps['error']) {
   }
 
   if ('message' in error) {
+    // Handle potential non-string messages from custom error types
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return error.message
   }
 
   if ('errors' in error) {
+    // Handle nested message access from custom error types
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
     return error.errors.message
   }
 
