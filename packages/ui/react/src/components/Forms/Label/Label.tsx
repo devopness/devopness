@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Tooltip } from '../../Primitives'
+import { Tooltip } from 'src/components/Primitives'
 import { LabelElement, ContentFlex, QuestionIcon } from './Label.styled'
 import { getColor } from 'src/colors'
 
