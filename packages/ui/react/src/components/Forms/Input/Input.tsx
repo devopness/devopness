@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ErrorMessage } from '../../Primitives/ErrorMessage'
+import { ErrorMessage } from 'src/components/Primitives/ErrorMessage'
 import { Container, InputText } from './Input.styled'
 import { Label } from 'src/components/Forms/Label/Label'
 import type { LabelProps } from 'src/components/Forms/Label/Label'
