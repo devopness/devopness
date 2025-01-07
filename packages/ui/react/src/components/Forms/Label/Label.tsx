@@ -9,8 +9,6 @@ type LabelProps = {
   value: React.ReactNode
   /** Help text shown in tooltip */
   helpValue?: string
-  /** ARIA role */
-  role?: string
   /** Adds "(Optional)" text */
   isOptional?: boolean
 }
