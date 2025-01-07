@@ -26,8 +26,8 @@ type LabelProps = {
  *
  * // Label with help text and optional marker
  * <Label
- *   value="Email Address"
- *   helpValue="We'll send a verification code"
+ *   value="Description"
+ *   helpValue="A description of the item"
  *   isOptional
  * />
  * ```
