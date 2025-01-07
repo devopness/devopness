@@ -18,8 +18,8 @@ type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   /** Alternative ref prop for input element */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   inputref?: any
-  /** Label component props */
-  label?: LabelProps
+  /** Props passed directly to Label component */
+  labelProps?: LabelProps
   /** Custom styling options for input text */
   publicStyle?: {
     /** Font style applied to input value */
