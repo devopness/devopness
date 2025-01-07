@@ -17,7 +17,7 @@ type LabelProps = {
 }
 
 /**
- * Label component with optional help tooltip
+ * A caption for an item in the UI, usually associated with a form control
  *
  * @example
  * ```jsx
