@@ -7,8 +7,6 @@ import { getColor } from 'src/colors'
 type LabelProps = {
   /** Main label text/node */
   value: React.ReactNode
-  /** @deprecated if helpValue is present help is considered true */
-  help?: boolean
   /** Help text shown in tooltip */
   helpValue?: string
   /** ARIA role */
