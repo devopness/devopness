@@ -9,7 +9,10 @@ type LabelProps = {
   value: React.ReactNode
   /** Help text shown in tooltip */
   helpValue?: string
-  /** Adds "(Optional)" text */
+  /**
+   * Indicates that the field is optional
+   * @default false
+   */
   isOptional?: boolean
 }
 
