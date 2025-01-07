@@ -40,7 +40,7 @@ type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
 }
 
 /**
- * Input component for form fields with optional label and error message
+ * Allows users to enter and edit text
  *
  * @example
  * ```
