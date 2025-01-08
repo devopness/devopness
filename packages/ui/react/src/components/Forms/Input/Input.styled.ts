@@ -1,7 +1,7 @@
 import { styled, css } from 'styled-components'
 
 import { getColor } from 'src/colors'
-import { removeBlueMark } from 'src/components/commonStyles'
+import { removeBlueMark } from 'src/components/styles'
 import { getFont } from 'src/fonts'
 
 type PropsStyled = {
