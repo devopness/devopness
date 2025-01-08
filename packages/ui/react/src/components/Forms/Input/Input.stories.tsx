@@ -21,7 +21,10 @@ const Default: Story = {
     name: 'name',
     type: 'text',
     placeholder: 'Placeholder',
-    label: { value: 'it is a label', helpValue: 'it is a help', help: true },
+    labelProps: {
+      value: 'it is a label',
+      helpValue: 'it is a help',
+    },
     publicStyle: {
       fontStylePlaceholder: 'Placeholder font style',
     },
@@ -43,7 +46,10 @@ const Error: Story = {
     name: 'name',
     type: 'text',
     placeholder: 'Placeholder',
-    label: { value: 'it is a label', helpValue: 'it is a help', help: true },
+    labelProps: {
+      value: 'it is a label',
+      helpValue: 'it is a help',
+    },
     publicStyle: {
       fontStylePlaceholder: 'Placeholder font style',
     },
@@ -67,7 +73,10 @@ const Number: Story = {
     name: 'name',
     type: 'number',
     placeholder: 'Placeholder',
-    label: { value: 'it is a label', helpValue: 'it is a help', help: true },
+    labelProps: {
+      value: 'it is a label',
+      helpValue: 'it is a help',
+    },
     publicStyle: {
       fontStylePlaceholder: 'Placeholder font style',
     },

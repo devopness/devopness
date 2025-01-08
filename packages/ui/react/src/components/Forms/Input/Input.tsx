@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 
-import { ErrorMessage } from 'src/components/Primitives/ErrorMessage'
 import { Container, InputText } from './Input.styled'
-import { Label } from 'src/components/Forms/Label/Label'
-import type { LabelProps } from 'src/components/Forms/Label/Label'
+import type { ErrorMessageProps } from 'src/components/Primitives/ErrorMessage'
+import { ErrorMessage } from 'src/components/Primitives/ErrorMessage'
+import { Label } from 'src/components/Primitives/Label/'
+import type { LabelProps } from 'src/components/Primitives/Label/'
 
-type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
+type SharedProps = React.InputHTMLAttributes<HTMLInputElement> & {
   /** React ref for direct DOM manipulation */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ref?: any
@@ -14,10 +15,7 @@ type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   /** Removes increment/decrement arrows from number inputs */
   removeArrows?: boolean
   /** Error message configuration */
-  error?: React.ComponentPropsWithoutRef<typeof ErrorMessage>['error']
-  /** Alternative ref prop for input element */
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  inputref?: any
+  error?: ErrorMessageProps['error']
   /** Props passed directly to Label component */
   labelProps?: LabelProps
   /** Custom styling options for input text */
@@ -34,10 +32,20 @@ type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
    *
    * <Input type="text" inputProps={{type: 'number'}} /> // input type is number
    */
-  inputProps?: React.InputHTMLAttributes<HTMLInputElement> & {
-    ref?: React.Ref<HTMLInputElement>
-  }
+  inputProps?: React.InputHTMLAttributes<HTMLInputElement>
 }
+
+type InputProps =
+  | (SharedProps & {
+      /** HTML input type (text, number, email, etc) */
+      type: Exclude<React.HTMLInputTypeAttribute, 'number'>
+    })
+  | (SharedProps & {
+      /** HTML input type (text, number, email, etc) */
+      type: 'number'
+      /** Removes increment/decrement arrows from number inputs */
+      removeArrows?: boolean
+    })
 
 /**
  * Allows users to enter and edit text
@@ -56,19 +64,21 @@ type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
  * />
  * ```
  */
-const Input = (props: InputProps) => (
+const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => (
   <Container>
-    {props.label && <Label {...props.label} />}
+    {props.labelProps && <Label {...props.labelProps} />}
     <InputText
       className="translate"
-      ref={props.inputref}
+      ref={ref}
       hasError={Boolean(props.error)}
       {...props}
       {...props.inputProps}
     />
     {Boolean(props.error) && <ErrorMessage error={props.error} />}
   </Container>
-)
+))
+
+Input.displayName = 'Input'
 
 export type { InputProps }
 export { Input }

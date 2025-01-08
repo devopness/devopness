@@ -1,8 +1,8 @@
 import React from 'react'
 
-import { Tooltip } from 'src/components/Primitives'
 import { LabelElement, ContentFlex, QuestionIcon } from './Label.styled'
 import { getColor } from 'src/colors'
+import { Tooltip } from 'src/components/Primitives'
 
 type LabelProps = {
   /** Main label text/node */
@@ -32,8 +32,8 @@ type LabelProps = {
  * />
  * ```
  */
-const Label = ({ value, helpValue, role, isOptional = false }: LabelProps) => (
-  <ContentFlex role={role}>
+const Label = ({ value, helpValue, isOptional = false }: LabelProps) => (
+  <ContentFlex>
     <LabelElement className="translate">
       {value}
       {isOptional ? ' (Optional)' : ''}
