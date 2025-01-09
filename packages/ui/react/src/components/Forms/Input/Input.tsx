@@ -8,8 +8,7 @@ import type { LabelProps } from 'src/components/Primitives/Label/'
 
 type SharedProps = React.InputHTMLAttributes<HTMLInputElement> & {
   /** React ref for direct DOM manipulation */
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  ref?: any
+  ref?: React.Ref<HTMLInputElement>
   /** HTML input type (text, number, email, etc) */
   type: React.HTMLInputTypeAttribute
   /** Removes increment/decrement arrows from number inputs */
