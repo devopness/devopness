@@ -73,6 +73,10 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => (
   </Container>
 ))
 
+/**
+ * Explicitly sets component display name for debugging in React DevTools when using forwardRef.
+ * Without this, component would show as "ForwardRef" instead of "Input" in the component tree.
+ */
 Input.displayName = 'Input'
 
 export type { InputProps }
