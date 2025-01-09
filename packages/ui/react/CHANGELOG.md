@@ -1,5 +1,12 @@
 # @devopness/ui-react
 
+## 2.151.0
+
+### Minor Changes
+
+- [#1141](https://github.com/devopness/devopness/pull/1141) [`ed5456c`](https://github.com/devopness/devopness/commit/ed5456ce083e634f28529d66c0bd18fa59647dca) Thanks [@pvdevs](https://github.com/pvdevs)! - add [`components#Input`](./src/components/Forms/Input/Input.tsx)
+  add [`components#Label`](./src/components/Forms/Label/Label.tsx)
+
 ## 2.150.1
 
 ### Patch Changes
