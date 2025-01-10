@@ -35,4 +35,3 @@ const ArrowHead = ({ fill, stroke, style, onClick }: ArrowHeadProps) => (
 
 export type { ArrowHeadProps }
 export { ArrowHead }
-export default ArrowHead

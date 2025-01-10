@@ -45,7 +45,8 @@ describe('ArrowHead', () => {
       )
 
       const svg = container.querySelector('svg')
-      fireEvent.click(svg!)
+      if (!svg) throw new Error('SVG element not found')
+      fireEvent.click(svg)
 
       expect(handleClick).toHaveBeenCalledTimes(1)
     })
