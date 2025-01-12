@@ -29,8 +29,8 @@ As an action running a pipeline can have a variable number of steps, Devopness w
 Paid plans also differ in the number of premium features available to increase your team's productivity.
 
 See also:
-- [What are actions and action steps?](#)
-- [What are credits?](#)
+- [What are actions and action steps?](#what-are-actions-and-action-steps)
+- [What are credits?](#what-are-credits)
 - [Pricing](/pricing/)
 
 ## How do I pay?
@@ -69,8 +69,8 @@ For example:
 This ensures that credit consumption reflects the complexity and success of each action.
 
 See also:
-- [What are actions and action steps?](#)
-- [What are credits?](#)
+- [What are actions and action steps?](#what-are-actions-and-action-steps)
+- [What are credits?](#what-are-credits)
 
 ## Am I charged for `failed` and `skipped` action steps?
 No.
@@ -102,7 +102,7 @@ Insufficient credits to run this action
 When that happens, you can fix the error by adding more credits to your account.
 
 For more information, see:
-- [How do I add credits to my account?](#)
+- [How do I add credits to my account?](#how-do-i-add-credits-to-my-account)
 
 ## How do I add credits to my account?
 To add credits to your account, [/docs/users/subscriptions/upgrade-subscription].
@@ -116,7 +116,7 @@ Subscriptions are renewed automatically on their expiry date, using your chosen 
 If for some reason your subscription could not be renewed, the current subscription will be canceled.
 
 See also:
-- [What happens after my subscription is canceled?](#)
+- [What happens after my subscription is canceled?](#what-happens-after-my-subscription-is-canceled)
 
 ## How do I cancel my subscription?
 Subscriptions on Devopness are for an indefinite term, unless you unsubscribe.
@@ -125,7 +125,7 @@ Upon cancellation, your subscription will remain active and its credits can be u
 
 See also:
 - [/docs/users/subscriptions/cancel-subscription]
-- [What happens after my subscription is canceled?](#)
+- [What happens after my subscription is canceled?](#what-happens-after-my-subscription-is-canceled)
 
 ## What happens after my subscription is canceled?
 When your subscription is canceled you’ll still be able to use your subscription exclusive features and remaining credits for the time you’ve already paid for.
