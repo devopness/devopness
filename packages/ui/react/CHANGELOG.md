@@ -1,5 +1,11 @@
 # @devopness/ui-react
 
+## 2.152.0
+
+### Minor Changes
+
+- [#1145](https://github.com/devopness/devopness/pull/1145) [`7dc3476`](https://github.com/devopness/devopness/commit/7dc3476ceef61b5ffe4009dbc8d6c5c352bedc0c) Thanks [@pvdevs](https://github.com/pvdevs)! - add [`components#ArrowHead`](./src/components/Primitives/ArrowHead/ArrowHead.tsx)
+
 ## 2.151.0
 
 ### Minor Changes
