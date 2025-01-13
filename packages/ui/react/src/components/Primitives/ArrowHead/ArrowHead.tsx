@@ -12,8 +12,7 @@ type ArrowHeadProps = {
 }
 
 /**
- * A pointed arrow component used as a visual separator between navigation items
- * like breadcrumbs.
+ * An arrow separator
  *
  * @example
  * <ArrowHead
