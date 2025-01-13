@@ -5,9 +5,11 @@ type ArrowHeadProps = {
   fill: string
   /** Stroke color for the arrow shape border */
   stroke: string
-  /** Optional CSS styles to apply to the arrow shape */
+  /** CSS styles to apply to the arrow shape */
   style?: React.CSSProperties
-  /** Optional click handler for the arrow */
+  /**
+   * Event handler called when the arrow is clicked.
+   */
   onClick?: React.MouseEventHandler
 }
 
