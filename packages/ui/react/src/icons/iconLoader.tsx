@@ -1,76 +1,75 @@
-import { AiOutlineCheck } from '@react-icons/all-files/ai/AiOutlineCheck'
-import { AiOutlineCloudServer } from '@react-icons/all-files/ai/AiOutlineCloudServer'
-import { AiOutlineDeploymentUnit } from '@react-icons/all-files/ai/AiOutlineDeploymentUnit'
-import { AiOutlineDollarCircle } from '@react-icons/all-files/ai/AiOutlineDollarCircle'
-import { AiOutlineLink } from '@react-icons/all-files/ai/AiOutlineLink'
-import { AiOutlineSafety } from '@react-icons/all-files/ai/AiOutlineSafety'
-import { BiUnlink } from '@react-icons/all-files/bi/BiUnlink'
-import { BsFillGearFill } from '@react-icons/all-files/bs/BsFillGearFill'
-import { BsQuestionCircleFill } from '@react-icons/all-files/bs/BsQuestionCircleFill'
-import { BsTerminal } from '@react-icons/all-files/bs/BsTerminal'
-import { DiCodeBadge } from '@react-icons/all-files/di/DiCodeBadge'
-import { FaCog } from '@react-icons/all-files/fa/FaCog'
-import { FaCopy } from '@react-icons/all-files/fa/FaCopy'
-import { FaCubes } from '@react-icons/all-files/fa/FaCubes'
-import { FaDatabase } from '@react-icons/all-files/fa/FaDatabase'
-import { FaGlobe } from '@react-icons/all-files/fa/FaGlobe'
-import { FaLock } from '@react-icons/all-files/fa/FaLock'
-import { FaLockOpen } from '@react-icons/all-files/fa/FaLockOpen'
-import { FaPlus } from '@react-icons/all-files/fa/FaPlus'
-import { FaRegCopy } from '@react-icons/all-files/fa/FaRegCopy'
-import { FaServer } from '@react-icons/all-files/fa/FaServer'
-import { FaSort } from '@react-icons/all-files/fa/FaSort'
-import { FaUserCheck } from '@react-icons/all-files/fa/FaUserCheck'
-import { FaUserClock } from '@react-icons/all-files/fa/FaUserClock'
-import { FaUserTimes } from '@react-icons/all-files/fa/FaUserTimes'
-import { FiGitBranch } from '@react-icons/all-files/fi/FiGitBranch'
-import { FiLogOut } from '@react-icons/all-files/fi/FiLogOut'
-import { FiPlusCircle } from '@react-icons/all-files/fi/FiPlusCircle'
-import { FiServer } from '@react-icons/all-files/fi/FiServer'
-import { GoGitCommit } from '@react-icons/all-files/go/GoGitCommit'
-import { GoKey } from '@react-icons/all-files/go/GoKey'
-import { GoPasskeyFill } from '@react-icons/all-files/go/GoPasskeyFill'
-import { GoSkip } from '@react-icons/all-files/go/GoSkip'
-import { GrClose } from '@react-icons/all-files/gr/GrClose'
-import { GrConnect } from '@react-icons/all-files/gr/GrConnect'
-import { GrLaunch } from '@react-icons/all-files/gr/GrLaunch'
-import { ImTree } from '@react-icons/all-files/im/ImTree'
-import { IoMdEye } from '@react-icons/all-files/io/IoMdEye'
-import { IoMdEyeOff } from '@react-icons/all-files/io/IoMdEyeOff'
-import { LiaNetworkWiredSolid } from '@react-icons/all-files/lia/LiaNetworkWiredSolid'
-import { MdAdd } from '@react-icons/all-files/md/MdAdd'
-import { MdAlarmOn } from '@react-icons/all-files/md/MdAlarmOn'
-import { MdCheckCircle } from '@react-icons/all-files/md/MdCheckCircle'
-import { MdDelete } from '@react-icons/all-files/md/MdDelete'
-import { MdDevices } from '@react-icons/all-files/md/MdDevices'
-import { MdDragHandle } from '@react-icons/all-files/md/MdDragHandle'
-import { MdEdit } from '@react-icons/all-files/md/MdEdit'
-import { MdError } from '@react-icons/all-files/md/MdError'
-import { MdGroup } from '@react-icons/all-files/md/MdGroup'
-import { MdInfo } from '@react-icons/all-files/md/MdInfo'
-import { MdKeyboardArrowDown } from '@react-icons/all-files/md/MdKeyboardArrowDown'
-import { MdKeyboardArrowLeft } from '@react-icons/all-files/md/MdKeyboardArrowLeft'
-import { MdKeyboardArrowRight } from '@react-icons/all-files/md/MdKeyboardArrowRight'
-import { MdKeyboardArrowUp } from '@react-icons/all-files/md/MdKeyboardArrowUp'
-import { MdLens } from '@react-icons/all-files/md/MdLens'
-import { MdMoreHoriz } from '@react-icons/all-files/md/MdMoreHoriz'
-import { MdOutlineDescription } from '@react-icons/all-files/md/MdOutlineDescription'
-import { MdOutlineFolder } from '@react-icons/all-files/md/MdOutlineFolder'
-import { MdPending } from '@react-icons/all-files/md/MdPending'
-import { MdPersonOutline } from '@react-icons/all-files/md/MdPersonOutline'
-import { MdSecurity } from '@react-icons/all-files/md/MdSecurity'
-import { MdSettings } from '@react-icons/all-files/md/MdSettings'
-import { MdSnooze } from '@react-icons/all-files/md/MdSnooze'
-import { MdTimerOff } from '@react-icons/all-files/md/MdTimerOff'
-import { MdWarning } from '@react-icons/all-files/md/MdWarning'
-import { PiCloudWarningBold } from '@react-icons/all-files/pi/PiCloudWarningBold'
-import { PiTagDuotone } from '@react-icons/all-files/pi/PiTagDuotone'
-import { PiTreeView } from '@react-icons/all-files/pi/PiTreeView'
-import { RiEye2Line } from '@react-icons/all-files/ri/RiEye2Line'
-import { RiMapPinLine } from '@react-icons/all-files/ri/RiMapPinLine'
-import { RiShieldCheckFill } from '@react-icons/all-files/ri/RiShieldCheckFill'
-import { RiTeamLine } from '@react-icons/all-files/ri/RiTeamLine'
-import { RxOpenInNewWindow } from '@react-icons/all-files/rx/RxOpenInNewWindow'
+import {
+  AiOutlineCheck,
+  AiOutlineCloudServer,
+  AiOutlineDeploymentUnit,
+  AiOutlineDollarCircle,
+  AiOutlineLink,
+  AiOutlineSafety,
+} from 'react-icons/ai'
+import { BiUnlink } from 'react-icons/bi'
+import {
+  BsFillGearFill,
+  BsQuestionCircleFill,
+  BsTerminal,
+} from 'react-icons/bs'
+import { DiCodeBadge } from 'react-icons/di'
+import {
+  FaCog,
+  FaCopy,
+  FaCubes,
+  FaDatabase,
+  FaGlobe,
+  FaLock,
+  FaLockOpen,
+  FaPlus,
+  FaRegCopy,
+  FaServer,
+  FaSort,
+  FaUserCheck,
+  FaUserClock,
+  FaUserTimes,
+} from 'react-icons/fa'
+import { FiGitBranch, FiLogOut, FiPlusCircle, FiServer } from 'react-icons/fi'
+import { GoGitCommit, GoKey, GoPasskeyFill, GoSkip } from 'react-icons/go'
+import { GrClose, GrConnect, GrLaunch } from 'react-icons/gr'
+import { ImTree } from 'react-icons/im'
+import { IoMdEye, IoMdEyeOff } from 'react-icons/io'
+import { LiaNetworkWiredSolid } from 'react-icons/lia'
+import {
+  MdAdd,
+  MdAlarmOn,
+  MdCheckCircle,
+  MdDelete,
+  MdDevices,
+  MdDragHandle,
+  MdEdit,
+  MdError,
+  MdGroup,
+  MdInfo,
+  MdKeyboardArrowDown,
+  MdKeyboardArrowLeft,
+  MdKeyboardArrowRight,
+  MdKeyboardArrowUp,
+  MdLens,
+  MdMoreHoriz,
+  MdOutlineDescription,
+  MdOutlineFolder,
+  MdPending,
+  MdPersonOutline,
+  MdSecurity,
+  MdSettings,
+  MdSnooze,
+  MdTimerOff,
+  MdWarning,
+} from 'react-icons/md'
+import { PiCloudWarningBold, PiTagDuotone, PiTreeView } from 'react-icons/pi'
+import {
+  RiEye2Line,
+  RiMapPinLine,
+  RiShieldCheckFill,
+  RiTeamLine,
+} from 'react-icons/ri'
+import { RxOpenInNewWindow } from 'react-icons/rx'
 
 import { CircleBubble } from './CircleBubble'
 import { getImageAssetUrl } from './getImageAssetUrl'

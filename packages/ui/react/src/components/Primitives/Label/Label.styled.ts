@@ -1,4 +1,4 @@
-import { BsQuestionCircleFill } from '@react-icons/all-files/bs/BsQuestionCircleFill'
+import { BsQuestionCircleFill } from 'react-icons/bs'
 import { styled } from 'styled-components'
 
 import { getColor } from 'src/colors'
