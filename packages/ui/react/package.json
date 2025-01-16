@@ -76,7 +76,7 @@
     "@storybook/react": "^8.4.7",
     "@storybook/react-vite": "^8.4.7",
     "@storybook/test": "^8.4.7",
-    "@storybook/theming": "^8.4.7",
+    "@storybook/theming": "^8.5.0",
     "@testing-library/react": "^16.1.0",
     "@types/lodash": "^4.17.14",
     "@types/node": "^22.10.6",
