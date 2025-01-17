@@ -27,7 +27,7 @@ const DEFAULT_ICON_MARGIN = 10
 
 type DropdownOptionIcon = Unwrap<
   Partial<Pick<IconProps, 'name' | 'size'>> &
-  Pick<React.CSSProperties, 'backgroundColor' | 'color'>
+    Pick<React.CSSProperties, 'backgroundColor' | 'color'>
 > & { icon: true }
 
 type DropdownOptionLetter = Unwrap<
