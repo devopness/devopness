@@ -79,8 +79,8 @@ const Alert = (props: AlertProps) => (
               icon="close"
               buttonType="borderless"
               iconColor={getColor(alertTypeToIconColor[props.type])}
-              noPadding
-              noIconMargin
+              $noPadding
+              $noIconMargin
               onClick={props.onClose}
             />
           ) : (

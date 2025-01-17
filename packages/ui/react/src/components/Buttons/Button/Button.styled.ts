@@ -11,11 +11,11 @@ type CustomButton = {
 }
 
 type StyledProps = {
-  noMargin?: boolean
-  noPadding?: boolean
-  size: NonNullable<ButtonProps['typeSize']>
-  variant?: string
-  custom?: CustomButton
+  $noMargin?: boolean
+  $noPadding?: boolean
+  $size: NonNullable<ButtonProps['typeSize']>
+  $variant?: string
+  $custom?: CustomButton
   icon?: boolean
   alignEnd?: boolean
   reversed: boolean
@@ -67,7 +67,7 @@ const getBorderColor = (buttonType?: string, custom?: CustomButton) => {
   }
 }
 
-const getBorderWidth = (typeSize: StyledProps['size']) => {
+const getBorderWidth = (typeSize: StyledProps['$size']) => {
   switch (typeSize) {
     case 'medium':
       return 1
@@ -76,7 +76,7 @@ const getBorderWidth = (typeSize: StyledProps['size']) => {
   }
 }
 
-const getTypeSize = (typeSize: StyledProps['size']) => {
+const getTypeSize = (typeSize: StyledProps['$size']) => {
   switch (typeSize) {
     case 'auto':
       return 'auto'
@@ -88,17 +88,17 @@ const getTypeSize = (typeSize: StyledProps['size']) => {
 }
 
 const ContentIcon = styled.div<
-  Pick<ButtonProps, 'noIconMargin'> & {
+  Pick<ButtonProps, '$noIconMargin'> & {
     reversed: ButtonProps['revertOrientation']
     size: Required<ButtonProps['iconSize']>
   }
 >`
-  ${({ noIconMargin, reversed: revertOrientation, size: iconSize }) => css`
+  ${({ $noIconMargin, reversed: revertOrientation, size: iconSize }) => css`
     display: flex;
     align-items: center;
     width: ${iconSize}px;
     height: ${iconSize}px;
-    ${noIconMargin
+    ${$noIconMargin
       ? ''
       : revertOrientation
         ? 'margin-left: 10px;'
@@ -121,13 +121,13 @@ const WrapperButtons = styled.div<StyledProps>`
 
 const BaseButton = styled.button<StyledProps>`
   ${({
-    size: typeSize,
-    variant: buttonType,
-    custom,
-    noMargin,
+    $size: typeSize,
+    $variant: buttonType,
+    $custom: custom,
+    $noPadding: noPadding,
+    $noMargin: noMargin,
     reversed: revertOrientation,
     noPointerEvents,
-    noPadding,
   }) => css`
     display: flex;
     justify-content: center;
