@@ -1,5 +1,11 @@
 # @devopness/ui-react
 
+## 2.153.1
+
+### Patch Changes
+
+- [#1179](https://github.com/devopness/devopness/pull/1179) [`0219a4c`](https://github.com/devopness/devopness/commit/0219a4c2fdb8becee36c92cd6ce328e8f0aaf058) Thanks [@rafael-g-depaulo](https://github.com/rafael-g-depaulo)! - Stop select props from propagating to DOM element because of styled-component in Button component
+
 ## 2.153.0
 
 ### Minor Changes
