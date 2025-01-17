@@ -46,15 +46,15 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   /**
    * The button component has a 15px margin on its sides, to remove activate the "noMargin" property
    */
-  noMargin?: boolean
+  $noMargin?: boolean
   /**
    * The button component has a 10px margin on its sides, to remove activate the "noIconMargin" property
    */
-  noIconMargin?: boolean
+  $noIconMargin?: boolean
   /**
    * The button component has a 15px padding on its sides, to remove activate the "noPadding" property
    */
-  noPadding?: boolean
+  $noPadding?: boolean
   /**
    * It should be true if the button is wrapped in a tooltip
    */
@@ -94,8 +94,8 @@ const Button = ({
   icon,
   children,
   revertOrientation = false,
-  noMargin,
-  noIconMargin,
+  $noMargin: noMargin,
+  $noIconMargin,
   noPointerEvents,
   iconSize,
   iconColor,
@@ -110,7 +110,7 @@ const Button = ({
       <ContentIcon
         data-testid={isLoading ? 'loading' : 'icon'}
         reversed={revertOrientation}
-        noIconMargin={noIconMargin}
+        $noIconMargin={$noIconMargin}
         size={iconSize ?? DEFAULT_ICON_SIZE}
       >
         {iconLoader(
@@ -125,16 +125,16 @@ const Button = ({
   return (
     <BaseButton
       data-testid="button"
-      size={typeSize}
-      variant={buttonType}
+      $size={typeSize}
+      $variant={buttonType}
       reversed={revertOrientation}
       noPointerEvents={noPointerEvents}
-      custom={{
+      $custom={{
         color: color,
         backgroundColor: backgroundColor,
         borderColor: borderColor,
       }}
-      noMargin={noMargin}
+      $noMargin={noMargin}
       disabled={disabled}
       type={type}
       tabIndex={tabIndex}
