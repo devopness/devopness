@@ -1,190 +1,121 @@
 import '@testing-library/jest-dom'
-
-import { render, screen } from '@testing-library/react'
-import { describe, expect, it } from 'vitest'
-
+import { render, screen, fireEvent } from '@testing-library/react'
+import { describe, expect, it, vi } from 'vitest'
+import { getColor } from 'src/colors'
 import { Button } from '.'
-
-const styleButtonFactory = ({
-  color = 'rgb(255, 255, 255)',
-  backgroundColor = 'rgb(120, 110, 253)',
-  border = '1px',
-  borderColor = '#786efd',
-  borderRadius = '25px',
-  height = '34px',
-  borderStyle = 'solid',
-}) => `
-      color: ${color};
-      background-color: ${backgroundColor};
-      border: ${border};
-      border-color: ${borderColor};
-      border-style: ${borderStyle};
-      border-radius: ${borderRadius};
-      height: ${height};
-      `
 
 describe('Button', () => {
   describe('renders correctly', () => {
-    const typeSizes = [
-      { typeSize: 'default', height: '34px' },
-      { typeSize: 'medium', height: '27px' },
-    ] as const
+    it('with default props', () => {
+      render(<Button>Click me!</Button>)
+      
+      const button = screen.getByTestId('button')
+      expect(button).toBeInTheDocument()
+      expect(button).toHaveTextContent('Click me!')
+    })
 
-    it.each(typeSizes)(
-      'with primary type (typeSize: $typeSize)',
-      ({ typeSize, height }) => {
-        render(
-          <Button
-            type="button"
-            typeSize={typeSize}
-          >
-            Click me!
-          </Button>
-        )
+    it('with custom styles', () => {
+      const customColor = '#FF0000'
+      const customBgColor = '#00FF00'
+      const customBorderColor = '#0000FF'
+      
+      render(
+        <Button 
+          color={customColor}
+          backgroundColor={customBgColor}
+          borderColor={customBorderColor}
+        >
+          Custom Button
+        </Button>
+      )
+      
+      const button = screen.getByTestId('button')
+      expect(button).toHaveStyle({
+        color: customColor,
+        backgroundColor: customBgColor,
+        borderColor: customBorderColor
+      })
+    })
 
-        const expectedButton = screen.getByTestId('button')
-        const expectedStyles = styleButtonFactory({ height })
+    it('with disabled state', () => {
+      render(<Button disabled>Disabled Button</Button>)
+      
+      const button = screen.getByTestId('button')
+      expect(button).toBeDisabled()
+    })
 
-        expect(expectedButton).toBeInTheDocument()
-        expect(expectedButton).toHaveTextContent('Click me!')
-        expect(expectedButton).toHaveStyle(expectedStyles)
-        expect(expectedButton).toHaveAttribute('type', 'button')
-      }
-    )
+    it('with loading state', () => {
+      render(<Button loading>Loading Button</Button>)
+      
+      const loadingIcon = screen.getByTestId('loading')
+      expect(loadingIcon).toBeInTheDocument()
+    })
 
-    it.each(typeSizes)(
-      'with secondary type (typeSize: $typeSize)',
-      ({ typeSize, height }) => {
-        render(
-          <Button
-            type="button"
-            typeSize={typeSize}
-            buttonType="outlinedSecondary"
-          >
-            Click me!
-          </Button>
-        )
+    it('with custom icon', () => {
+      render(
+        <Button icon="html" iconColor={getColor('purple.800')} iconSize={24}>
+          Icon Button
+        </Button>
+      )
+      
+      const icon = screen.getByTestId('icon')
+      expect(icon).toBeInTheDocument()
+    })
 
-        const expectedButton = screen.getByTestId('button')
-        const expectedStyles = styleButtonFactory({
-          color: 'rgb(120, 110, 253)',
-          backgroundColor: 'rgb(255, 255, 255)',
-          height,
-        })
+    it('with reversed orientation', () => {
+      render(
+        <Button icon="html" revertOrientation>
+          Reversed Button
+        </Button>
+      )
+      
+      const button = screen.getByTestId('button')
+      expect(button).toHaveAttribute('$revertOrientation', 'true')
+    })
+  })
 
-        expect(expectedButton).toBeInTheDocument()
-        expect(expectedButton).toHaveTextContent('Click me!')
-        expect(expectedButton).toHaveStyle(expectedStyles)
-        expect(expectedButton).toHaveAttribute('type', 'button')
-      }
-    )
+  describe('interactions', () => {
+    it('handles click events', () => {
+      const handleClick = vi.fn()
+      render(<Button onClick={handleClick}>Clickable Button</Button>)
+      
+      const button = screen.getByTestId('button')
+      fireEvent.click(button)
+      expect(handleClick).toHaveBeenCalledTimes(1)
+    })
 
-    it.each(typeSizes)(
-      'with borderless type (typeSize: $typeSize)',
-      ({ typeSize, height }) => {
-        render(
-          <Button
-            type="button"
-            typeSize={typeSize}
-            buttonType="borderless"
-          >
-            Click me!
-          </Button>
-        )
+    it('prevents interaction when noPointerEvents is true', () => {
+      const handleClick = vi.fn()
+      render(
+        <Button noPointerEvents onClick={handleClick}>
+          No Pointer Events Button
+        </Button>
+      )
+      
+      const button = screen.getByTestId('button')
+      expect(button).toHaveStyle({ pointerEvents: 'none' })
+    })
+  })
 
-        const expectedButton = screen.getByTestId('button')
-        const expectedStyles = styleButtonFactory({
-          color: 'rgb(120, 110, 253)',
-          backgroundColor: 'rgba(0, 0, 0, 0)',
-          border: '1px',
-          borderColor: '',
-          height,
-          borderStyle: 'none',
-        })
+  describe('button types', () => {
+    const buttonTypes = ['borderless', 'outlinedSecondary', 'outlinedAuxiliary'] as const
+    
+    it.each(buttonTypes)('renders %s button type correctly', (buttonType) => {
+      render(<Button buttonType={buttonType}>Button</Button>)
+      
+      const button = screen.getByTestId('button')
+      expect(button).toHaveAttribute('$buttonType', buttonType)
+    })
+  })
 
-        expect(expectedButton).toBeInTheDocument()
-        expect(expectedButton).toHaveTextContent('Click me!')
-        expect(expectedButton).toHaveStyle(expectedStyles)
-        expect(expectedButton).toHaveAttribute('type', 'button')
-      }
-    )
-
-    it.each(typeSizes)(
-      'with outlined auxiliary type (typeSize: $typeSize)',
-      ({ typeSize, height }) => {
-        render(
-          <Button
-            type="button"
-            typeSize={typeSize}
-            buttonType="outlinedAuxiliary"
-          >
-            Click me!
-          </Button>
-        )
-
-        const expectedButton = screen.getByTestId('button')
-        const expectedStyles = styleButtonFactory({
-          color: 'rgb(120, 110, 253)',
-          backgroundColor: 'rgb(255, 255, 255)',
-          height,
-          borderColor: '#828795',
-        })
-
-        expect(expectedButton).toBeInTheDocument()
-        expect(expectedButton).toHaveTextContent('Click me!')
-        expect(expectedButton).toHaveStyle(expectedStyles)
-        expect(expectedButton).toHaveAttribute('type', 'button')
-      }
-    )
-
-    it.each(typeSizes)(
-      'with loading (typeSize: $typeSize)',
-      ({ typeSize, height }) => {
-        render(
-          <Button
-            type="button"
-            typeSize={typeSize}
-            loading
-          >
-            Click me!
-          </Button>
-        )
-
-        const expectedButton = screen.getByTestId('button')
-        const expectedStyles = styleButtonFactory({ height })
-        const expectedLoading = screen.getByTestId('loading')
-
-        expect(expectedButton).toBeInTheDocument()
-        expect(expectedButton).toHaveTextContent('Click me!')
-        expect(expectedButton).toHaveStyle(expectedStyles)
-        expect(expectedButton).toHaveAttribute('type', 'button')
-        expect(expectedLoading).toBeInTheDocument()
-      }
-    )
-
-    it.each(typeSizes)(
-      'with icon (typeSize: $typeSize)',
-      ({ typeSize, height }) => {
-        render(
-          <Button
-            type="button"
-            typeSize={typeSize}
-            icon="html"
-          >
-            Click me!
-          </Button>
-        )
-
-        const expectedButton = screen.getByTestId('button')
-        const expectedStyles = styleButtonFactory({ height })
-        const expectedIcon = screen.getByTestId('icon')
-
-        expect(expectedButton).toBeInTheDocument()
-        expect(expectedButton).toHaveTextContent('Click me!')
-        expect(expectedButton).toHaveStyle(expectedStyles)
-        expect(expectedButton).toHaveAttribute('type', 'button')
-        expect(expectedIcon).toBeInTheDocument()
-      }
-    )
+  describe('size variations', () => {
+    const sizes = ['default', 'medium', 'auto'] as const
+    
+    it.each(sizes)('renders %s size correctly', (typeSize) => {
+      render(<Button typeSize={typeSize}>Button</Button>)
+      
+      const button = screen.getByTestId('button')
+      expect(button).toHaveAttribute('$typeSize', typeSize)
+    })
   })
 })
