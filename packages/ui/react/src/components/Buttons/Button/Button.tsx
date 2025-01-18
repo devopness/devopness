@@ -25,7 +25,7 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   color?: string
   /** Icon name */
   icon?: Icon
-  /** 
+  /**
    * By default the icon color is primary, use this prop to customize "iconColor"
    */
   iconColor?: ReturnType<typeof getColor>
