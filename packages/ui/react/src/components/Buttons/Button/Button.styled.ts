@@ -99,15 +99,18 @@ const ContentIcon = styled.div<
   Pick<StyledProps, '$iconSize' | '$noIconMargin' | '$revertOrientation'>
 >`
   ${({ $iconSize, $noIconMargin, $revertOrientation }) => css`
+    /** Base */
     display: flex;
-    align-items: center;
-    width: ${$iconSize}px;
     height: ${$iconSize}px;
     ${$noIconMargin
       ? ''
       : $revertOrientation
         ? 'margin-left: 10px;'
         : 'margin-right: 10px;'}
+    width: ${$iconSize}px;
+
+    /** Flex Layout */
+    align-items: center;
   `}
 `
 
@@ -138,38 +141,43 @@ const BaseButton = styled.button<
     $revertOrientation,
     $typeSize,
   }) => css`
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    /** Base */
     cursor: pointer;
-    border: 1px;
-    border-radius: 25px;
-    font-family: ${getFont('roboto')};
-    text-transform: uppercase;
-    padding: ${$noPadding ? '0' : '5px 15px'};
-    margin: ${$noMargin ? '0' : '0 15px'};
-    font-size: 13px;
-    flex-direction: ${$revertOrientation ? 'row-reverse' : 'row'};
-    border-width: ${getBorderWidth($typeSize)};
-    border-style: ${getBorderStyle($buttonType)};
-    border-color: ${getBorderColor($buttonType, $borderColor)};
-    color: ${getTextColor($buttonType, $color)};
+    display: flex;
     background-color: ${getBackgroundColor($buttonType, $backgroundColor)};
     height: ${getHeight($typeSize)};
+    margin: ${$noMargin ? '0' : '0 15px'};
+    padding: ${$noPadding ? '0' : '5px 15px'};
+    user-select: none;
+
+    /** Flex Layout */
+    align-items: center;
+    flex-direction: ${$revertOrientation ? 'row-reverse' : 'row'};
+    justify-content: center;
+
+    /** Text */
+    color: ${getTextColor($buttonType, $color)};
+    font-family: ${getFont('roboto')};
+    font-size: 13px;
     line-height: 1;
+    text-transform: uppercase;
     transition: filter 0.3s;
+
+    /** Border */
+    border-color: ${getBorderColor($buttonType, $borderColor)};
+    border-radius: 25px;
+    border-style: ${getBorderStyle($buttonType)};
+    border-width: ${getBorderWidth($typeSize)};
 
     &:hover:enabled {
       filter: brightness(75%);
     }
 
     &:disabled {
-      pointer-events: ${$noPointerEvents ? 'none' : 'auto'};
-      opacity: 0.5;
       cursor: not-allowed;
+      opacity: 0.5;
+      pointer-events: ${$noPointerEvents ? 'none' : 'auto'};
     }
-
-    user-select: none;
   `}
 `
 
