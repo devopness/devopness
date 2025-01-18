@@ -167,7 +167,7 @@ const BaseButton = styled.button<
     border-color: ${getBorderColor($buttonType, $borderColor)};
     border-radius: 25px;
     border-style: ${getBorderStyle($buttonType)};
-    border-width: ${getBorderWidth($typeSize)};
+    border-width: ${getBorderWidth($typeSize)}px;
 
     &:hover:enabled {
       filter: brightness(75%);
