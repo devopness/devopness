@@ -13458,12 +13458,13 @@
         "type": "string",
         "nullable": true,
         "description": "The Operating System distribution and version used in the server/virtual machine instance",
-        "example": "ubuntu_22_04",
+        "example": "ubuntu_24_04",
         "enum": [
           "centos_7",
           "ubuntu_18_04",
           "ubuntu_20_04",
-          "ubuntu_22_04"
+          "ubuntu_22_04",
+          "ubuntu_24_04"
         ]
       },
       "CloudProvider": {
