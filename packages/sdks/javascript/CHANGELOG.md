@@ -4,7 +4,7 @@
 
 ### Minor Changes
 
-- [#1182](https://github.com/devopness/devopness/pull/1182) [`81cf94d`](https://github.com/devopness/devopness/commit/81cf94d218c45f42feff1724938922df8f574af5) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Add support to Ubuntu 24.04 🎉
+- [#1182](https://github.com/devopness/devopness/pull/1182) [`81cf94d`](https://github.com/devopness/devopness/commit/81cf94d218c45f42feff1724938922df8f574af5) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Add support to Ubuntu 24.04 🎉
 
 ## 2.152.0
 
