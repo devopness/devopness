@@ -68,8 +68,9 @@ describe('Button', () => {
     it('with loading state', () => {
       render(<Button loading>Loading Button</Button>)
 
-      const loadingIcon = screen.getByTestId('loading')
+      const loadingIcon = screen.getByTestId('button-icon')
       expect(loadingIcon).toBeInTheDocument()
+      expect(loadingIcon).toHaveAttribute('aria-label', 'loading')
       expect(loadingIcon.firstChild).toHaveAttribute('color', getColor('white'))
     })
 
@@ -83,8 +84,9 @@ describe('Button', () => {
         </Button>
       )
 
-      const loadingIcon = screen.getByTestId('loading')
+      const loadingIcon = screen.getByTestId('button-icon')
       expect(loadingIcon).toBeInTheDocument()
+      expect(loadingIcon).toHaveAttribute('aria-label', 'loading')
       expect(loadingIcon.firstChild).toHaveAttribute(
         'color',
         getColor('purple.800')
@@ -105,8 +107,9 @@ describe('Button', () => {
         </Button>
       )
 
-      const iconContainer = screen.getByTestId('icon')
+      const iconContainer = screen.getByTestId('button-icon')
       expect(iconContainer).toBeInTheDocument()
+      expect(iconContainer).toHaveAttribute('aria-label', 'html icon')
       expect(iconContainer).toHaveStyle({
         width: `${iconSize}px`,
         height: `${iconSize}px`,

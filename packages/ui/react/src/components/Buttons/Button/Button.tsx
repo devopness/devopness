@@ -102,10 +102,11 @@ const Button = ({
 
     return (
       <ContentIcon
-        data-testid={isLoading ? 'loading' : 'icon'}
+        data-testid="button-icon"
         $iconSize={iconSize ?? DEFAULT_ICON_SIZE}
         $noIconMargin={noIconMargin}
         $revertOrientation={revertOrientation}
+        aria-label={isLoading ? 'loading' : `${icon} icon`}
       >
         {iconLoader(
           isLoading ? 'loading' : icon,
@@ -133,7 +134,14 @@ const Button = ({
       {...props}
     >
       <Icon />
-      {children && <Label className="translate">{children}</Label>}
+      {children && (
+        <Label
+          data-testid="button-label"
+          className="translate"
+        >
+          {children}
+        </Label>
+      )}
     </BaseButton>
   )
 }
