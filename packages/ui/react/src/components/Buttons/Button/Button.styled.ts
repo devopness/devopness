@@ -104,17 +104,14 @@ const getHeight = (typeSize: StyledProps['$typeSize']) => {
 }
 
 const ContentIcon = styled.div<
-  Pick<StyledProps, '$iconSize' | '$noIconMargin' | '$revertOrientation'>
+  Pick<StyledProps, '$iconSize' | '$noIconMargin'>
 >`
-  ${({ $iconSize, $noIconMargin, $revertOrientation }) => css`
+  ${({ $iconSize, $noIconMargin }) => css`
     /** Base */
     display: flex;
     height: ${$iconSize}px;
-    ${$noIconMargin
-      ? ''
-      : $revertOrientation
-        ? 'margin-left: 10px;'
-        : 'margin-right: 10px;'}
+    /** Use margin-inline to automatically handle direction based on flex-direction */
+    margin-inline: ${$noIconMargin ? '0' : '0 10px'};
     width: ${$iconSize}px;
 
     /** Flex Layout */

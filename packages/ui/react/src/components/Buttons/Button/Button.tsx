@@ -88,6 +88,7 @@ const Button = ({
   loading: isLoading,
   noIconMargin,
   noMargin,
+  noPadding,
   noPointerEvents,
   revertOrientation = false,
   tabIndex,
@@ -96,17 +97,20 @@ const Button = ({
   ...props
 }: ButtonProps) => {
   const Icon = () => {
-    const noDefinedIcons = isLoading === undefined && icon === undefined
-    const noVisibleIcons = !isLoading && icon === undefined
-    if (noDefinedIcons || noVisibleIcons) return <></>
+    const noDefinedIcons = !isLoading && !icon
+    if (noDefinedIcons) return <></>
 
     return (
       <ContentIcon
         data-testid="button-icon"
         $iconSize={iconSize ?? DEFAULT_ICON_SIZE}
         $noIconMargin={noIconMargin}
-        $revertOrientation={revertOrientation}
-        aria-label={isLoading ? 'loading' : icon ? `${icon} icon` : undefined}
+        /**
+         * Icon is safe to use non-null assertion because this component only renders
+         * when either isLoading or icon prop is defined, as checked by noDefinedIcons
+         */
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        aria-label={isLoading ? 'loading' : `${icon!} icon`}
       >
         {iconLoader(
           isLoading ? 'loading' : icon,
@@ -125,6 +129,7 @@ const Button = ({
       $buttonType={buttonType}
       $color={color}
       $noMargin={noMargin}
+      $noPadding={noPadding}
       $noPointerEvents={noPointerEvents}
       $revertOrientation={revertOrientation}
       $typeSize={typeSize}

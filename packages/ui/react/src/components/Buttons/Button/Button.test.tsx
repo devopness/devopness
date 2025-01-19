@@ -56,6 +56,9 @@ describe('Button', () => {
 
       const button = screen.getByTestId('button')
       expect(button).toHaveStyle({ margin: '0' })
+
+      const iconContainer = screen.queryByTestId('button-icon')
+      expect(iconContainer).not.toBeInTheDocument()
     })
 
     it('with disabled state', () => {
@@ -94,27 +97,25 @@ describe('Button', () => {
       )
     })
 
-    it('with custom icon and properties', () => {
-      const iconColor = getColor('purple.800')
-      const iconSize = 24
+    it('applies correct icon margins', () => {
+      render(<Button icon="html">Button with Icon</Button>)
 
+      const iconContainer = screen.getByTestId('button-icon')
+      expect(iconContainer).toHaveStyle({ 'margin-inline': '0 10px' })
+    })
+
+    it('applies no icon margin when noIconMargin is true', () => {
       render(
         <Button
           icon="html"
-          iconColor={iconColor}
-          iconSize={iconSize}
+          noIconMargin
         >
-          Icon Button
+          Button with Icon
         </Button>
       )
 
       const iconContainer = screen.getByTestId('button-icon')
-      expect(iconContainer).toBeInTheDocument()
-      expect(iconContainer).toHaveAttribute('aria-label', 'html icon')
-      expect(iconContainer).toHaveStyle({
-        width: `${iconSize.toString()}px`,
-        height: `${iconSize.toString()}px`,
-      })
+      expect(iconContainer).toHaveStyle({ marginInline: '0' })
     })
 
     it('with reversed orientation', () => {
@@ -128,7 +129,48 @@ describe('Button', () => {
       )
 
       const button = screen.getByTestId('button')
+      const iconContainer = screen.getByTestId('button-icon')
+
       expect(button).toHaveStyle({ flexDirection: 'row-reverse' })
+      expect(iconContainer).toHaveStyle({ 'margin-inline': '0 10px' })
+    })
+
+    it('with noPadding prop removes padding', () => {
+      render(<Button noPadding>No Padding Button</Button>)
+
+      const button = screen.getByTestId('button')
+      expect(button).toHaveStyle({
+        padding: '0',
+      })
+    })
+
+    it('loading state should override icon prop', () => {
+      render(
+        <Button
+          loading
+          icon="html"
+        >
+          Button
+        </Button>
+      )
+
+      const iconContainer = screen.getByTestId('button-icon')
+      expect(iconContainer).toHaveAttribute('aria-label', 'loading')
+      expect(iconContainer).not.toHaveAttribute('aria-label', 'html icon')
+    })
+
+    it('should not render icon container when no icon or loading props provided', () => {
+      render(<Button>Button</Button>)
+
+      const iconContainer = screen.queryByTestId('button-icon')
+      expect(iconContainer).not.toBeInTheDocument()
+    })
+
+    it('should not render label when no children provided', () => {
+      render(<Button icon="html" />)
+
+      const label = screen.queryByTestId('button-label')
+      expect(label).not.toBeInTheDocument()
     })
   })
 
