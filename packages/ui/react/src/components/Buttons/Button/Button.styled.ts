@@ -5,6 +5,14 @@ import { getColor } from 'src/colors'
 import { getFont } from 'src/fonts'
 
 type StyledProps = {
+  /**
+   * Button props related to styling
+   *
+   * Adds a `$` prefix to the prop name to prevent it from being passed to the
+   * underlying React node or rendered to the DOM element
+   *
+   * @see {@link https://styled-components.com/docs/api#transient-props | Styled Components - Transient props}
+   */
   [Key in keyof Pick<
     ButtonProps,
     | 'backgroundColor'

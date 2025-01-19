@@ -103,9 +103,9 @@ const Button = ({
     return (
       <ContentIcon
         data-testid={isLoading ? 'loading' : 'icon'}
-        $revertOrientation={revertOrientation}
-        $noIconMargin={noIconMargin}
         $iconSize={iconSize ?? DEFAULT_ICON_SIZE}
+        $noIconMargin={noIconMargin}
+        $revertOrientation={revertOrientation}
       >
         {iconLoader(
           isLoading ? 'loading' : icon,
@@ -119,17 +119,17 @@ const Button = ({
   return (
     <BaseButton
       data-testid="button"
-      $typeSize={typeSize}
-      $buttonType={buttonType}
-      $revertOrientation={revertOrientation}
-      $noPointerEvents={noPointerEvents}
-      $color={color}
       $backgroundColor={backgroundColor}
       $borderColor={borderColor}
+      $buttonType={buttonType}
+      $color={color}
       $noMargin={noMargin}
+      $noPointerEvents={noPointerEvents}
+      $revertOrientation={revertOrientation}
+      $typeSize={typeSize}
       disabled={disabled}
-      type={type}
       tabIndex={tabIndex}
+      type={type}
       {...props}
     >
       <Icon />
