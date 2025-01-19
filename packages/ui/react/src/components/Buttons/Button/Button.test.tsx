@@ -1,8 +1,9 @@
 import '@testing-library/jest-dom'
 import { render, screen, fireEvent } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
-import { getColor } from 'src/colors'
+
 import { Button } from '.'
+import { getColor } from 'src/colors'
 
 describe('Button', () => {
   describe('renders correctly', () => {
@@ -111,8 +112,8 @@ describe('Button', () => {
       expect(iconContainer).toBeInTheDocument()
       expect(iconContainer).toHaveAttribute('aria-label', 'html icon')
       expect(iconContainer).toHaveStyle({
-        width: `${iconSize}px`,
-        height: `${iconSize}px`,
+        width: `${iconSize.toString()}px`,
+        height: `${iconSize.toString()}px`,
       })
     })
 

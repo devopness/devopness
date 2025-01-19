@@ -106,7 +106,7 @@ const Button = ({
         $iconSize={iconSize ?? DEFAULT_ICON_SIZE}
         $noIconMargin={noIconMargin}
         $revertOrientation={revertOrientation}
-        aria-label={isLoading ? 'loading' : `${icon} icon`}
+        aria-label={isLoading ? 'loading' : icon ? `${icon} icon` : undefined}
       >
         {iconLoader(
           isLoading ? 'loading' : icon,
