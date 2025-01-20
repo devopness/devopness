@@ -16,10 +16,7 @@ type StyledProps = {
    */
   [Key in keyof Pick<
     DropdownOption,
-    | 'activeBackgroundColor'
-    | 'brokenSequence'
-    | 'isActive'
-    | 'color'
+    'activeBackgroundColor' | 'brokenSequence' | 'isActive' | 'color'
   > as `$${Key}`]: DropdownOption[Key]
 } & {
   disabled: DropdownOption['isDisabled']
@@ -40,7 +37,12 @@ const MenuContainer = styled.div`
   background-color: ${getColor('white')};
 `
 
-const MenuOption = styled.div<Pick<StyledProps, '$activeBackgroundColor'| '$brokenSequence' | '$isActive' | 'disabled'>>`
+const MenuOption = styled.div<
+  Pick<
+    StyledProps,
+    '$activeBackgroundColor' | '$brokenSequence' | '$isActive' | 'disabled'
+  >
+>`
   display: grid;
   grid-template-areas: 'badge text';
   grid-template-columns: auto auto;
@@ -91,7 +93,7 @@ type ContentBadgeProps = {
    */
   [Key in keyof Pick<
     NonNullable<DropdownOption['badge']>,
-    | 'backgroundColor'
+    'backgroundColor'
   > as `$${Key}`]: NonNullable<DropdownOption['badge']>[Key]
 }
 

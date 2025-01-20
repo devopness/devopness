@@ -9,37 +9,37 @@ import { getColor } from 'src/colors'
 describe('Dropdown', () => {
   /**
    * userEvent provides a more realistic way to simulate user interactions compared to fireEvent.
-   * It performs multiple events that happen in a real browser (e.g., mouseOver, mouseMove, mouseDown, 
+   * It performs multiple events that happen in a real browser (e.g., mouseOver, mouseMove, mouseDown,
    * mouseUp, click for a click event).
-   * 
+   *
    * Benefits:
    * - Handles state updates automatically (no explicit act() needed)
    * - More closely simulates real user behavior
    * - Includes built-in timing for events
    * - Maintains a cleaner test setup than fireEvent or manual act() wrapping
-   * 
+   *
    * Sequential events work reliably because userEvent:
    * - Waits for previous events to complete before starting new ones
    * - Ensures React state updates and re-renders are finished
    * - Includes proper event timing and debouncing
-   * 
+   *
    * Considerations:
    * - Slightly slower test execution (due to more realistic event simulation)
    * - Must use async/await syntax for all interactions
-   * 
+   *
    * @example
    * // Instead of:
    * fireEvent.click(element)
    * // or
    * act(() => { fireEvent.click(element) })
-   * 
+   *
    * // Use:
    * await user.click(element)
-   * 
+   *
    * // Sequential events just work:
    * await user.click(openButton)
    * await user.click(menuItem)
-   * 
+   *
    * @see https://testing-library.com/docs/user-event/intro/
    */
   const user = userEvent.setup()
@@ -51,25 +51,27 @@ describe('Dropdown', () => {
           id="test-dropdown"
           anchorType="button"
           label="Menu"
-          options={[{
-            label: 'Option',
-            badge: {
-              icon: true,
-              name: 'add',
-              size: 12,
-              backgroundColor: getColor('blue.100'),
-              color: 'white'
-            }
-          }]}
+          options={[
+            {
+              label: 'Option',
+              badge: {
+                icon: true,
+                name: 'add',
+                size: 12,
+                backgroundColor: getColor('blue.100'),
+                color: 'white',
+              },
+            },
+          ]}
         />
       )
 
       await user.click(screen.getByText('Menu'))
-  
+
       const icon = screen.getByTestId('option-0-badge')
       expect(icon).toBeInTheDocument()
       expect(icon.closest('span')).toHaveStyle({
-        backgroundColor: getColor('blue.100')
+        backgroundColor: getColor('blue.100'),
       })
     })
 
@@ -79,20 +81,22 @@ describe('Dropdown', () => {
           id="test-dropdown"
           anchorType="button"
           label="Menu"
-          options={[{
-            label: 'Option',
-            badge: {
-              icon: true,
-              name: 'add',
-              backgroundColor: getColor('blue.100'),
-              color: 'white'
-            }
-          }]}
+          options={[
+            {
+              label: 'Option',
+              badge: {
+                icon: true,
+                name: 'add',
+                backgroundColor: getColor('blue.100'),
+                color: 'white',
+              },
+            },
+          ]}
         />
       )
 
       await user.click(screen.getByText('Menu'))
-  
+
       const icon = screen.getByTestId('option-0-badge')
       expect(icon).toBeInTheDocument()
       expect(screen.getByLabelText('add')).toHaveAttribute('height', '12')
@@ -105,18 +109,20 @@ describe('Dropdown', () => {
           id="test-dropdown"
           anchorType="button"
           label="Menu"
-          options={[{
-            label: 'Option',
-            badge: {
-              backgroundColor: 'red',
-              color: 'white'
-            }
-          }]}
+          options={[
+            {
+              label: 'Option',
+              badge: {
+                backgroundColor: 'red',
+                color: 'white',
+              },
+            },
+          ]}
         />
       )
-  
+
       await user.click(screen.getByText('Menu'))
-  
+
       expect(screen.getByText('O')).toBeInTheDocument()
     })
   })
@@ -125,57 +131,63 @@ describe('Dropdown', () => {
     it('calls onSelect when option is clicked', async () => {
       const onSelect = vi.fn()
       const option = { label: 'Option 1' }
-  
+
       render(
         <Dropdown
           id="test-dropdown"
           anchorType="button"
           label="Menu"
-          options={[option]}
+          options={[
+            option,
+          ]}
           onSelect={onSelect}
         />
       )
-  
+
       await user.click(screen.getByText('Menu'))
       await user.click(screen.getByText('Option 1'))
-      
+
       expect(onSelect).toHaveBeenCalledWith(option)
     })
 
     it('calls onToggle when dropdown is opened/closed', async () => {
       const onToggle = vi.fn()
-      
+
       render(
         <Dropdown
           id="test-dropdown"
           anchorType="button"
           label="Menu"
-          options={[{ label: 'Option' }]}
+          options={[
+            { label: 'Option' },
+          ]}
           onToggle={onToggle}
         />
       )
-  
+
       await user.click(screen.getByText('Menu'))
-      
+
       expect(onToggle).toHaveBeenCalled()
     })
 
     it('calls option onClick handler when provided', async () => {
       const onSelect = vi.fn()
       const onClick = vi.fn()
-      
+
       render(
         <Dropdown
           id="test-dropdown"
           anchorType="button"
           label="Menu"
-          options={[{ label: 'Custom Click', onClick }]}
+          options={[
+            { label: 'Custom Click', onClick },
+          ]}
           onSelect={onSelect}
         />
       )
-  
+
       await user.click(screen.getByText('Menu'))
-      
+
       await user.click(screen.getByText('Custom Click'))
       expect(onClick).toHaveBeenCalled()
       expect(onSelect).not.toHaveBeenCalled()
@@ -183,20 +195,22 @@ describe('Dropdown', () => {
 
     it('handles disabled options', async () => {
       const onSelect = vi.fn()
-      
+
       render(
         <Dropdown
           id="test-dropdown"
           anchorType="button"
           label="Menu"
-          options={[{ label: 'Disabled Option', isDisabled: true }]}
+          options={[
+            { label: 'Disabled Option', isDisabled: true },
+          ]}
           onSelect={onSelect}
         />
       )
 
       await user.click(screen.getByText('Menu'))
       await user.click(screen.getByText('Disabled Option'))
-      
+
       expect(onSelect).not.toHaveBeenCalled()
     })
   })
@@ -208,15 +222,17 @@ describe('Dropdown', () => {
           id="test-dropdown"
           anchorType="button"
           label="Menu"
-          options={[{
-            label: 'Active Option',
-            isActive: true,
-          }]}
+          options={[
+            {
+              label: 'Active Option',
+              isActive: true,
+            },
+          ]}
         />
       )
-  
+
       await user.click(screen.getByText('Menu'))
-  
+
       const option = screen.getByText('Active Option')
       expect(option).toHaveStyle({ color: getColor('blue.800') })
       expect(option.closest('div')).toHaveStyle({
@@ -230,21 +246,23 @@ describe('Dropdown', () => {
           id="test-dropdown"
           anchorType="button"
           label="Menu"
-          options={[{
-            label: 'Active Option',
-            isActive: true,
-            activeBackgroundColor: 'blue.100',
-            color: 'blue.800'
-          }]}
+          options={[
+            {
+              label: 'Active Option',
+              isActive: true,
+              activeBackgroundColor: 'blue.100',
+              color: 'blue.800',
+            },
+          ]}
         />
       )
-  
+
       await user.click(screen.getByText('Menu'))
-  
+
       const option = screen.getByText('Active Option')
       expect(option).toHaveStyle({ color: getColor('blue.800') })
       expect(option.closest('div')).toHaveStyle({
-        backgroundColor: getColor('blue.100')
+        backgroundColor: getColor('blue.100'),
       })
     })
 
@@ -256,15 +274,17 @@ describe('Dropdown', () => {
           label="Menu"
           options={[
             { label: 'Option 1' },
-            { label: 'Option 2', brokenSequence: true }
+            { label: 'Option 2', brokenSequence: true },
           ]}
         />
       )
-  
+
       await user.click(screen.getByText('Menu'))
-  
+
       const option = screen.getByText('Option 2').closest('div')
-      expect(option).toHaveStyle({ borderTop: `1px solid ${getColor('slate.300')}` })
+      expect(option).toHaveStyle({
+        borderTop: `1px solid ${getColor('slate.300')}`,
+      })
     })
 
     it('renders link option correctly', async () => {
@@ -273,14 +293,16 @@ describe('Dropdown', () => {
           id="test-dropdown"
           anchorType="button"
           label="Menu"
-          options={[{
-            label: 'Go to Link',
-            url: '/test',
-            linkProps: { target: '_blank' }
-          }]}
+          options={[
+            {
+              label: 'Go to Link',
+              url: '/test',
+              linkProps: { target: '_blank' },
+            },
+          ]}
         />
       )
-  
+
       await user.click(screen.getByText('Menu'))
       const link = screen.getByText('Go to Link').closest('a')
       expect(link).toHaveAttribute('href', '/test')
@@ -307,11 +329,19 @@ describe('Dropdown', () => {
             }}
           />
         )
-  
-        expect(screen.getByTestId('dropdown-button')).not.toHaveTextContent('Menu')
+
+        expect(screen.getByTestId('dropdown-button')).not.toHaveTextContent(
+          'Menu'
+        )
         expect(screen.getByLabelText(icon)).toBeInTheDocument()
-        expect(screen.getByLabelText(icon)).toHaveAttribute('height', iconSize.toString())
-        expect(screen.getByLabelText(icon)).toHaveAttribute('width', iconSize.toString())
+        expect(screen.getByLabelText(icon)).toHaveAttribute(
+          'height',
+          iconSize.toString()
+        )
+        expect(screen.getByLabelText(icon)).toHaveAttribute(
+          'width',
+          iconSize.toString()
+        )
       })
 
       it('renders with buttonProps', () => {
@@ -324,19 +354,21 @@ describe('Dropdown', () => {
             hideDropdownIcon
             options={[]}
             buttonProps={{
-              backgroundColor: getColor('blue.100')
+              backgroundColor: getColor('blue.100'),
             }}
           />
         )
 
         expect(screen.getByText(defaultLabel)).toBeInTheDocument()
         expect(screen.getByTestId('dropdown-button')).toHaveStyle({
-          backgroundColor: getColor('blue.100')
+          backgroundColor: getColor('blue.100'),
         })
-        expect(screen.queryByTestId('dropdown-button')?.closest('svg')).not.toBeInTheDocument()
+        expect(
+          screen.queryByTestId('dropdown-button')?.closest('svg')
+        ).not.toBeInTheDocument()
       })
     })
-  
+
     it('with content anchor', () => {
       render(
         <Dropdown
@@ -346,7 +378,7 @@ describe('Dropdown', () => {
           options={[]}
         />
       )
-  
+
       expect(screen.getByText('Custom Trigger')).toBeInTheDocument()
     })
 
@@ -360,9 +392,9 @@ describe('Dropdown', () => {
           tooltip="Helpful tooltip"
         />
       )
-  
+
       await userEvent.hover(screen.getByText('Menu'))
-      
+
       await waitFor(() => {
         expect(screen.getByText('Helpful tooltip')).toBeInTheDocument()
       })
@@ -371,27 +403,30 @@ describe('Dropdown', () => {
 
   describe('tooltips', () => {
     it('shows tooltip on text overflow', async () => {
-      const longText = 'This is a very long option text that should trigger ellipsis'
-      
+      const longText =
+        'This is a very long option text that should trigger ellipsis'
+
       render(
         <Dropdown
           id="test-dropdown"
           anchorType="button"
           label="Menu"
-          options={[{ label: longText }]}
+          options={[
+            { label: longText },
+          ]}
         />
       )
-  
+
       await user.click(screen.getByText('Menu'))
-  
+
       const option = screen.getByText(longText)
       expect(option).toHaveStyle({
         overflow: 'hidden',
-        textOverflow: 'ellipsis'
+        textOverflow: 'ellipsis',
       })
-  
+
       await userEvent.hover(option)
-      
+
       await waitFor(() => {
         expect(screen.getByText(longText)).toBeInTheDocument()
       })
