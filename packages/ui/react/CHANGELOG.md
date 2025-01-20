@@ -1,5 +1,21 @@
 # @devopness/ui-react
 
+## 2.153.1
+
+### Patch Changes
+
+- [#1179](https://github.com/devopness/devopness/pull/1179) [`0219a4c`](https://github.com/devopness/devopness/commit/0219a4c2fdb8becee36c92cd6ce328e8f0aaf058) Thanks [@rafael-g-depaulo](https://github.com/rafael-g-depaulo)! - Fix camelCase props propagating from React component to DOM element
+
+## 2.153.0
+
+### Minor Changes
+
+- [#1165](https://github.com/devopness/devopness/pull/1165) [`d1ef7b9`](https://github.com/devopness/devopness/commit/d1ef7b961e4c0e2ba3f0073e950df8beb4b0033c) Thanks [@thlmenezes](https://github.com/thlmenezes)! - Update icons source from [@react-icons/all-files](https://www.npmjs.com/package/@react-icons/all-files) to [react-icons](https://www.npmjs.com/package/react-icons)
+
+  Both libraries are from the same author, but all-files is a heavy dependency that needed to be installed from outside the npm registry
+
+  Using [react-icons](https://www.npmjs.com/package/react-icons) is the recommended approach for this package's use case, according to their [docs](https://react-icons.github.io/react-icons/)
+
 ## 2.152.0
 
 ### Minor Changes
