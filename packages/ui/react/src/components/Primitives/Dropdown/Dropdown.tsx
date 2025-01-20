@@ -344,6 +344,7 @@ const Dropdown = ({
                       >
                         {option.badge && (
                           <ContentBadge
+                            data-testid={`option-${index.toString()}-badge`}
                             backgroundColor={option.badge.backgroundColor}
                           >
                             {option.badge.icon ? (

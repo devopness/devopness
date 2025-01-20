@@ -163,4 +163,132 @@ describe('Dropdown', () => {
     const option = screen.getByText('Option 2').closest('div')
     expect(option).toHaveStyle({ borderTop: `1px solid ${getColor('slate.300')}` })
   })
+
+  it('handles disabled options correctly', async () => {
+    const onSelect = vi.fn()
+    render(
+      <Dropdown
+        id="test-dropdown"
+        anchorType="button"
+        label="Menu"
+        options={[{ label: 'Disabled Option', isDisabled: true }]}
+        onSelect={onSelect}
+      />
+    )
+
+    await act(async () => {
+      await userEvent.click(screen.getByText('Menu'))
+    })
+    
+    await userEvent.click(screen.getByText('Disabled Option'))
+    expect(onSelect).not.toHaveBeenCalled()
+  })
+
+  it('calls option onClick handler when provided', async () => {
+    const onSelect = vi.fn()
+    const onClick = vi.fn()
+    
+    render(
+      <Dropdown
+        id="test-dropdown"
+        anchorType="button"
+        label="Menu"
+        options={[{ label: 'Custom Click', onClick }]}
+        onSelect={onSelect}
+      />
+    )
+
+    await act(async () => {
+      await userEvent.click(screen.getByText('Menu'))
+    })
+    
+    await userEvent.click(screen.getByText('Custom Click'))
+    expect(onClick).toHaveBeenCalled()
+    expect(onSelect).not.toHaveBeenCalled()
+  })
+
+  it('renders icon badge correctly', async () => {
+    render(
+      <Dropdown
+        id="test-dropdown"
+        anchorType="button"
+        label="Menu"
+        options={[{
+          label: 'Option',
+          badge: {
+            icon: true,
+            name: 'add',
+            size: 12,
+            backgroundColor: getColor('blue.100'),
+            color: 'white'
+          }
+        }]}
+      />
+    )
+
+    await act(async () => {
+      await userEvent.click(screen.getByText('Menu'))
+    })
+
+    const icon = screen.getByTestId('option-0-badge')
+    expect(icon).toBeInTheDocument()
+    expect(icon.closest('span')).toHaveStyle({
+      backgroundColor: getColor('blue.100')
+    })
+  })
+
+  it('handles active state and custom colors', async () => {
+    render(
+      <Dropdown
+        id="test-dropdown"
+        anchorType="button"
+        label="Menu"
+        options={[{
+          label: 'Active Option',
+          isActive: true,
+          activeBackgroundColor: 'blue.100',
+          color: 'blue.800'
+        }]}
+      />
+    )
+
+    await act(async () => {
+      await userEvent.click(screen.getByText('Menu'))
+    })
+
+    const option = screen.getByText('Active Option')
+    expect(option).toHaveStyle({ color: getColor('blue.800') })
+    expect(option.closest('div')).toHaveStyle({
+      backgroundColor: getColor('blue.100')
+    })
+  })
+
+  it('shows tooltip on text overflow', async () => {
+    const longText = 'This is a very long option text that should trigger ellipsis'
+    
+    render(
+      <Dropdown
+        id="test-dropdown"
+        anchorType="button"
+        label="Menu"
+        options={[{ label: longText }]}
+      />
+    )
+
+    await act(async () => {
+      await userEvent.click(screen.getByText('Menu'))
+    })
+
+    const option = screen.getByText(longText)
+    expect(option).toHaveStyle({
+      overflow: 'hidden',
+      textOverflow: 'ellipsis'
+    })
+
+    await userEvent.hover(option)
+    
+    await waitFor(() => {
+      expect(screen.getByText(longText)).toBeInTheDocument()
+    })
+  })
 })
