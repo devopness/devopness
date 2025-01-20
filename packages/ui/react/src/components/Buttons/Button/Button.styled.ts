@@ -103,15 +103,11 @@ const getHeight = (typeSize: StyledProps['$typeSize']) => {
   }
 }
 
-const ContentIcon = styled.div<
-  Pick<StyledProps, '$iconSize' | '$noIconMargin'>
->`
-  ${({ $iconSize, $noIconMargin }) => css`
+const ContentIcon = styled.div<Pick<StyledProps, '$iconSize'>>`
+  ${({ $iconSize }) => css`
     /** Base */
     display: flex;
     height: ${$iconSize}px;
-    /** Use margin-inline to automatically handle direction based on flex-direction */
-    margin-inline: ${$noIconMargin ? '0' : '0 10px'};
     width: ${$iconSize}px;
 
     /** Flex Layout */
@@ -128,6 +124,7 @@ const BaseButton = styled.button<
     | '$borderColor'
     | '$buttonType'
     | '$color'
+    | '$noIconMargin'
     | '$noMargin'
     | '$noPadding'
     | '$noPointerEvents'
@@ -140,6 +137,7 @@ const BaseButton = styled.button<
     $borderColor,
     $buttonType,
     $color,
+    $noIconMargin,
     $noMargin,
     $noPadding,
     $noPointerEvents,
@@ -156,6 +154,7 @@ const BaseButton = styled.button<
     user-select: none;
 
     /** Flex Layout */
+    gap: ${$noIconMargin ? '0' : '10px'};
     align-items: center;
     flex-direction: ${$revertOrientation ? 'row-reverse' : 'row'};
     justify-content: center;

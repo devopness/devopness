@@ -104,7 +104,6 @@ const Button = ({
       <ContentIcon
         data-testid="button-icon"
         $iconSize={iconSize ?? DEFAULT_ICON_SIZE}
-        $noIconMargin={noIconMargin}
         /**
          * Icon is safe to use non-null assertion because this component only renders
          * when either isLoading or icon prop is defined, as checked by noDefinedIcons
@@ -128,6 +127,7 @@ const Button = ({
       $borderColor={borderColor}
       $buttonType={buttonType}
       $color={color}
+      $noIconMargin={noIconMargin}
       $noMargin={noMargin}
       $noPadding={noPadding}
       $noPointerEvents={noPointerEvents}

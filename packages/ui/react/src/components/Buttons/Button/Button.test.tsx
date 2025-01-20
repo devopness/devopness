@@ -100,8 +100,8 @@ describe('Button', () => {
     it('applies correct icon margins', () => {
       render(<Button icon="html">Button with Icon</Button>)
 
-      const iconContainer = screen.getByTestId('button-icon')
-      expect(iconContainer).toHaveStyle({ 'margin-inline': '0 10px' })
+      const iconContainer = screen.getByTestId('button')
+      expect(iconContainer).toHaveStyle({ gap: '10px' })
     })
 
     it('applies no icon margin when noIconMargin is true', () => {
@@ -114,8 +114,8 @@ describe('Button', () => {
         </Button>
       )
 
-      const iconContainer = screen.getByTestId('button-icon')
-      expect(iconContainer).toHaveStyle({ marginInline: '0' })
+      const iconContainer = screen.getByTestId('button')
+      expect(iconContainer).toHaveStyle({ gap: '0' })
     })
 
     it('with reversed orientation', () => {
@@ -129,10 +129,7 @@ describe('Button', () => {
       )
 
       const button = screen.getByTestId('button')
-      const iconContainer = screen.getByTestId('button-icon')
-
       expect(button).toHaveStyle({ flexDirection: 'row-reverse' })
-      expect(iconContainer).toHaveStyle({ 'margin-inline': '0 10px' })
     })
 
     it('with noPadding prop removes padding', () => {
