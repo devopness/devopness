@@ -226,6 +226,7 @@ const ElementAnchor = ({
       wrapper={(children) => <Tooltip title={tooltip}>{children}</Tooltip>}
     >
       <Button
+        data-testid="dropdown-button"
         $noMargin
         $noIconMargin={!!buttonProps?.icon}
         typeSize="medium"
@@ -322,9 +323,9 @@ const Dropdown = ({
                         id={`option_${index.toString()}`}
                         disabled={option.isDisabled}
                         key={`option${index.toString()}`}
-                        isActive={option.isActive}
-                        activeBackgroundColor={option.activeBackgroundColor}
-                        brokenSequence={option.brokenSequence}
+                        $isActive={option.isActive}
+                        $activeBackgroundColor={option.activeBackgroundColor}
+                        $brokenSequence={option.brokenSequence}
                         onClick={(event) => {
                           if (option.isDisabled) {
                             return
@@ -345,7 +346,7 @@ const Dropdown = ({
                         {option.badge && (
                           <ContentBadge
                             data-testid={`option-${index.toString()}-badge`}
-                            backgroundColor={option.badge.backgroundColor}
+                            $backgroundColor={option.badge.backgroundColor}
                           >
                             {option.badge.icon ? (
                               <Icon
@@ -362,7 +363,7 @@ const Dropdown = ({
                             title={option.label}
                             enableOnlyWithEllipsisPoints
                           >
-                            <Text color={option.color}>{option.label}</Text>
+                            <Text $color={option.color}>{option.label}</Text>
                           </Tooltip>
                         )}
                       </MenuOption>

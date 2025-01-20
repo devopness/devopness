@@ -73,6 +73,32 @@ describe('Dropdown', () => {
       })
     })
 
+    it('renders icon badge with default size', async () => {
+      render(
+        <Dropdown
+          id="test-dropdown"
+          anchorType="button"
+          label="Menu"
+          options={[{
+            label: 'Option',
+            badge: {
+              icon: true,
+              name: 'add',
+              backgroundColor: getColor('blue.100'),
+              color: 'white'
+            }
+          }]}
+        />
+      )
+
+      await user.click(screen.getByText('Menu'))
+  
+      const icon = screen.getByTestId('option-0-badge')
+      expect(icon).toBeInTheDocument()
+      expect(screen.getByLabelText('add')).toHaveAttribute('height', '12')
+      expect(screen.getByLabelText('add')).toHaveAttribute('width', '12')
+    })
+
     it('renders letter badge correctly', async () => {
       render(
         <Dropdown
@@ -176,6 +202,28 @@ describe('Dropdown', () => {
   })
 
   describe('option styling', () => {
+    it('handles active state with default colors', async () => {
+      render(
+        <Dropdown
+          id="test-dropdown"
+          anchorType="button"
+          label="Menu"
+          options={[{
+            label: 'Active Option',
+            isActive: true,
+          }]}
+        />
+      )
+  
+      await user.click(screen.getByText('Menu'))
+  
+      const option = screen.getByText('Active Option')
+      expect(option).toHaveStyle({ color: getColor('blue.800') })
+      expect(option.closest('div')).toHaveStyle({
+        backgroundColor: '',
+      })
+    })
+
     it('handles active state and custom colors', async () => {
       render(
         <Dropdown
@@ -241,17 +289,52 @@ describe('Dropdown', () => {
   })
 
   describe('renders correctly', () => {
-    it('with button anchor', () => {
-      render(
-        <Dropdown
-          id="test-dropdown"
-          anchorType="button"
-          label="Menu"
-          options={[]}
-        />
-      )
+    describe('with button anchor', () => {
+      it('renders correctly', () => {
+        const icon = 'add'
+        const iconSize = 12
+
+        render(
+          <Dropdown
+            id="test-dropdown"
+            anchorType="button"
+            label="Menu"
+            hideLabel
+            options={[]}
+            buttonProps={{
+              icon,
+              iconSize,
+            }}
+          />
+        )
   
-      expect(screen.getByText('Menu')).toBeInTheDocument()
+        expect(screen.getByTestId('dropdown-button')).not.toHaveTextContent('Menu')
+        expect(screen.getByLabelText(icon)).toBeInTheDocument()
+        expect(screen.getByLabelText(icon)).toHaveAttribute('height', iconSize.toString())
+        expect(screen.getByLabelText(icon)).toHaveAttribute('width', iconSize.toString())
+      })
+
+      it('renders with buttonProps', () => {
+        const defaultLabel = 'Open Popover'
+
+        render(
+          <Dropdown
+            id="test-dropdown"
+            anchorType="button"
+            hideDropdownIcon
+            options={[]}
+            buttonProps={{
+              backgroundColor: getColor('blue.100')
+            }}
+          />
+        )
+
+        expect(screen.getByText(defaultLabel)).toBeInTheDocument()
+        expect(screen.getByTestId('dropdown-button')).toHaveStyle({
+          backgroundColor: getColor('blue.100')
+        })
+        expect(screen.queryByTestId('dropdown-button')?.closest('svg')).not.toBeInTheDocument()
+      })
     })
   
     it('with content anchor', () => {
