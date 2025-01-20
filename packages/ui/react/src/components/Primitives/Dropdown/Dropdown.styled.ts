@@ -84,7 +84,7 @@ const colorIcon = css`
 
 type ContentBadgeProps = {
   /**
-   * Dropdown badge props related to styling
+   * Content badge props related to styling
    *
    * Adds a `$` prefix to the prop name to prevent it from being passed to the
    * underlying React node or rendered to the DOM element

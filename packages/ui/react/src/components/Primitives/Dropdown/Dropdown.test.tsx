@@ -297,7 +297,7 @@ describe('Dropdown', () => {
             {
               label: 'Go to Link',
               url: '/test',
-              linkProps: { target: '_blank' },
+              linkProps: { target: '_blank', hideExternalUrlIcon: true },
             },
           ]}
         />
@@ -307,6 +307,7 @@ describe('Dropdown', () => {
       const link = screen.getByText('Go to Link').closest('a')
       expect(link).toHaveAttribute('href', '/test')
       expect(link).toHaveAttribute('target', '_blank')
+      expect(screen.queryByLabelText('openInNewWindow')).not.toBeInTheDocument()
     })
   })
 
