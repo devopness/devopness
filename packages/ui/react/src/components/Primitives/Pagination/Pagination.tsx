@@ -53,7 +53,7 @@ const Pagination = ({
         type="button"
         buttonType={'outlinedAuxiliary'}
         typeSize="medium"
-        $noMargin
+        noMargin
         onClick={firstPaginateAction}
         disabled={disableAllActions || disablePreviousActions}
       >
@@ -64,7 +64,7 @@ const Pagination = ({
         buttonType={'outlinedSecondary'}
         typeSize="medium"
         icon="leftArrow"
-        $noMargin
+        noMargin
         onClick={previousPaginateAction}
         disabled={disableAllActions || disablePreviousActions}
       >
@@ -76,7 +76,7 @@ const Pagination = ({
         typeSize="medium"
         icon="rightArrow"
         revertOrientation
-        $noMargin
+        noMargin
         onClick={nextPaginateAction}
         disabled={disableAllActions || disableNextActions}
       >
@@ -86,7 +86,7 @@ const Pagination = ({
         type="button"
         buttonType={'outlinedAuxiliary'}
         typeSize="medium"
-        $noMargin
+        noMargin
         onClick={lastPaginateAction}
         disabled={disableAllActions || disableNextActions}
       >
