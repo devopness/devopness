@@ -18,7 +18,7 @@ src/components/
 │   ├── index.ts                  # Public exports
 │   ├── ComponentName.tsx         # Main component
 │   ├── ComponentName.styled.ts   # Styled components (if needed)
-│   ├── ComponentName.stories.tsx # Storybook stories  
+│   ├── ComponentName.stories.tsx # Storybook stories
 │   └── ComponentName.test.tsx    # Unit tests
 ```
 
@@ -39,7 +39,7 @@ src/components/
    type MyComponentProps = {
      /** Whether the component is in a loading state */
      isLoading?: boolean
-     /** Callback fired when the action completes */
+     /** Event handler called when the action is triggered */
      onAction?: () => void
    }
 
@@ -50,7 +50,7 @@ src/components/
     * ```jsx
     * <MyComponent 
     *   isLoading={false}
-    *   onAction={() => console.log('clicked')}
+    *   onAction={() => console.log('action triggered')}
     * />
     * ```
     */
