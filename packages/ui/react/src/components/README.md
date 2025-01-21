@@ -7,9 +7,10 @@ Devopness UI React Components with Storybook Stories and Tests
 ### Component Development Guide
 
 Before creating a new component, please:
+
 1. Check if a similar component already exists
 2. Discuss major changes in an issue first
-    - [Devopness - Create new issue](https://github.com/devopness/devopness/issues/new/choose)
+   - [Devopness - Create new issue](https://github.com/devopness/devopness/issues/new/choose)
 
 #### Directory Structure
 
@@ -36,7 +37,7 @@ src/components/
 
 #### Implementation Example
 
-```typescript
+````typescript
    type MyComponentProps = {
      /** Whether the component is in a loading state */
      isLoading?: boolean
@@ -49,7 +50,7 @@ src/components/
     *
     * @example
     * ```jsx
-    * <MyComponent 
+    * <MyComponent
     *   isLoading={false}
     *   onAction={() => console.log('action triggered')}
     * />
@@ -63,7 +64,7 @@ src/components/
 
    export type { MyComponentProps }
    export { MyComponent }
-```
+````
 
 #### Styling Guidelines
 
@@ -99,16 +100,16 @@ export * from './Category'
 - Boolean props: Use auxiliary verbs (isLoading, hasError, shouldDisplay)
 - Event handlers: Prefix with "on" (onClick, onSubmit, onValueChange)
 - Child component props: Use "\<componentName\>Props" (buttonProps, inputProps)
-    - Example:
-      ```typescript
-      const MyComponent = ({ isLoading, onAction, buttonProps }: MyComponentProps) => {
-        return (
-          <Button {...buttonProps}>
-            My Component
-          </Button>
-        )
-      }
-      ```
+  - Example:
+    ```typescript
+    const MyComponent = ({ isLoading, onAction, buttonProps }: MyComponentProps) => {
+      return (
+        <Button {...buttonProps}>
+          My Component
+        </Button>
+      )
+    }
+    ```
 
 ##### Components
 
