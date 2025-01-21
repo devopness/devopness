@@ -6,12 +6,21 @@ import { getColor } from 'src/colors'
 import { getFont } from 'src/fonts'
 
 type StyledProps = {
-  brokenSequence?: boolean
-  backgroundColor?: string
-  isActive?: boolean
-  disabled?: boolean | undefined
-  color?: Color
-} & Partial<Pick<DropdownOption, 'activeBackgroundColor'>>
+  /**
+   * Dropdown props related to styling
+   *
+   * Adds a `$` prefix to the prop name to prevent it from being passed to the
+   * underlying React node or rendered to the DOM element
+   *
+   * @see {@link https://styled-components.com/docs/api#transient-props | Styled Components - Transient props}
+   */
+  [Key in keyof Pick<
+    DropdownOption,
+    'activeBackgroundColor' | 'brokenSequence' | 'isActive' | 'color'
+  > as `$${Key}`]: DropdownOption[Key]
+} & {
+  disabled: DropdownOption['isDisabled']
+}
 
 const borderBottom = css`
   border-top: 1px solid ${getColor('slate.300')};
@@ -21,14 +30,19 @@ const setBackgroundActive = (color: Color | undefined) => css`
   background-color: ${color ? getColor(color) : ''};
 `
 
-const MenuContainer = styled.div<StyledProps>`
+const MenuContainer = styled.div`
   display: flex;
   flex-direction: column;
   border-radius: 10px;
   background-color: ${getColor('white')};
 `
 
-const MenuOption = styled.div<StyledProps>`
+const MenuOption = styled.div<
+  Pick<
+    StyledProps,
+    '$activeBackgroundColor' | '$brokenSequence' | '$isActive' | 'disabled'
+  >
+>`
   display: grid;
   grid-template-areas: 'badge text';
   grid-template-columns: auto auto;
@@ -40,25 +54,25 @@ const MenuOption = styled.div<StyledProps>`
   height: 42px;
   padding: 0 15px;
   opacity: ${({ disabled }) => (disabled ? 0.3 : 1)};
-  ${(props) => props.brokenSequence && borderBottom}
+  ${(props) => props.$brokenSequence && borderBottom}
   ${(props) =>
-    props.isActive &&
+    props.$isActive &&
     !props.disabled &&
-    setBackgroundActive(props.activeBackgroundColor)}
+    setBackgroundActive(props.$activeBackgroundColor)}
   &:hover {
     border-radius: 0;
     background-color: ${getColor('purple.250')};
   }
 `
 
-const Text = styled.span<StyledProps>`
+const Text = styled.span<Pick<StyledProps, '$color'>>`
   grid-area: text;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   font-weight: 500;
   font-size: 14px;
-  color: ${({ color }) => getColor(color ?? 'blue.800')};
+  color: ${({ $color }) => getColor($color ?? 'blue.800')};
 `
 
 const colorIcon = css`
@@ -68,7 +82,22 @@ const colorIcon = css`
   }
 `
 
-const ContentBadge = styled.span<StyledProps>`
+type ContentBadgeProps = {
+  /**
+   * Content badge props related to styling
+   *
+   * Adds a `$` prefix to the prop name to prevent it from being passed to the
+   * underlying React node or rendered to the DOM element
+   *
+   * @see {@link https://styled-components.com/docs/api#transient-props | Styled Components - Transient props}
+   */
+  [Key in keyof Pick<
+    NonNullable<DropdownOption['badge']>,
+    'backgroundColor'
+  > as `$${Key}`]: NonNullable<DropdownOption['badge']>[Key]
+}
+
+const ContentBadge = styled.span<Pick<ContentBadgeProps, '$backgroundColor'>>`
   grid-area: badge;
 
   display: flex;
@@ -76,7 +105,7 @@ const ContentBadge = styled.span<StyledProps>`
   align-items: center;
   width: 20px;
   height: 20px;
-  background-color: ${({ backgroundColor }) => backgroundColor};
+  background-color: ${({ $backgroundColor }) => $backgroundColor};
   border-radius: 5px;
   text-transform: uppercase;
   font-family: ${getFont('roboto')};
@@ -84,21 +113,21 @@ const ContentBadge = styled.span<StyledProps>`
   font-size: 14px;
   color: ${getColor('blue.800')};
 
-  ${({ backgroundColor }) => !!backgroundColor && colorIcon}
+  ${({ $backgroundColor }) => !!$backgroundColor && colorIcon}
 `
 
-const ClickableContainer = styled.div<StyledProps>`
+const ClickableContainer = styled.div`
   cursor: pointer;
   display: flex;
   height: 100%;
 `
 
-const Grid = styled.div<StyledProps>`
+const Grid = styled.div`
   display: grid;
   grid-template-columns: auto 230px auto;
 `
 
-const Wrapper = styled.div<StyledProps>`
+const Wrapper = styled.div`
   grid-column: 2 / 3;
 `
 

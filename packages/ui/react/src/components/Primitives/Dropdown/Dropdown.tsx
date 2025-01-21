@@ -16,7 +16,9 @@ import type { Color } from 'src/colors'
 import type { ButtonProps } from 'src/components/Buttons'
 import { Button } from 'src/components/Buttons'
 import { ConditionalWrapper } from 'src/components/helpers'
-import { Icon, IconProps } from 'src/components/Primitives/Icon'
+import type { IconProps } from 'src/components/Primitives/Icon'
+import { Icon } from 'src/components/Primitives/Icon'
+import type { LinkProps } from 'src/components/Primitives/Link'
 import { Link } from 'src/components/Primitives/Link'
 import type { TooltipProps } from 'src/components/Primitives/Tooltip'
 import { Tooltip } from 'src/components/Primitives/Tooltip'
@@ -38,9 +40,9 @@ type DropdownOptionLetter = Unwrap<
 
 type DropdownOption = {
   /**
-   * Add separator from previous options
+   * Background Color to use when option is active
    */
-  brokenSequence?: boolean
+  activeBackgroundColor?: Color
   /**
    * Option Badge configuration
    *
@@ -48,31 +50,37 @@ type DropdownOption = {
    */
   badge?: DropdownOptionIcon | DropdownOptionLetter
   /**
-   * Option description
+   * Add separator from previous options
    */
-  label?: string
+  brokenSequence?: boolean
+  /**
+   * Label text color
+   *
+   * @see {@link https://developer.mozilla.org/en-US/docs/Web/CSS/color}
+   */
+  color?: Color
   /**
    * Highlight option
    */
   isActive?: boolean
   /**
-   * Background Color to use when option is active
+   * Disables option
    */
-  activeBackgroundColor?: Color
+  isDisabled?: boolean
+  /**
+   * Option description
+   */
+  label?: string
+  /**
+   * Link properties
+   *
+   * @see {Link}
+   */
+  linkProps?: LinkProps
   /**
    * Event handler called when this option is clicked.
    */
   onClick?: () => null
-  /**
-   * Transforms label to a Link and point user to this url
-   *
-   * @see {Link}
-   */
-  url?: string
-  /**
-   * Disables option
-   */
-  isDisabled?: boolean
   /**
    * Tooltip's title
    *
@@ -80,11 +88,11 @@ type DropdownOption = {
    */
   tooltip?: TooltipProps['title']
   /**
-   * Label text color
+   * Transforms label to a Link and point user to this url
    *
-   * @see {@link https://developer.mozilla.org/en-US/docs/Web/CSS/color}
+   * @see {Link}
    */
-  color?: Color
+  url?: string
 }
 
 type DropdownSharedProps = {
@@ -101,30 +109,9 @@ type DropdownSharedProps = {
    */
   anchorOrigin?: PopoverOrigin
   /**
-   * This is the point on the popover which
-   * will attach to the anchor's origin.
-   *
-   * Options:
-   * vertical: [top, center, bottom, x(px)];
-   * horizontal: [left, center, right, x(px)].
-   *
-   * help: https://mui.com/material-ui/react-popover/#anchor-playground
-   */
-  transformOrigin?: PopoverOrigin
-  /**
    * The unique id to identify the dropdown anchor element.
    */
   id: string
-  /**
-   * Options listed in the Dropdown menu popup.
-   *
-   * @see {DropdownOption}
-   */
-  options: DropdownOption[] | undefined
-  /**
-   * Event handler called when the dropdown is opened or closed.
-   */
-  onToggle?: (popupState: PopupStateProps) => void
   /**
    * Event handler called when a dropdown option is selected.
    *
@@ -134,11 +121,32 @@ type DropdownSharedProps = {
    */
   onSelect?: (itemClicked: DropdownOption) => void
   /**
+   * Event handler called when the dropdown is opened or closed.
+   */
+  onToggle?: (popupState: PopupStateProps) => void
+  /**
+   * Options listed in the Dropdown menu popup.
+   *
+   * @see {DropdownOption}
+   */
+  options: DropdownOption[] | undefined
+  /**
    * Tooltip's title
    *
    * @see {Tooltip}
    */
   tooltip?: TooltipProps['title']
+  /**
+   * This is the point on the popover which
+   * will attach to the anchor's origin.
+   *
+   * Options:
+   * vertical: [top, center, bottom, x(px)];
+   * horizontal: [left, center, right, x(px)].
+   *
+   * @see {@link https://mui.com/material-ui/react-popover/#anchor-playground}
+   */
+  transformOrigin?: PopoverOrigin
 }
 
 type DropdownVariationButtonProps = DropdownSharedProps & {
@@ -149,6 +157,13 @@ type DropdownVariationButtonProps = DropdownSharedProps & {
    */
   anchorType: 'button'
   /**
+   * Button properties
+   *
+   * @see {Button}
+   */
+  buttonProps?: ButtonProps
+  content?: never
+  /**
    * Hide dropdown arrow icon
    */
   hideDropdownIcon?: boolean
@@ -157,18 +172,11 @@ type DropdownVariationButtonProps = DropdownSharedProps & {
    */
   hideLabel?: boolean
   /**
-   * Button properties
-   *
-   * @see {Button}
-   */
-  buttonProps?: ButtonProps
-  /**
    * Button label
    *
    * Default value: 'Open Popover'
    */
   label?: string | React.JSX.Element
-  content?: never
 }
 
 type DropdownVariationContainerProps = DropdownSharedProps & {
@@ -189,20 +197,20 @@ type DropdownProps =
   | DropdownVariationButtonProps
 
 type ElementAnchorProps = {
-  popupTrigger: object
   popupState: PopupStateProps
+  popupTrigger: object
 } & Pick<DropdownProps, 'anchorType'> &
   Pick<
     DropdownVariationButtonProps,
-    'tooltip' | 'buttonProps' | 'hideDropdownIcon' | 'hideLabel' | 'label'
+    'buttonProps' | 'hideDropdownIcon' | 'hideLabel' | 'label' | 'tooltip'
   > &
   Pick<DropdownVariationContainerProps, 'content'>
 
 const ElementAnchor = ({
-  popupTrigger,
-  popupState,
   buttonProps,
   content,
+  popupState,
+  popupTrigger,
   tooltip,
   ...props
 }: ElementAnchorProps) => {
@@ -218,6 +226,7 @@ const ElementAnchor = ({
       wrapper={(children) => <Tooltip title={tooltip}>{children}</Tooltip>}
     >
       <Button
+        data-testid="dropdown-button"
         noMargin
         noIconMargin={!!buttonProps?.icon}
         typeSize="medium"
@@ -247,10 +256,10 @@ const ElementAnchor = ({
  * Display a menu with a list of options
  */
 const Dropdown = ({
-  onToggle,
-  onSelect,
-  content,
   anchorType,
+  content,
+  onSelect,
+  onToggle,
   ...props
 }: DropdownProps) => (
   <PopupState
@@ -298,8 +307,13 @@ const Dropdown = ({
                       wrapper={(children) => (
                         <Link
                           to={option.url}
-                          style={{ display: 'block', marginRight: 'auto' }}
                           hideUnderline
+                          {...option.linkProps}
+                          style={{
+                            display: 'block',
+                            marginRight: 'auto',
+                            ...option.linkProps?.style,
+                          }}
                         >
                           {children}
                         </Link>
@@ -309,9 +323,9 @@ const Dropdown = ({
                         id={`option_${index.toString()}`}
                         disabled={option.isDisabled}
                         key={`option${index.toString()}`}
-                        isActive={option.isActive}
-                        activeBackgroundColor={option.activeBackgroundColor}
-                        brokenSequence={option.brokenSequence}
+                        $isActive={option.isActive}
+                        $activeBackgroundColor={option.activeBackgroundColor}
+                        $brokenSequence={option.brokenSequence}
                         onClick={(event) => {
                           if (option.isDisabled) {
                             return
@@ -331,7 +345,8 @@ const Dropdown = ({
                       >
                         {option.badge && (
                           <ContentBadge
-                            backgroundColor={option.badge.backgroundColor}
+                            data-testid={`option-${index.toString()}-badge`}
+                            $backgroundColor={option.badge.backgroundColor}
                           >
                             {option.badge.icon ? (
                               <Icon
@@ -348,7 +363,7 @@ const Dropdown = ({
                             title={option.label}
                             enableOnlyWithEllipsisPoints
                           >
-                            <Text color={option.color}>{option.label}</Text>
+                            <Text $color={option.color}>{option.label}</Text>
                           </Tooltip>
                         )}
                       </MenuOption>
