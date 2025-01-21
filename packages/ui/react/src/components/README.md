@@ -8,7 +8,7 @@ Devopness UI React Components with Storybook Stories and Tests
 
 Before creating a new component, please:
 1. Check if a similar component already exists
-2. Discuss major changes in a issue first
+2. Discuss major changes in an issue first
     - [Devopness - Create new issue](https://github.com/devopness/devopness/issues/new/choose)
 
 #### Directory Structure
