@@ -22,14 +22,16 @@
 
   ```tsx
   <Dropdown
-    options={[{
-      label: "Documentation",
-      url: "https://docs.example.com",
-      linkProps: {
-          target: "_blank",
+    options={[
+      {
+        label: 'Documentation',
+        url: 'https://docs.example.com',
+        linkProps: {
+          target: '_blank',
           hideExternalUrlIcon: true,
-      }
-    }]}
+        },
+      },
+    ]}
   />
   ```
 
