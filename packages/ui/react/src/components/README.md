@@ -98,7 +98,7 @@ export * from './Category'
 
 - Boolean props: Use auxiliary verbs (isLoading, hasError, shouldDisplay)
 - Event handlers: Prefix with "on" (onClick, onSubmit, onValueChange)
-- Child component props: Use "<componentName>Props" (buttonProps, inputProps)
+- Child component props: Use "\<componentName\>Props" (buttonProps, inputProps)
     - Example:
       ```typescript
       const MyComponent = ({ isLoading, onAction, buttonProps }: MyComponentProps) => {
