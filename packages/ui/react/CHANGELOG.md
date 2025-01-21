@@ -20,7 +20,7 @@
 
   The change is fully backwards compatible. To take advantage of the new functionality, you can optionally add `linkProps` to your URL-based dropdown options:
 
-  ```typescript
+  ```tsx
   <Dropdown
     options={[{
       label: "Documentation",
