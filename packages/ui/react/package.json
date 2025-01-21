@@ -59,7 +59,6 @@
   "dependencies": {
     "@mui/material": "^6.4.0",
     "@mui/styled-engine-sc": "^6.4.0",
-    "framer-motion": "^12.0.1",
     "ldrs": "^1.0.2",
     "lodash": "^4.17.21",
     "material-ui-popup-state": "^5.3.3",
