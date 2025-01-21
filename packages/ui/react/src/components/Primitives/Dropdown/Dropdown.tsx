@@ -227,8 +227,8 @@ const ElementAnchor = ({
     >
       <Button
         data-testid="dropdown-button"
-        $noMargin
-        $noIconMargin={!!buttonProps?.icon}
+        noMargin
+        noIconMargin={!!buttonProps?.icon}
         typeSize="medium"
         {...buttonProps}
         icon={!props.hideDropdownIcon ? dropdownIcon : undefined}
