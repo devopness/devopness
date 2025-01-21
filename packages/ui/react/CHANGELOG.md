@@ -8,7 +8,7 @@
 
   The following changes were made in 2.153.1
 
-  ```
+  ```diff
   -  noMargin?: boolean
   +  $noMargin?: boolean
     /**
