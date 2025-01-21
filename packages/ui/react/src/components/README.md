@@ -2,41 +2,49 @@
 
 Devopness UI React Components with Storybook Stories and Tests
 
-## FAQ
+## Contributing
 
-### How to add a new component?
+### Component Development Guide
 
-1. **Create Component Structure**
-   ```
-   src/components/
-   ├── ComponentName/
-   │   ├── index.ts
-   │   ├── ComponentName.tsx
-   │   ├── ComponentName.styled.ts  (if needed)
-   │   ├── ComponentName.stories.tsx
-   │   └── ComponentName.test.tsx
-   ```
+Before creating a new component, please:
+1. Check if a similar component already exists
+2. Discuss major changes in a discussion first
 
-2. **Component Implementation (ComponentName.tsx)**
-   - Use TypeScript for type safety
-   - Export both component and props type
-   - Add comprehensive JSDoc documentation
-   - Follow naming conventions:
-     - Use descriptive boolean props with auxiliary verbs (isLoading, hasError)
-     - Prefix event handlers with "on" (onClick, onSubmit)
-     - Use named exports
+#### Directory Structure
 
-   Example:
-   ```typescript
+```
+src/components/
+├── ComponentName/
+│   ├── index.ts                  # Public exports
+│   ├── ComponentName.tsx         # Main component
+│   ├── ComponentName.styled.ts   # Styled components (if needed)
+│   ├── ComponentName.stories.tsx # Storybook stories  
+│   └── ComponentName.test.tsx    # Unit tests
+```
+
+#### Development Checklist
+
+- [ ] Implement the component
+- [ ] Use proper prop naming conventions
+- [ ] Include comprehensive JSDoc documentation
+- [ ] Handle error states and edge cases
+- [ ] Follow styling guidelines
+- [ ] Add unit tests
+- [ ] Add stories
+- [ ] Update exports
+
+#### Implementation Example
+
+```typescript
    type MyComponentProps = {
-     /** Description of what this prop does */
+     /** Whether the component is in a loading state */
      isLoading?: boolean
-     /** Handler called when action occurs */
+     /** Callback fired when the action completes */
      onAction?: () => void
    }
 
    /**
-    * Brief description of what the component does
+    * MyComponent provides a reusable pattern for...
     *
     * @example
     * ```jsx
@@ -54,42 +62,68 @@ Devopness UI React Components with Storybook Stories and Tests
 
    export type { MyComponentProps }
    export { MyComponent }
-   ```
+```
 
-3. **Styled Components (ComponentName.styled.ts)**
-   - Create styles using Styled Components
-   - Use [transient props](https://styled-components.com/docs/api#transient-props) when needed
+#### Styling Guidelines
 
-4. **Stories (ComponentName.stories.tsx)**
-   - Create stories using Storybook
-   - Include different variations/states
-   - Add controls for interactive props
+- Follow responsive design patterns
+- Use semantic HTML elements
 
-5. **Tests (ComponentName.test.tsx)**
-   - Write comprehensive tests using Vitest
-   - Test rendering, interactions, and edge cases
-   - Use React Testing Library best practices
-   - Test accessibility where applicable
+#### Testing Requirements
 
-6. **Export Component (index.ts)**
-   ```typescript
-   export * from './ComponentName'
-   ```
+- Create unit tests for component logic
+- Test error states and edge cases
 
-7. **Update Parent `index.ts`**
-   - Add export in the appropriate category index file (Buttons, Forms, Primitives, etc.)
-   - Update root components/index.ts if needed
+#### Stories
 
-8. **Documentation**
-   - Add JSDoc comments for the component and all props
-   - Include usage examples in the component's JSDoc
-   - Document any complex logic or important implementation details
+- Create stories using Storybook
+- Include different variations/states
+- Add controls for interactive props
 
-For examples of these patterns, see:
-- Button component for structure and implementation
-- Input component for comprehensive prop types
-- Alert component for styled-components usage
-- Tooltip component for complex interactions
+#### Export Pattern
+
+```typescript
+// index.ts
+export * from './ComponentName'
+// Update category index (e.g., Forms/index.ts)
+export * from './ComponentName'
+// Update root index if needed (components/index.ts)
+export * from './Category'
+```
+
+#### Naming Conventions
+
+##### Props
+
+- Boolean props: Use auxiliary verbs (isLoading, hasError, shouldDisplay)
+- Event handlers: Prefix with "on" (onClick, onSubmit, onValueChange)
+- Child component props: Use "<componentName>Props" (buttonProps, inputProps)
+    - Example:
+      ```typescript
+      const MyComponent = ({ isLoading, onAction, buttonProps }: MyComponentProps) => {
+        return (
+          <Button {...buttonProps}>
+            My Component
+          </Button>
+        )
+      }
+      ```
+
+##### Components
+
+- Use PascalCase (Button, ArrowHead, Tooltip)
+
+##### Styled Components
+
+- Suffix with purpose (-Container, -Wrapper, -Item)
+- Be specific (HeaderContainer vs Container)
+
+#### Example Components
+
+- See [Button](../components/Buttons/Button/Button.tsx) for basic component structure
+- See [Input](../components/Forms/Input/Input.tsx) for form handling patterns
+- See [Alert](../components/Forms/Alert/Alert.tsx) for styled-components usage
+- See [Tooltip](../components/Primitives/Tooltip/Tooltip.tsx) for complex interactions
 
 ## Read More
 
