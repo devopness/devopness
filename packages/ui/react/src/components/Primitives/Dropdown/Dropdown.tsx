@@ -218,8 +218,8 @@ const ElementAnchor = ({
       wrapper={(children) => <Tooltip title={tooltip}>{children}</Tooltip>}
     >
       <Button
-        noMargin
-        noIconMargin={!!buttonProps?.icon}
+        $noMargin
+        $noIconMargin={!!buttonProps?.icon}
         typeSize="medium"
         {...buttonProps}
         icon={!props.hideDropdownIcon ? dropdownIcon : undefined}
