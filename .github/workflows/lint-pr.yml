@@ -1,0 +1,44 @@
+name: 'PR - Lint'
+
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
+
+jobs:
+  validate_pr_title:
+    name: Validate PR Title
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate PR Title
+        uses: amannn/action-semantic-pull-request@v4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  validate_pr_description:
+    name: Validate PR Description
+    runs-on: ubuntu-latest
+    if: ${{ github.event.pull_request.user.login != 'dependabot[bot]' }}
+    steps:
+      - name: Convert PR Description Markdown to JSON
+        uses: kkurno/action-markdown-reader@v0.1.0
+        id: markdown
+        with:
+          markdown: ${{ github.event.pull_request.body }}
+
+      - name: Checkout Repo PR Branch
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - name: Write JSON to Disk
+        run: |
+          cat > .github/scripts/tmp-pr-description-data.json <<EOF
+          ${{ steps.markdown.outputs.data }}
+          EOF
+
+      - name: Validate PR Description Fields
+        run: |-
+          PR_DESCRIPTION_JSON=$(cat .github/scripts/tmp-pr-description-data.json | base64) node .github/scripts/pr-validate-description.js
