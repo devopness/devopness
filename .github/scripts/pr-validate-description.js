@@ -85,7 +85,11 @@ function validateDescriptionOfChanges(descriptionOfChanges) {
     .map((item) => item.raw.trim())
     .join(" ");
 
-  if (!descriptionText || descriptionText.length === 0) {
+  // Matches checkbox items that only contain placeholder text: "- [ ] <...>"
+  const PLACEHOLDER_ONLY_PATTERN = /^-\s*\[\s*\]\s*<[^>]+>$/;
+  const isPlaceholderOnly = PLACEHOLDER_ONLY_PATTERN.test(descriptionText);
+
+  if (!descriptionText || descriptionText.length === 0 || isPlaceholderOnly) {
     fail(
       "Description of Changes",
       "Pull requests must include a short description of changes in the 'Description of changes' field. This field cannot be empty.",
@@ -182,6 +186,7 @@ function validateQaSection(qaSection) {
       "Quality Assurance",
       "Invalid success criteria format in the 'Quality Assurance' section.",
     );
+    return;
   }
 
   if (successCriteria.raw.trim() === SUCCESS_CRITERIA_TITLE) {
@@ -189,6 +194,7 @@ function validateQaSection(qaSection) {
       "Success criteria",
       `Pull requests must have a short description of success criteria, in field "${successCriteria.raw}"`,
     );
+    return;
   }
   pass("Success criteria", successCriteria.raw);
 }

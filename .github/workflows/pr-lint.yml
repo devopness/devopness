@@ -1,4 +1,4 @@
-name: 'PR - Lint'
+name: PR - Lint
 
 on:
   pull_request_target:
@@ -11,6 +11,7 @@ jobs:
   validate_pr_title:
     name: Validate PR Title
     runs-on: ubuntu-latest
+    if: ${{ github.event.pull_request.user.login != 'dependabot[bot]' }}
     steps:
       - name: Validate PR Title
         uses: amannn/action-semantic-pull-request@v4
@@ -31,7 +32,10 @@ jobs:
       - name: Checkout Repo PR Branch
         uses: actions/checkout@v3
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.head_ref }}
+          persist-credentials: true
+          fetch-depth: 0
 
       - name: Write JSON to Disk
         run: |

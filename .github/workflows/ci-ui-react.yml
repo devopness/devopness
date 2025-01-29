@@ -1,4 +1,4 @@
-name: UI React - CI
+name: CI - UI React
 on:
   pull_request:
     paths:

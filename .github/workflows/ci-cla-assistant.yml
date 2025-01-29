@@ -1,4 +1,4 @@
-name: "CLA Assistant"
+name: CI - CLA Assistant
 
 on:
   issue_comment:
@@ -16,7 +16,7 @@ jobs:
     name: Check CLA signatures
     runs-on: ubuntu-latest
     steps:
-      - name: "Ensure PR author has signed CLA"
+      - name: 'Ensure PR author has signed CLA'
         if: >
           github.event.comment.body == 'recheck' ||
           github.event.comment.body == 'I have read the CLA document and I hereby sign the CLA' ||
@@ -29,15 +29,15 @@ jobs:
           # The token below should have repo scope (classic) or read and write access to code (fine-grained tokens) to enable access to the remote repository where the signatures are being stored; and must be manually added by you in the organization's secret
           PERSONAL_ACCESS_TOKEN: ${{ secrets.CLA_CONFIG_PERSONAL_ACCESS_TOKEN }}
         with:
-          path-to-signatures: "signatures/v1.0.0/cla.json"
-          path-to-document: "https://github.com/devopness/.github/blob/main/CLA.md"
+          path-to-signatures: 'signatures/v1.0.0/cla.json'
+          path-to-document: 'https://github.com/devopness/.github/blob/main/CLA.md'
           allowlist: dependabot[bot],devopness-automations
           # branch should not be protected
-          branch: "main"
-          remote-organization-name: "devopness"
-          remote-repository-name: "clabot-config"
+          branch: 'main'
+          remote-organization-name: 'devopness'
+          remote-repository-name: 'clabot-config'
           lock-pullrequest-aftermerge: false
-          custom-pr-sign-comment: "I have read the CLA document and I hereby sign the CLA"
+          custom-pr-sign-comment: 'I have read the CLA document and I hereby sign the CLA'
           custom-notsigned-prcomment: |
             <br/>Thanks 💖 for your submission!<br/>
             We ask that $you sign our [Contributor License Agreement](https://github.com/devopness/.github/blob/main/CLA.md) before we can accept your contribution.<br/>
