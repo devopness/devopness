@@ -9,11 +9,11 @@ on:
 
 jobs:
   validate_pr_title:
-    name: Validate PR Title
+    name: Validate PR title
     runs-on: ubuntu-latest
     if: ${{ github.event.pull_request.user.login != 'dependabot[bot]' }}
     steps:
-      - name: Validate PR Title
+      - name: Validate PR title
         uses: amannn/action-semantic-pull-request@v4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
