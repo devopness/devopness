@@ -19,7 +19,7 @@
  * @enum {string}
  */
 export enum ActionType {
-    Add = 'add',
+    Configure = 'configure',
     CheckProvisioned = 'check_provisioned',
     Delete = 'delete',
     Deploy = 'deploy',
@@ -27,7 +27,6 @@ export enum ActionType {
     Provision = 'provision',
     Reload = 'reload',
     Restart = 'restart',
-    Setup = 'setup',
     Start = 'start',
     Stop = 'stop'
 }
