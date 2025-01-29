@@ -12754,7 +12754,7 @@
       "ActionType": {
         "type": "string",
         "enum": [
-          "add",
+          "configure",
           "check_provisioned",
           "delete",
           "deploy",
@@ -12762,7 +12762,6 @@
           "provision",
           "reload",
           "restart",
-          "setup",
           "start",
           "stop"
         ],
@@ -21484,7 +21483,7 @@
           "action_type": {
             "type": "string",
             "description": "Type of action",
-            "example": "add"
+            "example": "configure"
           },
           "resource_type_human_readable": {
             "type": "string",
