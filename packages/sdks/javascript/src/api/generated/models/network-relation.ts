@@ -12,6 +12,8 @@
  */
 
 
+import { ActionRelation } from './action-relation';
+import { Credential } from './credential';
 import { NetworkProvisionInput } from './network-provision-input';
 
 /**
@@ -63,6 +65,12 @@ export interface NetworkRelation {
      */
     provider_name_human_readable: string;
     /**
+     * 
+     * @type {Credential}
+     * @memberof NetworkRelation
+     */
+    credential: Credential;
+    /**
      * The networks\'s name
      * @type {string}
      * @memberof NetworkRelation
@@ -74,6 +82,12 @@ export interface NetworkRelation {
      * @memberof NetworkRelation
      */
     provision_input: NetworkProvisionInput;
+    /**
+     * 
+     * @type {ActionRelation}
+     * @memberof NetworkRelation
+     */
+    last_action: ActionRelation | null;
     /**
      * The date and time when the record was created
      * @type {string}
