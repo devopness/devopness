@@ -1,5 +1,17 @@
 # @devopness/sdk-js
 
+## 2.154.0
+
+### Minor Changes
+
+- [#1256](https://github.com/devopness/devopness/pull/1256) [`60901a2`](https://github.com/devopness/devopness/commit/60901a29c4a7595afdc496405518f03d2580de0c) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Added the 'credential' field to the Networks listing
+
+- [#1256](https://github.com/devopness/devopness/pull/1256) [`60901a2`](https://github.com/devopness/devopness/commit/60901a29c4a7595afdc496405518f03d2580de0c) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Added the 'last action' field to the Networks listing
+
+- [#1256](https://github.com/devopness/devopness/pull/1256) [`60901a2`](https://github.com/devopness/devopness/commit/60901a29c4a7595afdc496405518f03d2580de0c) Thanks [@Diegiwg](https://github.com/Diegiwg), [@souz4-my](https://github.com/souz4-my), [@jfoliveira](https://github.com/jfoliveira)! - Rename the action 'Server Setup' to 'Server Configure' to ensure consistency with the messages displayed to the user during its execution
+
+- [#1256](https://github.com/devopness/devopness/pull/1256) [`60901a2`](https://github.com/devopness/devopness/commit/60901a29c4a7595afdc496405518f03d2580de0c) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Add documentation about 'variable description' max length
+
 ## 2.153.0
 
 ### Minor Changes
@@ -10,9 +22,9 @@
 
 ### Minor Changes
 
-- [#1087](https://github.com/devopness/devopness/pull/1087) [`10f296c`](https://github.com/devopness/devopness/commit/10f296cb5334e40b4c41e28e0fbdeef1748eed75) Thanks [@devopness-automations](https://github.com/devopness-automations)! - - Added `description` field to `ActionStep` model, so users can understand what's the purpose of a custom pipeline step created by a team member
+- [#1087](https://github.com/devopness/devopness/pull/1087) [`10f296c`](https://github.com/devopness/devopness/commit/10f296cb5334e40b4c41e28e0fbdeef1748eed75) Thanks [@souz4-my](https://github.com/souz4-my)! - - Added `description` field to `ActionStep` model, so users can understand what's the purpose of a custom pipeline step created by a team member
 
-- [#1087](https://github.com/devopness/devopness/pull/1087) [`10f296c`](https://github.com/devopness/devopness/commit/10f296cb5334e40b4c41e28e0fbdeef1748eed75) Thanks [@devopness-automations](https://github.com/devopness-automations)! - - Add operation server:rotate-key
+- [#1087](https://github.com/devopness/devopness/pull/1087) [`10f296c`](https://github.com/devopness/devopness/commit/10f296cb5334e40b4c41e28e0fbdeef1748eed75) Thanks [@Diegiwg](https://github.com/Diegiwg)! - - Add operation server:rotate-key
 
 ## 2.151.0
 
