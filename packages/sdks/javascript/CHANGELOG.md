@@ -1,5 +1,17 @@
 # @devopness/sdk-js
 
+## 2.154.0
+
+### Minor Changes
+
+- [#1256](https://github.com/devopness/devopness/pull/1256) [`60901a2`](https://github.com/devopness/devopness/commit/60901a29c4a7595afdc496405518f03d2580de0c) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Added the 'credential' field to the Networks listing.
+
+- [#1256](https://github.com/devopness/devopness/pull/1256) [`60901a2`](https://github.com/devopness/devopness/commit/60901a29c4a7595afdc496405518f03d2580de0c) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Added the 'last action' field to the Networks listing.
+
+- [#1256](https://github.com/devopness/devopness/pull/1256) [`60901a2`](https://github.com/devopness/devopness/commit/60901a29c4a7595afdc496405518f03d2580de0c) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Rename the action 'Server Setup' to 'Server Configure' to ensure consistency with the messages displayed to the user during its execution.
+
+- [#1256](https://github.com/devopness/devopness/pull/1256) [`60901a2`](https://github.com/devopness/devopness/commit/60901a29c4a7595afdc496405518f03d2580de0c) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Add documentation about 'variable description' max length.
+
 ## 2.153.0
 
 ### Minor Changes
