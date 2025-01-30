@@ -11,7 +11,7 @@ jobs:
   validate_pr_title:
     name: Validate PR title
     runs-on: ubuntu-latest
-    if: ${{ !contains('dependabot[bot],devopness-automations', github.event.pull_request.user.login) }}
+    if: ${{ !contains('dependabot[bot],devopness-automations,github-actions', github.event.pull_request.user.login) }}
     steps:
       - name: Validate PR title
         uses: amannn/action-semantic-pull-request@v4
