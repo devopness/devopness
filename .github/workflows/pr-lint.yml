@@ -21,7 +21,7 @@ jobs:
   validate_pr_description:
     name: Validate PR Description
     runs-on: ubuntu-latest
-    if: ${{ !contains('dependabot[bot],devopness-automations', github.event.pull_request.user.login) }}
+    if: ${{ !contains('dependabot[bot],devopness-automations,github-actions', github.event.pull_request.user.login) }}
     steps:
       - name: Convert PR Description Markdown to JSON
         uses: kkurno/action-markdown-reader@v0.1.0
