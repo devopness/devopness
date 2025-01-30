@@ -29,12 +29,16 @@ properties:
     description: "The human readable version of the provider's name"
     example: 'Amazon Web Services'
     type: string
+  credential:
+    $ref: '#/components/schemas/Credential'
   name:
     description: "The networks's name"
     example: my-network
     type: string
   provision_input:
     $ref: '#/components/schemas/NetworkProvisionInput'
+  last_action:
+    $ref: '#/components/schemas/ActionRelation'
   created_at:
     description: 'The date and time when the record was created'
     example: '2019-09-25T15:50:48.000000Z'
@@ -51,8 +55,10 @@ required:
   - is_auto_generated
   - provider_name
   - provider_name_human_readable
+  - credential
   - name
   - provision_input
+  - last_action
   - created_at
   - updated_at
 nullable: true

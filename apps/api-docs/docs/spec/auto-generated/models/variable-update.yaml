@@ -14,7 +14,7 @@ properties:
     example: 'https://staging.devopness.com'
     type: string
   description:
-    description: 'A text describing the variable, provided by the end user.'
+    description: 'A text describing the variable, provided by the end user. Must not be greater than 255 characters.'
     example: 'Sample variable description'
     type: string
   target:
