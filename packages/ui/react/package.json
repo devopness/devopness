@@ -64,7 +64,7 @@
     "material-ui-popup-state": "^5.3.3",
     "path-browserify": "^1.0.1",
     "react-icons": "^5.4.0",
-    "styled-components": "^6.1.14"
+    "styled-components": "^6.1.15"
   },
   "devDependencies": {
     "@emotion/styled": "^11.14.0",
