@@ -1,6 +1,7 @@
 import { Transaction, TransactionHook } from 'hooks';
 import { get, set } from 'lodash';
 
+import DevopnessAPI from './DevopnessAPI';
 import { FixtureKey, Fixture, Identifiable, UserTokens } from './fixtureTypes';
 import FixtureStore from './FixtureStore';
 import Logger from './Logger';
@@ -299,5 +300,57 @@ export default class TransactionUtils {
 
       delete body.linked_resources
       transaction.request.body = JSON.stringify(body);
+    }
+
+    /**
+     * Unlinks a resource from a server.
+     *
+     * @param {Transaction} transaction - The transaction whose host is used to construct the API client.
+     * @param {string} resourceType - The type of resource to unlink (e.g., 'daemon', 'service').
+     */
+    removeLinkWithServer(transaction: Transaction, resourceType: string): void {
+      const authToken = this.fixtureStore.get<UserTokens>('user_login_response');
+
+      if (! authToken?.access_token) {
+          this.logger.logFn('Authentication token is missing. Cannot proceed with unlinking.');
+          transaction.fail = true;
+
+          return;
+      }
+
+      const server = this.fixtureStore.get<Identifiable>('server');
+
+      if (! server) {
+          this.logger.logFn('Server entity not found. Cannot proceed with unlinking.');
+          transaction.fail = true;
+
+          return;
+      }
+
+      const resource = this.fixtureStore.get<Identifiable>(resourceType);
+
+      if (! resource) {
+          const resourceTypeHumanReadable = resourceType.charAt(0).toUpperCase() + resourceType.slice(1);
+          this.logger.logFn(`'${resourceTypeHumanReadable}' entity not found. Cannot proceed with unlinking.`);
+          transaction.fail = true;
+
+          return;
+      }
+
+      this.logger.logFn(`=> Unlinking ${resourceType} ID ${resource.id} from server ID ${server.id}`);
+
+      const api = new DevopnessAPI(transaction.host, authToken.access_token, this.logger.logFn);
+      const response = api.apiRequest('DELETE', `/resource-links/server/${server.id}/${resourceType}/${resource.id}/unlink`);
+
+      if (response.statusCode != 204) {
+        this.logger.logFn(`Failed to unlink ${resourceType} ID ${resource.id} from server ID ${server.id}`);
+        this.logger.logFn(`Response: ${response.statusCode}`);
+        this.logger.logFn(`Body: ${response.body}`);
+        transaction.fail = true;
+
+        return;
+      }
+      
+      this.logger.logFn(`Successfully unlinked ${resourceType} ID ${resource.id} from server ID ${server.id}`);
     }
 }

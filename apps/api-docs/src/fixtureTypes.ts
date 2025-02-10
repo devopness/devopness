@@ -149,25 +149,21 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     ],
     'daemon': [],
     'daemon_environment_create': [
-        { path: 'servers[0]', fixture: 'server', field: 'id' },
+        { path: 'application_id', fixture: 'application', field: 'id' },
     ],
     'daemon_update': [
         { path: 'id', fixture: 'daemon', field: 'id' },
-        { path: 'servers[0]', fixture: 'server', field: 'id' }
     ],
     'daemon_get_status': [
         { path: 'servers[0]', fixture: 'server', field: 'id' },
     ],
     'daemon_restart': [
-        { path: 'environment_id', fixture: 'environment', field: 'id' },
         { path: 'servers[0]', fixture: 'server', field: 'id' }
     ],
     'daemon_start': [
-        { path: 'environment_id', fixture: 'environment', field: 'id' },
         { path: 'servers[0]', fixture: 'server', field: 'id' }
     ],
     'daemon_stop': [
-        { path: 'environment_id', fixture: 'environment', field: 'id' },
         { path: 'servers[0]', fixture: 'server', field: 'id' }
     ],
     'pipeline': [],
@@ -200,23 +196,15 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
         { path: 'servers[0]', fixture: 'server', field: 'id' },
     ],
     'service_reload': [
-        { path: 'environment_id', fixture: 'environment', field: 'id' },
         { path: 'servers[0]', fixture: 'server', field: 'id' },
     ],
     'service_restart': [
-        { path: 'environment_id', fixture: 'environment', field: 'id' },
         { path: 'servers[0]', fixture: 'server', field: 'id' },
     ],
     'service_start': [
-        { path: 'environment_id', fixture: 'environment', field: 'id' },
-        { path: 'servers[0]', fixture: 'server', field: 'id' },
-    ],
-    'service_update_status': [
-        { path: 'environment_id', fixture: 'environment', field: 'id' },
         { path: 'servers[0]', fixture: 'server', field: 'id' },
     ],
     'service_stop': [
-        { path: 'environment_id', fixture: 'environment', field: 'id' },
         { path: 'servers[0]', fixture: 'server', field: 'id' },
     ],
     'service_update': [

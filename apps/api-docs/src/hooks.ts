@@ -155,6 +155,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         ['addEnvironmentApplication201', 'linkResourceLinkToResourceLink204'],
         ['linkResourceLinkToResourceLink204', 'unlinkResourceLinkFromResourceLink204'],
         ['addEnvironmentDaemon201', 'linkResourceLinkToResourceLink204'],
+        ['getService200', 'getStatusService204']
     ]);
 
     let apiSpec = new OpenAPISpec(logger);
@@ -456,6 +457,28 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     before('addEnvironmentService201', utils.removeLinkedResourcesFromRequestBody);
     before('addEnvironmentSshKey201', utils.removeLinkedResourcesFromRequestBody);
     before('addEnvironmentVirtualHost201', utils.removeLinkedResourcesFromRequestBody);
+
+    // Ensure resource-server links are removed before running tests.
+    //
+    // In the API Docs Build, tests do not run on a real server.
+    //
+    // As a result, resource deletions are not actually executed,
+    // leading to stale data in the database.
+    //
+    // Other tests assume that resources are properly deleted
+    // when delete action tests are executed.
+    //
+    // Removing the link prevents a delete action from being created,
+    // ensuring the resource is immediately removed from the database.
+    // This allows subsequent tests to run correctly.
+
+    before('deleteDaemon204', (transaction: Transaction) => {
+      utils.removeLinkWithServer(transaction, 'daemon');
+    });
+
+    before('deleteService204', (transaction: Transaction) => {
+      utils.removeLinkWithServer(transaction, 'service');
+    });
 
     done();
 })

@@ -35,3 +35,5 @@ responses:
       application/json:
         schema:
           $ref: '#/components/schemas/ApiError'
+  404:
+    description: 'The specified resource was not found'
