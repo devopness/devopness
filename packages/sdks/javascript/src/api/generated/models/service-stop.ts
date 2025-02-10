@@ -20,12 +20,6 @@
  */
 export interface ServiceStop {
     /**
-     * The ID of the environment this service is running in.
-     * @type {number}
-     * @memberof ServiceStop
-     */
-    environment_id: number;
-    /**
      * List of valid resource IDs
      * @type {Array<number>}
      * @memberof ServiceStop
