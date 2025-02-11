@@ -26,7 +26,7 @@ properties:
     example: 'VPS/Self Hosted'
     type: string
   credential:
-    $ref: '#/components/schemas/Credential'
+    $ref: '#/components/schemas/CredentialRelation'
   region:
     description: 'The region in which the server is located'
     example: us-east-1
@@ -68,6 +68,7 @@ required:
   - hostname
   - provider_name
   - provider_name_human_readable
+  - credential
   - region
   - region_human_readable
   - ip_address

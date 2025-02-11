@@ -39,6 +39,8 @@ properties:
     nullable: true
   project:
     $ref: '#/components/schemas/ProjectRelation'
+  team_memberships:
+    $ref: '#/components/schemas/TeamMembershipList'
 required:
   - id
   - type
