@@ -14,7 +14,7 @@
 
 import { ActionRelation } from './action-relation';
 import { ActionStatus } from './action-status';
-import { Credential } from './credential';
+import { CredentialRelation } from './credential-relation';
 
 /**
  * 
@@ -60,10 +60,10 @@ export interface ServerRelation {
     provider_name_human_readable: string;
     /**
      * 
-     * @type {Credential}
+     * @type {CredentialRelation}
      * @memberof ServerRelation
      */
-    credential?: Credential;
+    credential: CredentialRelation | null;
     /**
      * The region in which the server is located
      * @type {string}
