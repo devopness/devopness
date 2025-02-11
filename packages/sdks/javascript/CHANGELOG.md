@@ -4,11 +4,11 @@
 
 ### Patch Changes
 
-- [#1292](https://github.com/devopness/devopness/pull/1292) [`fb453cf`](https://github.com/devopness/devopness/commit/fb453cfcb3b8a670c6a47bfbff6473bc818c0de9) Thanks [@souz4-my](https://github.com/devopness-automations)! - **Add** `team_memberships` field to `EnvironmentRelation` and `ArquivedEnvironmentRelation` models
+- [#1292](https://github.com/devopness/devopness/pull/1292) [`fb453cf`](https://github.com/devopness/devopness/commit/fb453cfcb3b8a670c6a47bfbff6473bc818c0de9) Thanks [@souz4-my](https://github.com/souz4-my)! - **Add** `team_memberships` field to `EnvironmentRelation` and `ArquivedEnvironmentRelation` models
 
-- [#1292](https://github.com/devopness/devopness/pull/1292) [`fb453cf`](https://github.com/devopness/devopness/commit/fb453cfcb3b8a670c6a47bfbff6473bc818c0de9) Thanks [@souz4-my](https://github.com/devopness-automations)! - **Change** `credentials` field type in `Server` model to nullable
+- [#1292](https://github.com/devopness/devopness/pull/1292) [`fb453cf`](https://github.com/devopness/devopness/commit/fb453cfcb3b8a670c6a47bfbff6473bc818c0de9) Thanks [@souz4-my](https://github.com/souz4-my)! - **Change** `credentials` field type in `Server` model to nullable
 
-- [#1276](https://github.com/devopness/devopness/pull/1276) [`96a2010`](https://github.com/devopness/devopness/commit/96a2010f630d5bc037193d0962f3113d2ca1aa3e) Thanks [@Diegiwg](https://github.com/devopness-automations)! - **Remove** deprecated `environment_id` field from service operation models
+- [#1276](https://github.com/devopness/devopness/pull/1276) [`96a2010`](https://github.com/devopness/devopness/commit/96a2010f630d5bc037193d0962f3113d2ca1aa3e) Thanks [@Diegiwg](https://github.com/Diegiwg)! - **Remove** deprecated `environment_id` field from service operation models
 
 ## 2.154.0
 
