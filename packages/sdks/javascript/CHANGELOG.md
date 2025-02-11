@@ -1,14 +1,12 @@
 # @devopness/sdk-js
 
-## 3.0.0
+## 2.154.1
 
-### Major Changes
+### Patch Changes
 
 - [#1292](https://github.com/devopness/devopness/pull/1292) [`fb453cf`](https://github.com/devopness/devopness/commit/fb453cfcb3b8a670c6a47bfbff6473bc818c0de9) Thanks [@devopness-automations](https://github.com/devopness-automations)! - **Add** `team_memberships` field to `EnvironmentRelation` and `ArquivedEnvironmentRelation` models
 
 - [#1292](https://github.com/devopness/devopness/pull/1292) [`fb453cf`](https://github.com/devopness/devopness/commit/fb453cfcb3b8a670c6a47bfbff6473bc818c0de9) Thanks [@devopness-automations](https://github.com/devopness-automations)! - **Change** `credentials` field type in `Server` model to nullable
-
-### Patch Changes
 
 - [#1276](https://github.com/devopness/devopness/pull/1276) [`96a2010`](https://github.com/devopness/devopness/commit/96a2010f630d5bc037193d0962f3113d2ca1aa3e) Thanks [@devopness-automations](https://github.com/devopness-automations)! - **Remove** deprecated `environment_id` field from service operation models
 
