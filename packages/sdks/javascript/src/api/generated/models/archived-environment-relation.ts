@@ -14,7 +14,6 @@
 
 import { EnvironmentType } from './environment-type';
 import { ProjectRelation } from './project-relation';
-import { TeamMembershipRelation } from './team-membership-relation';
 
 /**
  * 
@@ -82,11 +81,5 @@ export interface ArchivedEnvironmentRelation {
      * @memberof ArchivedEnvironmentRelation
      */
     project: ProjectRelation | null;
-    /**
-     * 
-     * @type {Array<TeamMembershipRelation>}
-     * @memberof ArchivedEnvironmentRelation
-     */
-    team_memberships?: Array<TeamMembershipRelation>;
 }
 
