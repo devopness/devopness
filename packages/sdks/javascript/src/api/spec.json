@@ -1360,6 +1360,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "The specified resource was not found"
           }
         }
       },
@@ -1411,6 +1414,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "The specified resource was not found"
           }
         }
       },
@@ -1455,6 +1461,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "The specified resource was not found"
           },
           "422": {
             "description": "Unprocessable Entity/Validation Error",
@@ -1531,6 +1540,9 @@
               }
             }
           },
+          "404": {
+            "description": "The specified resource was not found"
+          },
           "422": {
             "description": "Unprocessable Entity/Validation Error",
             "content": {
@@ -1605,6 +1617,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "The specified resource was not found"
           },
           "422": {
             "description": "Unprocessable Entity/Validation Error",
@@ -1681,6 +1696,9 @@
               }
             }
           },
+          "404": {
+            "description": "The specified resource was not found"
+          },
           "422": {
             "description": "Unprocessable Entity/Validation Error",
             "content": {
@@ -1755,6 +1773,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "The specified resource was not found"
           },
           "422": {
             "description": "Unprocessable Entity/Validation Error",
@@ -5215,6 +5236,9 @@
               }
             }
           },
+          "404": {
+            "description": "The specified resource was not found"
+          },
           "422": {
             "description": "Unprocessable Entity/Validation Error",
             "content": {
@@ -7622,6 +7646,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "The specified resource was not found"
           }
         }
       },
@@ -7673,6 +7700,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "The specified resource was not found"
           }
         }
       },
@@ -7841,7 +7871,15 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
           },
           "403": {
             "description": "Forbidden/Unauthorized",
@@ -7852,6 +7890,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "The specified resource was not found"
           },
           "422": {
             "description": "Unprocessable Entity/Validation Error",
@@ -7908,7 +7949,15 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
           },
           "403": {
             "description": "Forbidden/Unauthorized",
@@ -7919,6 +7968,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "The specified resource was not found"
           },
           "422": {
             "description": "Unprocessable Entity/Validation Error",
@@ -7975,7 +8027,15 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
           },
           "403": {
             "description": "Forbidden/Unauthorized",
@@ -7986,6 +8046,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "The specified resource was not found"
           },
           "422": {
             "description": "Unprocessable Entity/Validation Error",
@@ -8042,7 +8105,15 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
           },
           "403": {
             "description": "Forbidden/Unauthorized",
@@ -8053,6 +8124,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "The specified resource was not found"
           },
           "422": {
             "description": "Unprocessable Entity/Validation Error",
@@ -11165,6 +11239,9 @@
               }
             }
           },
+          "404": {
+            "description": "The specified resource was not found"
+          },
           "422": {
             "description": "Unprocessable Entity/Validation Error",
             "content": {
@@ -11478,6 +11555,7 @@
       "name": "Credentials",
       "tags": [
         "Credentials",
+        "Credentials - Repositories",
         "Environments - Credentials"
       ]
     },
@@ -19386,18 +19464,10 @@
       "ServiceGetStatus": {
         "type": "object",
         "properties": {
-          "environment_id": {
-            "description": "The ID of the environment this service is running in.",
-            "example": 839,
-            "type": "integer"
-          },
           "servers": {
             "$ref": "#/components/schemas/ResourceIdList"
           }
-        },
-        "required": [
-          "environment_id"
-        ]
+        }
       },
       "ServiceInitialState": {
         "type": "string",
@@ -19507,66 +19577,34 @@
       "ServiceReload": {
         "type": "object",
         "properties": {
-          "environment_id": {
-            "description": "The ID of the environment this service is running in.",
-            "example": 839,
-            "type": "integer"
-          },
           "servers": {
             "$ref": "#/components/schemas/ResourceIdList"
           }
-        },
-        "required": [
-          "environment_id"
-        ]
+        }
       },
       "ServiceRestart": {
         "type": "object",
         "properties": {
-          "environment_id": {
-            "description": "The ID of the environment this service is running in.",
-            "example": 839,
-            "type": "integer"
-          },
           "servers": {
             "$ref": "#/components/schemas/ResourceIdList"
           }
-        },
-        "required": [
-          "environment_id"
-        ]
+        }
       },
       "ServiceStart": {
         "type": "object",
         "properties": {
-          "environment_id": {
-            "description": "The ID of the environment this service is running in.",
-            "example": 839,
-            "type": "integer"
-          },
           "servers": {
             "$ref": "#/components/schemas/ResourceIdList"
           }
-        },
-        "required": [
-          "environment_id"
-        ]
+        }
       },
       "ServiceStop": {
         "type": "object",
         "properties": {
-          "environment_id": {
-            "description": "The ID of the environment this service is running in.",
-            "example": 839,
-            "type": "integer"
-          },
           "servers": {
             "$ref": "#/components/schemas/ResourceIdList"
           }
-        },
-        "required": [
-          "environment_id"
-        ]
+        }
       },
       "ServiceType": {
         "type": "string",

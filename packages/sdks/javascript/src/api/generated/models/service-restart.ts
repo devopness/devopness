@@ -20,12 +20,6 @@
  */
 export interface ServiceRestart {
     /**
-     * The ID of the environment this service is running in.
-     * @type {number}
-     * @memberof ServiceRestart
-     */
-    environment_id: number;
-    /**
      * List of valid resource IDs
      * @type {Array<number>}
      * @memberof ServiceRestart

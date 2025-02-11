@@ -20,12 +20,6 @@
  */
 export interface ServiceStart {
     /**
-     * The ID of the environment this service is running in.
-     * @type {number}
-     * @memberof ServiceStart
-     */
-    environment_id: number;
-    /**
      * List of valid resource IDs
      * @type {Array<number>}
      * @memberof ServiceStart
