@@ -5,8 +5,9 @@ properties:
   max_pipelines_per_resource:
     type: integer
     example: 1
-  allow_custom_steps:
+  is_user_managed:
     type: boolean
+    description: 'Indicates whether the user has permission to manage the pipeline for the resource operation'
     example: true
   stages:
     $ref: '#/components/schemas/PipelineSettingsStageList'
