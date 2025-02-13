@@ -1,5 +1,5 @@
 ---
-"@devopness/sdk-js": major
+"@devopness/sdk-js": minor
 ---
 
 **Breaking Change:** Renamed `allow_custom_steps` property to `is_user_managed` in `PipelineSettings` interface.
