@@ -70,7 +70,7 @@
     "@emotion/styled": "^11.14.0",
     "@eslint/js": "^9.20.0",
     "@storybook/addon-essentials": "^8.5.3",
-    "@storybook/blocks": "^8.5.3",
+    "@storybook/blocks": "^8.5.6",
     "@storybook/manager-api": "^8.5.1",
     "@storybook/react": "^8.5.1",
     "@storybook/react-vite": "^8.5.6",
