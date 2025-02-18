@@ -1,5 +1,11 @@
 # @devopness/ui-react
 
+## 2.155.0
+
+### Minor Changes
+
+- [#1322](https://github.com/devopness/devopness/pull/1322) [`f5263f9`](https://github.com/devopness/devopness/commit/f5263f994ff12b2665c8fa1f5e198ba9e16c6a00) Thanks [@pvdevs](https://github.com/pvdevs)! - Update icon paths in iconLoader to match new assets paths
+
 ## 2.154.0
 
 ### Minor Changes
