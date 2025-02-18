@@ -80,7 +80,7 @@ const cSharpSVG = getImageAssetUrl('icons_svgs/c-sharp.svg')
 const dockerSVG = getImageAssetUrl('icons_svgs/docker.svg')
 const dotnetCoreSVG = getImageAssetUrl('icons_svgs/dotnetcore.svg')
 const dotnetCoreAspnetCoreSVG = getImageAssetUrl(
-  'icons_svgs/dotnet-aspnetcore.svg'
+  'icons_svgs/dotnetcore-aspnetcore.svg'
 )
 const githubSVG = getImageAssetUrl('icons_svgs/github.svg')
 const githubWhiteSVG = getImageAssetUrl('icons_svgs/github-white.svg')
