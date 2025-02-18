@@ -75,18 +75,24 @@ import { CircleBubble } from './CircleBubble'
 import { getImageAssetUrl } from './getImageAssetUrl'
 
 const bitbucketSVG = getImageAssetUrl('icons_svgs/bitbucket.svg')
-const bitbucketWhiteSVG = getImageAssetUrl('icons_svgs/bitbucket_white.svg')
-const c_sharpSVGsvg = getImageAssetUrl('icons_svgs/c_sharp.svg')
+const bitbucketWhiteSVG = getImageAssetUrl('icons_svgs/bitbucket-white.svg')
+const cSharpSVG = getImageAssetUrl('icons_svgs/c-sharp.svg')
 const dockerSVG = getImageAssetUrl('icons_svgs/docker.svg')
-const dotnetSVG = getImageAssetUrl('icons_svgs/dotnet.svg')
+const dotnetCoreSVG = getImageAssetUrl('icons_svgs/dotnetcore.svg')
+const dotnetCoreAspnetCoreSVG = getImageAssetUrl(
+  'icons_svgs/dotnet-aspnetcore.svg'
+)
 const githubSVG = getImageAssetUrl('icons_svgs/github.svg')
-const githubWhiteSVG = getImageAssetUrl('icons_svgs/github_white.svg')
+const githubWhiteSVG = getImageAssetUrl('icons_svgs/github-white.svg')
 const gitlabSVG = getImageAssetUrl('icons_svgs/gitlab.svg')
 const htmlSVG = getImageAssetUrl('icons_svgs/html.svg')
-const laravelSVG = getImageAssetUrl('icons_svgs/laravel.svg')
 const nodejsSVG = getImageAssetUrl('icons_svgs/nodejs.svg')
 const phpSVG = getImageAssetUrl('icons_svgs/php.svg')
+const phpLaravelSVG = getImageAssetUrl('icons_svgs/php-laravel.svg')
 const pythonSVG = getImageAssetUrl('icons_svgs/python.svg')
+const pythonDjangoSVG = getImageAssetUrl('icons_svgs/python-django.svg')
+const pythonFlaskSVG = getImageAssetUrl('icons_svgs/python-flask.svg')
+const pythonFastAPISVG = getImageAssetUrl('icons_svgs/python-fastapi.svg')
 const ubuntuSVG = getImageAssetUrl('icons_svgs/ubuntu.svg')
 const centosSVG = getImageAssetUrl('icons_svgs/centos.svg')
 const awsSVG = getImageAssetUrl('icons_svgs/aws.svg')
@@ -181,18 +187,26 @@ const iconList = [
   { type: 'icon', accessor: 'faGlobe', component: FaGlobe },
   { type: 'icon', accessor: 'openInNewWindow', component: RxOpenInNewWindow },
   { type: 'image', accessor: 'github', component: githubSVG },
-  { type: 'image', accessor: 'github_white', component: githubWhiteSVG },
+  { type: 'image', accessor: 'github-white', component: githubWhiteSVG },
   { type: 'image', accessor: 'gitlab', component: gitlabSVG },
   { type: 'image', accessor: 'bitbucket', component: bitbucketSVG },
-  { type: 'image', accessor: 'bitbucket_white', component: bitbucketWhiteSVG },
+  { type: 'image', accessor: 'bitbucket-white', component: bitbucketWhiteSVG },
   { type: 'image', accessor: 'docker', component: dockerSVG },
-  { type: 'image', accessor: 'dotnetcore', component: c_sharpSVGsvg },
+  { type: 'image', accessor: 'c-sharp', component: cSharpSVG },
+  { type: 'image', accessor: 'dotnetcore', component: dotnetCoreSVG },
+  {
+    type: 'image',
+    accessor: 'dotnetcore-aspnetcore',
+    component: dotnetCoreAspnetCoreSVG,
+  },
   { type: 'image', accessor: 'html', component: htmlSVG },
   { type: 'image', accessor: 'nodejs', component: nodejsSVG },
   { type: 'image', accessor: 'php', component: phpSVG },
+  { type: 'image', accessor: 'php-laravel', component: phpLaravelSVG },
   { type: 'image', accessor: 'python', component: pythonSVG },
-  { type: 'image', accessor: 'aspnetcore', component: dotnetSVG },
-  { type: 'image', accessor: 'laravel', component: laravelSVG },
+  { type: 'image', accessor: 'python-django', component: pythonDjangoSVG },
+  { type: 'image', accessor: 'python-flask', component: pythonFlaskSVG },
+  { type: 'image', accessor: 'python-fastapi', component: pythonFastAPISVG },
   { type: 'image', accessor: 'ubuntu', component: ubuntuSVG },
   { type: 'image', accessor: 'centos', component: centosSVG },
   { type: 'image', accessor: 'aws', component: awsSVG },
