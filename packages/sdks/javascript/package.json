@@ -57,7 +57,7 @@
     "@typescript-eslint/parser": "^8.24.0",
     "axios-mock-adapter": "^2.1.0",
     "eslint": "^9.20.1",
-    "eslint-import-resolver-typescript": "^3.7.0",
+    "eslint-import-resolver-typescript": "^3.8.1",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-n": "^17.15.1",
     "eslint-plugin-promise": "^7.2.1",
