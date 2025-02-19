@@ -12944,6 +12944,11 @@
             "example": "python",
             "type": "string"
           },
+          "programming_language_human_readable": {
+            "description": "The human readable version of the programming language of the application.",
+            "example": "Python",
+            "type": "string"
+          },
           "engine_version": {
             "description": "The language runtime engine version to be used to execute this application on the deployed servers",
             "example": "19.03.2",
@@ -12951,7 +12956,12 @@
           },
           "framework": {
             "description": "The base framework on top of which the application has been implemented - it might have impact on the steps to be performed during application deployment",
-            "example": "drupal",
+            "example": "fastapi",
+            "type": "string"
+          },
+          "framework_human_readable": {
+            "description": "The human readable version of the framework of the application.",
+            "example": "FastAPI",
             "type": "string"
           },
           "root_directory": {
@@ -13019,8 +13029,10 @@
           "repository_owner",
           "default_branch",
           "programming_language",
+          "programming_language_human_readable",
           "engine_version",
           "framework",
+          "framework_human_readable",
           "root_directory",
           "deployments_keep",
           "install_dependencies_command",
@@ -13225,6 +13237,11 @@
             "example": "python",
             "type": "string"
           },
+          "programming_language_human_readable": {
+            "description": "The human readable version of the programming language of the application.",
+            "example": "Python",
+            "type": "string"
+          },
           "engine_version": {
             "description": "The language runtime engine version to be used to execute this application on the deployed servers",
             "example": "19.03.2",
@@ -13232,7 +13249,12 @@
           },
           "framework": {
             "description": "The base framework on top of which the application has been implemented - it might have impact on the steps to be performed during application deployment",
-            "example": "drupal",
+            "example": "fastapi",
+            "type": "string"
+          },
+          "framework_human_readable": {
+            "description": "The human readable version of the framework of the application.",
+            "example": "FastAPI",
             "type": "string"
           },
           "root_directory": {
@@ -13285,8 +13307,10 @@
           "repository_owner",
           "default_branch",
           "programming_language",
+          "programming_language_human_readable",
           "engine_version",
           "framework",
+          "framework_human_readable",
           "root_directory",
           "deployments_keep",
           "install_dependencies_command",
@@ -13460,7 +13484,7 @@
           "version": {
             "type": "string",
             "description": "The service version",
-            "example": "5.7"
+            "example": "8.0"
           }
         },
         "required": [
@@ -16504,7 +16528,7 @@
           "framework": {
             "type": "string",
             "description": "The base framework on top of which the application has been implemented - if any",
-            "example": "drupal"
+            "example": "fastapi"
           },
           "root_directory": {
             "type": "string",
@@ -19370,7 +19394,7 @@
           },
           "version": {
             "description": "The service current installed version",
-            "example": "5.7",
+            "example": "8.0",
             "type": "string",
             "nullable": true
           },
@@ -19457,7 +19481,7 @@
           },
           "version": {
             "description": "The service version to be installed. Must be at least 1 character. Must not be greater than 30 characters.",
-            "example": "5.7",
+            "example": "8.0",
             "type": "string"
           }
         },
@@ -19526,7 +19550,7 @@
           },
           "version": {
             "description": "The service current installed version",
-            "example": "5.7",
+            "example": "8.0",
             "type": "string",
             "nullable": true
           },
@@ -20469,7 +20493,7 @@
                 "version": {
                   "type": "string",
                   "description": "The service's version that is supported",
-                  "example": "5.7"
+                  "example": "8.0"
                 },
                 "variable_targets": {
                   "$ref": "#/components/schemas/VariableTargetList"
