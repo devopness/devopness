@@ -1,5 +1,11 @@
 # @devopness/sdk-js
 
+## 2.156.0
+
+### Minor Changes
+
+- [#1325](https://github.com/devopness/devopness/pull/1325) [`8d936f0`](https://github.com/devopness/devopness/commit/8d936f028a36cfe3220a61d9c879902463272a02) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Add **programming_language_human_readable** and **framework_human_readable** to Application Models
+
 ## 2.155.0
 
 ### Minor Changes
