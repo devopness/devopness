@@ -19,7 +19,7 @@ properties:
     type: string
   version:
     description: 'The service current installed version'
-    example: '5.7'
+    example: '8.0'
     type: string
     nullable: true
   is_auto_generated:

@@ -13,7 +13,7 @@ properties:
     $ref: '#/components/schemas/ServiceType'
   version:
     description: 'The service version to be installed. Must be at least 1 character. Must not be greater than 30 characters.'
-    example: '5.7'
+    example: '8.0'
     type: string
 required:
   - type

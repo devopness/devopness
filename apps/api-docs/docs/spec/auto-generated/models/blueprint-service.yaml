@@ -12,7 +12,7 @@ properties:
   version:
     type: string
     description: 'The service version'
-    example: '5.7'
+    example: '8.0'
 required:
   - type
   - version

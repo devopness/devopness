@@ -18,7 +18,7 @@ properties:
         version:
           type: string
           description: "The service's version that is supported"
-          example: '5.7'
+          example: '8.0'
         variable_targets:
           $ref: '#/components/schemas/VariableTargetList'
 required:
