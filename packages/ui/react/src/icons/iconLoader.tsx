@@ -208,6 +208,7 @@ const iconList = [
   { type: 'image', accessor: 'python-flask', component: pythonFlaskSVG },
   { type: 'image', accessor: 'python-fastapi', component: pythonFastAPISVG },
   { type: 'image', accessor: 'ubuntu', component: ubuntuSVG },
+  { type: 'image', accessor: 'ufw', component: ubuntuSVG },
   { type: 'image', accessor: 'centos', component: centosSVG },
   { type: 'image', accessor: 'aws', component: awsSVG },
   { type: 'image', accessor: 'azure', component: azureSVG },
