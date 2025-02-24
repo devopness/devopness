@@ -13,6 +13,7 @@
 
 
 import { BlueprintService } from './blueprint-service';
+import { ResourceToBeLinked } from './resource-to-be-linked';
 import { ServerProvisionInput } from './server-provision-input';
 
 /**
@@ -21,6 +22,12 @@ import { ServerProvisionInput } from './server-provision-input';
  * @interface ServerEnvironmentCreate
  */
 export interface ServerEnvironmentCreate {
+    /**
+     * The resources to be linked with this resource
+     * @type {Array<ResourceToBeLinked>}
+     * @memberof ServerEnvironmentCreate
+     */
+    linked_resources?: Array<ResourceToBeLinked>;
     /**
      * The hostname to be set on Linux servers. Accepts numbers (0-9), dash (-) and lower case non accented characters. Must not be greater than 60 characters.
      * @type {string}
