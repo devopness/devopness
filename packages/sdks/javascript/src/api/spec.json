@@ -19145,6 +19145,9 @@
       "ServerEnvironmentCreate": {
         "type": "object",
         "properties": {
+          "linked_resources": {
+            "$ref": "#/components/schemas/ResourceToBeLinkedList"
+          },
           "hostname": {
             "description": "The hostname to be set on Linux servers. Accepts numbers (0-9), dash (-) and lower case non accented characters. Must not be greater than 60 characters.",
             "example": "web-srv-1",
