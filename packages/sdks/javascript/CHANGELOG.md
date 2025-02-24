@@ -4,7 +4,7 @@
 
 ### Minor Changes
 
-- [#1348](https://github.com/devopness/devopness/pull/1348) [`ac040c7`](https://github.com/devopness/devopness/commit/ac040c71a8b8dda6ddc9f83fbedbdaa2249c1511) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Introduced the 'linked_resources' field in 'ServerEnvironmentCreate', allowing users to specify associated resources at the time of server creation
+- [#1348](https://github.com/devopness/devopness/pull/1348) [`ac040c7`](https://github.com/devopness/devopness/commit/ac040c71a8b8dda6ddc9f83fbedbdaa2249c1511) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Introduced the 'linked_resources' field in 'ServerEnvironmentCreate', allowing users to specify associated resources at the time of server creation
 
   This improvement provides better flexibility for defining resource dependencies when provisioning new servers.
 
