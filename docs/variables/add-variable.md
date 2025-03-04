@@ -1,6 +1,6 @@
 ---
 title: Add a Variable
-intro: By adding variables you ensure a more consistent resource deployment, as they can contain crucial information and settings for each environment.
+intro: Adding variables ensures a more consistent resource deployment by storing crucial information and settings for each resource environment.
 links:
     overview:
     quickstart:

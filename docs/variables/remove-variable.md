@@ -1,11 +1,11 @@
 ---
 title: Remove a Variable
-intro: Learn how to remove a variable when it's no longer needed
+intro: Learn how to remove a variable when it's no longer needed.
 links:
     overview:
     quickstart:
     previous: applications/add-application
-    next: files/add-file
+    next: variables/add-variable
     guides:
     related:
     featured:

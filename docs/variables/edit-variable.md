@@ -1,10 +1,10 @@
 ---
 title: Edit a Variable
-intro: Editing variables is crucial for ensuring accurate and up-to-date information is included in the resource deployment process, as needed.
+intro: Editing variables is essential to ensure accurate and up-to-date information is included in the resource deployment process.
 links:
     overview:
     quickstart:
-    previous:
+    previous: variables/add-variable
     next:
     guides:
     related:
