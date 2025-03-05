@@ -1,17 +1,12 @@
 ---
 title: Remove a Variable
-intro: Learn how to remove a variable when it's no longer needed.
-links:
-    overview:
-    quickstart:
-    previous: applications/add-application
-    next: variables/add-variable
-    guides:
-    related:
-    featured:
+pagination_prev: applications/add-application
+pagination_next: variables/add-variable
 required_permissions:
     - application:update
 ---
+
+Learn how to remove a variable when it's no longer needed.
 
 1. On Devopness, navigate to a project then select an environment
 1. Find the `Applications` card

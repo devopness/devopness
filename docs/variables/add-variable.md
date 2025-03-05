@@ -1,17 +1,18 @@
 ---
 title: Add a Variable
-intro: Variables are key/value pairs accessible by Pipeline Step commands. Use environment Variables to store configuration data used by commands in your Pipeline steps (such as compiler flags, environment specific configuration, credentials and secrets). Note - If a resource requires multiple Variables to be written to a custom file (e.g. an Application `.env` file), we recommend storing them using 'Configuration Files' instead of multiple variables.
-links:
-    overview:
-    quickstart:
-    previous: pipelines/steps/add-step
-    next: applications/link-server-to-application
-    guides:
-    related:
-    featured:
+pagination_prev: pipelines/steps/add-step
+pagination_next: applications/link-server-to-application
 required_permissions:
     - application:update
 ---
+
+Variables are key/value pairs accessible by Pipeline Step commands. Use environment Variables to store configuration data used by commands in your Pipeline steps (such as compiler flags, environment specific configuration, credentials and secrets).
+
+:::note
+
+If a resource requires multiple Variables to be written to a custom file (e.g. an Application `.env` file), we recommend storing them using 'Configuration Files' instead of multiple variables.
+
+:::
 
 1. On Devopness, navigate to a project then select an environment
 1. Find the `Applications` card
