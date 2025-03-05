@@ -1,13 +1,5 @@
 ---
 title: Variables
-links:
-    overview:
-    quickstart:
-    previous:
-    next:
-    guides:
-    related:
-    featured:
 ---
 
 Variables are used to store configuration settings that are used by application and infrastructure resources.
