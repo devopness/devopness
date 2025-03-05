@@ -1,6 +1,6 @@
 ---
 title: Add a Variable
-intro: "Variables are key/value pairs accessible by Pipeline Step commands. Use environment Variables to store configuration data used by commands in your Pipeline steps (such as compiler flags, environment specific configuration, credentials and secrets). Note: If a resource requires multiple Variables to be written to a custom file (e.g.: an Application `.env` file), we recommend storing them using 'Configuration Files' instead of multiple variables."
+intro: Variables are key/value pairs accessible by Pipeline Step commands. Use environment Variables to store configuration data used by commands in your Pipeline steps (such as compiler flags, environment specific configuration, credentials and secrets). Note - If a resource requires multiple Variables to be written to a custom file (e.g. an Application `.env` file), we recommend storing them using 'Configuration Files' instead of multiple variables.
 links:
     overview:
     quickstart:
