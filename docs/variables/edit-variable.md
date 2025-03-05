@@ -1,6 +1,6 @@
 ---
 title: Edit a Variable
-intro: Editing variables is essential to ensure accurate and up-to-date information is included in the resource deployment process.
+intro: You can edit variables directly on Devopness every time you need to update the value of an existing variable used by your deployment pipelines.
 links:
     overview:
     quickstart:
