@@ -77,7 +77,7 @@
     "@storybook/test": "^8.6.0",
     "@storybook/theming": "^8.5.5",
     "@testing-library/react": "^16.2.0",
-    "@types/lodash": "^4.17.15",
+    "@types/lodash": "^4.17.16",
     "@types/node": "^22.13.9",
     "@types/path-browserify": "^1.0.3",
     "@types/react": "^18.3.13",
