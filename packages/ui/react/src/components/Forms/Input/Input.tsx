@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import { forwardRef, useEffect, useRef } from 'react'
 
 import { Container, InputText } from './Input.styled'
 import type { ErrorMessageProps } from 'src/components/Primitives/ErrorMessage'
@@ -59,19 +59,34 @@ type InputProps =
  * />
  * ```
  */
-const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => (
-  <Container>
-    {props.labelProps && <Label {...props.labelProps} />}
-    <InputText
-      className="translate"
-      ref={ref}
-      hasError={Boolean(props.error)}
-      {...props}
-      {...props.inputProps}
-    />
-    {Boolean(props.error) && <ErrorMessage error={props.error} />}
-  </Container>
-))
+const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
+  const internalRef = useRef<HTMLInputElement>(null)
+  const inputRef =
+    (ref as React.RefObject<HTMLInputElement> | undefined) ?? internalRef
+
+  useEffect(() => {
+    if (props.error && inputRef.current) {
+      inputRef.current.focus()
+    }
+  }, [
+    props.error,
+    inputRef,
+  ])
+
+  return (
+    <Container>
+      {props.labelProps && <Label {...props.labelProps} />}
+      <InputText
+        className="translate"
+        ref={inputRef}
+        hasError={Boolean(props.error)}
+        {...props}
+        {...props.inputProps}
+      />
+      {Boolean(props.error) && <ErrorMessage error={props.error} />}
+    </Container>
+  )
+})
 
 /**
  * Explicitly sets component display name for debugging in React DevTools when using forwardRef.
