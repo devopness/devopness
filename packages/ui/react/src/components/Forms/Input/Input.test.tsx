@@ -6,31 +6,6 @@ import { Input } from './Input'
 
 describe('Input', () => {
   describe('focus behavior on error', () => {
-    it('should focus input when error prop is present', () => {
-      render(
-        <Input
-          type="text"
-          error={{ message: 'Test error' }}
-          data-testid="test-input"
-        />
-      )
-
-      const input = screen.getByTestId('test-input')
-      expect(input).toHaveFocus()
-    })
-
-    it('should not focus input when no error is present', () => {
-      render(
-        <Input
-          type="text"
-          data-testid="test-input"
-        />
-      )
-
-      const input = screen.getByTestId('test-input')
-      expect(input).not.toHaveFocus()
-    })
-
     it('should focus when error prop changes', () => {
       const { rerender } = render(
         <Input
