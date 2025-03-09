@@ -53,7 +53,7 @@ describe('Input', () => {
       expect(input).toHaveFocus()
     })
 
-    it('should maintain focus behavior with external ref', () => {
+    it('should maintain focus behavior when using a custom ref', () => {
       const ref = { current: null }
       render(
         <Input
