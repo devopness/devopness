@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import type { Meta, StoryObj } from '@storybook/react'
 
 import { Input } from './Input'
@@ -6,7 +8,22 @@ import { Container } from './Input.styled'
 const meta = {
   title: 'Form/Input',
   component: Input,
-  parameters: { docs: { source: { type: 'code' } } },
+  parameters: {
+    docs: {
+      source: { type: 'code' },
+      description: {
+        component: `
+A flexible input component that supports:
+- Various input types (text, number, etc.)
+- Error states with automatic focus
+- Custom styling
+- Label and help text
+
+When an error state is applied, the input will automatically receive focus to draw the user's attention.
+    `,
+      },
+    },
+  },
   render: (args) => (
     <Container>
       <Input {...args} />
@@ -65,6 +82,34 @@ const Error: Story = {
         'publicStyle',
       ],
     },
+  },
+  render: (args) => {
+    const [
+      hasError,
+      setHasError,
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+    ] = useState(false)
+
+    return (
+      <div>
+        <Input
+          {...args}
+          error={hasError ? { message: 'This field has an error!' } : undefined}
+        />
+        <button
+          onClick={() => {
+            setHasError((prev) => !prev)
+          }}
+          style={{ marginTop: '1rem' }}
+        >
+          Toggle Error
+        </button>
+        <p style={{ marginTop: '0.5rem', fontSize: '0.875rem', color: '#666' }}>
+          Click the button to toggle error state. The input will automatically
+          focus when the error appears.
+        </p>
+      </div>
+    )
   },
 }
 
