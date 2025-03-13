@@ -15168,41 +15168,11 @@
             "example": false,
             "type": "boolean"
           },
-          "servers": {
-            "$ref": "#/components/schemas/ServerList"
-          },
-          "credentials": {
-            "$ref": "#/components/schemas/CredentialList"
-          },
-          "cron_jobs": {
-            "$ref": "#/components/schemas/CronJobList"
-          },
-          "daemons": {
-            "$ref": "#/components/schemas/DaemonList"
-          },
-          "networks": {
-            "$ref": "#/components/schemas/NetworkList"
-          },
-          "network_rules": {
-            "$ref": "#/components/schemas/NetworkRuleList"
-          },
-          "applications": {
-            "$ref": "#/components/schemas/ApplicationList"
-          },
-          "services": {
-            "$ref": "#/components/schemas/ServiceList"
-          },
-          "ssh_keys": {
-            "$ref": "#/components/schemas/SshKeyList"
-          },
-          "ssl_certificates": {
-            "$ref": "#/components/schemas/SslCertificateList"
+          "resource_summary": {
+            "$ref": "#/components/schemas/ResourceSummaryList"
           },
           "teams": {
             "$ref": "#/components/schemas/TeamList"
-          },
-          "virtual_hosts": {
-            "$ref": "#/components/schemas/VirtualHostList"
           },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
@@ -15228,18 +15198,7 @@
           "name",
           "description",
           "is_archived",
-          "servers",
-          "credentials",
-          "cron_jobs",
-          "daemons",
-          "networks",
-          "network_rules",
-          "applications",
-          "services",
-          "ssh_keys",
-          "ssl_certificates",
           "teams",
-          "virtual_hosts",
           "created_by_user",
           "current_user_permissions",
           "created_at",
@@ -17857,20 +17816,14 @@
             "type": "string",
             "nullable": true
           },
+          "resource_summary": {
+            "$ref": "#/components/schemas/ResourceSummaryList"
+          },
           "os_users": {
             "$ref": "#/components/schemas/OsUsers"
           },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
-          },
-          "environments": {
-            "$ref": "#/components/schemas/EnvironmentList"
-          },
-          "teams": {
-            "$ref": "#/components/schemas/TeamList"
-          },
-          "roles": {
-            "$ref": "#/components/schemas/RoleList"
           },
           "created_at": {
             "description": "The date and time when the record was created",
@@ -17890,9 +17843,6 @@
           "logo_url",
           "os_users",
           "created_by_user",
-          "environments",
-          "teams",
-          "roles",
           "created_at",
           "updated_at"
         ]
@@ -17949,6 +17899,9 @@
             "example": "https://example.com/projects-beautiful-logo.png",
             "type": "string",
             "nullable": true
+          },
+          "resource_summary": {
+            "$ref": "#/components/schemas/ResourceSummaryList"
           },
           "os_users": {
             "$ref": "#/components/schemas/OsUsers"
@@ -18623,6 +18576,59 @@
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/ResourceOperation"
+        }
+      },
+      "ResourceSummaryItem": {
+        "type": "object",
+        "properties": {
+          "resource_type": {
+            "type": "string",
+            "description": "The type of the resource",
+            "example": "environment"
+          },
+          "resource_type_plural": {
+            "type": "string",
+            "description": "The plural name of the resource type",
+            "example": "environments"
+          },
+          "resource_type_human_readable": {
+            "type": "string",
+            "description": "The human readable name of the resource type",
+            "example": "Environment"
+          },
+          "resource_type_human_readable_plural": {
+            "type": "string",
+            "description": "The human readable plural name of the resource type",
+            "example": "Environments"
+          },
+          "summary": {
+            "type": "object",
+            "description": "Aggregated data of the resource",
+            "properties": {
+              "count": {
+                "type": "number",
+                "description": "Total number of entries of this resource",
+                "example": 1
+              }
+            },
+            "required": [
+              "count"
+            ]
+          }
+        },
+        "required": [
+          "resource_type",
+          "resource_type_plural",
+          "resource_type_human_readable",
+          "resource_type_human_readable_plural",
+          "summary"
+        ]
+      },
+      "ResourceSummaryList": {
+        "type": "array",
+        "description": "Summary of the resource",
+        "items": {
+          "$ref": "#/components/schemas/ResourceSummaryItem"
         }
       },
       "ResourceToBeLinked": {
