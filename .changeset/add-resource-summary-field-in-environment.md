@@ -5,13 +5,13 @@
 🚨 Breaking Changes
 
 - Removed: Direct resource relation fields from the Environment model:
-  - servers
+  - applications
   - credentials
   - cron_jobs
   - daemons
-  - networks
   - network_rules
-  - applications
+  - networks
+  - servers
   - services
   - ssh_keys
   - ssl_certificates
