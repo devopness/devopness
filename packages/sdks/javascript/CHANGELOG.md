@@ -4,7 +4,9 @@
 
 ### Minor Changes
 
-- [#1422](https://github.com/devopness/devopness/pull/1422) [`9386735`](https://github.com/devopness/devopness/commit/93867352ab65ff6e129ed13e5e372be6767019f8) Thanks [@devopness-automations](https://github.com/devopness-automations)! - 🚨 Breaking Changes
+- [#1422](https://github.com/devopness/devopness/pull/1422) [`9386735`](https://github.com/devopness/devopness/commit/93867352ab65ff6e129ed13e5e372be6767019f8) Thanks [@Diegiwg](https://github.com/Diegiwg)!
+
+  🚨 Breaking Changes
 
   - Removed: Direct resource relation fields from the Environment model:
     - applications
@@ -49,7 +51,9 @@
       .count
   ```
 
-- [#1422](https://github.com/devopness/devopness/pull/1422) [`9386735`](https://github.com/devopness/devopness/commit/93867352ab65ff6e129ed13e5e372be6767019f8) Thanks [@devopness-automations](https://github.com/devopness-automations)! - 🔄 Changes
+- [#1422](https://github.com/devopness/devopness/pull/1422) [`9386735`](https://github.com/devopness/devopness/commit/93867352ab65ff6e129ed13e5e372be6767019f8) Thanks [@Diegiwg](https://github.com/Diegiwg)!
+
+  🔄 Changes
 
   - Added: resource_summary field to the ProjectRelation model.
 
@@ -77,7 +81,9 @@
       .count
   ```
 
-- [#1422](https://github.com/devopness/devopness/pull/1422) [`9386735`](https://github.com/devopness/devopness/commit/93867352ab65ff6e129ed13e5e372be6767019f8) Thanks [@devopness-automations](https://github.com/devopness-automations)! - 🚨 Breaking Changes
+- [#1422](https://github.com/devopness/devopness/pull/1422) [`9386735`](https://github.com/devopness/devopness/commit/93867352ab65ff6e129ed13e5e372be6767019f8) Thanks [@Diegiwg](https://github.com/Diegiwg)
+
+  🚨 Breaking Changes
 
   - Removed: environments, teams, and roles fields from the Project model.
 
