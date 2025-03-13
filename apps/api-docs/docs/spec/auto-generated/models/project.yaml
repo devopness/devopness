@@ -18,16 +18,12 @@ properties:
     example: 'https://example.com/projects-beautiful-logo.png'
     type: string
     nullable: true
+  resource_summary:
+    $ref: '#/components/schemas/ResourceSummaryList'
   os_users:
     $ref: '#/components/schemas/OsUsers'
   created_by_user:
     $ref: '#/components/schemas/UserRelation'
-  environments:
-    $ref: '#/components/schemas/EnvironmentList'
-  teams:
-    $ref: '#/components/schemas/TeamList'
-  roles:
-    $ref: '#/components/schemas/RoleList'
   created_at:
     description: 'The date and time when the record was created'
     example: '2022-09-26T15:30:31.000000Z'
@@ -43,8 +39,5 @@ required:
   - logo_url
   - os_users
   - created_by_user
-  - environments
-  - teams
-  - roles
   - created_at
   - updated_at

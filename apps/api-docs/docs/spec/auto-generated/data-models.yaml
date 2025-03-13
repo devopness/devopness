@@ -453,6 +453,10 @@ ResourceOperation:
   $ref: ./auto-generated/models/resource-operation.yaml
 ResourceOperationList:
   $ref: ./auto-generated/models/resource-operation-list.yaml
+ResourceSummaryItem:
+  $ref: ./auto-generated/models/resource-summary-item.yaml
+ResourceSummaryList:
+  $ref: ./auto-generated/models/resource-summary-list.yaml
 ResourceToBeLinked:
   $ref: ./auto-generated/models/resource-to-be-linked.yaml
 ResourceToBeLinkedList:

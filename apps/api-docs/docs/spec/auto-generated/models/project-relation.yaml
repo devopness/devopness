@@ -18,6 +18,8 @@ properties:
     example: 'https://example.com/projects-beautiful-logo.png'
     type: string
     nullable: true
+  resource_summary:
+    $ref: '#/components/schemas/ResourceSummaryList'
   os_users:
     $ref: '#/components/schemas/OsUsers'
   created_by_user:
