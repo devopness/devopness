@@ -414,9 +414,15 @@
     $ref: ./auto-generated/endpoints/delete-subnet.yaml
   get:
     $ref: ./auto-generated/endpoints/get-subnet.yaml
+'/team-invitations/{team_invitation_id}':
+  delete:
+    $ref: ./auto-generated/endpoints/delete-team-invitation.yaml
 '/team-invitations/{team_invitation_id}/accept':
   post:
     $ref: ./auto-generated/endpoints/accept-team-invitation.yaml
+'/team-invitations/{team_invitation_id}/reject':
+  post:
+    $ref: ./auto-generated/endpoints/reject-team-invitation.yaml
 '/teams/{team_id}':
   delete:
     $ref: ./auto-generated/endpoints/delete-team.yaml

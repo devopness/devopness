@@ -34,6 +34,8 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         // @todo: Resolves conflicts to trigger a hook on dev-api
         'triggerHook200',
         'acceptInvitation204',
+        'deleteTeamInvitation204',
+        'rejectTeamInvitation204',
         // We do not create the member when the team is created, therefore we cannot retrieve a team member by its ID.
         'getTeamMember200',
         // @todo: fix team creation to enable tests for this endpoints
