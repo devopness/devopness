@@ -9365,6 +9365,54 @@
         }
       }
     },
+    "/team-invitations/{team_invitation_id}": {
+      "delete": {
+        "summary": "Delete a pending team invitation",
+        "operationId": "deleteTeamInvitation",
+        "tags": [
+          "Team Invitations"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "team_invitation_id",
+            "description": "The ID of the team invitation.",
+            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified resource was not found"
+          }
+        }
+      }
+    },
     "/team-invitations/{team_invitation_id}/accept": {
       "post": {
         "summary": "Accept a pending team invitation",
@@ -9406,6 +9454,54 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/team-invitations/{team_invitation_id}/reject": {
+      "post": {
+        "summary": "Reject a pending team invitation",
+        "operationId": "rejectTeamInvitation",
+        "tags": [
+          "Team Invitations"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "team_invitation_id",
+            "description": "The ID of the team invitation.",
+            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified resource was not found"
           }
         }
       }
@@ -11694,6 +11790,7 @@
         "Projects - Teams",
         "Teams",
         "Teams - Invitations",
+        "Team Invitations",
         "Teams - Members",
         "Environments - Teams",
         "Environments - Team Memberships"
