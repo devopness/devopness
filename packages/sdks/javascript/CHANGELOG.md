@@ -4,7 +4,7 @@
 
 ### Minor Changes
 
-- [#1453](https://github.com/devopness/devopness/pull/1453) [`dc153a7`](https://github.com/devopness/devopness/commit/dc153a72bdd07d3f209f22ee11309c2b427784a6) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Added methods to delete and reject team invitations
+- [#1453](https://github.com/devopness/devopness/pull/1453) [`dc153a7`](https://github.com/devopness/devopness/commit/dc153a72bdd07d3f209f22ee11309c2b427784a6) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Added methods to delete and reject team invitations
 
   - `deleteTeamInvitation`: Allows to cancel a pending team invitation
   - `rejectTeamInvitation`: Allows to reject a pending team invitation
