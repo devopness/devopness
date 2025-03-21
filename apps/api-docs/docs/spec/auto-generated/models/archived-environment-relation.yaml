@@ -24,6 +24,8 @@ properties:
     description: 'Number of credits used in the current monthly billing cycle by actions of resources in the environment.'
     example: 50
     type: integer
+  resource_summary:
+    $ref: '#/components/schemas/ResourceSummaryList'
   created_at:
     description: 'The date and time when the record was created'
     example: '2019-09-25T15:50:48.000000Z'
@@ -39,8 +41,6 @@ properties:
     nullable: true
   project:
     $ref: '#/components/schemas/ProjectRelation'
-  team_memberships:
-    $ref: '#/components/schemas/TeamMembershipList'
 required:
   - id
   - type
