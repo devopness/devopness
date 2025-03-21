@@ -4,7 +4,7 @@
 
 ### Minor Changes
 
-- [#1458](https://github.com/devopness/devopness/pull/1458) [`509d2fa`](https://github.com/devopness/devopness/commit/509d2fa226a680f5e7427014c944228d487b35ef) Thanks [@devopness-automations](https://github.com/devopness-automations)! - 🚨 Breaking Changes
+- [#1458](https://github.com/devopness/devopness/pull/1458) [`509d2fa`](https://github.com/devopness/devopness/commit/509d2fa226a680f5e7427014c944228d487b35ef) Thanks [@Diegiwg](https://github.com/Diegiwg)! - 🚨 Breaking Changes
 
   - Removed the direct _team_memberships_ relation from EnvironmentRelation and ArchivedEnvironmentRelation.
 
