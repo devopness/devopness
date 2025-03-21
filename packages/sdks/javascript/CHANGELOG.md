@@ -1,5 +1,32 @@
 # @devopness/sdk-js
 
+## 2.160.0
+
+### Minor Changes
+
+- [#1458](https://github.com/devopness/devopness/pull/1458) [`509d2fa`](https://github.com/devopness/devopness/commit/509d2fa226a680f5e7427014c944228d487b35ef) Thanks [@devopness-automations](https://github.com/devopness-automations)! - 🚨 Breaking Changes
+
+  - Removed the direct _team_memberships_ relation from EnvironmentRelation and ArchivedEnvironmentRelation.
+
+  🔄 Changes
+
+  - Added the _resource_summary_ field to the EnvironmentRelation and ArchivedEnvironmentRelation.
+
+  📌 Reason for Changes
+
+  The _resource_summary_ field centralizes summary information about linked resources, replacing explicit relations with a standardized summary format.
+
+  To retrieve a full list of team memberships, use the appropriate SDK method.
+
+  If you need to determine the number of linked team memberships, use:
+
+  ```ruby
+    environment
+      .resource_summary['team-membership']
+        .summary
+        .count
+  ```
+
 ## 2.159.0
 
 ### Minor Changes
