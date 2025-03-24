@@ -1,0 +1,11 @@
+<div class="container">
+    <img src="<%= @devopnessLogoURL %>" alt="Devopness Logo" class="logo logo-devopness">
+    <div class="heart">❤️</div>
+    <img src="<%= @railsLogoURL %>" alt="Rails Logo" class="logo logo-rails">
+</div>
+
+<div class="description">
+  <% @descriptions.each do |description| %>
+    <p><%= description %></p>
+  <% end %>
+</div>

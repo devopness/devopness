@@ -14,6 +14,7 @@
 
 import { EnvironmentType } from './environment-type';
 import { ProjectRelation } from './project-relation';
+import { ResourceSummaryItem } from './resource-summary-item';
 
 /**
  * 
@@ -57,6 +58,12 @@ export interface EnvironmentRelation {
      * @memberof EnvironmentRelation
      */
     used_credits?: number;
+    /**
+     * Summary of the resource
+     * @type {Array<ResourceSummaryItem>}
+     * @memberof EnvironmentRelation
+     */
+    resource_summary?: Array<ResourceSummaryItem>;
     /**
      * The date and time when the record was created
      * @type {string}

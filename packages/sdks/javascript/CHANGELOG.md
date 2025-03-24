@@ -1,5 +1,202 @@
 # @devopness/sdk-js
 
+## 2.160.0
+
+### Minor Changes
+
+- [#1458](https://github.com/devopness/devopness/pull/1458) [`509d2fa`](https://github.com/devopness/devopness/commit/509d2fa226a680f5e7427014c944228d487b35ef) Thanks [@Diegiwg](https://github.com/Diegiwg)! - 🚨 Breaking Changes
+
+  - Removed the direct _team_memberships_ relation from EnvironmentRelation and ArchivedEnvironmentRelation.
+
+  🔄 Changes
+
+  - Added the _resource_summary_ field to the EnvironmentRelation and ArchivedEnvironmentRelation.
+
+  📌 Reason for Changes
+
+  The _resource_summary_ field centralizes summary information about linked resources, replacing explicit relations with a standardized summary format.
+
+  To retrieve a full list of team memberships, use the appropriate SDK method.
+
+  If you need to determine the number of linked team memberships, use:
+
+  ```ruby
+    environment
+      .resource_summary['team-membership']
+        .summary
+        .count
+  ```
+
+## 2.159.0
+
+### Minor Changes
+
+- [#1453](https://github.com/devopness/devopness/pull/1453) [`dc153a7`](https://github.com/devopness/devopness/commit/dc153a72bdd07d3f209f22ee11309c2b427784a6) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Added methods to delete and reject team invitations
+
+  - `deleteTeamInvitation`: Allows to cancel a pending team invitation
+  - `rejectTeamInvitation`: Allows to reject a pending team invitation
+
+## 2.158.0
+
+### Minor Changes
+
+- [#1422](https://github.com/devopness/devopness/pull/1422) [`9386735`](https://github.com/devopness/devopness/commit/93867352ab65ff6e129ed13e5e372be6767019f8) Thanks [@Diegiwg](https://github.com/Diegiwg)!
+
+  🚨 Breaking Changes
+
+  - Removed: Direct resource relation fields from the Environment model:
+    - applications
+    - credentials
+    - cron_jobs
+    - daemons
+    - network_rules
+    - networks
+    - servers
+    - services
+    - ssh_keys
+    - ssl_certificates
+    - virtual_hosts
+
+  🔄 Changes
+
+  - Added: resource_summary field to the Environment model.
+
+  📌 Reason for Changes
+
+  The resource_summary field centralizes summary information about linked resources, replacing explicit relations with a standardized summary format.
+
+  This change enhances efficiency by reducing response payload size while still providing resource count details.
+
+  Each entry in resource_summary includes:
+
+  - resource_type: The singular identifier of the resource.
+  - resource_type_plural: The plural form of the resource type.
+  - resource_type_human_readable: A user-friendly singular name.
+  - resource_type_plural_human_readable: A user-friendly plural name.
+  - summary.count: The number of linked resources.
+
+  To retrieve full resource lists, use the appropriate SDK methods instead of relying on the Environment model.
+
+  If the goal is to determine the number of linked resources, use:
+
+  ```ruby
+    environment
+      .resource_summary
+      .{resource-type}
+      .summary
+      .count
+  ```
+
+- [#1422](https://github.com/devopness/devopness/pull/1422) [`9386735`](https://github.com/devopness/devopness/commit/93867352ab65ff6e129ed13e5e372be6767019f8) Thanks [@Diegiwg](https://github.com/Diegiwg)!
+
+  🔄 Changes
+
+  - Added: resource_summary field to the ProjectRelation model.
+
+  📌 Reason for Changes
+
+  The resource_summary field provides a structured summary of linked resources (environments, teams, and roles) within a project relation.
+
+  This ensures efficient access to resource counts without exposing full lists.
+
+  Each entry in resource_summary includes:
+
+  - resource_type: The singular identifier of the resource.
+  - resource_type_plural: The plural form of the resource type.
+  - resource_type_human_readable: A user-friendly singular name.
+  - resource_type_plural_human_readable: A user-friendly plural name.
+  - summary.count: The number of linked resources.
+
+  For resource counts, use:
+
+  ```ruby
+    projectRelation
+      .resource_summary
+      .{resource-type}
+      .summary
+      .count
+  ```
+
+- [#1422](https://github.com/devopness/devopness/pull/1422) [`9386735`](https://github.com/devopness/devopness/commit/93867352ab65ff6e129ed13e5e372be6767019f8) Thanks [@Diegiwg](https://github.com/Diegiwg)
+
+  🚨 Breaking Changes
+
+  - Removed: environments, teams, and roles fields from the Project model.
+
+  🔄 Changes
+
+  - Added: resource_summary field to the Project model.
+
+  📌 Reason for Changes
+
+  The resource_summary field centralizes summary information about linked resources (environments, teams, and roles) within a project.
+
+  Each resource in resource_summary is an object containing:
+
+  - resource_type: Identifies the resource type.
+  - resource_type_plural: Identifies the resource type in plural form.
+  - resource_type_human_readable: Identifies the resource type in human readable form.
+  - resource_type_plural_human_readable: Identifies the resource type in plural form in human readable form.
+  - summary.count: Represents the number of linked resources.
+
+  To retrieve full lists of environments, teams, or roles, use the appropriate SDK methods instead of relying on the Project model.
+
+  If the goal is to determine the number of linked resources, use:
+
+  ```ruby
+    project
+      .resource_summary
+      .{resource-type}
+      .summary
+      .count
+  ```
+
+## 2.157.0
+
+### Minor Changes
+
+- [#1348](https://github.com/devopness/devopness/pull/1348) [`ac040c7`](https://github.com/devopness/devopness/commit/ac040c71a8b8dda6ddc9f83fbedbdaa2249c1511) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Introduced the 'linked_resources' field in 'ServerEnvironmentCreate', allowing users to specify associated resources at the time of server creation
+
+  This improvement provides better flexibility for defining resource dependencies when provisioning new servers.
+
+## 2.156.0
+
+### Minor Changes
+
+- [#1325](https://github.com/devopness/devopness/pull/1325) [`8d936f0`](https://github.com/devopness/devopness/commit/8d936f028a36cfe3220a61d9c879902463272a02) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Add **programming_language_human_readable** and **framework_human_readable** to Application Models
+
+## 2.155.0
+
+### Minor Changes
+
+- [#1298](https://github.com/devopness/devopness/pull/1298) [`6e2ccd8`](https://github.com/devopness/devopness/commit/6e2ccd8d093d3d7b5fafc8ca0cce4b3b5323008c) Thanks [@Diegiwg](https://github.com/Diegiwg)! - **Breaking Change:** Renamed `allow_custom_steps` property to `is_user_managed` in `PipelineSettings` interface.
+
+  - The new property indicates whether the user has permission to see and manage the pipeline for the resource operation.
+
+- [#1298](https://github.com/devopness/devopness/pull/1298) [`6e2ccd8`](https://github.com/devopness/devopness/commit/6e2ccd8d093d3d7b5fafc8ca0cce4b3b5323008c) Thanks [@Diegiwg](https://github.com/Diegiwg)! - **Breaking Change:** Removed the deprecated `is_auto_generated` property from both `Pipeline` and `PipelineRelation` interfaces as it's no longer used by the Devopness API.
+
+## 2.154.1
+
+### Patch Changes
+
+- [#1292](https://github.com/devopness/devopness/pull/1292) [`fb453cf`](https://github.com/devopness/devopness/commit/fb453cfcb3b8a670c6a47bfbff6473bc818c0de9) Thanks [@souz4-my](https://github.com/souz4-my)! - **Add** `team_memberships` field to `EnvironmentRelation` and `ArquivedEnvironmentRelation` models
+
+- [#1292](https://github.com/devopness/devopness/pull/1292) [`fb453cf`](https://github.com/devopness/devopness/commit/fb453cfcb3b8a670c6a47bfbff6473bc818c0de9) Thanks [@souz4-my](https://github.com/souz4-my)! - **Change** `credentials` field type in `Server` model to nullable
+
+- [#1276](https://github.com/devopness/devopness/pull/1276) [`96a2010`](https://github.com/devopness/devopness/commit/96a2010f630d5bc037193d0962f3113d2ca1aa3e) Thanks [@Diegiwg](https://github.com/Diegiwg)! - **Remove** deprecated `environment_id` field from service operation models
+
+## 2.154.0
+
+### Minor Changes
+
+- [#1256](https://github.com/devopness/devopness/pull/1256) [`60901a2`](https://github.com/devopness/devopness/commit/60901a29c4a7595afdc496405518f03d2580de0c) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Added the 'credential' field to the Networks listing
+
+- [#1256](https://github.com/devopness/devopness/pull/1256) [`60901a2`](https://github.com/devopness/devopness/commit/60901a29c4a7595afdc496405518f03d2580de0c) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Added the 'last action' field to the Networks listing
+
+- [#1256](https://github.com/devopness/devopness/pull/1256) [`60901a2`](https://github.com/devopness/devopness/commit/60901a29c4a7595afdc496405518f03d2580de0c) Thanks [@Diegiwg](https://github.com/Diegiwg), [@souz4-my](https://github.com/souz4-my), [@jfoliveira](https://github.com/jfoliveira)! - Rename the action 'Server Setup' to 'Server Configure' to ensure consistency with the messages displayed to the user during its execution
+
+- [#1256](https://github.com/devopness/devopness/pull/1256) [`60901a2`](https://github.com/devopness/devopness/commit/60901a29c4a7595afdc496405518f03d2580de0c) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Add documentation about 'variable description' max length
+
 ## 2.153.0
 
 ### Minor Changes
@@ -10,9 +207,9 @@
 
 ### Minor Changes
 
-- [#1087](https://github.com/devopness/devopness/pull/1087) [`10f296c`](https://github.com/devopness/devopness/commit/10f296cb5334e40b4c41e28e0fbdeef1748eed75) Thanks [@devopness-automations](https://github.com/devopness-automations)! - - Added `description` field to `ActionStep` model, so users can understand what's the purpose of a custom pipeline step created by a team member
+- [#1087](https://github.com/devopness/devopness/pull/1087) [`10f296c`](https://github.com/devopness/devopness/commit/10f296cb5334e40b4c41e28e0fbdeef1748eed75) Thanks [@souz4-my](https://github.com/souz4-my)! - - Added `description` field to `ActionStep` model, so users can understand what's the purpose of a custom pipeline step created by a team member
 
-- [#1087](https://github.com/devopness/devopness/pull/1087) [`10f296c`](https://github.com/devopness/devopness/commit/10f296cb5334e40b4c41e28e0fbdeef1748eed75) Thanks [@devopness-automations](https://github.com/devopness-automations)! - - Add operation server:rotate-key
+- [#1087](https://github.com/devopness/devopness/pull/1087) [`10f296c`](https://github.com/devopness/devopness/commit/10f296cb5334e40b4c41e28e0fbdeef1748eed75) Thanks [@Diegiwg](https://github.com/Diegiwg)! - - Add operation server:rotate-key
 
 ## 2.151.0
 
