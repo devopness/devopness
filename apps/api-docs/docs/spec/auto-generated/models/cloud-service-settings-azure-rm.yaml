@@ -4,7 +4,7 @@ properties:
   instance_type:
     type: string
     description: 'The instance type to be launched on the cloud provider'
-    example: Standard_B1ls
+    example: Standard_B1s
   region:
     type: string
     description: 'Datacenter region where the cloud instance will be launched'
