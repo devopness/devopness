@@ -14,9 +14,10 @@ const meta = {
   ),
 } satisfies Meta<typeof Input>
 
+export default meta
 type Story = StoryObj<typeof meta>
 
-const Default: Story = {
+export const Default: Story = {
   args: {
     name: 'name',
     type: 'text',
@@ -41,7 +42,7 @@ const Default: Story = {
   },
 }
 
-const Error: Story = {
+export const Error: Story = {
   args: {
     name: 'name',
     type: 'text',
@@ -68,7 +69,7 @@ const Error: Story = {
   },
 }
 
-const Number: Story = {
+export const Number: Story = {
   args: {
     name: 'name',
     type: 'number',
@@ -93,5 +94,25 @@ const Number: Story = {
   },
 }
 
-export default meta
-export { Default, Number, Error }
+export const WithAutoFocusOnError: Story = {
+  args: {
+    name: 'name',
+    type: 'text',
+    placeholder: 'This input will auto-focus when error occurs',
+    labelProps: {
+      value: 'Auto-focus on error',
+      helpValue: 'This input will automatically focus when an error occurs',
+    },
+    error: {
+      message: 'This field has an error',
+    },
+    autoFocusOnError: true,
+  },
+  parameters: {
+    controls: {
+      exclude: [
+        'publicStyle',
+      ],
+    },
+  },
+}

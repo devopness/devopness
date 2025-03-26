@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, useEffect, useRef } from 'react'
 
 import { Container, InputText } from './Input.styled'
 import type { ErrorMessageProps } from 'src/components/Primitives/ErrorMessage'
@@ -20,6 +20,8 @@ type SharedProps = React.InputHTMLAttributes<HTMLInputElement> & {
     /** Font style applied to placeholder */
     fontStylePlaceholder?: string
   }
+  /** Whether to automatically focus the input when an error occurs */
+  autoFocusOnError?: boolean
   /**
    * Props passed directly to input HTML element
    *
@@ -59,19 +61,32 @@ type InputProps =
  * />
  * ```
  */
-const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => (
-  <Container>
-    {props.labelProps && <Label {...props.labelProps} />}
-    <InputText
-      className="translate"
-      ref={ref}
-      hasError={Boolean(props.error)}
-      {...props}
-      {...props.inputProps}
-    />
-    {Boolean(props.error) && <ErrorMessage error={props.error} />}
-  </Container>
-))
+const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
+  // Create internal ref if no external ref is provided
+  const internalRef = useRef<HTMLInputElement>(null);
+  const inputRef = (ref || internalRef) as React.RefObject<HTMLInputElement>;
+
+  // Handle auto-focus when error occurs
+  useEffect(() => {
+    if (props.autoFocusOnError && props.error && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [props.error, props.autoFocusOnError]);
+
+  return (
+    <Container>
+      {props.labelProps && <Label {...props.labelProps} />}
+      <InputText
+        className="translate"
+        ref={inputRef}
+        hasError={Boolean(props.error)}
+        {...props}
+        {...props.inputProps}
+      />
+      {Boolean(props.error) && <ErrorMessage error={props.error} />}
+    </Container>
+  );
+})
 
 /**
  * Explicitly sets component display name for debugging in React DevTools when using forwardRef.
