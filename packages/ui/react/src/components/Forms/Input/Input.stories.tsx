@@ -17,7 +17,7 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {
+const Default: Story = {
   args: {
     name: 'name',
     type: 'text',
@@ -42,7 +42,7 @@ export const Default: Story = {
   },
 }
 
-export const Error: Story = {
+const Error: Story = {
   args: {
     name: 'name',
     type: 'text',
@@ -69,7 +69,7 @@ export const Error: Story = {
   },
 }
 
-export const Number: Story = {
+const Number: Story = {
   args: {
     name: 'name',
     type: 'number',
@@ -94,7 +94,7 @@ export const Number: Story = {
   },
 }
 
-export const WithAutoFocusOnError: Story = {
+const WithAutoFocusOnError: Story = {
   args: {
     name: 'name',
     type: 'text',
@@ -116,3 +116,5 @@ export const WithAutoFocusOnError: Story = {
     },
   },
 }
+
+export { Default, Error, Number, WithAutoFocusOnError }

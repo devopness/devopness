@@ -65,13 +65,12 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   // Create internal ref if no external ref is provided
   const internalRef = useRef<HTMLInputElement>(null);
   const inputRef = (ref || internalRef) as React.RefObject<HTMLInputElement>;
+  const { autoFocusOnError, error } = props;
 
   // Handle auto-focus when error occurs
   useEffect(() => {
-    if (props.autoFocusOnError && props.error && inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, [props.error, props.autoFocusOnError]);
+    if (autoFocusOnError) inputRef.current?.focus();
+  }, [autoFocusOnError, inputRef]);
 
   return (
     <Container>
@@ -79,11 +78,12 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
       <InputText
         className="translate"
         ref={inputRef}
-        hasError={Boolean(props.error)}
+        hasError={Boolean(error)}
+        value={props.value ?? ''}
         {...props}
         {...props.inputProps}
       />
-      {Boolean(props.error) && <ErrorMessage error={props.error} />}
+      {Boolean(error) && <ErrorMessage error={error} />}
     </Container>
   );
 })
