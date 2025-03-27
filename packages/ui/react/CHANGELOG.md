@@ -4,7 +4,23 @@
 
 ### Minor Changes
 
-- [#1408](https://github.com/devopness/devopness/pull/1408) [`c59d66c`](https://github.com/devopness/devopness/commit/c59d66c1011b59f3268d5eefa83a068ae19d2f48) Thanks [@dapeduu](https://github.com/dapeduu)! - feat: adds input focus on error
+- [#1408](https://github.com/devopness/devopness/pull/1408) [`c59d66c`](https://github.com/devopness/devopness/commit/c59d66c1011b59f3268d5eefa83a068ae19d2f48) Thanks [@dapeduu](https://github.com/dapeduu)! - Add automatic focus behavior to Input component when in error state
+
+This enhancement:
+- Automatically focuses the input field with an error
+- Improves form validation UX by directing user attention to fields needing correction
+- Works by default without additional configuration
+
+Example usage:
+
+```typescript
+<Input
+  // Focus will be automatically applied when error prop is present
+  error={{ message: 'This field is required' }}
+/>
+```
+
+This change helps users quickly identify and fix form validation issues by automatically focusing on problematic fields.
 
 ## 2.155.0
 
