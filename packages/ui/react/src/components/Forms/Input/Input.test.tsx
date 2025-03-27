@@ -7,7 +7,12 @@ import { Input } from './Input'
 describe('Input', () => {
   describe('renders correctly', () => {
     it('with required props', () => {
-      render(<Input type="text" placeholder="Enter text" />)
+      render(
+        <Input
+          type="text"
+          placeholder="Enter text"
+        />
+      )
 
       const input = screen.getByPlaceholderText('Enter text')
       expect(input).toBeInTheDocument()
@@ -15,28 +20,48 @@ describe('Input', () => {
     })
 
     it('with label', () => {
-      render(<Input type="text" labelProps={{ value: 'Username' }} />)
+      render(
+        <Input
+          type="text"
+          labelProps={{ value: 'Username' }}
+        />
+      )
 
       const label = screen.getByText('Username')
       expect(label).toBeInTheDocument()
     })
 
     it('with error message', () => {
-      render(<Input type="text" error={{ message: 'This field is required' }} />)
+      render(
+        <Input
+          type="text"
+          error={{ message: 'This field is required' }}
+        />
+      )
 
       const errorMessage = screen.getByText('This field is required')
       expect(errorMessage).toBeInTheDocument()
     })
 
     it('with custom styles', () => {
-      render(<Input type="text" publicStyle={{ fontStyleValue: 'bold' }} />)
+      render(
+        <Input
+          type="text"
+          publicStyle={{ fontStyleValue: 'bold' }}
+        />
+      )
 
       const input = screen.getByRole('textbox')
       expect(input).toHaveStyle({ 'font-style': 'bold' })
     })
 
     it('with number type and removed arrows', () => {
-      render(<Input type="number" removeArrows />)
+      render(
+        <Input
+          type="number"
+          removeArrows
+        />
+      )
 
       const input = screen.getByRole('spinbutton')
       expect(input).toHaveAttribute('type', 'number')
@@ -45,12 +70,23 @@ describe('Input', () => {
 
   describe('focus behavior on error', () => {
     it('should focus when error prop changes', () => {
-      const { rerender } = render(<Input type="text" data-testid="test-input" />)
+      const { rerender } = render(
+        <Input
+          type="text"
+          data-testid="test-input"
+        />
+      )
 
       const input = screen.getByTestId('test-input')
       expect(input).not.toHaveFocus()
 
-      rerender(<Input type="text" error={{ message: 'New error' }} data-testid="test-input" />)
+      rerender(
+        <Input
+          type="text"
+          error={{ message: 'New error' }}
+          data-testid="test-input"
+        />
+      )
 
       expect(input).toHaveFocus()
     })
@@ -59,7 +95,12 @@ describe('Input', () => {
   describe('interactions', () => {
     it('handles input changes', () => {
       const handleChange = vi.fn()
-      render(<Input type="text" onChange={handleChange} />)
+      render(
+        <Input
+          type="text"
+          onChange={handleChange}
+        />
+      )
 
       const input = screen.getByRole('textbox')
       fireEvent.change(input, { target: { value: 'test' } })
@@ -70,7 +111,13 @@ describe('Input', () => {
 
     it('forwards ref correctly', () => {
       const ref = { current: null }
-      render(<Input type="text" ref={ref} data-testid="test-input" />)
+      render(
+        <Input
+          type="text"
+          ref={ref}
+          data-testid="test-input"
+        />
+      )
 
       const input = screen.getByTestId('test-input')
       expect(ref.current).toBe(input)
