@@ -1,5 +1,11 @@
 # @devopness/ui-react
 
+## 2.156.0
+
+### Minor Changes
+
+- [#1408](https://github.com/devopness/devopness/pull/1408) [`c59d66c`](https://github.com/devopness/devopness/commit/c59d66c1011b59f3268d5eefa83a068ae19d2f48) Thanks [@dapeduu](https://github.com/dapeduu)! - feat: adds input focus on error
+
 ## 2.155.0
 
 ### Minor Changes
