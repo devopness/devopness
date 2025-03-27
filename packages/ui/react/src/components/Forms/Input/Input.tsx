@@ -45,6 +45,14 @@ type InputProps =
 /**
  * Allows users to enter and edit text
  *
+ * A flexible input component that supports:
+ * - Various input types (text, number, etc.)
+ * - Error states with automatic focus
+ * - Custom styling
+ * - Label and help text
+ *
+ * When an error state is applied, the input will automatically receive focus to draw the user's attention.
+ *
  * @example
  * ```
  * <Input

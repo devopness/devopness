@@ -8,22 +8,6 @@ import { Container } from './Input.styled'
 const meta = {
   title: 'Form/Input',
   component: Input,
-  parameters: {
-    docs: {
-      source: { type: 'code' },
-      description: {
-        component: `
-A flexible input component that supports:
-- Various input types (text, number, etc.)
-- Error states with automatic focus
-- Custom styling
-- Label and help text
-
-When an error state is applied, the input will automatically receive focus to draw the user's attention.
-    `,
-      },
-    },
-  },
   render: (args) => (
     <Container>
       <Input {...args} />
