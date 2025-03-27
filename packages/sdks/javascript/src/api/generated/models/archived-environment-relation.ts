@@ -14,7 +14,7 @@
 
 import { EnvironmentType } from './environment-type';
 import { ProjectRelation } from './project-relation';
-import { TeamMembershipRelation } from './team-membership-relation';
+import { ResourceSummaryItem } from './resource-summary-item';
 
 /**
  * 
@@ -59,6 +59,12 @@ export interface ArchivedEnvironmentRelation {
      */
     used_credits?: number;
     /**
+     * Summary of the resource
+     * @type {Array<ResourceSummaryItem>}
+     * @memberof ArchivedEnvironmentRelation
+     */
+    resource_summary?: Array<ResourceSummaryItem>;
+    /**
      * The date and time when the record was created
      * @type {string}
      * @memberof ArchivedEnvironmentRelation
@@ -82,11 +88,5 @@ export interface ArchivedEnvironmentRelation {
      * @memberof ArchivedEnvironmentRelation
      */
     project: ProjectRelation | null;
-    /**
-     * 
-     * @type {Array<TeamMembershipRelation>}
-     * @memberof ArchivedEnvironmentRelation
-     */
-    team_memberships?: Array<TeamMembershipRelation>;
 }
 

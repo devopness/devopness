@@ -1,5 +1,156 @@
 # @devopness/sdk-js
 
+## 2.160.0
+
+### Minor Changes
+
+- [#1458](https://github.com/devopness/devopness/pull/1458) [`509d2fa`](https://github.com/devopness/devopness/commit/509d2fa226a680f5e7427014c944228d487b35ef) Thanks [@Diegiwg](https://github.com/Diegiwg)! - 🚨 Breaking Changes
+
+  - Removed the direct _team_memberships_ relation from EnvironmentRelation and ArchivedEnvironmentRelation.
+
+  🔄 Changes
+
+  - Added the _resource_summary_ field to the EnvironmentRelation and ArchivedEnvironmentRelation.
+
+  📌 Reason for Changes
+
+  The _resource_summary_ field centralizes summary information about linked resources, replacing explicit relations with a standardized summary format.
+
+  To retrieve a full list of team memberships, use the appropriate SDK method.
+
+  If you need to determine the number of linked team memberships, use:
+
+  ```ruby
+    environment
+      .resource_summary['team-membership']
+        .summary
+        .count
+  ```
+
+## 2.159.0
+
+### Minor Changes
+
+- [#1453](https://github.com/devopness/devopness/pull/1453) [`dc153a7`](https://github.com/devopness/devopness/commit/dc153a72bdd07d3f209f22ee11309c2b427784a6) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Added methods to delete and reject team invitations
+
+  - `deleteTeamInvitation`: Allows to cancel a pending team invitation
+  - `rejectTeamInvitation`: Allows to reject a pending team invitation
+
+## 2.158.0
+
+### Minor Changes
+
+- [#1422](https://github.com/devopness/devopness/pull/1422) [`9386735`](https://github.com/devopness/devopness/commit/93867352ab65ff6e129ed13e5e372be6767019f8) Thanks [@Diegiwg](https://github.com/Diegiwg)!
+
+  🚨 Breaking Changes
+
+  - Removed: Direct resource relation fields from the Environment model:
+    - applications
+    - credentials
+    - cron_jobs
+    - daemons
+    - network_rules
+    - networks
+    - servers
+    - services
+    - ssh_keys
+    - ssl_certificates
+    - virtual_hosts
+
+  🔄 Changes
+
+  - Added: resource_summary field to the Environment model.
+
+  📌 Reason for Changes
+
+  The resource_summary field centralizes summary information about linked resources, replacing explicit relations with a standardized summary format.
+
+  This change enhances efficiency by reducing response payload size while still providing resource count details.
+
+  Each entry in resource_summary includes:
+
+  - resource_type: The singular identifier of the resource.
+  - resource_type_plural: The plural form of the resource type.
+  - resource_type_human_readable: A user-friendly singular name.
+  - resource_type_plural_human_readable: A user-friendly plural name.
+  - summary.count: The number of linked resources.
+
+  To retrieve full resource lists, use the appropriate SDK methods instead of relying on the Environment model.
+
+  If the goal is to determine the number of linked resources, use:
+
+  ```ruby
+    environment
+      .resource_summary
+      .{resource-type}
+      .summary
+      .count
+  ```
+
+- [#1422](https://github.com/devopness/devopness/pull/1422) [`9386735`](https://github.com/devopness/devopness/commit/93867352ab65ff6e129ed13e5e372be6767019f8) Thanks [@Diegiwg](https://github.com/Diegiwg)!
+
+  🔄 Changes
+
+  - Added: resource_summary field to the ProjectRelation model.
+
+  📌 Reason for Changes
+
+  The resource_summary field provides a structured summary of linked resources (environments, teams, and roles) within a project relation.
+
+  This ensures efficient access to resource counts without exposing full lists.
+
+  Each entry in resource_summary includes:
+
+  - resource_type: The singular identifier of the resource.
+  - resource_type_plural: The plural form of the resource type.
+  - resource_type_human_readable: A user-friendly singular name.
+  - resource_type_plural_human_readable: A user-friendly plural name.
+  - summary.count: The number of linked resources.
+
+  For resource counts, use:
+
+  ```ruby
+    projectRelation
+      .resource_summary
+      .{resource-type}
+      .summary
+      .count
+  ```
+
+- [#1422](https://github.com/devopness/devopness/pull/1422) [`9386735`](https://github.com/devopness/devopness/commit/93867352ab65ff6e129ed13e5e372be6767019f8) Thanks [@Diegiwg](https://github.com/Diegiwg)
+
+  🚨 Breaking Changes
+
+  - Removed: environments, teams, and roles fields from the Project model.
+
+  🔄 Changes
+
+  - Added: resource_summary field to the Project model.
+
+  📌 Reason for Changes
+
+  The resource_summary field centralizes summary information about linked resources (environments, teams, and roles) within a project.
+
+  Each resource in resource_summary is an object containing:
+
+  - resource_type: Identifies the resource type.
+  - resource_type_plural: Identifies the resource type in plural form.
+  - resource_type_human_readable: Identifies the resource type in human readable form.
+  - resource_type_plural_human_readable: Identifies the resource type in plural form in human readable form.
+  - summary.count: Represents the number of linked resources.
+
+  To retrieve full lists of environments, teams, or roles, use the appropriate SDK methods instead of relying on the Project model.
+
+  If the goal is to determine the number of linked resources, use:
+
+  ```ruby
+    project
+      .resource_summary
+      .{resource-type}
+      .summary
+      .count
+  ```
+
 ## 2.157.0
 
 ### Minor Changes
