@@ -83,34 +83,40 @@ const Error: Story = {
       ],
     },
   },
-  render: (args) => {
-    const [
-      hasError,
-      setHasError,
-      // eslint-disable-next-line react-hooks/rules-of-hooks
-    ] = useState(false)
+  render: (args) => <InputWithErrorToggle {...args} />,
+}
 
-    return (
-      <div>
-        <Input
-          {...args}
-          error={hasError ? { message: 'This field has an error!' } : undefined}
-        />
-        <button
-          onClick={() => {
-            setHasError((prev) => !prev)
-          }}
-          style={{ marginTop: '1rem' }}
-        >
-          Toggle Error
-        </button>
-        <p style={{ marginTop: '0.5rem', fontSize: '0.875rem', color: '#666' }}>
-          Click the button to toggle error state. The input will automatically
-          focus when the error appears.
-        </p>
-      </div>
-    )
-  },
+/**
+ * Component to demonstrate the error state handling for
+ * the Input component by providing a button that toggles
+ * the error state.
+ */
+const InputWithErrorToggle = (args: React.ComponentProps<typeof Input>) => {
+  const [
+    hasError,
+    setHasError,
+  ] = useState(false)
+
+  return (
+    <div>
+      <Input
+        {...args}
+        error={hasError ? { message: 'This field has an error!' } : undefined}
+      />
+      <button
+        onClick={() => {
+          setHasError((prev) => !prev)
+        }}
+        style={{ marginTop: '1rem' }}
+      >
+        Toggle Error
+      </button>
+      <p style={{ marginTop: '0.5rem', fontSize: '0.875rem', color: '#666' }}>
+        Click the button to toggle error state. The input will automatically
+        focus when the error appears.
+      </p>
+    </div>
+  )
 }
 
 const Number: Story = {
