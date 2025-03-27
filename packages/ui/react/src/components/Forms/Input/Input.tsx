@@ -70,7 +70,10 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   // Handle auto-focus when error occurs
   useEffect(() => {
     if (autoFocusOnError) inputRef.current?.focus();
-  }, [autoFocusOnError, inputRef]);
+  }, [
+    autoFocusOnError,
+    inputRef,  // Trailing comma for consistency
+  ]);
 
   return (
     <Container>

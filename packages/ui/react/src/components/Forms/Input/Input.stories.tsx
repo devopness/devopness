@@ -14,7 +14,7 @@ const meta = {
   ),
 } satisfies Meta<typeof Input>
 
-export default meta
+// export default meta
 type Story = StoryObj<typeof meta>
 
 const Default: Story = {
@@ -117,4 +117,4 @@ const WithAutoFocusOnError: Story = {
   },
 }
 
-export { Default, Error, Number, WithAutoFocusOnError }
+export { Default, Error, Number, WithAutoFocusOnError, meta as default }
