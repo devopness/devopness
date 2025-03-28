@@ -59,7 +59,7 @@
   "dependencies": {
     "@mui/material": "^6.4.8",
     "@mui/styled-engine-sc": "^6.4.6",
-    "ldrs": "^1.1.2",
+    "ldrs": "^1.1.5",
     "lodash": "^4.17.21",
     "material-ui-popup-state": "^5.3.3",
     "path-browserify": "^1.0.1",
