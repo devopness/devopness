@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useRef } from 'react'
+import { forwardRef, useEffect, useRef } from 'react'
 
 import { Container, InputText } from './Input.styled'
 import type { ErrorMessageProps } from 'src/components/Primitives/ErrorMessage'
@@ -64,15 +64,16 @@ type InputProps =
 const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   // Create internal ref if no external ref is provided
   const internalRef = useRef<HTMLInputElement>(null);
-  const inputRef = (ref || internalRef) as React.RefObject<HTMLInputElement>;
+  const inputRef = (ref as React.RefObject<HTMLInputElement> | undefined) ?? internalRef;
   const { autoFocusOnError, error } = props;
-
-  // Handle auto-focus when error occurs
+  
   useEffect(() => {
-    if (autoFocusOnError) inputRef.current?.focus();
+    if (autoFocusOnError && inputRef.current) {
+      inputRef.current.focus();
+    }
   }, [
     autoFocusOnError,
-    inputRef,  // Trailing comma for consistency
+    inputRef,
   ]);
 
   return (
@@ -88,6 +89,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
       />
       {Boolean(error) && <ErrorMessage error={error} />}
     </Container>
+  );
   );
 })
 
