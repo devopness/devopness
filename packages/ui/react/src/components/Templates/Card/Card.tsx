@@ -190,6 +190,7 @@ const Card = ({ children, ...props }: CardProps) => (
         <StyledFooter
           data-testid="card-footer"
           $showBorder={!!children}
+          className={props.footer.length === 1 ? 'only-child' : undefined}
         >
           {props.footer.map((footer, index) => (
             <Tooltip

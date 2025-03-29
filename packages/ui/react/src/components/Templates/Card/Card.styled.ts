@@ -128,8 +128,11 @@ const StyledFooter = styled.div<StyledFooterProps>`
 
   /**
    * When the footer has only one child, add a hover effect to footer
+   *
+   * Using classname "only-child" here is a workaround for testing environment compatibility
+   * Current testing setup does not recognize ":has(:only-child)" as a valid CSS selector
    */
-  &:has(*:only-child) {
+  &.only-child {
     padding-left: 0;
 
     &:hover {
