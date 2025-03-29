@@ -111,11 +111,15 @@ const StyledFooter = styled.div<StyledFooterProps>`
   display: flex;
   flex-direction: row;
   height: 42px;
-  justify-content: center;
+  /* If there are 2 or more direct children, use space-between */
+  justify-content: space-between;
   max-width: 100%;
   padding-bottom: 15px;
+  /**
+   * The padding-left/right should be the same as StyledHeader's padding-left/right
+   */
   padding-left: 15px;
-  padding-right: 0;
+  padding-right: 15px;
   padding-top: 15px;
   width: 100%;
 
@@ -131,16 +135,6 @@ const StyledFooter = styled.div<StyledFooterProps>`
     &:hover {
       background-color: ${getColor('indigo.10')};
     }
-  }
-
-  /* If there are 2 or more direct children, use space-between */
-  &:has(:nth-child(2)) {
-    justify-content: space-between;
-    /**
-     * The padding-left/right should be the same as StyledHeader's padding-left/right
-     */
-    padding-left: 15px;
-    padding-right: 15px;
   }
 
   /* When there's only one child, make it fill the entire row */
