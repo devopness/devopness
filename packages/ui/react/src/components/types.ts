@@ -1,4 +1,16 @@
 /**
+ * Maps props to styled component transient props
+ *
+ * Adds a `$` prefix to the prop name to prevent it from being passed to the
+ * underlying React node or rendered to the DOM element
+ *
+ * @see {@link https://styled-components.com/docs/api#transient-props | Styled Components - Transient props}
+ */
+type TransientProps<T extends object | undefined> = {
+  [Key in keyof NonNullable<T> as `$${string & Key}`]: NonNullable<T>[Key]
+}
+
+/**
  * Unwrap<T>
  *
  * Construct a type with the all properties of T without intersections.
@@ -25,4 +37,4 @@ type Unwrap<T> = {
   [K in keyof T]: T[K]
 } & {}
 
-export type { Unwrap }
+export type { TransientProps, Unwrap }
