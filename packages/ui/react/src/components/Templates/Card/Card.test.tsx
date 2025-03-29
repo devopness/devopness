@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
 
@@ -25,13 +25,22 @@ const testTooltipBehavior = async (
   element: HTMLElement,
   tooltipText: string
 ) => {
-  fireEvent.mouseOver(element)
-  const tooltip = await screen.findByText(tooltipText)
+  const user = userEvent.setup()
+
+  await user.hover(element)
+
+  const tooltip = await screen.findByRole('tooltip', {
+    name: tooltipText,
+  })
+
   expect(tooltip).toBeInTheDocument()
 
-  fireEvent.mouseOut(element)
+  await user.unhover(element)
+
   await waitFor(() => {
-    expect(tooltip).not.toBeInTheDocument()
+    expect(
+      screen.queryByRole('tooltip', { name: tooltipText })
+    ).not.toBeInTheDocument()
   })
 }
 
@@ -287,6 +296,7 @@ describe('Card', () => {
 
       const footerButton = screen.getByText('Settings')
       expect(footerButton).toBeInTheDocument()
+
       await testTooltipBehavior(footerButton, 'Manage your settings')
     })
 
@@ -358,7 +368,7 @@ describe('Card', () => {
 
       const footerButton = screen.getByText('Settings')
       expect(footerButton).toBeInTheDocument()
-      // await testTooltipBehavior(footerButton, 'Advanced settings')
+      await testTooltipBehavior(footerButton, 'Advanced settings')
     })
 
     it('renders footer with default icon color when not specified', () => {
