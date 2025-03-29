@@ -149,11 +149,8 @@ const StyledFooter = styled.div<StyledFooterProps>`
 
     /**
      * When the child is a link, make it fill the entire row
-     *
-     * Remember that the private link component is nested twice
-     * (one for the RouterLink and one for the visible HTML Anchor)
      */
-    & > a > a {
+    & > a {
       display: flex;
       justify-content: center;
       width: 100%;
