@@ -12,7 +12,7 @@ type TestHoverTooltipOptions = {
  * Tests hover interactions with elements that trigger tooltips
  *
  * @returns Promise that resolves when the hover test is complete
- * 
+ *
  * @example
  * ```typescript
  * await testHoverTooltip({
@@ -47,4 +47,4 @@ export async function testHoverTooltip({
       screen.queryByRole('tooltip', { name: tooltipText })
     ).not.toBeInTheDocument()
   })
-} 
+}

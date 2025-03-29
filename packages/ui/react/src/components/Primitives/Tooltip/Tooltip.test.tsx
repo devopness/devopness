@@ -18,7 +18,7 @@ describe('Tooltip', () => {
     const tooltipTrigger = screen.getByText(triggerTitle)
     await testHoverTooltip({
       element: tooltipTrigger,
-      tooltipText: tooltipTitle
+      tooltipText: tooltipTitle,
     })
   })
 })

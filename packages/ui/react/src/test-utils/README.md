@@ -40,8 +40,7 @@ When adding new test utilities:
 
 ### Example Implementation
 
-```typescript
-
+````typescript
 type MyTestUtilOptions = {
   /** Description of option */
   option: string
@@ -49,7 +48,7 @@ type MyTestUtilOptions = {
 
 /**
  * Brief description of what the utility does
- * 
+ *
  * @example
  * ```typescript
  * await myTestUtil({ option: 'value' })
@@ -58,4 +57,4 @@ type MyTestUtilOptions = {
 export async function myTestUtil(options: MyTestUtilOptions) {
   // Implementation
 }
-```
+````

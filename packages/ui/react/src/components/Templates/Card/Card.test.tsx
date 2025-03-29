@@ -253,7 +253,7 @@ describe('Card', () => {
       const footerButton = screen.getByText('Settings')
       await testHoverTooltip({
         element: footerButton,
-        tooltipText: 'Manage your settings'
+        tooltipText: 'Manage your settings',
       })
     })
 
@@ -326,7 +326,7 @@ describe('Card', () => {
       const footerButton = screen.getByText('Settings')
       await testHoverTooltip({
         element: footerButton,
-        tooltipText: 'Advanced settings'
+        tooltipText: 'Advanced settings',
       })
     })
 
