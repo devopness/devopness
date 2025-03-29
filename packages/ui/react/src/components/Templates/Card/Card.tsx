@@ -130,124 +130,122 @@ const DEFAULT_ICON_SIZE = 23
  * />
  */
 const Card = ({ children, ...props }: CardProps) => (
-    <StyledContainer
-      $disableMinHeight={!props.footer && !children}
-      id={props.id}
+  <StyledContainer
+    $disableMinHeight={!props.footer && !children}
+    id={props.id}
+  >
+    <Link
+      hideExternalUrlIcon
+      hideUnderline
+      hideUnderlineOnHover
+      style={{
+        display: 'block',
+        marginRight: 'auto',
+        width: '100%',
+      }}
+      to={props.url}
     >
-      <Link
-        hideExternalUrlIcon
-        hideUnderline
-        hideUnderlineOnHover
-        style={{
-          display: 'block',
-          marginRight: 'auto',
-          width: '100%',
-        }}
-        to={props.url}
+      <StyledHeader
+        data-testid="card-header"
+        $backgroundColor={props.headerProps?.backgroundColor}
+        $hideBorder={!props.footer && !children}
       >
-        <StyledHeader
-          data-testid="card-header"
-          $backgroundColor={props.headerProps?.backgroundColor}
-          $hideBorder={!props.footer && !children}
-        >
-          <StyledAvatar $backgroundColor={props.avatarProps.backgroundColor}>
-            {typeof props.icon === 'object' && (
-              <Icon
-                {...props.icon}
-                color={props.icon.color ?? DEFAULT_ICON_COLOR}
-                size={props.icon.size ?? DEFAULT_ICON_SIZE}
-              />
-            )}
-            {typeof props.icon === 'string' && (
-              <Icon
-                name={props.icon}
-                color={DEFAULT_ICON_COLOR}
-                size={DEFAULT_ICON_SIZE}
-              />
-            )}
-            {!props.icon && (
-              <StyledLetterAvatar>
-                {props.title.charAt(0).toUpperCase()}
-              </StyledLetterAvatar>
-            )}
-          </StyledAvatar>
-          <div>
-            <Tooltip
-              title={props.title}
-              enableOnlyWithEllipsisPoints
+        <StyledAvatar $backgroundColor={props.avatarProps.backgroundColor}>
+          {typeof props.icon === 'object' && (
+            <Icon
+              {...props.icon}
+              color={props.icon.color ?? DEFAULT_ICON_COLOR}
+              size={props.icon.size ?? DEFAULT_ICON_SIZE}
+            />
+          )}
+          {typeof props.icon === 'string' && (
+            <Icon
+              name={props.icon}
+              color={DEFAULT_ICON_COLOR}
+              size={DEFAULT_ICON_SIZE}
+            />
+          )}
+          {!props.icon && (
+            <StyledLetterAvatar>
+              {props.title.charAt(0).toUpperCase()}
+            </StyledLetterAvatar>
+          )}
+        </StyledAvatar>
+        <div>
+          <Tooltip
+            title={props.title}
+            enableOnlyWithEllipsisPoints
+          >
+            <StyledTitle {...props.titleProps}>{props.title}</StyledTitle>
+          </Tooltip>
+          {props.subtitle && <StyledSubtitle>{props.subtitle}</StyledSubtitle>}
+        </div>
+        <Indicator indicator={props.indicator} />
+      </StyledHeader>
+    </Link>
+    {children}
+    {props.footer && (
+      <StyledFooter
+        data-testid="card-footer"
+        $showBorder={!!children}
+        className={props.footer.length === 1 ? 'only-child' : undefined}
+      >
+        {props.footer.map((footer, index) => (
+          <Tooltip
+            key={`footer-${String(index)}`}
+            {...(typeof footer.tooltip === 'object'
+              ? footer.tooltip
+              : undefined)}
+            title={
+              typeof footer.tooltip === 'object'
+                ? footer.tooltip.title
+                : footer.tooltip
+            }
+          >
+            <Link
+              hideExternalUrlIcon
+              hideUnderline
+              to={footer.url}
+              style={{
+                alignItems: 'center',
+                display: 'flex',
+                gap: '0.5rem',
+                marginRight: 'auto',
+              }}
             >
-              <StyledTitle {...props.titleProps}>{props.title}</StyledTitle>
-            </Tooltip>
-            {props.subtitle && (
-              <StyledSubtitle>{props.subtitle}</StyledSubtitle>
-            )}
-          </div>
-          <Indicator indicator={props.indicator} />
-        </StyledHeader>
-      </Link>
-      {children}
-      {props.footer && (
-        <StyledFooter
-          data-testid="card-footer"
-          $showBorder={!!children}
-          className={props.footer.length === 1 ? 'only-child' : undefined}
-        >
-          {props.footer.map((footer, index) => (
-            <Tooltip
-              key={`footer-${String(index)}`}
-              {...(typeof footer.tooltip === 'object'
-                ? footer.tooltip
-                : undefined)}
-              title={
-                typeof footer.tooltip === 'object'
-                  ? footer.tooltip.title
-                  : footer.tooltip
-              }
-            >
-              <Link
-                hideExternalUrlIcon
-                hideUnderline
-                to={footer.url}
-                style={{
-                  alignItems: 'center',
-                  display: 'flex',
-                  gap: '0.5rem',
-                  marginRight: 'auto',
-                }}
+              {typeof footer.icon === 'object' && (
+                <Icon
+                  {...footer.icon}
+                  color={footer.icon.color ?? DEFAULT_FOOTER_ICON_COLOR}
+                />
+              )}
+              {typeof footer.icon === 'string' && (
+                <Icon
+                  name={footer.icon}
+                  color={DEFAULT_FOOTER_ICON_COLOR}
+                />
+              )}
+              <Button
+                buttonType="borderless"
+                noMargin
+                noPadding
               >
-                {typeof footer.icon === 'object' && (
-                  <Icon
-                    {...footer.icon}
-                    color={footer.icon.color ?? DEFAULT_FOOTER_ICON_COLOR}
-                  />
+                {typeof footer.label === 'object' && (
+                  <StyledFooterLabel {...footer.label}>
+                    {footer.label.content}
+                  </StyledFooterLabel>
                 )}
-                {typeof footer.icon === 'string' && (
-                  <Icon
-                    name={footer.icon}
-                    color={DEFAULT_FOOTER_ICON_COLOR}
-                  />
+                {typeof footer.label === 'string' && (
+                  <StyledFooterLabel>{footer.label}</StyledFooterLabel>
                 )}
-                <Button
-                  buttonType="borderless"
-                  noMargin
-                  noPadding
-                >
-                  {typeof footer.label === 'object' && (
-                    <StyledFooterLabel {...footer.label}>
-                      {footer.label.content}
-                    </StyledFooterLabel>
-                  )}
-                  {typeof footer.label === 'string' && (
-                    <StyledFooterLabel>{footer.label}</StyledFooterLabel>
-                  )}
-                </Button>
-              </Link>
-            </Tooltip>
-          ))}
-        </StyledFooter>
-      )}
-    </StyledContainer>
-  )
+              </Button>
+            </Link>
+          </Tooltip>
+        ))}
+      </StyledFooter>
+    )}
+  </StyledContainer>
+)
 
 export type { CardProps }
 export { Card }
