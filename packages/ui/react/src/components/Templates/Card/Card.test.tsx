@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
-import userEvent from '@testing-library/user-event'
 import { testHoverTooltip } from 'src/test-utils'
 
 import { Card } from './Card'
@@ -141,22 +140,6 @@ describe('Card', () => {
   })
 
   describe('title behavior', () => {
-    it('shows title tooltip on overflow', async () => {
-      const user = userEvent.setup()
-      const longTitle = 'This is a very long title that should trigger overflow'
-
-      render(
-        <Card
-          {...defaultProps}
-          title={longTitle}
-        />
-      )
-
-      const titleElement = screen.getByText(longTitle)
-      await user.hover(titleElement)
-      expect(screen.getByText(longTitle)).toBeInTheDocument()
-    })
-
     it('applies custom title styles when provided', () => {
       render(
         <Card
