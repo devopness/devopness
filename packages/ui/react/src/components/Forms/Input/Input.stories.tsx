@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react'
 
-import { Input } from './Input';
-import { Container } from './Input.styled';
+import { Input } from './Input'
+import { Container } from './Input.styled'
 
 const meta = {
   title: 'Form/Input',
@@ -12,10 +12,9 @@ const meta = {
       <Input {...args} />
     </Container>
   ),
-} satisfies Meta<typeof Input>;
+} satisfies Meta<typeof Input>
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof meta>
 
 const Default: Story = {
   args: {
@@ -34,10 +33,13 @@ const Default: Story = {
   },
   parameters: {
     controls: {
-      exclude: ['publicStyle', 'error'],
+      exclude: [
+        'publicStyle',
+        'error',
+      ],
     },
   },
-};
+}
 
 const Error: Story = {
   args: {
@@ -59,10 +61,12 @@ const Error: Story = {
   },
   parameters: {
     controls: {
-      exclude: ['publicStyle'],
+      exclude: [
+        'publicStyle',
+      ],
     },
   },
-};
+}
 
 const Number: Story = {
   args: {
@@ -81,10 +85,13 @@ const Number: Story = {
   },
   parameters: {
     controls: {
-      exclude: ['publicStyle', 'error'],
+      exclude: [
+        'publicStyle',
+        'error',
+      ],
     },
   },
-};
+}
 
 const WithAutoFocusOnError: Story = {
   args: {
@@ -102,9 +109,12 @@ const WithAutoFocusOnError: Story = {
   },
   parameters: {
     controls: {
-      exclude: ['publicStyle'],
+      exclude: [
+        'publicStyle',
+      ],
     },
   },
-};
+}
 
-export { Default, Error, Number, WithAutoFocusOnError };
+export { Default, Error, Number, WithAutoFocusOnError }
+export default meta
