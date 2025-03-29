@@ -27,7 +27,6 @@ const Default: Story = {
     },
     headerProps: {
       backgroundColor: 'white',
-      borderBottomColor: 'slate.300',
     },
     url: '#',
   },
