@@ -1,7 +1,7 @@
 import { screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 
-type HoverOptions = {
+type TestHoverTooltipOptions = {
   /** Element to hover over */
   element: HTMLElement
   /** Expected tooltip text */
@@ -12,11 +12,19 @@ type HoverOptions = {
  * Tests hover interactions with elements that trigger tooltips
  *
  * @returns Promise that resolves when the hover test is complete
+ * 
+ * @example
+ * ```typescript
+ * await testHoverTooltip({
+ *   element: screen.getByText('Hover me'),
+ *   tooltipText: 'Tooltip content',
+ * })
+ * ```
  */
 export async function testHoverTooltip({
   element,
   tooltipText,
-}: HoverOptions) {
+}: TestHoverTooltipOptions) {
   expect(element).toBeInTheDocument()
 
   const user = userEvent.setup()

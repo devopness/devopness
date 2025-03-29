@@ -1,1 +1,1 @@
-export * from './interactions/hover'
+export * from './interactions/hoverTooltip'
