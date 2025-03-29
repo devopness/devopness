@@ -1,5 +1,6 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react'
-import { describe, expect, it } from 'vitest'
+import { render, screen } from '@testing-library/react'
+import { describe, it } from 'vitest'
+import { testHoverTooltip } from 'src/test-utils'
 
 import { Tooltip } from '.'
 
@@ -14,13 +15,10 @@ describe('Tooltip', () => {
       </Tooltip>
     )
 
-    const tooltipBase = screen.getByText(triggerTitle)
-    fireEvent.mouseOver(tooltipBase)
-    const tooltip = await screen.findByText(tooltipTitle)
-    expect(tooltip).toBeInTheDocument()
-    fireEvent.mouseOut(tooltipBase)
-    await waitFor(() => {
-      expect(tooltip).not.toBeInTheDocument()
+    const tooltipTrigger = screen.getByText(triggerTitle)
+    await testHoverTooltip({
+      element: tooltipTrigger,
+      tooltipText: tooltipTitle
     })
   })
 })

@@ -1,6 +1,7 @@
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
+import { testHoverTooltip } from 'src/test-utils'
 
 import { Card } from './Card'
 import type { CardProps } from './Card'
@@ -15,34 +16,6 @@ const defaultProps = {
     backgroundColor: 'purple.800',
   },
 } satisfies CardProps
-
-/**
- * Helper function to simulate hover interactions and verify tooltips
- * @param element - Element to hover over
- * @param tooltipText - Expected tooltip text
- */
-const testTooltipBehavior = async (
-  element: HTMLElement,
-  tooltipText: string
-) => {
-  const user = userEvent.setup()
-
-  await user.hover(element)
-
-  const tooltip = await screen.findByRole('tooltip', {
-    name: tooltipText,
-  })
-
-  expect(tooltip).toBeInTheDocument()
-
-  await user.unhover(element)
-
-  await waitFor(() => {
-    expect(
-      screen.queryByRole('tooltip', { name: tooltipText })
-    ).not.toBeInTheDocument()
-  })
-}
 
 describe('Card', () => {
   describe('renders correctly', () => {
@@ -295,9 +268,10 @@ describe('Card', () => {
       )
 
       const footerButton = screen.getByText('Settings')
-      expect(footerButton).toBeInTheDocument()
-
-      await testTooltipBehavior(footerButton, 'Manage your settings')
+      await testHoverTooltip({
+        element: footerButton,
+        tooltipText: 'Manage your settings'
+      })
     })
 
     it('renders multiple footer items with mixed content', () => {
@@ -367,8 +341,10 @@ describe('Card', () => {
       )
 
       const footerButton = screen.getByText('Settings')
-      expect(footerButton).toBeInTheDocument()
-      await testTooltipBehavior(footerButton, 'Advanced settings')
+      await testHoverTooltip({
+        element: footerButton,
+        tooltipText: 'Advanced settings'
+      })
     })
 
     it('renders footer with default icon color when not specified', () => {
