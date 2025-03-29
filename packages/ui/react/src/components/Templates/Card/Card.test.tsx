@@ -1,10 +1,11 @@
 import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
-import { testHoverTooltip } from 'src/test-utils'
+import { describe, expect, it } from 'vitest'
 
 import { Card } from './Card'
 import type { CardProps } from './Card'
 import { getColor } from 'src/colors'
+import { testHoverTooltip } from 'src/test-utils'
 
 /**
  * Default props used across all Card component tests

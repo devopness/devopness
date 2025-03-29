@@ -1,5 +1,9 @@
+import * as matchers from '@testing-library/jest-dom/matchers'
 import { screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { expect } from 'vitest'
+
+expect.extend(matchers)
 
 type TestHoverTooltipOptions = {
   /** Element to hover over */

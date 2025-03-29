@@ -2,9 +2,6 @@ import type { Meta, StoryObj } from '@storybook/react'
 
 import { Card } from './Card'
 
-/**
- * Meta configuration for Card component stories
- */
 const meta = {
   component: Card,
   argTypes: {

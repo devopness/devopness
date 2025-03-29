@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react'
 import { describe, it } from 'vitest'
-import { testHoverTooltip } from 'src/test-utils'
 
 import { Tooltip } from '.'
+import { testHoverTooltip } from 'src/test-utils'
 
 describe('Tooltip', () => {
   it('renders properly', async () => {
