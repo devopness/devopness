@@ -1,22 +1,21 @@
-import { useState } from 'react'
+import type { Meta, StoryObj } from '@storybook/react';
 
-import type { Meta, StoryObj } from '@storybook/react'
-
-import { Input } from './Input'
-import { Container } from './Input.styled'
+import { Input } from './Input';
+import { Container } from './Input.styled';
 
 const meta = {
   title: 'Form/Input',
   component: Input,
+  parameters: { docs: { source: { type: 'code' } } },
   render: (args) => (
     <Container>
       <Input {...args} />
     </Container>
   ),
-} satisfies Meta<typeof Input>
+} satisfies Meta<typeof Input>;
 
-// export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 const Default: Story = {
   args: {
@@ -35,13 +34,10 @@ const Default: Story = {
   },
   parameters: {
     controls: {
-      exclude: [
-        'publicStyle',
-        'error',
-      ],
+      exclude: ['publicStyle', 'error'],
     },
   },
-}
+};
 
 const Error: Story = {
   args: {
@@ -63,46 +59,10 @@ const Error: Story = {
   },
   parameters: {
     controls: {
-      exclude: [
-        'publicStyle',
-      ],
+      exclude: ['publicStyle'],
     },
   },
-  render: (args) => <InputWithErrorToggle {...args} />,
-}
-
-/**
- * Component to demonstrate the error state handling for
- * the Input component by providing a button that toggles
- * the error state.
- */
-const InputWithErrorToggle = (args: React.ComponentProps<typeof Input>) => {
-  const [
-    hasError,
-    setHasError,
-  ] = useState(false)
-
-  return (
-    <div>
-      <Input
-        {...args}
-        error={hasError ? { message: 'This field has an error!' } : undefined}
-      />
-      <button
-        onClick={() => {
-          setHasError((prev) => !prev)
-        }}
-        style={{ marginTop: '1rem' }}
-      >
-        Toggle Error
-      </button>
-      <p style={{ marginTop: '0.5rem', fontSize: '0.875rem', color: '#666' }}>
-        Click the button to toggle error state. The input will automatically
-        focus when the error appears.
-      </p>
-    </div>
-  )
-}
+};
 
 const Number: Story = {
   args: {
@@ -121,13 +81,10 @@ const Number: Story = {
   },
   parameters: {
     controls: {
-      exclude: [
-        'publicStyle',
-        'error',
-      ],
+      exclude: ['publicStyle', 'error'],
     },
   },
-}
+};
 
 const WithAutoFocusOnError: Story = {
   args: {
@@ -145,11 +102,9 @@ const WithAutoFocusOnError: Story = {
   },
   parameters: {
     controls: {
-      exclude: [
-        'publicStyle',
-      ],
+      exclude: ['publicStyle'],
     },
   },
-}
+};
 
-export { Default, Error, Number, WithAutoFocusOnError, meta as default }
+export { Default, Error, Number, WithAutoFocusOnError };

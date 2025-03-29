@@ -47,6 +47,12 @@ type InputProps =
 /**
  * Allows users to enter and edit text
  *
+ * A flexible input component that supports:
+ * - Various input types (text, number, etc.)
+ * - Error states with optional automatic focus
+ * - Custom styling
+ * - Label and help text
+ *
  * @example
  * ```
  * <Input
@@ -62,19 +68,20 @@ type InputProps =
  * ```
  */
 const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-  // Create internal ref if no external ref is provided
-  const internalRef = useRef<HTMLInputElement>(null);
-  const inputRef = (ref as React.RefObject<HTMLInputElement> | undefined) ?? internalRef;
-  const { autoFocusOnError, error } = props;
-  
+  const internalRef = useRef<HTMLInputElement>(null)
+  const inputRef =
+    (ref as React.RefObject<HTMLInputElement> | undefined) ?? internalRef
+  const { autoFocusOnError, error } = props
+
   useEffect(() => {
-    if (autoFocusOnError && inputRef.current) {
-      inputRef.current.focus();
+    if (autoFocusOnError && error && inputRef.current) {
+      inputRef.current.focus()
     }
   }, [
     autoFocusOnError,
+    error,
     inputRef,
-  ]);
+  ])
 
   return (
     <Container>
@@ -83,14 +90,12 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
         className="translate"
         ref={inputRef}
         hasError={Boolean(error)}
-        value={props.value ?? ''}
         {...props}
         {...props.inputProps}
       />
       {Boolean(error) && <ErrorMessage error={error} />}
     </Container>
-
-  );
+  )
 })
 
 /**
