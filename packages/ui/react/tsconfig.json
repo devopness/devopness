@@ -27,6 +27,7 @@
     ],
     "module": "ESNext",
     "skipLibCheck": true,
+    "types": ["jest"],
 
     /* Bundler mode */
     "moduleResolution": "bundler",

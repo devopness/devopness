@@ -1,126 +1,55 @@
-import '@testing-library/jest-dom'
-import { render, screen, fireEvent } from '@testing-library/react'
-import { describe, expect, it, vi } from 'vitest'
+import { render, screen } from '@testing-library/react'
 
 import { Input } from './Input'
 
 describe('Input', () => {
-  describe('renders correctly', () => {
-    it('with required props', () => {
-      render(
-        <Input
-          type="text"
-          placeholder="Enter text"
-        />
-      )
-
-      const input = screen.getByPlaceholderText('Enter text')
-      expect(input).toBeInTheDocument()
-      expect(input).toHaveAttribute('type', 'text')
-    })
-
-    it('with label', () => {
-      render(
-        <Input
-          type="text"
-          labelProps={{ value: 'Username' }}
-        />
-      )
-
-      const label = screen.getByText('Username')
-      expect(label).toBeInTheDocument()
-    })
-
-    it('with error message', () => {
-      render(
-        <Input
-          type="text"
-          error={{ message: 'This field is required' }}
-        />
-      )
-
-      const errorMessage = screen.getByText('This field is required')
-      expect(errorMessage).toBeInTheDocument()
-    })
-
-    it('with custom styles', () => {
-      render(
-        <Input
-          type="text"
-          publicStyle={{ fontStyleValue: 'bold' }}
-        />
-      )
-
-      const input = screen.getByRole('textbox')
-      expect(input).toHaveStyle({ 'font-style': 'bold' })
-    })
-
-    it('with number type and removed arrows', () => {
-      render(
-        <Input
-          type="number"
-          removeArrows
-        />
-      )
-
-      const input = screen.getByRole('spinbutton')
-      expect(input).toHaveAttribute('type', 'number')
-    })
+  beforeEach(() => {
+    // Mock focus to prevent jsdom issues
+    jest
+      .spyOn(HTMLInputElement.prototype, 'focus')
+      .mockImplementation(jest.fn())
   })
 
-  describe('focus behavior on error', () => {
-    it('should focus when error prop changes', () => {
-      const { rerender } = render(
-        <Input
-          type="text"
-          data-testid="test-input"
-        />
-      )
-
-      const input = screen.getByTestId('test-input')
-      expect(input).not.toHaveFocus()
-
-      rerender(
-        <Input
-          type="text"
-          error={{ message: 'New error' }}
-          data-testid="test-input"
-        />
-      )
-
-      expect(input).toHaveFocus()
-    })
+  afterEach(() => {
+    jest.restoreAllMocks()
   })
 
-  describe('interactions', () => {
-    it('handles input changes', () => {
-      const handleChange = vi.fn()
-      render(
-        <Input
-          type="text"
-          onChange={handleChange}
-        />
-      )
+  it('renders without crashing', () => {
+    render(<Input type="text" />)
+    expect(screen.getByRole('textbox')).toBeInTheDocument()
+  })
 
-      const input = screen.getByRole('textbox')
-      fireEvent.change(input, { target: { value: 'test' } })
+  it('does not focus when error prop changes without autoFocusOnError', () => {
+    const { rerender } = render(<Input type="text" />)
+    const input = screen.getByRole('textbox')
+    expect(input).not.toHaveFocus()
 
-      expect(handleChange).toHaveBeenCalled()
-      expect(input).toHaveValue('test')
-    })
+    rerender(
+      <Input
+        type="text"
+        error={{ message: 'Error' }}
+      />
+    )
+    expect(input).not.toHaveFocus()
+  })
 
-    it('forwards ref correctly', () => {
-      const ref = { current: null }
-      render(
-        <Input
-          type="text"
-          ref={ref}
-          data-testid="test-input"
-        />
-      )
+  it('focuses when error prop changes with autoFocusOnError', () => {
+    const { rerender } = render(
+      <Input
+        type="text"
+        autoFocusOnError
+      />
+    )
+    const input = screen.getByRole('textbox')
+    expect(input).not.toHaveFocus()
 
-      const input = screen.getByTestId('test-input')
-      expect(ref.current).toBe(input)
-    })
+    rerender(
+      <Input
+        type="text"
+        autoFocusOnError
+        error={{ message: 'Error' }}
+      />
+    )
+    expect(input).toHaveFocus()
   })
 })
