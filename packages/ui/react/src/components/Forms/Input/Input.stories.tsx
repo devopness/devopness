@@ -1,21 +1,13 @@
-import { useState } from 'react'
+import type { Meta, StoryObj } from '@storybook/react';
 
-import type { Meta, StoryObj } from '@storybook/react'
-
-import { Input } from './Input'
-import { Container } from './Input.styled'
+import { Input } from './Input';
 
 const meta = {
   title: 'Form/Input',
   component: Input,
-  render: (args) => (
-    <Container>
-      <Input {...args} />
-    </Container>
-  ),
-} satisfies Meta<typeof Input>
+} satisfies Meta<typeof Input>;
 
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof meta>;
 
 const Default: Story = {
   args: {
@@ -40,7 +32,7 @@ const Default: Story = {
       ],
     },
   },
-}
+};
 
 const Error: Story = {
   args: {
@@ -62,46 +54,10 @@ const Error: Story = {
   },
   parameters: {
     controls: {
-      exclude: [
-        'publicStyle',
-      ],
+      exclude: ['publicStyle'],
     },
   },
-  render: (args) => <InputWithErrorToggle {...args} />,
-}
-
-/**
- * Component to demonstrate the error state handling for
- * the Input component by providing a button that toggles
- * the error state.
- */
-const InputWithErrorToggle = (args: React.ComponentProps<typeof Input>) => {
-  const [
-    hasError,
-    setHasError,
-  ] = useState(false)
-
-  return (
-    <div>
-      <Input
-        {...args}
-        error={hasError ? { message: 'This field has an error!' } : undefined}
-      />
-      <button
-        onClick={() => {
-          setHasError((prev) => !prev)
-        }}
-        style={{ marginTop: '1rem' }}
-      >
-        Toggle Error
-      </button>
-      <p style={{ marginTop: '0.5rem', fontSize: '0.875rem', color: '#666' }}>
-        Click the button to toggle error state. The input will automatically
-        focus when the error appears.
-      </p>
-    </div>
-  )
-}
+};
 
 const Number: Story = {
   args: {
@@ -126,7 +82,28 @@ const Number: Story = {
       ],
     },
   },
-}
+};
 
-export default meta
-export { Default, Number, Error }
+const WithAutoFocusOnError: Story = {
+  args: {
+    name: 'name',
+    type: 'text',
+    placeholder: 'This input will auto-focus when error occurs',
+    labelProps: {
+      value: 'Auto-focus on error',
+      helpValue: 'This input will automatically focus when an error occurs',
+    },
+    error: {
+      message: 'This field has an error',
+    },
+    autoFocusOnError: true,
+  },
+  parameters: {
+    controls: {
+      exclude: ['publicStyle'],
+    },
+  },
+};
+
+export { Default, Error, Number, WithAutoFocusOnError };
+export default meta;
