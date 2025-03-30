@@ -27,6 +27,7 @@
     ],
     "module": "ESNext",
     "skipLibCheck": true,
+    "types": ["vitest"],
     
 
     /* Bundler mode */

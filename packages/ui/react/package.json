@@ -21,7 +21,7 @@
     }
   },
   "scripts": {
-    "build": "rm -Rf dist && tsc -b && vite build",
+    "build": "rimraf dist && tsc -b && vite build",
     "build-storybook": "NODE_ENV=production storybook build -c .storybook -o ./storybook-static",
     "lint": "eslint --max-warnings=0 . && prettier --check .",
     "prepublishOnly": "npm run lint && npm test && npm run build",
@@ -97,6 +97,7 @@
     "prettier-plugin-multiline-arrays": "^4.0.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "rimraf": "^6.0.1",
     "storybook": "^8.6.10",
     "typescript": "^5.8.2",
     "typescript-eslint": "~8.28.0",

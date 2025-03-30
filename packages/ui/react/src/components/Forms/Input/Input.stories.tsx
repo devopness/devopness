@@ -1,52 +1,109 @@
-import { render, screen } from '@testing-library/react'
+import type { Meta, StoryObj } from '@storybook/react';
 
-import { Input } from './Input'
+import { Input } from './Input';
 
-describe('Input', () => {
-  it('renders without crashing', () => {
-    render(<Input type="text" />)
-    expect(screen.getByRole('textbox')).toBeInTheDocument()
-  })
+const meta = {
+  title: 'Form/Input',
+  component: Input,
+} satisfies Meta<typeof Input>;
 
-  it('without autoFocusOnError should not focus when error prop changes', () => {
-    const { rerender } = render(
-      <Input
-        type="text"
-        data-testid="test-input"
-      />
-    )
-    const input = screen.getByTestId('test-input')
-    expect(input).not.toHaveFocus()
+type Story = StoryObj<typeof meta>;
 
-    rerender(
-      <Input
-        type="text"
-        error={{ message: 'New error' }}
-        data-testid="test-input"
-      />
-    )
-    expect(input).not.toHaveFocus()
-  })
+const Default: Story = {
+  args: {
+    name: 'name',
+    type: 'text',
+    placeholder: 'Placeholder',
+    labelProps: {
+      value: 'it is a label',
+      helpValue: 'it is a help',
+    },
+    publicStyle: {
+      fontStylePlaceholder: 'Placeholder font style',
+    },
+    disabled: false,
+    readOnly: false,
+  },
+  parameters: {
+    controls: {
+      exclude: [
+        'publicStyle',
+        'error',
+      ],
+    },
+  },
+};
 
-  it('with autoFocusOnError should focus when error prop changes', () => {
-    const { rerender } = render(
-      <Input
-        type="text"
-        autoFocusOnError
-        data-testid="test-input"
-      />
-    )
-    const input = screen.getByTestId('test-input')
-    expect(input).not.toHaveFocus()
+const Error: Story = {
+  args: {
+    name: 'name',
+    type: 'text',
+    placeholder: 'Placeholder',
+    labelProps: {
+      value: 'it is a label',
+      helpValue: 'it is a help',
+    },
+    publicStyle: {
+      fontStylePlaceholder: 'Placeholder font style',
+    },
+    error: {
+      message: 'It is a error message',
+    },
+    disabled: false,
+    readOnly: false,
+  },
+  parameters: {
+    controls: {
+      exclude: ['publicStyle'],
+    },
+  },
+};
 
-    rerender(
-      <Input
-        type="text"
-        autoFocusOnError
-        error={{ message: 'New error' }}
-        data-testid="test-input"
-      />
-    )
-    expect(input).toHaveFocus()
-  })
-})
+const Number: Story = {
+  args: {
+    name: 'name',
+    type: 'number',
+    placeholder: 'Placeholder',
+    labelProps: {
+      value: 'it is a label',
+      helpValue: 'it is a help',
+    },
+    publicStyle: {
+      fontStylePlaceholder: 'Placeholder font style',
+    },
+    disabled: false,
+    readOnly: false,
+  },
+  parameters: {
+    controls: {
+      exclude: [
+        'publicStyle',
+        'error',
+      ],
+    },
+  },
+};
+
+const WithAutoFocusOnError: Story = {
+  args: {
+    name: 'name',
+    type: 'text',
+    placeholder: 'This input will auto-focus when error occurs',
+    labelProps: {
+      value: 'Auto-focus on error',
+      helpValue: 'This input will automatically focus when an error occurs',
+    },
+    error: {
+      message: 'This field has an error',
+    },
+    autoFocusOnError: true,
+  },
+  parameters: {
+    controls: {
+      exclude: ['publicStyle'],
+    },
+  },
+};
+
+export { Default, Error, Number, WithAutoFocusOnError };
+export default meta;
