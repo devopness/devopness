@@ -1,5 +1,52 @@
 # @devopness/ui-react
 
+## 2.157.0
+
+### Minor Changes
+
+- [#1501](https://github.com/devopness/devopness/pull/1501) [`69386d8`](https://github.com/devopness/devopness/commit/69386d8060886db806fdcc5ce339873fd08b06bc) Thanks [@thlmenezes](https://github.com/thlmenezes)! - Add [`components#Card`](./src/components/Templates/Card/Card.tsx) and test utilities
+
+  ### What Changed
+
+  - Added new `Card` component for displaying content in a structured layout
+  - Added test utilities to standardize component testing
+  - Updated Tooltip tests to use new test utilities
+
+  ### Card Component Features
+
+  - Flexible header with avatar/icon, title, and subtitle
+  - Optional indicator display
+  - Customizable footer with actions
+  - Support for tooltips on truncated text
+  - Configurable styling through props
+
+  Example usage:
+
+  ```tsx
+  <Card
+    title="Environment"
+    subtitle="Overview of current environments"
+    avatarProps={{ backgroundColor: 'blue.500' }}
+    icon="cubes"
+    footer={[
+      {
+        label: 'View All',
+        url: '/environments',
+        tooltip: 'View all environments',
+      },
+    ]}
+  />
+  ```
+
+  ### Test Utilities
+
+  Added new test utilities to help write consistent and maintainable tests:
+
+  - `testHoverTooltip`: Standardizes testing of tooltip hover interactions
+  - Additional utilities can be added to the `test-utils` directory
+
+  This change improves testing consistency and reduces duplicate code across component tests.
+
 ## 2.156.0
 
 ### Minor Changes
