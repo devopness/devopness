@@ -3,51 +3,48 @@ import { render, screen } from '@testing-library/react'
 import { Input } from './Input'
 
 describe('Input', () => {
-  beforeEach(() => {
-    // Mock focus to prevent jsdom issues
-    jest
-      .spyOn(HTMLInputElement.prototype, 'focus')
-      .mockImplementation(jest.fn())
-  })
-
-  afterEach(() => {
-    jest.restoreAllMocks()
-  })
-
   it('renders without crashing', () => {
     render(<Input type="text" />)
     expect(screen.getByRole('textbox')).toBeInTheDocument()
   })
 
-  it('does not focus when error prop changes without autoFocusOnError', () => {
-    const { rerender } = render(<Input type="text" />)
-    const input = screen.getByRole('textbox')
+  it('without autoFocusOnError should not focus when error prop changes', () => {
+    const { rerender } = render(
+      <Input
+        type="text"
+        data-testid="test-input"
+      />
+    )
+    const input = screen.getByTestId('test-input')
     expect(input).not.toHaveFocus()
 
     rerender(
       <Input
         type="text"
-        error={{ message: 'Error' }}
+        error={{ message: 'New error' }}
+        data-testid="test-input"
       />
     )
     expect(input).not.toHaveFocus()
   })
 
-  it('focuses when error prop changes with autoFocusOnError', () => {
+  it('with autoFocusOnError should focus when error prop changes', () => {
     const { rerender } = render(
       <Input
         type="text"
         autoFocusOnError
+        data-testid="test-input"
       />
     )
-    const input = screen.getByRole('textbox')
+    const input = screen.getByTestId('test-input')
     expect(input).not.toHaveFocus()
 
     rerender(
       <Input
         type="text"
         autoFocusOnError
-        error={{ message: 'Error' }}
+        error={{ message: 'New error' }}
+        data-testid="test-input"
       />
     )
     expect(input).toHaveFocus()
