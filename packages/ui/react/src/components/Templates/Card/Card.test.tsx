@@ -123,7 +123,6 @@ describe('Card', () => {
 
       const header = screen.getByTestId('card-header')
       expect(header).toBeInTheDocument()
-      console.log(window.getComputedStyle(header as Element))
       expect(header).toHaveStyle({
         'border-bottom-color': 'rgb(220, 236, 255)',
       })
