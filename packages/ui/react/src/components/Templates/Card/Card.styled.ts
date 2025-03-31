@@ -82,8 +82,10 @@ const StyledHeader = styled.div<StyledHeaderProps>`
   align-items: center;
   background-color: ${({ $backgroundColor }) =>
     getColor($backgroundColor ?? 'transparent')};
-  border-bottom: ${({ $hideBorder }) =>
-    $hideBorder ? 'none' : `1px solid ${getColor('slate.300')}`};
+  border-bottom: ${({ $borderBottomColor, $hideBorder }) =>
+    $hideBorder
+      ? 'none'
+      : `1px solid ${getColor($borderBottomColor ?? 'slate.300')}`};
   box-sizing: border-box;
   color: ${getColor('gray.615')};
   display: grid;
