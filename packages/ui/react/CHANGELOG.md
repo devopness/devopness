@@ -1,5 +1,31 @@
 # @devopness/ui-react
 
+## 2.158.0
+
+### Minor Changes
+
+- [#1515](https://github.com/devopness/devopness/pull/1515) [`e4de917`](https://github.com/devopness/devopness/commit/e4de917742db54d705494a1e8e2403d54bfaef92) Thanks [@thlmenezes](https://github.com/thlmenezes)! - Add `borderBottomColor` prop to Card component header
+
+  ### What Changed
+
+  - Added new `borderBottomColor` prop to Card's `headerProps` for customizing the bottom border color
+  - Updated tests to verify border color styling behavior
+  - Maintains backward compatibility with existing header styling options
+
+  ### Example Usage
+
+  ```tsx
+  <Card
+    title="Example Card"
+    headerProps={{
+      backgroundColor: 'blue.100',
+      borderBottomColor: 'purple.500', // New prop
+    }}
+  />
+  ```
+
+  This enhancement provides more flexibility in styling Card headers by allowing separate control of the border color, independent of the background color.
+
 ## 2.157.0
 
 ### Minor Changes
