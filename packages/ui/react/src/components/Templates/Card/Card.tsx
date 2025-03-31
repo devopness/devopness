@@ -55,6 +55,7 @@ type CardProps = React.PropsWithChildren<{
    */
   headerProps?: {
     backgroundColor?: Color
+    borderBottomColor?: Color
   }
   /**
    * Icon to display in the card
@@ -148,6 +149,7 @@ const Card = ({ children, ...props }: CardProps) => (
       <StyledHeader
         data-testid="card-header"
         $backgroundColor={props.headerProps?.backgroundColor}
+        $borderBottomColor={props.headerProps?.borderBottomColor}
         $hideBorder={!props.footer && !children}
       >
         <StyledAvatar $backgroundColor={props.avatarProps.backgroundColor}>

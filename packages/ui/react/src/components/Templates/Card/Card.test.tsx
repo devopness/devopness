@@ -80,20 +80,77 @@ describe('Card', () => {
       expect(screen.getByText('+99')).toBeInTheDocument()
     })
 
-    it('with custom header colors', () => {
+    it('with custom header background color', () => {
       render(
         <Card
           {...defaultProps}
           headerProps={{
             backgroundColor: 'blue.100',
           }}
+          // Without any footer, the border will be hidden
+          footer={[
+            {
+              label: 'Settings',
+              url: '/settings',
+            },
+          ]}
         />
       )
 
       const header = screen.getByTestId('card-header')
       expect(header).toBeInTheDocument()
       expect(header).toHaveStyle({
-        backgroundColor: 'rgb(220, 236, 255)',
+        'background-color': 'rgb(220, 236, 255)',
+      })
+    })
+
+    it('with custom header border bottom color', () => {
+      render(
+        <Card
+          {...defaultProps}
+          headerProps={{
+            borderBottomColor: 'blue.100',
+          }}
+          // Without any footer, the border will be hidden
+          footer={[
+            {
+              label: 'Settings',
+              url: '/settings',
+            },
+          ]}
+        />
+      )
+
+      const header = screen.getByTestId('card-header')
+      expect(header).toBeInTheDocument()
+      expect(header).toHaveStyle({
+        'border-bottom-color': 'rgb(220, 236, 255)',
+      })
+    })
+
+    it('with both header background and border colors', () => {
+      render(
+        <Card
+          {...defaultProps}
+          headerProps={{
+            backgroundColor: 'blue.100',
+            borderBottomColor: 'purple.800',
+          }}
+          // Without any footer, the border will be hidden
+          footer={[
+            {
+              label: 'Settings',
+              url: '/settings',
+            },
+          ]}
+        />
+      )
+
+      const header = screen.getByTestId('card-header')
+      expect(header).toBeInTheDocument()
+      expect(header).toHaveStyle({
+        'background-color': 'rgb(220, 236, 255)',
+        'border-bottom-color': 'rgb(120, 110, 253)',
       })
     })
 
