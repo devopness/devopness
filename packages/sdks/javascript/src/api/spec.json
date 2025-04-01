@@ -4969,6 +4969,397 @@
         }
       }
     },
+    "/organizations": {
+      "get": {
+        "summary": "List all organizations of authenticated user",
+        "operationId": "listOrganizations",
+        "tags": [
+          "Organizations"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrganizationList"
+                }
+              }
+            },
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new organization",
+        "operationId": "addOrganization",
+        "tags": [
+          "Organizations"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Organization"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrganizationCreate"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/organizations/{organization_id}": {
+      "get": {
+        "summary": "Get an organization by ID or URL Slug",
+        "operationId": "getOrganization",
+        "tags": [
+          "Organizations"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "organization_id",
+            "description": "The numeric ID or URL Slug of an organization.",
+            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Organization"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update an existing organization",
+        "operationId": "updateOrganization",
+        "tags": [
+          "Organizations"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "organization_id",
+            "description": "The numeric ID or URL Slug of an organization.",
+            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrganizationUpdate"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/organizations/{organization_id}/activity": {
+      "get": {
+        "summary": "Get activity information for an organization",
+        "operationId": "getOrganizationActivity",
+        "tags": [
+          "Organizations"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "organization_id",
+            "description": "The numeric ID or URL Slug of an organization.",
+            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrganizationActivity"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/organizations/{organization_id}/environments": {
+      "get": {
+        "summary": "Return a list of all environments owned by an organization",
+        "operationId": "listOrganizationEnvironments",
+        "tags": [
+          "Organizations - Environments"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "organization_id",
+            "description": "The numeric ID or URL Slug of an organization.",
+            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EnvironmentList"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/organizations/{organization_id}/projects": {
+      "get": {
+        "summary": "Return a list of all projects owned by an organization",
+        "operationId": "listOrganizationProjects",
+        "tags": [
+          "Organizations - Projects"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "organization_id",
+            "description": "The numeric ID or URL Slug of an organization.",
+            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectList"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/pipelines/{pipeline_id}": {
       "delete": {
         "summary": "Delete a given Pipeline",
@@ -5884,7 +6275,7 @@
         }
       },
       "post": {
-        "summary": "Create a project",
+        "summary": "Create a project for a user or an organization",
         "operationId": "addProject",
         "tags": [
           "Projects"
@@ -10496,7 +10887,7 @@
     },
     "/users/{user_id}": {
       "get": {
-        "summary": "Get a user by ID",
+        "summary": "Get a user by ID or URL Slug",
         "operationId": "getUser",
         "tags": [
           "Users"
@@ -10514,12 +10905,11 @@
           {
             "in": "path",
             "name": "user_id",
-            "description": "The ID of the user.",
-            "example": 123,
+            "description": "The numeric ID or URL Slug of a user.",
+            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
             "required": true,
             "schema": {
-              "type": "integer",
-              "minimum": 1
+              "type": "string"
             }
           }
         ],
@@ -10566,11 +10956,10 @@
             "in": "path",
             "name": "user_id",
             "description": "The ID of the user.",
-            "example": 123,
+            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
             "required": true,
             "schema": {
-              "type": "integer",
-              "minimum": 1
+              "type": "string"
             }
           }
         ],
@@ -10614,7 +11003,7 @@
     },
     "/users/{user_id}/activity": {
       "get": {
-        "summary": "Get current user's activity info",
+        "summary": "Get activity information for a user",
         "operationId": "getUserActivity",
         "tags": [
           "Users"
@@ -10632,12 +11021,11 @@
           {
             "in": "path",
             "name": "user_id",
-            "description": "The ID of the user.",
-            "example": 123,
+            "description": "The numeric ID or URL Slug of a user.",
+            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
             "required": true,
             "schema": {
-              "type": "integer",
-              "minimum": 1
+              "type": "string"
             }
           }
         ],
@@ -10667,7 +11055,7 @@
     },
     "/users/{user_id}/environments": {
       "get": {
-        "summary": "Return a list of all environments owned by the current user",
+        "summary": "Return a list of all environments owned by a user",
         "operationId": "listUserEnvironments",
         "tags": [
           "Users - Environments"
@@ -10701,12 +11089,11 @@
           {
             "in": "path",
             "name": "user_id",
-            "description": "The ID of the user.",
-            "example": 123,
+            "description": "The numeric ID or URL Slug of a user.",
+            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
             "required": true,
             "schema": {
-              "type": "integer",
-              "minimum": 1
+              "type": "string"
             }
           }
         ],
@@ -10736,7 +11123,7 @@
     },
     "/users/{user_id}/projects": {
       "get": {
-        "summary": "Return a list of all projects owned by the current user",
+        "summary": "Return a list of all projects owned by a user",
         "operationId": "listUserProjects",
         "tags": [
           "Users - Projects"
@@ -10770,12 +11157,11 @@
           {
             "in": "path",
             "name": "user_id",
-            "description": "The ID of the user.",
-            "example": 123,
+            "description": "The numeric ID or URL Slug of a user.",
+            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
             "required": true,
             "schema": {
-              "type": "integer",
-              "minimum": 1
+              "type": "string"
             }
           }
         ],
@@ -17444,6 +17830,158 @@
           "$ref": "#/components/schemas/OperationCustomSettings"
         }
       },
+      "Organization": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "The unique identifier for the organization",
+            "example": 16523,
+            "type": "integer"
+          },
+          "name": {
+            "description": "The name of the organization",
+            "example": "My Organization",
+            "type": "string"
+          },
+          "url_slug": {
+            "description": "The URL Slug of the organization",
+            "example": "MyOrganization",
+            "type": "string"
+          },
+          "owner": {
+            "$ref": "#/components/schemas/UserRelation"
+          },
+          "created_at": {
+            "description": "The date and time when the organization was created",
+            "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string"
+          },
+          "updated_at": {
+            "description": "The date and time when the organization was last updated",
+            "example": "2019-09-25T13:52:04.000000Z",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "url_slug",
+          "owner",
+          "created_at",
+          "updated_at"
+        ]
+      },
+      "OrganizationActivity": {
+        "type": "object",
+        "properties": {
+          "projects": {
+            "$ref": "#/components/schemas/UserProjectStats"
+          },
+          "environments": {
+            "$ref": "#/components/schemas/UserEnvironmentStats"
+          },
+          "teams": {
+            "$ref": "#/components/schemas/UserTeamStats"
+          },
+          "triggered_actions": {
+            "$ref": "#/components/schemas/TriggeredActions"
+          }
+        },
+        "required": [
+          "projects",
+          "environments",
+          "teams",
+          "triggered_actions"
+        ]
+      },
+      "OrganizationCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "The Name of the organization. Must not be greater than 255 characters.",
+            "example": "My Org",
+            "type": "string"
+          },
+          "url_slug": {
+            "description": "The URL Slug of the organization. Must not be greater than 255 characters.",
+            "example": "MyOrg",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "url_slug"
+        ]
+      },
+      "OrganizationList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/OrganizationRelation"
+        }
+      },
+      "OrganizationRelation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "The unique identifier for the organization",
+            "example": 16523,
+            "type": "integer"
+          },
+          "name": {
+            "description": "The name of the organization",
+            "example": "My Organization",
+            "type": "string"
+          },
+          "url_slug": {
+            "description": "The URL Slug of the organization",
+            "example": "MyOrganization",
+            "type": "string"
+          },
+          "created_at": {
+            "description": "The date and time when the organization was created",
+            "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string"
+          },
+          "updated_at": {
+            "description": "The date and time when the organization was last updated",
+            "example": "2019-09-25T13:52:04.000000Z",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "url_slug",
+          "created_at",
+          "updated_at"
+        ],
+        "nullable": true
+      },
+      "OrganizationUpdate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "The unique ID of the given Organization.",
+            "example": 1,
+            "type": "string"
+          },
+          "name": {
+            "description": "The Name of the organization. Must not be greater than 255 characters.",
+            "example": "My Org",
+            "type": "string"
+          },
+          "url_slug": {
+            "description": "The URL Slug of the organization. Must not be greater than 255 characters.",
+            "example": "MyOrg",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "url_slug"
+        ]
+      },
       "OsUsers": {
         "description": "The list of the operating system users found in all the servers linked to a project",
         "type": "array",
@@ -17951,6 +18489,11 @@
             "description": "The name of the project. Must not be greater than 60 characters.",
             "example": "my project",
             "type": "string"
+          },
+          "organization_id": {
+            "description": "The ID of the organization that owns the project.",
+            "example": 12345,
+            "type": "integer"
           },
           "logo_image": {
             "description": "A base64 string representation of the logo image.",
@@ -21749,7 +22292,12 @@
           },
           "email": {
             "description": "The e-mail that will uniquely identify the user on the system and become its login credential",
-            "example": "user@example.com",
+            "example": "someone@example.com",
+            "type": "string"
+          },
+          "url_slug": {
+            "description": "The URL Slug of the user",
+            "example": "someone",
             "type": "string"
           },
           "language": {
@@ -21778,6 +22326,7 @@
           "id",
           "name",
           "email",
+          "url_slug",
           "language",
           "active",
           "social_accounts",
@@ -21920,7 +22469,12 @@
           },
           "email": {
             "description": "The e-mail that will uniquely identify the user on the system and become its login credential",
-            "example": "user@example.com",
+            "example": "someone@example.com",
+            "type": "string"
+          },
+          "url_slug": {
+            "description": "The URL Slug of the user",
+            "example": "someone",
             "type": "string"
           },
           "language": {
@@ -21949,6 +22503,7 @@
           "id",
           "name",
           "email",
+          "url_slug",
           "language",
           "active",
           "social_accounts",
@@ -22127,6 +22682,11 @@
             "example": "user@example.com",
             "type": "string"
           },
+          "url_slug": {
+            "description": "The URL Slug of the user. Must not be greater than 255 characters.",
+            "example": "ComTruise",
+            "type": "string"
+          },
           "language": {
             "$ref": "#/components/schemas/Language"
           }
@@ -22134,7 +22694,8 @@
         "required": [
           "id",
           "name",
-          "email"
+          "email",
+          "url_slug"
         ]
       },
       "UserUrl": {
@@ -22166,6 +22727,11 @@
           "name": {
             "description": "The new user name to account. Must be at least 3 characters. Must not be greater than 255 characters.",
             "example": "My Name",
+            "type": "string"
+          },
+          "url_slug": {
+            "description": "The URL Slug of the account. Must not be greater than 255 characters.",
+            "example": "MyName",
             "type": "string"
           },
           "password": {
