@@ -1,5 +1,22 @@
 # @devopness/sdk-js
 
+## 2.161.0
+
+### Minor Changes
+
+- [#1530](https://github.com/devopness/devopness/pull/1530) [`09b7be4`](https://github.com/devopness/devopness/commit/09b7be4d81b96da798c77f722771c7b9c41434d2) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Add Support for Organization
+
+  Include methods to:
+
+  - Create Organization
+  - List Organizations
+  - Get Organization
+  - Update Organization
+  - Get Organization Activity
+  - Get Organization Environments
+  - Get Organization Projects
+  - Create Project to Organization
+
 ## 2.160.0
 
 ### Minor Changes
