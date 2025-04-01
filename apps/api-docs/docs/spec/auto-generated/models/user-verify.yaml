@@ -13,6 +13,10 @@ properties:
     description: 'The new user name to account. Must be at least 3 characters. Must not be greater than 255 characters.'
     example: 'My Name'
     type: string
+  url_slug:
+    description: 'The URL Slug of the account. Must not be greater than 255 characters.'
+    example: MyName
+    type: string
   password:
     description: 'The new password to account. Must be at least 8 characters.'
     example: my-password

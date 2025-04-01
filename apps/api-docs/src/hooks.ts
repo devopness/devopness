@@ -105,6 +105,8 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
             'credential_cloud_provider': ['addEnvironmentNetwork201'],
             'credential_source_provider': ['addEnvironmentApplication201'],
 
+            'organization': ['addOrganization201'],
+
             // `user`, `user_credentials` and `user_login` are available after successful
             // `addUser202` transaction, which hardcodes values for those two
             // fixtures, replacing the value defined on `fixtureTypes.ts`
@@ -157,7 +159,8 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         ['addEnvironmentApplication201', 'linkResourceLinkToResourceLink204'],
         ['linkResourceLinkToResourceLink204', 'unlinkResourceLinkFromResourceLink204'],
         ['addEnvironmentDaemon201', 'linkResourceLinkToResourceLink204'],
-        ['getService200', 'getStatusService204']
+        ['getService200', 'getStatusService204'],
+        ['deleteOrganization204', 'addOrganization201'],
     ]);
 
     let apiSpec = new OpenAPISpec(logger);
@@ -282,6 +285,11 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     before('refreshTokenUser200', utils.setTransactionRequestBodyToFixture<UserTokens>('user_login_response'));
     // after('getUserlogout204', (transaction: Transaction) => { if (transaction.test.valid) { fixtures.delete('user_login_response'); } });
 
+    before('addOrganization201', utils.rewriteTransactionRequestBody((body: any) => {
+        body['name'] = `API Docs Test Organization ${new Date().getTime()}`;
+        delete body['url_slug'];
+    }));
+
     //// servers
 
     const beforeCreateServer = (transaction: Transaction) => {
@@ -310,6 +318,9 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         body['name'] = `test-project-${new Date().getTime()}`
     };
     before('addProject201', utils.rewriteTransactionRequestBody(randomizeName));
+    before('addProject201', utils.rewriteTransactionRequestBody((body: any) => {
+      delete body['organization_id'];
+    }));
     before('updateProject204', utils.rewriteTransactionRequestBody(randomizeName));
 
     before('addEnvironmentApplication201', utils.rewriteTransactionRequestBody((body: any) => {

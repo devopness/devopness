@@ -11,7 +11,11 @@ properties:
     type: string
   email:
     description: 'The e-mail that will uniquely identify the user on the system and become its login credential'
-    example: user@example.com
+    example: someone@example.com
+    type: string
+  url_slug:
+    description: 'The URL Slug of the user'
+    example: someone
     type: string
   language:
     $ref: '#/components/schemas/Language'
@@ -33,6 +37,7 @@ required:
   - id
   - name
   - email
+  - url_slug
   - language
   - active
   - social_accounts

@@ -13,9 +13,14 @@ properties:
     description: 'The e-mail that will uniquely identify the user on the system and become its login credential. Must be a valid email address.'
     example: user@example.com
     type: string
+  url_slug:
+    description: 'The URL Slug of the user. Must not be greater than 255 characters.'
+    example: ComTruise
+    type: string
   language:
     $ref: '#/components/schemas/Language'
 required:
   - id
   - name
   - email
+  - url_slug

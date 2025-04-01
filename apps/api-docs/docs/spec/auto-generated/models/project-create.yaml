@@ -5,6 +5,10 @@ properties:
     description: 'The name of the project. Must not be greater than 60 characters.'
     example: 'my project'
     type: string
+  organization_id:
+    description: 'The ID of the organization that owns the project.'
+    example: 12345
+    type: integer
   logo_image:
     description: 'A base64 string representation of the logo image.'
     example: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACA.../AgwAgJqsE2/7ccAAAAAASUVORK5CYII='

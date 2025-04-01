@@ -353,6 +353,18 @@ OperationCustomSettings:
   $ref: ./auto-generated/models/operation-custom-settings.yaml
 OperationCustomSettingsList:
   $ref: ./auto-generated/models/operation-custom-settings-list.yaml
+Organization:
+  $ref: ./auto-generated/models/organization.yaml
+OrganizationActivity:
+  $ref: ./auto-generated/models/organization-activity.yaml
+OrganizationCreate:
+  $ref: ./auto-generated/models/organization-create.yaml
+OrganizationList:
+  $ref: ./auto-generated/models/organization-list.yaml
+OrganizationRelation:
+  $ref: ./auto-generated/models/organization-relation.yaml
+OrganizationUpdate:
+  $ref: ./auto-generated/models/organization-update.yaml
 OsUsers:
   $ref: ./auto-generated/models/os-users.yaml
 PasswordResetResponse:

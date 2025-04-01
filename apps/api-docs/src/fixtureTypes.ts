@@ -147,6 +147,13 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
         { path: 'id', fixture: 'network_rule', field: 'id' },
         { path: 'servers[0]', fixture: 'server', field: 'id' },
     ],
+    'organization': [],
+    'organization_create': [],
+    'organization_update': [
+        { path: 'id', fixture: 'organization', field: 'id' },
+        { path: 'name', fixture: 'organization', field: 'name' },
+        { path: 'url_slug', fixture: 'organization', field: 'url_slug' },
+    ],
     'daemon': [],
     'daemon_environment_create': [
         { path: 'application_id', fixture: 'application', field: 'id' },
