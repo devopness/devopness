@@ -478,4 +478,33 @@ describe('Card', () => {
       })
     })
   })
+
+  describe('url behavior', () => {
+    it('makes card header clickable when url is provided', () => {
+      const { rerender } = render(
+        <Card
+          {...defaultProps}
+          url="/test-url"
+        />
+      )
+
+      const link = screen.getByText('Test Card').closest('a')
+      expect(link).toHaveAttribute('href', '/test-url')
+      // Default target is _blank for @devopness/ui-react:Link component
+      expect(link).toHaveAttribute('target', '_blank')
+
+      rerender(
+        <Card
+          {...defaultProps}
+          url={{
+            to: '/test-url-2',
+            target: '_self',
+          }}
+        />
+      )
+
+      expect(link).toHaveAttribute('href', '/test-url-2')
+      expect(link).toHaveAttribute('target', '_self')
+    })
+  })
 })
