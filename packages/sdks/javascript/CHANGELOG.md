@@ -4,7 +4,7 @@
 
 ### Minor Changes
 
-- [#1530](https://github.com/devopness/devopness/pull/1530) [`09b7be4`](https://github.com/devopness/devopness/commit/09b7be4d81b96da798c77f722771c7b9c41434d2) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Add Support for Organization
+- [#1530](https://github.com/devopness/devopness/pull/1530) [`09b7be4`](https://github.com/devopness/devopness/commit/09b7be4d81b96da798c77f722771c7b9c41434d2) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Add Support for Organizations
 
   Include methods to:
 
