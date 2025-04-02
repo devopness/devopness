@@ -13,6 +13,7 @@ import type { Color } from 'src/colors'
 import { Button } from 'src/components/Buttons/Button'
 import type { IconProps } from 'src/components/Primitives/Icon'
 import { Icon } from 'src/components/Primitives/Icon'
+import type { LinkProps } from 'src/components/Primitives/Link'
 import { Link } from 'src/components/Primitives/Link'
 import type { TooltipProps } from 'src/components/Primitives/Tooltip'
 import { Tooltip } from 'src/components/Primitives/Tooltip'
@@ -48,7 +49,7 @@ type CardProps = React.PropsWithChildren<{
     /**
      * URL to navigate to when footer item is clicked
      */
-    url?: string
+    url?: LinkProps['to'] | Omit<LinkProps, 'style'>
   }[]
   /**
    * Props for the header
@@ -84,7 +85,7 @@ type CardProps = React.PropsWithChildren<{
   /**
    * URL to navigate to when card is clicked
    */
-  url?: string
+  url?: LinkProps['to'] | Omit<LinkProps, 'style'>
 }>
 
 /**
@@ -144,7 +145,8 @@ const Card = ({ children, ...props }: CardProps) => (
         marginRight: 'auto',
         width: '100%',
       }}
-      to={props.url}
+      {...(typeof props.url === 'object' ? props.url : undefined)}
+      to={typeof props.url === 'object' ? props.url.to : props.url}
     >
       <StyledHeader
         data-testid="card-header"
@@ -207,13 +209,14 @@ const Card = ({ children, ...props }: CardProps) => (
             <Link
               hideExternalUrlIcon
               hideUnderline
-              to={footer.url}
               style={{
                 alignItems: 'center',
                 display: 'flex',
                 gap: '0.5rem',
                 marginRight: 'auto',
               }}
+              {...(typeof footer.url === 'object' ? footer.url : undefined)}
+              to={typeof footer.url === 'object' ? footer.url.to : footer.url}
             >
               {typeof footer.icon === 'object' && (
                 <Icon
