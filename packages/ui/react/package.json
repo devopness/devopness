@@ -58,7 +58,7 @@
   "homepage": "https://github.com/devopness/devopness#readme",
   "dependencies": {
     "@mui/material": "^6.4.10",
-    "@mui/styled-engine-sc": "^6.4.6",
+    "@mui/styled-engine-sc": "^6.4.9",
     "ldrs": "^1.1.6",
     "lodash": "^4.17.21",
     "material-ui-popup-state": "^5.3.3",
