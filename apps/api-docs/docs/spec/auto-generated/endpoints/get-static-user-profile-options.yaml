@@ -4,7 +4,7 @@ operationId: getStaticUserProfileOptions
 description:
   $ref: ../spec/descriptions/get-static-user-profile-options.md
 tags:
-  - 'Static Data - User Profile Options'
+  - 'Static Data'
 parameters:
   -
     $ref: '#/components/parameters/acceptHeader'

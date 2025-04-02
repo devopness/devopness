@@ -13,6 +13,8 @@ properties:
     description: 'The URL Slug of the organization'
     example: MyOrganization
     type: string
+  resource_summary:
+    $ref: '#/components/schemas/ResourceSummaryList'
   created_at:
     description: 'The date and time when the organization was created'
     example: '2019-09-25T15:50:48.000000Z'

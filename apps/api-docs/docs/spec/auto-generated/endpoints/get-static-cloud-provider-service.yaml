@@ -4,7 +4,7 @@ operationId: getStaticCloudProviderService
 description:
   $ref: ../spec/descriptions/get-static-cloud-provider-service.md
 tags:
-  - 'Static Data - Cloud Provider Services'
+  - 'Static Data'
 parameters:
   -
     $ref: '#/components/parameters/acceptHeader'

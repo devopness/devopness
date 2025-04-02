@@ -4,7 +4,7 @@ operationId: getStaticApplicationOptions
 description:
   $ref: ../spec/descriptions/get-static-application-options.md
 tags:
-  - 'Static Data - Application Options'
+  - 'Static Data'
 parameters:
   -
     $ref: '#/components/parameters/acceptHeader'

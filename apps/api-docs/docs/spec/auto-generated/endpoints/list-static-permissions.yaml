@@ -4,7 +4,7 @@ operationId: listStaticPermissions
 description:
   $ref: ../spec/descriptions/list-static-permissions.md
 tags:
-  - 'Static Data - Permissions'
+  - 'Static Data'
 parameters:
   -
     $ref: '#/components/parameters/acceptHeader'

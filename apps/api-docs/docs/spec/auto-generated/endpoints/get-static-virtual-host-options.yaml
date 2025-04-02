@@ -4,7 +4,7 @@ operationId: getStaticVirtualHostOptions
 description:
   $ref: ../spec/descriptions/get-static-virtual-host-options.md
 tags:
-  - 'Static Data - Virtual Host Options'
+  - 'Static Data'
 parameters:
   -
     $ref: '#/components/parameters/acceptHeader'

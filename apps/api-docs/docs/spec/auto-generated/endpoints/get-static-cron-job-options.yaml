@@ -4,7 +4,7 @@ operationId: getStaticCronJobOptions
 description:
   $ref: ../spec/descriptions/get-static-cron-job-options.md
 tags:
-  - 'Static Data - Cron Job Options'
+  - 'Static Data'
 parameters:
   -
     $ref: '#/components/parameters/acceptHeader'

@@ -4,7 +4,7 @@ operationId: getStaticEnvironmentOptions
 description:
   $ref: ../spec/descriptions/get-static-environment-options.md
 tags:
-  - 'Static Data - Environment Options'
+  - 'Static Data'
 parameters:
   -
     $ref: '#/components/parameters/acceptHeader'

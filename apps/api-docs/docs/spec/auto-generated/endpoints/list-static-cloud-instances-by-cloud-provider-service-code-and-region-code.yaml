@@ -4,7 +4,7 @@ operationId: listStaticCloudInstancesByCloudProviderServiceCodeAndRegionCode
 description:
   $ref: ../spec/descriptions/list-static-cloud-instances-by-cloud-provider-service-code-and-region-code.md
 tags:
-  - 'Static Data - Cloud Provider Service Instances'
+  - 'Static Data'
 parameters:
   -
     $ref: '#/components/parameters/acceptHeader'

@@ -13,6 +13,8 @@ properties:
     description: 'The URL Slug of the organization'
     example: MyOrganization
     type: string
+  resource_summary:
+    $ref: '#/components/schemas/ResourceSummaryList'
   owner:
     $ref: '#/components/schemas/UserRelation'
   created_at:

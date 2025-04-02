@@ -4,7 +4,7 @@ operationId: getStaticServerOptions
 description:
   $ref: ../spec/descriptions/get-static-server-options.md
 tags:
-  - 'Static Data - Server Options'
+  - 'Static Data'
 parameters:
   -
     $ref: '#/components/parameters/acceptHeader'

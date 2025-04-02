@@ -4,7 +4,7 @@ operationId: listStaticResourceTypes
 description:
   $ref: ../spec/descriptions/list-static-resource-types.md
 tags:
-  - 'Static Data - Resource Types'
+  - 'Static Data'
 parameters:
   -
     $ref: '#/components/parameters/acceptHeader'
