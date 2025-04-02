@@ -30,7 +30,7 @@ import {
   FaUserTimes,
 } from 'react-icons/fa'
 import { FiGitBranch, FiLogOut, FiPlusCircle, FiServer } from 'react-icons/fi'
-import { GoGitCommit, GoKey, GoPasskeyFill, GoSkip } from 'react-icons/go'
+import { GoGitCommit, GoKey, GoOrganization, GoPasskeyFill, GoSkip } from 'react-icons/go'
 import { GrClose, GrConnect, GrLaunch } from 'react-icons/gr'
 import { ImTree } from 'react-icons/im'
 import { IoMdEye, IoMdEyeOff } from 'react-icons/io'
@@ -114,6 +114,7 @@ const mdOutlineShieldLockSVG = getImageAssetUrl(
 const devopnessSymbolSVG = getImageAssetUrl('logo-symbol-devopness.svg')
 
 const iconList = [
+  { type: 'icon', accessor: 'organization', component: GoOrganization },
   { type: 'icon', accessor: 'link', component: AiOutlineLink },
   { type: 'icon', accessor: 'unlink', component: BiUnlink },
   { type: 'icon', accessor: 'tag', component: PiTagDuotone },
