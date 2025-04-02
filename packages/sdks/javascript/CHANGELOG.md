@@ -1,5 +1,11 @@
 # @devopness/sdk-js
 
+## 2.161.1
+
+### Patch Changes
+
+- [#1532](https://github.com/devopness/devopness/pull/1532) [`43e8ef1`](https://github.com/devopness/devopness/commit/43e8ef1ac3dea78f4afa7276f56a019916602dc7) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Expose organization service in Devopness API
+
 ## 2.161.0
 
 ### Minor Changes
