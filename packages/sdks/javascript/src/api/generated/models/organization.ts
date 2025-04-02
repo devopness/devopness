@@ -12,6 +12,7 @@
  */
 
 
+import { ResourceSummaryItem } from './resource-summary-item';
 import { UserRelation } from './user-relation';
 
 /**
@@ -38,6 +39,12 @@ export interface Organization {
      * @memberof Organization
      */
     url_slug: string;
+    /**
+     * Summary of the resource
+     * @type {Array<ResourceSummaryItem>}
+     * @memberof Organization
+     */
+    resource_summary?: Array<ResourceSummaryItem>;
     /**
      * 
      * @type {UserRelation}
