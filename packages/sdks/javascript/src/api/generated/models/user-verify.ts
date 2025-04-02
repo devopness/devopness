@@ -38,6 +38,12 @@ export interface UserVerify {
      */
     name: string;
     /**
+     * The URL Slug of the account. Must not be greater than 255 characters.
+     * @type {string}
+     * @memberof UserVerify
+     */
+    url_slug?: string;
+    /**
      * The new password to account. Must be at least 8 characters.
      * @type {string}
      * @memberof UserVerify

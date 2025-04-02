@@ -26,7 +26,7 @@ import { ProjectUpdate } from '../../generated/models';
 export class ProjectsApiService extends ApiBaseService {
     /**
      * 
-     * @summary Create a project
+     * @summary Create a project for a user or an organization
      * @param {ProjectCreate} projectCreate A JSON object containing the resource data
      */
     public async addProject(projectCreate: ProjectCreate): Promise<ApiResponse<Project>> {
