@@ -4,7 +4,9 @@
 
 ### Minor Changes
 
-- [#1536](https://github.com/devopness/devopness/pull/1536) [`147c541`](https://github.com/devopness/devopness/commit/147c5411bfd29c0324584ad41ee60f07f5c74c76) Thanks [@devopness-automations](https://github.com/devopness-automations)! - ## ⚠️ Breaking Change
+- [#1536](https://github.com/devopness/devopness/pull/1536) [`147c541`](https://github.com/devopness/devopness/commit/147c5411bfd29c0324584ad41ee60f07f5c74c76) Thanks [@Diegiwg](https://github.com/Diegiwg)!
+
+  ## ⚠️ Breaking Change
 
   ### What changed?
 
@@ -37,7 +39,7 @@
 
   Replace all occurrences of static service calls, e.g., `static.applicationOptions.getStaticApplicationOptions()` with `static.getStaticApplicationOptions()`.
 
-- [#1536](https://github.com/devopness/devopness/pull/1536) [`147c541`](https://github.com/devopness/devopness/commit/147c5411bfd29c0324584ad41ee60f07f5c74c76) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Added resource summary in organization get and list methods
+- [#1536](https://github.com/devopness/devopness/pull/1536) [`147c541`](https://github.com/devopness/devopness/commit/147c5411bfd29c0324584ad41ee60f07f5c74c76) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Added resource summary in organization get and list methods
 
 ## 2.161.1
 
