@@ -1,5 +1,45 @@
 # @devopness/ui-react
 
+## 2.159.0
+
+### Minor Changes
+
+- [#1529](https://github.com/devopness/devopness/pull/1529) [`f32f1ac`](https://github.com/devopness/devopness/commit/f32f1ac512c0c4727500bb312e274f6ed005e9f1) Thanks [@thlmenezes](https://github.com/thlmenezes)! - Enhanced Card component URL handling
+
+  ### What Changed
+
+  - Updated Card component's URL handling to support full LinkProps configuration
+  - Added support for all Link component props (except 'style') in:
+    - Card's main `url` prop
+    - Footer action `url` properties
+  - Enables granular control over link behavior including `target`, `rel`, and other Link component properties
+
+  ### Example Usage
+
+  ```tsx
+  <Card
+    title="Example Card"
+    url="/dashboard"
+    urlProps={{
+      target: '_blank',
+      rel: 'noopener',
+      hideExternalUrlIcon: true,
+    }}
+    footer={[
+      {
+        label: 'View Details',
+        url: '/details',
+        urlProps: {
+          target: '_self',
+          hideExternalUrlIcon: true,
+        },
+      },
+    ]}
+  />
+  ```
+
+  This enhancement provides more flexibility in configuring Card's link behavior while maintaining backward compatibility with existing Card implementations.
+
 ## 2.158.0
 
 ### Minor Changes
