@@ -462,6 +462,7 @@ const iconLoader = (
   const Icon = iconList.find((icon) => icon.name === name)
 
   switch (Icon?.type) {
+    case 'deprecated-icon':
     case 'icon':
       return (
         <Icon.component
