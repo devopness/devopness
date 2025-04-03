@@ -8,7 +8,7 @@ const meta = {
   argTypes: {
     name: {
       control: 'select',
-      options: iconList.map(({ accessor }) => accessor),
+      options: iconList.map(({ name }) => name),
     },
     opacity: {
       control: 'range',
