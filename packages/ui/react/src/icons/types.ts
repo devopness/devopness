@@ -3,7 +3,7 @@ import type { deprecatedToNewIconMap, iconList } from './iconLoader'
 /**
  * Lists all valid icon accessors available in the iconList
  */
-type Icon = (typeof iconList)[number]['accessor']
+type Icon = (typeof iconList)[number]['name']
 
 /**
  * Lists all valid icon accessors, filtered out the deprecated ones

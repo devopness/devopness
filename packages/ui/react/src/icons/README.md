@@ -89,7 +89,7 @@ When deprecating icons:
      type: 'deprecated-icon',
      accessor: 'downArrow',
      component: MdKeyboardArrowDown,
-     newAcessor: 'arrowDown'  // The new icon name to use instead
+     newAcessor: 'arrowDown'  // The new icon name to use instead, or undefined if the icon is being removed permanently
    }
    ```
 
