@@ -173,7 +173,7 @@ const iconList = [
   { type: 'icon', accessor: 'mapPin', component: RiMapPinLine },
   { type: 'icon', accessor: 'moreHorizontal', component: MdMoreHoriz },
   { type: 'icon', accessor: 'network', component: LiaNetworkWiredSolid },
-  { type: 'icon', accessor: 'openInNew', component: RxOpenInNewWindow },
+  { type: 'icon', accessor: 'openInNewWindow', component: RxOpenInNewWindow },
   { type: 'icon', accessor: 'organization', component: GoOrganization },
   { type: 'image', accessor: 'parent', component: typeHierarchySubSVG },
   { type: 'icon', accessor: 'passkey', component: GoPasskeyFill },
@@ -244,6 +244,12 @@ const iconList = [
     accessor: 'aiOutlineDollarCircle',
     component: AiOutlineDollarCircle,
     newAcessor: 'currencyCircle',
+  },
+  {
+    type: 'deprecated-icon',
+    accessor: 'checkCircle',
+    component: MdCheckCircle,
+    newAcessor: 'success',
   },
   {
     type: 'deprecated-icon',
