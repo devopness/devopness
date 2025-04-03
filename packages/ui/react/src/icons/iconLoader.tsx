@@ -192,7 +192,6 @@ const iconList = [
   { type: 'icon', name: 'tag', component: PiTagDuotone },
   { type: 'icon', name: 'teamOutline', component: RiTeamLine },
   { type: 'icon', name: 'terminal', component: BsTerminal },
-  { type: 'icon', name: 'tree', component: ImTree },
   { type: 'icon', name: 'treeView', component: PiTreeView },
   { type: 'icon', name: 'unlink', component: BiUnlink },
   { type: 'icon', name: 'user', component: MdPersonOutline },
@@ -202,7 +201,6 @@ const iconList = [
   { type: 'image', name: 'aws', component: awsSVG },
   { type: 'image', name: 'azure', component: azureSVG },
   { type: 'image', name: 'bitbucket', component: bitbucketSVG },
-  { type: 'image', name: 'bitbucket-white', component: bitbucketWhiteSVG },
   { type: 'image', name: 'c-sharp', component: cSharpSVG },
   { type: 'image', name: 'centos', component: centosSVG },
   { type: 'image', name: 'devopness', component: devopnessSymbolSVG },
@@ -243,6 +241,12 @@ const iconList = [
     name: 'alarmOn',
     component: MdAlarmOn,
     newName: 'alarm',
+  },
+  {
+    type: 'deprecated-image',
+    name: 'bitbucket-white',
+    component: bitbucketWhiteSVG,
+    newName: undefined,
   },
   {
     type: 'deprecated-icon',
@@ -472,6 +476,7 @@ const iconLoader = (
           color={color}
         />
       )
+    case 'deprecated-image':
     case 'image':
       return (
         <img
