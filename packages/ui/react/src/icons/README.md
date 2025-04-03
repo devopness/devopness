@@ -97,9 +97,9 @@ When deprecating icons:
    - Added to the `deprecatedToNewIconMap` for easy migration
    - Excluded from the `Icon` type
      - Users will get a type error when trying to use the deprecated icon
-     - Users can bypass the type error by using `as Icon` and the code will still work as expected, during the transition period; OR
-     - Users can use the `deprecatedToNewIconMap` to get the new icon name; OR
-     - Users can update their code to use the new icon name
+     - To fix the type error, users can:
+        - use the `deprecatedToNewIconMap` to get the new icon name; OR
+        - update their code to use the new icon name
 
 ## Read More
 
