@@ -127,6 +127,7 @@ const iconList = [
   { type: 'icon', name: 'arrowLeft', component: MdKeyboardArrowLeft },
   { type: 'icon', name: 'arrowRight', component: MdKeyboardArrowRight },
   { type: 'icon', name: 'arrowUp', component: MdKeyboardArrowUp },
+  { type: 'icon', name: 'branch', component: FiGitBranch },
   { type: 'icon', name: 'checkOutline', component: AiOutlineCheck },
   { type: 'image', name: 'children', component: typeHierarchySuperSVG },
   { type: 'icon', name: 'close', component: GrClose },
@@ -151,7 +152,6 @@ const iconList = [
   { type: 'icon', name: 'eyeOutline', component: RiEye2Line },
   { type: 'icon', name: 'folder', component: MdOutlineFolder },
   { type: 'icon', name: 'gear', component: BsFillGearFill },
-  { type: 'icon', name: 'gitBranch', component: FiGitBranch },
   { type: 'icon', name: 'globe', component: FaGlobe },
   { type: 'icon', name: 'group', component: MdGroup },
   { type: 'icon', name: 'help', component: BsQuestionCircleFill },
@@ -300,6 +300,12 @@ const iconList = [
     name: 'fillGearFill',
     component: BsFillGearFill,
     newName: 'gear',
+  },
+  {
+    type: 'deprecated-icon',
+    name: 'gitBranch',
+    component: FiGitBranch,
+    newName: 'branch',
   },
   {
     type: 'deprecated-image',
