@@ -214,7 +214,6 @@ const iconList = [
   },
   { type: 'image', name: 'gcp', component: gcpSVG },
   { type: 'image', name: 'github', component: githubSVG },
-  { type: 'image', name: 'github-white', component: githubWhiteSVG },
   { type: 'image', name: 'gitlab', component: gitlabSVG },
   { type: 'image', name: 'html', component: htmlSVG },
   { type: 'image', name: 'java', component: javaSVG },
@@ -301,6 +300,12 @@ const iconList = [
     name: 'fillGearFill',
     component: BsFillGearFill,
     newName: 'gear',
+  },
+  {
+    type: 'deprecated-image',
+    name: 'github-white',
+    component: githubWhiteSVG,
+    newName: undefined,
   },
   {
     type: 'deprecated-icon',
