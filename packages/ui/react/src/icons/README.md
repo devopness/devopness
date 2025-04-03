@@ -67,12 +67,12 @@ We follow patterns from successful icon libraries like [Material-UI](https://mat
 const iconList = [
   {
     type: 'icon',
-    accessor: 'userAdd', // Clear, action-oriented name
+    name: 'userAdd', // Clear, action-oriented name
     component: UserAddIcon,
   },
   {
     type: 'image',
-    accessor: 'python-django', // Technology name with hyphen
+    name: 'python-django', // Technology name with hyphen
     component: pythonDjangoSVG,
   },
 ] as const
@@ -87,9 +87,20 @@ When deprecating icons:
    ```typescript
    {
      type: 'deprecated-icon',
-     accessor: 'downArrow',
+     name: 'downArrow',
      component: MdKeyboardArrowDown,
-     newAcessor: 'arrowDown'  // The new icon name to use instead, or undefined if the icon is being removed permanently
+     newName: 'arrowDown'  // The new icon name to use instead, or undefined if the icon is being removed permanently
+   }
+   ```
+
+   Or for images:
+
+   ```typescript
+   {
+     type: 'deprecated-image',
+     name: 'rightArrow',
+     component: MdKeyboardArrowRight,
+     newName: undefined // The new icon name to use instead, or undefined if the icon is being removed permanently
    }
    ```
 
