@@ -433,7 +433,10 @@ const iconList = [
  */
 const deprecatedToNewIconMap = iconList
   // Step 1: Filter to only get deprecated icons
-  .filter((icon): icon is DeprecatedIcon => icon.type === 'deprecated-icon')
+  .filter(
+    (icon): icon is DeprecatedIcon =>
+      icon.type === 'deprecated-icon' || icon.type === 'deprecated-image'
+  )
   // Step 2: Create an object from the filtered list
   .reduce<DeprecatedToNewIconMap>(
     (acc, icon) => ({
@@ -445,7 +448,7 @@ const deprecatedToNewIconMap = iconList
 
 type DeprecatedIcon = Extract<
   (typeof iconList)[number],
-  { type: 'deprecated-icon' }
+  { type: 'deprecated-icon' } | { type: 'deprecated-image' }
 >
 
 type DeprecatedToNewIconMap = {
@@ -476,6 +479,9 @@ const iconLoader = (
 
   const Icon = iconList.find((icon) => icon.name === name)
 
+  // This switch case is used for both deprecated and regular icons
+  // In case there are no deprecated icons/images, remove the cases 'deprecated-icon' and 'deprecated-image'
+  // But remember to re-add when there are deprecated icons/images in the future
   switch (Icon?.type) {
     case 'deprecated-icon':
     case 'icon':
