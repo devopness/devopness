@@ -36,32 +36,17 @@ test("base URL is configurable on initialization", () => {
   expect(apiClient).toHaveProperty('socialAccounts')
   expect(apiClient).toHaveProperty('sshKeys')
   expect(apiClient).toHaveProperty('sslCertificates')
-  expect(apiClient).toHaveProperty('virtualHosts')
-
   expect(apiClient).toHaveProperty('static')
-  expect(apiClient.static).toHaveProperty('applicationOptions')
-  expect(apiClient.static).toHaveProperty('cloudProviderServiceInstances')
-  expect(apiClient.static).toHaveProperty('cloudProviderServices')
-  expect(apiClient.static).toHaveProperty('credentialOptions')
-  expect(apiClient.static).toHaveProperty('cronJobOptions')
-  expect(apiClient.static).toHaveProperty('environmentOptions')
-  expect(apiClient.static).toHaveProperty('networkRuleOptions')
-  expect(apiClient.static).toHaveProperty('permissions')
-  expect(apiClient.static).toHaveProperty('serviceOptions')
-  expect(apiClient.static).toHaveProperty('serverOptions')
-  expect(apiClient.static).toHaveProperty('userProfileOptions')
-  expect(apiClient.static).toHaveProperty('resourceTypes')
-  expect(apiClient.static).toHaveProperty('virtualHostOptions')
-
   expect(apiClient).toHaveProperty('teamInvitations')
   expect(apiClient).toHaveProperty('teams')
+  expect(apiClient).toHaveProperty('variables')
+  expect(apiClient).toHaveProperty('virtualHosts')
 
   expect(apiClient).toHaveProperty('users')
   expect(apiClient.users).toHaveProperty('passwords')
 
-  expect(apiClient).toHaveProperty('variables')
-
   expect(apiClient).toHaveProperty('onTokenExpired')
+
 })
 
 test("expired access_token should trigger callback function", async () => {

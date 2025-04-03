@@ -9189,7 +9189,7 @@
         "summary": "List `Application` resource options",
         "operationId": "getStaticApplicationOptions",
         "tags": [
-          "Static Data - Application Options"
+          "Static Data"
         ],
         "parameters": [
           {
@@ -9221,7 +9221,7 @@
         "summary": "Get details of a single `Cloud Provider Service`",
         "operationId": "getStaticCloudProviderService",
         "tags": [
-          "Static Data - Cloud Provider Services"
+          "Static Data"
         ],
         "parameters": [
           {
@@ -9266,7 +9266,7 @@
         "summary": "List `Cloud Provider Service` instance types by region",
         "operationId": "listStaticCloudInstancesByCloudProviderServiceCodeAndRegionCode",
         "tags": [
-          "Static Data - Cloud Provider Service Instances"
+          "Static Data"
         ],
         "parameters": [
           {
@@ -9324,7 +9324,7 @@
         "summary": "List `Credential` resource options",
         "operationId": "getStaticCredentialOptions",
         "tags": [
-          "Static Data - Credential Options"
+          "Static Data"
         ],
         "parameters": [
           {
@@ -9356,7 +9356,7 @@
         "summary": "List `CronJob` resource options",
         "operationId": "getStaticCronJobOptions",
         "tags": [
-          "Static Data - Cron Job Options"
+          "Static Data"
         ],
         "parameters": [
           {
@@ -9388,7 +9388,7 @@
         "summary": "List `Environment` options",
         "operationId": "getStaticEnvironmentOptions",
         "tags": [
-          "Static Data - Environment Options"
+          "Static Data"
         ],
         "parameters": [
           {
@@ -9420,7 +9420,7 @@
         "summary": "List `Network Rule` options",
         "operationId": "getStaticNetworkRuleOptions",
         "tags": [
-          "Static Data - Network Rule Options"
+          "Static Data"
         ],
         "parameters": [
           {
@@ -9452,7 +9452,7 @@
         "summary": "List available `Role` permissions",
         "operationId": "listStaticPermissions",
         "tags": [
-          "Static Data - Permissions"
+          "Static Data"
         ],
         "parameters": [
           {
@@ -9490,7 +9490,7 @@
         "summary": "List available resource types",
         "operationId": "listStaticResourceTypes",
         "tags": [
-          "Static Data - Resource Types"
+          "Static Data"
         ],
         "parameters": [
           {
@@ -9528,7 +9528,7 @@
         "summary": "List `Server` options",
         "operationId": "getStaticServerOptions",
         "tags": [
-          "Static Data - Server Options"
+          "Static Data"
         ],
         "parameters": [
           {
@@ -9560,7 +9560,7 @@
         "summary": "List `Service` resource options",
         "operationId": "getStaticServiceOptions",
         "tags": [
-          "Static Data - Service Options"
+          "Static Data"
         ],
         "parameters": [
           {
@@ -9592,7 +9592,7 @@
         "summary": "List `User profile` options",
         "operationId": "getStaticUserProfileOptions",
         "tags": [
-          "Static Data - User Profile Options"
+          "Static Data"
         ],
         "parameters": [
           {
@@ -9624,7 +9624,7 @@
         "summary": "List `Virtual Host` options",
         "operationId": "getStaticVirtualHostOptions",
         "tags": [
-          "Static Data - Virtual Host Options"
+          "Static Data"
         ],
         "parameters": [
           {
@@ -17848,6 +17848,9 @@
             "example": "MyOrganization",
             "type": "string"
           },
+          "resource_summary": {
+            "$ref": "#/components/schemas/ResourceSummaryList"
+          },
           "owner": {
             "$ref": "#/components/schemas/UserRelation"
           },
@@ -17936,6 +17939,9 @@
             "description": "The URL Slug of the organization",
             "example": "MyOrganization",
             "type": "string"
+          },
+          "resource_summary": {
+            "$ref": "#/components/schemas/ResourceSummaryList"
           },
           "created_at": {
             "description": "The date and time when the organization was created",

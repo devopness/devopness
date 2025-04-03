@@ -12,6 +12,7 @@
  */
 
 
+import { ResourceSummaryItem } from './resource-summary-item';
 
 /**
  * 
@@ -37,6 +38,12 @@ export interface OrganizationRelation {
      * @memberof OrganizationRelation
      */
     url_slug: string;
+    /**
+     * Summary of the resource
+     * @type {Array<ResourceSummaryItem>}
+     * @memberof OrganizationRelation
+     */
+    resource_summary?: Array<ResourceSummaryItem>;
     /**
      * The date and time when the organization was created
      * @type {string}
