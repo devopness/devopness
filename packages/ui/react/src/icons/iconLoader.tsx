@@ -228,7 +228,7 @@ const iconList = [
   { type: 'icon', name: 'self-hosted', component: FaServer },
   { type: 'image', name: 'ubuntu', component: ubuntuSVG },
 
-  // @deprecated icons - will be removed in next version
+  // Deprecated icons - will be removed in next version
   {
     type: 'deprecated-icon',
     name: 'aiOutlineDollarCircle',
