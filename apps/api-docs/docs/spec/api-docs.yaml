@@ -169,20 +169,8 @@ tags:
     description: |
       Client API applications might need to retrieve possible accepted values to fulfill their forms and allow end users to pick values from a list of valid data.
       All static data that need to be used through `devopness` API client applications is provided through the `/static/*` endpoints.
-  - name: Static Data - Application Options
-  - name: Static Data - Cloud Provider Service Instances
-  - name: Static Data - Cloud Provider Services
-  - name: Static Data - Credential Options
-  - name: Static Data - Cron Job Options
-  - name: Static Data - Environment Options
-  - name: Static Data - Network Rule Options
-  - name: Static Data - Permissions
-  - name: Static Data - Resource Types
-  - name: Static Data - Server Options
-  - name: Static Data - Service Options
-  - name: Static Data - User Profile Options
-  - name: Static Data - Virtual Host Options
   - name: Actions
+  - name: Actions - Logs
   - name: Applications
   - name: Applications - Deployments
   - name: Applications - Hooks
@@ -198,9 +186,9 @@ tags:
   - name: Environments
   - name: Environments - Actions
   - name: Environments - Applications
+  - name: Environments - Credentials
   - name: Environments - Cron Jobs
   - name: Environments - Daemons
-  - name: Environments - Members
   - name: Environments - Networks
   - name: Environments - Network Rules
   - name: Environments - Servers
@@ -211,28 +199,27 @@ tags:
   - name: Environments - Team Memberships
   - name: Environments - Virtual Hosts
   - name: Credentials
+  - name: Credentials - Repositories
   - name: Hooks
     description: |
       A hook is a simple way to integrate your Devopness workflow with external processes to trigger Devopness actions by sending a POST request to a public URL. By using hooks you can make Devopness react to events that happen in other applications and make sure your environment resources reflect changes applied in other services.
       An outgoing hook is a webhook that trigger a request when an action of a resource has your state updated.
-  - name: Invitations
-  - name: Logs
+  - name: Hook Requests
+  - name: Hooks - Requests
   - name: Networks
   - name: Networks - Subnets
   - name: Network Rules
+  - name: Organizations
+  - name: Organizations - Environments
+  - name: Organizations - Projects
   - name: Pipelines
   - name: Pipelines - Actions
   - name: Pipelines - Hooks
-  - name: Pipelines - Resources
+  - name: Pipelines - Steps
   - name: Projects
   - name: Projects - Actions
-  - name: Projects - Applications
-  - name: Projects - Cron Jobs
     description: |
       A cronjob or scheduled task is a scheduled command to be set on one or more project servers to ensure a given routine will be executed on time.
-  - name: Projects - Daemons
-    description: |
-      The terms `process`, `background process` and `daemon` may be used interchangeably in the `devopness` API documentation to denote the same thing: i.e., a computer process that runs behind the scenes without user intervention, detached from TTY (teletype/terminal type) and having no associated console or controlling terminal, therefore prevented from receiving `SIGHUP` on shell termination.
   - name: Projects - Archived Environments
   - name: Projects - Environments
   - name: Projects - Roles
@@ -252,6 +239,7 @@ tags:
       Throughout the `devopness` documentation the term `SSL Certificate` refers to a public key certificate adhering to `X.509` standard. While TLS is the protocol more used nowadays for web encryption, for historical reasons web encryption is often referred to simply as SSL. A SSL Certificate managed by `devopness` might be used as an HTTPS/SSL/TLS and other internet protocols to establish encrypted connections between client apps (e.g. browsers) and the web application servers managed through `devopness`, but it's not limited to be used for authenticating server's identity.
   - name: Subnets
   - name: Teams
+  - name: Team Invitations
   - name: Teams - Invitations
   - name: Teams - Members
   - name: Users
@@ -259,6 +247,7 @@ tags:
   - name: Users - Passwords
   - name: Users - Projects
   - name: Users - Team Invitations
+  - name: Variables
   - name: Virtual Hosts
 
 x-tagGroups:
@@ -267,19 +256,7 @@ x-tagGroups:
       - API Reference
   - name: Static Data
     tags:
-      - Static Data - Application Options
-      - Static Data - Cloud Provider Service Instances
-      - Static Data - Cloud Provider Services
-      - Static Data - Credential Options
-      - Static Data - Cron Job Options
-      - Static Data - Environment Options
-      - Static Data - Network Rule Options
-      - Static Data - Permissions
-      - Static Data - Resource Types
-      - Static Data - Server Options
-      - Static Data - Service Options
-      - Static Data - User Profile Options
-      - Static Data - Virtual Host Options
+      - Static Data
   - name: Actions
     tags:
       - Actions
@@ -324,6 +301,11 @@ x-tagGroups:
     tags:
       - Network Rules
       - Environments - Network Rules
+  - name: Organizations
+    tags:
+      - Organizations
+      - Organizations - Environments
+      - Organizations - Projects
   - name: Pipelines
     tags:
       - Pipelines

@@ -9,7 +9,7 @@
   "scripts": {
     "build": "npm run api-docs && npm run ensure_index_file_is_on_size_limit",
     "copy-local-docs": "cp -R ../devopness-api/docs/api-docs/auto-generated/ ./docs/spec/auto-generated/",
-    "api-build-spec": "npm run update-paths-and-schemas && npm run tsc && node ./build/buildApiSpec.js && swagger-cli validate docs/build/api-docs-output.yaml",
+    "api-build-spec": "npm run update-paths-and-schemas && npm run tsc && node ./build/checkTagsUsage.js && node ./build/buildApiSpec.js && swagger-cli validate docs/build/api-docs-output.yaml",
     "api-convert-spec-to-dredd": "api-spec-converter --from=openapi_3 --to=swagger_2 --syntax=yaml --order=alpha docs/build/api-docs-output.yaml > docs/build/api-docs-output-v2.yaml",
     "api-convert-spec-to-json": "yaml-convert docs/build/api-docs-output.yaml --pretty --output docs/build/spec.json",
     "api-docs-export-page": "redoc-cli build docs/build/api-docs-output.yaml --title 'Devopness API Docs' --output public/index.html --cdn true -t docs/template.hbs",
