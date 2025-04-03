@@ -98,8 +98,8 @@ When deprecating icons:
    - Excluded from the `Icon` type
      - Users will get a type error when trying to use the deprecated icon
      - To fix the type error, users can:
-        - use the `deprecatedToNewIconMap` to get the new icon name; OR
-        - update their code to use the new icon name
+       - use the `deprecatedToNewIconMap` to get the new icon name; OR
+       - update their code to use the new icon name
 
 ## Read More
 
