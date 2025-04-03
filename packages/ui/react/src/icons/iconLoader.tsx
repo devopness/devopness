@@ -371,27 +371,27 @@ const iconList = [
  */
 const deprecatedToNewIconMap = iconList
   // Step 1: Filter to only get deprecated icons
-  .filter(
-    (icon): icon is (typeof iconList)[number] & { type: 'deprecated-icon' } =>
-      icon.type === 'deprecated-icon'
-  )
+  .filter((icon): icon is DeprecatedIcon => icon.type === 'deprecated-icon')
   // Step 2: Create an object from the filtered list
   .reduce<DeprecatedToNewIconMap>(
-    (acc, { accessor: deprecatedAccessor, newAcessor }) => {
-      acc[deprecatedAccessor] = newAcessor
-      return acc
-    },
+    (acc, icon) => ({
+      ...acc,
+      [icon.accessor]: icon.newAcessor,
+    }),
     {} as DeprecatedToNewIconMap
   )
 
+type DeprecatedIcon = Extract<
+  (typeof iconList)[number],
+  { type: 'deprecated-icon' }
+>
+
 type DeprecatedToNewIconMap = {
-  [K in Extract<
-    (typeof iconList)[number],
-    { type: 'deprecated-icon' }
-  >['accessor']]: Extract<
-    (typeof iconList)[number],
-    { type: 'icon' | 'image' }
-  >['accessor']
+  [K in DeprecatedIcon['accessor']]: Extract<
+    DeprecatedIcon,
+    // Filter to only get the icon with the matching accessor
+    { accessor: K }
+  >['newAcessor']
 }
 
 const ICON_MIN_SIZE = 12
