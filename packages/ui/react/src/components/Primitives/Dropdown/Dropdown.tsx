@@ -218,7 +218,7 @@ const ElementAnchor = ({
     return <ClickableContainer {...popupTrigger}>{content}</ClickableContainer>
   }
 
-  const dropdownIcon = popupState.isOpen ? 'upArrow' : 'downArrow'
+  const dropdownIcon = popupState.isOpen ? 'arrowUp' : 'arrowDown'
 
   return (
     <ConditionalWrapper
