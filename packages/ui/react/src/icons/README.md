@@ -67,8 +67,8 @@ We follow patterns from successful icon libraries like [Material-UI](https://mat
 const iconList = [
   {
     type: 'icon',
-    name: 'userAdd', // Clear, action-oriented name
-    component: UserAddIcon,
+    name: 'arrowDown', // Clear, action-oriented name
+    component: MdKeyboardArrowDown,
   },
   {
     type: 'image',
