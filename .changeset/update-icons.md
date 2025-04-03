@@ -16,16 +16,17 @@ Enhanced icon system with consistent naming patterns
 - Use camelCase for general icons
 - Use kebab-case for technology/brand icons
 - Follow consistent patterns:
+
   ```tsx
   // Actions
-  'add', 'remove', 'edit'
-  
+  "add", "remove", "edit";
+
   // States
-  'loading', 'error', 'success'
-  
+  "loading", "error", "success";
+
   // Variants
-  'checkOutline', 'checkFilled'
-  'eyeOpen', 'eyeClosed'
+  "checkOutline", "checkFilled";
+  "eyeOpen", "eyeClosed";
   ```
 
 ### Migration Guide
@@ -33,6 +34,7 @@ Enhanced icon system with consistent naming patterns
 Old icon names are deprecated but will continue to work during runtime. There are two ways to handle deprecated icons:
 
 1. Update to the new icon name (Recommended)
+
 ```tsx
 // Before
 <Icon name="eyeOff" />
@@ -42,6 +44,7 @@ Old icon names are deprecated but will continue to work during runtime. There ar
 ```
 
 2. Use the `deprecatedToNewIconMap` helper
+
 ```tsx
 import { deprecatedToNewIconMap } from '@devopness/ui-react'
 
