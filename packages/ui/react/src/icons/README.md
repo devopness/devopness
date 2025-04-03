@@ -108,9 +108,27 @@ When deprecating icons:
    - Added to the `deprecatedToNewIconMap` for easy migration
    - Excluded from the `Icon` type
      - Users will get a type error when trying to use the deprecated icon
-     - To fix the type error, users can:
-       - use the `deprecatedToNewIconMap` to get the new icon name; OR
-       - update their code to use the new icon name
+
+There are two ways to handle deprecated icons and fix the type error:
+
+1. Update to the new icon name (Recommended)
+
+```tsx
+// Before
+<Icon name="eyeOff" />
+
+// After
+<Icon name="eyeClosed" />
+```
+
+2. Use the `deprecatedToNewIconMap` helper
+
+```tsx
+import { deprecatedToNewIconMap } from '@devopness/ui-react'
+
+const newName = deprecatedToNewIconMap['eyeOff'] // returns 'eyeClosed'
+<Icon name={newName} />
+```
 
 ## Read More
 
