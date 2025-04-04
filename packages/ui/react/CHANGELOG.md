@@ -90,19 +90,19 @@
   ```tsx
   <Card
     title="Example Card"
-    url="/dashboard"
-    urlProps={{
-      target: '_blank',
-      rel: 'noopener',
+    url={{
       hideExternalUrlIcon: true,
+      rel: 'noopener',
+      target: '_blank',
+      to: '/dashboard',
     }}
     footer={[
       {
         label: 'View Details',
-        url: '/details',
-        urlProps: {
-          target: '_self',
+        url: {
           hideExternalUrlIcon: true,
+          target: '_self',
+          to: '/details',
         },
       },
     ]}
