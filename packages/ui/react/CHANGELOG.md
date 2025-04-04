@@ -1,5 +1,18 @@
 # @devopness/ui-react
 
+## 2.161.0
+
+### Minor Changes
+
+- [#1554](https://github.com/devopness/devopness/pull/1554) [`153d24e`](https://github.com/devopness/devopness/commit/153d24ea124683d1d43fa3de3ab97c0336102edf) Thanks [@thlmenezes](https://github.com/thlmenezes)! - Remove deprecated icon types and clean up icon system
+
+  ### What Changed
+
+  - Removed deprecated icon types from iconList
+  - Maintained core icon system functionality while removing legacy code
+
+  This is a cleanup change that removes technical debt related to deprecated icons. No functional changes to the current icon system - this just removes unused deprecated icon support that was previously marked for removal.
+
 ## 2.160.0
 
 ### Minor Changes
@@ -77,19 +90,19 @@
   ```tsx
   <Card
     title="Example Card"
-    url="/dashboard"
-    urlProps={{
-      target: '_blank',
-      rel: 'noopener',
+    url={{
       hideExternalUrlIcon: true,
+      rel: 'noopener',
+      target: '_blank',
+      to: '/dashboard',
     }}
     footer={[
       {
         label: 'View Details',
-        url: '/details',
-        urlProps: {
-          target: '_self',
+        url: {
           hideExternalUrlIcon: true,
+          target: '_self',
+          to: '/details',
         },
       },
     ]}
