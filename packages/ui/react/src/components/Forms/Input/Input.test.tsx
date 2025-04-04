@@ -17,7 +17,7 @@ describe('renders correctly', () => {
     const label = screen.getByText('Username');
     expect(label).toBeInTheDocument();
   });
-  
+
   it('with error message', () => {
     render(<Input type="text" error={{ message: 'This field is required' }} />);
     const errorMessage = screen.getByText('This field is required');
