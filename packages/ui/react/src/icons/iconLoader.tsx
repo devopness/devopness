@@ -25,9 +25,6 @@ import {
   FaRegCopy,
   FaServer,
   FaSort,
-  FaUserCheck,
-  FaUserClock,
-  FaUserTimes,
 } from 'react-icons/fa'
 import { FiGitBranch, FiLogOut, FiPlusCircle, FiServer } from 'react-icons/fi'
 import {
@@ -65,7 +62,6 @@ import {
   MdSecurity,
   MdSettings,
   MdSnooze,
-  MdTimerOff,
   MdWarning,
 } from 'react-icons/md'
 import { PiCloudWarningBold, PiTagDuotone, PiTreeView } from 'react-icons/pi'
@@ -84,7 +80,6 @@ import type { Icon } from './types'
 const awsSVG = getImageAssetUrl('icons_svgs/aws.svg')
 const azureSVG = getImageAssetUrl('icons_svgs/azure.svg')
 const bitbucketSVG = getImageAssetUrl('icons_svgs/bitbucket.svg')
-const bitbucketWhiteSVG = getImageAssetUrl('icons_svgs/bitbucket-white.svg')
 const centosSVG = getImageAssetUrl('icons_svgs/centos.svg')
 const cSharpSVG = getImageAssetUrl('icons_svgs/c-sharp.svg')
 const devopnessSymbolSVG = getImageAssetUrl('logo-symbol-devopness.svg')
@@ -96,7 +91,6 @@ const dotnetCoreAspnetCoreSVG = getImageAssetUrl(
 const dotnetCoreSVG = getImageAssetUrl('icons_svgs/dotnetcore.svg')
 const gcpSVG = getImageAssetUrl('icons_svgs/gcp.svg')
 const githubSVG = getImageAssetUrl('icons_svgs/github.svg')
-const githubWhiteSVG = getImageAssetUrl('icons_svgs/github-white.svg')
 const gitlabSVG = getImageAssetUrl('icons_svgs/gitlab.svg')
 const htmlSVG = getImageAssetUrl('icons_svgs/html.svg')
 const javaSVG = getImageAssetUrl('icons_svgs/java.svg')
@@ -227,188 +221,6 @@ const iconList = [
   { type: 'image', name: 'ruby', component: rubySVG },
   { type: 'icon', name: 'self-hosted', component: FaServer },
   { type: 'image', name: 'ubuntu', component: ubuntuSVG },
-
-  // Deprecated icons - will be removed in next version
-  {
-    type: 'deprecated-icon',
-    name: 'aiOutlineDollarCircle',
-    component: AiOutlineDollarCircle,
-    newName: 'currencyCircle',
-  },
-  {
-    type: 'deprecated-icon',
-    name: 'alarmOn',
-    component: MdAlarmOn,
-    newName: 'alarm',
-  },
-  {
-    type: 'deprecated-image',
-    name: 'bitbucket-white',
-    component: bitbucketWhiteSVG,
-    newName: undefined,
-  },
-  {
-    type: 'deprecated-icon',
-    name: 'checkCircle',
-    component: MdCheckCircle,
-    newName: 'success',
-  },
-  {
-    type: 'deprecated-icon',
-    name: 'cloudServer',
-    component: AiOutlineCloudServer,
-    newName: 'serverCloud',
-  },
-  {
-    type: 'deprecated-icon',
-    name: 'downArrow',
-    component: MdKeyboardArrowDown,
-    newName: 'arrowDown',
-  },
-  {
-    type: 'deprecated-icon',
-    name: 'eye',
-    component: IoMdEye,
-    newName: 'eyeOpen',
-  },
-  {
-    type: 'deprecated-icon',
-    name: 'eye2Line',
-    component: RiEye2Line,
-    newName: 'eyeOutline',
-  },
-  {
-    type: 'deprecated-icon',
-    name: 'eyeOff',
-    component: IoMdEyeOff,
-    newName: 'eyeClosed',
-  },
-  {
-    type: 'deprecated-icon',
-    name: 'faGlobe',
-    component: FaGlobe,
-    newName: 'globe',
-  },
-  {
-    type: 'deprecated-icon',
-    name: 'filledCheck',
-    component: RiShieldCheckFill,
-    newName: 'shieldCheck',
-  },
-  {
-    type: 'deprecated-icon',
-    name: 'fillGearFill',
-    component: BsFillGearFill,
-    newName: 'gear',
-  },
-  {
-    type: 'deprecated-icon',
-    name: 'gitBranch',
-    component: FiGitBranch,
-    newName: 'branch',
-  },
-  {
-    type: 'deprecated-image',
-    name: 'github-white',
-    component: githubWhiteSVG,
-    newName: undefined,
-  },
-  {
-    type: 'deprecated-icon',
-    name: 'leftArrow',
-    component: MdKeyboardArrowLeft,
-    newName: 'arrowLeft',
-  },
-  {
-    type: 'deprecated-icon',
-    name: 'mapPinLine',
-    component: RiMapPinLine,
-    newName: 'mapPin',
-  },
-  {
-    type: 'deprecated-icon',
-    name: 'mdGroup',
-    component: MdGroup,
-    newName: 'group',
-  },
-  {
-    type: 'deprecated-icon',
-    name: 'outlineCheck',
-    component: AiOutlineCheck,
-    newName: undefined,
-  },
-  {
-    type: 'deprecated-icon',
-    name: 'outlineCopy',
-    component: FaRegCopy,
-    newName: 'copyOutline',
-  },
-  {
-    type: 'deprecated-icon',
-    name: 'outlineSafety',
-    component: AiOutlineSafety,
-    newName: 'shieldOutline',
-  },
-  {
-    type: 'deprecated-icon',
-    name: 'outlineServer',
-    component: FiServer,
-    newName: 'serverOutline',
-  },
-  {
-    type: 'deprecated-icon',
-    name: 'rightArrow',
-    component: MdKeyboardArrowRight,
-    newName: 'arrowRight',
-  },
-  {
-    type: 'deprecated-icon',
-    name: 'riTeamLine',
-    component: RiTeamLine,
-    newName: 'teamOutline',
-  },
-  {
-    type: 'deprecated-icon',
-    name: 'sortIcon',
-    component: FaSort,
-    newName: 'sort',
-  },
-  {
-    type: 'deprecated-icon',
-    name: 'timeroff',
-    component: MdTimerOff,
-    newName: undefined,
-  },
-  {
-    type: 'deprecated-icon',
-    name: 'upArrow',
-    component: MdKeyboardArrowUp,
-    newName: 'arrowUp',
-  },
-  {
-    type: 'deprecated-icon',
-    name: 'userCheck',
-    component: FaUserCheck,
-    newName: undefined,
-  },
-  {
-    type: 'deprecated-icon',
-    name: 'userClock',
-    component: FaUserClock,
-    newName: undefined,
-  },
-  {
-    type: 'deprecated-icon',
-    name: 'userTimes',
-    component: FaUserTimes,
-    newName: undefined,
-  },
-  {
-    type: 'deprecated-icon',
-    name: 'warningCloud',
-    component: PiCloudWarningBold,
-    newName: 'cloudWarning',
-  },
 ] as const
 
 /**
@@ -433,16 +245,20 @@ const iconList = [
  */
 const deprecatedToNewIconMap = iconList
   // Step 1: Filter to only get deprecated icons
-  .filter(
-    (icon): icon is DeprecatedIcon =>
-      icon.type === 'deprecated-icon' || icon.type === 'deprecated-image'
+  .filter((icon): icon is DeprecatedIcon =>
+    [
+      'deprecated-icon',
+      'deprecated-image',
+    ].includes(icon.type)
   )
   // Step 2: Create an object from the filtered list
   .reduce<DeprecatedToNewIconMap>(
     (acc, icon) => ({
       ...acc,
+      // @ts-expect-error - Remove this comment when there are deprecated icons/images
       [icon.name]: icon.newName,
     }),
+    // eslint-disable-next-line @typescript-eslint/prefer-reduce-type-parameter
     {} as DeprecatedToNewIconMap
   )
 
@@ -480,9 +296,8 @@ const iconLoader = (
   const Icon = iconList.find((icon) => icon.name === name)
 
   // This switch case is used for both deprecated and regular icons
-  // In case there are no deprecated icons/images, remove the cases 'deprecated-icon' and 'deprecated-image'
-  // But remember to re-add when there are deprecated icons/images in the future
   switch (Icon?.type) {
+    // @ts-expect-error - Remove this comment when there are deprecated icons/images
     case 'deprecated-icon':
     case 'icon':
       return (
@@ -493,6 +308,7 @@ const iconLoader = (
           color={color}
         />
       )
+    // @ts-expect-error - Remove this comment when there are deprecated icons/images
     case 'deprecated-image':
     case 'image':
       return (
