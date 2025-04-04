@@ -175,7 +175,7 @@ const iconList = [
   { type: 'icon', name: 'serverOutline', component: FiServer },
   { type: 'icon', name: 'settings', component: MdSettings },
   { type: 'icon', name: 'shield', component: RiShieldCheckFill },
-  { type: 'icon', name: 'shieldLock', component: mdOutlineShieldLockSVG },
+  { type: 'image', name: 'shieldLock', component: mdOutlineShieldLockSVG },
   { type: 'icon', name: 'shieldOutline', component: AiOutlineSafety },
   { type: 'icon', name: 'skip', component: GoSkip },
   { type: 'icon', name: 'snooze', component: MdSnooze },
