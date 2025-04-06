@@ -23,13 +23,13 @@ import { ProjectRelation } from '../../generated/models';
 export class UsersProjectsApiService extends ApiBaseService {
     /**
      * 
-     * @summary Return a list of all projects owned by the current user
-     * @param {number} userId The ID of the user.
+     * @summary Return a list of all projects owned by a user
+     * @param {string} userId The numeric ID or URL Slug of a user.
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      * @param {number} [subscriptionId] ID of a user subscription to calculate the amount of credits used from that subscription on each user project. If provided, and being a valid subscription belonging to current user, the \&#39;used_credits\&#39; field will be added to the response.
      */
-    public async listUserProjects(userId: number, page?: number, perPage?: number, subscriptionId?: number): Promise<ApiResponse<Array<ProjectRelation>>> {
+    public async listUserProjects(userId: string, page?: number, perPage?: number, subscriptionId?: number): Promise<ApiResponse<Array<ProjectRelation>>> {
         if (userId === null || userId === undefined) {
             throw new ArgumentNullException('userId', 'listUserProjects');
         }
