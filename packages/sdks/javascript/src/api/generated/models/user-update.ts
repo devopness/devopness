@@ -39,6 +39,12 @@ export interface UserUpdate {
      */
     email: string;
     /**
+     * The URL Slug of the user. Must not be greater than 255 characters.
+     * @type {string}
+     * @memberof UserUpdate
+     */
+    url_slug: string;
+    /**
      * 
      * @type {Language}
      * @memberof UserUpdate
