@@ -1,5 +1,11 @@
 # @devopness/sdk-js
 
+## 2.162.1
+
+### Patch Changes
+
+- [#1549](https://github.com/devopness/devopness/pull/1549) [`0302fb6`](https://github.com/devopness/devopness/commit/0302fb6671ae865b47ba1bd202dfe6d5b236c3d0) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Fix type of 'ID' field in UserUpdate
+
 ## 2.162.0
 
 ### Minor Changes

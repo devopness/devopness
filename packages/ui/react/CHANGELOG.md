@@ -1,5 +1,34 @@
 # @devopness/ui-react
 
+## 2.162.0
+
+### Minor Changes
+
+- [#1487](https://github.com/devopness/devopness/pull/1487) [`e49817d`](https://github.com/devopness/devopness/commit/e49817da6225daa8890fdf1b1b1eb47d42e8c653) Thanks [@unnati06](https://github.com/unnati06)! - Make Input error auto-focus behavior optional
+
+  ### What Changed
+
+  - Added new `autoFocusOnError` prop to Input component
+  - Changed error auto-focus to be opt-in rather than default behavior
+  - Updated documentation to reflect the optional nature of auto-focus
+
+  ### Example Usage
+
+  ```tsx
+  // With auto-focus enabled (previous default behavior)
+  <Input
+    autoFocusOnError
+    error={{ message: 'This field is required' }}
+  />
+
+  // Without auto-focus (new default behavior)
+  <Input
+    error={{ message: 'This field is required' }}
+  />
+  ```
+
+  This change provides more control over form behavior while maintaining backward compatibility through the new opt-in prop.
+
 ## 2.161.1
 
 ### Patch Changes
