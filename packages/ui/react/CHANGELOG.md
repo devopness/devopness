@@ -1,6 +1,6 @@
 # @devopness/ui-react
 
-## 2.161.2
+## 2.162.0
 
 ### Minor Changes
 
