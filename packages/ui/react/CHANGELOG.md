@@ -2,7 +2,7 @@
 
 ## 2.161.2
 
-### Patch Changes
+### Minor Changes
 
 - [#1487](https://github.com/devopness/devopness/pull/1487) [`e49817d`](https://github.com/devopness/devopness/commit/e49817da6225daa8890fdf1b1b1eb47d42e8c653) Thanks [@unnati06](https://github.com/unnati06)! - Make Input error auto-focus behavior optional
 
