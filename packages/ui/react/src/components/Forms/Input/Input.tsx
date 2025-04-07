@@ -20,6 +20,8 @@ type SharedProps = React.InputHTMLAttributes<HTMLInputElement> & {
     /** Font style applied to placeholder */
     fontStylePlaceholder?: string
   }
+  /** Whether to automatically focus the input when an error occurs */
+  autoFocusOnError?: boolean
   /**
    * Props passed directly to input HTML element
    *
@@ -47,11 +49,9 @@ type InputProps =
  *
  * A flexible input component that supports:
  * - Various input types (text, number, etc.)
- * - Error states with automatic focus
+ * - Error states with optional automatic focus
  * - Custom styling
  * - Label and help text
- *
- * When an error state is applied, the input will automatically receive focus to draw the user's attention.
  *
  * @example
  * ```
@@ -71,13 +71,15 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const internalRef = useRef<HTMLInputElement>(null)
   const inputRef =
     (ref as React.RefObject<HTMLInputElement> | undefined) ?? internalRef
+  const { autoFocusOnError, error } = props
 
   useEffect(() => {
-    if (props.error && inputRef.current) {
+    if (autoFocusOnError && error && inputRef.current) {
       inputRef.current.focus()
     }
   }, [
-    props.error,
+    autoFocusOnError,
+    error,
     inputRef,
   ])
 
@@ -87,11 +89,11 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
       <InputText
         className="translate"
         ref={inputRef}
-        hasError={Boolean(props.error)}
+        hasError={Boolean(error)}
         {...props}
         {...props.inputProps}
       />
-      {Boolean(props.error) && <ErrorMessage error={props.error} />}
+      {Boolean(error) && <ErrorMessage error={error} />}
     </Container>
   )
 })

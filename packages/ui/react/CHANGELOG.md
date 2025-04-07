@@ -1,5 +1,91 @@
 # @devopness/ui-react
 
+## 2.161.1
+
+### Patch Changes
+
+- [#1556](https://github.com/devopness/devopness/pull/1556) [`1d46ac8`](https://github.com/devopness/devopness/commit/1d46ac8bc24a619a360373287c1cb771ef8ccd5a) Thanks [@thlmenezes](https://github.com/thlmenezes)! - Fix `shieldLock` icon rendering error
+
+  Previously, the `shieldLock` icon was incorrectly typed as 'icon', which attempted to use the SVG URL as a React component, causing a DOM error:
+  "DOMException: Failed to execute 'createElement' on 'Document': The tag name provided is not a valid name."
+
+  This change:
+
+  - Updates the shieldLock icon type from 'icon' to 'image', to correctly render it as an <img> element
+  - Fixes the runtime error when using the `shieldLock` icon
+  - Maintains backward compatibility - the icon name and usage remain the same
+
+## 2.161.0
+
+### Minor Changes
+
+- [#1554](https://github.com/devopness/devopness/pull/1554) [`153d24e`](https://github.com/devopness/devopness/commit/153d24ea124683d1d43fa3de3ab97c0336102edf) Thanks [@thlmenezes](https://github.com/thlmenezes)! - Remove deprecated icon types and clean up icon system
+
+  ### What Changed
+
+  - Removed deprecated icon types from iconList
+  - Maintained core icon system functionality while removing legacy code
+
+  This is a cleanup change that removes technical debt related to deprecated icons. No functional changes to the current icon system - this just removes unused deprecated icon support that was previously marked for removal.
+
+## 2.160.0
+
+### Minor Changes
+
+- [#1538](https://github.com/devopness/devopness/pull/1538) [`7e9e5a7`](https://github.com/devopness/devopness/commit/7e9e5a70b30ec479e87c13fd68f63ede7236fd61) Thanks [@thlmenezes](https://github.com/thlmenezes)! - Enhanced icon system with consistent naming patterns
+
+  ### What Changed
+
+  - Added consistent naming patterns for all icons
+  - Introduced type-safe deprecation system for old icon names
+  - Updated icon organization with logical grouping
+  - Added missing icons with proper naming
+
+  ### Icon Naming Conventions
+
+  - Use camelCase for general icons
+  - Use kebab-case for technology/brand icons
+  - Follow consistent patterns:
+
+    ```tsx
+    // Actions
+    'add', 'remove', 'edit'
+
+    // States
+    'loading', 'error', 'success'
+
+    // Variants
+    'checkOutline', 'checkFilled'
+    'eyeOpen', 'eyeClosed'
+    ```
+
+  ### Migration Guide
+
+  Old icon names are deprecated but will continue to work during runtime. There are two ways to handle deprecated icons:
+
+  1. Update to the new icon name (Recommended)
+
+  ```tsx
+  // Before
+  <Icon name="eyeOff" />
+
+  // After
+  <Icon name="eyeClosed" />
+  ```
+
+  2. Use the `deprecatedToNewIconMap` helper
+
+  ```tsx
+  import { deprecatedToNewIconMap } from '@devopness/ui-react'
+
+  const newName = deprecatedToNewIconMap['eyeOff'] // returns 'eyeClosed'
+  <Icon name={newName} />
+  ```
+
+  We recommend updating to the new icon names as soon as possible to ensure future compatibility.
+
+  In general, this update improves maintainability and provides a better developer experience while maintaining backward compatibility during the transition period.
+
 ## 2.159.0
 
 ### Minor Changes
@@ -19,19 +105,19 @@
   ```tsx
   <Card
     title="Example Card"
-    url="/dashboard"
-    urlProps={{
-      target: '_blank',
-      rel: 'noopener',
+    url={{
       hideExternalUrlIcon: true,
+      rel: 'noopener',
+      target: '_blank',
+      to: '/dashboard',
     }}
     footer={[
       {
         label: 'View Details',
-        url: '/details',
-        urlProps: {
-          target: '_self',
+        url: {
           hideExternalUrlIcon: true,
+          target: '_self',
+          to: '/details',
         },
       },
     ]}
