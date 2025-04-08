@@ -73,6 +73,9 @@ describe('Dropdown', () => {
       expect(icon.closest('span')).toHaveStyle({
         backgroundColor: getColor('blue.100'),
       })
+      expect(screen.getByLabelText('add')).toHaveStyle({
+        color: 'rgb(255, 255, 255)',
+      })
     })
 
     it('renders icon badge with default size', async () => {

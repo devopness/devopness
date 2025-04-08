@@ -350,6 +350,7 @@ const Dropdown = ({
                           >
                             {option.badge.icon ? (
                               <Icon
+                                color={option.badge.color as Color}
                                 name={option.badge.name}
                                 size={option.badge.size ?? 12}
                               />
