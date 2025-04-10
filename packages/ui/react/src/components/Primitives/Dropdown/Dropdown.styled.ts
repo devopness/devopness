@@ -96,10 +96,8 @@ type ContentBadgeProps = {
     'backgroundColor'
   > as `$${Key}`]: NonNullable<DropdownOption['badge']>[Key]
 }
-
 const ContentBadge = styled.span<Pick<ContentBadgeProps, '$backgroundColor'>>`
   grid-area: badge;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -111,11 +109,11 @@ const ContentBadge = styled.span<Pick<ContentBadgeProps, '$backgroundColor'>>`
   font-family: ${getFont('roboto')};
   font-weight: bold;
   font-size: 14px;
-  color: ${getColor('blue.800')};
-
-  ${({ $backgroundColor }) => !!$backgroundColor && colorIcon}
-`
-
+  // Remove hardcoded color, let Icon handle it
+  // color: ${getColor('blue.800')};
+  // Remove override
+  // ${({ $backgroundColor }) => !!$backgroundColor && colorIcon}
+`;
 const ClickableContainer = styled.div`
   cursor: pointer;
   display: flex;
