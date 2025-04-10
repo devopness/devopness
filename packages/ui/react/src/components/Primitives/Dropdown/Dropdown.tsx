@@ -219,7 +219,10 @@ const Dropdown = ({
   onToggle,
   ...props
 }: DropdownProps) => (
-  <PopupState variant="popover" popupId="demo-popup-popover">
+  <PopupState
+    variant="popover"
+    popupId="demo-popup-popover"
+  >
     {(popupState: PopupStateProps) => {
       if (popupState.anchorEl) {
         onToggle?.(popupState)
@@ -252,7 +255,10 @@ const Dropdown = ({
             {props.options && (
               <MenuContainer id={props.id}>
                 {props.options.map((option, index) => (
-                  <Tooltip title={option.tooltip ?? ''} key={index}>
+                  <Tooltip
+                    title={option.tooltip ?? ''}
+                    key={index}
+                  >
                     <ConditionalWrapper
                       condition={!!option.url}
                       wrapper={(children) => (

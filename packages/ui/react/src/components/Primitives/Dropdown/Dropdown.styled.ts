@@ -113,7 +113,7 @@ const ContentBadge = styled.span<Pick<ContentBadgeProps, '$backgroundColor'>>`
   // color: ${getColor('blue.800')};
   // Remove override
   // ${({ $backgroundColor }) => !!$backgroundColor && colorIcon}
-`;
+`
 const ClickableContainer = styled.div`
   cursor: pointer;
   display: flex;
