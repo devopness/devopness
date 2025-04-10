@@ -1,8 +1,10 @@
 import React from 'react'
+
 import type { PopoverOrigin } from '@mui/material/Popover'
 import Popover from '@mui/material/Popover'
 import type { InjectedProps as PopupStateProps } from 'material-ui-popup-state'
 import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state'
+
 import {
   MenuContainer,
   MenuOption,
