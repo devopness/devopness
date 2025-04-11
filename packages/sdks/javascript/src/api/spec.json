@@ -12632,6 +12632,94 @@
         ],
         "nullable": true
       },
+      "ActionRelationShallow": {
+        "type": "object",
+        "nullable": true,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The Id of the action",
+            "example": 567819876
+          },
+          "status": {
+            "$ref": "#/components/schemas/ActionStatus"
+          },
+          "status_human_readable": {
+            "type": "string",
+            "description": "Human readable version of the action status",
+            "example": "Pending"
+          },
+          "status_reason_code": {
+            "$ref": "#/components/schemas/ActionStatusReasonCode"
+          },
+          "status_reason_human_readable": {
+            "type": "string",
+            "description": "Human readable version of the status reason code",
+            "example": "Pending: Action created successfully but has not yet been queued for execution."
+          },
+          "type": {
+            "$ref": "#/components/schemas/ActionType"
+          },
+          "type_human_readable": {
+            "type": "string",
+            "description": "Human readable version of the action type",
+            "example": "Deploy"
+          },
+          "url_web_permalink": {
+            "type": "string",
+            "description": "Permalink to view the action on Devopness web",
+            "example": "https://devopness.com/actions/567819876"
+          },
+          "action_data": {
+            "$ref": "#/components/schemas/ActionData"
+          },
+          "triggered_from": {
+            "$ref": "#/components/schemas/ActionTriggeredFrom"
+          },
+          "summary": {
+            "$ref": "#/components/schemas/ActionSummary"
+          },
+          "targets": {
+            "$ref": "#/components/schemas/ActionTargetList"
+          },
+          "started_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "description": "When the action started"
+          },
+          "completed_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "description": "When the action completed"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the action was created"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the action was last updated"
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "type_human_readable",
+          "status",
+          "status_human_readable",
+          "status_reason_code",
+          "status_reason_human_readable",
+          "url_web_permalink",
+          "started_at",
+          "completed_at",
+          "created_at",
+          "updated_at"
+        ]
+      },
       "ActionResource": {
         "type": "object",
         "description": "The resource that triggered an action",
@@ -13579,12 +13667,12 @@
         "type": "object",
         "properties": {
           "latest": {
-            "$ref": "#/components/schemas/ActionRelation",
+            "$ref": "#/components/schemas/ActionRelationShallow",
             "nullable": true,
             "description": "The most recent application deployment, regardless of its status"
           },
           "live": {
-            "$ref": "#/components/schemas/ActionRelation",
+            "$ref": "#/components/schemas/ActionRelationShallow",
             "nullable": true,
             "description": "The most recent application deployment, that was successfully completed"
           }
@@ -15143,7 +15231,7 @@
             "type": "boolean"
           },
           "last_action": {
-            "$ref": "#/components/schemas/ActionRelation"
+            "$ref": "#/components/schemas/ActionRelationShallow"
           },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
@@ -15407,7 +15495,7 @@
             "type": "boolean"
           },
           "last_action": {
-            "$ref": "#/components/schemas/ActionRelation"
+            "$ref": "#/components/schemas/ActionRelationShallow"
           },
           "application": {
             "$ref": "#/components/schemas/ApplicationRelation"
@@ -17388,7 +17476,7 @@
             "$ref": "#/components/schemas/NetworkProvisionInput"
           },
           "last_action": {
-            "$ref": "#/components/schemas/ActionRelation"
+            "$ref": "#/components/schemas/ActionRelationShallow"
           },
           "created_at": {
             "description": "The date and time when the record was created",
@@ -17603,7 +17691,7 @@
             "type": "boolean"
           },
           "last_action": {
-            "$ref": "#/components/schemas/ActionRelation"
+            "$ref": "#/components/schemas/ActionRelationShallow"
           },
           "created_at": {
             "description": "The date and time when the record was created",
@@ -19117,6 +19205,53 @@
           "type": "integer"
         }
       },
+      "ResourceLinkChild": {
+        "type": "object",
+        "properties": {
+          "link_type": {
+            "description": "The link type to related resource (`child` or `parent`)",
+            "type": "string",
+            "example": "child"
+          },
+          "resource_id": {
+            "description": "The linked resource ID",
+            "type": "integer",
+            "example": 123
+          },
+          "resource_type": {
+            "description": "The linked resource type",
+            "type": "string",
+            "example": "application"
+          },
+          "resource_type_human_readable": {
+            "description": "Human readable resource type",
+            "type": "string",
+            "example": "Application"
+          },
+          "can_be_unlinked": {
+            "description": "If false, the link cannot be manually removed",
+            "type": "boolean",
+            "example": true
+          },
+          "linked_resource_data": {
+            "$ref": "#/components/schemas/LinkedResourceData"
+          }
+        },
+        "required": [
+          "link_type",
+          "resource_id",
+          "resource_type",
+          "resource_type_human_readable",
+          "can_be_unlinked",
+          "linked_resource_data"
+        ]
+      },
+      "ResourceLinkChildList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/ResourceLinkChild"
+        }
+      },
       "ResourceLinkList": {
         "type": "array",
         "items": {
@@ -19155,7 +19290,7 @@
             "$ref": "#/components/schemas/LinkedResourceData"
           },
           "children": {
-            "$ref": "#/components/schemas/ResourceLinkList"
+            "$ref": "#/components/schemas/ResourceLinkChildList"
           }
         },
         "required": [
@@ -19926,7 +20061,7 @@
             "$ref": "#/components/schemas/ActionStatus"
           },
           "last_action": {
-            "$ref": "#/components/schemas/ActionRelation"
+            "$ref": "#/components/schemas/ActionRelationShallow"
           },
           "created_at": {
             "description": "The date and time when the record was created",
@@ -20197,7 +20332,7 @@
             "nullable": true
           },
           "last_action": {
-            "$ref": "#/components/schemas/ActionRelation"
+            "$ref": "#/components/schemas/ActionRelationShallow"
           },
           "created_at": {
             "description": "The date and time when the record was created",
@@ -20635,7 +20770,7 @@
             "type": "string"
           },
           "last_action": {
-            "$ref": "#/components/schemas/ActionRelation"
+            "$ref": "#/components/schemas/ActionRelationShallow"
           },
           "created_at": {
             "description": "The date and time when the record was created",
@@ -20834,7 +20969,7 @@
             "type": "boolean"
           },
           "last_action": {
-            "$ref": "#/components/schemas/ActionRelation"
+            "$ref": "#/components/schemas/ActionRelationShallow"
           },
           "expires_at": {
             "description": "The date and time when this certificate will no longer be valid, down to minute precision",
@@ -22583,6 +22718,11 @@
             "format": "email",
             "description": "The e-mail that will uniquely identify the user on the system and become its login credential"
           },
+          "url_slug": {
+            "type": "string",
+            "description": "The URL Slug of the user",
+            "example": "someone"
+          },
           "language": {
             "$ref": "#/components/schemas/Language"
           },
@@ -23283,7 +23423,7 @@
             "$ref": "#/components/schemas/SslCertificateRelation"
           },
           "last_action": {
-            "$ref": "#/components/schemas/ActionRelation"
+            "$ref": "#/components/schemas/ActionRelationShallow"
           },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
