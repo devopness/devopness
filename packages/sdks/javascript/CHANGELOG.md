@@ -1,5 +1,13 @@
 # @devopness/sdk-js
 
+## 2.162.2
+
+### Patch Changes
+
+- [#1573](https://github.com/devopness/devopness/pull/1573) [`5ffe0f5`](https://github.com/devopness/devopness/commit/5ffe0f5cd5d67ab5c29b476194a9c05c9b0b2bdb) Thanks [@devopness-automations](https://github.com/devopness-automations)! - add url_slug in user-relation model
+
+- [#1573](https://github.com/devopness/devopness/pull/1573) [`5ffe0f5`](https://github.com/devopness/devopness/commit/5ffe0f5cd5d67ab5c29b476194a9c05c9b0b2bdb) Thanks [@devopness-automations](https://github.com/devopness-automations)! - add version of action-relation model without resource field
+
 ## 2.162.1
 
 ### Patch Changes
