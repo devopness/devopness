@@ -38,7 +38,7 @@ properties:
   provision_input:
     $ref: '#/components/schemas/NetworkProvisionInput'
   last_action:
-    $ref: '#/components/schemas/ActionRelation'
+    $ref: '#/components/schemas/ActionRelationShallow'
   created_at:
     description: 'The date and time when the record was created'
     example: '2019-09-25T15:50:48.000000Z'

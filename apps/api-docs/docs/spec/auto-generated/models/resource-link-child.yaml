@@ -3,33 +3,30 @@ type: object
 properties:
   link_type:
     description: 'The link type to related resource (`child` or `parent`)'
-    example: parent
     type: string
-  resource_type_human_readable:
-    description: 'The human readable resource type'
-    example: Server
-    type: string
-  resource_type:
-    description: 'The linked resource type'
-    example: server
-    type: string
+    example: child
   resource_id:
     description: 'The linked resource ID'
-    example: 123
     type: integer
+    example: 123
+  resource_type:
+    description: 'The linked resource type'
+    type: string
+    example: application
+  resource_type_human_readable:
+    description: 'Human readable resource type'
+    type: string
+    example: Application
   can_be_unlinked:
     description: 'If false, the link cannot be manually removed'
-    example: true
     type: boolean
+    example: true
   linked_resource_data:
     $ref: '#/components/schemas/LinkedResourceData'
-  children:
-    $ref: '#/components/schemas/ResourceLinkChildList'
 required:
   - link_type
-  - resource_type_human_readable
-  - resource_type
   - resource_id
+  - resource_type
+  - resource_type_human_readable
   - can_be_unlinked
   - linked_resource_data
-nullable: true

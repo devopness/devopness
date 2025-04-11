@@ -31,7 +31,7 @@ properties:
     example: false
     type: boolean
   last_action:
-    $ref: '#/components/schemas/ActionRelation'
+    $ref: '#/components/schemas/ActionRelationShallow'
   application:
     $ref: '#/components/schemas/ApplicationRelation'
   created_by_user:

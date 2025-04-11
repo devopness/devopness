@@ -3,10 +3,10 @@ description: 'Latest deployment created to application and the more recent compl
 type: object
 properties:
   latest:
-    $ref: '#/components/schemas/ActionRelation'
+    $ref: '#/components/schemas/ActionRelationShallow'
     nullable: true
     description: 'The most recent application deployment, regardless of its status'
   live:
-    $ref: '#/components/schemas/ActionRelation'
+    $ref: '#/components/schemas/ActionRelationShallow'
     nullable: true
     description: 'The most recent application deployment, that was successfully completed'

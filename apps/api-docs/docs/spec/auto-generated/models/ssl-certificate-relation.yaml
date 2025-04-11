@@ -20,7 +20,7 @@ properties:
     example: true
     type: boolean
   last_action:
-    $ref: '#/components/schemas/ActionRelation'
+    $ref: '#/components/schemas/ActionRelationShallow'
   expires_at:
     description: 'The date and time when this certificate will no longer be valid, down to minute precision'
     example: '2020-04-16T15:50:48.000000Z'

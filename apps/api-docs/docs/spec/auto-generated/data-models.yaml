@@ -17,6 +17,8 @@ ActionPipelineCreate:
   $ref: ./auto-generated/models/action-pipeline-create.yaml
 ActionRelation:
   $ref: ./auto-generated/models/action-relation.yaml
+ActionRelationShallow:
+  $ref: ./auto-generated/models/action-relation-shallow.yaml
 ActionResource:
   $ref: ./auto-generated/models/action-resource.yaml
 ActionRetryResponse:
@@ -457,6 +459,10 @@ ResourceEventRelation:
   $ref: ./auto-generated/models/resource-event-relation.yaml
 ResourceIdList:
   $ref: ./auto-generated/models/resource-id-list.yaml
+ResourceLinkChild:
+  $ref: ./auto-generated/models/resource-link-child.yaml
+ResourceLinkChildList:
+  $ref: ./auto-generated/models/resource-link-child-list.yaml
 ResourceLinkList:
   $ref: ./auto-generated/models/resource-link-list.yaml
 ResourceLinkRelation:

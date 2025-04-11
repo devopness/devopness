@@ -38,7 +38,7 @@ properties:
     type: string
     nullable: true
   last_action:
-    $ref: '#/components/schemas/ActionRelation'
+    $ref: '#/components/schemas/ActionRelationShallow'
   created_at:
     description: 'The date and time when the record was created'
     example: '2019-09-25T13:22:37.000000Z'

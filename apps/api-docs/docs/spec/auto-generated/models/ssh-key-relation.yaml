@@ -26,7 +26,7 @@ properties:
     example: '74:2a:d5:75:8a:9b:64:4c:21:18:54:3f:c5:0a:59:f0'
     type: string
   last_action:
-    $ref: '#/components/schemas/ActionRelation'
+    $ref: '#/components/schemas/ActionRelationShallow'
   created_at:
     description: 'The date and time when the record was created'
     example: '2022-09-26T15:30:31.000000Z'
