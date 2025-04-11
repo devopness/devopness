@@ -28,8 +28,8 @@ const DEFAULT_BUTTON_ICON_SIZE = 10
 const DEFAULT_ICON_MARGIN = 10
 
 type DropdownOptionIcon = Unwrap<
-  Partial<Pick<IconProps, 'name' | 'size'>> &
-    Pick<React.CSSProperties, 'backgroundColor' | 'color'>
+  IconProps &
+  Pick<React.CSSProperties, 'backgroundColor'>
 > & { icon: true }
 
 type DropdownOptionLetter = Unwrap<
@@ -350,6 +350,7 @@ const Dropdown = ({
                           >
                             {option.badge.icon ? (
                               <Icon
+                                color={option.badge.color}
                                 name={option.badge.name}
                                 size={option.badge.size ?? 12}
                               />
