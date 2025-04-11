@@ -28,8 +28,7 @@ const DEFAULT_BUTTON_ICON_SIZE = 10
 const DEFAULT_ICON_MARGIN = 10
 
 type DropdownOptionIcon = Unwrap<
-  Partial<Pick<IconProps, 'name' | 'size'>> &
-    Pick<React.CSSProperties, 'backgroundColor' | 'color'>
+  IconProps & Pick<React.CSSProperties, 'backgroundColor'>
 > & { icon: true }
 
 type DropdownOptionLetter = Unwrap<
@@ -39,62 +38,18 @@ type DropdownOptionLetter = Unwrap<
 }
 
 type DropdownOption = {
-  /**
-   * Background Color to use when option is active
-   */
   activeBackgroundColor?: Color
-  /**
-   * Option Badge configuration
-   *
-   * An option badge can be an icon or the label's first letter
-   */
   badge?: DropdownOptionIcon | DropdownOptionLetter
-  /**
-   * Add separator from previous options
-   */
   brokenSequence?: boolean
-  /**
-   * Label text color
-   *
-   * @see {@link https://developer.mozilla.org/en-US/docs/Web/CSS/color}
-   */
   color?: Color
-  /**
-   * Highlight option
-   */
   isActive?: boolean
-  /**
-   * Disables option
-   */
   isDisabled?: boolean
-  /**
-   * Option description
-   */
   label?: string
-  /**
-   * Link properties
-   *
-   * @see {Link}
-   */
   linkProps?: LinkProps
-  /**
-   * Event handler called when this option is clicked.
-   */
   onClick?: () => null
-  /**
-   * Tooltip's title
-   *
-   * @see {Tooltip}
-   */
   tooltip?: TooltipProps['title']
-  /**
-   * Transforms label to a Link and point user to this url
-   *
-   * @see {Link}
-   */
   url?: string
 }
-
 type DropdownSharedProps = {
   /**
    * This is the point on the anchor where the popover's
@@ -255,6 +210,8 @@ const ElementAnchor = ({
 /**
  * Display a menu with a list of options
  */
+// ... (other imports and code remain unchanged)
+
 const Dropdown = ({
   anchorType,
   content,
@@ -330,16 +287,13 @@ const Dropdown = ({
                           if (option.isDisabled) {
                             return
                           }
-
                           event.preventDefault()
                           event.stopPropagation()
-
                           if (option.onClick) {
                             option.onClick()
                           } else if (onSelect) {
                             onSelect(option)
                           }
-
                           popupState.close()
                         }}
                       >
@@ -350,8 +304,8 @@ const Dropdown = ({
                           >
                             {option.badge.icon ? (
                               <Icon
-                                name={option.badge.name}
-                                size={option.badge.size ?? 12}
+                                {...option.badge} // Spread all badge props
+                                size={option.badge.size ?? 12} // Default size if not provided
                               />
                             ) : (
                               option.label?.at(0)
