@@ -42,21 +42,11 @@ const DROPDOWN_OPTIONS: DropdownOption[] = [
 const meta = {
   component: Dropdown,
   argTypes: {
-    content: {
-      if: { arg: 'anchorType', eq: 'content' },
-    },
-    hideDropdownIcon: {
-      if: { arg: 'anchorType', eq: 'button' },
-    },
-    hideLabel: {
-      if: { arg: 'anchorType', eq: 'button' },
-    },
-    buttonProps: {
-      if: { arg: 'anchorType', eq: 'button' },
-    },
-    label: {
-      if: { arg: 'anchorType', eq: 'button' },
-    },
+    content: { if: { arg: 'anchorType', eq: 'content' } },
+    hideDropdownIcon: { if: { arg: 'anchorType', eq: 'button' } },
+    hideLabel: { if: { arg: 'anchorType', eq: 'button' } },
+    buttonProps: { if: { arg: 'anchorType', eq: 'button' } },
+    label: { if: { arg: 'anchorType', eq: 'button' } },
   },
 } satisfies Meta<typeof Dropdown>
 
