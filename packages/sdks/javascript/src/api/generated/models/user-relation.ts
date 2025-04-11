@@ -39,6 +39,12 @@ export interface UserRelation {
      */
     email: string;
     /**
+     * The URL Slug of the user
+     * @type {string}
+     * @memberof UserRelation
+     */
+    url_slug?: string;
+    /**
      * 
      * @type {Language}
      * @memberof UserRelation
