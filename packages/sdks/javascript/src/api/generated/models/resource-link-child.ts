@@ -13,55 +13,48 @@
 
 
 import { LinkedResourceData } from './linked-resource-data';
-import { ResourceLinkChild } from './resource-link-child';
 
 /**
  * 
  * @export
- * @interface ResourceLinkRelation
+ * @interface ResourceLinkChild
  */
-export interface ResourceLinkRelation {
+export interface ResourceLinkChild {
     /**
      * The link type to related resource (`child` or `parent`)
      * @type {string}
-     * @memberof ResourceLinkRelation
+     * @memberof ResourceLinkChild
      */
     link_type: string;
     /**
-     * The human readable resource type
-     * @type {string}
-     * @memberof ResourceLinkRelation
-     */
-    resource_type_human_readable: string;
-    /**
-     * The linked resource type
-     * @type {string}
-     * @memberof ResourceLinkRelation
-     */
-    resource_type: string;
-    /**
      * The linked resource ID
      * @type {number}
-     * @memberof ResourceLinkRelation
+     * @memberof ResourceLinkChild
      */
     resource_id: number;
     /**
+     * The linked resource type
+     * @type {string}
+     * @memberof ResourceLinkChild
+     */
+    resource_type: string;
+    /**
+     * Human readable resource type
+     * @type {string}
+     * @memberof ResourceLinkChild
+     */
+    resource_type_human_readable: string;
+    /**
      * If false, the link cannot be manually removed
      * @type {boolean}
-     * @memberof ResourceLinkRelation
+     * @memberof ResourceLinkChild
      */
     can_be_unlinked: boolean;
     /**
      * 
      * @type {LinkedResourceData}
-     * @memberof ResourceLinkRelation
+     * @memberof ResourceLinkChild
      */
     linked_resource_data: LinkedResourceData;
-    /**
-     * 
-     * @type {Array<ResourceLinkChild>}
-     * @memberof ResourceLinkRelation
-     */
-    children?: Array<ResourceLinkChild>;
 }
 
