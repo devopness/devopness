@@ -21,21 +21,15 @@ jobs:
         with:
           github-token: '${{ secrets.GITHUB_TOKEN }}'
 
-      - name: Check if it's a patch update
-        id: check_patch
-        run: |
-          if [ "${{ steps.metadata.outputs.update-type }}" != "version-update:semver-patch" ]; then
-            echo "INFO: Not a patch update. Exiting workflow."
-            exit 0
-          fi
-
       - name: Approve the PR
+        if: steps.metadata.outputs.update-type == 'version-update:semver-patch'
         run: gh pr review --approve "$PR_URL"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Enable Auto Merge for Patch Update
+        if: steps.metadata.outputs.update-type == 'version-update:semver-patch'
         run: gh pr merge --auto --merge "$PR_URL"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
