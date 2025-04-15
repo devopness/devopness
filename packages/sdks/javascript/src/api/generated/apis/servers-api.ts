@@ -17,12 +17,36 @@ import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { Server } from '../../generated/models';
 import { ServerCommand } from '../../generated/models';
+import { ServerEnvironmentCreate } from '../../generated/models';
+import { ServerRelation } from '../../generated/models';
 import { ServerUpdate } from '../../generated/models';
 
 /**
  * ServersApiService - Auto-generated
  */
 export class ServersApiService extends ApiBaseService {
+    /**
+     * 
+     * @summary Creates a server and link it to the given environment
+     * @param {number} environmentId The ID of the environment.
+     * @param {ServerEnvironmentCreate} serverEnvironmentCreate A JSON object containing the resource data
+     */
+    public async addEnvironmentServer(environmentId: number, serverEnvironmentCreate: ServerEnvironmentCreate): Promise<ApiResponse<Server>> {
+        if (environmentId === null || environmentId === undefined) {
+            throw new ArgumentNullException('environmentId', 'addEnvironmentServer');
+        }
+        if (serverEnvironmentCreate === null || serverEnvironmentCreate === undefined) {
+            throw new ArgumentNullException('serverEnvironmentCreate', 'addEnvironmentServer');
+        }
+
+        let queryString = '';
+
+        const requestUrl = '/environments/{environment_id}/servers' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <Server, ServerEnvironmentCreate>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))), serverEnvironmentCreate);
+        return new ApiResponse(response);
+    }
+
     /**
      * 
      * @summary Connect a server to devopness platform
@@ -123,6 +147,34 @@ export class ServersApiService extends ApiBaseService {
         const requestUrl = '/servers/{server_id}/get-status' + (queryString? `?${queryString}` : '');
 
         const response = await this.post <void>(requestUrl.replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Return a list of all servers belonging to an environment
+     * @param {number} environmentId The ID of the environment.
+     * @param {number} [page] Number of the page to be retrieved
+     * @param {number} [perPage] Number of items returned per page
+     */
+    public async listEnvironmentServers(environmentId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<ServerRelation>>> {
+        if (environmentId === null || environmentId === undefined) {
+            throw new ArgumentNullException('environmentId', 'listEnvironmentServers');
+        }
+
+        let queryString = '';
+        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
+        const requestUrl = '/environments/{environment_id}/servers' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <Array<ServerRelation>>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
         return new ApiResponse(response);
     }
 
