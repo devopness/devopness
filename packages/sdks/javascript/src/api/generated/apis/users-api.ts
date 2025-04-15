@@ -53,10 +53,10 @@ export class UsersApiService extends ApiBaseService {
 
     /**
      * 
-     * @summary Get a user by ID
-     * @param {number} userId The ID of the user.
+     * @summary Get a user by ID or URL Slug
+     * @param {string} userId The numeric ID or URL Slug of a user.
      */
-    public async getUser(userId: number): Promise<ApiResponse<User>> {
+    public async getUser(userId: string): Promise<ApiResponse<User>> {
         if (userId === null || userId === undefined) {
             throw new ArgumentNullException('userId', 'getUser');
         }
@@ -71,10 +71,10 @@ export class UsersApiService extends ApiBaseService {
 
     /**
      * 
-     * @summary Get current user\'s activity info
-     * @param {number} userId The ID of the user.
+     * @summary Get activity information for a user
+     * @param {string} userId The numeric ID or URL Slug of a user.
      */
-    public async getUserActivity(userId: number): Promise<ApiResponse<UserActivity>> {
+    public async getUserActivity(userId: string): Promise<ApiResponse<UserActivity>> {
         if (userId === null || userId === undefined) {
             throw new ArgumentNullException('userId', 'getUserActivity');
         }
@@ -200,10 +200,10 @@ export class UsersApiService extends ApiBaseService {
     /**
      * 
      * @summary Update an existing user
-     * @param {number} userId The ID of the user.
+     * @param {string} userId The ID of the user.
      * @param {UserUpdate} userUpdate A JSON object containing the resource data
      */
-    public async updateUser(userId: number, userUpdate: UserUpdate): Promise<ApiResponse<void>> {
+    public async updateUser(userId: string, userUpdate: UserUpdate): Promise<ApiResponse<void>> {
         if (userId === null || userId === undefined) {
             throw new ArgumentNullException('userId', 'updateUser');
         }

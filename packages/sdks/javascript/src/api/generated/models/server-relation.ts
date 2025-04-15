@@ -12,7 +12,7 @@
  */
 
 
-import { ActionRelation } from './action-relation';
+import { ActionRelationShallow } from './action-relation-shallow';
 import { ActionStatus } from './action-status';
 import { CredentialRelation } from './credential-relation';
 
@@ -102,10 +102,10 @@ export interface ServerRelation {
     status: ActionStatus;
     /**
      * 
-     * @type {ActionRelation}
+     * @type {ActionRelationShallow}
      * @memberof ServerRelation
      */
-    last_action: ActionRelation | null;
+    last_action: ActionRelationShallow | null;
     /**
      * The date and time when the record was created
      * @type {string}

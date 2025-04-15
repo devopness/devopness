@@ -1,17 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
 import { Input } from './Input'
-import { Container } from './Input.styled'
 
 const meta = {
   title: 'Form/Input',
   component: Input,
-  parameters: { docs: { source: { type: 'code' } } },
-  render: (args) => (
-    <Container>
-      <Input {...args} />
-    </Container>
-  ),
 } satisfies Meta<typeof Input>
 
 type Story = StoryObj<typeof meta>
@@ -93,5 +86,29 @@ const Number: Story = {
   },
 }
 
+const WithAutoFocusOnError: Story = {
+  args: {
+    name: 'name',
+    type: 'text',
+    placeholder: 'This input will auto-focus when error occurs',
+    labelProps: {
+      value: 'Auto-focus on error',
+      helpValue: 'This input will automatically focus when an error occurs',
+    },
+    error: {
+      message: 'This field has an error',
+    },
+    autoFocusOnError: true,
+  },
+  parameters: {
+    controls: {
+      exclude: [
+        'publicStyle',
+      ],
+    },
+  },
+}
+
+export { Default, Error, Number, WithAutoFocusOnError }
+
 export default meta
-export { Default, Number, Error }

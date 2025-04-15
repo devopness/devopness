@@ -13,6 +13,7 @@
 
 
 import { LinkedResourceData } from './linked-resource-data';
+import { ResourceLinkChild } from './resource-link-child';
 
 /**
  * 
@@ -58,9 +59,9 @@ export interface ResourceLinkRelation {
     linked_resource_data: LinkedResourceData;
     /**
      * 
-     * @type {Array<ResourceLinkRelation>}
+     * @type {Array<ResourceLinkChild>}
      * @memberof ResourceLinkRelation
      */
-    children?: Array<ResourceLinkRelation>;
+    children?: Array<ResourceLinkChild>;
 }
 

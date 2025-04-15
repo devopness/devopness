@@ -12,7 +12,7 @@
  */
 
 
-import { ActionRelation } from './action-relation';
+import { ActionRelationShallow } from './action-relation-shallow';
 import { ApplicationRelation } from './application-relation';
 import { UserRelation } from './user-relation';
 
@@ -66,10 +66,10 @@ export interface DaemonRelation {
     is_auto_generated: boolean;
     /**
      * 
-     * @type {ActionRelation}
+     * @type {ActionRelationShallow}
      * @memberof DaemonRelation
      */
-    last_action: ActionRelation | null;
+    last_action: ActionRelationShallow | null;
     /**
      * 
      * @type {ApplicationRelation}

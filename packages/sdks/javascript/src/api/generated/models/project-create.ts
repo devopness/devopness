@@ -26,6 +26,12 @@ export interface ProjectCreate {
      */
     name: string;
     /**
+     * The ID of the organization that owns the project.
+     * @type {number}
+     * @memberof ProjectCreate
+     */
+    organization_id?: number;
+    /**
      * A base64 string representation of the logo image.
      * @type {string}
      * @memberof ProjectCreate
