@@ -22,14 +22,14 @@ jobs:
           github-token: '${{ secrets.GITHUB_TOKEN }}'
 
       - name: Approve the PR
-        if: steps.metadata.outputs.update-type == 'version-update:semver-patch'
+        if: steps.metadata.outputs.update-type == 'version-update:semver-patch' || steps.metadata.outputs.update-type == 'version-update:semver-minor'
         run: gh pr review --approve "$PR_URL"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Enable Auto Merge for Patch Update
-        if: steps.metadata.outputs.update-type == 'version-update:semver-patch'
+      - name: Enable Auto Merge for Patch or Minor Update
+        if: steps.metadata.outputs.update-type == 'version-update:semver-patch' || steps.metadata.outputs.update-type == 'version-update:semver-minor'
         run: gh pr merge --auto --squash "$PR_URL"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
