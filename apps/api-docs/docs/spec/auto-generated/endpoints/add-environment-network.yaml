@@ -4,7 +4,7 @@ operationId: addEnvironmentNetwork
 description:
   $ref: ../spec/descriptions/add-environment-network.md
 tags:
-  - 'Environments - Networks'
+  - Networks
 parameters:
   -
     $ref: '#/components/parameters/acceptHeader'

@@ -4,7 +4,7 @@ operationId: listEnvironmentServices
 description:
   $ref: ../spec/descriptions/list-environment-services.md
 tags:
-  - 'Environments - Services'
+  - Services
 parameters:
   -
     $ref: '#/components/parameters/acceptHeader'

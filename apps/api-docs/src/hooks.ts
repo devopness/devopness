@@ -77,6 +77,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         'addNetworkSubnet201',
         'deleteSubnet204',
         'getSubnet200',
+        'archiveEnvironment204',
     ];
 
     // transactions listed here are skipped with a `before` hook

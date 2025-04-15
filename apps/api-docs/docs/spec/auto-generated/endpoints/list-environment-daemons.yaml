@@ -4,7 +4,7 @@ operationId: listEnvironmentDaemons
 description:
   $ref: ../spec/descriptions/list-environment-daemons.md
 tags:
-  - 'Environments - Daemons'
+  - Daemons
 parameters:
   -
     $ref: '#/components/parameters/acceptHeader'

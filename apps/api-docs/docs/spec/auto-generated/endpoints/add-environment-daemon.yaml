@@ -4,7 +4,7 @@ operationId: addEnvironmentDaemon
 description:
   $ref: ../spec/descriptions/add-environment-daemon.md
 tags:
-  - 'Environments - Daemons'
+  - Daemons
 parameters:
   -
     $ref: '#/components/parameters/acceptHeader'

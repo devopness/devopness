@@ -4,7 +4,7 @@ operationId: listEnvironmentSshKeys
 description:
   $ref: ../spec/descriptions/list-environment-ssh-keys.md
 tags:
-  - 'Environments - SSH Keys'
+  - 'SSH Keys'
 parameters:
   -
     $ref: '#/components/parameters/acceptHeader'

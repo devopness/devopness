@@ -4,7 +4,7 @@ operationId: listEnvironmentNetworks
 description:
   $ref: ../spec/descriptions/list-environment-networks.md
 tags:
-  - 'Environments - Networks'
+  - Networks
 parameters:
   -
     $ref: '#/components/parameters/acceptHeader'

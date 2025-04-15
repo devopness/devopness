@@ -4,7 +4,7 @@ operationId: listEnvironmentCronJobs
 description:
   $ref: ../spec/descriptions/list-environment-cron-jobs.md
 tags:
-  - 'Environments - Cron Jobs'
+  - 'Cron Jobs'
 parameters:
   -
     $ref: '#/components/parameters/acceptHeader'

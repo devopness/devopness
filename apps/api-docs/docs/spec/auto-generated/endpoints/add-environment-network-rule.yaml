@@ -4,7 +4,7 @@ operationId: addEnvironmentNetworkRule
 description:
   $ref: ../spec/descriptions/add-environment-network-rule.md
 tags:
-  - 'Environments - Network Rules'
+  - 'Network Rules'
 parameters:
   -
     $ref: '#/components/parameters/acceptHeader'

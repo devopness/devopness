@@ -4,7 +4,7 @@ operationId: listEnvironmentSslCertificates
 description:
   $ref: ../spec/descriptions/list-environment-ssl-certificates.md
 tags:
-  - 'Environments - SSL Certificates'
+  - 'SSL Certificates'
 parameters:
   -
     $ref: '#/components/parameters/acceptHeader'

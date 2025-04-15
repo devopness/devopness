@@ -4,7 +4,7 @@ operationId: addEnvironmentApplication
 description:
   $ref: ../spec/descriptions/add-environment-application.md
 tags:
-  - 'Environments - Applications'
+  - Applications
 parameters:
   -
     $ref: '#/components/parameters/acceptHeader'

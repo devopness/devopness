@@ -4,7 +4,7 @@ operationId: addEnvironmentVirtualHost
 description:
   $ref: ../spec/descriptions/add-environment-virtual-host.md
 tags:
-  - 'Environments - Virtual Hosts'
+  - 'Virtual Hosts'
 parameters:
   -
     $ref: '#/components/parameters/acceptHeader'

@@ -172,7 +172,6 @@ tags:
   - name: Actions
   - name: Actions - Logs
   - name: Applications
-  - name: Applications - Deployments
   - name: Applications - Hooks
   - name: Applications - Variables
     description: |
@@ -185,19 +184,8 @@ tags:
       The terms `process`, `background process` and `daemon` may be used interchangeably in the `devopness` API documentation to denote the same thing: i.e., a computer process that runs behind the scenes without user intervention, detached from TTY (teletype/terminal type) and having no associated console or controlling terminal, therefore prevented from receiving `SIGHUP` on shell termination.
   - name: Environments
   - name: Environments - Actions
-  - name: Environments - Applications
-  - name: Environments - Credentials
-  - name: Environments - Cron Jobs
-  - name: Environments - Daemons
-  - name: Environments - Networks
-  - name: Environments - Network Rules
-  - name: Environments - Servers
-  - name: Environments - Services
-  - name: Environments - SSH Keys
-  - name: Environments - SSL Certificates
   - name: Environments - Teams
   - name: Environments - Team Memberships
-  - name: Environments - Virtual Hosts
   - name: Credentials
   - name: Credentials - Repositories
   - name: Hooks
@@ -266,23 +254,18 @@ x-tagGroups:
   - name: Applications
     tags:
       - Applications
-      - Applications - Deployments
       - Applications - Hooks
       - Applications - Variables
-      - Environments - Applications
   - name: Credentials
     tags:
       - Credentials
       - Credentials - Repositories
-      - Environments - Credentials
   - name: Cron Jobs
     tags:
       - Cron Jobs
-      - Environments - Cron Jobs
   - name: Daemons
     tags:
       - Daemons
-      - Environments - Daemons
   - name: Environments
     tags:
       - Environments
@@ -296,11 +279,9 @@ x-tagGroups:
   - name: Networks
     tags:
       - Networks
-      - Environments - Networks
   - name: Network Rules
     tags:
       - Network Rules
-      - Environments - Network Rules
   - name: Organizations
     tags:
       - Organizations
@@ -328,23 +309,19 @@ x-tagGroups:
   - name: Servers
     tags:
       - Servers
-      - Environments - Servers
   - name: Services
     tags:
       - Services
       - Services - Variables
-      - Environments - Services
   - name: Social Accounts
     tags:
       - Social Accounts
   - name: SSH Keys
     tags:
       - SSH Keys
-      - Environments - SSH Keys
   - name: SSL Certificates
     tags:
       - SSL Certificates
-      - Environments - SSL Certificates
   - name: Subnets
     tags:
       - Subnets
@@ -371,7 +348,6 @@ x-tagGroups:
   - name: Virtual Hosts
     tags:
       - Virtual Hosts
-      - Environments - Virtual Hosts
 
 components:
   securitySchemes:

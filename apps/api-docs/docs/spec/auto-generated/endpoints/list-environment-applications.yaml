@@ -4,7 +4,7 @@ operationId: listEnvironmentApplications
 description:
   $ref: ../spec/descriptions/list-environment-applications.md
 tags:
-  - 'Environments - Applications'
+  - Applications
 parameters:
   -
     $ref: '#/components/parameters/acceptHeader'
