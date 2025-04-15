@@ -40,6 +40,12 @@ export interface User {
      */
     email: string;
     /**
+     * The URL Slug of the user
+     * @type {string}
+     * @memberof User
+     */
+    url_slug: string;
+    /**
      * 
      * @type {Language}
      * @memberof User

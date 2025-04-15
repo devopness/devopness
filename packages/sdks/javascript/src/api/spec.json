@@ -4969,6 +4969,397 @@
         }
       }
     },
+    "/organizations": {
+      "get": {
+        "summary": "List all organizations of authenticated user",
+        "operationId": "listOrganizations",
+        "tags": [
+          "Organizations"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrganizationList"
+                }
+              }
+            },
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new organization",
+        "operationId": "addOrganization",
+        "tags": [
+          "Organizations"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Organization"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrganizationCreate"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/organizations/{organization_id}": {
+      "get": {
+        "summary": "Get an organization by ID or URL Slug",
+        "operationId": "getOrganization",
+        "tags": [
+          "Organizations"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "organization_id",
+            "description": "The numeric ID or URL Slug of an organization.",
+            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Organization"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update an existing organization",
+        "operationId": "updateOrganization",
+        "tags": [
+          "Organizations"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "organization_id",
+            "description": "The numeric ID or URL Slug of an organization.",
+            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrganizationUpdate"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/organizations/{organization_id}/activity": {
+      "get": {
+        "summary": "Get activity information for an organization",
+        "operationId": "getOrganizationActivity",
+        "tags": [
+          "Organizations"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "organization_id",
+            "description": "The numeric ID or URL Slug of an organization.",
+            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrganizationActivity"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/organizations/{organization_id}/environments": {
+      "get": {
+        "summary": "Return a list of all environments owned by an organization",
+        "operationId": "listOrganizationEnvironments",
+        "tags": [
+          "Organizations - Environments"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "organization_id",
+            "description": "The numeric ID or URL Slug of an organization.",
+            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EnvironmentList"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/organizations/{organization_id}/projects": {
+      "get": {
+        "summary": "Return a list of all projects owned by an organization",
+        "operationId": "listOrganizationProjects",
+        "tags": [
+          "Organizations - Projects"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "organization_id",
+            "description": "The numeric ID or URL Slug of an organization.",
+            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectList"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/pipelines/{pipeline_id}": {
       "delete": {
         "summary": "Delete a given Pipeline",
@@ -5884,7 +6275,7 @@
         }
       },
       "post": {
-        "summary": "Create a project",
+        "summary": "Create a project for a user or an organization",
         "operationId": "addProject",
         "tags": [
           "Projects"
@@ -8798,7 +9189,7 @@
         "summary": "List `Application` resource options",
         "operationId": "getStaticApplicationOptions",
         "tags": [
-          "Static Data - Application Options"
+          "Static Data"
         ],
         "parameters": [
           {
@@ -8830,7 +9221,7 @@
         "summary": "Get details of a single `Cloud Provider Service`",
         "operationId": "getStaticCloudProviderService",
         "tags": [
-          "Static Data - Cloud Provider Services"
+          "Static Data"
         ],
         "parameters": [
           {
@@ -8875,7 +9266,7 @@
         "summary": "List `Cloud Provider Service` instance types by region",
         "operationId": "listStaticCloudInstancesByCloudProviderServiceCodeAndRegionCode",
         "tags": [
-          "Static Data - Cloud Provider Service Instances"
+          "Static Data"
         ],
         "parameters": [
           {
@@ -8933,7 +9324,7 @@
         "summary": "List `Credential` resource options",
         "operationId": "getStaticCredentialOptions",
         "tags": [
-          "Static Data - Credential Options"
+          "Static Data"
         ],
         "parameters": [
           {
@@ -8965,7 +9356,7 @@
         "summary": "List `CronJob` resource options",
         "operationId": "getStaticCronJobOptions",
         "tags": [
-          "Static Data - Cron Job Options"
+          "Static Data"
         ],
         "parameters": [
           {
@@ -8997,7 +9388,7 @@
         "summary": "List `Environment` options",
         "operationId": "getStaticEnvironmentOptions",
         "tags": [
-          "Static Data - Environment Options"
+          "Static Data"
         ],
         "parameters": [
           {
@@ -9029,7 +9420,7 @@
         "summary": "List `Network Rule` options",
         "operationId": "getStaticNetworkRuleOptions",
         "tags": [
-          "Static Data - Network Rule Options"
+          "Static Data"
         ],
         "parameters": [
           {
@@ -9061,7 +9452,7 @@
         "summary": "List available `Role` permissions",
         "operationId": "listStaticPermissions",
         "tags": [
-          "Static Data - Permissions"
+          "Static Data"
         ],
         "parameters": [
           {
@@ -9099,7 +9490,7 @@
         "summary": "List available resource types",
         "operationId": "listStaticResourceTypes",
         "tags": [
-          "Static Data - Resource Types"
+          "Static Data"
         ],
         "parameters": [
           {
@@ -9137,7 +9528,7 @@
         "summary": "List `Server` options",
         "operationId": "getStaticServerOptions",
         "tags": [
-          "Static Data - Server Options"
+          "Static Data"
         ],
         "parameters": [
           {
@@ -9169,7 +9560,7 @@
         "summary": "List `Service` resource options",
         "operationId": "getStaticServiceOptions",
         "tags": [
-          "Static Data - Service Options"
+          "Static Data"
         ],
         "parameters": [
           {
@@ -9201,7 +9592,7 @@
         "summary": "List `User profile` options",
         "operationId": "getStaticUserProfileOptions",
         "tags": [
-          "Static Data - User Profile Options"
+          "Static Data"
         ],
         "parameters": [
           {
@@ -9233,7 +9624,7 @@
         "summary": "List `Virtual Host` options",
         "operationId": "getStaticVirtualHostOptions",
         "tags": [
-          "Static Data - Virtual Host Options"
+          "Static Data"
         ],
         "parameters": [
           {
@@ -10496,7 +10887,7 @@
     },
     "/users/{user_id}": {
       "get": {
-        "summary": "Get a user by ID",
+        "summary": "Get a user by ID or URL Slug",
         "operationId": "getUser",
         "tags": [
           "Users"
@@ -10514,12 +10905,11 @@
           {
             "in": "path",
             "name": "user_id",
-            "description": "The ID of the user.",
-            "example": 123,
+            "description": "The numeric ID or URL Slug of a user.",
+            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
             "required": true,
             "schema": {
-              "type": "integer",
-              "minimum": 1
+              "type": "string"
             }
           }
         ],
@@ -10566,11 +10956,10 @@
             "in": "path",
             "name": "user_id",
             "description": "The ID of the user.",
-            "example": 123,
+            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
             "required": true,
             "schema": {
-              "type": "integer",
-              "minimum": 1
+              "type": "string"
             }
           }
         ],
@@ -10614,7 +11003,7 @@
     },
     "/users/{user_id}/activity": {
       "get": {
-        "summary": "Get current user's activity info",
+        "summary": "Get activity information for a user",
         "operationId": "getUserActivity",
         "tags": [
           "Users"
@@ -10632,12 +11021,11 @@
           {
             "in": "path",
             "name": "user_id",
-            "description": "The ID of the user.",
-            "example": 123,
+            "description": "The numeric ID or URL Slug of a user.",
+            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
             "required": true,
             "schema": {
-              "type": "integer",
-              "minimum": 1
+              "type": "string"
             }
           }
         ],
@@ -10667,7 +11055,7 @@
     },
     "/users/{user_id}/environments": {
       "get": {
-        "summary": "Return a list of all environments owned by the current user",
+        "summary": "Return a list of all environments owned by a user",
         "operationId": "listUserEnvironments",
         "tags": [
           "Users - Environments"
@@ -10701,12 +11089,11 @@
           {
             "in": "path",
             "name": "user_id",
-            "description": "The ID of the user.",
-            "example": 123,
+            "description": "The numeric ID or URL Slug of a user.",
+            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
             "required": true,
             "schema": {
-              "type": "integer",
-              "minimum": 1
+              "type": "string"
             }
           }
         ],
@@ -10736,7 +11123,7 @@
     },
     "/users/{user_id}/projects": {
       "get": {
-        "summary": "Return a list of all projects owned by the current user",
+        "summary": "Return a list of all projects owned by a user",
         "operationId": "listUserProjects",
         "tags": [
           "Users - Projects"
@@ -10770,12 +11157,11 @@
           {
             "in": "path",
             "name": "user_id",
-            "description": "The ID of the user.",
-            "example": 123,
+            "description": "The numeric ID or URL Slug of a user.",
+            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
             "required": true,
             "schema": {
-              "type": "integer",
-              "minimum": 1
+              "type": "string"
             }
           }
         ],
@@ -11382,46 +11768,10 @@
       "description": "Client API applications might need to retrieve possible accepted values to fulfill their forms and allow end users to pick values from a list of valid data.\nAll static data that need to be used through `devopness` API client applications is provided through the `/static/*` endpoints.\n"
     },
     {
-      "name": "Static Data - Application Options"
-    },
-    {
-      "name": "Static Data - Cloud Provider Service Instances"
-    },
-    {
-      "name": "Static Data - Cloud Provider Services"
-    },
-    {
-      "name": "Static Data - Credential Options"
-    },
-    {
-      "name": "Static Data - Cron Job Options"
-    },
-    {
-      "name": "Static Data - Environment Options"
-    },
-    {
-      "name": "Static Data - Network Rule Options"
-    },
-    {
-      "name": "Static Data - Permissions"
-    },
-    {
-      "name": "Static Data - Resource Types"
-    },
-    {
-      "name": "Static Data - Server Options"
-    },
-    {
-      "name": "Static Data - Service Options"
-    },
-    {
-      "name": "Static Data - User Profile Options"
-    },
-    {
-      "name": "Static Data - Virtual Host Options"
-    },
-    {
       "name": "Actions"
+    },
+    {
+      "name": "Actions - Logs"
     },
     {
       "name": "Applications"
@@ -11454,13 +11804,13 @@
       "name": "Environments - Applications"
     },
     {
+      "name": "Environments - Credentials"
+    },
+    {
       "name": "Environments - Cron Jobs"
     },
     {
       "name": "Environments - Daemons"
-    },
-    {
-      "name": "Environments - Members"
     },
     {
       "name": "Environments - Networks"
@@ -11493,14 +11843,17 @@
       "name": "Credentials"
     },
     {
+      "name": "Credentials - Repositories"
+    },
+    {
       "name": "Hooks",
       "description": "A hook is a simple way to integrate your Devopness workflow with external processes to trigger Devopness actions by sending a POST request to a public URL. By using hooks you can make Devopness react to events that happen in other applications and make sure your environment resources reflect changes applied in other services.\nAn outgoing hook is a webhook that trigger a request when an action of a resource has your state updated.\n"
     },
     {
-      "name": "Invitations"
+      "name": "Hook Requests"
     },
     {
-      "name": "Logs"
+      "name": "Hooks - Requests"
     },
     {
       "name": "Networks"
@@ -11512,6 +11865,15 @@
       "name": "Network Rules"
     },
     {
+      "name": "Organizations"
+    },
+    {
+      "name": "Organizations - Environments"
+    },
+    {
+      "name": "Organizations - Projects"
+    },
+    {
       "name": "Pipelines"
     },
     {
@@ -11521,24 +11883,14 @@
       "name": "Pipelines - Hooks"
     },
     {
-      "name": "Pipelines - Resources"
+      "name": "Pipelines - Steps"
     },
     {
       "name": "Projects"
     },
     {
-      "name": "Projects - Actions"
-    },
-    {
-      "name": "Projects - Applications"
-    },
-    {
-      "name": "Projects - Cron Jobs",
+      "name": "Projects - Actions",
       "description": "A cronjob or scheduled task is a scheduled command to be set on one or more project servers to ensure a given routine will be executed on time.\n"
-    },
-    {
-      "name": "Projects - Daemons",
-      "description": "The terms `process`, `background process` and `daemon` may be used interchangeably in the `devopness` API documentation to denote the same thing: i.e., a computer process that runs behind the scenes without user intervention, detached from TTY (teletype/terminal type) and having no associated console or controlling terminal, therefore prevented from receiving `SIGHUP` on shell termination.\n"
     },
     {
       "name": "Projects - Archived Environments"
@@ -11588,6 +11940,9 @@
       "name": "Teams"
     },
     {
+      "name": "Team Invitations"
+    },
+    {
       "name": "Teams - Invitations"
     },
     {
@@ -11609,6 +11964,9 @@
       "name": "Users - Team Invitations"
     },
     {
+      "name": "Variables"
+    },
+    {
       "name": "Virtual Hosts"
     }
   ],
@@ -11622,19 +11980,7 @@
     {
       "name": "Static Data",
       "tags": [
-        "Static Data - Application Options",
-        "Static Data - Cloud Provider Service Instances",
-        "Static Data - Cloud Provider Services",
-        "Static Data - Credential Options",
-        "Static Data - Cron Job Options",
-        "Static Data - Environment Options",
-        "Static Data - Network Rule Options",
-        "Static Data - Permissions",
-        "Static Data - Resource Types",
-        "Static Data - Server Options",
-        "Static Data - Service Options",
-        "Static Data - User Profile Options",
-        "Static Data - Virtual Host Options"
+        "Static Data"
       ]
     },
     {
@@ -11706,6 +12052,14 @@
       "tags": [
         "Network Rules",
         "Environments - Network Rules"
+      ]
+    },
+    {
+      "name": "Organizations",
+      "tags": [
+        "Organizations",
+        "Organizations - Environments",
+        "Organizations - Projects"
       ]
     },
     {
@@ -12277,6 +12631,94 @@
           "updated_at"
         ],
         "nullable": true
+      },
+      "ActionRelationShallow": {
+        "type": "object",
+        "nullable": true,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The Id of the action",
+            "example": 567819876
+          },
+          "status": {
+            "$ref": "#/components/schemas/ActionStatus"
+          },
+          "status_human_readable": {
+            "type": "string",
+            "description": "Human readable version of the action status",
+            "example": "Pending"
+          },
+          "status_reason_code": {
+            "$ref": "#/components/schemas/ActionStatusReasonCode"
+          },
+          "status_reason_human_readable": {
+            "type": "string",
+            "description": "Human readable version of the status reason code",
+            "example": "Pending: Action created successfully but has not yet been queued for execution."
+          },
+          "type": {
+            "$ref": "#/components/schemas/ActionType"
+          },
+          "type_human_readable": {
+            "type": "string",
+            "description": "Human readable version of the action type",
+            "example": "Deploy"
+          },
+          "url_web_permalink": {
+            "type": "string",
+            "description": "Permalink to view the action on Devopness web",
+            "example": "https://devopness.com/actions/567819876"
+          },
+          "action_data": {
+            "$ref": "#/components/schemas/ActionData"
+          },
+          "triggered_from": {
+            "$ref": "#/components/schemas/ActionTriggeredFrom"
+          },
+          "summary": {
+            "$ref": "#/components/schemas/ActionSummary"
+          },
+          "targets": {
+            "$ref": "#/components/schemas/ActionTargetList"
+          },
+          "started_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "description": "When the action started"
+          },
+          "completed_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "description": "When the action completed"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the action was created"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the action was last updated"
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "type_human_readable",
+          "status",
+          "status_human_readable",
+          "status_reason_code",
+          "status_reason_human_readable",
+          "url_web_permalink",
+          "started_at",
+          "completed_at",
+          "created_at",
+          "updated_at"
+        ]
       },
       "ActionResource": {
         "type": "object",
@@ -13225,12 +13667,12 @@
         "type": "object",
         "properties": {
           "latest": {
-            "$ref": "#/components/schemas/ActionRelation",
+            "$ref": "#/components/schemas/ActionRelationShallow",
             "nullable": true,
             "description": "The most recent application deployment, regardless of its status"
           },
           "live": {
-            "$ref": "#/components/schemas/ActionRelation",
+            "$ref": "#/components/schemas/ActionRelationShallow",
             "nullable": true,
             "description": "The most recent application deployment, that was successfully completed"
           }
@@ -14060,7 +14502,7 @@
           "instance_type": {
             "type": "string",
             "description": "The instance type to be launched on the cloud provider",
-            "example": "Standard_B1ls"
+            "example": "Standard_B1s"
           },
           "region": {
             "type": "string",
@@ -14789,7 +15231,7 @@
             "type": "boolean"
           },
           "last_action": {
-            "$ref": "#/components/schemas/ActionRelation"
+            "$ref": "#/components/schemas/ActionRelationShallow"
           },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
@@ -15053,7 +15495,7 @@
             "type": "boolean"
           },
           "last_action": {
-            "$ref": "#/components/schemas/ActionRelation"
+            "$ref": "#/components/schemas/ActionRelationShallow"
           },
           "application": {
             "$ref": "#/components/schemas/ApplicationRelation"
@@ -17034,7 +17476,7 @@
             "$ref": "#/components/schemas/NetworkProvisionInput"
           },
           "last_action": {
-            "$ref": "#/components/schemas/ActionRelation"
+            "$ref": "#/components/schemas/ActionRelationShallow"
           },
           "created_at": {
             "description": "The date and time when the record was created",
@@ -17249,7 +17691,7 @@
             "type": "boolean"
           },
           "last_action": {
-            "$ref": "#/components/schemas/ActionRelation"
+            "$ref": "#/components/schemas/ActionRelationShallow"
           },
           "created_at": {
             "description": "The date and time when the record was created",
@@ -17443,6 +17885,164 @@
         "items": {
           "$ref": "#/components/schemas/OperationCustomSettings"
         }
+      },
+      "Organization": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "The unique identifier for the organization",
+            "example": 16523,
+            "type": "integer"
+          },
+          "name": {
+            "description": "The name of the organization",
+            "example": "My Organization",
+            "type": "string"
+          },
+          "url_slug": {
+            "description": "The URL Slug of the organization",
+            "example": "MyOrganization",
+            "type": "string"
+          },
+          "resource_summary": {
+            "$ref": "#/components/schemas/ResourceSummaryList"
+          },
+          "owner": {
+            "$ref": "#/components/schemas/UserRelation"
+          },
+          "created_at": {
+            "description": "The date and time when the organization was created",
+            "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string"
+          },
+          "updated_at": {
+            "description": "The date and time when the organization was last updated",
+            "example": "2019-09-25T13:52:04.000000Z",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "url_slug",
+          "owner",
+          "created_at",
+          "updated_at"
+        ]
+      },
+      "OrganizationActivity": {
+        "type": "object",
+        "properties": {
+          "projects": {
+            "$ref": "#/components/schemas/UserProjectStats"
+          },
+          "environments": {
+            "$ref": "#/components/schemas/UserEnvironmentStats"
+          },
+          "teams": {
+            "$ref": "#/components/schemas/UserTeamStats"
+          },
+          "triggered_actions": {
+            "$ref": "#/components/schemas/TriggeredActions"
+          }
+        },
+        "required": [
+          "projects",
+          "environments",
+          "teams",
+          "triggered_actions"
+        ]
+      },
+      "OrganizationCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "The Name of the organization. Must not be greater than 255 characters.",
+            "example": "My Org",
+            "type": "string"
+          },
+          "url_slug": {
+            "description": "The URL Slug of the organization. Must not be greater than 255 characters.",
+            "example": "MyOrg",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "url_slug"
+        ]
+      },
+      "OrganizationList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/OrganizationRelation"
+        }
+      },
+      "OrganizationRelation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "The unique identifier for the organization",
+            "example": 16523,
+            "type": "integer"
+          },
+          "name": {
+            "description": "The name of the organization",
+            "example": "My Organization",
+            "type": "string"
+          },
+          "url_slug": {
+            "description": "The URL Slug of the organization",
+            "example": "MyOrganization",
+            "type": "string"
+          },
+          "resource_summary": {
+            "$ref": "#/components/schemas/ResourceSummaryList"
+          },
+          "created_at": {
+            "description": "The date and time when the organization was created",
+            "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string"
+          },
+          "updated_at": {
+            "description": "The date and time when the organization was last updated",
+            "example": "2019-09-25T13:52:04.000000Z",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "url_slug",
+          "created_at",
+          "updated_at"
+        ],
+        "nullable": true
+      },
+      "OrganizationUpdate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "The unique ID of the given Organization.",
+            "example": 1,
+            "type": "string"
+          },
+          "name": {
+            "description": "The Name of the organization. Must not be greater than 255 characters.",
+            "example": "My Org",
+            "type": "string"
+          },
+          "url_slug": {
+            "description": "The URL Slug of the organization. Must not be greater than 255 characters.",
+            "example": "MyOrg",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "url_slug"
+        ]
       },
       "OsUsers": {
         "description": "The list of the operating system users found in all the servers linked to a project",
@@ -17951,6 +18551,11 @@
             "description": "The name of the project. Must not be greater than 60 characters.",
             "example": "my project",
             "type": "string"
+          },
+          "organization_id": {
+            "description": "The ID of the organization that owns the project.",
+            "example": 12345,
+            "type": "integer"
           },
           "logo_image": {
             "description": "A base64 string representation of the logo image.",
@@ -18600,6 +19205,53 @@
           "type": "integer"
         }
       },
+      "ResourceLinkChild": {
+        "type": "object",
+        "properties": {
+          "link_type": {
+            "description": "The link type to related resource (`child` or `parent`)",
+            "type": "string",
+            "example": "child"
+          },
+          "resource_id": {
+            "description": "The linked resource ID",
+            "type": "integer",
+            "example": 123
+          },
+          "resource_type": {
+            "description": "The linked resource type",
+            "type": "string",
+            "example": "application"
+          },
+          "resource_type_human_readable": {
+            "description": "Human readable resource type",
+            "type": "string",
+            "example": "Application"
+          },
+          "can_be_unlinked": {
+            "description": "If false, the link cannot be manually removed",
+            "type": "boolean",
+            "example": true
+          },
+          "linked_resource_data": {
+            "$ref": "#/components/schemas/LinkedResourceData"
+          }
+        },
+        "required": [
+          "link_type",
+          "resource_id",
+          "resource_type",
+          "resource_type_human_readable",
+          "can_be_unlinked",
+          "linked_resource_data"
+        ]
+      },
+      "ResourceLinkChildList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/ResourceLinkChild"
+        }
+      },
       "ResourceLinkList": {
         "type": "array",
         "items": {
@@ -18638,7 +19290,7 @@
             "$ref": "#/components/schemas/LinkedResourceData"
           },
           "children": {
-            "$ref": "#/components/schemas/ResourceLinkList"
+            "$ref": "#/components/schemas/ResourceLinkChildList"
           }
         },
         "required": [
@@ -19409,7 +20061,7 @@
             "$ref": "#/components/schemas/ActionStatus"
           },
           "last_action": {
-            "$ref": "#/components/schemas/ActionRelation"
+            "$ref": "#/components/schemas/ActionRelationShallow"
           },
           "created_at": {
             "description": "The date and time when the record was created",
@@ -19680,7 +20332,7 @@
             "nullable": true
           },
           "last_action": {
-            "$ref": "#/components/schemas/ActionRelation"
+            "$ref": "#/components/schemas/ActionRelationShallow"
           },
           "created_at": {
             "description": "The date and time when the record was created",
@@ -20118,7 +20770,7 @@
             "type": "string"
           },
           "last_action": {
-            "$ref": "#/components/schemas/ActionRelation"
+            "$ref": "#/components/schemas/ActionRelationShallow"
           },
           "created_at": {
             "description": "The date and time when the record was created",
@@ -20317,7 +20969,7 @@
             "type": "boolean"
           },
           "last_action": {
-            "$ref": "#/components/schemas/ActionRelation"
+            "$ref": "#/components/schemas/ActionRelationShallow"
           },
           "expires_at": {
             "description": "The date and time when this certificate will no longer be valid, down to minute precision",
@@ -21749,7 +22401,12 @@
           },
           "email": {
             "description": "The e-mail that will uniquely identify the user on the system and become its login credential",
-            "example": "user@example.com",
+            "example": "someone@example.com",
+            "type": "string"
+          },
+          "url_slug": {
+            "description": "The URL Slug of the user",
+            "example": "someone",
             "type": "string"
           },
           "language": {
@@ -21778,6 +22435,7 @@
           "id",
           "name",
           "email",
+          "url_slug",
           "language",
           "active",
           "social_accounts",
@@ -21920,7 +22578,12 @@
           },
           "email": {
             "description": "The e-mail that will uniquely identify the user on the system and become its login credential",
-            "example": "user@example.com",
+            "example": "someone@example.com",
+            "type": "string"
+          },
+          "url_slug": {
+            "description": "The URL Slug of the user",
+            "example": "someone",
             "type": "string"
           },
           "language": {
@@ -21949,6 +22612,7 @@
           "id",
           "name",
           "email",
+          "url_slug",
           "language",
           "active",
           "social_accounts",
@@ -22054,6 +22718,11 @@
             "format": "email",
             "description": "The e-mail that will uniquely identify the user on the system and become its login credential"
           },
+          "url_slug": {
+            "type": "string",
+            "description": "The URL Slug of the user",
+            "example": "someone"
+          },
           "language": {
             "$ref": "#/components/schemas/Language"
           },
@@ -22115,7 +22784,7 @@
           "id": {
             "description": "The unique ID of the given User.",
             "example": 1,
-            "type": "integer"
+            "type": "string"
           },
           "name": {
             "description": "User's full name. Must be at least 5 characters. Must not be greater than 60 characters.",
@@ -22127,6 +22796,11 @@
             "example": "user@example.com",
             "type": "string"
           },
+          "url_slug": {
+            "description": "The URL Slug of the user. Must not be greater than 255 characters.",
+            "example": "ComTruise",
+            "type": "string"
+          },
           "language": {
             "$ref": "#/components/schemas/Language"
           }
@@ -22134,7 +22808,8 @@
         "required": [
           "id",
           "name",
-          "email"
+          "email",
+          "url_slug"
         ]
       },
       "UserUrl": {
@@ -22166,6 +22841,11 @@
           "name": {
             "description": "The new user name to account. Must be at least 3 characters. Must not be greater than 255 characters.",
             "example": "My Name",
+            "type": "string"
+          },
+          "url_slug": {
+            "description": "The URL Slug of the account. Must not be greater than 255 characters.",
+            "example": "MyName",
             "type": "string"
           },
           "password": {
@@ -22743,7 +23423,7 @@
             "$ref": "#/components/schemas/SslCertificateRelation"
           },
           "last_action": {
-            "$ref": "#/components/schemas/ActionRelation"
+            "$ref": "#/components/schemas/ActionRelationShallow"
           },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"

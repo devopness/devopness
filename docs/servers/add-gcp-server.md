@@ -24,8 +24,8 @@ links:
 1. Review server information and settings. If everything is correct, click `CONFIRM`
     > Use the `PREVIOUS` button if you need to modify any server details
 1. Wait for the `server:provision` action to be completed
-1. After the server is successfully provisioned it will be visible on GCP console
-1. If you want to access the server on GCP console:
+1. After the server is successfully provisioned it will be visible on the GCP console
+1. If you want to access the server on the GCP console:
     - Access [GCP Console](https://console.cloud.google.com/)
     - On the Search box, enter “Compute Engine” and select it from search results
     - A `GCE` instance will be listed, with the name of the new `Server` you provisioned on Devopness

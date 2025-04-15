@@ -1,5 +1,5 @@
 ---
-title: Steps
+title: Pipeline Steps
 intro:
 links:
     overview:
