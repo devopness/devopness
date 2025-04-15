@@ -37,7 +37,7 @@ type AlertProps = {
 
 const alertTypeToIcon = {
   error: 'error',
-  success: 'checkCircle',
+  success: 'success',
   warning: 'warning',
 } as const satisfies Record<AlertProps['type'], Icon>
 
