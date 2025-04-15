@@ -138,7 +138,7 @@ const iconList = [
   { type: 'icon', accessor: 'warningCloud', component: PiCloudWarningBold },
   { type: 'icon', accessor: 'error', component: MdError },
   { type: 'icon', accessor: 'warning', component: MdWarning },
-  { type: 'icon', accessor: 'checkCircle', component: MdCheckCircle },
+  { type: 'icon', accessor: 'success', component: MdCheckCircle },
   { type: 'icon', accessor: 'alarmOn', component: MdAlarmOn },
   { type: 'icon', accessor: 'dragHandle', component: MdDragHandle },
   { type: 'icon', accessor: 'delete', component: MdDelete },
