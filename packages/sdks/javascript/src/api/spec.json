@@ -542,7 +542,7 @@
         "summary": "Trigger a new deployment for current application",
         "operationId": "addApplicationDeployment",
         "tags": [
-          "Applications - Deployments"
+          "Applications"
         ],
         "parameters": [
           {
@@ -2048,7 +2048,7 @@
         "summary": "Return a list of all Applications belonging to an environment",
         "operationId": "listEnvironmentApplications",
         "tags": [
-          "Environments - Applications"
+          "Applications"
         ],
         "parameters": [
           {
@@ -2103,7 +2103,7 @@
         "summary": "Create a new application",
         "operationId": "addEnvironmentApplication",
         "tags": [
-          "Environments - Applications"
+          "Applications"
         ],
         "parameters": [
           {
@@ -2213,7 +2213,7 @@
         "summary": "Return a list of all Credentials belonging to an environment",
         "operationId": "listEnvironmentCredentials",
         "tags": [
-          "Environments - Credentials"
+          "Credentials"
         ],
         "parameters": [
           {
@@ -2288,7 +2288,7 @@
         "summary": "Add a Credential to the given environment",
         "operationId": "addEnvironmentCredential",
         "tags": [
-          "Environments - Credentials"
+          "Credentials"
         ],
         "parameters": [
           {
@@ -2362,7 +2362,7 @@
         "summary": "Return provider settings",
         "operationId": "getEnvironmentCredentialSettings",
         "tags": [
-          "Environments - Credentials"
+          "Credentials"
         ],
         "parameters": [
           {
@@ -2428,7 +2428,7 @@
         "summary": "Return a list of all Cron Jobs belonging to an environment",
         "operationId": "listEnvironmentCronJobs",
         "tags": [
-          "Environments - Cron Jobs"
+          "Cron Jobs"
         ],
         "parameters": [
           {
@@ -2483,7 +2483,7 @@
         "summary": "Add a Cron Job to the given environment",
         "operationId": "addEnvironmentCronJob",
         "tags": [
-          "Environments - Cron Jobs"
+          "Cron Jobs"
         ],
         "parameters": [
           {
@@ -2557,7 +2557,7 @@
         "summary": "Return a list of all Daemons belonging to an environment",
         "operationId": "listEnvironmentDaemons",
         "tags": [
-          "Environments - Daemons"
+          "Daemons"
         ],
         "parameters": [
           {
@@ -2612,7 +2612,7 @@
         "summary": "Add a Daemon to the given environment",
         "operationId": "addEnvironmentDaemon",
         "tags": [
-          "Environments - Daemons"
+          "Daemons"
         ],
         "parameters": [
           {
@@ -2686,7 +2686,7 @@
         "summary": "Return a list of all Network Rules belonging to an environment",
         "operationId": "listEnvironmentNetworkRules",
         "tags": [
-          "Environments - Network Rules"
+          "Network Rules"
         ],
         "parameters": [
           {
@@ -2741,7 +2741,7 @@
         "summary": "Add a Network Rule to the given environment",
         "operationId": "addEnvironmentNetworkRule",
         "tags": [
-          "Environments - Network Rules"
+          "Network Rules"
         ],
         "parameters": [
           {
@@ -2815,7 +2815,7 @@
         "summary": "Return a list of all networks belonging to an environment",
         "operationId": "listEnvironmentNetworks",
         "tags": [
-          "Environments - Networks"
+          "Networks"
         ],
         "parameters": [
           {
@@ -2900,7 +2900,7 @@
         "summary": "Create a new network for the given environment",
         "operationId": "addEnvironmentNetwork",
         "tags": [
-          "Environments - Networks"
+          "Networks"
         ],
         "parameters": [
           {
@@ -2982,7 +2982,7 @@
         "summary": "Return a list of all servers belonging to an environment",
         "operationId": "listEnvironmentServers",
         "tags": [
-          "Environments - Servers"
+          "Servers"
         ],
         "parameters": [
           {
@@ -3037,7 +3037,7 @@
         "summary": "Creates a server and link it to the given environment",
         "operationId": "addEnvironmentServer",
         "tags": [
-          "Environments - Servers"
+          "Servers"
         ],
         "parameters": [
           {
@@ -3119,7 +3119,7 @@
         "summary": "Return a list of all services belonging to a environment",
         "operationId": "listEnvironmentServices",
         "tags": [
-          "Environments - Services"
+          "Services"
         ],
         "parameters": [
           {
@@ -3174,7 +3174,7 @@
         "summary": "Add a Service to the given environment",
         "operationId": "addEnvironmentService",
         "tags": [
-          "Environments - Services"
+          "Services"
         ],
         "parameters": [
           {
@@ -3248,7 +3248,7 @@
         "summary": "Return a list of all SSH keys added to an environment",
         "operationId": "listEnvironmentSshKeys",
         "tags": [
-          "Environments - SSH Keys"
+          "SSH Keys"
         ],
         "parameters": [
           {
@@ -3313,7 +3313,7 @@
         "summary": "Create an SSH key and link it to the given environment",
         "operationId": "addEnvironmentSshKey",
         "tags": [
-          "Environments - SSH Keys"
+          "SSH Keys"
         ],
         "parameters": [
           {
@@ -3387,7 +3387,7 @@
         "summary": "Return a list of all SSL Certificates belonging to an environment",
         "operationId": "listEnvironmentSslCertificates",
         "tags": [
-          "Environments - SSL Certificates"
+          "SSL Certificates"
         ],
         "parameters": [
           {
@@ -3442,7 +3442,7 @@
         "summary": "Create a new ssl certificate",
         "operationId": "addEnvironmentSslCertificate",
         "tags": [
-          "Environments - SSL Certificates"
+          "SSL Certificates"
         ],
         "parameters": [
           {
@@ -3764,7 +3764,7 @@
         "summary": "Return a list of all Virtual Hosts belonging to an environment",
         "operationId": "listEnvironmentVirtualHosts",
         "tags": [
-          "Environments - Virtual Hosts"
+          "Virtual Hosts"
         ],
         "parameters": [
           {
@@ -3819,7 +3819,7 @@
         "summary": "Create a new virtual host",
         "operationId": "addEnvironmentVirtualHost",
         "tags": [
-          "Environments - Virtual Hosts"
+          "Virtual Hosts"
         ],
         "parameters": [
           {
@@ -11777,9 +11777,6 @@
       "name": "Applications"
     },
     {
-      "name": "Applications - Deployments"
-    },
-    {
       "name": "Applications - Hooks"
     },
     {
@@ -11801,43 +11798,10 @@
       "name": "Environments - Actions"
     },
     {
-      "name": "Environments - Applications"
-    },
-    {
-      "name": "Environments - Credentials"
-    },
-    {
-      "name": "Environments - Cron Jobs"
-    },
-    {
-      "name": "Environments - Daemons"
-    },
-    {
-      "name": "Environments - Networks"
-    },
-    {
-      "name": "Environments - Network Rules"
-    },
-    {
-      "name": "Environments - Servers"
-    },
-    {
-      "name": "Environments - Services"
-    },
-    {
-      "name": "Environments - SSH Keys"
-    },
-    {
-      "name": "Environments - SSL Certificates"
-    },
-    {
       "name": "Environments - Teams"
     },
     {
       "name": "Environments - Team Memberships"
-    },
-    {
-      "name": "Environments - Virtual Hosts"
     },
     {
       "name": "Credentials"
@@ -11996,32 +11960,27 @@
       "name": "Applications",
       "tags": [
         "Applications",
-        "Applications - Deployments",
         "Applications - Hooks",
-        "Applications - Variables",
-        "Environments - Applications"
+        "Applications - Variables"
       ]
     },
     {
       "name": "Credentials",
       "tags": [
         "Credentials",
-        "Credentials - Repositories",
-        "Environments - Credentials"
+        "Credentials - Repositories"
       ]
     },
     {
       "name": "Cron Jobs",
       "tags": [
-        "Cron Jobs",
-        "Environments - Cron Jobs"
+        "Cron Jobs"
       ]
     },
     {
       "name": "Daemons",
       "tags": [
-        "Daemons",
-        "Environments - Daemons"
+        "Daemons"
       ]
     },
     {
@@ -12043,15 +12002,13 @@
     {
       "name": "Networks",
       "tags": [
-        "Networks",
-        "Environments - Networks"
+        "Networks"
       ]
     },
     {
       "name": "Network Rules",
       "tags": [
-        "Network Rules",
-        "Environments - Network Rules"
+        "Network Rules"
       ]
     },
     {
@@ -12099,16 +12056,14 @@
     {
       "name": "Servers",
       "tags": [
-        "Servers",
-        "Environments - Servers"
+        "Servers"
       ]
     },
     {
       "name": "Services",
       "tags": [
         "Services",
-        "Services - Variables",
-        "Environments - Services"
+        "Services - Variables"
       ]
     },
     {
@@ -12120,15 +12075,13 @@
     {
       "name": "SSH Keys",
       "tags": [
-        "SSH Keys",
-        "Environments - SSH Keys"
+        "SSH Keys"
       ]
     },
     {
       "name": "SSL Certificates",
       "tags": [
-        "SSL Certificates",
-        "Environments - SSL Certificates"
+        "SSL Certificates"
       ]
     },
     {
@@ -12169,8 +12122,7 @@
     {
       "name": "Virtual Hosts",
       "tags": [
-        "Virtual Hosts",
-        "Environments - Virtual Hosts"
+        "Virtual Hosts"
       ]
     }
   ],
