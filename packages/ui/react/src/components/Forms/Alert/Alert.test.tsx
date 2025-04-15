@@ -56,7 +56,7 @@ describe('Alert', () => {
         />
       )
       expect(screen.getByText('Success!')).toBeInTheDocument()
-      expect(screen.getByTestId('icon-checkCircle')).toBeInTheDocument()
+      expect(screen.getByTestId('icon-success')).toBeInTheDocument()
     })
 
     it('renders warning alert with correct icon and text', () => {
@@ -93,7 +93,7 @@ describe('Alert', () => {
         />
       )
       const content = screen.getByText('Success!').closest('div')
-      const icon = screen.getByTestId('icon-checkCircle').parentElement
+      const icon = screen.getByTestId('icon-success').parentElement
       expect(content).toBeInTheDocument()
       expect(icon).toBeInTheDocument()
     })
