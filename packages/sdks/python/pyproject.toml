@@ -1,11 +1,11 @@
 [project]
-name = "devopness.sdk-python"
+name = "devopness"
 version = "0.0.0"
 description = "Devopness API Python SDK - Painless essential DevOps to everyone"
 license = "MIT"
 authors = [{ name = "Devopness (https://www.devopness.com)" }]
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.11"
 dependencies = ["httpx (>=0.28.1,<0.29.0)"]
 
 [tool.poetry]
