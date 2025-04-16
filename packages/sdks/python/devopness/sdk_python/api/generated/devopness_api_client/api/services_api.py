@@ -11,8 +11,8 @@ from devopness_api_client.models.service_start import ServiceStart
 from devopness_api_client.models.service_stop import ServiceStop
 from devopness_api_client.models.service_update import ServiceUpdate
 
-from packages.sdks.python.devopness.common.api_response import ApiResponse
-from packages.sdks.python.devopness.services.api_base_service import ApiBaseService
+from packages.sdks.python.devopness.sdk_python.common import ApiResponse
+from packages.sdks.python.devopness.sdk_python.services import ApiBaseService
 
 
 class ServicesApiService(ApiBaseService):

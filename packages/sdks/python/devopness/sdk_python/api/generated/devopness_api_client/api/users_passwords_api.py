@@ -4,8 +4,8 @@ from devopness_api_client.models.password_reset_response import PasswordResetRes
 from devopness_api_client.models.password_user_reset import PasswordUserReset
 from devopness_api_client.models.password_user_send_reset_link import PasswordUserSendResetLink
 
-from packages.sdks.python.devopness.common.api_response import ApiResponse
-from packages.sdks.python.devopness.services.api_base_service import ApiBaseService
+from packages.sdks.python.devopness.sdk_python.common import ApiResponse
+from packages.sdks.python.devopness.sdk_python.services import ApiBaseService
 
 
 class UsersPasswordsApiService(ApiBaseService):

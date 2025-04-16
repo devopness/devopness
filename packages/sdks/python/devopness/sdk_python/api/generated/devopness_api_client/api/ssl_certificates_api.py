@@ -5,8 +5,8 @@ from devopness_api_client.models.ssl_certificate import SslCertificate
 from devopness_api_client.models.ssl_certificate_environment_create import SslCertificateEnvironmentCreate
 from devopness_api_client.models.ssl_certificate_relation import SslCertificateRelation
 
-from packages.sdks.python.devopness.common.api_response import ApiResponse
-from packages.sdks.python.devopness.services.api_base_service import ApiBaseService
+from packages.sdks.python.devopness.sdk_python.common import ApiResponse
+from packages.sdks.python.devopness.sdk_python.services import ApiBaseService
 
 
 class SSLCertificatesApiService(ApiBaseService):

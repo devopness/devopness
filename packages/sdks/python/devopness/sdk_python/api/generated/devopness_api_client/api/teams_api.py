@@ -3,8 +3,8 @@ from typing_extensions import Annotated
 from devopness_api_client.models.team import Team
 from devopness_api_client.models.team_update import TeamUpdate
 
-from packages.sdks.python.devopness.common.api_response import ApiResponse
-from packages.sdks.python.devopness.services.api_base_service import ApiBaseService
+from packages.sdks.python.devopness.sdk_python.common import ApiResponse
+from packages.sdks.python.devopness.sdk_python.services import ApiBaseService
 
 
 class TeamsApiService(ApiBaseService):

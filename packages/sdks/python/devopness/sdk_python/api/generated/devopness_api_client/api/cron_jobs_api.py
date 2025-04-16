@@ -6,8 +6,8 @@ from devopness_api_client.models.cron_job_environment_create import CronJobEnvir
 from devopness_api_client.models.cron_job_relation import CronJobRelation
 from devopness_api_client.models.cron_job_update import CronJobUpdate
 
-from packages.sdks.python.src.common.api_response import ApiResponse
-from packages.sdks.python.src.services.api_base_service import ApiBaseService
+from packages.sdks.python.devopness.sdk_python.common import ApiResponse
+from packages.sdks.python.devopness.sdk_python.services import ApiBaseService
 
 
 class CronJobsApiService(ApiBaseService):

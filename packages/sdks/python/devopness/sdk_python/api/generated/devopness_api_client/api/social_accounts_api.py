@@ -6,8 +6,8 @@ from devopness_api_client.models.social_account_create import SocialAccountCreat
 from devopness_api_client.models.social_account_relation import SocialAccountRelation
 from devopness_api_client.models.social_account_status import SocialAccountStatus
 
-from packages.sdks.python.devopness.common.api_response import ApiResponse
-from packages.sdks.python.devopness.services.api_base_service import ApiBaseService
+from packages.sdks.python.devopness.sdk_python.common import ApiResponse
+from packages.sdks.python.devopness.sdk_python.services import ApiBaseService
 
 
 class SocialAccountsApiService(ApiBaseService):

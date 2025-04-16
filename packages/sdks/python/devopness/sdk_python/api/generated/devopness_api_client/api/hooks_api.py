@@ -4,8 +4,8 @@ from devopness_api_client.models.hook import Hook
 from devopness_api_client.models.hook_trigger_response import HookTriggerResponse
 from devopness_api_client.models.hook_update import HookUpdate
 
-from packages.sdks.python.devopness.common.api_response import ApiResponse
-from packages.sdks.python.devopness.services.api_base_service import ApiBaseService
+from packages.sdks.python.devopness.sdk_python.common import ApiResponse
+from packages.sdks.python.devopness.sdk_python.services import ApiBaseService
 
 
 class HooksApiService(ApiBaseService):

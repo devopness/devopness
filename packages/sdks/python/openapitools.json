@@ -6,9 +6,9 @@
     "generators": {
       "build-api-models": {
         "generatorName": "python",
-        "inputSpec": "./src/api/spec.json",
-        "output": "./src/api/generated",
-        "templateDir": "./src/api/generator/templates",
+        "inputSpec": "./devopness/sdk_python/api/spec.json",
+        "output": "./devopness/sdk_python/api/generated",
+        "templateDir": "./devopness/sdk_python/api/generator/templates",
         "additionalProperties": {
           "packageName": "devopness_api_client"
         }

@@ -5,8 +5,8 @@ from devopness_api_client.models.environment import Environment
 from devopness_api_client.models.environment_project_create import EnvironmentProjectCreate
 from devopness_api_client.models.environment_relation import EnvironmentRelation
 
-from packages.sdks.python.devopness.common.api_response import ApiResponse
-from packages.sdks.python.devopness.services.api_base_service import ApiBaseService
+from packages.sdks.python.devopness.sdk_python.common import ApiResponse
+from packages.sdks.python.devopness.sdk_python.services import ApiBaseService
 
 
 class ProjectsEnvironmentsApiService(ApiBaseService):

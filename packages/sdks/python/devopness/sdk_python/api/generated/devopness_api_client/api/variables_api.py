@@ -6,8 +6,8 @@ from devopness_api_client.models.variable_create import VariableCreate
 from devopness_api_client.models.variable_relation import VariableRelation
 from devopness_api_client.models.variable_update import VariableUpdate
 
-from packages.sdks.python.devopness.common.api_response import ApiResponse
-from packages.sdks.python.devopness.services.api_base_service import ApiBaseService
+from packages.sdks.python.devopness.sdk_python.common import ApiResponse
+from packages.sdks.python.devopness.sdk_python.services import ApiBaseService
 
 
 class VariablesApiService(ApiBaseService):

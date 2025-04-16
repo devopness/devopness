@@ -5,8 +5,8 @@ from devopness_api_client.models.action import Action
 from devopness_api_client.models.action_relation import ActionRelation
 from devopness_api_client.models.action_retry_response import ActionRetryResponse
 
-from packages.sdks.python.devopness.common.api_response import ApiResponse
-from packages.sdks.python.devopness.services.api_base_service import ApiBaseService
+from packages.sdks.python.devopness.sdk_python.common import ApiResponse
+from packages.sdks.python.devopness.sdk_python.services import ApiBaseService
 
 
 class ActionsApiService(ApiBaseService):

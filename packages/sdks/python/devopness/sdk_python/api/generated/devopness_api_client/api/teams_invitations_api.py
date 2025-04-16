@@ -5,8 +5,8 @@ from devopness_api_client.models.invitation import Invitation
 from devopness_api_client.models.invitation_relation import InvitationRelation
 from devopness_api_client.models.invitation_team_create import InvitationTeamCreate
 
-from packages.sdks.python.devopness.common.api_response import ApiResponse
-from packages.sdks.python.devopness.services.api_base_service import ApiBaseService
+from packages.sdks.python.devopness.sdk_python.common import ApiResponse
+from packages.sdks.python.devopness.sdk_python.services import ApiBaseService
 
 
 class TeamsInvitationsApiService(ApiBaseService):

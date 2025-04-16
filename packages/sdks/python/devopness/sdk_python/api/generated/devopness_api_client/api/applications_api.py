@@ -7,8 +7,8 @@ from devopness_api_client.models.application_relation import ApplicationRelation
 from devopness_api_client.models.application_update import ApplicationUpdate
 from devopness_api_client.models.deployment_application_create import DeploymentApplicationCreate
 
-from packages.sdks.python.src.common.api_response import ApiResponse
-from packages.sdks.python.src.services.api_base_service import ApiBaseService
+from packages.sdks.python.devopness.sdk_python.common import ApiResponse
+from packages.sdks.python.devopness.sdk_python.services import ApiBaseService
 
 
 class ApplicationsApiService(ApiBaseService):

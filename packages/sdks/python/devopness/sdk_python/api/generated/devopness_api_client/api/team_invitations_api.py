@@ -1,8 +1,8 @@
 from pydantic import Field, StrictStr
 from typing_extensions import Annotated
 
-from packages.sdks.python.devopness.common.api_response import ApiResponse
-from packages.sdks.python.devopness.services.api_base_service import ApiBaseService
+from packages.sdks.python.devopness.sdk_python.common import ApiResponse
+from packages.sdks.python.devopness.sdk_python.services import ApiBaseService
 
 
 class TeamInvitationsApiService(ApiBaseService):

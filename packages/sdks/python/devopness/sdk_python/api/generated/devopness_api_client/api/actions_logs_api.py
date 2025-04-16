@@ -2,8 +2,8 @@ from pydantic import Field, StrictStr
 from typing_extensions import Annotated
 from devopness_api_client.models.log import Log
 
-from packages.sdks.python.src.common.api_response import ApiResponse
-from packages.sdks.python.src.services.api_base_service import ApiBaseService
+from packages.sdks.python.devopness.sdk_python.common import ApiResponse
+from packages.sdks.python.devopness.sdk_python.services import ApiBaseService
 
 
 class ActionsLogsApiService(ApiBaseService):

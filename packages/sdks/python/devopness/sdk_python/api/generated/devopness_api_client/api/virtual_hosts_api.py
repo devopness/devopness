@@ -7,8 +7,8 @@ from devopness_api_client.models.virtual_host_get_status import VirtualHostGetSt
 from devopness_api_client.models.virtual_host_relation import VirtualHostRelation
 from devopness_api_client.models.virtual_host_update import VirtualHostUpdate
 
-from packages.sdks.python.devopness.common.api_response import ApiResponse
-from packages.sdks.python.devopness.services.api_base_service import ApiBaseService
+from packages.sdks.python.devopness.sdk_python.common import ApiResponse
+from packages.sdks.python.devopness.sdk_python.services import ApiBaseService
 
 
 class VirtualHostsApiService(ApiBaseService):

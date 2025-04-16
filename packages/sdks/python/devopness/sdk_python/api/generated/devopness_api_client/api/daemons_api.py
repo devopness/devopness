@@ -10,8 +10,8 @@ from devopness_api_client.models.daemon_start import DaemonStart
 from devopness_api_client.models.daemon_stop import DaemonStop
 from devopness_api_client.models.daemon_update import DaemonUpdate
 
-from packages.sdks.python.src.common.api_response import ApiResponse
-from packages.sdks.python.src.services.api_base_service import ApiBaseService
+from packages.sdks.python.devopness.sdk_python.common import ApiResponse
+from packages.sdks.python.devopness.sdk_python.services import ApiBaseService
 
 
 class DaemonsApiService(ApiBaseService):

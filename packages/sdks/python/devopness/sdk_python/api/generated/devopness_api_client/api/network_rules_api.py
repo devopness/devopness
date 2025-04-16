@@ -6,8 +6,8 @@ from devopness_api_client.models.network_rule_environment_create import NetworkR
 from devopness_api_client.models.network_rule_relation import NetworkRuleRelation
 from devopness_api_client.models.network_rule_update import NetworkRuleUpdate
 
-from packages.sdks.python.devopness.common.api_response import ApiResponse
-from packages.sdks.python.devopness.services.api_base_service import ApiBaseService
+from packages.sdks.python.devopness.sdk_python.common import ApiResponse
+from packages.sdks.python.devopness.sdk_python.services import ApiBaseService
 
 
 class NetworkRulesApiService(ApiBaseService):

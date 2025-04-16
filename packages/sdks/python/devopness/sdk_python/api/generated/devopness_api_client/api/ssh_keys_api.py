@@ -6,8 +6,8 @@ from devopness_api_client.models.ssh_key_environment_create import SshKeyEnviron
 from devopness_api_client.models.ssh_key_relation import SshKeyRelation
 from devopness_api_client.models.ssh_key_update import SshKeyUpdate
 
-from packages.sdks.python.devopness.common.api_response import ApiResponse
-from packages.sdks.python.devopness.services.api_base_service import ApiBaseService
+from packages.sdks.python.devopness.sdk_python.common import ApiResponse
+from packages.sdks.python.devopness.sdk_python.services import ApiBaseService
 
 
 class SSHKeysApiService(ApiBaseService):

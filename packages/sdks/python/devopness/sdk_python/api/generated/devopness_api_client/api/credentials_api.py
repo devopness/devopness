@@ -7,8 +7,8 @@ from devopness_api_client.models.credential_relation import CredentialRelation
 from devopness_api_client.models.credential_setting import CredentialSetting
 from devopness_api_client.models.credential_update import CredentialUpdate
 
-from packages.sdks.python.src.common.api_response import ApiResponse
-from packages.sdks.python.src.services.api_base_service import ApiBaseService
+from packages.sdks.python.devopness.sdk_python.common import ApiResponse
+from packages.sdks.python.devopness.sdk_python.services import ApiBaseService
 
 
 class CredentialsApiService(ApiBaseService):

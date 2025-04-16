@@ -6,8 +6,8 @@ from devopness_api_client.models.network_environment_create import NetworkEnviro
 from devopness_api_client.models.network_relation import NetworkRelation
 from devopness_api_client.models.network_update import NetworkUpdate
 
-from packages.sdks.python.devopness.common.api_response import ApiResponse
-from packages.sdks.python.devopness.services.api_base_service import ApiBaseService
+from packages.sdks.python.devopness.sdk_python.common import ApiResponse
+from packages.sdks.python.devopness.sdk_python.services import ApiBaseService
 
 
 class NetworksApiService(ApiBaseService):

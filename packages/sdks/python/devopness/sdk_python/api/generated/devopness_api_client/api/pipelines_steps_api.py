@@ -4,8 +4,8 @@ from devopness_api_client.models.step import Step
 from devopness_api_client.models.step_pipeline_create import StepPipelineCreate
 from devopness_api_client.models.step_pipeline_update import StepPipelineUpdate
 
-from packages.sdks.python.devopness.common.api_response import ApiResponse
-from packages.sdks.python.devopness.services.api_base_service import ApiBaseService
+from packages.sdks.python.devopness.sdk_python.common import ApiResponse
+from packages.sdks.python.devopness.sdk_python.services import ApiBaseService
 
 
 class PipelinesStepsApiService(ApiBaseService):

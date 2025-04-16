@@ -14,8 +14,8 @@ from devopness_api_client.models.user_update import UserUpdate
 from devopness_api_client.models.user_url import UserUrl
 from devopness_api_client.models.user_verify import UserVerify
 
-from packages.sdks.python.devopness.common.api_response import ApiResponse
-from packages.sdks.python.devopness.services.api_base_service import ApiBaseService
+from packages.sdks.python.devopness.sdk_python.common import ApiResponse
+from packages.sdks.python.devopness.sdk_python.services import ApiBaseService
 
 
 class UsersApiService(ApiBaseService):
