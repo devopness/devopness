@@ -1,11 +1,11 @@
 import React from 'react'
 
 import {
-  Wrapper,
+  LabelContentWrapper,
   StyledContent,
   StyledIcon,
   StyledLabel,
-  LabelContentWrapper,
+  Wrapper,
 } from './Alert.styled'
 import type { Color } from 'src/colors'
 import { getColor } from 'src/colors'
@@ -92,5 +92,5 @@ const Alert = (props: AlertProps) => (
   </Wrapper>
 )
 
-export type { AlertProps }
 export { Alert }
+export type { AlertProps }
