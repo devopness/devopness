@@ -10,7 +10,7 @@
         "output": "./devopness/sdk_python/api/generated",
         "templateDir": "./devopness/sdk_python/api/generator/templates",
         "additionalProperties": {
-          "packageName": "devopness_api_client"
+          "packageName": ""
         }
       }
     }

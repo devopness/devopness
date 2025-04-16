@@ -24,4 +24,4 @@ devopness/sdk_python/api/generated/out
 devopness/sdk_python/api/generated/test
 
 # Ignore client scaffolding
-devopness/sdk_python/api/generated/devopness_api_client/*py*
+devopness/sdk_python/api/generated/*py*
