@@ -60,7 +60,7 @@ const Link = ({
   target = '_blank',
   children,
   color = 'purple.800',
-  rel = 'noopener noreferrer',
+  rel = target === '_blank' ? 'noopener noreferrer' : 'noreferrer',
   to: href,
   hideUnderline = false,
   hideUnderlineOnHover = false,
