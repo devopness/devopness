@@ -1,0 +1,18 @@
+# Ignore config and metadata files
+*.cfg
+*.ini
+*.json
+*.lock
+*.md
+*.py
+*.sh
+*.toml
+*.txt
+*.typed
+*.yml
+
+# Ignore project scaffolding
+.github/
+docs/
+test/
+.gitignore
