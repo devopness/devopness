@@ -2,10 +2,15 @@
 {{import}}
 {{/imports}}
 
+from packages.sdks.python.src.common.api_response import ApiResponse
 from packages.sdks.python.src.services.api_base_service import ApiBaseService
 
+
 {{#operations}}
-class {{classname}}(ApiBaseService):
+class {{classname}}Service(ApiBaseService):
+    """
+    {{classname}}Service - Auto Generated
+    """
 {{#operation}}
 
     async def {{operationId}}(
@@ -15,16 +20,17 @@ class {{classname}}(ApiBaseService):
         {{paramName}}: {{dataType}}{{^required}} = None{{/required}},
     {{/isHeaderParam}}
 {{/allParams}}
-    ) -> {{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}None{{/returnType}}:
+    ) -> {{#returnType}}ApiResponse[{{{returnType}}}]{{/returnType}}{{^returnType}}ApiResponse{{/returnType}}:
         """
-        ::: {{{this-x}}}
+        {{#summary}}
+        {{&summary}}
+        {{/summary}}
         """
 
         endpoint: str = {{#pathParams}}f"{{{path}}}"{{/pathParams}}{{^pathParams}}"{{{path}}}"{{/pathParams}}
 
         response = await self.{{#lambda.lowercase}}{{httpMethod}}{{/lambda.lowercase}}(endpoint{{#allParams}}{{^isHeaderParam}}{{#-last}}{{^isPrimitiveType}}, {{paramName}}{{/isPrimitiveType}}{{/-last}}{{/isHeaderParam}}{{/allParams}})
 
-        return response
-
+        return ApiResponse(response)
 {{/operation}}
 {{/operations}}
