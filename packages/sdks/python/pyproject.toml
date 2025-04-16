@@ -6,7 +6,7 @@ license = "MIT"
 authors = [{ name = "Devopness (https://www.devopness.com)" }]
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = []
+dependencies = ["httpx (>=0.28.1,<0.29.0)"]
 
 [tool.poetry]
 packages = [{ include = "src", from = "." }]

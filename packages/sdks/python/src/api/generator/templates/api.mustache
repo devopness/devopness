@@ -1,0 +1,30 @@
+from packages.sdks.python.src.services.api_base_service import ApiBaseService
+
+{{#imports}}
+{{import}}
+{{/imports}}
+
+{{#operations}}
+class {{classname}}(ApiBaseService):
+{{#operation}}
+
+    async def {{operationId}}(
+        self,
+{{#allParams}}
+    {{^isHeaderParam}}
+        {{paramName}}: {{dataType}}{{^required}} = None{{/required}},
+    {{/isHeaderParam}}
+{{/allParams}}
+    ) -> {{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}None{{/returnType}}:
+        """
+        {{{this-x}}}
+        """
+
+        endpoint: str = f"{{{path}}}"
+
+        response = await self.{{#lambda.lowercase}}{{httpMethod}}{{/lambda.lowercase}}(endpoint)
+
+        return response
+
+{{/operation}}
+{{/operations}}

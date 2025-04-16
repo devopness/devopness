@@ -4,10 +4,11 @@
   "generator-cli": {
     "version": "7.12.0",
     "generators": {
-      "python": {
+      "build-api-models": {
         "generatorName": "python",
         "inputSpec": "./src/api/spec.json",
         "output": "./src/api/generated",
+        "templateDir": "./src/api/generator/templates",
         "additionalProperties": {
           "packageName": "devopness_api_client"
         }
