@@ -1,0 +1,18 @@
+{
+  "$schema": "./openapitools.schema.json",
+  "spaces": 2,
+  "generator-cli": {
+    "version": "7.12.0",
+    "generators": {
+      "build-api-models": {
+        "generatorName": "python",
+        "inputSpec": "./devopness/sdk_python/api/spec.json",
+        "output": "./devopness/sdk_python/api/generated",
+        "templateDir": "./devopness/sdk_python/api/generator/templates",
+        "additionalProperties": {
+          "packageName": ""
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{{#imports}}
+{{import}}
+{{/imports}}
+
+from packages.sdks.python.devopness.sdk_python.common import ApiResponse
+from packages.sdks.python.devopness.sdk_python.services import ApiBaseService
+
+
+{{#operations}}
+class {{classname}}Service(ApiBaseService):
+    """
+    {{classname}}Service - Auto Generated
+    """
+{{#operation}}
+
+    async def {{operationId}}(
+        self,
+{{#allParams}}
+    {{^isHeaderParam}}
+        {{paramName}}: {{dataType}}{{^required}} = None{{/required}},
+    {{/isHeaderParam}}
+{{/allParams}}
+    ) -> {{#returnType}}ApiResponse[{{{returnType}}}]{{/returnType}}{{^returnType}}ApiResponse{{/returnType}}:
+        """
+        {{#summary}}
+        {{&summary}}
+        {{/summary}}
+        """
+
+        endpoint: str = {{#pathParams}}f"{{{path}}}"{{/pathParams}}{{^pathParams}}"{{{path}}}"{{/pathParams}}
+
+        response = await self.{{#lambda.lowercase}}{{httpMethod}}{{/lambda.lowercase}}(endpoint{{#allParams}}{{^isHeaderParam}}{{#-last}}{{^isPrimitiveType}}, {{paramName}}{{/isPrimitiveType}}{{/-last}}{{/isHeaderParam}}{{/allParams}})
+
+        return ApiResponse(response)
+{{/operation}}
+{{/operations}}

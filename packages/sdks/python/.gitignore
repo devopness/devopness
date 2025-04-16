@@ -1,0 +1,27 @@
+devopness/sdk_python/api/generated/.*
+
+# Ignore config and metadata files
+devopness/sdk_python/api/generated/*cfg
+devopness/sdk_python/api/generated/*ini
+devopness/sdk_python/api/generated/*json
+devopness/sdk_python/api/generated/*lock
+devopness/sdk_python/api/generated/*toml
+devopness/sdk_python/api/generated/*yml
+
+# Ignore shell scripts and markdown notes
+devopness/sdk_python/api/generated/*sh
+devopness/sdk_python/api/generated/*md
+devopness/sdk_python/api/generated/*txt
+
+# Ignore setup script
+devopness/sdk_python/api/generated/setup.py
+
+# Ignore docs and output folders
+devopness/sdk_python/api/generated/docs
+devopness/sdk_python/api/generated/out
+
+# Ignore test scaffolding
+devopness/sdk_python/api/generated/test
+
+# Ignore client scaffolding
+devopness/sdk_python/api/generated/*py*
