@@ -7,9 +7,9 @@ WORKDIR=sdk
 
 build-image: ## Build Docker Image
 	$(info Docker - Building Image ...)
-	@docker build -f Dockerfile-dev -t $(IMAGE) .
+	@docker build -f Dockerfile -t $(IMAGE) .
 
-build-sdk: build-image ## Build Python SDK
+build-sdk-python: build-image ## Build Python SDK
 	$(info Docker - Building Devopness SDK - Python ...)
 	@docker run --rm \
 	-v $(PWD):/$(WORKDIR) \
