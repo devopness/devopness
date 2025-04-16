@@ -1,27 +1,27 @@
-src/api/generated/.*
+devopness/sdk_python/api/generated/.*
 
 # Ignore config and metadata files
-src/api/generated/*cfg
-src/api/generated/*ini
-src/api/generated/*json
-src/api/generated/*lock
-src/api/generated/*toml
-src/api/generated/*yml
+devopness/sdk_python/api/generated/*cfg
+devopness/sdk_python/api/generated/*ini
+devopness/sdk_python/api/generated/*json
+devopness/sdk_python/api/generated/*lock
+devopness/sdk_python/api/generated/*toml
+devopness/sdk_python/api/generated/*yml
 
 # Ignore shell scripts and markdown notes
-src/api/generated/*sh
-src/api/generated/*md
-src/api/generated/*txt
+devopness/sdk_python/api/generated/*sh
+devopness/sdk_python/api/generated/*md
+devopness/sdk_python/api/generated/*txt
 
 # Ignore setup script
-src/api/generated/setup.py
+devopness/sdk_python/api/generated/setup.py
 
 # Ignore docs and output folders
-src/api/generated/docs
-src/api/generated/out
+devopness/sdk_python/api/generated/docs
+devopness/sdk_python/api/generated/out
 
 # Ignore test scaffolding
-src/api/generated/test
+devopness/sdk_python/api/generated/test
 
 # Ignore client scaffolding
-src/api/generated/devopness_api_client/*py*
+devopness/sdk_python/api/generated/devopness_api_client/*py*
