@@ -1,8 +1,8 @@
-from packages.sdks.python.src.services.api_base_service import ApiBaseService
-
 {{#imports}}
 {{import}}
 {{/imports}}
+
+from packages.sdks.python.src.services.api_base_service import ApiBaseService
 
 {{#operations}}
 class {{classname}}(ApiBaseService):
@@ -17,12 +17,12 @@ class {{classname}}(ApiBaseService):
 {{/allParams}}
     ) -> {{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}None{{/returnType}}:
         """
-        {{{this-x}}}
+        ::: {{{this-x}}}
         """
 
-        endpoint: str = f"{{{path}}}"
+        endpoint: str = {{#pathParams}}f"{{{path}}}"{{/pathParams}}{{^pathParams}}"{{{path}}}"{{/pathParams}}
 
-        response = await self.{{#lambda.lowercase}}{{httpMethod}}{{/lambda.lowercase}}(endpoint)
+        response = await self.{{#lambda.lowercase}}{{httpMethod}}{{/lambda.lowercase}}(endpoint{{#allParams}}{{^isHeaderParam}}{{#-last}}{{^isPrimitiveType}}, {{paramName}}{{/isPrimitiveType}}{{/-last}}{{/isHeaderParam}}{{/allParams}})
 
         return response
 
