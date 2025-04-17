@@ -18,4 +18,4 @@ echo "🚀  Running OpenAPI Generator..."
 JAVA_OPTS="-Dlog.level=warn" openapi-generator-cli generate
 
 echo "🔧  Executing post-build script..."
-bash "$SCRIPT_DIR/post_build.sh"
+bash "$SCRIPT_DIR/post-build.sh"
