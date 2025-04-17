@@ -46,34 +46,6 @@ ruff format "$GENERATED_API_DIR" "$GENERATED_MODELS_DIR"
 echo "🧹  Removing OpenAPI Generator Cache..."
 rm -rf "$GENERATED_DIR/.openapi-generator"
 
-# TEMPORARY CLEANUP FOR INITIAL SDK DEVELOPMENT
-#
-# We're removing all generated files that are not user-related
-# to keep the number of auto-generated files as low as possible
-# during the development of SDK version 1.
-# This helps validate the core structure and functionality
-# of the SDK before exposing all endpoints.
-echo "🧽  Removing non-user related service files..."
-find "$GENERATED_API_DIR" -type f -name '*.py' \
-  ! -iname 'user*.py' \
-  ! -iname '__init__.py' \
-  -exec rm -f {} +
-
-find "$GENERATED_MODELS_DIR" -type f -name '*.py' \
-  ! -iname 'user*.py' \
-  ! -iname '__init__.py' \
-  ! -iname 'credits.py' \
-  ! -iname 'language.py' \
-  ! -iname 'social_account_displayable_name.py' \
-  ! -iname 'social_account_provider.py' \
-  ! -iname 'social_account_relation.py' \
-  ! -iname 'static_billing_info.py' \
-  ! -iname 'subscription.py' \
-  ! -iname 'subscription_balance.py' \
-  ! -iname 'subscription_plan.py' \
-  ! -iname 'triggered_actions.py' \
-  ! -iname 'triggered_action_stats.py' \
-  ! -iname 'triggered_action_summary.py' \
-  -exec rm -f {} +
-
 echo "✅  Devopness SDK - Python Build completed successfully!"
+
+bash scripts/temp.sh
