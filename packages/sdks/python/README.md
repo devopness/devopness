@@ -16,7 +16,7 @@ Use your favorite package manager to install the Devopness SDK as a dependency o
 
 ```bash
 # Using uv
-uv install devopness
+uv add devopness
 
 # Using poetry
 poetry add devopness
