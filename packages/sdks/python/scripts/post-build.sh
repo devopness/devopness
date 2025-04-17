@@ -7,8 +7,9 @@ set -e
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 SDK_ROOT_DIR="$SCRIPT_DIR/.."
-GENERATED_API_DIR="$SDK_ROOT_DIR/devopness/api/generated/api"
-GENERATED_MODELS_DIR="$SDK_ROOT_DIR/devopness/api/generated/models"
+GENERATED_DIR="$SDK_ROOT_DIR/devopness/api/generated"
+GENERATED_API_DIR="$GENERATED_DIR/api"
+GENERATED_MODELS_DIR="$GENERATED_DIR/models"
 
 # Fix the permissions of the generated files
 fix_permissions_and_ownership() {
@@ -41,6 +42,9 @@ done
 
 echo "🔧  Formatting generated files..."
 ruff format "$GENERATED_API_DIR" "$GENERATED_MODELS_DIR"
+
+echo "🧹  Removing OpenAPI Generator Cache..."
+rm -rf "$GENERATED_DIR/.openapi-generator"
 
 # TEMPORARY CLEANUP FOR INITIAL SDK DEVELOPMENT
 #
