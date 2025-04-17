@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [project]
 name = "devopness"
-version = "0.0.0"
+version = "0.0.1"
 description = "Devopness API Python SDK - Painless essential DevOps to everyone"
 license = "MIT"
 readme = "README.md"
