@@ -15,7 +15,7 @@ echo "🧹  Removing previous generated directories..."
 [ -d "$GENERATED_MODELS_DIR" ] && rm -rf "$GENERATED_MODELS_DIR"
 
 echo "🚀  Running OpenAPI Generator..."
-JAVA_OPTS="-Dlog.level=warn" JAVA_OPTS="-Dlog.level=warn" openapi-generator-cli generate
+JAVA_OPTS="-Dlog.level=warn" openapi-generator-cli generate
 
 echo "🔧  Executing post-build script..."
 bash "$SCRIPT_DIR/post_build.sh"

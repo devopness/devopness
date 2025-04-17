@@ -29,6 +29,15 @@ build-sdk-python: build-image ## Build Python SDK
 		$(IMAGE):$(TAG) \
 		/bin/bash scripts/build.sh
 
+shell: build-image ## Runs shell in development environment
+	$(info Starting shell in development environment ...)
+	@docker run --rm \
+		-it \
+		-v $(PWD):/$(WORKDIR) \
+		--name devopness-sdk-python-shell \
+  	$(IMAGE):$(TAG) \
+		/bin/bash
+
 help: ## Show this help.
 # `help' function obtained from GitHub gist: https://gist.github.com/prwhite/8168133?permalink_comment_id=4160123#gistcomment-4160123
 	@echo Devopness SDK - Python
