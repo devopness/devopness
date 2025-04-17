@@ -9,7 +9,14 @@ requires-python = ">=3.11"
 dependencies = ["httpx (>=0.28.1,<0.29.0)", "pydantic (>=2.11.3,<3.0.0)"]
 
 [tool.poetry]
-packages = [{ include = "devopness", from = "." }]
+packages = [
+  { include = "devopness/*.py" },
+  { include = "devopness/py.typed" },
+  { include = "devopness/common/*.py" },
+  { include = "devopness/services/*.py" },
+  { include = "devopness/api/generated/api/*.py" },
+  { include = "devopness/api/generated/models/*.py" },
+]
 
 
 [build-system]

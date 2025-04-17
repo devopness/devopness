@@ -17,37 +17,5 @@ echo "🧹  Removing previous generated directories..."
 echo "🚀  Running OpenAPI Generator..."
 JAVA_OPTS="-Dlog.level=warn" JAVA_OPTS="-Dlog.level=warn" openapi-generator-cli generate
 
-# Fix the permissions of the generated files
-fix_permissions_and_ownership() {
-  local dir="$1"
-  [ -d "$dir" ] || return
-  find "$dir" -type d -exec chmod 755 {} \;
-  find "$dir" -type f -exec chmod 644 {} \;
-
-  if [[ -n "$USER_ID" && -n "$GROUP_ID" ]]; then
-    chown -R "$USER_ID:$GROUP_ID" "$dir"
-  fi
-}
-
-fix_permissions_and_ownership "$GENERATED_API_DIR"
-fix_permissions_and_ownership "$GENERATED_MODELS_DIR"
-
-echo "🔧  Adjusting import paths in generated services..."
-for file in "$GENERATED_API_DIR"/*.py; do
-  sed -i 's/from .models./from ..models./g' "$file"
-
-  # Remove auto-generated imports
-  sed -i '/from pydantic/d' "$file"
-  sed -i '/from typing_extensions/d' "$file"
-done
-
-echo "🔧  Adjusting import paths in generated models..."
-for file in "$GENERATED_MODELS_DIR"/*.py; do
-  sed -i 's/from .models./from ./g' "$file"
-done
-
-# TEMPORARY
-echo "🧽  Removing non-user related service files (keeping *users* and __init__.py)..."
-find "$GENERATED_API_DIR" -type f -name '*.py' ! \( -iname '*users*' -o -iname '__init__.py' \) -exec rm -f {} +
-
-echo "✅  Devopness SDK - Python Build completed successfully!"
+echo "🔧  Executing post-build script..."
+bash "$SCRIPT_DIR/post_build.sh"
