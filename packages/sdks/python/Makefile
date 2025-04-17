@@ -29,6 +29,15 @@ build-sdk-python: build-image ## Build Python SDK
 		$(IMAGE):$(TAG) \
 		/bin/bash scripts/build.sh
 
+publish-dev: build-image ## Publish Devopness SDK - Python to Test PyPI. Requires POETRY_TEST_PYPI_TOKEN.
+	$(info Publishing Devopness SDK - Python to Test PyPI ...)
+	@docker run --rm \
+		-v $(PWD):/$(WORKDIR) \
+		--env POETRY_TEST_PYPI_TOKEN=$(POETRY_TEST_PYPI_TOKEN) \
+		--name devopness-sdk-python-publish-dev \
+		$(IMAGE):$(TAG) \
+		/bin/bash scripts/publish-dev.sh
+
 shell: build-image ## Runs shell in development environment
 	$(info Starting shell in development environment ...)
 	@docker run --rm \
