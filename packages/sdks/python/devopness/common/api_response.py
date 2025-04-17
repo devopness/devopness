@@ -39,7 +39,10 @@ class ApiResponse(Generic[T]):
         self.status: int = response.status_code
 
         raw_data = response.json()
-        self.data: T = model_cls.from_dict(raw_data) if model_cls else raw_data  # type: ignore
+        try:
+            self.data: T = model_cls.from_dict(raw_data) if model_cls else raw_data  # type: ignore
+        except:  # noqa: E722
+            self.data = raw_data
 
         self.page_count: int = self._extract_last_page_number(
             response.headers.get("link", "")
