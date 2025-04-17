@@ -39,6 +39,9 @@ for file in "$GENERATED_MODELS_DIR"/*.py; do
   sed -i 's/from .models./from ./g' "$file"
 done
 
+echo "🔧  Formatting generated files..."
+ruff format "$GENERATED_API_DIR" "$GENERATED_MODELS_DIR"
+
 # TEMPORARY CLEANUP FOR INITIAL SDK DEVELOPMENT
 #
 # We're removing all generated files that are not user-related
