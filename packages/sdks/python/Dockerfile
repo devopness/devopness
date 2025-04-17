@@ -8,4 +8,10 @@ RUN apk add --no-cache npm
 RUN npm install -g @openapitools/openapi-generator-cli
 RUN openapi-generator-cli version-manager set 7.12.0
 
+RUN pip install poetry
+
+COPY poetry.lock poetry.lock
+COPY pyproject.toml pyproject.toml
+RUN POETRY_VIRTUALENVS_CREATE=false poetry install --no-root
+
 WORKDIR /sdk
