@@ -38,18 +38,6 @@ shell: build-image ## Runs shell in development environment
   	$(IMAGE):$(TAG) \
 		/bin/bash
 
-publish-dev: build-sdk-python ## Publish the Devopness SDK - Python to Test PyPI
-	$(info Publishing Devopness SDK - Python to Test PyPI ...)
-	@docker run --rm \
-		-v $(PWD):/$(WORKDIR) \
-		--env USER_ID=$(USER_ID) \
-		--env USER_NAME=$(USER_NAME) \
-		--env GROUP_ID=$(GROUP_ID) \
-		--env GROUP_NAME=$(GROUP_NAME) \
-		--name devopness-sdk-python-publish-dev \
-		$(IMAGE):$(TAG) \
-		/bin/bash scripts/publish-dev.sh
-
 help: ## Show this help.
 # `help' function obtained from GitHub gist: https://gist.github.com/prwhite/8168133?permalink_comment_id=4160123#gistcomment-4160123
 	@echo Devopness SDK - Python
