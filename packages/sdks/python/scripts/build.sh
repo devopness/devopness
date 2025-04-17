@@ -41,6 +41,10 @@ for file in "$GENERATED_API_DIR"/*.py; do
   sed -i '/from typing_extensions/d' "$file"
 done
 
+echo "🔧  Adjusting __init__.py in services and models..."
+rm "$GENERATED_API_DIR/__init__.py"    &>/dev/null && touch "$GENERATED_API_DIR/__init__.py"
+rm "$GENERATED_MODELS_DIR/__init__.py" &>/dev/null && touch "$GENERATED_MODELS_DIR/__init__.py"
+
 # TEMPORARY
 echo "🧽  Removing non-user related service files (keeping *users* and __init__.py)..."
 find "$GENERATED_API_DIR" -type f -name '*.py' ! \( -iname '*users*' -o -iname '__init__.py' \) -exec rm -f {} +
