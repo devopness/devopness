@@ -40,15 +40,5 @@ jobs:
           commit_user_name: devopness-automations
           commit_user_email: automations@devopness.com
 
-      - name: Check for changes in devopness/ folder
-        id: sdk-python-changed
-        run: |
-          if git diff --name-only origin/${{ github.base_ref }}...HEAD | grep -q '^packages/sdks/python/devopness/'; then
-            echo "changed=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "changed=false" >> "$GITHUB_OUTPUT"
-          fi
-
       - name: Publish to TestPyPI
-        if: steps.sdk-python-changed.outputs.changed == 'true'
         run: make publish-dev POETRY_TEST_PYPI_TOKEN='${{ secrets.POETRY_TEST_PYPI_TOKEN }}'
