@@ -49,6 +49,6 @@ class {{classname}}Service(ApiBaseService):
 
         response = await self.{{#lambda.lowercase}}{{httpMethod}}{{/lambda.lowercase}}(endpoint{{#allParams}}{{^isHeaderParam}}{{#-last}}{{^isPrimitiveType}}, {{paramName}}{{/isPrimitiveType}}{{/-last}}{{/isHeaderParam}}{{/allParams}})
 
-        return ApiResponse(response)
+        return ApiResponse(response{{#returnType}}, {{{returnType}}}{{/returnType}})
 {{/operation}}
 {{/operations}}

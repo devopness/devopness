@@ -39,7 +39,7 @@ class ApiResponse(Generic[T]):
         self.status: int = response.status_code
 
         raw_data = response.json()
-        self.data = model_cls.from_dict(raw_data) if model_cls else raw_data  # type: ignore
+        self.data: T = model_cls.from_dict(raw_data) if model_cls else raw_data  # type: ignore
 
         self.page_count: int = self._extract_last_page_number(
             response.headers.get("link", "")
