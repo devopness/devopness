@@ -6,6 +6,10 @@ import httpx
 
 
 class ApiBaseService:
+    """
+    A base service class for communicating with the Devopness API.
+    """
+
     client: httpx.AsyncClient
 
     def __init__(self) -> None:
@@ -22,45 +26,58 @@ class ApiBaseService:
 
     async def delete(self, endpoint: str) -> httpx.Response:
         """
-        Performs a DELETE request on the given endpoint.
+        Perform an HTTP DELETE request.
 
-        :param endpoint: The relative path to the API endpoint
-        :return: The response object
-        :rtype: httpx.Response
+        Args:
+            endpoint (str): The relative path of the API endpoint.
+
+        Returns:
+            httpx.Response: The response from the API.
         """
         return await self.client.delete(endpoint)
 
     async def get(self, endpoint: str) -> httpx.Response:
         """
-        Performs a GET request on the given endpoint.
+        Perform an HTTP GET request.
 
-        :param endpoint: The relative path to the API endpoint
-        :return: The response object
-        :rtype: httpx.Response
+        Args:
+            endpoint (str): The relative path of the API endpoint.
+
+        Returns:
+            httpx.Response: The response from the API.
         """
-
         return await self.client.get(endpoint)
 
     async def post(self, endpoint: str, data=None) -> httpx.Response:
         """
-        Performs a POST request on the given endpoint with the provided data.
+        Perform an HTTP POST request with optional JSON data.
 
-        :param endpoint: The relative path to the API endpoint
-        :param data: The data to be sent in the request body
-        :return: The response object
-        :rtype: httpx.Response
+        Args:
+            endpoint (str): The relative path of the API endpoint.
+            data (Any, optional): Data to be sent in the request body.
+                                  Can be a dictionary or an object
+                                  with a `.dict()` method.
+
+        Returns:
+            httpx.Response: The response from the API.
         """
+        payload = data.dict() if hasattr(data, "dict") else data  # type: ignore
 
-        return await self.client.post(endpoint, data=data)
+        return await self.client.post(endpoint, json=payload)
 
     async def put(self, endpoint: str, data=None) -> httpx.Response:
         """
-        Performs a PUT request on the given endpoint with the provided data.
+        Perform an HTTP PUT request with optional JSON data.
 
-        :param endpoint: The relative path to the API endpoint.
-        :param data: The data to be sent in the request body.
-        :return: The response object.
-        :rtype: httpx.Response
+        Args:
+            endpoint (str): The relative path of the API endpoint.
+            data (Any, optional): Data to be sent in the request body.
+                                  Can be a dictionary or an object
+                                  with a `.dict()` method.
+
+        Returns:
+            httpx.Response: The response from the API.
         """
+        payload = data.dict() if hasattr(data, "dict") else data  # type: ignore
 
-        return await self.client.put(endpoint, data=data)
+        return await self.client.put(endpoint, json=payload)
