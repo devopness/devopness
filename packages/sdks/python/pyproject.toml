@@ -1,12 +1,37 @@
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
 [project]
 name = "devopness"
 version = "0.0.0"
 description = "Devopness API Python SDK - Painless essential DevOps to everyone"
 license = "MIT"
-authors = [{ name = "Devopness (https://www.devopness.com)" }]
 readme = "README.md"
 requires-python = ">=3.11"
+authors = [{ name = "Devopness (https://www.devopness.com)" }]
+keywords = [
+    "Cloud Engineering",
+    "Cloud Infrastructure",
+    "Cloud Platform",
+    "Configuration Management",
+    "DevOps",
+    "Devopness",
+    "Deployment Automation",
+    "Platform Engineering",
+    "Zero Downtime Deployment",
+    "Server Provisioning",
+    "Infrastructure as Code",
+    "API Client",
+    "Python SDK",
+    "Server Management",
+    "Cloud Resource Management"
+]
 dependencies = ["httpx (>=0.28.1,<0.29.0)", "pydantic (>=2.11.3,<3.0.0)"]
+
+[project.urls]
+homepage = "https://www.devopness.com"
+repository = "https://github.com/devopness/devopness"
 
 [tool.poetry]
 packages = [
@@ -18,10 +43,6 @@ packages = [
   { include = "devopness/api/generated/api/*.py" },
   { include = "devopness/api/generated/models/*.py" },
 ]
-
-[build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
-build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.11.6"
