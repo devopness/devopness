@@ -29,8 +29,8 @@ class UsersTeamInvitationsApiService(ApiBaseService):
         """
 
         params = dict(
-          page=page,
-          per_page=per_page,
+            page=page,
+            per_page=per_page,
         )
 
         query_params = dict()

@@ -16,6 +16,7 @@ from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
 
+
 class UserRefreshToken(BaseModel):
     """
     UserRefreshToken
@@ -24,7 +25,9 @@ class UserRefreshToken(BaseModel):
         refresh_token (str): A token to be used after the original access token has expired, to issue a new token without requiring a new request to the /users/login endpoint.
     """
 
-    refresh_token: StrictStr = Field(description="A token to be used after the original access token has expired, to issue a new token without requiring a new request to the /users/login endpoint.")
+    refresh_token: StrictStr = Field(
+        description="A token to be used after the original access token has expired, to issue a new token without requiring a new request to the /users/login endpoint."
+    )
     __properties: ClassVar[List[str]] = ["refresh_token"]
 
     model_config = ConfigDict(
@@ -32,7 +35,6 @@ class UserRefreshToken(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -58,8 +60,7 @@ class UserRefreshToken(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -77,9 +78,5 @@ class UserRefreshToken(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "refresh_token": obj.get("refresh_token")
-        })
+        _obj = cls.model_validate({"refresh_token": obj.get("refresh_token")})
         return _obj
-
-

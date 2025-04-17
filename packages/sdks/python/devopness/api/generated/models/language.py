@@ -20,12 +20,10 @@ class Language(str, Enum):
     """
     allowed enum values
     """
-    EN = 'en'
-    PT = 'pt'
+    EN = "en"
+    PT = "pt"
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of Language from a JSON string"""
         return cls(json.loads(json_str))
-
-

@@ -16,6 +16,7 @@ from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
+
 class UserProjectStats(BaseModel):
     """
     Total number of projects that user has access to, as owner or team member.
@@ -25,8 +26,14 @@ class UserProjectStats(BaseModel):
         member_of (float, optional): Total number of projects that user has access to, as team member.
     """
 
-    owner_of: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total number of projects that user has access to, as owner.")
-    member_of: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total number of projects that user has access to, as team member.")
+    owner_of: Optional[Union[StrictFloat, StrictInt]] = Field(
+        default=None,
+        description="Total number of projects that user has access to, as owner.",
+    )
+    member_of: Optional[Union[StrictFloat, StrictInt]] = Field(
+        default=None,
+        description="Total number of projects that user has access to, as team member.",
+    )
     __properties: ClassVar[List[str]] = ["owner_of", "member_of"]
 
     model_config = ConfigDict(
@@ -34,7 +41,6 @@ class UserProjectStats(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -60,8 +66,7 @@ class UserProjectStats(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -79,10 +84,7 @@ class UserProjectStats(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "owner_of": obj.get("owner_of"),
-            "member_of": obj.get("member_of")
-        })
+        _obj = cls.model_validate(
+            {"owner_of": obj.get("owner_of"), "member_of": obj.get("member_of")}
+        )
         return _obj
-
-

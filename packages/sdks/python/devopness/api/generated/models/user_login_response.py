@@ -16,6 +16,7 @@ from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
 
+
 class UserLoginResponse(BaseModel):
     """
     UserLoginResponse
@@ -27,18 +28,28 @@ class UserLoginResponse(BaseModel):
         refresh_token (str): A token to be used after the original access token has expired, to issue a new token without requiring a new request to the /users/login endpoint
     """
 
-    token_type: StrictStr = Field(description="The type of the authorization token being issued")
-    expires_in: StrictInt = Field(description="The number of seconds remaining to the token expiration time, to be counted since the token issue date and time")
+    token_type: StrictStr = Field(
+        description="The type of the authorization token being issued"
+    )
+    expires_in: StrictInt = Field(
+        description="The number of seconds remaining to the token expiration time, to be counted since the token issue date and time"
+    )
     access_token: StrictStr = Field(description="The issued JWT access token")
-    refresh_token: StrictStr = Field(description="A token to be used after the original access token has expired, to issue a new token without requiring a new request to the /users/login endpoint")
-    __properties: ClassVar[List[str]] = ["token_type", "expires_in", "access_token", "refresh_token"]
+    refresh_token: StrictStr = Field(
+        description="A token to be used after the original access token has expired, to issue a new token without requiring a new request to the /users/login endpoint"
+    )
+    __properties: ClassVar[List[str]] = [
+        "token_type",
+        "expires_in",
+        "access_token",
+        "refresh_token",
+    ]
 
     model_config = ConfigDict(
         populate_by_name=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -64,8 +75,7 @@ class UserLoginResponse(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -83,12 +93,12 @@ class UserLoginResponse(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "token_type": obj.get("token_type"),
-            "expires_in": obj.get("expires_in"),
-            "access_token": obj.get("access_token"),
-            "refresh_token": obj.get("refresh_token")
-        })
+        _obj = cls.model_validate(
+            {
+                "token_type": obj.get("token_type"),
+                "expires_in": obj.get("expires_in"),
+                "access_token": obj.get("access_token"),
+                "refresh_token": obj.get("refresh_token"),
+            }
+        )
         return _obj
-
-

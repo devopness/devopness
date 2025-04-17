@@ -17,12 +17,13 @@ from .static_billing_info import StaticBillingInfo
 from typing import Optional, Set
 from typing_extensions import Self
 
+
 class UserProfileOptions(BaseModel):
     """
     UserProfileOptions
 
     Attributes:
-        billing (StaticBillingInfo): 
+        billing (StaticBillingInfo):
         languages (List[str]): Supported languages
         timezones (List[str]): Supported time zones
     """
@@ -37,7 +38,6 @@ class UserProfileOptions(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -63,8 +63,7 @@ class UserProfileOptions(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -73,7 +72,7 @@ class UserProfileOptions(BaseModel):
         )
         # override the default output from pydantic by calling `to_dict()` of billing
         if self.billing:
-            _dict['billing'] = self.billing.to_dict()
+            _dict["billing"] = self.billing.to_dict()
         return _dict
 
     @classmethod
@@ -85,11 +84,13 @@ class UserProfileOptions(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "billing": StaticBillingInfo.from_dict(obj["billing"]) if obj.get("billing") is not None else None,
-            "languages": obj.get("languages"),
-            "timezones": obj.get("timezones")
-        })
+        _obj = cls.model_validate(
+            {
+                "billing": StaticBillingInfo.from_dict(obj["billing"])
+                if obj.get("billing") is not None
+                else None,
+                "languages": obj.get("languages"),
+                "timezones": obj.get("timezones"),
+            }
+        )
         return _obj
-
-

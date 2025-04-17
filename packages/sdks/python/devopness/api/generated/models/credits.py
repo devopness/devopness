@@ -16,6 +16,7 @@ from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
+
 class Credits(BaseModel):
     """
     The user's active subscription credits
@@ -26,9 +27,16 @@ class Credits(BaseModel):
         remaining (float, optional): Total credits available to use to perform actions
     """
 
-    limit: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total credits that can be used to perform actions in the subscription period")
-    used: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total credits that were used to perform actions")
-    remaining: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total credits available to use to perform actions")
+    limit: Optional[Union[StrictFloat, StrictInt]] = Field(
+        default=None,
+        description="Total credits that can be used to perform actions in the subscription period",
+    )
+    used: Optional[Union[StrictFloat, StrictInt]] = Field(
+        default=None, description="Total credits that were used to perform actions"
+    )
+    remaining: Optional[Union[StrictFloat, StrictInt]] = Field(
+        default=None, description="Total credits available to use to perform actions"
+    )
     __properties: ClassVar[List[str]] = ["limit", "used", "remaining"]
 
     model_config = ConfigDict(
@@ -36,7 +44,6 @@ class Credits(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -62,8 +69,7 @@ class Credits(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -81,11 +87,11 @@ class Credits(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "limit": obj.get("limit"),
-            "used": obj.get("used"),
-            "remaining": obj.get("remaining")
-        })
+        _obj = cls.model_validate(
+            {
+                "limit": obj.get("limit"),
+                "used": obj.get("used"),
+                "remaining": obj.get("remaining"),
+            }
+        )
         return _obj
-
-

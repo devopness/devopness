@@ -16,27 +16,31 @@ from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
+
 class SubscriptionPlan(BaseModel):
     """
     A subscription plan
 
     Attributes:
-        provider_plan_id (str, optional): 
-        human_readable (str, optional): 
-        allow_subscriptions (bool, optional): 
+        provider_plan_id (str, optional):
+        human_readable (str, optional):
+        allow_subscriptions (bool, optional):
     """
 
     provider_plan_id: Optional[StrictStr] = None
     human_readable: Optional[StrictStr] = None
     allow_subscriptions: Optional[StrictBool] = None
-    __properties: ClassVar[List[str]] = ["provider_plan_id", "human_readable", "allow_subscriptions"]
+    __properties: ClassVar[List[str]] = [
+        "provider_plan_id",
+        "human_readable",
+        "allow_subscriptions",
+    ]
 
     model_config = ConfigDict(
         populate_by_name=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -62,8 +66,7 @@ class SubscriptionPlan(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -81,11 +84,11 @@ class SubscriptionPlan(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "provider_plan_id": obj.get("provider_plan_id"),
-            "human_readable": obj.get("human_readable"),
-            "allow_subscriptions": obj.get("allow_subscriptions")
-        })
+        _obj = cls.model_validate(
+            {
+                "provider_plan_id": obj.get("provider_plan_id"),
+                "human_readable": obj.get("human_readable"),
+                "allow_subscriptions": obj.get("allow_subscriptions"),
+            }
+        )
         return _obj
-
-

@@ -19,6 +19,7 @@ from .language import Language
 from typing import Optional, Set
 from typing_extensions import Self
 
+
 class UserRelation(BaseModel):
     """
     UserRelation
@@ -28,28 +29,48 @@ class UserRelation(BaseModel):
         name (str): User&#39;s full name
         email (str): The e-mail that will uniquely identify the user on the system and become its login credential
         url_slug (str, optional): The URL Slug of the user
-        language (Language, optional): 
+        language (Language, optional):
         active (bool, optional): Tells if the user is active or not
         created_at (datetime, optional): The date and time when the record was created
         updated_at (datetime, optional): The date and time when the record was last updated
     """
 
     id: StrictInt = Field(description="The Id of the given user")
-    name: Annotated[str, Field(min_length=5, strict=True, max_length=60)] = Field(description="User's full name")
-    email: StrictStr = Field(description="The e-mail that will uniquely identify the user on the system and become its login credential")
-    url_slug: Optional[StrictStr] = Field(default=None, description="The URL Slug of the user")
+    name: Annotated[str, Field(min_length=5, strict=True, max_length=60)] = Field(
+        description="User's full name"
+    )
+    email: StrictStr = Field(
+        description="The e-mail that will uniquely identify the user on the system and become its login credential"
+    )
+    url_slug: Optional[StrictStr] = Field(
+        default=None, description="The URL Slug of the user"
+    )
     language: Optional[Language] = None
-    active: Optional[StrictBool] = Field(default=None, description="Tells if the user is active or not")
-    created_at: Optional[datetime] = Field(default=None, description="The date and time when the record was created")
-    updated_at: Optional[datetime] = Field(default=None, description="The date and time when the record was last updated")
-    __properties: ClassVar[List[str]] = ["id", "name", "email", "url_slug", "language", "active", "created_at", "updated_at"]
+    active: Optional[StrictBool] = Field(
+        default=None, description="Tells if the user is active or not"
+    )
+    created_at: Optional[datetime] = Field(
+        default=None, description="The date and time when the record was created"
+    )
+    updated_at: Optional[datetime] = Field(
+        default=None, description="The date and time when the record was last updated"
+    )
+    __properties: ClassVar[List[str]] = [
+        "id",
+        "name",
+        "email",
+        "url_slug",
+        "language",
+        "active",
+        "created_at",
+        "updated_at",
+    ]
 
     model_config = ConfigDict(
         populate_by_name=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -75,8 +96,7 @@ class UserRelation(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -86,7 +106,7 @@ class UserRelation(BaseModel):
         # set to None if language (nullable) is None
         # and model_fields_set contains the field
         if self.language is None and "language" in self.model_fields_set:
-            _dict['language'] = None
+            _dict["language"] = None
 
         return _dict
 
@@ -99,16 +119,16 @@ class UserRelation(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "name": obj.get("name"),
-            "email": obj.get("email"),
-            "url_slug": obj.get("url_slug"),
-            "language": obj.get("language"),
-            "active": obj.get("active"),
-            "created_at": obj.get("created_at"),
-            "updated_at": obj.get("updated_at")
-        })
+        _obj = cls.model_validate(
+            {
+                "id": obj.get("id"),
+                "name": obj.get("name"),
+                "email": obj.get("email"),
+                "url_slug": obj.get("url_slug"),
+                "language": obj.get("language"),
+                "active": obj.get("active"),
+                "created_at": obj.get("created_at"),
+                "updated_at": obj.get("updated_at"),
+            }
+        )
         return _obj
-
-

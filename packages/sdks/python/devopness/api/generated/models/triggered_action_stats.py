@@ -17,6 +17,7 @@ from .triggered_action_summary import TriggeredActionSummary
 from typing import Optional, Set
 from typing_extensions import Self
 
+
 class TriggeredActionStats(BaseModel):
     """
     Information about the action that was triggered
@@ -26,22 +27,33 @@ class TriggeredActionStats(BaseModel):
         action_type (str, optional): Type of action
         resource_type_human_readable (str, optional): Human readable version of the resource type
         action_type_human_readable (str, optional): Type of action human readable
-        summary (TriggeredActionSummary, optional): 
+        summary (TriggeredActionSummary, optional):
     """
 
-    resource_type: Optional[StrictStr] = Field(default=None, description="Type of resource used in the action")
+    resource_type: Optional[StrictStr] = Field(
+        default=None, description="Type of resource used in the action"
+    )
     action_type: Optional[StrictStr] = Field(default=None, description="Type of action")
-    resource_type_human_readable: Optional[StrictStr] = Field(default=None, description="Human readable version of the resource type")
-    action_type_human_readable: Optional[StrictStr] = Field(default=None, description="Type of action human readable")
+    resource_type_human_readable: Optional[StrictStr] = Field(
+        default=None, description="Human readable version of the resource type"
+    )
+    action_type_human_readable: Optional[StrictStr] = Field(
+        default=None, description="Type of action human readable"
+    )
     summary: Optional[TriggeredActionSummary] = None
-    __properties: ClassVar[List[str]] = ["resource_type", "action_type", "resource_type_human_readable", "action_type_human_readable", "summary"]
+    __properties: ClassVar[List[str]] = [
+        "resource_type",
+        "action_type",
+        "resource_type_human_readable",
+        "action_type_human_readable",
+        "summary",
+    ]
 
     model_config = ConfigDict(
         populate_by_name=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -67,8 +79,7 @@ class TriggeredActionStats(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -77,7 +88,7 @@ class TriggeredActionStats(BaseModel):
         )
         # override the default output from pydantic by calling `to_dict()` of summary
         if self.summary:
-            _dict['summary'] = self.summary.to_dict()
+            _dict["summary"] = self.summary.to_dict()
         return _dict
 
     @classmethod
@@ -89,13 +100,15 @@ class TriggeredActionStats(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "resource_type": obj.get("resource_type"),
-            "action_type": obj.get("action_type"),
-            "resource_type_human_readable": obj.get("resource_type_human_readable"),
-            "action_type_human_readable": obj.get("action_type_human_readable"),
-            "summary": TriggeredActionSummary.from_dict(obj["summary"]) if obj.get("summary") is not None else None
-        })
+        _obj = cls.model_validate(
+            {
+                "resource_type": obj.get("resource_type"),
+                "action_type": obj.get("action_type"),
+                "resource_type_human_readable": obj.get("resource_type_human_readable"),
+                "action_type_human_readable": obj.get("action_type_human_readable"),
+                "summary": TriggeredActionSummary.from_dict(obj["summary"])
+                if obj.get("summary") is not None
+                else None,
+            }
+        )
         return _obj
-
-

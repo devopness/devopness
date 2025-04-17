@@ -16,6 +16,7 @@ from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
 
+
 class UserCreate(BaseModel):
     """
     UserCreate
@@ -24,7 +25,9 @@ class UserCreate(BaseModel):
         email (str): The e-mail that will uniquely identify the user on the system and become its login credential. Must be a valid email address. Must not be greater than 255 characters.
     """
 
-    email: StrictStr = Field(description="The e-mail that will uniquely identify the user on the system and become its login credential. Must be a valid email address. Must not be greater than 255 characters.")
+    email: StrictStr = Field(
+        description="The e-mail that will uniquely identify the user on the system and become its login credential. Must be a valid email address. Must not be greater than 255 characters."
+    )
     __properties: ClassVar[List[str]] = ["email"]
 
     model_config = ConfigDict(
@@ -32,7 +35,6 @@ class UserCreate(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -58,8 +60,7 @@ class UserCreate(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -77,9 +78,5 @@ class UserCreate(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "email": obj.get("email")
-        })
+        _obj = cls.model_validate({"email": obj.get("email")})
         return _obj
-
-

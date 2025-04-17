@@ -17,12 +17,13 @@ from .subscription import Subscription
 from typing import Optional, Set
 from typing_extensions import Self
 
+
 class UserBilling(BaseModel):
     """
     UserBilling
 
     Attributes:
-        active_subscription (Subscription): 
+        active_subscription (Subscription):
     """
 
     active_subscription: Optional[Subscription]
@@ -33,7 +34,6 @@ class UserBilling(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -59,8 +59,7 @@ class UserBilling(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -69,11 +68,14 @@ class UserBilling(BaseModel):
         )
         # override the default output from pydantic by calling `to_dict()` of active_subscription
         if self.active_subscription:
-            _dict['active_subscription'] = self.active_subscription.to_dict()
+            _dict["active_subscription"] = self.active_subscription.to_dict()
         # set to None if active_subscription (nullable) is None
         # and model_fields_set contains the field
-        if self.active_subscription is None and "active_subscription" in self.model_fields_set:
-            _dict['active_subscription'] = None
+        if (
+            self.active_subscription is None
+            and "active_subscription" in self.model_fields_set
+        ):
+            _dict["active_subscription"] = None
 
         return _dict
 
@@ -86,9 +88,13 @@ class UserBilling(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "active_subscription": Subscription.from_dict(obj["active_subscription"]) if obj.get("active_subscription") is not None else None
-        })
+        _obj = cls.model_validate(
+            {
+                "active_subscription": Subscription.from_dict(
+                    obj["active_subscription"]
+                )
+                if obj.get("active_subscription") is not None
+                else None
+            }
+        )
         return _obj
-
-

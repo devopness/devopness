@@ -16,6 +16,7 @@ from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
+
 class TriggeredActionSummary(BaseModel):
     """
     Summary of actions that were triggered by the user
@@ -29,20 +30,43 @@ class TriggeredActionSummary(BaseModel):
         failed (float, optional): Total of actions that were triggered by the user with status failed
     """
 
-    count: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total of actions that were triggered by the user")
-    queued: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total of actions that were triggered by the user with status queued")
-    pending: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total of actions that were triggered by the user with status pending")
-    in_progress: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total of actions that were triggered by the user with status in_progress")
-    completed: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total of actions that were triggered by the user with status completed")
-    failed: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total of actions that were triggered by the user with status failed")
-    __properties: ClassVar[List[str]] = ["count", "queued", "pending", "in_progress", "completed", "failed"]
+    count: Optional[Union[StrictFloat, StrictInt]] = Field(
+        default=None, description="Total of actions that were triggered by the user"
+    )
+    queued: Optional[Union[StrictFloat, StrictInt]] = Field(
+        default=None,
+        description="Total of actions that were triggered by the user with status queued",
+    )
+    pending: Optional[Union[StrictFloat, StrictInt]] = Field(
+        default=None,
+        description="Total of actions that were triggered by the user with status pending",
+    )
+    in_progress: Optional[Union[StrictFloat, StrictInt]] = Field(
+        default=None,
+        description="Total of actions that were triggered by the user with status in_progress",
+    )
+    completed: Optional[Union[StrictFloat, StrictInt]] = Field(
+        default=None,
+        description="Total of actions that were triggered by the user with status completed",
+    )
+    failed: Optional[Union[StrictFloat, StrictInt]] = Field(
+        default=None,
+        description="Total of actions that were triggered by the user with status failed",
+    )
+    __properties: ClassVar[List[str]] = [
+        "count",
+        "queued",
+        "pending",
+        "in_progress",
+        "completed",
+        "failed",
+    ]
 
     model_config = ConfigDict(
         populate_by_name=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -68,8 +92,7 @@ class TriggeredActionSummary(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -87,14 +110,14 @@ class TriggeredActionSummary(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "count": obj.get("count"),
-            "queued": obj.get("queued"),
-            "pending": obj.get("pending"),
-            "in_progress": obj.get("in_progress"),
-            "completed": obj.get("completed"),
-            "failed": obj.get("failed")
-        })
+        _obj = cls.model_validate(
+            {
+                "count": obj.get("count"),
+                "queued": obj.get("queued"),
+                "pending": obj.get("pending"),
+                "in_progress": obj.get("in_progress"),
+                "completed": obj.get("completed"),
+                "failed": obj.get("failed"),
+            }
+        )
         return _obj
-
-

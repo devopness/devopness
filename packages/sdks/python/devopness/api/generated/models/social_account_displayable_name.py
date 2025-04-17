@@ -20,15 +20,13 @@ class SocialAccountDisplayableName(str, Enum):
     """
     allowed enum values
     """
-    BITBUCKET = 'Bitbucket'
-    FACEBOOK = 'Facebook'
-    GITHUB = 'GitHub'
-    GITLAB = 'GitLab'
-    GOOGLE = 'Google'
+    BITBUCKET = "Bitbucket"
+    FACEBOOK = "Facebook"
+    GITHUB = "GitHub"
+    GITLAB = "GitLab"
+    GOOGLE = "Google"
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of SocialAccountDisplayableName from a JSON string"""
         return cls(json.loads(json_str))
-
-

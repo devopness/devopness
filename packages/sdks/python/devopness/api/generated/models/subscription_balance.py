@@ -18,12 +18,13 @@ from .credits import Credits
 from typing import Optional, Set
 from typing_extensions import Self
 
+
 class SubscriptionBalance(BaseModel):
     """
     The user's active subscription balance
 
     Attributes:
-        credits (Credits, optional): 
+        credits (Credits, optional):
         unit (str, optional): The unit of measurement to count credits
         billing_period_started_at (datetime, optional): The date and time the subscription plan starts
         billing_period_ends_at (datetime, optional): The date and time the subscription plan ends
@@ -32,19 +33,35 @@ class SubscriptionBalance(BaseModel):
     """
 
     credits: Optional[Credits] = None
-    unit: Optional[StrictStr] = Field(default=None, description="The unit of measurement to count credits")
-    billing_period_started_at: Optional[datetime] = Field(default=None, description="The date and time the subscription plan starts")
-    billing_period_ends_at: Optional[datetime] = Field(default=None, description="The date and time the subscription plan ends")
-    created_at: Optional[datetime] = Field(default=None, description="The date and time when the record was created")
-    updated_at: Optional[datetime] = Field(default=None, description="The date and time when the record was last updated")
-    __properties: ClassVar[List[str]] = ["credits", "unit", "billing_period_started_at", "billing_period_ends_at", "created_at", "updated_at"]
+    unit: Optional[StrictStr] = Field(
+        default=None, description="The unit of measurement to count credits"
+    )
+    billing_period_started_at: Optional[datetime] = Field(
+        default=None, description="The date and time the subscription plan starts"
+    )
+    billing_period_ends_at: Optional[datetime] = Field(
+        default=None, description="The date and time the subscription plan ends"
+    )
+    created_at: Optional[datetime] = Field(
+        default=None, description="The date and time when the record was created"
+    )
+    updated_at: Optional[datetime] = Field(
+        default=None, description="The date and time when the record was last updated"
+    )
+    __properties: ClassVar[List[str]] = [
+        "credits",
+        "unit",
+        "billing_period_started_at",
+        "billing_period_ends_at",
+        "created_at",
+        "updated_at",
+    ]
 
     model_config = ConfigDict(
         populate_by_name=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -70,8 +87,7 @@ class SubscriptionBalance(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -80,7 +96,7 @@ class SubscriptionBalance(BaseModel):
         )
         # override the default output from pydantic by calling `to_dict()` of credits
         if self.credits:
-            _dict['credits'] = self.credits.to_dict()
+            _dict["credits"] = self.credits.to_dict()
         return _dict
 
     @classmethod
@@ -92,14 +108,16 @@ class SubscriptionBalance(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "credits": Credits.from_dict(obj["credits"]) if obj.get("credits") is not None else None,
-            "unit": obj.get("unit"),
-            "billing_period_started_at": obj.get("billing_period_started_at"),
-            "billing_period_ends_at": obj.get("billing_period_ends_at"),
-            "created_at": obj.get("created_at"),
-            "updated_at": obj.get("updated_at")
-        })
+        _obj = cls.model_validate(
+            {
+                "credits": Credits.from_dict(obj["credits"])
+                if obj.get("credits") is not None
+                else None,
+                "unit": obj.get("unit"),
+                "billing_period_started_at": obj.get("billing_period_started_at"),
+                "billing_period_ends_at": obj.get("billing_period_ends_at"),
+                "created_at": obj.get("created_at"),
+                "updated_at": obj.get("updated_at"),
+            }
+        )
         return _obj
-
-

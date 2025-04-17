@@ -18,13 +18,14 @@ from .triggered_action_summary import TriggeredActionSummary
 from typing import Optional, Set
 from typing_extensions import Self
 
+
 class TriggeredActions(BaseModel):
     """
     TriggeredActions
 
     Attributes:
-        summary (TriggeredActionSummary, optional): 
-        operations (List[TriggeredActionStats], optional): 
+        summary (TriggeredActionSummary, optional):
+        operations (List[TriggeredActionStats], optional):
     """
 
     summary: Optional[TriggeredActionSummary] = None
@@ -36,7 +37,6 @@ class TriggeredActions(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -62,8 +62,7 @@ class TriggeredActions(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -72,14 +71,14 @@ class TriggeredActions(BaseModel):
         )
         # override the default output from pydantic by calling `to_dict()` of summary
         if self.summary:
-            _dict['summary'] = self.summary.to_dict()
+            _dict["summary"] = self.summary.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in operations (list)
         _items = []
         if self.operations:
             for _item_operations in self.operations:
                 if _item_operations:
                     _items.append(_item_operations.to_dict())
-            _dict['operations'] = _items
+            _dict["operations"] = _items
         return _dict
 
     @classmethod
@@ -91,10 +90,16 @@ class TriggeredActions(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "summary": TriggeredActionSummary.from_dict(obj["summary"]) if obj.get("summary") is not None else None,
-            "operations": [TriggeredActionStats.from_dict(_item) for _item in obj["operations"]] if obj.get("operations") is not None else None
-        })
+        _obj = cls.model_validate(
+            {
+                "summary": TriggeredActionSummary.from_dict(obj["summary"])
+                if obj.get("summary") is not None
+                else None,
+                "operations": [
+                    TriggeredActionStats.from_dict(_item) for _item in obj["operations"]
+                ]
+                if obj.get("operations") is not None
+                else None,
+            }
+        )
         return _obj
-
-

@@ -20,29 +20,34 @@ from .user_team_stats import UserTeamStats
 from typing import Optional, Set
 from typing_extensions import Self
 
+
 class UserActivity(BaseModel):
     """
     UserActivity
 
     Attributes:
-        projects (UserProjectStats): 
-        environments (UserEnvironmentStats): 
-        teams (UserTeamStats): 
-        triggered_actions (TriggeredActions): 
+        projects (UserProjectStats):
+        environments (UserEnvironmentStats):
+        teams (UserTeamStats):
+        triggered_actions (TriggeredActions):
     """
 
     projects: UserProjectStats
     environments: UserEnvironmentStats
     teams: UserTeamStats
     triggered_actions: TriggeredActions
-    __properties: ClassVar[List[str]] = ["projects", "environments", "teams", "triggered_actions"]
+    __properties: ClassVar[List[str]] = [
+        "projects",
+        "environments",
+        "teams",
+        "triggered_actions",
+    ]
 
     model_config = ConfigDict(
         populate_by_name=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -68,8 +73,7 @@ class UserActivity(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -78,16 +82,16 @@ class UserActivity(BaseModel):
         )
         # override the default output from pydantic by calling `to_dict()` of projects
         if self.projects:
-            _dict['projects'] = self.projects.to_dict()
+            _dict["projects"] = self.projects.to_dict()
         # override the default output from pydantic by calling `to_dict()` of environments
         if self.environments:
-            _dict['environments'] = self.environments.to_dict()
+            _dict["environments"] = self.environments.to_dict()
         # override the default output from pydantic by calling `to_dict()` of teams
         if self.teams:
-            _dict['teams'] = self.teams.to_dict()
+            _dict["teams"] = self.teams.to_dict()
         # override the default output from pydantic by calling `to_dict()` of triggered_actions
         if self.triggered_actions:
-            _dict['triggered_actions'] = self.triggered_actions.to_dict()
+            _dict["triggered_actions"] = self.triggered_actions.to_dict()
         return _dict
 
     @classmethod
@@ -99,12 +103,22 @@ class UserActivity(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "projects": UserProjectStats.from_dict(obj["projects"]) if obj.get("projects") is not None else None,
-            "environments": UserEnvironmentStats.from_dict(obj["environments"]) if obj.get("environments") is not None else None,
-            "teams": UserTeamStats.from_dict(obj["teams"]) if obj.get("teams") is not None else None,
-            "triggered_actions": TriggeredActions.from_dict(obj["triggered_actions"]) if obj.get("triggered_actions") is not None else None
-        })
+        _obj = cls.model_validate(
+            {
+                "projects": UserProjectStats.from_dict(obj["projects"])
+                if obj.get("projects") is not None
+                else None,
+                "environments": UserEnvironmentStats.from_dict(obj["environments"])
+                if obj.get("environments") is not None
+                else None,
+                "teams": UserTeamStats.from_dict(obj["teams"])
+                if obj.get("teams") is not None
+                else None,
+                "triggered_actions": TriggeredActions.from_dict(
+                    obj["triggered_actions"]
+                )
+                if obj.get("triggered_actions") is not None
+                else None,
+            }
+        )
         return _obj
-
-

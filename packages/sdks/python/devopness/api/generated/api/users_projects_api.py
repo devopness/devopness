@@ -31,9 +31,9 @@ class UsersProjectsApiService(ApiBaseService):
         """
 
         params = dict(
-          page=page,
-          per_page=per_page,
-          subscription_id=subscription_id,
+            page=page,
+            per_page=per_page,
+            subscription_id=subscription_id,
         )
 
         query_params = dict()

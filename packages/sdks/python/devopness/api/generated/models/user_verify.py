@@ -16,6 +16,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
+
 class UserVerify(BaseModel):
     """
     UserVerify
@@ -28,19 +29,35 @@ class UserVerify(BaseModel):
         password (str): The new password to account. Must be at least 8 characters.
     """
 
-    email: StrictStr = Field(description="The email of the user's account. Must be a valid email address. Must not be greater than 255 characters.")
-    token: StrictStr = Field(description="The security token of the account. Must not be greater than 255 characters.")
-    name: StrictStr = Field(description="The new user name to account. Must be at least 3 characters. Must not be greater than 255 characters.")
-    url_slug: Optional[StrictStr] = Field(default=None, description="The URL Slug of the account. Must not be greater than 255 characters.")
-    password: StrictStr = Field(description="The new password to account. Must be at least 8 characters.")
-    __properties: ClassVar[List[str]] = ["email", "token", "name", "url_slug", "password"]
+    email: StrictStr = Field(
+        description="The email of the user's account. Must be a valid email address. Must not be greater than 255 characters."
+    )
+    token: StrictStr = Field(
+        description="The security token of the account. Must not be greater than 255 characters."
+    )
+    name: StrictStr = Field(
+        description="The new user name to account. Must be at least 3 characters. Must not be greater than 255 characters."
+    )
+    url_slug: Optional[StrictStr] = Field(
+        default=None,
+        description="The URL Slug of the account. Must not be greater than 255 characters.",
+    )
+    password: StrictStr = Field(
+        description="The new password to account. Must be at least 8 characters."
+    )
+    __properties: ClassVar[List[str]] = [
+        "email",
+        "token",
+        "name",
+        "url_slug",
+        "password",
+    ]
 
     model_config = ConfigDict(
         populate_by_name=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -66,8 +83,7 @@ class UserVerify(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -85,13 +101,13 @@ class UserVerify(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "email": obj.get("email"),
-            "token": obj.get("token"),
-            "name": obj.get("name"),
-            "url_slug": obj.get("url_slug"),
-            "password": obj.get("password")
-        })
+        _obj = cls.model_validate(
+            {
+                "email": obj.get("email"),
+                "token": obj.get("token"),
+                "name": obj.get("name"),
+                "url_slug": obj.get("url_slug"),
+                "password": obj.get("password"),
+            }
+        )
         return _obj
-
-

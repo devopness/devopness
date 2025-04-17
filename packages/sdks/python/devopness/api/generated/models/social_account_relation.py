@@ -18,6 +18,7 @@ from .social_account_provider import SocialAccountProvider
 from typing import Optional, Set
 from typing_extensions import Self
 
+
 class SocialAccountRelation(BaseModel):
     """
     SocialAccountRelation
@@ -25,8 +26,8 @@ class SocialAccountRelation(BaseModel):
     Attributes:
         id (int): The ID of the given social account
         user_id (int): The current user&#39;s ID
-        provider (SocialAccountProvider): 
-        provider_human_readable (SocialAccountDisplayableName): 
+        provider (SocialAccountProvider):
+        provider_human_readable (SocialAccountDisplayableName):
         provider_user_nickname (str): The nickname of the user on the Source Authentication provider
         is_vcs (bool): Tells if the social account provider is a Source Code Provider/Version Control System. e.g. false for Facebook, true for Github
         token_expires_at (str): The date and time indicating when the authentication token will expire at
@@ -38,19 +39,38 @@ class SocialAccountRelation(BaseModel):
     user_id: StrictInt = Field(description="The current user's ID")
     provider: SocialAccountProvider
     provider_human_readable: SocialAccountDisplayableName
-    provider_user_nickname: StrictStr = Field(description="The nickname of the user on the Source Authentication provider")
-    is_vcs: StrictBool = Field(description="Tells if the social account provider is a Source Code Provider/Version Control System. e.g. false for Facebook, true for Github")
-    token_expires_at: Optional[StrictStr] = Field(description="The date and time indicating when the authentication token will expire at")
-    created_at: StrictStr = Field(description="The date and time when the record was created")
-    updated_at: StrictStr = Field(description="The date and time when the record was last updated")
-    __properties: ClassVar[List[str]] = ["id", "user_id", "provider", "provider_human_readable", "provider_user_nickname", "is_vcs", "token_expires_at", "created_at", "updated_at"]
+    provider_user_nickname: StrictStr = Field(
+        description="The nickname of the user on the Source Authentication provider"
+    )
+    is_vcs: StrictBool = Field(
+        description="Tells if the social account provider is a Source Code Provider/Version Control System. e.g. false for Facebook, true for Github"
+    )
+    token_expires_at: Optional[StrictStr] = Field(
+        description="The date and time indicating when the authentication token will expire at"
+    )
+    created_at: StrictStr = Field(
+        description="The date and time when the record was created"
+    )
+    updated_at: StrictStr = Field(
+        description="The date and time when the record was last updated"
+    )
+    __properties: ClassVar[List[str]] = [
+        "id",
+        "user_id",
+        "provider",
+        "provider_human_readable",
+        "provider_user_nickname",
+        "is_vcs",
+        "token_expires_at",
+        "created_at",
+        "updated_at",
+    ]
 
     model_config = ConfigDict(
         populate_by_name=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -76,8 +96,7 @@ class SocialAccountRelation(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -86,8 +105,11 @@ class SocialAccountRelation(BaseModel):
         )
         # set to None if token_expires_at (nullable) is None
         # and model_fields_set contains the field
-        if self.token_expires_at is None and "token_expires_at" in self.model_fields_set:
-            _dict['token_expires_at'] = None
+        if (
+            self.token_expires_at is None
+            and "token_expires_at" in self.model_fields_set
+        ):
+            _dict["token_expires_at"] = None
 
         return _dict
 
@@ -100,17 +122,17 @@ class SocialAccountRelation(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "user_id": obj.get("user_id"),
-            "provider": obj.get("provider"),
-            "provider_human_readable": obj.get("provider_human_readable"),
-            "provider_user_nickname": obj.get("provider_user_nickname"),
-            "is_vcs": obj.get("is_vcs"),
-            "token_expires_at": obj.get("token_expires_at"),
-            "created_at": obj.get("created_at"),
-            "updated_at": obj.get("updated_at")
-        })
+        _obj = cls.model_validate(
+            {
+                "id": obj.get("id"),
+                "user_id": obj.get("user_id"),
+                "provider": obj.get("provider"),
+                "provider_human_readable": obj.get("provider_human_readable"),
+                "provider_user_nickname": obj.get("provider_user_nickname"),
+                "is_vcs": obj.get("is_vcs"),
+                "token_expires_at": obj.get("token_expires_at"),
+                "created_at": obj.get("created_at"),
+                "updated_at": obj.get("updated_at"),
+            }
+        )
         return _obj
-
-

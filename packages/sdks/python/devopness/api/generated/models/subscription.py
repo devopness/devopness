@@ -18,6 +18,7 @@ from .subscription_balance import SubscriptionBalance
 from typing import Optional, Set
 from typing_extensions import Self
 
+
 class Subscription(BaseModel):
     """
     The user's active subscription
@@ -35,32 +36,75 @@ class Subscription(BaseModel):
         ends_at (datetime, optional): Indicates the date and time when this subscription ends
         created_at (datetime, optional): The date and time when the record was created
         updated_at (datetime, optional): The date and time when the record was last updated
-        current_balance (SubscriptionBalance, optional): 
+        current_balance (SubscriptionBalance, optional):
         balances (List[SubscriptionBalance], optional): The list of subscription balances
     """
 
-    id: Optional[StrictInt] = Field(default=None, description="The ID of the subscription")
-    user_id: Optional[StrictInt] = Field(default=None, description="The ID of the user this subscription belongs to")
-    plan_name: Optional[StrictStr] = Field(default=None, description="The plan name of this subscription")
-    status: Optional[StrictStr] = Field(default=None, description="Status of this subscription")
-    quantity: Optional[StrictInt] = Field(default=None, description="Amount of plans purchased in this subscription")
-    price_unit: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Unitary price of the subscribed plan")
-    price_total: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total price of this subscription (quantity x price_unit)")
-    price_currency: Optional[StrictStr] = Field(default=None, description="Currency of the prices")
-    cancelled_at: Optional[datetime] = Field(default=None, description="If not null, indicates the date when this subscription was cancelled")
-    ends_at: Optional[datetime] = Field(default=None, description="Indicates the date and time when this subscription ends")
-    created_at: Optional[datetime] = Field(default=None, description="The date and time when the record was created")
-    updated_at: Optional[datetime] = Field(default=None, description="The date and time when the record was last updated")
+    id: Optional[StrictInt] = Field(
+        default=None, description="The ID of the subscription"
+    )
+    user_id: Optional[StrictInt] = Field(
+        default=None, description="The ID of the user this subscription belongs to"
+    )
+    plan_name: Optional[StrictStr] = Field(
+        default=None, description="The plan name of this subscription"
+    )
+    status: Optional[StrictStr] = Field(
+        default=None, description="Status of this subscription"
+    )
+    quantity: Optional[StrictInt] = Field(
+        default=None, description="Amount of plans purchased in this subscription"
+    )
+    price_unit: Optional[Union[StrictFloat, StrictInt]] = Field(
+        default=None, description="Unitary price of the subscribed plan"
+    )
+    price_total: Optional[Union[StrictFloat, StrictInt]] = Field(
+        default=None,
+        description="Total price of this subscription (quantity x price_unit)",
+    )
+    price_currency: Optional[StrictStr] = Field(
+        default=None, description="Currency of the prices"
+    )
+    cancelled_at: Optional[datetime] = Field(
+        default=None,
+        description="If not null, indicates the date when this subscription was cancelled",
+    )
+    ends_at: Optional[datetime] = Field(
+        default=None,
+        description="Indicates the date and time when this subscription ends",
+    )
+    created_at: Optional[datetime] = Field(
+        default=None, description="The date and time when the record was created"
+    )
+    updated_at: Optional[datetime] = Field(
+        default=None, description="The date and time when the record was last updated"
+    )
     current_balance: Optional[SubscriptionBalance] = None
-    balances: Optional[List[Optional[SubscriptionBalance]]] = Field(default=None, description="The list of subscription balances")
-    __properties: ClassVar[List[str]] = ["id", "user_id", "plan_name", "status", "quantity", "price_unit", "price_total", "price_currency", "cancelled_at", "ends_at", "created_at", "updated_at", "current_balance", "balances"]
+    balances: Optional[List[Optional[SubscriptionBalance]]] = Field(
+        default=None, description="The list of subscription balances"
+    )
+    __properties: ClassVar[List[str]] = [
+        "id",
+        "user_id",
+        "plan_name",
+        "status",
+        "quantity",
+        "price_unit",
+        "price_total",
+        "price_currency",
+        "cancelled_at",
+        "ends_at",
+        "created_at",
+        "updated_at",
+        "current_balance",
+        "balances",
+    ]
 
     model_config = ConfigDict(
         populate_by_name=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -86,8 +130,7 @@ class Subscription(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -96,23 +139,23 @@ class Subscription(BaseModel):
         )
         # override the default output from pydantic by calling `to_dict()` of current_balance
         if self.current_balance:
-            _dict['current_balance'] = self.current_balance.to_dict()
+            _dict["current_balance"] = self.current_balance.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in balances (list)
         _items = []
         if self.balances:
             for _item_balances in self.balances:
                 if _item_balances:
                     _items.append(_item_balances.to_dict())
-            _dict['balances'] = _items
+            _dict["balances"] = _items
         # set to None if cancelled_at (nullable) is None
         # and model_fields_set contains the field
         if self.cancelled_at is None and "cancelled_at" in self.model_fields_set:
-            _dict['cancelled_at'] = None
+            _dict["cancelled_at"] = None
 
         # set to None if current_balance (nullable) is None
         # and model_fields_set contains the field
         if self.current_balance is None and "current_balance" in self.model_fields_set:
-            _dict['current_balance'] = None
+            _dict["current_balance"] = None
 
         return _dict
 
@@ -125,22 +168,28 @@ class Subscription(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "user_id": obj.get("user_id"),
-            "plan_name": obj.get("plan_name"),
-            "status": obj.get("status"),
-            "quantity": obj.get("quantity"),
-            "price_unit": obj.get("price_unit"),
-            "price_total": obj.get("price_total"),
-            "price_currency": obj.get("price_currency"),
-            "cancelled_at": obj.get("cancelled_at"),
-            "ends_at": obj.get("ends_at"),
-            "created_at": obj.get("created_at"),
-            "updated_at": obj.get("updated_at"),
-            "current_balance": SubscriptionBalance.from_dict(obj["current_balance"]) if obj.get("current_balance") is not None else None,
-            "balances": [SubscriptionBalance.from_dict(_item) for _item in obj["balances"]] if obj.get("balances") is not None else None
-        })
+        _obj = cls.model_validate(
+            {
+                "id": obj.get("id"),
+                "user_id": obj.get("user_id"),
+                "plan_name": obj.get("plan_name"),
+                "status": obj.get("status"),
+                "quantity": obj.get("quantity"),
+                "price_unit": obj.get("price_unit"),
+                "price_total": obj.get("price_total"),
+                "price_currency": obj.get("price_currency"),
+                "cancelled_at": obj.get("cancelled_at"),
+                "ends_at": obj.get("ends_at"),
+                "created_at": obj.get("created_at"),
+                "updated_at": obj.get("updated_at"),
+                "current_balance": SubscriptionBalance.from_dict(obj["current_balance"])
+                if obj.get("current_balance") is not None
+                else None,
+                "balances": [
+                    SubscriptionBalance.from_dict(_item) for _item in obj["balances"]
+                ]
+                if obj.get("balances") is not None
+                else None,
+            }
+        )
         return _obj
-
-

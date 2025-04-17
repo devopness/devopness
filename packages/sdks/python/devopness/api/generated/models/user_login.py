@@ -16,6 +16,7 @@ from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
 
+
 class UserLogin(BaseModel):
     """
     UserLogin
@@ -25,7 +26,9 @@ class UserLogin(BaseModel):
         password (str): The user password.
     """
 
-    email: StrictStr = Field(description="The user's registered e-mail address. Must be a valid email address.")
+    email: StrictStr = Field(
+        description="The user's registered e-mail address. Must be a valid email address."
+    )
     password: StrictStr = Field(description="The user password.")
     __properties: ClassVar[List[str]] = ["email", "password"]
 
@@ -34,7 +37,6 @@ class UserLogin(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -60,8 +62,7 @@ class UserLogin(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -79,10 +80,7 @@ class UserLogin(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "email": obj.get("email"),
-            "password": obj.get("password")
-        })
+        _obj = cls.model_validate(
+            {"email": obj.get("email"), "password": obj.get("password")}
+        )
         return _obj
-
-

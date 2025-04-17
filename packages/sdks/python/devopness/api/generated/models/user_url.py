@@ -16,6 +16,7 @@ from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
 
+
 class UserUrl(BaseModel):
     """
     UserUrl
@@ -24,7 +25,9 @@ class UserUrl(BaseModel):
         billing_management_url (str): The URL leading to a billing management page
     """
 
-    billing_management_url: StrictStr = Field(description="The URL leading to a billing management page")
+    billing_management_url: StrictStr = Field(
+        description="The URL leading to a billing management page"
+    )
     __properties: ClassVar[List[str]] = ["billing_management_url"]
 
     model_config = ConfigDict(
@@ -32,7 +35,6 @@ class UserUrl(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -58,8 +60,7 @@ class UserUrl(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -77,9 +78,7 @@ class UserUrl(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "billing_management_url": obj.get("billing_management_url")
-        })
+        _obj = cls.model_validate(
+            {"billing_management_url": obj.get("billing_management_url")}
+        )
         return _obj
-
-

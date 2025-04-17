@@ -17,6 +17,7 @@ from .language import Language
 from typing import Optional, Set
 from typing_extensions import Self
 
+
 class UserUpdate(BaseModel):
     """
     UserUpdate
@@ -26,13 +27,19 @@ class UserUpdate(BaseModel):
         name (str): User&#39;s full name. Must be at least 5 characters. Must not be greater than 60 characters.
         email (str): The e-mail that will uniquely identify the user on the system and become its login credential. Must be a valid email address.
         url_slug (str): The URL Slug of the user. Must not be greater than 255 characters.
-        language (Language, optional): 
+        language (Language, optional):
     """
 
     id: StrictStr = Field(description="The unique ID of the given User.")
-    name: StrictStr = Field(description="User's full name. Must be at least 5 characters. Must not be greater than 60 characters.")
-    email: StrictStr = Field(description="The e-mail that will uniquely identify the user on the system and become its login credential. Must be a valid email address.")
-    url_slug: StrictStr = Field(description="The URL Slug of the user. Must not be greater than 255 characters.")
+    name: StrictStr = Field(
+        description="User's full name. Must be at least 5 characters. Must not be greater than 60 characters."
+    )
+    email: StrictStr = Field(
+        description="The e-mail that will uniquely identify the user on the system and become its login credential. Must be a valid email address."
+    )
+    url_slug: StrictStr = Field(
+        description="The URL Slug of the user. Must not be greater than 255 characters."
+    )
     language: Optional[Language] = None
     __properties: ClassVar[List[str]] = ["id", "name", "email", "url_slug", "language"]
 
@@ -41,7 +48,6 @@ class UserUpdate(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -67,8 +73,7 @@ class UserUpdate(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -78,7 +83,7 @@ class UserUpdate(BaseModel):
         # set to None if language (nullable) is None
         # and model_fields_set contains the field
         if self.language is None and "language" in self.model_fields_set:
-            _dict['language'] = None
+            _dict["language"] = None
 
         return _dict
 
@@ -91,13 +96,13 @@ class UserUpdate(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "name": obj.get("name"),
-            "email": obj.get("email"),
-            "url_slug": obj.get("url_slug"),
-            "language": obj.get("language")
-        })
+        _obj = cls.model_validate(
+            {
+                "id": obj.get("id"),
+                "name": obj.get("name"),
+                "email": obj.get("email"),
+                "url_slug": obj.get("url_slug"),
+                "language": obj.get("language"),
+            }
+        )
         return _obj
-
-

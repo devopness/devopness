@@ -20,15 +20,13 @@ class SocialAccountProvider(str, Enum):
     """
     allowed enum values
     """
-    BITBUCKET = 'bitbucket'
-    FACEBOOK = 'facebook'
-    GITHUB = 'github'
-    GITLAB = 'gitlab'
-    GOOGLE = 'google'
+    BITBUCKET = "bitbucket"
+    FACEBOOK = "facebook"
+    GITHUB = "github"
+    GITLAB = "gitlab"
+    GOOGLE = "google"
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of SocialAccountProvider from a JSON string"""
         return cls(json.loads(json_str))
-
-

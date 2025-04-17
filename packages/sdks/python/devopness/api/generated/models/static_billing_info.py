@@ -17,6 +17,7 @@ from .subscription_plan import SubscriptionPlan
 from typing import Optional, Set
 from typing_extensions import Self
 
+
 class StaticBillingInfo(BaseModel):
     """
     Information about billing, such as subscription plans.
@@ -25,7 +26,9 @@ class StaticBillingInfo(BaseModel):
         subscription_plans (List[SubscriptionPlan], optional): The list of subscription plans
     """
 
-    subscription_plans: Optional[List[Optional[SubscriptionPlan]]] = Field(default=None, description="The list of subscription plans")
+    subscription_plans: Optional[List[Optional[SubscriptionPlan]]] = Field(
+        default=None, description="The list of subscription plans"
+    )
     __properties: ClassVar[List[str]] = ["subscription_plans"]
 
     model_config = ConfigDict(
@@ -33,7 +36,6 @@ class StaticBillingInfo(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -59,8 +61,7 @@ class StaticBillingInfo(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -73,7 +74,7 @@ class StaticBillingInfo(BaseModel):
             for _item_subscription_plans in self.subscription_plans:
                 if _item_subscription_plans:
                     _items.append(_item_subscription_plans.to_dict())
-            _dict['subscription_plans'] = _items
+            _dict["subscription_plans"] = _items
         return _dict
 
     @classmethod
@@ -85,9 +86,14 @@ class StaticBillingInfo(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "subscription_plans": [SubscriptionPlan.from_dict(_item) for _item in obj["subscription_plans"]] if obj.get("subscription_plans") is not None else None
-        })
+        _obj = cls.model_validate(
+            {
+                "subscription_plans": [
+                    SubscriptionPlan.from_dict(_item)
+                    for _item in obj["subscription_plans"]
+                ]
+                if obj.get("subscription_plans") is not None
+                else None
+            }
+        )
         return _obj
-
-
