@@ -1,0 +1,44 @@
+name: CI - SDK Python
+on:
+  pull_request:
+    paths:
+      - packages/sdks/python/**
+
+defaults:
+  run:
+    working-directory: packages/sdks/python
+
+jobs:
+  build:
+    name: Build Devopness SDK - Python
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.head_ref }}
+          persist-credentials: true
+          fetch-depth: 0
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker Image
+        run: make build-image
+
+      - name: Build SDK - Python
+        run: make build-sdk-python
+
+      # TO DO: Add testing step
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        if: github.repository == 'devopness/devopness'
+        with:
+          commit_message: 'docs: Update auto generated models'
+          file_pattern: 'packages/sdks/python/*'
+          commit_user_name: devopness-automations
+          commit_user_email: automations@devopness.com
+
+      - name: Publish to TestPyPI
+        run: make publish-dev POETRY_TEST_PYPI_TOKEN='${{ secrets.POETRY_TEST_PYPI_TOKEN }}'
