@@ -10,6 +10,7 @@ The Devopness SDK for Python provides a set of predefined classes that offer eas
 - [Usage](#usage)
   - [Install](#install)
   - [Initializing](#initializing)
+  - [Custom Configuration](#custom-configuration)
   - [Authenticating](#authenticating)
     - [Asynchronous usage](#asynchronous-usage)
     - [Synchronous usage](#synchronous-usage)
@@ -55,6 +56,31 @@ from devopness import DevopnessClient
 
 devopness = DevopnessClient()
 ```
+
+### Custom Configuration
+
+You can customize the SDK behavior by providing a `DevopnessClientConfig` object when instantiating the client:
+
+```python
+from devopness import DevopnessClient, DevopnessClientConfig
+
+config = DevopnessClientConfig(
+    base_url='https://api.devopness.com',
+    timeout=10
+)
+
+devopness = DevopnessClient(config)
+```
+
+The `DevopnessClientConfig` supports the following options:
+
+| Parameter          | Default                     | Description                              |
+| ------------------ | --------------------------- | ---------------------------------------- |
+| `base_url`         | `https://api.devopness.com` | Base URL for all API requests            |
+| `timeout`          | `30`                        | Timeout for HTTP requests (in seconds)   |
+| `default_encoding` | `utf-8`                     | Encoding used to decode response content |
+
+This configuration allows you to adapt the SDK to your specific use case, such as changing the API endpoint or tweaking performance-related settings.
 
 ### Authenticating
 
