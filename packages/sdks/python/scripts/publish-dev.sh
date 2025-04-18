@@ -9,11 +9,15 @@ if [[ -z "$POETRY_TEST_PYPI_TOKEN" ]]; then
   exit 1
 fi
 
+EXPECTED_VERSION=$(poetry version --short)
+EXPECTED_ARTIFACT="dist/devopness-$EXPECTED_VERSION-py3-none-any.whl"
+if [[ ! -f "$EXPECTED_ARTIFACT" ]]; then
+  echo "🚨  Expected artifact $EXPECTED_ARTIFACT not found. Please build the SDK before publishing."
+  exit 1
+fi
+
 echo "📦  Configuring Test PyPI..."
 poetry config pypi-token.TestPiPy "$POETRY_TEST_PYPI_TOKEN"
-
-echo "📦  Building Devopness SDK - Python..."
-poetry build
 
 echo "📦  Publishing Devopness SDK - Python to Test PyPI..."
 set +e

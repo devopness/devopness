@@ -46,6 +46,12 @@ ruff format "$GENERATED_API_DIR" "$GENERATED_MODELS_DIR"
 echo "🧹  Removing OpenAPI Generator Cache..."
 rm -rf "$GENERATED_DIR/.openapi-generator"
 
+echo "🧹  Removing previous Build Artifacts..."
+rm -rf "$SDK_ROOT_DIR/dist"
+
+echo "📦  Exporting Devopness SDK - Python to a wheel..."
+poetry build
+
 echo "✅  Devopness SDK - Python Build completed successfully!"
 
 bash scripts/temp.sh
