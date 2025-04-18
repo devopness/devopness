@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import { forwardRef, useEffect, useRef } from 'react'
 
 import { Container, InputText } from './Input.styled'
 import type { ErrorMessageProps } from 'src/components/Primitives/ErrorMessage'
@@ -20,6 +20,8 @@ type SharedProps = React.InputHTMLAttributes<HTMLInputElement> & {
     /** Font style applied to placeholder */
     fontStylePlaceholder?: string
   }
+  /** Whether to automatically focus the input when an error occurs */
+  autoFocusOnError?: boolean
   /**
    * Props passed directly to input HTML element
    *
@@ -45,6 +47,12 @@ type InputProps =
 /**
  * Allows users to enter and edit text
  *
+ * A flexible input component that supports:
+ * - Various input types (text, number, etc.)
+ * - Error states with optional automatic focus
+ * - Custom styling
+ * - Label and help text
+ *
  * @example
  * ```
  * <Input
@@ -59,19 +67,36 @@ type InputProps =
  * />
  * ```
  */
-const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => (
-  <Container>
-    {props.labelProps && <Label {...props.labelProps} />}
-    <InputText
-      className="translate"
-      ref={ref}
-      hasError={Boolean(props.error)}
-      {...props}
-      {...props.inputProps}
-    />
-    {Boolean(props.error) && <ErrorMessage error={props.error} />}
-  </Container>
-))
+const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
+  const internalRef = useRef<HTMLInputElement>(null)
+  const inputRef =
+    (ref as React.RefObject<HTMLInputElement> | undefined) ?? internalRef
+  const { autoFocusOnError, error } = props
+
+  useEffect(() => {
+    if (autoFocusOnError && error && inputRef.current) {
+      inputRef.current.focus()
+    }
+  }, [
+    autoFocusOnError,
+    error,
+    inputRef,
+  ])
+
+  return (
+    <Container>
+      {props.labelProps && <Label {...props.labelProps} />}
+      <InputText
+        className="translate"
+        ref={inputRef}
+        hasError={Boolean(error)}
+        {...props}
+        {...props.inputProps}
+      />
+      {Boolean(error) && <ErrorMessage error={error} />}
+    </Container>
+  )
+})
 
 /**
  * Explicitly sets component display name for debugging in React DevTools when using forwardRef.

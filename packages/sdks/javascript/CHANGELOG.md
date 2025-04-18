@@ -1,5 +1,133 @@
 # @devopness/sdk-js
 
+## 2.163.0
+
+### Minor Changes
+
+- [#1587](https://github.com/devopness/devopness/pull/1587) [`f30e7be`](https://github.com/devopness/devopness/commit/f30e7be9d66de180a4e2caef2acb5cc190104729) Thanks [@Diegiwg](https://github.com/Diegiwg)!
+
+  ## ⚠️ Breaking Change
+
+  ### What changed?
+
+  All `<ResourceType>` services that were previously accessed through the `EnvironmentService` (such as `applications`) have been moved to their respective standalone services (e.g., `ApplicationService`). Properties like `application` no longer exist in `EnvironmentService`.
+
+  ### Why was this change made?
+
+  This refactor simplifies the SDK structure by consolidating all `<ResourceType>` methods into their respective services. It eliminates redundancy, improves maintainability, and makes the SDK more intuitive and aligned with common API design principles.
+
+  ### Previous usage example
+
+  Previously, creating an application required accessing the method through `environment.application`:
+
+  ```ts
+  const apiClient = new DevopnessApiClient();
+  const options =
+    await apiClient.environment.application.addEnvironmentApplication();
+  ```
+
+  ### New usage example
+
+  Now, all application-related methods are available directly under `application`:
+
+  ```ts
+  const apiClient = new DevopnessApiClient();
+  const options = await apiClient.application.addEnvironmentApplication();
+  ```
+
+  ### Impact & Migration Guide
+
+  Update all references that use `environment.<resourceType>` to the new direct service call format.
+  For example:
+
+  ```ts
+  // Before
+  apiClient.environment.application.listEnvironmentApplications();
+
+  // After
+  apiClient.application.listEnvironmentApplications();
+  ```
+
+  Repeat this migration for all affected `<ResourceType>` services.
+
+## 2.162.2
+
+### Patch Changes
+
+- [#1573](https://github.com/devopness/devopness/pull/1573) [`5ffe0f5`](https://github.com/devopness/devopness/commit/5ffe0f5cd5d67ab5c29b476194a9c05c9b0b2bdb) Thanks [@Diegiwg](https://github.com/Diegiwg)! - add url_slug in user-relation model
+
+- [#1573](https://github.com/devopness/devopness/pull/1573) [`5ffe0f5`](https://github.com/devopness/devopness/commit/5ffe0f5cd5d67ab5c29b476194a9c05c9b0b2bdb) Thanks [@Diegiwg](https://github.com/Diegiwg)! - add version of action-relation model without resource field
+
+## 2.162.1
+
+### Patch Changes
+
+- [#1549](https://github.com/devopness/devopness/pull/1549) [`0302fb6`](https://github.com/devopness/devopness/commit/0302fb6671ae865b47ba1bd202dfe6d5b236c3d0) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Fix type of 'ID' field in UserUpdate
+
+## 2.162.0
+
+### Minor Changes
+
+- [#1536](https://github.com/devopness/devopness/pull/1536) [`147c541`](https://github.com/devopness/devopness/commit/147c5411bfd29c0324584ad41ee60f07f5c74c76) Thanks [@Diegiwg](https://github.com/Diegiwg)!
+
+  ## ⚠️ Breaking Change
+
+  ### What changed?
+
+  All static data services have been consolidated into `StaticService`, removing individual static service properties like `applicationOptions`.
+
+  ### Why was this change made?
+
+  This refactor simplifies the SDK structure by consolidating all static data retrieval methods into a single service. This reduces redundancy, improves maintainability, and ensures a more intuitive API design.
+
+  ### How was it used before?
+
+  Previously, retrieving static data required calling specific static services, such as:
+
+  ```ts
+  const apiClient = new DevopnessApiClient();
+  const options =
+    await apiClient.static.applicationOptions.getStaticApplicationOptions();
+  ```
+
+  ### How should it be used now?
+
+  Now, all static data methods are centralized under `StaticService`:
+
+  ```ts
+  const apiClient = new DevopnessApiClient();
+  const options = await apiClient.static.getStaticApplicationOptions();
+  ```
+
+  ### Impact & Migration
+
+  Replace all occurrences of static service calls, e.g., `static.applicationOptions.getStaticApplicationOptions()` with `static.getStaticApplicationOptions()`.
+
+- [#1536](https://github.com/devopness/devopness/pull/1536) [`147c541`](https://github.com/devopness/devopness/commit/147c5411bfd29c0324584ad41ee60f07f5c74c76) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Added resource summary in organization get and list methods
+
+## 2.161.1
+
+### Patch Changes
+
+- [#1532](https://github.com/devopness/devopness/pull/1532) [`43e8ef1`](https://github.com/devopness/devopness/commit/43e8ef1ac3dea78f4afa7276f56a019916602dc7) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Expose organization service in Devopness API
+
+## 2.161.0
+
+### Minor Changes
+
+- [#1530](https://github.com/devopness/devopness/pull/1530) [`09b7be4`](https://github.com/devopness/devopness/commit/09b7be4d81b96da798c77f722771c7b9c41434d2) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Add Support for Organizations
+
+  Include methods to:
+
+  - Create Organization
+  - List Organizations
+  - Get Organization
+  - Update Organization
+  - Get Organization Activity
+  - Get Organization Environments
+  - Get Organization Projects
+  - Create Project to Organization
+
 ## 2.160.0
 
 ### Minor Changes

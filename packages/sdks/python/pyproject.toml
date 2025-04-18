@@ -1,0 +1,70 @@
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[project]
+name = "devopness"
+version = "0.0.0"
+description = "Devopness API Python SDK - Painless essential DevOps to everyone"
+license = "MIT"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "Devopness (https://www.devopness.com)" }]
+keywords = [
+  "API Client",
+  "Cloud Engineering",
+  "Cloud Infrastructure",
+  "Cloud Platform",
+  "Cloud Resource Management",
+  "Configuration Management",
+  "Deployment Automation",
+  "Devopness",
+  "DevOps",
+  "Infrastructure as Code",
+  "Platform Engineering",
+  "Python SDK",
+  "Server Management",
+  "Server Provisioning",
+  "Zero Downtime Deployment",
+]
+classifiers = [
+  "Development Status :: 2 - Pre-Alpha",
+  "Environment :: Console",
+  "Framework :: Pydantic",
+  "Intended Audience :: Developers",
+  "Intended Audience :: System Administrators",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Software Development",
+  "Topic :: Software Development :: Libraries",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Topic :: System :: Systems Administration",
+  "Topic :: Utilities",
+]
+dependencies = ["httpx (>=0.28.1,<0.29.0)", "pydantic (>=2.11.3,<3.0.0)"]
+
+[project.urls]
+homepage = "https://www.devopness.com"
+repository = "https://github.com/devopness/devopness"
+
+[tool.poetry]
+packages = [
+  { include = "devopness/*.py" },
+  { include = "devopness/py.typed" },
+  { include = "devopness/common/*.py" },
+  { include = "devopness/models/*.py" },
+  { include = "devopness/services/*.py" },
+  { include = "devopness/api/generated/api/*.py" },
+  { include = "devopness/api/generated/models/*.py" },
+]
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.11.6"
+
+[tool.ruff]
+extend-exclude = ["devopness/api/generated/models/__init__.py"]

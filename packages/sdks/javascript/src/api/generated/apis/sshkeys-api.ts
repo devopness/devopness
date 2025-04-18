@@ -16,12 +16,36 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { SshKey } from '../../generated/models';
+import { SshKeyEnvironmentCreate } from '../../generated/models';
+import { SshKeyRelation } from '../../generated/models';
 import { SshKeyUpdate } from '../../generated/models';
 
 /**
  * SSHKeysApiService - Auto-generated
  */
 export class SSHKeysApiService extends ApiBaseService {
+    /**
+     * 
+     * @summary Create an SSH key and link it to the given environment
+     * @param {number} environmentId The ID of the environment.
+     * @param {SshKeyEnvironmentCreate} sshKeyEnvironmentCreate A JSON object containing the resource data
+     */
+    public async addEnvironmentSshKey(environmentId: number, sshKeyEnvironmentCreate: SshKeyEnvironmentCreate): Promise<ApiResponse<SshKey>> {
+        if (environmentId === null || environmentId === undefined) {
+            throw new ArgumentNullException('environmentId', 'addEnvironmentSshKey');
+        }
+        if (sshKeyEnvironmentCreate === null || sshKeyEnvironmentCreate === undefined) {
+            throw new ArgumentNullException('sshKeyEnvironmentCreate', 'addEnvironmentSshKey');
+        }
+
+        let queryString = '';
+
+        const requestUrl = '/environments/{environment_id}/ssh-keys' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <SshKey, SshKeyEnvironmentCreate>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))), sshKeyEnvironmentCreate);
+        return new ApiResponse(response);
+    }
+
     /**
      * 
      * @summary Delete a given SSH key
@@ -55,6 +79,34 @@ export class SSHKeysApiService extends ApiBaseService {
         const requestUrl = '/ssh-keys/{ssh_key_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <SshKey>(requestUrl.replace(`{${"ssh_key_id"}}`, encodeURIComponent(String(sshKeyId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Return a list of all SSH keys added to an environment
+     * @param {number} environmentId The ID of the environment.
+     * @param {number} [page] Number of the page to be retrieved
+     * @param {number} [perPage] Number of items returned per page
+     */
+    public async listEnvironmentSshKeys(environmentId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<SshKeyRelation>>> {
+        if (environmentId === null || environmentId === undefined) {
+            throw new ArgumentNullException('environmentId', 'listEnvironmentSshKeys');
+        }
+
+        let queryString = '';
+        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
+        const requestUrl = '/environments/{environment_id}/ssh-keys' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <Array<SshKeyRelation>>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
         return new ApiResponse(response);
     }
 

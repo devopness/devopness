@@ -105,3 +105,6 @@ dist
 
 ## Auto-generated documentation
 docs-sdk-js
+
+## OpenAPI Generator Cache
+.openapi-generator

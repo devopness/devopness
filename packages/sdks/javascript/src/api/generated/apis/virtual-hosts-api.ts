@@ -16,13 +16,37 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { VirtualHost } from '../../generated/models';
+import { VirtualHostEnvironmentCreate } from '../../generated/models';
 import { VirtualHostGetStatus } from '../../generated/models';
+import { VirtualHostRelation } from '../../generated/models';
 import { VirtualHostUpdate } from '../../generated/models';
 
 /**
  * VirtualHostsApiService - Auto-generated
  */
 export class VirtualHostsApiService extends ApiBaseService {
+    /**
+     * 
+     * @summary Create a new virtual host
+     * @param {number} environmentId The ID of the environment.
+     * @param {VirtualHostEnvironmentCreate} virtualHostEnvironmentCreate A JSON object containing the resource data
+     */
+    public async addEnvironmentVirtualHost(environmentId: number, virtualHostEnvironmentCreate: VirtualHostEnvironmentCreate): Promise<ApiResponse<VirtualHost>> {
+        if (environmentId === null || environmentId === undefined) {
+            throw new ArgumentNullException('environmentId', 'addEnvironmentVirtualHost');
+        }
+        if (virtualHostEnvironmentCreate === null || virtualHostEnvironmentCreate === undefined) {
+            throw new ArgumentNullException('virtualHostEnvironmentCreate', 'addEnvironmentVirtualHost');
+        }
+
+        let queryString = '';
+
+        const requestUrl = '/environments/{environment_id}/virtual-hosts' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <VirtualHost, VirtualHostEnvironmentCreate>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))), virtualHostEnvironmentCreate);
+        return new ApiResponse(response);
+    }
+
     /**
      * 
      * @summary Delete a given virtual host
@@ -78,6 +102,34 @@ export class VirtualHostsApiService extends ApiBaseService {
         const requestUrl = '/virtual-hosts/{virtual_host_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <VirtualHost>(requestUrl.replace(`{${"virtual_host_id"}}`, encodeURIComponent(String(virtualHostId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Return a list of all Virtual Hosts belonging to an environment
+     * @param {number} environmentId The ID of the environment.
+     * @param {number} [page] Number of the page to be retrieved
+     * @param {number} [perPage] Number of items returned per page
+     */
+    public async listEnvironmentVirtualHosts(environmentId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<VirtualHostRelation>>> {
+        if (environmentId === null || environmentId === undefined) {
+            throw new ArgumentNullException('environmentId', 'listEnvironmentVirtualHosts');
+        }
+
+        let queryString = '';
+        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
+        const requestUrl = '/environments/{environment_id}/virtual-hosts' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <Array<VirtualHostRelation>>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
         return new ApiResponse(response);
     }
 

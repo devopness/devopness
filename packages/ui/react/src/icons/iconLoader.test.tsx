@@ -37,7 +37,7 @@ describe('iconLoader', () => {
 
       const { getByLabelText } = render(
         iconLoader(
-          iconFromList.accessor,
+          iconFromList.name,
           defaultProps.size,
           defaultProps.color,
           defaultProps.opacity,
