@@ -4,6 +4,21 @@ The official Devopness SDK for Python.
 
 The Devopness SDK for Python provides a set of predefined classes that offer easy and consistent access to Devopness platform resources. Whether you're building CLI tools, backend services, or automation scripts, this SDK helps you interact with the Devopness API.
 
+## 📌 Table of Contents
+
+- [Status](#status)
+- [Usage](#usage)
+  - [Install](#install)
+  - [Initializing](#initializing)
+  - [Authenticating](#authenticating)
+    - [Asynchronous usage](#asynchronous-usage)
+    - [Synchronous usage](#synchronous-usage)
+  - [Invoking authentication-protected endpoints](#invoking-authentication-protected-endpoints)
+    - [Asynchronous usage](#asynchronous-usage-1)
+    - [Synchronous usage](#synchronous-usage-1)
+- [Development](#development)
+  - [With Docker](#with-docker)
+
 ## Status
 
 This SDK is currently under active development and is not yet recommended for production use. Features, structure, and usage may change significantly until a stable version is released.
