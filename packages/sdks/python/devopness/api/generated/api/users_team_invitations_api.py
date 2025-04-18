@@ -47,3 +47,32 @@ class UsersTeamInvitationsApiService(ApiBaseService):
         response = await self._get(endpoint)
 
         return ApiResponse(response, List[TeamInvitationRelation])
+
+    def list_user_team_invitations_sync(
+        self,
+        page: Optional[int] = None,
+        per_page: Optional[int] = None,
+    ) -> ApiResponse[List[TeamInvitationRelation]]:
+        """
+        Return a list of all pending team invitations for the authenticated user
+        """
+
+        params = dict(
+            page=page,
+            per_page=per_page,
+        )
+
+        query_params = dict()
+        for key, value in params.items():
+            if value is None:
+                continue
+
+            query_params[key] = value
+
+        query_string = urlencode(query_params)
+
+        endpoint: str = "/users/team-invitations" + f"?{query_string}"
+
+        response = self._get_sync(endpoint)
+
+        return ApiResponse(response, List[TeamInvitationRelation])
