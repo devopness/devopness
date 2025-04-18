@@ -1,4 +1,15 @@
-from .api_base_service import ApiBaseService  # noqa: F401
-from .api_base_service import DevopnessClientConfig  # noqa: F401
+"""
+Devopness API Python SDK - Painless essential DevOps to everyone
+"""
 
-from .user_service import UserService  # noqa: F401
+from .api_base_service import ApiBaseService
+from .api_base_service import DevopnessClientConfig
+
+from .user_service import UserService
+
+__all__ = [
+    "ApiBaseService",
+    "DevopnessClientConfig",
+    # API Services
+    "UserService",
+]
