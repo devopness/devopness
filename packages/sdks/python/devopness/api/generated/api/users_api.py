@@ -44,6 +44,20 @@ class UsersApiService(ApiBaseService):
 
         return ApiResponse(response)
 
+    def add_user_sync(
+        self,
+        user_create: UserCreate,
+    ) -> ApiResponse:
+        """
+        Sign up/register a new user
+        """
+
+        endpoint: str = "/users"
+
+        response = self._post_sync(endpoint, user_create)
+
+        return ApiResponse(response)
+
     async def get_user(
         self,
         user_id: str,
@@ -55,6 +69,20 @@ class UsersApiService(ApiBaseService):
         endpoint: str = f"/users/{user_id}"
 
         response = await self._get(endpoint)
+
+        return ApiResponse(response, User)
+
+    def get_user_sync(
+        self,
+        user_id: str,
+    ) -> ApiResponse[User]:
+        """
+        Get a user by ID or URL Slug
+        """
+
+        endpoint: str = f"/users/{user_id}"
+
+        response = self._get_sync(endpoint)
 
         return ApiResponse(response, User)
 
@@ -72,6 +100,20 @@ class UsersApiService(ApiBaseService):
 
         return ApiResponse(response, UserActivity)
 
+    def get_user_activity_sync(
+        self,
+        user_id: str,
+    ) -> ApiResponse[UserActivity]:
+        """
+        Get activity information for a user
+        """
+
+        endpoint: str = f"/users/{user_id}/activity"
+
+        response = self._get_sync(endpoint)
+
+        return ApiResponse(response, UserActivity)
+
     async def get_user_billing(
         self,
     ) -> ApiResponse[UserBilling]:
@@ -82,6 +124,19 @@ class UsersApiService(ApiBaseService):
         endpoint: str = "/users/billing"
 
         response = await self._get(endpoint)
+
+        return ApiResponse(response, UserBilling)
+
+    def get_user_billing_sync(
+        self,
+    ) -> ApiResponse[UserBilling]:
+        """
+        Get current user's billing info for active subscription
+        """
+
+        endpoint: str = "/users/billing"
+
+        response = self._get_sync(endpoint)
 
         return ApiResponse(response, UserBilling)
 
@@ -98,6 +153,19 @@ class UsersApiService(ApiBaseService):
 
         return ApiResponse(response)
 
+    def get_user_logout_sync(
+        self,
+    ) -> ApiResponse:
+        """
+        Logout/revoke an existing token
+        """
+
+        endpoint: str = "/users/logout"
+
+        response = self._get_sync(endpoint)
+
+        return ApiResponse(response)
+
     async def get_user_me(
         self,
     ) -> ApiResponse[UserMe]:
@@ -111,6 +179,19 @@ class UsersApiService(ApiBaseService):
 
         return ApiResponse(response, UserMe)
 
+    def get_user_me_sync(
+        self,
+    ) -> ApiResponse[UserMe]:
+        """
+        Get details of the current user
+        """
+
+        endpoint: str = "/users/me"
+
+        response = self._get_sync(endpoint)
+
+        return ApiResponse(response, UserMe)
+
     async def get_user_urls(
         self,
     ) -> ApiResponse[UserUrl]:
@@ -121,6 +202,19 @@ class UsersApiService(ApiBaseService):
         endpoint: str = "/users/urls"
 
         response = await self._get(endpoint)
+
+        return ApiResponse(response, UserUrl)
+
+    def get_user_urls_sync(
+        self,
+    ) -> ApiResponse[UserUrl]:
+        """
+        Get the authenticated user's URLs
+        """
+
+        endpoint: str = "/users/urls"
+
+        response = self._get_sync(endpoint)
 
         return ApiResponse(response, UserUrl)
 
@@ -138,6 +232,20 @@ class UsersApiService(ApiBaseService):
 
         return ApiResponse(response, UserLoginResponse)
 
+    def login_user_sync(
+        self,
+        user_login: UserLogin,
+    ) -> ApiResponse[UserLoginResponse]:
+        """
+        Login/create a new token for the given credentials
+        """
+
+        endpoint: str = "/users/login"
+
+        response = self._post_sync(endpoint, user_login)
+
+        return ApiResponse(response, UserLoginResponse)
+
     async def refresh_token_user(
         self,
         user_refresh_token: UserRefreshToken,
@@ -152,6 +260,20 @@ class UsersApiService(ApiBaseService):
 
         return ApiResponse(response, UserRefreshTokenResponse)
 
+    def refresh_token_user_sync(
+        self,
+        user_refresh_token: UserRefreshToken,
+    ) -> ApiResponse[UserRefreshTokenResponse]:
+        """
+        Refresh an existing user access token
+        """
+
+        endpoint: str = "/users/refresh-token"
+
+        response = self._post_sync(endpoint, user_refresh_token)
+
+        return ApiResponse(response, UserRefreshTokenResponse)
+
     async def resend_verification_user(
         self,
         user_resend_verification: UserResendVerification,
@@ -163,6 +285,20 @@ class UsersApiService(ApiBaseService):
         endpoint: str = "/users/account/resend-verification"
 
         response = await self._post(endpoint, user_resend_verification)
+
+        return ApiResponse(response)
+
+    def resend_verification_user_sync(
+        self,
+        user_resend_verification: UserResendVerification,
+    ) -> ApiResponse:
+        """
+        Resend the verification email
+        """
+
+        endpoint: str = "/users/account/resend-verification"
+
+        response = self._post_sync(endpoint, user_resend_verification)
 
         return ApiResponse(response)
 
@@ -181,6 +317,21 @@ class UsersApiService(ApiBaseService):
 
         return ApiResponse(response)
 
+    def update_user_sync(
+        self,
+        user_id: str,
+        user_update: UserUpdate,
+    ) -> ApiResponse:
+        """
+        Update an existing user
+        """
+
+        endpoint: str = f"/users/{user_id}"
+
+        response = self._put_sync(endpoint, user_update)
+
+        return ApiResponse(response)
+
     async def verify_user(
         self,
         user_verify: UserVerify,
@@ -192,5 +343,19 @@ class UsersApiService(ApiBaseService):
         endpoint: str = "/users/account/verify"
 
         response = await self._post(endpoint, user_verify)
+
+        return ApiResponse(response)
+
+    def verify_user_sync(
+        self,
+        user_verify: UserVerify,
+    ) -> ApiResponse:
+        """
+        Activate the user account
+        """
+
+        endpoint: str = "/users/account/verify"
+
+        response = self._post_sync(endpoint, user_verify)
 
         return ApiResponse(response)
