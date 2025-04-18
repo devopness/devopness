@@ -53,7 +53,7 @@ Here is a simple generic example that can be used in `Python` applications:
 ```python
 from devopness import DevopnessClient
 
-devopness_client = DevopnessClient()
+devopness = DevopnessClient()
 ```
 
 ### Authenticating
@@ -68,14 +68,14 @@ import asyncio
 from devopness import DevopnessClient
 from devopness.models import UserLogin
 
-devopness_client = DevopnessClient()
+devopness = DevopnessClient()
 
 async def authenticate(user_email, user_pass):
     user_data = UserLogin(email=user_email, password=user_pass)
-    user_tokens = await devopness_client.users.login_user(user_data)
+    user_tokens = await devopness.users.login_user(user_data)
 
     # The `access_token` must be set every time a token is obtained or refreshed.
-    devopness_client.access_token = user_tokens.data.access_token
+    devopness.access_token = user_tokens.data.access_token
 
 # Invoke the authentication method
 if __name__ == "__main__":
@@ -88,14 +88,14 @@ if __name__ == "__main__":
 from devopness import DevopnessClient
 from devopness.models import UserLogin
 
-devopness_client = DevopnessClient()
+devopness = DevopnessClient()
 
 def authenticate(user_email, user_pass):
     user_data = UserLogin(email=user_email, password=user_pass)
-    user_tokens = devopness_client.users.login_user_sync(user_data)
+    user_tokens = devopness.users.login_user_sync(user_data)
 
     # The `access_token` must be set every time a token is obtained or refreshed.
-    devopness_client.access_token = user_tokens.data.access_token
+    devopness.access_token = user_tokens.data.access_token
 
 # Invoke the authentication method
 if __name__ == "__main__":
@@ -117,14 +117,14 @@ import asyncio
 from devopness import DevopnessClient
 from devopness.models import UserLogin
 
-devopness_client = DevopnessClient()
+devopness = DevopnessClient()
 
 async def authenticate(user_email, user_pass):
     user_data = UserLogin(email=user_email, password=user_pass)
-    user_tokens = await devopness_client.users.login_user(user_data)
+    user_tokens = await devopness.users.login_user(user_data)
 
     # The `access_token` must be set every time a token is obtained or refreshed.
-    devopness_client.access_token = user_tokens.data.access_token
+    devopness.access_token = user_tokens.data.access_token
 
 async def get_user_profile():
     # Ensure an auth token is retrieved and set to the SDK instance
@@ -132,7 +132,7 @@ async def get_user_profile():
 
     # Now that we're authenticated, we can invoke methods on any service.
     # Here we're invoking the `get_user_me()` method on the `users` service
-    current_user = await devopness_client.users.get_user_me()
+    current_user = await devopness.users.get_user_me()
     print(f'Successfully retrieved user profile with ID: {current_user.data.id}')
 
 # Invoke the get user profile method
@@ -146,14 +146,14 @@ if __name__ == "__main__":
 from devopness import DevopnessClient
 from devopness.models import UserLogin
 
-devopness_client = DevopnessClient()
+devopness = DevopnessClient()
 
 def authenticate(user_email, user_pass):
     user_data = UserLogin(email=user_email, password=user_pass)
-    user_tokens = devopness_client.users.login_user_sync(user_data)
+    user_tokens = devopness.users.login_user_sync(user_data)
 
     # The `access_token` must be set every time a token is obtained or refreshed.
-    devopness_client.access_token = user_tokens.data.access_token
+    devopness.access_token = user_tokens.data.access_token
 
 def get_user_profile():
     # Ensure an auth token is retrieved and set to the SDK instance
@@ -161,7 +161,7 @@ def get_user_profile():
 
     # Now that we're authenticated, we can invoke methods on any service.
     # Here we're invoking the `get_user_sync()` method on the `users` service
-    current_user = devopness_client.users.get_user_sync(1)
+    current_user = devopness.users.get_user_sync(1)
     print(f'Successfully retrieved user profile with ID: {current_user.data.id}')
 
 # Invoke the get user profile method
