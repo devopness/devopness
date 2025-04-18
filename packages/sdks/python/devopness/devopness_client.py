@@ -6,12 +6,12 @@ from typing import Optional
 
 from .services import (
     ApiBaseService,
-    DevopnessApiClientConfig,
+    DevopnessClientConfig,
     UserService,
 )
 
 
-class DevopnessApiClient:
+class DevopnessClient:
     """
     DevopnessApiClient provides an interface to the Devopness API.
     """
@@ -20,9 +20,9 @@ class DevopnessApiClient:
 
     def __init__(
         self,
-        config: Optional[DevopnessApiClientConfig] = None,
+        config: Optional[DevopnessClientConfig] = None,
     ) -> None:
-        config = config or DevopnessApiClientConfig()
+        config = config or DevopnessClientConfig()
 
         self.users = UserService(config)
 

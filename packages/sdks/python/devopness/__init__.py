@@ -1,2 +1,11 @@
-from .devopness_api_client import DevopnessApiClient  # noqa: F401
-from .services import DevopnessApiClientConfig  # noqa: F401
+"""
+Devopness API Python SDK - Painless essential DevOps to everyone
+"""
+
+from .devopness_client import DevopnessClient
+from .services import DevopnessClientConfig
+
+__all__ = [
+    "DevopnessClient",
+    "DevopnessClientConfig",
+]

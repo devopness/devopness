@@ -8,7 +8,7 @@ import httpx
 from pydantic import BaseModel, ConfigDict
 
 
-class DevopnessApiClientConfig(BaseModel):
+class DevopnessClientConfig(BaseModel):
     """
     Configuration model for Devopness API client.
 
@@ -41,7 +41,7 @@ class ApiBaseService:
 
     _access_token: Optional[str] = None
 
-    def __init__(self, config: DevopnessApiClientConfig) -> None:
+    def __init__(self, config: DevopnessClientConfig) -> None:
         """
         Initializes the API base service with the provided configuration.
 
