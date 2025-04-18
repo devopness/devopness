@@ -50,3 +50,35 @@ class UsersProjectsApiService(ApiBaseService):
         response = await self._get(endpoint)
 
         return ApiResponse(response, List[ProjectRelation])
+
+    def list_user_projects_sync(
+        self,
+        user_id: str,
+        page: Optional[int] = None,
+        per_page: Optional[int] = None,
+        subscription_id: Optional[int] = None,
+    ) -> ApiResponse[List[ProjectRelation]]:
+        """
+        Return a list of all projects owned by a user
+        """
+
+        params = dict(
+            page=page,
+            per_page=per_page,
+            subscription_id=subscription_id,
+        )
+
+        query_params = dict()
+        for key, value in params.items():
+            if value is None:
+                continue
+
+            query_params[key] = value
+
+        query_string = urlencode(query_params)
+
+        endpoint: str = f"/users/{user_id}/projects" + f"?{query_string}"
+
+        response = self._get_sync(endpoint)
+
+        return ApiResponse(response, List[ProjectRelation])

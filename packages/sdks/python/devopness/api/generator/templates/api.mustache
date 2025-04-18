@@ -58,5 +58,42 @@ class {{classname}}Service(ApiBaseService):
         response = await self._{{#lambda.lowercase}}{{httpMethod}}{{/lambda.lowercase}}(endpoint{{#allParams}}{{^isHeaderParam}}{{#-last}}{{^isPrimitiveType}}, {{paramName}}{{/isPrimitiveType}}{{/-last}}{{/isHeaderParam}}{{/allParams}})
 
         return ApiResponse(response{{#returnType}}, {{{returnType}}}{{/returnType}})
+
+    def {{operationId}}_sync(
+        self,
+{{#allParams}}
+    {{^isHeaderParam}}
+        {{paramName}}: {{^required}}Optional[{{/required}}{{dataType}}{{^required}}] = None{{/required}},
+    {{/isHeaderParam}}
+{{/allParams}}
+    ) -> {{#returnType}}ApiResponse[{{{returnType}}}]{{/returnType}}{{^returnType}}ApiResponse{{/returnType}}:
+        """
+        {{#summary}}
+        {{&summary}}
+        {{/summary}}
+        """
+        {{#hasQueryParams}}
+
+        params = dict(
+          {{#queryParams}}
+          {{baseName}}={{paramName}},
+          {{/queryParams}}
+        )
+
+        query_params = dict()
+        for key, value in params.items():
+            if value is None:
+                continue
+
+            query_params[key] = value
+
+        query_string = urlencode(query_params)
+        {{/hasQueryParams}}
+
+        endpoint: str = {{#pathParams}}f"{{{path}}}"{{/pathParams}}{{^pathParams}}"{{{path}}}"{{/pathParams}}{{#hasQueryParams}} + f"?{query_string}"{{/hasQueryParams}}
+
+        response = self._{{#lambda.lowercase}}{{httpMethod}}_sync{{/lambda.lowercase}}(endpoint{{#allParams}}{{^isHeaderParam}}{{#-last}}{{^isPrimitiveType}}, {{paramName}}{{/isPrimitiveType}}{{/-last}}{{/isHeaderParam}}{{/allParams}})
+
+        return ApiResponse(response{{#returnType}}, {{{returnType}}}{{/returnType}})
 {{/operation}}
 {{/operations}}

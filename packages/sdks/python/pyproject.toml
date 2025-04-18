@@ -4,28 +4,47 @@ build-backend = "poetry.core.masonry.api"
 
 [project]
 name = "devopness"
-version = "0.0.1"
+version = "0.0.3"
 description = "Devopness API Python SDK - Painless essential DevOps to everyone"
 license = "MIT"
 readme = "README.md"
 requires-python = ">=3.11"
 authors = [{ name = "Devopness (https://www.devopness.com)" }]
 keywords = [
-    "Cloud Engineering",
-    "Cloud Infrastructure",
-    "Cloud Platform",
-    "Configuration Management",
-    "DevOps",
-    "Devopness",
-    "Deployment Automation",
-    "Platform Engineering",
-    "Zero Downtime Deployment",
-    "Server Provisioning",
-    "Infrastructure as Code",
-    "API Client",
-    "Python SDK",
-    "Server Management",
-    "Cloud Resource Management"
+  "API Client",
+  "Cloud Engineering",
+  "Cloud Infrastructure",
+  "Cloud Platform",
+  "Cloud Resource Management",
+  "Configuration Management",
+  "Deployment Automation",
+  "Devopness",
+  "DevOps",
+  "Infrastructure as Code",
+  "Platform Engineering",
+  "Python SDK",
+  "Server Management",
+  "Server Provisioning",
+  "Zero Downtime Deployment",
+]
+classifiers = [
+  "Development Status :: 2 - Pre-Alpha",
+  "Environment :: Console",
+  "Framework :: Pydantic",
+  "Intended Audience :: Developers",
+  "Intended Audience :: System Administrators",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Software Development",
+  "Topic :: Software Development :: Libraries",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Topic :: System :: Systems Administration",
+  "Topic :: Utilities",
 ]
 dependencies = ["httpx (>=0.28.1,<0.29.0)", "pydantic (>=2.11.3,<3.0.0)"]
 
