@@ -2,11 +2,11 @@
 
 The official Devopness SDK for Python.
 
-Devopness SDK for Python provides a set of pre-defined classes that offer easy and consistent access to Devopness platform resources. Whether you're building CLI tools, backend services, or automation scripts, this SDK helps you interact with the Devopness API.
+The Devopness SDK for Python provides a set of predefined classes that offer easy and consistent access to Devopness platform resources. Whether you're building CLI tools, backend services, or automation scripts, this SDK helps you interact with the Devopness API.
 
 ## Status
 
-This SDK is currently under active development and not yet recommended for production use. Features, structure, and usage may change significantly until a stable version is released.
+This SDK is currently under active development and is not yet recommended for production use. Features, structure, and usage may change significantly until a stable version is released.
 
 ## Usage
 
@@ -31,9 +31,9 @@ pip install devopness
 
 ### Initializing
 
-To initialize the usage of Devopness SDK, just import it and create a new instance of `DevopnessApiClient` class.
+To start using the Devopness SDK, just import it and create a new instance of the `DevopnessApiClient` class.
 
-Here is a generic simple example that can be used from `Python` applications:
+Here is a simple generic example that can be used in `Python` applications:
 
 ```python
 from devopness import DevopnessApiClient
@@ -43,7 +43,7 @@ devopness_api = DevopnessApiClient()
 
 ### Authenticating
 
-To authenticate, just invoke the `login_user` method on the `users` service:
+To authenticate, invoke the `login_user` method on the `users` service:
 
 #### Asynchronous usage
 
@@ -87,12 +87,12 @@ if __name__ == "__main__":
     authenticate('user@email.com', 'secret-password')
 ```
 
-In the example's above, `user_tokens` is an instance of `ApiResponse` and the `data` property has the data requested from the API. See [api_response.py](https://github.com/devopness/devopness/blob/main/packages/sdks/python/devopness/common/api_response.py) for reference.
+In the examples above, `user_tokens` is an instance of `ApiResponse`, and the `data` property contains the data returned from the API. See [api_response.py](https://github.com/devopness/devopness/blob/main/packages/sdks/python/devopness/common/api_response.py) for reference.
 
-### Invoking authentication protected endpoints
+### Invoking authentication-protected endpoints
 
 Once an authentication token is set, any protected endpoint can be invoked.
-Example retrieving current user details:
+Example: retrieving current user details.
 
 #### Asynchronous usage
 
@@ -112,11 +112,10 @@ async def authenticate(user_email, user_pass):
     devopness_api.access_token = user_tokens.data.access_token
 
 async def get_user_profile():
-    # Invoke the authentication method to ensure an auth token
-    # is retrieved and set to the SDK instance
+    # Ensure an auth token is retrieved and set to the SDK instance
     await authenticate('user@email.com', 'secret-password')
 
-    # Now that we're authenticated, we can invoke methods on any services.
+    # Now that we're authenticated, we can invoke methods on any service.
     # Here we're invoking the `get_user_me()` method on the `users` service
     current_user = await devopness_api.users.get_user_me()
     print(f'Successfully retrieved user profile with ID: {current_user.data.id}')
@@ -142,12 +141,11 @@ def authenticate(user_email, user_pass):
     devopness_api.access_token = user_tokens.data.access_token
 
 def get_user_profile():
-    # Invoke the authentication method to ensure an auth token
-    # is retrieved and set to the SDK instance
+    # Ensure an auth token is retrieved and set to the SDK instance
     authenticate('user@email.com', 'secret-password')
 
-    # Now that we're authenticated, we can invoke methods on any services.
-    # Here we're invoking the `get_user_me()` method on the `users` service
+    # Now that we're authenticated, we can invoke methods on any service.
+    # Here we're invoking the `get_user_sync()` method on the `users` service
     current_user = devopness_api.users.get_user_sync(1)
     print(f'Successfully retrieved user profile with ID: {current_user.data.id}')
 
@@ -156,34 +154,34 @@ if __name__ == "__main__":
     get_user_profile()
 ```
 
-In the example's above, `current_user` is an instance of `ApiResponse` and the `data` property has the data requested from the API.
+In the examples above, `current_user` is an instance of `ApiResponse`, and the `data` property contains the data returned from the API.
 
 ## Development
 
-To build the SDK Python locally, follow these steps:
+To build the Devopness Python SDK locally, follow these steps:
 
 ### With Docker
 
-#### Pre-requisites
+#### Prerequisites
 
 - [Docker](https://www.docker.com/products/docker-desktop/)
-- [make](https://www.gnu.org/software/make/)
+- [Make](https://www.gnu.org/software/make/)
 
 #### Steps
 
-1. Navigate to the project directory
+1. Navigate to the project directory:
 
 ```shell
 cd packages/sdks/python/
 ```
 
-2. Build Docker Image
+2. Build the Docker image:
 
 ```shell
 make build-image
 ```
 
-3.Build the SDK Python
+3. Build the Python SDK:
 
 ```shell
 make build-sdk-python
