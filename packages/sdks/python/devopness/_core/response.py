@@ -2,11 +2,13 @@
 Devopness API Python SDK - Painless essential DevOps to everyone
 """
 
-from typing import Generic, Optional, Type, TypeVar
+from typing import Generic, Optional, TypeVar, Union, get_args, get_origin
 from urllib.parse import parse_qs, urlparse
 from warnings import warn
 
 import httpx
+
+from devopness._base import DevopnessBaseModel
 
 __all__ = ["DevopnessResponse"]
 
@@ -34,15 +36,16 @@ class DevopnessResponse(Generic[T]):
     def __init__(
         self,
         response: httpx.Response,
-        model_cls: Optional[Type[T]] = None,
+        model_cls: Optional[type[DevopnessBaseModel]] = None,
     ) -> None:
         """
         Initialize an ApiResponse object from an httpx.Response.
 
         Args:
             response (httpx.Response): The HTTP response to wrap.
-            model_cls (Optional[Type[T]]): Optional model class to deserialize
-                                           the response body into.
+            model_cls (Optional[type[DevopnessBaseModel]]): Optional model to
+                                                      deserialize the response
+                                                      body into.
         """
         self.status = response.status_code
         self.data = self._parse_data(response, model_cls)
@@ -97,15 +100,16 @@ class DevopnessResponse(Generic[T]):
     def _parse_data(
         self,
         response: httpx.Response,
-        model_cls: Optional[Type[T]],
+        model_cls: Optional[type[DevopnessBaseModel]],
     ) -> T:
         """
         Parse the response data into the specified model class.
 
         Args:
             response (httpx.Response): The HTTP response object.
-            model_cls (Optional[Type[T]]): The model class to deserialize
-                                           the response body into.
+            model_cls (Optional[type[DevopnessBaseModel]]): The model to
+                                                       deserialize the
+                                                       response body into.
 
         Returns:
             T: The parsed data.
@@ -113,17 +117,32 @@ class DevopnessResponse(Generic[T]):
         raw_data: bytes = response.read()
 
         try:
+            # No model provided, just try decoding JSON as dict
             if not model_cls:
                 return dict(raw_data)  # type: ignore
 
+            # Handle Union types (e.g., AnyOf or OneOf)
+            if get_origin(model_cls) is Union:
+                for model in get_args(model_cls):
+                    try:
+                        return model.from_json(raw_data)
+                    except ValueError:
+                        continue
+                raise ValueError("No matching model found in Union")
+
+            # Handle regular model class
             return model_cls.from_json(raw_data)  # type: ignore
 
         # pylint: disable=bare-except
         # pylint: disable=broad-exception-caught
-        except Exception:  # noqa: E722
+        except Exception as e:  # noqa: E722
             class_name = getattr(model_cls, "__name__", "Unknown")
-            message = f"Failed to deserialize response body into {class_name}."
-            message += " Returning raw response data instead."
+            exception = str(e)
 
-            warn(message)
+            warn(
+                f"Failed to deserialize response body into {class_name}:"
+                f" {exception}. "
+                "Returning raw response data instead."
+            )
+
             return raw_data  # type: ignore
