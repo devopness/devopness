@@ -22,6 +22,30 @@ class DevopnessBaseModel(BaseModel):
     )
 
     @classmethod
+    def from_dict(cls, data: dict) -> Self:
+        """
+        Create an instance of the model from a dictionary.
+
+        Args:
+            data (dict): A dictionary representing the model.
+
+        Returns:
+            Self: An instance of the model.
+        """
+        model = cls.model_validate(data)
+
+        return model
+
+    def to_dict(self) -> dict:
+        """
+        Convert the model to a dictionary.
+
+        Returns:
+            dict: A dictionary representing the model.
+        """
+        return self.model_dump()
+
+    @classmethod
     def from_json(cls, data: str) -> Self:
         """
         Create an instance of the model from a JSON string.
@@ -33,6 +57,13 @@ class DevopnessBaseModel(BaseModel):
             Self: An instance of the model.
         """
         obj = from_json(data, allow_partial=True)
-        model = cls.model_validate(obj)
+        return cls.model_validate(obj)
 
-        return model
+    def to_json(self) -> str:
+        """
+        Convert the model to a JSON string.
+
+        Returns:
+            str: A JSON string representing the model.
+        """
+        return self.model_dump_json()
