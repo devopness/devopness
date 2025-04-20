@@ -2,7 +2,7 @@
 Devopness API Python SDK - Painless essential DevOps to everyone
 """
 
-from typing import Self
+from typing import Any, Self
 
 from pydantic import BaseModel, ConfigDict
 from pydantic_core import from_json
@@ -20,6 +20,15 @@ class DevopnessBaseModel(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
+
+    def __getitem__(self, key: str) -> Any:
+        return getattr(self, key)
+
+    def __setitem__(self, key: str, value: Any) -> None:
+        setattr(self, key, value)
+
+    def __contains__(self, key: str) -> bool:
+        return hasattr(self, key)
 
     @classmethod
     def from_dict(cls, data: dict) -> Self:

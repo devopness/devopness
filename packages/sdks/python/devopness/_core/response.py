@@ -2,6 +2,7 @@
 Devopness API Python SDK - Painless essential DevOps to everyone
 """
 
+import json
 from typing import Generic, Optional, TypeVar, Union, get_args, get_origin
 from urllib.parse import parse_qs, urlparse
 from warnings import warn
@@ -119,7 +120,7 @@ class DevopnessResponse(Generic[T]):
         try:
             # No model provided, just try decoding JSON as dict
             if not model_cls:
-                return dict(raw_data)  # type: ignore
+                return json.loads(raw_data)  # type: ignore
 
             # Handle Union types (e.g., AnyOf or OneOf)
             if get_origin(model_cls) is Union:
@@ -135,14 +136,11 @@ class DevopnessResponse(Generic[T]):
 
         # pylint: disable=bare-except
         # pylint: disable=broad-exception-caught
-        except Exception as e:  # noqa: E722
+        except:  # noqa: E722
             class_name = getattr(model_cls, "__name__", "Unknown")
-            exception = str(e)
-
             warn(
-                f"Failed to deserialize response body into {class_name}:"
-                f" {exception}. "
+                f"Failed to deserialize response body into {class_name}. "
                 "Returning raw response data instead."
             )
 
-            return raw_data  # type: ignore
+            return json.loads(raw_data)  # type: ignore
