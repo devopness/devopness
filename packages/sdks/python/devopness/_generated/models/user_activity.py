@@ -6,7 +6,6 @@ Note:
     https://openapi-generator.tech
 """
 
-
 from .. import DevopnessBaseModel
 from .triggered_actions import TriggeredActions
 from .user_environment_stats import UserEnvironmentStats

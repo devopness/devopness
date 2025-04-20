@@ -6,7 +6,6 @@ Note:
     https://openapi-generator.tech
 """
 
-
 from pydantic import Field, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel

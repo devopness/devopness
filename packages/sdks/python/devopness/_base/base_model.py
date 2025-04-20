@@ -56,7 +56,7 @@ class DevopnessBaseModel(BaseModel):
         Returns:
             Self: An instance of the model.
         """
-        obj = from_json(data, allow_partial=True)
+        obj = from_json(data)
         return cls.model_validate(obj)
 
     def to_json(self) -> str:
