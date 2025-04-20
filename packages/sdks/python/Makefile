@@ -27,7 +27,7 @@ build-sdk-python: build-image ## Build Python SDK
 		--env GROUP_NAME=$(GROUP_NAME) \
 		--name devopness-sdk-python-build \
 		$(IMAGE):$(TAG) \
-		/bin/bash scripts/build.sh
+		scripts/build.py
 
 publish-dev: build-image ## Publish Devopness SDK - Python to Test PyPI. Requires POETRY_TEST_PYPI_TOKEN.
 	$(info Publishing Devopness SDK - Python to Test PyPI ...)
