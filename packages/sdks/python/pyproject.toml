@@ -54,17 +54,28 @@ repository = "https://github.com/devopness/devopness"
 
 [tool.poetry]
 packages = [
-  { include = "devopness/*.py" },
+  { include = "devopness/__init__.py" },
   { include = "devopness/py.typed" },
-  { include = "devopness/common/*.py" },
-  { include = "devopness/models/*.py" },
-  { include = "devopness/services/*.py" },
-  { include = "devopness/api/generated/api/*.py" },
-  { include = "devopness/api/generated/models/*.py" },
+  { include = "devopness/_client.py" },
+  { include = "devopness/_client_config.py" },
+  { include = "devopness/core.py" },
+  { include = "devopness/models.py" },
+  { include = "devopness/services.py" },
+  { include = "devopness/_base/*.py" },
+  { include = "devopness/_core/*.py" },
+  { include = "devopness/_services/*.py" },
+  { include = "devopness/_generated/*.py" },
+  { include = "devopness/_generated/api/*.py" },
+  { include = "devopness/_generated/models/*.py" },
 ]
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.11.6"
 
 [tool.ruff]
-extend-exclude = ["devopness/api/generated/models/__init__.py"]
+extend-exclude = ["devopness/_generated/models/__init__.py"]
+
+[tool.ruff.lint]
+ignore = [
+  "F841", # Local variable is assigned to but never used
+]

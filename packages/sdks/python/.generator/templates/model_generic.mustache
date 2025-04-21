@@ -1,0 +1,24 @@
+{{#vendorExtensions.x-py-other-imports}}
+{{{.}}}
+{{/vendorExtensions.x-py-other-imports}}
+{{#vendorExtensions.x-py-model-imports}}
+{{{.}}}
+{{/vendorExtensions.x-py-model-imports}}
+
+from typing import Optional, Set
+from .. import DevopnessBaseModel
+
+
+class {{classname}}(DevopnessBaseModel):
+    """
+    {{classname}}
+
+    Attributes:
+    {{#allVars}}
+        {{baseName}} ({{dataType}}{{^required}}, optional{{/required}}): {{description}}
+    {{/allVars}}
+    """
+
+{{#vars}}
+    {{name}}: {{{vendorExtensions.x-py-typing}}}
+{{/vars}}
