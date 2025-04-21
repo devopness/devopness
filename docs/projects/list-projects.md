@@ -7,7 +7,8 @@ links:
     previous: index
     next: projects/add-project
     guides:
-    related: projects/add-project
+    related:
+        - projects/add-project
     featured:
 ---
 

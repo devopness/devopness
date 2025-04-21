@@ -8,8 +8,8 @@ links:
     next: projects/add-project
     guides:
     related:
-        projects/list-projects
-        projects/add-project
+        - projects/list-projects
+        - projects/add-project
 ---
 
 1. In your selected project page, you will see 3 sections: Environments, Teams and Roles. If you don't have any projects created, see the Add Project documentation page.
