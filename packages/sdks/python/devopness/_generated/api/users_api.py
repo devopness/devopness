@@ -6,20 +6,30 @@ Note:
     https://openapi-generator.tech
 """
 
+from typing import Union
+
 from .. import DevopnessBaseService, DevopnessResponse
-from ..models.user import User
-from ..models.user_activity import UserActivity
-from ..models.user_billing import UserBilling
-from ..models.user_create import UserCreate
-from ..models.user_login import UserLogin
-from ..models.user_login_response import UserLoginResponse
-from ..models.user_me import UserMe
-from ..models.user_refresh_token import UserRefreshToken
-from ..models.user_refresh_token_response import UserRefreshTokenResponse
-from ..models.user_resend_verification import UserResendVerification
-from ..models.user_update import UserUpdate
-from ..models.user_url import UserUrl
-from ..models.user_verify import UserVerify
+from ..models import (
+    User,
+    UserActivity,
+    UserBilling,
+    UserCreate,
+    UserCreateDict,
+    UserLogin,
+    UserLoginDict,
+    UserLoginResponse,
+    UserMe,
+    UserRefreshToken,
+    UserRefreshTokenDict,
+    UserRefreshTokenResponse,
+    UserResendVerification,
+    UserResendVerificationDict,
+    UserUpdate,
+    UserUpdateDict,
+    UserUrl,
+    UserVerify,
+    UserVerifyDict,
+)
 
 
 class UsersApiService(DevopnessBaseService):
@@ -29,28 +39,40 @@ class UsersApiService(DevopnessBaseService):
 
     async def add_user(
         self,
-        user_create: UserCreate,
+        user_create: Union[
+            UserCreate,
+            UserCreateDict,
+        ],
     ) -> DevopnessResponse:
         """
         Sign up/register a new user
         """
 
-        endpoint: str = "/users"
+        endpoint_parts = [
+            "/users",
+        ]
 
+        endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, user_create)
 
         return DevopnessResponse(response)
 
     def add_user_sync(
         self,
-        user_create: UserCreate,
+        user_create: Union[
+            UserCreate,
+            UserCreateDict,
+        ],
     ) -> DevopnessResponse:
         """
         Sign up/register a new user
         """
 
-        endpoint: str = "/users"
+        endpoint_parts = [
+            "/users",
+        ]
 
+        endpoint: str = "".join(endpoint_parts)
         response = self._post_sync(endpoint, user_create)
 
         return DevopnessResponse(response)
@@ -63,8 +85,11 @@ class UsersApiService(DevopnessBaseService):
         Get a user by ID or URL Slug
         """
 
-        endpoint: str = f"/users/{user_id}"
+        endpoint_parts = [
+            f"/users/{user_id}",
+        ]
 
+        endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, User)
@@ -77,8 +102,11 @@ class UsersApiService(DevopnessBaseService):
         Get a user by ID or URL Slug
         """
 
-        endpoint: str = f"/users/{user_id}"
+        endpoint_parts = [
+            f"/users/{user_id}",
+        ]
 
+        endpoint: str = "".join(endpoint_parts)
         response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, User)
@@ -91,8 +119,11 @@ class UsersApiService(DevopnessBaseService):
         Get activity information for a user
         """
 
-        endpoint: str = f"/users/{user_id}/activity"
+        endpoint_parts = [
+            f"/users/{user_id}/activity",
+        ]
 
+        endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, UserActivity)
@@ -105,8 +136,11 @@ class UsersApiService(DevopnessBaseService):
         Get activity information for a user
         """
 
-        endpoint: str = f"/users/{user_id}/activity"
+        endpoint_parts = [
+            f"/users/{user_id}/activity",
+        ]
 
+        endpoint: str = "".join(endpoint_parts)
         response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, UserActivity)
@@ -118,8 +152,11 @@ class UsersApiService(DevopnessBaseService):
         Get current user's billing info for active subscription
         """
 
-        endpoint: str = "/users/billing"
+        endpoint_parts = [
+            "/users/billing",
+        ]
 
+        endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, UserBilling)
@@ -131,8 +168,11 @@ class UsersApiService(DevopnessBaseService):
         Get current user's billing info for active subscription
         """
 
-        endpoint: str = "/users/billing"
+        endpoint_parts = [
+            "/users/billing",
+        ]
 
+        endpoint: str = "".join(endpoint_parts)
         response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, UserBilling)
@@ -144,8 +184,11 @@ class UsersApiService(DevopnessBaseService):
         Logout/revoke an existing token
         """
 
-        endpoint: str = "/users/logout"
+        endpoint_parts = [
+            "/users/logout",
+        ]
 
+        endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
         return DevopnessResponse(response)
@@ -157,8 +200,11 @@ class UsersApiService(DevopnessBaseService):
         Logout/revoke an existing token
         """
 
-        endpoint: str = "/users/logout"
+        endpoint_parts = [
+            "/users/logout",
+        ]
 
+        endpoint: str = "".join(endpoint_parts)
         response = self._get_sync(endpoint)
 
         return DevopnessResponse(response)
@@ -170,8 +216,11 @@ class UsersApiService(DevopnessBaseService):
         Get details of the current user
         """
 
-        endpoint: str = "/users/me"
+        endpoint_parts = [
+            "/users/me",
+        ]
 
+        endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, UserMe)
@@ -183,8 +232,11 @@ class UsersApiService(DevopnessBaseService):
         Get details of the current user
         """
 
-        endpoint: str = "/users/me"
+        endpoint_parts = [
+            "/users/me",
+        ]
 
+        endpoint: str = "".join(endpoint_parts)
         response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, UserMe)
@@ -196,8 +248,11 @@ class UsersApiService(DevopnessBaseService):
         Get the authenticated user's URLs
         """
 
-        endpoint: str = "/users/urls"
+        endpoint_parts = [
+            "/users/urls",
+        ]
 
+        endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, UserUrl)
@@ -209,92 +264,131 @@ class UsersApiService(DevopnessBaseService):
         Get the authenticated user's URLs
         """
 
-        endpoint: str = "/users/urls"
+        endpoint_parts = [
+            "/users/urls",
+        ]
 
+        endpoint: str = "".join(endpoint_parts)
         response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, UserUrl)
 
     async def login_user(
         self,
-        user_login: UserLogin,
+        user_login: Union[
+            UserLogin,
+            UserLoginDict,
+        ],
     ) -> DevopnessResponse[UserLoginResponse]:
         """
         Login/create a new token for the given credentials
         """
 
-        endpoint: str = "/users/login"
+        endpoint_parts = [
+            "/users/login",
+        ]
 
+        endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, user_login)
 
         return DevopnessResponse(response, UserLoginResponse)
 
     def login_user_sync(
         self,
-        user_login: UserLogin,
+        user_login: Union[
+            UserLogin,
+            UserLoginDict,
+        ],
     ) -> DevopnessResponse[UserLoginResponse]:
         """
         Login/create a new token for the given credentials
         """
 
-        endpoint: str = "/users/login"
+        endpoint_parts = [
+            "/users/login",
+        ]
 
+        endpoint: str = "".join(endpoint_parts)
         response = self._post_sync(endpoint, user_login)
 
         return DevopnessResponse(response, UserLoginResponse)
 
     async def refresh_token_user(
         self,
-        user_refresh_token: UserRefreshToken,
+        user_refresh_token: Union[
+            UserRefreshToken,
+            UserRefreshTokenDict,
+        ],
     ) -> DevopnessResponse[UserRefreshTokenResponse]:
         """
         Refresh an existing user access token
         """
 
-        endpoint: str = "/users/refresh-token"
+        endpoint_parts = [
+            "/users/refresh-token",
+        ]
 
+        endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, user_refresh_token)
 
         return DevopnessResponse(response, UserRefreshTokenResponse)
 
     def refresh_token_user_sync(
         self,
-        user_refresh_token: UserRefreshToken,
+        user_refresh_token: Union[
+            UserRefreshToken,
+            UserRefreshTokenDict,
+        ],
     ) -> DevopnessResponse[UserRefreshTokenResponse]:
         """
         Refresh an existing user access token
         """
 
-        endpoint: str = "/users/refresh-token"
+        endpoint_parts = [
+            "/users/refresh-token",
+        ]
 
+        endpoint: str = "".join(endpoint_parts)
         response = self._post_sync(endpoint, user_refresh_token)
 
         return DevopnessResponse(response, UserRefreshTokenResponse)
 
     async def resend_verification_user(
         self,
-        user_resend_verification: UserResendVerification,
+        user_resend_verification: Union[
+            UserResendVerification,
+            UserResendVerificationDict,
+        ],
     ) -> DevopnessResponse:
         """
         Resend the verification email
         """
 
-        endpoint: str = "/users/account/resend-verification"
+        endpoint_parts = [
+            "/users/account/resend-verification",
+        ]
 
+        endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, user_resend_verification)
 
         return DevopnessResponse(response)
 
     def resend_verification_user_sync(
         self,
-        user_resend_verification: UserResendVerification,
+        user_resend_verification: Union[
+            UserResendVerification,
+            UserResendVerificationDict,
+        ],
     ) -> DevopnessResponse:
         """
         Resend the verification email
         """
 
-        endpoint: str = "/users/account/resend-verification"
+        endpoint_parts = [
+            "/users/account/resend-verification",
+        ]
 
+        endpoint: str = "".join(endpoint_parts)
         response = self._post_sync(endpoint, user_resend_verification)
 
         return DevopnessResponse(response)
@@ -302,14 +396,20 @@ class UsersApiService(DevopnessBaseService):
     async def update_user(
         self,
         user_id: str,
-        user_update: UserUpdate,
+        user_update: Union[
+            UserUpdate,
+            UserUpdateDict,
+        ],
     ) -> DevopnessResponse:
         """
         Update an existing user
         """
 
-        endpoint: str = f"/users/{user_id}"
+        endpoint_parts = [
+            f"/users/{user_id}",
+        ]
 
+        endpoint: str = "".join(endpoint_parts)
         response = await self._put(endpoint, user_update)
 
         return DevopnessResponse(response)
@@ -317,42 +417,60 @@ class UsersApiService(DevopnessBaseService):
     def update_user_sync(
         self,
         user_id: str,
-        user_update: UserUpdate,
+        user_update: Union[
+            UserUpdate,
+            UserUpdateDict,
+        ],
     ) -> DevopnessResponse:
         """
         Update an existing user
         """
 
-        endpoint: str = f"/users/{user_id}"
+        endpoint_parts = [
+            f"/users/{user_id}",
+        ]
 
+        endpoint: str = "".join(endpoint_parts)
         response = self._put_sync(endpoint, user_update)
 
         return DevopnessResponse(response)
 
     async def verify_user(
         self,
-        user_verify: UserVerify,
+        user_verify: Union[
+            UserVerify,
+            UserVerifyDict,
+        ],
     ) -> DevopnessResponse:
         """
         Activate the user account
         """
 
-        endpoint: str = "/users/account/verify"
+        endpoint_parts = [
+            "/users/account/verify",
+        ]
 
+        endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, user_verify)
 
         return DevopnessResponse(response)
 
     def verify_user_sync(
         self,
-        user_verify: UserVerify,
+        user_verify: Union[
+            UserVerify,
+            UserVerifyDict,
+        ],
     ) -> DevopnessResponse:
         """
         Activate the user account
         """
 
-        endpoint: str = "/users/account/verify"
+        endpoint_parts = [
+            "/users/account/verify",
+        ]
 
+        endpoint: str = "".join(endpoint_parts)
         response = self._post_sync(endpoint, user_verify)
 
         return DevopnessResponse(response)

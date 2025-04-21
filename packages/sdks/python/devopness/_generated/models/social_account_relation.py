@@ -6,7 +6,7 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import Optional
+from typing import Optional, TypedDict
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
 
@@ -50,3 +50,19 @@ class SocialAccountRelation(DevopnessBaseModel):
     updated_at: StrictStr = Field(
         description="The date and time when the record was last updated"
     )
+
+
+class SocialAccountRelationDict(TypedDict, total=False):
+    """
+    TypedDict for SocialAccountRelation.
+    """
+
+    id: int
+    user_id: int
+    provider: SocialAccountProvider
+    provider_human_readable: SocialAccountDisplayableName
+    provider_user_nickname: str
+    is_vcs: bool
+    token_expires_at: str
+    created_at: str
+    updated_at: str

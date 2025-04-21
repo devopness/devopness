@@ -6,7 +6,7 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import Optional
+from typing import Optional, TypedDict
 
 from pydantic import Field, StrictStr
 
@@ -37,3 +37,15 @@ class TriggeredActionStats(DevopnessBaseModel):
         default=None, description="Type of action human readable"
     )
     summary: Optional[TriggeredActionSummary] = None
+
+
+class TriggeredActionStatsDict(TypedDict, total=False):
+    """
+    TypedDict for TriggeredActionStats.
+    """
+
+    resource_type: str
+    action_type: str
+    resource_type_human_readable: str
+    action_type_human_readable: str
+    summary: TriggeredActionSummary

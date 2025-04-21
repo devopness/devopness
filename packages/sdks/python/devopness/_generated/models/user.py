@@ -6,7 +6,7 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional
+from typing import List, Optional, TypedDict
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
 
@@ -46,3 +46,19 @@ class User(DevopnessBaseModel):
     updated_at: StrictStr = Field(
         description="The date and time when the record was last updated"
     )
+
+
+class UserDict(TypedDict, total=False):
+    """
+    TypedDict for User.
+    """
+
+    id: int
+    name: str
+    email: str
+    url_slug: str
+    language: Language
+    active: bool
+    social_accounts: List[SocialAccountRelation]
+    created_at: str
+    updated_at: str

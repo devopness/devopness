@@ -7,7 +7,7 @@ Note:
 """
 
 from datetime import datetime
-from typing import Optional
+from typing import Optional, TypedDict
 
 from pydantic import Field, StrictStr
 
@@ -44,3 +44,16 @@ class SubscriptionBalance(DevopnessBaseModel):
     updated_at: Optional[datetime] = Field(
         default=None, description="The date and time when the record was last updated"
     )
+
+
+class SubscriptionBalanceDict(TypedDict, total=False):
+    """
+    TypedDict for SubscriptionBalance.
+    """
+
+    credits: Credits
+    unit: str
+    billing_period_started_at: datetime
+    billing_period_ends_at: datetime
+    created_at: datetime
+    updated_at: datetime

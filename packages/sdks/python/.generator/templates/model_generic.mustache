@@ -5,7 +5,7 @@
 {{{.}}}
 {{/vendorExtensions.x-py-model-imports}}
 
-from typing import Optional, Set
+from typing import Optional, Set, TypedDict
 from .. import DevopnessBaseModel
 
 
@@ -21,4 +21,13 @@ class {{classname}}(DevopnessBaseModel):
 
 {{#vars}}
     {{name}}: {{{vendorExtensions.x-py-typing}}}
+{{/vars}}
+
+class {{classname}}Dict(TypedDict, total=False):
+    """
+    TypedDict for {{classname}}.
+    """
+
+{{#vars}}
+    {{baseName}}: {{dataType}}
 {{/vars}}

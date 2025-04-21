@@ -6,12 +6,7 @@ Note:
     https://openapi-generator.tech
 """
 
-from urllib.parse import urlencode
-from .. import DevopnessBaseService, DevopnessResponse
-{{#imports}}
-{{import}}
-{{/imports}}
-
+{{>api_imports}}
 
 class {{classname}}Service(DevopnessBaseService):
     """
@@ -22,76 +17,30 @@ class {{classname}}Service(DevopnessBaseService):
 
     async def {{operationId}}(
         self,
-{{#allParams}}
-    {{^isHeaderParam}}
-        {{paramName}}: {{^required}}Optional[{{/required}}{{dataType}}{{^required}}] = None{{/required}},
-    {{/isHeaderParam}}
-{{/allParams}}
-    ) -> {{#returnType}}DevopnessResponse[{{{returnType}}}]{{/returnType}}{{^returnType}}DevopnessResponse{{/returnType}}:
+{{>api_method_params}}
+    ) -> {{>api_method_return}}:
         """
         {{#summary}}
         {{&summary}}
         {{/summary}}
         """
-        {{#hasQueryParams}}
-
-        params = dict(
-          {{#queryParams}}
-          {{baseName}}={{paramName}},
-          {{/queryParams}}
-        )
-
-        query_params = dict()
-        for key, value in params.items():
-            if value is None:
-                continue
-
-            query_params[key] = value
-
-        query_string = urlencode(query_params)
-        {{/hasQueryParams}}
-
-        endpoint: str = {{#pathParams}}f"{{{path}}}"{{/pathParams}}{{^pathParams}}"{{{path}}}"{{/pathParams}}{{#hasQueryParams}} + f"?{query_string}"{{/hasQueryParams}}
-
+{{>api_method_body_endpoint}}
         response = await self._{{#lambda.lowercase}}{{httpMethod}}{{/lambda.lowercase}}(endpoint{{#allParams}}{{^isHeaderParam}}{{#-last}}{{^isPrimitiveType}}, {{paramName}}{{/isPrimitiveType}}{{/-last}}{{/isHeaderParam}}{{/allParams}})
 
-        return DevopnessResponse(response{{#returnType}}, {{{returnType}}}{{/returnType}})
+        {{>api_method_body_return}}
 
     def {{operationId}}_sync(
         self,
-{{#allParams}}
-    {{^isHeaderParam}}
-        {{paramName}}: {{^required}}Optional[{{/required}}{{dataType}}{{^required}}] = None{{/required}},
-    {{/isHeaderParam}}
-{{/allParams}}
-    ) -> {{#returnType}}DevopnessResponse[{{{returnType}}}]{{/returnType}}{{^returnType}}DevopnessResponse{{/returnType}}:
+{{>api_method_params}}
+    ) -> {{>api_method_return}}:
         """
         {{#summary}}
         {{&summary}}
         {{/summary}}
         """
-        {{#hasQueryParams}}
-
-        params = dict(
-          {{#queryParams}}
-          {{baseName}}={{paramName}},
-          {{/queryParams}}
-        )
-
-        query_params = dict()
-        for key, value in params.items():
-            if value is None:
-                continue
-
-            query_params[key] = value
-
-        query_string = urlencode(query_params)
-        {{/hasQueryParams}}
-
-        endpoint: str = {{#pathParams}}f"{{{path}}}"{{/pathParams}}{{^pathParams}}"{{{path}}}"{{/pathParams}}{{#hasQueryParams}} + f"?{query_string}"{{/hasQueryParams}}
-
+{{>api_method_body_endpoint}}
         response = self._{{#lambda.lowercase}}{{httpMethod}}_sync{{/lambda.lowercase}}(endpoint{{#allParams}}{{^isHeaderParam}}{{#-last}}{{^isPrimitiveType}}, {{paramName}}{{/isPrimitiveType}}{{/-last}}{{/isHeaderParam}}{{/allParams}})
 
-        return DevopnessResponse(response{{#returnType}}, {{{returnType}}}{{/returnType}})
+        {{>api_method_body_return}}
 {{/operation}}
 {{/operations}}

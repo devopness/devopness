@@ -6,6 +6,8 @@ Note:
     https://openapi-generator.tech
 """
 
+from typing import TypedDict
+
 from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
@@ -22,3 +24,11 @@ class UserRefreshToken(DevopnessBaseModel):
     refresh_token: StrictStr = Field(
         description="A token to be used after the original access token has expired, to issue a new token without requiring a new request to the /users/login endpoint."
     )
+
+
+class UserRefreshTokenDict(TypedDict, total=False):
+    """
+    TypedDict for UserRefreshToken.
+    """
+
+    refresh_token: str

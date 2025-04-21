@@ -7,7 +7,6 @@ import os
 import shutil
 import subprocess
 import sys
-from typing import Literal
 
 SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
 
@@ -162,10 +161,26 @@ def export_sdk_services() -> None:
         '"""',
     ]
 
+    # Dictionary mapping auto-generated PascalCase service names to their
+    # desired final names.
+    #
+    # This is used to handle cases where the standard conversion doesn't
+    # produce the exact required casing, especially for acronyms (like SSH).
+    #
+    # Keys are the names produced by the automatic conversion (PascalCase).
+    # Values are the desired, manually specified names.
+    service_name_overrides = {
+        "SshKeyService": "SSHKeyService",
+        "SslCertificateService": "SSLCertificateService",
+    }
+
     # Build the import statements
     for item in files:
         service = item.replace(".py", "")
         service_name = snake_to_pascal(service)
+
+        if service_name in service_name_overrides:
+            service_name = service_name_overrides[service_name]
 
         names.append(service_name)
         lines.append(f"from ._services.{service} import {service_name}")
@@ -245,26 +260,19 @@ def fix_permissions_and_ownership(
         )
 
 
-def adjust_import_paths_in_files(dir_path, target: Literal["api", "model"]):
-    print(f"🔧  Adjusting import paths in {target}s...")
+def fix_import_paths_in_models():
+    print("🔧  Adjusting import paths in models...")
 
-    for file in os.listdir(dir_path):
+    for file in os.listdir(GENERATED_MODELS_DIR):
         if not file.endswith(".py"):
             continue
 
-        file_path = os.path.join(dir_path, file)
+        file_path = os.path.join(GENERATED_MODELS_DIR, file)
         file_content = ""
 
         with open(file_path, "r", encoding="utf-8") as f:
             file_content = f.read()
 
-        if target == "api":
-            file_content = file_content.replace(
-                "from .models.",
-                "from ..models.",
-            )
-
-        if target == "model":
             file_content = file_content.replace(
                 "from .models.",
                 "from .",
@@ -319,14 +327,13 @@ def execute_post_build_tasks() -> None:
     fix_permissions_and_ownership(GENERATED_API_DIR)
     fix_permissions_and_ownership(GENERATED_MODELS_DIR)
 
-    adjust_import_paths_in_files(GENERATED_API_DIR, "api")
-    adjust_import_paths_in_files(GENERATED_MODELS_DIR, "model")
+    fix_import_paths_in_models()
 
     remove_openapi_generator_cache()
 
-    format_generated_files()
-    fix_code_style_issues()
     fix_import_issues()
+    fix_code_style_issues()
+    format_generated_files()
 
 
 if __name__ == "__main__":

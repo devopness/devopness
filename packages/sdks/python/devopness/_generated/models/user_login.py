@@ -6,6 +6,8 @@ Note:
     https://openapi-generator.tech
 """
 
+from typing import TypedDict
+
 from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
@@ -24,3 +26,12 @@ class UserLogin(DevopnessBaseModel):
         description="The user's registered e-mail address. Must be a valid email address."
     )
     password: StrictStr = Field(description="The user password.")
+
+
+class UserLoginDict(TypedDict, total=False):
+    """
+    TypedDict for UserLogin.
+    """
+
+    email: str
+    password: str

@@ -31,7 +31,7 @@ class DevopnessBaseModel(BaseModel):
         return hasattr(self, key)
 
     @classmethod
-    def from_dict(cls, data: dict) -> Self:
+    def from_dict(cls, data) -> Self:
         """
         Create an instance of the model from a dictionary.
 

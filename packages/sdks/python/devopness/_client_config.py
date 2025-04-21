@@ -2,12 +2,14 @@
 Devopness API Python SDK - Painless essential DevOps to everyone
 """
 
-from pydantic import BaseModel
+from typing import TypedDict
 
-__all__ = ["DevopnessClientConfig"]
+from ._base import DevopnessBaseModel
+
+__all__ = ["DevopnessClientConfig", "DevopnessClientConfigDict"]
 
 
-class DevopnessClientConfig(BaseModel):
+class DevopnessClientConfig(DevopnessBaseModel):
     """
     Configuration model for Devopness API client.
 
@@ -25,3 +27,14 @@ class DevopnessClientConfig(BaseModel):
         "Accept": "application/json",
         "Content-Type": "application/json",
     }
+
+
+class DevopnessClientConfigDict(TypedDict, total=False):
+    """
+    TypedDict for DevopnessClientConfig.
+    """
+
+    base_url: str
+    timeout: int
+    default_encoding: str
+    headers: dict[str, str]

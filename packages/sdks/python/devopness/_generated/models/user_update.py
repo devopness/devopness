@@ -6,7 +6,7 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import Optional
+from typing import Optional, TypedDict
 
 from pydantic import Field, StrictStr
 
@@ -37,3 +37,15 @@ class UserUpdate(DevopnessBaseModel):
         description="The URL Slug of the user. Must not be greater than 255 characters."
     )
     language: Optional[Language] = None
+
+
+class UserUpdateDict(TypedDict, total=False):
+    """
+    TypedDict for UserUpdate.
+    """
+
+    id: str
+    name: str
+    email: str
+    url_slug: str
+    language: Language

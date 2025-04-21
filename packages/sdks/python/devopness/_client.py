@@ -2,10 +2,10 @@
 Devopness API Python SDK - Painless essential DevOps to everyone
 """
 
-from typing import Optional
+from typing import Optional, Union
 
 from ._base import DevopnessBaseService
-from ._client_config import DevopnessClientConfig
+from ._client_config import DevopnessClientConfig, DevopnessClientConfigDict
 from .services import UserService
 
 __all__ = ["DevopnessClient"]
@@ -20,9 +20,14 @@ class DevopnessClient:
 
     def __init__(
         self,
-        config: Optional[DevopnessClientConfig] = None,
+        config: Optional[
+            Union[DevopnessClientConfig, DevopnessClientConfigDict]
+        ] = None,
     ) -> None:
-        config = config or DevopnessClientConfig()
+        if config is None:
+            config = DevopnessClientConfig()
+        elif isinstance(config, dict):
+            config = DevopnessClientConfig.from_dict(config)
 
         self.users = UserService(config)
 

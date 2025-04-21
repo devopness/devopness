@@ -6,7 +6,7 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import Optional, Union
+from typing import Optional, TypedDict, Union
 
 from pydantic import Field, StrictFloat, StrictInt
 
@@ -49,3 +49,16 @@ class TriggeredActionSummary(DevopnessBaseModel):
         default=None,
         description="Total of actions that were triggered by the user with status failed",
     )
+
+
+class TriggeredActionSummaryDict(TypedDict, total=False):
+    """
+    TypedDict for TriggeredActionSummary.
+    """
+
+    count: float
+    queued: float
+    pending: float
+    in_progress: float
+    completed: float
+    failed: float
