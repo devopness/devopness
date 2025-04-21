@@ -6,7 +6,7 @@ import { Dropdown, DropdownOption } from '.'
 const DROPDOWN_OPTIONS: DropdownOption[] = [
   {
     label: 'Bitbucket',
-    badge: { icon: true, name: 'bitbucket' },
+    badge: { icon: true, name: 'bitbucket', color: 'blue.800' }, // Added color
     onClick: fn(),
     isDisabled: true,
     tooltip: 'This item is blocked',
@@ -15,7 +15,7 @@ const DROPDOWN_OPTIONS: DropdownOption[] = [
   },
   {
     label: 'GitLab',
-    badge: { icon: true, name: 'gitlab' },
+    badge: { icon: true, name: 'gitlab', color: 'blue.800' }, // Added color
     onClick: fn(),
     isDisabled: false,
     isActive: false,
@@ -23,7 +23,7 @@ const DROPDOWN_OPTIONS: DropdownOption[] = [
   },
   {
     label: 'GitHub',
-    badge: { icon: true, name: 'github' },
+    badge: { icon: true, name: 'github', color: 'blue.800' }, // Added color
     onClick: fn(),
     isDisabled: false,
     isActive: false,
@@ -31,7 +31,7 @@ const DROPDOWN_OPTIONS: DropdownOption[] = [
   },
   {
     label: 'Remove',
-    badge: { icon: true, name: 'github' },
+    badge: { icon: true, name: 'github', color: 'blue.800' }, // Added color
     isDisabled: false,
     isActive: false,
     activeBackgroundColor: undefined,
@@ -42,11 +42,21 @@ const DROPDOWN_OPTIONS: DropdownOption[] = [
 const meta = {
   component: Dropdown,
   argTypes: {
-    content: { if: { arg: 'anchorType', eq: 'content' } },
-    hideDropdownIcon: { if: { arg: 'anchorType', eq: 'button' } },
-    hideLabel: { if: { arg: 'anchorType', eq: 'button' } },
-    buttonProps: { if: { arg: 'anchorType', eq: 'button' } },
-    label: { if: { arg: 'anchorType', eq: 'button' } },
+    content: {
+      if: { arg: 'anchorType', eq: 'content' },
+    },
+    hideDropdownIcon: {
+      if: { arg: 'anchorType', eq: 'button' },
+    },
+    hideLabel: {
+      if: { arg: 'anchorType', eq: 'button' },
+    },
+    buttonProps: {
+      if: { arg: 'anchorType', eq: 'button' },
+    },
+    label: {
+      if: { arg: 'anchorType', eq: 'button' },
+    },
   },
 } satisfies Meta<typeof Dropdown>
 

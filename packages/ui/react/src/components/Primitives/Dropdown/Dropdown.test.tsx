@@ -59,7 +59,7 @@ describe('Dropdown', () => {
                 name: 'add',
                 size: 12,
                 backgroundColor: getColor('blue.100'),
-                color: 'white',
+                color: 'blue.800',
               },
             },
           ]}
@@ -68,10 +68,14 @@ describe('Dropdown', () => {
 
       await user.click(screen.getByText('Menu'))
 
-      const icon = screen.getByTestId('option-0-badge')
-      expect(icon).toBeInTheDocument()
-      expect(icon.closest('span')).toHaveStyle({
+      const badge = screen.getByTestId('option-0-badge')
+      expect(badge).toBeInTheDocument()
+      expect(badge.closest('span')).toHaveStyle({
         backgroundColor: getColor('blue.100'),
+      })
+      const icon = badge.querySelector('svg')
+      expect(icon).toHaveStyle({
+        color: getColor('blue.800'),
       })
     })
 
@@ -88,7 +92,7 @@ describe('Dropdown', () => {
                 icon: true,
                 name: 'add',
                 backgroundColor: getColor('blue.100'),
-                color: 'white',
+                color: 'blue.800',
               },
             },
           ]}
@@ -97,8 +101,8 @@ describe('Dropdown', () => {
 
       await user.click(screen.getByText('Menu'))
 
-      const icon = screen.getByTestId('option-0-badge')
-      expect(icon).toBeInTheDocument()
+      const badge = screen.getByTestId('option-0-badge')
+      expect(badge).toBeInTheDocument()
       expect(screen.getByLabelText('add')).toHaveAttribute('height', '12')
       expect(screen.getByLabelText('add')).toHaveAttribute('width', '12')
     })
@@ -113,8 +117,8 @@ describe('Dropdown', () => {
             {
               label: 'Option',
               badge: {
-                backgroundColor: 'red',
-                color: 'white',
+                backgroundColor: getColor('red.100'),
+                color: 'blue.800',
               },
             },
           ]}
@@ -124,6 +128,11 @@ describe('Dropdown', () => {
       await user.click(screen.getByText('Menu'))
 
       expect(screen.getByText('O')).toBeInTheDocument()
+      const badge = screen.getByText('O').closest('span')
+      expect(badge).toHaveStyle({
+        backgroundColor: getColor('red.100'),
+        color: getColor('blue.800'),
+      })
     })
   })
 
