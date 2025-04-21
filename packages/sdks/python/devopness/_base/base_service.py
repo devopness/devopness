@@ -3,6 +3,7 @@ Devopness API Python SDK - Painless essential DevOps to everyone
 """
 
 from typing import Any, Optional
+from urllib.parse import urlencode
 
 import httpx
 
@@ -246,3 +247,25 @@ class DevopnessBaseService:
             payload = data.model_dump()
 
         return payload
+
+    @staticmethod
+    def __get_query_string(params: dict[str, Any]) -> str:
+        """
+        Returns the query string from the given query parameters.
+
+        Args:
+            query_params (dict[str, Any]): The query parameters.
+
+        Returns:
+            str: The query string.
+        """
+        params = {}
+        for key, value in params.items():
+            if value is None:
+                continue
+
+            params[key] = value
+
+        query_string = urlencode(params)
+
+        return query_string

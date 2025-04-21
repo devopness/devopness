@@ -37,19 +37,20 @@ class DevopnessResponse(Generic[T]):
     def __init__(
         self,
         response: httpx.Response,
-        model_cls: Optional[type[DevopnessBaseModel]] = None,
+        model_cls: Optional[Union[type[DevopnessBaseModel], type]] = None,
     ) -> None:
         """
         Initialize an ApiResponse object from an httpx.Response.
 
         Args:
             response (httpx.Response): The HTTP response to wrap.
-            model_cls (Optional[type[DevopnessBaseModel]]): Optional model to
+            model_cls (Optional[Union[type[DevopnessBaseModel], type]]):
+                                                      Optional model to
                                                       deserialize the response
                                                       body into.
         """
         self.status = response.status_code
-        self.data = self._parse_data(response, model_cls)
+        self.data = self._parse_data(response, model_cls)  # type: ignore
         self.page_count = self._extract_last_page_number(response)
         self.action_id = self._parse_action_id(response)
 
@@ -101,26 +102,30 @@ class DevopnessResponse(Generic[T]):
     def _parse_data(
         self,
         response: httpx.Response,
-        model_cls: Optional[type[DevopnessBaseModel]],
-    ) -> T:
+        model_cls: Optional[Union[type[DevopnessBaseModel], type]],
+    ):
         """
         Parse the response data into the specified model class.
-
-        Args:
-            response (httpx.Response): The HTTP response object.
-            model_cls (Optional[type[DevopnessBaseModel]]): The model to
-                                                       deserialize the
-                                                       response body into.
-
-        Returns:
-            T: The parsed data.
         """
         raw_data: bytes = response.read()
+
+        if model_cls is str:
+            return raw_data.decode("utf-8")
+
+        if model_cls is int:
+            return int(raw_data.decode("utf-8"))
+
+        if model_cls is float:
+            return float(raw_data.decode("utf-8"))
+
+        # No data to parse, just return None
+        if raw_data == b"":
+            return None
 
         try:
             # No model provided, just try decoding JSON as dict
             if not model_cls:
-                return json.loads(raw_data)  # type: ignore
+                return json.loads(raw_data)
 
             # Handle Union types (e.g., AnyOf or OneOf)
             if get_origin(model_cls) is Union:
@@ -143,4 +148,4 @@ class DevopnessResponse(Generic[T]):
                 "Returning raw response data instead."
             )
 
-            return json.loads(raw_data)  # type: ignore
+            return json.loads(raw_data)

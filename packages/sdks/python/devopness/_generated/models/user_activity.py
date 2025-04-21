@@ -6,6 +6,9 @@ Note:
     https://openapi-generator.tech
 """
 
+from typing import TypedDict
+
+
 from .. import DevopnessBaseModel
 from .triggered_actions import TriggeredActions
 from .user_environment_stats import UserEnvironmentStats
@@ -22,6 +25,17 @@ class UserActivity(DevopnessBaseModel):
         environments (UserEnvironmentStats):
         teams (UserTeamStats):
         triggered_actions (TriggeredActions):
+    """
+
+    projects: UserProjectStats
+    environments: UserEnvironmentStats
+    teams: UserTeamStats
+    triggered_actions: TriggeredActions
+
+
+class UserActivityDict(TypedDict, total=False):
+    """
+    TypedDict for UserActivity.
     """
 
     projects: UserProjectStats

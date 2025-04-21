@@ -72,9 +72,6 @@ packages = [
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.11.6"
 
-[tool.ruff]
-extend-exclude = ["devopness/_generated/models/__init__.py"]
-
 [tool.ruff.lint]
 ignore = [
   "F841", # Local variable is assigned to but never used

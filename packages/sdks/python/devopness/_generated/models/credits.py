@@ -6,7 +6,7 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import Optional, Union
+from typing import Optional, TypedDict, Union
 
 from pydantic import Field, StrictFloat, StrictInt
 
@@ -33,3 +33,13 @@ class Credits(DevopnessBaseModel):
     remaining: Optional[Union[StrictFloat, StrictInt]] = Field(
         default=None, description="Total credits available to use to perform actions"
     )
+
+
+class CreditsDict(TypedDict, total=False):
+    """
+    TypedDict for Credits.
+    """
+
+    limit: float
+    used: float
+    remaining: float

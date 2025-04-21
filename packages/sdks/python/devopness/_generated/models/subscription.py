@@ -7,7 +7,7 @@ Note:
 """
 
 from datetime import datetime
-from typing import List, Optional, Union
+from typing import List, Optional, TypedDict, Union
 
 from pydantic import Field, StrictFloat, StrictInt, StrictStr
 
@@ -79,3 +79,24 @@ class Subscription(DevopnessBaseModel):
     balances: Optional[List[Optional[SubscriptionBalance]]] = Field(
         default=None, description="The list of subscription balances"
     )
+
+
+class SubscriptionDict(TypedDict, total=False):
+    """
+    TypedDict for Subscription.
+    """
+
+    id: int
+    user_id: int
+    plan_name: str
+    status: str
+    quantity: int
+    price_unit: float
+    price_total: float
+    price_currency: str
+    cancelled_at: datetime
+    ends_at: datetime
+    created_at: datetime
+    updated_at: datetime
+    current_balance: SubscriptionBalance
+    balances: List[SubscriptionBalance]

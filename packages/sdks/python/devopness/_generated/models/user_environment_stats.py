@@ -6,7 +6,7 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import Optional, Union
+from typing import Optional, TypedDict, Union
 
 from pydantic import Field, StrictFloat, StrictInt
 
@@ -30,3 +30,12 @@ class UserEnvironmentStats(DevopnessBaseModel):
         default=None,
         description="Total number of environments that user has access to, as team member.",
     )
+
+
+class UserEnvironmentStatsDict(TypedDict, total=False):
+    """
+    TypedDict for UserEnvironmentStats.
+    """
+
+    owner_of: float
+    member_of: float

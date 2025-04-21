@@ -6,6 +6,8 @@ Note:
     https://openapi-generator.tech
 """
 
+from typing import TypedDict
+
 from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
@@ -22,3 +24,11 @@ class UserUrl(DevopnessBaseModel):
     billing_management_url: StrictStr = Field(
         description="The URL leading to a billing management page"
     )
+
+
+class UserUrlDict(TypedDict, total=False):
+    """
+    TypedDict for UserUrl.
+    """
+
+    billing_management_url: str

@@ -6,7 +6,7 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List
+from typing import List, TypedDict
 
 from pydantic import Field, StrictStr
 
@@ -27,3 +27,13 @@ class UserProfileOptions(DevopnessBaseModel):
     billing: StaticBillingInfo
     languages: List[StrictStr] = Field(description="Supported languages")
     timezones: List[StrictStr] = Field(description="Supported time zones")
+
+
+class UserProfileOptionsDict(TypedDict, total=False):
+    """
+    TypedDict for UserProfileOptions.
+    """
+
+    billing: StaticBillingInfo
+    languages: List[str]
+    timezones: List[str]

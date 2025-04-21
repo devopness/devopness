@@ -6,7 +6,7 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional
+from typing import List, Optional, TypedDict
 
 from pydantic import Field
 
@@ -25,3 +25,11 @@ class StaticBillingInfo(DevopnessBaseModel):
     subscription_plans: Optional[List[Optional[SubscriptionPlan]]] = Field(
         default=None, description="The list of subscription plans"
     )
+
+
+class StaticBillingInfoDict(TypedDict, total=False):
+    """
+    TypedDict for StaticBillingInfo.
+    """
+
+    subscription_plans: List[SubscriptionPlan]

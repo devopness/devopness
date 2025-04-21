@@ -6,7 +6,8 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional
+from typing import List, Optional, TypedDict
+
 
 from .. import DevopnessBaseModel
 from .triggered_action_stats import TriggeredActionStats
@@ -24,3 +25,12 @@ class TriggeredActions(DevopnessBaseModel):
 
     summary: Optional[TriggeredActionSummary] = None
     operations: Optional[List[TriggeredActionStats]] = None
+
+
+class TriggeredActionsDict(TypedDict, total=False):
+    """
+    TypedDict for TriggeredActions.
+    """
+
+    summary: TriggeredActionSummary
+    operations: List[TriggeredActionStats]

@@ -6,7 +6,7 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import Optional
+from typing import Optional, TypedDict
 
 from pydantic import Field, StrictStr
 
@@ -41,3 +41,15 @@ class UserVerify(DevopnessBaseModel):
     password: StrictStr = Field(
         description="The new password to account. Must be at least 8 characters."
     )
+
+
+class UserVerifyDict(TypedDict, total=False):
+    """
+    TypedDict for UserVerify.
+    """
+
+    email: str
+    token: str
+    name: str
+    url_slug: str
+    password: str

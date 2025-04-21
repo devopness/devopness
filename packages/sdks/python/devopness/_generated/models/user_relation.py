@@ -7,7 +7,7 @@ Note:
 """
 
 from datetime import datetime
-from typing import Optional
+from typing import Optional, TypedDict
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
 from typing_extensions import Annotated
@@ -51,3 +51,18 @@ class UserRelation(DevopnessBaseModel):
     updated_at: Optional[datetime] = Field(
         default=None, description="The date and time when the record was last updated"
     )
+
+
+class UserRelationDict(TypedDict, total=False):
+    """
+    TypedDict for UserRelation.
+    """
+
+    id: int
+    name: str
+    email: str
+    url_slug: str
+    language: Language
+    active: bool
+    created_at: datetime
+    updated_at: datetime
