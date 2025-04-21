@@ -26,17 +26,17 @@ KEEP=(
   "triggered_action_summary import"
 )
 
-INIT_FILE="devopness/api/generated/models/__init__.py"
-GREP_EXPR=$(printf "|^from .%s" "${KEEP[@]}")
+INIT_FILE="devopness/_generated/models/__init__.py"
+GREP_EXPR=$(printf "|^from .models.%s" "${KEEP[@]}")
 GREP_EXPR=${GREP_EXPR:1}
 grep -E "$GREP_EXPR" "$INIT_FILE" >"${INIT_FILE}.tmp" && mv "${INIT_FILE}.tmp" "$INIT_FILE" --force
 
-find "devopness/api/generated/api" -type f -name '*.py' \
+find "devopness/_generated/api" -type f -name '*.py' \
   ! -iname 'user*.py' \
   ! -iname '__init__.py' \
   -exec rm -f {} +
 
-find "devopness/api/generated/models" -type f -name '*.py' \
+find "devopness/_generated/models" -type f -name '*.py' \
   ! -iname 'user*.py' \
   ! -iname '__init__.py' \
   ! -iname 'credits.py' \

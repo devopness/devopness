@@ -2,8 +2,8 @@
 Devopness API Python SDK - Painless essential DevOps to everyone
 """
 
-from .devopness_client import DevopnessClient
-from .services import DevopnessClientConfig
+from ._client import DevopnessClient
+from ._client_config import DevopnessClientConfig
 
 __all__ = [
     "DevopnessClient",
