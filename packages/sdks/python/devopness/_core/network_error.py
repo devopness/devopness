@@ -27,7 +27,7 @@ class DevopnessNetworkError(DevopnessError):
         exception (httpx.RequestError): The original exception raised by httpx.
     """
 
-    url: httpx.URL
+    url: str
     method: str
     exception: httpx.RequestError
 
@@ -37,7 +37,7 @@ class DevopnessNetworkError(DevopnessError):
         method: str,
         exception: httpx.RequestError,
     ) -> None:
-        self.url = url
+        self.url = str(url)
         self.method = method
         self.exception = exception
 
@@ -46,8 +46,7 @@ class DevopnessNetworkError(DevopnessError):
     def __str__(self) -> str:
         return (
             "\nDevopness SDK Error: Network Request Failed\n"
-            f"\nURL: {self.url}"
-            f"\nMethod: {self.method}"
+            f"\nRequest: {self.method} {self.url}"
             f"\nException: {self.exception}"
         )
 
