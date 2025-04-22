@@ -1,17 +1,34 @@
 name: CI - SDK JavaScript
 on:
   pull_request:
-    paths:
-      - packages/sdks/javascript/**
+    types:
+      - opened
+      - edited
+      - synchronize
 
 defaults:
   run:
     working-directory: packages/sdks/javascript
 
 jobs:
+  changes:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
+    outputs:
+      sdk_js: ${{ steps.filter.outputs.sdk_js }}
+    steps:
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            sdk_js:
+              - 'packages/sdks/javascript/**'
+
   build:
     name: Build SDK-JS
-
+    needs: changes
+    if: ${{ needs.changes.outputs.sdk_js == 'true' }}
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -32,6 +49,7 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           registry-url: https://registry.npmjs.org
+
       - name: install
         run: npm ci --ignore-scripts
 

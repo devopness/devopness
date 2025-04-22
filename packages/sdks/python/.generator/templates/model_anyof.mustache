@@ -1,0 +1,12 @@
+from typing import Union
+
+{{#vendorExtensions.x-py-other-imports}}
+{{{.}}}
+{{/vendorExtensions.x-py-other-imports}}
+{{#vendorExtensions.x-py-model-imports}}
+{{{.}}}
+{{/vendorExtensions.x-py-model-imports}}
+
+#: AnyOf Type
+#: {{{description}}}{{^description}}{{{classname}}}{{/description}}
+{{classname}} = Union[{{#anyOf}}{{.}},{{/anyOf}}]
