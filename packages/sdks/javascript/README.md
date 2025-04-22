@@ -1,4 +1,4 @@
-# Devopness SDK - JavaScript ><>
+# Devopness SDK - JavaScript
 
 [![NPM](https://nodei.co/npm/@devopness/sdk-js.png?downloads=true&stars=true)](https://nodei.co/npm/@devopness/sdk-js/)
 
