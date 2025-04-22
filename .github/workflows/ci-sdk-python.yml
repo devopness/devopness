@@ -68,17 +68,14 @@ jobs:
     needs: [build, detect-changes]
     if: ${{ needs.detect-changes.outputs.changes == 'true' }}
     runs-on: ubuntu-latest
+    continue-on-error: false
 
     steps:
-      - uses: actions/checkout@v3
-        with:
-          repository: ${{ github.event.pull_request.head.repo.full_name }}
-          ref: ${{ github.head_ref }}
-          fetch-depth: 0
-
       - name: Fail if build did not succeed
         run: |
           if [ "${{ needs.build.result }}" != "success" ]; then
-            echo "Build job failed or was cancelled"
+            echo "❌ Build job failed or was cancelled"
             exit 1
           fi
+
+          echo "✅ Build job succeeded"

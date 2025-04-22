@@ -2,7 +2,7 @@ import get from 'lodash/get'
 
 import type { Flatten, HexDigit, OpacityFromFloatToHex } from './types'
 
-const colorsX = {
+const colors = {
   amber: {
     800: '#a39015',
     500: '#fab01c',
