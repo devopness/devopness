@@ -11,24 +11,25 @@ defaults:
     working-directory: packages/sdks/javascript
 
 jobs:
-  changes:
+  detect-changes:
+    name: Detect changes in SDK-JS
     runs-on: ubuntu-latest
     permissions:
       pull-requests: read
     outputs:
-      sdk_js: ${{ steps.filter.outputs.sdk_js }}
+      changes: ${{ steps.filter.outputs.changes }}
     steps:
       - uses: dorny/paths-filter@v3
         id: filter
         with:
           filters: |
-            sdk_js:
+            changes:
               - 'packages/sdks/javascript/**'
 
   build:
     name: Build SDK-JS
-    needs: changes
-    if: ${{ needs.changes.outputs.sdk_js == 'true' }}
+    needs: detect-changes
+    if: ${{ needs.detect-changes.outputs.changes == 'true' }}
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -69,3 +70,25 @@ jobs:
           file_pattern: 'packages/sdks/javascript/*'
           commit_user_name: devopness-automations
           commit_user_email: automations@devopness.com
+
+  verify-build:
+    name: Verify build of SDK-JS
+    needs: [build, detect-changes]
+    if: success() || failure()
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Fail if build did not succeed
+        run: |
+          if [ "${{ needs.build.result }}" != "success" ]; then
+            echo "❌ Build job failed or was cancelled"
+            exit 1
+          fi
+
+          echo "✅ Build job succeeded"
