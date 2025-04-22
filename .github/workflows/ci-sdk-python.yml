@@ -65,7 +65,7 @@ jobs:
   verify-build:
     name: Verify build of SDK-Python
     needs: [build, detect-changes]
-    if: always()
+    if: success() || failure()
     runs-on: ubuntu-latest
 
     steps:
