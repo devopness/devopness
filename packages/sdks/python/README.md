@@ -17,6 +17,9 @@ The Devopness SDK for Python provides a set of predefined classes that offer eas
   - [Invoking authentication-protected endpoints](#invoking-authentication-protected-endpoints)
     - [Asynchronous usage](#asynchronous-usage-1)
     - [Synchronous usage](#synchronous-usage-1)
+  - [Error Handling](#error-handling)
+    - [Asynchronous usage](#asynchronous-usage-2)
+    - [Synchronous usage](#synchronous-usage-2)
 - [Development](#development)
   - [With Docker](#with-docker)
 
@@ -196,6 +199,112 @@ if __name__ == "__main__":
 ```
 
 In the examples above, `current_user` is an instance of `ApiResponse`, and the `data` property contains the data returned from the API.
+
+### Error Handling
+
+The Devopness SDK for Python provides a structured approach to error handling through a hierarchy of exceptions.
+
+> TIP:
+> All SDK-specific exceptions inherit from the base class `DevopnessSdkError`.
+> You can use this class to catch and handle all exceptions raised by the SDK.
+
+You should anticipate and handle specific exceptions using `try...except` blocks to gracefully manage potential issues during API interactions.
+
+- `DevopnessApiError`: This exception is raised when the Devopness API returns an error response. This typically indicates issues with the request itself, such as invalid input data, unauthorized access, or resource not found. It provides the following attributes to help diagnose the error:
+
+| Attribute   | Description                                                                                                        |
+| ----------- | ------------------------------------------------------------------------------------------------------------------ |
+| status_code | The HTTP status code returned by the API                                                                           |
+| message     | A general error message from the API                                                                               |
+| errors      | An optional dictionary containing detailed validation errors, often encountered during create or update operations |
+
+- `DevopnessNetworkError`: This exception is raised when a generic network-related issue occurs during the communication with the Devopness API. This could be due to problems like an unreachable host, connection timeouts, or other network configuration errors.
+
+Here are examples demonstrating how to catch and handle these exceptions:
+
+#### Asynchronous usage
+
+```python
+import asyncio
+
+from devopness import DevopnessClient
+from devopness.core import DevopnessApiError, DevopnessNetworkError
+from devopness.models import UserLogin
+
+devopness = DevopnessClient()
+
+async def authenticate_and_get_profile(user_email, user_pass):
+    try:
+        # Attempt authentication
+        user_data = UserLogin(email=user_email, password=user_pass)
+        user_tokens = await devopness.users.login_user(user_data)
+        devopness.access_token = user_tokens.data.access_token
+        print("Authentication successful.")
+
+        # Attempt to get user profile
+        current_user = await devopness.users.get_user_me()
+        print(f'Successfully retrieved user profile with ID: {current_user.data.id}')
+
+    except DevopnessApiError as e:
+        print(f"Devopness API Error: Status Code: {e.status_code}, Message: {e.message}")
+
+        if e.errors:
+            print("Validation Errors:")
+
+            for field, messages in e.errors.items():
+                print(f"  {field}: {', '.join(messages)}")
+
+    except DevopnessNetworkError as e:
+        print(f"Devopness Network Error: {e}")
+
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
+
+if __name__ == "__main__":
+    asyncio.run(authenticate_and_get_profile('user@email.com', 'secret-password'))
+```
+
+#### Synchronous usage
+
+```python
+from devopness import DevopnessClient
+from devopness.core import DevopnessApiError, DevopnessNetworkError
+from devopness.models import UserLogin
+
+devopness = DevopnessClient()
+
+def authenticate_and_get_profile_sync(user_email, user_pass):
+    try:
+        # Attempt authentication
+        user_data = UserLogin(email=user_email, password=user_pass)
+        user_tokens = devopness.users.login_user_sync(user_data)
+        devopness.access_token = user_tokens.data.access_token
+        print("Authentication successful.")
+
+        # Attempt to get user profile
+        current_user = devopness.users.get_user_sync(1) # Assuming user with ID 1 exists
+        print(f'Successfully retrieved user profile with ID: {current_user.data.id}')
+
+    except DevopnessApiError as e:
+        print(f"Devopness API Error: Status Code: {e.status_code}, Message: {e.message}")
+
+        if e.errors:
+            print("Validation Errors:")
+
+            for field, messages in e.errors.items():
+                print(f"  {field}: {', '.join(messages)}")
+
+    except DevopnessNetworkError as e:
+        print(f"Devopness Network Error: {e}")
+
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
+
+if __name__ == "__main__":
+    authenticate_and_get_profile_sync('user@email.com', 'secret-password')
+```
+
+By implementing these try...except blocks, you can create more robust applications that gracefully handle errors during interactions with the Devopness SDK for Python.
 
 ## Development
 
