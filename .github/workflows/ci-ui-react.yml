@@ -11,24 +11,25 @@ defaults:
     working-directory: packages/ui/react
 
 jobs:
-  changes:
+  detect-changes:
+    name: Detect changes in UI-React
     runs-on: ubuntu-latest
     permissions:
       pull-requests: read
     outputs:
-      ui_react: ${{ steps.filter.outputs.ui_react }}
+      changes: ${{ steps.filter.outputs.changes }}
     steps:
       - uses: dorny/paths-filter@v3
         id: filter
         with:
           filters: |
-            ui_react:
+            changes:
               - 'packages/ui/react/**'
 
   build:
     name: Build UI-React
-    needs: changes
-    if: ${{ needs.changes.outputs.ui_react == 'true' }}
+    needs: detect-changes
+    if: ${{ needs.detect-changes.outputs.changes == 'true' }}
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -61,3 +62,17 @@ jobs:
 
       - name: test
         run: npm test
+
+  verify-build:
+    name: Verify build of UI-React
+    needs: [build, detect-changes]
+    if: ${{ needs.detect-changes.outputs.changes == 'true' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Fail if build did not succeed
+        run: |
+          if [ "${{ needs.build.result }}" != "success" ]; then
+            echo "Build job failed or was cancelled"
+            exit 1
+          fi
