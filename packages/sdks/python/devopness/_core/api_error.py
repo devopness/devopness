@@ -51,8 +51,6 @@ class DevopnessApiError(DevopnessSdkError):
         try:
             res_data = e_res.json()
 
-            print(res_data)
-
             if isinstance(res_data, dict):
                 if isinstance(res_data.get("errors"), dict):
                     self.errors = res_data["errors"]
@@ -66,7 +64,7 @@ class DevopnessApiError(DevopnessSdkError):
         except json.JSONDecodeError:
             pass  # Keep self.message as-is
 
-        super().__init__(self.message)
+        super().__init__()
 
     def __str__(self) -> str:
         lines = [
