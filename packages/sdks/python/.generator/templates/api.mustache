@@ -25,6 +25,7 @@ class {{classname}}Service(DevopnessBaseService):
         {{/summary}}
 
         Raises:
+            DevopnessApiError: If an api request error occurs.
             DevopnessNetworkError: If an network error occurs.
         """
 {{>api_method_body_endpoint}}
@@ -42,6 +43,7 @@ class {{classname}}Service(DevopnessBaseService):
         {{/summary}}
 
         Raises:
+            DevopnessApiError: If an api request error occurs.
             DevopnessNetworkError: If an network error occurs.
         """
 {{>api_method_body_endpoint}}
