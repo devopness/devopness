@@ -11,7 +11,7 @@ from .services import UserService
 __all__ = ["DevopnessClient"]
 
 
-class DevopnessClient:
+class DevopnessClientX:
     """
     DevopnessApiClient provides an interface to the Devopness API.
     """
