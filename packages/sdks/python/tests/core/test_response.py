@@ -34,7 +34,7 @@ def build_response(
     return response
 
 
-def test_response_with_dict() -> None:
+def test_devopness_response_with_dict() -> None:
     response = build_response({"id": 123})
     dev_response: DevopnessResponse[DummyModel] = DevopnessResponse(
         response,
@@ -45,7 +45,7 @@ def test_response_with_dict() -> None:
     assert dev_response.data.id == 123
 
 
-def test_response_with_int() -> None:
+def test_devopness_response_with_int() -> None:
     response = build_response(42)
     response.read.return_value = b"42"
 
@@ -57,7 +57,7 @@ def test_response_with_int() -> None:
     assert dev_response.data == 42
 
 
-def test_response_with_str() -> None:
+def test_devopness_response_with_str() -> None:
     response = build_response("Hello")
     response.read.return_value = b"Hello"
 
@@ -69,7 +69,7 @@ def test_response_with_str() -> None:
     assert dev_response.data == "Hello"
 
 
-def test_response_with_float() -> None:
+def test_devopness_response_with_float() -> None:
     response = build_response(3.14)
     response.read.return_value = b"3.14"
 
@@ -81,7 +81,7 @@ def test_response_with_float() -> None:
     assert dev_response.data == 3.14
 
 
-def test_response_with_empty_body() -> None:
+def test_devopness_response_with_empty_body() -> None:
     response = build_response(None)
     response.read.return_value = b""
 
@@ -92,7 +92,7 @@ def test_response_with_empty_body() -> None:
     assert dev_response.data is None
 
 
-def test_response_with_action_id() -> None:
+def test_devopness_response_with_action_id() -> None:
     headers = {"x-devopness-action-id": "456"}
     response = build_response({}, headers=headers)
 
@@ -103,7 +103,7 @@ def test_response_with_action_id() -> None:
     assert dev_response.action_id == 456
 
 
-def test_response_with_invalid_action_id() -> None:
+def test_devopness_response_with_invalid_action_id() -> None:
     headers = {"x-devopness-action-id": "invalid"}
     response = build_response({}, headers=headers)
 
@@ -114,7 +114,7 @@ def test_response_with_invalid_action_id() -> None:
     assert dev_response.action_id is None
 
 
-def test_response_with_pagination_last_page() -> None:
+def test_devopness_response_with_pagination_last_page() -> None:
     headers = {
         "link": '<https://api.example.com?page=5>; rel="last", <https://api.example.com?page=1>; rel="first"'  # noqa: E501
     }
@@ -127,7 +127,7 @@ def test_response_with_pagination_last_page() -> None:
     assert dev_response.page_count == 5
 
 
-def test_response_with_no_pagination() -> None:
+def test_devopness_response_with_no_pagination() -> None:
     response = build_response({})
 
     dev_response: DevopnessResponse = DevopnessResponse(
