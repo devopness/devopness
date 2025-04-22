@@ -27,10 +27,8 @@ jobs:
 
   build:
     name: Build SDK-JS
-
     needs: changes
     if: ${{ needs.changes.outputs.sdk_js == 'true' }}
-
     runs-on: ${{ matrix.os }}
 
     strategy:
