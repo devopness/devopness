@@ -4,14 +4,14 @@ Devopness API Python SDK - Painless essential DevOps to everyone
 
 from ._core import (
     DevopnessApiError,
-    DevopnessError,
     DevopnessNetworkError,
     DevopnessResponse,
+    DevopnessSdkError,
 )
 
 __all__ = [
     "DevopnessApiError",
-    "DevopnessError",
     "DevopnessNetworkError",
     "DevopnessResponse",
+    "DevopnessSdkError",
 ]

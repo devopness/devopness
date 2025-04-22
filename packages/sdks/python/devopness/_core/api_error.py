@@ -7,12 +7,12 @@ from typing import Optional
 
 import httpx
 
-from .error import DevopnessError
+from .sdk_error import DevopnessSdkError
 
 __all__ = ["DevopnessApiError"]
 
 
-class DevopnessApiError(DevopnessError):
+class DevopnessApiError(DevopnessSdkError):
     """
     Exception raised when the Devopness API responds with an HTTP error status.
 

@@ -7,7 +7,7 @@ from typing import Callable
 
 import httpx
 
-from . import DevopnessError
+from .sdk_error import DevopnessSdkError
 
 __all__ = [
     "DevopnessNetworkError",
@@ -16,7 +16,7 @@ __all__ = [
 ]
 
 
-class DevopnessNetworkError(DevopnessError):
+class DevopnessNetworkError(DevopnessSdkError):
     """
     Exception raised when a network-related error occurs when making requests
     to the Devopness API.
