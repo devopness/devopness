@@ -65,7 +65,7 @@ jobs:
   verify-build:
     name: Verify build of SDK-Python
     needs: [build, detect-changes]
-    if: ${{ needs.detect-changes.outputs.changes == 'true' }} && always()
+    if: always()
     runs-on: ubuntu-latest
 
     steps:
