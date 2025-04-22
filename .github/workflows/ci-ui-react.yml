@@ -31,7 +31,6 @@ jobs:
     needs: detect-changes
     if: ${{ needs.detect-changes.outputs.changes == 'true' }}
     runs-on: ${{ matrix.os }}
-    continue-on-error: true
 
     strategy:
       matrix:
@@ -67,7 +66,7 @@ jobs:
   verify-build:
     name: Verify build of UI-React
     needs: [build, detect-changes]
-    if: ${{ needs.detect-changes.outputs.changes == 'true' }}
+    if: always()
     runs-on: ubuntu-latest
 
     steps:
