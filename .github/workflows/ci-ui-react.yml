@@ -1,17 +1,34 @@
 name: CI - UI React
 on:
   pull_request:
-    paths:
-      - packages/ui/react/**
+    types:
+      - opened
+      - edited
+      - synchronize
 
 defaults:
   run:
     working-directory: packages/ui/react
 
 jobs:
+  changes:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
+    outputs:
+      ui_react: ${{ steps.filter.outputs.ui_react }}
+    steps:
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            ui_react:
+              - 'packages/ui/react/**'
+
   build:
     name: Build UI-React
-
+    needs: changes
+    if: ${{ needs.changes.outputs.ui_react == 'true' }}
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -32,6 +49,7 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           registry-url: https://registry.npmjs.org
+
       - name: install
         run: npm ci --ignore-scripts
 
