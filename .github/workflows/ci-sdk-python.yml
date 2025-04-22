@@ -1,16 +1,34 @@
 name: CI - SDK Python
 on:
   pull_request:
-    paths:
-      - packages/sdks/python/**
+    types:
+      - opened
+      - edited
+      - synchronize
 
 defaults:
   run:
     working-directory: packages/sdks/python
 
 jobs:
+  changes:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
+    outputs:
+      sdk_python: ${{ steps.filter.outputs.sdk_python }}
+    steps:
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            sdk_python:
+              - 'packages/sdks/python/**'
+
   build:
     name: Build Devopness SDK - Python
+    needs: changes
+    if: ${{ needs.changes.outputs.sdk_python == 'true' }}
     runs-on: ubuntu-latest
 
     steps:
