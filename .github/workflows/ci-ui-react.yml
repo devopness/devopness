@@ -66,7 +66,7 @@ jobs:
   verify-build:
     name: Verify build of UI-React
     needs: [build, detect-changes]
-    if: always()
+    if: success() || failure()
     runs-on: ubuntu-latest
 
     steps:
@@ -79,6 +79,8 @@ jobs:
       - name: Fail if build did not succeed
         run: |
           if [ "${{ needs.build.result }}" != "success" ]; then
-            echo "Build job failed or was cancelled"
+            echo "❌ Build job failed or was cancelled"
             exit 1
           fi
+
+          echo "✅ Build job succeeded"

@@ -29,7 +29,7 @@ import { UserService } from './services/UserService';
 import { VariableService } from './services/VariableService';
 import { VirtualHostService } from './services/VirtualHostService';
 
-export class DevopnessApiClient {
+export class DevopnessApiClientX {
   actions: ActionService;
   applications: ApplicationService;
   credentials: CredentialService;
