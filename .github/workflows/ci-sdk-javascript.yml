@@ -79,6 +79,7 @@ jobs:
 
     steps:
       - name: Fail if build did not succeed
+        shell: sh
         run: |
           if [ "${{ needs.build.result }}" != "success" ]; then
             echo "Build job failed or was cancelled"
