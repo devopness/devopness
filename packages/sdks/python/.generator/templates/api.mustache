@@ -23,6 +23,9 @@ class {{classname}}Service(DevopnessBaseService):
         {{#summary}}
         {{&summary}}
         {{/summary}}
+
+        Raises:
+            DevopnessNetworkError: If an network error occurs.
         """
 {{>api_method_body_endpoint}}
         response = await self._{{#lambda.lowercase}}{{httpMethod}}{{/lambda.lowercase}}(endpoint{{#allParams}}{{^isHeaderParam}}{{#-last}}{{^isPrimitiveType}}, {{paramName}}{{/isPrimitiveType}}{{/-last}}{{/isHeaderParam}}{{/allParams}})
@@ -37,6 +40,9 @@ class {{classname}}Service(DevopnessBaseService):
         {{#summary}}
         {{&summary}}
         {{/summary}}
+
+        Raises:
+            DevopnessNetworkError: If an network error occurs.
         """
 {{>api_method_body_endpoint}}
         response = self._{{#lambda.lowercase}}{{httpMethod}}_sync{{/lambda.lowercase}}(endpoint{{#allParams}}{{^isHeaderParam}}{{#-last}}{{^isPrimitiveType}}, {{paramName}}{{/isPrimitiveType}}{{/-last}}{{/isHeaderParam}}{{/allParams}})
