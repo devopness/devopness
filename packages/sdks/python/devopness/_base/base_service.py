@@ -246,7 +246,7 @@ class DevopnessBaseService:
         return payload
 
     @staticmethod
-    def __get_query_string(params: dict[str, Any]) -> str:
+    def _get_query_string(params: dict[str, Any]) -> str:
         """
         Returns the query string from the given query parameters.
 
