@@ -31,7 +31,6 @@ jobs:
     needs: detect-changes
     if: ${{ needs.detect-changes.outputs.changes == 'true' }}
     runs-on: ubuntu-latest
-    continue-on-error: true
 
     steps:
       - uses: actions/checkout@v3
@@ -66,11 +65,16 @@ jobs:
   verify-build:
     name: Verify build of SDK-Python
     needs: [build, detect-changes]
-    if: ${{ needs.detect-changes.outputs.changes == 'true' }}
+    if: ${{ needs.detect-changes.outputs.changes == 'true' }} && always()
     runs-on: ubuntu-latest
-    continue-on-error: false
 
     steps:
+      - uses: actions/checkout@v3
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
       - name: Fail if build did not succeed
         run: |
           if [ "${{ needs.build.result }}" != "success" ]; then
