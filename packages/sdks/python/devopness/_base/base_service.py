@@ -9,6 +9,10 @@ import httpx
 
 from .._base import DevopnessBaseModel
 from .._client_config import DevopnessClientConfig
+from .._core.network_error import (
+    handle_network_errors,
+    handle_network_errors_sync,
+)
 
 __all__ = ["DevopnessBaseService"]
 
@@ -91,6 +95,7 @@ class DevopnessBaseService:
 
         return response
 
+    @handle_network_errors
     async def _get(self, endpoint: str) -> httpx.Response:
         """
         Sends an HTTP GET request to the specified endpoint.
@@ -103,6 +108,7 @@ class DevopnessBaseService:
         """
         return await self.__client.get(endpoint)
 
+    @handle_network_errors
     async def _post(self, endpoint: str, data: Any = None) -> httpx.Response:
         """
         Sends an HTTP POST request with optional JSON body.
@@ -117,6 +123,7 @@ class DevopnessBaseService:
         payload = self.__get_payload(data)
         return await self.__client.post(endpoint, json=payload)
 
+    @handle_network_errors
     async def _put(self, endpoint: str, data: Any = None) -> httpx.Response:
         """
         Sends an HTTP PUT request with optional JSON body.
@@ -131,6 +138,7 @@ class DevopnessBaseService:
         payload = self.__get_payload(data)
         return await self.__client.put(endpoint, json=payload)
 
+    @handle_network_errors
     async def _delete(self, endpoint: str) -> httpx.Response:
         """
         Sends an HTTP DELETE request.
@@ -180,6 +188,7 @@ class DevopnessBaseService:
 
         return response
 
+    @handle_network_errors_sync
     def _get_sync(self, endpoint: str) -> httpx.Response:
         """
         Sends an HTTP GET request to the specified endpoint.
@@ -192,6 +201,7 @@ class DevopnessBaseService:
         """
         return self.__client_sync.get(endpoint)
 
+    @handle_network_errors_sync
     def _post_sync(self, endpoint: str, data: Any = None) -> httpx.Response:
         """
         Sends an HTTP POST request with optional JSON body.
@@ -206,6 +216,7 @@ class DevopnessBaseService:
         payload = self.__get_payload(data)
         return self.__client_sync.post(endpoint, json=payload)
 
+    @handle_network_errors_sync
     def _put_sync(self, endpoint: str, data: Any = None) -> httpx.Response:
         """
         Sends an HTTP PUT request with optional JSON body.
@@ -220,6 +231,7 @@ class DevopnessBaseService:
         payload = self.__get_payload(data)
         return self.__client_sync.put(endpoint, json=payload)
 
+    @handle_network_errors_sync
     def _delete_sync(self, endpoint: str) -> httpx.Response:
         """
         Sends an HTTP DELETE request.
