@@ -25,8 +25,8 @@ class {{classname}}Service(DevopnessBaseService):
         {{/summary}}
 
         Raises:
-            DevopnessApiError: If an api request error occurs.
-            DevopnessNetworkError: If an network error occurs.
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 {{>api_method_body_endpoint}}
         response = await self._{{#lambda.lowercase}}{{httpMethod}}{{/lambda.lowercase}}(endpoint{{#allParams}}{{^isHeaderParam}}{{#-last}}{{^isPrimitiveType}}, {{paramName}}{{/isPrimitiveType}}{{/-last}}{{/isHeaderParam}}{{/allParams}})

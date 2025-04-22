@@ -6,9 +6,9 @@
     "generators": {
       "sdk-python": {
         "generatorName": "python",
-        "inputSpec": "./.generator/api/spec.json",
+        "inputSpec": "./generator/api/spec.json",
         "output": "./devopness/_generated",
-        "templateDir": "./.generator/templates",
+        "templateDir": "./generator/templates",
         "additionalProperties": {
           "packageName": ""
         }
