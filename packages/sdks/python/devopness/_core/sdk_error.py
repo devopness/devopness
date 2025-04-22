@@ -2,8 +2,8 @@
 Devopness API Python SDK - Painless essential DevOps to everyone
 """
 
-__all__ = ["DevopnessError"]
+__all__ = ["DevopnessSdkError"]
 
 
-class DevopnessError(Exception):
+class DevopnessSdkError(Exception):
     """Base class for all Devopness SDK exceptions."""
