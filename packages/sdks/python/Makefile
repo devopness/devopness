@@ -11,13 +11,13 @@ WORKDIR=sdk
 
 .DEFAULT_GOAL=help
 
-build-image-x: ## Build Docker Image
+build-image: ## Build Docker Image
 	$(info Docker - Building Image ...)
 	@docker build \
 		-f Dockerfile \
 		-t $(IMAGE) .
 
-build-sdk-python-x: build-image ## Build Python SDK
+build-sdk-python: build-image ## Build Python SDK
 	$(info Docker - Building Devopness SDK - Python ...)
 	@docker run --rm \
 		-v $(PWD):/$(WORKDIR) \
@@ -29,7 +29,7 @@ build-sdk-python-x: build-image ## Build Python SDK
 		$(IMAGE):$(TAG) \
 		scripts/build.py
 
-publish-dev-x: build-image ## Publish Devopness SDK - Python to Test PyPI. Requires POETRY_TEST_PYPI_TOKEN.
+publish-dev: build-image ## Publish Devopness SDK - Python to Test PyPI. Requires POETRY_TEST_PYPI_TOKEN.
 	$(info Publishing Devopness SDK - Python to Test PyPI ...)
 	@docker run --rm \
 		-v $(PWD):/$(WORKDIR) \
