@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Script to run the test suite against the Devopness SDK - Python
+# Script to run the test unit suite against the Devopness SDK - Python
 
 set -euo pipefail
 

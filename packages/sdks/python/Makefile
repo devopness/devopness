@@ -52,9 +52,8 @@ test-unit: build-image ## Run the unit test suite against the SDK.
 	@docker run --rm \
 		-v $(PWD):/$(WORKDIR) \
 		--name devopness-sdk-python-tests \
-		--env PYTEST_ARGS="$(if $(ARGS),$(ARGS),-v)" \
 		$(IMAGE):$(TAG) \
-		/bin/bash scripts/test.sh
+		/bin/bash scripts/test-unit.sh
 
 help: ## Show this help.
 # `help' function obtained from GitHub gist: https://gist.github.com/prwhite/8168133?permalink_comment_id=4160123#gistcomment-4160123
