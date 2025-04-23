@@ -43,7 +43,18 @@ def remove_previous_generated_directories() -> None:
 def run_openapi_generator() -> None:
     print("🚀  Running OpenAPI Generator...")
 
-    cmd = "bash -c 'openapi-generator-cli generate'"
+    cmd_parts = [
+        "bash -c '",
+        "openapi-generator-cli generate",
+        '--input-spec="./generator/api/spec.json"',
+        '--generator-name="python"',
+        '--output="./devopness/_generated"',
+        '--template-dir="./generator/templates"',
+        '--additional-properties="packageName="',
+        "'",
+    ]
+
+    cmd = " ".join(cmd_parts)
     subprocess.run(
         cmd,
         shell=True,
