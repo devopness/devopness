@@ -128,7 +128,7 @@ def devopness(prism_server):
 
 
 @pytest.mark.asyncio
-async def test_request_from_invalid_expects_network_error() -> None:
+async def test_request_from_invalid_host_expects_network_error() -> None:
     client = DevopnessClient({"base_url": "http://invalid.devopness.local"})
 
     with pytest.raises(DevopnessNetworkError) as exc_info:
@@ -145,7 +145,7 @@ async def test_request_from_invalid_expects_network_error() -> None:
     ) in string_output
 
 
-def test_sync_request_from_invalid_expects_network_error() -> None:
+def test_sync_request_from_invalid_host_expects_network_error() -> None:
     client = DevopnessClient({"base_url": "http://invalid.devopness.local"})
 
     with pytest.raises(DevopnessNetworkError) as exc_info:
