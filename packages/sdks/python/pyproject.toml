@@ -82,3 +82,7 @@ respx = "^0.22.0"
 ignore = [
   "F841", # Local variable is assigned to but never used
 ]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
