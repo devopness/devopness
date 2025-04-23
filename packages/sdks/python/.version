@@ -1,0 +1,17 @@
+# Devopness SDK - Python: version registry
+#
+# This file stores specific versions of the Devopness SDK for publication.
+# It allows publishing arbitrary versions to Python Repository's.
+#
+# Format:
+#   <repository-name>==<semver>
+#
+# Example:
+#   SomeRepository==1.2.3
+#
+# Notes:
+# - The main version for PyPI is defined in the `pyproject.toml` under the `version` field.
+# - For convenience, a package version is also maintained on Test PyPI:
+#   https://test.pypi.org/project/devopness/
+
+TestPyPI==0.0.15

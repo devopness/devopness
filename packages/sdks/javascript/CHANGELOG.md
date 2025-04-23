@@ -1,10 +1,68 @@
 # @devopness/sdk-js
 
+## 2.163.0
+
+### Minor Changes
+
+- [#1587](https://github.com/devopness/devopness/pull/1587) [`f30e7be`](https://github.com/devopness/devopness/commit/f30e7be9d66de180a4e2caef2acb5cc190104729) Thanks [@Diegiwg](https://github.com/Diegiwg)!
+
+  ## ⚠️ Breaking Change
+
+  ### What changed?
+
+  All `<ResourceType>` services that were previously accessed through the `EnvironmentService` (such as `applications`) have been moved to their respective standalone services (e.g., `ApplicationService`). Properties like `application` no longer exist in `EnvironmentService`.
+
+  ### Why was this change made?
+
+  This refactor simplifies the SDK structure by consolidating all `<ResourceType>` methods into their respective services. It eliminates redundancy, improves maintainability, and makes the SDK more intuitive and aligned with common API design principles.
+
+  ### Previous usage example
+
+  Previously, creating an application required accessing the method through `environment.application`:
+
+  ```ts
+  const apiClient = new DevopnessApiClient();
+  const options =
+    await apiClient.environment.application.addEnvironmentApplication();
+  ```
+
+  ### New usage example
+
+  Now, all application-related methods are available directly under `application`:
+
+  ```ts
+  const apiClient = new DevopnessApiClient();
+  const options = await apiClient.application.addEnvironmentApplication();
+  ```
+
+  ### Impact & Migration Guide
+
+  Update all references that use `environment.<resourceType>` to the new direct service call format.
+  For example:
+
+  ```ts
+  // Before
+  apiClient.environment.application.listEnvironmentApplications();
+
+  // After
+  apiClient.application.listEnvironmentApplications();
+  ```
+
+  Repeat this migration for all affected `<ResourceType>` services.
+
+## 2.162.2
+
+### Patch Changes
+
+- [#1573](https://github.com/devopness/devopness/pull/1573) [`5ffe0f5`](https://github.com/devopness/devopness/commit/5ffe0f5cd5d67ab5c29b476194a9c05c9b0b2bdb) Thanks [@Diegiwg](https://github.com/Diegiwg)! - add url_slug in user-relation model
+
+- [#1573](https://github.com/devopness/devopness/pull/1573) [`5ffe0f5`](https://github.com/devopness/devopness/commit/5ffe0f5cd5d67ab5c29b476194a9c05c9b0b2bdb) Thanks [@Diegiwg](https://github.com/Diegiwg)! - add version of action-relation model without resource field
+
 ## 2.162.1
 
 ### Patch Changes
 
-- [#1549](https://github.com/devopness/devopness/pull/1549) [`0302fb6`](https://github.com/devopness/devopness/commit/0302fb6671ae865b47ba1bd202dfe6d5b236c3d0) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Fix type of 'ID' field in UserUpdate
+- [#1549](https://github.com/devopness/devopness/pull/1549) [`0302fb6`](https://github.com/devopness/devopness/commit/0302fb6671ae865b47ba1bd202dfe6d5b236c3d0) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Fix type of 'ID' field in UserUpdate
 
 ## 2.162.0
 

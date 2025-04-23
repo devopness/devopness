@@ -12,7 +12,7 @@
  */
 
 
-import { ActionRelation } from './action-relation';
+import { ActionRelationShallow } from './action-relation-shallow';
 import { ApplicationRelation } from './application-relation';
 import { SslCertificateRelation } from './ssl-certificate-relation';
 import { UserRelation } from './user-relation';
@@ -74,10 +74,10 @@ export interface VirtualHostRelation {
     ssl_certificate: SslCertificateRelation | null;
     /**
      * 
-     * @type {ActionRelation}
+     * @type {ActionRelationShallow}
      * @memberof VirtualHostRelation
      */
-    last_action: ActionRelation | null;
+    last_action: ActionRelationShallow | null;
     /**
      * 
      * @type {UserRelation}

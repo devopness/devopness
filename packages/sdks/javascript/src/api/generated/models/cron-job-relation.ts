@@ -12,7 +12,7 @@
  */
 
 
-import { ActionRelation } from './action-relation';
+import { ActionRelationShallow } from './action-relation-shallow';
 import { ApplicationRelation } from './application-relation';
 import { CronJobPattern } from './cron-job-pattern';
 import { UserRelation } from './user-relation';
@@ -67,10 +67,10 @@ export interface CronJobRelation {
     is_auto_generated: boolean;
     /**
      * 
-     * @type {ActionRelation}
+     * @type {ActionRelationShallow}
      * @memberof CronJobRelation
      */
-    last_action: ActionRelation | null;
+    last_action: ActionRelationShallow | null;
     /**
      * 
      * @type {UserRelation}
