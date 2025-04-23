@@ -59,6 +59,41 @@ class DevopnessBaseService:
             },
         )
 
+    async def __on_request(self, request: httpx.Request) -> None:
+        """
+        Request interceptor that injects the Authorization header if an access
+        token exists.
+
+        Args:
+            request (httpx.Request): The outgoing HTTP request.
+        """
+        access_token = DevopnessBaseService._access_token
+
+        if access_token:
+            request.headers["Authorization"] = f"Bearer {access_token}"
+
+        elif "Authorization" in request.headers:
+            del request.headers["Authorization"]
+
+    async def __on_response(self, response: httpx.Response) -> httpx.Response:
+        """
+        Response interceptor to error handling.
+
+        Args:
+            response (httpx.Response): The response object from the API.
+
+        Returns:
+            httpx.Response: The processed response.
+        """
+        try:
+            response.raise_for_status()
+
+        except httpx.HTTPStatusError as e:
+            err = await DevopnessApiError.init(e)
+            raise err from e
+
+        return response
+
     def __on_request_sync(self, request: httpx.Request) -> None:
         """
         Request interceptor that injects the Authorization header if an access
@@ -85,37 +120,14 @@ class DevopnessBaseService:
         Returns:
             httpx.Response: The processed response.
         """
-
         try:
             response.raise_for_status()
 
         except httpx.HTTPStatusError as e:
-            raise DevopnessApiError(e) from e
+            err = DevopnessApiError.init_sync(e)
+            raise err from e
 
         return response
-
-    async def __on_request(self, request: httpx.Request) -> None:
-        """
-        Request interceptor that injects the Authorization header if an access
-        token exists.
-
-        Args:
-            request (httpx.Request): The outgoing HTTP request.
-        """
-        return self.__on_request_sync(request)
-
-    async def __on_response(self, response: httpx.Response) -> httpx.Response:
-        """
-        Response interceptor to error handling.
-
-        Args:
-            response (httpx.Response): The response object from the API.
-
-        Returns:
-            httpx.Response: The processed response.
-        """
-
-        return self.__on_response_sync(response)
 
     @handle_network_errors
     async def _get(self, endpoint: str) -> httpx.Response:

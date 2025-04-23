@@ -33,10 +33,42 @@ class DevopnessApiError(DevopnessSdkError):
     message: str
     errors: Optional[dict[str, list[str]]] = None
 
+    @classmethod
+    async def init(cls, err: httpx.HTTPStatusError):
+        """
+        Asynchronously initialize a DevopnessApiError instance from
+        an HTTPStatusError.
+
+        Args:
+            err (httpx.HTTPStatusError): The HTTP error from which
+                                         to initialize the error instance.
+
+        Returns:
+            DevopnessApiError: An initialized instance of the error class.
+        """
+        await err.response.aread()
+
+        return cls(err)
+
+    @classmethod
+    def init_sync(cls, err: httpx.HTTPStatusError):
+        """
+        Synchronously initialize a DevopnessApiError instance from
+        an HTTPStatusError.
+
+        Args:
+            err (httpx.HTTPStatusError): The HTTP error from which
+                                         to initialize the error instance.
+
+        Returns:
+            DevopnessApiError: An initialized instance of the error class.
+        """
+
+        err.response.read()
+        return cls(err)
+
     def __init__(self, err: httpx.HTTPStatusError) -> None:
         e_res = err.response
-
-        e_res.read()
         self.status_code = e_res.status_code
         self.response_text = e_res.text
 
