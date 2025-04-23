@@ -211,7 +211,7 @@ def export_sdk_services() -> None:
         f.write("\n".join(lines))
 
 
-def fix_import_paths_in_models():
+def fix_import_paths_in_models() -> None:
     print("🔧  Adjusting import paths in models...")
 
     for file in os.listdir(GENERATED_MODELS_DIR):
@@ -261,7 +261,7 @@ def remove_openapi_generator_cache() -> None:
     shutil.rmtree(dir_path, ignore_errors=True)
 
 
-def execute_temp_script():
+def execute_temp_script() -> None:
     print("🧹  Executing temporary script...")
 
     cmd = 'bash -c "bash scripts/temp.sh"'

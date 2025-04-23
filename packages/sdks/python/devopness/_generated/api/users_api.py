@@ -43,7 +43,7 @@ class UsersApiService(DevopnessBaseService):
             UserCreate,
             UserCreateDict,
         ],
-    ) -> DevopnessResponse:
+    ) -> DevopnessResponse[None]:
         """
         Sign up/register a new user
 
@@ -67,7 +67,7 @@ class UsersApiService(DevopnessBaseService):
             UserCreate,
             UserCreateDict,
         ],
-    ) -> DevopnessResponse:
+    ) -> DevopnessResponse[None]:
         """
         Sign up/register a new user
 
@@ -211,7 +211,7 @@ class UsersApiService(DevopnessBaseService):
 
     async def get_user_logout(
         self,
-    ) -> DevopnessResponse:
+    ) -> DevopnessResponse[None]:
         """
         Logout/revoke an existing token
 
@@ -231,7 +231,7 @@ class UsersApiService(DevopnessBaseService):
 
     def get_user_logout_sync(
         self,
-    ) -> DevopnessResponse:
+    ) -> DevopnessResponse[None]:
         """
         Logout/revoke an existing token
 
@@ -431,7 +431,7 @@ class UsersApiService(DevopnessBaseService):
             UserResendVerification,
             UserResendVerificationDict,
         ],
-    ) -> DevopnessResponse:
+    ) -> DevopnessResponse[None]:
         """
         Resend the verification email
 
@@ -455,7 +455,7 @@ class UsersApiService(DevopnessBaseService):
             UserResendVerification,
             UserResendVerificationDict,
         ],
-    ) -> DevopnessResponse:
+    ) -> DevopnessResponse[None]:
         """
         Resend the verification email
 
@@ -480,7 +480,7 @@ class UsersApiService(DevopnessBaseService):
             UserUpdate,
             UserUpdateDict,
         ],
-    ) -> DevopnessResponse:
+    ) -> DevopnessResponse[None]:
         """
         Update an existing user
 
@@ -505,7 +505,7 @@ class UsersApiService(DevopnessBaseService):
             UserUpdate,
             UserUpdateDict,
         ],
-    ) -> DevopnessResponse:
+    ) -> DevopnessResponse[None]:
         """
         Update an existing user
 
@@ -529,7 +529,7 @@ class UsersApiService(DevopnessBaseService):
             UserVerify,
             UserVerifyDict,
         ],
-    ) -> DevopnessResponse:
+    ) -> DevopnessResponse[None]:
         """
         Activate the user account
 
@@ -553,7 +553,7 @@ class UsersApiService(DevopnessBaseService):
             UserVerify,
             UserVerifyDict,
         ],
-    ) -> DevopnessResponse:
+    ) -> DevopnessResponse[None]:
         """
         Activate the user account
 

@@ -51,7 +51,7 @@ class DevopnessNetworkError(DevopnessSdkError):
         )
 
 
-def handle_network_errors(func: Callable):  # noqa: ANN202
+def handle_network_errors(func: Callable):  # type: ignore[no-untyped-def, type-arg]  # noqa: ANN202
     """
     Async decorator to catch and re-raise network-related exceptions
     as `DevopnessNetworkError`.
@@ -67,7 +67,7 @@ def handle_network_errors(func: Callable):  # noqa: ANN202
     """
 
     @functools.wraps(func)
-    async def wrapper(*args, **kwargs):  # noqa: ANN002, ANN003, ANN202
+    async def wrapper(*args, **kwargs):  # type: ignore[no-untyped-def]  # noqa: ANN002, ANN003, ANN202
         try:
             return await func(*args, **kwargs)
 
@@ -79,7 +79,7 @@ def handle_network_errors(func: Callable):  # noqa: ANN202
     return wrapper
 
 
-def handle_network_errors_sync(func: Callable):  # noqa: ANN202
+def handle_network_errors_sync(func: Callable):  # type: ignore[no-untyped-def, type-arg]  # noqa: ANN202
     """
     Decorator to catch and re-raise network-related exceptions
     as `DevopnessNetworkError`.
@@ -95,7 +95,7 @@ def handle_network_errors_sync(func: Callable):  # noqa: ANN202
     """
 
     @functools.wraps(func)
-    def wrapper(*args, **kwargs):  # noqa: ANN002, ANN003, ANN202
+    def wrapper(*args, **kwargs):  # type: ignore[no-untyped-def]  # noqa: ANN002, ANN003, ANN202
         try:
             return func(*args, **kwargs)
 

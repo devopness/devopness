@@ -31,7 +31,7 @@ class DevopnessBaseModel(BaseModel):
         return hasattr(self, key)
 
     @classmethod
-    def from_dict(cls, data) -> Self:  # noqa: ANN001
+    def from_dict(cls, data: Any) -> Self:  # noqa: ANN401
         """
         Create an instance of the model from a dictionary.
 
@@ -43,12 +43,12 @@ class DevopnessBaseModel(BaseModel):
         """
         return cls.model_validate(data)
 
-    def to_dict(self) -> dict:
+    def to_dict(self) -> dict[str, Any]:
         """
         Convert the model to a dictionary.
 
         Returns:
-            dict: A dictionary representing the model.
+            dict (dict[str, Any]): A dictionary representing the model.
         """
         return self.model_dump()
 

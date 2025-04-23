@@ -20,9 +20,9 @@ class DummyModel(DevopnessBaseModel):
 
 
 def build_response(
-    content: Any,
+    content: Any = b"",
     status_code: int = 200,
-    headers: Optional[dict] = None,
+    headers: Optional[dict[str, Any]] = None,
 ) -> Mock:
     response = Mock(spec=httpx.Response)
 
@@ -75,16 +75,15 @@ class TestDevopnessResponse(unittest.TestCase):
         assert response.data == 3.14
 
     def test_devopness_response_with_empty_body(self) -> None:
-        response: DevopnessResponse = DevopnessResponse(
+        response: DevopnessResponse[None] = DevopnessResponse(
             build_response(b""),
         )
 
         assert response.data is None
 
     def test_devopness_response_with_action_id(self) -> None:
-        response: DevopnessResponse = DevopnessResponse(
+        response: DevopnessResponse[None] = DevopnessResponse(
             build_response(
-                {},
                 headers={"x-devopness-action-id": "456"},
             ),
         )
@@ -92,9 +91,8 @@ class TestDevopnessResponse(unittest.TestCase):
         assert response.action_id == 456
 
     def test_devopness_response_with_invalid_action_id(self) -> None:
-        response: DevopnessResponse = DevopnessResponse(
+        response: DevopnessResponse[None] = DevopnessResponse(
             build_response(
-                {},
                 headers={"x-devopness-action-id": "invalid"},
             ),
         )
@@ -102,9 +100,8 @@ class TestDevopnessResponse(unittest.TestCase):
         assert response.action_id is None
 
     def test_devopness_response_with_pagination_last_page(self) -> None:
-        response: DevopnessResponse = DevopnessResponse(
+        response: DevopnessResponse[None] = DevopnessResponse(
             build_response(
-                {},
                 headers={
                     "link": '<https://api.example.com?page=5>; rel="last", <https://api.example.com?page=1>; rel="first"'
                 },
@@ -114,8 +111,8 @@ class TestDevopnessResponse(unittest.TestCase):
         assert response.page_count == 5
 
     def test_devopness_response_with_no_pagination(self) -> None:
-        response: DevopnessResponse = DevopnessResponse(
-            build_response({}),
+        response: DevopnessResponse[None] = DevopnessResponse(
+            build_response(),
         )
 
         assert response.page_count == 1

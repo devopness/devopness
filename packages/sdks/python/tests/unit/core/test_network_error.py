@@ -10,14 +10,14 @@ from devopness.core import DevopnessNetworkError
 
 
 @handle_network_errors
-async def failing_request():
+async def failing_request() -> httpx.Response:
     # This will raise a real network error (DNS resolution failure)
     async with httpx.AsyncClient() as client:
         return await client.get("https://host.invalid/")
 
 
 @handle_network_errors_sync
-def failing_request_sync():
+def failing_request_sync() -> httpx.Response:
     # This will raise a real network error (DNS resolution failure)
     with httpx.Client() as client:
         return client.get("https://host.invalid/")
