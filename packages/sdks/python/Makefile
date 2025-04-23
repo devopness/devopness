@@ -56,7 +56,7 @@ lint: build-image ## Run the linting against the SDK.
 		/bin/bash -cex ' \
 			poetry run ruff check . && \
 			poetry run ruff format . --check && \
-			poetry run mypy . --strict \
+			poetry run mypy . \
 		'
 
 format: build-image ## Run the formatting against the SDK.

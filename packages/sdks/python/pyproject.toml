@@ -72,7 +72,7 @@ packages = [
 [tool.poetry.group.dev.dependencies]
 openapi-generator-cli = { version = "^7.12.0", markers = "python_version < '4.0'" }
 ruff = "^0.11.6"
-mypy = "^1.15.0"
+mypy = "1.15.0"
 
 [tool.ruff]
 line-length = 88
@@ -123,11 +123,20 @@ case-sensitive = true
 [tool.mypy]
 python_version = "3.11"
 
+strict = true
+disallow_any_unimported = true
+strict_optional = true
+warn_no_return = true
+warn_unreachable = true
+
+sqlite_cache = true
+cache_fine_grained = true
+
 ## TODO: Remove this override when the 'Devopness SDK for Python' is released
 [[tool.mypy.overrides]]
 module = "devopness.models"
 disable_error_code = ["attr-defined"]
 
 [[tool.mypy.overrides]]
-module = "devopness._generated.*"
+module = "devopness._generated.api.*"
 disable_error_code = ["attr-defined"]
