@@ -62,8 +62,9 @@ format: build-image ## Run the formatting against the SDK.
 		--name devopness-sdk-python-format \
 		$(IMAGE):$(TAG) \
 		/bin/bash -c ' \
-			poetry run ruff check . --fix; \
-			poetry run ruff format --check . \
+			poetry run ruff check --fix && \
+			poetry run ruff check --select I --fix && \
+			poetry run ruff format .  \
 		'
 
 test-unit: build-image ## Run the unit test suite against the SDK.

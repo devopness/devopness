@@ -49,6 +49,9 @@ jobs:
       - name: Build SDK - Python
         run: make build-sdk-python
 
+      - name: Lint SDK - Python
+        run: make lint
+
       - name: Test SDK - Python
         run: make test-unit
 
