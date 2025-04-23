@@ -16,5 +16,5 @@ if [[ $INSTALL_EXIT_CODE -ne 0 ]]; then
   exit $INSTALL_EXIT_CODE
 fi
 
-echo "🧪  Running Tests..."
-poetry run pytest "$PYTEST_ARGS"
+echo "🧪  Running Unit Tests..."
+python -m unittest discover -vv -b -s tests/unit

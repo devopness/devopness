@@ -47,8 +47,8 @@ shell: build-image ## Runs shell in development environment
   	$(IMAGE):$(TAG) \
 		/bin/bash
 
-test: build-image ## Run the test suite against the SDK. e.g.: `make test ARGS="-vv -s"`
-	$(info Running Tests with $(if $(ARGS),"$(ARGS)","-v") as args...)
+test-unit: build-image ## Run the unit test suite against the SDK.
+	$(info Running Devopness SDK - Python Unit Tests ...)
 	@docker run --rm \
 		-v $(PWD):/$(WORKDIR) \
 		--name devopness-sdk-python-tests \

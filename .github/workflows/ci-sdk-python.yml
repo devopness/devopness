@@ -50,7 +50,7 @@ jobs:
         run: make build-sdk-python
 
       - name: Test SDK - Python
-        run: make test ARGS="-vv"
+        run: make test-unit
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         if: github.repository == 'devopness/devopness'
