@@ -1,5 +1,6 @@
+import unittest
+
 import httpx
-import pytest
 
 from devopness._core.network_error import (
     handle_network_errors,
@@ -22,40 +23,39 @@ def failing_request_sync():
         return client.get("https://host.invalid/")
 
 
-@pytest.mark.asyncio
-async def test_devopness_network_error() -> None:
-    with pytest.raises(DevopnessNetworkError) as exc_info:
-        await failing_request()
+class TestDevopnessNetworkError(unittest.IsolatedAsyncioTestCase):
+    async def test_devopness_network_error(self) -> None:
+        with self.assertRaises(DevopnessNetworkError) as context:
+            await failing_request()
 
-    error = exc_info.value
+        error = context.exception
 
-    assert error.url == "https://host.invalid/"
-    assert error.method == "GET"
+        assert error.url == "https://host.invalid/"
+        assert error.method == "GET"
 
-    assert isinstance(error.exception, httpx.RequestError)
+        assert isinstance(error.exception, httpx.RequestError)
 
-    string_output = str(error)
-    assert (
-        "\nDevopness SDK Error: Network Request Failed\n\n"
-        "Request: GET https://host.invalid/\n"
-        "Exception: [Errno -2]"
-    ) in string_output
+        string_output = str(error)
+        assert (
+            "\nDevopness SDK Error: Network Request Failed\n\n"
+            "Request: GET https://host.invalid/\n"
+            "Exception: [Errno -2]"
+        ) in string_output
 
+    def test_devopness_network_error_sync(self) -> None:
+        with self.assertRaises(DevopnessNetworkError) as context:
+            failing_request_sync()
 
-def test_devopness_network_error_sync() -> None:
-    with pytest.raises(DevopnessNetworkError) as exc_info:
-        failing_request_sync()
+        error = context.exception
 
-    error = exc_info.value
+        assert error.url == "https://host.invalid/"
+        assert error.method == "GET"
 
-    assert error.url == "https://host.invalid/"
-    assert error.method == "GET"
+        assert isinstance(error.exception, httpx.RequestError)
 
-    assert isinstance(error.exception, httpx.RequestError)
-
-    string_output = str(error)
-    assert (
-        "\nDevopness SDK Error: Network Request Failed\n\n"
-        "Request: GET https://host.invalid/\n"
-        "Exception: [Errno -2]"
-    ) in string_output
+        string_output = str(error)
+        assert (
+            "\nDevopness SDK Error: Network Request Failed\n\n"
+            "Request: GET https://host.invalid/\n"
+            "Exception: [Errno -2]"
+        ) in string_output
