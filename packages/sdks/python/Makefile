@@ -53,7 +53,11 @@ lint: build-image ## Run the linting against the SDK.
 		-v $(PWD):/$(WORKDIR) \
 		--name devopness-sdk-python-lint \
 		$(IMAGE):$(TAG) \
-		poetry run ruff check .
+		/bin/bash -cex ' \
+			poetry run ruff check . && \
+			poetry run ruff format . --check && \
+			poetry run mypy . \
+		'
 
 format: build-image ## Run the formatting against the SDK.
 	$(info Running Devopness SDK - Python Formatting ...)
@@ -61,9 +65,8 @@ format: build-image ## Run the formatting against the SDK.
 		-v $(PWD):/$(WORKDIR) \
 		--name devopness-sdk-python-format \
 		$(IMAGE):$(TAG) \
-		/bin/bash -c ' \
+		/bin/bash -cex ' \
 			poetry run ruff check --fix && \
-			poetry run ruff check --select I --fix && \
 			poetry run ruff format .  \
 		'
 
