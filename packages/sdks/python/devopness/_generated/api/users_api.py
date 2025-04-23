@@ -46,6 +46,10 @@ class UsersApiService(DevopnessBaseService):
     ) -> DevopnessResponse:
         """
         Sign up/register a new user
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -66,6 +70,10 @@ class UsersApiService(DevopnessBaseService):
     ) -> DevopnessResponse:
         """
         Sign up/register a new user
+
+        Raises:
+            DevopnessApiError: If an api request error occurs.
+            DevopnessNetworkError: If an network error occurs.
         """
 
         endpoint_parts = [
@@ -83,6 +91,10 @@ class UsersApiService(DevopnessBaseService):
     ) -> DevopnessResponse[User]:
         """
         Get a user by ID or URL Slug
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -100,6 +112,10 @@ class UsersApiService(DevopnessBaseService):
     ) -> DevopnessResponse[User]:
         """
         Get a user by ID or URL Slug
+
+        Raises:
+            DevopnessApiError: If an api request error occurs.
+            DevopnessNetworkError: If an network error occurs.
         """
 
         endpoint_parts = [
@@ -117,6 +133,10 @@ class UsersApiService(DevopnessBaseService):
     ) -> DevopnessResponse[UserActivity]:
         """
         Get activity information for a user
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -134,6 +154,10 @@ class UsersApiService(DevopnessBaseService):
     ) -> DevopnessResponse[UserActivity]:
         """
         Get activity information for a user
+
+        Raises:
+            DevopnessApiError: If an api request error occurs.
+            DevopnessNetworkError: If an network error occurs.
         """
 
         endpoint_parts = [
@@ -150,6 +174,10 @@ class UsersApiService(DevopnessBaseService):
     ) -> DevopnessResponse[UserBilling]:
         """
         Get current user's billing info for active subscription
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -166,6 +194,10 @@ class UsersApiService(DevopnessBaseService):
     ) -> DevopnessResponse[UserBilling]:
         """
         Get current user's billing info for active subscription
+
+        Raises:
+            DevopnessApiError: If an api request error occurs.
+            DevopnessNetworkError: If an network error occurs.
         """
 
         endpoint_parts = [
@@ -182,6 +214,10 @@ class UsersApiService(DevopnessBaseService):
     ) -> DevopnessResponse:
         """
         Logout/revoke an existing token
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -198,6 +234,10 @@ class UsersApiService(DevopnessBaseService):
     ) -> DevopnessResponse:
         """
         Logout/revoke an existing token
+
+        Raises:
+            DevopnessApiError: If an api request error occurs.
+            DevopnessNetworkError: If an network error occurs.
         """
 
         endpoint_parts = [
@@ -214,6 +254,10 @@ class UsersApiService(DevopnessBaseService):
     ) -> DevopnessResponse[UserMe]:
         """
         Get details of the current user
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -230,6 +274,10 @@ class UsersApiService(DevopnessBaseService):
     ) -> DevopnessResponse[UserMe]:
         """
         Get details of the current user
+
+        Raises:
+            DevopnessApiError: If an api request error occurs.
+            DevopnessNetworkError: If an network error occurs.
         """
 
         endpoint_parts = [
@@ -246,6 +294,10 @@ class UsersApiService(DevopnessBaseService):
     ) -> DevopnessResponse[UserUrl]:
         """
         Get the authenticated user's URLs
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -262,6 +314,10 @@ class UsersApiService(DevopnessBaseService):
     ) -> DevopnessResponse[UserUrl]:
         """
         Get the authenticated user's URLs
+
+        Raises:
+            DevopnessApiError: If an api request error occurs.
+            DevopnessNetworkError: If an network error occurs.
         """
 
         endpoint_parts = [
@@ -282,6 +338,10 @@ class UsersApiService(DevopnessBaseService):
     ) -> DevopnessResponse[UserLoginResponse]:
         """
         Login/create a new token for the given credentials
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -302,6 +362,10 @@ class UsersApiService(DevopnessBaseService):
     ) -> DevopnessResponse[UserLoginResponse]:
         """
         Login/create a new token for the given credentials
+
+        Raises:
+            DevopnessApiError: If an api request error occurs.
+            DevopnessNetworkError: If an network error occurs.
         """
 
         endpoint_parts = [
@@ -322,6 +386,10 @@ class UsersApiService(DevopnessBaseService):
     ) -> DevopnessResponse[UserRefreshTokenResponse]:
         """
         Refresh an existing user access token
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -342,6 +410,10 @@ class UsersApiService(DevopnessBaseService):
     ) -> DevopnessResponse[UserRefreshTokenResponse]:
         """
         Refresh an existing user access token
+
+        Raises:
+            DevopnessApiError: If an api request error occurs.
+            DevopnessNetworkError: If an network error occurs.
         """
 
         endpoint_parts = [
@@ -362,6 +434,10 @@ class UsersApiService(DevopnessBaseService):
     ) -> DevopnessResponse:
         """
         Resend the verification email
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -382,6 +458,10 @@ class UsersApiService(DevopnessBaseService):
     ) -> DevopnessResponse:
         """
         Resend the verification email
+
+        Raises:
+            DevopnessApiError: If an api request error occurs.
+            DevopnessNetworkError: If an network error occurs.
         """
 
         endpoint_parts = [
@@ -403,6 +483,10 @@ class UsersApiService(DevopnessBaseService):
     ) -> DevopnessResponse:
         """
         Update an existing user
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -424,6 +508,10 @@ class UsersApiService(DevopnessBaseService):
     ) -> DevopnessResponse:
         """
         Update an existing user
+
+        Raises:
+            DevopnessApiError: If an api request error occurs.
+            DevopnessNetworkError: If an network error occurs.
         """
 
         endpoint_parts = [
@@ -444,6 +532,10 @@ class UsersApiService(DevopnessBaseService):
     ) -> DevopnessResponse:
         """
         Activate the user account
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -464,6 +556,10 @@ class UsersApiService(DevopnessBaseService):
     ) -> DevopnessResponse:
         """
         Activate the user account
+
+        Raises:
+            DevopnessApiError: If an api request error occurs.
+            DevopnessNetworkError: If an network error occurs.
         """
 
         endpoint_parts = [

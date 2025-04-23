@@ -1,6 +1,6 @@
         {{#hasQueryParams}}
 
-        query_string = DevopnessBaseService.__get_query_string({ {{#queryParams}}"{{baseName}}": {{paramName}},{{/queryParams}} })
+        query_string = DevopnessBaseService._get_query_string({ {{#queryParams}}"{{baseName}}": {{paramName}},{{/queryParams}} })
         {{/hasQueryParams}}
 
         endpoint_parts = [

@@ -49,7 +49,8 @@ jobs:
       - name: Build SDK - Python
         run: make build-sdk-python
 
-      # TO DO: Add testing step
+      - name: Test SDK - Python
+        run: make test ARGS="-vv"
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         if: github.repository == 'devopness/devopness'

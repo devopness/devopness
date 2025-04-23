@@ -292,7 +292,7 @@ def format_generated_files() -> None:
 def fix_code_style_issues() -> None:
     print("🔧  Fixing code style issues in generated files...")
 
-    cmd = "bash -c 'ruff check --fix'"
+    cmd = "bash -c 'ruff check --fix -s'"
     subprocess.run(cmd, shell=True, check=False)
 
 
