@@ -10,7 +10,11 @@ import pytest
 from devopness import DevopnessClient
 from devopness._base.base_model import DevopnessBaseModel
 from devopness._generated.models import UserDict
-from devopness.core import DevopnessResponse
+from devopness.core import (
+    DevopnessApiError,
+    DevopnessNetworkError,
+    DevopnessResponse,
+)
 from devopness.models import User
 
 # pyright: reportTypedDictNotRequiredAccess=false
@@ -124,7 +128,83 @@ def devopness(prism_server):
 
 
 @pytest.mark.asyncio
-async def test_get_resource(devopness: DevopnessClient, spec: Spec) -> None:
+async def test_get_user_from_invalid_host_fails() -> None:
+    client = DevopnessClient({"base_url": "http://invalid.devopness.local"})
+
+    with pytest.raises(DevopnessNetworkError) as exc_info:
+        await client.users.get_user("some-id")
+
+    assert exc_info.value.url == "http://invalid.devopness.local/users/some-id"
+    assert exc_info.value.method == "GET"
+
+    string_output = str(exc_info.value)
+    assert (
+        "\nDevopness SDK Error: Network Request Failed\n\n"
+        "Request: GET http://invalid.devopness.local/users/some-id\n"
+        "Exception: [Errno -2]"
+    ) in string_output
+
+
+def test_get_user_from_invalid_host_fails_sync() -> None:
+    client = DevopnessClient({"base_url": "http://invalid.devopness.local"})
+
+    with pytest.raises(DevopnessNetworkError) as exc_info:
+        client.users.get_user_sync("some-id")
+
+    assert exc_info.value.url == "http://invalid.devopness.local/users/some-id"
+    assert exc_info.value.method == "GET"
+
+    string_output = str(exc_info.value)
+    assert (
+        "\nDevopness SDK Error: Network Request Failed\n\n"
+        "Request: GET http://invalid.devopness.local/users/some-id\n"
+        "Exception: [Errno -2]"
+    ) in string_output
+
+
+async def test_get_user_from_invalid_endpoint_fails(
+    prism_server: str,
+) -> None:
+    url = prism_server
+    client = DevopnessClient({"base_url": f"{url}/inexistente"})
+
+    with pytest.raises(DevopnessApiError) as exc_info:
+        await client.users.get_user("some-id")
+
+    assert exc_info.value.status_code == 404
+
+    string_output = str(exc_info.value)
+    assert (
+        "\nDevopness SDK Error: API Request Failed\n\n"
+        "Request: GET http://localhost:4010/inexistente/users/some-id\n"
+        "Status Code: 404\n"
+        "Message: Client error '404 Not Found'"
+    ) in string_output
+
+
+def test_get_user_from_invalid_endpoint_fails_sync(prism_server: str) -> None:
+    url = prism_server
+    client = DevopnessClient({"base_url": f"{url}/inexistente"})
+
+    with pytest.raises(DevopnessApiError) as exc_info:
+        client.users.get_user_sync("some-id")
+
+    assert exc_info.value.status_code == 404
+
+    string_output = str(exc_info.value)
+    assert (
+        "\nDevopness SDK Error: API Request Failed\n\n"
+        "Request: GET http://localhost:4010/inexistente/users/some-id\n"
+        "Status Code: 404\n"
+        "Message: Client error '404 Not Found'"
+    ) in string_output
+
+
+@pytest.mark.asyncio
+async def test_get_resource_expects_200(
+    devopness: DevopnessClient,
+    spec: Spec,
+) -> None:
     devopness.access_token = spec["devopness_access_token"]
     resource = await devopness.users.get_user(spec["get_resource_user_id"])
 
@@ -136,7 +216,10 @@ async def test_get_resource(devopness: DevopnessClient, spec: Spec) -> None:
     assert resource.data.name == spec["get_resource_user"]["name"]
 
 
-def test_get_resource_sync(devopness: DevopnessClient, spec: Spec) -> None:
+def test_get_resource_sync_expects_200(
+    devopness: DevopnessClient,
+    spec: Spec,
+) -> None:
     devopness.access_token = spec["devopness_access_token"]
     resource = devopness.users.get_user_sync(spec["get_resource_user_id"])
 
@@ -147,3 +230,36 @@ def test_get_resource_sync(devopness: DevopnessClient, spec: Spec) -> None:
     assert resource.data.id == spec["get_resource_user"]["id"]
     assert resource.data.name == spec["get_resource_user"]["name"]
     assert resource.data.email == spec["get_resource_user"]["email"]
+
+
+@pytest.mark.asyncio
+async def test_get_resource_inexistent_expects_404(
+    prism_server: str,
+    spec: Spec,
+) -> None:
+    url = prism_server
+
+    devopness = DevopnessClient(
+        {
+            "base_url": url,
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                # Force prism to return 404 for this request
+                "Prefer": "code=404",
+            },
+        }
+    )
+    devopness.access_token = spec["devopness_access_token"]
+
+    with pytest.raises(DevopnessApiError) as exc_info:
+        await devopness.users.get_user("invalid-id")
+
+    assert exc_info.value.status_code == 404
+
+    string_output = str(exc_info.value)
+    assert (
+        "\nDevopness SDK Error: API Request Failed\n\n"
+        "Request: GET http://localhost:4010/users/invalid-id\n"
+        "Status Code: 404\n"
+    ) in string_output
