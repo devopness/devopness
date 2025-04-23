@@ -99,7 +99,7 @@ class DevopnessResponse(Generic[T]):
         except ValueError:
             return None
 
-    def _parse_data(
+    def _parse_data(  # noqa: ANN202
         self,
         response: httpx.Response,
         model_cls: Optional[Union[type[DevopnessBaseModel], type]],
@@ -145,7 +145,8 @@ class DevopnessResponse(Generic[T]):
             class_name = getattr(model_cls, "__name__", "Unknown")
             warn(
                 f"Failed to deserialize response body into {class_name}. "
-                "Returning raw response data instead."
+                "Returning raw response data instead.",
+                stacklevel=2,
             )
 
             return json.loads(raw_data)

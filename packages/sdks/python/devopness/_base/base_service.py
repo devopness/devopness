@@ -39,7 +39,6 @@ class DevopnessBaseService:
         Args:
             config (DevopnessApiClientConfig): Client configuration object.
         """
-
         self.__client = httpx.AsyncClient(
             base_url=config.base_url,
             timeout=config.timeout,
@@ -144,7 +143,7 @@ class DevopnessBaseService:
         return await self.__client.get(endpoint)
 
     @handle_network_errors
-    async def _post(self, endpoint: str, data: Any = None) -> httpx.Response:
+    async def _post(self, endpoint: str, data: Any = None) -> httpx.Response:  # noqa: ANN401
         """
         Sends an HTTP POST request with optional JSON body.
 
@@ -159,7 +158,7 @@ class DevopnessBaseService:
         return await self.__client.post(endpoint, json=payload)
 
     @handle_network_errors
-    async def _put(self, endpoint: str, data: Any = None) -> httpx.Response:
+    async def _put(self, endpoint: str, data: Any = None) -> httpx.Response:  # noqa: ANN401
         """
         Sends an HTTP PUT request with optional JSON body.
 
@@ -200,7 +199,7 @@ class DevopnessBaseService:
         return self.__client_sync.get(endpoint)
 
     @handle_network_errors_sync
-    def _post_sync(self, endpoint: str, data: Any = None) -> httpx.Response:
+    def _post_sync(self, endpoint: str, data: Any = None) -> httpx.Response:  # noqa: ANN401
         """
         Sends an HTTP POST request with optional JSON body.
 
@@ -215,7 +214,7 @@ class DevopnessBaseService:
         return self.__client_sync.post(endpoint, json=payload)
 
     @handle_network_errors_sync
-    def _put_sync(self, endpoint: str, data: Any = None) -> httpx.Response:
+    def _put_sync(self, endpoint: str, data: Any = None) -> httpx.Response:  # noqa: ANN401
         """
         Sends an HTTP PUT request with optional JSON body.
 
@@ -242,7 +241,7 @@ class DevopnessBaseService:
         """
         return self.__client_sync.delete(endpoint)
 
-    def __get_payload(self, data: Any | DevopnessBaseModel) -> Any:
+    def __get_payload(self, data: Any | DevopnessBaseModel) -> Any:  # noqa: ANN401
         """
         Returns the payload for a request.
 
@@ -264,7 +263,7 @@ class DevopnessBaseService:
         Returns the query string from the given query parameters.
 
         Args:
-            query_params (dict[str, Any]): The query parameters.
+            params (dict[str, Any]): The query parameters.
 
         Returns:
             str: The query string.
@@ -276,6 +275,4 @@ class DevopnessBaseService:
 
             params[key] = value
 
-        query_string = urlencode(params)
-
-        return query_string
+        return urlencode(params)

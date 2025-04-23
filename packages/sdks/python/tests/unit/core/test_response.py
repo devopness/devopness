@@ -106,7 +106,7 @@ class TestDevopnessResponse(unittest.TestCase):
             build_response(
                 {},
                 headers={
-                    "link": '<https://api.example.com?page=5>; rel="last", <https://api.example.com?page=1>; rel="first"'  # noqa: E501
+                    "link": '<https://api.example.com?page=5>; rel="last", <https://api.example.com?page=1>; rel="first"'
                 },
             ),
         )

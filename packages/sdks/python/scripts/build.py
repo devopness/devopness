@@ -221,7 +221,7 @@ def fix_import_paths_in_models():
         file_path = os.path.join(GENERATED_MODELS_DIR, file)
         file_content = ""
 
-        with open(file_path, "r", encoding="utf-8") as f:
+        with open(file_path, encoding="utf-8") as f:
             file_content = f.read()
 
             file_content = file_content.replace(

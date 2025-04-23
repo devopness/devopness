@@ -51,7 +51,6 @@ class UsersApiService(DevopnessBaseService):
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
         """
-
         endpoint_parts = [
             "/users",
         ]
@@ -75,7 +74,6 @@ class UsersApiService(DevopnessBaseService):
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
         """
-
         endpoint_parts = [
             "/users",
         ]
@@ -96,7 +94,6 @@ class UsersApiService(DevopnessBaseService):
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
         """
-
         endpoint_parts = [
             f"/users/{user_id}",
         ]
@@ -117,7 +114,6 @@ class UsersApiService(DevopnessBaseService):
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
         """
-
         endpoint_parts = [
             f"/users/{user_id}",
         ]
@@ -138,7 +134,6 @@ class UsersApiService(DevopnessBaseService):
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
         """
-
         endpoint_parts = [
             f"/users/{user_id}/activity",
         ]
@@ -159,7 +154,6 @@ class UsersApiService(DevopnessBaseService):
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
         """
-
         endpoint_parts = [
             f"/users/{user_id}/activity",
         ]
@@ -179,7 +173,6 @@ class UsersApiService(DevopnessBaseService):
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
         """
-
         endpoint_parts = [
             "/users/billing",
         ]
@@ -199,7 +192,6 @@ class UsersApiService(DevopnessBaseService):
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
         """
-
         endpoint_parts = [
             "/users/billing",
         ]
@@ -219,7 +211,6 @@ class UsersApiService(DevopnessBaseService):
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
         """
-
         endpoint_parts = [
             "/users/logout",
         ]
@@ -239,7 +230,6 @@ class UsersApiService(DevopnessBaseService):
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
         """
-
         endpoint_parts = [
             "/users/logout",
         ]
@@ -259,7 +249,6 @@ class UsersApiService(DevopnessBaseService):
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
         """
-
         endpoint_parts = [
             "/users/me",
         ]
@@ -279,7 +268,6 @@ class UsersApiService(DevopnessBaseService):
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
         """
-
         endpoint_parts = [
             "/users/me",
         ]
@@ -299,7 +287,6 @@ class UsersApiService(DevopnessBaseService):
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
         """
-
         endpoint_parts = [
             "/users/urls",
         ]
@@ -319,7 +306,6 @@ class UsersApiService(DevopnessBaseService):
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
         """
-
         endpoint_parts = [
             "/users/urls",
         ]
@@ -343,7 +329,6 @@ class UsersApiService(DevopnessBaseService):
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
         """
-
         endpoint_parts = [
             "/users/login",
         ]
@@ -367,7 +352,6 @@ class UsersApiService(DevopnessBaseService):
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
         """
-
         endpoint_parts = [
             "/users/login",
         ]
@@ -391,7 +375,6 @@ class UsersApiService(DevopnessBaseService):
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
         """
-
         endpoint_parts = [
             "/users/refresh-token",
         ]
@@ -415,7 +398,6 @@ class UsersApiService(DevopnessBaseService):
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
         """
-
         endpoint_parts = [
             "/users/refresh-token",
         ]
@@ -439,7 +421,6 @@ class UsersApiService(DevopnessBaseService):
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
         """
-
         endpoint_parts = [
             "/users/account/resend-verification",
         ]
@@ -463,7 +444,6 @@ class UsersApiService(DevopnessBaseService):
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
         """
-
         endpoint_parts = [
             "/users/account/resend-verification",
         ]
@@ -488,7 +468,6 @@ class UsersApiService(DevopnessBaseService):
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
         """
-
         endpoint_parts = [
             f"/users/{user_id}",
         ]
@@ -513,7 +492,6 @@ class UsersApiService(DevopnessBaseService):
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
         """
-
         endpoint_parts = [
             f"/users/{user_id}",
         ]
@@ -537,7 +515,6 @@ class UsersApiService(DevopnessBaseService):
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
         """
-
         endpoint_parts = [
             "/users/account/verify",
         ]
@@ -561,7 +538,6 @@ class UsersApiService(DevopnessBaseService):
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
         """
-
         endpoint_parts = [
             "/users/account/verify",
         ]

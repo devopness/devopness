@@ -2,6 +2,7 @@
 Devopness API Python SDK - Painless essential DevOps to everyone
 """
 
+import contextlib
 import json
 from typing import Optional
 
@@ -103,7 +104,8 @@ async def raise_devopness_api_error(err: httpx.HTTPStatusError) -> None:
     try:
         await err.response.aread()
     except httpx.ReadError:
-        pass  # The response was already read
+        # The response was already read
+        contextlib.suppress(httpx.ReadError)
 
     raise DevopnessApiError(err) from err
 
@@ -121,6 +123,7 @@ def raise_devopness_api_error_sync(err: httpx.HTTPStatusError) -> None:
     try:
         err.response.read()
     except httpx.ReadError:
-        pass  # The response was already read
+        # The response was already read
+        contextlib.suppress(httpx.ReadError)
 
     raise DevopnessApiError(err) from err
