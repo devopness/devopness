@@ -9,7 +9,10 @@ import httpx
 
 from .._base import DevopnessBaseModel
 from .._client_config import DevopnessClientConfig
-from .._core import DevopnessApiError
+from .._core.api_error import (
+    raise_devopness_api_error,
+    raise_devopness_api_error_sync,
+)
 from .._core.network_error import (
     handle_network_errors,
     handle_network_errors_sync,
@@ -89,8 +92,7 @@ class DevopnessBaseService:
             response.raise_for_status()
 
         except httpx.HTTPStatusError as e:
-            err = await DevopnessApiError.init(e)
-            raise err from e
+            await raise_devopness_api_error(e)
 
         return response
 
@@ -124,8 +126,7 @@ class DevopnessBaseService:
             response.raise_for_status()
 
         except httpx.HTTPStatusError as e:
-            err = DevopnessApiError.init_sync(e)
-            raise err from e
+            raise_devopness_api_error_sync(e)
 
         return response
 
