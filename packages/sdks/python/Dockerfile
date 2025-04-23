@@ -22,9 +22,10 @@ RUN chmod -R 777 /usr/local
 USER ${USER_NAME}
 WORKDIR /sdk
 
-# --- Install package dependencies ---
 RUN npm install -g @openapitools/openapi-generator-cli \
   && openapi-generator-cli version-manager set 7.12.0
+
+RUN npm install -g @stoplight/prism-cli
 
 RUN pip install poetry
 
