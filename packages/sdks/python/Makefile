@@ -15,16 +15,16 @@ build-image: ## Build Docker Image
 	$(info Docker - Building Image ...)
 	@docker build \
 		-f Dockerfile \
+		--build-arg USER_ID=$(USER_ID) \
+		--build-arg USER_NAME=$(USER_NAME) \
+		--build-arg GROUP_ID=$(GROUP_ID) \
+		--build-arg GROUP_NAME=$(GROUP_NAME) \
 		-t $(IMAGE) .
 
 build-sdk-python: build-image ## Build Python SDK
 	$(info Docker - Building Devopness SDK - Python ...)
 	@docker run --rm \
 		-v $(PWD):/$(WORKDIR) \
-		--env USER_ID=$(USER_ID) \
-		--env USER_NAME=$(USER_NAME) \
-		--env GROUP_ID=$(GROUP_ID) \
-		--env GROUP_NAME=$(GROUP_NAME) \
 		--name devopness-sdk-python-build \
 		$(IMAGE):$(TAG) \
 		scripts/build.py

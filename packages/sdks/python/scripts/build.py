@@ -200,66 +200,6 @@ def export_sdk_services() -> None:
         f.write("\n".join(lines))
 
 
-def fix_permissions_and_ownership(
-    dir_path: str | None = None,
-    file_path: str | None = None,
-) -> None:
-    print(f"🔧  Fixing permissions and ownership for {dir_path}...")
-
-    if dir_path and os.path.isdir(dir_path):
-        # Change directory permissions
-        subprocess.run(
-            [
-                "find",
-                dir_path,
-                "-type",
-                "d",
-                "-exec",
-                "chmod",
-                "755",
-                "{}",
-                ";",
-            ],
-            check=True,
-        )
-
-    if file_path:
-        # Change file permissions
-        subprocess.run(
-            [
-                "find",
-                file_path,
-                "-type",
-                "f",
-                "-exec",
-                "chmod",
-                "644",
-                "{}",
-                ";",
-            ],
-            check=True,
-        )
-
-    # If USER_ID and GROUP_ID are set, change ownership
-    user_id = os.getenv("USER_ID")
-    group_id = os.getenv("GROUP_ID")
-
-    if user_id and group_id:
-        if dir_path is None and file_path is None:
-            return
-
-        path: str = dir_path if dir_path else file_path  # type: ignore
-        subprocess.run(
-            [
-                "chown",
-                "-R",
-                f"{user_id}:{group_id}",
-                path,
-            ],
-            check=True,
-        )
-
-
 def fix_import_paths_in_models():
     print("🔧  Adjusting import paths in models...")
 
@@ -320,15 +260,7 @@ def execute_temp_script():
 def execute_post_build_tasks() -> None:
     print("🔧  Executing post-build tasks...")
 
-    fix_permissions_and_ownership(file_path=SDK_CORE_FILE)
-    fix_permissions_and_ownership(file_path=SDK_MODELS_FILE)
-    fix_permissions_and_ownership(file_path=SDK_SERVICES_FILE)
-
-    fix_permissions_and_ownership(GENERATED_API_DIR)
-    fix_permissions_and_ownership(GENERATED_MODELS_DIR)
-
     fix_import_paths_in_models()
-
     remove_openapi_generator_cache()
 
     fix_import_issues()
