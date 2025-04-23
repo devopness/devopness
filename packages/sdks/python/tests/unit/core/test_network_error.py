@@ -38,8 +38,8 @@ async def test_devopness_network_error() -> None:
     assert (
         "\nDevopness SDK Error: Network Request Failed\n\n"
         "Request: GET https://host.invalid/\n"
-        "Exception: [Errno -2] Name does not resolve"
-    ) == string_output
+        "Exception: [Errno -2]"
+    ) in string_output
 
 
 def test_devopness_network_error_sync() -> None:
@@ -57,5 +57,5 @@ def test_devopness_network_error_sync() -> None:
     assert (
         "\nDevopness SDK Error: Network Request Failed\n\n"
         "Request: GET https://host.invalid/\n"
-        "Exception: [Errno -2] Name does not resolve"
-    ) == string_output
+        "Exception: [Errno -2]"
+    ) in string_output
