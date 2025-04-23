@@ -39,10 +39,7 @@ class UsersApiService(DevopnessBaseService):
 
     async def add_user(
         self,
-        user_create: Union[
-            UserCreate,
-            UserCreateDict,
-        ],
+        user_create: Union[UserCreate, UserCreateDict],
     ) -> DevopnessResponse:
         """
         Sign up/register a new user
@@ -62,10 +59,7 @@ class UsersApiService(DevopnessBaseService):
 
     def add_user_sync(
         self,
-        user_create: Union[
-            UserCreate,
-            UserCreateDict,
-        ],
+        user_create: Union[UserCreate, UserCreateDict],
     ) -> DevopnessResponse:
         """
         Sign up/register a new user
@@ -317,10 +311,7 @@ class UsersApiService(DevopnessBaseService):
 
     async def login_user(
         self,
-        user_login: Union[
-            UserLogin,
-            UserLoginDict,
-        ],
+        user_login: Union[UserLogin, UserLoginDict],
     ) -> DevopnessResponse[UserLoginResponse]:
         """
         Login/create a new token for the given credentials
@@ -340,10 +331,7 @@ class UsersApiService(DevopnessBaseService):
 
     def login_user_sync(
         self,
-        user_login: Union[
-            UserLogin,
-            UserLoginDict,
-        ],
+        user_login: Union[UserLogin, UserLoginDict],
     ) -> DevopnessResponse[UserLoginResponse]:
         """
         Login/create a new token for the given credentials
@@ -363,10 +351,7 @@ class UsersApiService(DevopnessBaseService):
 
     async def refresh_token_user(
         self,
-        user_refresh_token: Union[
-            UserRefreshToken,
-            UserRefreshTokenDict,
-        ],
+        user_refresh_token: Union[UserRefreshToken, UserRefreshTokenDict],
     ) -> DevopnessResponse[UserRefreshTokenResponse]:
         """
         Refresh an existing user access token
@@ -386,10 +371,7 @@ class UsersApiService(DevopnessBaseService):
 
     def refresh_token_user_sync(
         self,
-        user_refresh_token: Union[
-            UserRefreshToken,
-            UserRefreshTokenDict,
-        ],
+        user_refresh_token: Union[UserRefreshToken, UserRefreshTokenDict],
     ) -> DevopnessResponse[UserRefreshTokenResponse]:
         """
         Refresh an existing user access token
@@ -410,8 +392,7 @@ class UsersApiService(DevopnessBaseService):
     async def resend_verification_user(
         self,
         user_resend_verification: Union[
-            UserResendVerification,
-            UserResendVerificationDict,
+            UserResendVerification, UserResendVerificationDict
         ],
     ) -> DevopnessResponse:
         """
@@ -433,8 +414,7 @@ class UsersApiService(DevopnessBaseService):
     def resend_verification_user_sync(
         self,
         user_resend_verification: Union[
-            UserResendVerification,
-            UserResendVerificationDict,
+            UserResendVerification, UserResendVerificationDict
         ],
     ) -> DevopnessResponse:
         """
@@ -456,10 +436,7 @@ class UsersApiService(DevopnessBaseService):
     async def update_user(
         self,
         user_id: str,
-        user_update: Union[
-            UserUpdate,
-            UserUpdateDict,
-        ],
+        user_update: Union[UserUpdate, UserUpdateDict],
     ) -> DevopnessResponse:
         """
         Update an existing user
@@ -480,10 +457,7 @@ class UsersApiService(DevopnessBaseService):
     def update_user_sync(
         self,
         user_id: str,
-        user_update: Union[
-            UserUpdate,
-            UserUpdateDict,
-        ],
+        user_update: Union[UserUpdate, UserUpdateDict],
     ) -> DevopnessResponse:
         """
         Update an existing user
@@ -503,10 +477,7 @@ class UsersApiService(DevopnessBaseService):
 
     async def verify_user(
         self,
-        user_verify: Union[
-            UserVerify,
-            UserVerifyDict,
-        ],
+        user_verify: Union[UserVerify, UserVerifyDict],
     ) -> DevopnessResponse:
         """
         Activate the user account
@@ -526,10 +497,7 @@ class UsersApiService(DevopnessBaseService):
 
     def verify_user_sync(
         self,
-        user_verify: Union[
-            UserVerify,
-            UserVerifyDict,
-        ],
+        user_verify: Union[UserVerify, UserVerifyDict],
     ) -> DevopnessResponse:
         """
         Activate the user account
