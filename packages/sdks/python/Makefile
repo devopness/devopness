@@ -47,6 +47,25 @@ shell: build-image ## Runs shell in development environment
   	$(IMAGE):$(TAG) \
 		/bin/bash
 
+lint: build-image ## Run the linting against the SDK.
+	$(info Running Devopness SDK - Python Linting ...)
+	@docker run --rm \
+		-v $(PWD):/$(WORKDIR) \
+		--name devopness-sdk-python-lint \
+		$(IMAGE):$(TAG) \
+		poetry run ruff check .
+
+format: build-image ## Run the formatting against the SDK.
+	$(info Running Devopness SDK - Python Formatting ...)
+	@docker run --rm \
+		-v $(PWD):/$(WORKDIR) \
+		--name devopness-sdk-python-format \
+		$(IMAGE):$(TAG) \
+		/bin/bash -c ' \
+			poetry run ruff check . --fix; \
+			poetry run ruff format --check . \
+		'
+
 test-unit: build-image ## Run the unit test suite against the SDK.
 	$(info Running Devopness SDK - Python Unit Tests ...)
 	@docker run --rm \
