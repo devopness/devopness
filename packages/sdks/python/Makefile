@@ -52,7 +52,7 @@ test: build-image ## Run the test suite against the SDK. e.g.: `make test ARGS="
 	@docker run --rm \
 		-v $(PWD):/$(WORKDIR) \
 		--name devopness-sdk-python-tests \
-		--env PYTEST_ARGS="$(if $(ARGS),"$(ARGS)","-v")" \
+		--env PYTEST_ARGS="$(if $(ARGS),$(ARGS),-v)" \
 		$(IMAGE):$(TAG) \
 		/bin/bash scripts/test.sh
 
