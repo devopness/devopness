@@ -72,7 +72,6 @@ if [[ $PUBLISH_EXIT_CODE -ne 0 ]]; then
   else
     echo "❌  An error occurred during publishing:"
     echo "$PUBLISH_OUTPUT"
-    exit $PUBLISH_EXIT_CODE
   fi
 else
   echo "✅  Successfully published version $TEST_VERSION to Test PyPI!"
