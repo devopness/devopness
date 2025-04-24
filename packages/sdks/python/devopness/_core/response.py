@@ -8,9 +8,9 @@ from urllib.parse import parse_qs, urlparse
 from warnings import warn
 
 import httpx
+from pydantic import ValidationError
 
 from devopness._base import DevopnessBaseModel
-from pydantic import ValidationError
 
 __all__ = ["DevopnessResponse"]
 
