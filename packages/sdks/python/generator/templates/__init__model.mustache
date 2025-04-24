@@ -16,5 +16,8 @@ from .{{classFilename}} import {{classname}}Dict
 {{/models}}
 
 __all__ = [
-    {{#models}}{{#model}}"{{classname}}",{{^anyOf}}{{^oneOf}}{{^isEnum}} "{{classname}}Dict",{{/isEnum}}{{/oneOf}}{{/anyOf}}{{/model}}{{/models}}
+    {{#models}}{{#model}}
+    "{{classname}}",
+    {{^anyOf}}{{^oneOf}}{{^isEnum}} "{{classname}}Dict",{{/isEnum}}{{/oneOf}}{{/anyOf}}
+    {{/model}}{{/models}}
 ]

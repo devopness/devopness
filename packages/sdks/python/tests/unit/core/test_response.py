@@ -26,11 +26,10 @@ def build_response(
 ) -> Mock:
     response = Mock(spec=httpx.Response)
 
-    if isinstance(content, dict):
+    if type(content) in (dict, list):
         response.read.return_value = json.dumps(content).encode("utf-8")
     else:
         response.read.return_value = content
-
     response.status_code = status_code
     response.headers = headers or {}
 
@@ -46,6 +45,17 @@ class TestDevopnessResponse(unittest.TestCase):
 
         assert isinstance(response.data, DummyModel)
         assert response.data.id == 123
+
+    def test_devopness_response_with_list(self) -> None:
+        response: DevopnessResponse[list[DummyModel]] = DevopnessResponse(
+            build_response([{"id": 123}, {"id": 456}]),
+            list[DummyModel],
+        )
+
+        assert isinstance(response.data, list)
+        assert len(response.data) == 2
+        assert response.data[0].id == 123
+        assert response.data[1].id == 456
 
     def test_devopness_response_with_str(self) -> None:
         response: DevopnessResponse[str] = DevopnessResponse(
