@@ -325,6 +325,16 @@ if __name__ == "__main__":
                     "UserUpdate",
                     "UserUrl",
                     "UserVerify",
+                    "Credits",
+                    "Subscription",
+                    "SubscriptionBalance",
+                    "UserBilling",
+                    "UserCreate",
+                    "UserLogin",
+                    "UserLoginResponse",
+                    "UserRefreshToken",
+                    "UserRefreshTokenResponse",
+                    "UserResendVerification",
                 ]
             )
             + ",supportingFiles=__init__.py"
