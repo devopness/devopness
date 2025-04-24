@@ -8,7 +8,6 @@ Note:
 
 from typing import List, Optional, TypedDict
 
-
 from .. import DevopnessBaseModel
 from .triggered_action_stats import TriggeredActionStats
 from .triggered_action_summary import TriggeredActionSummary

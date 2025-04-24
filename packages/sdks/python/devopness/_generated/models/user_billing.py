@@ -8,7 +8,6 @@ Note:
 
 from typing import Optional, TypedDict
 
-
 from .. import DevopnessBaseModel
 from .subscription import Subscription
 

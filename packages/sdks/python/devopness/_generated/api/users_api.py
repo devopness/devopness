@@ -43,7 +43,7 @@ class UsersApiService(DevopnessBaseService):
             UserCreate,
             UserCreateDict,
         ],
-    ) -> DevopnessResponse:
+    ) -> DevopnessResponse[None]:
         """
         Sign up/register a new user
 
@@ -67,13 +67,13 @@ class UsersApiService(DevopnessBaseService):
             UserCreate,
             UserCreateDict,
         ],
-    ) -> DevopnessResponse:
+    ) -> DevopnessResponse[None]:
         """
         Sign up/register a new user
 
         Raises:
-            DevopnessApiError: If an api request error occurs.
-            DevopnessNetworkError: If an network error occurs.
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -114,8 +114,8 @@ class UsersApiService(DevopnessBaseService):
         Get a user by ID or URL Slug
 
         Raises:
-            DevopnessApiError: If an api request error occurs.
-            DevopnessNetworkError: If an network error occurs.
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -156,8 +156,8 @@ class UsersApiService(DevopnessBaseService):
         Get activity information for a user
 
         Raises:
-            DevopnessApiError: If an api request error occurs.
-            DevopnessNetworkError: If an network error occurs.
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -196,8 +196,8 @@ class UsersApiService(DevopnessBaseService):
         Get current user's billing info for active subscription
 
         Raises:
-            DevopnessApiError: If an api request error occurs.
-            DevopnessNetworkError: If an network error occurs.
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -211,7 +211,7 @@ class UsersApiService(DevopnessBaseService):
 
     async def get_user_logout(
         self,
-    ) -> DevopnessResponse:
+    ) -> DevopnessResponse[None]:
         """
         Logout/revoke an existing token
 
@@ -231,13 +231,13 @@ class UsersApiService(DevopnessBaseService):
 
     def get_user_logout_sync(
         self,
-    ) -> DevopnessResponse:
+    ) -> DevopnessResponse[None]:
         """
         Logout/revoke an existing token
 
         Raises:
-            DevopnessApiError: If an api request error occurs.
-            DevopnessNetworkError: If an network error occurs.
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -276,8 +276,8 @@ class UsersApiService(DevopnessBaseService):
         Get details of the current user
 
         Raises:
-            DevopnessApiError: If an api request error occurs.
-            DevopnessNetworkError: If an network error occurs.
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -316,8 +316,8 @@ class UsersApiService(DevopnessBaseService):
         Get the authenticated user's URLs
 
         Raises:
-            DevopnessApiError: If an api request error occurs.
-            DevopnessNetworkError: If an network error occurs.
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -364,8 +364,8 @@ class UsersApiService(DevopnessBaseService):
         Login/create a new token for the given credentials
 
         Raises:
-            DevopnessApiError: If an api request error occurs.
-            DevopnessNetworkError: If an network error occurs.
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -412,8 +412,8 @@ class UsersApiService(DevopnessBaseService):
         Refresh an existing user access token
 
         Raises:
-            DevopnessApiError: If an api request error occurs.
-            DevopnessNetworkError: If an network error occurs.
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -431,7 +431,7 @@ class UsersApiService(DevopnessBaseService):
             UserResendVerification,
             UserResendVerificationDict,
         ],
-    ) -> DevopnessResponse:
+    ) -> DevopnessResponse[None]:
         """
         Resend the verification email
 
@@ -455,13 +455,13 @@ class UsersApiService(DevopnessBaseService):
             UserResendVerification,
             UserResendVerificationDict,
         ],
-    ) -> DevopnessResponse:
+    ) -> DevopnessResponse[None]:
         """
         Resend the verification email
 
         Raises:
-            DevopnessApiError: If an api request error occurs.
-            DevopnessNetworkError: If an network error occurs.
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -480,7 +480,7 @@ class UsersApiService(DevopnessBaseService):
             UserUpdate,
             UserUpdateDict,
         ],
-    ) -> DevopnessResponse:
+    ) -> DevopnessResponse[None]:
         """
         Update an existing user
 
@@ -505,13 +505,13 @@ class UsersApiService(DevopnessBaseService):
             UserUpdate,
             UserUpdateDict,
         ],
-    ) -> DevopnessResponse:
+    ) -> DevopnessResponse[None]:
         """
         Update an existing user
 
         Raises:
-            DevopnessApiError: If an api request error occurs.
-            DevopnessNetworkError: If an network error occurs.
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -529,7 +529,7 @@ class UsersApiService(DevopnessBaseService):
             UserVerify,
             UserVerifyDict,
         ],
-    ) -> DevopnessResponse:
+    ) -> DevopnessResponse[None]:
         """
         Activate the user account
 
@@ -553,13 +553,13 @@ class UsersApiService(DevopnessBaseService):
             UserVerify,
             UserVerifyDict,
         ],
-    ) -> DevopnessResponse:
+    ) -> DevopnessResponse[None]:
         """
         Activate the user account
 
         Raises:
-            DevopnessApiError: If an api request error occurs.
-            DevopnessNetworkError: If an network error occurs.
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [

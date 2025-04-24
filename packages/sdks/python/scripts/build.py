@@ -43,7 +43,18 @@ def remove_previous_generated_directories() -> None:
 def run_openapi_generator() -> None:
     print("🚀  Running OpenAPI Generator...")
 
-    cmd = "bash -c 'openapi-generator-cli generate'"
+    cmd_parts = [
+        "bash -c '",
+        "openapi-generator-cli generate",
+        '--input-spec="./generator/api/spec.json"',
+        '--generator-name="python"',
+        '--output="./devopness/_generated"',
+        '--template-dir="./generator/templates"',
+        '--additional-properties="packageName="',
+        "'",
+    ]
+
+    cmd = " ".join(cmd_parts)
     subprocess.run(
         cmd,
         shell=True,
@@ -200,67 +211,7 @@ def export_sdk_services() -> None:
         f.write("\n".join(lines))
 
 
-def fix_permissions_and_ownership(
-    dir_path: str | None = None,
-    file_path: str | None = None,
-) -> None:
-    print(f"🔧  Fixing permissions and ownership for {dir_path}...")
-
-    if dir_path and os.path.isdir(dir_path):
-        # Change directory permissions
-        subprocess.run(
-            [
-                "find",
-                dir_path,
-                "-type",
-                "d",
-                "-exec",
-                "chmod",
-                "755",
-                "{}",
-                ";",
-            ],
-            check=True,
-        )
-
-    if file_path:
-        # Change file permissions
-        subprocess.run(
-            [
-                "find",
-                file_path,
-                "-type",
-                "f",
-                "-exec",
-                "chmod",
-                "644",
-                "{}",
-                ";",
-            ],
-            check=True,
-        )
-
-    # If USER_ID and GROUP_ID are set, change ownership
-    user_id = os.getenv("USER_ID")
-    group_id = os.getenv("GROUP_ID")
-
-    if user_id and group_id:
-        if dir_path is None and file_path is None:
-            return
-
-        path: str = dir_path if dir_path else file_path  # type: ignore
-        subprocess.run(
-            [
-                "chown",
-                "-R",
-                f"{user_id}:{group_id}",
-                path,
-            ],
-            check=True,
-        )
-
-
-def fix_import_paths_in_models():
+def fix_import_paths_in_models() -> None:
     print("🔧  Adjusting import paths in models...")
 
     for file in os.listdir(GENERATED_MODELS_DIR):
@@ -270,7 +221,7 @@ def fix_import_paths_in_models():
         file_path = os.path.join(GENERATED_MODELS_DIR, file)
         file_content = ""
 
-        with open(file_path, "r", encoding="utf-8") as f:
+        with open(file_path, encoding="utf-8") as f:
             file_content = f.read()
 
             file_content = file_content.replace(
@@ -310,7 +261,7 @@ def remove_openapi_generator_cache() -> None:
     shutil.rmtree(dir_path, ignore_errors=True)
 
 
-def execute_temp_script():
+def execute_temp_script() -> None:
     print("🧹  Executing temporary script...")
 
     cmd = 'bash -c "bash scripts/temp.sh"'
@@ -320,15 +271,7 @@ def execute_temp_script():
 def execute_post_build_tasks() -> None:
     print("🔧  Executing post-build tasks...")
 
-    fix_permissions_and_ownership(file_path=SDK_CORE_FILE)
-    fix_permissions_and_ownership(file_path=SDK_MODELS_FILE)
-    fix_permissions_and_ownership(file_path=SDK_SERVICES_FILE)
-
-    fix_permissions_and_ownership(GENERATED_API_DIR)
-    fix_permissions_and_ownership(GENERATED_MODELS_DIR)
-
     fix_import_paths_in_models()
-
     remove_openapi_generator_cache()
 
     fix_import_issues()

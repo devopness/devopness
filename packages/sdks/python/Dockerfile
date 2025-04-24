@@ -1,17 +1,26 @@
 FROM python:3.13-alpine
 
-RUN apk update
-RUN apk add --no-cache bash
-RUN apk add --no-cache openjdk11-jre
-RUN apk add --no-cache npm
+# --- System dependencies installation ---
+RUN apk update && apk add --no-cache bash openjdk11-jre
 
-RUN npm install -g @openapitools/openapi-generator-cli
-RUN openapi-generator-cli version-manager set 7.12.0
+# --- User configuration ---
+ARG USER_ID
+ARG USER_NAME
+ARG GROUP_ID
+ARG GROUP_NAME
 
+# Create user and group with specified IDs
+RUN addgroup -g "${GROUP_ID}" -S "${GROUP_NAME}" \
+  && adduser -u "${USER_ID}" -S "${USER_NAME}" -G "${GROUP_NAME}"
+
+# Grant full permissions to /usr/local - required for poetry usage
+RUN chmod -R 777 /usr/local
+
+USER ${USER_NAME}
+WORKDIR /sdk
+
+# --- Package dependencies installation ---
 RUN pip install poetry
 
-COPY poetry.lock poetry.lock
-COPY pyproject.toml pyproject.toml
+COPY poetry.lock pyproject.toml ./
 RUN POETRY_VIRTUALENVS_CREATE=false poetry install --no-root
-
-WORKDIR /sdk

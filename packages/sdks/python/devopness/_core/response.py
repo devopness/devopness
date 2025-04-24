@@ -3,7 +3,7 @@ Devopness API Python SDK - Painless essential DevOps to everyone
 """
 
 import json
-from typing import Generic, Optional, TypeVar, Union, get_args, get_origin
+from typing import Any, Generic, Optional, TypeVar, Union, cast
 from urllib.parse import parse_qs, urlparse
 from warnings import warn
 
@@ -50,7 +50,7 @@ class DevopnessResponse(Generic[T]):
                                                       body into.
         """
         self.status = response.status_code
-        self.data = self._parse_data(response, model_cls)  # type: ignore
+        self.data = cast(T, self._parse_data(response, model_cls))
         self.page_count = self._extract_last_page_number(response)
         self.action_id = self._parse_action_id(response)
 
@@ -103,7 +103,14 @@ class DevopnessResponse(Generic[T]):
         self,
         response: httpx.Response,
         model_cls: Optional[Union[type[DevopnessBaseModel], type]],
-    ):
+    ) -> Union[
+        str,
+        int,
+        float,
+        dict[str, Any],
+        DevopnessBaseModel,
+        None,
+    ]:
         """
         Parse the response data into the specified model class.
         """
@@ -125,19 +132,9 @@ class DevopnessResponse(Generic[T]):
         try:
             # No model provided, just try decoding JSON as dict
             if not model_cls:
-                return json.loads(raw_data)
+                return cast(dict[str, Any], json.loads(raw_data))
 
-            # Handle Union types (e.g., AnyOf or OneOf)
-            if get_origin(model_cls) is Union:
-                for model in get_args(model_cls):
-                    try:
-                        return model.from_json(raw_data)
-                    except ValueError:
-                        continue
-                raise ValueError("No matching model found in Union")
-
-            # Handle regular model class
-            return model_cls.from_json(raw_data)  # type: ignore
+            return cast(DevopnessBaseModel, model_cls.from_json(raw_data))  # type: ignore[attr-defined]
 
         # pylint: disable=bare-except
         # pylint: disable=broad-exception-caught
@@ -145,7 +142,8 @@ class DevopnessResponse(Generic[T]):
             class_name = getattr(model_cls, "__name__", "Unknown")
             warn(
                 f"Failed to deserialize response body into {class_name}. "
-                "Returning raw response data instead."
+                "Returning raw response data instead.",
+                stacklevel=2,
             )
 
-            return json.loads(raw_data)
+            return cast(dict[str, Any], json.loads(raw_data))
