@@ -16,7 +16,7 @@ class TestDevopnessBaseService(unittest.TestCase):
     dummy_response = httpx.Response(200, request=dummy_request)
 
     @patch("httpx.Client._send_single_request")
-    def test_perform_unauthenticated_request_expects_not_include_auth_header(
+    def test_unauthenticated_request_omits_auth_header(
         self,
         mock: Mock,
     ) -> None:
@@ -34,7 +34,7 @@ class TestDevopnessBaseService(unittest.TestCase):
         self.assertNotIn("Authorization", request.headers)
 
     @patch("httpx.Client._send_single_request")
-    def test_perform_authenticated_request_expects_include_auth_header(
+    def test_authenticated_request_includes_auth_header(
         self,
         mock: Mock,
     ) -> None:
@@ -53,7 +53,7 @@ class TestDevopnessBaseService(unittest.TestCase):
         self.assertEqual(request.headers["Authorization"], "Bearer dp-token123")
 
     @patch("httpx.Client.send")
-    def test_perform_post_request_with_dict_with_keys_unset_expects_this_keys_is_removed_from_payload(
+    def test_post_dict_removes_null_keys(
         self,
         mock: Mock,
     ) -> None:
@@ -72,7 +72,7 @@ class TestDevopnessBaseService(unittest.TestCase):
         self.assertEqual(request.content, b'{"name":"John Doe"}')
 
     @patch("httpx.Client.send")
-    def test_perform_post_request_with_sdk_model_with_keys_unset_expects_this_keys_is_removed_from_payload(
+    def test_post_sdk_model_removes_null_fields(
         self,
         mock: Mock,
     ) -> None:
@@ -91,7 +91,7 @@ class TestDevopnessBaseService(unittest.TestCase):
         self.assertEqual(request.content, b'{"name":"Cool Project"}')
 
     @patch("httpx.Client.send")
-    def test_perform_put_request_with_dict_with_keys_unset_expects_this_keys_is_removed_from_payload(
+    def test_put_dict_removes_null_keys(
         self,
         mock: Mock,
     ) -> None:
@@ -110,7 +110,7 @@ class TestDevopnessBaseService(unittest.TestCase):
         self.assertEqual(request.content, b'{"name":"John Doe"}')
 
     @patch("httpx.Client.send")
-    def test_perform_put_request_with_sdk_model_with_keys_unset_expects_this_keys_is_removed_from_payload(
+    def test_put_sdk_model_removes_null_fields(
         self,
         mock: Mock,
     ) -> None:
@@ -137,7 +137,7 @@ class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
     dummy_response = httpx.Response(200, request=dummy_request)
 
     @patch("httpx.AsyncClient._send_single_request")
-    async def test_perform_unauthenticated_request_expects_not_include_auth_header(
+    async def test_async_unauthenticated_request_omits_auth_header(
         self,
         mock: Mock,
     ) -> None:
@@ -155,7 +155,7 @@ class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
         self.assertNotIn("Authorization", request.headers)
 
     @patch("httpx.AsyncClient._send_single_request")
-    async def test_perform_authenticated_request_expects_include_auth_header(
+    async def test_async_authenticated_request_includes_auth_header(
         self,
         mock: Mock,
     ) -> None:
@@ -174,7 +174,7 @@ class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(request.headers["Authorization"], "Bearer dp-token123")
 
     @patch("httpx.AsyncClient.send")
-    async def test_perform_post_request_with_dict_with_keys_unset_expects_this_keys_is_removed_from_payload(
+    async def test_async_post_dict_removes_null_keys(
         self,
         mock: Mock,
     ) -> None:
@@ -193,7 +193,7 @@ class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(request.content, b'{"name":"John Doe"}')
 
     @patch("httpx.AsyncClient.send")
-    async def test_perform_post_request_with_sdk_model_with_keys_unset_expects_this_keys_is_removed_from_payload(
+    async def test_async_post_sdk_model_removes_null_fields(
         self,
         mock: Mock,
     ) -> None:
@@ -212,7 +212,7 @@ class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(request.content, b'{"name":"Cool Project"}')
 
     @patch("httpx.AsyncClient.send")
-    async def test_perform_put_request_with_dict_with_keys_unset_expects_this_keys_is_removed_from_payload(
+    async def test_async_put_dict_removes_null_keys(
         self,
         mock: Mock,
     ) -> None:
@@ -231,7 +231,7 @@ class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(request.content, b'{"name":"John Doe"}')
 
     @patch("httpx.AsyncClient.send")
-    async def test_perform_put_request_with_sdk_model_with_keys_unset_expects_this_keys_is_removed_from_payload(
+    async def test_async_put_sdk_model_removes_null_fields(
         self,
         mock: Mock,
     ) -> None:
