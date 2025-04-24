@@ -137,7 +137,7 @@ class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
     dummy_response = httpx.Response(200, request=dummy_request)
 
     @patch("httpx.AsyncClient._send_single_request")
-    async def test_async_unauthenticated_request_omits_auth_header(
+    async def test_unauthenticated_request_omits_auth_header(
         self,
         mock: Mock,
     ) -> None:
@@ -155,7 +155,7 @@ class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
         self.assertNotIn("Authorization", request.headers)
 
     @patch("httpx.AsyncClient._send_single_request")
-    async def test_async_authenticated_request_includes_auth_header(
+    async def test_authenticated_request_includes_auth_header(
         self,
         mock: Mock,
     ) -> None:
@@ -174,7 +174,7 @@ class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(request.headers["Authorization"], "Bearer dp-token123")
 
     @patch("httpx.AsyncClient.send")
-    async def test_async_post_dict_removes_null_keys(
+    async def test_post_dict_removes_null_keys(
         self,
         mock: Mock,
     ) -> None:
@@ -193,7 +193,7 @@ class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(request.content, b'{"name":"John Doe"}')
 
     @patch("httpx.AsyncClient.send")
-    async def test_async_post_sdk_model_removes_null_fields(
+    async def test_post_sdk_model_removes_null_fields(
         self,
         mock: Mock,
     ) -> None:
@@ -212,7 +212,7 @@ class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(request.content, b'{"name":"Cool Project"}')
 
     @patch("httpx.AsyncClient.send")
-    async def test_async_put_dict_removes_null_keys(
+    async def test_put_dict_removes_null_keys(
         self,
         mock: Mock,
     ) -> None:
@@ -231,7 +231,7 @@ class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(request.content, b'{"name":"John Doe"}')
 
     @patch("httpx.AsyncClient.send")
-    async def test_async_put_sdk_model_removes_null_fields(
+    async def test_put_sdk_model_removes_null_fields(
         self,
         mock: Mock,
     ) -> None:
