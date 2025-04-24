@@ -2,7 +2,7 @@
 Devopness API Python SDK - Painless essential DevOps to everyone
 """
 
-from typing import Any, Optional
+from typing import Any, Optional, Union
 from urllib.parse import urlencode
 
 import httpx
@@ -241,21 +241,31 @@ class DevopnessBaseService:
         """
         return self.__client_sync.delete(endpoint)
 
-    def __get_payload(self, data: Any | DevopnessBaseModel) -> Any:  # noqa: ANN401
+    def __get_payload(
+        self,
+        data: Union[dict[str, Any], DevopnessBaseModel],
+    ) -> dict[str, Any]:
         """
         Returns the payload for a request.
 
         Args:
-            data (Any): The request body payload.
+            data (Union[dict[str, Any], DevopnessBaseModel]): The request body payload.
 
         Returns:
             str: The payload as a string.
         """
-        payload = data
-        if hasattr(data, "model_dump"):
-            payload = data.model_dump()
+        if isinstance(data, DevopnessBaseModel):
+            payload = data.model_dump(exclude_unset=True)
 
-        return payload
+        if isinstance(data, dict):
+            payload = data
+
+        stripped_payload = {}
+        for key, value in payload.items():
+            if value is not None:
+                stripped_payload[key] = value
+
+        return stripped_payload
 
     @staticmethod
     def _get_query_string(params: dict[str, Any]) -> str:
