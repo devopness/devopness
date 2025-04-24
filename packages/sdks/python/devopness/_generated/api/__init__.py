@@ -6,8 +6,10 @@ Note:
     https://openapi-generator.tech
 """
 
+from .projects_api import ProjectsApiService
 from .users_api import UsersApiService
 
 __all__ = [
+    "ProjectsApiService",
     "UsersApiService",
 ]
