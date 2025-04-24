@@ -156,7 +156,7 @@ class DevopnessResponse(Generic[T]):
             # Handle DevopnessBaseModel
             if issubclass(model_cls, DevopnessBaseModel):
                 dict_data: dict[str, Any] = json.loads(raw_data.decode("utf-8"))
-                return cast(type[DevopnessBaseModel], model_cls).from_dict(dict_data)
+                return model_cls.from_dict(dict_data)
 
         except (json.JSONDecodeError, ValidationError):
             model_name = model_cls.__name__ if model_cls else "None"
