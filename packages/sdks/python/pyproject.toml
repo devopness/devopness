@@ -132,16 +132,6 @@ warn_unreachable = true
 sqlite_cache = true
 cache_fine_grained = true
 
-# TODO: Remove this override when the 'Devopness SDK for Python' is released.
-#       Currently, due to the 'scripts/temp.sh' script that is used to maintain
-#       the generated services during development with only 'user' as service,
-#       the models are not exported in the '__all__' of
-#       'devopness._generated.models.__init__.py' and therefore the mypy emits
-#       the 'attr-defined' error.
-[[tool.mypy.overrides]]
-module = "devopness.models"
-disable_error_code = ["attr-defined"]
-
 [[tool.mypy.overrides]]
 module = "devopness._generated.api.*"
 disable_error_code = ["attr-defined"]
