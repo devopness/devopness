@@ -40,7 +40,7 @@ def remove_previous_generated_directories() -> None:
         shutil.rmtree(GENERATED_MODELS_DIR)
 
 
-def run_openapi_generator() -> None:
+def run_openapi_generator(extra_args: list[str] | None = None) -> None:
     print("🚀  Running OpenAPI Generator...")
 
     cmd_parts = [
@@ -51,8 +51,14 @@ def run_openapi_generator() -> None:
         '--output="./devopness/_generated"',
         '--template-dir="./generator/templates"',
         '--additional-properties="packageName="',
-        "'",
     ]
+
+    if extra_args is not None:
+        print(f"    Extra args: {extra_args}")
+        cmd_parts.extend(extra_args)
+
+    # Add the closing quote to the command
+    cmd_parts.append("'")
 
     cmd = " ".join(cmd_parts)
     subprocess.run(
@@ -261,13 +267,6 @@ def remove_openapi_generator_cache() -> None:
     shutil.rmtree(dir_path, ignore_errors=True)
 
 
-def execute_temp_script() -> None:
-    print("🧹  Executing temporary script...")
-
-    cmd = 'bash -c "bash scripts/temp.sh"'
-    subprocess.run(cmd, shell=True, check=True)
-
-
 def execute_post_build_tasks() -> None:
     print("🔧  Executing post-build tasks...")
 
@@ -282,9 +281,60 @@ def execute_post_build_tasks() -> None:
 if __name__ == "__main__":
     try:
         remove_previous_generated_directories()
-        run_openapi_generator()
 
-        execute_temp_script()
+        # TEMPORARY CLEANUP FOR INITIAL SDK DEVELOPMENT
+        #
+        # We're removing all generated files that are not in test-scope
+        # to keep the number of auto-generated files as low as possible
+        # during the initial development of SDK.
+        #
+        # This helps validate the core structure and functionality
+        # of the SDK before exposing all endpoints.
+
+        apis = (
+            # API Services to be Generated
+            ":".join(
+                [
+                    "Users",
+                ]
+            )
+            + ",supportingFiles=__init__.py"
+        )
+
+        models = (
+            # Models to be Generated
+            ":".join(
+                [
+                    "Language",
+                    "SocialAccountDisplayableName",
+                    "SocialAccountProvider",
+                    "SocialAccountRelation",
+                    "StaticBillingInfo",
+                    "SubscriptionPlan",
+                    "TriggeredActions",
+                    "TriggeredActionStats",
+                    "TriggeredActionSummary",
+                    "User",
+                    "UserActivity",
+                    "UserEnvironmentStats",
+                    "UserMe",
+                    "UserProfileOptions",
+                    "UserProjectStats",
+                    "UserRelation",
+                    "UserTeamStats",
+                    "UserUpdate",
+                    "UserUrl",
+                    "UserVerify",
+                ]
+            )
+            + ",supportingFiles=__init__.py"
+        )
+
+        openapi_generator_extra_args = []
+        openapi_generator_extra_args.append(f"--global-property apis={apis}")
+        openapi_generator_extra_args.append(f"--global-property models={models}")
+
+        run_openapi_generator(openapi_generator_extra_args)
 
         export_sdk_core()
         export_sdk_models()
