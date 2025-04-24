@@ -98,6 +98,10 @@ extend-select = [
   "W",   # pycodestyle (warning)
 ]
 
+ignore = [
+  "RET504", # Unnecessary assignment to `**kwargs` before `return` statement
+]
+
 [tool.ruff.lint.per-file-ignores]
 "devopness/_generated/**/*" = [
   "E501", # Line too long
