@@ -3,13 +3,14 @@ Devopness API Python SDK - Painless essential DevOps to everyone
 """
 
 import json
-from typing import Any, Generic, Optional, TypeVar, Union, cast
+from typing import Any, Generic, Optional, TypeVar, Union, cast, get_args, get_origin
 from urllib.parse import parse_qs, urlparse
 from warnings import warn
 
 import httpx
 
 from devopness._base import DevopnessBaseModel
+from pydantic import ValidationError
 
 __all__ = ["DevopnessResponse"]
 
@@ -107,43 +108,58 @@ class DevopnessResponse(Generic[T]):
         str,
         int,
         float,
-        dict[str, Any],
         DevopnessBaseModel,
+        list[DevopnessBaseModel],
+        dict[str, Any],
         None,
     ]:
         """
         Parse the response data into the specified model class.
         """
-        raw_data: bytes = response.read()
-
-        if model_cls is str:
-            return raw_data.decode("utf-8")
-
-        if model_cls is int:
-            return int(raw_data.decode("utf-8"))
-
-        if model_cls is float:
-            return float(raw_data.decode("utf-8"))
-
-        # No data to parse, just return None
-        if raw_data == b"":
-            return None
-
         try:
-            # No model provided, just try decoding JSON as dict
-            if not model_cls:
-                return cast(dict[str, Any], json.loads(raw_data))
+            raw_data: bytes = response.read()
 
-            return cast(DevopnessBaseModel, model_cls.from_json(raw_data))  # type: ignore[attr-defined]
+            # No data to parse, just return None
+            if raw_data == b"" or model_cls is None:
+                return None
 
-        # pylint: disable=bare-except
-        # pylint: disable=broad-exception-caught
-        except:  # noqa: E722
-            class_name = getattr(model_cls, "__name__", "Unknown")
-            warn(
-                f"Failed to deserialize response body into {class_name}. "
-                "Returning raw response data instead.",
-                stacklevel=2,
+            if model_cls is str:
+                return raw_data.decode("utf-8")
+
+            if model_cls is int:
+                return int(raw_data.decode("utf-8"))
+
+            if model_cls is float:
+                return float(raw_data.decode("utf-8"))
+
+            model_origin = get_origin(model_cls)
+
+            if model_origin is list:
+                model_args: tuple[type[DevopnessBaseModel], ...] = get_args(model_cls)
+                if len(model_args) != 1:
+                    raise NotImplementedError()
+
+                list_data: list[DevopnessBaseModel] = json.loads(
+                    raw_data.decode("utf-8")
+                )
+
+                result = []
+                for item in list_data:
+                    result.append(model_args[0].from_dict(item))
+
+                return result
+
+            if model_origin is dict or issubclass(model_cls, DevopnessBaseModel):
+                dict_data: dict[str, Any] = json.loads(raw_data.decode("utf-8"))
+                return cast(type[DevopnessBaseModel], model_cls).from_dict(dict_data)
+
+        except (json.JSONDecodeError, ValidationError):
+            model_name = model_cls.__name__ if model_cls else "None"
+            msg = (
+                f"Failed to deserialize response body into {model_name}. "
+                "Returning raw response data instead."
             )
 
-            return cast(dict[str, Any], json.loads(raw_data))
+            warn(msg, stacklevel=2)
+
+        return raw_data.decode("utf-8")
