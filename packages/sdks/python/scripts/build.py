@@ -54,7 +54,6 @@ def run_openapi_generator(extra_args: list[str] | None = None) -> None:
     ]
 
     if extra_args is not None:
-        print(f"    Extra args: {extra_args}")
         cmd_parts.extend(extra_args)
 
     # Add the closing quote to the command
@@ -67,6 +66,130 @@ def run_openapi_generator(extra_args: list[str] | None = None) -> None:
         check=True,
         env={"JAVA_OPTS": "-Dlog.level=warn"},
     )
+
+
+def run_openapi_generator_with_temporary_cleanup() -> None:
+    """
+    TEMPORARY HACK FOR INITIAL SDK DEVELOPMENT
+
+    We're removing all generated files that are not in test-scope
+    to keep the number of auto-generated files as low as possible
+    during the initial development of SDK.
+
+    This helps validate the core structure and functionality
+    of the SDK before exposing all endpoints.
+    """
+
+    apis_to_generate = [
+        "Projects",
+        # "ProjectsActions",
+        # "ProjectsArchivedEnvironments",
+        # "ProjectsEnvironments",
+        # "ProjectsRoles",
+        # "ProjectsTeams",
+        "Users",
+        # "UsersEnvironments",
+        # "UsersPasswords",
+        # "UsersProjects",
+        # "UsersTeamInvitations",
+    ]
+
+    apis_string = ":".join(apis_to_generate)
+    apis_property = f"--global-property apis={apis_string},supportingFiles=__init__.py"
+
+    openapi_generator_extra_args: list[str] = []
+    openapi_generator_extra_args.append(apis_property)
+    openapi_generator_extra_args.append("--global-property models")
+
+    run_openapi_generator(openapi_generator_extra_args)
+
+    # Models to keep
+    models_to_keep = [
+        "credits",
+        "language",
+        "os_users_inner",
+        "project",
+        "project_create",
+        "project_relation",
+        "project_update",
+        "resource_summary_item",
+        "resource_summary_item_summary",
+        "social_account_displayable_name",
+        "social_account_provider",
+        "social_account_relation",
+        "static_billing_info",
+        "subscription",
+        "subscription_balance",
+        "subscription_plan",
+        "triggered_actions",
+        "triggered_action_stats",
+        "triggered_action_summary",
+        "user",
+        "user_activity",
+        "user_billing",
+        "user_create",
+        "user_environment_stats",
+        "user_login",
+        "user_login_response",
+        "user_me",
+        "user_profile_options",
+        "user_project_stats",
+        "user_refresh_token",
+        "user_refresh_token_response",
+        "user_relation",
+        "user_resend_verification",
+        "user_team_stats",
+        "user_update",
+        "user_url",
+        "user_verify",
+    ]
+
+    generated_models: list[str] = []
+    for filename in os.listdir(GENERATED_MODELS_DIR):
+        full_path = os.path.join(GENERATED_MODELS_DIR, filename)
+        if (
+            os.path.isfile(full_path)
+            and filename.endswith(".py")
+            and not filename.startswith("__")
+        ):
+            generated_models.append(filename)
+
+    generated_models.sort()
+
+    removed_model_identifiers: list[str] = []
+    for filename in generated_models:
+        model_name_snake = filename.replace(".py", "")
+        model_name_pascal = snake_to_pascal(model_name_snake)
+
+        if model_name_snake not in models_to_keep:
+            file_path_to_remove = os.path.join(GENERATED_MODELS_DIR, filename)
+            os.remove(file_path_to_remove)
+
+            removed_model_identifiers.append(f".{model_name_snake} import")
+            removed_model_identifiers.append(f'"{model_name_pascal}"')
+            removed_model_identifiers.append(f'"{model_name_pascal}Dict"')
+
+    init_file_path = os.path.join(GENERATED_MODELS_DIR, "__init__.py")
+
+    with open(init_file_path, "r", encoding="utf-8") as init_file:
+        init_lines = init_file.readlines()
+
+    cleaned_init_lines: list[str] = []
+    for line in init_lines:
+        should_include = True
+
+        for identifier in removed_model_identifiers:
+            if identifier in line:
+                should_include = False
+                break
+
+        if should_include:
+            cleaned_init_lines.append(line)
+
+    with open(init_file_path, "w", encoding="utf-8") as init_file:
+        init_file.writelines(cleaned_init_lines)
+
+    # END OF HACK
 
 
 def export_sdk_core() -> None:
@@ -281,70 +404,8 @@ def execute_post_build_tasks() -> None:
 if __name__ == "__main__":
     try:
         remove_previous_generated_directories()
-
-        # TEMPORARY CLEANUP FOR INITIAL SDK DEVELOPMENT
-        #
-        # We're removing all generated files that are not in test-scope
-        # to keep the number of auto-generated files as low as possible
-        # during the initial development of SDK.
-        #
-        # This helps validate the core structure and functionality
-        # of the SDK before exposing all endpoints.
-
-        apis = (
-            # API Services to be Generated
-            ":".join(
-                [
-                    "Users",
-                ]
-            )
-            + ",supportingFiles=__init__.py"
-        )
-
-        models = (
-            # Models to be Generated
-            ":".join(
-                [
-                    "Language",
-                    "SocialAccountDisplayableName",
-                    "SocialAccountProvider",
-                    "SocialAccountRelation",
-                    "StaticBillingInfo",
-                    "SubscriptionPlan",
-                    "TriggeredActions",
-                    "TriggeredActionStats",
-                    "TriggeredActionSummary",
-                    "User",
-                    "UserActivity",
-                    "UserEnvironmentStats",
-                    "UserMe",
-                    "UserProfileOptions",
-                    "UserProjectStats",
-                    "UserRelation",
-                    "UserTeamStats",
-                    "UserUpdate",
-                    "UserUrl",
-                    "UserVerify",
-                    "Credits",
-                    "Subscription",
-                    "SubscriptionBalance",
-                    "UserBilling",
-                    "UserCreate",
-                    "UserLogin",
-                    "UserLoginResponse",
-                    "UserRefreshToken",
-                    "UserRefreshTokenResponse",
-                    "UserResendVerification",
-                ]
-            )
-            + ",supportingFiles=__init__.py"
-        )
-
-        openapi_generator_extra_args = []
-        openapi_generator_extra_args.append(f"--global-property apis={apis}")
-        openapi_generator_extra_args.append(f"--global-property models={models}")
-
-        run_openapi_generator(openapi_generator_extra_args)
+        # run_openapi_generator()
+        run_openapi_generator_with_temporary_cleanup()
 
         export_sdk_core()
         export_sdk_models()
