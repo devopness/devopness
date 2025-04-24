@@ -51,115 +51,132 @@ class DevopnessResponse(Generic[T]):
                                                       body into.
         """
         self.status = response.status_code
-        self.data = cast(T, self._parse_data(response, model_cls))
-        self.page_count = self._extract_last_page_number(response)
-        self.action_id = self._parse_action_id(response)
+        self.data = cast(T, _parse_data(response, model_cls))
+        self.page_count = _extract_last_page_number(response)
+        self.action_id = _parse_action_id(response)
 
-    def _extract_last_page_number(self, response: httpx.Response) -> int:
-        """
-        Extract the last page number from a pagination Link header.
 
-        Args:
-            response (httpx.Response): The HTTP response object.
+def _extract_last_page_number(response: httpx.Response) -> int:
+    """
+    Extract the last page number from a pagination Link header.
 
-        Returns:
-            int: The number of the last page, or 1 if it could not
-                  be determined.
-        """
-        link_header = response.headers.get("link", "")
+    Args:
+        response (httpx.Response): The HTTP response object.
 
-        for link in link_header.split(","):
-            parts = [p.strip() for p in link.split(";")]
-            if len(parts) < 2:
-                continue
+    Returns:
+        int: The number of the last page, or 1 if it could not
+              be determined.
+    """
+    link_header = response.headers.get("link", "")
 
-            url_part, rel_part = parts[0], parts[1]
-            if rel_part == 'rel="last"':
-                try:
-                    url = urlparse(url_part.strip("<>"))
-                    page_values = parse_qs(url.query).get("page")
-                    return int(page_values[0]) if page_values else 1
-                except (ValueError, IndexError):
-                    return 1
-        return 1
+    for link in link_header.split(","):
+        parts = [p.strip() for p in link.split(";")]
+        if len(parts) < 2:
+            continue
 
-    def _parse_action_id(self, response: httpx.Response) -> Optional[int]:
-        """
-        Parse the 'x-devopness-action-id' header into an integer.
+        url_part, rel_part = parts[0], parts[1]
+        if rel_part == 'rel="last"':
+            try:
+                url = urlparse(url_part.strip("<>"))
+                page_values = parse_qs(url.query).get("page")
+                return int(page_values[0]) if page_values else 1
+            except (ValueError, IndexError):
+                return 1
+    return 1
 
-        Args:
-            response (httpx.Response): The HTTP response object.
 
-        Returns:
-            Optional[int]: The parsed action ID, or None if invalid.
-        """
-        action_id_header = response.headers.get("x-devopness-action-id")
+def _parse_action_id(response: httpx.Response) -> Optional[int]:
+    """
+    Parse the 'x-devopness-action-id' header into an integer.
 
-        try:
-            return int(action_id_header) if action_id_header else None
-        except ValueError:
-            return None
+    Args:
+        response (httpx.Response): The HTTP response object.
 
-    def _parse_data(
-        self,
-        response: httpx.Response,
-        model_cls: Optional[Union[type[DevopnessBaseModel], type]],
-    ) -> Union[
-        str,
-        int,
-        float,
-        DevopnessBaseModel,
-        list[DevopnessBaseModel],
-        dict[str, Any],
-        None,
-    ]:
-        """
-        Parse the response data into the specified model class.
-        """
-        try:
-            raw_data: bytes = response.read()
+    Returns:
+        Optional[int]: The parsed action ID, or None if invalid.
+    """
+    action_id_header = response.headers.get("x-devopness-action-id")
 
-            # No data to parse, just return None
-            if raw_data == b"" or model_cls is None:
-                return None
+    try:
+        return int(action_id_header) if action_id_header else None
+    except ValueError:
+        return None
 
-            if model_cls is str:
-                return raw_data.decode("utf-8")
 
-            if model_cls is int:
-                return int(raw_data.decode("utf-8"))
+def _parse_data(
+    response: httpx.Response,
+    model_cls: Optional[Union[type[DevopnessBaseModel], type]],
+) -> Union[
+    str,
+    int,
+    float,
+    DevopnessBaseModel,
+    list[DevopnessBaseModel],
+    dict[str, Any],
+    None,
+]:
+    """
+    Parse the response data into the specified model class.
 
-            if model_cls is float:
-                return float(raw_data.decode("utf-8"))
+    Parameters:
+        response: The HTTP response to parse
+        model_cls: The target model class to convert the data into
 
-            model_origin = get_origin(model_cls)
+    Returns:
+        Parsed data in the requested format or raw string on failure
+    """
+    # Early return conditions
+    raw_data: bytes = response.read()
+    if raw_data == b"" or model_cls is None:
+        return None
 
-            if model_origin is list:
-                model_args: tuple[type[DevopnessBaseModel], ...] = get_args(model_cls)
-                if len(model_args) != 1:
-                    raise NotImplementedError()
+    try:
+        # Handle primitive types
+        if model_cls is str:
+            return raw_data.decode("utf-8")
 
-                list_data: list[DevopnessBaseModel] = json.loads(
-                    raw_data.decode("utf-8")
-                )
+        if model_cls is int:
+            return int(raw_data.decode("utf-8"))
 
-                result = []
-                for item in list_data:
-                    result.append(model_args[0].from_dict(item))
+        if model_cls is float:
+            return float(raw_data.decode("utf-8"))
 
-                return result
+        # Handle collection types
+        model_origin = get_origin(model_cls)
 
-            if model_origin is dict or issubclass(model_cls, DevopnessBaseModel):
-                dict_data: dict[str, Any] = json.loads(raw_data.decode("utf-8"))
-                return cast(type[DevopnessBaseModel], model_cls).from_dict(dict_data)
+        # Handle list type
+        if model_origin is list:
+            return _parse_list_data(raw_data, model_cls)
 
-        except (json.JSONDecodeError, ValidationError):
-            model_name = model_cls.__name__ if model_cls else "None"
-            msg = (
-                f"Failed to deserialize response body into {model_name}. "
-                "Returning raw response data instead."
-            )
+        # Handle dictionary or DevopnessBaseModel
+        if model_origin is dict or issubclass(model_cls, DevopnessBaseModel):
+            dict_data: dict[str, Any] = json.loads(raw_data.decode("utf-8"))
+            return cast(type[DevopnessBaseModel], model_cls).from_dict(dict_data)
 
-            warn(msg, stacklevel=2)
+    except (json.JSONDecodeError, ValidationError):
+        _log_parse_error(model_cls)
 
-        return raw_data.decode("utf-8")
+    # Fallback to raw string data
+    return raw_data.decode("utf-8")
+
+
+def _parse_list_data(raw_data: bytes, model_cls: type) -> list[DevopnessBaseModel]:
+    """Parse raw data into a list of model instances."""
+    model_args: tuple[type[DevopnessBaseModel], ...] = get_args(model_cls)
+    if len(model_args) != 1:
+        raise NotImplementedError(
+            "Only lists with a single type argument are supported"
+        )
+
+    list_data = json.loads(raw_data.decode("utf-8"))
+    return [model_args[0].from_dict(item) for item in list_data]
+
+
+def _log_parse_error(model_cls: Optional[type]) -> None:
+    """Log a warning when parsing fails."""
+    model_name = model_cls.__name__ if model_cls else "None"
+    msg = (
+        f"Failed to deserialize response body into {model_name}. "
+        "Returning raw response data instead."
+    )
+    warn(msg, stacklevel=3)
