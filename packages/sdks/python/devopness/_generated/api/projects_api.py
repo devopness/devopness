@@ -142,7 +142,7 @@ class ProjectsApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, ProjectRelation)
+        return DevopnessResponse(response, List[ProjectRelation])
 
     def list_projects_sync(
         self,
@@ -172,7 +172,7 @@ class ProjectsApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get_sync(endpoint)
 
-        return DevopnessResponse(response, ProjectRelation)
+        return DevopnessResponse(response, List[ProjectRelation])
 
     async def update_project(
         self,
@@ -197,7 +197,7 @@ class ProjectsApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = await self._put(endpoint, project_update)
 
-        return DevopnessResponse(response)
+        return DevopnessResponse(response, None)
 
     def update_project_sync(
         self,
@@ -222,4 +222,4 @@ class ProjectsApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._put_sync(endpoint, project_update)
 
-        return DevopnessResponse(response)
+        return DevopnessResponse(response, None)

@@ -59,7 +59,7 @@ class UsersApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, user_create)
 
-        return DevopnessResponse(response)
+        return DevopnessResponse(response, None)
 
     def add_user_sync(
         self,
@@ -83,7 +83,7 @@ class UsersApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._post_sync(endpoint, user_create)
 
-        return DevopnessResponse(response)
+        return DevopnessResponse(response, None)
 
     async def get_user(
         self,
@@ -227,7 +227,7 @@ class UsersApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response)
+        return DevopnessResponse(response, None)
 
     def get_user_logout_sync(
         self,
@@ -247,7 +247,7 @@ class UsersApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get_sync(endpoint)
 
-        return DevopnessResponse(response)
+        return DevopnessResponse(response, None)
 
     async def get_user_me(
         self,
@@ -447,7 +447,7 @@ class UsersApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, user_resend_verification)
 
-        return DevopnessResponse(response)
+        return DevopnessResponse(response, None)
 
     def resend_verification_user_sync(
         self,
@@ -471,7 +471,7 @@ class UsersApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._post_sync(endpoint, user_resend_verification)
 
-        return DevopnessResponse(response)
+        return DevopnessResponse(response, None)
 
     async def update_user(
         self,
@@ -496,7 +496,7 @@ class UsersApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = await self._put(endpoint, user_update)
 
-        return DevopnessResponse(response)
+        return DevopnessResponse(response, None)
 
     def update_user_sync(
         self,
@@ -521,7 +521,7 @@ class UsersApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._put_sync(endpoint, user_update)
 
-        return DevopnessResponse(response)
+        return DevopnessResponse(response, None)
 
     async def verify_user(
         self,
@@ -545,7 +545,7 @@ class UsersApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, user_verify)
 
-        return DevopnessResponse(response)
+        return DevopnessResponse(response, None)
 
     def verify_user_sync(
         self,
@@ -569,4 +569,4 @@ class UsersApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._post_sync(endpoint, user_verify)
 
-        return DevopnessResponse(response)
+        return DevopnessResponse(response, None)
