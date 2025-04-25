@@ -6,7 +6,7 @@ from typing import Optional, Union
 
 from ._base import DevopnessBaseService
 from ._client_config import DevopnessClientConfig, DevopnessClientConfigDict
-from .services import ProjectService, UserService
+from .services import EnvironmentService, ProjectService, UserService
 
 __all__ = ["DevopnessClient"]
 
@@ -16,6 +16,7 @@ class DevopnessClient:
     DevopnessApiClient provides an interface to the Devopness API.
     """
 
+    environments: EnvironmentService
     projects: ProjectService
     users: UserService
 
@@ -30,6 +31,7 @@ class DevopnessClient:
         elif isinstance(config, dict):
             config = DevopnessClientConfig.from_dict(config)
 
+        self.environments = EnvironmentService(config)
         self.projects = ProjectService(config)
         self.users = UserService(config)
 
