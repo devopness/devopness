@@ -3,6 +3,7 @@ Devopness API Python SDK - Painless essential DevOps to everyone
 """
 
 from ._generated.models import (
+    ArchivedEnvironmentRelation,
     Credits,
     Environment,
     EnvironmentProjectCreate,
@@ -49,6 +50,7 @@ from ._generated.models import (
 )
 
 __all__ = [
+    "ArchivedEnvironmentRelation",
     "Credits",
     "Environment",
     "EnvironmentProjectCreate",

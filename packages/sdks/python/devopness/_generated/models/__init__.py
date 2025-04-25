@@ -6,6 +6,10 @@ Note:
     https://openapi-generator.tech
 """
 
+from .archived_environment_relation import (
+    ArchivedEnvironmentRelation,
+    ArchivedEnvironmentRelationDict,
+)
 from .credits import Credits, CreditsDict
 from .environment import Environment, EnvironmentDict
 from .environment_project_create import (
@@ -60,6 +64,8 @@ from .user_url import UserUrl, UserUrlDict
 from .user_verify import UserVerify, UserVerifyDict
 
 __all__ = [
+    "ArchivedEnvironmentRelation",
+    "ArchivedEnvironmentRelationDict",
     "Credits",
     "CreditsDict",
     "Environment",

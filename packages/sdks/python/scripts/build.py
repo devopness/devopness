@@ -3,6 +3,7 @@
 # pylint: disable=missing-function-docstring
 # pylint: disable=missing-module-docstring
 
+import json
 import os
 import shutil
 import subprocess
@@ -83,6 +84,7 @@ def run_openapi_generator_with_temporary_cleanup() -> None:
     apis_to_generate = [
         "Environments",
         "Projects",
+        "ProjectsArchivedEnvironments",
         "ProjectsEnvironments",
         "Users",
     ]
@@ -100,11 +102,17 @@ def run_openapi_generator_with_temporary_cleanup() -> None:
     input_path = os.path.join(SDK_ROOT_DIR, "generator", "api", "spec.json")
     output_path = "/usr/local/share/spec.json"
     with open(input_path, "r") as input_file:
-        content = input_file.read()
-        content = content.replace(" - ", "")
+        content = json.load(input_file)
+        for _endpoint, endpoint_info in content["paths"].items():
+            for _method, method_info in endpoint_info.items():
+                if "tags" in method_info:
+                    method_info["tags"] = [
+                        tag.replace(" ", "").replace("-", "")
+                        for tag in method_info["tags"]
+                    ]
 
         with open(output_path, "w") as output_file:
-            output_file.write(content)
+            output_file.write(json.dumps(content))
 
     openapi_generator_extra_args.append(f"--input-spec={output_path}")
 
@@ -112,49 +120,50 @@ def run_openapi_generator_with_temporary_cleanup() -> None:
 
     # Models to keep
     models_to_keep = [
+        "archived_environment_relation",
         "credits",
+        "environment_project_create",
+        "environment_relation",
+        "environment_type",
+        "environment_update",
+        "environment",
         "language",
         "os_users_inner",
-        "project",
         "project_create",
         "project_relation",
         "project_update",
-        "resource_summary_item",
+        "project",
         "resource_summary_item_summary",
+        "resource_summary_item",
         "social_account_displayable_name",
         "social_account_provider",
         "social_account_relation",
         "static_billing_info",
-        "subscription",
         "subscription_balance",
         "subscription_plan",
-        "triggered_actions",
+        "subscription",
+        "team_relation",
         "triggered_action_stats",
         "triggered_action_summary",
-        "user",
+        "triggered_actions",
         "user_activity",
         "user_billing",
         "user_create",
         "user_environment_stats",
-        "user_login",
         "user_login_response",
+        "user_login",
         "user_me",
         "user_profile_options",
         "user_project_stats",
-        "user_refresh_token",
         "user_refresh_token_response",
+        "user_refresh_token",
         "user_relation",
         "user_resend_verification",
         "user_team_stats",
         "user_update",
         "user_url",
         "user_verify",
-        "environment",
-        "environment_update",
-        "environment_project_create",
-        "environment_relation",
-        "environment_type",
-        "team_relation",
+        "user",
     ]
 
     generated_models: list[str] = []
