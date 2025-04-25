@@ -101,6 +101,20 @@ def run_openapi_generator_with_temporary_cleanup() -> None:
     openapi_generator_extra_args.append(apis_property)
     openapi_generator_extra_args.append("--global-property models")
 
+    # The OpenAPI Generator does not support filtering tags with spaces.
+    # Therefore, we need to create a modified version of the spec.json
+    # that removes the spaces before passing it to the generator.
+    input_path = os.path.join(SDK_ROOT_DIR, "generator", "api", "spec.json")
+    output_path = "/usr/local/share/spec.json"
+    with open(input_path, "r") as input_file:
+        content = input_file.read()
+        content = content.replace(" - ", "")
+
+        with open(output_path, "w") as output_file:
+            output_file.write(content)
+
+    openapi_generator_extra_args.append(f"--input-spec={output_path}")
+
     run_openapi_generator(openapi_generator_extra_args)
 
     # Models to keep
