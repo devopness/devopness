@@ -81,17 +81,10 @@ def run_openapi_generator_with_temporary_cleanup() -> None:
     """
 
     apis_to_generate = [
+        "Environments",
         "Projects",
-        # "ProjectsActions",
-        # "ProjectsArchivedEnvironments",
-        # "ProjectsEnvironments",
-        # "ProjectsRoles",
-        # "ProjectsTeams",
+        "ProjectsEnvironments",
         "Users",
-        # "UsersEnvironments",
-        # "UsersPasswords",
-        # "UsersProjects",
-        # "UsersTeamInvitations",
     ]
 
     apis_string = ":".join(apis_to_generate)
@@ -156,6 +149,12 @@ def run_openapi_generator_with_temporary_cleanup() -> None:
         "user_update",
         "user_url",
         "user_verify",
+        "environment",
+        "environment_update",
+        "environment_project_create",
+        "environment_relation",
+        "environment_type",
+        "team_relation",
     ]
 
     generated_models: list[str] = []
