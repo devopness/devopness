@@ -6,6 +6,8 @@ Note:
     https://openapi-generator.tech
 """
 
+from .credentials_api import CredentialsApiService
+from .credentials_repositories_api import CredentialsRepositoriesApiService
 from .environments_api import EnvironmentsApiService
 from .projects_api import ProjectsApiService
 from .projects_archived_environments_api import ProjectsArchivedEnvironmentsApiService
@@ -13,6 +15,8 @@ from .projects_environments_api import ProjectsEnvironmentsApiService
 from .users_api import UsersApiService
 
 __all__ = [
+    "CredentialsApiService",
+    "CredentialsRepositoriesApiService",
     "EnvironmentsApiService",
     "ProjectsApiService",
     "ProjectsArchivedEnvironmentsApiService",
