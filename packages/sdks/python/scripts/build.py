@@ -281,6 +281,8 @@ def export_sdk_core() -> None:
         model_name = "Devopness" + snake_to_pascal(model)
 
         names.append(model_name)
+        # TODO: Use _core.<model_name> to avoid the need to export the model in
+        #       _core.__init__.py
         lines.append(f"from ._core import {model_name}")
 
     # Build the __all__ list
