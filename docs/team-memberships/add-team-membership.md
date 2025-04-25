@@ -1,6 +1,6 @@
 ---
 title: Add Team Membership
-intro: Add a new team to the project membership by selecting a team and assigning a role.
+intro: Grant a team access to an environment, with permissions defined by the assigned a role.
 
 links:
   overview:
