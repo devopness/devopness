@@ -3,7 +3,13 @@ Devopness API Python SDK - Painless essential DevOps to everyone
 """
 
 from ._generated.models import (
+    ArchivedEnvironmentRelation,
     Credits,
+    Environment,
+    EnvironmentProjectCreate,
+    EnvironmentRelation,
+    EnvironmentType,
+    EnvironmentUpdate,
     Language,
     OsUsersInner,
     Project,
@@ -19,6 +25,7 @@ from ._generated.models import (
     Subscription,
     SubscriptionBalance,
     SubscriptionPlan,
+    TeamRelation,
     TriggeredActionStats,
     TriggeredActionSummary,
     TriggeredActions,
@@ -43,7 +50,13 @@ from ._generated.models import (
 )
 
 __all__ = [
+    "ArchivedEnvironmentRelation",
     "Credits",
+    "Environment",
+    "EnvironmentProjectCreate",
+    "EnvironmentRelation",
+    "EnvironmentType",
+    "EnvironmentUpdate",
     "Language",
     "OsUsersInner",
     "Project",
@@ -59,6 +72,7 @@ __all__ = [
     "Subscription",
     "SubscriptionBalance",
     "SubscriptionPlan",
+    "TeamRelation",
     "TriggeredActionStats",
     "TriggeredActionSummary",
     "TriggeredActions",

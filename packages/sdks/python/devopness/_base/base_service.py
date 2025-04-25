@@ -243,17 +243,21 @@ class DevopnessBaseService:
 
     def __get_payload(
         self,
-        data: Union[dict[str, Any], DevopnessBaseModel],
-    ) -> dict[str, Any]:
+        data: Union[dict[str, Any], DevopnessBaseModel, None],
+    ) -> Union[dict[str, Any], None]:
         """
         Returns the payload for a request.
 
         Args:
-            data (Union[dict[str, Any], DevopnessBaseModel]): The request body payload.
+            data (Union[dict[str, Any], DevopnessBaseModel, None]): The request body
+                                                                    payload.
 
         Returns:
             str: The payload as a string.
         """
+        if data is None:
+            return None
+
         if isinstance(data, DevopnessBaseModel):
             payload = data.model_dump(exclude_unset=True)
 
