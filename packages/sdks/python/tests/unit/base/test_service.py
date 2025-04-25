@@ -91,6 +91,24 @@ class TestDevopnessBaseService(unittest.TestCase):
         self.assertEqual(request.content, b'{"name":"Cool Project"}')
 
     @patch("httpx.Client.send")
+    def test_post_without_payload(
+        self,
+        mock: Mock,
+    ) -> None:
+        self.service._post_sync("/resource")
+
+        mock.assert_called_once()
+
+        request: httpx.Request = mock.call_args[0][0]
+        self.assertIsInstance(request, httpx.Request)
+
+        self.assertEqual(request.method, "POST")
+        self.assertEqual(request.url, "https://test.local/resource")
+
+        self.assertEqual(request.headers["Content-Type"], "application/json")
+        self.assertEqual(request.content, b"")
+
+    @patch("httpx.Client.send")
     def test_put_dict_removes_null_keys(
         self,
         mock: Mock,
@@ -127,6 +145,24 @@ class TestDevopnessBaseService(unittest.TestCase):
 
         self.assertEqual(request.headers["Content-Type"], "application/json")
         self.assertEqual(request.content, b'{"id":123,"name":"Cool Project"}')
+
+    @patch("httpx.Client.send")
+    def test_put_without_payload(
+        self,
+        mock: Mock,
+    ) -> None:
+        self.service._put_sync("/resource")
+
+        mock.assert_called_once()
+
+        request: httpx.Request = mock.call_args[0][0]
+        self.assertIsInstance(request, httpx.Request)
+
+        self.assertEqual(request.method, "PUT")
+        self.assertEqual(request.url, "https://test.local/resource")
+
+        self.assertEqual(request.headers["Content-Type"], "application/json")
+        self.assertEqual(request.content, b"")
 
 
 class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
@@ -212,6 +248,24 @@ class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(request.content, b'{"name":"Cool Project"}')
 
     @patch("httpx.AsyncClient.send")
+    async def test_post_without_payload(
+        self,
+        mock: Mock,
+    ) -> None:
+        await self.service._post("/resource")
+
+        mock.assert_called_once()
+
+        request: httpx.Request = mock.call_args[0][0]
+        self.assertIsInstance(request, httpx.Request)
+
+        self.assertEqual(request.method, "POST")
+        self.assertEqual(request.url, "https://test.local/resource")
+
+        self.assertEqual(request.headers["Content-Type"], "application/json")
+        self.assertEqual(request.content, b"")
+
+    @patch("httpx.AsyncClient.send")
     async def test_put_dict_removes_null_keys(
         self,
         mock: Mock,
@@ -248,3 +302,21 @@ class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
 
         self.assertEqual(request.headers["Content-Type"], "application/json")
         self.assertEqual(request.content, b'{"id":123,"name":"Cool Project"}')
+
+    @patch("httpx.AsyncClient.send")
+    async def test_put_without_payload(
+        self,
+        mock: Mock,
+    ) -> None:
+        await self.service._put("/resource")
+
+        mock.assert_called_once()
+
+        request: httpx.Request = mock.call_args[0][0]
+        self.assertIsInstance(request, httpx.Request)
+
+        self.assertEqual(request.method, "PUT")
+        self.assertEqual(request.url, "https://test.local/resource")
+
+        self.assertEqual(request.headers["Content-Type"], "application/json")
+        self.assertEqual(request.content, b"")
