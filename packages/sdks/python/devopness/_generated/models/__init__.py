@@ -10,6 +10,54 @@ from .archived_environment_relation import (
     ArchivedEnvironmentRelation,
     ArchivedEnvironmentRelationDict,
 )
+from .cloud_os_version_code import CloudOsVersionCode
+from .cloud_provider_input_settings import (
+    CloudProviderInputSettings,
+    CloudProviderInputSettingsDict,
+)
+from .cloud_provider_input_settings_default_value import (
+    CloudProviderInputSettingsDefaultValue,
+)
+from .cloud_provider_property_type import CloudProviderPropertyType
+from .cloud_provider_property_validation import (
+    CloudProviderPropertyValidation,
+    CloudProviderPropertyValidationDict,
+)
+from .cloud_provider_service import CloudProviderService, CloudProviderServiceDict
+from .cloud_provider_service_code import CloudProviderServiceCode
+from .cloud_provider_service_region import (
+    CloudProviderServiceRegion,
+    CloudProviderServiceRegionDict,
+)
+from .cloud_provider_service_resource_type import (
+    CloudProviderServiceResourceType,
+    CloudProviderServiceResourceTypeDict,
+)
+from .cloud_provider_service_resource_type_scope import (
+    CloudProviderServiceResourceTypeScope,
+)
+from .commit import Commit, CommitDict
+from .credential import Credential, CredentialDict
+from .credential_aws import CredentialAws, CredentialAwsDict
+from .credential_digital_ocean import CredentialDigitalOcean, CredentialDigitalOceanDict
+from .credential_environment_create import (
+    CredentialEnvironmentCreate,
+    CredentialEnvironmentCreateDict,
+)
+from .credential_google_cloud import CredentialGoogleCloud, CredentialGoogleCloudDict
+from .credential_input_settings import (
+    CredentialInputSettings,
+    CredentialInputSettingsDict,
+)
+from .credential_input_settings_credential import CredentialInputSettingsCredential
+from .credential_provider_type import CredentialProviderType, CredentialProviderTypeDict
+from .credential_relation import CredentialRelation, CredentialRelationDict
+from .credential_setting import CredentialSetting, CredentialSettingDict
+from .credential_source_provider import (
+    CredentialSourceProvider,
+    CredentialSourceProviderDict,
+)
+from .credential_update import CredentialUpdate, CredentialUpdateDict
 from .credits import Credits, CreditsDict
 from .environment import Environment, EnvironmentDict
 from .environment_project_create import (
@@ -20,11 +68,31 @@ from .environment_relation import EnvironmentRelation, EnvironmentRelationDict
 from .environment_type import EnvironmentType
 from .environment_update import EnvironmentUpdate, EnvironmentUpdateDict
 from .language import Language
+from .operating_system import OperatingSystem, OperatingSystemDict
+from .operating_system_version import OperatingSystemVersion, OperatingSystemVersionDict
+from .operation_custom_settings import (
+    OperationCustomSettings,
+    OperationCustomSettingsDict,
+)
 from .os_users_inner import OsUsersInner, OsUsersInnerDict
 from .project import Project, ProjectDict
 from .project_create import ProjectCreate, ProjectCreateDict
 from .project_relation import ProjectRelation, ProjectRelationDict
 from .project_update import ProjectUpdate, ProjectUpdateDict
+from .provider_code import ProviderCode
+from .provider_input_settings import ProviderInputSettings, ProviderInputSettingsDict
+from .provider_input_settings_validation import (
+    ProviderInputSettingsValidation,
+    ProviderInputSettingsValidationDict,
+)
+from .provider_relation import ProviderRelation, ProviderRelationDict
+from .provider_settings import ProviderSettings, ProviderSettingsDict
+from .provider_type import ProviderType
+from .repository import Repository, RepositoryDict
+from .repository_branch import RepositoryBranch, RepositoryBranchDict
+from .repository_relation import RepositoryRelation, RepositoryRelationDict
+from .repository_tag import RepositoryTag, RepositoryTagDict
+from .repository_tag_commit import RepositoryTagCommit, RepositoryTagCommitDict
 from .resource_summary_item import ResourceSummaryItem, ResourceSummaryItemDict
 from .resource_summary_item_summary import (
     ResourceSummaryItemSummary,
@@ -33,6 +101,7 @@ from .resource_summary_item_summary import (
 from .social_account_displayable_name import SocialAccountDisplayableName
 from .social_account_provider import SocialAccountProvider
 from .social_account_relation import SocialAccountRelation, SocialAccountRelationDict
+from .source_provider_name import SourceProviderName
 from .static_billing_info import StaticBillingInfo, StaticBillingInfoDict
 from .subscription import Subscription, SubscriptionDict
 from .subscription_balance import SubscriptionBalance, SubscriptionBalanceDict
@@ -66,6 +135,46 @@ from .user_verify import UserVerify, UserVerifyDict
 __all__ = [
     "ArchivedEnvironmentRelation",
     "ArchivedEnvironmentRelationDict",
+    "CloudOsVersionCode",
+    "CloudProviderInputSettings",
+    "CloudProviderInputSettingsDefaultValue",
+    "CloudProviderInputSettingsDict",
+    "CloudProviderPropertyType",
+    "CloudProviderPropertyValidation",
+    "CloudProviderPropertyValidationDict",
+    "CloudProviderService",
+    "CloudProviderServiceCode",
+    "CloudProviderServiceDict",
+    "CloudProviderServiceRegion",
+    "CloudProviderServiceRegionDict",
+    "CloudProviderServiceResourceType",
+    "CloudProviderServiceResourceTypeDict",
+    "CloudProviderServiceResourceTypeScope",
+    "Commit",
+    "CommitDict",
+    "Credential",
+    "CredentialAws",
+    "CredentialAwsDict",
+    "CredentialDict",
+    "CredentialDigitalOcean",
+    "CredentialDigitalOceanDict",
+    "CredentialEnvironmentCreate",
+    "CredentialEnvironmentCreateDict",
+    "CredentialGoogleCloud",
+    "CredentialGoogleCloudDict",
+    "CredentialInputSettings",
+    "CredentialInputSettingsCredential",
+    "CredentialInputSettingsDict",
+    "CredentialProviderType",
+    "CredentialProviderTypeDict",
+    "CredentialRelation",
+    "CredentialRelationDict",
+    "CredentialSetting",
+    "CredentialSettingDict",
+    "CredentialSourceProvider",
+    "CredentialSourceProviderDict",
+    "CredentialUpdate",
+    "CredentialUpdateDict",
     "Credits",
     "CreditsDict",
     "Environment",
@@ -78,6 +187,12 @@ __all__ = [
     "EnvironmentUpdate",
     "EnvironmentUpdateDict",
     "Language",
+    "OperatingSystem",
+    "OperatingSystemDict",
+    "OperatingSystemVersion",
+    "OperatingSystemVersionDict",
+    "OperationCustomSettings",
+    "OperationCustomSettingsDict",
     "OsUsersInner",
     "OsUsersInnerDict",
     "Project",
@@ -88,6 +203,26 @@ __all__ = [
     "ProjectRelationDict",
     "ProjectUpdate",
     "ProjectUpdateDict",
+    "ProviderCode",
+    "ProviderInputSettings",
+    "ProviderInputSettingsDict",
+    "ProviderInputSettingsValidation",
+    "ProviderInputSettingsValidationDict",
+    "ProviderRelation",
+    "ProviderRelationDict",
+    "ProviderSettings",
+    "ProviderSettingsDict",
+    "ProviderType",
+    "Repository",
+    "RepositoryBranch",
+    "RepositoryBranchDict",
+    "RepositoryDict",
+    "RepositoryRelation",
+    "RepositoryRelationDict",
+    "RepositoryTag",
+    "RepositoryTagCommit",
+    "RepositoryTagCommitDict",
+    "RepositoryTagDict",
     "ResourceSummaryItem",
     "ResourceSummaryItemDict",
     "ResourceSummaryItemSummary",
@@ -96,6 +231,7 @@ __all__ = [
     "SocialAccountProvider",
     "SocialAccountRelation",
     "SocialAccountRelationDict",
+    "SourceProviderName",
     "StaticBillingInfo",
     "StaticBillingInfoDict",
     "Subscription",
