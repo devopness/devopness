@@ -1,0 +1,30 @@
+{{#vendorExtensions.x-py-other-imports}}
+{{{.}}}
+{{/vendorExtensions.x-py-other-imports}}
+
+from typing import (
+    List,
+    Optional,
+    Set,
+    TypedDict,
+    Union,
+)
+
+from .. import DevopnessBaseModel
+{{!
+    The template [ModelName] is necessary because the path to the model file being exported is not available during template rendering
+    without using the vendorExtensions.x-py-model-imports, and it is not possible to rely on this vendor extension because during
+    generation, models [ModelName]Plain are created, which are plain version of Pydantic models, used to improve the
+    DX (developer experience) of the SDK, and this models is not recognized in the vendorExtensions.x-py-model-imports.
+
+    This template system is resolved in a extra step in the build script.
+}}
+{{#vars}}
+{{^isPrimitiveType}}
+# TEMPLATE:{{complexType}}  {{complexType}}{{#isModel}}, {{complexType}}Plain{{/isModel}} {{#isContainer}}, {{items.dataType}}Plain{{/isContainer}}
+{{/isPrimitiveType}}
+{{/vars}}
+{{#interfaces}}
+# TEMPLATE:{{.}}  {{.}}, {{.}}Plain
+{{/interfaces}}
+

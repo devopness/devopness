@@ -5,6 +5,7 @@
 
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -26,9 +27,16 @@ SDK_SERVICES_FILE = os.path.join(SDK_ROOT_DIR, "devopness", "services.py")
 GENERATED_API_DIR = os.path.join(GENERATED_DIR, "api")
 GENERATED_MODELS_DIR = os.path.join(GENERATED_DIR, "models")
 
+PASCAL_TO_SNAKE_REGEX = re.compile(r"(?<!^)(?=[A-Z])")
+MODEL_IMPORT_TEMPLATE_REGEX = re.compile(r"# TEMPLATE:([A-Za-z0-9_]+)")
+
 
 def snake_to_pascal(name: str) -> str:
     return "".join(word.title() for word in name.split("_"))
+
+
+def pascal_to_snake(name) -> str:  # type: ignore[no-untyped-def]
+    return re.sub(PASCAL_TO_SNAKE_REGEX, "_", name).lower()
 
 
 def remove_previous_generated_directories() -> None:
@@ -229,7 +237,7 @@ def run_openapi_generator_with_temporary_cleanup() -> None:
 
             removed_model_identifiers.append(f".{model_name_snake} import")
             removed_model_identifiers.append(f'"{model_name_pascal}"')
-            removed_model_identifiers.append(f'"{model_name_pascal}Dict"')
+            removed_model_identifiers.append(f'"{model_name_pascal}Plain"')
 
     init_file_path = os.path.join(GENERATED_MODELS_DIR, "__init__.py")
 
@@ -417,9 +425,12 @@ def fix_import_paths_in_models() -> None:
         with open(file_path, encoding="utf-8") as f:
             file_content = f.read()
 
-            file_content = file_content.replace(
-                "from .models.",
-                "from .",
+            # Search for imports: # TEMPLATE:[PascalCase]
+            # Replace with: from .[snake_case] import
+            file_content = re.sub(
+                MODEL_IMPORT_TEMPLATE_REGEX,
+                lambda match: f"from .{pascal_to_snake(match.group(1))} import",
+                file_content,
             )
 
         with open(file_path, "w", encoding="utf-8") as f:
@@ -454,17 +465,6 @@ def remove_openapi_generator_cache() -> None:
     shutil.rmtree(dir_path, ignore_errors=True)
 
 
-def execute_post_build_tasks() -> None:
-    print("🔧  Executing post-build tasks...")
-
-    fix_import_paths_in_models()
-    remove_openapi_generator_cache()
-
-    fix_import_issues()
-    fix_code_style_issues()
-    format_generated_files()
-
-
 if __name__ == "__main__":
     try:
         remove_previous_generated_directories()
@@ -475,7 +475,12 @@ if __name__ == "__main__":
         export_sdk_models()
         export_sdk_services()
 
-        execute_post_build_tasks()
+        print("🔧  Executing post-build tasks...")
+        remove_openapi_generator_cache()
+        fix_import_paths_in_models()
+        fix_import_issues()
+        fix_code_style_issues()
+        format_generated_files()
 
         print("✅  Devopness SDK - Python Build completed successfully!")
 

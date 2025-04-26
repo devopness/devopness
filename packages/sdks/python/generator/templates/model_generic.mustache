@@ -1,14 +1,3 @@
-{{#vendorExtensions.x-py-other-imports}}
-{{{.}}}
-{{/vendorExtensions.x-py-other-imports}}
-{{#vendorExtensions.x-py-model-imports}}
-{{{.}}}
-{{/vendorExtensions.x-py-model-imports}}
-
-from typing import Optional, Set, TypedDict
-from .. import DevopnessBaseModel
-
-
 class {{classname}}(DevopnessBaseModel):
     """
     {{classname}}
@@ -23,11 +12,20 @@ class {{classname}}(DevopnessBaseModel):
     {{name}}: {{{vendorExtensions.x-py-typing}}}
 {{/vars}}
 
-class {{classname}}Dict(TypedDict, total=False):
+
+class {{classname}}Plain(TypedDict, total=False):
     """
-    TypedDict for {{classname}}.
+    Plain version of {{classname}}.
     """
 
 {{#vars}}
-    {{baseName}}: {{dataType}}
+    {{baseName}}: (
+        {{#isPrimitiveType}}{{dataType}}{{/isPrimitiveType}}
+        {{^isPrimitiveType}}
+          {{#isEnumRef}}{{dataType}}{{/isEnumRef}}
+          {{#isModel}}Union[{{dataType}}, {{dataType}}Plain,]{{/isModel}}
+          {{#isContainer}}{{baseType}}[ Union[{{items.dataType}}, {{items.dataType}}Plain,] ]{{/isContainer}}
+        {{/isPrimitiveType}}
+    )
 {{/vars}}
+
