@@ -15,4 +15,6 @@ from .{{#lambda.snakecase}}{{complexType}}{{/lambda.snakecase}} import {{complex
 {{#interfaces}}
 from .{{#lambda.snakecase}}{{.}}{{/lambda.snakecase}} import {{.}}, {{.}}Plain
 {{/interfaces}}
-
+{{#imports}}
+from .{{#lambda.snakecase}}{{.}}{{/lambda.snakecase}} import {{.}}, {{.}}Plain
+{{/imports}}
