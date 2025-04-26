@@ -30,7 +30,19 @@ jobs:
     name: Build SDK-Python
     needs: detect-changes
     if: ${{ needs.detect-changes.outputs.changes == 'true' }}
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        python:
+          - 3.13
+          - 3.12
+          - 3.11
+        os:
+          - ubuntu-latest
+
+    env:
+      PYTHON_VERSION: ${{ matrix.python }}
 
     steps:
       - uses: actions/checkout@v3

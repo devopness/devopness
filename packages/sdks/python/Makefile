@@ -11,7 +11,7 @@ WORKDIR=sdk
 
 .DEFAULT_GOAL=help
 
-build-image: ## Build Docker Image
+build-image: ## Build Docker Image. To customize the image, use the PYTHON_VERSION and ALPINE_VERSION args.
 	$(info Docker - Building Image ...)
 	@docker build \
 		-f Dockerfile \
@@ -19,6 +19,8 @@ build-image: ## Build Docker Image
 		--build-arg USER_NAME=$(USER_NAME) \
 		--build-arg GROUP_ID=$(GROUP_ID) \
 		--build-arg GROUP_NAME=$(GROUP_NAME) \
+		$(if $(PYTHON_VERSION),--build-arg PYTHON_VERSION=$(PYTHON_VERSION),) \
+		$(if $(ALPINE_VERSION),--build-arg ALPINE_VERSION=$(ALPINE_VERSION),) \
 		-t $(IMAGE) .
 
 build-sdk-python: build-image ## Build Python SDK

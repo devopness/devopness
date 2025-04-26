@@ -6,12 +6,9 @@ Note:
     https://openapi-generator.tech
 """
 
-from __future__ import annotations
-
 import json
 from enum import Enum
-
-from typing_extensions import Self
+from typing import Literal, Self
 
 
 class SocialAccountProvider(str, Enum):
@@ -19,9 +16,6 @@ class SocialAccountProvider(str, Enum):
     The name of the Social Authentication provider
     """
 
-    """
-    allowed enum values
-    """
     BITBUCKET = "bitbucket"
     FACEBOOK = "facebook"
     GITHUB = "github"
@@ -32,3 +26,13 @@ class SocialAccountProvider(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of SocialAccountProvider from a JSON string"""
         return cls(json.loads(json_str))
+
+
+# The plain version of SocialAccountProvider
+SocialAccountProviderPlain = Literal[
+    "bitbucket",
+    "facebook",
+    "github",
+    "gitlab",
+    "google",
+]

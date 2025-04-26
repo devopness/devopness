@@ -6,12 +6,19 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import Optional, TypedDict
+from typing import (
+    Optional,
+    TypedDict,
+    Union,
+)
 
 from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
-from .triggered_action_summary import TriggeredActionSummary
+from .triggered_action_summary import (
+    TriggeredActionSummary,
+    TriggeredActionSummaryPlain,
+)
 
 
 class TriggeredActionStats(DevopnessBaseModel):
@@ -39,13 +46,16 @@ class TriggeredActionStats(DevopnessBaseModel):
     summary: Optional[TriggeredActionSummary] = None
 
 
-class TriggeredActionStatsDict(TypedDict, total=False):
+class TriggeredActionStatsPlain(TypedDict, total=False):
     """
-    TypedDict for TriggeredActionStats.
+    Plain version of TriggeredActionStats.
     """
 
     resource_type: str
     action_type: str
     resource_type_human_readable: str
     action_type_human_readable: str
-    summary: TriggeredActionSummary
+    summary: Union[
+        TriggeredActionSummary,
+        TriggeredActionSummaryPlain,
+    ]

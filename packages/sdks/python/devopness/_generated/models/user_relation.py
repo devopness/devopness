@@ -7,13 +7,18 @@ Note:
 """
 
 from datetime import datetime
-from typing import Optional, TypedDict
+from typing import (
+    Optional,
+    Required,
+    TypedDict,
+    Union,
+)
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
 from typing_extensions import Annotated
 
 from .. import DevopnessBaseModel
-from .language import Language
+from .language import Language, LanguagePlain
 
 
 class UserRelation(DevopnessBaseModel):
@@ -53,16 +58,19 @@ class UserRelation(DevopnessBaseModel):
     )
 
 
-class UserRelationDict(TypedDict, total=False):
+class UserRelationPlain(TypedDict, total=False):
     """
-    TypedDict for UserRelation.
+    Plain version of UserRelation.
     """
 
-    id: int
-    name: str
-    email: str
+    id: Required[int]
+    name: Required[str]
+    email: Required[str]
     url_slug: str
-    language: Language
+    language: Union[
+        Language,
+        LanguagePlain,
+    ]
     active: bool
     created_at: datetime
     updated_at: datetime

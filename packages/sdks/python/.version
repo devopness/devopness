@@ -14,4 +14,4 @@
 # - For convenience, a package version is also maintained on Test PyPI:
 #   https://test.pypi.org/project/devopness/
 
-TestPyPI==0.0.16
+TestPyPI==0.0.25
