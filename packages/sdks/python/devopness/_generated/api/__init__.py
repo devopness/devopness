@@ -12,6 +12,7 @@ from .environments_api import EnvironmentsApiService
 from .projects_api import ProjectsApiService
 from .projects_archived_environments_api import ProjectsArchivedEnvironmentsApiService
 from .projects_environments_api import ProjectsEnvironmentsApiService
+from .servers_api import ServersApiService
 from .users_api import UsersApiService
 
 __all__ = [
@@ -21,5 +22,6 @@ __all__ = [
     "ProjectsApiService",
     "ProjectsArchivedEnvironmentsApiService",
     "ProjectsEnvironmentsApiService",
+    "ServersApiService",
     "UsersApiService",
 ]
