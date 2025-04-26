@@ -14,8 +14,11 @@ from typing import (
 from pydantic import Field, StrictBool, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
-from .social_account_displayable_name import SocialAccountDisplayableName
-from .social_account_provider import SocialAccountProvider
+from .social_account_displayable_name import (
+    SocialAccountDisplayableName,
+    SocialAccountDisplayableNamePlain,
+)
+from .social_account_provider import SocialAccountProvider, SocialAccountProviderPlain
 
 
 class SocialAccountRelation(DevopnessBaseModel):
@@ -62,8 +65,8 @@ class SocialAccountRelationPlain(TypedDict, total=False):
 
     id: int
     user_id: int
-    provider: SocialAccountProvider
-    provider_human_readable: SocialAccountDisplayableName
+    provider: SocialAccountProviderPlain
+    provider_human_readable: SocialAccountDisplayableNamePlain
     provider_user_nickname: str
     is_vcs: bool
     token_expires_at: str

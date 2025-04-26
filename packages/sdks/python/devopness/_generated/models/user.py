@@ -16,7 +16,7 @@ from typing import (
 from pydantic import Field, StrictBool, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
-from .language import Language
+from .language import Language, LanguagePlain
 from .social_account_relation import SocialAccountRelation, SocialAccountRelationPlain
 
 
@@ -62,7 +62,7 @@ class UserPlain(TypedDict, total=False):
     name: str
     email: str
     url_slug: str
-    language: Language
+    language: LanguagePlain
     active: bool
     social_accounts: List[
         Union[

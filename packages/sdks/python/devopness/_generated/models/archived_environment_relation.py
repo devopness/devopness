@@ -16,7 +16,7 @@ from typing import (
 from pydantic import Field, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
-from .environment_type import EnvironmentType
+from .environment_type import EnvironmentType, EnvironmentTypePlain
 from .project_relation import ProjectRelation, ProjectRelationPlain
 from .resource_summary_item import ResourceSummaryItem, ResourceSummaryItemPlain
 
@@ -71,7 +71,7 @@ class ArchivedEnvironmentRelationPlain(TypedDict, total=False):
     """
 
     id: int
-    type: EnvironmentType
+    type: EnvironmentTypePlain
     type_human_readable: str
     name: str
     description: str

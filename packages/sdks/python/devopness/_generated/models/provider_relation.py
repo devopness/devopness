@@ -18,7 +18,7 @@ from pydantic import (
 )
 
 from .. import DevopnessBaseModel
-from .provider_code import ProviderCode
+from .provider_code import ProviderCode, ProviderCodePlain
 
 
 class ProviderRelation(DevopnessBaseModel):
@@ -50,7 +50,7 @@ class ProviderRelationPlain(TypedDict, total=False):
     """
 
     active: bool
-    code: ProviderCode
+    code: ProviderCodePlain
     code_human_readable: str
     type: str
     type_human_readable: str

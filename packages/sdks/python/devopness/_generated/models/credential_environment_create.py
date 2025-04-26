@@ -18,8 +18,8 @@ from .credential_input_settings import (
     CredentialInputSettings,
     CredentialInputSettingsPlain,
 )
-from .provider_code import ProviderCode
-from .provider_type import ProviderType
+from .provider_code import ProviderCode, ProviderCodePlain
+from .provider_type import ProviderType, ProviderTypePlain
 
 
 class CredentialEnvironmentCreate(DevopnessBaseModel):
@@ -49,8 +49,8 @@ class CredentialEnvironmentCreatePlain(TypedDict, total=False):
     """
 
     name: str
-    provider_code: ProviderCode
-    provider_type: ProviderType
+    provider_code: ProviderCodePlain
+    provider_type: ProviderTypePlain
     active: bool
     settings: Union[
         CredentialInputSettings,

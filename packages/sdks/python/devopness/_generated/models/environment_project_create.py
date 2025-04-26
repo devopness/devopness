@@ -14,7 +14,7 @@ from typing import (
 from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
-from .environment_type import EnvironmentType
+from .environment_type import EnvironmentType, EnvironmentTypePlain
 
 
 class EnvironmentProjectCreate(DevopnessBaseModel):
@@ -42,6 +42,6 @@ class EnvironmentProjectCreatePlain(TypedDict, total=False):
     Plain version of EnvironmentProjectCreate.
     """
 
-    type: EnvironmentType
+    type: EnvironmentTypePlain
     name: str
     description: str

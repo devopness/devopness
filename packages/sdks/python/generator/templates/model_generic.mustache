@@ -22,7 +22,7 @@ class {{classname}}Plain(TypedDict, total=False):
     {{baseName}}: (
         {{#isPrimitiveType}}{{dataType}}{{/isPrimitiveType}}
         {{^isPrimitiveType}}
-          {{#isEnumRef}}{{dataType}}{{/isEnumRef}}
+          {{#isEnumRef}}{{dataType}}Plain{{/isEnumRef}}
           {{#isModel}}Union[{{dataType}}, {{dataType}}Plain,]{{/isModel}}
           {{#isContainer}}{{baseType}}[ Union[{{items.dataType}}, {{items.dataType}}Plain,] ]{{/isContainer}}
         {{/isPrimitiveType}}

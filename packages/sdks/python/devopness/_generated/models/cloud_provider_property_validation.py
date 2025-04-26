@@ -14,7 +14,10 @@ from typing import (
 from pydantic import Field, StrictBool, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
-from .cloud_provider_property_type import CloudProviderPropertyType
+from .cloud_provider_property_type import (
+    CloudProviderPropertyType,
+    CloudProviderPropertyTypePlain,
+)
 
 
 class CloudProviderPropertyValidation(DevopnessBaseModel):
@@ -48,7 +51,7 @@ class CloudProviderPropertyValidationPlain(TypedDict, total=False):
     """
 
     required: bool
-    type: CloudProviderPropertyType
+    type: CloudProviderPropertyTypePlain
     min: int
     max: int
     allowed_values: List[str]

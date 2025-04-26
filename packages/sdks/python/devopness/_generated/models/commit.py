@@ -13,7 +13,7 @@ from typing import (
 from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
-from .source_provider_name import SourceProviderName
+from .source_provider_name import SourceProviderName, SourceProviderNamePlain
 
 
 class Commit(DevopnessBaseModel):
@@ -57,7 +57,7 @@ class CommitPlain(TypedDict, total=False):
     hash: str
     message: str
     committed_at: str
-    provider: SourceProviderName
+    provider: SourceProviderNamePlain
     repository: str
     url: str
     author_email: str

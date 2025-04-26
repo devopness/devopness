@@ -16,7 +16,7 @@ from pydantic import Field, StrictBool, StrictInt, StrictStr
 from typing_extensions import Annotated
 
 from .. import DevopnessBaseModel
-from .language import Language
+from .language import Language, LanguagePlain
 
 
 class UserRelation(DevopnessBaseModel):
@@ -65,7 +65,7 @@ class UserRelationPlain(TypedDict, total=False):
     name: str
     email: str
     url_slug: str
-    language: Language
+    language: LanguagePlain
     active: bool
     created_at: datetime
     updated_at: datetime

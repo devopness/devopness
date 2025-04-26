@@ -15,7 +15,7 @@ from pydantic import Field, StrictBool, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
 from .provider_relation import ProviderRelation, ProviderRelationPlain
-from .provider_type import ProviderType
+from .provider_type import ProviderType, ProviderTypePlain
 from .user_relation import UserRelation, UserRelationPlain
 
 
@@ -63,7 +63,7 @@ class CredentialRelationPlain(TypedDict, total=False):
         ProviderRelation,
         ProviderRelationPlain,
     ]
-    provider_type: ProviderType
+    provider_type: ProviderTypePlain
     provider_type_human_readable: str
     active: bool
     created_by_user: Union[

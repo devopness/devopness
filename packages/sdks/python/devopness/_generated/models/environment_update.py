@@ -14,7 +14,7 @@ from typing import (
 from pydantic import Field, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
-from .environment_type import EnvironmentType
+from .environment_type import EnvironmentType, EnvironmentTypePlain
 
 
 class EnvironmentUpdate(DevopnessBaseModel):
@@ -45,6 +45,6 @@ class EnvironmentUpdatePlain(TypedDict, total=False):
     """
 
     id: int
-    type: EnvironmentType
+    type: EnvironmentTypePlain
     name: str
     description: str

@@ -22,6 +22,7 @@ from .cloud_provider_input_settings import (
 )
 from .cloud_provider_service_resource_type_scope import (
     CloudProviderServiceResourceTypeScope,
+    CloudProviderServiceResourceTypeScopePlain,
 )
 from .operating_system import OperatingSystem, OperatingSystemPlain
 from .operation_custom_settings import (
@@ -69,7 +70,7 @@ class CloudProviderServiceResourceTypePlain(TypedDict, total=False):
 
     provider_resource_type: str
     devopness_resource_type: str
-    scope: CloudProviderServiceResourceTypeScope
+    scope: CloudProviderServiceResourceTypeScopePlain
     input_settings: List[
         Union[
             CloudProviderInputSettings,

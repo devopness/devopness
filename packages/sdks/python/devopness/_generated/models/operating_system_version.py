@@ -14,7 +14,7 @@ from typing import (
 from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
-from .cloud_os_version_code import CloudOsVersionCode
+from .cloud_os_version_code import CloudOsVersionCode, CloudOsVersionCodePlain
 
 
 class OperatingSystemVersion(DevopnessBaseModel):
@@ -59,7 +59,7 @@ class OperatingSystemVersionPlain(TypedDict, total=False):
     name: str
     code_name: str
     version: str
-    os_version_code: CloudOsVersionCode
+    os_version_code: CloudOsVersionCodePlain
     os_version_code_human_readable: str
     released_at: str
     end_standard_support_at: str

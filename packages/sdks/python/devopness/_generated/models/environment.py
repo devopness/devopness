@@ -16,7 +16,7 @@ from typing import (
 from pydantic import Field, StrictBool, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
-from .environment_type import EnvironmentType
+from .environment_type import EnvironmentType, EnvironmentTypePlain
 from .resource_summary_item import ResourceSummaryItem, ResourceSummaryItemPlain
 from .team_relation import TeamRelation, TeamRelationPlain
 from .user_relation import UserRelation, UserRelationPlain
@@ -73,7 +73,7 @@ class EnvironmentPlain(TypedDict, total=False):
     """
 
     id: int
-    type: EnvironmentType
+    type: EnvironmentTypePlain
     type_human_readable: str
     name: str
     description: str

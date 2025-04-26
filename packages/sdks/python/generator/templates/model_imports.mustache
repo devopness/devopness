@@ -9,7 +9,7 @@ from typing import List, Optional, Set, TypedDict, Union, Literal, Self
 from .. import DevopnessBaseModel
 {{#vars}}
 {{^isPrimitiveType}}
-from .{{#lambda.snakecase}}{{complexType}}{{/lambda.snakecase}} import {{complexType}}{{#isModel}}, {{complexType}}Plain{{/isModel}} {{#isContainer}}, {{items.dataType}}Plain{{/isContainer}}
+from .{{#lambda.snakecase}}{{complexType}}{{/lambda.snakecase}} import {{complexType}}{{#isModel}}, {{complexType}}Plain{{/isModel}} {{#isContainer}}, {{items.dataType}}Plain{{/isContainer}} {{#isEnumRef}}, {{dataType}}Plain{{/isEnumRef}}
 {{/isPrimitiveType}}
 {{/vars}}
 {{#interfaces}}

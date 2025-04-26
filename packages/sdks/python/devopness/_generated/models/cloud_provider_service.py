@@ -16,7 +16,10 @@ from typing import (
 from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
-from .cloud_provider_service_code import CloudProviderServiceCode
+from .cloud_provider_service_code import (
+    CloudProviderServiceCode,
+    CloudProviderServiceCodePlain,
+)
 from .cloud_provider_service_region import (
     CloudProviderServiceRegion,
     CloudProviderServiceRegionPlain,
@@ -52,7 +55,7 @@ class CloudProviderServicePlain(TypedDict, total=False):
     Plain version of CloudProviderService.
     """
 
-    code: CloudProviderServiceCode
+    code: CloudProviderServiceCodePlain
     name: str
     provider: Union[
         ProviderRelation,

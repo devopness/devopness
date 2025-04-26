@@ -14,7 +14,7 @@ from typing import (
 from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
-from .language import Language
+from .language import Language, LanguagePlain
 
 
 class UserUpdate(DevopnessBaseModel):
@@ -51,4 +51,4 @@ class UserUpdatePlain(TypedDict, total=False):
     name: str
     email: str
     url_slug: str
-    language: Language
+    language: LanguagePlain
