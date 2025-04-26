@@ -6,7 +6,10 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import Optional, TypedDict
+from typing import (
+    Optional,
+    TypedDict,
+)
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
 
@@ -52,9 +55,9 @@ class SocialAccountRelation(DevopnessBaseModel):
     )
 
 
-class SocialAccountRelationDict(TypedDict, total=False):
+class SocialAccountRelationPlain(TypedDict, total=False):
     """
-    TypedDict for SocialAccountRelation.
+    Plain version of SocialAccountRelation.
     """
 
     id: int

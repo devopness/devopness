@@ -6,7 +6,9 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import TypedDict
+from typing import (
+    TypedDict,
+)
 
 from pydantic import Field, StrictStr
 
@@ -47,9 +49,9 @@ class Commit(DevopnessBaseModel):
     author_name: StrictStr = Field(description="The name of the commit's author")
 
 
-class CommitDict(TypedDict, total=False):
+class CommitPlain(TypedDict, total=False):
     """
-    TypedDict for Commit.
+    Plain version of Commit.
     """
 
     hash: str

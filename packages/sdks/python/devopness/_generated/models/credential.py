@@ -6,13 +6,16 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import TypedDict
+from typing import (
+    TypedDict,
+    Union,
+)
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
-from .provider_relation import ProviderRelation
-from .user_relation import UserRelation
+from .provider_relation import ProviderRelation, ProviderRelationPlain
+from .user_relation import UserRelation, UserRelationPlain
 
 
 class Credential(DevopnessBaseModel):
@@ -48,17 +51,23 @@ class Credential(DevopnessBaseModel):
     )
 
 
-class CredentialDict(TypedDict, total=False):
+class CredentialPlain(TypedDict, total=False):
     """
-    TypedDict for Credential.
+    Plain version of Credential.
     """
 
     id: int
     name: str
-    provider: ProviderRelation
+    provider: Union[
+        ProviderRelation,
+        ProviderRelationPlain,
+    ]
     provider_type: str
     provider_type_human_readable: str
     active: bool
-    created_by_user: UserRelation
+    created_by_user: Union[
+        UserRelation,
+        UserRelationPlain,
+    ]
     created_at: str
     updated_at: str

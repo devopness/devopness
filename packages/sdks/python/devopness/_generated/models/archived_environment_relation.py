@@ -6,14 +6,19 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional, TypedDict
+from typing import (
+    List,
+    Optional,
+    TypedDict,
+    Union,
+)
 
 from pydantic import Field, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
 from .environment_type import EnvironmentType
-from .project_relation import ProjectRelation
-from .resource_summary_item import ResourceSummaryItem
+from .project_relation import ProjectRelation, ProjectRelationPlain
+from .resource_summary_item import ResourceSummaryItem, ResourceSummaryItemPlain
 
 
 class ArchivedEnvironmentRelation(DevopnessBaseModel):
@@ -60,9 +65,9 @@ class ArchivedEnvironmentRelation(DevopnessBaseModel):
     project: Optional[ProjectRelation]
 
 
-class ArchivedEnvironmentRelationDict(TypedDict, total=False):
+class ArchivedEnvironmentRelationPlain(TypedDict, total=False):
     """
-    TypedDict for ArchivedEnvironmentRelation.
+    Plain version of ArchivedEnvironmentRelation.
     """
 
     id: int
@@ -71,8 +76,16 @@ class ArchivedEnvironmentRelationDict(TypedDict, total=False):
     name: str
     description: str
     used_credits: int
-    resource_summary: List[ResourceSummaryItem]
+    resource_summary: List[
+        Union[
+            ResourceSummaryItem,
+            ResourceSummaryItemPlain,
+        ]
+    ]
     created_at: str
     updated_at: str
     archived_at: str
-    project: ProjectRelation
+    project: Union[
+        ProjectRelation,
+        ProjectRelationPlain,
+    ]

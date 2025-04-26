@@ -6,10 +6,14 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import Optional, TypedDict
+from typing import (
+    Optional,
+    TypedDict,
+    Union,
+)
 
 from .. import DevopnessBaseModel
-from .subscription import Subscription
+from .subscription import Subscription, SubscriptionPlain
 
 
 class UserBilling(DevopnessBaseModel):
@@ -23,9 +27,12 @@ class UserBilling(DevopnessBaseModel):
     active_subscription: Optional[Subscription]
 
 
-class UserBillingDict(TypedDict, total=False):
+class UserBillingPlain(TypedDict, total=False):
     """
-    TypedDict for UserBilling.
+    Plain version of UserBilling.
     """
 
-    active_subscription: Subscription
+    active_subscription: Union[
+        Subscription,
+        SubscriptionPlain,
+    ]

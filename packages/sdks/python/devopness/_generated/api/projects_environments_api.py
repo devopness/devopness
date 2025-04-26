@@ -12,7 +12,7 @@ from .. import DevopnessBaseService, DevopnessResponse
 from ..models import (
     Environment,
     EnvironmentProjectCreate,
-    EnvironmentProjectCreateDict,
+    EnvironmentProjectCreatePlain,
     EnvironmentRelation,
 )
 
@@ -27,7 +27,7 @@ class ProjectsEnvironmentsApiService(DevopnessBaseService):
         project_id: int,
         environment_project_create: Union[
             EnvironmentProjectCreate,
-            EnvironmentProjectCreateDict,
+            EnvironmentProjectCreatePlain,
         ],
     ) -> DevopnessResponse[Environment]:
         """
@@ -52,7 +52,7 @@ class ProjectsEnvironmentsApiService(DevopnessBaseService):
         project_id: int,
         environment_project_create: Union[
             EnvironmentProjectCreate,
-            EnvironmentProjectCreateDict,
+            EnvironmentProjectCreatePlain,
         ],
     ) -> DevopnessResponse[Environment]:
         """

@@ -6,13 +6,16 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import TypedDict
+from typing import (
+    TypedDict,
+    Union,
+)
 
 from .. import DevopnessBaseModel
-from .triggered_actions import TriggeredActions
-from .user_environment_stats import UserEnvironmentStats
-from .user_project_stats import UserProjectStats
-from .user_team_stats import UserTeamStats
+from .triggered_actions import TriggeredActions, TriggeredActionsPlain
+from .user_environment_stats import UserEnvironmentStats, UserEnvironmentStatsPlain
+from .user_project_stats import UserProjectStats, UserProjectStatsPlain
+from .user_team_stats import UserTeamStats, UserTeamStatsPlain
 
 
 class UserActivity(DevopnessBaseModel):
@@ -32,12 +35,24 @@ class UserActivity(DevopnessBaseModel):
     triggered_actions: TriggeredActions
 
 
-class UserActivityDict(TypedDict, total=False):
+class UserActivityPlain(TypedDict, total=False):
     """
-    TypedDict for UserActivity.
+    Plain version of UserActivity.
     """
 
-    projects: UserProjectStats
-    environments: UserEnvironmentStats
-    teams: UserTeamStats
-    triggered_actions: TriggeredActions
+    projects: Union[
+        UserProjectStats,
+        UserProjectStatsPlain,
+    ]
+    environments: Union[
+        UserEnvironmentStats,
+        UserEnvironmentStatsPlain,
+    ]
+    teams: Union[
+        UserTeamStats,
+        UserTeamStatsPlain,
+    ]
+    triggered_actions: Union[
+        TriggeredActions,
+        TriggeredActionsPlain,
+    ]

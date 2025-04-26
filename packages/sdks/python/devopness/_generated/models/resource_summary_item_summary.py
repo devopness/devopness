@@ -6,7 +6,10 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import TypedDict, Union
+from typing import (
+    TypedDict,
+    Union,
+)
 
 from pydantic import Field, StrictFloat, StrictInt
 
@@ -26,9 +29,9 @@ class ResourceSummaryItemSummary(DevopnessBaseModel):
     )
 
 
-class ResourceSummaryItemSummaryDict(TypedDict, total=False):
+class ResourceSummaryItemSummaryPlain(TypedDict, total=False):
     """
-    TypedDict for ResourceSummaryItemSummary.
+    Plain version of ResourceSummaryItemSummary.
     """
 
     count: float

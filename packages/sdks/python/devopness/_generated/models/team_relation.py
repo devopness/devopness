@@ -6,7 +6,10 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import Optional, TypedDict
+from typing import (
+    Optional,
+    TypedDict,
+)
 
 from pydantic import Field, StrictInt, StrictStr
 
@@ -36,9 +39,9 @@ class TeamRelation(DevopnessBaseModel):
     )
 
 
-class TeamRelationDict(TypedDict, total=False):
+class TeamRelationPlain(TypedDict, total=False):
     """
-    TypedDict for TeamRelation.
+    Plain version of TeamRelation.
     """
 
     id: int

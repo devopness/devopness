@@ -6,7 +6,10 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import Optional, TypedDict
+from typing import (
+    Optional,
+    TypedDict,
+)
 
 from pydantic import Field, StrictStr
 
@@ -39,9 +42,9 @@ class UserUpdate(DevopnessBaseModel):
     language: Optional[Language] = None
 
 
-class UserUpdateDict(TypedDict, total=False):
+class UserUpdatePlain(TypedDict, total=False):
     """
-    TypedDict for UserUpdate.
+    Plain version of UserUpdate.
     """
 
     id: str

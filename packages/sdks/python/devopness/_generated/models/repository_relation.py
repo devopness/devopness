@@ -6,7 +6,9 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import TypedDict
+from typing import (
+    TypedDict,
+)
 
 from pydantic import Field, StrictStr
 
@@ -36,9 +38,9 @@ class RepositoryRelation(DevopnessBaseModel):
     )
 
 
-class RepositoryRelationDict(TypedDict, total=False):
+class RepositoryRelationPlain(TypedDict, total=False):
     """
-    TypedDict for RepositoryRelation.
+    Plain version of RepositoryRelation.
     """
 
     name: str

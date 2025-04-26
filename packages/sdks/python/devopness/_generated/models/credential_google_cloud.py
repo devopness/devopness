@@ -6,7 +6,9 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import TypedDict
+from typing import (
+    TypedDict,
+)
 
 from pydantic import Field, StrictStr
 
@@ -26,9 +28,9 @@ class CredentialGoogleCloud(DevopnessBaseModel):
     )
 
 
-class CredentialGoogleCloudDict(TypedDict, total=False):
+class CredentialGoogleCloudPlain(TypedDict, total=False):
     """
-    TypedDict for CredentialGoogleCloud.
+    Plain version of CredentialGoogleCloud.
     """
 
     service_account_key: str

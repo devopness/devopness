@@ -6,13 +6,19 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import TypedDict
+from typing import (
+    TypedDict,
+    Union,
+)
 
 from pydantic import Field, StrictInt
 
 from .. import DevopnessBaseModel
-from .credential_provider_type import CredentialProviderType
-from .provider_settings import ProviderSettings
+from .credential_provider_type import (
+    CredentialProviderType,
+    CredentialProviderTypePlain,
+)
+from .provider_settings import ProviderSettings, ProviderSettingsPlain
 
 
 class CredentialSetting(DevopnessBaseModel):
@@ -32,11 +38,17 @@ class CredentialSetting(DevopnessBaseModel):
     settings: ProviderSettings
 
 
-class CredentialSettingDict(TypedDict, total=False):
+class CredentialSettingPlain(TypedDict, total=False):
     """
-    TypedDict for CredentialSetting.
+    Plain version of CredentialSetting.
     """
 
-    provider: CredentialProviderType
+    provider: Union[
+        CredentialProviderType,
+        CredentialProviderTypePlain,
+    ]
     environment_id: int
-    settings: ProviderSettings
+    settings: Union[
+        ProviderSettings,
+        ProviderSettingsPlain,
+    ]

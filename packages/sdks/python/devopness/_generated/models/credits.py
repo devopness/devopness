@@ -6,7 +6,11 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import Optional, TypedDict, Union
+from typing import (
+    Optional,
+    TypedDict,
+    Union,
+)
 
 from pydantic import Field, StrictFloat, StrictInt
 
@@ -35,9 +39,9 @@ class Credits(DevopnessBaseModel):
     )
 
 
-class CreditsDict(TypedDict, total=False):
+class CreditsPlain(TypedDict, total=False):
     """
-    TypedDict for Credits.
+    Plain version of Credits.
     """
 
     limit: float

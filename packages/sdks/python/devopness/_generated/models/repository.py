@@ -6,13 +6,17 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, TypedDict
+from typing import (
+    List,
+    TypedDict,
+    Union,
+)
 
 from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
-from .repository_branch import RepositoryBranch
-from .repository_tag import RepositoryTag
+from .repository_branch import RepositoryBranch, RepositoryBranchPlain
+from .repository_tag import RepositoryTag, RepositoryTagPlain
 
 
 class Repository(DevopnessBaseModel):
@@ -42,14 +46,24 @@ class Repository(DevopnessBaseModel):
     tags: List[RepositoryTag] = Field(description="List of repository tags")
 
 
-class RepositoryDict(TypedDict, total=False):
+class RepositoryPlain(TypedDict, total=False):
     """
-    TypedDict for Repository.
+    Plain version of Repository.
     """
 
     name: str
     user_name: str
     full_name: str
     html_url: str
-    branches: List[RepositoryBranch]
-    tags: List[RepositoryTag]
+    branches: List[
+        Union[
+            RepositoryBranch,
+            RepositoryBranchPlain,
+        ]
+    ]
+    tags: List[
+        Union[
+            RepositoryTag,
+            RepositoryTagPlain,
+        ]
+    ]

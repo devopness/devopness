@@ -6,7 +6,9 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import TypedDict
+from typing import (
+    TypedDict,
+)
 
 from pydantic import Field, StrictStr
 
@@ -26,9 +28,9 @@ class CredentialDigitalOcean(DevopnessBaseModel):
     )
 
 
-class CredentialDigitalOceanDict(TypedDict, total=False):
+class CredentialDigitalOceanPlain(TypedDict, total=False):
     """
-    TypedDict for CredentialDigitalOcean.
+    Plain version of CredentialDigitalOcean.
     """
 
     api_token: str

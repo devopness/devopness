@@ -6,14 +6,19 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional, TypedDict
+from typing import (
+    List,
+    Optional,
+    TypedDict,
+    Union,
+)
 
 from pydantic import Field, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
-from .os_users_inner import OsUsersInner
-from .resource_summary_item import ResourceSummaryItem
-from .user_relation import UserRelation
+from .os_users_inner import OsUsersInner, OsUsersInnerPlain
+from .resource_summary_item import ResourceSummaryItem, ResourceSummaryItemPlain
+from .user_relation import UserRelation, UserRelationPlain
 
 
 class Project(DevopnessBaseModel):
@@ -53,17 +58,30 @@ class Project(DevopnessBaseModel):
     )
 
 
-class ProjectDict(TypedDict, total=False):
+class ProjectPlain(TypedDict, total=False):
     """
-    TypedDict for Project.
+    Plain version of Project.
     """
 
     id: int
     user_id: int
     name: str
     logo_url: str
-    resource_summary: List[ResourceSummaryItem]
-    os_users: List[OsUsersInner]
-    created_by_user: UserRelation
+    resource_summary: List[
+        Union[
+            ResourceSummaryItem,
+            ResourceSummaryItemPlain,
+        ]
+    ]
+    os_users: List[
+        Union[
+            OsUsersInner,
+            OsUsersInnerPlain,
+        ]
+    ]
+    created_by_user: Union[
+        UserRelation,
+        UserRelationPlain,
+    ]
     created_at: str
     updated_at: str

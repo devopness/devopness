@@ -6,7 +6,9 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import TypedDict
+from typing import (
+    TypedDict,
+)
 
 from pydantic import Field, StrictInt, StrictStr
 
@@ -36,9 +38,9 @@ class UserRefreshTokenResponse(DevopnessBaseModel):
     )
 
 
-class UserRefreshTokenResponseDict(TypedDict, total=False):
+class UserRefreshTokenResponsePlain(TypedDict, total=False):
     """
-    TypedDict for UserRefreshTokenResponse.
+    Plain version of UserRefreshTokenResponse.
     """
 
     token_type: str

@@ -7,7 +7,10 @@ Note:
 """
 
 from datetime import datetime
-from typing import Optional, TypedDict
+from typing import (
+    Optional,
+    TypedDict,
+)
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
 from typing_extensions import Annotated
@@ -53,9 +56,9 @@ class UserRelation(DevopnessBaseModel):
     )
 
 
-class UserRelationDict(TypedDict, total=False):
+class UserRelationPlain(TypedDict, total=False):
     """
-    TypedDict for UserRelation.
+    Plain version of UserRelation.
     """
 
     id: int

@@ -6,7 +6,10 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import Optional, TypedDict
+from typing import (
+    Optional,
+    TypedDict,
+)
 
 from pydantic import Field, StrictStr
 
@@ -34,9 +37,9 @@ class EnvironmentProjectCreate(DevopnessBaseModel):
     )
 
 
-class EnvironmentProjectCreateDict(TypedDict, total=False):
+class EnvironmentProjectCreatePlain(TypedDict, total=False):
     """
-    TypedDict for EnvironmentProjectCreate.
+    Plain version of EnvironmentProjectCreate.
     """
 
     type: EnvironmentType

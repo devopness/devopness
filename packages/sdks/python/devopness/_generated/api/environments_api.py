@@ -9,7 +9,7 @@ Note:
 from typing import Union
 
 from .. import DevopnessBaseService, DevopnessResponse
-from ..models import Environment, EnvironmentUpdate, EnvironmentUpdateDict
+from ..models import Environment, EnvironmentUpdate, EnvironmentUpdatePlain
 
 
 class EnvironmentsApiService(DevopnessBaseService):
@@ -148,7 +148,7 @@ class EnvironmentsApiService(DevopnessBaseService):
         environment_id: int,
         environment_update: Union[
             EnvironmentUpdate,
-            EnvironmentUpdateDict,
+            EnvironmentUpdatePlain,
         ],
     ) -> DevopnessResponse[None]:
         """
@@ -173,7 +173,7 @@ class EnvironmentsApiService(DevopnessBaseService):
         environment_id: int,
         environment_update: Union[
             EnvironmentUpdate,
-            EnvironmentUpdateDict,
+            EnvironmentUpdatePlain,
         ],
     ) -> DevopnessResponse[None]:
         """

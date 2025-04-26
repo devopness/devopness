@@ -6,7 +6,11 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional, TypedDict
+from typing import (
+    List,
+    Optional,
+    TypedDict,
+)
 
 from pydantic import StrictBool, StrictInt, StrictStr
 
@@ -32,9 +36,9 @@ class ProviderInputSettingsValidation(DevopnessBaseModel):
     allowed_values: Optional[List[StrictStr]] = None
 
 
-class ProviderInputSettingsValidationDict(TypedDict, total=False):
+class ProviderInputSettingsValidationPlain(TypedDict, total=False):
     """
-    TypedDict for ProviderInputSettingsValidation.
+    Plain version of ProviderInputSettingsValidation.
     """
 
     required: bool

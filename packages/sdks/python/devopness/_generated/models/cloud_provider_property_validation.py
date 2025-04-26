@@ -6,7 +6,10 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, TypedDict
+from typing import (
+    List,
+    TypedDict,
+)
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
 
@@ -39,9 +42,9 @@ class CloudProviderPropertyValidation(DevopnessBaseModel):
     )
 
 
-class CloudProviderPropertyValidationDict(TypedDict, total=False):
+class CloudProviderPropertyValidationPlain(TypedDict, total=False):
     """
-    TypedDict for CloudProviderPropertyValidation.
+    Plain version of CloudProviderPropertyValidation.
     """
 
     required: bool

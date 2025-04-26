@@ -6,12 +6,19 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import Optional, TypedDict
+from typing import (
+    Optional,
+    TypedDict,
+    Union,
+)
 
 from pydantic import Field, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
-from .credential_input_settings import CredentialInputSettings
+from .credential_input_settings import (
+    CredentialInputSettings,
+    CredentialInputSettingsPlain,
+)
 
 
 class CredentialUpdate(DevopnessBaseModel):
@@ -31,11 +38,14 @@ class CredentialUpdate(DevopnessBaseModel):
     settings: Optional[CredentialInputSettings] = None
 
 
-class CredentialUpdateDict(TypedDict, total=False):
+class CredentialUpdatePlain(TypedDict, total=False):
     """
-    TypedDict for CredentialUpdate.
+    Plain version of CredentialUpdate.
     """
 
     id: int
     name: str
-    settings: CredentialInputSettings
+    settings: Union[
+        CredentialInputSettings,
+        CredentialInputSettingsPlain,
+    ]

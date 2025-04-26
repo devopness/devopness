@@ -6,13 +6,18 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional, TypedDict
+from typing import (
+    List,
+    Optional,
+    TypedDict,
+    Union,
+)
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
 from .language import Language
-from .social_account_relation import SocialAccountRelation
+from .social_account_relation import SocialAccountRelation, SocialAccountRelationPlain
 
 
 class User(DevopnessBaseModel):
@@ -48,9 +53,9 @@ class User(DevopnessBaseModel):
     )
 
 
-class UserDict(TypedDict, total=False):
+class UserPlain(TypedDict, total=False):
     """
-    TypedDict for User.
+    Plain version of User.
     """
 
     id: int
@@ -59,6 +64,11 @@ class UserDict(TypedDict, total=False):
     url_slug: str
     language: Language
     active: bool
-    social_accounts: List[SocialAccountRelation]
+    social_accounts: List[
+        Union[
+            SocialAccountRelation,
+            SocialAccountRelationPlain,
+        ]
+    ]
     created_at: str
     updated_at: str

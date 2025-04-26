@@ -8,12 +8,12 @@ Note:
 
 from .archived_environment_relation import (
     ArchivedEnvironmentRelation,
-    ArchivedEnvironmentRelationDict,
+    ArchivedEnvironmentRelationPlain,
 )
 from .cloud_os_version_code import CloudOsVersionCode
 from .cloud_provider_input_settings import (
     CloudProviderInputSettings,
-    CloudProviderInputSettingsDict,
+    CloudProviderInputSettingsPlain,
 )
 from .cloud_provider_input_settings_default_value import (
     CloudProviderInputSettingsDefaultValue,
@@ -21,267 +21,282 @@ from .cloud_provider_input_settings_default_value import (
 from .cloud_provider_property_type import CloudProviderPropertyType
 from .cloud_provider_property_validation import (
     CloudProviderPropertyValidation,
-    CloudProviderPropertyValidationDict,
+    CloudProviderPropertyValidationPlain,
 )
-from .cloud_provider_service import CloudProviderService, CloudProviderServiceDict
+from .cloud_provider_service import CloudProviderService, CloudProviderServicePlain
 from .cloud_provider_service_code import CloudProviderServiceCode
 from .cloud_provider_service_region import (
     CloudProviderServiceRegion,
-    CloudProviderServiceRegionDict,
+    CloudProviderServiceRegionPlain,
 )
 from .cloud_provider_service_resource_type import (
     CloudProviderServiceResourceType,
-    CloudProviderServiceResourceTypeDict,
+    CloudProviderServiceResourceTypePlain,
 )
 from .cloud_provider_service_resource_type_scope import (
     CloudProviderServiceResourceTypeScope,
 )
-from .commit import Commit, CommitDict
-from .credential import Credential, CredentialDict
-from .credential_aws import CredentialAws, CredentialAwsDict
-from .credential_digital_ocean import CredentialDigitalOcean, CredentialDigitalOceanDict
+from .commit import Commit, CommitPlain
+from .credential import Credential, CredentialPlain
+from .credential_aws import CredentialAws, CredentialAwsPlain
+from .credential_digital_ocean import (
+    CredentialDigitalOcean,
+    CredentialDigitalOceanPlain,
+)
 from .credential_environment_create import (
     CredentialEnvironmentCreate,
-    CredentialEnvironmentCreateDict,
+    CredentialEnvironmentCreatePlain,
 )
-from .credential_google_cloud import CredentialGoogleCloud, CredentialGoogleCloudDict
+from .credential_google_cloud import CredentialGoogleCloud, CredentialGoogleCloudPlain
 from .credential_input_settings import (
     CredentialInputSettings,
-    CredentialInputSettingsDict,
+    CredentialInputSettingsPlain,
 )
 from .credential_input_settings_credential import CredentialInputSettingsCredential
-from .credential_provider_type import CredentialProviderType, CredentialProviderTypeDict
-from .credential_relation import CredentialRelation, CredentialRelationDict
-from .credential_setting import CredentialSetting, CredentialSettingDict
+from .credential_provider_type import (
+    CredentialProviderType,
+    CredentialProviderTypePlain,
+)
+from .credential_relation import CredentialRelation, CredentialRelationPlain
+from .credential_setting import CredentialSetting, CredentialSettingPlain
 from .credential_source_provider import (
     CredentialSourceProvider,
-    CredentialSourceProviderDict,
+    CredentialSourceProviderPlain,
 )
-from .credential_update import CredentialUpdate, CredentialUpdateDict
-from .credits import Credits, CreditsDict
-from .environment import Environment, EnvironmentDict
+from .credential_update import CredentialUpdate, CredentialUpdatePlain
+from .credits import Credits, CreditsPlain
+from .environment import Environment, EnvironmentPlain
 from .environment_project_create import (
     EnvironmentProjectCreate,
-    EnvironmentProjectCreateDict,
+    EnvironmentProjectCreatePlain,
 )
-from .environment_relation import EnvironmentRelation, EnvironmentRelationDict
+from .environment_relation import EnvironmentRelation, EnvironmentRelationPlain
 from .environment_type import EnvironmentType
-from .environment_update import EnvironmentUpdate, EnvironmentUpdateDict
+from .environment_update import EnvironmentUpdate, EnvironmentUpdatePlain
 from .language import Language
-from .operating_system import OperatingSystem, OperatingSystemDict
-from .operating_system_version import OperatingSystemVersion, OperatingSystemVersionDict
+from .operating_system import OperatingSystem, OperatingSystemPlain
+from .operating_system_version import (
+    OperatingSystemVersion,
+    OperatingSystemVersionPlain,
+)
 from .operation_custom_settings import (
     OperationCustomSettings,
-    OperationCustomSettingsDict,
+    OperationCustomSettingsPlain,
 )
-from .os_users_inner import OsUsersInner, OsUsersInnerDict
-from .project import Project, ProjectDict
-from .project_create import ProjectCreate, ProjectCreateDict
-from .project_relation import ProjectRelation, ProjectRelationDict
-from .project_update import ProjectUpdate, ProjectUpdateDict
+from .os_users_inner import OsUsersInner, OsUsersInnerPlain
+from .project import Project, ProjectPlain
+from .project_create import ProjectCreate, ProjectCreatePlain
+from .project_relation import ProjectRelation, ProjectRelationPlain
+from .project_update import ProjectUpdate, ProjectUpdatePlain
 from .provider_code import ProviderCode
-from .provider_input_settings import ProviderInputSettings, ProviderInputSettingsDict
+from .provider_input_settings import ProviderInputSettings, ProviderInputSettingsPlain
 from .provider_input_settings_validation import (
     ProviderInputSettingsValidation,
-    ProviderInputSettingsValidationDict,
+    ProviderInputSettingsValidationPlain,
 )
-from .provider_relation import ProviderRelation, ProviderRelationDict
-from .provider_settings import ProviderSettings, ProviderSettingsDict
+from .provider_relation import ProviderRelation, ProviderRelationPlain
+from .provider_settings import ProviderSettings, ProviderSettingsPlain
 from .provider_type import ProviderType
-from .repository import Repository, RepositoryDict
-from .repository_branch import RepositoryBranch, RepositoryBranchDict
-from .repository_relation import RepositoryRelation, RepositoryRelationDict
-from .repository_tag import RepositoryTag, RepositoryTagDict
-from .repository_tag_commit import RepositoryTagCommit, RepositoryTagCommitDict
-from .resource_summary_item import ResourceSummaryItem, ResourceSummaryItemDict
+from .repository import Repository, RepositoryPlain
+from .repository_branch import RepositoryBranch, RepositoryBranchPlain
+from .repository_relation import RepositoryRelation, RepositoryRelationPlain
+from .repository_tag import RepositoryTag, RepositoryTagPlain
+from .repository_tag_commit import RepositoryTagCommit, RepositoryTagCommitPlain
+from .resource_summary_item import ResourceSummaryItem, ResourceSummaryItemPlain
 from .resource_summary_item_summary import (
     ResourceSummaryItemSummary,
-    ResourceSummaryItemSummaryDict,
+    ResourceSummaryItemSummaryPlain,
 )
 from .social_account_displayable_name import SocialAccountDisplayableName
 from .social_account_provider import SocialAccountProvider
-from .social_account_relation import SocialAccountRelation, SocialAccountRelationDict
+from .social_account_relation import SocialAccountRelation, SocialAccountRelationPlain
 from .source_provider_name import SourceProviderName
-from .static_billing_info import StaticBillingInfo, StaticBillingInfoDict
-from .subscription import Subscription, SubscriptionDict
-from .subscription_balance import SubscriptionBalance, SubscriptionBalanceDict
-from .subscription_plan import SubscriptionPlan, SubscriptionPlanDict
-from .team_relation import TeamRelation, TeamRelationDict
-from .triggered_action_stats import TriggeredActionStats, TriggeredActionStatsDict
-from .triggered_action_summary import TriggeredActionSummary, TriggeredActionSummaryDict
-from .triggered_actions import TriggeredActions, TriggeredActionsDict
-from .user import User, UserDict
-from .user_activity import UserActivity, UserActivityDict
-from .user_billing import UserBilling, UserBillingDict
-from .user_create import UserCreate, UserCreateDict
-from .user_environment_stats import UserEnvironmentStats, UserEnvironmentStatsDict
-from .user_login import UserLogin, UserLoginDict
-from .user_login_response import UserLoginResponse, UserLoginResponseDict
-from .user_me import UserMe, UserMeDict
-from .user_profile_options import UserProfileOptions, UserProfileOptionsDict
-from .user_project_stats import UserProjectStats, UserProjectStatsDict
-from .user_refresh_token import UserRefreshToken, UserRefreshTokenDict
+from .static_billing_info import StaticBillingInfo, StaticBillingInfoPlain
+from .subscription import Subscription, SubscriptionPlain
+from .subscription_balance import SubscriptionBalance, SubscriptionBalancePlain
+from .subscription_plan import SubscriptionPlan, SubscriptionPlanPlain
+from .team_relation import TeamRelation, TeamRelationPlain
+from .triggered_action_stats import TriggeredActionStats, TriggeredActionStatsPlain
+from .triggered_action_summary import (
+    TriggeredActionSummary,
+    TriggeredActionSummaryPlain,
+)
+from .triggered_actions import TriggeredActions, TriggeredActionsPlain
+from .user import User, UserPlain
+from .user_activity import UserActivity, UserActivityPlain
+from .user_billing import UserBilling, UserBillingPlain
+from .user_create import UserCreate, UserCreatePlain
+from .user_environment_stats import UserEnvironmentStats, UserEnvironmentStatsPlain
+from .user_login import UserLogin, UserLoginPlain
+from .user_login_response import UserLoginResponse, UserLoginResponsePlain
+from .user_me import UserMe, UserMePlain
+from .user_profile_options import UserProfileOptions, UserProfileOptionsPlain
+from .user_project_stats import UserProjectStats, UserProjectStatsPlain
+from .user_refresh_token import UserRefreshToken, UserRefreshTokenPlain
 from .user_refresh_token_response import (
     UserRefreshTokenResponse,
-    UserRefreshTokenResponseDict,
+    UserRefreshTokenResponsePlain,
 )
-from .user_relation import UserRelation, UserRelationDict
-from .user_resend_verification import UserResendVerification, UserResendVerificationDict
-from .user_team_stats import UserTeamStats, UserTeamStatsDict
-from .user_update import UserUpdate, UserUpdateDict
-from .user_url import UserUrl, UserUrlDict
-from .user_verify import UserVerify, UserVerifyDict
+from .user_relation import UserRelation, UserRelationPlain
+from .user_resend_verification import (
+    UserResendVerification,
+    UserResendVerificationPlain,
+)
+from .user_team_stats import UserTeamStats, UserTeamStatsPlain
+from .user_update import UserUpdate, UserUpdatePlain
+from .user_url import UserUrl, UserUrlPlain
+from .user_verify import UserVerify, UserVerifyPlain
 
 __all__ = [
     "ArchivedEnvironmentRelation",
-    "ArchivedEnvironmentRelationDict",
+    "ArchivedEnvironmentRelationPlain",
     "CloudOsVersionCode",
     "CloudProviderInputSettings",
     "CloudProviderInputSettingsDefaultValue",
-    "CloudProviderInputSettingsDict",
+    "CloudProviderInputSettingsPlain",
     "CloudProviderPropertyType",
     "CloudProviderPropertyValidation",
-    "CloudProviderPropertyValidationDict",
+    "CloudProviderPropertyValidationPlain",
     "CloudProviderService",
     "CloudProviderServiceCode",
-    "CloudProviderServiceDict",
+    "CloudProviderServicePlain",
     "CloudProviderServiceRegion",
-    "CloudProviderServiceRegionDict",
+    "CloudProviderServiceRegionPlain",
     "CloudProviderServiceResourceType",
-    "CloudProviderServiceResourceTypeDict",
+    "CloudProviderServiceResourceTypePlain",
     "CloudProviderServiceResourceTypeScope",
     "Commit",
-    "CommitDict",
+    "CommitPlain",
     "Credential",
     "CredentialAws",
-    "CredentialAwsDict",
-    "CredentialDict",
+    "CredentialAwsPlain",
     "CredentialDigitalOcean",
-    "CredentialDigitalOceanDict",
+    "CredentialDigitalOceanPlain",
     "CredentialEnvironmentCreate",
-    "CredentialEnvironmentCreateDict",
+    "CredentialEnvironmentCreatePlain",
     "CredentialGoogleCloud",
-    "CredentialGoogleCloudDict",
+    "CredentialGoogleCloudPlain",
     "CredentialInputSettings",
     "CredentialInputSettingsCredential",
-    "CredentialInputSettingsDict",
+    "CredentialInputSettingsPlain",
+    "CredentialPlain",
     "CredentialProviderType",
-    "CredentialProviderTypeDict",
+    "CredentialProviderTypePlain",
     "CredentialRelation",
-    "CredentialRelationDict",
+    "CredentialRelationPlain",
     "CredentialSetting",
-    "CredentialSettingDict",
+    "CredentialSettingPlain",
     "CredentialSourceProvider",
-    "CredentialSourceProviderDict",
+    "CredentialSourceProviderPlain",
     "CredentialUpdate",
-    "CredentialUpdateDict",
+    "CredentialUpdatePlain",
     "Credits",
-    "CreditsDict",
+    "CreditsPlain",
     "Environment",
-    "EnvironmentDict",
+    "EnvironmentPlain",
     "EnvironmentProjectCreate",
-    "EnvironmentProjectCreateDict",
+    "EnvironmentProjectCreatePlain",
     "EnvironmentRelation",
-    "EnvironmentRelationDict",
+    "EnvironmentRelationPlain",
     "EnvironmentType",
     "EnvironmentUpdate",
-    "EnvironmentUpdateDict",
+    "EnvironmentUpdatePlain",
     "Language",
     "OperatingSystem",
-    "OperatingSystemDict",
+    "OperatingSystemPlain",
     "OperatingSystemVersion",
-    "OperatingSystemVersionDict",
+    "OperatingSystemVersionPlain",
     "OperationCustomSettings",
-    "OperationCustomSettingsDict",
+    "OperationCustomSettingsPlain",
     "OsUsersInner",
-    "OsUsersInnerDict",
+    "OsUsersInnerPlain",
     "Project",
     "ProjectCreate",
-    "ProjectCreateDict",
-    "ProjectDict",
+    "ProjectCreatePlain",
+    "ProjectPlain",
     "ProjectRelation",
-    "ProjectRelationDict",
+    "ProjectRelationPlain",
     "ProjectUpdate",
-    "ProjectUpdateDict",
+    "ProjectUpdatePlain",
     "ProviderCode",
     "ProviderInputSettings",
-    "ProviderInputSettingsDict",
+    "ProviderInputSettingsPlain",
     "ProviderInputSettingsValidation",
-    "ProviderInputSettingsValidationDict",
+    "ProviderInputSettingsValidationPlain",
     "ProviderRelation",
-    "ProviderRelationDict",
+    "ProviderRelationPlain",
     "ProviderSettings",
-    "ProviderSettingsDict",
+    "ProviderSettingsPlain",
     "ProviderType",
     "Repository",
     "RepositoryBranch",
-    "RepositoryBranchDict",
-    "RepositoryDict",
+    "RepositoryBranchPlain",
+    "RepositoryPlain",
     "RepositoryRelation",
-    "RepositoryRelationDict",
+    "RepositoryRelationPlain",
     "RepositoryTag",
     "RepositoryTagCommit",
-    "RepositoryTagCommitDict",
-    "RepositoryTagDict",
+    "RepositoryTagCommitPlain",
+    "RepositoryTagPlain",
     "ResourceSummaryItem",
-    "ResourceSummaryItemDict",
+    "ResourceSummaryItemPlain",
     "ResourceSummaryItemSummary",
-    "ResourceSummaryItemSummaryDict",
+    "ResourceSummaryItemSummaryPlain",
     "SocialAccountDisplayableName",
     "SocialAccountProvider",
     "SocialAccountRelation",
-    "SocialAccountRelationDict",
+    "SocialAccountRelationPlain",
     "SourceProviderName",
     "StaticBillingInfo",
-    "StaticBillingInfoDict",
+    "StaticBillingInfoPlain",
     "Subscription",
     "SubscriptionBalance",
-    "SubscriptionBalanceDict",
-    "SubscriptionDict",
+    "SubscriptionBalancePlain",
+    "SubscriptionPlain",
     "SubscriptionPlan",
-    "SubscriptionPlanDict",
+    "SubscriptionPlanPlain",
     "TeamRelation",
-    "TeamRelationDict",
+    "TeamRelationPlain",
     "TriggeredActionStats",
-    "TriggeredActionStatsDict",
+    "TriggeredActionStatsPlain",
     "TriggeredActionSummary",
-    "TriggeredActionSummaryDict",
+    "TriggeredActionSummaryPlain",
     "TriggeredActions",
-    "TriggeredActionsDict",
+    "TriggeredActionsPlain",
     "User",
     "UserActivity",
-    "UserActivityDict",
+    "UserActivityPlain",
     "UserBilling",
-    "UserBillingDict",
+    "UserBillingPlain",
     "UserCreate",
-    "UserCreateDict",
-    "UserDict",
+    "UserCreatePlain",
     "UserEnvironmentStats",
-    "UserEnvironmentStatsDict",
+    "UserEnvironmentStatsPlain",
     "UserLogin",
-    "UserLoginDict",
+    "UserLoginPlain",
     "UserLoginResponse",
-    "UserLoginResponseDict",
+    "UserLoginResponsePlain",
     "UserMe",
-    "UserMeDict",
+    "UserMePlain",
+    "UserPlain",
     "UserProfileOptions",
-    "UserProfileOptionsDict",
+    "UserProfileOptionsPlain",
     "UserProjectStats",
-    "UserProjectStatsDict",
+    "UserProjectStatsPlain",
     "UserRefreshToken",
-    "UserRefreshTokenDict",
+    "UserRefreshTokenPlain",
     "UserRefreshTokenResponse",
-    "UserRefreshTokenResponseDict",
+    "UserRefreshTokenResponsePlain",
     "UserRelation",
-    "UserRelationDict",
+    "UserRelationPlain",
     "UserResendVerification",
-    "UserResendVerificationDict",
+    "UserResendVerificationPlain",
     "UserTeamStats",
-    "UserTeamStatsDict",
+    "UserTeamStatsPlain",
     "UserUpdate",
-    "UserUpdateDict",
+    "UserUpdatePlain",
     "UserUrl",
-    "UserUrlDict",
+    "UserUrlPlain",
     "UserVerify",
-    "UserVerifyDict",
+    "UserVerifyPlain",
 ]

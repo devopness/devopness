@@ -6,7 +6,10 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import Optional, TypedDict
+from typing import (
+    Optional,
+    TypedDict,
+)
 
 from pydantic import Field, StrictStr
 
@@ -48,9 +51,9 @@ class OperatingSystemVersion(DevopnessBaseModel):
     )
 
 
-class OperatingSystemVersionDict(TypedDict, total=False):
+class OperatingSystemVersionPlain(TypedDict, total=False):
     """
-    TypedDict for OperatingSystemVersion.
+    Plain version of OperatingSystemVersion.
     """
 
     name: str

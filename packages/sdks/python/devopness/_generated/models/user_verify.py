@@ -6,7 +6,10 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import Optional, TypedDict
+from typing import (
+    Optional,
+    TypedDict,
+)
 
 from pydantic import Field, StrictStr
 
@@ -43,9 +46,9 @@ class UserVerify(DevopnessBaseModel):
     )
 
 
-class UserVerifyDict(TypedDict, total=False):
+class UserVerifyPlain(TypedDict, total=False):
     """
-    TypedDict for UserVerify.
+    Plain version of UserVerify.
     """
 
     email: str

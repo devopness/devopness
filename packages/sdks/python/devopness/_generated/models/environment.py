@@ -6,15 +6,20 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional, TypedDict
+from typing import (
+    List,
+    Optional,
+    TypedDict,
+    Union,
+)
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
 from .environment_type import EnvironmentType
-from .resource_summary_item import ResourceSummaryItem
-from .team_relation import TeamRelation
-from .user_relation import UserRelation
+from .resource_summary_item import ResourceSummaryItem, ResourceSummaryItemPlain
+from .team_relation import TeamRelation, TeamRelationPlain
+from .user_relation import UserRelation, UserRelationPlain
 
 
 class Environment(DevopnessBaseModel):
@@ -62,9 +67,9 @@ class Environment(DevopnessBaseModel):
     )
 
 
-class EnvironmentDict(TypedDict, total=False):
+class EnvironmentPlain(TypedDict, total=False):
     """
-    TypedDict for Environment.
+    Plain version of Environment.
     """
 
     id: int
@@ -73,9 +78,22 @@ class EnvironmentDict(TypedDict, total=False):
     name: str
     description: str
     is_archived: bool
-    resource_summary: List[ResourceSummaryItem]
-    teams: List[TeamRelation]
-    created_by_user: UserRelation
+    resource_summary: List[
+        Union[
+            ResourceSummaryItem,
+            ResourceSummaryItemPlain,
+        ]
+    ]
+    teams: List[
+        Union[
+            TeamRelation,
+            TeamRelationPlain,
+        ]
+    ]
+    created_by_user: Union[
+        UserRelation,
+        UserRelationPlain,
+    ]
     current_user_permissions: List[str]
     created_at: str
     updated_at: str

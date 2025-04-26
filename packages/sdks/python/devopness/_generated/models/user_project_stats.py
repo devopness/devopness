@@ -6,7 +6,11 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import Optional, TypedDict, Union
+from typing import (
+    Optional,
+    TypedDict,
+    Union,
+)
 
 from pydantic import Field, StrictFloat, StrictInt
 
@@ -32,9 +36,9 @@ class UserProjectStats(DevopnessBaseModel):
     )
 
 
-class UserProjectStatsDict(TypedDict, total=False):
+class UserProjectStatsPlain(TypedDict, total=False):
     """
-    TypedDict for UserProjectStats.
+    Plain version of UserProjectStats.
     """
 
     owner_of: float

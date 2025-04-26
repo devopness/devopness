@@ -6,12 +6,19 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import Optional, TypedDict
+from typing import (
+    Optional,
+    TypedDict,
+    Union,
+)
 
 from pydantic import Field, StrictBool, StrictStr
 
 from .. import DevopnessBaseModel
-from .provider_input_settings_validation import ProviderInputSettingsValidation
+from .provider_input_settings_validation import (
+    ProviderInputSettingsValidation,
+    ProviderInputSettingsValidationPlain,
+)
 
 
 class ProviderInputSettings(DevopnessBaseModel):
@@ -39,13 +46,16 @@ class ProviderInputSettings(DevopnessBaseModel):
     )
 
 
-class ProviderInputSettingsDict(TypedDict, total=False):
+class ProviderInputSettingsPlain(TypedDict, total=False):
     """
-    TypedDict for ProviderInputSettings.
+    Plain version of ProviderInputSettings.
     """
 
     name: str
     name_human_readable: str
-    validation: ProviderInputSettingsValidation
+    validation: Union[
+        ProviderInputSettingsValidation,
+        ProviderInputSettingsValidationPlain,
+    ]
     default_value: str
     sensitive: bool
