@@ -7,6 +7,7 @@ Note:
 """
 
 from typing import (
+    Required,
     TypedDict,
     Union,
 )
@@ -56,18 +57,22 @@ class CredentialPlain(TypedDict, total=False):
     Plain version of Credential.
     """
 
-    id: int
-    name: str
-    provider: Union[
-        ProviderRelation,
-        ProviderRelationPlain,
+    id: Required[int]
+    name: Required[str]
+    provider: Required[
+        Union[
+            ProviderRelation,
+            ProviderRelationPlain,
+        ]
     ]
-    provider_type: str
-    provider_type_human_readable: str
-    active: bool
-    created_by_user: Union[
-        UserRelation,
-        UserRelationPlain,
+    provider_type: Required[str]
+    provider_type_human_readable: Required[str]
+    active: Required[bool]
+    created_by_user: Required[
+        Union[
+            UserRelation,
+            UserRelationPlain,
+        ]
     ]
-    created_at: str
-    updated_at: str
+    created_at: Required[str]
+    updated_at: Required[str]

@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     Optional,
+    Required,
     TypedDict,
     Union,
 )
@@ -57,14 +58,16 @@ class OperatingSystemVersionPlain(TypedDict, total=False):
     Plain version of OperatingSystemVersion.
     """
 
-    name: str
-    code_name: str
-    version: str
-    os_version_code: Union[
-        CloudOsVersionCode,
-        CloudOsVersionCodePlain,
+    name: Required[str]
+    code_name: Required[str]
+    version: Required[str]
+    os_version_code: Required[
+        Union[
+            CloudOsVersionCode,
+            CloudOsVersionCodePlain,
+        ]
     ]
     os_version_code_human_readable: str
-    released_at: str
-    end_standard_support_at: str
-    end_of_life_at: str
+    released_at: Required[str]
+    end_standard_support_at: Required[str]
+    end_of_life_at: Required[str]

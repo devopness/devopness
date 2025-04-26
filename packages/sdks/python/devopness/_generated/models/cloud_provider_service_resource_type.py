@@ -9,6 +9,7 @@ Note:
 from typing import (
     List,
     Optional,
+    Required,
     TypedDict,
     Union,
 )
@@ -68,16 +69,20 @@ class CloudProviderServiceResourceTypePlain(TypedDict, total=False):
     Plain version of CloudProviderServiceResourceType.
     """
 
-    provider_resource_type: str
-    devopness_resource_type: str
-    scope: Union[
-        CloudProviderServiceResourceTypeScope,
-        CloudProviderServiceResourceTypeScopePlain,
-    ]
-    input_settings: List[
+    provider_resource_type: Required[str]
+    devopness_resource_type: Required[str]
+    scope: Required[
         Union[
-            CloudProviderInputSettings,
-            CloudProviderInputSettingsPlain,
+            CloudProviderServiceResourceTypeScope,
+            CloudProviderServiceResourceTypeScopePlain,
+        ]
+    ]
+    input_settings: Required[
+        List[
+            Union[
+                CloudProviderInputSettings,
+                CloudProviderInputSettingsPlain,
+            ]
         ]
     ]
     os: List[

@@ -9,6 +9,7 @@ Note:
 from typing import (
     List,
     Optional,
+    Required,
     TypedDict,
     Union,
 )
@@ -46,10 +47,12 @@ class ProviderSettingsPlain(TypedDict, total=False):
     """
 
     connect_url: str
-    input_settings: List[
-        Union[
-            ProviderInputSettings,
-            ProviderInputSettingsPlain,
+    input_settings: Required[
+        List[
+            Union[
+                ProviderInputSettings,
+                ProviderInputSettingsPlain,
+            ]
         ]
     ]
     cloud_services: List[

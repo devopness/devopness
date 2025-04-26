@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     Optional,
+    Required,
     TypedDict,
     Union,
 )
@@ -48,10 +49,10 @@ class UserUpdatePlain(TypedDict, total=False):
     Plain version of UserUpdate.
     """
 
-    id: str
-    name: str
-    email: str
-    url_slug: str
+    id: Required[str]
+    name: Required[str]
+    email: Required[str]
+    url_slug: Required[str]
     language: Union[
         Language,
         LanguagePlain,

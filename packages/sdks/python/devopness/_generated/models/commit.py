@@ -7,6 +7,7 @@ Note:
 """
 
 from typing import (
+    Required,
     TypedDict,
     Union,
 )
@@ -55,14 +56,16 @@ class CommitPlain(TypedDict, total=False):
     Plain version of Commit.
     """
 
-    hash: str
-    message: str
-    committed_at: str
-    provider: Union[
-        SourceProviderName,
-        SourceProviderNamePlain,
+    hash: Required[str]
+    message: Required[str]
+    committed_at: Required[str]
+    provider: Required[
+        Union[
+            SourceProviderName,
+            SourceProviderNamePlain,
+        ]
     ]
-    repository: str
-    url: str
-    author_email: str
-    author_name: str
+    repository: Required[str]
+    url: Required[str]
+    author_email: Required[str]
+    author_name: Required[str]

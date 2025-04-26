@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     Optional,
+    Required,
     TypedDict,
 )
 
@@ -51,8 +52,8 @@ class UserVerifyPlain(TypedDict, total=False):
     Plain version of UserVerify.
     """
 
-    email: str
-    token: str
-    name: str
+    email: Required[str]
+    token: Required[str]
+    name: Required[str]
     url_slug: str
-    password: str
+    password: Required[str]

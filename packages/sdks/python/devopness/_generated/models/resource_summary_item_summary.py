@@ -7,6 +7,7 @@ Note:
 """
 
 from typing import (
+    Required,
     TypedDict,
     Union,
 )
@@ -34,4 +35,4 @@ class ResourceSummaryItemSummaryPlain(TypedDict, total=False):
     Plain version of ResourceSummaryItemSummary.
     """
 
-    count: float
+    count: Required[float]

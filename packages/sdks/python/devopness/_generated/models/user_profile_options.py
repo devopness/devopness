@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     List,
+    Required,
     TypedDict,
     Union,
 )
@@ -38,9 +39,11 @@ class UserProfileOptionsPlain(TypedDict, total=False):
     Plain version of UserProfileOptions.
     """
 
-    billing: Union[
-        StaticBillingInfo,
-        StaticBillingInfoPlain,
+    billing: Required[
+        Union[
+            StaticBillingInfo,
+            StaticBillingInfoPlain,
+        ]
     ]
-    languages: List[str]
-    timezones: List[str]
+    languages: Required[List[str]]
+    timezones: Required[List[str]]

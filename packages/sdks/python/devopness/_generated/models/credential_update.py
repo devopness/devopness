@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     Optional,
+    Required,
     TypedDict,
     Union,
 )
@@ -43,8 +44,8 @@ class CredentialUpdatePlain(TypedDict, total=False):
     Plain version of CredentialUpdate.
     """
 
-    id: int
-    name: str
+    id: Required[int]
+    name: Required[str]
     settings: Union[
         CredentialInputSettings,
         CredentialInputSettingsPlain,

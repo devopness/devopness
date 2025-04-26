@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     List,
+    Required,
     TypedDict,
     Union,
 )
@@ -45,12 +46,14 @@ class OperatingSystemPlain(TypedDict, total=False):
     Plain version of OperatingSystem.
     """
 
-    code: str
-    name: str
-    hint: str
-    supported_versions: List[
-        Union[
-            OperatingSystemVersion,
-            OperatingSystemVersionPlain,
+    code: Required[str]
+    name: Required[str]
+    hint: Required[str]
+    supported_versions: Required[
+        List[
+            Union[
+                OperatingSystemVersion,
+                OperatingSystemVersionPlain,
+            ]
         ]
     ]

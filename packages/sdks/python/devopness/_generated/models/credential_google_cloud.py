@@ -7,6 +7,7 @@ Note:
 """
 
 from typing import (
+    Required,
     TypedDict,
 )
 
@@ -33,4 +34,4 @@ class CredentialGoogleCloudPlain(TypedDict, total=False):
     Plain version of CredentialGoogleCloud.
     """
 
-    service_account_key: str
+    service_account_key: Required[str]

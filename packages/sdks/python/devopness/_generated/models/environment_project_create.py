@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     Optional,
+    Required,
     TypedDict,
     Union,
 )
@@ -43,9 +44,11 @@ class EnvironmentProjectCreatePlain(TypedDict, total=False):
     Plain version of EnvironmentProjectCreate.
     """
 
-    type: Union[
-        EnvironmentType,
-        EnvironmentTypePlain,
+    type: Required[
+        Union[
+            EnvironmentType,
+            EnvironmentTypePlain,
+        ]
     ]
-    name: str
+    name: Required[str]
     description: str

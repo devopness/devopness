@@ -7,6 +7,7 @@ Note:
 """
 
 from typing import (
+    Required,
     TypedDict,
 )
 
@@ -31,4 +32,4 @@ class OsUsersInnerPlain(TypedDict, total=False):
     Plain version of OsUsersInner.
     """
 
-    name: str
+    name: Required[str]

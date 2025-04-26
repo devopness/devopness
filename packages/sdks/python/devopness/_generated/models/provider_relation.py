@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     Optional,
+    Required,
     TypedDict,
     Union,
 )
@@ -50,11 +51,13 @@ class ProviderRelationPlain(TypedDict, total=False):
     Plain version of ProviderRelation.
     """
 
-    active: bool
-    code: Union[
-        ProviderCode,
-        ProviderCodePlain,
+    active: Required[bool]
+    code: Required[
+        Union[
+            ProviderCode,
+            ProviderCodePlain,
+        ]
     ]
-    code_human_readable: str
-    type: str
+    code_human_readable: Required[str]
+    type: Required[str]
     type_human_readable: str

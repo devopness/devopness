@@ -7,6 +7,7 @@ Note:
 """
 
 from typing import (
+    Required,
     TypedDict,
     Union,
 )
@@ -39,9 +40,11 @@ class RepositoryBranchPlain(TypedDict, total=False):
     Plain version of RepositoryBranch.
     """
 
-    name: str
-    repo_full_name: str
-    commit: Union[
-        Commit,
-        CommitPlain,
+    name: Required[str]
+    repo_full_name: Required[str]
+    commit: Required[
+        Union[
+            Commit,
+            CommitPlain,
+        ]
     ]

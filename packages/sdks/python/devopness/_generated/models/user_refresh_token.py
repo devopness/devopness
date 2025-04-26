@@ -7,6 +7,7 @@ Note:
 """
 
 from typing import (
+    Required,
     TypedDict,
 )
 
@@ -33,4 +34,4 @@ class UserRefreshTokenPlain(TypedDict, total=False):
     Plain version of UserRefreshToken.
     """
 
-    refresh_token: str
+    refresh_token: Required[str]

@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     Optional,
+    Required,
     TypedDict,
     Union,
 )
@@ -32,7 +33,9 @@ class UserBillingPlain(TypedDict, total=False):
     Plain version of UserBilling.
     """
 
-    active_subscription: Union[
-        Subscription,
-        SubscriptionPlain,
+    active_subscription: Required[
+        Union[
+            Subscription,
+            SubscriptionPlain,
+        ]
     ]

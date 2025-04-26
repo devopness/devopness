@@ -7,6 +7,7 @@ Note:
 """
 
 from typing import (
+    Required,
     TypedDict,
 )
 
@@ -35,5 +36,5 @@ class CredentialProviderTypePlain(TypedDict, total=False):
     Plain version of CredentialProviderType.
     """
 
-    type: str
-    type_human_readable: str
+    type: Required[str]
+    type_human_readable: Required[str]

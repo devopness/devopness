@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     Optional,
+    Required,
     TypedDict,
     Union,
 )
@@ -64,18 +65,22 @@ class SocialAccountRelationPlain(TypedDict, total=False):
     Plain version of SocialAccountRelation.
     """
 
-    id: int
-    user_id: int
-    provider: Union[
-        SocialAccountProvider,
-        SocialAccountProviderPlain,
+    id: Required[int]
+    user_id: Required[int]
+    provider: Required[
+        Union[
+            SocialAccountProvider,
+            SocialAccountProviderPlain,
+        ]
     ]
-    provider_human_readable: Union[
-        SocialAccountDisplayableName,
-        SocialAccountDisplayableNamePlain,
+    provider_human_readable: Required[
+        Union[
+            SocialAccountDisplayableName,
+            SocialAccountDisplayableNamePlain,
+        ]
     ]
-    provider_user_nickname: str
-    is_vcs: bool
-    token_expires_at: str
-    created_at: str
-    updated_at: str
+    provider_user_nickname: Required[str]
+    is_vcs: Required[bool]
+    token_expires_at: Required[str]
+    created_at: Required[str]
+    updated_at: Required[str]

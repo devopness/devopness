@@ -7,6 +7,7 @@ Note:
 """
 
 from typing import (
+    Required,
     TypedDict,
 )
 
@@ -35,5 +36,5 @@ class UserLoginPlain(TypedDict, total=False):
     Plain version of UserLogin.
     """
 
-    email: str
-    password: str
+    email: Required[str]
+    password: Required[str]

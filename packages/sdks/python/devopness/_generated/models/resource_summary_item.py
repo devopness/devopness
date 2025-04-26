@@ -7,6 +7,7 @@ Note:
 """
 
 from typing import (
+    Required,
     TypedDict,
     Union,
 )
@@ -50,11 +51,13 @@ class ResourceSummaryItemPlain(TypedDict, total=False):
     Plain version of ResourceSummaryItem.
     """
 
-    resource_type: str
-    resource_type_plural: str
-    resource_type_human_readable: str
-    resource_type_human_readable_plural: str
-    summary: Union[
-        ResourceSummaryItemSummary,
-        ResourceSummaryItemSummaryPlain,
+    resource_type: Required[str]
+    resource_type_plural: Required[str]
+    resource_type_human_readable: Required[str]
+    resource_type_human_readable_plural: Required[str]
+    summary: Required[
+        Union[
+            ResourceSummaryItemSummary,
+            ResourceSummaryItemSummaryPlain,
+        ]
     ]

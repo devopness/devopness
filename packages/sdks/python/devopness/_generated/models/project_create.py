@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     Optional,
+    Required,
     TypedDict,
 )
 
@@ -47,7 +48,7 @@ class ProjectCreatePlain(TypedDict, total=False):
     Plain version of ProjectCreate.
     """
 
-    name: str
+    name: Required[str]
     organization_id: int
     logo_image: str
     logo_url: str

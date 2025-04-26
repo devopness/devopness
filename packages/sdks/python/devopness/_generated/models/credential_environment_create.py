@@ -7,6 +7,7 @@ Note:
 """
 
 from typing import (
+    Required,
     TypedDict,
     Union,
 )
@@ -48,17 +49,23 @@ class CredentialEnvironmentCreatePlain(TypedDict, total=False):
     Plain version of CredentialEnvironmentCreate.
     """
 
-    name: str
-    provider_code: Union[
-        ProviderCode,
-        ProviderCodePlain,
+    name: Required[str]
+    provider_code: Required[
+        Union[
+            ProviderCode,
+            ProviderCodePlain,
+        ]
     ]
-    provider_type: Union[
-        ProviderType,
-        ProviderTypePlain,
+    provider_type: Required[
+        Union[
+            ProviderType,
+            ProviderTypePlain,
+        ]
     ]
-    active: bool
-    settings: Union[
-        CredentialInputSettings,
-        CredentialInputSettingsPlain,
+    active: Required[bool]
+    settings: Required[
+        Union[
+            CredentialInputSettings,
+            CredentialInputSettingsPlain,
+        ]
     ]

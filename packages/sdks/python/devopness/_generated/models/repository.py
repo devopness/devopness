@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     List,
+    Required,
     TypedDict,
     Union,
 )
@@ -51,19 +52,23 @@ class RepositoryPlain(TypedDict, total=False):
     Plain version of Repository.
     """
 
-    name: str
-    user_name: str
-    full_name: str
-    html_url: str
-    branches: List[
-        Union[
-            RepositoryBranch,
-            RepositoryBranchPlain,
+    name: Required[str]
+    user_name: Required[str]
+    full_name: Required[str]
+    html_url: Required[str]
+    branches: Required[
+        List[
+            Union[
+                RepositoryBranch,
+                RepositoryBranchPlain,
+            ]
         ]
     ]
-    tags: List[
-        Union[
-            RepositoryTag,
-            RepositoryTagPlain,
+    tags: Required[
+        List[
+            Union[
+                RepositoryTag,
+                RepositoryTagPlain,
+            ]
         ]
     ]

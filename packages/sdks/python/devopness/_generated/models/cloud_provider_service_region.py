@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     List,
+    Required,
     TypedDict,
 )
 
@@ -42,7 +43,7 @@ class CloudProviderServiceRegionPlain(TypedDict, total=False):
     Plain version of CloudProviderServiceRegion.
     """
 
-    code: str
-    name: str
-    hint: str
-    zones: List[str]
+    code: Required[str]
+    name: Required[str]
+    hint: Required[str]
+    zones: Required[List[str]]

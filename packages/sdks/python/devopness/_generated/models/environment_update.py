@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     Optional,
+    Required,
     TypedDict,
     Union,
 )
@@ -45,10 +46,12 @@ class EnvironmentUpdatePlain(TypedDict, total=False):
     Plain version of EnvironmentUpdate.
     """
 
-    id: int
-    type: Union[
-        EnvironmentType,
-        EnvironmentTypePlain,
+    id: Required[int]
+    type: Required[
+        Union[
+            EnvironmentType,
+            EnvironmentTypePlain,
+        ]
     ]
-    name: str
+    name: Required[str]
     description: str

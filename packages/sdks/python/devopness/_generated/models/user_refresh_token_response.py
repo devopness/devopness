@@ -7,6 +7,7 @@ Note:
 """
 
 from typing import (
+    Required,
     TypedDict,
 )
 
@@ -43,7 +44,7 @@ class UserRefreshTokenResponsePlain(TypedDict, total=False):
     Plain version of UserRefreshTokenResponse.
     """
 
-    token_type: str
-    expires_in: int
-    access_token: str
-    refresh_token: str
+    token_type: Required[str]
+    expires_in: Required[int]
+    access_token: Required[str]
+    refresh_token: Required[str]

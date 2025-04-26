@@ -7,6 +7,7 @@ Note:
 """
 
 from typing import (
+    Required,
     TypedDict,
     Union,
 )
@@ -40,19 +41,27 @@ class UserActivityPlain(TypedDict, total=False):
     Plain version of UserActivity.
     """
 
-    projects: Union[
-        UserProjectStats,
-        UserProjectStatsPlain,
+    projects: Required[
+        Union[
+            UserProjectStats,
+            UserProjectStatsPlain,
+        ]
     ]
-    environments: Union[
-        UserEnvironmentStats,
-        UserEnvironmentStatsPlain,
+    environments: Required[
+        Union[
+            UserEnvironmentStats,
+            UserEnvironmentStatsPlain,
+        ]
     ]
-    teams: Union[
-        UserTeamStats,
-        UserTeamStatsPlain,
+    teams: Required[
+        Union[
+            UserTeamStats,
+            UserTeamStatsPlain,
+        ]
     ]
-    triggered_actions: Union[
-        TriggeredActions,
-        TriggeredActionsPlain,
+    triggered_actions: Required[
+        Union[
+            TriggeredActions,
+            TriggeredActionsPlain,
+        ]
     ]

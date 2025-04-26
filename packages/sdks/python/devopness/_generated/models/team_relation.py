@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     Optional,
+    Required,
     TypedDict,
 )
 
@@ -44,8 +45,8 @@ class TeamRelationPlain(TypedDict, total=False):
     Plain version of TeamRelation.
     """
 
-    id: int
-    name: str
-    photo_url: str
-    created_at: str
-    updated_at: str
+    id: Required[int]
+    name: Required[str]
+    photo_url: Required[str]
+    created_at: Required[str]
+    updated_at: Required[str]

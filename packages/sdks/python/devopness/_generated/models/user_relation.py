@@ -9,6 +9,7 @@ Note:
 from datetime import datetime
 from typing import (
     Optional,
+    Required,
     TypedDict,
     Union,
 )
@@ -62,9 +63,9 @@ class UserRelationPlain(TypedDict, total=False):
     Plain version of UserRelation.
     """
 
-    id: int
-    name: str
-    email: str
+    id: Required[int]
+    name: Required[str]
+    email: Required[str]
     url_slug: str
     language: Union[
         Language,

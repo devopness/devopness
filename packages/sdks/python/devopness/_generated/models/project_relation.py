@@ -9,6 +9,7 @@ Note:
 from typing import (
     List,
     Optional,
+    Required,
     TypedDict,
     Union,
 )
@@ -68,26 +69,30 @@ class ProjectRelationPlain(TypedDict, total=False):
     Plain version of ProjectRelation.
     """
 
-    id: int
-    user_id: int
-    name: str
-    logo_url: str
+    id: Required[int]
+    user_id: Required[int]
+    name: Required[str]
+    logo_url: Required[str]
     resource_summary: List[
         Union[
             ResourceSummaryItem,
             ResourceSummaryItemPlain,
         ]
     ]
-    os_users: List[
-        Union[
-            OsUsersInner,
-            OsUsersInnerPlain,
+    os_users: Required[
+        List[
+            Union[
+                OsUsersInner,
+                OsUsersInnerPlain,
+            ]
         ]
     ]
-    created_by_user: Union[
-        UserRelation,
-        UserRelationPlain,
+    created_by_user: Required[
+        Union[
+            UserRelation,
+            UserRelationPlain,
+        ]
     ]
     used_credits: int
-    created_at: str
-    updated_at: str
+    created_at: Required[str]
+    updated_at: Required[str]

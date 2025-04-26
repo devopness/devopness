@@ -7,6 +7,7 @@ Note:
 """
 
 from typing import (
+    Required,
     TypedDict,
 )
 
@@ -33,4 +34,4 @@ class CredentialDigitalOceanPlain(TypedDict, total=False):
     Plain version of CredentialDigitalOcean.
     """
 
-    api_token: str
+    api_token: Required[str]

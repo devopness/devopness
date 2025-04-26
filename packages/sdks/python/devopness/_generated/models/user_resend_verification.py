@@ -7,6 +7,7 @@ Note:
 """
 
 from typing import (
+    Required,
     TypedDict,
 )
 
@@ -33,4 +34,4 @@ class UserResendVerificationPlain(TypedDict, total=False):
     Plain version of UserResendVerification.
     """
 
-    email: str
+    email: Required[str]

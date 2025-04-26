@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     Optional,
+    Required,
     TypedDict,
     Union,
 )
@@ -51,11 +52,13 @@ class ProviderInputSettingsPlain(TypedDict, total=False):
     Plain version of ProviderInputSettings.
     """
 
-    name: str
-    name_human_readable: str
-    validation: Union[
-        ProviderInputSettingsValidation,
-        ProviderInputSettingsValidationPlain,
+    name: Required[str]
+    name_human_readable: Required[str]
+    validation: Required[
+        Union[
+            ProviderInputSettingsValidation,
+            ProviderInputSettingsValidationPlain,
+        ]
     ]
-    default_value: str
-    sensitive: bool
+    default_value: Required[str]
+    sensitive: Required[bool]

@@ -9,6 +9,7 @@ Note:
 from typing import (
     List,
     Optional,
+    Required,
     TypedDict,
     Union,
 )
@@ -58,20 +59,24 @@ class UserMePlain(TypedDict, total=False):
     Plain version of UserMe.
     """
 
-    id: int
-    name: str
-    email: str
-    url_slug: str
-    language: Union[
-        Language,
-        LanguagePlain,
-    ]
-    active: bool
-    social_accounts: List[
+    id: Required[int]
+    name: Required[str]
+    email: Required[str]
+    url_slug: Required[str]
+    language: Required[
         Union[
-            SocialAccountRelation,
-            SocialAccountRelationPlain,
+            Language,
+            LanguagePlain,
         ]
     ]
-    created_at: str
-    updated_at: str
+    active: Required[bool]
+    social_accounts: Required[
+        List[
+            Union[
+                SocialAccountRelation,
+                SocialAccountRelationPlain,
+            ]
+        ]
+    ]
+    created_at: Required[str]
+    updated_at: Required[str]

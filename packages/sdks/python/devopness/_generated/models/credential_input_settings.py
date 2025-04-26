@@ -7,6 +7,7 @@ Note:
 """
 
 from typing import (
+    Required,
     TypedDict,
     Union,
 )
@@ -34,7 +35,9 @@ class CredentialInputSettingsPlain(TypedDict, total=False):
     Plain version of CredentialInputSettings.
     """
 
-    credential: Union[
-        CredentialInputSettingsCredential,
-        CredentialInputSettingsCredentialPlain,
+    credential: Required[
+        Union[
+            CredentialInputSettingsCredential,
+            CredentialInputSettingsCredentialPlain,
+        ]
     ]

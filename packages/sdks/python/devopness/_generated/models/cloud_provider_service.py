@@ -9,6 +9,7 @@ Note:
 from typing import (
     List,
     Optional,
+    Required,
     TypedDict,
     Union,
 )
@@ -55,11 +56,13 @@ class CloudProviderServicePlain(TypedDict, total=False):
     Plain version of CloudProviderService.
     """
 
-    code: Union[
-        CloudProviderServiceCode,
-        CloudProviderServiceCodePlain,
+    code: Required[
+        Union[
+            CloudProviderServiceCode,
+            CloudProviderServiceCodePlain,
+        ]
     ]
-    name: str
+    name: Required[str]
     provider: Union[
         ProviderRelation,
         ProviderRelationPlain,

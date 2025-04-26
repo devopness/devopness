@@ -7,6 +7,7 @@ Note:
 """
 
 from typing import (
+    Required,
     TypedDict,
     Union,
 )
@@ -43,12 +44,16 @@ class CredentialSettingPlain(TypedDict, total=False):
     Plain version of CredentialSetting.
     """
 
-    provider: Union[
-        CredentialProviderType,
-        CredentialProviderTypePlain,
+    provider: Required[
+        Union[
+            CredentialProviderType,
+            CredentialProviderTypePlain,
+        ]
     ]
-    environment_id: int
-    settings: Union[
-        ProviderSettings,
-        ProviderSettingsPlain,
+    environment_id: Required[int]
+    settings: Required[
+        Union[
+            ProviderSettings,
+            ProviderSettingsPlain,
+        ]
     ]

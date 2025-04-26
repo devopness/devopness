@@ -9,6 +9,7 @@ Note:
 from typing import (
     List,
     Optional,
+    Required,
     TypedDict,
     Union,
 )
@@ -72,31 +73,37 @@ class EnvironmentPlain(TypedDict, total=False):
     Plain version of Environment.
     """
 
-    id: int
-    type: Union[
-        EnvironmentType,
-        EnvironmentTypePlain,
+    id: Required[int]
+    type: Required[
+        Union[
+            EnvironmentType,
+            EnvironmentTypePlain,
+        ]
     ]
-    type_human_readable: str
-    name: str
-    description: str
-    is_archived: bool
+    type_human_readable: Required[str]
+    name: Required[str]
+    description: Required[str]
+    is_archived: Required[bool]
     resource_summary: List[
         Union[
             ResourceSummaryItem,
             ResourceSummaryItemPlain,
         ]
     ]
-    teams: List[
-        Union[
-            TeamRelation,
-            TeamRelationPlain,
+    teams: Required[
+        List[
+            Union[
+                TeamRelation,
+                TeamRelationPlain,
+            ]
         ]
     ]
-    created_by_user: Union[
-        UserRelation,
-        UserRelationPlain,
+    created_by_user: Required[
+        Union[
+            UserRelation,
+            UserRelationPlain,
+        ]
     ]
-    current_user_permissions: List[str]
-    created_at: str
-    updated_at: str
+    current_user_permissions: Required[List[str]]
+    created_at: Required[str]
+    updated_at: Required[str]

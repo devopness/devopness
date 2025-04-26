@@ -7,6 +7,7 @@ Note:
 """
 
 from typing import (
+    Required,
     TypedDict,
 )
 
@@ -33,4 +34,4 @@ class UserUrlPlain(TypedDict, total=False):
     Plain version of UserUrl.
     """
 
-    billing_management_url: str
+    billing_management_url: Required[str]

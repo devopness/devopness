@@ -7,6 +7,7 @@ Note:
 """
 
 from typing import (
+    Required,
     TypedDict,
     Union,
 )
@@ -35,8 +36,10 @@ class RepositoryTagPlain(TypedDict, total=False):
     Plain version of RepositoryTag.
     """
 
-    name: str
-    commit: Union[
-        RepositoryTagCommit,
-        RepositoryTagCommitPlain,
+    name: Required[str]
+    commit: Required[
+        Union[
+            RepositoryTagCommit,
+            RepositoryTagCommitPlain,
+        ]
     ]

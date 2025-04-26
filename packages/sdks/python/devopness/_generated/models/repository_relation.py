@@ -7,6 +7,7 @@ Note:
 """
 
 from typing import (
+    Required,
     TypedDict,
 )
 
@@ -43,7 +44,7 @@ class RepositoryRelationPlain(TypedDict, total=False):
     Plain version of RepositoryRelation.
     """
 
-    name: str
-    user_name: str
-    full_name: str
-    html_url: str
+    name: Required[str]
+    user_name: Required[str]
+    full_name: Required[str]
+    html_url: Required[str]

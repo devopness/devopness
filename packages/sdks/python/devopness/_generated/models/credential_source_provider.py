@@ -7,6 +7,7 @@ Note:
 """
 
 from typing import (
+    Required,
     TypedDict,
 )
 
@@ -33,4 +34,4 @@ class CredentialSourceProviderPlain(TypedDict, total=False):
     Plain version of CredentialSourceProvider.
     """
 
-    callback_code: str
+    callback_code: Required[str]

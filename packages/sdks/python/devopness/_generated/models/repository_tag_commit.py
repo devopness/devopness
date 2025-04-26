@@ -7,6 +7,7 @@ Note:
 """
 
 from typing import (
+    Required,
     TypedDict,
 )
 
@@ -37,5 +38,5 @@ class RepositoryTagCommitPlain(TypedDict, total=False):
     Plain version of RepositoryTagCommit.
     """
 
-    hash: str
-    url: str
+    hash: Required[str]
+    url: Required[str]

@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     List,
+    Required,
     TypedDict,
     Union,
 )
@@ -51,11 +52,13 @@ class CloudProviderPropertyValidationPlain(TypedDict, total=False):
     Plain version of CloudProviderPropertyValidation.
     """
 
-    required: bool
-    type: Union[
-        CloudProviderPropertyType,
-        CloudProviderPropertyTypePlain,
+    required: Required[bool]
+    type: Required[
+        Union[
+            CloudProviderPropertyType,
+            CloudProviderPropertyTypePlain,
+        ]
     ]
-    min: int
-    max: int
-    allowed_values: List[str]
+    min: Required[int]
+    max: Required[int]
+    allowed_values: Required[List[str]]

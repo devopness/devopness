@@ -9,6 +9,7 @@ Note:
 from typing import (
     List,
     Optional,
+    Required,
     TypedDict,
     Union,
 )
@@ -70,14 +71,16 @@ class ArchivedEnvironmentRelationPlain(TypedDict, total=False):
     Plain version of ArchivedEnvironmentRelation.
     """
 
-    id: int
-    type: Union[
-        EnvironmentType,
-        EnvironmentTypePlain,
+    id: Required[int]
+    type: Required[
+        Union[
+            EnvironmentType,
+            EnvironmentTypePlain,
+        ]
     ]
-    type_human_readable: str
-    name: str
-    description: str
+    type_human_readable: Required[str]
+    name: Required[str]
+    description: Required[str]
     used_credits: int
     resource_summary: List[
         Union[
@@ -85,10 +88,12 @@ class ArchivedEnvironmentRelationPlain(TypedDict, total=False):
             ResourceSummaryItemPlain,
         ]
     ]
-    created_at: str
-    updated_at: str
-    archived_at: str
-    project: Union[
-        ProjectRelation,
-        ProjectRelationPlain,
+    created_at: Required[str]
+    updated_at: Required[str]
+    archived_at: Required[str]
+    project: Required[
+        Union[
+            ProjectRelation,
+            ProjectRelationPlain,
+        ]
     ]

@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     Optional,
+    Required,
     TypedDict,
     Union,
 )
@@ -53,14 +54,18 @@ class CloudProviderInputSettingsPlain(TypedDict, total=False):
     Plain version of CloudProviderInputSettings.
     """
 
-    name: str
-    name_human_readable: str
-    default_value: Union[
-        CloudProviderInputSettingsDefaultValue,
-        CloudProviderInputSettingsDefaultValuePlain,
+    name: Required[str]
+    name_human_readable: Required[str]
+    default_value: Required[
+        Union[
+            CloudProviderInputSettingsDefaultValue,
+            CloudProviderInputSettingsDefaultValuePlain,
+        ]
     ]
-    sensitive: bool
-    validation: Union[
-        CloudProviderPropertyValidation,
-        CloudProviderPropertyValidationPlain,
+    sensitive: Required[bool]
+    validation: Required[
+        Union[
+            CloudProviderPropertyValidation,
+            CloudProviderPropertyValidationPlain,
+        ]
     ]

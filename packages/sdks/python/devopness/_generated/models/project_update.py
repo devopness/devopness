@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     Optional,
+    Required,
     TypedDict,
 )
 
@@ -45,7 +46,7 @@ class ProjectUpdatePlain(TypedDict, total=False):
     Plain version of ProjectUpdate.
     """
 
-    id: int
-    name: str
+    id: Required[int]
+    name: Required[str]
     logo_image: str
     logo_url: str
