@@ -6,9 +6,7 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import (
-    Union,
-)
+from typing import Union
 
 from .credential_aws import CredentialAws, CredentialAwsPlain
 from .credential_digital_ocean import (

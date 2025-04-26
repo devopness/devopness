@@ -6,12 +6,9 @@ Note:
     https://openapi-generator.tech
 """
 
-from __future__ import annotations
-
 import json
 from enum import Enum
-
-from typing_extensions import Self
+from typing import Literal, Self
 
 
 class SourceProviderName(str, Enum):
@@ -19,9 +16,6 @@ class SourceProviderName(str, Enum):
     The name of the source code provider
     """
 
-    """
-    allowed enum values
-    """
     BITBUCKET = "bitbucket"
     GITHUB = "github"
     GITLAB = "gitlab"
@@ -30,3 +24,11 @@ class SourceProviderName(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of SourceProviderName from a JSON string"""
         return cls(json.loads(json_str))
+
+
+# The plain version of SourceProviderName
+SourceProviderNamePlain = Literal[
+    "bitbucket",
+    "github",
+    "gitlab",
+]

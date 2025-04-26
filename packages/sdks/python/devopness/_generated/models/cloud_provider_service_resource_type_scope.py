@@ -6,12 +6,9 @@ Note:
     https://openapi-generator.tech
 """
 
-from __future__ import annotations
-
 import json
 from enum import Enum
-
-from typing_extensions import Self
+from typing import Literal, Self
 
 
 class CloudProviderServiceResourceTypeScope(str, Enum):
@@ -19,9 +16,6 @@ class CloudProviderServiceResourceTypeScope(str, Enum):
     The resource type's scope
     """
 
-    """
-    allowed enum values
-    """
     GLOBAL = "global"
     REGION = "region"
     ZONE = "zone"
@@ -30,3 +24,11 @@ class CloudProviderServiceResourceTypeScope(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of CloudProviderServiceResourceTypeScope from a JSON string"""
         return cls(json.loads(json_str))
+
+
+# The plain version of CloudProviderServiceResourceTypeScope
+CloudProviderServiceResourceTypeScopePlain = Literal[
+    "global",
+    "region",
+    "zone",
+]

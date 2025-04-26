@@ -6,9 +6,7 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import (
-    Union,
-)
+from typing import Union
 
 #: AnyOf Type
 #: Default property's value

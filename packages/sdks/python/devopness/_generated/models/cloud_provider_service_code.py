@@ -6,12 +6,9 @@ Note:
     https://openapi-generator.tech
 """
 
-from __future__ import annotations
-
 import json
 from enum import Enum
-
-from typing_extensions import Self
+from typing import Literal, Self
 
 
 class CloudProviderServiceCode(str, Enum):
@@ -19,9 +16,6 @@ class CloudProviderServiceCode(str, Enum):
     The code that uniquely identify this cloud service
     """
 
-    """
-    allowed enum values
-    """
     AWS_MINUS_EC2 = "aws-ec2"
     AZURE_MINUS_RM = "azure-rm"
     DIGITALOCEAN_MINUS_DROPLET = "digitalocean-droplet"
@@ -32,3 +26,13 @@ class CloudProviderServiceCode(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of CloudProviderServiceCode from a JSON string"""
         return cls(json.loads(json_str))
+
+
+# The plain version of CloudProviderServiceCode
+CloudProviderServiceCodePlain = Literal[
+    "aws-ec2",
+    "azure-rm",
+    "digitalocean-droplet",
+    "gcp-gce",
+    "self-hosted-custom",
+]

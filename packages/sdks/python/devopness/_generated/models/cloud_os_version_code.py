@@ -6,12 +6,9 @@ Note:
     https://openapi-generator.tech
 """
 
-from __future__ import annotations
-
 import json
 from enum import Enum
-
-from typing_extensions import Self
+from typing import Literal, Self
 
 
 class CloudOsVersionCode(str, Enum):
@@ -19,9 +16,6 @@ class CloudOsVersionCode(str, Enum):
     The Operating System distribution and version used in the server/virtual machine instance
     """
 
-    """
-    allowed enum values
-    """
     CENTOS_7 = "centos_7"
     UBUNTU_18_04 = "ubuntu_18_04"
     UBUNTU_20_04 = "ubuntu_20_04"
@@ -32,3 +26,13 @@ class CloudOsVersionCode(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of CloudOsVersionCode from a JSON string"""
         return cls(json.loads(json_str))
+
+
+# The plain version of CloudOsVersionCode
+CloudOsVersionCodePlain = Literal[
+    "centos_7",
+    "ubuntu_18_04",
+    "ubuntu_20_04",
+    "ubuntu_22_04",
+    "ubuntu_24_04",
+]
