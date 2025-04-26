@@ -229,7 +229,7 @@ def run_openapi_generator_with_temporary_cleanup() -> None:
 
             removed_model_identifiers.append(f".{model_name_snake} import")
             removed_model_identifiers.append(f'"{model_name_pascal}"')
-            removed_model_identifiers.append(f'"{model_name_pascal}Dict"')
+            removed_model_identifiers.append(f'"{model_name_pascal}Plain"')
 
     init_file_path = os.path.join(GENERATED_MODELS_DIR, "__init__.py")
 
@@ -404,28 +404,6 @@ def export_sdk_services() -> None:
         f.write("\n".join(lines))
 
 
-def fix_import_paths_in_models() -> None:
-    print("🔧  Adjusting import paths in models...")
-
-    for file in os.listdir(GENERATED_MODELS_DIR):
-        if not file.endswith(".py"):
-            continue
-
-        file_path = os.path.join(GENERATED_MODELS_DIR, file)
-        file_content = ""
-
-        with open(file_path, encoding="utf-8") as f:
-            file_content = f.read()
-
-            file_content = file_content.replace(
-                "from .models.",
-                "from .",
-            )
-
-        with open(file_path, "w", encoding="utf-8") as f:
-            f.write(file_content)
-
-
 def format_generated_files() -> None:
     print("🔧  Formatting generated files...")
 
@@ -454,17 +432,6 @@ def remove_openapi_generator_cache() -> None:
     shutil.rmtree(dir_path, ignore_errors=True)
 
 
-def execute_post_build_tasks() -> None:
-    print("🔧  Executing post-build tasks...")
-
-    fix_import_paths_in_models()
-    remove_openapi_generator_cache()
-
-    fix_import_issues()
-    fix_code_style_issues()
-    format_generated_files()
-
-
 if __name__ == "__main__":
     try:
         remove_previous_generated_directories()
@@ -475,7 +442,11 @@ if __name__ == "__main__":
         export_sdk_models()
         export_sdk_services()
 
-        execute_post_build_tasks()
+        print("🔧  Executing post-build tasks...")
+        remove_openapi_generator_cache()
+        fix_import_issues()
+        fix_code_style_issues()
+        format_generated_files()
 
         print("✅  Devopness SDK - Python Build completed successfully!")
 

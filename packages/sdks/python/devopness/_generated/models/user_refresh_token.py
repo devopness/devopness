@@ -6,7 +6,10 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import TypedDict
+from typing import (
+    Required,
+    TypedDict,
+)
 
 from pydantic import Field, StrictStr
 
@@ -26,9 +29,9 @@ class UserRefreshToken(DevopnessBaseModel):
     )
 
 
-class UserRefreshTokenDict(TypedDict, total=False):
+class UserRefreshTokenPlain(TypedDict, total=False):
     """
-    TypedDict for UserRefreshToken.
+    Plain version of UserRefreshToken.
     """
 
-    refresh_token: str
+    refresh_token: Required[str]

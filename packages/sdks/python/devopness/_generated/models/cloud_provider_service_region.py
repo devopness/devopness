@@ -6,7 +6,11 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, TypedDict
+from typing import (
+    List,
+    Required,
+    TypedDict,
+)
 
 from pydantic import Field, StrictStr
 
@@ -34,12 +38,12 @@ class CloudProviderServiceRegion(DevopnessBaseModel):
     )
 
 
-class CloudProviderServiceRegionDict(TypedDict, total=False):
+class CloudProviderServiceRegionPlain(TypedDict, total=False):
     """
-    TypedDict for CloudProviderServiceRegion.
+    Plain version of CloudProviderServiceRegion.
     """
 
-    code: str
-    name: str
-    hint: str
-    zones: List[str]
+    code: Required[str]
+    name: Required[str]
+    hint: Required[str]
+    zones: Required[List[str]]

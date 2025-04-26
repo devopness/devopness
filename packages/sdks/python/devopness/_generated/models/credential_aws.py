@@ -6,7 +6,10 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import TypedDict
+from typing import (
+    Required,
+    TypedDict,
+)
 
 from pydantic import Field, StrictStr
 
@@ -30,10 +33,10 @@ class CredentialAws(DevopnessBaseModel):
     )
 
 
-class CredentialAwsDict(TypedDict, total=False):
+class CredentialAwsPlain(TypedDict, total=False):
     """
-    TypedDict for CredentialAws.
+    Plain version of CredentialAws.
     """
 
-    access_key_id: str
-    secret_access_key: str
+    access_key_id: Required[str]
+    secret_access_key: Required[str]

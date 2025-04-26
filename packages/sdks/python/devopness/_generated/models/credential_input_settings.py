@@ -6,10 +6,17 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import TypedDict
+from typing import (
+    Required,
+    TypedDict,
+    Union,
+)
 
 from .. import DevopnessBaseModel
-from .credential_input_settings_credential import CredentialInputSettingsCredential
+from .credential_input_settings_credential import (
+    CredentialInputSettingsCredential,
+    CredentialInputSettingsCredentialPlain,
+)
 
 
 class CredentialInputSettings(DevopnessBaseModel):
@@ -23,9 +30,14 @@ class CredentialInputSettings(DevopnessBaseModel):
     credential: CredentialInputSettingsCredential
 
 
-class CredentialInputSettingsDict(TypedDict, total=False):
+class CredentialInputSettingsPlain(TypedDict, total=False):
     """
-    TypedDict for CredentialInputSettings.
+    Plain version of CredentialInputSettings.
     """
 
-    credential: CredentialInputSettingsCredential
+    credential: Required[
+        Union[
+            CredentialInputSettingsCredential,
+            CredentialInputSettingsCredentialPlain,
+        ]
+    ]

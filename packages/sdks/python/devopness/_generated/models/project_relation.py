@@ -6,14 +6,20 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional, TypedDict
+from typing import (
+    List,
+    Optional,
+    Required,
+    TypedDict,
+    Union,
+)
 
 from pydantic import Field, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
-from .os_users_inner import OsUsersInner
-from .resource_summary_item import ResourceSummaryItem
-from .user_relation import UserRelation
+from .os_users_inner import OsUsersInner, OsUsersInnerPlain
+from .resource_summary_item import ResourceSummaryItem, ResourceSummaryItemPlain
+from .user_relation import UserRelation, UserRelationPlain
 
 
 class ProjectRelation(DevopnessBaseModel):
@@ -58,18 +64,35 @@ class ProjectRelation(DevopnessBaseModel):
     )
 
 
-class ProjectRelationDict(TypedDict, total=False):
+class ProjectRelationPlain(TypedDict, total=False):
     """
-    TypedDict for ProjectRelation.
+    Plain version of ProjectRelation.
     """
 
-    id: int
-    user_id: int
-    name: str
-    logo_url: str
-    resource_summary: List[ResourceSummaryItem]
-    os_users: List[OsUsersInner]
-    created_by_user: UserRelation
+    id: Required[int]
+    user_id: Required[int]
+    name: Required[str]
+    logo_url: Required[str]
+    resource_summary: List[
+        Union[
+            ResourceSummaryItem,
+            ResourceSummaryItemPlain,
+        ]
+    ]
+    os_users: Required[
+        List[
+            Union[
+                OsUsersInner,
+                OsUsersInnerPlain,
+            ]
+        ]
+    ]
+    created_by_user: Required[
+        Union[
+            UserRelation,
+            UserRelationPlain,
+        ]
+    ]
     used_credits: int
-    created_at: str
-    updated_at: str
+    created_at: Required[str]
+    updated_at: Required[str]

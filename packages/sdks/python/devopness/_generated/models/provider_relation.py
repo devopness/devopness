@@ -6,7 +6,12 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import Optional, TypedDict
+from typing import (
+    Optional,
+    Required,
+    TypedDict,
+    Union,
+)
 
 from pydantic import (
     Field,
@@ -15,7 +20,7 @@ from pydantic import (
 )
 
 from .. import DevopnessBaseModel
-from .provider_code import ProviderCode
+from .provider_code import ProviderCode, ProviderCodePlain
 
 
 class ProviderRelation(DevopnessBaseModel):
@@ -41,13 +46,18 @@ class ProviderRelation(DevopnessBaseModel):
     )
 
 
-class ProviderRelationDict(TypedDict, total=False):
+class ProviderRelationPlain(TypedDict, total=False):
     """
-    TypedDict for ProviderRelation.
+    Plain version of ProviderRelation.
     """
 
-    active: bool
-    code: ProviderCode
-    code_human_readable: str
-    type: str
+    active: Required[bool]
+    code: Required[
+        Union[
+            ProviderCode,
+            ProviderCodePlain,
+        ]
+    ]
+    code_human_readable: Required[str]
+    type: Required[str]
     type_human_readable: str

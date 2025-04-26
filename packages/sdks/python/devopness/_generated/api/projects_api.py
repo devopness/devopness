@@ -12,10 +12,10 @@ from .. import DevopnessBaseService, DevopnessResponse
 from ..models import (
     Project,
     ProjectCreate,
-    ProjectCreateDict,
+    ProjectCreatePlain,
     ProjectRelation,
     ProjectUpdate,
-    ProjectUpdateDict,
+    ProjectUpdatePlain,
 )
 
 
@@ -28,7 +28,7 @@ class ProjectsApiService(DevopnessBaseService):
         self,
         project_create: Union[
             ProjectCreate,
-            ProjectCreateDict,
+            ProjectCreatePlain,
         ],
     ) -> DevopnessResponse[Project]:
         """
@@ -52,7 +52,7 @@ class ProjectsApiService(DevopnessBaseService):
         self,
         project_create: Union[
             ProjectCreate,
-            ProjectCreateDict,
+            ProjectCreatePlain,
         ],
     ) -> DevopnessResponse[Project]:
         """
@@ -179,7 +179,7 @@ class ProjectsApiService(DevopnessBaseService):
         project_id: int,
         project_update: Union[
             ProjectUpdate,
-            ProjectUpdateDict,
+            ProjectUpdatePlain,
         ],
     ) -> DevopnessResponse[None]:
         """
@@ -204,7 +204,7 @@ class ProjectsApiService(DevopnessBaseService):
         project_id: int,
         project_update: Union[
             ProjectUpdate,
-            ProjectUpdateDict,
+            ProjectUpdatePlain,
         ],
     ) -> DevopnessResponse[None]:
         """

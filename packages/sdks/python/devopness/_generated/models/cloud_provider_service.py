@@ -6,15 +6,30 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional, TypedDict
+from typing import (
+    List,
+    Optional,
+    Required,
+    TypedDict,
+    Union,
+)
 
 from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
-from .cloud_provider_service_code import CloudProviderServiceCode
-from .cloud_provider_service_region import CloudProviderServiceRegion
-from .cloud_provider_service_resource_type import CloudProviderServiceResourceType
-from .provider_relation import ProviderRelation
+from .cloud_provider_service_code import (
+    CloudProviderServiceCode,
+    CloudProviderServiceCodePlain,
+)
+from .cloud_provider_service_region import (
+    CloudProviderServiceRegion,
+    CloudProviderServiceRegionPlain,
+)
+from .cloud_provider_service_resource_type import (
+    CloudProviderServiceResourceType,
+    CloudProviderServiceResourceTypePlain,
+)
+from .provider_relation import ProviderRelation, ProviderRelationPlain
 
 
 class CloudProviderService(DevopnessBaseModel):
@@ -36,13 +51,31 @@ class CloudProviderService(DevopnessBaseModel):
     resource_types: Optional[List[CloudProviderServiceResourceType]] = None
 
 
-class CloudProviderServiceDict(TypedDict, total=False):
+class CloudProviderServicePlain(TypedDict, total=False):
     """
-    TypedDict for CloudProviderService.
+    Plain version of CloudProviderService.
     """
 
-    code: CloudProviderServiceCode
-    name: str
-    provider: ProviderRelation
-    regions: List[CloudProviderServiceRegion]
-    resource_types: List[CloudProviderServiceResourceType]
+    code: Required[
+        Union[
+            CloudProviderServiceCode,
+            CloudProviderServiceCodePlain,
+        ]
+    ]
+    name: Required[str]
+    provider: Union[
+        ProviderRelation,
+        ProviderRelationPlain,
+    ]
+    regions: List[
+        Union[
+            CloudProviderServiceRegion,
+            CloudProviderServiceRegionPlain,
+        ]
+    ]
+    resource_types: List[
+        Union[
+            CloudProviderServiceResourceType,
+            CloudProviderServiceResourceTypePlain,
+        ]
+    ]

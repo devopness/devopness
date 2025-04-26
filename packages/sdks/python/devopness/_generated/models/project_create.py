@@ -6,7 +6,11 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import Optional, TypedDict
+from typing import (
+    Optional,
+    Required,
+    TypedDict,
+)
 
 from pydantic import Field, StrictInt, StrictStr
 
@@ -39,12 +43,12 @@ class ProjectCreate(DevopnessBaseModel):
     )
 
 
-class ProjectCreateDict(TypedDict, total=False):
+class ProjectCreatePlain(TypedDict, total=False):
     """
-    TypedDict for ProjectCreate.
+    Plain version of ProjectCreate.
     """
 
-    name: str
+    name: Required[str]
     organization_id: int
     logo_image: str
     logo_url: str

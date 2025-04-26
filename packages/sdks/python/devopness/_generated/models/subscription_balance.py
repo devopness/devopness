@@ -7,12 +7,16 @@ Note:
 """
 
 from datetime import datetime
-from typing import Optional, TypedDict
+from typing import (
+    Optional,
+    TypedDict,
+    Union,
+)
 
 from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
-from .credits import Credits
+from .credits import Credits, CreditsPlain
 
 
 class SubscriptionBalance(DevopnessBaseModel):
@@ -46,12 +50,15 @@ class SubscriptionBalance(DevopnessBaseModel):
     )
 
 
-class SubscriptionBalanceDict(TypedDict, total=False):
+class SubscriptionBalancePlain(TypedDict, total=False):
     """
-    TypedDict for SubscriptionBalance.
+    Plain version of SubscriptionBalance.
     """
 
-    credits: Credits
+    credits: Union[
+        Credits,
+        CreditsPlain,
+    ]
     unit: str
     billing_period_started_at: datetime
     billing_period_ends_at: datetime

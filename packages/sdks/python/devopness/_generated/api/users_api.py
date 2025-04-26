@@ -14,21 +14,21 @@ from ..models import (
     UserActivity,
     UserBilling,
     UserCreate,
-    UserCreateDict,
+    UserCreatePlain,
     UserLogin,
-    UserLoginDict,
+    UserLoginPlain,
     UserLoginResponse,
     UserMe,
     UserRefreshToken,
-    UserRefreshTokenDict,
+    UserRefreshTokenPlain,
     UserRefreshTokenResponse,
     UserResendVerification,
-    UserResendVerificationDict,
+    UserResendVerificationPlain,
     UserUpdate,
-    UserUpdateDict,
+    UserUpdatePlain,
     UserUrl,
     UserVerify,
-    UserVerifyDict,
+    UserVerifyPlain,
 )
 
 
@@ -41,7 +41,7 @@ class UsersApiService(DevopnessBaseService):
         self,
         user_create: Union[
             UserCreate,
-            UserCreateDict,
+            UserCreatePlain,
         ],
     ) -> DevopnessResponse[None]:
         """
@@ -65,7 +65,7 @@ class UsersApiService(DevopnessBaseService):
         self,
         user_create: Union[
             UserCreate,
-            UserCreateDict,
+            UserCreatePlain,
         ],
     ) -> DevopnessResponse[None]:
         """
@@ -333,7 +333,7 @@ class UsersApiService(DevopnessBaseService):
         self,
         user_login: Union[
             UserLogin,
-            UserLoginDict,
+            UserLoginPlain,
         ],
     ) -> DevopnessResponse[UserLoginResponse]:
         """
@@ -357,7 +357,7 @@ class UsersApiService(DevopnessBaseService):
         self,
         user_login: Union[
             UserLogin,
-            UserLoginDict,
+            UserLoginPlain,
         ],
     ) -> DevopnessResponse[UserLoginResponse]:
         """
@@ -381,7 +381,7 @@ class UsersApiService(DevopnessBaseService):
         self,
         user_refresh_token: Union[
             UserRefreshToken,
-            UserRefreshTokenDict,
+            UserRefreshTokenPlain,
         ],
     ) -> DevopnessResponse[UserRefreshTokenResponse]:
         """
@@ -405,7 +405,7 @@ class UsersApiService(DevopnessBaseService):
         self,
         user_refresh_token: Union[
             UserRefreshToken,
-            UserRefreshTokenDict,
+            UserRefreshTokenPlain,
         ],
     ) -> DevopnessResponse[UserRefreshTokenResponse]:
         """
@@ -429,7 +429,7 @@ class UsersApiService(DevopnessBaseService):
         self,
         user_resend_verification: Union[
             UserResendVerification,
-            UserResendVerificationDict,
+            UserResendVerificationPlain,
         ],
     ) -> DevopnessResponse[None]:
         """
@@ -453,7 +453,7 @@ class UsersApiService(DevopnessBaseService):
         self,
         user_resend_verification: Union[
             UserResendVerification,
-            UserResendVerificationDict,
+            UserResendVerificationPlain,
         ],
     ) -> DevopnessResponse[None]:
         """
@@ -478,7 +478,7 @@ class UsersApiService(DevopnessBaseService):
         user_id: str,
         user_update: Union[
             UserUpdate,
-            UserUpdateDict,
+            UserUpdatePlain,
         ],
     ) -> DevopnessResponse[None]:
         """
@@ -503,7 +503,7 @@ class UsersApiService(DevopnessBaseService):
         user_id: str,
         user_update: Union[
             UserUpdate,
-            UserUpdateDict,
+            UserUpdatePlain,
         ],
     ) -> DevopnessResponse[None]:
         """
@@ -527,7 +527,7 @@ class UsersApiService(DevopnessBaseService):
         self,
         user_verify: Union[
             UserVerify,
-            UserVerifyDict,
+            UserVerifyPlain,
         ],
     ) -> DevopnessResponse[None]:
         """
@@ -551,7 +551,7 @@ class UsersApiService(DevopnessBaseService):
         self,
         user_verify: Union[
             UserVerify,
-            UserVerifyDict,
+            UserVerifyPlain,
         ],
     ) -> DevopnessResponse[None]:
         """

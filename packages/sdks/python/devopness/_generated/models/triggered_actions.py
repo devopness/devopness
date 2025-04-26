@@ -6,11 +6,19 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional, TypedDict
+from typing import (
+    List,
+    Optional,
+    TypedDict,
+    Union,
+)
 
 from .. import DevopnessBaseModel
-from .triggered_action_stats import TriggeredActionStats
-from .triggered_action_summary import TriggeredActionSummary
+from .triggered_action_stats import TriggeredActionStats, TriggeredActionStatsPlain
+from .triggered_action_summary import (
+    TriggeredActionSummary,
+    TriggeredActionSummaryPlain,
+)
 
 
 class TriggeredActions(DevopnessBaseModel):
@@ -26,10 +34,18 @@ class TriggeredActions(DevopnessBaseModel):
     operations: Optional[List[TriggeredActionStats]] = None
 
 
-class TriggeredActionsDict(TypedDict, total=False):
+class TriggeredActionsPlain(TypedDict, total=False):
     """
-    TypedDict for TriggeredActions.
+    Plain version of TriggeredActions.
     """
 
-    summary: TriggeredActionSummary
-    operations: List[TriggeredActionStats]
+    summary: Union[
+        TriggeredActionSummary,
+        TriggeredActionSummaryPlain,
+    ]
+    operations: List[
+        Union[
+            TriggeredActionStats,
+            TriggeredActionStatsPlain,
+        ]
+    ]

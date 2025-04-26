@@ -6,12 +6,20 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, TypedDict
+from typing import (
+    List,
+    Required,
+    TypedDict,
+    Union,
+)
 
 from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
-from .operating_system_version import OperatingSystemVersion
+from .operating_system_version import (
+    OperatingSystemVersion,
+    OperatingSystemVersionPlain,
+)
 
 
 class OperatingSystem(DevopnessBaseModel):
@@ -33,12 +41,19 @@ class OperatingSystem(DevopnessBaseModel):
     supported_versions: List[OperatingSystemVersion]
 
 
-class OperatingSystemDict(TypedDict, total=False):
+class OperatingSystemPlain(TypedDict, total=False):
     """
-    TypedDict for OperatingSystem.
+    Plain version of OperatingSystem.
     """
 
-    code: str
-    name: str
-    hint: str
-    supported_versions: List[OperatingSystemVersion]
+    code: Required[str]
+    name: Required[str]
+    hint: Required[str]
+    supported_versions: Required[
+        List[
+            Union[
+                OperatingSystemVersion,
+                OperatingSystemVersionPlain,
+            ]
+        ]
+    ]

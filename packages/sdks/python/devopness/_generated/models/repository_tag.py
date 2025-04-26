@@ -6,12 +6,16 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import TypedDict
+from typing import (
+    Required,
+    TypedDict,
+    Union,
+)
 
 from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
-from .repository_tag_commit import RepositoryTagCommit
+from .repository_tag_commit import RepositoryTagCommit, RepositoryTagCommitPlain
 
 
 class RepositoryTag(DevopnessBaseModel):
@@ -27,10 +31,15 @@ class RepositoryTag(DevopnessBaseModel):
     commit: RepositoryTagCommit
 
 
-class RepositoryTagDict(TypedDict, total=False):
+class RepositoryTagPlain(TypedDict, total=False):
     """
-    TypedDict for RepositoryTag.
+    Plain version of RepositoryTag.
     """
 
-    name: str
-    commit: RepositoryTagCommit
+    name: Required[str]
+    commit: Required[
+        Union[
+            RepositoryTagCommit,
+            RepositoryTagCommitPlain,
+        ]
+    ]

@@ -1,0 +1,20 @@
+{{#vendorExtensions.x-py-other-imports}}
+{{{.}}}
+{{/vendorExtensions.x-py-other-imports}}
+
+import json
+from enum import Enum
+from typing import List, Optional, Set, TypedDict, Union, Literal, Self, Required
+
+from .. import DevopnessBaseModel
+{{#vars}}
+{{^isPrimitiveType}}
+from .{{#lambda.snakecase}}{{complexType}}{{/lambda.snakecase}} import {{complexType}}{{#isModel}}, {{complexType}}Plain{{/isModel}} {{#isContainer}}, {{items.dataType}}Plain{{/isContainer}} {{#isEnumRef}}, {{dataType}}Plain{{/isEnumRef}}
+{{/isPrimitiveType}}
+{{/vars}}
+{{#interfaces}}
+from .{{#lambda.snakecase}}{{.}}{{/lambda.snakecase}} import {{.}}, {{.}}Plain
+{{/interfaces}}
+{{#imports}}
+from .{{#lambda.snakecase}}{{.}}{{/lambda.snakecase}} import {{.}}, {{.}}Plain
+{{/imports}}

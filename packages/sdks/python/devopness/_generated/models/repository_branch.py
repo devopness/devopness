@@ -6,12 +6,16 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import TypedDict
+from typing import (
+    Required,
+    TypedDict,
+    Union,
+)
 
 from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
-from .commit import Commit
+from .commit import Commit, CommitPlain
 
 
 class RepositoryBranch(DevopnessBaseModel):
@@ -31,11 +35,16 @@ class RepositoryBranch(DevopnessBaseModel):
     commit: Commit
 
 
-class RepositoryBranchDict(TypedDict, total=False):
+class RepositoryBranchPlain(TypedDict, total=False):
     """
-    TypedDict for RepositoryBranch.
+    Plain version of RepositoryBranch.
     """
 
-    name: str
-    repo_full_name: str
-    commit: Commit
+    name: Required[str]
+    repo_full_name: Required[str]
+    commit: Required[
+        Union[
+            Commit,
+            CommitPlain,
+        ]
+    ]

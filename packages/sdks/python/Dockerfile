@@ -1,4 +1,6 @@
-FROM python:3.13-alpine
+ARG PYTHON_VERSION="3.13"
+ARG ALPINE_VERSION="3.21"
+FROM python:${PYTHON_VERSION}-alpine${ALPINE_VERSION}
 
 # --- System dependencies installation ---
 RUN apk update && apk add --no-cache bash openjdk11-jre

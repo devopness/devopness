@@ -6,7 +6,10 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import Optional, TypedDict
+from typing import (
+    Optional,
+    TypedDict,
+)
 
 from pydantic import Field, StrictBool, StrictStr
 
@@ -37,9 +40,9 @@ class OperationCustomSettings(DevopnessBaseModel):
     )
 
 
-class OperationCustomSettingsDict(TypedDict, total=False):
+class OperationCustomSettingsPlain(TypedDict, total=False):
     """
-    TypedDict for OperationCustomSettings.
+    Plain version of OperationCustomSettings.
     """
 
     operation: str

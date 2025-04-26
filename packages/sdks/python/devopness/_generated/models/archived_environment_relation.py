@@ -6,14 +6,20 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional, TypedDict
+from typing import (
+    List,
+    Optional,
+    Required,
+    TypedDict,
+    Union,
+)
 
 from pydantic import Field, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
-from .environment_type import EnvironmentType
-from .project_relation import ProjectRelation
-from .resource_summary_item import ResourceSummaryItem
+from .environment_type import EnvironmentType, EnvironmentTypePlain
+from .project_relation import ProjectRelation, ProjectRelationPlain
+from .resource_summary_item import ResourceSummaryItem, ResourceSummaryItemPlain
 
 
 class ArchivedEnvironmentRelation(DevopnessBaseModel):
@@ -60,19 +66,34 @@ class ArchivedEnvironmentRelation(DevopnessBaseModel):
     project: Optional[ProjectRelation]
 
 
-class ArchivedEnvironmentRelationDict(TypedDict, total=False):
+class ArchivedEnvironmentRelationPlain(TypedDict, total=False):
     """
-    TypedDict for ArchivedEnvironmentRelation.
+    Plain version of ArchivedEnvironmentRelation.
     """
 
-    id: int
-    type: EnvironmentType
-    type_human_readable: str
-    name: str
-    description: str
+    id: Required[int]
+    type: Required[
+        Union[
+            EnvironmentType,
+            EnvironmentTypePlain,
+        ]
+    ]
+    type_human_readable: Required[str]
+    name: Required[str]
+    description: Required[str]
     used_credits: int
-    resource_summary: List[ResourceSummaryItem]
-    created_at: str
-    updated_at: str
-    archived_at: str
-    project: ProjectRelation
+    resource_summary: List[
+        Union[
+            ResourceSummaryItem,
+            ResourceSummaryItemPlain,
+        ]
+    ]
+    created_at: Required[str]
+    updated_at: Required[str]
+    archived_at: Required[str]
+    project: Required[
+        Union[
+            ProjectRelation,
+            ProjectRelationPlain,
+        ]
+    ]

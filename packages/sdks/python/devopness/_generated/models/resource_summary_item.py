@@ -6,12 +6,19 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import TypedDict
+from typing import (
+    Required,
+    TypedDict,
+    Union,
+)
 
 from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
-from .resource_summary_item_summary import ResourceSummaryItemSummary
+from .resource_summary_item_summary import (
+    ResourceSummaryItemSummary,
+    ResourceSummaryItemSummaryPlain,
+)
 
 
 class ResourceSummaryItem(DevopnessBaseModel):
@@ -39,13 +46,18 @@ class ResourceSummaryItem(DevopnessBaseModel):
     summary: ResourceSummaryItemSummary
 
 
-class ResourceSummaryItemDict(TypedDict, total=False):
+class ResourceSummaryItemPlain(TypedDict, total=False):
     """
-    TypedDict for ResourceSummaryItem.
+    Plain version of ResourceSummaryItem.
     """
 
-    resource_type: str
-    resource_type_plural: str
-    resource_type_human_readable: str
-    resource_type_human_readable_plural: str
-    summary: ResourceSummaryItemSummary
+    resource_type: Required[str]
+    resource_type_plural: Required[str]
+    resource_type_human_readable: Required[str]
+    resource_type_human_readable_plural: Required[str]
+    summary: Required[
+        Union[
+            ResourceSummaryItemSummary,
+            ResourceSummaryItemSummaryPlain,
+        ]
+    ]

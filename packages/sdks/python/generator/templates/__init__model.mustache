@@ -10,7 +10,7 @@ Note:
 {{#model}}
 from .{{classFilename}} import {{classname}}
 {{^anyOf}}{{^oneOf}}{{^isEnum}}
-from .{{classFilename}} import {{classname}}Dict
+from .{{classFilename}} import {{classname}}Plain
 {{/isEnum}}{{/oneOf}}{{/anyOf}}
 {{/model}}
 {{/models}}
@@ -18,6 +18,6 @@ from .{{classFilename}} import {{classname}}Dict
 __all__ = [
     {{#models}}{{#model}}
     "{{classname}}",
-    {{^anyOf}}{{^oneOf}}{{^isEnum}} "{{classname}}Dict",{{/isEnum}}{{/oneOf}}{{/anyOf}}
+    {{^anyOf}}{{^oneOf}}{{^isEnum}} "{{classname}}Plain",{{/isEnum}}{{/oneOf}}{{/anyOf}}
     {{/model}}{{/models}}
 ]

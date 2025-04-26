@@ -6,7 +6,10 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import TypedDict
+from typing import (
+    Required,
+    TypedDict,
+)
 
 from pydantic import Field, StrictStr
 
@@ -26,9 +29,9 @@ class CredentialSourceProvider(DevopnessBaseModel):
     )
 
 
-class CredentialSourceProviderDict(TypedDict, total=False):
+class CredentialSourceProviderPlain(TypedDict, total=False):
     """
-    TypedDict for CredentialSourceProvider.
+    Plain version of CredentialSourceProvider.
     """
 
-    callback_code: str
+    callback_code: Required[str]

@@ -6,17 +6,30 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional, TypedDict
+from typing import (
+    List,
+    Optional,
+    Required,
+    TypedDict,
+    Union,
+)
 
 from pydantic import Field, StrictBool, StrictStr
 
 from .. import DevopnessBaseModel
-from .cloud_provider_input_settings import CloudProviderInputSettings
+from .cloud_provider_input_settings import (
+    CloudProviderInputSettings,
+    CloudProviderInputSettingsPlain,
+)
 from .cloud_provider_service_resource_type_scope import (
     CloudProviderServiceResourceTypeScope,
+    CloudProviderServiceResourceTypeScopePlain,
 )
-from .operating_system import OperatingSystem
-from .operation_custom_settings import OperationCustomSettings
+from .operating_system import OperatingSystem, OperatingSystemPlain
+from .operation_custom_settings import (
+    OperationCustomSettings,
+    OperationCustomSettingsPlain,
+)
 
 
 class CloudProviderServiceResourceType(DevopnessBaseModel):
@@ -51,15 +64,35 @@ class CloudProviderServiceResourceType(DevopnessBaseModel):
     operation_custom_settings: Optional[OperationCustomSettings] = None
 
 
-class CloudProviderServiceResourceTypeDict(TypedDict, total=False):
+class CloudProviderServiceResourceTypePlain(TypedDict, total=False):
     """
-    TypedDict for CloudProviderServiceResourceType.
+    Plain version of CloudProviderServiceResourceType.
     """
 
-    provider_resource_type: str
-    devopness_resource_type: str
-    scope: CloudProviderServiceResourceTypeScope
-    input_settings: List[CloudProviderInputSettings]
-    os: List[OperatingSystem]
+    provider_resource_type: Required[str]
+    devopness_resource_type: Required[str]
+    scope: Required[
+        Union[
+            CloudProviderServiceResourceTypeScope,
+            CloudProviderServiceResourceTypeScopePlain,
+        ]
+    ]
+    input_settings: Required[
+        List[
+            Union[
+                CloudProviderInputSettings,
+                CloudProviderInputSettingsPlain,
+            ]
+        ]
+    ]
+    os: List[
+        Union[
+            OperatingSystem,
+            OperatingSystemPlain,
+        ]
+    ]
     can_keep_disk_after_delete_server: bool
-    operation_custom_settings: OperationCustomSettings
+    operation_custom_settings: Union[
+        OperationCustomSettings,
+        OperationCustomSettingsPlain,
+    ]

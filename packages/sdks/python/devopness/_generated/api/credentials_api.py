@@ -12,11 +12,11 @@ from .. import DevopnessBaseService, DevopnessResponse
 from ..models import (
     Credential,
     CredentialEnvironmentCreate,
-    CredentialEnvironmentCreateDict,
+    CredentialEnvironmentCreatePlain,
     CredentialRelation,
     CredentialSetting,
     CredentialUpdate,
-    CredentialUpdateDict,
+    CredentialUpdatePlain,
 )
 
 
@@ -30,7 +30,7 @@ class CredentialsApiService(DevopnessBaseService):
         environment_id: int,
         credential_environment_create: Union[
             CredentialEnvironmentCreate,
-            CredentialEnvironmentCreateDict,
+            CredentialEnvironmentCreatePlain,
         ],
     ) -> DevopnessResponse[Credential]:
         """
@@ -55,7 +55,7 @@ class CredentialsApiService(DevopnessBaseService):
         environment_id: int,
         credential_environment_create: Union[
             CredentialEnvironmentCreate,
-            CredentialEnvironmentCreateDict,
+            CredentialEnvironmentCreatePlain,
         ],
     ) -> DevopnessResponse[Credential]:
         """
@@ -320,7 +320,7 @@ class CredentialsApiService(DevopnessBaseService):
         credential_id: int,
         credential_update: Union[
             CredentialUpdate,
-            CredentialUpdateDict,
+            CredentialUpdatePlain,
         ],
     ) -> DevopnessResponse[None]:
         """
@@ -345,7 +345,7 @@ class CredentialsApiService(DevopnessBaseService):
         credential_id: int,
         credential_update: Union[
             CredentialUpdate,
-            CredentialUpdateDict,
+            CredentialUpdatePlain,
         ],
     ) -> DevopnessResponse[None]:
         """

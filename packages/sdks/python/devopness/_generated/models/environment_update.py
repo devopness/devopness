@@ -6,12 +6,17 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import Optional, TypedDict
+from typing import (
+    Optional,
+    Required,
+    TypedDict,
+    Union,
+)
 
 from pydantic import Field, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
-from .environment_type import EnvironmentType
+from .environment_type import EnvironmentType, EnvironmentTypePlain
 
 
 class EnvironmentUpdate(DevopnessBaseModel):
@@ -36,12 +41,17 @@ class EnvironmentUpdate(DevopnessBaseModel):
     )
 
 
-class EnvironmentUpdateDict(TypedDict, total=False):
+class EnvironmentUpdatePlain(TypedDict, total=False):
     """
-    TypedDict for EnvironmentUpdate.
+    Plain version of EnvironmentUpdate.
     """
 
-    id: int
-    type: EnvironmentType
-    name: str
+    id: Required[int]
+    type: Required[
+        Union[
+            EnvironmentType,
+            EnvironmentTypePlain,
+        ]
+    ]
+    name: Required[str]
     description: str

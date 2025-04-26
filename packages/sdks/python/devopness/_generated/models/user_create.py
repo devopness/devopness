@@ -6,7 +6,10 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import TypedDict
+from typing import (
+    Required,
+    TypedDict,
+)
 
 from pydantic import Field, StrictStr
 
@@ -26,9 +29,9 @@ class UserCreate(DevopnessBaseModel):
     )
 
 
-class UserCreateDict(TypedDict, total=False):
+class UserCreatePlain(TypedDict, total=False):
     """
-    TypedDict for UserCreate.
+    Plain version of UserCreate.
     """
 
-    email: str
+    email: Required[str]

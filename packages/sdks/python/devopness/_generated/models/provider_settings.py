@@ -6,13 +6,19 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional, TypedDict
+from typing import (
+    List,
+    Optional,
+    Required,
+    TypedDict,
+    Union,
+)
 
 from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
-from .cloud_provider_service import CloudProviderService
-from .provider_input_settings import ProviderInputSettings
+from .cloud_provider_service import CloudProviderService, CloudProviderServicePlain
+from .provider_input_settings import ProviderInputSettings, ProviderInputSettingsPlain
 
 
 class ProviderSettings(DevopnessBaseModel):
@@ -35,11 +41,23 @@ class ProviderSettings(DevopnessBaseModel):
     cloud_services: Optional[List[CloudProviderService]] = None
 
 
-class ProviderSettingsDict(TypedDict, total=False):
+class ProviderSettingsPlain(TypedDict, total=False):
     """
-    TypedDict for ProviderSettings.
+    Plain version of ProviderSettings.
     """
 
     connect_url: str
-    input_settings: List[ProviderInputSettings]
-    cloud_services: List[CloudProviderService]
+    input_settings: Required[
+        List[
+            Union[
+                ProviderInputSettings,
+                ProviderInputSettingsPlain,
+            ]
+        ]
+    ]
+    cloud_services: List[
+        Union[
+            CloudProviderService,
+            CloudProviderServicePlain,
+        ]
+    ]

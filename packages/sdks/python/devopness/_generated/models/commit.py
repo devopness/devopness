@@ -6,12 +6,16 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import TypedDict
+from typing import (
+    Required,
+    TypedDict,
+    Union,
+)
 
 from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
-from .source_provider_name import SourceProviderName
+from .source_provider_name import SourceProviderName, SourceProviderNamePlain
 
 
 class Commit(DevopnessBaseModel):
@@ -47,16 +51,21 @@ class Commit(DevopnessBaseModel):
     author_name: StrictStr = Field(description="The name of the commit's author")
 
 
-class CommitDict(TypedDict, total=False):
+class CommitPlain(TypedDict, total=False):
     """
-    TypedDict for Commit.
+    Plain version of Commit.
     """
 
-    hash: str
-    message: str
-    committed_at: str
-    provider: SourceProviderName
-    repository: str
-    url: str
-    author_email: str
-    author_name: str
+    hash: Required[str]
+    message: Required[str]
+    committed_at: Required[str]
+    provider: Required[
+        Union[
+            SourceProviderName,
+            SourceProviderNamePlain,
+        ]
+    ]
+    repository: Required[str]
+    url: Required[str]
+    author_email: Required[str]
+    author_name: Required[str]

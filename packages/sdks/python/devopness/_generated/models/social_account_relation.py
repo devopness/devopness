@@ -6,13 +6,21 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import Optional, TypedDict
+from typing import (
+    Optional,
+    Required,
+    TypedDict,
+    Union,
+)
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
-from .social_account_displayable_name import SocialAccountDisplayableName
-from .social_account_provider import SocialAccountProvider
+from .social_account_displayable_name import (
+    SocialAccountDisplayableName,
+    SocialAccountDisplayableNamePlain,
+)
+from .social_account_provider import SocialAccountProvider, SocialAccountProviderPlain
 
 
 class SocialAccountRelation(DevopnessBaseModel):
@@ -52,17 +60,27 @@ class SocialAccountRelation(DevopnessBaseModel):
     )
 
 
-class SocialAccountRelationDict(TypedDict, total=False):
+class SocialAccountRelationPlain(TypedDict, total=False):
     """
-    TypedDict for SocialAccountRelation.
+    Plain version of SocialAccountRelation.
     """
 
-    id: int
-    user_id: int
-    provider: SocialAccountProvider
-    provider_human_readable: SocialAccountDisplayableName
-    provider_user_nickname: str
-    is_vcs: bool
-    token_expires_at: str
-    created_at: str
-    updated_at: str
+    id: Required[int]
+    user_id: Required[int]
+    provider: Required[
+        Union[
+            SocialAccountProvider,
+            SocialAccountProviderPlain,
+        ]
+    ]
+    provider_human_readable: Required[
+        Union[
+            SocialAccountDisplayableName,
+            SocialAccountDisplayableNamePlain,
+        ]
+    ]
+    provider_user_nickname: Required[str]
+    is_vcs: Required[bool]
+    token_expires_at: Required[str]
+    created_at: Required[str]
+    updated_at: Required[str]

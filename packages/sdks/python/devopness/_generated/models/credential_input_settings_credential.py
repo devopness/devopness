@@ -8,10 +8,16 @@ Note:
 
 from typing import Union
 
-from .credential_aws import CredentialAws
-from .credential_digital_ocean import CredentialDigitalOcean
-from .credential_google_cloud import CredentialGoogleCloud
-from .credential_source_provider import CredentialSourceProvider
+from .credential_aws import CredentialAws, CredentialAwsPlain
+from .credential_digital_ocean import (
+    CredentialDigitalOcean,
+    CredentialDigitalOceanPlain,
+)
+from .credential_google_cloud import CredentialGoogleCloud, CredentialGoogleCloudPlain
+from .credential_source_provider import (
+    CredentialSourceProvider,
+    CredentialSourceProviderPlain,
+)
 
 #: AnyOf Type
 #: Cloud provider credential
@@ -20,4 +26,12 @@ CredentialInputSettingsCredential = Union[
     CredentialDigitalOcean,
     CredentialGoogleCloud,
     CredentialSourceProvider,
+]
+
+#: The plain version of CredentialInputSettingsCredential
+CredentialInputSettingsCredentialPlain = Union[
+    CredentialAwsPlain,
+    CredentialDigitalOceanPlain,
+    CredentialGoogleCloudPlain,
+    CredentialSourceProviderPlain,
 ]

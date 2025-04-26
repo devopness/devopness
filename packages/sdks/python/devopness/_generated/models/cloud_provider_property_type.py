@@ -6,12 +6,9 @@ Note:
     https://openapi-generator.tech
 """
 
-from __future__ import annotations
-
 import json
 from enum import Enum
-
-from typing_extensions import Self
+from typing import Literal, Self
 
 
 class CloudProviderPropertyType(str, Enum):
@@ -19,9 +16,6 @@ class CloudProviderPropertyType(str, Enum):
     CloudProviderPropertyType
     """
 
-    """
-    allowed enum values
-    """
     STRING = "string"
     TEXT = "text"
     INTEGER = "integer"
@@ -31,3 +25,12 @@ class CloudProviderPropertyType(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of CloudProviderPropertyType from a JSON string"""
         return cls(json.loads(json_str))
+
+
+# The plain version of CloudProviderPropertyType
+CloudProviderPropertyTypePlain = Literal[
+    "string",
+    "text",
+    "integer",
+    "boolean",
+]

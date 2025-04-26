@@ -6,15 +6,21 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional, TypedDict
+from typing import (
+    List,
+    Optional,
+    Required,
+    TypedDict,
+    Union,
+)
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
-from .environment_type import EnvironmentType
-from .resource_summary_item import ResourceSummaryItem
-from .team_relation import TeamRelation
-from .user_relation import UserRelation
+from .environment_type import EnvironmentType, EnvironmentTypePlain
+from .resource_summary_item import ResourceSummaryItem, ResourceSummaryItemPlain
+from .team_relation import TeamRelation, TeamRelationPlain
+from .user_relation import UserRelation, UserRelationPlain
 
 
 class Environment(DevopnessBaseModel):
@@ -62,20 +68,42 @@ class Environment(DevopnessBaseModel):
     )
 
 
-class EnvironmentDict(TypedDict, total=False):
+class EnvironmentPlain(TypedDict, total=False):
     """
-    TypedDict for Environment.
+    Plain version of Environment.
     """
 
-    id: int
-    type: EnvironmentType
-    type_human_readable: str
-    name: str
-    description: str
-    is_archived: bool
-    resource_summary: List[ResourceSummaryItem]
-    teams: List[TeamRelation]
-    created_by_user: UserRelation
-    current_user_permissions: List[str]
-    created_at: str
-    updated_at: str
+    id: Required[int]
+    type: Required[
+        Union[
+            EnvironmentType,
+            EnvironmentTypePlain,
+        ]
+    ]
+    type_human_readable: Required[str]
+    name: Required[str]
+    description: Required[str]
+    is_archived: Required[bool]
+    resource_summary: List[
+        Union[
+            ResourceSummaryItem,
+            ResourceSummaryItemPlain,
+        ]
+    ]
+    teams: Required[
+        List[
+            Union[
+                TeamRelation,
+                TeamRelationPlain,
+            ]
+        ]
+    ]
+    created_by_user: Required[
+        Union[
+            UserRelation,
+            UserRelationPlain,
+        ]
+    ]
+    current_user_permissions: Required[List[str]]
+    created_at: Required[str]
+    updated_at: Required[str]

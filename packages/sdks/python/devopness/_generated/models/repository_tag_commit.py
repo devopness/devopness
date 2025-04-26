@@ -6,7 +6,10 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import TypedDict
+from typing import (
+    Required,
+    TypedDict,
+)
 
 from pydantic import Field, StrictStr
 
@@ -30,10 +33,10 @@ class RepositoryTagCommit(DevopnessBaseModel):
     )
 
 
-class RepositoryTagCommitDict(TypedDict, total=False):
+class RepositoryTagCommitPlain(TypedDict, total=False):
     """
-    TypedDict for RepositoryTagCommit.
+    Plain version of RepositoryTagCommit.
     """
 
-    hash: str
-    url: str
+    hash: Required[str]
+    url: Required[str]

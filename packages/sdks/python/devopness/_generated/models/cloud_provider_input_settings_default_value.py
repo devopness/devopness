@@ -15,3 +15,6 @@ CloudProviderInputSettingsDefaultValue = Union[
     int,
     str,
 ]
+
+#: The plain version of CloudProviderInputSettingsDefaultValue
+CloudProviderInputSettingsDefaultValuePlain = CloudProviderInputSettingsDefaultValue

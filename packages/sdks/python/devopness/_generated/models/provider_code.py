@@ -6,12 +6,9 @@ Note:
     https://openapi-generator.tech
 """
 
-from __future__ import annotations
-
 import json
 from enum import Enum
-
-from typing_extensions import Self
+from typing import Literal, Self
 
 
 class ProviderCode(str, Enum):
@@ -19,9 +16,6 @@ class ProviderCode(str, Enum):
     The code of the service provider
     """
 
-    """
-    allowed enum values
-    """
     AWS = "aws"
     BITBUCKET = "bitbucket"
     DIGITALOCEAN = "digitalocean"
@@ -33,3 +27,14 @@ class ProviderCode(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of ProviderCode from a JSON string"""
         return cls(json.loads(json_str))
+
+
+# The plain version of ProviderCode
+ProviderCodePlain = Literal[
+    "aws",
+    "bitbucket",
+    "digitalocean",
+    "gcp",
+    "github",
+    "gitlab",
+]

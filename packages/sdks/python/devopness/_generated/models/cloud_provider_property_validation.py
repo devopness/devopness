@@ -6,12 +6,20 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, TypedDict
+from typing import (
+    List,
+    Required,
+    TypedDict,
+    Union,
+)
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
-from .cloud_provider_property_type import CloudProviderPropertyType
+from .cloud_provider_property_type import (
+    CloudProviderPropertyType,
+    CloudProviderPropertyTypePlain,
+)
 
 
 class CloudProviderPropertyValidation(DevopnessBaseModel):
@@ -39,13 +47,18 @@ class CloudProviderPropertyValidation(DevopnessBaseModel):
     )
 
 
-class CloudProviderPropertyValidationDict(TypedDict, total=False):
+class CloudProviderPropertyValidationPlain(TypedDict, total=False):
     """
-    TypedDict for CloudProviderPropertyValidation.
+    Plain version of CloudProviderPropertyValidation.
     """
 
-    required: bool
-    type: CloudProviderPropertyType
-    min: int
-    max: int
-    allowed_values: List[str]
+    required: Required[bool]
+    type: Required[
+        Union[
+            CloudProviderPropertyType,
+            CloudProviderPropertyTypePlain,
+        ]
+    ]
+    min: Required[int]
+    max: Required[int]
+    allowed_values: Required[List[str]]

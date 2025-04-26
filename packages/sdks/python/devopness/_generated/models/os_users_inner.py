@@ -6,7 +6,10 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import TypedDict
+from typing import (
+    Required,
+    TypedDict,
+)
 
 from pydantic import Field, StrictStr
 
@@ -24,9 +27,9 @@ class OsUsersInner(DevopnessBaseModel):
     name: StrictStr = Field(description="Operating system username")
 
 
-class OsUsersInnerDict(TypedDict, total=False):
+class OsUsersInnerPlain(TypedDict, total=False):
     """
-    TypedDict for OsUsersInner.
+    Plain version of OsUsersInner.
     """
 
-    name: str
+    name: Required[str]

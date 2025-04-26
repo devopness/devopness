@@ -6,15 +6,24 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import Optional, TypedDict
+from typing import (
+    Optional,
+    Required,
+    TypedDict,
+    Union,
+)
 
 from pydantic import Field, StrictBool, StrictStr
 
 from .. import DevopnessBaseModel
 from .cloud_provider_input_settings_default_value import (
     CloudProviderInputSettingsDefaultValue,
+    CloudProviderInputSettingsDefaultValuePlain,
 )
-from .cloud_provider_property_validation import CloudProviderPropertyValidation
+from .cloud_provider_property_validation import (
+    CloudProviderPropertyValidation,
+    CloudProviderPropertyValidationPlain,
+)
 
 
 class CloudProviderInputSettings(DevopnessBaseModel):
@@ -40,13 +49,23 @@ class CloudProviderInputSettings(DevopnessBaseModel):
     validation: CloudProviderPropertyValidation
 
 
-class CloudProviderInputSettingsDict(TypedDict, total=False):
+class CloudProviderInputSettingsPlain(TypedDict, total=False):
     """
-    TypedDict for CloudProviderInputSettings.
+    Plain version of CloudProviderInputSettings.
     """
 
-    name: str
-    name_human_readable: str
-    default_value: CloudProviderInputSettingsDefaultValue
-    sensitive: bool
-    validation: CloudProviderPropertyValidation
+    name: Required[str]
+    name_human_readable: Required[str]
+    default_value: Required[
+        Union[
+            CloudProviderInputSettingsDefaultValue,
+            CloudProviderInputSettingsDefaultValuePlain,
+        ]
+    ]
+    sensitive: Required[bool]
+    validation: Required[
+        Union[
+            CloudProviderPropertyValidation,
+            CloudProviderPropertyValidationPlain,
+        ]
+    ]

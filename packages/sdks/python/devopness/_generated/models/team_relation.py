@@ -6,7 +6,11 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import Optional, TypedDict
+from typing import (
+    Optional,
+    Required,
+    TypedDict,
+)
 
 from pydantic import Field, StrictInt, StrictStr
 
@@ -36,13 +40,13 @@ class TeamRelation(DevopnessBaseModel):
     )
 
 
-class TeamRelationDict(TypedDict, total=False):
+class TeamRelationPlain(TypedDict, total=False):
     """
-    TypedDict for TeamRelation.
+    Plain version of TeamRelation.
     """
 
-    id: int
-    name: str
-    photo_url: str
-    created_at: str
-    updated_at: str
+    id: Required[int]
+    name: Required[str]
+    photo_url: Required[str]
+    created_at: Required[str]
+    updated_at: Required[str]

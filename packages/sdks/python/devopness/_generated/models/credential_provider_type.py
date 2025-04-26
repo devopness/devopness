@@ -6,7 +6,10 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import TypedDict
+from typing import (
+    Required,
+    TypedDict,
+)
 
 from pydantic import Field, StrictStr
 
@@ -28,10 +31,10 @@ class CredentialProviderType(DevopnessBaseModel):
     )
 
 
-class CredentialProviderTypeDict(TypedDict, total=False):
+class CredentialProviderTypePlain(TypedDict, total=False):
     """
-    TypedDict for CredentialProviderType.
+    Plain version of CredentialProviderType.
     """
 
-    type: str
-    type_human_readable: str
+    type: Required[str]
+    type_human_readable: Required[str]
