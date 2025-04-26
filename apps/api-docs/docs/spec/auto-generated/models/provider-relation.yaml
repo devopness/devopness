@@ -11,12 +11,7 @@ properties:
     type: string
     example: 'Amazon Web Services'
   type:
-    description: 'Type of provider.'
-    type: string
-    enum:
-      - cloud_provider
-      - source_provider
-    example: cloud_provider
+    $ref: '#/components/schemas/ProviderType'
   type_human_readable:
     description: 'Human readable version of provider type'
     type: string

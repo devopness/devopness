@@ -28,6 +28,15 @@ jobs:
         run: |
           echo "${{ secrets.DEV_API_DOCS_ENV_FILE }}" > .env
 
+      - name: Check if DEVOPNESS_DEV_API_HOST is set and modify `dredd` endpoint
+        run: |
+          if [ -n "${{ vars.DEVOPNESS_DEV_API_HOST }}" ]; then
+            echo "DEVOPNESS_DEV_API_HOST is set. Modifying dredd file..."
+            sed -i "s|endpoint: 'https://.*'|endpoint: 'https://${{ vars.DEVOPNESS_DEV_API_HOST }}'|g" ./dredd.yml
+          else
+            echo "DEVOPNESS_DEV_API_HOST is not set. Skipping modification."
+          fi
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:

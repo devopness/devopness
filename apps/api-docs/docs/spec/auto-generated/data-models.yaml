@@ -139,6 +139,8 @@ Credential:
   $ref: ./auto-generated/models/credential.yaml
 CredentialAws:
   $ref: ./auto-generated/models/credential-aws.yaml
+CredentialAzure:
+  $ref: ./auto-generated/models/credential-azure.yaml
 CredentialDigitalOcean:
   $ref: ./auto-generated/models/credential-digital-ocean.yaml
 CredentialEnvironmentCreate:

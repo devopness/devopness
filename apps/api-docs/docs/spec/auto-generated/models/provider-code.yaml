@@ -3,6 +3,7 @@ description: 'The code of the service provider'
 type: string
 enum:
   - aws
+  - azure
   - bitbucket
   - digitalocean
   - gcp
