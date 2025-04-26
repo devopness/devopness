@@ -27,16 +27,9 @@ SDK_SERVICES_FILE = os.path.join(SDK_ROOT_DIR, "devopness", "services.py")
 GENERATED_API_DIR = os.path.join(GENERATED_DIR, "api")
 GENERATED_MODELS_DIR = os.path.join(GENERATED_DIR, "models")
 
-PASCAL_TO_SNAKE_REGEX = re.compile(r"(?<!^)(?=[A-Z])")
-MODEL_IMPORT_TEMPLATE_REGEX = re.compile(r"# TEMPLATE:([A-Za-z0-9_]+)")
-
 
 def snake_to_pascal(name: str) -> str:
     return "".join(word.title() for word in name.split("_"))
-
-
-def pascal_to_snake(name) -> str:  # type: ignore[no-untyped-def]
-    return re.sub(PASCAL_TO_SNAKE_REGEX, "_", name).lower()
 
 
 def remove_previous_generated_directories() -> None:
