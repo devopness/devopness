@@ -412,31 +412,6 @@ def export_sdk_services() -> None:
         f.write("\n".join(lines))
 
 
-def fix_import_paths_in_models() -> None:
-    print("🔧  Adjusting import paths in models...")
-
-    for file in os.listdir(GENERATED_MODELS_DIR):
-        if not file.endswith(".py"):
-            continue
-
-        file_path = os.path.join(GENERATED_MODELS_DIR, file)
-        file_content = ""
-
-        with open(file_path, encoding="utf-8") as f:
-            file_content = f.read()
-
-            # Search for imports: # TEMPLATE:[PascalCase]
-            # Replace with: from .[snake_case] import
-            file_content = re.sub(
-                MODEL_IMPORT_TEMPLATE_REGEX,
-                lambda match: f"from .{pascal_to_snake(match.group(1))} import",
-                file_content,
-            )
-
-        with open(file_path, "w", encoding="utf-8") as f:
-            f.write(file_content)
-
-
 def format_generated_files() -> None:
     print("🔧  Formatting generated files...")
 
@@ -477,7 +452,6 @@ if __name__ == "__main__":
 
         print("🔧  Executing post-build tasks...")
         remove_openapi_generator_cache()
-        fix_import_paths_in_models()
         fix_import_issues()
         fix_code_style_issues()
         format_generated_files()
