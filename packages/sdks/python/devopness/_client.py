@@ -6,7 +6,13 @@ from typing import Optional, Union
 
 from ._base import DevopnessBaseService
 from ._client_config import DevopnessClientConfig, DevopnessClientConfigDict
-from .services import CredentialService, EnvironmentService, ProjectService, UserService
+from .services import (
+    CredentialService,
+    EnvironmentService,
+    ProjectService,
+    ServerService,
+    UserService,
+)
 
 __all__ = ["DevopnessClient"]
 
@@ -19,6 +25,7 @@ class DevopnessClient:
     credentials: CredentialService
     environments: EnvironmentService
     projects: ProjectService
+    servers: ServerService
     users: UserService
 
     def __init__(
@@ -35,6 +42,7 @@ class DevopnessClient:
         self.credentials = CredentialService(config)
         self.environments = EnvironmentService(config)
         self.projects = ProjectService(config)
+        self.servers = ServerService(config)
         self.users = UserService(config)
 
     def __set_access_token(self, access_token: str) -> None:
