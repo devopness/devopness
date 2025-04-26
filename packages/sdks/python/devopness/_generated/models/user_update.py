@@ -9,6 +9,7 @@ Note:
 from typing import (
     Optional,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -51,4 +52,7 @@ class UserUpdatePlain(TypedDict, total=False):
     name: str
     email: str
     url_slug: str
-    language: LanguagePlain
+    language: Union[
+        Language,
+        LanguagePlain,
+    ]

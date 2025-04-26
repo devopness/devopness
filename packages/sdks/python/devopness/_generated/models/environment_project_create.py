@@ -9,6 +9,7 @@ Note:
 from typing import (
     Optional,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -42,6 +43,9 @@ class EnvironmentProjectCreatePlain(TypedDict, total=False):
     Plain version of EnvironmentProjectCreate.
     """
 
-    type: EnvironmentTypePlain
+    type: Union[
+        EnvironmentType,
+        EnvironmentTypePlain,
+    ]
     name: str
     description: str

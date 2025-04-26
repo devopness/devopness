@@ -10,6 +10,7 @@ from datetime import datetime
 from typing import (
     Optional,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
@@ -65,7 +66,10 @@ class UserRelationPlain(TypedDict, total=False):
     name: str
     email: str
     url_slug: str
-    language: LanguagePlain
+    language: Union[
+        Language,
+        LanguagePlain,
+    ]
     active: bool
     created_at: datetime
     updated_at: datetime

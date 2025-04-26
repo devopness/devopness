@@ -9,6 +9,7 @@ Note:
 from typing import (
     List,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
@@ -51,7 +52,10 @@ class CloudProviderPropertyValidationPlain(TypedDict, total=False):
     """
 
     required: bool
-    type: CloudProviderPropertyTypePlain
+    type: Union[
+        CloudProviderPropertyType,
+        CloudProviderPropertyTypePlain,
+    ]
     min: int
     max: int
     allowed_values: List[str]

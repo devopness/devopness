@@ -55,7 +55,10 @@ class CloudProviderServicePlain(TypedDict, total=False):
     Plain version of CloudProviderService.
     """
 
-    code: CloudProviderServiceCodePlain
+    code: Union[
+        CloudProviderServiceCode,
+        CloudProviderServiceCodePlain,
+    ]
     name: str
     provider: Union[
         ProviderRelation,

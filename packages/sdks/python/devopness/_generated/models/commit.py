@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -57,7 +58,10 @@ class CommitPlain(TypedDict, total=False):
     hash: str
     message: str
     committed_at: str
-    provider: SourceProviderNamePlain
+    provider: Union[
+        SourceProviderName,
+        SourceProviderNamePlain,
+    ]
     repository: str
     url: str
     author_email: str

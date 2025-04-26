@@ -62,7 +62,10 @@ class UserPlain(TypedDict, total=False):
     name: str
     email: str
     url_slug: str
-    language: LanguagePlain
+    language: Union[
+        Language,
+        LanguagePlain,
+    ]
     active: bool
     social_accounts: List[
         Union[

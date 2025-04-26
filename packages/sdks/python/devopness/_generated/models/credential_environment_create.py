@@ -49,8 +49,14 @@ class CredentialEnvironmentCreatePlain(TypedDict, total=False):
     """
 
     name: str
-    provider_code: ProviderCodePlain
-    provider_type: ProviderTypePlain
+    provider_code: Union[
+        ProviderCode,
+        ProviderCodePlain,
+    ]
+    provider_type: Union[
+        ProviderType,
+        ProviderTypePlain,
+    ]
     active: bool
     settings: Union[
         CredentialInputSettings,

@@ -9,6 +9,7 @@ Note:
 from typing import (
     Optional,
     TypedDict,
+    Union,
 )
 
 from pydantic import (
@@ -50,7 +51,10 @@ class ProviderRelationPlain(TypedDict, total=False):
     """
 
     active: bool
-    code: ProviderCodePlain
+    code: Union[
+        ProviderCode,
+        ProviderCodePlain,
+    ]
     code_human_readable: str
     type: str
     type_human_readable: str

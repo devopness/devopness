@@ -63,7 +63,10 @@ class CredentialRelationPlain(TypedDict, total=False):
         ProviderRelation,
         ProviderRelationPlain,
     ]
-    provider_type: ProviderTypePlain
+    provider_type: Union[
+        ProviderType,
+        ProviderTypePlain,
+    ]
     provider_type_human_readable: str
     active: bool
     created_by_user: Union[

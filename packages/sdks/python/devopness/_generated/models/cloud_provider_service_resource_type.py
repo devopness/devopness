@@ -70,7 +70,10 @@ class CloudProviderServiceResourceTypePlain(TypedDict, total=False):
 
     provider_resource_type: str
     devopness_resource_type: str
-    scope: CloudProviderServiceResourceTypeScopePlain
+    scope: Union[
+        CloudProviderServiceResourceTypeScope,
+        CloudProviderServiceResourceTypeScopePlain,
+    ]
     input_settings: List[
         Union[
             CloudProviderInputSettings,

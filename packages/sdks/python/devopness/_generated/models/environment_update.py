@@ -9,6 +9,7 @@ Note:
 from typing import (
     Optional,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -45,6 +46,9 @@ class EnvironmentUpdatePlain(TypedDict, total=False):
     """
 
     id: int
-    type: EnvironmentTypePlain
+    type: Union[
+        EnvironmentType,
+        EnvironmentTypePlain,
+    ]
     name: str
     description: str

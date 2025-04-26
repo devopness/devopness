@@ -71,7 +71,10 @@ class EnvironmentRelationPlain(TypedDict, total=False):
     """
 
     id: int
-    type: EnvironmentTypePlain
+    type: Union[
+        EnvironmentType,
+        EnvironmentTypePlain,
+    ]
     type_human_readable: str
     name: str
     description: str
