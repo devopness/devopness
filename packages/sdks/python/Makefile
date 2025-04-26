@@ -23,7 +23,7 @@ build-image: ## Build Docker Image. To customize the image, use the PYTHON_VERSI
 		$(if $(ALPINE_VERSION),--build-arg ALPINE_VERSION=$(ALPINE_VERSION),) \
 		-t $(IMAGE) .
 
-build-sdk-python: build-image ## Build Python SDK.
+build-sdk-python: build-image ## Build Python SDK
 	$(info Docker - Building Devopness SDK - Python ...)
 	@docker run --rm \
 		-v $(PWD):/$(WORKDIR) \
@@ -31,7 +31,7 @@ build-sdk-python: build-image ## Build Python SDK.
 		$(IMAGE):$(TAG) \
 		scripts/build.py
 
-publish-dev: build-sdk-python ## Publish Devopness SDK - Python to Test PyPI. Requires POETRY_TEST_PYPI_TOKEN.
+publish-dev: build-image ## Publish Devopness SDK - Python to Test PyPI. Requires POETRY_TEST_PYPI_TOKEN.
 	$(info Publishing Devopness SDK - Python to Test PyPI ...)
 	@docker run --rm \
 		-v $(PWD):/$(WORKDIR) \
@@ -72,7 +72,7 @@ format: build-image ## Run the formatting against the SDK.
 			poetry run ruff format .  \
 		'
 
-test-unit: build-sdk-python ## Run the unit tests against the SDK.
+test-unit: build-image ## Run the unit test suite against the SDK.
 	$(info Running Devopness SDK - Python Unit Tests ...)
 	@docker run --rm \
 		-v $(PWD):/$(WORKDIR) \
