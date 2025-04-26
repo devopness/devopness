@@ -6,7 +6,6 @@ Note:
     https://openapi-generator.tech
 """
 
-<<<<<<< HEAD
 from typing import (
     List,
     Optional,
@@ -14,14 +13,10 @@ from typing import (
     TypedDict,
     Union,
 )
-=======
-from typing import List, Optional, TypedDict
->>>>>>> main
 
 from pydantic import Field, StrictBool, StrictStr
 
 from .. import DevopnessBaseModel
-<<<<<<< HEAD
 from .cloud_provider_input_settings import (
     CloudProviderInputSettings,
     CloudProviderInputSettingsPlain,
@@ -35,14 +30,6 @@ from .operation_custom_settings import (
     OperationCustomSettings,
     OperationCustomSettingsPlain,
 )
-=======
-from .cloud_provider_input_settings import CloudProviderInputSettings
-from .cloud_provider_service_resource_type_scope import (
-    CloudProviderServiceResourceTypeScope,
-)
-from .operating_system import OperatingSystem
-from .operation_custom_settings import OperationCustomSettings
->>>>>>> main
 
 
 class CloudProviderServiceResourceType(DevopnessBaseModel):
@@ -77,7 +64,6 @@ class CloudProviderServiceResourceType(DevopnessBaseModel):
     operation_custom_settings: Optional[OperationCustomSettings] = None
 
 
-<<<<<<< HEAD
 class CloudProviderServiceResourceTypePlain(TypedDict, total=False):
     """
     Plain version of CloudProviderServiceResourceType.
@@ -110,17 +96,3 @@ class CloudProviderServiceResourceTypePlain(TypedDict, total=False):
         OperationCustomSettings,
         OperationCustomSettingsPlain,
     ]
-=======
-class CloudProviderServiceResourceTypeDict(TypedDict, total=False):
-    """
-    TypedDict for CloudProviderServiceResourceType.
-    """
-
-    provider_resource_type: str
-    devopness_resource_type: str
-    scope: CloudProviderServiceResourceTypeScope
-    input_settings: List[CloudProviderInputSettings]
-    os: List[OperatingSystem]
-    can_keep_disk_after_delete_server: bool
-    operation_custom_settings: OperationCustomSettings
->>>>>>> main
