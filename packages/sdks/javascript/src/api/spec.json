@@ -14679,6 +14679,37 @@
           "secret_access_key"
         ]
       },
+      "CredentialAzure": {
+        "type": "object",
+        "properties": {
+          "tenant_id": {
+            "type": "string",
+            "description": "ID that identifies your company space (directory) inside Azure",
+            "example": "1c49c6a3-025c-42e0-9f91-990fbdddbd9b"
+          },
+          "subscription_id": {
+            "type": "string",
+            "description": "ID that identifies your billing account where Azure resources are stored",
+            "example": "b2887e96-52fa-4444-a5ce-8a4508373453"
+          },
+          "client_id": {
+            "type": "string",
+            "description": "ID that identifies the application when connecting to Azure",
+            "example": "2e73364c-4843-4a1d-b0e1-30bb5c3517e1"
+          },
+          "client_secret": {
+            "type": "string",
+            "description": "Secret password used by the application to authenticate to Azure",
+            "example": "NhW5tQbF51BD0JChpiCigqYHhkvRB5ZeB1ci3Ts1"
+          }
+        },
+        "required": [
+          "tenant_id",
+          "subscription_id",
+          "client_id",
+          "client_secret"
+        ]
+      },
       "CredentialDigitalOcean": {
         "type": "object",
         "properties": {
@@ -14744,6 +14775,9 @@
             "anyOf": [
               {
                 "$ref": "#/components/schemas/CredentialAws"
+              },
+              {
+                "$ref": "#/components/schemas/CredentialAzure"
               },
               {
                 "$ref": "#/components/schemas/CredentialDigitalOcean"
@@ -18625,6 +18659,7 @@
         "type": "string",
         "enum": [
           "aws",
+          "azure",
           "bitbucket",
           "digitalocean",
           "gcp",
@@ -18719,13 +18754,7 @@
             "example": "Amazon Web Services"
           },
           "type": {
-            "description": "Type of provider.",
-            "type": "string",
-            "enum": [
-              "cloud_provider",
-              "source_provider"
-            ],
-            "example": "cloud_provider"
+            "$ref": "#/components/schemas/ProviderType"
           },
           "type_human_readable": {
             "description": "Human readable version of provider type",
@@ -19831,6 +19860,7 @@
         "example": "aws-ec2",
         "enum": [
           "aws-ec2",
+          "azure-rm",
           "digitalocean-droplet",
           "gcp-gce",
           "self-hosted-custom"
