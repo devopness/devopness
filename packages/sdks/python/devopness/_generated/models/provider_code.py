@@ -17,6 +17,7 @@ class ProviderCode(str, Enum):
     """
 
     AWS = "aws"
+    AZURE = "azure"
     BITBUCKET = "bitbucket"
     DIGITALOCEAN = "digitalocean"
     GCP = "gcp"
@@ -32,6 +33,7 @@ class ProviderCode(str, Enum):
 # The plain version of ProviderCode
 ProviderCodePlain = Literal[
     "aws",
+    "azure",
     "bitbucket",
     "digitalocean",
     "gcp",
