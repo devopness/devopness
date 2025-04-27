@@ -24,7 +24,7 @@ jobs:
         with:
           filters: |
             changes:
-              - 'packages/sdks/python/**'
+              - 'x-packages/sdks/python/**'
 
   build:
     name: Build SDK-Python
