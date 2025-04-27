@@ -53,13 +53,13 @@ jobs:
             echo "pr_exists=false" >> $GITHUB_OUTPUT
           fi
 
-      - name: Copy JSON spec from 'devopness-api-docs' to `devopness`
+      - name: OpenAPI spec - Copy updated file to local `devopness/devopness`
         run: |
-          cp '${{ github.workspace }}/docs/build/spec.json' devopness/packages/sdks/javascript/src/api/spec.json
+          cp '${{ github.workspace }}/docs/build/spec.json' devopness/packages/sdks/common/spec.json
 
-      - name: Commit SDK-JS modifications
+      - name: OpenAPI spec - Commit changes
         id: git
-        working-directory: ./devopness/packages/sdks/javascript
+        working-directory: ./devopness/packages/sdks/common
         run: |
           if [ -z "$(git status --porcelain)" ]; then
             echo "File 'spec.json' is up to date. Nothing to commit!"
@@ -67,13 +67,13 @@ jobs:
             exit 0
           fi
 
-          git add src/api/spec.json
+          git add spec.json
           git commit -m "feat: update 'spec.json' file"
 
           git push origin "${{ steps.branch.outputs.branch_name }}"
           echo "has_changes=true" >> $GITHUB_OUTPUT
 
-      - name: Create SDK-JS pull request
+      - name: OpenAPI spec - Create pull request on `devopness/devopness`
         uses: actions/github-script@v6
         if: |
           steps.git.outputs.has_changes == 'true'
