@@ -28,7 +28,7 @@ const DEFAULT_BUTTON_ICON_SIZE = 10
 const DEFAULT_ICON_MARGIN = 10
 
 type DropdownOptionIcon = Unwrap<
-  IconProps & Pick<React.CSSProperties, 'backgroundColor' | 'color'>
+  IconProps & Pick<React.CSSProperties, 'backgroundColor'>
 > & { icon: true }
 
 type DropdownOptionLetter = Unwrap<
