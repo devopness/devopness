@@ -163,6 +163,7 @@ def run_openapi_generator_with_temporary_cleanup() -> None:
         "cloud_service_settings_self_hosted_custom",
         "commit",
         "credential_aws",
+        "credential_azure",
         "credential_digital_ocean",
         "credential_environment_create",
         "credential_google_cloud",
