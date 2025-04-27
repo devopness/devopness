@@ -57,6 +57,7 @@ export * from './cloud-service-settings-self-hosted-custom';
 export * from './commit';
 export * from './credential';
 export * from './credential-aws';
+export * from './credential-azure';
 export * from './credential-digital-ocean';
 export * from './credential-environment-create';
 export * from './credential-google-cloud';
