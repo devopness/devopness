@@ -9,7 +9,7 @@ from .. import DevopnessBaseService, DevopnessResponse
     {{^isHeaderParam}}
       {{#isModel}}
 from ..models import {{dataType}}
-from ..models import {{dataType}}Dict
+from ..models import {{dataType}}Plain
       {{/isModel}}
     {{/isHeaderParam}}
   {{/allParams}}

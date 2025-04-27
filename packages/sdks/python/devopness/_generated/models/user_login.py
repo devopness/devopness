@@ -6,7 +6,10 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import TypedDict
+from typing import (
+    Required,
+    TypedDict,
+)
 
 from pydantic import Field, StrictStr
 
@@ -28,10 +31,10 @@ class UserLogin(DevopnessBaseModel):
     password: StrictStr = Field(description="The user password.")
 
 
-class UserLoginDict(TypedDict, total=False):
+class UserLoginPlain(TypedDict, total=False):
     """
-    TypedDict for UserLogin.
+    Plain version of UserLogin.
     """
 
-    email: str
-    password: str
+    email: Required[str]
+    password: Required[str]

@@ -1,13 +1,8 @@
-from typing import Union
-
-{{#vendorExtensions.x-py-other-imports}}
-{{{.}}}
-{{/vendorExtensions.x-py-other-imports}}
-{{#vendorExtensions.x-py-model-imports}}
-{{{.}}}
-{{/vendorExtensions.x-py-model-imports}}
-
-
 #: OneOf Type
 #: {{{description}}}{{^description}}{{{classname}}}{{/description}}
 {{classname}} = Union[{{#oneOf}}{{.}},{{/oneOf}}]
+
+#: The plain version of {{classname}}
+{{classname}}Plain = {{^interfaces.0}} {{classname}} {{/interfaces.0}} {{#interfaces.0}} Union[ {{/interfaces.0}}
+    {{#interfaces}}{{.}}Plain, {{/interfaces}}
+{{#interfaces.0}} ] {{/interfaces.0}}
