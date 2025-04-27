@@ -27,6 +27,7 @@ build-sdk-python: build-image ## Build Python SDK
 	$(info Docker - Building Devopness SDK - Python ...)
 	@docker run --rm \
 		-v $(PWD):/$(WORKDIR) \
+		-v $(PWD)/../generator:/generator \
 		--name devopness-sdk-python-build \
 		$(IMAGE):$(TAG) \
 		scripts/build.py
@@ -45,6 +46,7 @@ shell: build-image ## Runs shell in development environment
 	@docker run --rm \
 		-it \
 		-v $(PWD):/$(WORKDIR) \
+		-v $(PWD)/../generator:/generator \
 		--name devopness-sdk-python-shell \
   	$(IMAGE):$(TAG) \
 		/bin/bash
