@@ -17,6 +17,7 @@ class ServerCloudServiceCode(str, Enum):
     """
 
     AWS_MINUS_EC2 = "aws-ec2"
+    AZURE_MINUS_RM = "azure-rm"
     DIGITALOCEAN_MINUS_DROPLET = "digitalocean-droplet"
     GCP_MINUS_GCE = "gcp-gce"
     SELF_MINUS_HOSTED_MINUS_CUSTOM = "self-hosted-custom"
@@ -30,6 +31,7 @@ class ServerCloudServiceCode(str, Enum):
 # The plain version of ServerCloudServiceCode
 ServerCloudServiceCodePlain = Literal[
     "aws-ec2",
+    "azure-rm",
     "digitalocean-droplet",
     "gcp-gce",
     "self-hosted-custom",

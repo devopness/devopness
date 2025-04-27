@@ -24,6 +24,7 @@ jobs:
         with:
           filters: |
             changes:
+              - 'packages/sdks/common/**'
               - 'packages/sdks/python/**'
 
   build:

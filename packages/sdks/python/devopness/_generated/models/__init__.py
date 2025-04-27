@@ -97,6 +97,7 @@ from .cloud_service_settings_self_hosted_custom import (
 from .commit import Commit, CommitPlain
 from .credential import Credential, CredentialPlain
 from .credential_aws import CredentialAws, CredentialAwsPlain
+from .credential_azure import CredentialAzure, CredentialAzurePlain
 from .credential_digital_ocean import (
     CredentialDigitalOcean,
     CredentialDigitalOceanPlain,
@@ -352,6 +353,8 @@ __all__ = [
     "Credential",
     "CredentialAws",
     "CredentialAwsPlain",
+    "CredentialAzure",
+    "CredentialAzurePlain",
     "CredentialDigitalOcean",
     "CredentialDigitalOceanPlain",
     "CredentialEnvironmentCreate",

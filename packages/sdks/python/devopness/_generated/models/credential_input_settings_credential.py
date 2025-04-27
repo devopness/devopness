@@ -9,6 +9,7 @@ Note:
 from typing import Union
 
 from .credential_aws import CredentialAws, CredentialAwsPlain
+from .credential_azure import CredentialAzure, CredentialAzurePlain
 from .credential_digital_ocean import (
     CredentialDigitalOcean,
     CredentialDigitalOceanPlain,
@@ -23,6 +24,7 @@ from .credential_source_provider import (
 #: Cloud provider credential
 CredentialInputSettingsCredential = Union[
     CredentialAws,
+    CredentialAzure,
     CredentialDigitalOcean,
     CredentialGoogleCloud,
     CredentialSourceProvider,
@@ -31,6 +33,7 @@ CredentialInputSettingsCredential = Union[
 #: The plain version of CredentialInputSettingsCredential
 CredentialInputSettingsCredentialPlain = Union[
     CredentialAwsPlain,
+    CredentialAzurePlain,
     CredentialDigitalOceanPlain,
     CredentialGoogleCloudPlain,
     CredentialSourceProviderPlain,
