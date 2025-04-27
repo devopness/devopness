@@ -13,7 +13,6 @@
 
 
 import { CredentialAws } from './credential-aws';
-import { CredentialAzure } from './credential-azure';
 import { CredentialDigitalOcean } from './credential-digital-ocean';
 import { CredentialGoogleCloud } from './credential-google-cloud';
 import { CredentialSourceProvider } from './credential-source-provider';
@@ -26,9 +25,9 @@ import { CredentialSourceProvider } from './credential-source-provider';
 export interface CredentialInputSettings {
     /**
      * Cloud provider credential
-     * @type {CredentialAws | CredentialAzure | CredentialDigitalOcean | CredentialGoogleCloud | CredentialSourceProvider}
+     * @type {CredentialAws | CredentialDigitalOcean | CredentialGoogleCloud | CredentialSourceProvider}
      * @memberof CredentialInputSettings
      */
-    credential: CredentialAws | CredentialAzure | CredentialDigitalOcean | CredentialGoogleCloud | CredentialSourceProvider;
+    credential: CredentialAws | CredentialDigitalOcean | CredentialGoogleCloud | CredentialSourceProvider;
 }
 

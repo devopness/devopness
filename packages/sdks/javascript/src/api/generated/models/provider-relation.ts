@@ -13,7 +13,6 @@
 
 
 import { ProviderCode } from './provider-code';
-import { ProviderType } from './provider-type';
 
 /**
  * 
@@ -40,11 +39,11 @@ export interface ProviderRelation {
      */
     code_human_readable: string;
     /**
-     * 
-     * @type {ProviderType}
+     * Type of provider.
+     * @type {string}
      * @memberof ProviderRelation
      */
-    type: ProviderType;
+    type: ProviderRelationTypeEnum;
     /**
      * Human readable version of provider type
      * @type {string}
@@ -52,4 +51,14 @@ export interface ProviderRelation {
      */
     type_human_readable?: string;
 }
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum ProviderRelationTypeEnum {
+    CloudProvider = 'cloud_provider',
+    SourceProvider = 'source_provider'
+}
+
 

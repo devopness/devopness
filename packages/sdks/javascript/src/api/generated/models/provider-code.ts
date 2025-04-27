@@ -20,7 +20,6 @@
  */
 export enum ProviderCode {
     Aws = 'aws',
-    Azure = 'azure',
     Bitbucket = 'bitbucket',
     Digitalocean = 'digitalocean',
     Gcp = 'gcp',
