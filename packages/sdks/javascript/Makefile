@@ -15,6 +15,7 @@ build-sdk-js: build-image npm-ci ## Build Javascript SDK
 	$(info Docker - Building Javascript SDK ...)
 	@docker run --rm \
 	-v $(PWD):/$(WORKDIR) \
+	-v $(PWD)/../generator:/generator \
 	--name devopness-sdk-js-build \
 	$(IMAGE):$(TAG) \
 	npm run build
