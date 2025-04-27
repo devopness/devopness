@@ -25,7 +25,7 @@ jobs:
           filters: |
             changes:
               - 'packages/sdks/generator/**'
-              - 'x-packages/sdks/javascript/**'
+              - 'packages/sdks/javascript/**'
 
   build:
     name: Build SDK-JS
