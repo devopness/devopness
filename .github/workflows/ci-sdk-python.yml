@@ -24,6 +24,7 @@ jobs:
         with:
           filters: |
             changes:
+              - 'packages/sdks/generator/**'
               - 'x-packages/sdks/python/**'
 
   build:
