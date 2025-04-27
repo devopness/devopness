@@ -2,14 +2,17 @@
 Devopness API Python SDK - Painless essential DevOps to everyone
 """
 
-from typing import Any, Optional
+from typing import Any, Optional, Union
 from urllib.parse import urlencode
 
 import httpx
 
 from .._base import DevopnessBaseModel
 from .._client_config import DevopnessClientConfig
-from .._core import DevopnessApiError
+from .._core.api_error import (
+    raise_devopness_api_error,
+    raise_devopness_api_error_sync,
+)
 from .._core.network_error import (
     handle_network_errors,
     handle_network_errors_sync,
@@ -36,7 +39,6 @@ class DevopnessBaseService:
         Args:
             config (DevopnessApiClientConfig): Client configuration object.
         """
-
         self.__client = httpx.AsyncClient(
             base_url=config.base_url,
             timeout=config.timeout,
@@ -58,6 +60,40 @@ class DevopnessBaseService:
                 "response": [self.__on_response_sync],
             },
         )
+
+    async def __on_request(self, request: httpx.Request) -> None:
+        """
+        Request interceptor that injects the Authorization header if an access
+        token exists.
+
+        Args:
+            request (httpx.Request): The outgoing HTTP request.
+        """
+        access_token = DevopnessBaseService._access_token
+
+        if access_token:
+            request.headers["Authorization"] = f"Bearer {access_token}"
+
+        elif "Authorization" in request.headers:
+            del request.headers["Authorization"]
+
+    async def __on_response(self, response: httpx.Response) -> httpx.Response:
+        """
+        Response interceptor to error handling.
+
+        Args:
+            response (httpx.Response): The response object from the API.
+
+        Returns:
+            httpx.Response: The processed response.
+        """
+        try:
+            response.raise_for_status()
+
+        except httpx.HTTPStatusError as e:
+            await raise_devopness_api_error(e)
+
+        return response
 
     def __on_request_sync(self, request: httpx.Request) -> None:
         """
@@ -85,37 +121,13 @@ class DevopnessBaseService:
         Returns:
             httpx.Response: The processed response.
         """
-
         try:
             response.raise_for_status()
 
         except httpx.HTTPStatusError as e:
-            raise DevopnessApiError(e) from e
+            raise_devopness_api_error_sync(e)
 
         return response
-
-    async def __on_request(self, request: httpx.Request) -> None:
-        """
-        Request interceptor that injects the Authorization header if an access
-        token exists.
-
-        Args:
-            request (httpx.Request): The outgoing HTTP request.
-        """
-        return self.__on_request_sync(request)
-
-    async def __on_response(self, response: httpx.Response) -> httpx.Response:
-        """
-        Response interceptor to error handling.
-
-        Args:
-            response (httpx.Response): The response object from the API.
-
-        Returns:
-            httpx.Response: The processed response.
-        """
-
-        return self.__on_response_sync(response)
 
     @handle_network_errors
     async def _get(self, endpoint: str) -> httpx.Response:
@@ -131,7 +143,7 @@ class DevopnessBaseService:
         return await self.__client.get(endpoint)
 
     @handle_network_errors
-    async def _post(self, endpoint: str, data: Any = None) -> httpx.Response:
+    async def _post(self, endpoint: str, data: Any = None) -> httpx.Response:  # noqa: ANN401
         """
         Sends an HTTP POST request with optional JSON body.
 
@@ -146,7 +158,7 @@ class DevopnessBaseService:
         return await self.__client.post(endpoint, json=payload)
 
     @handle_network_errors
-    async def _put(self, endpoint: str, data: Any = None) -> httpx.Response:
+    async def _put(self, endpoint: str, data: Any = None) -> httpx.Response:  # noqa: ANN401
         """
         Sends an HTTP PUT request with optional JSON body.
 
@@ -187,7 +199,7 @@ class DevopnessBaseService:
         return self.__client_sync.get(endpoint)
 
     @handle_network_errors_sync
-    def _post_sync(self, endpoint: str, data: Any = None) -> httpx.Response:
+    def _post_sync(self, endpoint: str, data: Any = None) -> httpx.Response:  # noqa: ANN401
         """
         Sends an HTTP POST request with optional JSON body.
 
@@ -202,7 +214,7 @@ class DevopnessBaseService:
         return self.__client_sync.post(endpoint, json=payload)
 
     @handle_network_errors_sync
-    def _put_sync(self, endpoint: str, data: Any = None) -> httpx.Response:
+    def _put_sync(self, endpoint: str, data: Any = None) -> httpx.Response:  # noqa: ANN401
         """
         Sends an HTTP PUT request with optional JSON body.
 
@@ -229,21 +241,35 @@ class DevopnessBaseService:
         """
         return self.__client_sync.delete(endpoint)
 
-    def __get_payload(self, data: Any | DevopnessBaseModel) -> Any:
+    def __get_payload(
+        self,
+        data: Union[dict[str, Any], DevopnessBaseModel, None],
+    ) -> Union[dict[str, Any], None]:
         """
         Returns the payload for a request.
 
         Args:
-            data (Any): The request body payload.
+            data (Union[dict[str, Any], DevopnessBaseModel, None]): The request body
+                                                                    payload.
 
         Returns:
             str: The payload as a string.
         """
-        payload = data
-        if hasattr(data, "model_dump"):
-            payload = data.model_dump()
+        if data is None:
+            return None
 
-        return payload
+        if isinstance(data, DevopnessBaseModel):
+            payload = data.model_dump(exclude_unset=True)
+
+        if isinstance(data, dict):
+            payload = data
+
+        stripped_payload = {}
+        for key, value in payload.items():
+            if value is not None:
+                stripped_payload[key] = value
+
+        return stripped_payload
 
     @staticmethod
     def _get_query_string(params: dict[str, Any]) -> str:
@@ -251,7 +277,7 @@ class DevopnessBaseService:
         Returns the query string from the given query parameters.
 
         Args:
-            query_params (dict[str, Any]): The query parameters.
+            params (dict[str, Any]): The query parameters.
 
         Returns:
             str: The query string.
@@ -263,6 +289,4 @@ class DevopnessBaseService:
 
             params[key] = value
 
-        query_string = urlencode(params)
-
-        return query_string
+        return urlencode(params)

@@ -6,7 +6,10 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import Optional, TypedDict
+from typing import (
+    Optional,
+    TypedDict,
+)
 
 from pydantic import StrictBool, StrictStr
 
@@ -28,9 +31,9 @@ class SubscriptionPlan(DevopnessBaseModel):
     allow_subscriptions: Optional[StrictBool] = None
 
 
-class SubscriptionPlanDict(TypedDict, total=False):
+class SubscriptionPlanPlain(TypedDict, total=False):
     """
-    TypedDict for SubscriptionPlan.
+    Plain version of SubscriptionPlan.
     """
 
     provider_plan_id: str

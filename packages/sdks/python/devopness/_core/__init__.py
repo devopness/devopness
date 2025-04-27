@@ -9,7 +9,7 @@ from .sdk_error import DevopnessSdkError
 
 __all__ = [
     "DevopnessApiError",
-    "DevopnessSdkError",
     "DevopnessNetworkError",
     "DevopnessResponse",
+    "DevopnessSdkError",
 ]

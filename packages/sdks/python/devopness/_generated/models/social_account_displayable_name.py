@@ -6,12 +6,9 @@ Note:
     https://openapi-generator.tech
 """
 
-from __future__ import annotations
-
 import json
 from enum import Enum
-
-from typing_extensions import Self
+from typing import Literal, Self
 
 
 class SocialAccountDisplayableName(str, Enum):
@@ -19,9 +16,6 @@ class SocialAccountDisplayableName(str, Enum):
     A formatted version of the `provider` field value, aligned with the provider's name branding
     """
 
-    """
-    allowed enum values
-    """
     BITBUCKET = "Bitbucket"
     FACEBOOK = "Facebook"
     GITHUB = "GitHub"
@@ -32,3 +26,13 @@ class SocialAccountDisplayableName(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of SocialAccountDisplayableName from a JSON string"""
         return cls(json.loads(json_str))
+
+
+# The plain version of SocialAccountDisplayableName
+SocialAccountDisplayableNamePlain = Literal[
+    "Bitbucket",
+    "Facebook",
+    "GitHub",
+    "GitLab",
+    "Google",
+]

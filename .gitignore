@@ -111,3 +111,6 @@ docs-sdk-js
 
 ## Python Cache
 __pycache__
+
+## MyPy Cache
+.mypy_cache

@@ -2,6 +2,7 @@
 Devopness API Python SDK - Painless essential DevOps to everyone
 """
 
+import contextlib
 import json
 from typing import Optional
 
@@ -9,7 +10,11 @@ import httpx
 
 from .sdk_error import DevopnessSdkError
 
-__all__ = ["DevopnessApiError"]
+__all__ = [
+    "DevopnessApiError",
+    "raise_devopness_api_error",
+    "raise_devopness_api_error_sync",
+]
 
 
 class DevopnessApiError(DevopnessSdkError):
@@ -35,8 +40,6 @@ class DevopnessApiError(DevopnessSdkError):
 
     def __init__(self, err: httpx.HTTPStatusError) -> None:
         e_res = err.response
-
-        e_res.read()
         self.status_code = e_res.status_code
         self.response_text = e_res.text
 
@@ -86,3 +89,41 @@ class DevopnessApiError(DevopnessSdkError):
                     lines.append(f"      {error}")
 
         return "\n".join(lines)
+
+
+async def raise_devopness_api_error(err: httpx.HTTPStatusError) -> None:
+    """
+    Raise a DevopnessApiError exception from an HTTP Status Error.
+
+    If the error's response body is not yet read, this function will read it to
+    provide more details in the raised exception.
+
+    The original exception is preserved as the `__cause__` attribute of the new
+    exception.
+    """
+    try:
+        await err.response.aread()
+    except httpx.ReadError:
+        # The response was already read
+        contextlib.suppress(httpx.ReadError)
+
+    raise DevopnessApiError(err) from err
+
+
+def raise_devopness_api_error_sync(err: httpx.HTTPStatusError) -> None:
+    """
+    Raise a DevopnessApiError exception from an HTTP Status Error.
+
+    If the error's response body is not yet read, this function will read it to
+    provide more details in the raised exception.
+
+    The original exception is preserved as the `__cause__` attribute of the new
+    exception.
+    """
+    try:
+        err.response.read()
+    except httpx.ReadError:
+        # The response was already read
+        contextlib.suppress(httpx.ReadError)
+
+    raise DevopnessApiError(err) from err

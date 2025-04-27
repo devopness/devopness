@@ -6,12 +6,17 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, TypedDict
+from typing import (
+    List,
+    Required,
+    TypedDict,
+    Union,
+)
 
 from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
-from .static_billing_info import StaticBillingInfo
+from .static_billing_info import StaticBillingInfo, StaticBillingInfoPlain
 
 
 class UserProfileOptions(DevopnessBaseModel):
@@ -29,11 +34,16 @@ class UserProfileOptions(DevopnessBaseModel):
     timezones: List[StrictStr] = Field(description="Supported time zones")
 
 
-class UserProfileOptionsDict(TypedDict, total=False):
+class UserProfileOptionsPlain(TypedDict, total=False):
     """
-    TypedDict for UserProfileOptions.
+    Plain version of UserProfileOptions.
     """
 
-    billing: StaticBillingInfo
-    languages: List[str]
-    timezones: List[str]
+    billing: Required[
+        Union[
+            StaticBillingInfo,
+            StaticBillingInfoPlain,
+        ]
+    ]
+    languages: Required[List[str]]
+    timezones: Required[List[str]]

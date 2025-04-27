@@ -3,11 +3,12 @@ Devopness API Python SDK - Painless essential DevOps to everyone
 """
 
 import json
-from typing import Generic, Optional, TypeVar, Union, get_args, get_origin
+from typing import Any, Generic, Optional, TypeVar, Union, cast, get_args, get_origin
 from urllib.parse import parse_qs, urlparse
 from warnings import warn
 
 import httpx
+from pydantic import ValidationError
 
 from devopness._base import DevopnessBaseModel
 
@@ -50,7 +51,7 @@ class DevopnessResponse(Generic[T]):
                                                       body into.
         """
         self.status = response.status_code
-        self.data = self._parse_data(response, model_cls)  # type: ignore
+        self.data = cast(T, self._parse_data(response, model_cls))
         self.page_count = self._extract_last_page_number(response)
         self.action_id = self._parse_action_id(response)
 
@@ -103,49 +104,67 @@ class DevopnessResponse(Generic[T]):
         self,
         response: httpx.Response,
         model_cls: Optional[Union[type[DevopnessBaseModel], type]],
-    ):
+    ) -> Union[
+        str,
+        int,
+        float,
+        DevopnessBaseModel,
+        list[DevopnessBaseModel],
+        dict[str, Any],
+        None,
+    ]:
         """
         Parse the response data into the specified model class.
+
+        Parameters:
+            response: The HTTP response to parse
+            model_cls: The target model class to convert the data into
+
+        Returns:
+            Parsed data in the requested format or raw string on failure
         """
+        # Early return conditions
         raw_data: bytes = response.read()
-
-        if model_cls is str:
-            return raw_data.decode("utf-8")
-
-        if model_cls is int:
-            return int(raw_data.decode("utf-8"))
-
-        if model_cls is float:
-            return float(raw_data.decode("utf-8"))
-
-        # No data to parse, just return None
-        if raw_data == b"":
+        if raw_data == b"" or model_cls is None:
             return None
 
         try:
-            # No model provided, just try decoding JSON as dict
-            if not model_cls:
-                return json.loads(raw_data)
+            # Handle primitive types
+            if model_cls is str:
+                return raw_data.decode("utf-8")
 
-            # Handle Union types (e.g., AnyOf or OneOf)
-            if get_origin(model_cls) is Union:
-                for model in get_args(model_cls):
-                    try:
-                        return model.from_json(raw_data)
-                    except ValueError:
-                        continue
-                raise ValueError("No matching model found in Union")
+            if model_cls is int:
+                return int(raw_data.decode("utf-8"))
 
-            # Handle regular model class
-            return model_cls.from_json(raw_data)  # type: ignore
+            if model_cls is float:
+                return float(raw_data.decode("utf-8"))
 
-        # pylint: disable=bare-except
-        # pylint: disable=broad-exception-caught
-        except:  # noqa: E722
-            class_name = getattr(model_cls, "__name__", "Unknown")
-            warn(
-                f"Failed to deserialize response body into {class_name}. "
+            # Handle collection types
+            model_origin = get_origin(model_cls)
+
+            # Handle list type
+            if model_origin is list:
+                model_args: tuple[type[DevopnessBaseModel], ...] = get_args(model_cls)
+                if len(model_args) != 1:
+                    raise NotImplementedError(
+                        "Only lists with a single type argument are supported"
+                    )
+
+                list_data = json.loads(raw_data.decode("utf-8"))
+                return [model_args[0].from_dict(item) for item in list_data]
+
+            # Handle DevopnessBaseModel
+            if issubclass(model_cls, DevopnessBaseModel):
+                dict_data: dict[str, Any] = json.loads(raw_data.decode("utf-8"))
+                return model_cls.from_dict(dict_data)
+
+        except (json.JSONDecodeError, ValidationError):
+            model_name = model_cls.__name__ if model_cls else "None"
+            msg = (
+                f"Failed to deserialize response body into {model_name}. "
                 "Returning raw response data instead."
             )
+            warn(msg, stacklevel=3)
 
-            return json.loads(raw_data)
+        # Fallback to raw string data
+        return raw_data.decode("utf-8")
