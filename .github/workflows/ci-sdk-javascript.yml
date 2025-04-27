@@ -24,7 +24,7 @@ jobs:
         with:
           filters: |
             changes:
-              - 'packages/sdks/generator/**'
+              - 'packages/sdks/common/**'
               - 'packages/sdks/javascript/**'
 
   build:

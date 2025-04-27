@@ -6,7 +6,7 @@
     "generators": {
       "build-api-models": {
         "generatorName": "typescript-axios",
-        "glob": "../generator/api/*.json",
+        "glob": "../common/*.json",
         "templateDir": "./src/api/generator/templates",
         "output": "./src/api",
         "apiPackage": "generated/apis",
