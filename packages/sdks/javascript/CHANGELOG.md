@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- [#1632](https://github.com/devopness/devopness/pull/1632) [`bcbfb36`](https://github.com/devopness/devopness/commit/bcbfb36b947143134c0c6b8f705f6cc5401d3a6a) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Add Azure Service to Credential and Provider List
+- [#1632](https://github.com/devopness/devopness/pull/1632) [`bcbfb36`](https://github.com/devopness/devopness/commit/bcbfb36b947143134c0c6b8f705f6cc5401d3a6a) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Add Azure Service to Credential and Provider List
 
 ## 2.163.0
 
