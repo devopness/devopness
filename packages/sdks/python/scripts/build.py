@@ -195,7 +195,9 @@ def export_sdk_models() -> None:
         model_name = snake_to_pascal(model)
 
         names.append(model_name)
-        lines.append(f"from ._generated.models import {model_name}")
+        names.append(model_name + "Plain")
+
+        lines.append(f"from ._generated.models import {model_name}, {model_name}Plain")
 
     # Build the __all__ list
     lines.append("\n")
