@@ -3,6 +3,7 @@
 # pylint: disable=missing-function-docstring
 # pylint: disable=missing-module-docstring
 
+import json
 import os
 import shutil
 import subprocess
@@ -40,16 +41,292 @@ def remove_previous_generated_directories() -> None:
         shutil.rmtree(GENERATED_MODELS_DIR)
 
 
-def run_openapi_generator() -> None:
+def run_openapi_generator(extra_args: list[str] | None = None) -> None:
     print("🚀  Running OpenAPI Generator...")
 
-    cmd = "bash -c 'openapi-generator-cli generate'"
+    cmd_parts = [
+        "bash -c '",
+        "openapi-generator-cli generate",
+        '--input-spec="../common/spec.json"',
+        '--generator-name="python"',
+        '--output="./devopness/_generated"',
+        '--template-dir="./generator/templates"',
+        '--additional-properties="packageName="',
+    ]
+
+    if extra_args is not None:
+        cmd_parts.extend(extra_args)
+
+    # Add the closing quote to the command
+    cmd_parts.append("'")
+
+    cmd = " ".join(cmd_parts)
     subprocess.run(
         cmd,
         shell=True,
         check=True,
         env={"JAVA_OPTS": "-Dlog.level=warn"},
     )
+
+
+def run_openapi_generator_with_temporary_cleanup() -> None:
+    """
+    TEMPORARY HACK FOR INITIAL SDK DEVELOPMENT
+
+    We're removing all generated files that are not in test-scope
+    to keep the number of auto-generated files as low as possible
+    during the initial development of SDK.
+
+    This helps validate the core structure and functionality
+    of the SDK before exposing all endpoints.
+    """
+
+    apis_to_generate = [
+        "Credentials",
+        "CredentialsRepositories",
+        "Environments",
+        "Projects",
+        "ProjectsArchivedEnvironments",
+        "ProjectsEnvironments",
+        "Servers",
+        "Users",
+    ]
+
+    apis_string = ":".join(apis_to_generate)
+    apis_property = f"--global-property apis={apis_string},supportingFiles=__init__.py"
+
+    openapi_generator_extra_args: list[str] = []
+    openapi_generator_extra_args.append(apis_property)
+    openapi_generator_extra_args.append("--global-property models")
+
+    # The OpenAPI Generator does not support filtering tags with spaces.
+    # Therefore, we need to create a modified version of the spec.json
+    # that removes the spaces before passing it to the generator.
+    input_path = os.path.join(SDK_ROOT_DIR, "..", "common", "spec.json")
+    output_path = "/usr/local/share/spec.json"
+    with open(input_path, "r") as input_file:
+        content = json.load(input_file)
+        for _endpoint, endpoint_info in content["paths"].items():
+            for _method, method_info in endpoint_info.items():
+                if "tags" in method_info:
+                    method_info["tags"] = [
+                        tag.replace(" ", "").replace("-", "")
+                        for tag in method_info["tags"]
+                    ]
+
+        with open(output_path, "w") as output_file:
+            output_file.write(json.dumps(content))
+
+    openapi_generator_extra_args.append(f"--input-spec={output_path}")
+
+    run_openapi_generator(openapi_generator_extra_args)
+
+    models_to_keep = [
+        "action_data",
+        "action_deployment_commit",
+        "action_deployment_content",
+        "action_deployment_data",
+        "action_relation_shallow",
+        "action_relation",
+        "action_resource_data",
+        "action_resource",
+        "action_status_reason_code",
+        "action_status",
+        "action_step",
+        "action_summary_target",
+        "action_summary",
+        "action_target_data",
+        "action_target_network_data",
+        "action_target_server_data",
+        "action_target",
+        "action_trigger_type",
+        "action_triggered_from",
+        "action_type",
+        "application_last_deployments",
+        "application_relation",
+        "archived_environment_relation",
+        "blueprint_service",
+        "cloud_os_version_code",
+        "cloud_provider_input_settings_default_value",
+        "cloud_provider_input_settings",
+        "cloud_provider_property_type",
+        "cloud_provider_property_validation",
+        "cloud_provider_service_code",
+        "cloud_provider_service_region",
+        "cloud_provider_service_resource_type_scope",
+        "cloud_provider_service_resource_type",
+        "cloud_provider_service",
+        "cloud_service_settings_aws_ec2",
+        "cloud_service_settings_azure_rm",
+        "cloud_service_settings_digital_ocean_droplet",
+        "cloud_service_settings_gcp_gce",
+        "cloud_service_settings_self_hosted_custom",
+        "commit",
+        "credential_aws",
+        "credential_azure",
+        "credential_digital_ocean",
+        "credential_environment_create",
+        "credential_google_cloud",
+        "credential_input_settings_credential",
+        "credential_input_settings",
+        "credential_input_settings",
+        "credential_provider_type",
+        "credential_relation",
+        "credential_setting",
+        "credential_source_provider",
+        "credential_update",
+        "credential",
+        "credits",
+        "cron_job_pattern",
+        "cron_job_relation",
+        "daemon_relation",
+        "deployment_type",
+        "environment_project_create",
+        "environment_relation",
+        "environment_type",
+        "environment_update",
+        "environment",
+        "language",
+        "network_provision_input_settings_aws",
+        "network_provision_input_settings_azure",
+        "network_provision_input_settings_digital_ocean",
+        "network_provision_input_settings_gcp",
+        "network_provision_input_settings",
+        "network_provision_input",
+        "network_relation",
+        "network_rule_direction",
+        "network_rule_protocol",
+        "network_rule_relation",
+        "operating_system_version",
+        "operating_system",
+        "operation_custom_settings",
+        "os_users_inner",
+        "project_create",
+        "project_relation",
+        "project_update",
+        "project",
+        "provider_code",
+        "provider_input_settings_validation",
+        "provider_input_settings",
+        "provider_relation",
+        "provider_settings",
+        "provider_type",
+        "repository_branch",
+        "repository_relation",
+        "repository_tag_commit",
+        "repository_tag",
+        "repository",
+        "resource_summary_item_summary",
+        "resource_summary_item",
+        "resource_to_be_linked",
+        "resource_type",
+        "server_blueprint_spec",
+        "server_blueprint",
+        "server_cloud_service_code",
+        "server_command",
+        "server_environment_create",
+        "server_provision_input_settings",
+        "server_provision_input",
+        "server_relation",
+        "server_update",
+        "server",
+        "service_initial_state",
+        "service_relation",
+        "service_type",
+        "social_account_displayable_name",
+        "social_account_provider",
+        "social_account_relation",
+        "source_provider_name",
+        "source_type",
+        "ssh_key_relation",
+        "ssl_certificate_issuer",
+        "ssl_certificate_relation",
+        "ssl_certificate_type",
+        "ssl_certificate_validation_level",
+        "static_billing_info",
+        "subnet_provision_input_settings_aws",
+        "subnet_provision_input_settings_azure",
+        "subnet_provision_input_settings_digital_ocean",
+        "subnet_provision_input_settings_gcp",
+        "subnet_provision_input_settings",
+        "subnet_provision_input",
+        "subnet_relation",
+        "subnet_type",
+        "subscription_balance",
+        "subscription_plan",
+        "subscription",
+        "team_relation",
+        "triggered_action_stats",
+        "triggered_action_summary",
+        "triggered_actions",
+        "user_activity",
+        "user_billing",
+        "user_create",
+        "user_environment_stats",
+        "user_login_response",
+        "user_login",
+        "user_me",
+        "user_profile_options",
+        "user_project_stats",
+        "user_refresh_token_response",
+        "user_refresh_token",
+        "user_relation",
+        "user_resend_verification",
+        "user_team_stats",
+        "user_update",
+        "user_url",
+        "user_verify",
+        "user",
+        "virtual_host_relation",
+        "virtual_host_type",
+    ]
+
+    generated_models: list[str] = []
+    for filename in os.listdir(GENERATED_MODELS_DIR):
+        full_path = os.path.join(GENERATED_MODELS_DIR, filename)
+        if (
+            os.path.isfile(full_path)
+            and filename.endswith(".py")
+            and not filename.startswith("__")
+        ):
+            generated_models.append(filename)
+
+    generated_models.sort()
+
+    removed_model_identifiers: list[str] = []
+    for filename in generated_models:
+        model_name_snake = filename.replace(".py", "")
+        model_name_pascal = snake_to_pascal(model_name_snake)
+
+        if model_name_snake not in models_to_keep:
+            file_path_to_remove = os.path.join(GENERATED_MODELS_DIR, filename)
+            os.remove(file_path_to_remove)
+
+            removed_model_identifiers.append(f".{model_name_snake} import")
+            removed_model_identifiers.append(f'"{model_name_pascal}"')
+            removed_model_identifiers.append(f'"{model_name_pascal}Plain"')
+
+    init_file_path = os.path.join(GENERATED_MODELS_DIR, "__init__.py")
+
+    with open(init_file_path, "r", encoding="utf-8") as init_file:
+        init_lines = init_file.readlines()
+
+    cleaned_init_lines: list[str] = []
+    for line in init_lines:
+        should_include = True
+
+        for identifier in removed_model_identifiers:
+            if identifier in line:
+                should_include = False
+                break
+
+        if should_include:
+            cleaned_init_lines.append(line)
+
+    with open(init_file_path, "w", encoding="utf-8") as init_file:
+        init_file.writelines(cleaned_init_lines)
+
+    # END OF HACK
 
 
 def export_sdk_core() -> None:
@@ -79,6 +356,8 @@ def export_sdk_core() -> None:
         model_name = "Devopness" + snake_to_pascal(model)
 
         names.append(model_name)
+        # TODO: Use _core.<model_name> to avoid the need to export the model in
+        #       _core.__init__.py
         lines.append(f"from ._core import {model_name}")
 
     # Build the __all__ list
@@ -200,88 +479,6 @@ def export_sdk_services() -> None:
         f.write("\n".join(lines))
 
 
-def fix_permissions_and_ownership(
-    dir_path: str | None = None,
-    file_path: str | None = None,
-) -> None:
-    print(f"🔧  Fixing permissions and ownership for {dir_path}...")
-
-    if dir_path and os.path.isdir(dir_path):
-        # Change directory permissions
-        subprocess.run(
-            [
-                "find",
-                dir_path,
-                "-type",
-                "d",
-                "-exec",
-                "chmod",
-                "755",
-                "{}",
-                ";",
-            ],
-            check=True,
-        )
-
-    if file_path:
-        # Change file permissions
-        subprocess.run(
-            [
-                "find",
-                file_path,
-                "-type",
-                "f",
-                "-exec",
-                "chmod",
-                "644",
-                "{}",
-                ";",
-            ],
-            check=True,
-        )
-
-    # If USER_ID and GROUP_ID are set, change ownership
-    user_id = os.getenv("USER_ID")
-    group_id = os.getenv("GROUP_ID")
-
-    if user_id and group_id:
-        if dir_path is None and file_path is None:
-            return
-
-        path: str = dir_path if dir_path else file_path  # type: ignore
-        subprocess.run(
-            [
-                "chown",
-                "-R",
-                f"{user_id}:{group_id}",
-                path,
-            ],
-            check=True,
-        )
-
-
-def fix_import_paths_in_models():
-    print("🔧  Adjusting import paths in models...")
-
-    for file in os.listdir(GENERATED_MODELS_DIR):
-        if not file.endswith(".py"):
-            continue
-
-        file_path = os.path.join(GENERATED_MODELS_DIR, file)
-        file_content = ""
-
-        with open(file_path, "r", encoding="utf-8") as f:
-            file_content = f.read()
-
-            file_content = file_content.replace(
-                "from .models.",
-                "from .",
-            )
-
-        with open(file_path, "w", encoding="utf-8") as f:
-            f.write(file_content)
-
-
 def format_generated_files() -> None:
     print("🔧  Formatting generated files...")
 
@@ -292,7 +489,7 @@ def format_generated_files() -> None:
 def fix_code_style_issues() -> None:
     print("🔧  Fixing code style issues in generated files...")
 
-    cmd = "bash -c 'ruff check --fix'"
+    cmd = "bash -c 'ruff check --fix -s'"
     subprocess.run(cmd, shell=True, check=False)
 
 
@@ -310,44 +507,21 @@ def remove_openapi_generator_cache() -> None:
     shutil.rmtree(dir_path, ignore_errors=True)
 
 
-def execute_temp_script():
-    print("🧹  Executing temporary script...")
-
-    cmd = 'bash -c "bash scripts/temp.sh"'
-    subprocess.run(cmd, shell=True, check=True)
-
-
-def execute_post_build_tasks() -> None:
-    print("🔧  Executing post-build tasks...")
-
-    fix_permissions_and_ownership(file_path=SDK_CORE_FILE)
-    fix_permissions_and_ownership(file_path=SDK_MODELS_FILE)
-    fix_permissions_and_ownership(file_path=SDK_SERVICES_FILE)
-
-    fix_permissions_and_ownership(GENERATED_API_DIR)
-    fix_permissions_and_ownership(GENERATED_MODELS_DIR)
-
-    fix_import_paths_in_models()
-
-    remove_openapi_generator_cache()
-
-    fix_import_issues()
-    fix_code_style_issues()
-    format_generated_files()
-
-
 if __name__ == "__main__":
     try:
         remove_previous_generated_directories()
-        run_openapi_generator()
-
-        execute_temp_script()
+        # run_openapi_generator()
+        run_openapi_generator_with_temporary_cleanup()
 
         export_sdk_core()
         export_sdk_models()
         export_sdk_services()
 
-        execute_post_build_tasks()
+        print("🔧  Executing post-build tasks...")
+        remove_openapi_generator_cache()
+        fix_import_issues()
+        fix_code_style_issues()
+        format_generated_files()
 
         print("✅  Devopness SDK - Python Build completed successfully!")
 

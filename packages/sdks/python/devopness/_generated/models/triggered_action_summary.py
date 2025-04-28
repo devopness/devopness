@@ -6,7 +6,11 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import Optional, TypedDict, Union
+from typing import (
+    Optional,
+    TypedDict,
+    Union,
+)
 
 from pydantic import Field, StrictFloat, StrictInt
 
@@ -51,9 +55,9 @@ class TriggeredActionSummary(DevopnessBaseModel):
     )
 
 
-class TriggeredActionSummaryDict(TypedDict, total=False):
+class TriggeredActionSummaryPlain(TypedDict, total=False):
     """
-    TypedDict for TriggeredActionSummary.
+    Plain version of TriggeredActionSummary.
     """
 
     count: float

@@ -1,5 +1,0 @@
-{{#allParams}}
-    {{^isHeaderParam}}
-        {{paramName}}: {{^required}}Optional[{{/required}}{{#isModel}}Union[{{/isModel}}{{dataType}}{{#isModel}}, {{dataType}}Dict,]{{/isModel}}{{^required}}] = None{{/required}},
-    {{/isHeaderParam}}
-{{/allParams}}

@@ -14,21 +14,21 @@ from ..models import (
     UserActivity,
     UserBilling,
     UserCreate,
-    UserCreateDict,
+    UserCreatePlain,
     UserLogin,
-    UserLoginDict,
+    UserLoginPlain,
     UserLoginResponse,
     UserMe,
     UserRefreshToken,
-    UserRefreshTokenDict,
+    UserRefreshTokenPlain,
     UserRefreshTokenResponse,
     UserResendVerification,
-    UserResendVerificationDict,
+    UserResendVerificationPlain,
     UserUpdate,
-    UserUpdateDict,
+    UserUpdatePlain,
     UserUrl,
     UserVerify,
-    UserVerifyDict,
+    UserVerifyPlain,
 )
 
 
@@ -41,11 +41,15 @@ class UsersApiService(DevopnessBaseService):
         self,
         user_create: Union[
             UserCreate,
-            UserCreateDict,
+            UserCreatePlain,
         ],
-    ) -> DevopnessResponse:
+    ) -> DevopnessResponse[None]:
         """
         Sign up/register a new user
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -55,17 +59,21 @@ class UsersApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, user_create)
 
-        return DevopnessResponse(response)
+        return DevopnessResponse(response, None)
 
     def add_user_sync(
         self,
         user_create: Union[
             UserCreate,
-            UserCreateDict,
+            UserCreatePlain,
         ],
-    ) -> DevopnessResponse:
+    ) -> DevopnessResponse[None]:
         """
         Sign up/register a new user
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -75,7 +83,7 @@ class UsersApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._post_sync(endpoint, user_create)
 
-        return DevopnessResponse(response)
+        return DevopnessResponse(response, None)
 
     async def get_user(
         self,
@@ -83,6 +91,10 @@ class UsersApiService(DevopnessBaseService):
     ) -> DevopnessResponse[User]:
         """
         Get a user by ID or URL Slug
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -100,6 +112,10 @@ class UsersApiService(DevopnessBaseService):
     ) -> DevopnessResponse[User]:
         """
         Get a user by ID or URL Slug
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -117,6 +133,10 @@ class UsersApiService(DevopnessBaseService):
     ) -> DevopnessResponse[UserActivity]:
         """
         Get activity information for a user
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -134,6 +154,10 @@ class UsersApiService(DevopnessBaseService):
     ) -> DevopnessResponse[UserActivity]:
         """
         Get activity information for a user
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -150,6 +174,10 @@ class UsersApiService(DevopnessBaseService):
     ) -> DevopnessResponse[UserBilling]:
         """
         Get current user's billing info for active subscription
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -166,6 +194,10 @@ class UsersApiService(DevopnessBaseService):
     ) -> DevopnessResponse[UserBilling]:
         """
         Get current user's billing info for active subscription
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -179,9 +211,13 @@ class UsersApiService(DevopnessBaseService):
 
     async def get_user_logout(
         self,
-    ) -> DevopnessResponse:
+    ) -> DevopnessResponse[None]:
         """
         Logout/revoke an existing token
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -191,13 +227,17 @@ class UsersApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response)
+        return DevopnessResponse(response, None)
 
     def get_user_logout_sync(
         self,
-    ) -> DevopnessResponse:
+    ) -> DevopnessResponse[None]:
         """
         Logout/revoke an existing token
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -207,13 +247,17 @@ class UsersApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get_sync(endpoint)
 
-        return DevopnessResponse(response)
+        return DevopnessResponse(response, None)
 
     async def get_user_me(
         self,
     ) -> DevopnessResponse[UserMe]:
         """
         Get details of the current user
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -230,6 +274,10 @@ class UsersApiService(DevopnessBaseService):
     ) -> DevopnessResponse[UserMe]:
         """
         Get details of the current user
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -246,6 +294,10 @@ class UsersApiService(DevopnessBaseService):
     ) -> DevopnessResponse[UserUrl]:
         """
         Get the authenticated user's URLs
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -262,6 +314,10 @@ class UsersApiService(DevopnessBaseService):
     ) -> DevopnessResponse[UserUrl]:
         """
         Get the authenticated user's URLs
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -277,11 +333,15 @@ class UsersApiService(DevopnessBaseService):
         self,
         user_login: Union[
             UserLogin,
-            UserLoginDict,
+            UserLoginPlain,
         ],
     ) -> DevopnessResponse[UserLoginResponse]:
         """
         Login/create a new token for the given credentials
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -297,11 +357,15 @@ class UsersApiService(DevopnessBaseService):
         self,
         user_login: Union[
             UserLogin,
-            UserLoginDict,
+            UserLoginPlain,
         ],
     ) -> DevopnessResponse[UserLoginResponse]:
         """
         Login/create a new token for the given credentials
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -317,11 +381,15 @@ class UsersApiService(DevopnessBaseService):
         self,
         user_refresh_token: Union[
             UserRefreshToken,
-            UserRefreshTokenDict,
+            UserRefreshTokenPlain,
         ],
     ) -> DevopnessResponse[UserRefreshTokenResponse]:
         """
         Refresh an existing user access token
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -337,11 +405,15 @@ class UsersApiService(DevopnessBaseService):
         self,
         user_refresh_token: Union[
             UserRefreshToken,
-            UserRefreshTokenDict,
+            UserRefreshTokenPlain,
         ],
     ) -> DevopnessResponse[UserRefreshTokenResponse]:
         """
         Refresh an existing user access token
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -357,11 +429,15 @@ class UsersApiService(DevopnessBaseService):
         self,
         user_resend_verification: Union[
             UserResendVerification,
-            UserResendVerificationDict,
+            UserResendVerificationPlain,
         ],
-    ) -> DevopnessResponse:
+    ) -> DevopnessResponse[None]:
         """
         Resend the verification email
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -371,17 +447,21 @@ class UsersApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, user_resend_verification)
 
-        return DevopnessResponse(response)
+        return DevopnessResponse(response, None)
 
     def resend_verification_user_sync(
         self,
         user_resend_verification: Union[
             UserResendVerification,
-            UserResendVerificationDict,
+            UserResendVerificationPlain,
         ],
-    ) -> DevopnessResponse:
+    ) -> DevopnessResponse[None]:
         """
         Resend the verification email
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -391,18 +471,22 @@ class UsersApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._post_sync(endpoint, user_resend_verification)
 
-        return DevopnessResponse(response)
+        return DevopnessResponse(response, None)
 
     async def update_user(
         self,
         user_id: str,
         user_update: Union[
             UserUpdate,
-            UserUpdateDict,
+            UserUpdatePlain,
         ],
-    ) -> DevopnessResponse:
+    ) -> DevopnessResponse[None]:
         """
         Update an existing user
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -412,18 +496,22 @@ class UsersApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = await self._put(endpoint, user_update)
 
-        return DevopnessResponse(response)
+        return DevopnessResponse(response, None)
 
     def update_user_sync(
         self,
         user_id: str,
         user_update: Union[
             UserUpdate,
-            UserUpdateDict,
+            UserUpdatePlain,
         ],
-    ) -> DevopnessResponse:
+    ) -> DevopnessResponse[None]:
         """
         Update an existing user
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -433,17 +521,21 @@ class UsersApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._put_sync(endpoint, user_update)
 
-        return DevopnessResponse(response)
+        return DevopnessResponse(response, None)
 
     async def verify_user(
         self,
         user_verify: Union[
             UserVerify,
-            UserVerifyDict,
+            UserVerifyPlain,
         ],
-    ) -> DevopnessResponse:
+    ) -> DevopnessResponse[None]:
         """
         Activate the user account
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -453,17 +545,21 @@ class UsersApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, user_verify)
 
-        return DevopnessResponse(response)
+        return DevopnessResponse(response, None)
 
     def verify_user_sync(
         self,
         user_verify: Union[
             UserVerify,
-            UserVerifyDict,
+            UserVerifyPlain,
         ],
-    ) -> DevopnessResponse:
+    ) -> DevopnessResponse[None]:
         """
         Activate the user account
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
         """
 
         endpoint_parts = [
@@ -473,4 +569,4 @@ class UsersApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._post_sync(endpoint, user_verify)
 
-        return DevopnessResponse(response)
+        return DevopnessResponse(response, None)

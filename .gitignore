@@ -108,3 +108,9 @@ docs-sdk-js
 
 ## OpenAPI Generator Cache
 .openapi-generator
+
+## Python Cache
+__pycache__
+
+## MyPy Cache
+.mypy_cache

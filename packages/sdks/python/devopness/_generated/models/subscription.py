@@ -7,12 +7,17 @@ Note:
 """
 
 from datetime import datetime
-from typing import List, Optional, TypedDict, Union
+from typing import (
+    List,
+    Optional,
+    TypedDict,
+    Union,
+)
 
 from pydantic import Field, StrictFloat, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
-from .subscription_balance import SubscriptionBalance
+from .subscription_balance import SubscriptionBalance, SubscriptionBalancePlain
 
 
 class Subscription(DevopnessBaseModel):
@@ -81,9 +86,9 @@ class Subscription(DevopnessBaseModel):
     )
 
 
-class SubscriptionDict(TypedDict, total=False):
+class SubscriptionPlain(TypedDict, total=False):
     """
-    TypedDict for Subscription.
+    Plain version of Subscription.
     """
 
     id: int
@@ -98,5 +103,13 @@ class SubscriptionDict(TypedDict, total=False):
     ends_at: datetime
     created_at: datetime
     updated_at: datetime
-    current_balance: SubscriptionBalance
-    balances: List[SubscriptionBalance]
+    current_balance: Union[
+        SubscriptionBalance,
+        SubscriptionBalancePlain,
+    ]
+    balances: List[
+        Union[
+            SubscriptionBalance,
+            SubscriptionBalancePlain,
+        ]
+    ]

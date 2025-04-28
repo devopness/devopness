@@ -6,12 +6,17 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import Optional, TypedDict
+from typing import (
+    Optional,
+    Required,
+    TypedDict,
+    Union,
+)
 
 from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
-from .language import Language
+from .language import Language, LanguagePlain
 
 
 class UserUpdate(DevopnessBaseModel):
@@ -39,13 +44,16 @@ class UserUpdate(DevopnessBaseModel):
     language: Optional[Language] = None
 
 
-class UserUpdateDict(TypedDict, total=False):
+class UserUpdatePlain(TypedDict, total=False):
     """
-    TypedDict for UserUpdate.
+    Plain version of UserUpdate.
     """
 
-    id: str
-    name: str
-    email: str
-    url_slug: str
-    language: Language
+    id: Required[str]
+    name: Required[str]
+    email: Required[str]
+    url_slug: Required[str]
+    language: Union[
+        Language,
+        LanguagePlain,
+    ]

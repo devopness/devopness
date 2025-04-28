@@ -6,7 +6,10 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import TypedDict
+from typing import (
+    Required,
+    TypedDict,
+)
 
 from pydantic import Field, StrictStr
 
@@ -26,9 +29,9 @@ class UserUrl(DevopnessBaseModel):
     )
 
 
-class UserUrlDict(TypedDict, total=False):
+class UserUrlPlain(TypedDict, total=False):
     """
-    TypedDict for UserUrl.
+    Plain version of UserUrl.
     """
 
-    billing_management_url: str
+    billing_management_url: Required[str]

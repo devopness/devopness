@@ -70,9 +70,72 @@ packages = [
 ]
 
 [tool.poetry.group.dev.dependencies]
+openapi-generator-cli = { version = "^7.12.0", markers = "python_version < '4.0'" }
 ruff = "^0.11.6"
+mypy = "1.15.0"
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
 
 [tool.ruff.lint]
-ignore = [
-  "F841", # Local variable is assigned to but never used
+preview = true
+
+extend-select = [
+  "A",   # flake8-builtins (avoid shadowing built-ins)
+  "ANN", # flake8-annotations (type hints for public APIs)
+  "B",   # flake8-bugbear (common bugs and best practices)
+  "E",   # pycodestyle (error)
+  "F",   # pyflakes (basic errors)
+  "I",   # isort (import sorting)
+  "N",   # pep8-naming
+  "PIE", # flake8-pie (extra cleanups)
+  "Q",   # flake8-quotes (quote consistency)
+  "RET", # flake8-return (return statement rules)
+  "RUF", # Ruff-specific rules
+  "S",   # flake8-bandit (security rules)
+  "SIM", # flake8-simplify
+  "W",   # pycodestyle (warning)
 ]
+
+ignore = [
+  "RET504", # Unnecessary assignment to `**kwargs` before `return` statement
+]
+
+[tool.ruff.lint.per-file-ignores]
+"devopness/_generated/**/*" = [
+  "E501", # Line too long
+]
+"devopness/_generated/**/__init__.py" = [
+  "F401", # Module imported but unused
+]
+"scripts/**/*" = [
+  "ANN",  # flake8-annotations
+  "S404", # `subprocess` module is possibly insecure
+  "S602", # `subprocess` call with `shell=True` identified, security issue
+]
+"tests/**/*" = [
+  "ANN",  # flake8-annotations
+  "E501", # Line too long
+  "S101", # Use of `assert` detected
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["devopness"]
+case-sensitive = true
+
+[tool.mypy]
+python_version = "3.11"
+
+strict = true
+disallow_any_unimported = true
+strict_optional = true
+warn_no_return = true
+warn_unreachable = true
+
+sqlite_cache = true
+cache_fine_grained = true
+
+[[tool.mypy.overrides]]
+module = "devopness._generated.api.*"
+disable_error_code = ["attr-defined"]

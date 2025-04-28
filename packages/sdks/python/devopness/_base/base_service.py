@@ -2,13 +2,21 @@
 Devopness API Python SDK - Painless essential DevOps to everyone
 """
 
-from typing import Any, Optional
+from typing import Any, Optional, Union
 from urllib.parse import urlencode
 
 import httpx
 
 from .._base import DevopnessBaseModel
 from .._client_config import DevopnessClientConfig
+from .._core.api_error import (
+    raise_devopness_api_error,
+    raise_devopness_api_error_sync,
+)
+from .._core.network_error import (
+    handle_network_errors,
+    handle_network_errors_sync,
+)
 
 __all__ = ["DevopnessBaseService"]
 
@@ -31,7 +39,6 @@ class DevopnessBaseService:
         Args:
             config (DevopnessApiClientConfig): Client configuration object.
         """
-
         self.__client = httpx.AsyncClient(
             base_url=config.base_url,
             timeout=config.timeout,
@@ -80,68 +87,13 @@ class DevopnessBaseService:
         Returns:
             httpx.Response: The processed response.
         """
+        try:
+            response.raise_for_status()
 
-        if response.status_code >= 400 and response.status_code < 500:
-            # Handle client-side errors (4xx)
-            raise RuntimeError(f"Client Error: {response.status_code}")
-
-        elif response.status_code >= 500:
-            # Handle server-side errors (5xx)
-            raise RuntimeError(f"Server Error: {response.status_code}")
+        except httpx.HTTPStatusError as e:
+            await raise_devopness_api_error(e)
 
         return response
-
-    async def _get(self, endpoint: str) -> httpx.Response:
-        """
-        Sends an HTTP GET request to the specified endpoint.
-
-        Args:
-            endpoint (str): The relative URL path.
-
-        Returns:
-            httpx.Response: The HTTP response object.
-        """
-        return await self.__client.get(endpoint)
-
-    async def _post(self, endpoint: str, data: Any = None) -> httpx.Response:
-        """
-        Sends an HTTP POST request with optional JSON body.
-
-        Args:
-            endpoint (str): The relative URL path.
-            data (Any, optional): The request body payload.
-
-        Returns:
-            httpx.Response: The HTTP response object.
-        """
-        payload = self.__get_payload(data)
-        return await self.__client.post(endpoint, json=payload)
-
-    async def _put(self, endpoint: str, data: Any = None) -> httpx.Response:
-        """
-        Sends an HTTP PUT request with optional JSON body.
-
-        Args:
-            endpoint (str): The relative URL path.
-            data (Any, optional): The request body payload.
-
-        Returns:
-            httpx.Response: The HTTP response object.
-        """
-        payload = self.__get_payload(data)
-        return await self.__client.put(endpoint, json=payload)
-
-    async def _delete(self, endpoint: str) -> httpx.Response:
-        """
-        Sends an HTTP DELETE request.
-
-        Args:
-            endpoint (str): The relative URL path.
-
-        Returns:
-            httpx.Response: The HTTP response object.
-        """
-        return await self.__client.delete(endpoint)
 
     def __on_request_sync(self, request: httpx.Request) -> None:
         """
@@ -169,17 +121,71 @@ class DevopnessBaseService:
         Returns:
             httpx.Response: The processed response.
         """
+        try:
+            response.raise_for_status()
 
-        if response.status_code >= 400 and response.status_code < 500:
-            # Handle client-side errors (4xx)
-            raise RuntimeError(f"Client Error: {response.status_code}")
-
-        elif response.status_code >= 500:
-            # Handle server-side errors (5xx)
-            raise RuntimeError(f"Server Error: {response.status_code}")
+        except httpx.HTTPStatusError as e:
+            raise_devopness_api_error_sync(e)
 
         return response
 
+    @handle_network_errors
+    async def _get(self, endpoint: str) -> httpx.Response:
+        """
+        Sends an HTTP GET request to the specified endpoint.
+
+        Args:
+            endpoint (str): The relative URL path.
+
+        Returns:
+            httpx.Response: The HTTP response object.
+        """
+        return await self.__client.get(endpoint)
+
+    @handle_network_errors
+    async def _post(self, endpoint: str, data: Any = None) -> httpx.Response:  # noqa: ANN401
+        """
+        Sends an HTTP POST request with optional JSON body.
+
+        Args:
+            endpoint (str): The relative URL path.
+            data (Any, optional): The request body payload.
+
+        Returns:
+            httpx.Response: The HTTP response object.
+        """
+        payload = self.__get_payload(data)
+        return await self.__client.post(endpoint, json=payload)
+
+    @handle_network_errors
+    async def _put(self, endpoint: str, data: Any = None) -> httpx.Response:  # noqa: ANN401
+        """
+        Sends an HTTP PUT request with optional JSON body.
+
+        Args:
+            endpoint (str): The relative URL path.
+            data (Any, optional): The request body payload.
+
+        Returns:
+            httpx.Response: The HTTP response object.
+        """
+        payload = self.__get_payload(data)
+        return await self.__client.put(endpoint, json=payload)
+
+    @handle_network_errors
+    async def _delete(self, endpoint: str) -> httpx.Response:
+        """
+        Sends an HTTP DELETE request.
+
+        Args:
+            endpoint (str): The relative URL path.
+
+        Returns:
+            httpx.Response: The HTTP response object.
+        """
+        return await self.__client.delete(endpoint)
+
+    @handle_network_errors_sync
     def _get_sync(self, endpoint: str) -> httpx.Response:
         """
         Sends an HTTP GET request to the specified endpoint.
@@ -192,7 +198,8 @@ class DevopnessBaseService:
         """
         return self.__client_sync.get(endpoint)
 
-    def _post_sync(self, endpoint: str, data: Any = None) -> httpx.Response:
+    @handle_network_errors_sync
+    def _post_sync(self, endpoint: str, data: Any = None) -> httpx.Response:  # noqa: ANN401
         """
         Sends an HTTP POST request with optional JSON body.
 
@@ -206,7 +213,8 @@ class DevopnessBaseService:
         payload = self.__get_payload(data)
         return self.__client_sync.post(endpoint, json=payload)
 
-    def _put_sync(self, endpoint: str, data: Any = None) -> httpx.Response:
+    @handle_network_errors_sync
+    def _put_sync(self, endpoint: str, data: Any = None) -> httpx.Response:  # noqa: ANN401
         """
         Sends an HTTP PUT request with optional JSON body.
 
@@ -220,6 +228,7 @@ class DevopnessBaseService:
         payload = self.__get_payload(data)
         return self.__client_sync.put(endpoint, json=payload)
 
+    @handle_network_errors_sync
     def _delete_sync(self, endpoint: str) -> httpx.Response:
         """
         Sends an HTTP DELETE request.
@@ -232,29 +241,43 @@ class DevopnessBaseService:
         """
         return self.__client_sync.delete(endpoint)
 
-    def __get_payload(self, data: Any | DevopnessBaseModel) -> Any:
+    def __get_payload(
+        self,
+        data: Union[dict[str, Any], DevopnessBaseModel, None],
+    ) -> Union[dict[str, Any], None]:
         """
         Returns the payload for a request.
 
         Args:
-            data (Any): The request body payload.
+            data (Union[dict[str, Any], DevopnessBaseModel, None]): The request body
+                                                                    payload.
 
         Returns:
             str: The payload as a string.
         """
-        payload = data
-        if hasattr(data, "model_dump"):
-            payload = data.model_dump()
+        if data is None:
+            return None
 
-        return payload
+        if isinstance(data, DevopnessBaseModel):
+            payload = data.model_dump(exclude_unset=True)
+
+        if isinstance(data, dict):
+            payload = data
+
+        stripped_payload = {}
+        for key, value in payload.items():
+            if value is not None:
+                stripped_payload[key] = value
+
+        return stripped_payload
 
     @staticmethod
-    def __get_query_string(params: dict[str, Any]) -> str:
+    def _get_query_string(params: dict[str, Any]) -> str:
         """
         Returns the query string from the given query parameters.
 
         Args:
-            query_params (dict[str, Any]): The query parameters.
+            params (dict[str, Any]): The query parameters.
 
         Returns:
             str: The query string.
@@ -266,6 +289,4 @@ class DevopnessBaseService:
 
             params[key] = value
 
-        query_string = urlencode(params)
-
-        return query_string
+        return urlencode(params)

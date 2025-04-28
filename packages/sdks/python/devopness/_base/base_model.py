@@ -21,17 +21,17 @@ class DevopnessBaseModel(BaseModel):
         protected_namespaces=(),
     )
 
-    def __getitem__(self, key: str) -> Any:
+    def __getitem__(self, key: str) -> Any:  # noqa: ANN401
         return getattr(self, key)
 
-    def __setitem__(self, key: str, value: Any) -> None:
+    def __setitem__(self, key: str, value: Any) -> None:  # noqa: ANN401
         setattr(self, key, value)
 
     def __contains__(self, key: str) -> bool:
         return hasattr(self, key)
 
     @classmethod
-    def from_dict(cls, data) -> Self:
+    def from_dict(cls, data: Any) -> Self:  # noqa: ANN401
         """
         Create an instance of the model from a dictionary.
 
@@ -41,16 +41,14 @@ class DevopnessBaseModel(BaseModel):
         Returns:
             Self: An instance of the model.
         """
-        model = cls.model_validate(data)
+        return cls.model_validate(data)
 
-        return model
-
-    def to_dict(self) -> dict:
+    def to_dict(self) -> dict[str, Any]:
         """
         Convert the model to a dictionary.
 
         Returns:
-            dict: A dictionary representing the model.
+            dict (dict[str, Any]): A dictionary representing the model.
         """
         return self.model_dump()
 

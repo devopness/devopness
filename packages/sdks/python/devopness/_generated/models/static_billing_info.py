@@ -6,12 +6,17 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional, TypedDict
+from typing import (
+    List,
+    Optional,
+    TypedDict,
+    Union,
+)
 
 from pydantic import Field
 
 from .. import DevopnessBaseModel
-from .subscription_plan import SubscriptionPlan
+from .subscription_plan import SubscriptionPlan, SubscriptionPlanPlain
 
 
 class StaticBillingInfo(DevopnessBaseModel):
@@ -27,9 +32,14 @@ class StaticBillingInfo(DevopnessBaseModel):
     )
 
 
-class StaticBillingInfoDict(TypedDict, total=False):
+class StaticBillingInfoPlain(TypedDict, total=False):
     """
-    TypedDict for StaticBillingInfo.
+    Plain version of StaticBillingInfo.
     """
 
-    subscription_plans: List[SubscriptionPlan]
+    subscription_plans: List[
+        Union[
+            SubscriptionPlan,
+            SubscriptionPlanPlain,
+        ]
+    ]

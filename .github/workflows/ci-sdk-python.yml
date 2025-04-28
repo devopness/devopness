@@ -24,13 +24,26 @@ jobs:
         with:
           filters: |
             changes:
+              - 'packages/sdks/common/**'
               - 'packages/sdks/python/**'
 
   build:
     name: Build SDK-Python
     needs: detect-changes
     if: ${{ needs.detect-changes.outputs.changes == 'true' }}
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        python:
+          - 3.13
+          - 3.12
+          - 3.11
+        os:
+          - ubuntu-latest
+
+    env:
+      PYTHON_VERSION: ${{ matrix.python }}
 
     steps:
       - uses: actions/checkout@v3
@@ -49,7 +62,11 @@ jobs:
       - name: Build SDK - Python
         run: make build-sdk-python
 
-      # TO DO: Add testing step
+      - name: Lint SDK - Python
+        run: make lint
+
+      - name: Test SDK - Python
+        run: make test-unit
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         if: github.repository == 'devopness/devopness'
