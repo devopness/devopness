@@ -12,7 +12,7 @@
  */
 
 
-import { ActionRelation } from './action-relation';
+import { ActionRelationShallow } from './action-relation-shallow';
 import { SslCertificateIssuer } from './ssl-certificate-issuer';
 import { SslCertificateType } from './ssl-certificate-type';
 import { SslCertificateValidationLevel } from './ssl-certificate-validation-level';
@@ -61,10 +61,10 @@ export interface SslCertificateRelation {
     active: boolean;
     /**
      * 
-     * @type {ActionRelation}
+     * @type {ActionRelationShallow}
      * @memberof SslCertificateRelation
      */
-    last_action: ActionRelation | null;
+    last_action: ActionRelationShallow | null;
     /**
      * The date and time when this certificate will no longer be valid, down to minute precision
      * @type {string}

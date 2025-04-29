@@ -16,12 +16,59 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { Application } from '../../generated/models';
+import { ApplicationEnvironmentCreate } from '../../generated/models';
+import { ApplicationRelation } from '../../generated/models';
 import { ApplicationUpdate } from '../../generated/models';
+import { DeploymentApplicationCreate } from '../../generated/models';
 
 /**
  * ApplicationsApiService - Auto-generated
  */
 export class ApplicationsApiService extends ApiBaseService {
+    /**
+     * 
+     * @summary Trigger a new deployment for current application
+     * @param {number} applicationId The ID of the application.
+     * @param {DeploymentApplicationCreate} deploymentApplicationCreate A JSON object containing the resource data
+     */
+    public async addApplicationDeployment(applicationId: number, deploymentApplicationCreate: DeploymentApplicationCreate): Promise<ApiResponse<void>> {
+        if (applicationId === null || applicationId === undefined) {
+            throw new ArgumentNullException('applicationId', 'addApplicationDeployment');
+        }
+        if (deploymentApplicationCreate === null || deploymentApplicationCreate === undefined) {
+            throw new ArgumentNullException('deploymentApplicationCreate', 'addApplicationDeployment');
+        }
+
+        let queryString = '';
+
+        const requestUrl = '/applications/{application_id}/deployments' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <void, DeploymentApplicationCreate>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))), deploymentApplicationCreate);
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Create a new application
+     * @param {number} environmentId The ID of the environment.
+     * @param {ApplicationEnvironmentCreate} applicationEnvironmentCreate A JSON object containing the resource data
+     */
+    public async addEnvironmentApplication(environmentId: number, applicationEnvironmentCreate: ApplicationEnvironmentCreate): Promise<ApiResponse<Application>> {
+        if (environmentId === null || environmentId === undefined) {
+            throw new ArgumentNullException('environmentId', 'addEnvironmentApplication');
+        }
+        if (applicationEnvironmentCreate === null || applicationEnvironmentCreate === undefined) {
+            throw new ArgumentNullException('applicationEnvironmentCreate', 'addEnvironmentApplication');
+        }
+
+        let queryString = '';
+
+        const requestUrl = '/environments/{environment_id}/applications' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <Application, ApplicationEnvironmentCreate>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))), applicationEnvironmentCreate);
+        return new ApiResponse(response);
+    }
+
     /**
      * 
      * @summary Delete a given application
@@ -55,6 +102,34 @@ export class ApplicationsApiService extends ApiBaseService {
         const requestUrl = '/applications/{application_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Application>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Return a list of all Applications belonging to an environment
+     * @param {number} environmentId The ID of the environment.
+     * @param {number} [page] Number of the page to be retrieved
+     * @param {number} [perPage] Number of items returned per page
+     */
+    public async listEnvironmentApplications(environmentId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<ApplicationRelation>>> {
+        if (environmentId === null || environmentId === undefined) {
+            throw new ArgumentNullException('environmentId', 'listEnvironmentApplications');
+        }
+
+        let queryString = '';
+        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
+        const requestUrl = '/environments/{environment_id}/applications' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <Array<ApplicationRelation>>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
         return new ApiResponse(response);
     }
 

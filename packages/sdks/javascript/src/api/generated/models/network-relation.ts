@@ -12,7 +12,7 @@
  */
 
 
-import { ActionRelation } from './action-relation';
+import { ActionRelationShallow } from './action-relation-shallow';
 import { Credential } from './credential';
 import { NetworkProvisionInput } from './network-provision-input';
 
@@ -84,10 +84,10 @@ export interface NetworkRelation {
     provision_input: NetworkProvisionInput;
     /**
      * 
-     * @type {ActionRelation}
+     * @type {ActionRelationShallow}
      * @memberof NetworkRelation
      */
-    last_action: ActionRelation | null;
+    last_action: ActionRelationShallow | null;
     /**
      * The date and time when the record was created
      * @type {string}

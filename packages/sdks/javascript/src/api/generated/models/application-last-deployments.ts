@@ -12,7 +12,7 @@
  */
 
 
-import { ActionRelation } from './action-relation';
+import { ActionRelationShallow } from './action-relation-shallow';
 
 /**
  * Latest deployment created to application and the more recent completed deployment
@@ -22,15 +22,15 @@ import { ActionRelation } from './action-relation';
 export interface ApplicationLastDeployments {
     /**
      * 
-     * @type {ActionRelation}
+     * @type {ActionRelationShallow}
      * @memberof ApplicationLastDeployments
      */
-    latest?: ActionRelation | null;
+    latest?: ActionRelationShallow | null;
     /**
      * 
-     * @type {ActionRelation}
+     * @type {ActionRelationShallow}
      * @memberof ApplicationLastDeployments
      */
-    live?: ActionRelation | null;
+    live?: ActionRelationShallow | null;
 }
 

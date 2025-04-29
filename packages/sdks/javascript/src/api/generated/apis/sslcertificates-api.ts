@@ -16,11 +16,35 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { SslCertificate } from '../../generated/models';
+import { SslCertificateEnvironmentCreate } from '../../generated/models';
+import { SslCertificateRelation } from '../../generated/models';
 
 /**
  * SSLCertificatesApiService - Auto-generated
  */
 export class SSLCertificatesApiService extends ApiBaseService {
+    /**
+     * 
+     * @summary Create a new ssl certificate
+     * @param {number} environmentId The ID of the environment.
+     * @param {SslCertificateEnvironmentCreate} sslCertificateEnvironmentCreate A JSON object containing the resource data
+     */
+    public async addEnvironmentSslCertificate(environmentId: number, sslCertificateEnvironmentCreate: SslCertificateEnvironmentCreate): Promise<ApiResponse<SslCertificate>> {
+        if (environmentId === null || environmentId === undefined) {
+            throw new ArgumentNullException('environmentId', 'addEnvironmentSslCertificate');
+        }
+        if (sslCertificateEnvironmentCreate === null || sslCertificateEnvironmentCreate === undefined) {
+            throw new ArgumentNullException('sslCertificateEnvironmentCreate', 'addEnvironmentSslCertificate');
+        }
+
+        let queryString = '';
+
+        const requestUrl = '/environments/{environment_id}/ssl-certificates' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <SslCertificate, SslCertificateEnvironmentCreate>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))), sslCertificateEnvironmentCreate);
+        return new ApiResponse(response);
+    }
+
     /**
      * 
      * @summary Delete a given SSL Certificate
@@ -54,6 +78,34 @@ export class SSLCertificatesApiService extends ApiBaseService {
         const requestUrl = '/ssl-certificates/{ssl_certificate_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <SslCertificate>(requestUrl.replace(`{${"ssl_certificate_id"}}`, encodeURIComponent(String(sslCertificateId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Return a list of all SSL Certificates belonging to an environment
+     * @param {number} environmentId The ID of the environment.
+     * @param {number} [page] Number of the page to be retrieved
+     * @param {number} [perPage] Number of items returned per page
+     */
+    public async listEnvironmentSslCertificates(environmentId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<SslCertificateRelation>>> {
+        if (environmentId === null || environmentId === undefined) {
+            throw new ArgumentNullException('environmentId', 'listEnvironmentSslCertificates');
+        }
+
+        let queryString = '';
+        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
+        const requestUrl = '/environments/{environment_id}/ssl-certificates' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <Array<SslCertificateRelation>>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
         return new ApiResponse(response);
     }
 }

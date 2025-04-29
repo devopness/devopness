@@ -1,0 +1,33 @@
+class {{classname}}(DevopnessBaseModel):
+    """
+    {{classname}}
+
+    Attributes:
+    {{#allVars}}
+        {{baseName}} ({{dataType}}{{^required}}, optional{{/required}}): {{description}}
+    {{/allVars}}
+    """
+
+{{#vars}}
+    {{name}}: {{{vendorExtensions.x-py-typing}}}
+{{/vars}}
+
+
+class {{classname}}Plain(TypedDict, total=False):
+    """
+    Plain version of {{classname}}.
+    """
+
+{{#vars}}
+    {{baseName}}: (
+        {{#required}} Required[ {{/required}}
+            {{#isPrimitiveType}}{{dataType}}{{/isPrimitiveType}}
+            {{^isPrimitiveType}}
+              {{#isEnumRef}}Union[{{dataType}}, {{dataType}}Plain,]{{/isEnumRef}}
+              {{#isModel}}Union[{{dataType}}, {{dataType}}Plain,]{{/isModel}}
+              {{#isContainer}}{{baseType}}[ Union[{{items.dataType}}, {{items.dataType}}Plain,] ]{{/isContainer}}
+            {{/isPrimitiveType}}
+        {{#required}} ] {{/required}}
+    )
+{{/vars}}
+

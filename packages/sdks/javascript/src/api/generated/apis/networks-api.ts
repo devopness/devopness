@@ -16,12 +16,36 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { Network } from '../../generated/models';
+import { NetworkEnvironmentCreate } from '../../generated/models';
+import { NetworkRelation } from '../../generated/models';
 import { NetworkUpdate } from '../../generated/models';
 
 /**
  * NetworksApiService - Auto-generated
  */
 export class NetworksApiService extends ApiBaseService {
+    /**
+     * 
+     * @summary Create a new network for the given environment
+     * @param {number} environmentId The ID of the environment.
+     * @param {NetworkEnvironmentCreate} networkEnvironmentCreate A JSON object containing the resource data
+     */
+    public async addEnvironmentNetwork(environmentId: number, networkEnvironmentCreate: NetworkEnvironmentCreate): Promise<ApiResponse<Network>> {
+        if (environmentId === null || environmentId === undefined) {
+            throw new ArgumentNullException('environmentId', 'addEnvironmentNetwork');
+        }
+        if (networkEnvironmentCreate === null || networkEnvironmentCreate === undefined) {
+            throw new ArgumentNullException('networkEnvironmentCreate', 'addEnvironmentNetwork');
+        }
+
+        let queryString = '';
+
+        const requestUrl = '/environments/{environment_id}/networks' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <Network, NetworkEnvironmentCreate>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))), networkEnvironmentCreate);
+        return new ApiResponse(response);
+    }
+
     /**
      * 
      * @summary Delete a given network
@@ -73,6 +97,37 @@ export class NetworksApiService extends ApiBaseService {
         const requestUrl = '/networks/{network_id}/get-status' + (queryString? `?${queryString}` : '');
 
         const response = await this.post <void>(requestUrl.replace(`{${"network_id"}}`, encodeURIComponent(String(networkId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Return a list of all networks belonging to an environment
+     * @param {number} environmentId The ID of the environment.
+     * @param {number} [page] Number of the page to be retrieved
+     * @param {number} [perPage] Number of items returned per page
+     * @param {boolean} [includeDefaultNetwork] If true, include a \&#39;default\&#39; network in the list.
+     * @param {string} [providerName] Filter by network\&#39;s cloud provider.
+     * @param {string} [region] Filter by network\&#39;s region.
+     */
+    public async listEnvironmentNetworks(environmentId: number, page?: number, perPage?: number, includeDefaultNetwork?: boolean, providerName?: string, region?: string): Promise<ApiResponse<Array<NetworkRelation>>> {
+        if (environmentId === null || environmentId === undefined) {
+            throw new ArgumentNullException('environmentId', 'listEnvironmentNetworks');
+        }
+
+        let queryString = '';
+        const queryParams = { page: page, per_page: perPage, include_default_network: includeDefaultNetwork, provider_name: providerName, region: region, } as { [key: string]: any };
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
+        const requestUrl = '/environments/{environment_id}/networks' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <Array<NetworkRelation>>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
         return new ApiResponse(response);
     }
 
