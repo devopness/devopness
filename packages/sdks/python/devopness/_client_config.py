@@ -18,6 +18,7 @@ class DevopnessClientConfig(DevopnessBaseModel):
         timeout (int): Request timeout in seconds.
         default_encoding (str): Default encoding for response content.
         headers (ClassVar[dict[str, str]]): Default headers for API requests.
+        debug (bool): Controls whether debug information is printed to the console.
     """
 
     base_url: str = "https://api.devopness.com"
@@ -27,6 +28,7 @@ class DevopnessClientConfig(DevopnessBaseModel):
         "Accept": "application/json",
         "Content-Type": "application/json",
     }
+    debug: bool = False
 
 
 class DevopnessClientConfigDict(TypedDict, total=False):
@@ -38,3 +40,4 @@ class DevopnessClientConfigDict(TypedDict, total=False):
     timeout: int
     default_encoding: str
     headers: dict[str, str]
+    debug: bool
