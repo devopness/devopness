@@ -1,5 +1,11 @@
 # @devopness/sdk-js
 
+## 2.163.2
+
+### Patch Changes
+
+- [#1643](https://github.com/devopness/devopness/pull/1643) [`429c6d6`](https://github.com/devopness/devopness/commit/429c6d6686084c07f953ca58f98d60d69a6ab9d5) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Fix server status field type
+
 ## 2.163.1
 
 ### Patch Changes
