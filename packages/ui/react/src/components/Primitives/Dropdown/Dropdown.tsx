@@ -352,10 +352,10 @@ const Dropdown = ({
                           >
                             {option.badge.icon ? (
                               <Icon
-                              name={option.badge.name} // Pass name directly, allowing undefined
-                              size={option.badge.size ?? 12}
-                              color={option.badge.color}
-                            />
+                                name={option.badge.name} // Pass name directly, allowing undefined
+                                size={option.badge.size ?? 12}
+                                color={option.badge.color}
+                              />
                             ) : (
                               option.label?.at(0)
                             )}
