@@ -17,8 +17,8 @@ from pydantic import Field, StrictBool, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
 from .action_relation_shallow import ActionRelationShallow, ActionRelationShallowPlain
-from .action_status import ActionStatus, ActionStatusPlain
 from .credential_relation import CredentialRelation, CredentialRelationPlain
+from .server_status import ServerStatus, ServerStatusPlain
 
 
 class ServerRelation(DevopnessBaseModel):
@@ -35,10 +35,10 @@ class ServerRelation(DevopnessBaseModel):
         credential (CredentialRelation):
         region (str): The region in which the server is located
         region_human_readable (str): The human readable version of the region
-        ip_address (str): Public ipv4 address for server access
+        ip_address (str, optional): Public ipv4 address for server access
         ssh_port (int): The network port to which the SSH daemon is listening to SSH connections on the server
         active (bool): Tells if the server is active or not
-        status (ActionStatus):
+        status (ServerStatus):
         last_action (ActionRelationShallow):
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was last updated
@@ -61,12 +61,14 @@ class ServerRelation(DevopnessBaseModel):
     region_human_readable: Optional[StrictStr] = Field(
         description="The human readable version of the region"
     )
-    ip_address: StrictStr = Field(description="Public ipv4 address for server access")
+    ip_address: Optional[StrictStr] = Field(
+        default=None, description="Public ipv4 address for server access"
+    )
     ssh_port: StrictInt = Field(
         description="The network port to which the SSH daemon is listening to SSH connections on the server"
     )
     active: StrictBool = Field(description="Tells if the server is active or not")
-    status: ActionStatus
+    status: ServerStatus
     last_action: Optional[ActionRelationShallow]
     created_at: StrictStr = Field(
         description="The date and time when the record was created"
@@ -95,13 +97,13 @@ class ServerRelationPlain(TypedDict, total=False):
     ]
     region: Required[str]
     region_human_readable: Required[str]
-    ip_address: Required[str]
+    ip_address: str
     ssh_port: Required[int]
     active: Required[bool]
     status: Required[
         Union[
-            ActionStatus,
-            ActionStatusPlain,
+            ServerStatus,
+            ServerStatusPlain,
         ]
     ]
     last_action: Required[
