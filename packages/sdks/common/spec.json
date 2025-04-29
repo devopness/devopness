@@ -19747,7 +19747,7 @@
             "type": "boolean"
           },
           "status": {
-            "$ref": "#/components/schemas/ActionStatus"
+            "$ref": "#/components/schemas/ServerStatus"
           },
           "max_parallel_actions": {
             "description": "Maximum number of actions that can run in parallel on this server. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run on this server,",
@@ -19794,7 +19794,6 @@
           "provider_name",
           "provider_name_human_readable",
           "cloud_service_code",
-          "ip_address",
           "ssh_port",
           "os",
           "os_version_code",
@@ -20040,7 +20039,7 @@
             "type": "boolean"
           },
           "status": {
-            "$ref": "#/components/schemas/ActionStatus"
+            "$ref": "#/components/schemas/ServerStatus"
           },
           "last_action": {
             "$ref": "#/components/schemas/ActionRelationShallow"
@@ -20066,7 +20065,6 @@
           "credential",
           "region",
           "region_human_readable",
-          "ip_address",
           "ssh_port",
           "active",
           "status",
@@ -20075,6 +20073,21 @@
           "updated_at"
         ],
         "nullable": true
+      },
+      "ServerStatus": {
+        "type": "string",
+        "description": "The status of the server",
+        "example": "running",
+        "enum": [
+          "configuring",
+          "failed",
+          "pending",
+          "provisioned",
+          "provisioning",
+          "restarting",
+          "running",
+          "stopped"
+        ]
       },
       "ServerUpdate": {
         "type": "object",
