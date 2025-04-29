@@ -6,7 +6,7 @@ links:
   overview:
   quickstart:
   previous:
-  next: add-team-membership
+  next: team-memberships/add-team-membership
   guides:
   related:
   featured:

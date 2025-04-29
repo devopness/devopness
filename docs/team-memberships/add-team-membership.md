@@ -5,7 +5,7 @@ intro: Grant a team access to an environment, with permissions defined by the as
 links:
   overview:
   quickstart:
-  previous: list-team-memberships
+  previous: team-memberships/list-team-memberships
   next:
   guides:
   related:
