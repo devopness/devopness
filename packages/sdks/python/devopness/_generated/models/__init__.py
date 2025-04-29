@@ -409,6 +409,7 @@ from .server_provision_input_settings import (
     ServerProvisionInputSettingsPlain,
 )
 from .server_relation import ServerRelation, ServerRelationPlain
+from .server_status import ServerStatus, ServerStatusPlain
 from .server_update import ServerUpdate, ServerUpdatePlain
 from .service import Service, ServicePlain
 from .service_environment_create import (
@@ -1034,6 +1035,8 @@ __all__ = [
     "ServerProvisionInputSettingsPlain",
     "ServerRelation",
     "ServerRelationPlain",
+    "ServerStatus",
+    "ServerStatusPlain",
     "ServerUpdate",
     "ServerUpdatePlain",
     "Service",

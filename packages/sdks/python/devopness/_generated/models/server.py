@@ -17,7 +17,6 @@ from pydantic import Field, StrictBool, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
 from .action_relation import ActionRelation, ActionRelationPlain
-from .action_status import ActionStatus, ActionStatusPlain
 from .cloud_os_version_code import CloudOsVersionCode, CloudOsVersionCodePlain
 from .credential_relation import CredentialRelation, CredentialRelationPlain
 from .environment_relation import EnvironmentRelation, EnvironmentRelationPlain
@@ -32,6 +31,7 @@ from .server_cloud_service_code import (
     ServerCloudServiceCodePlain,
 )
 from .server_provision_input import ServerProvisionInput, ServerProvisionInputPlain
+from .server_status import ServerStatus, ServerStatusPlain
 from .user_relation import UserRelation, UserRelationPlain
 
 
@@ -47,12 +47,12 @@ class Server(DevopnessBaseModel):
         provider_name (str): The name of the server&#39;s provider.
         provider_name_human_readable (str): The human readable version of the provider&#39;s name
         cloud_service_code (ServerCloudServiceCode):
-        ip_address (str): Public ipv4 address for server access
+        ip_address (str, optional): Public ipv4 address for server access
         ssh_port (int): The network port to which the SSH daemon is listening to SSH connections on the server
         os (OperatingSystemVersion):
         os_version_code (CloudOsVersionCode):
         active (bool): Tells if the server is active or not
-        status (ActionStatus):
+        status (ServerStatus):
         max_parallel_actions (int): Maximum number of actions that can run in parallel on this server. &#x60;0&#x60; means no limit of simultaneous actions. &#x60;1&#x60; means just a single action will be started at a time to run on this server,
         blueprint (ServerBlueprint):
         provision_input (ServerProvisionInput):
@@ -76,14 +76,16 @@ class Server(DevopnessBaseModel):
         description="The human readable version of the provider's name"
     )
     cloud_service_code: ServerCloudServiceCode
-    ip_address: StrictStr = Field(description="Public ipv4 address for server access")
+    ip_address: Optional[StrictStr] = Field(
+        default=None, description="Public ipv4 address for server access"
+    )
     ssh_port: StrictInt = Field(
         description="The network port to which the SSH daemon is listening to SSH connections on the server"
     )
     os: OperatingSystemVersion
     os_version_code: Optional[CloudOsVersionCode]
     active: StrictBool = Field(description="Tells if the server is active or not")
-    status: ActionStatus
+    status: ServerStatus
     max_parallel_actions: StrictInt = Field(
         description="Maximum number of actions that can run in parallel on this server. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run on this server,"
     )
@@ -119,7 +121,7 @@ class ServerPlain(TypedDict, total=False):
             ServerCloudServiceCodePlain,
         ]
     ]
-    ip_address: Required[str]
+    ip_address: str
     ssh_port: Required[int]
     os: Required[
         Union[
@@ -136,8 +138,8 @@ class ServerPlain(TypedDict, total=False):
     active: Required[bool]
     status: Required[
         Union[
-            ActionStatus,
-            ActionStatusPlain,
+            ServerStatus,
+            ServerStatusPlain,
         ]
     ]
     max_parallel_actions: Required[int]
