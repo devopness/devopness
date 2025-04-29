@@ -50,7 +50,7 @@ properties:
     example: true
     type: boolean
   status:
-    $ref: '#/components/schemas/ActionStatus'
+    $ref: '#/components/schemas/ServerStatus'
   last_action:
     $ref: '#/components/schemas/ActionRelationShallow'
   created_at:
@@ -71,7 +71,6 @@ required:
   - credential
   - region
   - region_human_readable
-  - ip_address
   - ssh_port
   - active
   - status

@@ -525,6 +525,8 @@ ServerProvisionInput:
   $ref: ./auto-generated/models/server-provision-input.yaml
 ServerRelation:
   $ref: ./auto-generated/models/server-relation.yaml
+ServerStatus:
+  $ref: ./auto-generated/models/server-status.yaml
 ServerUpdate:
   $ref: ./auto-generated/models/server-update.yaml
 Service:

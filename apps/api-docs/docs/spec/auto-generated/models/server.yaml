@@ -44,7 +44,7 @@ properties:
     example: true
     type: boolean
   status:
-    $ref: '#/components/schemas/ActionStatus'
+    $ref: '#/components/schemas/ServerStatus'
   max_parallel_actions:
     description: 'Maximum number of actions that can run in parallel on this server. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run on this server,'
     example: 1
@@ -79,7 +79,6 @@ required:
   - provider_name
   - provider_name_human_readable
   - cloud_service_code
-  - ip_address
   - ssh_port
   - os
   - os_version_code
