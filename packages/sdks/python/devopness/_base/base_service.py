@@ -272,21 +272,21 @@ class DevopnessBaseService:
         return stripped_payload
 
     @staticmethod
-    def _get_query_string(params: dict[str, Any]) -> str:
+    def _get_query_string(in_params: dict[str, Any]) -> str:
         """
         Returns the query string from the given query parameters.
 
         Args:
-            params (dict[str, Any]): The query parameters.
+            in_params (dict[str, Any]): The query parameters.
 
         Returns:
             str: The query string.
         """
-        params = {}
-        for key, value in params.items():
-            if value is None:
+        out_params: dict[str, Any] = {}
+        for key, value in in_params.items():
+            if value is None or value in ("", [], {}):
                 continue
 
-            params[key] = value
+            out_params[key] = value
 
-        return urlencode(params)
+        return urlencode(out_params)
