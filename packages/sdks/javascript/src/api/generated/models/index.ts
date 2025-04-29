@@ -203,6 +203,7 @@ export * from './server-environment-create';
 export * from './server-options';
 export * from './server-provision-input';
 export * from './server-relation';
+export * from './server-status';
 export * from './server-update';
 export * from './service';
 export * from './service-environment-create';

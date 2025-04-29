@@ -13,8 +13,8 @@
 
 
 import { ActionRelationShallow } from './action-relation-shallow';
-import { ActionStatus } from './action-status';
 import { CredentialRelation } from './credential-relation';
+import { ServerStatus } from './server-status';
 
 /**
  * 
@@ -81,7 +81,7 @@ export interface ServerRelation {
      * @type {string}
      * @memberof ServerRelation
      */
-    ip_address: string;
+    ip_address?: string;
     /**
      * The network port to which the SSH daemon is listening to SSH connections on the server
      * @type {number}
@@ -96,10 +96,10 @@ export interface ServerRelation {
     active: boolean;
     /**
      * 
-     * @type {ActionStatus}
+     * @type {ServerStatus}
      * @memberof ServerRelation
      */
-    status: ActionStatus;
+    status: ServerStatus;
     /**
      * 
      * @type {ActionRelationShallow}
