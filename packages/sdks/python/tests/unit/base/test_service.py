@@ -1,11 +1,31 @@
 import unittest
+from typing import Optional, Required, TypedDict
 from unittest.mock import Mock, patch
 
 import httpx
+from pydantic import Field, StrictInt, StrictStr
 
 from devopness import DevopnessClientConfig
 from devopness._base import DevopnessBaseService
-from devopness.models import ProjectCreate, ProjectUpdate
+from devopness._base.base_model import DevopnessBaseModel
+
+
+class DummyModel(DevopnessBaseModel):
+    id: Optional[StrictInt] = Field(
+        default=None,
+        description="The unique ID of the given Dummy.",
+    )
+    name: StrictStr = Field(description="The name of the dummy.")
+    description: Optional[StrictStr] = Field(
+        default=None,
+        description="The description of the dummy.",
+    )
+
+
+class DummyModelPlain(TypedDict, total=False):
+    id: Optional[int]
+    name: Required[str]
+    description: Optional[str]
 
 
 class TestDevopnessBaseService(unittest.TestCase):
@@ -57,7 +77,7 @@ class TestDevopnessBaseService(unittest.TestCase):
         self,
         mock: Mock,
     ) -> None:
-        payload = {"name": "John Doe", "age": None}
+        payload: DummyModelPlain = {"name": "John Doe"}
         self.service._post_sync("/resource", payload)
 
         mock.assert_called_once()
@@ -76,7 +96,7 @@ class TestDevopnessBaseService(unittest.TestCase):
         self,
         mock: Mock,
     ) -> None:
-        payload = ProjectCreate(name="Cool Project", organization_id=None)
+        payload = DummyModel(name="John Doe")
         self.service._post_sync("/resource", payload)
 
         mock.assert_called_once()
@@ -88,7 +108,7 @@ class TestDevopnessBaseService(unittest.TestCase):
         self.assertEqual(request.url, "https://test.local/resource")
 
         self.assertEqual(request.headers["Content-Type"], "application/json")
-        self.assertEqual(request.content, b'{"name":"Cool Project"}')
+        self.assertEqual(request.content, b'{"name":"John Doe"}')
 
     @patch("httpx.Client.send")
     def test_post_without_payload(
@@ -113,7 +133,7 @@ class TestDevopnessBaseService(unittest.TestCase):
         self,
         mock: Mock,
     ) -> None:
-        payload = {"name": "John Doe", "age": None}
+        payload: DummyModelPlain = {"id": 123, "name": "John Doe"}
         self.service._put_sync("/resource", payload)
 
         mock.assert_called_once()
@@ -125,14 +145,14 @@ class TestDevopnessBaseService(unittest.TestCase):
         self.assertEqual(request.url, "https://test.local/resource")
 
         self.assertEqual(request.headers["Content-Type"], "application/json")
-        self.assertEqual(request.content, b'{"name":"John Doe"}')
+        self.assertEqual(request.content, b'{"id":123,"name":"John Doe"}')
 
     @patch("httpx.Client.send")
     def test_put_sdk_model_removes_null_fields(
         self,
         mock: Mock,
     ) -> None:
-        payload = ProjectUpdate(id=123, name="Cool Project", logo_image=None)
+        payload = DummyModel(id=123, name="John Doe")
         self.service._put_sync("/resource", payload)
 
         mock.assert_called_once()
@@ -144,7 +164,7 @@ class TestDevopnessBaseService(unittest.TestCase):
         self.assertEqual(request.url, "https://test.local/resource")
 
         self.assertEqual(request.headers["Content-Type"], "application/json")
-        self.assertEqual(request.content, b'{"id":123,"name":"Cool Project"}')
+        self.assertEqual(request.content, b'{"id":123,"name":"John Doe"}')
 
     @patch("httpx.Client.send")
     def test_put_without_payload(
@@ -238,7 +258,7 @@ class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
         self,
         mock: Mock,
     ) -> None:
-        payload = {"name": "John Doe", "age": None}
+        payload: DummyModelPlain = {"name": "Cool Project"}
         await self.service._post("/resource", payload)
 
         mock.assert_called_once()
@@ -250,14 +270,14 @@ class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(request.url, "https://test.local/resource")
 
         self.assertEqual(request.headers["Content-Type"], "application/json")
-        self.assertEqual(request.content, b'{"name":"John Doe"}')
+        self.assertEqual(request.content, b'{"name":"Cool Project"}')
 
     @patch("httpx.AsyncClient.send")
     async def test_post_sdk_model_removes_null_fields(
         self,
         mock: Mock,
     ) -> None:
-        payload = ProjectCreate(name="Cool Project", organization_id=None)
+        payload = DummyModel(name="Cool Project")
         await self.service._post("/resource", payload)
 
         mock.assert_called_once()
@@ -294,7 +314,7 @@ class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
         self,
         mock: Mock,
     ) -> None:
-        payload = {"name": "John Doe", "age": None}
+        payload: DummyModelPlain = {"id": 123, "name": "Cool Project"}
         await self.service._put("/resource", payload)
 
         mock.assert_called_once()
@@ -306,14 +326,14 @@ class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(request.url, "https://test.local/resource")
 
         self.assertEqual(request.headers["Content-Type"], "application/json")
-        self.assertEqual(request.content, b'{"name":"John Doe"}')
+        self.assertEqual(request.content, b'{"id":123,"name":"Cool Project"}')
 
     @patch("httpx.AsyncClient.send")
     async def test_put_sdk_model_removes_null_fields(
         self,
         mock: Mock,
     ) -> None:
-        payload = ProjectUpdate(id=123, name="Cool Project", logo_image=None)
+        payload = DummyModel(id=123, name="Cool Project")
         await self.service._put("/resource", payload)
 
         mock.assert_called_once()

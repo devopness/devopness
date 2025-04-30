@@ -279,12 +279,7 @@ class DevopnessBaseService:
         if isinstance(data, dict):
             payload = data
 
-        stripped_payload = {}
-        for key, value in payload.items():
-            if value is not None:
-                stripped_payload[key] = value
-
-        return stripped_payload
+        return payload
 
     def __debug_request(self, request: httpx.Request) -> None:
         """
