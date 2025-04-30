@@ -59,14 +59,16 @@ class VirtualHostEnvironmentCreatePlain(TypedDict, total=False):
     Plain version of VirtualHostEnvironmentCreate.
     """
 
-    linked_resources: List[
-        Union[
-            ResourceToBeLinked,
-            ResourceToBeLinkedPlain,
+    linked_resources: Optional[
+        List[
+            Union[
+                ResourceToBeLinked,
+                ResourceToBeLinkedPlain,
+            ]
         ]
     ]
     type: Required[str]
     name: Required[str]
-    root_directory: str
-    application_listen_address: str
-    application_id: int
+    root_directory: Optional[str]
+    application_listen_address: Optional[str]
+    application_id: Optional[int]

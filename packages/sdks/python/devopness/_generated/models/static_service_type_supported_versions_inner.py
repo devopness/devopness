@@ -41,10 +41,12 @@ class StaticServiceTypeSupportedVersionsInnerPlain(TypedDict, total=False):
     Plain version of StaticServiceTypeSupportedVersionsInner.
     """
 
-    version: str
-    variable_targets: List[
-        Union[
-            VariableTargets,
-            VariableTargetsPlain,
+    version: Optional[str]
+    variable_targets: Optional[
+        List[
+            Union[
+                VariableTargets,
+                VariableTargetsPlain,
+            ]
         ]
     ]

@@ -67,14 +67,16 @@ class SshKeyRelationPlain(TypedDict, total=False):
     """
 
     id: Required[int]
-    created_by: int
-    project_id: int
+    created_by: Optional[int]
+    project_id: Optional[int]
     environment_id: Required[int]
     name: Required[str]
     fingerprint: Required[str]
-    last_action: Union[
-        ActionRelationShallow,
-        ActionRelationShallowPlain,
+    last_action: Optional[
+        Union[
+            ActionRelationShallow,
+            ActionRelationShallowPlain,
+        ]
     ]
-    created_at: str
-    updated_at: str
+    created_at: Optional[str]
+    updated_at: Optional[str]

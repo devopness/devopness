@@ -48,10 +48,12 @@ class ResourceTypeRelatedPlain(TypedDict, total=False):
     Plain version of ResourceTypeRelated.
     """
 
-    resource_type: Union[
-        ResourceType,
-        ResourceTypePlain,
+    resource_type: Optional[
+        Union[
+            ResourceType,
+            ResourceTypePlain,
+        ]
     ]
-    resource_type_human_readable: str
-    resource_type_human_readable_plural: str
-    can_be_linked: bool
+    resource_type_human_readable: Optional[str]
+    resource_type_human_readable_plural: Optional[str]
+    can_be_linked: Optional[bool]

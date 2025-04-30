@@ -59,14 +59,16 @@ class CronJobEnvironmentCreatePlain(TypedDict, total=False):
     Plain version of CronJobEnvironmentCreate.
     """
 
-    linked_resources: List[
-        Union[
-            ResourceToBeLinked,
-            ResourceToBeLinkedPlain,
+    linked_resources: Optional[
+        List[
+            Union[
+                ResourceToBeLinked,
+                ResourceToBeLinkedPlain,
+            ]
         ]
     ]
     name: Required[str]
     command: Required[str]
     pattern: Required[str]
     run_as_user: Required[str]
-    application_id: int
+    application_id: Optional[int]

@@ -70,15 +70,19 @@ class HookUpdatePlain(TypedDict, total=False):
 
     id: Required[str]
     name: Required[str]
-    active: bool
-    requires_secret: bool
-    secret_algorithm: str
-    secret_header_name: str
-    trigger_when: Union[
-        HookTriggerWhen,
-        HookTriggerWhenPlain,
+    active: Optional[bool]
+    requires_secret: Optional[bool]
+    secret_algorithm: Optional[str]
+    secret_header_name: Optional[str]
+    trigger_when: Optional[
+        Union[
+            HookTriggerWhen,
+            HookTriggerWhenPlain,
+        ]
     ]
-    settings: Union[
-        HookPipelineCreateSettings,
-        HookPipelineCreateSettingsPlain,
+    settings: Optional[
+        Union[
+            HookPipelineCreateSettings,
+            HookPipelineCreateSettingsPlain,
+        ]
     ]

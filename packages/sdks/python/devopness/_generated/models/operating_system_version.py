@@ -67,7 +67,7 @@ class OperatingSystemVersionPlain(TypedDict, total=False):
             CloudOsVersionCodePlain,
         ]
     ]
-    os_version_code_human_readable: str
+    os_version_code_human_readable: Optional[str]
     released_at: Required[str]
     end_standard_support_at: Required[str]
     end_of_life_at: Required[str]

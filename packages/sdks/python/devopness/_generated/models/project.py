@@ -68,10 +68,12 @@ class ProjectPlain(TypedDict, total=False):
     user_id: Required[int]
     name: Required[str]
     logo_url: Required[str]
-    resource_summary: List[
-        Union[
-            ResourceSummaryItem,
-            ResourceSummaryItemPlain,
+    resource_summary: Optional[
+        List[
+            Union[
+                ResourceSummaryItem,
+                ResourceSummaryItemPlain,
+            ]
         ]
     ]
     os_users: Required[

@@ -39,13 +39,17 @@ class TriggeredActionsPlain(TypedDict, total=False):
     Plain version of TriggeredActions.
     """
 
-    summary: Union[
-        TriggeredActionSummary,
-        TriggeredActionSummaryPlain,
-    ]
-    operations: List[
+    summary: Optional[
         Union[
-            TriggeredActionStats,
-            TriggeredActionStatsPlain,
+            TriggeredActionSummary,
+            TriggeredActionSummaryPlain,
+        ]
+    ]
+    operations: Optional[
+        List[
+            Union[
+                TriggeredActionStats,
+                TriggeredActionStatsPlain,
+            ]
         ]
     ]

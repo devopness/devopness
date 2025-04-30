@@ -55,15 +55,19 @@ class CloudProviderPlain(TypedDict, total=False):
 
     code: Required[str]
     name: Required[str]
-    hint: str
+    hint: Optional[str]
     logo_url: Required[str]
-    cloud_services: List[
-        Union[
-            CloudProviderService,
-            CloudProviderServicePlain,
+    cloud_services: Optional[
+        List[
+            Union[
+                CloudProviderService,
+                CloudProviderServicePlain,
+            ]
         ]
     ]
-    settings: Union[
-        CloudProviderSettingsList,
-        CloudProviderSettingsListPlain,
+    settings: Optional[
+        Union[
+            CloudProviderSettingsList,
+            CloudProviderSettingsListPlain,
+        ]
     ]

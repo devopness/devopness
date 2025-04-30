@@ -35,4 +35,4 @@ class DaemonGetStatusPlain(TypedDict, total=False):
     Plain version of DaemonGetStatus.
     """
 
-    servers: List[int]
+    servers: Optional[List[int]]

@@ -63,10 +63,12 @@ class DaemonEnvironmentCreatePlain(TypedDict, total=False):
     Plain version of DaemonEnvironmentCreate.
     """
 
-    linked_resources: List[
-        Union[
-            ResourceToBeLinked,
-            ResourceToBeLinkedPlain,
+    linked_resources: Optional[
+        List[
+            Union[
+                ResourceToBeLinked,
+                ResourceToBeLinkedPlain,
+            ]
         ]
     ]
     command: Required[str]
@@ -74,4 +76,4 @@ class DaemonEnvironmentCreatePlain(TypedDict, total=False):
     working_directory: Required[str]
     run_as_user: Required[str]
     name: Required[str]
-    application_id: int
+    application_id: Optional[int]

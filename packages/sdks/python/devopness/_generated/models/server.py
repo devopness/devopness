@@ -121,7 +121,7 @@ class ServerPlain(TypedDict, total=False):
             ServerCloudServiceCodePlain,
         ]
     ]
-    ip_address: str
+    ip_address: Optional[str]
     ssh_port: Required[int]
     os: Required[
         Union[

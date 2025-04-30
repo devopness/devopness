@@ -43,8 +43,8 @@ class PipelineSettingsVariablePlain(TypedDict, total=False):
     Plain version of PipelineSettingsVariable.
     """
 
-    name: str
-    human_readable: str
-    hint: str
-    type: str
-    required: bool
+    name: Optional[str]
+    human_readable: Optional[str]
+    hint: Optional[str]
+    type: Optional[str]
+    required: Optional[bool]

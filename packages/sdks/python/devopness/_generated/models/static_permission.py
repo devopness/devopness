@@ -48,4 +48,4 @@ class StaticPermissionPlain(TypedDict, total=False):
     name: Required[str]
     human_readable: Required[str]
     hint: Required[str]
-    required_permissions: List[str]
+    required_permissions: Optional[List[str]]

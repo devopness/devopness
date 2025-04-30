@@ -41,9 +41,11 @@ class ApiErrorErrorsPlain(TypedDict, total=False):
     Plain version of ApiErrorErrors.
     """
 
-    field_name: List[
-        Union[
-            ApiErrorErrorsFieldNameInner,
-            ApiErrorErrorsFieldNameInnerPlain,
+    field_name: Optional[
+        List[
+            Union[
+                ApiErrorErrorsFieldNameInner,
+                ApiErrorErrorsFieldNameInnerPlain,
+            ]
         ]
     ]

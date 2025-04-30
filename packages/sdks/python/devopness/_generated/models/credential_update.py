@@ -46,7 +46,9 @@ class CredentialUpdatePlain(TypedDict, total=False):
 
     id: Required[int]
     name: Required[str]
-    settings: Union[
-        CredentialInputSettings,
-        CredentialInputSettingsPlain,
+    settings: Optional[
+        Union[
+            CredentialInputSettings,
+            CredentialInputSettingsPlain,
+        ]
     ]

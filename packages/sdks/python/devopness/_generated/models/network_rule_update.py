@@ -56,8 +56,10 @@ class NetworkRuleUpdatePlain(TypedDict, total=False):
             NetworkRuleDirectionPlain,
         ]
     ]
-    protocol: Union[
-        NetworkRuleProtocol,
-        NetworkRuleProtocolPlain,
+    protocol: Optional[
+        Union[
+            NetworkRuleProtocol,
+            NetworkRuleProtocolPlain,
+        ]
     ]
     cidr_block: Required[str]

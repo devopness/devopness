@@ -35,4 +35,4 @@ class ServiceReloadPlain(TypedDict, total=False):
     Plain version of ServiceReload.
     """
 
-    servers: List[int]
+    servers: Optional[List[int]]

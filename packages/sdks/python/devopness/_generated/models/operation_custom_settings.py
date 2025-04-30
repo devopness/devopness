@@ -45,6 +45,6 @@ class OperationCustomSettingsPlain(TypedDict, total=False):
     Plain version of OperationCustomSettings.
     """
 
-    operation: str
-    operation_human_readable: str
-    triggers_action: bool
+    operation: Optional[str]
+    operation_human_readable: Optional[str]
+    triggers_action: Optional[bool]

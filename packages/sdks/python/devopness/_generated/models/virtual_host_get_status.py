@@ -35,4 +35,4 @@ class VirtualHostGetStatusPlain(TypedDict, total=False):
     Plain version of VirtualHostGetStatus.
     """
 
-    servers: List[int]
+    servers: Optional[List[int]]

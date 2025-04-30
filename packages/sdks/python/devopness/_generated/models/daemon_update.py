@@ -64,4 +64,4 @@ class DaemonUpdatePlain(TypedDict, total=False):
     working_directory: Required[str]
     run_as_user: Required[str]
     name: Required[str]
-    application_id: int
+    application_id: Optional[int]

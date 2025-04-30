@@ -137,14 +137,18 @@ class ActionRelationPlain(TypedDict, total=False):
             ActionResourcePlain,
         ]
     ]
-    summary: Union[
-        ActionSummary,
-        ActionSummaryPlain,
-    ]
-    targets: List[
+    summary: Optional[
         Union[
-            ActionTarget,
-            ActionTargetPlain,
+            ActionSummary,
+            ActionSummaryPlain,
+        ]
+    ]
+    targets: Optional[
+        List[
+            Union[
+                ActionTarget,
+                ActionTargetPlain,
+            ]
         ]
     ]
     started_at: Required[str]

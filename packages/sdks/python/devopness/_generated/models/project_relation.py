@@ -73,10 +73,12 @@ class ProjectRelationPlain(TypedDict, total=False):
     user_id: Required[int]
     name: Required[str]
     logo_url: Required[str]
-    resource_summary: List[
-        Union[
-            ResourceSummaryItem,
-            ResourceSummaryItemPlain,
+    resource_summary: Optional[
+        List[
+            Union[
+                ResourceSummaryItem,
+                ResourceSummaryItemPlain,
+            ]
         ]
     ]
     os_users: Required[
@@ -93,6 +95,6 @@ class ProjectRelationPlain(TypedDict, total=False):
             UserRelationPlain,
         ]
     ]
-    used_credits: int
+    used_credits: Optional[int]
     created_at: Required[str]
     updated_at: Required[str]

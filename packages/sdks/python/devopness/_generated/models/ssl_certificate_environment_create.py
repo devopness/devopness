@@ -65,13 +65,17 @@ class SslCertificateEnvironmentCreatePlain(TypedDict, total=False):
             SslCertificateIssuerPlain,
         ]
     ]
-    type: Union[
-        SslCertificateType,
-        SslCertificateTypePlain,
+    type: Optional[
+        Union[
+            SslCertificateType,
+            SslCertificateTypePlain,
+        ]
     ]
-    validation_level: Union[
-        SslCertificateValidationLevel,
-        SslCertificateValidationLevelPlain,
+    validation_level: Optional[
+        Union[
+            SslCertificateValidationLevel,
+            SslCertificateValidationLevelPlain,
+        ]
     ]
-    custom_private_key: str
-    custom_certificate: str
+    custom_private_key: Optional[str]
+    custom_certificate: Optional[str]

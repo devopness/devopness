@@ -38,9 +38,11 @@ class ResourceOperationPlain(TypedDict, total=False):
     Plain version of ResourceOperation.
     """
 
-    operation: str
-    operation_human_readable: str
-    pipeline_settings: Union[
-        PipelineSettings,
-        PipelineSettingsPlain,
+    operation: Optional[str]
+    operation_human_readable: Optional[str]
+    pipeline_settings: Optional[
+        Union[
+            PipelineSettings,
+            PipelineSettingsPlain,
+        ]
     ]

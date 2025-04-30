@@ -85,13 +85,13 @@ class ApplicationUpdatePlain(TypedDict, total=False):
 
     id: Required[int]
     name: Required[str]
-    build_command: str
+    build_command: Optional[str]
     engine_version: Required[str]
     framework: Required[str]
     programming_language: Required[str]
-    repository: str
-    credential_id: int
-    root_directory: str
+    repository: Optional[str]
+    credential_id: Optional[int]
+    root_directory: Optional[str]
     default_branch: Required[str]
-    deployments_keep: int
-    install_dependencies_command: str
+    deployments_keep: Optional[int]
+    install_dependencies_command: Optional[str]

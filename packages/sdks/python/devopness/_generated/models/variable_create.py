@@ -57,7 +57,7 @@ class VariableCreatePlain(TypedDict, total=False):
 
     key: Required[str]
     value: Required[str]
-    description: str
+    description: Optional[str]
     target: Required[
         Union[
             VariableTarget,

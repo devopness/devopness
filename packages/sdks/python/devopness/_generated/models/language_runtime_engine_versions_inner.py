@@ -32,4 +32,4 @@ class LanguageRuntimeEngineVersionsInnerPlain(TypedDict, total=False):
     Plain version of LanguageRuntimeEngineVersionsInner.
     """
 
-    version: str
+    version: Optional[str]

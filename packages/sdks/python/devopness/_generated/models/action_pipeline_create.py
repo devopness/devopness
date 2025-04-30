@@ -44,9 +44,11 @@ class ActionPipelineCreatePlain(TypedDict, total=False):
     Plain version of ActionPipelineCreate.
     """
 
-    servers: List[int]
-    source_type: Union[
-        SourceType,
-        SourceTypePlain,
+    servers: Optional[List[int]]
+    source_type: Optional[
+        Union[
+            SourceType,
+            SourceTypePlain,
+        ]
     ]
-    source_ref: str
+    source_ref: Optional[str]

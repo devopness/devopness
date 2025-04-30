@@ -49,5 +49,5 @@ class RoleUpdatePlain(TypedDict, total=False):
 
     id: Required[int]
     name: Required[str]
-    description: str
+    description: Optional[str]
     permissions: Required[List[str]]

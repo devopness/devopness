@@ -41,8 +41,8 @@ class ProviderInputSettingsValidationPlain(TypedDict, total=False):
     Plain version of ProviderInputSettingsValidation.
     """
 
-    required: bool
-    type: str
-    min: int
-    max: int
-    allowed_values: List[str]
+    required: Optional[bool]
+    type: Optional[str]
+    min: Optional[int]
+    max: Optional[int]
+    allowed_values: Optional[List[str]]

@@ -71,20 +71,24 @@ class ServerEnvironmentCreatePlain(TypedDict, total=False):
     Plain version of ServerEnvironmentCreate.
     """
 
-    linked_resources: List[
-        Union[
-            ResourceToBeLinked,
-            ResourceToBeLinkedPlain,
+    linked_resources: Optional[
+        List[
+            Union[
+                ResourceToBeLinked,
+                ResourceToBeLinkedPlain,
+            ]
         ]
     ]
     hostname: Required[str]
-    ip_address: str
-    ssh_port: int
-    max_parallel_actions: int
-    blueprint: List[
-        Union[
-            BlueprintService,
-            BlueprintServicePlain,
+    ip_address: Optional[str]
+    ssh_port: Optional[int]
+    max_parallel_actions: Optional[int]
+    blueprint: Optional[
+        List[
+            Union[
+                BlueprintService,
+                BlueprintServicePlain,
+            ]
         ]
     ]
     provision_input: Required[
@@ -93,4 +97,4 @@ class ServerEnvironmentCreatePlain(TypedDict, total=False):
             ServerProvisionInputPlain,
         ]
     ]
-    credential_id: str
+    credential_id: Optional[str]

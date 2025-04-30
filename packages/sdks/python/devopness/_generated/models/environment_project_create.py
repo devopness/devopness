@@ -51,4 +51,4 @@ class EnvironmentProjectCreatePlain(TypedDict, total=False):
         ]
     ]
     name: Required[str]
-    description: str
+    description: Optional[str]

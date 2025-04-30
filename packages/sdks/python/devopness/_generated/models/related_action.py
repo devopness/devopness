@@ -70,7 +70,7 @@ class RelatedActionPlain(TypedDict, total=False):
             ActionStatusPlain,
         ]
     ]
-    status_human_readable: str
+    status_human_readable: Optional[str]
     type: Required[
         Union[
             ActionType,
@@ -78,7 +78,7 @@ class RelatedActionPlain(TypedDict, total=False):
         ]
     ]
     type_human_readable: Required[str]
-    resource_name: str
+    resource_name: Optional[str]
     resource_type: Required[
         Union[
             ResourceType,

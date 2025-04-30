@@ -60,7 +60,7 @@ class VariableUpdatePlain(TypedDict, total=False):
     id: Required[int]
     key: Required[str]
     value: Required[str]
-    description: str
+    description: Optional[str]
     target: Required[
         Union[
             VariableTarget,

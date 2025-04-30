@@ -51,11 +51,13 @@ class TriggeredActionStatsPlain(TypedDict, total=False):
     Plain version of TriggeredActionStats.
     """
 
-    resource_type: str
-    action_type: str
-    resource_type_human_readable: str
-    action_type_human_readable: str
-    summary: Union[
-        TriggeredActionSummary,
-        TriggeredActionSummaryPlain,
+    resource_type: Optional[str]
+    action_type: Optional[str]
+    resource_type_human_readable: Optional[str]
+    action_type_human_readable: Optional[str]
+    summary: Optional[
+        Union[
+            TriggeredActionSummary,
+            TriggeredActionSummaryPlain,
+        ]
     ]

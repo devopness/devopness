@@ -35,4 +35,4 @@ class DaemonStopPlain(TypedDict, total=False):
     Plain version of DaemonStop.
     """
 
-    servers: List[int]
+    servers: Optional[List[int]]

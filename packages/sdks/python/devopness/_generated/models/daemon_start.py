@@ -35,4 +35,4 @@ class DaemonStartPlain(TypedDict, total=False):
     Plain version of DaemonStart.
     """
 
-    servers: List[int]
+    servers: Optional[List[int]]

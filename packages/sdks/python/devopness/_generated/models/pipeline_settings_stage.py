@@ -39,6 +39,6 @@ class PipelineSettingsStagePlain(TypedDict, total=False):
     Plain version of PipelineSettingsStage.
     """
 
-    value: str
-    human_readable: str
-    hint: str
+    value: Optional[str]
+    human_readable: Optional[str]
+    hint: Optional[str]

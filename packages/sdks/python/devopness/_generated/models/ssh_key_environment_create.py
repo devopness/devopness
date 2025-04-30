@@ -44,10 +44,12 @@ class SshKeyEnvironmentCreatePlain(TypedDict, total=False):
     Plain version of SshKeyEnvironmentCreate.
     """
 
-    linked_resources: List[
-        Union[
-            ResourceToBeLinked,
-            ResourceToBeLinkedPlain,
+    linked_resources: Optional[
+        List[
+            Union[
+                ResourceToBeLinked,
+                ResourceToBeLinkedPlain,
+            ]
         ]
     ]
     name: Required[str]

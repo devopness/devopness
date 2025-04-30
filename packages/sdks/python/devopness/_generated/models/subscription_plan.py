@@ -36,6 +36,6 @@ class SubscriptionPlanPlain(TypedDict, total=False):
     Plain version of SubscriptionPlan.
     """
 
-    provider_plan_id: str
-    human_readable: str
-    allow_subscriptions: bool
+    provider_plan_id: Optional[str]
+    human_readable: Optional[str]
+    allow_subscriptions: Optional[bool]

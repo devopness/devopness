@@ -84,10 +84,12 @@ class EnvironmentPlain(TypedDict, total=False):
     name: Required[str]
     description: Required[str]
     is_archived: Required[bool]
-    resource_summary: List[
-        Union[
-            ResourceSummaryItem,
-            ResourceSummaryItemPlain,
+    resource_summary: Optional[
+        List[
+            Union[
+                ResourceSummaryItem,
+                ResourceSummaryItemPlain,
+            ]
         ]
     ]
     teams: Required[

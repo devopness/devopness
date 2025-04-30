@@ -93,7 +93,7 @@ class ActionStepPlain(TypedDict, total=False):
     action_id: Required[int]
     action_target_id: Required[int]
     name: Required[str]
-    description: str
+    description: Optional[str]
     order: Required[int]
     status: Required[
         Union[
@@ -101,13 +101,15 @@ class ActionStepPlain(TypedDict, total=False):
             ActionStatusPlain,
         ]
     ]
-    status_human_readable: str
-    status_reason_code: Union[
-        ActionStatusReasonCode,
-        ActionStatusReasonCodePlain,
+    status_human_readable: Optional[str]
+    status_reason_code: Optional[
+        Union[
+            ActionStatusReasonCode,
+            ActionStatusReasonCodePlain,
+        ]
     ]
-    status_reason_human_readable: str
-    started_at: datetime
-    completed_at: datetime
-    created_at: datetime
-    updated_at: datetime
+    status_reason_human_readable: Optional[str]
+    started_at: Optional[datetime]
+    completed_at: Optional[datetime]
+    created_at: Optional[datetime]
+    updated_at: Optional[datetime]

@@ -46,7 +46,7 @@ class ProviderSettingsPlain(TypedDict, total=False):
     Plain version of ProviderSettings.
     """
 
-    connect_url: str
+    connect_url: Optional[str]
     input_settings: Required[
         List[
             Union[
@@ -55,9 +55,11 @@ class ProviderSettingsPlain(TypedDict, total=False):
             ]
         ]
     ]
-    cloud_services: List[
-        Union[
-            CloudProviderService,
-            CloudProviderServicePlain,
+    cloud_services: Optional[
+        List[
+            Union[
+                CloudProviderService,
+                CloudProviderServicePlain,
+            ]
         ]
     ]

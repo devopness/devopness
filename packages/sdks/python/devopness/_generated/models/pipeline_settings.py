@@ -52,17 +52,21 @@ class PipelineSettingsPlain(TypedDict, total=False):
     Plain version of PipelineSettings.
     """
 
-    max_pipelines_per_resource: int
-    is_user_managed: bool
-    stages: List[
-        Union[
-            PipelineSettingsStage,
-            PipelineSettingsStagePlain,
+    max_pipelines_per_resource: Optional[int]
+    is_user_managed: Optional[bool]
+    stages: Optional[
+        List[
+            Union[
+                PipelineSettingsStage,
+                PipelineSettingsStagePlain,
+            ]
         ]
     ]
-    variables: List[
-        Union[
-            PipelineSettingsVariable,
-            PipelineSettingsVariablePlain,
+    variables: Optional[
+        List[
+            Union[
+                PipelineSettingsVariable,
+                PipelineSettingsVariablePlain,
+            ]
         ]
     ]

@@ -62,4 +62,4 @@ class ProviderRelationPlain(TypedDict, total=False):
             ProviderTypePlain,
         ]
     ]
-    type_human_readable: str
+    type_human_readable: Optional[str]

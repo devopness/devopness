@@ -44,10 +44,12 @@ class HookTriggerWhenPlain(TypedDict, total=False):
     Plain version of HookTriggerWhen.
     """
 
-    events: List[str]
-    conditions: List[
-        Union[
-            HookTriggerWhenConditionsInner,
-            HookTriggerWhenConditionsInnerPlain,
+    events: Optional[List[str]]
+    conditions: Optional[
+        List[
+            Union[
+                HookTriggerWhenConditionsInner,
+                HookTriggerWhenConditionsInnerPlain,
+            ]
         ]
     ]

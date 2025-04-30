@@ -35,4 +35,4 @@ class ServiceStartPlain(TypedDict, total=False):
     Plain version of ServiceStart.
     """
 
-    servers: List[int]
+    servers: Optional[List[int]]

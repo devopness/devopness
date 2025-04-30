@@ -43,9 +43,11 @@ class VariableTargetsPlain(TypedDict, total=False):
     Plain version of VariableTargets.
     """
 
-    name: Union[
-        VariableTarget,
-        VariableTargetPlain,
+    name: Optional[
+        Union[
+            VariableTarget,
+            VariableTargetPlain,
+        ]
     ]
-    name_human_readable: str
-    hint: str
+    name_human_readable: Optional[str]
+    hint: Optional[str]

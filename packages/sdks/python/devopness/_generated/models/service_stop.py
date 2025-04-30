@@ -35,4 +35,4 @@ class ServiceStopPlain(TypedDict, total=False):
     Plain version of ServiceStop.
     """
 
-    servers: List[int]
+    servers: Optional[List[int]]
