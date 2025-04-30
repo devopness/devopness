@@ -70,9 +70,9 @@ class StepPipelineUpdatePlain(TypedDict, total=False):
     """
 
     id: Required[int]
-    name: str
-    description: str
-    type: str
+    name: Optional[str]
+    description: Optional[str]
+    type: Optional[str]
     command: Required[str]
     runner: Required[
         Union[
@@ -80,5 +80,5 @@ class StepPipelineUpdatePlain(TypedDict, total=False):
             PipelineStepRunnerNamePlain,
         ]
     ]
-    run_as_user: str
-    trigger_after: int
+    run_as_user: Optional[str]
+    trigger_after: Optional[int]

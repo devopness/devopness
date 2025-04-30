@@ -58,14 +58,14 @@ class DeploymentApplicationCreatePlain(TypedDict, total=False):
     Plain version of DeploymentApplicationCreate.
     """
 
-    environment: str
+    environment: Optional[str]
     type: Required[
         Union[
             DeploymentType,
             DeploymentTypePlain,
         ]
     ]
-    source_type: str
-    source_ref: str
-    pipeline_id: int
-    servers: List[int]
+    source_type: Optional[str]
+    source_ref: Optional[str]
+    pipeline_id: Optional[int]
+    servers: Optional[List[int]]

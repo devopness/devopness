@@ -37,9 +37,11 @@ class StaticBillingInfoPlain(TypedDict, total=False):
     Plain version of StaticBillingInfo.
     """
 
-    subscription_plans: List[
-        Union[
-            SubscriptionPlan,
-            SubscriptionPlanPlain,
+    subscription_plans: Optional[
+        List[
+            Union[
+                SubscriptionPlan,
+                SubscriptionPlanPlain,
+            ]
         ]
     ]

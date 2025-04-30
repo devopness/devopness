@@ -38,7 +38,9 @@ class ApiErrorPlain(TypedDict, total=False):
     """
 
     message: Required[str]
-    errors: Union[
-        ApiErrorErrors,
-        ApiErrorErrorsPlain,
+    errors: Optional[
+        Union[
+            ApiErrorErrors,
+            ApiErrorErrorsPlain,
+        ]
     ]

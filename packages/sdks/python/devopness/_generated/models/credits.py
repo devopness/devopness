@@ -44,6 +44,6 @@ class CreditsPlain(TypedDict, total=False):
     Plain version of Credits.
     """
 
-    limit: float
-    used: float
-    remaining: float
+    limit: Optional[float]
+    used: Optional[float]
+    remaining: Optional[float]

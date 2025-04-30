@@ -58,10 +58,12 @@ class OrganizationPlain(TypedDict, total=False):
     id: Required[int]
     name: Required[str]
     url_slug: Required[str]
-    resource_summary: List[
-        Union[
-            ResourceSummaryItem,
-            ResourceSummaryItemPlain,
+    resource_summary: Optional[
+        List[
+            Union[
+                ResourceSummaryItem,
+                ResourceSummaryItemPlain,
+            ]
         ]
     ]
     owner: Required[

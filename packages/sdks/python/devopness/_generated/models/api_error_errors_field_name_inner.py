@@ -36,4 +36,4 @@ class ApiErrorErrorsFieldNameInnerPlain(TypedDict, total=False):
     Plain version of ApiErrorErrorsFieldNameInner.
     """
 
-    field: str
+    field: Optional[str]

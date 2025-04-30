@@ -34,11 +34,15 @@ class ActionHookRequestPlain(TypedDict, total=False):
     Plain version of ActionHookRequest.
     """
 
-    incoming: Union[
-        HookRequestRelation,
-        HookRequestRelationPlain,
+    incoming: Optional[
+        Union[
+            HookRequestRelation,
+            HookRequestRelationPlain,
+        ]
     ]
-    outgoing: Union[
-        HookRequestRelation,
-        HookRequestRelationPlain,
+    outgoing: Optional[
+        Union[
+            HookRequestRelation,
+            HookRequestRelationPlain,
+        ]
     ]

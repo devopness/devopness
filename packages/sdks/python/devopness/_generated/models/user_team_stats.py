@@ -41,5 +41,5 @@ class UserTeamStatsPlain(TypedDict, total=False):
     Plain version of UserTeamStats.
     """
 
-    owner_of: float
-    member_of: float
+    owner_of: Optional[float]
+    member_of: Optional[float]

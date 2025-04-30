@@ -55,12 +55,14 @@ class SubscriptionBalancePlain(TypedDict, total=False):
     Plain version of SubscriptionBalance.
     """
 
-    credits: Union[
-        Credits,
-        CreditsPlain,
+    credits: Optional[
+        Union[
+            Credits,
+            CreditsPlain,
+        ]
     ]
-    unit: str
-    billing_period_started_at: datetime
-    billing_period_ends_at: datetime
-    created_at: datetime
-    updated_at: datetime
+    unit: Optional[str]
+    billing_period_started_at: Optional[datetime]
+    billing_period_ends_at: Optional[datetime]
+    created_at: Optional[datetime]
+    updated_at: Optional[datetime]

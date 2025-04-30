@@ -42,6 +42,6 @@ class SubnetProvisionInputSettingsAzurePlain(TypedDict, total=False):
     Plain version of SubnetProvisionInputSettingsAzure.
     """
 
-    region: str
-    region_human_readable: str
+    region: Optional[str]
+    region_human_readable: Optional[str]
     cidr_block: Required[str]

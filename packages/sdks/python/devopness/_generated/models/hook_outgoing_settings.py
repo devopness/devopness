@@ -46,13 +46,17 @@ class HookOutgoingSettingsPlain(TypedDict, total=False):
     Plain version of HookOutgoingSettings.
     """
 
-    request_headers: List[
-        Union[
-            HookOutgoingRequestHeader,
-            HookOutgoingRequestHeaderPlain,
+    request_headers: Optional[
+        List[
+            Union[
+                HookOutgoingRequestHeader,
+                HookOutgoingRequestHeaderPlain,
+            ]
         ]
     ]
-    request_body: Union[
-        HookOutgoingSettingsRequestBody,
-        HookOutgoingSettingsRequestBodyPlain,
+    request_body: Optional[
+        Union[
+            HookOutgoingSettingsRequestBody,
+            HookOutgoingSettingsRequestBodyPlain,
+        ]
     ]

@@ -53,7 +53,7 @@ class TriggerWhenConditionPlain(TypedDict, total=False):
     Plain version of TriggerWhenCondition.
     """
 
-    name: str
+    name: Optional[str]
     type: Required[
         Union[
             TriggerWhenConditionType,

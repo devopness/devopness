@@ -81,11 +81,13 @@ class ArchivedEnvironmentRelationPlain(TypedDict, total=False):
     type_human_readable: Required[str]
     name: Required[str]
     description: Required[str]
-    used_credits: int
-    resource_summary: List[
-        Union[
-            ResourceSummaryItem,
-            ResourceSummaryItemPlain,
+    used_credits: Optional[int]
+    resource_summary: Optional[
+        List[
+            Union[
+                ResourceSummaryItem,
+                ResourceSummaryItemPlain,
+            ]
         ]
     ]
     created_at: Required[str]

@@ -34,11 +34,15 @@ class ApplicationLastDeploymentsPlain(TypedDict, total=False):
     Plain version of ApplicationLastDeployments.
     """
 
-    latest: Union[
-        ActionRelationShallow,
-        ActionRelationShallowPlain,
+    latest: Optional[
+        Union[
+            ActionRelationShallow,
+            ActionRelationShallowPlain,
+        ]
     ]
-    live: Union[
-        ActionRelationShallow,
-        ActionRelationShallowPlain,
+    live: Optional[
+        Union[
+            ActionRelationShallow,
+            ActionRelationShallowPlain,
+        ]
     ]

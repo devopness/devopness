@@ -37,9 +37,11 @@ class PipelineTriggerWhenPlain(TypedDict, total=False):
     Plain version of PipelineTriggerWhen.
     """
 
-    conditions: List[
-        Union[
-            TriggerWhenCondition,
-            TriggerWhenConditionPlain,
+    conditions: Optional[
+        List[
+            Union[
+                TriggerWhenCondition,
+                TriggerWhenConditionPlain,
+            ]
         ]
     ]

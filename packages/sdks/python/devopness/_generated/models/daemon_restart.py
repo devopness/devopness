@@ -35,4 +35,4 @@ class DaemonRestartPlain(TypedDict, total=False):
     Plain version of DaemonRestart.
     """
 
-    servers: List[int]
+    servers: Optional[List[int]]

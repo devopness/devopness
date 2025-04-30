@@ -60,9 +60,9 @@ class TriggeredActionSummaryPlain(TypedDict, total=False):
     Plain version of TriggeredActionSummary.
     """
 
-    count: float
-    queued: float
-    pending: float
-    in_progress: float
-    completed: float
-    failed: float
+    count: Optional[float]
+    queued: Optional[float]
+    pending: Optional[float]
+    in_progress: Optional[float]
+    completed: Optional[float]
+    failed: Optional[float]

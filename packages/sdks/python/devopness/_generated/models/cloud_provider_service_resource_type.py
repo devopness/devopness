@@ -85,14 +85,18 @@ class CloudProviderServiceResourceTypePlain(TypedDict, total=False):
             ]
         ]
     ]
-    os: List[
-        Union[
-            OperatingSystem,
-            OperatingSystemPlain,
+    os: Optional[
+        List[
+            Union[
+                OperatingSystem,
+                OperatingSystemPlain,
+            ]
         ]
     ]
-    can_keep_disk_after_delete_server: bool
-    operation_custom_settings: Union[
-        OperationCustomSettings,
-        OperationCustomSettingsPlain,
+    can_keep_disk_after_delete_server: Optional[bool]
+    operation_custom_settings: Optional[
+        Union[
+            OperationCustomSettings,
+            OperationCustomSettingsPlain,
+        ]
     ]

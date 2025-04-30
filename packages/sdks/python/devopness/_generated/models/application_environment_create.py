@@ -89,26 +89,30 @@ class ApplicationEnvironmentCreatePlain(TypedDict, total=False):
     Plain version of ApplicationEnvironmentCreate.
     """
 
-    linked_resources: List[
-        Union[
-            ResourceToBeLinked,
-            ResourceToBeLinkedPlain,
+    linked_resources: Optional[
+        List[
+            Union[
+                ResourceToBeLinked,
+                ResourceToBeLinkedPlain,
+            ]
         ]
     ]
     name: Required[str]
-    build_command: str
+    build_command: Optional[str]
     engine_version: Required[str]
     framework: Required[str]
     programming_language: Required[str]
     repository: Required[str]
     credential_id: Required[int]
-    root_directory: str
+    root_directory: Optional[str]
     default_branch: Required[str]
-    deployments_keep: int
-    install_dependencies_command: str
-    environments: List[
-        Union[
-            EnvironmentLink,
-            EnvironmentLinkPlain,
+    deployments_keep: Optional[int]
+    install_dependencies_command: Optional[str]
+    environments: Optional[
+        List[
+            Union[
+                EnvironmentLink,
+                EnvironmentLinkPlain,
+            ]
         ]
     ]

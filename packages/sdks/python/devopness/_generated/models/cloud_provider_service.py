@@ -63,19 +63,25 @@ class CloudProviderServicePlain(TypedDict, total=False):
         ]
     ]
     name: Required[str]
-    provider: Union[
-        ProviderRelation,
-        ProviderRelationPlain,
-    ]
-    regions: List[
+    provider: Optional[
         Union[
-            CloudProviderServiceRegion,
-            CloudProviderServiceRegionPlain,
+            ProviderRelation,
+            ProviderRelationPlain,
         ]
     ]
-    resource_types: List[
-        Union[
-            CloudProviderServiceResourceType,
-            CloudProviderServiceResourceTypePlain,
+    regions: Optional[
+        List[
+            Union[
+                CloudProviderServiceRegion,
+                CloudProviderServiceRegionPlain,
+            ]
+        ]
+    ]
+    resource_types: Optional[
+        List[
+            Union[
+                CloudProviderServiceResourceType,
+                CloudProviderServiceResourceTypePlain,
+            ]
         ]
     ]

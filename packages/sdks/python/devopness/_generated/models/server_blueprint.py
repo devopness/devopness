@@ -51,12 +51,14 @@ class ServerBlueprintPlain(TypedDict, total=False):
     Plain version of ServerBlueprint.
     """
 
-    id: int
-    name: str
-    type: str
-    spec: Union[
-        ServerBlueprintSpec,
-        ServerBlueprintSpecPlain,
+    id: Optional[int]
+    name: Optional[str]
+    type: Optional[str]
+    spec: Optional[
+        Union[
+            ServerBlueprintSpec,
+            ServerBlueprintSpecPlain,
+        ]
     ]
-    created_at: datetime
-    updated_at: datetime
+    created_at: Optional[datetime]
+    updated_at: Optional[datetime]

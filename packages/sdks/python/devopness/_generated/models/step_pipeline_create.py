@@ -62,9 +62,9 @@ class StepPipelineCreatePlain(TypedDict, total=False):
     Plain version of StepPipelineCreate.
     """
 
-    name: str
-    description: str
-    type: str
+    name: Optional[str]
+    description: Optional[str]
+    type: Optional[str]
     command: Required[str]
     runner: Required[
         Union[
@@ -72,4 +72,4 @@ class StepPipelineCreatePlain(TypedDict, total=False):
             PipelineStepRunnerNamePlain,
         ]
     ]
-    run_as_user: str
+    run_as_user: Optional[str]

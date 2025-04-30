@@ -52,7 +52,7 @@ class ServerUpdatePlain(TypedDict, total=False):
     """
 
     id: Required[int]
-    ip_address: str
-    ssh_port: int
-    max_parallel_actions: int
-    credential_id: str
+    ip_address: Optional[str]
+    ssh_port: Optional[int]
+    max_parallel_actions: Optional[int]
+    credential_id: Optional[str]

@@ -59,4 +59,4 @@ class CronJobUpdatePlain(TypedDict, total=False):
     name: Required[str]
     command: Required[str]
     run_as_user: Required[str]
-    application_id: int
+    application_id: Optional[int]

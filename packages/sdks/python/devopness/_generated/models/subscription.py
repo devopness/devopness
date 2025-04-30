@@ -91,25 +91,29 @@ class SubscriptionPlain(TypedDict, total=False):
     Plain version of Subscription.
     """
 
-    id: int
-    user_id: int
-    plan_name: str
-    status: str
-    quantity: int
-    price_unit: float
-    price_total: float
-    price_currency: str
-    cancelled_at: datetime
-    ends_at: datetime
-    created_at: datetime
-    updated_at: datetime
-    current_balance: Union[
-        SubscriptionBalance,
-        SubscriptionBalancePlain,
-    ]
-    balances: List[
+    id: Optional[int]
+    user_id: Optional[int]
+    plan_name: Optional[str]
+    status: Optional[str]
+    quantity: Optional[int]
+    price_unit: Optional[float]
+    price_total: Optional[float]
+    price_currency: Optional[str]
+    cancelled_at: Optional[datetime]
+    ends_at: Optional[datetime]
+    created_at: Optional[datetime]
+    updated_at: Optional[datetime]
+    current_balance: Optional[
         Union[
             SubscriptionBalance,
             SubscriptionBalancePlain,
+        ]
+    ]
+    balances: Optional[
+        List[
+            Union[
+                SubscriptionBalance,
+                SubscriptionBalancePlain,
+            ]
         ]
     ]

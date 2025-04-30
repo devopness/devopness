@@ -97,7 +97,7 @@ class ServerRelationPlain(TypedDict, total=False):
     ]
     region: Required[str]
     region_human_readable: Required[str]
-    ip_address: str
+    ip_address: Optional[str]
     ssh_port: Required[int]
     active: Required[bool]
     status: Required[

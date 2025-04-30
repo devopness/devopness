@@ -77,8 +77,8 @@ class SshKeyPlain(TypedDict, total=False):
     """
 
     id: Required[int]
-    created_by: int
-    project_id: int
+    created_by: Optional[int]
+    project_id: Optional[int]
     environment_id: Required[int]
     name: Required[str]
     fingerprint: Required[str]
@@ -108,5 +108,5 @@ class SshKeyPlain(TypedDict, total=False):
             ActionRelationPlain,
         ]
     ]
-    created_at: str
-    updated_at: str
+    created_at: Optional[str]
+    updated_at: Optional[str]

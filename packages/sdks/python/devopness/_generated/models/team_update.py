@@ -43,4 +43,4 @@ class TeamUpdatePlain(TypedDict, total=False):
 
     id: Required[int]
     name: Required[str]
-    photo_url: str
+    photo_url: Optional[str]

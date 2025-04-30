@@ -83,8 +83,8 @@ class StepPlain(TypedDict, total=False):
     """
 
     id: Required[int]
-    name: str
-    description: str
+    name: Optional[str]
+    description: Optional[str]
     type: Required[str]
     run_as_user: Required[str]
     command: Required[str]

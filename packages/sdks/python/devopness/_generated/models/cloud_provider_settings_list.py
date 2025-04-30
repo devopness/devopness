@@ -40,9 +40,11 @@ class CloudProviderSettingsListPlain(TypedDict, total=False):
     Plain version of CloudProviderSettingsList.
     """
 
-    credential: List[
-        Union[
-            CloudProviderInputSettings,
-            CloudProviderInputSettingsPlain,
+    credential: Optional[
+        List[
+            Union[
+                CloudProviderInputSettings,
+                CloudProviderInputSettingsPlain,
+            ]
         ]
     ]

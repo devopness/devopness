@@ -56,11 +56,13 @@ class LinkedResourceDataPlain(TypedDict, total=False):
 
     id: Required[int]
     name: Required[str]
-    summary_fields: List[
-        Union[
-            LinkedResourceSummaryField,
-            LinkedResourceSummaryFieldPlain,
+    summary_fields: Optional[
+        List[
+            Union[
+                LinkedResourceSummaryField,
+                LinkedResourceSummaryFieldPlain,
+            ]
         ]
     ]
-    created_at: datetime
-    updated_at: datetime
+    created_at: Optional[datetime]
+    updated_at: Optional[datetime]

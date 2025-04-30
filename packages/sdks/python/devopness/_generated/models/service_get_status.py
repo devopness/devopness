@@ -35,4 +35,4 @@ class ServiceGetStatusPlain(TypedDict, total=False):
     Plain version of ServiceGetStatus.
     """
 
-    servers: List[int]
+    servers: Optional[List[int]]

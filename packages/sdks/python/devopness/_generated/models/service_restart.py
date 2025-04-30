@@ -35,4 +35,4 @@ class ServiceRestartPlain(TypedDict, total=False):
     Plain version of ServiceRestart.
     """
 
-    servers: List[int]
+    servers: Optional[List[int]]

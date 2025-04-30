@@ -55,5 +55,5 @@ class UserVerifyPlain(TypedDict, total=False):
     email: Required[str]
     token: Required[str]
     name: Required[str]
-    url_slug: str
+    url_slug: Optional[str]
     password: Required[str]

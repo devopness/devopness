@@ -97,35 +97,45 @@ class ActionTargetPlain(TypedDict, total=False):
     Plain version of ActionTarget.
     """
 
-    resource_type: str
-    resource_type_human_readable: str
-    resource_id: int
-    status: Union[
-        ActionStatus,
-        ActionStatusPlain,
+    resource_type: Optional[str]
+    resource_type_human_readable: Optional[str]
+    resource_id: Optional[int]
+    status: Optional[
+        Union[
+            ActionStatus,
+            ActionStatusPlain,
+        ]
     ]
-    status_human_readable: str
-    status_reason_code: Union[
-        ActionStatusReasonCode,
-        ActionStatusReasonCodePlain,
+    status_human_readable: Optional[str]
+    status_reason_code: Optional[
+        Union[
+            ActionStatusReasonCode,
+            ActionStatusReasonCodePlain,
+        ]
     ]
-    status_reason_human_readable: str
-    total_steps: int
-    current_step: Union[
-        ActionStep,
-        ActionStepPlain,
-    ]
-    steps: List[
+    status_reason_human_readable: Optional[str]
+    total_steps: Optional[int]
+    current_step: Optional[
         Union[
             ActionStep,
             ActionStepPlain,
         ]
     ]
-    resource_data: Union[
-        ActionTargetData,
-        ActionTargetDataPlain,
+    steps: Optional[
+        List[
+            Union[
+                ActionStep,
+                ActionStepPlain,
+            ]
+        ]
     ]
-    started_at: datetime
-    completed_at: datetime
-    created_at: datetime
-    updated_at: datetime
+    resource_data: Optional[
+        Union[
+            ActionTargetData,
+            ActionTargetDataPlain,
+        ]
+    ]
+    started_at: Optional[datetime]
+    completed_at: Optional[datetime]
+    created_at: Optional[datetime]
+    updated_at: Optional[datetime]

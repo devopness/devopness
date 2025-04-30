@@ -46,7 +46,7 @@ class SubnetProvisionInputSettingsAwsPlain(TypedDict, total=False):
     Plain version of SubnetProvisionInputSettingsAws.
     """
 
-    region: str
-    region_human_readable: str
+    region: Optional[str]
+    region_human_readable: Optional[str]
     zone: Required[str]
     cidr_block: Required[str]

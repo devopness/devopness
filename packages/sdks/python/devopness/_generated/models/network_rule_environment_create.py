@@ -56,10 +56,12 @@ class NetworkRuleEnvironmentCreatePlain(TypedDict, total=False):
     Plain version of NetworkRuleEnvironmentCreate.
     """
 
-    linked_resources: List[
-        Union[
-            ResourceToBeLinked,
-            ResourceToBeLinkedPlain,
+    linked_resources: Optional[
+        List[
+            Union[
+                ResourceToBeLinked,
+                ResourceToBeLinkedPlain,
+            ]
         ]
     ]
     name: Required[str]

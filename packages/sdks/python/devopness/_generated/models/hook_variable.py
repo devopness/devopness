@@ -53,14 +53,18 @@ class HookVariablePlain(TypedDict, total=False):
     Plain version of HookVariable.
     """
 
-    name: str
-    path: str
-    type: Union[
-        HookVariableType,
-        HookVariableTypePlain,
+    name: Optional[str]
+    path: Optional[str]
+    type: Optional[
+        Union[
+            HookVariableType,
+            HookVariableTypePlain,
+        ]
     ]
-    required: bool
-    default_value: Union[
-        HookVariableDefaultValue,
-        HookVariableDefaultValuePlain,
+    required: Optional[bool]
+    default_value: Optional[
+        Union[
+            HookVariableDefaultValue,
+            HookVariableDefaultValuePlain,
+        ]
     ]

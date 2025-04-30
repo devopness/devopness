@@ -135,13 +135,17 @@ class ApplicationRelationPlain(TypedDict, total=False):
     deployments_keep: Required[int]
     install_dependencies_command: Required[str]
     build_command: Required[str]
-    last_deployments: Union[
-        ApplicationLastDeployments,
-        ApplicationLastDeploymentsPlain,
+    last_deployments: Optional[
+        Union[
+            ApplicationLastDeployments,
+            ApplicationLastDeploymentsPlain,
+        ]
     ]
-    credential: Union[
-        Credential,
-        CredentialPlain,
+    credential: Optional[
+        Union[
+            Credential,
+            CredentialPlain,
+        ]
     ]
     created_at: Required[str]
     updated_at: Required[str]

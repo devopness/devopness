@@ -37,9 +37,11 @@ class HookIncomingSettingsPlain(TypedDict, total=False):
     Plain version of HookIncomingSettings.
     """
 
-    variables: List[
-        Union[
-            HookVariable,
-            HookVariablePlain,
+    variables: Optional[
+        List[
+            Union[
+                HookVariable,
+                HookVariablePlain,
+            ]
         ]
     ]

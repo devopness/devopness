@@ -40,4 +40,4 @@ class NetworkProvisionInputSettingsGcpPlain(TypedDict, total=False):
     """
 
     region: Required[str]
-    region_human_readable: str
+    region_human_readable: Optional[str]

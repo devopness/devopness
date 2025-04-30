@@ -41,5 +41,5 @@ class UserEnvironmentStatsPlain(TypedDict, total=False):
     Plain version of UserEnvironmentStats.
     """
 
-    owner_of: float
-    member_of: float
+    owner_of: Optional[float]
+    member_of: Optional[float]

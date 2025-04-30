@@ -66,9 +66,11 @@ class ResourceLinkRelationPlain(TypedDict, total=False):
             LinkedResourceDataPlain,
         ]
     ]
-    children: List[
-        Union[
-            ResourceLinkChild,
-            ResourceLinkChildPlain,
+    children: Optional[
+        List[
+            Union[
+                ResourceLinkChild,
+                ResourceLinkChildPlain,
+            ]
         ]
     ]

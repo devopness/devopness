@@ -40,4 +40,4 @@ class TeamProjectCreatePlain(TypedDict, total=False):
     """
 
     name: Required[str]
-    photo_url: str
+    photo_url: Optional[str]

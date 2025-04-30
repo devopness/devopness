@@ -174,9 +174,11 @@ class ActionPlain(TypedDict, total=False):
             ]
         ]
     ]
-    triggered_by_user: Union[
-        UserRelation,
-        UserRelationPlain,
+    triggered_by_user: Optional[
+        Union[
+            UserRelation,
+            UserRelationPlain,
+        ]
     ]
     resource: Required[
         Union[
@@ -190,23 +192,31 @@ class ActionPlain(TypedDict, total=False):
             ActionSummaryPlain,
         ]
     ]
-    environment: Union[
-        EnvironmentRelation,
-        EnvironmentRelationPlain,
-    ]
-    project: Union[
-        ProjectRelation,
-        ProjectRelationPlain,
-    ]
-    targets: List[
+    environment: Optional[
         Union[
-            ActionTarget,
-            ActionTargetPlain,
+            EnvironmentRelation,
+            EnvironmentRelationPlain,
         ]
     ]
-    hook_requests: Union[
-        ActionHookRequest,
-        ActionHookRequestPlain,
+    project: Optional[
+        Union[
+            ProjectRelation,
+            ProjectRelationPlain,
+        ]
+    ]
+    targets: Optional[
+        List[
+            Union[
+                ActionTarget,
+                ActionTargetPlain,
+            ]
+        ]
+    ]
+    hook_requests: Optional[
+        Union[
+            ActionHookRequest,
+            ActionHookRequestPlain,
+        ]
     ]
     started_at: Required[str]
     completed_at: Required[str]

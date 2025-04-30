@@ -38,9 +38,11 @@ class ServerBlueprintSpecPlain(TypedDict, total=False):
     Plain version of ServerBlueprintSpec.
     """
 
-    services: List[
-        Union[
-            BlueprintService,
-            BlueprintServicePlain,
+    services: Optional[
+        List[
+            Union[
+                BlueprintService,
+                BlueprintServicePlain,
+            ]
         ]
     ]

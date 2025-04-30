@@ -109,22 +109,30 @@ class ActionRelationShallowPlain(TypedDict, total=False):
     ]
     type_human_readable: Required[str]
     url_web_permalink: Required[str]
-    action_data: Union[
-        ActionData,
-        ActionDataPlain,
-    ]
-    triggered_from: Union[
-        ActionTriggeredFrom,
-        ActionTriggeredFromPlain,
-    ]
-    summary: Union[
-        ActionSummary,
-        ActionSummaryPlain,
-    ]
-    targets: List[
+    action_data: Optional[
         Union[
-            ActionTarget,
-            ActionTargetPlain,
+            ActionData,
+            ActionDataPlain,
+        ]
+    ]
+    triggered_from: Optional[
+        Union[
+            ActionTriggeredFrom,
+            ActionTriggeredFromPlain,
+        ]
+    ]
+    summary: Optional[
+        Union[
+            ActionSummary,
+            ActionSummaryPlain,
+        ]
+    ]
+    targets: Optional[
+        List[
+            Union[
+                ActionTarget,
+                ActionTargetPlain,
+            ]
         ]
     ]
     started_at: Required[datetime]

@@ -72,14 +72,16 @@ class LanguageRuntimeFrameworkDefaultsPlain(TypedDict, total=False):
     Plain version of LanguageRuntimeFrameworkDefaults.
     """
 
-    default_branch: str
-    engine_version: str
-    framework: str
-    root_directory: str
-    deployments_keep: int
-    commands: Union[
-        LanguageRuntimeFrameworkCommands,
-        LanguageRuntimeFrameworkCommandsPlain,
+    default_branch: Optional[str]
+    engine_version: Optional[str]
+    framework: Optional[str]
+    root_directory: Optional[str]
+    deployments_keep: Optional[int]
+    commands: Optional[
+        Union[
+            LanguageRuntimeFrameworkCommands,
+            LanguageRuntimeFrameworkCommandsPlain,
+        ]
     ]
-    install_dependencies_command: str
-    build_command: str
+    install_dependencies_command: Optional[str]
+    build_command: Optional[str]

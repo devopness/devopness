@@ -45,10 +45,12 @@ class BlueprintServicePlain(TypedDict, total=False):
     Plain version of BlueprintService.
     """
 
-    auto_start: bool
-    initial_state: Union[
-        ServiceInitialState,
-        ServiceInitialStatePlain,
+    auto_start: Optional[bool]
+    initial_state: Optional[
+        Union[
+            ServiceInitialState,
+            ServiceInitialStatePlain,
+        ]
     ]
     type: Required[
         Union[

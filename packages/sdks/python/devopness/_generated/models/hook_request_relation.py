@@ -71,7 +71,7 @@ class HookRequestRelationPlain(TypedDict, total=False):
     action_id: Required[int]
     retry_of: Required[str]
     ip_address: Required[str]
-    url: str
-    response_status_code: int
-    created_at: datetime
-    updated_at: datetime
+    url: Optional[str]
+    response_status_code: Optional[int]
+    created_at: Optional[datetime]
+    updated_at: Optional[datetime]

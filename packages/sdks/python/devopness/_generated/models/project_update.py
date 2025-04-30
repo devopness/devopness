@@ -48,5 +48,5 @@ class ProjectUpdatePlain(TypedDict, total=False):
 
     id: Required[int]
     name: Required[str]
-    logo_image: str
-    logo_url: str
+    logo_image: Optional[str]
+    logo_url: Optional[str]

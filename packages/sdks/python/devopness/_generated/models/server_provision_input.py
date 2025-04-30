@@ -49,14 +49,16 @@ class ServerProvisionInputPlain(TypedDict, total=False):
     Plain version of ServerProvisionInput.
     """
 
-    subnet_id: int
+    subnet_id: Optional[int]
     cloud_service_code: Required[
         Union[
             ServerCloudServiceCode,
             ServerCloudServiceCodePlain,
         ]
     ]
-    settings: Union[
-        ServerProvisionInputSettings,
-        ServerProvisionInputSettingsPlain,
+    settings: Optional[
+        Union[
+            ServerProvisionInputSettings,
+            ServerProvisionInputSettingsPlain,
+        ]
     ]

@@ -40,5 +40,5 @@ class LanguageRuntimeFrameworkCommandsPlain(TypedDict, total=False):
     Plain version of LanguageRuntimeFrameworkCommands.
     """
 
-    build: List[str]
-    dependencies: List[str]
+    build: Optional[List[str]]
+    dependencies: Optional[List[str]]

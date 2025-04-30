@@ -52,7 +52,9 @@ class ActionResourcePlain(TypedDict, total=False):
         ]
     ]
     type_human_readable: Required[str]
-    data: Union[
-        ActionResourceData,
-        ActionResourceDataPlain,
+    data: Optional[
+        Union[
+            ActionResourceData,
+            ActionResourceDataPlain,
+        ]
     ]

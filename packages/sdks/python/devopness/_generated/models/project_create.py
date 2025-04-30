@@ -49,6 +49,6 @@ class ProjectCreatePlain(TypedDict, total=False):
     """
 
     name: Required[str]
-    organization_id: int
-    logo_image: str
-    logo_url: str
+    organization_id: Optional[int]
+    logo_image: Optional[str]
+    logo_url: Optional[str]
