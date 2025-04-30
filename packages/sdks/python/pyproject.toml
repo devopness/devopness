@@ -90,6 +90,9 @@ extend-select = [
   "I",   # isort (import sorting)
   "N",   # pep8-naming
   "PIE", # flake8-pie (extra cleanups)
+  "PLC", # pylint conventions
+  "PLE", # pylint errors
+  "PLW", # pylint warnings
   "Q",   # flake8-quotes (quote consistency)
   "RET", # flake8-return (return statement rules)
   "RUF", # Ruff-specific rules
@@ -99,7 +102,8 @@ extend-select = [
 ]
 
 ignore = [
-  "RET504", # Unnecessary assignment to `**kwargs` before `return` statement
+  "PLC2701", # Private name import `*` from external module `*`
+  "RET504",  # Unnecessary assignment to `**kwargs` before `return` statement
 ]
 
 [tool.ruff.lint.per-file-ignores]

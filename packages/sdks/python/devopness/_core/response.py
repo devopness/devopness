@@ -158,11 +158,12 @@ class DevopnessResponse(Generic[T]):
                 dict_data: dict[str, Any] = json.loads(raw_data.decode("utf-8"))
                 return model_cls.from_dict(dict_data)
 
-        except (json.JSONDecodeError, ValidationError):
+        except (json.JSONDecodeError, ValidationError) as e:
             model_name = model_cls.__name__ if model_cls else "None"
             msg = (
                 f"Failed to deserialize response body into {model_name}. "
-                "Returning raw response data instead."
+                "Returning raw response data instead.\n\n"
+                f"Error: {e}"
             )
             warn(msg, stacklevel=3)
 

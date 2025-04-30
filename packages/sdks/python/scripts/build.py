@@ -3,7 +3,6 @@
 # pylint: disable=missing-function-docstring
 # pylint: disable=missing-module-docstring
 
-import json
 import os
 import shutil
 import subprocess
@@ -67,59 +66,6 @@ def run_openapi_generator(extra_args: list[str] | None = None) -> None:
         check=True,
         env={"JAVA_OPTS": "-Dlog.level=warn"},
     )
-
-
-def run_openapi_generator_with_temporary_cleanup() -> None:
-    """
-    TEMPORARY HACK FOR INITIAL SDK DEVELOPMENT
-
-    We're removing all generated files that are not in test-scope
-    to keep the number of auto-generated files as low as possible
-    during the initial development of SDK.
-
-    This helps validate the core structure and functionality
-    of the SDK before exposing all endpoints.
-    """
-
-    apis_to_generate = [
-        "Credentials",
-        "CredentialsRepositories",
-        "Environments",
-        "Projects",
-        "ProjectsArchivedEnvironments",
-        "ProjectsEnvironments",
-        "Servers",
-        "Users",
-    ]
-
-    apis_string = ":".join(apis_to_generate)
-    apis_property = f"--global-property apis={apis_string},supportingFiles=__init__.py"
-
-    openapi_generator_extra_args: list[str] = []
-    openapi_generator_extra_args.append(apis_property)
-    openapi_generator_extra_args.append("--global-property models")
-
-    # The OpenAPI Generator does not support filtering tags with spaces.
-    # Therefore, we need to create a modified version of the spec.json
-    # that removes the spaces before passing it to the generator.
-    input_path = os.path.join(SDK_ROOT_DIR, "..", "common", "spec.json")
-    output_path = "/usr/local/share/spec.json"
-    with open(input_path, "r") as input_file:
-        content = json.load(input_file)
-        for _endpoint, endpoint_info in content["paths"].items():
-            for _method, method_info in endpoint_info.items():
-                if "tags" in method_info:
-                    method_info["tags"] = [
-                        tag.replace(" ", "").replace("-", "")
-                        for tag in method_info["tags"]
-                    ]
-
-        with open(output_path, "w") as output_file:
-            output_file.write(json.dumps(content))
-
-    openapi_generator_extra_args.append(f"--input-spec={output_path}")
-
-    run_openapi_generator(openapi_generator_extra_args)
 
 
 def export_sdk_core() -> None:
@@ -305,8 +251,7 @@ def remove_openapi_generator_cache() -> None:
 if __name__ == "__main__":
     try:
         remove_previous_generated_directories()
-        # run_openapi_generator()
-        run_openapi_generator_with_temporary_cleanup()
+        run_openapi_generator()
 
         export_sdk_core()
         export_sdk_models()

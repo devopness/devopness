@@ -9,8 +9,10 @@ from ._client_config import DevopnessClientConfig, DevopnessClientConfigDict
 from .services import (
     CredentialService,
     EnvironmentService,
+    NetworkService,
     ProjectService,
     ServerService,
+    SubnetService,
     UserService,
 )
 
@@ -24,8 +26,10 @@ class DevopnessClient:
 
     credentials: CredentialService
     environments: EnvironmentService
+    networks: NetworkService
     projects: ProjectService
     servers: ServerService
+    subnets: SubnetService
     users: UserService
 
     def __init__(
@@ -41,8 +45,10 @@ class DevopnessClient:
 
         self.credentials = CredentialService(config)
         self.environments = EnvironmentService(config)
+        self.networks = NetworkService(config)
         self.projects = ProjectService(config)
         self.servers = ServerService(config)
+        self.subnets = SubnetService(config)
         self.users = UserService(config)
 
     def __set_access_token(self, access_token: str) -> None:

@@ -29,6 +29,7 @@ class DevopnessBaseService:
 
     __client: httpx.AsyncClient
     __client_sync: httpx.Client
+    __config: DevopnessClientConfig
 
     _access_token: Optional[str] = None
 
@@ -61,6 +62,8 @@ class DevopnessBaseService:
             },
         )
 
+        self.__config = config
+
     async def __on_request(self, request: httpx.Request) -> None:
         """
         Request interceptor that injects the Authorization header if an access
@@ -77,6 +80,9 @@ class DevopnessBaseService:
         elif "Authorization" in request.headers:
             del request.headers["Authorization"]
 
+        if self.__config.debug:
+            self.__debug_request(request)
+
     async def __on_response(self, response: httpx.Response) -> httpx.Response:
         """
         Response interceptor to error handling.
@@ -89,6 +95,9 @@ class DevopnessBaseService:
         """
         try:
             response.raise_for_status()
+
+            if self.__config.debug:
+                self.__debug_response(response)
 
         except httpx.HTTPStatusError as e:
             await raise_devopness_api_error(e)
@@ -111,6 +120,9 @@ class DevopnessBaseService:
         elif "Authorization" in request.headers:
             del request.headers["Authorization"]
 
+        if self.__config.debug:
+            self.__debug_request(request)
+
     def __on_response_sync(self, response: httpx.Response) -> httpx.Response:
         """
         Response interceptor to error handling.
@@ -123,6 +135,9 @@ class DevopnessBaseService:
         """
         try:
             response.raise_for_status()
+
+            if self.__config.debug:
+                self.__debug_response(response)
 
         except httpx.HTTPStatusError as e:
             raise_devopness_api_error_sync(e)
@@ -271,22 +286,46 @@ class DevopnessBaseService:
 
         return stripped_payload
 
+    def __debug_request(self, request: httpx.Request) -> None:
+        """
+        Prints the request details to the console.
+
+        Args:
+            request (httpx.Request): The request object.
+        """
+        r_method = request.method.upper()
+        r_url = request.url
+
+        print(f"[Devopness SDK] --> {r_method} {r_url}")
+
+    def __debug_response(self, response: httpx.Response) -> None:
+        """
+        Prints the response details to the console.
+
+        Args:
+            response (httpx.Response): The response object.
+        """
+        r_status_code = response.status_code
+        r_reason_phrase = response.reason_phrase
+
+        print(f"[Devopness SDK] <-- [Response] {r_status_code} {r_reason_phrase}")
+
     @staticmethod
-    def _get_query_string(params: dict[str, Any]) -> str:
+    def _get_query_string(in_params: dict[str, Any]) -> str:
         """
         Returns the query string from the given query parameters.
 
         Args:
-            params (dict[str, Any]): The query parameters.
+            in_params (dict[str, Any]): The query parameters.
 
         Returns:
             str: The query string.
         """
-        params = {}
-        for key, value in params.items():
-            if value is None:
+        out_params: dict[str, Any] = {}
+        for key, value in in_params.items():
+            if value is None or value in ("", [], {}):
                 continue
 
-            params[key] = value
+            out_params[key] = value
 
-        return urlencode(params)
+        return urlencode(out_params)
