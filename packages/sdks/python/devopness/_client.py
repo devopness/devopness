@@ -14,6 +14,7 @@ from .services import (
     ServerService,
     SubnetService,
     UserService,
+    VirtualHostService,
 )
 
 __all__ = ["DevopnessClient"]
@@ -31,6 +32,7 @@ class DevopnessClient:
     servers: ServerService
     subnets: SubnetService
     users: UserService
+    virtual_hosts: VirtualHostService
 
     def __init__(
         self,
@@ -50,6 +52,7 @@ class DevopnessClient:
         self.servers = ServerService(config)
         self.subnets = SubnetService(config)
         self.users = UserService(config)
+        self.virtual_hosts = VirtualHostService(config)
 
     def __set_access_token(self, access_token: str) -> None:
         # pylint: disable=protected-access

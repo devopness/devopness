@@ -9,6 +9,7 @@ from ._services.project_service import ProjectService
 from ._services.server_service import ServerService
 from ._services.subnet_service import SubnetService
 from ._services.user_service import UserService
+from ._services.virtual_host_service import VirtualHostService
 
 __all__ = [
     "CredentialService",
@@ -18,4 +19,5 @@ __all__ = [
     "ServerService",
     "SubnetService",
     "UserService",
+    "VirtualHostService",
 ]
