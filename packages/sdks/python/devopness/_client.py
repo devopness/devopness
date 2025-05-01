@@ -7,6 +7,7 @@ from typing import Optional, Union
 from ._base import DevopnessBaseService
 from ._client_config import DevopnessClientConfig, DevopnessClientConfigDict
 from .services import (
+    ApplicationService,
     CredentialService,
     EnvironmentService,
     NetworkService,
@@ -25,6 +26,7 @@ class DevopnessClient:
     DevopnessApiClient provides an interface to the Devopness API.
     """
 
+    applications: ApplicationService
     credentials: CredentialService
     environments: EnvironmentService
     networks: NetworkService
@@ -45,6 +47,7 @@ class DevopnessClient:
         elif isinstance(config, dict):
             config = DevopnessClientConfig.from_dict(config)
 
+        self.applications = ApplicationService(config)
         self.credentials = CredentialService(config)
         self.environments = EnvironmentService(config)
         self.networks = NetworkService(config)
