@@ -2,6 +2,7 @@
 Devopness API Python SDK - Painless essential DevOps to everyone
 """
 
+from ._services.application_service import ApplicationService
 from ._services.credential_service import CredentialService
 from ._services.environment_service import EnvironmentService
 from ._services.network_service import NetworkService
@@ -12,6 +13,7 @@ from ._services.user_service import UserService
 from ._services.virtual_host_service import VirtualHostService
 
 __all__ = [
+    "ApplicationService",
     "CredentialService",
     "EnvironmentService",
     "NetworkService",
