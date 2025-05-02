@@ -1,5 +1,11 @@
 # @devopness/sdk-js
 
+## 2.163.3
+
+### Patch Changes
+
+- [#1651](https://github.com/devopness/devopness/pull/1651) [`7fa10ba`](https://github.com/devopness/devopness/commit/7fa10ba49132e899f143435f7434026e8a16eee8) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Remove unused 'provider_id' field from ActionDeploymentContent Model
+
 ## 2.163.2
 
 ### Patch Changes
