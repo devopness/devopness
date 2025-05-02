@@ -1,5 +1,5 @@
-from .._base import DevopnessBaseModel, DevopnessBaseService
-from .._core import DevopnessResponse
+from ..base import DevopnessBaseModel, DevopnessBaseService
+from ..core import DevopnessResponse
 
 __all__ = [
     "DevopnessBaseModel",

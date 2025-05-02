@@ -4,7 +4,7 @@ Devopness API Python SDK - Painless essential DevOps to everyone
 
 from typing import ClassVar, TypedDict
 
-from ._base import DevopnessBaseModel
+from .base import DevopnessBaseModel
 
 __all__ = ["DevopnessClientConfig", "DevopnessClientConfigDict"]
 

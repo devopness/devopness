@@ -2,8 +2,8 @@
 Devopness API Python SDK - Painless essential DevOps to everyone
 """
 
-from .._generated.api.credentials_api import CredentialsApiService
-from .._generated.api.credentials_repositories_api import (
+from ..generated.api.credentials_api import CredentialsApiService
+from ..generated.api.credentials_repositories_api import (
     CredentialsRepositoriesApiService,
 )
 

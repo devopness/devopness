@@ -2,7 +2,7 @@
 Devopness API Python SDK - Painless essential DevOps to everyone
 """
 
-from .._generated.api.networks_api import NetworksApiService
+from ..generated.api.networks_api import NetworksApiService
 
 __all__ = ["NetworkService"]
 

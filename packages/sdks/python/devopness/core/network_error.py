@@ -51,7 +51,7 @@ class DevopnessNetworkError(DevopnessSdkError):
         )
 
 
-def handle_network_errors(func: Callable):  # type: ignore[no-untyped-def, type-arg]  # noqa: ANN202
+def handle_network_errors(func: Callable):  # type: ignore[no-untyped-def, type-arg]  # noqa: ANN201
     """
     Async decorator to catch and re-raise network-related exceptions
     as `DevopnessNetworkError`.
@@ -79,7 +79,7 @@ def handle_network_errors(func: Callable):  # type: ignore[no-untyped-def, type-
     return wrapper
 
 
-def handle_network_errors_sync(func: Callable):  # type: ignore[no-untyped-def, type-arg]  # noqa: ANN202
+def handle_network_errors_sync(func: Callable):  # type: ignore[no-untyped-def, type-arg]  # noqa: ANN201
     """
     Decorator to catch and re-raise network-related exceptions
     as `DevopnessNetworkError`.
