@@ -7,6 +7,7 @@ import os
 import shutil
 import subprocess
 import sys
+from glob import glob
 
 SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
 
@@ -30,14 +31,16 @@ def snake_to_pascal(name: str) -> str:
     return "".join(word.title() for word in name.split("_"))
 
 
-def remove_previous_generated_directories() -> None:
-    print("🧹  Removing previous generated directories...")
+def remove_previous_generated_files() -> None:
+    print("🧹  Removing previous generated .py files...")
 
     if os.path.isdir(GENERATED_API_DIR):
-        shutil.rmtree(GENERATED_API_DIR)
+        for file in glob(os.path.join(GENERATED_API_DIR, "*.py")):
+            os.remove(file)
 
     if os.path.isdir(GENERATED_MODELS_DIR):
-        shutil.rmtree(GENERATED_MODELS_DIR)
+        for file in glob(os.path.join(GENERATED_MODELS_DIR, "*.py")):
+            os.remove(file)
 
 
 def run_openapi_generator(extra_args: list[str] | None = None) -> None:
@@ -250,7 +253,7 @@ def remove_openapi_generator_cache() -> None:
 
 if __name__ == "__main__":
     try:
-        remove_previous_generated_directories()
+        remove_previous_generated_files()
         run_openapi_generator()
 
         export_sdk_core()
