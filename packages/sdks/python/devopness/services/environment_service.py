@@ -2,6 +2,7 @@
 Devopness API Python SDK - Painless essential DevOps to everyone
 """
 
+from ..generated.api.environments_actions_api import EnvironmentsActionsApiService
 from ..generated.api.environments_api import EnvironmentsApiService
 from ..generated.api.projects_archived_environments_api import (
     ProjectsArchivedEnvironmentsApiService,
@@ -14,6 +15,7 @@ __all__ = ["EnvironmentService"]
 
 
 class EnvironmentService(
+    EnvironmentsActionsApiService,
     EnvironmentsApiService,
     ProjectsArchivedEnvironmentsApiService,
     ProjectsEnvironmentsApiService,
