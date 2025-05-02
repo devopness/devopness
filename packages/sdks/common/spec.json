@@ -12408,11 +12408,6 @@
             "description": "The repository of the deployed application",
             "example": "devopness/example"
           },
-          "provider_id": {
-            "type": "integer",
-            "description": "The ID of the source provider",
-            "example": 4687921
-          },
           "provider_name": {
             "type": "string",
             "description": "The source provider's name",
@@ -12429,7 +12424,6 @@
           "source_type",
           "source_ref",
           "repository",
-          "provider_id",
           "provider_name",
           "pipeline_id"
         ]
