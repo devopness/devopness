@@ -8,6 +8,7 @@ from .base import DevopnessBaseService
 from .client_config import DevopnessClientConfig, DevopnessClientConfigDict
 from .services.application_service import ApplicationService
 from .services.credential_service import CredentialService
+from .services.daemon_service import DaemonService
 from .services.environment_service import EnvironmentService
 from .services.network_service import NetworkService
 from .services.project_service import ProjectService
@@ -26,6 +27,7 @@ class DevopnessClient:
 
     applications: ApplicationService
     credentials: CredentialService
+    daemons: DaemonService
     environments: EnvironmentService
     networks: NetworkService
     projects: ProjectService
@@ -47,6 +49,7 @@ class DevopnessClient:
 
         self.applications = ApplicationService(config)
         self.credentials = CredentialService(config)
+        self.daemons = DaemonService(config)
         self.environments = EnvironmentService(config)
         self.networks = NetworkService(config)
         self.projects = ProjectService(config)
