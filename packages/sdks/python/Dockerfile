@@ -5,9 +5,6 @@ FROM python:${PYTHON_VERSION}-alpine${ALPINE_VERSION}
 # --- System dependencies installation ---
 RUN apk update && apk add --no-cache bash openjdk11-jre
 
-# Grant full permissions to /usr/local - required for poetry usage
-RUN chmod -R 777 /usr/local
-
 WORKDIR /sdk
 
 # --- Package dependencies installation ---
