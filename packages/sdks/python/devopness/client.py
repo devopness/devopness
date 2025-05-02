@@ -4,19 +4,17 @@ Devopness API Python SDK - Painless essential DevOps to everyone
 
 from typing import Optional, Union
 
-from ._base import DevopnessBaseService
-from ._client_config import DevopnessClientConfig, DevopnessClientConfigDict
-from .services import (
-    ApplicationService,
-    CredentialService,
-    EnvironmentService,
-    NetworkService,
-    ProjectService,
-    ServerService,
-    SubnetService,
-    UserService,
-    VirtualHostService,
-)
+from .base import DevopnessBaseService
+from .client_config import DevopnessClientConfig, DevopnessClientConfigDict
+from .services.application_service import ApplicationService
+from .services.credential_service import CredentialService
+from .services.environment_service import EnvironmentService
+from .services.network_service import NetworkService
+from .services.project_service import ProjectService
+from .services.server_service import ServerService
+from .services.subnet_service import SubnetService
+from .services.user_service import UserService
+from .services.virtual_host_service import VirtualHostService
 
 __all__ = ["DevopnessClient"]
 

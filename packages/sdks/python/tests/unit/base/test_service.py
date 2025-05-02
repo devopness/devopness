@@ -6,8 +6,7 @@ import httpx
 from pydantic import Field, StrictInt, StrictStr
 
 from devopness import DevopnessClientConfig
-from devopness._base import DevopnessBaseService
-from devopness._base.base_model import DevopnessBaseModel
+from devopness.base import DevopnessBaseModel, DevopnessBaseService
 
 
 class DummyModel(DevopnessBaseModel):

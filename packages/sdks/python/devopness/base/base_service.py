@@ -7,13 +7,13 @@ from urllib.parse import urlencode
 
 import httpx
 
-from .._base import DevopnessBaseModel
-from .._client_config import DevopnessClientConfig
-from .._core.api_error import (
+from ..base import DevopnessBaseModel
+from ..client_config import DevopnessClientConfig
+from ..core.api_error import (
     raise_devopness_api_error,
     raise_devopness_api_error_sync,
 )
-from .._core.network_error import (
+from ..core.network_error import (
     handle_network_errors,
     handle_network_errors_sync,
 )

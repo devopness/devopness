@@ -2,7 +2,7 @@
 Devopness API Python SDK - Painless essential DevOps to everyone
 """
 
-from .._generated.api.projects_api import ProjectsApiService
+from ..generated.api.projects_api import ProjectsApiService
 
 __all__ = ["ProjectService"]
 

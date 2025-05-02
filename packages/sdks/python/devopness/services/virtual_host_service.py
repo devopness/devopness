@@ -2,7 +2,7 @@
 Devopness API Python SDK - Painless essential DevOps to everyone
 """
 
-from .._generated.api.virtual_hosts_api import VirtualHostsApiService
+from ..generated.api.virtual_hosts_api import VirtualHostsApiService
 
 __all__ = ["VirtualHostService"]
 

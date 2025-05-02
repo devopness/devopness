@@ -2,11 +2,11 @@ import unittest
 
 import httpx
 
-from devopness._core.network_error import (
+from devopness.core.network_error import (
+    DevopnessNetworkError,
     handle_network_errors,
     handle_network_errors_sync,
 )
-from devopness.core import DevopnessNetworkError
 
 
 @handle_network_errors

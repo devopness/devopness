@@ -10,7 +10,7 @@ from warnings import warn
 import httpx
 from pydantic import ValidationError
 
-from devopness._base import DevopnessBaseModel
+from devopness.base import DevopnessBaseModel
 
 __all__ = ["DevopnessResponse"]
 
