@@ -226,21 +226,21 @@ def export_sdk_services() -> None:
 def format_generated_files() -> None:
     print("🔧  Formatting generated files...")
 
-    cmd = "bash -c 'ruff format .'"
+    cmd = f"bash -c 'ruff format -s {GENERATED_DIR}'"
     subprocess.run(cmd, shell=True, check=False)
 
 
 def fix_code_style_issues() -> None:
     print("🔧  Fixing code style issues in generated files...")
 
-    cmd = "bash -c 'ruff check --fix -s'"
+    cmd = f"bash -c 'ruff check --fix -s {GENERATED_DIR}'"
     subprocess.run(cmd, shell=True, check=False)
 
 
 def fix_import_issues() -> None:
     print("🔧  Fixing import issues in generated files...")
 
-    cmd = "bash -c 'ruff check --select I --fix'"
+    cmd = f"bash -c 'ruff check --select I --fix -s {GENERATED_DIR}'"
     subprocess.run(cmd, shell=True, check=False)
 
 
