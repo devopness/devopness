@@ -28,7 +28,6 @@ class ActionDeploymentContent(DevopnessBaseModel):
         source_type (SourceType):
         source_ref (str): A git reference pointing to a commit in a source provider repository from which the application source code will be retrieved and deployed. It can be a branch name, tag name or a specific commit hash.
         repository (str): The repository of the deployed application
-        provider_id (int): The ID of the source provider
         provider_name (str): The source provider&#39;s name
         pipeline_id (int): The ID of the pipeline
     """
@@ -41,7 +40,6 @@ class ActionDeploymentContent(DevopnessBaseModel):
     repository: StrictStr = Field(
         description="The repository of the deployed application"
     )
-    provider_id: StrictInt = Field(description="The ID of the source provider")
     provider_name: StrictStr = Field(description="The source provider's name")
     pipeline_id: StrictInt = Field(description="The ID of the pipeline")
 
@@ -65,6 +63,5 @@ class ActionDeploymentContentPlain(TypedDict, total=False):
     ]
     source_ref: Required[str]
     repository: Required[str]
-    provider_id: Required[int]
     provider_name: Required[str]
     pipeline_id: Required[int]

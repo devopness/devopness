@@ -46,12 +46,6 @@ export interface ActionDeploymentContent {
      */
     repository: string;
     /**
-     * The ID of the source provider
-     * @type {number}
-     * @memberof ActionDeploymentContent
-     */
-    provider_id: number;
-    /**
      * The source provider\'s name
      * @type {string}
      * @memberof ActionDeploymentContent
