@@ -45,7 +45,7 @@ def run_openapi_generator(extra_args: list[str] | None = None) -> None:
         "openapi-generator-cli generate",
         '--input-spec="../common/spec.json"',
         '--generator-name="python"',
-        '--output="./devopness/_generated"',
+        '--output="./devopness/generated"',
         '--template-dir="./generator/templates"',
         '--additional-properties="packageName="',
     ]
