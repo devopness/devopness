@@ -8,6 +8,7 @@ from .base import DevopnessBaseService
 from .client_config import DevopnessClientConfig, DevopnessClientConfigDict
 from .services.application_service import ApplicationService
 from .services.credential_service import CredentialService
+from .services.cron_job_service import CronJobService
 from .services.daemon_service import DaemonService
 from .services.environment_service import EnvironmentService
 from .services.network_service import NetworkService
@@ -27,6 +28,7 @@ class DevopnessClient:
 
     applications: ApplicationService
     credentials: CredentialService
+    cron_jobs: CronJobService
     daemons: DaemonService
     environments: EnvironmentService
     networks: NetworkService
@@ -49,6 +51,7 @@ class DevopnessClient:
 
         self.applications = ApplicationService(config)
         self.credentials = CredentialService(config)
+        self.cron_jobs = CronJobService(config)
         self.daemons = DaemonService(config)
         self.environments = EnvironmentService(config)
         self.networks = NetworkService(config)
