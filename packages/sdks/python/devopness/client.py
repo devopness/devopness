@@ -8,10 +8,14 @@ from .base import DevopnessBaseService
 from .client_config import DevopnessClientConfig, DevopnessClientConfigDict
 from .services.application_service import ApplicationService
 from .services.credential_service import CredentialService
+from .services.cron_job_service import CronJobService
+from .services.daemon_service import DaemonService
 from .services.environment_service import EnvironmentService
 from .services.network_service import NetworkService
 from .services.project_service import ProjectService
 from .services.server_service import ServerService
+from .services.service_service import ServiceService
+from .services.ssh_key_service import SSHKeyService
 from .services.subnet_service import SubnetService
 from .services.user_service import UserService
 from .services.virtual_host_service import VirtualHostService
@@ -26,10 +30,14 @@ class DevopnessClient:
 
     applications: ApplicationService
     credentials: CredentialService
+    cron_jobs: CronJobService
+    daemons: DaemonService
     environments: EnvironmentService
     networks: NetworkService
     projects: ProjectService
     servers: ServerService
+    services: ServiceService
+    ssh_keys: SSHKeyService
     subnets: SubnetService
     users: UserService
     virtual_hosts: VirtualHostService
@@ -47,10 +55,14 @@ class DevopnessClient:
 
         self.applications = ApplicationService(config)
         self.credentials = CredentialService(config)
+        self.cron_jobs = CronJobService(config)
+        self.daemons = DaemonService(config)
         self.environments = EnvironmentService(config)
         self.networks = NetworkService(config)
         self.projects = ProjectService(config)
         self.servers = ServerService(config)
+        self.services = ServiceService(config)
+        self.ssh_keys = SSHKeyService(config)
         self.subnets = SubnetService(config)
         self.users = UserService(config)
         self.virtual_hosts = VirtualHostService(config)
