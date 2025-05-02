@@ -12,16 +12,10 @@ from glob import glob
 SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
 
 SDK_ROOT_DIR = os.path.join(SCRIPT_DIR, "..")
-GENERATED_DIR = os.path.join(SDK_ROOT_DIR, "devopness", "_generated")
-
-SDK_CORE_DIR = os.path.join(SDK_ROOT_DIR, "devopness", "_core")
-SDK_CORE_FILE = os.path.join(SDK_ROOT_DIR, "devopness", "core.py")
+GENERATED_DIR = os.path.join(SDK_ROOT_DIR, "devopness", "generated")
 
 SDK_MODELS_DIR = os.path.join(GENERATED_DIR, "models")
 SDK_MODELS_FILE = os.path.join(SDK_ROOT_DIR, "devopness", "models.py")
-
-SDK_SERVICES_DIR = os.path.join(SDK_ROOT_DIR, "devopness", "_services")
-SDK_SERVICES_FILE = os.path.join(SDK_ROOT_DIR, "devopness", "services.py")
 
 GENERATED_API_DIR = os.path.join(GENERATED_DIR, "api")
 GENERATED_MODELS_DIR = os.path.join(GENERATED_DIR, "models")
@@ -71,52 +65,6 @@ def run_openapi_generator(extra_args: list[str] | None = None) -> None:
     )
 
 
-def export_sdk_core() -> None:
-    print("🚀  Exporting SDK core...")
-
-    if os.path.exists(SDK_CORE_FILE):
-        os.remove(SDK_CORE_FILE)
-
-    files = [
-        f
-        for f in os.listdir(SDK_CORE_DIR)
-        if os.path.isfile(os.path.join(SDK_CORE_DIR, f))
-        and f.endswith(".py")
-        and not f.startswith("__")
-    ]
-
-    names: list[str] = []
-    lines: list[str] = [
-        '"""',
-        "Devopness API Python SDK - Painless essential DevOps to everyone",
-        '"""',
-    ]
-
-    # Build the import statements
-    for item in files:
-        model = item.replace(".py", "")
-        model_name = "Devopness" + snake_to_pascal(model)
-
-        names.append(model_name)
-        # TODO: Use _core.<model_name> to avoid the need to export the model in
-        #       _core.__init__.py
-        lines.append(f"from ._core import {model_name}")
-
-    # Build the __all__ list
-    lines.append("\n")
-    lines.append("__all__ = [")
-
-    names.sort()
-    for name in names:
-        lines.append(f'    "{name}",')
-
-    lines.append("]")
-
-    # Write final the file content
-    with open(SDK_CORE_FILE, "w", encoding="utf-8") as f:
-        f.write("\n".join(lines))
-
-
 def export_sdk_models() -> None:
     print("🚀  Exporting SDK models...")
 
@@ -146,7 +94,7 @@ def export_sdk_models() -> None:
         names.append(model_name)
         names.append(model_name + "Plain")
 
-        lines.append(f"from ._generated.models import {model_name}, {model_name}Plain")
+        lines.append(f"from .generated.models import {model_name}, {model_name}Plain")
 
     # Build the __all__ list
     lines.append("\n")
@@ -156,70 +104,10 @@ def export_sdk_models() -> None:
     for name in names:
         lines.append(f'    "{name}",')
 
-    lines.append("]")
+    lines.append("]\n")
 
     # Write final the file content
     with open(SDK_MODELS_FILE, "w", encoding="utf-8") as f:
-        f.write("\n".join(lines))
-
-
-def export_sdk_services() -> None:
-    print("🚀  Exporting SDK services...")
-
-    if os.path.exists(SDK_SERVICES_FILE):
-        os.remove(SDK_SERVICES_FILE)
-
-    files = [
-        f
-        for f in os.listdir(SDK_SERVICES_DIR)
-        if os.path.isfile(os.path.join(SDK_SERVICES_DIR, f))
-        and f.endswith(".py")
-        and not f.startswith("__")
-    ]
-
-    names: list[str] = []
-    lines: list[str] = [
-        '"""',
-        "Devopness API Python SDK - Painless essential DevOps to everyone",
-        '"""',
-    ]
-
-    # Dictionary mapping auto-generated PascalCase service names to their
-    # desired final names.
-    #
-    # This is used to handle cases where the standard conversion doesn't
-    # produce the exact required casing, especially for acronyms (like SSH).
-    #
-    # Keys are the names produced by the automatic conversion (PascalCase).
-    # Values are the desired, manually specified names.
-    service_name_overrides = {
-        "SshKeyService": "SSHKeyService",
-        "SslCertificateService": "SSLCertificateService",
-    }
-
-    # Build the import statements
-    for item in files:
-        service = item.replace(".py", "")
-        service_name = snake_to_pascal(service)
-
-        if service_name in service_name_overrides:
-            service_name = service_name_overrides[service_name]
-
-        names.append(service_name)
-        lines.append(f"from ._services.{service} import {service_name}")
-
-    # Build the __all__ list
-    lines.append("\n")
-    lines.append("__all__ = [")
-
-    names.sort()
-    for name in names:
-        lines.append(f'    "{name}",')
-
-    lines.append("]")
-
-    # Write the final file content
-    with open(SDK_SERVICES_FILE, "w", encoding="utf-8") as f:
         f.write("\n".join(lines))
 
 
@@ -256,12 +144,9 @@ if __name__ == "__main__":
         remove_previous_generated_files()
         run_openapi_generator()
 
-        export_sdk_core()
-        export_sdk_models()
-        export_sdk_services()
-
         print("🔧  Executing post-build tasks...")
         remove_openapi_generator_cache()
+        export_sdk_models()
         fix_import_issues()
         fix_code_style_issues()
         format_generated_files()
