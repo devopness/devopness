@@ -2,7 +2,7 @@
 Devopness API Python SDK - Painless essential DevOps to everyone
 """
 
-from ._generated.models import (
+from .generated.models import (
     Action,
     ActionData,
     ActionDataPlain,
