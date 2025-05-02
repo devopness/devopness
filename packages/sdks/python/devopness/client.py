@@ -15,6 +15,7 @@ from .services.network_service import NetworkService
 from .services.project_service import ProjectService
 from .services.server_service import ServerService
 from .services.service_service import ServiceService
+from .services.ssh_key_service import SSHKeyService
 from .services.subnet_service import SubnetService
 from .services.user_service import UserService
 from .services.virtual_host_service import VirtualHostService
@@ -36,6 +37,7 @@ class DevopnessClient:
     projects: ProjectService
     servers: ServerService
     services: ServiceService
+    ssh_keys: SSHKeyService
     subnets: SubnetService
     users: UserService
     virtual_hosts: VirtualHostService
@@ -60,6 +62,7 @@ class DevopnessClient:
         self.projects = ProjectService(config)
         self.servers = ServerService(config)
         self.services = ServiceService(config)
+        self.ssh_keys = SSHKeyService(config)
         self.subnets = SubnetService(config)
         self.users = UserService(config)
         self.virtual_hosts = VirtualHostService(config)
