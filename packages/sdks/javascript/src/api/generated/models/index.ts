@@ -15,6 +15,7 @@ export * from './action-step';
 export * from './action-summary';
 export * from './action-summary-target';
 export * from './action-target';
+export * from './action-target-credential-data';
 export * from './action-target-data';
 export * from './action-target-log-step';
 export * from './action-target-network-data';

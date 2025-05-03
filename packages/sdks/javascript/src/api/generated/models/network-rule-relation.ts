@@ -69,7 +69,7 @@ export interface NetworkRuleRelation {
      * @type {ActionRelationShallow}
      * @memberof NetworkRuleRelation
      */
-    last_action: ActionRelationShallow | null;
+    last_action?: ActionRelationShallow | null;
     /**
      * The date and time when the record was created
      * @type {string}
