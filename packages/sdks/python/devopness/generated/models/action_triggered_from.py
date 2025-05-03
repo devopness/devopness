@@ -30,8 +30,8 @@ class ActionTriggeredFrom(DevopnessBaseModel):
         email (str): The user&#39;s email if the action have been manually triggered.
         ip_address (str): The IP address of the request origin.
         user_id (int): The user&#39;s ID if the action have been manually triggered.
-        hook_id (int): The hook&#39;s ID if the action have been triggered by a hook.
-        hook_request_id (int): The hook request&#39;s ID if the action have been triggered by a hook.
+        hook_id (str): The hook&#39;s ID if the action have been triggered by a hook.
+        hook_request_id (str): The hook request&#39;s ID if the action have been triggered by a hook.
     """
 
     origin: Optional[StrictStr] = Field(
@@ -48,10 +48,10 @@ class ActionTriggeredFrom(DevopnessBaseModel):
     user_id: Optional[StrictInt] = Field(
         description="The user's ID if the action have been manually triggered."
     )
-    hook_id: Optional[StrictInt] = Field(
+    hook_id: Optional[StrictStr] = Field(
         description="The hook's ID if the action have been triggered by a hook."
     )
-    hook_request_id: Optional[StrictInt] = Field(
+    hook_request_id: Optional[StrictStr] = Field(
         description="The hook request's ID if the action have been triggered by a hook."
     )
 
@@ -72,5 +72,5 @@ class ActionTriggeredFromPlain(TypedDict, total=False):
     email: Required[str]
     ip_address: Required[str]
     user_id: Required[int]
-    hook_id: Required[int]
-    hook_request_id: Required[int]
+    hook_id: Required[str]
+    hook_request_id: Required[str]

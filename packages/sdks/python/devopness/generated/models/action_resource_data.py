@@ -9,6 +9,7 @@ Note:
 from typing import Union
 
 from .application_relation import ApplicationRelation, ApplicationRelationPlain
+from .credential_relation import CredentialRelation, CredentialRelationPlain
 from .cron_job_relation import CronJobRelation, CronJobRelationPlain
 from .daemon_relation import DaemonRelation, DaemonRelationPlain
 from .network_relation import NetworkRelation, NetworkRelationPlain
@@ -27,6 +28,7 @@ from .virtual_host_relation import VirtualHostRelation, VirtualHostRelationPlain
 #: The resource data of type specified on `resource.type`
 ActionResourceData = Union[
     ApplicationRelation,
+    CredentialRelation,
     CronJobRelation,
     DaemonRelation,
     NetworkRelation,
@@ -42,6 +44,7 @@ ActionResourceData = Union[
 #: The plain version of ActionResourceData
 ActionResourceDataPlain = Union[
     ApplicationRelationPlain,
+    CredentialRelationPlain,
     CronJobRelationPlain,
     DaemonRelationPlain,
     NetworkRelationPlain,

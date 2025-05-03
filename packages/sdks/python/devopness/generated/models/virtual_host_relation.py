@@ -33,22 +33,22 @@ class VirtualHostRelation(DevopnessBaseModel):
     Attributes:
         id (int): Unique ID of the Virtual Host
         type (VirtualHostType):
-        type_human_readable (str): The human readable version of the type
+        type_human_readable (str, optional): The human readable version of the type
         name (str): The name of the Virtual Host
         application (ApplicationRelation):
         root_directory (str): The document root location, within the application directory, that contains the public files to be served when a user visits the domain name associated with this virtual host
         application_listen_address (str): The network name or IP address on which the application linked to this virtual host is configured to listen for incoming requests. A valid address has &#x60;http&#x60; or &#x60;https&#x60; protocol, a domain name or IP address, an optional port and optional path. You can also specify a UNIX-socket using &#x60;unix:&#x60; protocol. Examples: &#x60;http://127.0.0.1:8080&#x60; (for applications exposing port &#x60;8080&#x60;, for example running in a Docker container), &#x60;http://127.0.0.1:3000&#x60; (for applications kept alive by a daemon/background process that listens on port &#x60;3000&#x60;), &#x60;unix:/var/run/example.sock&#x60; (for applications listening on a custom socket)
         ssl_certificate (SslCertificateRelation):
         last_action (ActionRelationShallow):
-        created_by_user (UserRelation):
+        created_by_user (UserRelation, optional):
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was updated
     """
 
     id: StrictInt = Field(description="Unique ID of the Virtual Host")
     type: VirtualHostType
-    type_human_readable: StrictStr = Field(
-        description="The human readable version of the type"
+    type_human_readable: Optional[StrictStr] = Field(
+        default=None, description="The human readable version of the type"
     )
     name: StrictStr = Field(description="The name of the Virtual Host")
     application: Optional[ApplicationRelation]
@@ -60,7 +60,7 @@ class VirtualHostRelation(DevopnessBaseModel):
     )
     ssl_certificate: Optional[SslCertificateRelation]
     last_action: Optional[ActionRelationShallow]
-    created_by_user: UserRelation
+    created_by_user: Optional[UserRelation] = None
     created_at: StrictStr = Field(
         description="The date and time when the record was created"
     )
@@ -81,7 +81,7 @@ class VirtualHostRelationPlain(TypedDict, total=False):
             VirtualHostTypePlain,
         ]
     ]
-    type_human_readable: Required[str]
+    type_human_readable: Optional[str]
     name: Required[str]
     application: Required[
         Union[
@@ -103,7 +103,7 @@ class VirtualHostRelationPlain(TypedDict, total=False):
             ActionRelationShallowPlain,
         ]
     ]
-    created_by_user: Required[
+    created_by_user: Optional[
         Union[
             UserRelation,
             UserRelationPlain,
