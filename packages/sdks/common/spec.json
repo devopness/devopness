@@ -12693,6 +12693,9 @@
                 "$ref": "#/components/schemas/ApplicationRelation"
               },
               {
+                "$ref": "#/components/schemas/CredentialRelation"
+              },
+              {
                 "$ref": "#/components/schemas/CronJobRelation"
               },
               {
@@ -13113,10 +13116,53 @@
           }
         }
       },
+      "ActionTargetCredentialData": {
+        "type": "object",
+        "nullable": true,
+        "properties": {
+          "id": {
+            "description": "The unique id of the credential",
+            "type": "integer",
+            "example": 4425
+          },
+          "name": {
+            "description": "The name of the credential",
+            "type": "string",
+            "example": "my-credential"
+          },
+          "provider_type": {
+            "$ref": "#/components/schemas/ProviderType"
+          },
+          "provider_code": {
+            "$ref": "#/components/schemas/CloudProviderCode"
+          },
+          "provider_name": {
+            "description": "The name of the cloud provider of the credential",
+            "type": "string",
+            "example": "aws"
+          },
+          "provider_name_human_readable": {
+            "description": "The human readable version of the provider name",
+            "type": "string",
+            "example": "Amazon Web Services"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "provider_type",
+          "provider_code",
+          "provider_name",
+          "provider_name_human_readable"
+        ]
+      },
       "ActionTargetData": {
         "type": "object",
         "nullable": true,
         "oneOf": [
+          {
+            "$ref": "#/components/schemas/ActionTargetCredentialData"
+          },
           {
             "$ref": "#/components/schemas/ActionTargetNetworkData"
           },
@@ -13300,16 +13346,16 @@
             "example": 794613284672
           },
           "hook_id": {
-            "type": "integer",
+            "type": "string",
             "nullable": true,
             "description": "The hook's ID if the action have been triggered by a hook.",
-            "example": 4678912
+            "example": "28623d9b-0f34-48d7-b5ab-9ed281dc5a6c"
           },
           "hook_request_id": {
-            "type": "integer",
+            "type": "string",
             "nullable": true,
             "description": "The hook request's ID if the action have been triggered by a hook.",
-            "example": 98756123796
+            "example": "0369a338-10f0-48d0-aa2d-80d1ce14e91e"
           }
         },
         "required": [
@@ -13326,13 +13372,14 @@
       "ActionType": {
         "type": "string",
         "enum": [
-          "configure",
           "check_provisioned",
+          "configure",
           "delete",
           "deploy",
           "get_status",
           "provision",
           "reload",
+          "remove",
           "restart",
           "start",
           "stop"
@@ -13745,7 +13792,8 @@
           "root_directory": {
             "description": "The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository.",
             "example": "/src",
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "deployments_keep": {
             "description": "The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers. OR The number of deployment artifacts to be retained in the user's servers, making it easier and faster to rollback to previous versions",
@@ -15240,7 +15288,6 @@
           "is_auto_generated",
           "last_action",
           "created_by_user",
-          "application",
           "created_at",
           "updated_at"
         ],
@@ -15504,7 +15551,6 @@
           "is_auto_generated",
           "last_action",
           "application",
-          "created_by_user",
           "created_at",
           "updated_at"
         ],
@@ -17477,12 +17523,8 @@
           "is_auto_generated",
           "provider_name",
           "provider_name_human_readable",
-          "credential",
           "name",
-          "provision_input",
-          "last_action",
-          "created_at",
-          "updated_at"
+          "provision_input"
         ],
         "nullable": true
       },
@@ -17692,7 +17734,6 @@
           "port",
           "cidr_block",
           "is_auto_generated",
-          "last_action",
           "created_at",
           "updated_at"
         ],
@@ -23431,14 +23472,12 @@
         "required": [
           "id",
           "type",
-          "type_human_readable",
           "name",
           "application",
           "root_directory",
           "application_listen_address",
           "ssl_certificate",
           "last_action",
-          "created_by_user",
           "created_at",
           "updated_at"
         ],
