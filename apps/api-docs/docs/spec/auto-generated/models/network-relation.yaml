@@ -55,10 +55,6 @@ required:
   - is_auto_generated
   - provider_name
   - provider_name_human_readable
-  - credential
   - name
   - provision_input
-  - last_action
-  - created_at
-  - updated_at
 nullable: true

@@ -51,7 +51,6 @@ required:
   - is_auto_generated
   - last_action
   - created_by_user
-  - application
   - created_at
   - updated_at
 nullable: true

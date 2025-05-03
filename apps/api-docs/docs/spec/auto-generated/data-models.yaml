@@ -37,6 +37,8 @@ ActionSummaryTarget:
   $ref: ./auto-generated/models/action-summary-target.yaml
 ActionTarget:
   $ref: ./auto-generated/models/action-target.yaml
+ActionTargetCredentialData:
+  $ref: ./auto-generated/models/action-target-credential-data.yaml
 ActionTargetData:
   $ref: ./auto-generated/models/action-target-data.yaml
 ActionTargetList:

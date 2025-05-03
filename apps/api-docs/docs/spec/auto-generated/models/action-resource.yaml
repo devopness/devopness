@@ -21,6 +21,8 @@ properties:
       -
         $ref: '#/components/schemas/ApplicationRelation'
       -
+        $ref: '#/components/schemas/CredentialRelation'
+      -
         $ref: '#/components/schemas/CronJobRelation'
       -
         $ref: '#/components/schemas/DaemonRelation'

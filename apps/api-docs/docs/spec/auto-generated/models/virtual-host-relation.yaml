@@ -44,14 +44,12 @@ properties:
 required:
   - id
   - type
-  - type_human_readable
   - name
   - application
   - root_directory
   - application_listen_address
   - ssl_certificate
   - last_action
-  - created_by_user
   - created_at
   - updated_at
 nullable: true

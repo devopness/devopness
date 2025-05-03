@@ -3,6 +3,8 @@ type: object
 nullable: true
 oneOf:
   -
+    $ref: '#/components/schemas/ActionTargetCredentialData'
+  -
     $ref: '#/components/schemas/ActionTargetNetworkData'
   -
     $ref: '#/components/schemas/ActionTargetServerData'

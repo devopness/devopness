@@ -43,7 +43,6 @@ required:
   - port
   - cidr_block
   - is_auto_generated
-  - last_action
   - created_at
   - updated_at
 nullable: true
