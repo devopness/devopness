@@ -1,5 +1,11 @@
 # @devopness/sdk-js
 
+## 2.163.4
+
+### Patch Changes
+
+- [#1653](https://github.com/devopness/devopness/pull/1653) [`934c4c4`](https://github.com/devopness/devopness/commit/934c4c48567cea490afd68c29fafb84acf17b7b0) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Fix documentation of Action Resource Data
+
 ## 2.163.3
 
 ### Patch Changes
