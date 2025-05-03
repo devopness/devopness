@@ -90,7 +90,7 @@ class ApplicationRelation(DevopnessBaseModel):
     framework_human_readable: StrictStr = Field(
         description="The human readable version of the framework of the application."
     )
-    root_directory: StrictStr = Field(
+    root_directory: Optional[StrictStr] = Field(
         description="The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository."
     )
     deployments_keep: StrictInt = Field(

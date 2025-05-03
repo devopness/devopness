@@ -33,12 +33,12 @@ class NetworkRelation(DevopnessBaseModel):
         is_auto_generated (bool): If true, the network is auto-generated
         provider_name (str): The name of the cloud provider
         provider_name_human_readable (str): The human readable version of the provider&#39;s name
-        credential (Credential):
+        credential (Credential, optional):
         name (str): The networks&#39;s name
         provision_input (NetworkProvisionInput):
-        last_action (ActionRelationShallow):
-        created_at (str): The date and time when the record was created
-        updated_at (str): The date and time when the record was last updated
+        last_action (ActionRelationShallow, optional):
+        created_at (str, optional): The date and time when the record was created
+        updated_at (str, optional): The date and time when the record was last updated
     """
 
     id: StrictInt = Field(description="The unique id of the given record")
@@ -58,15 +58,15 @@ class NetworkRelation(DevopnessBaseModel):
     provider_name_human_readable: StrictStr = Field(
         description="The human readable version of the provider's name"
     )
-    credential: Credential
+    credential: Optional[Credential] = None
     name: StrictStr = Field(description="The networks's name")
     provision_input: NetworkProvisionInput
-    last_action: Optional[ActionRelationShallow]
-    created_at: StrictStr = Field(
-        description="The date and time when the record was created"
+    last_action: Optional[ActionRelationShallow] = None
+    created_at: Optional[StrictStr] = Field(
+        default=None, description="The date and time when the record was created"
     )
-    updated_at: StrictStr = Field(
-        description="The date and time when the record was last updated"
+    updated_at: Optional[StrictStr] = Field(
+        default=None, description="The date and time when the record was last updated"
     )
 
 
@@ -82,7 +82,7 @@ class NetworkRelationPlain(TypedDict, total=False):
     is_auto_generated: Required[bool]
     provider_name: Required[str]
     provider_name_human_readable: Required[str]
-    credential: Required[
+    credential: Optional[
         Union[
             Credential,
             CredentialPlain,
@@ -95,11 +95,11 @@ class NetworkRelationPlain(TypedDict, total=False):
             NetworkProvisionInputPlain,
         ]
     ]
-    last_action: Required[
+    last_action: Optional[
         Union[
             ActionRelationShallow,
             ActionRelationShallowPlain,
         ]
     ]
-    created_at: Required[str]
-    updated_at: Required[str]
+    created_at: Optional[str]
+    updated_at: Optional[str]

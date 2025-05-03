@@ -33,6 +33,10 @@ from .action_step import ActionStep, ActionStepPlain
 from .action_summary import ActionSummary, ActionSummaryPlain
 from .action_summary_target import ActionSummaryTarget, ActionSummaryTargetPlain
 from .action_target import ActionTarget, ActionTargetPlain
+from .action_target_credential_data import (
+    ActionTargetCredentialData,
+    ActionTargetCredentialDataPlain,
+)
 from .action_target_data import ActionTargetData, ActionTargetDataPlain
 from .action_target_log_step import ActionTargetLogStep, ActionTargetLogStepPlain
 from .action_target_network_data import (
@@ -636,6 +640,8 @@ __all__ = [
     "ActionSummaryTarget",
     "ActionSummaryTargetPlain",
     "ActionTarget",
+    "ActionTargetCredentialData",
+    "ActionTargetCredentialDataPlain",
     "ActionTargetData",
     "ActionTargetDataPlain",
     "ActionTargetLogStep",

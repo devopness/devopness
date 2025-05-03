@@ -8,6 +8,10 @@ Note:
 
 from typing import Union
 
+from .action_target_credential_data import (
+    ActionTargetCredentialData,
+    ActionTargetCredentialDataPlain,
+)
 from .action_target_network_data import (
     ActionTargetNetworkData,
     ActionTargetNetworkDataPlain,
@@ -20,12 +24,14 @@ from .action_target_server_data import (
 #: OneOf Type
 #: ActionTargetData
 ActionTargetData = Union[
+    ActionTargetCredentialData,
     ActionTargetNetworkData,
     ActionTargetServerData,
 ]
 
 #: The plain version of ActionTargetData
 ActionTargetDataPlain = Union[
+    ActionTargetCredentialDataPlain,
     ActionTargetNetworkDataPlain,
     ActionTargetServerDataPlain,
 ]
