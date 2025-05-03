@@ -82,7 +82,7 @@ export interface CronJobRelation {
      * @type {ApplicationRelation}
      * @memberof CronJobRelation
      */
-    application: ApplicationRelation | null;
+    application?: ApplicationRelation | null;
     /**
      * The date and time when the record was created
      * @type {string}

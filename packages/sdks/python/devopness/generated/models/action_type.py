@@ -16,13 +16,14 @@ class ActionType(str, Enum):
     ActionType
     """
 
-    CONFIGURE = "configure"
     CHECK_PROVISIONED = "check_provisioned"
+    CONFIGURE = "configure"
     DELETE = "delete"
     DEPLOY = "deploy"
     GET_STATUS = "get_status"
     PROVISION = "provision"
     RELOAD = "reload"
+    REMOVE = "remove"
     RESTART = "restart"
     START = "start"
     STOP = "stop"
@@ -35,13 +36,14 @@ class ActionType(str, Enum):
 
 # The plain version of ActionType
 ActionTypePlain = Literal[
-    "configure",
     "check_provisioned",
+    "configure",
     "delete",
     "deploy",
     "get_status",
     "provision",
     "reload",
+    "remove",
     "restart",
     "start",
     "stop",

@@ -41,7 +41,7 @@ export interface VirtualHostRelation {
      * @type {string}
      * @memberof VirtualHostRelation
      */
-    type_human_readable: string;
+    type_human_readable?: string;
     /**
      * The name of the Virtual Host
      * @type {string}
@@ -83,7 +83,7 @@ export interface VirtualHostRelation {
      * @type {UserRelation}
      * @memberof VirtualHostRelation
      */
-    created_by_user: UserRelation;
+    created_by_user?: UserRelation;
     /**
      * The date and time when the record was created
      * @type {string}
