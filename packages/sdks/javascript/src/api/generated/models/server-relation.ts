@@ -63,7 +63,7 @@ export interface ServerRelation {
      * @type {CredentialRelation}
      * @memberof ServerRelation
      */
-    credential: CredentialRelation | null;
+    credential?: CredentialRelation | null;
     /**
      * The region in which the server is located
      * @type {string}
@@ -105,18 +105,18 @@ export interface ServerRelation {
      * @type {ActionRelationShallow}
      * @memberof ServerRelation
      */
-    last_action: ActionRelationShallow | null;
+    last_action?: ActionRelationShallow | null;
     /**
      * The date and time when the record was created
      * @type {string}
      * @memberof ServerRelation
      */
-    created_at: string;
+    created_at?: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof ServerRelation
      */
-    updated_at: string;
+    updated_at?: string;
 }
 

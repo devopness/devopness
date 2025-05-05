@@ -77,7 +77,7 @@ export interface VirtualHostRelation {
      * @type {ActionRelationShallow}
      * @memberof VirtualHostRelation
      */
-    last_action: ActionRelationShallow | null;
+    last_action?: ActionRelationShallow | null;
     /**
      * 
      * @type {UserRelation}
@@ -89,12 +89,12 @@ export interface VirtualHostRelation {
      * @type {string}
      * @memberof VirtualHostRelation
      */
-    created_at: string;
+    created_at?: string;
     /**
      * The date and time when the record was updated
      * @type {string}
      * @memberof VirtualHostRelation
      */
-    updated_at: string;
+    updated_at?: string;
 }
 
