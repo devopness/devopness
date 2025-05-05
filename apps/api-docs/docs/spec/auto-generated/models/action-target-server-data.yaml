@@ -22,6 +22,7 @@ properties:
     description: 'Public ipv4 address for server access'
     type: string
     example: 200.123.45.67
+    nullable: true
   ssh_port:
     description: 'The network port to which the SSH daemon is listening to SSH connections on the server'
     type: integer

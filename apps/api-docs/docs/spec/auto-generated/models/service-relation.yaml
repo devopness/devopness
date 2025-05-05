@@ -57,7 +57,4 @@ required:
   - auto_start
   - initial_state
   - description
-  - last_action
-  - created_at
-  - updated_at
 nullable: true

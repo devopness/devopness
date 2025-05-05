@@ -49,7 +49,4 @@ required:
   - root_directory
   - application_listen_address
   - ssl_certificate
-  - last_action
-  - created_at
-  - updated_at
 nullable: true

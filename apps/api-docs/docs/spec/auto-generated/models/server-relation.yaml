@@ -68,13 +68,9 @@ required:
   - hostname
   - provider_name
   - provider_name_human_readable
-  - credential
   - region
   - region_human_readable
   - ssh_port
   - active
   - status
-  - last_action
-  - created_at
-  - updated_at
 nullable: true

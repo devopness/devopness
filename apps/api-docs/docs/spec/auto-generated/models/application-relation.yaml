@@ -107,6 +107,4 @@ required:
   - deployments_keep
   - install_dependencies_command
   - build_command
-  - created_at
-  - updated_at
 nullable: true

@@ -49,8 +49,4 @@ required:
   - pattern
   - pattern_human_readable
   - is_auto_generated
-  - last_action
-  - created_by_user
-  - created_at
-  - updated_at
 nullable: true

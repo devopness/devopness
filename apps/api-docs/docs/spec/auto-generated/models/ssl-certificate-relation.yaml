@@ -46,9 +46,6 @@ required:
   - issuer
   - validation_level
   - active
-  - last_action
   - expires_at
   - last_renewed_at
-  - created_at
-  - updated_at
 nullable: true

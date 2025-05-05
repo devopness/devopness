@@ -23,6 +23,4 @@ properties:
 required:
   - id
   - name
-  - provider_name
-  - provider_name_human_readable
   - provision_input

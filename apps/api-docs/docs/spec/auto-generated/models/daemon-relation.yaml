@@ -52,8 +52,5 @@ required:
   - working_directory
   - process_count
   - is_auto_generated
-  - last_action
   - application
-  - created_at
-  - updated_at
 nullable: true
