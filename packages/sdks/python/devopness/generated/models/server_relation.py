@@ -32,16 +32,16 @@ class ServerRelation(DevopnessBaseModel):
         hostname (str): The server&#39;s hostname
         provider_name (str): The name of the server&#39;s provider.
         provider_name_human_readable (str): The human readable version of the provider&#39;s name
-        credential (CredentialRelation):
+        credential (CredentialRelation, optional):
         region (str): The region in which the server is located
         region_human_readable (str): The human readable version of the region
         ip_address (str, optional): Public ipv4 address for server access
         ssh_port (int): The network port to which the SSH daemon is listening to SSH connections on the server
         active (bool): Tells if the server is active or not
         status (ServerStatus):
-        last_action (ActionRelationShallow):
-        created_at (str): The date and time when the record was created
-        updated_at (str): The date and time when the record was last updated
+        last_action (ActionRelationShallow, optional):
+        created_at (str, optional): The date and time when the record was created
+        updated_at (str, optional): The date and time when the record was last updated
     """
 
     id: StrictInt = Field(description="The unique id of the given record")
@@ -54,7 +54,7 @@ class ServerRelation(DevopnessBaseModel):
     provider_name_human_readable: StrictStr = Field(
         description="The human readable version of the provider's name"
     )
-    credential: Optional[CredentialRelation]
+    credential: Optional[CredentialRelation] = None
     region: Optional[StrictStr] = Field(
         description="The region in which the server is located"
     )
@@ -69,12 +69,12 @@ class ServerRelation(DevopnessBaseModel):
     )
     active: StrictBool = Field(description="Tells if the server is active or not")
     status: ServerStatus
-    last_action: Optional[ActionRelationShallow]
-    created_at: StrictStr = Field(
-        description="The date and time when the record was created"
+    last_action: Optional[ActionRelationShallow] = None
+    created_at: Optional[StrictStr] = Field(
+        default=None, description="The date and time when the record was created"
     )
-    updated_at: StrictStr = Field(
-        description="The date and time when the record was last updated"
+    updated_at: Optional[StrictStr] = Field(
+        default=None, description="The date and time when the record was last updated"
     )
 
 
@@ -89,7 +89,7 @@ class ServerRelationPlain(TypedDict, total=False):
     hostname: Required[str]
     provider_name: Required[str]
     provider_name_human_readable: Required[str]
-    credential: Required[
+    credential: Optional[
         Union[
             CredentialRelation,
             CredentialRelationPlain,
@@ -106,11 +106,11 @@ class ServerRelationPlain(TypedDict, total=False):
             ServerStatusPlain,
         ]
     ]
-    last_action: Required[
+    last_action: Optional[
         Union[
             ActionRelationShallow,
             ActionRelationShallowPlain,
         ]
     ]
-    created_at: Required[str]
-    updated_at: Required[str]
+    created_at: Optional[str]
+    updated_at: Optional[str]

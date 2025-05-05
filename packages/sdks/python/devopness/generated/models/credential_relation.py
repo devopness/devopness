@@ -7,6 +7,7 @@ Note:
 """
 
 from typing import (
+    Optional,
     Required,
     TypedDict,
     Union,
@@ -32,8 +33,8 @@ class CredentialRelation(DevopnessBaseModel):
         provider_type_human_readable (str): The human readable version of the type of the credential
         active (bool): If this credential is active or not
         created_by_user (UserRelation):
-        created_at (str): The date and time when the record was created
-        updated_at (str): The date and time when the record was last updated
+        created_at (str, optional): The date and time when the record was created
+        updated_at (str, optional): The date and time when the record was last updated
     """
 
     id: StrictInt = Field(description="The unique ID of the credential")
@@ -45,11 +46,11 @@ class CredentialRelation(DevopnessBaseModel):
     )
     active: StrictBool = Field(description="If this credential is active or not")
     created_by_user: UserRelation
-    created_at: StrictStr = Field(
-        description="The date and time when the record was created"
+    created_at: Optional[StrictStr] = Field(
+        default=None, description="The date and time when the record was created"
     )
-    updated_at: StrictStr = Field(
-        description="The date and time when the record was last updated"
+    updated_at: Optional[StrictStr] = Field(
+        default=None, description="The date and time when the record was last updated"
     )
 
 
@@ -80,5 +81,5 @@ class CredentialRelationPlain(TypedDict, total=False):
             UserRelationPlain,
         ]
     ]
-    created_at: Required[str]
-    updated_at: Required[str]
+    created_at: Optional[str]
+    updated_at: Optional[str]

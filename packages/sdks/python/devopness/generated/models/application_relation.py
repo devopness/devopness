@@ -48,8 +48,8 @@ class ApplicationRelation(DevopnessBaseModel):
         build_command (str): The optional command that should be executed once during deployment to build the source code and get the application in a ready state
         last_deployments (ApplicationLastDeployments, optional):
         credential (Credential, optional):
-        created_at (str): The date and time when the record was created
-        updated_at (str): The date and time when the record was last updated
+        created_at (str, optional): The date and time when the record was created
+        updated_at (str, optional): The date and time when the record was last updated
     """
 
     id: StrictInt = Field(description="Unique ID of the application")
@@ -104,11 +104,11 @@ class ApplicationRelation(DevopnessBaseModel):
     )
     last_deployments: Optional[ApplicationLastDeployments] = None
     credential: Optional[Credential] = None
-    created_at: StrictStr = Field(
-        description="The date and time when the record was created"
+    created_at: Optional[StrictStr] = Field(
+        default=None, description="The date and time when the record was created"
     )
-    updated_at: StrictStr = Field(
-        description="The date and time when the record was last updated"
+    updated_at: Optional[StrictStr] = Field(
+        default=None, description="The date and time when the record was last updated"
     )
 
 
@@ -147,5 +147,5 @@ class ApplicationRelationPlain(TypedDict, total=False):
             CredentialPlain,
         ]
     ]
-    created_at: Required[str]
-    updated_at: Required[str]
+    created_at: Optional[str]
+    updated_at: Optional[str]
