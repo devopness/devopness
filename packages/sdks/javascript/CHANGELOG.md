@@ -1,5 +1,11 @@
 # @devopness/sdk-js
 
+## 2.163.5
+
+### Patch Changes
+
+- [#1658](https://github.com/devopness/devopness/pull/1658) [`3753d85`](https://github.com/devopness/devopness/commit/3753d858c017a1f08a3c2310fe497243061d503a) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Fix issues in sdk's models
+
 ## 2.163.4
 
 ### Patch Changes
