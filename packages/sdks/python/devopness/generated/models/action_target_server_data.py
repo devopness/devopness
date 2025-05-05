@@ -41,7 +41,9 @@ class ActionTargetServerData(DevopnessBaseModel):
     provider_name_human_readable: StrictStr = Field(
         description="The human readable version of the provider's name"
     )
-    ip_address: StrictStr = Field(description="Public ipv4 address for server access")
+    ip_address: Optional[StrictStr] = Field(
+        description="Public ipv4 address for server access"
+    )
     ssh_port: StrictInt = Field(
         description="The network port to which the SSH daemon is listening to SSH connections on the server"
     )

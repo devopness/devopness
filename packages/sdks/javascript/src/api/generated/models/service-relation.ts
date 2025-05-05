@@ -80,18 +80,18 @@ export interface ServiceRelation {
      * @type {ActionRelationShallow}
      * @memberof ServiceRelation
      */
-    last_action: ActionRelationShallow | null;
+    last_action?: ActionRelationShallow | null;
     /**
      * The date and time when the record was created
      * @type {string}
      * @memberof ServiceRelation
      */
-    created_at: string;
+    created_at?: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof ServiceRelation
      */
-    updated_at: string;
+    updated_at?: string;
 }
 

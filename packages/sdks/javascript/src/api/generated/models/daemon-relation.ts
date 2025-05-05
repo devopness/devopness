@@ -69,7 +69,7 @@ export interface DaemonRelation {
      * @type {ActionRelationShallow}
      * @memberof DaemonRelation
      */
-    last_action: ActionRelationShallow | null;
+    last_action?: ActionRelationShallow | null;
     /**
      * 
      * @type {ApplicationRelation}
@@ -87,12 +87,12 @@ export interface DaemonRelation {
      * @type {string}
      * @memberof DaemonRelation
      */
-    created_at: string;
+    created_at?: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof DaemonRelation
      */
-    updated_at: string;
+    updated_at?: string;
 }
 

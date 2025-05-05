@@ -34,9 +34,9 @@ class ServiceRelation(DevopnessBaseModel):
         auto_start (bool): Indicates if the service will start automatically on operating system boot
         initial_state (ServiceInitialState):
         description (str): A text describing the service, provided by the service author
-        last_action (ActionRelationShallow):
-        created_at (str): The date and time when the record was created
-        updated_at (str): The date and time when the record was last updated
+        last_action (ActionRelationShallow, optional):
+        created_at (str, optional): The date and time when the record was created
+        updated_at (str, optional): The date and time when the record was last updated
     """
 
     id: StrictInt = Field(description="The unique ID of the given service")
@@ -58,12 +58,12 @@ class ServiceRelation(DevopnessBaseModel):
     description: Optional[StrictStr] = Field(
         description="A text describing the service, provided by the service author"
     )
-    last_action: Optional[ActionRelationShallow]
-    created_at: StrictStr = Field(
-        description="The date and time when the record was created"
+    last_action: Optional[ActionRelationShallow] = None
+    created_at: Optional[StrictStr] = Field(
+        default=None, description="The date and time when the record was created"
     )
-    updated_at: StrictStr = Field(
-        description="The date and time when the record was last updated"
+    updated_at: Optional[StrictStr] = Field(
+        default=None, description="The date and time when the record was last updated"
     )
 
 
@@ -86,11 +86,11 @@ class ServiceRelationPlain(TypedDict, total=False):
         ]
     ]
     description: Required[str]
-    last_action: Required[
+    last_action: Optional[
         Union[
             ActionRelationShallow,
             ActionRelationShallowPlain,
         ]
     ]
-    created_at: Required[str]
-    updated_at: Required[str]
+    created_at: Optional[str]
+    updated_at: Optional[str]

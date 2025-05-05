@@ -146,12 +146,12 @@ export interface ApplicationRelation {
      * @type {string}
      * @memberof ApplicationRelation
      */
-    created_at: string;
+    created_at?: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof ApplicationRelation
      */
-    updated_at: string;
+    updated_at?: string;
 }
 

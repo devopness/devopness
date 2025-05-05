@@ -13245,8 +13245,6 @@
         "required": [
           "id",
           "name",
-          "provider_name",
-          "provider_name_human_readable",
           "provision_input"
         ]
       },
@@ -13277,7 +13275,8 @@
           "ip_address": {
             "description": "Public ipv4 address for server access",
             "type": "string",
-            "example": "200.123.45.67"
+            "example": "200.123.45.67",
+            "nullable": true
           },
           "ssh_port": {
             "description": "The network port to which the SSH daemon is listening to SSH connections on the server",
@@ -13847,9 +13846,7 @@
           "root_directory",
           "deployments_keep",
           "install_dependencies_command",
-          "build_command",
-          "created_at",
-          "updated_at"
+          "build_command"
         ],
         "nullable": true
       },
@@ -14986,9 +14983,7 @@
           "provider_type",
           "provider_type_human_readable",
           "active",
-          "created_by_user",
-          "created_at",
-          "updated_at"
+          "created_by_user"
         ],
         "nullable": true
       },
@@ -15285,11 +15280,7 @@
           "run_as_user",
           "pattern",
           "pattern_human_readable",
-          "is_auto_generated",
-          "last_action",
-          "created_by_user",
-          "created_at",
-          "updated_at"
+          "is_auto_generated"
         ],
         "nullable": true
       },
@@ -15549,10 +15540,7 @@
           "working_directory",
           "process_count",
           "is_auto_generated",
-          "last_action",
-          "application",
-          "created_at",
-          "updated_at"
+          "application"
         ],
         "nullable": true
       },
@@ -20097,15 +20085,11 @@
           "hostname",
           "provider_name",
           "provider_name_human_readable",
-          "credential",
           "region",
           "region_human_readable",
           "ssh_port",
           "active",
-          "status",
-          "last_action",
-          "created_at",
-          "updated_at"
+          "status"
         ],
         "nullable": true
       },
@@ -20384,10 +20368,7 @@
           "is_auto_generated",
           "auto_start",
           "initial_state",
-          "description",
-          "last_action",
-          "created_at",
-          "updated_at"
+          "description"
         ],
         "nullable": true
       },
@@ -21031,11 +21012,8 @@
           "issuer",
           "validation_level",
           "active",
-          "last_action",
           "expires_at",
-          "last_renewed_at",
-          "created_at",
-          "updated_at"
+          "last_renewed_at"
         ],
         "nullable": true
       },
@@ -23476,10 +23454,7 @@
           "application",
           "root_directory",
           "application_listen_address",
-          "ssl_certificate",
-          "last_action",
-          "created_at",
-          "updated_at"
+          "ssl_certificate"
         ],
         "nullable": true
       },
