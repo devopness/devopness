@@ -2,6 +2,7 @@
 Devopness API Python SDK - Painless essential DevOps to everyone
 """
 
+from collections.abc import Callable
 from typing import Any, Optional, Union
 from urllib.parse import urlencode
 
@@ -18,7 +19,10 @@ from ..core.network_error import (
     handle_network_errors_sync,
 )
 
-__all__ = ["DevopnessBaseService"]
+__all__ = ["DevopnessBaseService", "OnTokenExpiredCallback"]
+
+
+OnTokenExpiredCallback = Callable[[Optional[str]], None]
 
 
 class DevopnessBaseService:
@@ -32,6 +36,7 @@ class DevopnessBaseService:
     __config: DevopnessClientConfig
 
     _access_token: Optional[str] = None
+    _on_token_expired: Optional[OnTokenExpiredCallback] = None
 
     def __init__(self, config: DevopnessClientConfig) -> None:
         """
@@ -100,7 +105,14 @@ class DevopnessBaseService:
                 self.__debug_response(response)
 
         except httpx.HTTPStatusError as e:
-            await raise_devopness_api_error(e)
+            if (
+                self._on_token_expired is not None
+                and e.response.status_code == httpx.codes.UNAUTHORIZED
+            ):
+                self._on_token_expired(self._access_token)
+
+            else:
+                await raise_devopness_api_error(e)
 
         return response
 
@@ -140,7 +152,14 @@ class DevopnessBaseService:
                 self.__debug_response(response)
 
         except httpx.HTTPStatusError as e:
-            raise_devopness_api_error_sync(e)
+            if (
+                self._on_token_expired is not None
+                and e.response.status_code == httpx.codes.UNAUTHORIZED
+            ):
+                self._on_token_expired(self._access_token)
+
+            else:
+                raise_devopness_api_error_sync(e)
 
         return response
 
