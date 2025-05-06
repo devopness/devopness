@@ -1,5 +1,11 @@
 # @devopness/sdk-js
 
+## 2.163.6
+
+### Patch Changes
+
+- [#1660](https://github.com/devopness/devopness/pull/1660) [`2038a77`](https://github.com/devopness/devopness/commit/2038a77aa7b3c971951483c03b2f68e12ef88c36) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Fix the Action Type Enum to include Rotate Key
+
 ## 2.163.5
 
 ### Patch Changes
