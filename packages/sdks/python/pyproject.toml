@@ -47,7 +47,7 @@ classifiers = [
   "Topic :: Utilities",
 ]
 dependencies = [
-  # Explicitly added to ensure a secure version of h11 is used.
+  # Explicitly added `httpcore` to ensure a secure version of h11 is used.
   # httpcore is a transitive dependency of httpx (which allows any 1.*),
   # but only httpcore >=1.0.9 guarantees h11 >=0.16 with the security fix.
   # Related issue: https://github.com/devopness/devopness/security/dependabot/63
