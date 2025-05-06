@@ -46,7 +46,15 @@ classifiers = [
   "Topic :: System :: Systems Administration",
   "Topic :: Utilities",
 ]
-dependencies = ["httpx (>=0.28.1,<0.29.0)", "pydantic (>=2.11.3,<3.0.0)"]
+dependencies = [
+  # Explicitly added `httpcore` to ensure a secure version of h11 is used.
+  # httpcore is a transitive dependency of httpx (which allows any 1.*),
+  # but only httpcore >=1.0.9 guarantees h11 >=0.16 with the security fix.
+  # Related issue: https://github.com/devopness/devopness/security/dependabot/63
+  "httpcore (>=1.0.9)",
+  "httpx (>=0.28.1,<0.29.0)",
+  "pydantic (>=2.11.3,<3.0.0)",
+]
 
 [project.urls]
 homepage = "https://www.devopness.com"
@@ -68,7 +76,7 @@ packages = [
 ]
 
 [tool.poetry.group.dev.dependencies]
-openapi-generator-cli = { version = "^7.12.0", markers = "python_version < '4.0'" }
+openapi-generator-cli = { version = "7.12.0", markers = "python_version < '4.0'" }
 ruff = "^0.11.6"
 mypy = "1.15.0"
 
