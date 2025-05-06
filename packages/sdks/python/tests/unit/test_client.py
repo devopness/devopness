@@ -1,5 +1,8 @@
 import unittest
-from typing import Final
+from typing import Final, Union
+from unittest.mock import Mock, patch
+
+import httpx
 
 from devopness import DevopnessClient, DevopnessClientConfig
 from devopness.base import DevopnessBaseService
@@ -59,7 +62,7 @@ class TestDevopnessClient(unittest.TestCase):
         self.assertEqual(DevopnessBaseService._config.debug, config.debug)
 
         for service_name, _ in self.expected_services:
-            service = getattr(devopness, service_name)
+            service: DevopnessBaseService = getattr(devopness, service_name)
 
             self.assertEqual(service._config.base_url, config.base_url)
             self.assertEqual(service._config.debug, config.debug)
@@ -73,7 +76,32 @@ class TestDevopnessClient(unittest.TestCase):
         self.assertIsNotNone(DevopnessBaseService._on_token_expired)
 
         for service_name, _ in self.expected_services:
-            service = getattr(devopness, service_name)
+            service: DevopnessBaseService = getattr(devopness, service_name)
 
             self.assertEqual(service._access_token, "shared-token")
             self.assertIsNotNone(service._on_token_expired)
+
+    @patch("httpx.Client._send_single_request")
+    def test_unauthorized_request_with_on_token_expired_callback_should_call_callback(
+        self,
+        mock: Mock,
+    ) -> None:
+        callback_called = False
+        refresh_token: Union[str, None] = "devopness-refresh-token"  # noqa: S105
+
+        def callback_mock(token: Union[str, None]) -> None:
+            nonlocal callback_called
+            nonlocal refresh_token
+
+            callback_called = True
+            refresh_token = token
+
+        devopness = DevopnessClient()
+        devopness.access_token = "devopness-some-token"  # noqa: S105
+        DevopnessBaseService._on_token_expired = callback_mock
+
+        mock.return_value = httpx.Response(401, request=httpx.Request("", ""))
+        devopness.users.get_user_me_sync()
+
+        self.assertTrue(callback_called)
+        self.assertEqual(refresh_token, "devopness-some-token")

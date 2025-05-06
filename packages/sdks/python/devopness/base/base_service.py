@@ -107,10 +107,10 @@ class DevopnessBaseService:
 
         except httpx.HTTPStatusError as e:
             if (
-                self._on_token_expired is not None
+                DevopnessBaseService._on_token_expired is not None
                 and e.response.status_code == httpx.codes.UNAUTHORIZED
             ):
-                self._on_token_expired(self._access_token)
+                DevopnessBaseService._on_token_expired(self._access_token)
 
             else:
                 await raise_devopness_api_error(e)
@@ -154,10 +154,10 @@ class DevopnessBaseService:
 
         except httpx.HTTPStatusError as e:
             if (
-                self._on_token_expired is not None
+                DevopnessBaseService._on_token_expired is not None
                 and e.response.status_code == httpx.codes.UNAUTHORIZED
             ):
-                self._on_token_expired(self._access_token)
+                DevopnessBaseService._on_token_expired(self._access_token)
 
             else:
                 raise_devopness_api_error_sync(e)
