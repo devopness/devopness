@@ -53,19 +53,21 @@ class DevopnessClient:
         elif isinstance(config, dict):
             config = DevopnessClientConfig.from_dict(config)
 
-        self.applications = ApplicationService(config)
-        self.credentials = CredentialService(config)
-        self.cron_jobs = CronJobService(config)
-        self.daemons = DaemonService(config)
-        self.environments = EnvironmentService(config)
-        self.networks = NetworkService(config)
-        self.projects = ProjectService(config)
-        self.servers = ServerService(config)
-        self.services = ServiceService(config)
-        self.ssh_keys = SSHKeyService(config)
-        self.subnets = SubnetService(config)
-        self.users = UserService(config)
-        self.virtual_hosts = VirtualHostService(config)
+        DevopnessBaseService._config = config
+
+        self.applications = ApplicationService()
+        self.credentials = CredentialService()
+        self.cron_jobs = CronJobService()
+        self.daemons = DaemonService()
+        self.environments = EnvironmentService()
+        self.networks = NetworkService()
+        self.projects = ProjectService()
+        self.servers = ServerService()
+        self.services = ServiceService()
+        self.ssh_keys = SSHKeyService()
+        self.subnets = SubnetService()
+        self.users = UserService()
+        self.virtual_hosts = VirtualHostService()
 
     def __set_access_token(self, access_token: str) -> None:
         # pylint: disable=protected-access

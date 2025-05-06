@@ -8,6 +8,8 @@ from urllib.parse import urlencode
 
 import httpx
 
+from devopness.core.sdk_error import DevopnessSdkError
+
 from ..base import DevopnessBaseModel
 from ..client_config import DevopnessClientConfig
 from ..core.api_error import (
@@ -33,23 +35,24 @@ class DevopnessBaseService:
 
     __client: httpx.AsyncClient
     __client_sync: httpx.Client
-    __config: DevopnessClientConfig
+
+    _config: DevopnessClientConfig
 
     _access_token: Optional[str] = None
     _on_token_expired: Optional[OnTokenExpiredCallback] = None
 
-    def __init__(self, config: DevopnessClientConfig) -> None:
+    def __init__(self) -> None:
         """
         Initializes the API base service with the provided configuration.
-
-        Args:
-            config (DevopnessApiClientConfig): Client configuration object.
         """
+        if self._config is None:
+            raise DevopnessSdkError("DevopnessBaseService is not initialized")
+
         self.__client = httpx.AsyncClient(
-            base_url=config.base_url,
-            timeout=config.timeout,
-            default_encoding=config.default_encoding,
-            headers=config.headers,
+            base_url=self._config.base_url,
+            timeout=self._config.timeout,
+            default_encoding=self._config.default_encoding,
+            headers=self._config.headers,
             event_hooks={
                 "request": [self.__on_request],
                 "response": [self.__on_response],
@@ -57,17 +60,15 @@ class DevopnessBaseService:
         )
 
         self.__client_sync = httpx.Client(
-            base_url=config.base_url,
-            timeout=config.timeout,
-            default_encoding=config.default_encoding,
-            headers=config.headers,
+            base_url=self._config.base_url,
+            timeout=self._config.timeout,
+            default_encoding=self._config.default_encoding,
+            headers=self._config.headers,
             event_hooks={
                 "request": [self.__on_request_sync],
                 "response": [self.__on_response_sync],
             },
         )
-
-        self.__config = config
 
     async def __on_request(self, request: httpx.Request) -> None:
         """
@@ -85,7 +86,7 @@ class DevopnessBaseService:
         elif "Authorization" in request.headers:
             del request.headers["Authorization"]
 
-        if self.__config.debug:
+        if self._config.debug:
             self.__debug_request(request)
 
     async def __on_response(self, response: httpx.Response) -> httpx.Response:
@@ -101,7 +102,7 @@ class DevopnessBaseService:
         try:
             response.raise_for_status()
 
-            if self.__config.debug:
+            if self._config.debug:
                 self.__debug_response(response)
 
         except httpx.HTTPStatusError as e:
@@ -132,7 +133,7 @@ class DevopnessBaseService:
         elif "Authorization" in request.headers:
             del request.headers["Authorization"]
 
-        if self.__config.debug:
+        if self._config.debug:
             self.__debug_request(request)
 
     def __on_response_sync(self, response: httpx.Response) -> httpx.Response:
@@ -148,7 +149,7 @@ class DevopnessBaseService:
         try:
             response.raise_for_status()
 
-            if self.__config.debug:
+            if self._config.debug:
                 self.__debug_response(response)
 
         except httpx.HTTPStatusError as e:
