@@ -1,6 +1,7 @@
 import unittest
 from typing import Final
 
+from anyio import current_effective_deadline
 from devopness import DevopnessClient, DevopnessClientConfig
 from devopness.base import DevopnessBaseService
 from devopness.services.application_service import ApplicationService
@@ -37,11 +38,19 @@ class TestDevopnessClient(unittest.TestCase):
 
     def test_client_has_expected_services(self) -> None:
         devopness = DevopnessClient()
+        current_services = devopness.__annotations__
 
         for service_name, service_class in self.expected_services:
             service = getattr(devopness, service_name)
 
             self.assertIsInstance(service, service_class)
+            current_services.pop(service_name)
+
+        self.assertEqual(
+            len(current_services),
+            0,
+            f"ERROR: Unexpected services in Devopness Client: {current_services.keys()}",
+        )
 
     def test_config_is_shared_across_services(self) -> None:
         config = DevopnessClientConfig(base_url="https://test.local", debug=True)
