@@ -2,6 +2,7 @@
 Devopness API Python SDK - Painless essential DevOps to everyone
 """
 
+from datetime import datetime, timedelta, timezone
 from typing import Any, Optional, Union
 from urllib.parse import urlencode
 
@@ -36,7 +37,7 @@ class DevopnessBaseService:
 
     _access_token: Optional[str] = None
     _refresh_token: Optional[str] = None
-    _expires_in: Optional[int] = None
+    _token_expires_at: Optional[datetime] = None
 
     def __init__(self) -> None:
         """
@@ -115,10 +116,11 @@ class DevopnessBaseService:
         Args:
             request (httpx.Request): The outgoing HTTP request.
         """
-        if self._config.auto_refresh_token and request.url.path not in [
-            "/users/login",
-            "/users/refresh-token",
-        ]:
+        if (
+            self._config.auto_refresh_token
+            and self.__is_token_expired()
+            and not self.__is_request_to_change_token(request.url.path)
+        ):
             self.__refresh_token()
 
         access_token = DevopnessBaseService._access_token
@@ -145,10 +147,10 @@ class DevopnessBaseService:
         try:
             response.raise_for_status()
 
-            if self._config.auto_refresh_token and response.url.path in [
-                "/users/login",
-                "/users/refresh-token",
-            ]:
+            if (
+                self._config.auto_refresh_token  #
+                and self.__is_request_to_change_token(response.url.path)
+            ):
                 self.__refresh_token(response)
 
             if self._config.debug:
@@ -335,9 +337,34 @@ class DevopnessBaseService:
 
         res.read()
         data = res.json()
+
+        now = datetime.now(timezone.utc)
+        expires_in: int = data["expires_in"]
+        expires_at = now + timedelta(seconds=expires_in)
+
         DevopnessBaseService._access_token = data["access_token"]
         DevopnessBaseService._refresh_token = data["refresh_token"]
-        DevopnessBaseService._expires_in = data["expires_in"]
+        DevopnessBaseService._token_expires_at = expires_at
+
+    def __is_token_expired(self) -> bool:
+        """
+        Checks if the access token has expired.
+        """
+        expires_at = DevopnessBaseService._token_expires_at
+        if expires_at is None:
+            return True
+
+        safety_margin = timedelta(seconds=30)
+        return datetime.now(timezone.utc) >= (expires_at - safety_margin)
+
+    def __is_request_to_change_token(self, endpoint: str) -> bool:
+        """
+        Checks if the request is to change the access token.
+        """
+        return endpoint in [
+            "/users/login",
+            "/users/refresh-token",
+        ]
 
     @staticmethod
     def _get_query_string(in_params: dict[str, Any]) -> str:
