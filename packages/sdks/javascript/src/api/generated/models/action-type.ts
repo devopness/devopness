@@ -28,6 +28,7 @@ export enum ActionType {
     Reload = 'reload',
     Remove = 'remove',
     Restart = 'restart',
+    RotateKey = 'rotate_key',
     Start = 'start',
     Stop = 'stop'
 }
