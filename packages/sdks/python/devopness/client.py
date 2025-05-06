@@ -4,7 +4,7 @@ Devopness API Python SDK - Painless essential DevOps to everyone
 
 from typing import Optional, Union
 
-from .base import DevopnessBaseService, OnTokenExpiredCallback
+from .base import DevopnessBaseService
 from .client_config import DevopnessClientConfig, DevopnessClientConfigDict
 from .services.application_service import ApplicationService
 from .services.credential_service import CredentialService
@@ -78,19 +78,3 @@ class DevopnessClient:
         return DevopnessBaseService._access_token
 
     access_token = property(fset=__set_access_token, fget=__get_access_token)
-
-    def __set_on_token_expired(
-        self,
-        on_token_expired: Optional[OnTokenExpiredCallback],
-    ) -> None:
-        # pylint: disable=protected-access
-        DevopnessBaseService._on_token_expired = on_token_expired
-
-    def __get_on_token_expired(self) -> Optional[OnTokenExpiredCallback]:
-        # pylint: disable=protected-access
-        return DevopnessBaseService._on_token_expired
-
-    on_token_expired = property(
-        fset=__set_on_token_expired,
-        fget=__get_on_token_expired,
-    )

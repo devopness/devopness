@@ -2,7 +2,6 @@
 Devopness API Python SDK - Painless essential DevOps to everyone
 """
 
-from collections.abc import Callable
 from typing import Any, Optional, Union
 from urllib.parse import urlencode
 
@@ -21,10 +20,7 @@ from ..core.network_error import (
     handle_network_errors_sync,
 )
 
-__all__ = ["DevopnessBaseService", "OnTokenExpiredCallback"]
-
-
-OnTokenExpiredCallback = Callable[[Optional[str]], None]
+__all__ = ["DevopnessBaseService"]
 
 
 class DevopnessBaseService:
@@ -39,7 +35,8 @@ class DevopnessBaseService:
     _config: DevopnessClientConfig
 
     _access_token: Optional[str] = None
-    _on_token_expired: Optional[OnTokenExpiredCallback] = None
+    _refresh_token: Optional[str] = None
+    _expires_in: Optional[int] = None
 
     def __init__(self) -> None:
         """
@@ -106,14 +103,7 @@ class DevopnessBaseService:
                 self.__debug_response(response)
 
         except httpx.HTTPStatusError as e:
-            if (
-                DevopnessBaseService._on_token_expired is not None
-                and e.response.status_code == httpx.codes.UNAUTHORIZED
-            ):
-                DevopnessBaseService._on_token_expired(self._access_token)
-
-            else:
-                await raise_devopness_api_error(e)
+            await raise_devopness_api_error(e)
 
         return response
 
@@ -125,6 +115,12 @@ class DevopnessBaseService:
         Args:
             request (httpx.Request): The outgoing HTTP request.
         """
+        if self._config.auto_refresh_token and request.url.path not in [
+            "/users/login",
+            "/users/refresh-token",
+        ]:
+            self.__refresh_token()
+
         access_token = DevopnessBaseService._access_token
 
         if access_token:
@@ -149,18 +145,17 @@ class DevopnessBaseService:
         try:
             response.raise_for_status()
 
+            if self._config.auto_refresh_token and response.url.path in [
+                "/users/login",
+                "/users/refresh-token",
+            ]:
+                self.__refresh_token(response)
+
             if self._config.debug:
                 self.__debug_response(response)
 
         except httpx.HTTPStatusError as e:
-            if (
-                DevopnessBaseService._on_token_expired is not None
-                and e.response.status_code == httpx.codes.UNAUTHORIZED
-            ):
-                DevopnessBaseService._on_token_expired(self._access_token)
-
-            else:
-                raise_devopness_api_error_sync(e)
+            raise_devopness_api_error_sync(e)
 
         return response
 
@@ -324,6 +319,25 @@ class DevopnessBaseService:
         r_reason_phrase = response.reason_phrase
 
         print(f"[Devopness SDK] <-- [Response] {r_status_code} {r_reason_phrase}")
+
+    def __refresh_token(self, response: Optional[httpx.Response] = None) -> None:
+        """
+        Refreshes the access token.
+        """
+        res = (
+            response
+            if response is not None
+            else self._post_sync(
+                "/users/refresh-token",
+                {"refresh_token": self._refresh_token},
+            )
+        )
+
+        res.read()
+        data = res.json()
+        DevopnessBaseService._access_token = data["access_token"]
+        DevopnessBaseService._refresh_token = data["refresh_token"]
+        DevopnessBaseService._expires_in = data["expires_in"]
 
     @staticmethod
     def _get_query_string(in_params: dict[str, Any]) -> str:
