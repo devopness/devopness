@@ -10,6 +10,7 @@ enum:
   - reload
   - remove
   - restart
+  - rotate_key
   - start
   - stop
 example: deploy
