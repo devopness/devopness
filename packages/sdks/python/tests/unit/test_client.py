@@ -1,7 +1,6 @@
 import unittest
 from typing import Final
 
-from anyio import current_effective_deadline
 from devopness import DevopnessClient, DevopnessClientConfig
 from devopness.base import DevopnessBaseService
 from devopness.services.application_service import ApplicationService
