@@ -43,7 +43,7 @@ class DevopnessBaseService:
         """
         Initializes the API base service with the provided configuration.
         """
-        if self._config is None:
+        if DevopnessBaseService._config is None:
             raise DevopnessSdkError("DevopnessBaseService is not initialized")
 
         self.__client = httpx.AsyncClient(
@@ -76,6 +76,13 @@ class DevopnessBaseService:
         Args:
             request (httpx.Request): The outgoing HTTP request.
         """
+        if (
+            DevopnessBaseService._config.auto_refresh_token
+            and self._is_access_token_expired()
+            and not self._is_token_change_request(request.url.path)
+        ):
+            self.__refresh_tokens()
+
         access_token = DevopnessBaseService._access_token
 
         if access_token:
@@ -100,6 +107,12 @@ class DevopnessBaseService:
         try:
             response.raise_for_status()
 
+            if (
+                DevopnessBaseService._config.auto_refresh_token
+                and self._is_token_change_request(response.url.path)
+            ):
+                self.__refresh_tokens(response)
+
             if self._config.debug:
                 self.__debug_response(response)
 
@@ -117,11 +130,11 @@ class DevopnessBaseService:
             request (httpx.Request): The outgoing HTTP request.
         """
         if (
-            self._config.auto_refresh_token
-            and self.__is_token_expired()
-            and not self.__is_request_to_change_token(request.url.path)
+            DevopnessBaseService._config.auto_refresh_token
+            and self._is_access_token_expired()
+            and not self._is_token_change_request(request.url.path)
         ):
-            self.__refresh_token()
+            self.__refresh_tokens()
 
         access_token = DevopnessBaseService._access_token
 
@@ -148,10 +161,10 @@ class DevopnessBaseService:
             response.raise_for_status()
 
             if (
-                self._config.auto_refresh_token  #
-                and self.__is_request_to_change_token(response.url.path)
+                DevopnessBaseService._config.auto_refresh_token
+                and self._is_token_change_request(response.url.path)
             ):
-                self.__refresh_token(response)
+                self.__refresh_tokens(response)
 
             if self._config.debug:
                 self.__debug_response(response)
@@ -322,7 +335,7 @@ class DevopnessBaseService:
 
         print(f"[Devopness SDK] <-- [Response] {r_status_code} {r_reason_phrase}")
 
-    def __refresh_token(self, response: Optional[httpx.Response] = None) -> None:
+    def __refresh_tokens(self, response: Optional[httpx.Response] = None) -> None:
         """
         Refreshes the access token.
         """
@@ -346,7 +359,7 @@ class DevopnessBaseService:
         DevopnessBaseService._refresh_token = data["refresh_token"]
         DevopnessBaseService._token_expires_at = expires_at
 
-    def __is_token_expired(self) -> bool:
+    def _is_access_token_expired(self) -> bool:
         """
         Checks if the access token has expired.
         """
@@ -357,9 +370,9 @@ class DevopnessBaseService:
         safety_margin = timedelta(seconds=30)
         return datetime.now(timezone.utc) >= (expires_at - safety_margin)
 
-    def __is_request_to_change_token(self, endpoint: str) -> bool:
+    def _is_token_change_request(self, endpoint: str) -> bool:
         """
-        Checks if the request is to change the access token.
+        Checks if the request is to a endpoint that updates the access token.
         """
         return endpoint in [
             "/users/login",

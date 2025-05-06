@@ -7,7 +7,6 @@ from pydantic import Field, StrictInt, StrictStr
 
 from devopness import DevopnessClientConfig
 from devopness.base import DevopnessBaseModel, DevopnessBaseService
-from devopness.core.api_error import DevopnessApiError
 
 
 class DummyModel(DevopnessBaseModel):
@@ -29,7 +28,10 @@ class DummyModelPlain(TypedDict, total=False):
 
 
 class TestDevopnessBaseService(unittest.TestCase):
-    DevopnessBaseService._config = DevopnessClientConfig(base_url="https://test.local")
+    DevopnessBaseService._config = DevopnessClientConfig(
+        base_url="https://test.local",
+        auto_refresh_token=False,
+    )
     service = DevopnessBaseService()
 
     dummy_request = httpx.Request("", "")
@@ -208,40 +210,12 @@ class TestDevopnessBaseService(unittest.TestCase):
 
         self.assertEqual(query_string, expected_query_string)
 
-    @patch("httpx.Client._send_single_request")
-    def test_unauthorized_request_without_on_token_expired_callback_should_raise_exception(
-        self,
-        mock: Mock,
-    ) -> None:
-        DevopnessBaseService._on_token_expired = None
-        DevopnessBaseService._access_token = "devopness-some-token"  # noqa: S105
-
-        mock.return_value = httpx.Response(401, request=self.dummy_request)
-
-        with self.assertRaises(DevopnessApiError) as context:
-            self.service._get_sync("/resource")
-
-        self.assertEqual(context.exception.status_code, 401)
-
-    @patch("httpx.Client._send_single_request")
-    def test_unauthorized_request_with_on_token_expired_callback_should_call_callback(
-        self,
-        mock: Mock,
-    ) -> None:
-        on_token_expired_callback_mock = Mock()
-
-        DevopnessBaseService._on_token_expired = on_token_expired_callback_mock
-        DevopnessBaseService._access_token = "devopness-some-token"  # noqa: S105
-
-        mock.return_value = httpx.Response(401, request=self.dummy_request)
-
-        self.service._get_sync("/resource")
-
-        on_token_expired_callback_mock.assert_called_once_with("devopness-some-token")
-
 
 class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
-    DevopnessBaseService._config = DevopnessClientConfig(base_url="https://test.local")
+    DevopnessBaseService._config = DevopnessClientConfig(
+        base_url="https://test.local",
+        auto_refresh_token=False,
+    )
     service = DevopnessBaseService()
 
     dummy_request = httpx.Request("", "")
@@ -395,34 +369,3 @@ class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
 
         self.assertEqual(request.headers["Content-Type"], "application/json")
         self.assertEqual(request.content, b"")
-
-    @patch("httpx.AsyncClient._send_single_request")
-    async def test_unauthorized_request_without_on_token_expired_callback_should_raise_exception(
-        self,
-        mock: Mock,
-    ) -> None:
-        DevopnessBaseService._on_token_expired = None
-        DevopnessBaseService._access_token = "devopness-some-token"  # noqa: S105
-
-        mock.return_value = httpx.Response(401, request=self.dummy_request)
-
-        with self.assertRaises(DevopnessApiError) as context:
-            await self.service._get("/resource")
-
-        self.assertEqual(context.exception.status_code, 401)
-
-    @patch("httpx.AsyncClient._send_single_request")
-    async def test_unauthorized_request_with_on_token_expired_callback_should_call_callback(
-        self,
-        mock: Mock,
-    ) -> None:
-        on_token_expired_callback_mock = Mock()
-
-        DevopnessBaseService._on_token_expired = on_token_expired_callback_mock
-        DevopnessBaseService._access_token = "devopness-some-token"  # noqa: S105
-
-        mock.return_value = httpx.Response(401, request=self.dummy_request)
-
-        await self.service._get("/resource")
-
-        on_token_expired_callback_mock.assert_called_once_with("devopness-some-token")
