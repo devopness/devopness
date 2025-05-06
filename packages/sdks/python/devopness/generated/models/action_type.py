@@ -25,6 +25,7 @@ class ActionType(str, Enum):
     RELOAD = "reload"
     REMOVE = "remove"
     RESTART = "restart"
+    ROTATE_KEY = "rotate_key"
     START = "start"
     STOP = "stop"
 
@@ -45,6 +46,7 @@ ActionTypePlain = Literal[
     "reload",
     "remove",
     "restart",
+    "rotate_key",
     "start",
     "stop",
 ]
