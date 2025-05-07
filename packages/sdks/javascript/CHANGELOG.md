@@ -1,5 +1,11 @@
 # @devopness/sdk-js
 
+## 2.163.7
+
+### Patch Changes
+
+- [#1673](https://github.com/devopness/devopness/pull/1673) [`fcb97e2`](https://github.com/devopness/devopness/commit/fcb97e2f616d550fd4e17e96ecb137785b96b8c9) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Fix ActionTarget Model to include ID prop
+
 ## 2.163.6
 
 ### Patch Changes
