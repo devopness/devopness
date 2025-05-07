@@ -9,6 +9,7 @@ from devopness.services.cron_job_service import CronJobService
 from devopness.services.daemon_service import DaemonService
 from devopness.services.environment_service import EnvironmentService
 from devopness.services.network_service import NetworkService
+from devopness.services.pipeline_service import PipelineService
 from devopness.services.project_service import ProjectService
 from devopness.services.server_service import ServerService
 from devopness.services.service_service import ServiceService
@@ -27,6 +28,7 @@ class TestDevopnessClient(unittest.TestCase):
         ("daemons", DaemonService),
         ("environments", EnvironmentService),
         ("networks", NetworkService),
+        ("pipelines", PipelineService),
         ("projects", ProjectService),
         ("servers", ServerService),
         ("services", ServiceService),

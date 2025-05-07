@@ -12,6 +12,7 @@ from .services.cron_job_service import CronJobService
 from .services.daemon_service import DaemonService
 from .services.environment_service import EnvironmentService
 from .services.network_service import NetworkService
+from .services.pipeline_service import PipelineService
 from .services.project_service import ProjectService
 from .services.server_service import ServerService
 from .services.service_service import ServiceService
@@ -35,6 +36,7 @@ class DevopnessClient:
     daemons: DaemonService
     environments: EnvironmentService
     networks: NetworkService
+    pipelines: PipelineService
     projects: ProjectService
     servers: ServerService
     services: ServiceService
@@ -63,6 +65,7 @@ class DevopnessClient:
         self.daemons = DaemonService()
         self.environments = EnvironmentService()
         self.networks = NetworkService()
+        self.pipelines = PipelineService()
         self.projects = ProjectService()
         self.servers = ServerService()
         self.services = ServiceService()
