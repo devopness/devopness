@@ -13040,6 +13040,11 @@
         "type": "object",
         "description": "An object representing the action dispatched to a specific cloud resource target",
         "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The ID of the action target",
+            "example": 1234
+          },
           "resource_type": {
             "type": "string",
             "description": "The type of the cloud resource on which the action must be performed",

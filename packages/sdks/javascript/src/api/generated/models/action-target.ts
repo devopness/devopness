@@ -24,6 +24,12 @@ import { ActionTargetData } from './action-target-data';
  */
 export interface ActionTarget {
     /**
+     * The ID of the action target
+     * @type {number}
+     * @memberof ActionTarget
+     */
+    id?: number;
+    /**
      * The type of the cloud resource on which the action must be performed
      * @type {string}
      * @memberof ActionTarget

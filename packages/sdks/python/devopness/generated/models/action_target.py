@@ -32,6 +32,7 @@ class ActionTarget(DevopnessBaseModel):
     ActionTarget
 
     Attributes:
+        id (int, optional): The ID of the action target
         resource_type (str, optional): The type of the cloud resource on which the action must be performed
         resource_type_human_readable (str, optional): Human readable version of the resource type
         resource_id (int, optional): The Id of the cloud resource on which the action must be performed
@@ -49,6 +50,9 @@ class ActionTarget(DevopnessBaseModel):
         updated_at (datetime, optional): The date and time when the record was last updated
     """
 
+    id: Optional[StrictInt] = Field(
+        default=None, description="The ID of the action target"
+    )
     resource_type: Optional[StrictStr] = Field(
         default=None,
         description="The type of the cloud resource on which the action must be performed",
@@ -97,6 +101,7 @@ class ActionTargetPlain(TypedDict, total=False):
     Plain version of ActionTarget.
     """
 
+    id: Optional[int]
     resource_type: Optional[str]
     resource_type_human_readable: Optional[str]
     resource_id: Optional[int]
