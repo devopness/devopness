@@ -3,6 +3,7 @@ from typing import Final
 
 from devopness import DevopnessClient, DevopnessClientConfig
 from devopness.base import DevopnessBaseService
+from devopness.services.action_service import ActionService
 from devopness.services.application_service import ApplicationService
 from devopness.services.credential_service import CredentialService
 from devopness.services.cron_job_service import CronJobService
@@ -22,6 +23,7 @@ from devopness.services.virtual_host_service import VirtualHostService
 
 class TestDevopnessClient(unittest.TestCase):
     expected_services: Final[list[tuple[str, type]]] = [
+        ("actions", ActionService),
         ("applications", ApplicationService),
         ("credentials", CredentialService),
         ("cron_jobs", CronJobService),

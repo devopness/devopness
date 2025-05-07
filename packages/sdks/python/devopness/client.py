@@ -6,6 +6,7 @@ from typing import Optional, Union
 
 from .base import DevopnessBaseService
 from .client_config import DevopnessClientConfig, DevopnessClientConfigDict
+from .services.action_service import ActionService
 from .services.application_service import ApplicationService
 from .services.credential_service import CredentialService
 from .services.cron_job_service import CronJobService
@@ -30,6 +31,7 @@ class DevopnessClient:
     DevopnessApiClient provides an interface to the Devopness API.
     """
 
+    actions: ActionService
     applications: ApplicationService
     credentials: CredentialService
     cron_jobs: CronJobService
@@ -59,6 +61,7 @@ class DevopnessClient:
 
         DevopnessBaseService._config = config
 
+        self.actions = ActionService()
         self.applications = ApplicationService()
         self.credentials = CredentialService()
         self.cron_jobs = CronJobService()
