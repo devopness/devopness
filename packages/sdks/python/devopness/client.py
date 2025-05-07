@@ -18,6 +18,7 @@ from .services.service_service import ServiceService
 from .services.ssh_key_service import SSHKeyService
 from .services.subnet_service import SubnetService
 from .services.user_service import UserService
+from .services.variable_service import VariableService
 from .services.virtual_host_service import VirtualHostService
 
 __all__ = ["DevopnessClient"]
@@ -40,6 +41,7 @@ class DevopnessClient:
     ssh_keys: SSHKeyService
     subnets: SubnetService
     users: UserService
+    variables: VariableService
     virtual_hosts: VirtualHostService
 
     def __init__(
@@ -67,6 +69,7 @@ class DevopnessClient:
         self.ssh_keys = SSHKeyService()
         self.subnets = SubnetService()
         self.users = UserService()
+        self.variables = VariableService()
         self.virtual_hosts = VirtualHostService()
 
     def __set_access_token(self, access_token: str) -> None:

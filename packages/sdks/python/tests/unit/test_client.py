@@ -15,6 +15,7 @@ from devopness.services.service_service import ServiceService
 from devopness.services.ssh_key_service import SSHKeyService
 from devopness.services.subnet_service import SubnetService
 from devopness.services.user_service import UserService
+from devopness.services.variable_service import VariableService
 from devopness.services.virtual_host_service import VirtualHostService
 
 
@@ -32,6 +33,7 @@ class TestDevopnessClient(unittest.TestCase):
         ("ssh_keys", SSHKeyService),
         ("subnets", SubnetService),
         ("users", UserService),
+        ("variables", VariableService),
         ("virtual_hosts", VirtualHostService),
     ]
 
