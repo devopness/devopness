@@ -18,6 +18,8 @@ class DevopnessClientConfig(DevopnessBaseModel):
         timeout (int): Request timeout in seconds.
         default_encoding (str): Default encoding for response content.
         headers (ClassVar[dict[str, str]]): Default headers for API requests.
+        auto_refresh_token (bool): Controls whether the access token is
+                                   automatically refreshed.
         debug (bool): Controls whether debug information is printed to the console.
     """
 
@@ -28,6 +30,7 @@ class DevopnessClientConfig(DevopnessBaseModel):
         "Accept": "application/json",
         "Content-Type": "application/json",
     }
+    auto_refresh_token: bool = True
     debug: bool = False
 
 
@@ -40,4 +43,5 @@ class DevopnessClientConfigDict(TypedDict, total=False):
     timeout: int
     default_encoding: str
     headers: dict[str, str]
+    auto_refresh_token: bool
     debug: bool

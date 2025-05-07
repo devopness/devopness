@@ -28,8 +28,11 @@ class DummyModelPlain(TypedDict, total=False):
 
 
 class TestDevopnessBaseService(unittest.TestCase):
-    config = DevopnessClientConfig(base_url="https://test.local")
-    service = DevopnessBaseService(config)
+    DevopnessBaseService._config = DevopnessClientConfig(
+        base_url="https://test.local",
+        auto_refresh_token=False,
+    )
+    service = DevopnessBaseService()
 
     dummy_request = httpx.Request("", "")
     dummy_response = httpx.Response(200, request=dummy_request)
@@ -209,8 +212,11 @@ class TestDevopnessBaseService(unittest.TestCase):
 
 
 class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
-    config = DevopnessClientConfig(base_url="https://test.local")
-    service = DevopnessBaseService(config)
+    DevopnessBaseService._config = DevopnessClientConfig(
+        base_url="https://test.local",
+        auto_refresh_token=False,
+    )
+    service = DevopnessBaseService()
 
     dummy_request = httpx.Request("", "")
     dummy_response = httpx.Response(200, request=dummy_request)
