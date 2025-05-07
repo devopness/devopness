@@ -15,6 +15,7 @@ from .services.environment_service import EnvironmentService
 from .services.network_service import NetworkService
 from .services.pipeline_service import PipelineService
 from .services.project_service import ProjectService
+from .services.resource_link_service import ResourceLinkService
 from .services.server_service import ServerService
 from .services.service_service import ServiceService
 from .services.ssh_key_service import SSHKeyService
@@ -40,6 +41,7 @@ class DevopnessClient:
     networks: NetworkService
     pipelines: PipelineService
     projects: ProjectService
+    resource_links: ResourceLinkService
     servers: ServerService
     services: ServiceService
     ssh_keys: SSHKeyService
@@ -70,6 +72,7 @@ class DevopnessClient:
         self.networks = NetworkService()
         self.pipelines = PipelineService()
         self.projects = ProjectService()
+        self.resource_links = ResourceLinkService()
         self.servers = ServerService()
         self.services = ServiceService()
         self.ssh_keys = SSHKeyService()

@@ -12,6 +12,7 @@ from devopness.services.environment_service import EnvironmentService
 from devopness.services.network_service import NetworkService
 from devopness.services.pipeline_service import PipelineService
 from devopness.services.project_service import ProjectService
+from devopness.services.resource_link_service import ResourceLinkService
 from devopness.services.server_service import ServerService
 from devopness.services.service_service import ServiceService
 from devopness.services.ssh_key_service import SSHKeyService
@@ -32,6 +33,7 @@ class TestDevopnessClient(unittest.TestCase):
         ("networks", NetworkService),
         ("pipelines", PipelineService),
         ("projects", ProjectService),
+        ("resource_links", ResourceLinkService),
         ("servers", ServerService),
         ("services", ServiceService),
         ("ssh_keys", SSHKeyService),
