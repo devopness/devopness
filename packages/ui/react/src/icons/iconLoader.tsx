@@ -47,6 +47,7 @@ import {
   MdDragHandle,
   MdEdit,
   MdError,
+  MdHome,
   MdGroup,
   MdInfo,
   MdKeyboardArrowDown,
@@ -115,6 +116,7 @@ const ubuntuSVG = getImageAssetUrl('icons_svgs/ubuntu.svg')
 
 const iconList = [
   // UI Elements
+  { type: 'icon', name: 'home', component: MdHome },
   { type: 'icon', name: 'add', component: MdAdd },
   { type: 'icon', name: 'alarm', component: MdAlarmOn },
   { type: 'icon', name: 'arrowDown', component: MdKeyboardArrowDown },
