@@ -24,6 +24,7 @@ from ..models import (
     UserProfileOptions,
     VirtualHostOptions,
 )
+from ..utils import parse_query_string
 
 
 class StaticDataApiService(DevopnessBaseService):
@@ -47,6 +48,7 @@ class StaticDataApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._get(endpoint)
 
         return DevopnessResponse(response, ApplicationOptions)
@@ -68,6 +70,7 @@ class StaticDataApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._get(endpoint)
 
         return DevopnessResponse(response, CloudProviderService)
@@ -88,6 +91,7 @@ class StaticDataApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._get(endpoint)
 
         return DevopnessResponse(response, CredentialOptions)
@@ -108,6 +112,7 @@ class StaticDataApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._get(endpoint)
 
         return DevopnessResponse(response, CronJobOptions)
@@ -128,6 +133,7 @@ class StaticDataApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._get(endpoint)
 
         return DevopnessResponse(response, EnvironmentOptions)
@@ -148,6 +154,7 @@ class StaticDataApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._get(endpoint)
 
         return DevopnessResponse(response, NetworkRuleOptions)
@@ -168,6 +175,7 @@ class StaticDataApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._get(endpoint)
 
         return DevopnessResponse(response, ServerOptions)
@@ -188,6 +196,7 @@ class StaticDataApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._get(endpoint)
 
         return DevopnessResponse(response, ServiceOptions)
@@ -208,6 +217,7 @@ class StaticDataApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._get(endpoint)
 
         return DevopnessResponse(response, UserProfileOptions)
@@ -228,6 +238,7 @@ class StaticDataApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._get(endpoint)
 
         return DevopnessResponse(response, VirtualHostOptions)
@@ -247,7 +258,7 @@ class StaticDataApiService(DevopnessBaseService):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -260,6 +271,7 @@ class StaticDataApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._get(endpoint)
 
         return DevopnessResponse(response, List[CloudInstanceRelation])
@@ -277,7 +289,7 @@ class StaticDataApiService(DevopnessBaseService):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -290,6 +302,7 @@ class StaticDataApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._get(endpoint)
 
         return DevopnessResponse(response, List[PermissionRelation])
@@ -307,7 +320,7 @@ class StaticDataApiService(DevopnessBaseService):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -320,6 +333,7 @@ class StaticDataApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._get(endpoint)
 
         return DevopnessResponse(response, List[ResourceTypeRelation])
@@ -346,6 +360,7 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, ApplicationOptions)
@@ -367,6 +382,7 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, CloudProviderService)
@@ -387,6 +403,7 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, CredentialOptions)
@@ -407,6 +424,7 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, CronJobOptions)
@@ -427,6 +445,7 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, EnvironmentOptions)
@@ -447,6 +466,7 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, NetworkRuleOptions)
@@ -467,6 +487,7 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, ServerOptions)
@@ -487,6 +508,7 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, ServiceOptions)
@@ -507,6 +529,7 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, UserProfileOptions)
@@ -527,6 +550,7 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, VirtualHostOptions)
@@ -546,7 +570,7 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -559,6 +583,7 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, List[CloudInstanceRelation])
@@ -576,7 +601,7 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -589,6 +614,7 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, List[PermissionRelation])
@@ -606,7 +632,7 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -619,6 +645,7 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, List[ResourceTypeRelation])

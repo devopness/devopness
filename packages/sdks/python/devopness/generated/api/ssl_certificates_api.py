@@ -15,6 +15,7 @@ from ..models import (
     SslCertificateEnvironmentCreatePlain,
     SslCertificateRelation,
 )
+from ..utils import parse_query_string
 
 
 class SSLCertificatesApiService(DevopnessBaseService):
@@ -43,6 +44,7 @@ class SSLCertificatesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._post(endpoint, ssl_certificate_environment_create)
 
         return DevopnessResponse(response, SslCertificate)
@@ -64,6 +66,7 @@ class SSLCertificatesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._delete(endpoint)
 
         return DevopnessResponse(response, None)
@@ -85,6 +88,7 @@ class SSLCertificatesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._get(endpoint)
 
         return DevopnessResponse(response, SslCertificate)
@@ -103,7 +107,7 @@ class SSLCertificatesApiService(DevopnessBaseService):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -116,6 +120,7 @@ class SSLCertificatesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._get(endpoint)
 
         return DevopnessResponse(response, List[SslCertificateRelation])
@@ -147,6 +152,7 @@ class SSLCertificatesApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint, ssl_certificate_environment_create)
 
         return DevopnessResponse(response, SslCertificate)
@@ -168,6 +174,7 @@ class SSLCertificatesApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._delete(endpoint)
 
         return DevopnessResponse(response, None)
@@ -189,6 +196,7 @@ class SSLCertificatesApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, SslCertificate)
@@ -207,7 +215,7 @@ class SSLCertificatesApiServiceAsync(DevopnessBaseServiceAsync):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -220,6 +228,7 @@ class SSLCertificatesApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, List[SslCertificateRelation])

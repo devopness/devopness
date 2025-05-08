@@ -57,6 +57,7 @@ class UsersApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._post(endpoint, user_create)
 
         return DevopnessResponse(response, None)
@@ -78,6 +79,7 @@ class UsersApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._get(endpoint)
 
         return DevopnessResponse(response, User)
@@ -99,6 +101,7 @@ class UsersApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._get(endpoint)
 
         return DevopnessResponse(response, UserActivity)
@@ -119,6 +122,7 @@ class UsersApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._get(endpoint)
 
         return DevopnessResponse(response, UserBilling)
@@ -139,6 +143,7 @@ class UsersApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._get(endpoint)
 
         return DevopnessResponse(response, None)
@@ -159,6 +164,7 @@ class UsersApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._get(endpoint)
 
         return DevopnessResponse(response, UserMe)
@@ -179,6 +185,7 @@ class UsersApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._get(endpoint)
 
         return DevopnessResponse(response, UserUrl)
@@ -203,6 +210,7 @@ class UsersApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._post(endpoint, user_login)
 
         return DevopnessResponse(response, UserLoginResponse)
@@ -227,6 +235,7 @@ class UsersApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._post(endpoint, user_refresh_token)
 
         return DevopnessResponse(response, UserRefreshTokenResponse)
@@ -251,6 +260,7 @@ class UsersApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._post(endpoint, user_resend_verification)
 
         return DevopnessResponse(response, None)
@@ -276,6 +286,7 @@ class UsersApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._put(endpoint, user_update)
 
         return DevopnessResponse(response, None)
@@ -300,6 +311,7 @@ class UsersApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._post(endpoint, user_verify)
 
         return DevopnessResponse(response, None)
@@ -330,6 +342,7 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint, user_create)
 
         return DevopnessResponse(response, None)
@@ -351,6 +364,7 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, User)
@@ -372,6 +386,7 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, UserActivity)
@@ -392,6 +407,7 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, UserBilling)
@@ -412,6 +428,7 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, None)
@@ -432,6 +449,7 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, UserMe)
@@ -452,6 +470,7 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, UserUrl)
@@ -476,6 +495,7 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint, user_login)
 
         return DevopnessResponse(response, UserLoginResponse)
@@ -500,6 +520,7 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint, user_refresh_token)
 
         return DevopnessResponse(response, UserRefreshTokenResponse)
@@ -524,6 +545,7 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint, user_resend_verification)
 
         return DevopnessResponse(response, None)
@@ -549,6 +571,7 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._put(endpoint, user_update)
 
         return DevopnessResponse(response, None)
@@ -573,6 +596,7 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint, user_verify)
 
         return DevopnessResponse(response, None)

@@ -44,6 +44,7 @@ class PipelinesStepsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._post(endpoint, step_pipeline_create)
 
         return DevopnessResponse(response, Step)
@@ -66,6 +67,7 @@ class PipelinesStepsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._post(endpoint)
 
         return DevopnessResponse(response, None)
@@ -88,6 +90,7 @@ class PipelinesStepsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._delete(endpoint)
 
         return DevopnessResponse(response, None)
@@ -114,6 +117,7 @@ class PipelinesStepsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._put(endpoint, step_pipeline_update)
 
         return DevopnessResponse(response, None)
@@ -145,6 +149,7 @@ class PipelinesStepsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint, step_pipeline_create)
 
         return DevopnessResponse(response, Step)
@@ -167,6 +172,7 @@ class PipelinesStepsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint)
 
         return DevopnessResponse(response, None)
@@ -189,6 +195,7 @@ class PipelinesStepsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._delete(endpoint)
 
         return DevopnessResponse(response, None)
@@ -215,6 +222,7 @@ class PipelinesStepsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._put(endpoint, step_pipeline_update)
 
         return DevopnessResponse(response, None)

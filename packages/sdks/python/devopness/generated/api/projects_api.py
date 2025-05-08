@@ -17,6 +17,7 @@ from ..models import (
     ProjectUpdate,
     ProjectUpdatePlain,
 )
+from ..utils import parse_query_string
 
 
 class ProjectsApiService(DevopnessBaseService):
@@ -44,6 +45,7 @@ class ProjectsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._post(endpoint, project_create)
 
         return DevopnessResponse(response, Project)
@@ -65,6 +67,7 @@ class ProjectsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._get(endpoint)
 
         return DevopnessResponse(response, Project)
@@ -82,7 +85,7 @@ class ProjectsApiService(DevopnessBaseService):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -95,6 +98,7 @@ class ProjectsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._get(endpoint)
 
         return DevopnessResponse(response, List[ProjectRelation])
@@ -120,6 +124,7 @@ class ProjectsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._put(endpoint, project_update)
 
         return DevopnessResponse(response, None)
@@ -150,6 +155,7 @@ class ProjectsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint, project_create)
 
         return DevopnessResponse(response, Project)
@@ -171,6 +177,7 @@ class ProjectsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, Project)
@@ -188,7 +195,7 @@ class ProjectsApiServiceAsync(DevopnessBaseServiceAsync):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -201,6 +208,7 @@ class ProjectsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, List[ProjectRelation])
@@ -226,6 +234,7 @@ class ProjectsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._put(endpoint, project_update)
 
         return DevopnessResponse(response, None)

@@ -4,7 +4,6 @@ Devopness API Python SDK - Painless essential DevOps to everyone
 
 from datetime import datetime, timedelta, timezone
 from typing import Any, Optional, Union
-from urllib.parse import urlencode
 
 import httpx
 
@@ -444,23 +443,3 @@ def parse_payload(
         payload = data
 
     return payload
-
-
-def parse_query_string(in_params: dict[str, Any]) -> str:
-    """
-    Returns the query string from the given query parameters.
-
-    Args:
-        in_params (dict[str, Any]): The query parameters.
-
-    Returns:
-        str: The query string.
-    """
-    out_params: dict[str, Any] = {}
-    for key, value in in_params.items():
-        if value is None or value in ("", [], {}):
-            continue
-
-        out_params[key] = value
-
-    return urlencode(out_params)

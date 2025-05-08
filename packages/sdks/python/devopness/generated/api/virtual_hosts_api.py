@@ -19,6 +19,7 @@ from ..models import (
     VirtualHostUpdate,
     VirtualHostUpdatePlain,
 )
+from ..utils import parse_query_string
 
 
 class VirtualHostsApiService(DevopnessBaseService):
@@ -47,6 +48,7 @@ class VirtualHostsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._post(endpoint, virtual_host_environment_create)
 
         return DevopnessResponse(response, VirtualHost)
@@ -68,6 +70,7 @@ class VirtualHostsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._delete(endpoint)
 
         return DevopnessResponse(response, None)
@@ -93,6 +96,7 @@ class VirtualHostsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._post(endpoint, virtual_host_get_status)
 
         return DevopnessResponse(response, None)
@@ -114,6 +118,7 @@ class VirtualHostsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._get(endpoint)
 
         return DevopnessResponse(response, VirtualHost)
@@ -132,7 +137,7 @@ class VirtualHostsApiService(DevopnessBaseService):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -145,6 +150,7 @@ class VirtualHostsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._get(endpoint)
 
         return DevopnessResponse(response, List[VirtualHostRelation])
@@ -170,6 +176,7 @@ class VirtualHostsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._put(endpoint, virtual_host_update)
 
         return DevopnessResponse(response, None)
@@ -201,6 +208,7 @@ class VirtualHostsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint, virtual_host_environment_create)
 
         return DevopnessResponse(response, VirtualHost)
@@ -222,6 +230,7 @@ class VirtualHostsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._delete(endpoint)
 
         return DevopnessResponse(response, None)
@@ -247,6 +256,7 @@ class VirtualHostsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint, virtual_host_get_status)
 
         return DevopnessResponse(response, None)
@@ -268,6 +278,7 @@ class VirtualHostsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, VirtualHost)
@@ -286,7 +297,7 @@ class VirtualHostsApiServiceAsync(DevopnessBaseServiceAsync):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -299,6 +310,7 @@ class VirtualHostsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, List[VirtualHostRelation])
@@ -324,6 +336,7 @@ class VirtualHostsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._put(endpoint, virtual_host_update)
 
         return DevopnessResponse(response, None)

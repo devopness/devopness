@@ -10,6 +10,7 @@ from typing import List, Optional, Union
 
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import Hook, HookPipelineCreate, HookPipelineCreatePlain, HookRelation
+from ..utils import parse_query_string
 
 
 class PipelinesHooksApiService(DevopnessBaseService):
@@ -39,6 +40,7 @@ class PipelinesHooksApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._post(endpoint, hook_pipeline_create)
 
         return DevopnessResponse(response, Hook)
@@ -57,7 +59,7 @@ class PipelinesHooksApiService(DevopnessBaseService):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -70,6 +72,7 @@ class PipelinesHooksApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._get(endpoint)
 
         return DevopnessResponse(response, List[HookRelation])
@@ -102,6 +105,7 @@ class PipelinesHooksApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint, hook_pipeline_create)
 
         return DevopnessResponse(response, Hook)
@@ -120,7 +124,7 @@ class PipelinesHooksApiServiceAsync(DevopnessBaseServiceAsync):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -133,6 +137,7 @@ class PipelinesHooksApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, List[HookRelation])

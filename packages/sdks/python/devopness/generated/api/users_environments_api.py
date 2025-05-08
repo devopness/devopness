@@ -10,6 +10,7 @@ from typing import List, Optional
 
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import EnvironmentRelation
+from ..utils import parse_query_string
 
 
 class UsersEnvironmentsApiService(DevopnessBaseService):
@@ -32,7 +33,7 @@ class UsersEnvironmentsApiService(DevopnessBaseService):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -46,6 +47,7 @@ class UsersEnvironmentsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._get(endpoint)
 
         return DevopnessResponse(response, List[EnvironmentRelation])
@@ -71,7 +73,7 @@ class UsersEnvironmentsApiServiceAsync(DevopnessBaseServiceAsync):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -85,6 +87,7 @@ class UsersEnvironmentsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, List[EnvironmentRelation])

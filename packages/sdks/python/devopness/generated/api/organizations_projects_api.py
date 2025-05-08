@@ -10,6 +10,7 @@ from typing import List, Optional
 
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import ProjectRelation
+from ..utils import parse_query_string
 
 
 class OrganizationsProjectsApiService(DevopnessBaseService):
@@ -31,7 +32,7 @@ class OrganizationsProjectsApiService(DevopnessBaseService):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -44,6 +45,7 @@ class OrganizationsProjectsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._get(endpoint)
 
         return DevopnessResponse(response, List[ProjectRelation])
@@ -68,7 +70,7 @@ class OrganizationsProjectsApiServiceAsync(DevopnessBaseServiceAsync):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -81,6 +83,7 @@ class OrganizationsProjectsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, List[ProjectRelation])

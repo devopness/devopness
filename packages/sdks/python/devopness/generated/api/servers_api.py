@@ -18,6 +18,7 @@ from ..models import (
     ServerUpdate,
     ServerUpdatePlain,
 )
+from ..utils import parse_query_string
 
 
 class ServersApiService(DevopnessBaseService):
@@ -46,6 +47,7 @@ class ServersApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._post(endpoint, server_environment_create)
 
         return DevopnessResponse(response, Server)
@@ -68,6 +70,7 @@ class ServersApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._post(endpoint)
 
         return DevopnessResponse(response, str)
@@ -85,7 +88,7 @@ class ServersApiService(DevopnessBaseService):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "destroy_server_disks": destroy_server_disks,
             }
@@ -97,6 +100,7 @@ class ServersApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._delete(endpoint)
 
         return DevopnessResponse(response, None)
@@ -118,6 +122,7 @@ class ServersApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._get(endpoint)
 
         return DevopnessResponse(response, Server)
@@ -139,6 +144,7 @@ class ServersApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._get(endpoint)
 
         return DevopnessResponse(response, ServerCommand)
@@ -160,6 +166,7 @@ class ServersApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._post(endpoint)
 
         return DevopnessResponse(response, None)
@@ -178,7 +185,7 @@ class ServersApiService(DevopnessBaseService):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -191,6 +198,7 @@ class ServersApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._get(endpoint)
 
         return DevopnessResponse(response, List[ServerRelation])
@@ -212,6 +220,7 @@ class ServersApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._post(endpoint)
 
         return DevopnessResponse(response, None)
@@ -233,6 +242,7 @@ class ServersApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._post(endpoint)
 
         return DevopnessResponse(response, None)
@@ -254,6 +264,7 @@ class ServersApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._post(endpoint)
 
         return DevopnessResponse(response, None)
@@ -275,6 +286,7 @@ class ServersApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._post(endpoint)
 
         return DevopnessResponse(response, None)
@@ -300,6 +312,7 @@ class ServersApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._put(endpoint, server_update)
 
         return DevopnessResponse(response, None)
@@ -331,6 +344,7 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint, server_environment_create)
 
         return DevopnessResponse(response, Server)
@@ -353,6 +367,7 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint)
 
         return DevopnessResponse(response, str)
@@ -370,7 +385,7 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "destroy_server_disks": destroy_server_disks,
             }
@@ -382,6 +397,7 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._delete(endpoint)
 
         return DevopnessResponse(response, None)
@@ -403,6 +419,7 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, Server)
@@ -424,6 +441,7 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, ServerCommand)
@@ -445,6 +463,7 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint)
 
         return DevopnessResponse(response, None)
@@ -463,7 +482,7 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -476,6 +495,7 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, List[ServerRelation])
@@ -497,6 +517,7 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint)
 
         return DevopnessResponse(response, None)
@@ -518,6 +539,7 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint)
 
         return DevopnessResponse(response, None)
@@ -539,6 +561,7 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint)
 
         return DevopnessResponse(response, None)
@@ -560,6 +583,7 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint)
 
         return DevopnessResponse(response, None)
@@ -585,6 +609,7 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._put(endpoint, server_update)
 
         return DevopnessResponse(response, None)

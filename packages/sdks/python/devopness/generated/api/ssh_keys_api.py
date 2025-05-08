@@ -17,6 +17,7 @@ from ..models import (
     SshKeyUpdate,
     SshKeyUpdatePlain,
 )
+from ..utils import parse_query_string
 
 
 class SSHKeysApiService(DevopnessBaseService):
@@ -45,6 +46,7 @@ class SSHKeysApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._post(endpoint, ssh_key_environment_create)
 
         return DevopnessResponse(response, SshKey)
@@ -66,6 +68,7 @@ class SSHKeysApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._delete(endpoint)
 
         return DevopnessResponse(response, None)
@@ -87,6 +90,7 @@ class SSHKeysApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._get(endpoint)
 
         return DevopnessResponse(response, SshKey)
@@ -105,7 +109,7 @@ class SSHKeysApiService(DevopnessBaseService):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -118,6 +122,7 @@ class SSHKeysApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._get(endpoint)
 
         return DevopnessResponse(response, List[SshKeyRelation])
@@ -143,6 +148,7 @@ class SSHKeysApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._put(endpoint, ssh_key_update)
 
         return DevopnessResponse(response, None)
@@ -174,6 +180,7 @@ class SSHKeysApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint, ssh_key_environment_create)
 
         return DevopnessResponse(response, SshKey)
@@ -195,6 +202,7 @@ class SSHKeysApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._delete(endpoint)
 
         return DevopnessResponse(response, None)
@@ -216,6 +224,7 @@ class SSHKeysApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, SshKey)
@@ -234,7 +243,7 @@ class SSHKeysApiServiceAsync(DevopnessBaseServiceAsync):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -247,6 +256,7 @@ class SSHKeysApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, List[SshKeyRelation])
@@ -272,6 +282,7 @@ class SSHKeysApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._put(endpoint, ssh_key_update)
 
         return DevopnessResponse(response, None)

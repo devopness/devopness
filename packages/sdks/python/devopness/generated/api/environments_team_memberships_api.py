@@ -10,6 +10,7 @@ from typing import List, Optional
 
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import TeamMembershipRelation
+from ..utils import parse_query_string
 
 
 class EnvironmentsTeamMembershipsApiService(DevopnessBaseService):
@@ -31,7 +32,7 @@ class EnvironmentsTeamMembershipsApiService(DevopnessBaseService):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -44,6 +45,7 @@ class EnvironmentsTeamMembershipsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._get(endpoint)
 
         return DevopnessResponse(response, List[TeamMembershipRelation])
@@ -68,7 +70,7 @@ class EnvironmentsTeamMembershipsApiServiceAsync(DevopnessBaseServiceAsync):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -81,6 +83,7 @@ class EnvironmentsTeamMembershipsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, List[TeamMembershipRelation])

@@ -25,6 +25,7 @@ from ..models import (
     DaemonUpdate,
     DaemonUpdatePlain,
 )
+from ..utils import parse_query_string
 
 
 class DaemonsApiService(DevopnessBaseService):
@@ -53,6 +54,7 @@ class DaemonsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._post(endpoint, daemon_environment_create)
 
         return DevopnessResponse(response, Daemon)
@@ -74,6 +76,7 @@ class DaemonsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._delete(endpoint)
 
         return DevopnessResponse(response, None)
@@ -95,6 +98,7 @@ class DaemonsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._get(endpoint)
 
         return DevopnessResponse(response, Daemon)
@@ -120,6 +124,7 @@ class DaemonsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._post(endpoint, daemon_get_status)
 
         return DevopnessResponse(response, None)
@@ -138,7 +143,7 @@ class DaemonsApiService(DevopnessBaseService):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -151,6 +156,7 @@ class DaemonsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._get(endpoint)
 
         return DevopnessResponse(response, List[DaemonRelation])
@@ -176,6 +182,7 @@ class DaemonsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._post(endpoint, daemon_restart)
 
         return DevopnessResponse(response, None)
@@ -201,6 +208,7 @@ class DaemonsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._post(endpoint, daemon_start)
 
         return DevopnessResponse(response, None)
@@ -226,6 +234,7 @@ class DaemonsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._post(endpoint, daemon_stop)
 
         return DevopnessResponse(response, None)
@@ -251,6 +260,7 @@ class DaemonsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._put(endpoint, daemon_update)
 
         return DevopnessResponse(response, None)
@@ -282,6 +292,7 @@ class DaemonsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint, daemon_environment_create)
 
         return DevopnessResponse(response, Daemon)
@@ -303,6 +314,7 @@ class DaemonsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._delete(endpoint)
 
         return DevopnessResponse(response, None)
@@ -324,6 +336,7 @@ class DaemonsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, Daemon)
@@ -349,6 +362,7 @@ class DaemonsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint, daemon_get_status)
 
         return DevopnessResponse(response, None)
@@ -367,7 +381,7 @@ class DaemonsApiServiceAsync(DevopnessBaseServiceAsync):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -380,6 +394,7 @@ class DaemonsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, List[DaemonRelation])
@@ -405,6 +420,7 @@ class DaemonsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint, daemon_restart)
 
         return DevopnessResponse(response, None)
@@ -430,6 +446,7 @@ class DaemonsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint, daemon_start)
 
         return DevopnessResponse(response, None)
@@ -455,6 +472,7 @@ class DaemonsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint, daemon_stop)
 
         return DevopnessResponse(response, None)
@@ -480,6 +498,7 @@ class DaemonsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._put(endpoint, daemon_update)
 
         return DevopnessResponse(response, None)

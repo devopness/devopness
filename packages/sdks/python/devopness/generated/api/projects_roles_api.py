@@ -10,6 +10,7 @@ from typing import List, Optional, Union
 
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import Role, RoleProjectCreate, RoleProjectCreatePlain, RoleRelation
+from ..utils import parse_query_string
 
 
 class ProjectsRolesApiService(DevopnessBaseService):
@@ -38,6 +39,7 @@ class ProjectsRolesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._post(endpoint, role_project_create)
 
         return DevopnessResponse(response, Role)
@@ -56,7 +58,7 @@ class ProjectsRolesApiService(DevopnessBaseService):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -69,6 +71,7 @@ class ProjectsRolesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._get(endpoint)
 
         return DevopnessResponse(response, List[RoleRelation])
@@ -100,6 +103,7 @@ class ProjectsRolesApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint, role_project_create)
 
         return DevopnessResponse(response, Role)
@@ -118,7 +122,7 @@ class ProjectsRolesApiServiceAsync(DevopnessBaseServiceAsync):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -131,6 +135,7 @@ class ProjectsRolesApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, List[RoleRelation])

@@ -15,6 +15,7 @@ from ..models import (
     VariableServiceCreate,
     VariableServiceCreatePlain,
 )
+from ..utils import parse_query_string
 
 
 class ServicesVariablesApiService(DevopnessBaseService):
@@ -43,6 +44,7 @@ class ServicesVariablesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._post(endpoint, variable_service_create)
 
         return DevopnessResponse(response, Variable)
@@ -61,7 +63,7 @@ class ServicesVariablesApiService(DevopnessBaseService):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -74,6 +76,7 @@ class ServicesVariablesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._get(endpoint)
 
         return DevopnessResponse(response, List[VariableRelation])
@@ -105,6 +108,7 @@ class ServicesVariablesApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint, variable_service_create)
 
         return DevopnessResponse(response, Variable)
@@ -123,7 +127,7 @@ class ServicesVariablesApiServiceAsync(DevopnessBaseServiceAsync):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -136,6 +140,7 @@ class ServicesVariablesApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, List[VariableRelation])

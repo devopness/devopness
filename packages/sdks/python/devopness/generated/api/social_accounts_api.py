@@ -16,6 +16,7 @@ from ..models import (
     SocialAccountRelation,
     SocialAccountStatus,
 )
+from ..utils import parse_query_string
 
 
 class SocialAccountsApiService(DevopnessBaseService):
@@ -43,6 +44,7 @@ class SocialAccountsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._post(endpoint, social_account_create)
 
         return DevopnessResponse(response, SocialAccount)
@@ -64,6 +66,7 @@ class SocialAccountsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._delete(endpoint)
 
         return DevopnessResponse(response, None)
@@ -85,6 +88,7 @@ class SocialAccountsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._get(endpoint)
 
         return DevopnessResponse(response, SocialAccount)
@@ -106,6 +110,7 @@ class SocialAccountsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._get(endpoint)
 
         return DevopnessResponse(response, SocialAccountStatus)
@@ -123,7 +128,7 @@ class SocialAccountsApiService(DevopnessBaseService):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -136,6 +141,7 @@ class SocialAccountsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._get(endpoint)
 
         return DevopnessResponse(response, List[SocialAccountRelation])
@@ -166,6 +172,7 @@ class SocialAccountsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint, social_account_create)
 
         return DevopnessResponse(response, SocialAccount)
@@ -187,6 +194,7 @@ class SocialAccountsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._delete(endpoint)
 
         return DevopnessResponse(response, None)
@@ -208,6 +216,7 @@ class SocialAccountsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, SocialAccount)
@@ -229,6 +238,7 @@ class SocialAccountsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, SocialAccountStatus)
@@ -246,7 +256,7 @@ class SocialAccountsApiServiceAsync(DevopnessBaseServiceAsync):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -259,6 +269,7 @@ class SocialAccountsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, List[SocialAccountRelation])

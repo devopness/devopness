@@ -10,6 +10,7 @@ from typing import List, Optional
 
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import ResourceEvent, ResourceEventRelation
+from ..utils import parse_query_string
 
 
 class ResourceEventsApiService(DevopnessBaseService):
@@ -35,6 +36,7 @@ class ResourceEventsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._post(endpoint)
 
         return DevopnessResponse(response, ResourceEvent)
@@ -54,7 +56,7 @@ class ResourceEventsApiService(DevopnessBaseService):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -67,6 +69,7 @@ class ResourceEventsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._get(endpoint)
 
         return DevopnessResponse(response, List[ResourceEventRelation])
@@ -95,6 +98,7 @@ class ResourceEventsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint)
 
         return DevopnessResponse(response, ResourceEvent)
@@ -114,7 +118,7 @@ class ResourceEventsApiServiceAsync(DevopnessBaseServiceAsync):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -127,6 +131,7 @@ class ResourceEventsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, List[ResourceEventRelation])

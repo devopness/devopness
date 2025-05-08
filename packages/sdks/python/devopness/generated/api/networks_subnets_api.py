@@ -15,6 +15,7 @@ from ..models import (
     SubnetNetworkCreatePlain,
     SubnetRelation,
 )
+from ..utils import parse_query_string
 
 
 class NetworksSubnetsApiService(DevopnessBaseService):
@@ -43,6 +44,7 @@ class NetworksSubnetsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._post(endpoint, subnet_network_create)
 
         return DevopnessResponse(response, Subnet)
@@ -63,7 +65,7 @@ class NetworksSubnetsApiService(DevopnessBaseService):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -78,6 +80,7 @@ class NetworksSubnetsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._get(endpoint)
 
         return DevopnessResponse(response, List[SubnetRelation])
@@ -109,6 +112,7 @@ class NetworksSubnetsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint, subnet_network_create)
 
         return DevopnessResponse(response, Subnet)
@@ -129,7 +133,7 @@ class NetworksSubnetsApiServiceAsync(DevopnessBaseServiceAsync):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -144,6 +148,7 @@ class NetworksSubnetsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, List[SubnetRelation])

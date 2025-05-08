@@ -17,6 +17,7 @@ from ..models import (
     NetworkUpdate,
     NetworkUpdatePlain,
 )
+from ..utils import parse_query_string
 
 
 class NetworksApiService(DevopnessBaseService):
@@ -45,6 +46,7 @@ class NetworksApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._post(endpoint, network_environment_create)
 
         return DevopnessResponse(response, Network)
@@ -66,6 +68,7 @@ class NetworksApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._delete(endpoint)
 
         return DevopnessResponse(response, None)
@@ -87,6 +90,7 @@ class NetworksApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._get(endpoint)
 
         return DevopnessResponse(response, Network)
@@ -108,6 +112,7 @@ class NetworksApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._post(endpoint)
 
         return DevopnessResponse(response, None)
@@ -129,7 +134,7 @@ class NetworksApiService(DevopnessBaseService):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -145,6 +150,7 @@ class NetworksApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._get(endpoint)
 
         return DevopnessResponse(response, List[NetworkRelation])
@@ -170,6 +176,7 @@ class NetworksApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = self._put(endpoint, network_update)
 
         return DevopnessResponse(response, None)
@@ -201,6 +208,7 @@ class NetworksApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint, network_environment_create)
 
         return DevopnessResponse(response, Network)
@@ -222,6 +230,7 @@ class NetworksApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._delete(endpoint)
 
         return DevopnessResponse(response, None)
@@ -243,6 +252,7 @@ class NetworksApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, Network)
@@ -264,6 +274,7 @@ class NetworksApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint)
 
         return DevopnessResponse(response, None)
@@ -285,7 +296,7 @@ class NetworksApiServiceAsync(DevopnessBaseServiceAsync):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -301,6 +312,7 @@ class NetworksApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, List[NetworkRelation])
@@ -326,6 +338,7 @@ class NetworksApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._put(endpoint, network_update)
 
         return DevopnessResponse(response, None)
