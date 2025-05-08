@@ -52,8 +52,8 @@ class DevopnessBaseService:
             default_encoding=self._config.default_encoding,
             headers=self._config.headers,
             event_hooks={
-                "request": [DevopnessBaseService._on_request_callback],
-                "response": [DevopnessBaseService._on_response_callback],
+                "request": [self._on_request_callback],
+                "response": [self._on_response_callback],
             },
         )
 
@@ -113,20 +113,19 @@ class DevopnessBaseService:
         """
         return self._client.delete(endpoint)
 
-    @staticmethod
-    def _refresh_access_token() -> None:
+    def _refresh_access_token(self) -> None:
         """
         Refreshes the access token.
         """
-        response = DevopnessBaseService._post(
+        response = self._post(
             "/users/refresh-token",
             {"refresh_token": DevopnessBaseService._refresh_token},
         )
 
-        DevopnessBaseService._save_access_token(response)
+        self._save_access_token(response)
 
-    @staticmethod
     def _save_access_token(
+        self,
         response: httpx.Response,
     ) -> None:
         """
@@ -143,8 +142,7 @@ class DevopnessBaseService:
         DevopnessBaseService._refresh_token = data["refresh_token"]
         DevopnessBaseService._token_expires_at = expires_at
 
-    @staticmethod
-    def _on_request_callback(request: httpx.Request) -> None:
+    def _on_request_callback(self, request: httpx.Request) -> None:
         """
         Request interceptor that injects the Authorization header if an access
         token exists.
@@ -157,7 +155,7 @@ class DevopnessBaseService:
             and is_access_token_expired(DevopnessBaseService)
             and not is_token_change_request(request.url.path)
         ):
-            DevopnessBaseService._refresh_access_token()
+            self._refresh_access_token()
 
         access_token = DevopnessBaseService._access_token
 
@@ -170,8 +168,7 @@ class DevopnessBaseService:
         if DevopnessBaseService._config.debug:
             debug_request(request)
 
-    @staticmethod
-    def _on_response_callback(response: httpx.Response) -> httpx.Response:
+    def _on_response_callback(self, response: httpx.Response) -> httpx.Response:
         """
         Response interceptor to error handling.
 
@@ -188,7 +185,7 @@ class DevopnessBaseService:
                 DevopnessBaseService._config.auto_refresh_token
                 and is_token_change_request(response.url.path)
             ):
-                DevopnessBaseService._save_access_token(response)
+                self._save_access_token(response)
 
             if DevopnessBaseService._config.debug:
                 debug_response(response)
@@ -225,8 +222,8 @@ class DevopnessBaseServiceAsync:
             default_encoding=self._config.default_encoding,
             headers=self._config.headers,
             event_hooks={
-                "request": [DevopnessBaseServiceAsync._on_request_callback],
-                "response": [DevopnessBaseServiceAsync._on_response_callback],
+                "request": [self._on_request_callback],
+                "response": [self._on_response_callback],
             },
         )
 
@@ -286,20 +283,19 @@ class DevopnessBaseServiceAsync:
         """
         return await self._client.delete(endpoint)
 
-    @staticmethod
-    async def _refresh_access_token() -> None:
+    async def _refresh_access_token(self) -> None:
         """
         Refreshes the access token.
         """
-        response = await DevopnessBaseServiceAsync._post(
+        response = await self._post(
             "/users/refresh-token",
             {"refresh_token": DevopnessBaseServiceAsync._refresh_token},
         )
 
-        await DevopnessBaseServiceAsync._save_access_token(response)
+        await self._save_access_token(response)
 
-    @staticmethod
     async def _save_access_token(
+        self,
         response: httpx.Response,
     ) -> None:
         """
@@ -316,8 +312,7 @@ class DevopnessBaseServiceAsync:
         DevopnessBaseServiceAsync._refresh_token = data["refresh_token"]
         DevopnessBaseServiceAsync._token_expires_at = expires_at
 
-    @staticmethod
-    async def _on_request_callback(request: httpx.Request) -> None:
+    async def _on_request_callback(self, request: httpx.Request) -> None:
         """
         Request interceptor that injects the Authorization header if an access
         token exists.
@@ -330,7 +325,7 @@ class DevopnessBaseServiceAsync:
             and is_access_token_expired(DevopnessBaseServiceAsync)
             and not is_token_change_request(request.url.path)
         ):
-            await DevopnessBaseServiceAsync._refresh_access_token()
+            await self._refresh_access_token()
 
         access_token = DevopnessBaseServiceAsync._access_token
 
@@ -343,8 +338,7 @@ class DevopnessBaseServiceAsync:
         if DevopnessBaseServiceAsync._config.debug:
             debug_request(request)
 
-    @staticmethod
-    async def _on_response_callback(response: httpx.Response) -> httpx.Response:
+    async def _on_response_callback(self, response: httpx.Response) -> httpx.Response:
         """
         Response interceptor to error handling.
 
@@ -361,7 +355,7 @@ class DevopnessBaseServiceAsync:
                 DevopnessBaseServiceAsync._config.auto_refresh_token
                 and is_token_change_request(response.url.path)
             ):
-                await DevopnessBaseServiceAsync._save_access_token(response)
+                await self._save_access_token(response)
 
             if DevopnessBaseServiceAsync._config.debug:
                 debug_response(response)
