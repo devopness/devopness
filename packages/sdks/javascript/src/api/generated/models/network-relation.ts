@@ -69,7 +69,7 @@ export interface NetworkRelation {
      * @type {Credential}
      * @memberof NetworkRelation
      */
-    credential: Credential;
+    credential?: Credential;
     /**
      * The networks\'s name
      * @type {string}
@@ -87,18 +87,18 @@ export interface NetworkRelation {
      * @type {ActionRelationShallow}
      * @memberof NetworkRelation
      */
-    last_action: ActionRelationShallow | null;
+    last_action?: ActionRelationShallow | null;
     /**
      * The date and time when the record was created
      * @type {string}
      * @memberof NetworkRelation
      */
-    created_at: string;
+    created_at?: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof NetworkRelation
      */
-    updated_at: string;
+    updated_at?: string;
 }
 

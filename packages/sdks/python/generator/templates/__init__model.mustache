@@ -9,15 +9,13 @@ Note:
 {{#models}}
 {{#model}}
 from .{{classFilename}} import {{classname}}
-{{^anyOf}}{{^oneOf}}{{^isEnum}}
 from .{{classFilename}} import {{classname}}Plain
-{{/isEnum}}{{/oneOf}}{{/anyOf}}
 {{/model}}
 {{/models}}
 
 __all__ = [
     {{#models}}{{#model}}
     "{{classname}}",
-    {{^anyOf}}{{^oneOf}}{{^isEnum}} "{{classname}}Plain",{{/isEnum}}{{/oneOf}}{{/anyOf}}
+    "{{classname}}Plain",
     {{/model}}{{/models}}
 ]

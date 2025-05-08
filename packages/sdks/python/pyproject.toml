@@ -46,7 +46,15 @@ classifiers = [
   "Topic :: System :: Systems Administration",
   "Topic :: Utilities",
 ]
-dependencies = ["httpx (>=0.28.1,<0.29.0)", "pydantic (>=2.11.3,<3.0.0)"]
+dependencies = [
+  # Explicitly added `httpcore` to ensure a secure version of h11 is used.
+  # httpcore is a transitive dependency of httpx (which allows any 1.*),
+  # but only httpcore >=1.0.9 guarantees h11 >=0.16 with the security fix.
+  # Related issue: https://github.com/devopness/devopness/security/dependabot/63
+  "httpcore (>=1.0.9)",
+  "httpx (>=0.28.1,<0.29.0)",
+  "pydantic (>=2.11.3,<3.0.0)",
+]
 
 [project.urls]
 homepage = "https://www.devopness.com"
@@ -56,21 +64,19 @@ repository = "https://github.com/devopness/devopness"
 packages = [
   { include = "devopness/__init__.py" },
   { include = "devopness/py.typed" },
-  { include = "devopness/_client.py" },
-  { include = "devopness/_client_config.py" },
-  { include = "devopness/core.py" },
+  { include = "devopness/client.py" },
+  { include = "devopness/client_config.py" },
   { include = "devopness/models.py" },
-  { include = "devopness/services.py" },
-  { include = "devopness/_base/*.py" },
-  { include = "devopness/_core/*.py" },
-  { include = "devopness/_services/*.py" },
-  { include = "devopness/_generated/*.py" },
-  { include = "devopness/_generated/api/*.py" },
-  { include = "devopness/_generated/models/*.py" },
+  { include = "devopness/base/*.py" },
+  { include = "devopness/core/*.py" },
+  { include = "devopness/services/*.py" },
+  { include = "devopness/generated/*.py" },
+  { include = "devopness/generated/api/*.py" },
+  { include = "devopness/generated/models/*.py" },
 ]
 
 [tool.poetry.group.dev.dependencies]
-openapi-generator-cli = { version = "^7.12.0", markers = "python_version < '4.0'" }
+openapi-generator-cli = { version = "7.12.0", markers = "python_version < '4.0'" }
 ruff = "^0.11.6"
 mypy = "1.15.0"
 
@@ -90,6 +96,9 @@ extend-select = [
   "I",   # isort (import sorting)
   "N",   # pep8-naming
   "PIE", # flake8-pie (extra cleanups)
+  "PLC", # pylint conventions
+  "PLE", # pylint errors
+  "PLW", # pylint warnings
   "Q",   # flake8-quotes (quote consistency)
   "RET", # flake8-return (return statement rules)
   "RUF", # Ruff-specific rules
@@ -99,14 +108,15 @@ extend-select = [
 ]
 
 ignore = [
-  "RET504", # Unnecessary assignment to `**kwargs` before `return` statement
+  "PLC2701", # Private name import `*` from external module `*`
+  "RET504",  # Unnecessary assignment to `**kwargs` before `return` statement
 ]
 
 [tool.ruff.lint.per-file-ignores]
-"devopness/_generated/**/*" = [
+"devopness/generated/**/*" = [
   "E501", # Line too long
 ]
-"devopness/_generated/**/__init__.py" = [
+"devopness/generated/**/__init__.py" = [
   "F401", # Module imported but unused
 ]
 "scripts/**/*" = [
@@ -137,5 +147,5 @@ sqlite_cache = true
 cache_fine_grained = true
 
 [[tool.mypy.overrides]]
-module = "devopness._generated.api.*"
+module = "devopness.generated.api.*"
 disable_error_code = ["attr-defined"]

@@ -20,6 +20,7 @@ class {{classname}}Plain(TypedDict, total=False):
 
 {{#vars}}
     {{baseName}}: (
+        {{^required}} Optional[ {{/required}}
         {{#required}} Required[ {{/required}}
             {{#isPrimitiveType}}{{dataType}}{{/isPrimitiveType}}
             {{^isPrimitiveType}}
@@ -28,6 +29,7 @@ class {{classname}}Plain(TypedDict, total=False):
               {{#isContainer}}{{baseType}}[ Union[{{items.dataType}}, {{items.dataType}}Plain,] ]{{/isContainer}}
             {{/isPrimitiveType}}
         {{#required}} ] {{/required}}
+        {{^required}} ] {{/required}}
     )
 {{/vars}}
 

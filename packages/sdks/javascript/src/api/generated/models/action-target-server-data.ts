@@ -50,7 +50,7 @@ export interface ActionTargetServerData {
      * @type {string}
      * @memberof ActionTargetServerData
      */
-    ip_address: string;
+    ip_address: string | null;
     /**
      * The network port to which the SSH daemon is listening to SSH connections on the server
      * @type {number}

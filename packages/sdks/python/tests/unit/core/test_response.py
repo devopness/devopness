@@ -5,7 +5,7 @@ from unittest.mock import Mock, patch
 
 import httpx
 
-from devopness._base import DevopnessBaseModel
+from devopness.base import DevopnessBaseModel
 from devopness.core import DevopnessResponse
 
 

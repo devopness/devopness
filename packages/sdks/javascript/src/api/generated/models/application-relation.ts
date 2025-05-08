@@ -110,7 +110,7 @@ export interface ApplicationRelation {
      * @type {string}
      * @memberof ApplicationRelation
      */
-    root_directory: string;
+    root_directory: string | null;
     /**
      * The number of deployment history, logs and artifacts to keep stored in both devopness servers and user\'s servers. OR The number of deployment artifacts to be retained in the user\'s servers, making it easier and faster to rollback to previous versions
      * @type {number}
@@ -146,12 +146,12 @@ export interface ApplicationRelation {
      * @type {string}
      * @memberof ApplicationRelation
      */
-    created_at: string;
+    created_at?: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof ApplicationRelation
      */
-    updated_at: string;
+    updated_at?: string;
 }
 

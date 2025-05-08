@@ -70,30 +70,30 @@ export interface CronJobRelation {
      * @type {ActionRelationShallow}
      * @memberof CronJobRelation
      */
-    last_action: ActionRelationShallow | null;
+    last_action?: ActionRelationShallow | null;
     /**
      * 
      * @type {UserRelation}
      * @memberof CronJobRelation
      */
-    created_by_user: UserRelation;
+    created_by_user?: UserRelation;
     /**
      * 
      * @type {ApplicationRelation}
      * @memberof CronJobRelation
      */
-    application: ApplicationRelation | null;
+    application?: ApplicationRelation | null;
     /**
      * The date and time when the record was created
      * @type {string}
      * @memberof CronJobRelation
      */
-    created_at: string;
+    created_at?: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof CronJobRelation
      */
-    updated_at: string;
+    updated_at?: string;
 }
 

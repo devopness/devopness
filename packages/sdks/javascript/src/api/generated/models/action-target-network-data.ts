@@ -37,13 +37,13 @@ export interface ActionTargetNetworkData {
      * @type {string}
      * @memberof ActionTargetNetworkData
      */
-    provider_name: string;
+    provider_name?: string;
     /**
      * The human readable version of the cloud provider\'s name
      * @type {string}
      * @memberof ActionTargetNetworkData
      */
-    provider_name_human_readable: string;
+    provider_name_human_readable?: string;
     /**
      * 
      * @type {NetworkProvisionInput}

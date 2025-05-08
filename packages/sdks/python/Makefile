@@ -3,9 +3,7 @@ TAG?=latest
 
 PWD=$(shell pwd)
 USER_ID=$(shell id -u)
-USER_NAME=$(shell id -u -n)
 GROUP_ID=$(shell id -g)
-GROUP_NAME=$(USER_NAME)
 
 WORKDIR=sdk
 
@@ -15,10 +13,6 @@ build-image: ## Build Docker Image. To customize the image, use the PYTHON_VERSI
 	$(info Docker - Building Image ...)
 	@docker build \
 		-f Dockerfile \
-		--build-arg USER_ID=$(USER_ID) \
-		--build-arg USER_NAME=$(USER_NAME) \
-		--build-arg GROUP_ID=$(GROUP_ID) \
-		--build-arg GROUP_NAME=$(GROUP_NAME) \
 		$(if $(PYTHON_VERSION),--build-arg PYTHON_VERSION=$(PYTHON_VERSION),) \
 		$(if $(ALPINE_VERSION),--build-arg ALPINE_VERSION=$(ALPINE_VERSION),) \
 		-t $(IMAGE) .
@@ -26,6 +20,7 @@ build-image: ## Build Docker Image. To customize the image, use the PYTHON_VERSI
 build-sdk-python: build-image ## Build Python SDK
 	$(info Docker - Building Devopness SDK - Python ...)
 	@docker run --rm \
+	  -u $(USER_ID):$(GROUP_ID) \
 		-v $(PWD):/$(WORKDIR) \
 		-v $(PWD)/../common:/common \
 		--name devopness-sdk-python-build \
