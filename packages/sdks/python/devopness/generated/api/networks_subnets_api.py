@@ -22,6 +22,72 @@ class NetworksSubnetsApiService(DevopnessBaseService):
     NetworksSubnetsApiService - Auto Generated
     """
 
+    def add_network_subnet(
+        self,
+        network_id: int,
+        subnet_network_create: Union[
+            SubnetNetworkCreate,
+            SubnetNetworkCreatePlain,
+        ],
+    ) -> DevopnessResponse[Subnet]:
+        """
+        Create a new subnet for the given network
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/networks/{network_id}/subnets",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post_sync(endpoint, subnet_network_create)
+
+        return DevopnessResponse(response, Subnet)
+
+    def list_network_subnets(
+        self,
+        network_id: int,
+        page: Optional[int] = None,
+        per_page: Optional[int] = None,
+        region: Optional[str] = None,
+        zone: Optional[str] = None,
+    ) -> DevopnessResponse[List[SubnetRelation]]:
+        """
+        Return a list of all subnets belonging to a network
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = DevopnessBaseService._get_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+                "region": region,
+                "zone": zone,
+            }
+        )
+
+        endpoint_parts = [
+            f"/networks/{network_id}/subnets",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get_sync(endpoint)
+
+        return DevopnessResponse(response, List[SubnetRelation])
+
+
+class NetworksSubnetsApiServiceAsync(DevopnessBaseService):
+    """
+    NetworksSubnetsApiServiceAsync - Auto Generated
+    """
+
     async def add_network_subnet(
         self,
         network_id: int,
@@ -44,31 +110,6 @@ class NetworksSubnetsApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, subnet_network_create)
-
-        return DevopnessResponse(response, Subnet)
-
-    def add_network_subnet_sync(
-        self,
-        network_id: int,
-        subnet_network_create: Union[
-            SubnetNetworkCreate,
-            SubnetNetworkCreatePlain,
-        ],
-    ) -> DevopnessResponse[Subnet]:
-        """
-        Create a new subnet for the given network
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/networks/{network_id}/subnets",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, subnet_network_create)
 
         return DevopnessResponse(response, Subnet)
 
@@ -104,40 +145,5 @@ class NetworksSubnetsApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, List[SubnetRelation])
-
-    def list_network_subnets_sync(
-        self,
-        network_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-        region: Optional[str] = None,
-        zone: Optional[str] = None,
-    ) -> DevopnessResponse[List[SubnetRelation]]:
-        """
-        Return a list of all subnets belonging to a network
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        query_string = DevopnessBaseService._get_query_string(
-            {
-                "page": page,
-                "per_page": per_page,
-                "region": region,
-                "zone": zone,
-            }
-        )
-
-        endpoint_parts = [
-            f"/networks/{network_id}/subnets",
-            f"?{query_string}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, List[SubnetRelation])

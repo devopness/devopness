@@ -22,6 +22,68 @@ class ProjectsEnvironmentsApiService(DevopnessBaseService):
     ProjectsEnvironmentsApiService - Auto Generated
     """
 
+    def add_project_environment(
+        self,
+        project_id: int,
+        environment_project_create: Union[
+            EnvironmentProjectCreate,
+            EnvironmentProjectCreatePlain,
+        ],
+    ) -> DevopnessResponse[Environment]:
+        """
+        Create a new environment on the current project
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/projects/{project_id}/environments",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post_sync(endpoint, environment_project_create)
+
+        return DevopnessResponse(response, Environment)
+
+    def list_project_environments(
+        self,
+        project_id: int,
+        page: Optional[int] = None,
+        per_page: Optional[int] = None,
+    ) -> DevopnessResponse[List[EnvironmentRelation]]:
+        """
+        Return a list of all environments belonging to a project
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = DevopnessBaseService._get_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            f"/projects/{project_id}/environments",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get_sync(endpoint)
+
+        return DevopnessResponse(response, List[EnvironmentRelation])
+
+
+class ProjectsEnvironmentsApiServiceAsync(DevopnessBaseService):
+    """
+    ProjectsEnvironmentsApiServiceAsync - Auto Generated
+    """
+
     async def add_project_environment(
         self,
         project_id: int,
@@ -44,31 +106,6 @@ class ProjectsEnvironmentsApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, environment_project_create)
-
-        return DevopnessResponse(response, Environment)
-
-    def add_project_environment_sync(
-        self,
-        project_id: int,
-        environment_project_create: Union[
-            EnvironmentProjectCreate,
-            EnvironmentProjectCreatePlain,
-        ],
-    ) -> DevopnessResponse[Environment]:
-        """
-        Create a new environment on the current project
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/projects/{project_id}/environments",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, environment_project_create)
 
         return DevopnessResponse(response, Environment)
 
@@ -100,36 +137,5 @@ class ProjectsEnvironmentsApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, List[EnvironmentRelation])
-
-    def list_project_environments_sync(
-        self,
-        project_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[EnvironmentRelation]]:
-        """
-        Return a list of all environments belonging to a project
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        query_string = DevopnessBaseService._get_query_string(
-            {
-                "page": page,
-                "per_page": per_page,
-            }
-        )
-
-        endpoint_parts = [
-            f"/projects/{project_id}/environments",
-            f"?{query_string}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, List[EnvironmentRelation])

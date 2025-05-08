@@ -22,6 +22,110 @@ class SSLCertificatesApiService(DevopnessBaseService):
     SSLCertificatesApiService - Auto Generated
     """
 
+    def add_environment_ssl_certificate(
+        self,
+        environment_id: int,
+        ssl_certificate_environment_create: Union[
+            SslCertificateEnvironmentCreate,
+            SslCertificateEnvironmentCreatePlain,
+        ],
+    ) -> DevopnessResponse[SslCertificate]:
+        """
+        Create a new ssl certificate
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/environments/{environment_id}/ssl-certificates",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post_sync(endpoint, ssl_certificate_environment_create)
+
+        return DevopnessResponse(response, SslCertificate)
+
+    def delete_ssl_certificate(
+        self,
+        ssl_certificate_id: int,
+    ) -> DevopnessResponse[None]:
+        """
+        Delete a given SSL Certificate
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/ssl-certificates/{ssl_certificate_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._delete_sync(endpoint)
+
+        return DevopnessResponse(response, None)
+
+    def get_ssl_certificate(
+        self,
+        ssl_certificate_id: int,
+    ) -> DevopnessResponse[SslCertificate]:
+        """
+        Get details of a single SSL certificate
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/ssl-certificates/{ssl_certificate_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get_sync(endpoint)
+
+        return DevopnessResponse(response, SslCertificate)
+
+    def list_environment_ssl_certificates(
+        self,
+        environment_id: int,
+        page: Optional[int] = None,
+        per_page: Optional[int] = None,
+    ) -> DevopnessResponse[List[SslCertificateRelation]]:
+        """
+        Return a list of all SSL Certificates belonging to an environment
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = DevopnessBaseService._get_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            f"/environments/{environment_id}/ssl-certificates",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get_sync(endpoint)
+
+        return DevopnessResponse(response, List[SslCertificateRelation])
+
+
+class SSLCertificatesApiServiceAsync(DevopnessBaseService):
+    """
+    SSLCertificatesApiServiceAsync - Auto Generated
+    """
+
     async def add_environment_ssl_certificate(
         self,
         environment_id: int,
@@ -47,31 +151,6 @@ class SSLCertificatesApiService(DevopnessBaseService):
 
         return DevopnessResponse(response, SslCertificate)
 
-    def add_environment_ssl_certificate_sync(
-        self,
-        environment_id: int,
-        ssl_certificate_environment_create: Union[
-            SslCertificateEnvironmentCreate,
-            SslCertificateEnvironmentCreatePlain,
-        ],
-    ) -> DevopnessResponse[SslCertificate]:
-        """
-        Create a new ssl certificate
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/environments/{environment_id}/ssl-certificates",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, ssl_certificate_environment_create)
-
-        return DevopnessResponse(response, SslCertificate)
-
     async def delete_ssl_certificate(
         self,
         ssl_certificate_id: int,
@@ -93,27 +172,6 @@ class SSLCertificatesApiService(DevopnessBaseService):
 
         return DevopnessResponse(response, None)
 
-    def delete_ssl_certificate_sync(
-        self,
-        ssl_certificate_id: int,
-    ) -> DevopnessResponse[None]:
-        """
-        Delete a given SSL Certificate
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/ssl-certificates/{ssl_certificate_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._delete_sync(endpoint)
-
-        return DevopnessResponse(response, None)
-
     async def get_ssl_certificate(
         self,
         ssl_certificate_id: int,
@@ -132,27 +190,6 @@ class SSLCertificatesApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, SslCertificate)
-
-    def get_ssl_certificate_sync(
-        self,
-        ssl_certificate_id: int,
-    ) -> DevopnessResponse[SslCertificate]:
-        """
-        Get details of a single SSL certificate
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/ssl-certificates/{ssl_certificate_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, SslCertificate)
 
@@ -184,36 +221,5 @@ class SSLCertificatesApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, List[SslCertificateRelation])
-
-    def list_environment_ssl_certificates_sync(
-        self,
-        environment_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[SslCertificateRelation]]:
-        """
-        Return a list of all SSL Certificates belonging to an environment
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        query_string = DevopnessBaseService._get_query_string(
-            {
-                "page": page,
-                "per_page": per_page,
-            }
-        )
-
-        endpoint_parts = [
-            f"/environments/{environment_id}/ssl-certificates",
-            f"?{query_string}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, List[SslCertificateRelation])

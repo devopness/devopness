@@ -17,6 +17,66 @@ class ResourceEventsApiService(DevopnessBaseService):
     ResourceEventsApiService - Auto Generated
     """
 
+    def add_resource_event(
+        self,
+        resource_id: str,
+        resource_type: str,
+    ) -> DevopnessResponse[ResourceEvent]:
+        """
+        Process event for a resource
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/events/{resource_type}/{resource_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post_sync(endpoint)
+
+        return DevopnessResponse(response, ResourceEvent)
+
+    def list_resource_events_by_resource_type(
+        self,
+        resource_id: int,
+        resource_type: str,
+        page: Optional[int] = None,
+        per_page: Optional[int] = None,
+    ) -> DevopnessResponse[List[ResourceEventRelation]]:
+        """
+        List events of a resource type
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = DevopnessBaseService._get_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            f"/events/{resource_type}/{resource_id}",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get_sync(endpoint)
+
+        return DevopnessResponse(response, List[ResourceEventRelation])
+
+
+class ResourceEventsApiServiceAsync(DevopnessBaseService):
+    """
+    ResourceEventsApiServiceAsync - Auto Generated
+    """
+
     async def add_resource_event(
         self,
         resource_id: str,
@@ -36,28 +96,6 @@ class ResourceEventsApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint)
-
-        return DevopnessResponse(response, ResourceEvent)
-
-    def add_resource_event_sync(
-        self,
-        resource_id: str,
-        resource_type: str,
-    ) -> DevopnessResponse[ResourceEvent]:
-        """
-        Process event for a resource
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/events/{resource_type}/{resource_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint)
 
         return DevopnessResponse(response, ResourceEvent)
 
@@ -90,37 +128,5 @@ class ResourceEventsApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, List[ResourceEventRelation])
-
-    def list_resource_events_by_resource_type_sync(
-        self,
-        resource_id: int,
-        resource_type: str,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[ResourceEventRelation]]:
-        """
-        List events of a resource type
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        query_string = DevopnessBaseService._get_query_string(
-            {
-                "page": page,
-                "per_page": per_page,
-            }
-        )
-
-        endpoint_parts = [
-            f"/events/{resource_type}/{resource_id}",
-            f"?{query_string}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, List[ResourceEventRelation])

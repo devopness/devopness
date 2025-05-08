@@ -22,6 +22,68 @@ class PipelinesActionsApiService(DevopnessBaseService):
     PipelinesActionsApiService - Auto Generated
     """
 
+    def add_pipeline_action(
+        self,
+        pipeline_id: int,
+        action_pipeline_create: Union[
+            ActionPipelineCreate,
+            ActionPipelineCreatePlain,
+        ],
+    ) -> DevopnessResponse[Action]:
+        """
+        Create an action to run a Pipeline
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/pipelines/{pipeline_id}/actions",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post_sync(endpoint, action_pipeline_create)
+
+        return DevopnessResponse(response, Action)
+
+    def list_pipeline_actions(
+        self,
+        pipeline_id: int,
+        page: Optional[int] = None,
+        per_page: Optional[int] = None,
+    ) -> DevopnessResponse[List[ActionRelation]]:
+        """
+        Return a list of pipeline's actions
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = DevopnessBaseService._get_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            f"/pipelines/{pipeline_id}/actions",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get_sync(endpoint)
+
+        return DevopnessResponse(response, List[ActionRelation])
+
+
+class PipelinesActionsApiServiceAsync(DevopnessBaseService):
+    """
+    PipelinesActionsApiServiceAsync - Auto Generated
+    """
+
     async def add_pipeline_action(
         self,
         pipeline_id: int,
@@ -44,31 +106,6 @@ class PipelinesActionsApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, action_pipeline_create)
-
-        return DevopnessResponse(response, Action)
-
-    def add_pipeline_action_sync(
-        self,
-        pipeline_id: int,
-        action_pipeline_create: Union[
-            ActionPipelineCreate,
-            ActionPipelineCreatePlain,
-        ],
-    ) -> DevopnessResponse[Action]:
-        """
-        Create an action to run a Pipeline
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/pipelines/{pipeline_id}/actions",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, action_pipeline_create)
 
         return DevopnessResponse(response, Action)
 
@@ -100,36 +137,5 @@ class PipelinesActionsApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, List[ActionRelation])
-
-    def list_pipeline_actions_sync(
-        self,
-        pipeline_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[ActionRelation]]:
-        """
-        Return a list of pipeline's actions
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        query_string = DevopnessBaseService._get_query_string(
-            {
-                "page": page,
-                "per_page": per_page,
-            }
-        )
-
-        endpoint_parts = [
-            f"/pipelines/{pipeline_id}/actions",
-            f"?{query_string}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, List[ActionRelation])

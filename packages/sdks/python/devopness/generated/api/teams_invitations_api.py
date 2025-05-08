@@ -22,6 +22,68 @@ class TeamsInvitationsApiService(DevopnessBaseService):
     TeamsInvitationsApiService - Auto Generated
     """
 
+    def add_team_invitation(
+        self,
+        team_id: int,
+        invitation_team_create: Union[
+            InvitationTeamCreate,
+            InvitationTeamCreatePlain,
+        ],
+    ) -> DevopnessResponse[Invitation]:
+        """
+        Send invitation to user email to participate to a team
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/teams/{team_id}/invitations",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post_sync(endpoint, invitation_team_create)
+
+        return DevopnessResponse(response, Invitation)
+
+    def list_team_invitations(
+        self,
+        team_id: int,
+        page: Optional[int] = None,
+        per_page: Optional[int] = None,
+    ) -> DevopnessResponse[List[InvitationRelation]]:
+        """
+        Return a list of pending invitations belonging to a team
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = DevopnessBaseService._get_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            f"/teams/{team_id}/invitations",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get_sync(endpoint)
+
+        return DevopnessResponse(response, List[InvitationRelation])
+
+
+class TeamsInvitationsApiServiceAsync(DevopnessBaseService):
+    """
+    TeamsInvitationsApiServiceAsync - Auto Generated
+    """
+
     async def add_team_invitation(
         self,
         team_id: int,
@@ -44,31 +106,6 @@ class TeamsInvitationsApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, invitation_team_create)
-
-        return DevopnessResponse(response, Invitation)
-
-    def add_team_invitation_sync(
-        self,
-        team_id: int,
-        invitation_team_create: Union[
-            InvitationTeamCreate,
-            InvitationTeamCreatePlain,
-        ],
-    ) -> DevopnessResponse[Invitation]:
-        """
-        Send invitation to user email to participate to a team
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/teams/{team_id}/invitations",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, invitation_team_create)
 
         return DevopnessResponse(response, Invitation)
 
@@ -100,36 +137,5 @@ class TeamsInvitationsApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, List[InvitationRelation])
-
-    def list_team_invitations_sync(
-        self,
-        team_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[InvitationRelation]]:
-        """
-        Return a list of pending invitations belonging to a team
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        query_string = DevopnessBaseService._get_query_string(
-            {
-                "page": page,
-                "per_page": per_page,
-            }
-        )
-
-        endpoint_parts = [
-            f"/teams/{team_id}/invitations",
-            f"?{query_string}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, List[InvitationRelation])

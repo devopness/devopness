@@ -17,6 +17,45 @@ class UsersEnvironmentsApiService(DevopnessBaseService):
     UsersEnvironmentsApiService - Auto Generated
     """
 
+    def list_user_environments(
+        self,
+        user_id: str,
+        page: Optional[int] = None,
+        per_page: Optional[int] = None,
+        subscription_id: Optional[int] = None,
+    ) -> DevopnessResponse[List[EnvironmentRelation]]:
+        """
+        Return a list of all environments owned by a user
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = DevopnessBaseService._get_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+                "subscription_id": subscription_id,
+            }
+        )
+
+        endpoint_parts = [
+            f"/users/{user_id}/environments",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get_sync(endpoint)
+
+        return DevopnessResponse(response, List[EnvironmentRelation])
+
+
+class UsersEnvironmentsApiServiceAsync(DevopnessBaseService):
+    """
+    UsersEnvironmentsApiServiceAsync - Auto Generated
+    """
+
     async def list_user_environments(
         self,
         user_id: str,
@@ -47,38 +86,5 @@ class UsersEnvironmentsApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, List[EnvironmentRelation])
-
-    def list_user_environments_sync(
-        self,
-        user_id: str,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-        subscription_id: Optional[int] = None,
-    ) -> DevopnessResponse[List[EnvironmentRelation]]:
-        """
-        Return a list of all environments owned by a user
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        query_string = DevopnessBaseService._get_query_string(
-            {
-                "page": page,
-                "per_page": per_page,
-                "subscription_id": subscription_id,
-            }
-        )
-
-        endpoint_parts = [
-            f"/users/{user_id}/environments",
-            f"?{query_string}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, List[EnvironmentRelation])

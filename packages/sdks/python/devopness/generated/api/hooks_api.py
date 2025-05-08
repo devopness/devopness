@@ -17,6 +17,103 @@ class HooksApiService(DevopnessBaseService):
     HooksApiService - Auto Generated
     """
 
+    def delete_hook(
+        self,
+        hook_id: str,
+        hook_type: str,
+    ) -> DevopnessResponse[None]:
+        """
+        Delete a given hook
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/hooks/{hook_type}/{hook_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._delete_sync(endpoint)
+
+        return DevopnessResponse(response, None)
+
+    def get_hook(
+        self,
+        hook_id: str,
+        hook_type: str,
+    ) -> DevopnessResponse[Hook]:
+        """
+        Get a hook by ID
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/hooks/{hook_type}/{hook_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get_sync(endpoint)
+
+        return DevopnessResponse(response, Hook)
+
+    def trigger_hook(
+        self,
+        hook_id: str,
+    ) -> DevopnessResponse[HookTriggerResponse]:
+        """
+        Trigger an incoming hook associated action
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/hooks/{hook_id}/trigger",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post_sync(endpoint)
+
+        return DevopnessResponse(response, HookTriggerResponse)
+
+    def update_hook(
+        self,
+        hook_id: str,
+        hook_type: str,
+        hook_update: Union[
+            HookUpdate,
+            HookUpdatePlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Update an existing hook
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/hooks/{hook_type}/{hook_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._put_sync(endpoint, hook_update)
+
+        return DevopnessResponse(response, None)
+
+
+class HooksApiServiceAsync(DevopnessBaseService):
+    """
+    HooksApiServiceAsync - Auto Generated
+    """
+
     async def delete_hook(
         self,
         hook_id: str,
@@ -36,28 +133,6 @@ class HooksApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._delete(endpoint)
-
-        return DevopnessResponse(response, None)
-
-    def delete_hook_sync(
-        self,
-        hook_id: str,
-        hook_type: str,
-    ) -> DevopnessResponse[None]:
-        """
-        Delete a given hook
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/hooks/{hook_type}/{hook_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._delete_sync(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -83,28 +158,6 @@ class HooksApiService(DevopnessBaseService):
 
         return DevopnessResponse(response, Hook)
 
-    def get_hook_sync(
-        self,
-        hook_id: str,
-        hook_type: str,
-    ) -> DevopnessResponse[Hook]:
-        """
-        Get a hook by ID
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/hooks/{hook_type}/{hook_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
-
-        return DevopnessResponse(response, Hook)
-
     async def trigger_hook(
         self,
         hook_id: str,
@@ -123,27 +176,6 @@ class HooksApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint)
-
-        return DevopnessResponse(response, HookTriggerResponse)
-
-    def trigger_hook_sync(
-        self,
-        hook_id: str,
-    ) -> DevopnessResponse[HookTriggerResponse]:
-        """
-        Trigger an incoming hook associated action
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/hooks/{hook_id}/trigger",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint)
 
         return DevopnessResponse(response, HookTriggerResponse)
 
@@ -170,31 +202,5 @@ class HooksApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._put(endpoint, hook_update)
-
-        return DevopnessResponse(response, None)
-
-    def update_hook_sync(
-        self,
-        hook_id: str,
-        hook_type: str,
-        hook_update: Union[
-            HookUpdate,
-            HookUpdatePlain,
-        ],
-    ) -> DevopnessResponse[None]:
-        """
-        Update an existing hook
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/hooks/{hook_type}/{hook_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._put_sync(endpoint, hook_update)
 
         return DevopnessResponse(response, None)

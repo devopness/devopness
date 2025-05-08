@@ -17,6 +17,43 @@ class EnvironmentsTeamMembershipsApiService(DevopnessBaseService):
     EnvironmentsTeamMembershipsApiService - Auto Generated
     """
 
+    def list_environment_team_memberships(
+        self,
+        environment_id: int,
+        page: Optional[int] = None,
+        per_page: Optional[int] = None,
+    ) -> DevopnessResponse[List[TeamMembershipRelation]]:
+        """
+        Return a list of teams with access to an environment
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = DevopnessBaseService._get_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            f"/environments/{environment_id}/team-memberships",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get_sync(endpoint)
+
+        return DevopnessResponse(response, List[TeamMembershipRelation])
+
+
+class EnvironmentsTeamMembershipsApiServiceAsync(DevopnessBaseService):
+    """
+    EnvironmentsTeamMembershipsApiServiceAsync - Auto Generated
+    """
+
     async def list_environment_team_memberships(
         self,
         environment_id: int,
@@ -45,36 +82,5 @@ class EnvironmentsTeamMembershipsApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, List[TeamMembershipRelation])
-
-    def list_environment_team_memberships_sync(
-        self,
-        environment_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[TeamMembershipRelation]]:
-        """
-        Return a list of teams with access to an environment
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        query_string = DevopnessBaseService._get_query_string(
-            {
-                "page": page,
-                "per_page": per_page,
-            }
-        )
-
-        endpoint_parts = [
-            f"/environments/{environment_id}/team-memberships",
-            f"?{query_string}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, List[TeamMembershipRelation])

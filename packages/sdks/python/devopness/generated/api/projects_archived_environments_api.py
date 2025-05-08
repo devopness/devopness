@@ -17,6 +17,43 @@ class ProjectsArchivedEnvironmentsApiService(DevopnessBaseService):
     ProjectsArchivedEnvironmentsApiService - Auto Generated
     """
 
+    def list_project_archived_environments(
+        self,
+        project_id: int,
+        page: Optional[int] = None,
+        per_page: Optional[int] = None,
+    ) -> DevopnessResponse[List[ArchivedEnvironmentRelation]]:
+        """
+        Return a list of all archived environments belonging to a project
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = DevopnessBaseService._get_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            f"/projects/{project_id}/environments/archived",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get_sync(endpoint)
+
+        return DevopnessResponse(response, List[ArchivedEnvironmentRelation])
+
+
+class ProjectsArchivedEnvironmentsApiServiceAsync(DevopnessBaseService):
+    """
+    ProjectsArchivedEnvironmentsApiServiceAsync - Auto Generated
+    """
+
     async def list_project_archived_environments(
         self,
         project_id: int,
@@ -45,36 +82,5 @@ class ProjectsArchivedEnvironmentsApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, List[ArchivedEnvironmentRelation])
-
-    def list_project_archived_environments_sync(
-        self,
-        project_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[ArchivedEnvironmentRelation]]:
-        """
-        Return a list of all archived environments belonging to a project
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        query_string = DevopnessBaseService._get_query_string(
-            {
-                "page": page,
-                "per_page": per_page,
-            }
-        )
-
-        endpoint_parts = [
-            f"/projects/{project_id}/environments/archived",
-            f"?{query_string}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, List[ArchivedEnvironmentRelation])

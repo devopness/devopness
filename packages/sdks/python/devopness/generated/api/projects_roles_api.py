@@ -17,6 +17,68 @@ class ProjectsRolesApiService(DevopnessBaseService):
     ProjectsRolesApiService - Auto Generated
     """
 
+    def add_project_role(
+        self,
+        project_id: int,
+        role_project_create: Union[
+            RoleProjectCreate,
+            RoleProjectCreatePlain,
+        ],
+    ) -> DevopnessResponse[Role]:
+        """
+        Create a role to a given project
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/projects/{project_id}/roles",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post_sync(endpoint, role_project_create)
+
+        return DevopnessResponse(response, Role)
+
+    def list_project_roles(
+        self,
+        project_id: int,
+        page: Optional[int] = None,
+        per_page: Optional[int] = None,
+    ) -> DevopnessResponse[List[RoleRelation]]:
+        """
+        List all roles from a project
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = DevopnessBaseService._get_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            f"/projects/{project_id}/roles",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get_sync(endpoint)
+
+        return DevopnessResponse(response, List[RoleRelation])
+
+
+class ProjectsRolesApiServiceAsync(DevopnessBaseService):
+    """
+    ProjectsRolesApiServiceAsync - Auto Generated
+    """
+
     async def add_project_role(
         self,
         project_id: int,
@@ -39,31 +101,6 @@ class ProjectsRolesApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, role_project_create)
-
-        return DevopnessResponse(response, Role)
-
-    def add_project_role_sync(
-        self,
-        project_id: int,
-        role_project_create: Union[
-            RoleProjectCreate,
-            RoleProjectCreatePlain,
-        ],
-    ) -> DevopnessResponse[Role]:
-        """
-        Create a role to a given project
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/projects/{project_id}/roles",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, role_project_create)
 
         return DevopnessResponse(response, Role)
 
@@ -95,36 +132,5 @@ class ProjectsRolesApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, List[RoleRelation])
-
-    def list_project_roles_sync(
-        self,
-        project_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[RoleRelation]]:
-        """
-        List all roles from a project
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        query_string = DevopnessBaseService._get_query_string(
-            {
-                "page": page,
-                "per_page": per_page,
-            }
-        )
-
-        endpoint_parts = [
-            f"/projects/{project_id}/roles",
-            f"?{query_string}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, List[RoleRelation])

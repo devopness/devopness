@@ -23,6 +23,107 @@ class PipelinesStepsApiService(DevopnessBaseService):
     PipelinesStepsApiService - Auto Generated
     """
 
+    def add_pipeline_step(
+        self,
+        pipeline_id: int,
+        step_pipeline_create: Union[
+            StepPipelineCreate,
+            StepPipelineCreatePlain,
+        ],
+    ) -> DevopnessResponse[Step]:
+        """
+        Add a step to a pipeline
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/pipelines/{pipeline_id}/steps",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post_sync(endpoint, step_pipeline_create)
+
+        return DevopnessResponse(response, Step)
+
+    def link_step_to_pipeline(
+        self,
+        pipeline_id: int,
+        step_id: int,
+    ) -> DevopnessResponse[None]:
+        """
+        Link a step to a Pipeline
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/pipelines/{pipeline_id}/steps/{step_id}/link",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post_sync(endpoint)
+
+        return DevopnessResponse(response, None)
+
+    def unlink_step_from_pipeline(
+        self,
+        pipeline_id: int,
+        step_id: int,
+    ) -> DevopnessResponse[None]:
+        """
+        Unlink a step from a Pipeline
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/pipelines/{pipeline_id}/steps/{step_id}/unlink",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._delete_sync(endpoint)
+
+        return DevopnessResponse(response, None)
+
+    def update_pipeline_step(
+        self,
+        pipeline_id: int,
+        step_id: int,
+        step_pipeline_update: Union[
+            StepPipelineUpdate,
+            StepPipelineUpdatePlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Update an existing Pipeline Step
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/pipelines/{pipeline_id}/steps/{step_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._put_sync(endpoint, step_pipeline_update)
+
+        return DevopnessResponse(response, None)
+
+
+class PipelinesStepsApiServiceAsync(DevopnessBaseService):
+    """
+    PipelinesStepsApiServiceAsync - Auto Generated
+    """
+
     async def add_pipeline_step(
         self,
         pipeline_id: int,
@@ -48,31 +149,6 @@ class PipelinesStepsApiService(DevopnessBaseService):
 
         return DevopnessResponse(response, Step)
 
-    def add_pipeline_step_sync(
-        self,
-        pipeline_id: int,
-        step_pipeline_create: Union[
-            StepPipelineCreate,
-            StepPipelineCreatePlain,
-        ],
-    ) -> DevopnessResponse[Step]:
-        """
-        Add a step to a pipeline
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/pipelines/{pipeline_id}/steps",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, step_pipeline_create)
-
-        return DevopnessResponse(response, Step)
-
     async def link_step_to_pipeline(
         self,
         pipeline_id: int,
@@ -95,28 +171,6 @@ class PipelinesStepsApiService(DevopnessBaseService):
 
         return DevopnessResponse(response, None)
 
-    def link_step_to_pipeline_sync(
-        self,
-        pipeline_id: int,
-        step_id: int,
-    ) -> DevopnessResponse[None]:
-        """
-        Link a step to a Pipeline
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/pipelines/{pipeline_id}/steps/{step_id}/link",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint)
-
-        return DevopnessResponse(response, None)
-
     async def unlink_step_from_pipeline(
         self,
         pipeline_id: int,
@@ -136,28 +190,6 @@ class PipelinesStepsApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._delete(endpoint)
-
-        return DevopnessResponse(response, None)
-
-    def unlink_step_from_pipeline_sync(
-        self,
-        pipeline_id: int,
-        step_id: int,
-    ) -> DevopnessResponse[None]:
-        """
-        Unlink a step from a Pipeline
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/pipelines/{pipeline_id}/steps/{step_id}/unlink",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._delete_sync(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -184,31 +216,5 @@ class PipelinesStepsApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._put(endpoint, step_pipeline_update)
-
-        return DevopnessResponse(response, None)
-
-    def update_pipeline_step_sync(
-        self,
-        pipeline_id: int,
-        step_id: int,
-        step_pipeline_update: Union[
-            StepPipelineUpdate,
-            StepPipelineUpdatePlain,
-        ],
-    ) -> DevopnessResponse[None]:
-        """
-        Update an existing Pipeline Step
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/pipelines/{pipeline_id}/steps/{step_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._put_sync(endpoint, step_pipeline_update)
 
         return DevopnessResponse(response, None)

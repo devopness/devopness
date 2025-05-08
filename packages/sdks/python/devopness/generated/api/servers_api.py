@@ -25,6 +25,291 @@ class ServersApiService(DevopnessBaseService):
     ServersApiService - Auto Generated
     """
 
+    def add_environment_server(
+        self,
+        environment_id: int,
+        server_environment_create: Union[
+            ServerEnvironmentCreate,
+            ServerEnvironmentCreatePlain,
+        ],
+    ) -> DevopnessResponse[Server]:
+        """
+        Creates a server and link it to the given environment
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/environments/{environment_id}/servers",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post_sync(endpoint, server_environment_create)
+
+        return DevopnessResponse(response, Server)
+
+    def connect_server(
+        self,
+        activation_token: str,
+        server_id: int,
+    ) -> DevopnessResponse[str]:
+        """
+        Connect a server to devopness platform
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/servers/{server_id}/connect/{activation_token}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post_sync(endpoint)
+
+        return DevopnessResponse(response, str)
+
+    def delete_server(
+        self,
+        server_id: int,
+        destroy_server_disks: Optional[bool] = None,
+    ) -> DevopnessResponse[None]:
+        """
+        Delete a given server
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = DevopnessBaseService._get_query_string(
+            {
+                "destroy_server_disks": destroy_server_disks,
+            }
+        )
+
+        endpoint_parts = [
+            f"/servers/{server_id}",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._delete_sync(endpoint)
+
+        return DevopnessResponse(response, None)
+
+    def get_server(
+        self,
+        server_id: int,
+    ) -> DevopnessResponse[Server]:
+        """
+        Get a server by ID
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/servers/{server_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get_sync(endpoint)
+
+        return DevopnessResponse(response, Server)
+
+    def get_server_commands(
+        self,
+        server_id: int,
+    ) -> DevopnessResponse[ServerCommand]:
+        """
+        Get commands to be executed on the given server
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/servers/{server_id}/commands",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get_sync(endpoint)
+
+        return DevopnessResponse(response, ServerCommand)
+
+    def get_status_server(
+        self,
+        server_id: int,
+    ) -> DevopnessResponse[None]:
+        """
+        Get current status of the server on the cloud provider
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/servers/{server_id}/get-status",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post_sync(endpoint)
+
+        return DevopnessResponse(response, None)
+
+    def list_environment_servers(
+        self,
+        environment_id: int,
+        page: Optional[int] = None,
+        per_page: Optional[int] = None,
+    ) -> DevopnessResponse[List[ServerRelation]]:
+        """
+        Return a list of all servers belonging to an environment
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = DevopnessBaseService._get_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            f"/environments/{environment_id}/servers",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get_sync(endpoint)
+
+        return DevopnessResponse(response, List[ServerRelation])
+
+    def restart_server(
+        self,
+        server_id: int,
+    ) -> DevopnessResponse[None]:
+        """
+        Restart a current running server
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/servers/{server_id}/restart",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post_sync(endpoint)
+
+        return DevopnessResponse(response, None)
+
+    def rotate_key_server(
+        self,
+        server_id: int,
+    ) -> DevopnessResponse[None]:
+        """
+        Rotate the key used to access the server
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/servers/{server_id}/rotate-key",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post_sync(endpoint)
+
+        return DevopnessResponse(response, None)
+
+    def start_server(
+        self,
+        server_id: int,
+    ) -> DevopnessResponse[None]:
+        """
+        Start a previously stopped server
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/servers/{server_id}/start",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post_sync(endpoint)
+
+        return DevopnessResponse(response, None)
+
+    def stop_server(
+        self,
+        server_id: int,
+    ) -> DevopnessResponse[None]:
+        """
+        Stop a running server
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/servers/{server_id}/stop",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post_sync(endpoint)
+
+        return DevopnessResponse(response, None)
+
+    def update_server(
+        self,
+        server_id: int,
+        server_update: Union[
+            ServerUpdate,
+            ServerUpdatePlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Update an existing server
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/servers/{server_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._put_sync(endpoint, server_update)
+
+        return DevopnessResponse(response, None)
+
+
+class ServersApiServiceAsync(DevopnessBaseService):
+    """
+    ServersApiServiceAsync - Auto Generated
+    """
+
     async def add_environment_server(
         self,
         environment_id: int,
@@ -50,31 +335,6 @@ class ServersApiService(DevopnessBaseService):
 
         return DevopnessResponse(response, Server)
 
-    def add_environment_server_sync(
-        self,
-        environment_id: int,
-        server_environment_create: Union[
-            ServerEnvironmentCreate,
-            ServerEnvironmentCreatePlain,
-        ],
-    ) -> DevopnessResponse[Server]:
-        """
-        Creates a server and link it to the given environment
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/environments/{environment_id}/servers",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, server_environment_create)
-
-        return DevopnessResponse(response, Server)
-
     async def connect_server(
         self,
         activation_token: str,
@@ -94,28 +354,6 @@ class ServersApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint)
-
-        return DevopnessResponse(response, str)
-
-    def connect_server_sync(
-        self,
-        activation_token: str,
-        server_id: int,
-    ) -> DevopnessResponse[str]:
-        """
-        Connect a server to devopness platform
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/servers/{server_id}/connect/{activation_token}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint)
 
         return DevopnessResponse(response, str)
 
@@ -148,35 +386,6 @@ class ServersApiService(DevopnessBaseService):
 
         return DevopnessResponse(response, None)
 
-    def delete_server_sync(
-        self,
-        server_id: int,
-        destroy_server_disks: Optional[bool] = None,
-    ) -> DevopnessResponse[None]:
-        """
-        Delete a given server
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        query_string = DevopnessBaseService._get_query_string(
-            {
-                "destroy_server_disks": destroy_server_disks,
-            }
-        )
-
-        endpoint_parts = [
-            f"/servers/{server_id}",
-            f"?{query_string}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._delete_sync(endpoint)
-
-        return DevopnessResponse(response, None)
-
     async def get_server(
         self,
         server_id: int,
@@ -195,27 +404,6 @@ class ServersApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, Server)
-
-    def get_server_sync(
-        self,
-        server_id: int,
-    ) -> DevopnessResponse[Server]:
-        """
-        Get a server by ID
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/servers/{server_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, Server)
 
@@ -240,27 +428,6 @@ class ServersApiService(DevopnessBaseService):
 
         return DevopnessResponse(response, ServerCommand)
 
-    def get_server_commands_sync(
-        self,
-        server_id: int,
-    ) -> DevopnessResponse[ServerCommand]:
-        """
-        Get commands to be executed on the given server
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/servers/{server_id}/commands",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
-
-        return DevopnessResponse(response, ServerCommand)
-
     async def get_status_server(
         self,
         server_id: int,
@@ -279,27 +446,6 @@ class ServersApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint)
-
-        return DevopnessResponse(response, None)
-
-    def get_status_server_sync(
-        self,
-        server_id: int,
-    ) -> DevopnessResponse[None]:
-        """
-        Get current status of the server on the cloud provider
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/servers/{server_id}/get-status",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -334,37 +480,6 @@ class ServersApiService(DevopnessBaseService):
 
         return DevopnessResponse(response, List[ServerRelation])
 
-    def list_environment_servers_sync(
-        self,
-        environment_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[ServerRelation]]:
-        """
-        Return a list of all servers belonging to an environment
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        query_string = DevopnessBaseService._get_query_string(
-            {
-                "page": page,
-                "per_page": per_page,
-            }
-        )
-
-        endpoint_parts = [
-            f"/environments/{environment_id}/servers",
-            f"?{query_string}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
-
-        return DevopnessResponse(response, List[ServerRelation])
-
     async def restart_server(
         self,
         server_id: int,
@@ -383,27 +498,6 @@ class ServersApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint)
-
-        return DevopnessResponse(response, None)
-
-    def restart_server_sync(
-        self,
-        server_id: int,
-    ) -> DevopnessResponse[None]:
-        """
-        Restart a current running server
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/servers/{server_id}/restart",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -428,27 +522,6 @@ class ServersApiService(DevopnessBaseService):
 
         return DevopnessResponse(response, None)
 
-    def rotate_key_server_sync(
-        self,
-        server_id: int,
-    ) -> DevopnessResponse[None]:
-        """
-        Rotate the key used to access the server
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/servers/{server_id}/rotate-key",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint)
-
-        return DevopnessResponse(response, None)
-
     async def start_server(
         self,
         server_id: int,
@@ -470,27 +543,6 @@ class ServersApiService(DevopnessBaseService):
 
         return DevopnessResponse(response, None)
 
-    def start_server_sync(
-        self,
-        server_id: int,
-    ) -> DevopnessResponse[None]:
-        """
-        Start a previously stopped server
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/servers/{server_id}/start",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint)
-
-        return DevopnessResponse(response, None)
-
     async def stop_server(
         self,
         server_id: int,
@@ -509,27 +561,6 @@ class ServersApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint)
-
-        return DevopnessResponse(response, None)
-
-    def stop_server_sync(
-        self,
-        server_id: int,
-    ) -> DevopnessResponse[None]:
-        """
-        Stop a running server
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/servers/{server_id}/stop",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -555,30 +586,5 @@ class ServersApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._put(endpoint, server_update)
-
-        return DevopnessResponse(response, None)
-
-    def update_server_sync(
-        self,
-        server_id: int,
-        server_update: Union[
-            ServerUpdate,
-            ServerUpdatePlain,
-        ],
-    ) -> DevopnessResponse[None]:
-        """
-        Update an existing server
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/servers/{server_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._put_sync(endpoint, server_update)
 
         return DevopnessResponse(response, None)

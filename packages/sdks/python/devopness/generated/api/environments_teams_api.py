@@ -17,6 +17,60 @@ class EnvironmentsTeamsApiService(DevopnessBaseService):
     EnvironmentsTeamsApiService - Auto Generated
     """
 
+    def link_team_to_environment(
+        self,
+        environment_id: int,
+        team_id: int,
+        team_environment_link: Union[
+            TeamEnvironmentLink,
+            TeamEnvironmentLinkPlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Link team to a given environment
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/environments/{environment_id}/teams/{team_id}/link",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post_sync(endpoint, team_environment_link)
+
+        return DevopnessResponse(response, None)
+
+    def unlink_team_from_environment(
+        self,
+        environment_id: int,
+        team_id: int,
+    ) -> DevopnessResponse[None]:
+        """
+        Unlink team from the environment
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/environments/{environment_id}/teams/{team_id}/unlink",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._delete_sync(endpoint)
+
+        return DevopnessResponse(response, None)
+
+
+class EnvironmentsTeamsApiServiceAsync(DevopnessBaseService):
+    """
+    EnvironmentsTeamsApiServiceAsync - Auto Generated
+    """
+
     async def link_team_to_environment(
         self,
         environment_id: int,
@@ -43,32 +97,6 @@ class EnvironmentsTeamsApiService(DevopnessBaseService):
 
         return DevopnessResponse(response, None)
 
-    def link_team_to_environment_sync(
-        self,
-        environment_id: int,
-        team_id: int,
-        team_environment_link: Union[
-            TeamEnvironmentLink,
-            TeamEnvironmentLinkPlain,
-        ],
-    ) -> DevopnessResponse[None]:
-        """
-        Link team to a given environment
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/environments/{environment_id}/teams/{team_id}/link",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, team_environment_link)
-
-        return DevopnessResponse(response, None)
-
     async def unlink_team_from_environment(
         self,
         environment_id: int,
@@ -88,27 +116,5 @@ class EnvironmentsTeamsApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._delete(endpoint)
-
-        return DevopnessResponse(response, None)
-
-    def unlink_team_from_environment_sync(
-        self,
-        environment_id: int,
-        team_id: int,
-    ) -> DevopnessResponse[None]:
-        """
-        Unlink team from the environment
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/environments/{environment_id}/teams/{team_id}/unlink",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._delete_sync(endpoint)
 
         return DevopnessResponse(response, None)

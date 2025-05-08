@@ -23,6 +23,60 @@ class UsersPasswordsApiService(DevopnessBaseService):
     UsersPasswordsApiService - Auto Generated
     """
 
+    def reset_user_password(
+        self,
+        password_user_reset: Union[
+            PasswordUserReset,
+            PasswordUserResetPlain,
+        ],
+    ) -> DevopnessResponse[PasswordResetResponse]:
+        """
+        Reset the user password
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            "/users/password/reset",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post_sync(endpoint, password_user_reset)
+
+        return DevopnessResponse(response, PasswordResetResponse)
+
+    def send_reset_link_user_password(
+        self,
+        password_user_send_reset_link: Union[
+            PasswordUserSendResetLink,
+            PasswordUserSendResetLinkPlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Send the password reset link to user's email
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            "/users/password/send-reset-link",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post_sync(endpoint, password_user_send_reset_link)
+
+        return DevopnessResponse(response, None)
+
+
+class UsersPasswordsApiServiceAsync(DevopnessBaseService):
+    """
+    UsersPasswordsApiServiceAsync - Auto Generated
+    """
+
     async def reset_user_password(
         self,
         password_user_reset: Union[
@@ -47,30 +101,6 @@ class UsersPasswordsApiService(DevopnessBaseService):
 
         return DevopnessResponse(response, PasswordResetResponse)
 
-    def reset_user_password_sync(
-        self,
-        password_user_reset: Union[
-            PasswordUserReset,
-            PasswordUserResetPlain,
-        ],
-    ) -> DevopnessResponse[PasswordResetResponse]:
-        """
-        Reset the user password
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            "/users/password/reset",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, password_user_reset)
-
-        return DevopnessResponse(response, PasswordResetResponse)
-
     async def send_reset_link_user_password(
         self,
         password_user_send_reset_link: Union[
@@ -92,29 +122,5 @@ class UsersPasswordsApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, password_user_send_reset_link)
-
-        return DevopnessResponse(response, None)
-
-    def send_reset_link_user_password_sync(
-        self,
-        password_user_send_reset_link: Union[
-            PasswordUserSendResetLink,
-            PasswordUserSendResetLinkPlain,
-        ],
-    ) -> DevopnessResponse[None]:
-        """
-        Send the password reset link to user's email
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            "/users/password/send-reset-link",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, password_user_send_reset_link)
 
         return DevopnessResponse(response, None)

@@ -32,6 +32,235 @@ class DaemonsApiService(DevopnessBaseService):
     DaemonsApiService - Auto Generated
     """
 
+    def add_environment_daemon(
+        self,
+        environment_id: int,
+        daemon_environment_create: Union[
+            DaemonEnvironmentCreate,
+            DaemonEnvironmentCreatePlain,
+        ],
+    ) -> DevopnessResponse[Daemon]:
+        """
+        Add a Daemon to the given environment
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/environments/{environment_id}/daemons",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post_sync(endpoint, daemon_environment_create)
+
+        return DevopnessResponse(response, Daemon)
+
+    def delete_daemon(
+        self,
+        daemon_id: int,
+    ) -> DevopnessResponse[None]:
+        """
+        Delete a given Daemon
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/daemons/{daemon_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._delete_sync(endpoint)
+
+        return DevopnessResponse(response, None)
+
+    def get_daemon(
+        self,
+        daemon_id: int,
+    ) -> DevopnessResponse[Daemon]:
+        """
+        Get a Daemon by ID
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/daemons/{daemon_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get_sync(endpoint)
+
+        return DevopnessResponse(response, Daemon)
+
+    def get_status_daemon(
+        self,
+        daemon_id: int,
+        daemon_get_status: Union[
+            DaemonGetStatus,
+            DaemonGetStatusPlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Get current status of a daemon
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/daemons/{daemon_id}/get-status",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post_sync(endpoint, daemon_get_status)
+
+        return DevopnessResponse(response, None)
+
+    def list_environment_daemons(
+        self,
+        environment_id: int,
+        page: Optional[int] = None,
+        per_page: Optional[int] = None,
+    ) -> DevopnessResponse[List[DaemonRelation]]:
+        """
+        Return a list of all Daemons belonging to an environment
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = DevopnessBaseService._get_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            f"/environments/{environment_id}/daemons",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get_sync(endpoint)
+
+        return DevopnessResponse(response, List[DaemonRelation])
+
+    def restart_daemon(
+        self,
+        daemon_id: int,
+        daemon_restart: Union[
+            DaemonRestart,
+            DaemonRestartPlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Restart a Daemon
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/daemons/{daemon_id}/restart",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post_sync(endpoint, daemon_restart)
+
+        return DevopnessResponse(response, None)
+
+    def start_daemon(
+        self,
+        daemon_id: int,
+        daemon_start: Union[
+            DaemonStart,
+            DaemonStartPlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Start a Daemon
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/daemons/{daemon_id}/start",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post_sync(endpoint, daemon_start)
+
+        return DevopnessResponse(response, None)
+
+    def stop_daemon(
+        self,
+        daemon_id: int,
+        daemon_stop: Union[
+            DaemonStop,
+            DaemonStopPlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Stop a Daemon
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/daemons/{daemon_id}/stop",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post_sync(endpoint, daemon_stop)
+
+        return DevopnessResponse(response, None)
+
+    def update_daemon(
+        self,
+        daemon_id: int,
+        daemon_update: Union[
+            DaemonUpdate,
+            DaemonUpdatePlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Update an existing Daemon
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/daemons/{daemon_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._put_sync(endpoint, daemon_update)
+
+        return DevopnessResponse(response, None)
+
+
+class DaemonsApiServiceAsync(DevopnessBaseService):
+    """
+    DaemonsApiServiceAsync - Auto Generated
+    """
+
     async def add_environment_daemon(
         self,
         environment_id: int,
@@ -57,31 +286,6 @@ class DaemonsApiService(DevopnessBaseService):
 
         return DevopnessResponse(response, Daemon)
 
-    def add_environment_daemon_sync(
-        self,
-        environment_id: int,
-        daemon_environment_create: Union[
-            DaemonEnvironmentCreate,
-            DaemonEnvironmentCreatePlain,
-        ],
-    ) -> DevopnessResponse[Daemon]:
-        """
-        Add a Daemon to the given environment
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/environments/{environment_id}/daemons",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, daemon_environment_create)
-
-        return DevopnessResponse(response, Daemon)
-
     async def delete_daemon(
         self,
         daemon_id: int,
@@ -103,27 +307,6 @@ class DaemonsApiService(DevopnessBaseService):
 
         return DevopnessResponse(response, None)
 
-    def delete_daemon_sync(
-        self,
-        daemon_id: int,
-    ) -> DevopnessResponse[None]:
-        """
-        Delete a given Daemon
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/daemons/{daemon_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._delete_sync(endpoint)
-
-        return DevopnessResponse(response, None)
-
     async def get_daemon(
         self,
         daemon_id: int,
@@ -142,27 +325,6 @@ class DaemonsApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, Daemon)
-
-    def get_daemon_sync(
-        self,
-        daemon_id: int,
-    ) -> DevopnessResponse[Daemon]:
-        """
-        Get a Daemon by ID
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/daemons/{daemon_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, Daemon)
 
@@ -188,31 +350,6 @@ class DaemonsApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, daemon_get_status)
-
-        return DevopnessResponse(response, None)
-
-    def get_status_daemon_sync(
-        self,
-        daemon_id: int,
-        daemon_get_status: Union[
-            DaemonGetStatus,
-            DaemonGetStatusPlain,
-        ],
-    ) -> DevopnessResponse[None]:
-        """
-        Get current status of a daemon
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/daemons/{daemon_id}/get-status",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, daemon_get_status)
 
         return DevopnessResponse(response, None)
 
@@ -247,37 +384,6 @@ class DaemonsApiService(DevopnessBaseService):
 
         return DevopnessResponse(response, List[DaemonRelation])
 
-    def list_environment_daemons_sync(
-        self,
-        environment_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[DaemonRelation]]:
-        """
-        Return a list of all Daemons belonging to an environment
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        query_string = DevopnessBaseService._get_query_string(
-            {
-                "page": page,
-                "per_page": per_page,
-            }
-        )
-
-        endpoint_parts = [
-            f"/environments/{environment_id}/daemons",
-            f"?{query_string}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
-
-        return DevopnessResponse(response, List[DaemonRelation])
-
     async def restart_daemon(
         self,
         daemon_id: int,
@@ -300,31 +406,6 @@ class DaemonsApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, daemon_restart)
-
-        return DevopnessResponse(response, None)
-
-    def restart_daemon_sync(
-        self,
-        daemon_id: int,
-        daemon_restart: Union[
-            DaemonRestart,
-            DaemonRestartPlain,
-        ],
-    ) -> DevopnessResponse[None]:
-        """
-        Restart a Daemon
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/daemons/{daemon_id}/restart",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, daemon_restart)
 
         return DevopnessResponse(response, None)
 
@@ -353,31 +434,6 @@ class DaemonsApiService(DevopnessBaseService):
 
         return DevopnessResponse(response, None)
 
-    def start_daemon_sync(
-        self,
-        daemon_id: int,
-        daemon_start: Union[
-            DaemonStart,
-            DaemonStartPlain,
-        ],
-    ) -> DevopnessResponse[None]:
-        """
-        Start a Daemon
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/daemons/{daemon_id}/start",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, daemon_start)
-
-        return DevopnessResponse(response, None)
-
     async def stop_daemon(
         self,
         daemon_id: int,
@@ -403,31 +459,6 @@ class DaemonsApiService(DevopnessBaseService):
 
         return DevopnessResponse(response, None)
 
-    def stop_daemon_sync(
-        self,
-        daemon_id: int,
-        daemon_stop: Union[
-            DaemonStop,
-            DaemonStopPlain,
-        ],
-    ) -> DevopnessResponse[None]:
-        """
-        Stop a Daemon
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/daemons/{daemon_id}/stop",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, daemon_stop)
-
-        return DevopnessResponse(response, None)
-
     async def update_daemon(
         self,
         daemon_id: int,
@@ -450,30 +481,5 @@ class DaemonsApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._put(endpoint, daemon_update)
-
-        return DevopnessResponse(response, None)
-
-    def update_daemon_sync(
-        self,
-        daemon_id: int,
-        daemon_update: Union[
-            DaemonUpdate,
-            DaemonUpdatePlain,
-        ],
-    ) -> DevopnessResponse[None]:
-        """
-        Update an existing Daemon
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/daemons/{daemon_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._put_sync(endpoint, daemon_update)
 
         return DevopnessResponse(response, None)

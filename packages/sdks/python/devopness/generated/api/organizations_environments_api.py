@@ -17,6 +17,43 @@ class OrganizationsEnvironmentsApiService(DevopnessBaseService):
     OrganizationsEnvironmentsApiService - Auto Generated
     """
 
+    def list_organization_environments(
+        self,
+        organization_id: str,
+        page: Optional[int] = None,
+        per_page: Optional[int] = None,
+    ) -> DevopnessResponse[List[EnvironmentRelation]]:
+        """
+        Return a list of all environments owned by an organization
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = DevopnessBaseService._get_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            f"/organizations/{organization_id}/environments",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get_sync(endpoint)
+
+        return DevopnessResponse(response, List[EnvironmentRelation])
+
+
+class OrganizationsEnvironmentsApiServiceAsync(DevopnessBaseService):
+    """
+    OrganizationsEnvironmentsApiServiceAsync - Auto Generated
+    """
+
     async def list_organization_environments(
         self,
         organization_id: str,
@@ -45,36 +82,5 @@ class OrganizationsEnvironmentsApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, List[EnvironmentRelation])
-
-    def list_organization_environments_sync(
-        self,
-        organization_id: str,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[EnvironmentRelation]]:
-        """
-        Return a list of all environments owned by an organization
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        query_string = DevopnessBaseService._get_query_string(
-            {
-                "page": page,
-                "per_page": per_page,
-            }
-        )
-
-        endpoint_parts = [
-            f"/organizations/{organization_id}/environments",
-            f"?{query_string}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, List[EnvironmentRelation])

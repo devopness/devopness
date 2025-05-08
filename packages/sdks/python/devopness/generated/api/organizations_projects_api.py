@@ -17,6 +17,43 @@ class OrganizationsProjectsApiService(DevopnessBaseService):
     OrganizationsProjectsApiService - Auto Generated
     """
 
+    def list_organization_projects(
+        self,
+        organization_id: str,
+        page: Optional[int] = None,
+        per_page: Optional[int] = None,
+    ) -> DevopnessResponse[List[ProjectRelation]]:
+        """
+        Return a list of all projects owned by an organization
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = DevopnessBaseService._get_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            f"/organizations/{organization_id}/projects",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get_sync(endpoint)
+
+        return DevopnessResponse(response, List[ProjectRelation])
+
+
+class OrganizationsProjectsApiServiceAsync(DevopnessBaseService):
+    """
+    OrganizationsProjectsApiServiceAsync - Auto Generated
+    """
+
     async def list_organization_projects(
         self,
         organization_id: str,
@@ -45,36 +82,5 @@ class OrganizationsProjectsApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, List[ProjectRelation])
-
-    def list_organization_projects_sync(
-        self,
-        organization_id: str,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[ProjectRelation]]:
-        """
-        Return a list of all projects owned by an organization
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        query_string = DevopnessBaseService._get_query_string(
-            {
-                "page": page,
-                "per_page": per_page,
-            }
-        )
-
-        endpoint_parts = [
-            f"/organizations/{organization_id}/projects",
-            f"?{query_string}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, List[ProjectRelation])

@@ -31,6 +31,305 @@ class StaticDataApiService(DevopnessBaseService):
     StaticDataApiService - Auto Generated
     """
 
+    def get_static_application_options(
+        self,
+    ) -> DevopnessResponse[ApplicationOptions]:
+        """
+        List `Application` resource options
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            "/static/application-options",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get_sync(endpoint)
+
+        return DevopnessResponse(response, ApplicationOptions)
+
+    def get_static_cloud_provider_service(
+        self,
+        cloud_provider_service_code: str,
+    ) -> DevopnessResponse[CloudProviderService]:
+        """
+        Get details of a single `Cloud Provider Service`
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/static/cloud-provider-service-options/{cloud_provider_service_code}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get_sync(endpoint)
+
+        return DevopnessResponse(response, CloudProviderService)
+
+    def get_static_credential_options(
+        self,
+    ) -> DevopnessResponse[CredentialOptions]:
+        """
+        List `Credential` resource options
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            "/static/credential-options",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get_sync(endpoint)
+
+        return DevopnessResponse(response, CredentialOptions)
+
+    def get_static_cron_job_options(
+        self,
+    ) -> DevopnessResponse[CronJobOptions]:
+        """
+        List `CronJob` resource options
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            "/static/cronjob-options",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get_sync(endpoint)
+
+        return DevopnessResponse(response, CronJobOptions)
+
+    def get_static_environment_options(
+        self,
+    ) -> DevopnessResponse[EnvironmentOptions]:
+        """
+        List `Environment` options
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            "/static/environment-options",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get_sync(endpoint)
+
+        return DevopnessResponse(response, EnvironmentOptions)
+
+    def get_static_network_rule_options(
+        self,
+    ) -> DevopnessResponse[NetworkRuleOptions]:
+        """
+        List `Network Rule` options
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            "/static/network-rule-options",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get_sync(endpoint)
+
+        return DevopnessResponse(response, NetworkRuleOptions)
+
+    def get_static_server_options(
+        self,
+    ) -> DevopnessResponse[ServerOptions]:
+        """
+        List `Server` options
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            "/static/server-options",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get_sync(endpoint)
+
+        return DevopnessResponse(response, ServerOptions)
+
+    def get_static_service_options(
+        self,
+    ) -> DevopnessResponse[ServiceOptions]:
+        """
+        List `Service` resource options
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            "/static/service-options",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get_sync(endpoint)
+
+        return DevopnessResponse(response, ServiceOptions)
+
+    def get_static_user_profile_options(
+        self,
+    ) -> DevopnessResponse[UserProfileOptions]:
+        """
+        List `User profile` options
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            "/static/user-profile-options",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get_sync(endpoint)
+
+        return DevopnessResponse(response, UserProfileOptions)
+
+    def get_static_virtual_host_options(
+        self,
+    ) -> DevopnessResponse[VirtualHostOptions]:
+        """
+        List `Virtual Host` options
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            "/static/virtual-host-options",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get_sync(endpoint)
+
+        return DevopnessResponse(response, VirtualHostOptions)
+
+    def list_static_cloud_instances_by_cloud_provider_service_code_and_region_code(
+        self,
+        cloud_provider_service_code: str,
+        region_code: str,
+        page: Optional[int] = None,
+        per_page: Optional[int] = None,
+    ) -> DevopnessResponse[List[CloudInstanceRelation]]:
+        """
+        List `Cloud Provider Service` instance types by region
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = DevopnessBaseService._get_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            f"/static/cloud-provider-service-options/{cloud_provider_service_code}/regions/{region_code}/instances",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get_sync(endpoint)
+
+        return DevopnessResponse(response, List[CloudInstanceRelation])
+
+    def list_static_permissions(
+        self,
+        page: Optional[int] = None,
+        per_page: Optional[int] = None,
+    ) -> DevopnessResponse[List[PermissionRelation]]:
+        """
+        List available `Role` permissions
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = DevopnessBaseService._get_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            "/static/permissions",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get_sync(endpoint)
+
+        return DevopnessResponse(response, List[PermissionRelation])
+
+    def list_static_resource_types(
+        self,
+        page: Optional[int] = None,
+        per_page: Optional[int] = None,
+    ) -> DevopnessResponse[List[ResourceTypeRelation]]:
+        """
+        List available resource types
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = DevopnessBaseService._get_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            "/static/resource-types",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get_sync(endpoint)
+
+        return DevopnessResponse(response, List[ResourceTypeRelation])
+
+
+class StaticDataApiServiceAsync(DevopnessBaseService):
+    """
+    StaticDataApiServiceAsync - Auto Generated
+    """
+
     async def get_static_application_options(
         self,
     ) -> DevopnessResponse[ApplicationOptions]:
@@ -48,26 +347,6 @@ class StaticDataApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, ApplicationOptions)
-
-    def get_static_application_options_sync(
-        self,
-    ) -> DevopnessResponse[ApplicationOptions]:
-        """
-        List `Application` resource options
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            "/static/application-options",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, ApplicationOptions)
 
@@ -92,27 +371,6 @@ class StaticDataApiService(DevopnessBaseService):
 
         return DevopnessResponse(response, CloudProviderService)
 
-    def get_static_cloud_provider_service_sync(
-        self,
-        cloud_provider_service_code: str,
-    ) -> DevopnessResponse[CloudProviderService]:
-        """
-        Get details of a single `Cloud Provider Service`
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/static/cloud-provider-service-options/{cloud_provider_service_code}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
-
-        return DevopnessResponse(response, CloudProviderService)
-
     async def get_static_credential_options(
         self,
     ) -> DevopnessResponse[CredentialOptions]:
@@ -130,26 +388,6 @@ class StaticDataApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, CredentialOptions)
-
-    def get_static_credential_options_sync(
-        self,
-    ) -> DevopnessResponse[CredentialOptions]:
-        """
-        List `Credential` resource options
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            "/static/credential-options",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, CredentialOptions)
 
@@ -173,26 +411,6 @@ class StaticDataApiService(DevopnessBaseService):
 
         return DevopnessResponse(response, CronJobOptions)
 
-    def get_static_cron_job_options_sync(
-        self,
-    ) -> DevopnessResponse[CronJobOptions]:
-        """
-        List `CronJob` resource options
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            "/static/cronjob-options",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
-
-        return DevopnessResponse(response, CronJobOptions)
-
     async def get_static_environment_options(
         self,
     ) -> DevopnessResponse[EnvironmentOptions]:
@@ -210,26 +428,6 @@ class StaticDataApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, EnvironmentOptions)
-
-    def get_static_environment_options_sync(
-        self,
-    ) -> DevopnessResponse[EnvironmentOptions]:
-        """
-        List `Environment` options
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            "/static/environment-options",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, EnvironmentOptions)
 
@@ -253,26 +451,6 @@ class StaticDataApiService(DevopnessBaseService):
 
         return DevopnessResponse(response, NetworkRuleOptions)
 
-    def get_static_network_rule_options_sync(
-        self,
-    ) -> DevopnessResponse[NetworkRuleOptions]:
-        """
-        List `Network Rule` options
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            "/static/network-rule-options",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
-
-        return DevopnessResponse(response, NetworkRuleOptions)
-
     async def get_static_server_options(
         self,
     ) -> DevopnessResponse[ServerOptions]:
@@ -290,26 +468,6 @@ class StaticDataApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, ServerOptions)
-
-    def get_static_server_options_sync(
-        self,
-    ) -> DevopnessResponse[ServerOptions]:
-        """
-        List `Server` options
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            "/static/server-options",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, ServerOptions)
 
@@ -333,26 +491,6 @@ class StaticDataApiService(DevopnessBaseService):
 
         return DevopnessResponse(response, ServiceOptions)
 
-    def get_static_service_options_sync(
-        self,
-    ) -> DevopnessResponse[ServiceOptions]:
-        """
-        List `Service` resource options
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            "/static/service-options",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
-
-        return DevopnessResponse(response, ServiceOptions)
-
     async def get_static_user_profile_options(
         self,
     ) -> DevopnessResponse[UserProfileOptions]:
@@ -373,26 +511,6 @@ class StaticDataApiService(DevopnessBaseService):
 
         return DevopnessResponse(response, UserProfileOptions)
 
-    def get_static_user_profile_options_sync(
-        self,
-    ) -> DevopnessResponse[UserProfileOptions]:
-        """
-        List `User profile` options
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            "/static/user-profile-options",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
-
-        return DevopnessResponse(response, UserProfileOptions)
-
     async def get_static_virtual_host_options(
         self,
     ) -> DevopnessResponse[VirtualHostOptions]:
@@ -410,26 +528,6 @@ class StaticDataApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, VirtualHostOptions)
-
-    def get_static_virtual_host_options_sync(
-        self,
-    ) -> DevopnessResponse[VirtualHostOptions]:
-        """
-        List `Virtual Host` options
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            "/static/virtual-host-options",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, VirtualHostOptions)
 
@@ -465,38 +563,6 @@ class StaticDataApiService(DevopnessBaseService):
 
         return DevopnessResponse(response, List[CloudInstanceRelation])
 
-    def list_static_cloud_instances_by_cloud_provider_service_code_and_region_code_sync(
-        self,
-        cloud_provider_service_code: str,
-        region_code: str,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[CloudInstanceRelation]]:
-        """
-        List `Cloud Provider Service` instance types by region
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        query_string = DevopnessBaseService._get_query_string(
-            {
-                "page": page,
-                "per_page": per_page,
-            }
-        )
-
-        endpoint_parts = [
-            f"/static/cloud-provider-service-options/{cloud_provider_service_code}/regions/{region_code}/instances",
-            f"?{query_string}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
-
-        return DevopnessResponse(response, List[CloudInstanceRelation])
-
     async def list_static_permissions(
         self,
         page: Optional[int] = None,
@@ -527,36 +593,6 @@ class StaticDataApiService(DevopnessBaseService):
 
         return DevopnessResponse(response, List[PermissionRelation])
 
-    def list_static_permissions_sync(
-        self,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[PermissionRelation]]:
-        """
-        List available `Role` permissions
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        query_string = DevopnessBaseService._get_query_string(
-            {
-                "page": page,
-                "per_page": per_page,
-            }
-        )
-
-        endpoint_parts = [
-            "/static/permissions",
-            f"?{query_string}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
-
-        return DevopnessResponse(response, List[PermissionRelation])
-
     async def list_static_resource_types(
         self,
         page: Optional[int] = None,
@@ -584,35 +620,5 @@ class StaticDataApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, List[ResourceTypeRelation])
-
-    def list_static_resource_types_sync(
-        self,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[ResourceTypeRelation]]:
-        """
-        List available resource types
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        query_string = DevopnessBaseService._get_query_string(
-            {
-                "page": page,
-                "per_page": per_page,
-            }
-        )
-
-        endpoint_parts = [
-            "/static/resource-types",
-            f"?{query_string}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, List[ResourceTypeRelation])

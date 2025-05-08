@@ -14,6 +14,75 @@ class TeamInvitationsApiService(DevopnessBaseService):
     TeamInvitationsApiService - Auto Generated
     """
 
+    def accept_team_invitation(
+        self,
+        team_invitation_id: str,
+    ) -> DevopnessResponse[None]:
+        """
+        Accept a pending team invitation
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/team-invitations/{team_invitation_id}/accept",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post_sync(endpoint)
+
+        return DevopnessResponse(response, None)
+
+    def delete_team_invitation(
+        self,
+        team_invitation_id: str,
+    ) -> DevopnessResponse[None]:
+        """
+        Delete a pending team invitation
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/team-invitations/{team_invitation_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._delete_sync(endpoint)
+
+        return DevopnessResponse(response, None)
+
+    def reject_team_invitation(
+        self,
+        team_invitation_id: str,
+    ) -> DevopnessResponse[None]:
+        """
+        Reject a pending team invitation
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/team-invitations/{team_invitation_id}/reject",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post_sync(endpoint)
+
+        return DevopnessResponse(response, None)
+
+
+class TeamInvitationsApiServiceAsync(DevopnessBaseService):
+    """
+    TeamInvitationsApiServiceAsync - Auto Generated
+    """
+
     async def accept_team_invitation(
         self,
         team_invitation_id: str,
@@ -32,27 +101,6 @@ class TeamInvitationsApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint)
-
-        return DevopnessResponse(response, None)
-
-    def accept_team_invitation_sync(
-        self,
-        team_invitation_id: str,
-    ) -> DevopnessResponse[None]:
-        """
-        Accept a pending team invitation
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/team-invitations/{team_invitation_id}/accept",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -77,27 +125,6 @@ class TeamInvitationsApiService(DevopnessBaseService):
 
         return DevopnessResponse(response, None)
 
-    def delete_team_invitation_sync(
-        self,
-        team_invitation_id: str,
-    ) -> DevopnessResponse[None]:
-        """
-        Delete a pending team invitation
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/team-invitations/{team_invitation_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._delete_sync(endpoint)
-
-        return DevopnessResponse(response, None)
-
     async def reject_team_invitation(
         self,
         team_invitation_id: str,
@@ -116,26 +143,5 @@ class TeamInvitationsApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint)
-
-        return DevopnessResponse(response, None)
-
-    def reject_team_invitation_sync(
-        self,
-        team_invitation_id: str,
-    ) -> DevopnessResponse[None]:
-        """
-        Reject a pending team invitation
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/team-invitations/{team_invitation_id}/reject",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint)
 
         return DevopnessResponse(response, None)

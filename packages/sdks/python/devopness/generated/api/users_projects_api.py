@@ -17,6 +17,45 @@ class UsersProjectsApiService(DevopnessBaseService):
     UsersProjectsApiService - Auto Generated
     """
 
+    def list_user_projects(
+        self,
+        user_id: str,
+        page: Optional[int] = None,
+        per_page: Optional[int] = None,
+        subscription_id: Optional[int] = None,
+    ) -> DevopnessResponse[List[ProjectRelation]]:
+        """
+        Return a list of all projects owned by a user
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = DevopnessBaseService._get_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+                "subscription_id": subscription_id,
+            }
+        )
+
+        endpoint_parts = [
+            f"/users/{user_id}/projects",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get_sync(endpoint)
+
+        return DevopnessResponse(response, List[ProjectRelation])
+
+
+class UsersProjectsApiServiceAsync(DevopnessBaseService):
+    """
+    UsersProjectsApiServiceAsync - Auto Generated
+    """
+
     async def list_user_projects(
         self,
         user_id: str,
@@ -47,38 +86,5 @@ class UsersProjectsApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, List[ProjectRelation])
-
-    def list_user_projects_sync(
-        self,
-        user_id: str,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-        subscription_id: Optional[int] = None,
-    ) -> DevopnessResponse[List[ProjectRelation]]:
-        """
-        Return a list of all projects owned by a user
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        query_string = DevopnessBaseService._get_query_string(
-            {
-                "page": page,
-                "per_page": per_page,
-                "subscription_id": subscription_id,
-            }
-        )
-
-        endpoint_parts = [
-            f"/users/{user_id}/projects",
-            f"?{query_string}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, List[ProjectRelation])

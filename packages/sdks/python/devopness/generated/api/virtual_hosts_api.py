@@ -26,6 +26,160 @@ class VirtualHostsApiService(DevopnessBaseService):
     VirtualHostsApiService - Auto Generated
     """
 
+    def add_environment_virtual_host(
+        self,
+        environment_id: int,
+        virtual_host_environment_create: Union[
+            VirtualHostEnvironmentCreate,
+            VirtualHostEnvironmentCreatePlain,
+        ],
+    ) -> DevopnessResponse[VirtualHost]:
+        """
+        Create a new virtual host
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/environments/{environment_id}/virtual-hosts",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post_sync(endpoint, virtual_host_environment_create)
+
+        return DevopnessResponse(response, VirtualHost)
+
+    def delete_virtual_host(
+        self,
+        virtual_host_id: int,
+    ) -> DevopnessResponse[None]:
+        """
+        Delete a given virtual host
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/virtual-hosts/{virtual_host_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._delete_sync(endpoint)
+
+        return DevopnessResponse(response, None)
+
+    def get_status_virtual_host(
+        self,
+        virtual_host_id: int,
+        virtual_host_get_status: Union[
+            VirtualHostGetStatus,
+            VirtualHostGetStatusPlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Get current status of a virtual host
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/virtual-hosts/{virtual_host_id}/get-status",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post_sync(endpoint, virtual_host_get_status)
+
+        return DevopnessResponse(response, None)
+
+    def get_virtual_host(
+        self,
+        virtual_host_id: int,
+    ) -> DevopnessResponse[VirtualHost]:
+        """
+        Get a virtual host by ID
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/virtual-hosts/{virtual_host_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get_sync(endpoint)
+
+        return DevopnessResponse(response, VirtualHost)
+
+    def list_environment_virtual_hosts(
+        self,
+        environment_id: int,
+        page: Optional[int] = None,
+        per_page: Optional[int] = None,
+    ) -> DevopnessResponse[List[VirtualHostRelation]]:
+        """
+        Return a list of all Virtual Hosts belonging to an environment
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = DevopnessBaseService._get_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            f"/environments/{environment_id}/virtual-hosts",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get_sync(endpoint)
+
+        return DevopnessResponse(response, List[VirtualHostRelation])
+
+    def update_virtual_host(
+        self,
+        virtual_host_id: int,
+        virtual_host_update: Union[
+            VirtualHostUpdate,
+            VirtualHostUpdatePlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Update an existing virtual host
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/virtual-hosts/{virtual_host_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._put_sync(endpoint, virtual_host_update)
+
+        return DevopnessResponse(response, None)
+
+
+class VirtualHostsApiServiceAsync(DevopnessBaseService):
+    """
+    VirtualHostsApiServiceAsync - Auto Generated
+    """
+
     async def add_environment_virtual_host(
         self,
         environment_id: int,
@@ -51,31 +205,6 @@ class VirtualHostsApiService(DevopnessBaseService):
 
         return DevopnessResponse(response, VirtualHost)
 
-    def add_environment_virtual_host_sync(
-        self,
-        environment_id: int,
-        virtual_host_environment_create: Union[
-            VirtualHostEnvironmentCreate,
-            VirtualHostEnvironmentCreatePlain,
-        ],
-    ) -> DevopnessResponse[VirtualHost]:
-        """
-        Create a new virtual host
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/environments/{environment_id}/virtual-hosts",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, virtual_host_environment_create)
-
-        return DevopnessResponse(response, VirtualHost)
-
     async def delete_virtual_host(
         self,
         virtual_host_id: int,
@@ -94,27 +223,6 @@ class VirtualHostsApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._delete(endpoint)
-
-        return DevopnessResponse(response, None)
-
-    def delete_virtual_host_sync(
-        self,
-        virtual_host_id: int,
-    ) -> DevopnessResponse[None]:
-        """
-        Delete a given virtual host
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/virtual-hosts/{virtual_host_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._delete_sync(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -143,31 +251,6 @@ class VirtualHostsApiService(DevopnessBaseService):
 
         return DevopnessResponse(response, None)
 
-    def get_status_virtual_host_sync(
-        self,
-        virtual_host_id: int,
-        virtual_host_get_status: Union[
-            VirtualHostGetStatus,
-            VirtualHostGetStatusPlain,
-        ],
-    ) -> DevopnessResponse[None]:
-        """
-        Get current status of a virtual host
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/virtual-hosts/{virtual_host_id}/get-status",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, virtual_host_get_status)
-
-        return DevopnessResponse(response, None)
-
     async def get_virtual_host(
         self,
         virtual_host_id: int,
@@ -186,27 +269,6 @@ class VirtualHostsApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, VirtualHost)
-
-    def get_virtual_host_sync(
-        self,
-        virtual_host_id: int,
-    ) -> DevopnessResponse[VirtualHost]:
-        """
-        Get a virtual host by ID
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/virtual-hosts/{virtual_host_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, VirtualHost)
 
@@ -241,37 +303,6 @@ class VirtualHostsApiService(DevopnessBaseService):
 
         return DevopnessResponse(response, List[VirtualHostRelation])
 
-    def list_environment_virtual_hosts_sync(
-        self,
-        environment_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[VirtualHostRelation]]:
-        """
-        Return a list of all Virtual Hosts belonging to an environment
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        query_string = DevopnessBaseService._get_query_string(
-            {
-                "page": page,
-                "per_page": per_page,
-            }
-        )
-
-        endpoint_parts = [
-            f"/environments/{environment_id}/virtual-hosts",
-            f"?{query_string}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
-
-        return DevopnessResponse(response, List[VirtualHostRelation])
-
     async def update_virtual_host(
         self,
         virtual_host_id: int,
@@ -294,30 +325,5 @@ class VirtualHostsApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._put(endpoint, virtual_host_update)
-
-        return DevopnessResponse(response, None)
-
-    def update_virtual_host_sync(
-        self,
-        virtual_host_id: int,
-        virtual_host_update: Union[
-            VirtualHostUpdate,
-            VirtualHostUpdatePlain,
-        ],
-    ) -> DevopnessResponse[None]:
-        """
-        Update an existing virtual host
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/virtual-hosts/{virtual_host_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._put_sync(endpoint, virtual_host_update)
 
         return DevopnessResponse(response, None)

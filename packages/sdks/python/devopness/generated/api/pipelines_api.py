@@ -24,6 +24,137 @@ class PipelinesApiService(DevopnessBaseService):
     PipelinesApiService - Auto Generated
     """
 
+    def add_pipeline(
+        self,
+        resource_id: int,
+        resource_type: str,
+        pipeline_create: Union[
+            PipelineCreate,
+            PipelineCreatePlain,
+        ],
+    ) -> DevopnessResponse[Pipeline]:
+        """
+        Add a Pipeline to a resource
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/pipelines/{resource_type}/{resource_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post_sync(endpoint, pipeline_create)
+
+        return DevopnessResponse(response, Pipeline)
+
+    def delete_pipeline(
+        self,
+        pipeline_id: int,
+    ) -> DevopnessResponse[None]:
+        """
+        Delete a given Pipeline
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/pipelines/{pipeline_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._delete_sync(endpoint)
+
+        return DevopnessResponse(response, None)
+
+    def get_pipeline(
+        self,
+        pipeline_id: int,
+    ) -> DevopnessResponse[Pipeline]:
+        """
+        Get a Pipeline by ID
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/pipelines/{pipeline_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get_sync(endpoint)
+
+        return DevopnessResponse(response, Pipeline)
+
+    def list_pipelines_by_resource_type(
+        self,
+        resource_id: int,
+        resource_type: str,
+        page: Optional[int] = None,
+        per_page: Optional[int] = None,
+    ) -> DevopnessResponse[List[PipelineRelation]]:
+        """
+        Return a list of pipelines to a resource
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = DevopnessBaseService._get_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            f"/pipelines/{resource_type}/{resource_id}",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get_sync(endpoint)
+
+        return DevopnessResponse(response, List[PipelineRelation])
+
+    def update_pipeline(
+        self,
+        pipeline_id: int,
+        pipeline_update: Union[
+            PipelineUpdate,
+            PipelineUpdatePlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Update an existing Pipeline
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/pipelines/{pipeline_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._put_sync(endpoint, pipeline_update)
+
+        return DevopnessResponse(response, None)
+
+
+class PipelinesApiServiceAsync(DevopnessBaseService):
+    """
+    PipelinesApiServiceAsync - Auto Generated
+    """
+
     async def add_pipeline(
         self,
         resource_id: int,
@@ -50,32 +181,6 @@ class PipelinesApiService(DevopnessBaseService):
 
         return DevopnessResponse(response, Pipeline)
 
-    def add_pipeline_sync(
-        self,
-        resource_id: int,
-        resource_type: str,
-        pipeline_create: Union[
-            PipelineCreate,
-            PipelineCreatePlain,
-        ],
-    ) -> DevopnessResponse[Pipeline]:
-        """
-        Add a Pipeline to a resource
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/pipelines/{resource_type}/{resource_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, pipeline_create)
-
-        return DevopnessResponse(response, Pipeline)
-
     async def delete_pipeline(
         self,
         pipeline_id: int,
@@ -97,27 +202,6 @@ class PipelinesApiService(DevopnessBaseService):
 
         return DevopnessResponse(response, None)
 
-    def delete_pipeline_sync(
-        self,
-        pipeline_id: int,
-    ) -> DevopnessResponse[None]:
-        """
-        Delete a given Pipeline
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/pipelines/{pipeline_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._delete_sync(endpoint)
-
-        return DevopnessResponse(response, None)
-
     async def get_pipeline(
         self,
         pipeline_id: int,
@@ -136,27 +220,6 @@ class PipelinesApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, Pipeline)
-
-    def get_pipeline_sync(
-        self,
-        pipeline_id: int,
-    ) -> DevopnessResponse[Pipeline]:
-        """
-        Get a Pipeline by ID
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/pipelines/{pipeline_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, Pipeline)
 
@@ -192,38 +255,6 @@ class PipelinesApiService(DevopnessBaseService):
 
         return DevopnessResponse(response, List[PipelineRelation])
 
-    def list_pipelines_by_resource_type_sync(
-        self,
-        resource_id: int,
-        resource_type: str,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[PipelineRelation]]:
-        """
-        Return a list of pipelines to a resource
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        query_string = DevopnessBaseService._get_query_string(
-            {
-                "page": page,
-                "per_page": per_page,
-            }
-        )
-
-        endpoint_parts = [
-            f"/pipelines/{resource_type}/{resource_id}",
-            f"?{query_string}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
-
-        return DevopnessResponse(response, List[PipelineRelation])
-
     async def update_pipeline(
         self,
         pipeline_id: int,
@@ -246,30 +277,5 @@ class PipelinesApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._put(endpoint, pipeline_update)
-
-        return DevopnessResponse(response, None)
-
-    def update_pipeline_sync(
-        self,
-        pipeline_id: int,
-        pipeline_update: Union[
-            PipelineUpdate,
-            PipelineUpdatePlain,
-        ],
-    ) -> DevopnessResponse[None]:
-        """
-        Update an existing Pipeline
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/pipelines/{pipeline_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._put_sync(endpoint, pipeline_update)
 
         return DevopnessResponse(response, None)

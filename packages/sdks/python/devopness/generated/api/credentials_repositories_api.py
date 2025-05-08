@@ -17,6 +17,66 @@ class CredentialsRepositoriesApiService(DevopnessBaseService):
     CredentialsRepositoriesApiService - Auto Generated
     """
 
+    def get_credential_repository(
+        self,
+        credential_id: int,
+        repository_name: str,
+        repository_owner: str,
+    ) -> DevopnessResponse[Repository]:
+        """
+        Get details of a repository by its name
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/credentials/{credential_id}/repositories/{repository_owner}/{repository_name}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get_sync(endpoint)
+
+        return DevopnessResponse(response, Repository)
+
+    def list_credential_repositories(
+        self,
+        credential_id: int,
+        page: Optional[int] = None,
+        per_page: Optional[int] = None,
+    ) -> DevopnessResponse[List[RepositoryRelation]]:
+        """
+        Return a list of all repositories belonging to the source provider linked to the credential
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = DevopnessBaseService._get_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            f"/credentials/{credential_id}/repositories",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get_sync(endpoint)
+
+        return DevopnessResponse(response, List[RepositoryRelation])
+
+
+class CredentialsRepositoriesApiServiceAsync(DevopnessBaseService):
+    """
+    CredentialsRepositoriesApiServiceAsync - Auto Generated
+    """
+
     async def get_credential_repository(
         self,
         credential_id: int,
@@ -37,29 +97,6 @@ class CredentialsRepositoriesApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, Repository)
-
-    def get_credential_repository_sync(
-        self,
-        credential_id: int,
-        repository_name: str,
-        repository_owner: str,
-    ) -> DevopnessResponse[Repository]:
-        """
-        Get details of a repository by its name
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/credentials/{credential_id}/repositories/{repository_owner}/{repository_name}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, Repository)
 
@@ -91,36 +128,5 @@ class CredentialsRepositoriesApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, List[RepositoryRelation])
-
-    def list_credential_repositories_sync(
-        self,
-        credential_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[RepositoryRelation]]:
-        """
-        Return a list of all repositories belonging to the source provider linked to the credential
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        query_string = DevopnessBaseService._get_query_string(
-            {
-                "page": page,
-                "per_page": per_page,
-            }
-        )
-
-        endpoint_parts = [
-            f"/credentials/{credential_id}/repositories",
-            f"?{query_string}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, List[RepositoryRelation])
