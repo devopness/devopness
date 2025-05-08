@@ -29,13 +29,13 @@ class {{classname}}Service(DevopnessBaseService):
             DevopnessNetworkError: If a network error occurs.
         """
 {{>api_method_body_endpoint}}
-        response = self._{{#lambda.lowercase}}{{httpMethod}}_sync{{/lambda.lowercase}}(endpoint{{#allParams}}{{^isHeaderParam}}{{#-last}}{{^isPrimitiveType}}, {{paramName}}{{/isPrimitiveType}}{{/-last}}{{/isHeaderParam}}{{/allParams}})
+        response = self._{{#lambda.lowercase}}{{httpMethod}}{{/lambda.lowercase}}(endpoint{{#allParams}}{{^isHeaderParam}}{{#-last}}{{^isPrimitiveType}}, {{paramName}}{{/isPrimitiveType}}{{/-last}}{{/isHeaderParam}}{{/allParams}})
 
         {{>api_method_body_return}}
 {{/operation}}
 {{/operations}}
 
-class {{classname}}ServiceAsync(DevopnessBaseService):
+class {{classname}}ServiceAsync(DevopnessBaseServiceAsync):
     """
     {{classname}}ServiceAsync - Auto Generated
     """

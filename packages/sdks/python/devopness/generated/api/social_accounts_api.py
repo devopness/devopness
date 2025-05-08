@@ -8,7 +8,7 @@ Note:
 
 from typing import List, Optional, Union
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     SocialAccount,
     SocialAccountCreate,
@@ -43,7 +43,7 @@ class SocialAccountsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, social_account_create)
+        response = self._post(endpoint, social_account_create)
 
         return DevopnessResponse(response, SocialAccount)
 
@@ -64,7 +64,7 @@ class SocialAccountsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._delete_sync(endpoint)
+        response = self._delete(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -85,7 +85,7 @@ class SocialAccountsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, SocialAccount)
 
@@ -106,7 +106,7 @@ class SocialAccountsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, SocialAccountStatus)
 
@@ -136,12 +136,12 @@ class SocialAccountsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, List[SocialAccountRelation])
 
 
-class SocialAccountsApiServiceAsync(DevopnessBaseService):
+class SocialAccountsApiServiceAsync(DevopnessBaseServiceAsync):
     """
     SocialAccountsApiServiceAsync - Auto Generated
     """

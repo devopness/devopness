@@ -8,7 +8,7 @@ Note:
 
 from typing import Union
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     PasswordResetResponse,
     PasswordUserReset,
@@ -43,7 +43,7 @@ class UsersPasswordsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, password_user_reset)
+        response = self._post(endpoint, password_user_reset)
 
         return DevopnessResponse(response, PasswordResetResponse)
 
@@ -67,12 +67,12 @@ class UsersPasswordsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, password_user_send_reset_link)
+        response = self._post(endpoint, password_user_send_reset_link)
 
         return DevopnessResponse(response, None)
 
 
-class UsersPasswordsApiServiceAsync(DevopnessBaseService):
+class UsersPasswordsApiServiceAsync(DevopnessBaseServiceAsync):
     """
     UsersPasswordsApiServiceAsync - Auto Generated
     """

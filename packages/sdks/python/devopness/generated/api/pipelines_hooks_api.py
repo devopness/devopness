@@ -8,7 +8,7 @@ Note:
 
 from typing import List, Optional, Union
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import Hook, HookPipelineCreate, HookPipelineCreatePlain, HookRelation
 
 
@@ -39,7 +39,7 @@ class PipelinesHooksApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, hook_pipeline_create)
+        response = self._post(endpoint, hook_pipeline_create)
 
         return DevopnessResponse(response, Hook)
 
@@ -70,12 +70,12 @@ class PipelinesHooksApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, List[HookRelation])
 
 
-class PipelinesHooksApiServiceAsync(DevopnessBaseService):
+class PipelinesHooksApiServiceAsync(DevopnessBaseServiceAsync):
     """
     PipelinesHooksApiServiceAsync - Auto Generated
     """

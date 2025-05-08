@@ -8,7 +8,7 @@ Note:
 
 from typing import List, Optional, Union
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Variable,
     VariableRelation,
@@ -43,7 +43,7 @@ class ServicesVariablesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, variable_service_create)
+        response = self._post(endpoint, variable_service_create)
 
         return DevopnessResponse(response, Variable)
 
@@ -74,12 +74,12 @@ class ServicesVariablesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, List[VariableRelation])
 
 
-class ServicesVariablesApiServiceAsync(DevopnessBaseService):
+class ServicesVariablesApiServiceAsync(DevopnessBaseServiceAsync):
     """
     ServicesVariablesApiServiceAsync - Auto Generated
     """

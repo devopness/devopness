@@ -8,7 +8,7 @@ Note:
 
 from typing import List, Optional, Union
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Subnet,
     SubnetNetworkCreate,
@@ -43,7 +43,7 @@ class NetworksSubnetsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, subnet_network_create)
+        response = self._post(endpoint, subnet_network_create)
 
         return DevopnessResponse(response, Subnet)
 
@@ -78,12 +78,12 @@ class NetworksSubnetsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, List[SubnetRelation])
 
 
-class NetworksSubnetsApiServiceAsync(DevopnessBaseService):
+class NetworksSubnetsApiServiceAsync(DevopnessBaseServiceAsync):
     """
     NetworksSubnetsApiServiceAsync - Auto Generated
     """

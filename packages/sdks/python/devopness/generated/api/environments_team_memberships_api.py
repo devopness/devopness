@@ -8,7 +8,7 @@ Note:
 
 from typing import List, Optional
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import TeamMembershipRelation
 
 
@@ -44,12 +44,12 @@ class EnvironmentsTeamMembershipsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, List[TeamMembershipRelation])
 
 
-class EnvironmentsTeamMembershipsApiServiceAsync(DevopnessBaseService):
+class EnvironmentsTeamMembershipsApiServiceAsync(DevopnessBaseServiceAsync):
     """
     EnvironmentsTeamMembershipsApiServiceAsync - Auto Generated
     """

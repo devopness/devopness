@@ -8,7 +8,7 @@ Note:
 
 from typing import List, Optional
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import ActionRelation
 
 
@@ -44,7 +44,7 @@ class EnvironmentsActionsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, List[ActionRelation])
 
@@ -76,12 +76,12 @@ class EnvironmentsActionsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, List[ActionRelation])
 
 
-class EnvironmentsActionsApiServiceAsync(DevopnessBaseService):
+class EnvironmentsActionsApiServiceAsync(DevopnessBaseServiceAsync):
     """
     EnvironmentsActionsApiServiceAsync - Auto Generated
     """

@@ -8,7 +8,7 @@ Note:
 
 from typing import Union
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Step,
     StepPipelineCreate,
@@ -44,7 +44,7 @@ class PipelinesStepsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, step_pipeline_create)
+        response = self._post(endpoint, step_pipeline_create)
 
         return DevopnessResponse(response, Step)
 
@@ -66,7 +66,7 @@ class PipelinesStepsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint)
+        response = self._post(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -88,7 +88,7 @@ class PipelinesStepsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._delete_sync(endpoint)
+        response = self._delete(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -114,12 +114,12 @@ class PipelinesStepsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._put_sync(endpoint, step_pipeline_update)
+        response = self._put(endpoint, step_pipeline_update)
 
         return DevopnessResponse(response, None)
 
 
-class PipelinesStepsApiServiceAsync(DevopnessBaseService):
+class PipelinesStepsApiServiceAsync(DevopnessBaseServiceAsync):
     """
     PipelinesStepsApiServiceAsync - Auto Generated
     """

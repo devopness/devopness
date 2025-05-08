@@ -8,7 +8,7 @@ Note:
 
 from typing import List, Optional, Union
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Credential,
     CredentialEnvironmentCreate,
@@ -46,7 +46,7 @@ class CredentialsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, credential_environment_create)
+        response = self._post(endpoint, credential_environment_create)
 
         return DevopnessResponse(response, Credential)
 
@@ -67,7 +67,7 @@ class CredentialsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._delete_sync(endpoint)
+        response = self._delete(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -88,7 +88,7 @@ class CredentialsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, Credential)
 
@@ -110,7 +110,7 @@ class CredentialsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, CredentialSetting)
 
@@ -131,7 +131,7 @@ class CredentialsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint)
+        response = self._post(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -166,7 +166,7 @@ class CredentialsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, List[CredentialRelation])
 
@@ -191,12 +191,12 @@ class CredentialsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._put_sync(endpoint, credential_update)
+        response = self._put(endpoint, credential_update)
 
         return DevopnessResponse(response, None)
 
 
-class CredentialsApiServiceAsync(DevopnessBaseService):
+class CredentialsApiServiceAsync(DevopnessBaseServiceAsync):
     """
     CredentialsApiServiceAsync - Auto Generated
     """

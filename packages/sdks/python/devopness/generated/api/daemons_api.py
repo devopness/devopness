@@ -8,7 +8,7 @@ Note:
 
 from typing import List, Optional, Union
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Daemon,
     DaemonEnvironmentCreate,
@@ -53,7 +53,7 @@ class DaemonsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, daemon_environment_create)
+        response = self._post(endpoint, daemon_environment_create)
 
         return DevopnessResponse(response, Daemon)
 
@@ -74,7 +74,7 @@ class DaemonsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._delete_sync(endpoint)
+        response = self._delete(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -95,7 +95,7 @@ class DaemonsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, Daemon)
 
@@ -120,7 +120,7 @@ class DaemonsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, daemon_get_status)
+        response = self._post(endpoint, daemon_get_status)
 
         return DevopnessResponse(response, None)
 
@@ -151,7 +151,7 @@ class DaemonsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, List[DaemonRelation])
 
@@ -176,7 +176,7 @@ class DaemonsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, daemon_restart)
+        response = self._post(endpoint, daemon_restart)
 
         return DevopnessResponse(response, None)
 
@@ -201,7 +201,7 @@ class DaemonsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, daemon_start)
+        response = self._post(endpoint, daemon_start)
 
         return DevopnessResponse(response, None)
 
@@ -226,7 +226,7 @@ class DaemonsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, daemon_stop)
+        response = self._post(endpoint, daemon_stop)
 
         return DevopnessResponse(response, None)
 
@@ -251,12 +251,12 @@ class DaemonsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._put_sync(endpoint, daemon_update)
+        response = self._put(endpoint, daemon_update)
 
         return DevopnessResponse(response, None)
 
 
-class DaemonsApiServiceAsync(DevopnessBaseService):
+class DaemonsApiServiceAsync(DevopnessBaseServiceAsync):
     """
     DaemonsApiServiceAsync - Auto Generated
     """

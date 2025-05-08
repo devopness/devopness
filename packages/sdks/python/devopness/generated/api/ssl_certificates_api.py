@@ -8,7 +8,7 @@ Note:
 
 from typing import List, Optional, Union
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     SslCertificate,
     SslCertificateEnvironmentCreate,
@@ -43,7 +43,7 @@ class SSLCertificatesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, ssl_certificate_environment_create)
+        response = self._post(endpoint, ssl_certificate_environment_create)
 
         return DevopnessResponse(response, SslCertificate)
 
@@ -64,7 +64,7 @@ class SSLCertificatesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._delete_sync(endpoint)
+        response = self._delete(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -85,7 +85,7 @@ class SSLCertificatesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, SslCertificate)
 
@@ -116,12 +116,12 @@ class SSLCertificatesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, List[SslCertificateRelation])
 
 
-class SSLCertificatesApiServiceAsync(DevopnessBaseService):
+class SSLCertificatesApiServiceAsync(DevopnessBaseServiceAsync):
     """
     SSLCertificatesApiServiceAsync - Auto Generated
     """

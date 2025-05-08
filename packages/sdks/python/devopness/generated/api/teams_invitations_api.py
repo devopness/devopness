@@ -8,7 +8,7 @@ Note:
 
 from typing import List, Optional, Union
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Invitation,
     InvitationRelation,
@@ -43,7 +43,7 @@ class TeamsInvitationsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, invitation_team_create)
+        response = self._post(endpoint, invitation_team_create)
 
         return DevopnessResponse(response, Invitation)
 
@@ -74,12 +74,12 @@ class TeamsInvitationsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, List[InvitationRelation])
 
 
-class TeamsInvitationsApiServiceAsync(DevopnessBaseService):
+class TeamsInvitationsApiServiceAsync(DevopnessBaseServiceAsync):
     """
     TeamsInvitationsApiServiceAsync - Auto Generated
     """

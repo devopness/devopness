@@ -8,7 +8,7 @@ Note:
 
 from typing import List, Optional, Union
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     SshKey,
     SshKeyEnvironmentCreate,
@@ -45,7 +45,7 @@ class SSHKeysApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, ssh_key_environment_create)
+        response = self._post(endpoint, ssh_key_environment_create)
 
         return DevopnessResponse(response, SshKey)
 
@@ -66,7 +66,7 @@ class SSHKeysApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._delete_sync(endpoint)
+        response = self._delete(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -87,7 +87,7 @@ class SSHKeysApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, SshKey)
 
@@ -118,7 +118,7 @@ class SSHKeysApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, List[SshKeyRelation])
 
@@ -143,12 +143,12 @@ class SSHKeysApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._put_sync(endpoint, ssh_key_update)
+        response = self._put(endpoint, ssh_key_update)
 
         return DevopnessResponse(response, None)
 
 
-class SSHKeysApiServiceAsync(DevopnessBaseService):
+class SSHKeysApiServiceAsync(DevopnessBaseServiceAsync):
     """
     SSHKeysApiServiceAsync - Auto Generated
     """

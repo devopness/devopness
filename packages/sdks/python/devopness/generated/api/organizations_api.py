@@ -8,7 +8,7 @@ Note:
 
 from typing import List, Optional, Union
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Organization,
     OrganizationActivity,
@@ -45,7 +45,7 @@ class OrganizationsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, organization_create)
+        response = self._post(endpoint, organization_create)
 
         return DevopnessResponse(response, Organization)
 
@@ -66,7 +66,7 @@ class OrganizationsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, Organization)
 
@@ -87,7 +87,7 @@ class OrganizationsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, OrganizationActivity)
 
@@ -117,7 +117,7 @@ class OrganizationsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, List[OrganizationRelation])
 
@@ -142,12 +142,12 @@ class OrganizationsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._put_sync(endpoint, organization_update)
+        response = self._put(endpoint, organization_update)
 
         return DevopnessResponse(response, None)
 
 
-class OrganizationsApiServiceAsync(DevopnessBaseService):
+class OrganizationsApiServiceAsync(DevopnessBaseServiceAsync):
     """
     OrganizationsApiServiceAsync - Auto Generated
     """

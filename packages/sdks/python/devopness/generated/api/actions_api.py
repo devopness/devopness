@@ -8,7 +8,7 @@ Note:
 
 from typing import List, Optional
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import Action, ActionRelation, ActionRetryResponse
 
 
@@ -34,7 +34,7 @@ class ActionsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, Action)
 
@@ -64,7 +64,7 @@ class ActionsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, List[ActionRelation])
 
@@ -96,7 +96,7 @@ class ActionsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, List[ActionRelation])
 
@@ -128,7 +128,7 @@ class ActionsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, List[ActionRelation])
 
@@ -149,12 +149,12 @@ class ActionsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint)
+        response = self._post(endpoint)
 
         return DevopnessResponse(response, ActionRetryResponse)
 
 
-class ActionsApiServiceAsync(DevopnessBaseService):
+class ActionsApiServiceAsync(DevopnessBaseServiceAsync):
     """
     ActionsApiServiceAsync - Auto Generated
     """

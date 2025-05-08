@@ -8,7 +8,7 @@ Note:
 
 from typing import List, Optional, Union
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import Role, RoleProjectCreate, RoleProjectCreatePlain, RoleRelation
 
 
@@ -38,7 +38,7 @@ class ProjectsRolesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, role_project_create)
+        response = self._post(endpoint, role_project_create)
 
         return DevopnessResponse(response, Role)
 
@@ -69,12 +69,12 @@ class ProjectsRolesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, List[RoleRelation])
 
 
-class ProjectsRolesApiServiceAsync(DevopnessBaseService):
+class ProjectsRolesApiServiceAsync(DevopnessBaseServiceAsync):
     """
     ProjectsRolesApiServiceAsync - Auto Generated
     """

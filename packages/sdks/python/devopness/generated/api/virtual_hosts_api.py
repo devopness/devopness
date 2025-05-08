@@ -8,7 +8,7 @@ Note:
 
 from typing import List, Optional, Union
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     VirtualHost,
     VirtualHostEnvironmentCreate,
@@ -47,7 +47,7 @@ class VirtualHostsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, virtual_host_environment_create)
+        response = self._post(endpoint, virtual_host_environment_create)
 
         return DevopnessResponse(response, VirtualHost)
 
@@ -68,7 +68,7 @@ class VirtualHostsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._delete_sync(endpoint)
+        response = self._delete(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -93,7 +93,7 @@ class VirtualHostsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, virtual_host_get_status)
+        response = self._post(endpoint, virtual_host_get_status)
 
         return DevopnessResponse(response, None)
 
@@ -114,7 +114,7 @@ class VirtualHostsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, VirtualHost)
 
@@ -145,7 +145,7 @@ class VirtualHostsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, List[VirtualHostRelation])
 
@@ -170,12 +170,12 @@ class VirtualHostsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._put_sync(endpoint, virtual_host_update)
+        response = self._put(endpoint, virtual_host_update)
 
         return DevopnessResponse(response, None)
 
 
-class VirtualHostsApiServiceAsync(DevopnessBaseService):
+class VirtualHostsApiServiceAsync(DevopnessBaseServiceAsync):
     """
     VirtualHostsApiServiceAsync - Auto Generated
     """

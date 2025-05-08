@@ -6,7 +6,7 @@ Note:
     https://openapi-generator.tech
 """
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 
 
 class TeamInvitationsApiService(DevopnessBaseService):
@@ -31,7 +31,7 @@ class TeamInvitationsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint)
+        response = self._post(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -52,7 +52,7 @@ class TeamInvitationsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._delete_sync(endpoint)
+        response = self._delete(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -73,12 +73,12 @@ class TeamInvitationsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint)
+        response = self._post(endpoint)
 
         return DevopnessResponse(response, None)
 
 
-class TeamInvitationsApiServiceAsync(DevopnessBaseService):
+class TeamInvitationsApiServiceAsync(DevopnessBaseServiceAsync):
     """
     TeamInvitationsApiServiceAsync - Auto Generated
     """

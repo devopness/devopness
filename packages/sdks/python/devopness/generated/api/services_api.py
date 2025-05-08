@@ -8,7 +8,7 @@ Note:
 
 from typing import List, Optional, Union
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Service,
     ServiceEnvironmentCreate,
@@ -55,7 +55,7 @@ class ServicesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, service_environment_create)
+        response = self._post(endpoint, service_environment_create)
 
         return DevopnessResponse(response, Service)
 
@@ -76,7 +76,7 @@ class ServicesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._delete_sync(endpoint)
+        response = self._delete(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -97,7 +97,7 @@ class ServicesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, Service)
 
@@ -122,7 +122,7 @@ class ServicesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, service_get_status)
+        response = self._post(endpoint, service_get_status)
 
         return DevopnessResponse(response, None)
 
@@ -153,7 +153,7 @@ class ServicesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, List[ServiceRelation])
 
@@ -178,7 +178,7 @@ class ServicesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, service_reload)
+        response = self._post(endpoint, service_reload)
 
         return DevopnessResponse(response, None)
 
@@ -203,7 +203,7 @@ class ServicesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, service_restart)
+        response = self._post(endpoint, service_restart)
 
         return DevopnessResponse(response, None)
 
@@ -228,7 +228,7 @@ class ServicesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, service_start)
+        response = self._post(endpoint, service_start)
 
         return DevopnessResponse(response, None)
 
@@ -253,7 +253,7 @@ class ServicesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, service_stop)
+        response = self._post(endpoint, service_stop)
 
         return DevopnessResponse(response, None)
 
@@ -278,12 +278,12 @@ class ServicesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._put_sync(endpoint, service_update)
+        response = self._put(endpoint, service_update)
 
         return DevopnessResponse(response, None)
 
 
-class ServicesApiServiceAsync(DevopnessBaseService):
+class ServicesApiServiceAsync(DevopnessBaseServiceAsync):
     """
     ServicesApiServiceAsync - Auto Generated
     """

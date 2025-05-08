@@ -8,7 +8,7 @@ Note:
 
 from typing import List, Optional
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import ResourceEvent, ResourceEventRelation
 
 
@@ -35,7 +35,7 @@ class ResourceEventsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint)
+        response = self._post(endpoint)
 
         return DevopnessResponse(response, ResourceEvent)
 
@@ -67,12 +67,12 @@ class ResourceEventsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, List[ResourceEventRelation])
 
 
-class ResourceEventsApiServiceAsync(DevopnessBaseService):
+class ResourceEventsApiServiceAsync(DevopnessBaseServiceAsync):
     """
     ResourceEventsApiServiceAsync - Auto Generated
     """

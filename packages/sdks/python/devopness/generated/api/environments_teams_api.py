@@ -8,7 +8,7 @@ Note:
 
 from typing import Union
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import TeamEnvironmentLink, TeamEnvironmentLinkPlain
 
 
@@ -39,7 +39,7 @@ class EnvironmentsTeamsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, team_environment_link)
+        response = self._post(endpoint, team_environment_link)
 
         return DevopnessResponse(response, None)
 
@@ -61,12 +61,12 @@ class EnvironmentsTeamsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._delete_sync(endpoint)
+        response = self._delete(endpoint)
 
         return DevopnessResponse(response, None)
 
 
-class EnvironmentsTeamsApiServiceAsync(DevopnessBaseService):
+class EnvironmentsTeamsApiServiceAsync(DevopnessBaseServiceAsync):
     """
     EnvironmentsTeamsApiServiceAsync - Auto Generated
     """

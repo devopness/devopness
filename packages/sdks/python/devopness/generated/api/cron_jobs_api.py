@@ -8,7 +8,7 @@ Note:
 
 from typing import List, Optional, Union
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     CronJob,
     CronJobEnvironmentCreate,
@@ -45,7 +45,7 @@ class CronJobsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, cron_job_environment_create)
+        response = self._post(endpoint, cron_job_environment_create)
 
         return DevopnessResponse(response, CronJob)
 
@@ -66,7 +66,7 @@ class CronJobsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._delete_sync(endpoint)
+        response = self._delete(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -87,7 +87,7 @@ class CronJobsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, CronJob)
 
@@ -118,7 +118,7 @@ class CronJobsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, List[CronJobRelation])
 
@@ -143,12 +143,12 @@ class CronJobsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._put_sync(endpoint, cron_job_update)
+        response = self._put(endpoint, cron_job_update)
 
         return DevopnessResponse(response, None)
 
 
-class CronJobsApiServiceAsync(DevopnessBaseService):
+class CronJobsApiServiceAsync(DevopnessBaseServiceAsync):
     """
     CronJobsApiServiceAsync - Auto Generated
     """

@@ -6,7 +6,7 @@ Note:
     https://openapi-generator.tech
 """
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import Subnet
 
 
@@ -32,7 +32,7 @@ class SubnetsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._delete_sync(endpoint)
+        response = self._delete(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -53,12 +53,12 @@ class SubnetsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, Subnet)
 
 
-class SubnetsApiServiceAsync(DevopnessBaseService):
+class SubnetsApiServiceAsync(DevopnessBaseServiceAsync):
     """
     SubnetsApiServiceAsync - Auto Generated
     """

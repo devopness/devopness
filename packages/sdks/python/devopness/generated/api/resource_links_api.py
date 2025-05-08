@@ -8,7 +8,7 @@ Note:
 
 from typing import List, Optional
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import ResourceLinkRelation
 
 
@@ -37,7 +37,7 @@ class ResourceLinksApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint)
+        response = self._post(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -69,7 +69,7 @@ class ResourceLinksApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, List[ResourceLinkRelation])
 
@@ -102,7 +102,7 @@ class ResourceLinksApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, List[ResourceLinkRelation])
 
@@ -126,12 +126,12 @@ class ResourceLinksApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._delete_sync(endpoint)
+        response = self._delete(endpoint)
 
         return DevopnessResponse(response, None)
 
 
-class ResourceLinksApiServiceAsync(DevopnessBaseService):
+class ResourceLinksApiServiceAsync(DevopnessBaseServiceAsync):
     """
     ResourceLinksApiServiceAsync - Auto Generated
     """

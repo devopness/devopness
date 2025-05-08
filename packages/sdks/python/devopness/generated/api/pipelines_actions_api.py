@@ -8,7 +8,7 @@ Note:
 
 from typing import List, Optional, Union
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Action,
     ActionPipelineCreate,
@@ -43,7 +43,7 @@ class PipelinesActionsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, action_pipeline_create)
+        response = self._post(endpoint, action_pipeline_create)
 
         return DevopnessResponse(response, Action)
 
@@ -74,12 +74,12 @@ class PipelinesActionsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, List[ActionRelation])
 
 
-class PipelinesActionsApiServiceAsync(DevopnessBaseService):
+class PipelinesActionsApiServiceAsync(DevopnessBaseServiceAsync):
     """
     PipelinesActionsApiServiceAsync - Auto Generated
     """

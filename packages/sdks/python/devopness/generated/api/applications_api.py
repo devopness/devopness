@@ -8,7 +8,7 @@ Note:
 
 from typing import List, Optional, Union
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Application,
     ApplicationEnvironmentCreate,
@@ -47,7 +47,7 @@ class ApplicationsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, deployment_application_create)
+        response = self._post(endpoint, deployment_application_create)
 
         return DevopnessResponse(response, None)
 
@@ -72,7 +72,7 @@ class ApplicationsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, application_environment_create)
+        response = self._post(endpoint, application_environment_create)
 
         return DevopnessResponse(response, Application)
 
@@ -93,7 +93,7 @@ class ApplicationsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._delete_sync(endpoint)
+        response = self._delete(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -114,7 +114,7 @@ class ApplicationsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, Application)
 
@@ -145,7 +145,7 @@ class ApplicationsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, List[ApplicationRelation])
 
@@ -170,12 +170,12 @@ class ApplicationsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._put_sync(endpoint, application_update)
+        response = self._put(endpoint, application_update)
 
         return DevopnessResponse(response, None)
 
 
-class ApplicationsApiServiceAsync(DevopnessBaseService):
+class ApplicationsApiServiceAsync(DevopnessBaseServiceAsync):
     """
     ApplicationsApiServiceAsync - Auto Generated
     """

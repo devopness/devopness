@@ -8,7 +8,7 @@ Note:
 
 from typing import List, Optional, Union
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Pipeline,
     PipelineCreate,
@@ -46,7 +46,7 @@ class PipelinesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, pipeline_create)
+        response = self._post(endpoint, pipeline_create)
 
         return DevopnessResponse(response, Pipeline)
 
@@ -67,7 +67,7 @@ class PipelinesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._delete_sync(endpoint)
+        response = self._delete(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -88,7 +88,7 @@ class PipelinesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, Pipeline)
 
@@ -120,7 +120,7 @@ class PipelinesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, List[PipelineRelation])
 
@@ -145,12 +145,12 @@ class PipelinesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._put_sync(endpoint, pipeline_update)
+        response = self._put(endpoint, pipeline_update)
 
         return DevopnessResponse(response, None)
 
 
-class PipelinesApiServiceAsync(DevopnessBaseService):
+class PipelinesApiServiceAsync(DevopnessBaseServiceAsync):
     """
     PipelinesApiServiceAsync - Auto Generated
     """

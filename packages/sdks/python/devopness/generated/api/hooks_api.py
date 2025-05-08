@@ -8,7 +8,7 @@ Note:
 
 from typing import Union
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import Hook, HookTriggerResponse, HookUpdate, HookUpdatePlain
 
 
@@ -35,7 +35,7 @@ class HooksApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._delete_sync(endpoint)
+        response = self._delete(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -57,7 +57,7 @@ class HooksApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, Hook)
 
@@ -78,7 +78,7 @@ class HooksApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint)
+        response = self._post(endpoint)
 
         return DevopnessResponse(response, HookTriggerResponse)
 
@@ -104,12 +104,12 @@ class HooksApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._put_sync(endpoint, hook_update)
+        response = self._put(endpoint, hook_update)
 
         return DevopnessResponse(response, None)
 
 
-class HooksApiServiceAsync(DevopnessBaseService):
+class HooksApiServiceAsync(DevopnessBaseServiceAsync):
     """
     HooksApiServiceAsync - Auto Generated
     """

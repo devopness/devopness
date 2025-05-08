@@ -6,7 +6,7 @@ Note:
     https://openapi-generator.tech
 """
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import HookRequest
 
 
@@ -32,12 +32,12 @@ class HookRequestsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, HookRequest)
 
 
-class HookRequestsApiServiceAsync(DevopnessBaseService):
+class HookRequestsApiServiceAsync(DevopnessBaseServiceAsync):
     """
     HookRequestsApiServiceAsync - Auto Generated
     """

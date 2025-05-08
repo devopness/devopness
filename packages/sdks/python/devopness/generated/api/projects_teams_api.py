@@ -8,7 +8,7 @@ Note:
 
 from typing import List, Optional, Union
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import Team, TeamProjectCreate, TeamProjectCreatePlain, TeamRelation
 
 
@@ -38,7 +38,7 @@ class ProjectsTeamsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, team_project_create)
+        response = self._post(endpoint, team_project_create)
 
         return DevopnessResponse(response, Team)
 
@@ -69,12 +69,12 @@ class ProjectsTeamsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, List[TeamRelation])
 
 
-class ProjectsTeamsApiServiceAsync(DevopnessBaseService):
+class ProjectsTeamsApiServiceAsync(DevopnessBaseServiceAsync):
     """
     ProjectsTeamsApiServiceAsync - Auto Generated
     """

@@ -8,7 +8,7 @@ Note:
 
 from typing import Union
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import Environment, EnvironmentUpdate, EnvironmentUpdatePlain
 
 
@@ -34,7 +34,7 @@ class EnvironmentsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint)
+        response = self._post(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -55,7 +55,7 @@ class EnvironmentsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, Environment)
 
@@ -76,7 +76,7 @@ class EnvironmentsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint)
+        response = self._post(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -101,12 +101,12 @@ class EnvironmentsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._put_sync(endpoint, environment_update)
+        response = self._put(endpoint, environment_update)
 
         return DevopnessResponse(response, None)
 
 
-class EnvironmentsApiServiceAsync(DevopnessBaseService):
+class EnvironmentsApiServiceAsync(DevopnessBaseServiceAsync):
     """
     EnvironmentsApiServiceAsync - Auto Generated
     """

@@ -8,7 +8,7 @@ Note:
 
 from typing import List, Optional
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import RequestRelation
 
 
@@ -45,12 +45,12 @@ class HooksRequestsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, List[RequestRelation])
 
 
-class HooksRequestsApiServiceAsync(DevopnessBaseService):
+class HooksRequestsApiServiceAsync(DevopnessBaseServiceAsync):
     """
     HooksRequestsApiServiceAsync - Auto Generated
     """

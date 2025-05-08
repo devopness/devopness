@@ -8,7 +8,7 @@ Note:
 
 from typing import Union
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import Team, TeamUpdate, TeamUpdatePlain
 
 
@@ -34,7 +34,7 @@ class TeamsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._delete_sync(endpoint)
+        response = self._delete(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -55,7 +55,7 @@ class TeamsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, Team)
 
@@ -80,12 +80,12 @@ class TeamsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._put_sync(endpoint, team_update)
+        response = self._put(endpoint, team_update)
 
         return DevopnessResponse(response, None)
 
 
-class TeamsApiServiceAsync(DevopnessBaseService):
+class TeamsApiServiceAsync(DevopnessBaseServiceAsync):
     """
     TeamsApiServiceAsync - Auto Generated
     """

@@ -8,7 +8,7 @@ Note:
 
 from typing import List, Optional
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     ApplicationOptions,
     CloudInstanceRelation,
@@ -47,7 +47,7 @@ class StaticDataApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, ApplicationOptions)
 
@@ -68,7 +68,7 @@ class StaticDataApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, CloudProviderService)
 
@@ -88,7 +88,7 @@ class StaticDataApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, CredentialOptions)
 
@@ -108,7 +108,7 @@ class StaticDataApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, CronJobOptions)
 
@@ -128,7 +128,7 @@ class StaticDataApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, EnvironmentOptions)
 
@@ -148,7 +148,7 @@ class StaticDataApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, NetworkRuleOptions)
 
@@ -168,7 +168,7 @@ class StaticDataApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, ServerOptions)
 
@@ -188,7 +188,7 @@ class StaticDataApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, ServiceOptions)
 
@@ -208,7 +208,7 @@ class StaticDataApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, UserProfileOptions)
 
@@ -228,7 +228,7 @@ class StaticDataApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, VirtualHostOptions)
 
@@ -260,7 +260,7 @@ class StaticDataApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, List[CloudInstanceRelation])
 
@@ -290,7 +290,7 @@ class StaticDataApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, List[PermissionRelation])
 
@@ -320,12 +320,12 @@ class StaticDataApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, List[ResourceTypeRelation])
 
 
-class StaticDataApiServiceAsync(DevopnessBaseService):
+class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
     """
     StaticDataApiServiceAsync - Auto Generated
     """

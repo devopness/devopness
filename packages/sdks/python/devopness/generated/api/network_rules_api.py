@@ -8,7 +8,7 @@ Note:
 
 from typing import List, Optional, Union
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     NetworkRule,
     NetworkRuleEnvironmentCreate,
@@ -45,7 +45,7 @@ class NetworkRulesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, network_rule_environment_create)
+        response = self._post(endpoint, network_rule_environment_create)
 
         return DevopnessResponse(response, NetworkRule)
 
@@ -66,7 +66,7 @@ class NetworkRulesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._delete_sync(endpoint)
+        response = self._delete(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -87,7 +87,7 @@ class NetworkRulesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, NetworkRule)
 
@@ -118,7 +118,7 @@ class NetworkRulesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
+        response = self._get(endpoint)
 
         return DevopnessResponse(response, List[NetworkRuleRelation])
 
@@ -143,12 +143,12 @@ class NetworkRulesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._put_sync(endpoint, network_rule_update)
+        response = self._put(endpoint, network_rule_update)
 
         return DevopnessResponse(response, None)
 
 
-class NetworkRulesApiServiceAsync(DevopnessBaseService):
+class NetworkRulesApiServiceAsync(DevopnessBaseServiceAsync):
     """
     NetworkRulesApiServiceAsync - Auto Generated
     """
