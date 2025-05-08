@@ -11,7 +11,7 @@ type SharedProps = React.InputHTMLAttributes<HTMLInputElement> & {
   ref?: React.Ref<HTMLInputElement>
   /** Error message configuration */
   error?: ErrorMessageProps['error']
-  /** Props passed directly to Label component */
+  /** Props passed directly to a Label component */
   labelProps?: LabelProps
   /** Custom styling options for input text */
   publicStyle?: {
@@ -25,7 +25,7 @@ type SharedProps = React.InputHTMLAttributes<HTMLInputElement> & {
   /**
    * Props passed directly to input HTML element
    *
-   * @override props, e.g: inputProps.type overrides props.type
+   * @override props, e.g.: inputProps.type overrides props.type
    *
    * <Input type="text" inputProps={{type: 'number'}} /> // input type is number
    */
@@ -34,11 +34,11 @@ type SharedProps = React.InputHTMLAttributes<HTMLInputElement> & {
 
 type InputProps =
   | (SharedProps & {
-      /** HTML input type (text, number, email, etc) */
+      /** HTML input type (text, number, email, etc.) */
       type: Exclude<React.HTMLInputTypeAttribute, 'number'>
     })
   | (SharedProps & {
-      /** HTML input type (text, number, email, etc) */
+      /** HTML input type (text, number, email, etc.) */
       type: 'number'
       /** Removes increment/decrement arrows from number inputs */
       removeArrows?: boolean
@@ -90,17 +90,25 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
         className="translate"
         ref={inputRef}
         hasError={Boolean(error)}
+        aria-invalid={Boolean(error)}
+        aria-errormessage={error ? "error-message" : undefined}
+        aria-describedby={error ? "error-message" : undefined}
         {...props}
         {...props.inputProps}
       />
-      {Boolean(error) && <ErrorMessage error={error} />}
+      {Boolean(error) && (
+        <ErrorMessage
+          id="error-message"
+          error={error}
+        />
+      )}
     </Container>
   )
 })
 
 /**
- * Explicitly sets component display name for debugging in React DevTools when using forwardRef.
- * Without this, component would show as "ForwardRef" instead of "Input" in the component tree.
+ * Explicitly sets the component display name for debugging in React DevTools when using forwardRef.
+ * Without this, the component would show as "ForwardRef" instead of "Input" in the component tree.
  */
 Input.displayName = 'Input'
 
