@@ -1,5 +1,27 @@
 # @devopness/ui-react
 
+## 2.162.1
+
+### Patch Changes
+
+- [#1675](https://github.com/devopness/devopness/pull/1675) [`c9b3206`](https://github.com/devopness/devopness/commit/c9b3206b2c8dddb5b0cdd97f1c2da6da5de142cf) Thanks [@TiagoMontes](https://github.com/TiagoMontes)! - Add new Icon (Home) to devopness-ui
+
+  ### What Changed
+
+  - Updated iconList const with a new icon (home)
+
+  ### Example Usage
+
+  ```tsx
+  <Icon
+    name={home}
+    size={14}
+    color={'blue.950'}
+  />
+  ```
+
+  This enables a new icon to be used when importing <Icon />.
+
 ## 2.162.0
 
 ### Minor Changes
