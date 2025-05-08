@@ -27,7 +27,7 @@ This SDK is currently under active development and is not yet recommended for pr
 
 ## Usage
 
-The Devopness SDK for Python supports both asynchronous and synchronous usage. By default, all SDK methods are asynchronous and must be awaited. However, each service method also provides a synchronous alternative with the suffix **\**.
+The Devopness SDK for Python supports both asynchronous and synchronous usage. You can choose whether you want to use the SDK in an asynchronous or synchronous manner by instantiating the appropriate client class.
 
 This allows you to use the SDK in a wide range of scenarios, whether you are building asynchronous applications or need synchronous behavior.
 
@@ -98,13 +98,16 @@ import asyncio
 from devopness import DevopnessClientAsync
 from devopness.models import UserLogin
 
-devopness = DevopnessClientAsync()
+devopness = DevopnessClientAsync({
+    'auto_refresh_token': False
+})
 
 async def authenticate(user_email, user_pass):
     user_data = UserLogin(email=user_email, password=user_pass)
     user_tokens = await devopness.users.login_user(user_data)
 
-    # The `access_token` must be set every time a token is obtained or refreshed.
+    # The `access_token` must be set every time a token is obtained or refreshed,
+    # if the `auto_refresh_token` option is set to `False`.
     devopness.access_token = user_tokens.data.access_token
 
 # Invoke the authentication method
@@ -118,13 +121,16 @@ if __name__ == "__main__":
 from devopness import DevopnessClient
 from devopness.models import UserLogin
 
-devopness = DevopnessClient()
+devopness = DevopnessClient({
+    'auto_refresh_token': False
+})
 
 def authenticate(user_email, user_pass):
     user_data = UserLogin(email=user_email, password=user_pass)
     user_tokens = devopness.users.login_user(user_data)
 
-    # The `access_token` must be set every time a token is obtained or refreshed.
+    # The `access_token` must be set every time a token is obtained or refreshed,
+    # if the `auto_refresh_token` option is set to `False`.
     devopness.access_token = user_tokens.data.access_token
 
 # Invoke the authentication method
@@ -151,10 +157,7 @@ devopness = DevopnessClientAsync()
 
 async def authenticate(user_email, user_pass):
     user_data = UserLogin(email=user_email, password=user_pass)
-    user_tokens = await devopness.users.login_user(user_data)
-
-    # The `access_token` must be set every time a token is obtained or refreshed.
-    devopness.access_token = user_tokens.data.access_token
+    await devopness.users.login_user(user_data)
 
 async def get_user_profile():
     # Ensure an auth token is retrieved and set to the SDK instance
@@ -180,10 +183,7 @@ devopness = DevopnessClient()
 
 def authenticate(user_email, user_pass):
     user_data = UserLogin(email=user_email, password=user_pass)
-    user_tokens = devopness.users.login_user(user_data)
-
-    # The `access_token` must be set every time a token is obtained or refreshed.
-    devopness.access_token = user_tokens.data.access_token
+    devopness.users.login_user(user_data)
 
 def get_user_profile():
     # Ensure an auth token is retrieved and set to the SDK instance
