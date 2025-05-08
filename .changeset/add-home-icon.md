@@ -1,5 +1,5 @@
 ---
-"@devopness/ui-react": minor
+"@devopness/ui-react": patch
 ---
 
 Add new Icon (Home) to devopness-ui
