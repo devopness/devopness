@@ -18,8 +18,6 @@ The Devopness SDK for Python provides a set of predefined classes that offer eas
     - [Asynchronous usage](#asynchronous-usage-1)
     - [Synchronous usage](#synchronous-usage-1)
   - [Error Handling](#error-handling)
-    - [Asynchronous usage](#asynchronous-usage-2)
-    - [Synchronous usage](#synchronous-usage-2)
 - [Development](#development)
   - [With Docker](#with-docker)
 
@@ -29,7 +27,7 @@ This SDK is currently under active development and is not yet recommended for pr
 
 ## Usage
 
-The Devopness SDK for Python supports both asynchronous and synchronous usage. By default, all SDK methods are asynchronous and must be awaited. However, each service method also provides a synchronous alternative with the suffix **\_sync**.
+The Devopness SDK for Python supports both asynchronous and synchronous usage. By default, all SDK methods are asynchronous and must be awaited. However, each service method also provides a synchronous alternative with the suffix **\**.
 
 This allows you to use the SDK in a wide range of scenarios, whether you are building asynchronous applications or need synchronous behavior.
 
@@ -50,14 +48,15 @@ pip install devopness
 
 ### Initializing
 
-To start using the Devopness SDK, just import it and create a new instance of the `DevopnessClient` class.
+To start using the Devopness SDK, just import it and create a new instance of the `DevopnessClient` class or `DevopnessClientAsync` class.
 
 Here is a simple generic example that can be used in `Python` applications:
 
 ```python
-from devopness import DevopnessClient
+from devopness import DevopnessClient, DevopnessClientAsync
 
 devopness = DevopnessClient()
+devopness_async = DevopnessClientAsync()
 ```
 
 ### Custom Configuration
@@ -65,7 +64,7 @@ devopness = DevopnessClient()
 You can customize the SDK behavior by providing a `DevopnessClientConfig` object when instantiating the client:
 
 ```python
-from devopness import DevopnessClient, DevopnessClientConfig
+from devopness import DevopnessClient, DevopnessClientAsync, DevopnessClientConfig
 
 config = DevopnessClientConfig(
     base_url='https://api.devopness.com',
@@ -73,15 +72,17 @@ config = DevopnessClientConfig(
 )
 
 devopness = DevopnessClient(config)
+devopness_async = DevopnessClientAsync(config)
 ```
 
 The `DevopnessClientConfig` supports the following options:
 
-| Parameter          | Default                     | Description                              |
-| ------------------ | --------------------------- | ---------------------------------------- |
-| `base_url`         | `https://api.devopness.com` | Base URL for all API requests            |
-| `timeout`          | `30`                        | Timeout for HTTP requests (in seconds)   |
-| `default_encoding` | `utf-8`                     | Encoding used to decode response content |
+| Parameter            | Default                     | Description                                                  |
+| -------------------- | --------------------------- | ------------------------------------------------------------ |
+| `auto_refresh_token` | `True`                      | Controls whether the access token is automatically refreshed |
+| `base_url`           | `https://api.devopness.com` | Base URL for all API requests                                |
+| `timeout`            | `30`                        | Timeout for HTTP requests (in seconds)                       |
+| `default_encoding`   | `utf-8`                     | Encoding used to decode response content                     |
 
 This configuration allows you to adapt the SDK to your specific use case, such as changing the API endpoint or tweaking performance-related settings.
 
@@ -94,10 +95,10 @@ To authenticate, invoke the `login_user` method on the `users` service:
 ```python
 import asyncio
 
-from devopness import DevopnessClient
+from devopness import DevopnessClientAsync
 from devopness.models import UserLogin
 
-devopness = DevopnessClient()
+devopness = DevopnessClientAsync()
 
 async def authenticate(user_email, user_pass):
     user_data = UserLogin(email=user_email, password=user_pass)
@@ -121,7 +122,7 @@ devopness = DevopnessClient()
 
 def authenticate(user_email, user_pass):
     user_data = UserLogin(email=user_email, password=user_pass)
-    user_tokens = devopness.users.login_user_sync(user_data)
+    user_tokens = devopness.users.login_user(user_data)
 
     # The `access_token` must be set every time a token is obtained or refreshed.
     devopness.access_token = user_tokens.data.access_token
@@ -143,10 +144,10 @@ Example: retrieving current user details.
 ```python
 import asyncio
 
-from devopness import DevopnessClient
+from devopness import DevopnessClientAsync
 from devopness.models import UserLogin
 
-devopness = DevopnessClient()
+devopness = DevopnessClientAsync()
 
 async def authenticate(user_email, user_pass):
     user_data = UserLogin(email=user_email, password=user_pass)
@@ -179,7 +180,7 @@ devopness = DevopnessClient()
 
 def authenticate(user_email, user_pass):
     user_data = UserLogin(email=user_email, password=user_pass)
-    user_tokens = devopness.users.login_user_sync(user_data)
+    user_tokens = devopness.users.login_user(user_data)
 
     # The `access_token` must be set every time a token is obtained or refreshed.
     devopness.access_token = user_tokens.data.access_token
@@ -189,8 +190,8 @@ def get_user_profile():
     authenticate('user@email.com', 'secret-password')
 
     # Now that we're authenticated, we can invoke methods on any service.
-    # Here we're invoking the `get_user_sync()` method on the `users` service
-    current_user = devopness.users.get_user_sync(1)
+    # Here we're invoking the `get_user()` method on the `users` service
+    current_user = devopness.users.get_user(1)
     print(f'Successfully retrieved user profile with ID: {current_user.data.id}')
 
 # Invoke the get user profile method
@@ -208,8 +209,6 @@ The Devopness SDK for Python provides a structured approach to error handling th
 > All SDK-specific exceptions inherit from the base class `DevopnessSdkError`.
 > You can use this class to catch and handle all exceptions raised by the SDK.
 
-You should anticipate and handle specific exceptions using `try...except` blocks to gracefully manage potential issues during API interactions.
-
 - `DevopnessApiError`: This exception is raised when the Devopness API returns an error response. This typically indicates issues with the request itself, such as invalid input data, unauthorized access, or resource not found. It provides the following attributes to help diagnose the error:
 
 | Attribute   | Description                                                                                                        |
@@ -219,92 +218,6 @@ You should anticipate and handle specific exceptions using `try...except` blocks
 | errors      | An optional dictionary containing detailed validation errors, often encountered during create or update operations |
 
 - `DevopnessNetworkError`: This exception is raised when a generic network-related issue occurs during the communication with the Devopness API. This could be due to problems like an unreachable host, connection timeouts, or other network configuration errors.
-
-Here are examples demonstrating how to catch and handle these exceptions:
-
-#### Asynchronous usage
-
-```python
-import asyncio
-
-from devopness import DevopnessClient
-from devopness.core import DevopnessApiError, DevopnessNetworkError
-from devopness.models import UserLogin
-
-devopness = DevopnessClient()
-
-async def authenticate_and_get_profile(user_email, user_pass):
-    try:
-        # Attempt authentication
-        user_data = UserLogin(email=user_email, password=user_pass)
-        user_tokens = await devopness.users.login_user(user_data)
-        devopness.access_token = user_tokens.data.access_token
-        print("Authentication successful.")
-
-        # Attempt to get user profile
-        current_user = await devopness.users.get_user_me()
-        print(f'Successfully retrieved user profile with ID: {current_user.data.id}')
-
-    except DevopnessApiError as e:
-        print(f"Devopness API Error: Status Code: {e.status_code}, Message: {e.message}")
-
-        if e.errors:
-            print("Validation Errors:")
-
-            for field, messages in e.errors.items():
-                print(f"  {field}: {', '.join(messages)}")
-
-    except DevopnessNetworkError as e:
-        print(f"Devopness Network Error: {e}")
-
-    except Exception as e:
-        print(f"An unexpected error occurred: {e}")
-
-if __name__ == "__main__":
-    asyncio.run(authenticate_and_get_profile('user@email.com', 'secret-password'))
-```
-
-#### Synchronous usage
-
-```python
-from devopness import DevopnessClient
-from devopness.core import DevopnessApiError, DevopnessNetworkError
-from devopness.models import UserLogin
-
-devopness = DevopnessClient()
-
-def authenticate_and_get_profile_sync(user_email, user_pass):
-    try:
-        # Attempt authentication
-        user_data = UserLogin(email=user_email, password=user_pass)
-        user_tokens = devopness.users.login_user_sync(user_data)
-        devopness.access_token = user_tokens.data.access_token
-        print("Authentication successful.")
-
-        # Attempt to get user profile
-        current_user = devopness.users.get_user_sync(1) # Assuming user with ID 1 exists
-        print(f'Successfully retrieved user profile with ID: {current_user.data.id}')
-
-    except DevopnessApiError as e:
-        print(f"Devopness API Error: Status Code: {e.status_code}, Message: {e.message}")
-
-        if e.errors:
-            print("Validation Errors:")
-
-            for field, messages in e.errors.items():
-                print(f"  {field}: {', '.join(messages)}")
-
-    except DevopnessNetworkError as e:
-        print(f"Devopness Network Error: {e}")
-
-    except Exception as e:
-        print(f"An unexpected error occurred: {e}")
-
-if __name__ == "__main__":
-    authenticate_and_get_profile_sync('user@email.com', 'secret-password')
-```
-
-By implementing these try...except blocks, you can create more robust applications that gracefully handle errors during interactions with the Devopness SDK for Python.
 
 ## Development
 
@@ -325,13 +238,13 @@ To build the Devopness Python SDK locally, follow these steps:
 cd packages/sdks/python/
 ```
 
-2. Build the Docker image:
+1. Build the Docker image:
 
 ```shell
 make build-image
 ```
 
-3. Build the Python SDK:
+1. Build the Python SDK:
 
 ```shell
 make build-sdk-python
