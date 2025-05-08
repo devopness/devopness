@@ -4,7 +4,7 @@ Devopness API Python SDK - Painless essential DevOps to everyone
 
 from typing import Optional, Union
 
-from .base import DevopnessBaseService
+from .base import DevopnessBaseService, DevopnessBaseServiceAsync
 from .client_config import DevopnessClientConfig, DevopnessClientConfigDict
 from .services.action_service import (
     ActionService,
@@ -177,7 +177,7 @@ class DevopnessClientAsync:
         elif isinstance(config, dict):
             config = DevopnessClientConfig.from_dict(config)
 
-        DevopnessBaseService._config = config
+        DevopnessBaseServiceAsync._config = config
 
         self.actions = ActionServiceAsync()
         self.applications = ApplicationServiceAsync()

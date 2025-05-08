@@ -154,7 +154,7 @@ class DevopnessBaseService:
         """
         if (
             DevopnessBaseService._config.auto_refresh_token
-            and is_access_token_expired()
+            and is_access_token_expired(DevopnessBaseService)
             and not is_token_change_request(request.url.path)
         ):
             DevopnessBaseService._refresh_access_token()
@@ -208,9 +208,9 @@ class DevopnessBaseServiceAsync:
     _client: httpx.AsyncClient
     _config: DevopnessClientConfig
 
-    _access_token: str
-    _refresh_token: str
-    _token_expires_at: datetime
+    _access_token: Optional[str] = None
+    _refresh_token: Optional[str] = None
+    _token_expires_at: Optional[datetime] = None
 
     def __init__(self) -> None:
         """
@@ -291,7 +291,7 @@ class DevopnessBaseServiceAsync:
         """
         Refreshes the access token.
         """
-        response = DevopnessBaseServiceAsync._post(
+        response = await DevopnessBaseServiceAsync._post(
             "/users/refresh-token",
             {"refresh_token": DevopnessBaseServiceAsync._refresh_token},
         )
@@ -326,13 +326,13 @@ class DevopnessBaseServiceAsync:
             request (httpx.Request): The outgoing HTTP request.
         """
         if (
-            DevopnessBaseService._config.auto_refresh_token
-            and is_access_token_expired()
+            DevopnessBaseServiceAsync._config.auto_refresh_token
+            and is_access_token_expired(DevopnessBaseServiceAsync)
             and not is_token_change_request(request.url.path)
         ):
             await DevopnessBaseServiceAsync._refresh_access_token()
 
-        access_token = DevopnessBaseService._access_token
+        access_token = DevopnessBaseServiceAsync._access_token
 
         if access_token:
             request.headers["Authorization"] = f"Bearer {access_token}"
@@ -358,7 +358,7 @@ class DevopnessBaseServiceAsync:
             response.raise_for_status()
 
             if (
-                DevopnessBaseService._config.auto_refresh_token
+                DevopnessBaseServiceAsync._config.auto_refresh_token
                 and is_token_change_request(response.url.path)
             ):
                 await DevopnessBaseServiceAsync._save_access_token(response)
@@ -398,11 +398,16 @@ def debug_response(response: httpx.Response) -> None:
     print(f"[Devopness SDK] <-- [Response] {r_status_code} {r_reason_phrase}")
 
 
-def is_access_token_expired() -> bool:
+def is_access_token_expired(
+    service_cls: Union[
+        type[DevopnessBaseService],
+        type[DevopnessBaseServiceAsync],
+    ],
+) -> bool:
     """
     Checks if the access token has expired.
     """
-    expires_at = DevopnessBaseService._token_expires_at
+    expires_at = service_cls._token_expires_at
     if expires_at is None:
         return True
 

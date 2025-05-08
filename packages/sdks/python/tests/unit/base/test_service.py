@@ -6,7 +6,11 @@ import httpx
 from pydantic import Field, StrictInt, StrictStr
 
 from devopness import DevopnessClientConfig
-from devopness.base import DevopnessBaseModel, DevopnessBaseService
+from devopness.base import (
+    DevopnessBaseModel,
+    DevopnessBaseService,
+    DevopnessBaseServiceAsync,
+)
 
 
 class DummyModel(DevopnessBaseModel):
@@ -45,7 +49,7 @@ class TestDevopnessBaseService(unittest.TestCase):
         DevopnessBaseService._access_token = None
 
         mock.return_value = self.dummy_response
-        self.service._get_sync("/resource")
+        self.service._get("/resource")
 
         request: httpx.Request = mock.call_args[0][0]
         self.assertIsInstance(request, httpx.Request)
@@ -63,7 +67,7 @@ class TestDevopnessBaseService(unittest.TestCase):
         DevopnessBaseService._access_token = "dp-token123"  # noqa: S105
 
         mock.return_value = self.dummy_response
-        self.service._delete_sync("/resource/123")
+        self.service._delete("/resource/123")
 
         request: httpx.Request = mock.call_args[0][0]
         self.assertIsInstance(request, httpx.Request)
@@ -80,7 +84,7 @@ class TestDevopnessBaseService(unittest.TestCase):
         mock: Mock,
     ) -> None:
         payload: DummyModelPlain = {"name": "John Doe"}
-        self.service._post_sync("/resource", payload)
+        self.service._post("/resource", payload)
 
         mock.assert_called_once()
 
@@ -99,7 +103,7 @@ class TestDevopnessBaseService(unittest.TestCase):
         mock: Mock,
     ) -> None:
         payload = DummyModel(name="John Doe")
-        self.service._post_sync("/resource", payload)
+        self.service._post("/resource", payload)
 
         mock.assert_called_once()
 
@@ -117,7 +121,7 @@ class TestDevopnessBaseService(unittest.TestCase):
         self,
         mock: Mock,
     ) -> None:
-        self.service._post_sync("/resource")
+        self.service._post("/resource")
 
         mock.assert_called_once()
 
@@ -136,7 +140,7 @@ class TestDevopnessBaseService(unittest.TestCase):
         mock: Mock,
     ) -> None:
         payload: DummyModelPlain = {"id": 123, "name": "John Doe"}
-        self.service._put_sync("/resource", payload)
+        self.service._put("/resource", payload)
 
         mock.assert_called_once()
 
@@ -155,7 +159,7 @@ class TestDevopnessBaseService(unittest.TestCase):
         mock: Mock,
     ) -> None:
         payload = DummyModel(id=123, name="John Doe")
-        self.service._put_sync("/resource", payload)
+        self.service._put("/resource", payload)
 
         mock.assert_called_once()
 
@@ -173,7 +177,7 @@ class TestDevopnessBaseService(unittest.TestCase):
         self,
         mock: Mock,
     ) -> None:
-        self.service._put_sync("/resource")
+        self.service._put("/resource")
 
         mock.assert_called_once()
 
@@ -186,37 +190,13 @@ class TestDevopnessBaseService(unittest.TestCase):
         self.assertEqual(request.headers["Content-Type"], "application/json")
         self.assertEqual(request.content, b"")
 
-    def test_query_string_formatter(self) -> None:
-        params = dict(
-            string="hello",
-            integer=123,
-            float=123.456,
-            boolean=True,
-            list=["a", "b", "c"],
-            dict={"a": 1, "b": 2},
-            null=None,
-            empty_string="",
-            empty_list=[],
-            empty_dict={},
-        )
-
-        query_string = self.service._get_query_string(params)
-        expected_query_string = "string=hello"
-        expected_query_string += "&integer=123"
-        expected_query_string += "&float=123.456"
-        expected_query_string += "&boolean=True"
-        expected_query_string += "&list=%5B%27a%27%2C+%27b%27%2C+%27c%27%5D"
-        expected_query_string += "&dict=%7B%27a%27%3A+1%2C+%27b%27%3A+2%7D"
-
-        self.assertEqual(query_string, expected_query_string)
-
 
 class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
-    DevopnessBaseService._config = DevopnessClientConfig(
+    DevopnessBaseServiceAsync._config = DevopnessClientConfig(
         base_url="https://test.local",
         auto_refresh_token=False,
     )
-    service = DevopnessBaseService()
+    service = DevopnessBaseServiceAsync()
 
     dummy_request = httpx.Request("", "")
     dummy_response = httpx.Response(200, request=dummy_request)
@@ -226,7 +206,7 @@ class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
         self,
         mock: Mock,
     ) -> None:
-        DevopnessBaseService._access_token = None
+        DevopnessBaseServiceAsync._access_token = None
 
         mock.return_value = self.dummy_response
         await self.service._get("/resource")
@@ -244,7 +224,7 @@ class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
         self,
         mock: Mock,
     ) -> None:
-        DevopnessBaseService._access_token = "dp-token123"  # noqa: S105
+        DevopnessBaseServiceAsync._access_token = "dp-token123"  # noqa: S105
 
         mock.return_value = self.dummy_response
         await self.service._delete("/resource/123")
