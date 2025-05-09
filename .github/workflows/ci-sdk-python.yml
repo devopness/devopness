@@ -71,8 +71,8 @@ jobs:
       - uses: stefanzweifel/git-auto-commit-action@v4
         if: github.repository == 'devopness/devopness'
         with:
-          commit_message: "docs: Update auto generated models"
-          file_pattern: "packages/sdks/python/*"
+          commit_message: 'docs: Update auto generated models'
+          file_pattern: 'packages/sdks/python/*'
           commit_user_name: devopness-automations
           commit_user_email: automations@devopness.com
 
