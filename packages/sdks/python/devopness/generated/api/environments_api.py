@@ -8,13 +8,111 @@ Note:
 
 from typing import Union
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import Environment, EnvironmentUpdate, EnvironmentUpdatePlain
 
 
 class EnvironmentsApiService(DevopnessBaseService):
     """
     EnvironmentsApiService - Auto Generated
+    """
+
+    def archive_environment(
+        self,
+        environment_id: int,
+    ) -> DevopnessResponse[None]:
+        """
+        Archive an environment
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/environments/{environment_id}/archive",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._post(endpoint)
+
+        return DevopnessResponse(response, None)
+
+    def get_environment(
+        self,
+        environment_id: int,
+    ) -> DevopnessResponse[Environment]:
+        """
+        Get an environment by ID
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/environments/{environment_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._get(endpoint)
+
+        return DevopnessResponse(response, Environment)
+
+    def unarchive_environment(
+        self,
+        environment_id: int,
+    ) -> DevopnessResponse[None]:
+        """
+        Unarchive an environment
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/environments/{environment_id}/unarchive",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._post(endpoint)
+
+        return DevopnessResponse(response, None)
+
+    def update_environment(
+        self,
+        environment_id: int,
+        environment_update: Union[
+            EnvironmentUpdate,
+            EnvironmentUpdatePlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Update a given environment
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/environments/{environment_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._put(endpoint, environment_update)
+
+        return DevopnessResponse(response, None)
+
+
+class EnvironmentsApiServiceAsync(DevopnessBaseServiceAsync):
+    """
+    EnvironmentsApiServiceAsync - Auto Generated
     """
 
     async def archive_environment(
@@ -34,28 +132,8 @@ class EnvironmentsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint)
-
-        return DevopnessResponse(response, None)
-
-    def archive_environment_sync(
-        self,
-        environment_id: int,
-    ) -> DevopnessResponse[None]:
-        """
-        Archive an environment
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/environments/{environment_id}/archive",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -76,28 +154,8 @@ class EnvironmentsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, Environment)
-
-    def get_environment_sync(
-        self,
-        environment_id: int,
-    ) -> DevopnessResponse[Environment]:
-        """
-        Get an environment by ID
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/environments/{environment_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, Environment)
 
@@ -118,28 +176,8 @@ class EnvironmentsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint)
-
-        return DevopnessResponse(response, None)
-
-    def unarchive_environment_sync(
-        self,
-        environment_id: int,
-    ) -> DevopnessResponse[None]:
-        """
-        Unarchive an environment
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/environments/{environment_id}/unarchive",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -164,31 +202,7 @@ class EnvironmentsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._put(endpoint, environment_update)
-
-        return DevopnessResponse(response, None)
-
-    def update_environment_sync(
-        self,
-        environment_id: int,
-        environment_update: Union[
-            EnvironmentUpdate,
-            EnvironmentUpdatePlain,
-        ],
-    ) -> DevopnessResponse[None]:
-        """
-        Update a given environment
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/environments/{environment_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._put_sync(endpoint, environment_update)
 
         return DevopnessResponse(response, None)

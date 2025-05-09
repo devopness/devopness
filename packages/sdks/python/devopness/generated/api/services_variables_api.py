@@ -8,18 +8,83 @@ Note:
 
 from typing import List, Optional, Union
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Variable,
     VariableRelation,
     VariableServiceCreate,
     VariableServiceCreatePlain,
 )
+from ..utils import parse_query_string
 
 
 class ServicesVariablesApiService(DevopnessBaseService):
     """
     ServicesVariablesApiService - Auto Generated
+    """
+
+    def add_service_variable(
+        self,
+        service_id: int,
+        variable_service_create: Union[
+            VariableServiceCreate,
+            VariableServiceCreatePlain,
+        ],
+    ) -> DevopnessResponse[Variable]:
+        """
+        Create a new variable linked to a service
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/services/{service_id}/variables",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._post(endpoint, variable_service_create)
+
+        return DevopnessResponse(response, Variable)
+
+    def list_service_variables(
+        self,
+        service_id: int,
+        page: Optional[int] = None,
+        per_page: Optional[int] = None,
+    ) -> DevopnessResponse[List[VariableRelation]]:
+        """
+        Return a list of variables belonging to a service
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = parse_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            f"/services/{service_id}/variables",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._get(endpoint)
+
+        return DevopnessResponse(response, List[VariableRelation])
+
+
+class ServicesVariablesApiServiceAsync(DevopnessBaseServiceAsync):
+    """
+    ServicesVariablesApiServiceAsync - Auto Generated
     """
 
     async def add_service_variable(
@@ -43,32 +108,8 @@ class ServicesVariablesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint, variable_service_create)
-
-        return DevopnessResponse(response, Variable)
-
-    def add_service_variable_sync(
-        self,
-        service_id: int,
-        variable_service_create: Union[
-            VariableServiceCreate,
-            VariableServiceCreatePlain,
-        ],
-    ) -> DevopnessResponse[Variable]:
-        """
-        Create a new variable linked to a service
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/services/{service_id}/variables",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, variable_service_create)
 
         return DevopnessResponse(response, Variable)
 
@@ -86,7 +127,7 @@ class ServicesVariablesApiService(DevopnessBaseService):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -99,37 +140,7 @@ class ServicesVariablesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, List[VariableRelation])
-
-    def list_service_variables_sync(
-        self,
-        service_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[VariableRelation]]:
-        """
-        Return a list of variables belonging to a service
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        query_string = DevopnessBaseService._get_query_string(
-            {
-                "page": page,
-                "per_page": per_page,
-            }
-        )
-
-        endpoint_parts = [
-            f"/services/{service_id}/variables",
-            f"?{query_string}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, List[VariableRelation])

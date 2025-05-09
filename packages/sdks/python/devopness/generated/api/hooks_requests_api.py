@@ -8,13 +8,53 @@ Note:
 
 from typing import List, Optional
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import RequestRelation
+from ..utils import parse_query_string
 
 
 class HooksRequestsApiService(DevopnessBaseService):
     """
     HooksRequestsApiService - Auto Generated
+    """
+
+    def list_hook_requests_by_hook_type(
+        self,
+        hook_id: str,
+        hook_type: str,
+        page: Optional[int] = None,
+        per_page: Optional[int] = None,
+    ) -> DevopnessResponse[List[RequestRelation]]:
+        """
+        Returns a list of all hook requests belonging to a hook
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = parse_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            f"/hooks/{hook_type}/{hook_id}/requests",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._get(endpoint)
+
+        return DevopnessResponse(response, List[RequestRelation])
+
+
+class HooksRequestsApiServiceAsync(DevopnessBaseServiceAsync):
+    """
+    HooksRequestsApiServiceAsync - Auto Generated
     """
 
     async def list_hook_requests_by_hook_type(
@@ -32,7 +72,7 @@ class HooksRequestsApiService(DevopnessBaseService):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -45,38 +85,7 @@ class HooksRequestsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, List[RequestRelation])
-
-    def list_hook_requests_by_hook_type_sync(
-        self,
-        hook_id: str,
-        hook_type: str,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[RequestRelation]]:
-        """
-        Returns a list of all hook requests belonging to a hook
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        query_string = DevopnessBaseService._get_query_string(
-            {
-                "page": page,
-                "per_page": per_page,
-            }
-        )
-
-        endpoint_parts = [
-            f"/hooks/{hook_type}/{hook_id}/requests",
-            f"?{query_string}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, List[RequestRelation])

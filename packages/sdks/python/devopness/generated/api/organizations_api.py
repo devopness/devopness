@@ -8,7 +8,7 @@ Note:
 
 from typing import List, Optional, Union
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Organization,
     OrganizationActivity,
@@ -18,11 +18,144 @@ from ..models import (
     OrganizationUpdate,
     OrganizationUpdatePlain,
 )
+from ..utils import parse_query_string
 
 
 class OrganizationsApiService(DevopnessBaseService):
     """
     OrganizationsApiService - Auto Generated
+    """
+
+    def add_organization(
+        self,
+        organization_create: Union[
+            OrganizationCreate,
+            OrganizationCreatePlain,
+        ],
+    ) -> DevopnessResponse[Organization]:
+        """
+        Create a new organization
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            "/organizations",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._post(endpoint, organization_create)
+
+        return DevopnessResponse(response, Organization)
+
+    def get_organization(
+        self,
+        organization_id: str,
+    ) -> DevopnessResponse[Organization]:
+        """
+        Get an organization by ID or URL Slug
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/organizations/{organization_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._get(endpoint)
+
+        return DevopnessResponse(response, Organization)
+
+    def get_organization_activity(
+        self,
+        organization_id: str,
+    ) -> DevopnessResponse[OrganizationActivity]:
+        """
+        Get activity information for an organization
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/organizations/{organization_id}/activity",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._get(endpoint)
+
+        return DevopnessResponse(response, OrganizationActivity)
+
+    def list_organizations(
+        self,
+        page: Optional[int] = None,
+        per_page: Optional[int] = None,
+    ) -> DevopnessResponse[List[OrganizationRelation]]:
+        """
+        List all organizations of authenticated user
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = parse_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            "/organizations",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._get(endpoint)
+
+        return DevopnessResponse(response, List[OrganizationRelation])
+
+    def update_organization(
+        self,
+        organization_id: str,
+        organization_update: Union[
+            OrganizationUpdate,
+            OrganizationUpdatePlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Update an existing organization
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/organizations/{organization_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._put(endpoint, organization_update)
+
+        return DevopnessResponse(response, None)
+
+
+class OrganizationsApiServiceAsync(DevopnessBaseServiceAsync):
+    """
+    OrganizationsApiServiceAsync - Auto Generated
     """
 
     async def add_organization(
@@ -45,31 +178,8 @@ class OrganizationsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint, organization_create)
-
-        return DevopnessResponse(response, Organization)
-
-    def add_organization_sync(
-        self,
-        organization_create: Union[
-            OrganizationCreate,
-            OrganizationCreatePlain,
-        ],
-    ) -> DevopnessResponse[Organization]:
-        """
-        Create a new organization
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            "/organizations",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, organization_create)
 
         return DevopnessResponse(response, Organization)
 
@@ -90,28 +200,8 @@ class OrganizationsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, Organization)
-
-    def get_organization_sync(
-        self,
-        organization_id: str,
-    ) -> DevopnessResponse[Organization]:
-        """
-        Get an organization by ID or URL Slug
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/organizations/{organization_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, Organization)
 
@@ -132,28 +222,8 @@ class OrganizationsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, OrganizationActivity)
-
-    def get_organization_activity_sync(
-        self,
-        organization_id: str,
-    ) -> DevopnessResponse[OrganizationActivity]:
-        """
-        Get activity information for an organization
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/organizations/{organization_id}/activity",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, OrganizationActivity)
 
@@ -170,7 +240,7 @@ class OrganizationsApiService(DevopnessBaseService):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -183,37 +253,8 @@ class OrganizationsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, List[OrganizationRelation])
-
-    def list_organizations_sync(
-        self,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[OrganizationRelation]]:
-        """
-        List all organizations of authenticated user
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        query_string = DevopnessBaseService._get_query_string(
-            {
-                "page": page,
-                "per_page": per_page,
-            }
-        )
-
-        endpoint_parts = [
-            "/organizations",
-            f"?{query_string}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, List[OrganizationRelation])
 
@@ -238,31 +279,7 @@ class OrganizationsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._put(endpoint, organization_update)
-
-        return DevopnessResponse(response, None)
-
-    def update_organization_sync(
-        self,
-        organization_id: str,
-        organization_update: Union[
-            OrganizationUpdate,
-            OrganizationUpdatePlain,
-        ],
-    ) -> DevopnessResponse[None]:
-        """
-        Update an existing organization
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/organizations/{organization_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._put_sync(endpoint, organization_update)
 
         return DevopnessResponse(response, None)

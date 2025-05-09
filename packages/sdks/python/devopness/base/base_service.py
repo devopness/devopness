@@ -4,7 +4,6 @@ Devopness API Python SDK - Painless essential DevOps to everyone
 
 from datetime import datetime, timedelta, timezone
 from typing import Any, Optional, Union
-from urllib.parse import urlencode
 
 import httpx
 
@@ -21,7 +20,10 @@ from ..core.network_error import (
     handle_network_errors_sync,
 )
 
-__all__ = ["DevopnessBaseService"]
+__all__ = [
+    "DevopnessBaseService",
+    "DevopnessBaseServiceAsync",
+]
 
 
 class DevopnessBaseService:
@@ -30,9 +32,7 @@ class DevopnessBaseService:
     Handles HTTP requests, access token management, and request interception.
     """
 
-    __client: httpx.AsyncClient
-    __client_sync: httpx.Client
-
+    _client: httpx.Client
     _config: DevopnessClientConfig
 
     _access_token: Optional[str] = None
@@ -46,29 +46,103 @@ class DevopnessBaseService:
         if DevopnessBaseService._config is None:
             raise DevopnessSdkError("DevopnessBaseService is not initialized")
 
-        self.__client = httpx.AsyncClient(
+        self._client = httpx.Client(
             base_url=self._config.base_url,
             timeout=self._config.timeout,
             default_encoding=self._config.default_encoding,
             headers=self._config.headers,
             event_hooks={
-                "request": [self.__on_request],
-                "response": [self.__on_response],
+                "request": [self._on_request_callback],
+                "response": [self._on_response_callback],
             },
         )
 
-        self.__client_sync = httpx.Client(
-            base_url=self._config.base_url,
-            timeout=self._config.timeout,
-            default_encoding=self._config.default_encoding,
-            headers=self._config.headers,
-            event_hooks={
-                "request": [self.__on_request_sync],
-                "response": [self.__on_response_sync],
-            },
+    @handle_network_errors_sync
+    def _get(self, endpoint: str) -> httpx.Response:
+        """
+        Sends an HTTP GET request to the specified endpoint.
+
+        Args:
+            endpoint (str): The relative URL path.
+
+        Returns:
+            httpx.Response: The HTTP response object.
+        """
+        return self._client.get(endpoint)
+
+    @handle_network_errors_sync
+    def _post(self, endpoint: str, data: Any = None) -> httpx.Response:  # noqa: ANN401
+        """
+        Sends an HTTP POST request with optional JSON body.
+
+        Args:
+            endpoint (str): The relative URL path.
+            data (Any, optional): The request body payload.
+
+        Returns:
+            httpx.Response: The HTTP response object.
+        """
+        payload = parse_payload(data)
+        return self._client.post(endpoint, json=payload)
+
+    @handle_network_errors_sync
+    def _put(self, endpoint: str, data: Any = None) -> httpx.Response:  # noqa: ANN401
+        """
+        Sends an HTTP PUT request with optional JSON body.
+
+        Args:
+            endpoint (str): The relative URL path.
+            data (Any, optional): The request body payload.
+
+        Returns:
+            httpx.Response: The HTTP response object.
+        """
+        payload = parse_payload(data)
+        return self._client.put(endpoint, json=payload)
+
+    @handle_network_errors_sync
+    def _delete(self, endpoint: str) -> httpx.Response:
+        """
+        Sends an HTTP DELETE request.
+
+        Args:
+            endpoint (str): The relative URL path.
+
+        Returns:
+            httpx.Response: The HTTP response object.
+        """
+        return self._client.delete(endpoint)
+
+    def _refresh_access_token(self) -> None:
+        """
+        Refreshes the access token.
+        """
+        response = self._post(
+            "/users/refresh-token",
+            {"refresh_token": DevopnessBaseService._refresh_token},
         )
 
-    async def __on_request(self, request: httpx.Request) -> None:
+        self._save_access_token(response)
+
+    def _save_access_token(
+        self,
+        response: httpx.Response,
+    ) -> None:
+        """
+        Saves the access token and its expiration time.
+        """
+        response.read()
+        data = response.json()
+
+        now = datetime.now(timezone.utc)
+        expires_in: int = data["expires_in"]
+        expires_at = now + timedelta(seconds=expires_in)
+
+        DevopnessBaseService._access_token = data["access_token"]
+        DevopnessBaseService._refresh_token = data["refresh_token"]
+        DevopnessBaseService._token_expires_at = expires_at
+
+    def _on_request_callback(self, request: httpx.Request) -> None:
         """
         Request interceptor that injects the Authorization header if an access
         token exists.
@@ -78,10 +152,10 @@ class DevopnessBaseService:
         """
         if (
             DevopnessBaseService._config.auto_refresh_token
-            and self._is_access_token_expired()
-            and not self._is_token_change_request(request.url.path)
+            and is_access_token_expired(DevopnessBaseService)
+            and not is_token_change_request(request.url.path)
         ):
-            self.__refresh_tokens()
+            self._refresh_access_token()
 
         access_token = DevopnessBaseService._access_token
 
@@ -91,10 +165,10 @@ class DevopnessBaseService:
         elif "Authorization" in request.headers:
             del request.headers["Authorization"]
 
-        if self._config.debug:
-            self.__debug_request(request)
+        if DevopnessBaseService._config.debug:
+            debug_request(request)
 
-    async def __on_response(self, response: httpx.Response) -> httpx.Response:
+    def _on_response_callback(self, response: httpx.Response) -> httpx.Response:
         """
         Response interceptor to error handling.
 
@@ -109,70 +183,49 @@ class DevopnessBaseService:
 
             if (
                 DevopnessBaseService._config.auto_refresh_token
-                and self._is_token_change_request(response.url.path)
+                and is_token_change_request(response.url.path)
             ):
-                self.__refresh_tokens(response)
+                self._save_access_token(response)
 
-            if self._config.debug:
-                self.__debug_response(response)
-
-        except httpx.HTTPStatusError as e:
-            await raise_devopness_api_error(e)
-
-        return response
-
-    def __on_request_sync(self, request: httpx.Request) -> None:
-        """
-        Request interceptor that injects the Authorization header if an access
-        token exists.
-
-        Args:
-            request (httpx.Request): The outgoing HTTP request.
-        """
-        if (
-            DevopnessBaseService._config.auto_refresh_token
-            and self._is_access_token_expired()
-            and not self._is_token_change_request(request.url.path)
-        ):
-            self.__refresh_tokens()
-
-        access_token = DevopnessBaseService._access_token
-
-        if access_token:
-            request.headers["Authorization"] = f"Bearer {access_token}"
-
-        elif "Authorization" in request.headers:
-            del request.headers["Authorization"]
-
-        if self._config.debug:
-            self.__debug_request(request)
-
-    def __on_response_sync(self, response: httpx.Response) -> httpx.Response:
-        """
-        Response interceptor to error handling.
-
-        Args:
-            response (httpx.Response): The response object from the API.
-
-        Returns:
-            httpx.Response: The processed response.
-        """
-        try:
-            response.raise_for_status()
-
-            if (
-                DevopnessBaseService._config.auto_refresh_token
-                and self._is_token_change_request(response.url.path)
-            ):
-                self.__refresh_tokens(response)
-
-            if self._config.debug:
-                self.__debug_response(response)
+            if DevopnessBaseService._config.debug:
+                debug_response(response)
 
         except httpx.HTTPStatusError as e:
             raise_devopness_api_error_sync(e)
 
         return response
+
+
+class DevopnessBaseServiceAsync:
+    """
+    Base service class for communicating with the Devopness API.
+    Handles HTTP requests, access token management, and request interception.
+    """
+
+    _client: httpx.AsyncClient
+    _config: DevopnessClientConfig
+
+    _access_token: Optional[str] = None
+    _refresh_token: Optional[str] = None
+    _token_expires_at: Optional[datetime] = None
+
+    def __init__(self) -> None:
+        """
+        Initializes the API base service with the provided configuration.
+        """
+        if DevopnessBaseServiceAsync._config is None:
+            raise DevopnessSdkError("DevopnessBaseServiceAsync is not initialized")
+
+        self._client = httpx.AsyncClient(
+            base_url=self._config.base_url,
+            timeout=self._config.timeout,
+            default_encoding=self._config.default_encoding,
+            headers=self._config.headers,
+            event_hooks={
+                "request": [self._on_request_callback],
+                "response": [self._on_response_callback],
+            },
+        )
 
     @handle_network_errors
     async def _get(self, endpoint: str) -> httpx.Response:
@@ -185,7 +238,7 @@ class DevopnessBaseService:
         Returns:
             httpx.Response: The HTTP response object.
         """
-        return await self.__client.get(endpoint)
+        return await self._client.get(endpoint)
 
     @handle_network_errors
     async def _post(self, endpoint: str, data: Any = None) -> httpx.Response:  # noqa: ANN401
@@ -199,8 +252,8 @@ class DevopnessBaseService:
         Returns:
             httpx.Response: The HTTP response object.
         """
-        payload = self.__get_payload(data)
-        return await self.__client.post(endpoint, json=payload)
+        payload = parse_payload(data)
+        return await self._client.post(endpoint, json=payload)
 
     @handle_network_errors
     async def _put(self, endpoint: str, data: Any = None) -> httpx.Response:  # noqa: ANN401
@@ -214,8 +267,8 @@ class DevopnessBaseService:
         Returns:
             httpx.Response: The HTTP response object.
         """
-        payload = self.__get_payload(data)
-        return await self.__client.put(endpoint, json=payload)
+        payload = parse_payload(data)
+        return await self._client.put(endpoint, json=payload)
 
     @handle_network_errors
     async def _delete(self, endpoint: str) -> httpx.Response:
@@ -228,173 +281,164 @@ class DevopnessBaseService:
         Returns:
             httpx.Response: The HTTP response object.
         """
-        return await self.__client.delete(endpoint)
+        return await self._client.delete(endpoint)
 
-    @handle_network_errors_sync
-    def _get_sync(self, endpoint: str) -> httpx.Response:
-        """
-        Sends an HTTP GET request to the specified endpoint.
-
-        Args:
-            endpoint (str): The relative URL path.
-
-        Returns:
-            httpx.Response: The HTTP response object.
-        """
-        return self.__client_sync.get(endpoint)
-
-    @handle_network_errors_sync
-    def _post_sync(self, endpoint: str, data: Any = None) -> httpx.Response:  # noqa: ANN401
-        """
-        Sends an HTTP POST request with optional JSON body.
-
-        Args:
-            endpoint (str): The relative URL path.
-            data (Any, optional): The request body payload.
-
-        Returns:
-            httpx.Response: The HTTP response object.
-        """
-        payload = self.__get_payload(data)
-        return self.__client_sync.post(endpoint, json=payload)
-
-    @handle_network_errors_sync
-    def _put_sync(self, endpoint: str, data: Any = None) -> httpx.Response:  # noqa: ANN401
-        """
-        Sends an HTTP PUT request with optional JSON body.
-
-        Args:
-            endpoint (str): The relative URL path.
-            data (Any, optional): The request body payload.
-
-        Returns:
-            httpx.Response: The HTTP response object.
-        """
-        payload = self.__get_payload(data)
-        return self.__client_sync.put(endpoint, json=payload)
-
-    @handle_network_errors_sync
-    def _delete_sync(self, endpoint: str) -> httpx.Response:
-        """
-        Sends an HTTP DELETE request.
-
-        Args:
-            endpoint (str): The relative URL path.
-
-        Returns:
-            httpx.Response: The HTTP response object.
-        """
-        return self.__client_sync.delete(endpoint)
-
-    def __get_payload(
-        self,
-        data: Union[dict[str, Any], DevopnessBaseModel, None],
-    ) -> Union[dict[str, Any], None]:
-        """
-        Returns the payload for a request.
-
-        Args:
-            data (Union[dict[str, Any], DevopnessBaseModel, None]): The request body
-                                                                    payload.
-
-        Returns:
-            str: The payload as a string.
-        """
-        if data is None:
-            return None
-
-        if isinstance(data, DevopnessBaseModel):
-            payload = data.model_dump(exclude_unset=True)
-
-        if isinstance(data, dict):
-            payload = data
-
-        return payload
-
-    def __debug_request(self, request: httpx.Request) -> None:
-        """
-        Prints the request details to the console.
-
-        Args:
-            request (httpx.Request): The request object.
-        """
-        r_method = request.method.upper()
-        r_url = request.url
-
-        print(f"[Devopness SDK] --> {r_method} {r_url}")
-
-    def __debug_response(self, response: httpx.Response) -> None:
-        """
-        Prints the response details to the console.
-
-        Args:
-            response (httpx.Response): The response object.
-        """
-        r_status_code = response.status_code
-        r_reason_phrase = response.reason_phrase
-
-        print(f"[Devopness SDK] <-- [Response] {r_status_code} {r_reason_phrase}")
-
-    def __refresh_tokens(self, response: Optional[httpx.Response] = None) -> None:
+    async def _refresh_access_token(self) -> None:
         """
         Refreshes the access token.
         """
-        res = (
-            response
-            if response is not None
-            else self._post_sync(
-                "/users/refresh-token",
-                {"refresh_token": self._refresh_token},
-            )
+        response = await self._post(
+            "/users/refresh-token",
+            {"refresh_token": DevopnessBaseServiceAsync._refresh_token},
         )
 
-        res.read()
-        data = res.json()
+        await self._save_access_token(response)
+
+    async def _save_access_token(
+        self,
+        response: httpx.Response,
+    ) -> None:
+        """
+        Saves the access token and its expiration time.
+        """
+        response.read()
+        data = response.json()
 
         now = datetime.now(timezone.utc)
         expires_in: int = data["expires_in"]
         expires_at = now + timedelta(seconds=expires_in)
 
-        DevopnessBaseService._access_token = data["access_token"]
-        DevopnessBaseService._refresh_token = data["refresh_token"]
-        DevopnessBaseService._token_expires_at = expires_at
+        DevopnessBaseServiceAsync._access_token = data["access_token"]
+        DevopnessBaseServiceAsync._refresh_token = data["refresh_token"]
+        DevopnessBaseServiceAsync._token_expires_at = expires_at
 
-    def _is_access_token_expired(self) -> bool:
+    async def _on_request_callback(self, request: httpx.Request) -> None:
         """
-        Checks if the access token has expired.
-        """
-        expires_at = DevopnessBaseService._token_expires_at
-        if expires_at is None:
-            return True
-
-        safety_margin = timedelta(seconds=30)
-        return datetime.now(timezone.utc) >= (expires_at - safety_margin)
-
-    def _is_token_change_request(self, endpoint: str) -> bool:
-        """
-        Checks if the request is to a endpoint that updates the access token.
-        """
-        return endpoint in [
-            "/users/login",
-            "/users/refresh-token",
-        ]
-
-    @staticmethod
-    def _get_query_string(in_params: dict[str, Any]) -> str:
-        """
-        Returns the query string from the given query parameters.
+        Request interceptor that injects the Authorization header if an access
+        token exists.
 
         Args:
-            in_params (dict[str, Any]): The query parameters.
+            request (httpx.Request): The outgoing HTTP request.
+        """
+        if (
+            DevopnessBaseServiceAsync._config.auto_refresh_token
+            and is_access_token_expired(DevopnessBaseServiceAsync)
+            and not is_token_change_request(request.url.path)
+        ):
+            await self._refresh_access_token()
+
+        access_token = DevopnessBaseServiceAsync._access_token
+
+        if access_token:
+            request.headers["Authorization"] = f"Bearer {access_token}"
+
+        elif "Authorization" in request.headers:
+            del request.headers["Authorization"]
+
+        if DevopnessBaseServiceAsync._config.debug:
+            debug_request(request)
+
+    async def _on_response_callback(self, response: httpx.Response) -> httpx.Response:
+        """
+        Response interceptor to error handling.
+
+        Args:
+            response (httpx.Response): The response object from the API.
 
         Returns:
-            str: The query string.
+            httpx.Response: The processed response.
         """
-        out_params: dict[str, Any] = {}
-        for key, value in in_params.items():
-            if value is None or value in ("", [], {}):
-                continue
+        try:
+            response.raise_for_status()
 
-            out_params[key] = value
+            if (
+                DevopnessBaseServiceAsync._config.auto_refresh_token
+                and is_token_change_request(response.url.path)
+            ):
+                await self._save_access_token(response)
 
-        return urlencode(out_params)
+            if DevopnessBaseServiceAsync._config.debug:
+                debug_response(response)
+
+        except httpx.HTTPStatusError as e:
+            await raise_devopness_api_error(e)
+
+        return response
+
+
+def debug_request(request: httpx.Request) -> None:
+    """
+    Prints the request details to the console.
+
+    Args:
+        request (httpx.Request): The request object.
+    """
+    r_method = request.method.upper()
+    r_url = request.url
+
+    print(f"[Devopness SDK] --> {r_method} {r_url}")
+
+
+def debug_response(response: httpx.Response) -> None:
+    """
+    Prints the response details to the console.
+
+    Args:
+        response (httpx.Response): The response object.
+    """
+    r_status_code = response.status_code
+    r_reason_phrase = response.reason_phrase
+
+    print(f"[Devopness SDK] <-- [Response] {r_status_code} {r_reason_phrase}")
+
+
+def is_access_token_expired(
+    service_cls: Union[
+        type[DevopnessBaseService],
+        type[DevopnessBaseServiceAsync],
+    ],
+) -> bool:
+    """
+    Checks if the access token has expired.
+    """
+    expires_at = service_cls._token_expires_at
+    if expires_at is None:
+        return True
+
+    safety_margin = timedelta(seconds=30)
+    return datetime.now(timezone.utc) >= (expires_at - safety_margin)
+
+
+def is_token_change_request(endpoint: str) -> bool:
+    """
+    Checks if the request is to a endpoint that updates the access token.
+    """
+    return endpoint in [
+        "/users/login",
+        "/users/refresh-token",
+    ]
+
+
+def parse_payload(
+    data: Union[dict[str, Any], DevopnessBaseModel, None],
+) -> Union[dict[str, Any], None]:
+    """
+    Returns the payload for a request.
+
+    Args:
+        data (Union[dict[str, Any], DevopnessBaseModel, None]): The request body
+                                                                payload.
+
+    Returns:
+        str: The payload as a string.
+    """
+    if data is None:
+        return None
+
+    if isinstance(data, DevopnessBaseModel):
+        payload = data.model_dump(exclude_unset=True)
+
+    if isinstance(data, dict):
+        payload = data
+
+    return payload

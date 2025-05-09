@@ -8,7 +8,7 @@ Note:
 
 from typing import List, Optional, Union
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     NetworkRule,
     NetworkRuleEnvironmentCreate,
@@ -17,11 +17,146 @@ from ..models import (
     NetworkRuleUpdate,
     NetworkRuleUpdatePlain,
 )
+from ..utils import parse_query_string
 
 
 class NetworkRulesApiService(DevopnessBaseService):
     """
     NetworkRulesApiService - Auto Generated
+    """
+
+    def add_environment_network_rule(
+        self,
+        environment_id: int,
+        network_rule_environment_create: Union[
+            NetworkRuleEnvironmentCreate,
+            NetworkRuleEnvironmentCreatePlain,
+        ],
+    ) -> DevopnessResponse[NetworkRule]:
+        """
+        Add a Network Rule to the given environment
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/environments/{environment_id}/network-rules",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._post(endpoint, network_rule_environment_create)
+
+        return DevopnessResponse(response, NetworkRule)
+
+    def delete_network_rule(
+        self,
+        network_rule_id: int,
+    ) -> DevopnessResponse[None]:
+        """
+        Delete a given Network Rule
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/network-rules/{network_rule_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._delete(endpoint)
+
+        return DevopnessResponse(response, None)
+
+    def get_network_rule(
+        self,
+        network_rule_id: int,
+    ) -> DevopnessResponse[NetworkRule]:
+        """
+        Get a Network Rule by ID
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/network-rules/{network_rule_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._get(endpoint)
+
+        return DevopnessResponse(response, NetworkRule)
+
+    def list_environment_network_rules(
+        self,
+        environment_id: int,
+        page: Optional[int] = None,
+        per_page: Optional[int] = None,
+    ) -> DevopnessResponse[List[NetworkRuleRelation]]:
+        """
+        Return a list of all Network Rules belonging to an environment
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = parse_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            f"/environments/{environment_id}/network-rules",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._get(endpoint)
+
+        return DevopnessResponse(response, List[NetworkRuleRelation])
+
+    def update_network_rule(
+        self,
+        network_rule_id: int,
+        network_rule_update: Union[
+            NetworkRuleUpdate,
+            NetworkRuleUpdatePlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Update an existing Network Rule
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/network-rules/{network_rule_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._put(endpoint, network_rule_update)
+
+        return DevopnessResponse(response, None)
+
+
+class NetworkRulesApiServiceAsync(DevopnessBaseServiceAsync):
+    """
+    NetworkRulesApiServiceAsync - Auto Generated
     """
 
     async def add_environment_network_rule(
@@ -45,32 +180,8 @@ class NetworkRulesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint, network_rule_environment_create)
-
-        return DevopnessResponse(response, NetworkRule)
-
-    def add_environment_network_rule_sync(
-        self,
-        environment_id: int,
-        network_rule_environment_create: Union[
-            NetworkRuleEnvironmentCreate,
-            NetworkRuleEnvironmentCreatePlain,
-        ],
-    ) -> DevopnessResponse[NetworkRule]:
-        """
-        Add a Network Rule to the given environment
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/environments/{environment_id}/network-rules",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, network_rule_environment_create)
 
         return DevopnessResponse(response, NetworkRule)
 
@@ -91,28 +202,8 @@ class NetworkRulesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._delete(endpoint)
-
-        return DevopnessResponse(response, None)
-
-    def delete_network_rule_sync(
-        self,
-        network_rule_id: int,
-    ) -> DevopnessResponse[None]:
-        """
-        Delete a given Network Rule
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/network-rules/{network_rule_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._delete_sync(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -133,28 +224,8 @@ class NetworkRulesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, NetworkRule)
-
-    def get_network_rule_sync(
-        self,
-        network_rule_id: int,
-    ) -> DevopnessResponse[NetworkRule]:
-        """
-        Get a Network Rule by ID
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/network-rules/{network_rule_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, NetworkRule)
 
@@ -172,7 +243,7 @@ class NetworkRulesApiService(DevopnessBaseService):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -185,38 +256,8 @@ class NetworkRulesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, List[NetworkRuleRelation])
-
-    def list_environment_network_rules_sync(
-        self,
-        environment_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[NetworkRuleRelation]]:
-        """
-        Return a list of all Network Rules belonging to an environment
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        query_string = DevopnessBaseService._get_query_string(
-            {
-                "page": page,
-                "per_page": per_page,
-            }
-        )
-
-        endpoint_parts = [
-            f"/environments/{environment_id}/network-rules",
-            f"?{query_string}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, List[NetworkRuleRelation])
 
@@ -241,31 +282,7 @@ class NetworkRulesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._put(endpoint, network_rule_update)
-
-        return DevopnessResponse(response, None)
-
-    def update_network_rule_sync(
-        self,
-        network_rule_id: int,
-        network_rule_update: Union[
-            NetworkRuleUpdate,
-            NetworkRuleUpdatePlain,
-        ],
-    ) -> DevopnessResponse[None]:
-        """
-        Update an existing Network Rule
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/network-rules/{network_rule_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._put_sync(endpoint, network_rule_update)
 
         return DevopnessResponse(response, None)
