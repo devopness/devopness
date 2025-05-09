@@ -3,12 +3,12 @@ name: Release - Packages
 on:
   workflow_dispatch:
   push:
-    # paths:
-    #   - packages/**/src/**
-    #   - packages/**/package.json
-    # branches:
-    #   - main
-    #   - "*.x" # maintenance releases
+    paths:
+      - packages/**/src/**
+      - packages/**/package.json
+    branches:
+      - main
+      - "*.x" # maintenance releases
 
 permissions:
   contents: write
