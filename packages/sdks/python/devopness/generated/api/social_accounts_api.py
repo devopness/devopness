@@ -8,7 +8,7 @@ Note:
 
 from typing import List, Optional, Union
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     SocialAccount,
     SocialAccountCreate,
@@ -16,11 +16,140 @@ from ..models import (
     SocialAccountRelation,
     SocialAccountStatus,
 )
+from ..utils import parse_query_string
 
 
 class SocialAccountsApiService(DevopnessBaseService):
     """
     SocialAccountsApiService - Auto Generated
+    """
+
+    def add_social_account(
+        self,
+        social_account_create: Union[
+            SocialAccountCreate,
+            SocialAccountCreatePlain,
+        ],
+    ) -> DevopnessResponse[SocialAccount]:
+        """
+        Add a social account
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            "/social-accounts",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._post(endpoint, social_account_create)
+
+        return DevopnessResponse(response, SocialAccount)
+
+    def delete_social_account(
+        self,
+        social_account_id: int,
+    ) -> DevopnessResponse[None]:
+        """
+        Delete a given social account
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/social-accounts/{social_account_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._delete(endpoint)
+
+        return DevopnessResponse(response, None)
+
+    def get_social_account(
+        self,
+        social_account_provider: str,
+    ) -> DevopnessResponse[SocialAccount]:
+        """
+        Get a social account by provider name
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/social-accounts/{social_account_provider}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._get(endpoint)
+
+        return DevopnessResponse(response, SocialAccount)
+
+    def get_social_account_status(
+        self,
+        social_account_provider: str,
+    ) -> DevopnessResponse[SocialAccountStatus]:
+        """
+        Get status of a social account
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/social-accounts/{social_account_provider}/status",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._get(endpoint)
+
+        return DevopnessResponse(response, SocialAccountStatus)
+
+    def list_social_accounts(
+        self,
+        page: Optional[int] = None,
+        per_page: Optional[int] = None,
+    ) -> DevopnessResponse[List[SocialAccountRelation]]:
+        """
+        Return a list of all social accounts of the current user
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = parse_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            "/social-accounts",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._get(endpoint)
+
+        return DevopnessResponse(response, List[SocialAccountRelation])
+
+
+class SocialAccountsApiServiceAsync(DevopnessBaseServiceAsync):
+    """
+    SocialAccountsApiServiceAsync - Auto Generated
     """
 
     async def add_social_account(
@@ -43,31 +172,8 @@ class SocialAccountsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint, social_account_create)
-
-        return DevopnessResponse(response, SocialAccount)
-
-    def add_social_account_sync(
-        self,
-        social_account_create: Union[
-            SocialAccountCreate,
-            SocialAccountCreatePlain,
-        ],
-    ) -> DevopnessResponse[SocialAccount]:
-        """
-        Add a social account
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            "/social-accounts",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, social_account_create)
 
         return DevopnessResponse(response, SocialAccount)
 
@@ -88,28 +194,8 @@ class SocialAccountsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._delete(endpoint)
-
-        return DevopnessResponse(response, None)
-
-    def delete_social_account_sync(
-        self,
-        social_account_id: int,
-    ) -> DevopnessResponse[None]:
-        """
-        Delete a given social account
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/social-accounts/{social_account_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._delete_sync(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -130,28 +216,8 @@ class SocialAccountsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, SocialAccount)
-
-    def get_social_account_sync(
-        self,
-        social_account_provider: str,
-    ) -> DevopnessResponse[SocialAccount]:
-        """
-        Get a social account by provider name
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/social-accounts/{social_account_provider}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, SocialAccount)
 
@@ -172,28 +238,8 @@ class SocialAccountsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, SocialAccountStatus)
-
-    def get_social_account_status_sync(
-        self,
-        social_account_provider: str,
-    ) -> DevopnessResponse[SocialAccountStatus]:
-        """
-        Get status of a social account
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/social-accounts/{social_account_provider}/status",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, SocialAccountStatus)
 
@@ -210,7 +256,7 @@ class SocialAccountsApiService(DevopnessBaseService):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -223,36 +269,7 @@ class SocialAccountsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, List[SocialAccountRelation])
-
-    def list_social_accounts_sync(
-        self,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[SocialAccountRelation]]:
-        """
-        Return a list of all social accounts of the current user
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        query_string = DevopnessBaseService._get_query_string(
-            {
-                "page": page,
-                "per_page": per_page,
-            }
-        )
-
-        endpoint_parts = [
-            "/social-accounts",
-            f"?{query_string}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, List[SocialAccountRelation])

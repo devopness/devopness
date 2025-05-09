@@ -8,7 +8,7 @@ Note:
 
 from typing import List, Optional, Union
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Credential,
     CredentialEnvironmentCreate,
@@ -18,11 +18,195 @@ from ..models import (
     CredentialUpdate,
     CredentialUpdatePlain,
 )
+from ..utils import parse_query_string
 
 
 class CredentialsApiService(DevopnessBaseService):
     """
     CredentialsApiService - Auto Generated
+    """
+
+    def add_environment_credential(
+        self,
+        environment_id: int,
+        credential_environment_create: Union[
+            CredentialEnvironmentCreate,
+            CredentialEnvironmentCreatePlain,
+        ],
+    ) -> DevopnessResponse[Credential]:
+        """
+        Add a Credential to the given environment
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/environments/{environment_id}/credentials",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._post(endpoint, credential_environment_create)
+
+        return DevopnessResponse(response, Credential)
+
+    def delete_credential(
+        self,
+        credential_id: int,
+    ) -> DevopnessResponse[None]:
+        """
+        Delete a given credential
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/credentials/{credential_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._delete(endpoint)
+
+        return DevopnessResponse(response, None)
+
+    def get_credential(
+        self,
+        credential_id: int,
+    ) -> DevopnessResponse[Credential]:
+        """
+        Get a credential by ID
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/credentials/{credential_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._get(endpoint)
+
+        return DevopnessResponse(response, Credential)
+
+    def get_environment_credential_settings(
+        self,
+        environment_id: int,
+        provider_code: str,
+    ) -> DevopnessResponse[CredentialSetting]:
+        """
+        Return provider settings
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/environments/{environment_id}/credentials/{provider_code}/settings",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._get(endpoint)
+
+        return DevopnessResponse(response, CredentialSetting)
+
+    def get_status_credential(
+        self,
+        credential_id: int,
+    ) -> DevopnessResponse[None]:
+        """
+        Get current status of a credential on its provider
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/credentials/{credential_id}/get-status",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._post(endpoint)
+
+        return DevopnessResponse(response, None)
+
+    def list_environment_credentials(
+        self,
+        environment_id: int,
+        page: Optional[int] = None,
+        per_page: Optional[int] = None,
+        provider_code: Optional[str] = None,
+        provider_type: Optional[str] = None,
+    ) -> DevopnessResponse[List[CredentialRelation]]:
+        """
+        Return a list of all Credentials belonging to an environment
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = parse_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+                "provider_code": provider_code,
+                "provider_type": provider_type,
+            }
+        )
+
+        endpoint_parts = [
+            f"/environments/{environment_id}/credentials",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._get(endpoint)
+
+        return DevopnessResponse(response, List[CredentialRelation])
+
+    def update_credential(
+        self,
+        credential_id: int,
+        credential_update: Union[
+            CredentialUpdate,
+            CredentialUpdatePlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Update an existing Credential
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/credentials/{credential_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._put(endpoint, credential_update)
+
+        return DevopnessResponse(response, None)
+
+
+class CredentialsApiServiceAsync(DevopnessBaseServiceAsync):
+    """
+    CredentialsApiServiceAsync - Auto Generated
     """
 
     async def add_environment_credential(
@@ -46,32 +230,8 @@ class CredentialsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint, credential_environment_create)
-
-        return DevopnessResponse(response, Credential)
-
-    def add_environment_credential_sync(
-        self,
-        environment_id: int,
-        credential_environment_create: Union[
-            CredentialEnvironmentCreate,
-            CredentialEnvironmentCreatePlain,
-        ],
-    ) -> DevopnessResponse[Credential]:
-        """
-        Add a Credential to the given environment
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/environments/{environment_id}/credentials",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, credential_environment_create)
 
         return DevopnessResponse(response, Credential)
 
@@ -92,28 +252,8 @@ class CredentialsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._delete(endpoint)
-
-        return DevopnessResponse(response, None)
-
-    def delete_credential_sync(
-        self,
-        credential_id: int,
-    ) -> DevopnessResponse[None]:
-        """
-        Delete a given credential
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/credentials/{credential_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._delete_sync(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -134,28 +274,8 @@ class CredentialsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, Credential)
-
-    def get_credential_sync(
-        self,
-        credential_id: int,
-    ) -> DevopnessResponse[Credential]:
-        """
-        Get a credential by ID
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/credentials/{credential_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, Credential)
 
@@ -177,29 +297,8 @@ class CredentialsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, CredentialSetting)
-
-    def get_environment_credential_settings_sync(
-        self,
-        environment_id: int,
-        provider_code: str,
-    ) -> DevopnessResponse[CredentialSetting]:
-        """
-        Return provider settings
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/environments/{environment_id}/credentials/{provider_code}/settings",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, CredentialSetting)
 
@@ -220,28 +319,8 @@ class CredentialsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint)
-
-        return DevopnessResponse(response, None)
-
-    def get_status_credential_sync(
-        self,
-        credential_id: int,
-    ) -> DevopnessResponse[None]:
-        """
-        Get current status of a credential on its provider
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/credentials/{credential_id}/get-status",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -261,7 +340,7 @@ class CredentialsApiService(DevopnessBaseService):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -276,42 +355,8 @@ class CredentialsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, List[CredentialRelation])
-
-    def list_environment_credentials_sync(
-        self,
-        environment_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-        provider_code: Optional[str] = None,
-        provider_type: Optional[str] = None,
-    ) -> DevopnessResponse[List[CredentialRelation]]:
-        """
-        Return a list of all Credentials belonging to an environment
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        query_string = DevopnessBaseService._get_query_string(
-            {
-                "page": page,
-                "per_page": per_page,
-                "provider_code": provider_code,
-                "provider_type": provider_type,
-            }
-        )
-
-        endpoint_parts = [
-            f"/environments/{environment_id}/credentials",
-            f"?{query_string}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, List[CredentialRelation])
 
@@ -336,31 +381,7 @@ class CredentialsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._put(endpoint, credential_update)
-
-        return DevopnessResponse(response, None)
-
-    def update_credential_sync(
-        self,
-        credential_id: int,
-        credential_update: Union[
-            CredentialUpdate,
-            CredentialUpdatePlain,
-        ],
-    ) -> DevopnessResponse[None]:
-        """
-        Update an existing Credential
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/credentials/{credential_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._put_sync(endpoint, credential_update)
 
         return DevopnessResponse(response, None)

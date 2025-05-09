@@ -6,13 +6,43 @@ Note:
     https://openapi-generator.tech
 """
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import Log
 
 
 class ActionsLogsApiService(DevopnessBaseService):
     """
     ActionsLogsApiService - Auto Generated
+    """
+
+    def get_action_log(
+        self,
+        action_id: int,
+        action_step_order: int,
+        action_target_id: int,
+    ) -> DevopnessResponse[Log]:
+        """
+        Get action target step log
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/actions/{action_id}/targets/{action_target_id}/steps/{action_step_order}/logs",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._get(endpoint)
+
+        return DevopnessResponse(response, Log)
+
+
+class ActionsLogsApiServiceAsync(DevopnessBaseServiceAsync):
+    """
+    ActionsLogsApiServiceAsync - Auto Generated
     """
 
     async def get_action_log(
@@ -34,29 +64,7 @@ class ActionsLogsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, Log)
-
-    def get_action_log_sync(
-        self,
-        action_id: int,
-        action_step_order: int,
-        action_target_id: int,
-    ) -> DevopnessResponse[Log]:
-        """
-        Get action target step log
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/actions/{action_id}/targets/{action_target_id}/steps/{action_step_order}/logs",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, Log)

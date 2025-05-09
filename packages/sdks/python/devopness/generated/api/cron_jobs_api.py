@@ -8,7 +8,7 @@ Note:
 
 from typing import List, Optional, Union
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     CronJob,
     CronJobEnvironmentCreate,
@@ -17,11 +17,146 @@ from ..models import (
     CronJobUpdate,
     CronJobUpdatePlain,
 )
+from ..utils import parse_query_string
 
 
 class CronJobsApiService(DevopnessBaseService):
     """
     CronJobsApiService - Auto Generated
+    """
+
+    def add_environment_cron_job(
+        self,
+        environment_id: int,
+        cron_job_environment_create: Union[
+            CronJobEnvironmentCreate,
+            CronJobEnvironmentCreatePlain,
+        ],
+    ) -> DevopnessResponse[CronJob]:
+        """
+        Add a Cron Job to the given environment
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/environments/{environment_id}/cron-jobs",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._post(endpoint, cron_job_environment_create)
+
+        return DevopnessResponse(response, CronJob)
+
+    def delete_cron_job(
+        self,
+        cron_job_id: int,
+    ) -> DevopnessResponse[None]:
+        """
+        Delete a given Cron Job
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/cron-jobs/{cron_job_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._delete(endpoint)
+
+        return DevopnessResponse(response, None)
+
+    def get_cron_job(
+        self,
+        cron_job_id: int,
+    ) -> DevopnessResponse[CronJob]:
+        """
+        Get a Cron Job by ID
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/cron-jobs/{cron_job_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._get(endpoint)
+
+        return DevopnessResponse(response, CronJob)
+
+    def list_environment_cron_jobs(
+        self,
+        environment_id: int,
+        page: Optional[int] = None,
+        per_page: Optional[int] = None,
+    ) -> DevopnessResponse[List[CronJobRelation]]:
+        """
+        Return a list of all Cron Jobs belonging to an environment
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = parse_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            f"/environments/{environment_id}/cron-jobs",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._get(endpoint)
+
+        return DevopnessResponse(response, List[CronJobRelation])
+
+    def update_cron_job(
+        self,
+        cron_job_id: int,
+        cron_job_update: Union[
+            CronJobUpdate,
+            CronJobUpdatePlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Update an existing Cron Job
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/cron-jobs/{cron_job_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._put(endpoint, cron_job_update)
+
+        return DevopnessResponse(response, None)
+
+
+class CronJobsApiServiceAsync(DevopnessBaseServiceAsync):
+    """
+    CronJobsApiServiceAsync - Auto Generated
     """
 
     async def add_environment_cron_job(
@@ -45,32 +180,8 @@ class CronJobsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint, cron_job_environment_create)
-
-        return DevopnessResponse(response, CronJob)
-
-    def add_environment_cron_job_sync(
-        self,
-        environment_id: int,
-        cron_job_environment_create: Union[
-            CronJobEnvironmentCreate,
-            CronJobEnvironmentCreatePlain,
-        ],
-    ) -> DevopnessResponse[CronJob]:
-        """
-        Add a Cron Job to the given environment
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/environments/{environment_id}/cron-jobs",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, cron_job_environment_create)
 
         return DevopnessResponse(response, CronJob)
 
@@ -91,28 +202,8 @@ class CronJobsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._delete(endpoint)
-
-        return DevopnessResponse(response, None)
-
-    def delete_cron_job_sync(
-        self,
-        cron_job_id: int,
-    ) -> DevopnessResponse[None]:
-        """
-        Delete a given Cron Job
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/cron-jobs/{cron_job_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._delete_sync(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -133,28 +224,8 @@ class CronJobsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, CronJob)
-
-    def get_cron_job_sync(
-        self,
-        cron_job_id: int,
-    ) -> DevopnessResponse[CronJob]:
-        """
-        Get a Cron Job by ID
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/cron-jobs/{cron_job_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, CronJob)
 
@@ -172,7 +243,7 @@ class CronJobsApiService(DevopnessBaseService):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -185,38 +256,8 @@ class CronJobsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, List[CronJobRelation])
-
-    def list_environment_cron_jobs_sync(
-        self,
-        environment_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[CronJobRelation]]:
-        """
-        Return a list of all Cron Jobs belonging to an environment
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        query_string = DevopnessBaseService._get_query_string(
-            {
-                "page": page,
-                "per_page": per_page,
-            }
-        )
-
-        endpoint_parts = [
-            f"/environments/{environment_id}/cron-jobs",
-            f"?{query_string}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, List[CronJobRelation])
 
@@ -241,31 +282,7 @@ class CronJobsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._put(endpoint, cron_job_update)
-
-        return DevopnessResponse(response, None)
-
-    def update_cron_job_sync(
-        self,
-        cron_job_id: int,
-        cron_job_update: Union[
-            CronJobUpdate,
-            CronJobUpdatePlain,
-        ],
-    ) -> DevopnessResponse[None]:
-        """
-        Update an existing Cron Job
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/cron-jobs/{cron_job_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._put_sync(endpoint, cron_job_update)
 
         return DevopnessResponse(response, None)

@@ -8,13 +8,137 @@ Note:
 
 from typing import List, Optional
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import ResourceLinkRelation
+from ..utils import parse_query_string
 
 
 class ResourceLinksApiService(DevopnessBaseService):
     """
     ResourceLinksApiService - Auto Generated
+    """
+
+    def link_resource_link_to_resource_link(
+        self,
+        child_id: int,
+        child_type: str,
+        resource_id: int,
+        resource_type: str,
+    ) -> DevopnessResponse[None]:
+        """
+        Link the given resources
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/resource-links/{resource_type}/{resource_id}/{child_type}/{child_id}/link",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._post(endpoint)
+
+        return DevopnessResponse(response, None)
+
+    def list_resource_links_by_resource_type(
+        self,
+        resource_id: int,
+        resource_type: str,
+        page: Optional[int] = None,
+        per_page: Optional[int] = None,
+    ) -> DevopnessResponse[List[ResourceLinkRelation]]:
+        """
+        List linked resources of the given resource
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = parse_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            f"/resource-links/{resource_type}/{resource_id}",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._get(endpoint)
+
+        return DevopnessResponse(response, List[ResourceLinkRelation])
+
+    def list_resource_links_by_resource_type_and_link_type(
+        self,
+        link_type: str,
+        resource_id: int,
+        resource_type: str,
+        page: Optional[int] = None,
+        per_page: Optional[int] = None,
+    ) -> DevopnessResponse[List[ResourceLinkRelation]]:
+        """
+        List linked resources of specified link type
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = parse_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            f"/resource-links/{resource_type}/{resource_id}/{link_type}",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._get(endpoint)
+
+        return DevopnessResponse(response, List[ResourceLinkRelation])
+
+    def unlink_resource_link_from_resource_link(
+        self,
+        child_id: int,
+        child_type: str,
+        resource_id: int,
+        resource_type: str,
+    ) -> DevopnessResponse[None]:
+        """
+        Delete a given resource link
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/resource-links/{resource_type}/{resource_id}/{child_type}/{child_id}/unlink",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._delete(endpoint)
+
+        return DevopnessResponse(response, None)
+
+
+class ResourceLinksApiServiceAsync(DevopnessBaseServiceAsync):
+    """
+    ResourceLinksApiServiceAsync - Auto Generated
     """
 
     async def link_resource_link_to_resource_link(
@@ -37,31 +161,8 @@ class ResourceLinksApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint)
-
-        return DevopnessResponse(response, None)
-
-    def link_resource_link_to_resource_link_sync(
-        self,
-        child_id: int,
-        child_type: str,
-        resource_id: int,
-        resource_type: str,
-    ) -> DevopnessResponse[None]:
-        """
-        Link the given resources
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/resource-links/{resource_type}/{resource_id}/{child_type}/{child_id}/link",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -80,7 +181,7 @@ class ResourceLinksApiService(DevopnessBaseService):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -93,39 +194,8 @@ class ResourceLinksApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, List[ResourceLinkRelation])
-
-    def list_resource_links_by_resource_type_sync(
-        self,
-        resource_id: int,
-        resource_type: str,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[ResourceLinkRelation]]:
-        """
-        List linked resources of the given resource
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        query_string = DevopnessBaseService._get_query_string(
-            {
-                "page": page,
-                "per_page": per_page,
-            }
-        )
-
-        endpoint_parts = [
-            f"/resource-links/{resource_type}/{resource_id}",
-            f"?{query_string}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, List[ResourceLinkRelation])
 
@@ -145,7 +215,7 @@ class ResourceLinksApiService(DevopnessBaseService):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -158,40 +228,8 @@ class ResourceLinksApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, List[ResourceLinkRelation])
-
-    def list_resource_links_by_resource_type_and_link_type_sync(
-        self,
-        link_type: str,
-        resource_id: int,
-        resource_type: str,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[ResourceLinkRelation]]:
-        """
-        List linked resources of specified link type
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        query_string = DevopnessBaseService._get_query_string(
-            {
-                "page": page,
-                "per_page": per_page,
-            }
-        )
-
-        endpoint_parts = [
-            f"/resource-links/{resource_type}/{resource_id}/{link_type}",
-            f"?{query_string}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, List[ResourceLinkRelation])
 
@@ -215,30 +253,7 @@ class ResourceLinksApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._delete(endpoint)
-
-        return DevopnessResponse(response, None)
-
-    def unlink_resource_link_from_resource_link_sync(
-        self,
-        child_id: int,
-        child_type: str,
-        resource_id: int,
-        resource_type: str,
-    ) -> DevopnessResponse[None]:
-        """
-        Delete a given resource link
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/resource-links/{resource_type}/{resource_id}/{child_type}/{child_id}/unlink",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._delete_sync(endpoint)
 
         return DevopnessResponse(response, None)

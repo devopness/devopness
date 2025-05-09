@@ -6,13 +6,41 @@ Note:
     https://openapi-generator.tech
 """
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import HookRequest
 
 
 class HookRequestsApiService(DevopnessBaseService):
     """
     HookRequestsApiService - Auto Generated
+    """
+
+    def get_hook_request(
+        self,
+        hook_request_id: str,
+    ) -> DevopnessResponse[HookRequest]:
+        """
+        Get a hook request by ID
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/hook-requests/{hook_request_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._get(endpoint)
+
+        return DevopnessResponse(response, HookRequest)
+
+
+class HookRequestsApiServiceAsync(DevopnessBaseServiceAsync):
+    """
+    HookRequestsApiServiceAsync - Auto Generated
     """
 
     async def get_hook_request(
@@ -32,27 +60,7 @@ class HookRequestsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, HookRequest)
-
-    def get_hook_request_sync(
-        self,
-        hook_request_id: str,
-    ) -> DevopnessResponse[HookRequest]:
-        """
-        Get a hook request by ID
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/hook-requests/{hook_request_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, HookRequest)

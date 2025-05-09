@@ -8,7 +8,7 @@ Note:
 
 from typing import List, Optional, Union
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Variable,
     VariableCreate,
@@ -17,11 +17,148 @@ from ..models import (
     VariableUpdate,
     VariableUpdatePlain,
 )
+from ..utils import parse_query_string
 
 
 class VariablesApiService(DevopnessBaseService):
     """
     VariablesApiService - Auto Generated
+    """
+
+    def add_variable(
+        self,
+        resource_id: int,
+        resource_type: str,
+        variable_create: Union[
+            VariableCreate,
+            VariableCreatePlain,
+        ],
+    ) -> DevopnessResponse[Variable]:
+        """
+        Create a new variable linked to a resource
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/variables/{resource_type}/{resource_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._post(endpoint, variable_create)
+
+        return DevopnessResponse(response, Variable)
+
+    def delete_variable(
+        self,
+        variable_id: int,
+    ) -> DevopnessResponse[None]:
+        """
+        Delete a variable by ID
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/variables/{variable_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._delete(endpoint)
+
+        return DevopnessResponse(response, None)
+
+    def get_variable(
+        self,
+        variable_id: int,
+    ) -> DevopnessResponse[Variable]:
+        """
+        Get a variable by ID
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/variables/{variable_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._get(endpoint)
+
+        return DevopnessResponse(response, Variable)
+
+    def list_variables_by_resource_type(
+        self,
+        resource_id: int,
+        resource_type: str,
+        page: Optional[int] = None,
+        per_page: Optional[int] = None,
+    ) -> DevopnessResponse[List[VariableRelation]]:
+        """
+        Return a list of variables belonging to a resource
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = parse_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            f"/variables/{resource_type}/{resource_id}",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._get(endpoint)
+
+        return DevopnessResponse(response, List[VariableRelation])
+
+    def update_variable(
+        self,
+        variable_id: int,
+        variable_update: Union[
+            VariableUpdate,
+            VariableUpdatePlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Update an existing variable
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/variables/{variable_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._put(endpoint, variable_update)
+
+        return DevopnessResponse(response, None)
+
+
+class VariablesApiServiceAsync(DevopnessBaseServiceAsync):
+    """
+    VariablesApiServiceAsync - Auto Generated
     """
 
     async def add_variable(
@@ -46,33 +183,8 @@ class VariablesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint, variable_create)
-
-        return DevopnessResponse(response, Variable)
-
-    def add_variable_sync(
-        self,
-        resource_id: int,
-        resource_type: str,
-        variable_create: Union[
-            VariableCreate,
-            VariableCreatePlain,
-        ],
-    ) -> DevopnessResponse[Variable]:
-        """
-        Create a new variable linked to a resource
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/variables/{resource_type}/{resource_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, variable_create)
 
         return DevopnessResponse(response, Variable)
 
@@ -93,28 +205,8 @@ class VariablesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._delete(endpoint)
-
-        return DevopnessResponse(response, None)
-
-    def delete_variable_sync(
-        self,
-        variable_id: int,
-    ) -> DevopnessResponse[None]:
-        """
-        Delete a variable by ID
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/variables/{variable_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._delete_sync(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -135,28 +227,8 @@ class VariablesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, Variable)
-
-    def get_variable_sync(
-        self,
-        variable_id: int,
-    ) -> DevopnessResponse[Variable]:
-        """
-        Get a variable by ID
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/variables/{variable_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, Variable)
 
@@ -175,7 +247,7 @@ class VariablesApiService(DevopnessBaseService):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -188,39 +260,8 @@ class VariablesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, List[VariableRelation])
-
-    def list_variables_by_resource_type_sync(
-        self,
-        resource_id: int,
-        resource_type: str,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[VariableRelation]]:
-        """
-        Return a list of variables belonging to a resource
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        query_string = DevopnessBaseService._get_query_string(
-            {
-                "page": page,
-                "per_page": per_page,
-            }
-        )
-
-        endpoint_parts = [
-            f"/variables/{resource_type}/{resource_id}",
-            f"?{query_string}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, List[VariableRelation])
 
@@ -245,31 +286,7 @@ class VariablesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._put(endpoint, variable_update)
-
-        return DevopnessResponse(response, None)
-
-    def update_variable_sync(
-        self,
-        variable_id: int,
-        variable_update: Union[
-            VariableUpdate,
-            VariableUpdatePlain,
-        ],
-    ) -> DevopnessResponse[None]:
-        """
-        Update an existing variable
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/variables/{variable_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._put_sync(endpoint, variable_update)
 
         return DevopnessResponse(response, None)

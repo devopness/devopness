@@ -8,13 +8,51 @@ Note:
 
 from typing import List, Optional
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import TeamInvitationRelation
+from ..utils import parse_query_string
 
 
 class UsersTeamInvitationsApiService(DevopnessBaseService):
     """
     UsersTeamInvitationsApiService - Auto Generated
+    """
+
+    def list_user_team_invitations(
+        self,
+        page: Optional[int] = None,
+        per_page: Optional[int] = None,
+    ) -> DevopnessResponse[List[TeamInvitationRelation]]:
+        """
+        Return a list of all pending team invitations for the authenticated user
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = parse_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            "/users/team-invitations",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._get(endpoint)
+
+        return DevopnessResponse(response, List[TeamInvitationRelation])
+
+
+class UsersTeamInvitationsApiServiceAsync(DevopnessBaseServiceAsync):
+    """
+    UsersTeamInvitationsApiServiceAsync - Auto Generated
     """
 
     async def list_user_team_invitations(
@@ -30,7 +68,7 @@ class UsersTeamInvitationsApiService(DevopnessBaseService):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -43,36 +81,7 @@ class UsersTeamInvitationsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, List[TeamInvitationRelation])
-
-    def list_user_team_invitations_sync(
-        self,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[TeamInvitationRelation]]:
-        """
-        Return a list of all pending team invitations for the authenticated user
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        query_string = DevopnessBaseService._get_query_string(
-            {
-                "page": page,
-                "per_page": per_page,
-            }
-        )
-
-        endpoint_parts = [
-            "/users/team-invitations",
-            f"?{query_string}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, List[TeamInvitationRelation])

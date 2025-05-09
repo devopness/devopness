@@ -2,12 +2,21 @@
 Devopness API Python SDK - Painless essential DevOps to everyone
 """
 
-from ..generated.api.projects_api import ProjectsApiService
+from ..generated.api.projects_api import (
+    ProjectsApiService,
+    ProjectsApiServiceAsync,
+)
 
-__all__ = ["ProjectService"]
-
-# pylint: disable=missing-class-docstring
+__all__ = ["ProjectService", "ProjectServiceAsync"]
 
 
-class ProjectService(ProjectsApiService):
-    pass
+class ProjectService(
+    ProjectsApiService,
+):
+    """Service for projects in the Devopness API."""
+
+
+class ProjectServiceAsync(
+    ProjectsApiServiceAsync,
+):
+    """Async service for projects in the Devopness API."""

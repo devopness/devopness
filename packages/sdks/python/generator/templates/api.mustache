@@ -15,6 +15,33 @@ class {{classname}}Service(DevopnessBaseService):
 {{#operations}}
 {{#operation}}
 
+    def {{operationId}}(
+        self,
+{{>api_method_params}}
+    ) -> {{>api_method_return}}:
+        """
+        {{#summary}}
+        {{&summary}}
+        {{/summary}}
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+{{>api_method_body_endpoint}}
+        response = self._{{#lambda.lowercase}}{{httpMethod}}{{/lambda.lowercase}}(endpoint{{#allParams}}{{^isHeaderParam}}{{#-last}}{{^isPrimitiveType}}, {{paramName}}{{/isPrimitiveType}}{{/-last}}{{/isHeaderParam}}{{/allParams}})
+
+        {{>api_method_body_return}}
+{{/operation}}
+{{/operations}}
+
+class {{classname}}ServiceAsync(DevopnessBaseServiceAsync):
+    """
+    {{classname}}ServiceAsync - Auto Generated
+    """
+{{#operations}}
+{{#operation}}
+
     async def {{operationId}}(
         self,
 {{>api_method_params}}
@@ -33,22 +60,5 @@ class {{classname}}Service(DevopnessBaseService):
 
         {{>api_method_body_return}}
 
-    def {{operationId}}_sync(
-        self,
-{{>api_method_params}}
-    ) -> {{>api_method_return}}:
-        """
-        {{#summary}}
-        {{&summary}}
-        {{/summary}}
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-{{>api_method_body_endpoint}}
-        response = self._{{#lambda.lowercase}}{{httpMethod}}_sync{{/lambda.lowercase}}(endpoint{{#allParams}}{{^isHeaderParam}}{{#-last}}{{^isPrimitiveType}}, {{paramName}}{{/isPrimitiveType}}{{/-last}}{{/isHeaderParam}}{{/allParams}})
-
-        {{>api_method_body_return}}
 {{/operation}}
 {{/operations}}
