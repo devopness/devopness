@@ -123,6 +123,7 @@ const Tooltip = ({
       <ContentChildren
         ref={contentChildrenRef}
         className="translate"
+        role="tooltip"
       >
         {children}
       </ContentChildren>

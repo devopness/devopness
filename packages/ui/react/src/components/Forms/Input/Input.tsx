@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useRef } from 'react'
+import { forwardRef, useEffect, useMemo, useRef } from 'react'
 
 import { Container, InputText } from './Input.styled'
 import type { ErrorMessageProps } from 'src/components/Primitives/ErrorMessage'
@@ -83,22 +83,34 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     inputRef,
   ])
 
+  const uniqueId = useMemo(
+    () => `input-${Math.random().toString(36).slice(2, 9)}`,
+    []
+  )
+  const errorId = `${uniqueId}-error`
+
   return (
     <Container>
-      {props.labelProps && <Label {...props.labelProps} />}
+      {props.labelProps && (
+        <Label
+          {...props.labelProps}
+          htmlFor={uniqueId}
+        />
+      )}
       <InputText
+        id={uniqueId}
         className="translate"
         ref={inputRef}
         hasError={Boolean(error)}
         aria-invalid={Boolean(error)}
-        aria-errormessage={error ? "error-message" : undefined}
-        aria-describedby={error ? "error-message" : undefined}
+        aria-errormessage={error ? errorId : undefined}
+        aria-describedby={error ? errorId : undefined}
         {...props}
         {...props.inputProps}
       />
       {Boolean(error) && (
         <ErrorMessage
-          id="error-message"
+          id={errorId}
           error={error}
         />
       )}
