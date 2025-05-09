@@ -6,10 +6,9 @@ on:
     paths:
       - packages/**/src/**
       - packages/**/package.json
-    branches:
-      - main
-      - "*.x" # maintenance releases
-      - "sdk.*"
+    # branches:
+    #   - main
+    #   - "*.x" # maintenance releases
 
 permissions:
   contents: write
