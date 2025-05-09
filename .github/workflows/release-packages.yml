@@ -17,34 +17,8 @@ permissions:
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-  detect-changes:
-    name: Detect changes in packages
-    runs-on: ubuntu-latest
-    permissions:
-      pull-requests: read
-    outputs:
-      npm-changes: ${{ steps.npm-filter.outputs.changes }}
-      pypi-changes: ${{ steps.pypi-filter.outputs.changes }}
-    steps:
-      - uses: dorny/paths-filter@v3
-        id: npm-filter
-        with:
-          filters: |
-            changes:
-              - 'packages/sdks/javascript/**'
-              - 'packages/ui/react/**'
-
-      - uses: dorny/paths-filter@v3
-        id: pypi-filter
-        with:
-          filters: |
-            changes:
-              - 'packages/sdks/python/**'
-
   release-npm-packages:
     name: Release NPM Packages
-    needs: detect-changes
-    if: ${{ needs.detect-changes.outputs.npm-changes == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -63,8 +37,6 @@ jobs:
 
   release-pypi-packages:
     name: Release PyPI Packages
-    needs: detect-changes
-    if: ${{ needs.detect-changes.outputs.pypi-changes == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
