@@ -14,7 +14,7 @@ type ErrorMessageProps = {
    *
    * 1. { type: 'required' }
    *
-   * 2. { message: string  }
+   * 2. { message: string }
    *
    * 3. { errors: { message: string } } [1]
    *
@@ -32,6 +32,10 @@ type ErrorMessageProps = {
     | null
   /** Additional CSS classes to apply to the error message container */
   className?: string
+  /** ID for the error message element */
+  id?: string
+  /** Role attribute for the error message element */
+  role?: string
 }
 
 /**
@@ -78,7 +82,7 @@ const ERROR_MESSAGE_TEST_ID = 'error-message'
  * @param props.error - Error object in various possible formats
  * @param props.className - Additional CSS classes to apply to the container
  */
-const ErrorMessage = ({ error, className }: ErrorMessageProps) => {
+const ErrorMessage = ({ error, className, id, role = "status" }: ErrorMessageProps) => {
   const errorMessage = handleErrorMessage(error)
   const classNames = [
     'translate',
@@ -89,6 +93,8 @@ const ErrorMessage = ({ error, className }: ErrorMessageProps) => {
 
   return (
     <StyledErrorMessage
+      id={id}
+      role={role}
       className={classNames}
       data-testid={ERROR_MESSAGE_TEST_ID}
     >

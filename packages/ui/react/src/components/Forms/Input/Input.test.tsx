@@ -21,8 +21,9 @@ describe('Input', () => {
     it('with label', () => {
       render(
         <Input
+          id="username"
           type="text"
-          labelProps={{ value: 'Username' }}
+          labelProps={{ htmlFor: 'username', value: 'Username' }}
         />
       )
       const label = screen.getByText('Username')
