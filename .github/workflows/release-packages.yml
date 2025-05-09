@@ -17,8 +17,8 @@ permissions:
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-  release:
-    name: release
+  release-npm-packages:
+    name: Release NPM Packages
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -34,3 +34,26 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  release-pypi-packages:
+    name: Release PyPI Packages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install Poetry
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install poetry
+
+      - name: Run TestPyPi Publish script
+        working-directory: packages/sdks/python
+        run: bash scripts/publish-dev.sh
+        env:
+          POETRY_TEST_PYPI_TOKEN: ${{ secrets.POETRY_TEST_PYPI_TOKEN }}
