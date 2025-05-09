@@ -8,7 +8,7 @@ Note:
 
 from typing import List, Optional, Union
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Project,
     ProjectCreate,
@@ -17,11 +17,122 @@ from ..models import (
     ProjectUpdate,
     ProjectUpdatePlain,
 )
+from ..utils import parse_query_string
 
 
 class ProjectsApiService(DevopnessBaseService):
     """
     ProjectsApiService - Auto Generated
+    """
+
+    def add_project(
+        self,
+        project_create: Union[
+            ProjectCreate,
+            ProjectCreatePlain,
+        ],
+    ) -> DevopnessResponse[Project]:
+        """
+        Create a project for a user or an organization
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            "/projects",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._post(endpoint, project_create)
+
+        return DevopnessResponse(response, Project)
+
+    def get_project(
+        self,
+        project_id: int,
+    ) -> DevopnessResponse[Project]:
+        """
+        Get a Project by ID
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/projects/{project_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._get(endpoint)
+
+        return DevopnessResponse(response, Project)
+
+    def list_projects(
+        self,
+        page: Optional[int] = None,
+        per_page: Optional[int] = None,
+    ) -> DevopnessResponse[List[ProjectRelation]]:
+        """
+        Return a list of all projects the current user has access to
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = parse_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            "/projects",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._get(endpoint)
+
+        return DevopnessResponse(response, List[ProjectRelation])
+
+    def update_project(
+        self,
+        project_id: int,
+        project_update: Union[
+            ProjectUpdate,
+            ProjectUpdatePlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Update an existing Project
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/projects/{project_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._put(endpoint, project_update)
+
+        return DevopnessResponse(response, None)
+
+
+class ProjectsApiServiceAsync(DevopnessBaseServiceAsync):
+    """
+    ProjectsApiServiceAsync - Auto Generated
     """
 
     async def add_project(
@@ -44,31 +155,8 @@ class ProjectsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint, project_create)
-
-        return DevopnessResponse(response, Project)
-
-    def add_project_sync(
-        self,
-        project_create: Union[
-            ProjectCreate,
-            ProjectCreatePlain,
-        ],
-    ) -> DevopnessResponse[Project]:
-        """
-        Create a project for a user or an organization
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            "/projects",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, project_create)
 
         return DevopnessResponse(response, Project)
 
@@ -89,28 +177,8 @@ class ProjectsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, Project)
-
-    def get_project_sync(
-        self,
-        project_id: int,
-    ) -> DevopnessResponse[Project]:
-        """
-        Get a Project by ID
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/projects/{project_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, Project)
 
@@ -127,7 +195,7 @@ class ProjectsApiService(DevopnessBaseService):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -140,37 +208,8 @@ class ProjectsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, List[ProjectRelation])
-
-    def list_projects_sync(
-        self,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[ProjectRelation]]:
-        """
-        Return a list of all projects the current user has access to
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        query_string = DevopnessBaseService._get_query_string(
-            {
-                "page": page,
-                "per_page": per_page,
-            }
-        )
-
-        endpoint_parts = [
-            "/projects",
-            f"?{query_string}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, List[ProjectRelation])
 
@@ -195,31 +234,7 @@ class ProjectsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._put(endpoint, project_update)
-
-        return DevopnessResponse(response, None)
-
-    def update_project_sync(
-        self,
-        project_id: int,
-        project_update: Union[
-            ProjectUpdate,
-            ProjectUpdatePlain,
-        ],
-    ) -> DevopnessResponse[None]:
-        """
-        Update an existing Project
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/projects/{project_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._put_sync(endpoint, project_update)
 
         return DevopnessResponse(response, None)

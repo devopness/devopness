@@ -8,7 +8,7 @@ Note:
 
 from typing import List, Optional, Union
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     SshKey,
     SshKeyEnvironmentCreate,
@@ -17,11 +17,146 @@ from ..models import (
     SshKeyUpdate,
     SshKeyUpdatePlain,
 )
+from ..utils import parse_query_string
 
 
 class SSHKeysApiService(DevopnessBaseService):
     """
     SSHKeysApiService - Auto Generated
+    """
+
+    def add_environment_ssh_key(
+        self,
+        environment_id: int,
+        ssh_key_environment_create: Union[
+            SshKeyEnvironmentCreate,
+            SshKeyEnvironmentCreatePlain,
+        ],
+    ) -> DevopnessResponse[SshKey]:
+        """
+        Create an SSH key and link it to the given environment
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/environments/{environment_id}/ssh-keys",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._post(endpoint, ssh_key_environment_create)
+
+        return DevopnessResponse(response, SshKey)
+
+    def delete_ssh_key(
+        self,
+        ssh_key_id: int,
+    ) -> DevopnessResponse[None]:
+        """
+        Delete a given SSH key
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/ssh-keys/{ssh_key_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._delete(endpoint)
+
+        return DevopnessResponse(response, None)
+
+    def get_ssh_key(
+        self,
+        ssh_key_id: int,
+    ) -> DevopnessResponse[SshKey]:
+        """
+        Get a SSH key by ID
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/ssh-keys/{ssh_key_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._get(endpoint)
+
+        return DevopnessResponse(response, SshKey)
+
+    def list_environment_ssh_keys(
+        self,
+        environment_id: int,
+        page: Optional[int] = None,
+        per_page: Optional[int] = None,
+    ) -> DevopnessResponse[List[SshKeyRelation]]:
+        """
+        Return a list of all SSH keys added to an environment
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = parse_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            f"/environments/{environment_id}/ssh-keys",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._get(endpoint)
+
+        return DevopnessResponse(response, List[SshKeyRelation])
+
+    def update_ssh_key(
+        self,
+        ssh_key_id: int,
+        ssh_key_update: Union[
+            SshKeyUpdate,
+            SshKeyUpdatePlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Update an existing SSH key
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/ssh-keys/{ssh_key_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._put(endpoint, ssh_key_update)
+
+        return DevopnessResponse(response, None)
+
+
+class SSHKeysApiServiceAsync(DevopnessBaseServiceAsync):
+    """
+    SSHKeysApiServiceAsync - Auto Generated
     """
 
     async def add_environment_ssh_key(
@@ -45,32 +180,8 @@ class SSHKeysApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint, ssh_key_environment_create)
-
-        return DevopnessResponse(response, SshKey)
-
-    def add_environment_ssh_key_sync(
-        self,
-        environment_id: int,
-        ssh_key_environment_create: Union[
-            SshKeyEnvironmentCreate,
-            SshKeyEnvironmentCreatePlain,
-        ],
-    ) -> DevopnessResponse[SshKey]:
-        """
-        Create an SSH key and link it to the given environment
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/environments/{environment_id}/ssh-keys",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, ssh_key_environment_create)
 
         return DevopnessResponse(response, SshKey)
 
@@ -91,28 +202,8 @@ class SSHKeysApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._delete(endpoint)
-
-        return DevopnessResponse(response, None)
-
-    def delete_ssh_key_sync(
-        self,
-        ssh_key_id: int,
-    ) -> DevopnessResponse[None]:
-        """
-        Delete a given SSH key
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/ssh-keys/{ssh_key_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._delete_sync(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -133,28 +224,8 @@ class SSHKeysApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, SshKey)
-
-    def get_ssh_key_sync(
-        self,
-        ssh_key_id: int,
-    ) -> DevopnessResponse[SshKey]:
-        """
-        Get a SSH key by ID
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/ssh-keys/{ssh_key_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, SshKey)
 
@@ -172,7 +243,7 @@ class SSHKeysApiService(DevopnessBaseService):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -185,38 +256,8 @@ class SSHKeysApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, List[SshKeyRelation])
-
-    def list_environment_ssh_keys_sync(
-        self,
-        environment_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[SshKeyRelation]]:
-        """
-        Return a list of all SSH keys added to an environment
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        query_string = DevopnessBaseService._get_query_string(
-            {
-                "page": page,
-                "per_page": per_page,
-            }
-        )
-
-        endpoint_parts = [
-            f"/environments/{environment_id}/ssh-keys",
-            f"?{query_string}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, List[SshKeyRelation])
 
@@ -241,31 +282,7 @@ class SSHKeysApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._put(endpoint, ssh_key_update)
-
-        return DevopnessResponse(response, None)
-
-    def update_ssh_key_sync(
-        self,
-        ssh_key_id: int,
-        ssh_key_update: Union[
-            SshKeyUpdate,
-            SshKeyUpdatePlain,
-        ],
-    ) -> DevopnessResponse[None]:
-        """
-        Update an existing SSH key
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/ssh-keys/{ssh_key_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._put_sync(endpoint, ssh_key_update)
 
         return DevopnessResponse(response, None)

@@ -2,16 +2,24 @@
 Devopness API Python SDK - Painless essential DevOps to everyone
 """
 
-from ..generated.api.environments_actions_api import EnvironmentsActionsApiService
-from ..generated.api.environments_api import EnvironmentsApiService
+from ..generated.api.environments_actions_api import (
+    EnvironmentsActionsApiService,
+    EnvironmentsActionsApiServiceAsync,
+)
+from ..generated.api.environments_api import (
+    EnvironmentsApiService,
+    EnvironmentsApiServiceAsync,
+)
 from ..generated.api.projects_archived_environments_api import (
     ProjectsArchivedEnvironmentsApiService,
+    ProjectsArchivedEnvironmentsApiServiceAsync,
 )
-from ..generated.api.projects_environments_api import ProjectsEnvironmentsApiService
+from ..generated.api.projects_environments_api import (
+    ProjectsEnvironmentsApiService,
+    ProjectsEnvironmentsApiServiceAsync,
+)
 
-__all__ = ["EnvironmentService"]
-
-# pylint: disable=missing-class-docstring
+__all__ = ["EnvironmentService", "EnvironmentServiceAsync"]
 
 
 class EnvironmentService(
@@ -20,4 +28,13 @@ class EnvironmentService(
     ProjectsArchivedEnvironmentsApiService,
     ProjectsEnvironmentsApiService,
 ):
-    pass
+    """Service for environments in the Devopness API."""
+
+
+class EnvironmentServiceAsync(
+    EnvironmentsActionsApiServiceAsync,
+    EnvironmentsApiServiceAsync,
+    ProjectsArchivedEnvironmentsApiServiceAsync,
+    ProjectsEnvironmentsApiServiceAsync,
+):
+    """Async service for environments in the Devopness API."""

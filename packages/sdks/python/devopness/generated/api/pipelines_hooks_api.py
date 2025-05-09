@@ -8,13 +8,79 @@ Note:
 
 from typing import List, Optional, Union
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import Hook, HookPipelineCreate, HookPipelineCreatePlain, HookRelation
+from ..utils import parse_query_string
 
 
 class PipelinesHooksApiService(DevopnessBaseService):
     """
     PipelinesHooksApiService - Auto Generated
+    """
+
+    def add_pipeline_hook(
+        self,
+        hook_type: str,
+        pipeline_id: int,
+        hook_pipeline_create: Union[
+            HookPipelineCreate,
+            HookPipelineCreatePlain,
+        ],
+    ) -> DevopnessResponse[Hook]:
+        """
+        Create a hook to a specific pipeline
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/pipelines/{pipeline_id}/hooks/{hook_type}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._post(endpoint, hook_pipeline_create)
+
+        return DevopnessResponse(response, Hook)
+
+    def list_pipeline_hooks(
+        self,
+        pipeline_id: int,
+        page: Optional[int] = None,
+        per_page: Optional[int] = None,
+    ) -> DevopnessResponse[List[HookRelation]]:
+        """
+        List all hooks in a pipeline
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = parse_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            f"/pipelines/{pipeline_id}/hooks",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._get(endpoint)
+
+        return DevopnessResponse(response, List[HookRelation])
+
+
+class PipelinesHooksApiServiceAsync(DevopnessBaseServiceAsync):
+    """
+    PipelinesHooksApiServiceAsync - Auto Generated
     """
 
     async def add_pipeline_hook(
@@ -39,33 +105,8 @@ class PipelinesHooksApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint, hook_pipeline_create)
-
-        return DevopnessResponse(response, Hook)
-
-    def add_pipeline_hook_sync(
-        self,
-        hook_type: str,
-        pipeline_id: int,
-        hook_pipeline_create: Union[
-            HookPipelineCreate,
-            HookPipelineCreatePlain,
-        ],
-    ) -> DevopnessResponse[Hook]:
-        """
-        Create a hook to a specific pipeline
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/pipelines/{pipeline_id}/hooks/{hook_type}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, hook_pipeline_create)
 
         return DevopnessResponse(response, Hook)
 
@@ -83,7 +124,7 @@ class PipelinesHooksApiService(DevopnessBaseService):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -96,37 +137,7 @@ class PipelinesHooksApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, List[HookRelation])
-
-    def list_pipeline_hooks_sync(
-        self,
-        pipeline_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[HookRelation]]:
-        """
-        List all hooks in a pipeline
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        query_string = DevopnessBaseService._get_query_string(
-            {
-                "page": page,
-                "per_page": per_page,
-            }
-        )
-
-        endpoint_parts = [
-            f"/pipelines/{pipeline_id}/hooks",
-            f"?{query_string}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, List[HookRelation])

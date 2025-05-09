@@ -6,13 +6,63 @@ Note:
     https://openapi-generator.tech
 """
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import Subnet
 
 
 class SubnetsApiService(DevopnessBaseService):
     """
     SubnetsApiService - Auto Generated
+    """
+
+    def delete_subnet(
+        self,
+        subnet_id: int,
+    ) -> DevopnessResponse[None]:
+        """
+        Delete a given subnet
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/subnets/{subnet_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._delete(endpoint)
+
+        return DevopnessResponse(response, None)
+
+    def get_subnet(
+        self,
+        subnet_id: int,
+    ) -> DevopnessResponse[Subnet]:
+        """
+        Get a subnet by ID
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/subnets/{subnet_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._get(endpoint)
+
+        return DevopnessResponse(response, Subnet)
+
+
+class SubnetsApiServiceAsync(DevopnessBaseServiceAsync):
+    """
+    SubnetsApiServiceAsync - Auto Generated
     """
 
     async def delete_subnet(
@@ -32,28 +82,8 @@ class SubnetsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._delete(endpoint)
-
-        return DevopnessResponse(response, None)
-
-    def delete_subnet_sync(
-        self,
-        subnet_id: int,
-    ) -> DevopnessResponse[None]:
-        """
-        Delete a given subnet
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/subnets/{subnet_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._delete_sync(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -74,27 +104,7 @@ class SubnetsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, Subnet)
-
-    def get_subnet_sync(
-        self,
-        subnet_id: int,
-    ) -> DevopnessResponse[Subnet]:
-        """
-        Get a subnet by ID
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/subnets/{subnet_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, Subnet)

@@ -7,11 +7,15 @@ Note:
 """
 
 {{#apiInfo}}{{#apis}}
-from .{{classFilename}} import {{classname}}Service
+from .{{classFilename}} import (
+    {{classname}}Service,
+    {{classname}}ServiceAsync,
+)
 {{/apis}}{{/apiInfo}}
 
 __all__ = [
     {{#apiInfo}}{{#apis}}
     "{{classname}}Service",
+    "{{classname}}ServiceAsync",
     {{/apis}}{{/apiInfo}}
 ]

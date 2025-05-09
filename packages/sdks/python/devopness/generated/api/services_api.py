@@ -8,7 +8,7 @@ Note:
 
 from typing import List, Optional, Union
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Service,
     ServiceEnvironmentCreate,
@@ -27,11 +27,276 @@ from ..models import (
     ServiceUpdate,
     ServiceUpdatePlain,
 )
+from ..utils import parse_query_string
 
 
 class ServicesApiService(DevopnessBaseService):
     """
     ServicesApiService - Auto Generated
+    """
+
+    def add_environment_service(
+        self,
+        environment_id: int,
+        service_environment_create: Union[
+            ServiceEnvironmentCreate,
+            ServiceEnvironmentCreatePlain,
+        ],
+    ) -> DevopnessResponse[Service]:
+        """
+        Add a Service to the given environment
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/environments/{environment_id}/services",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._post(endpoint, service_environment_create)
+
+        return DevopnessResponse(response, Service)
+
+    def delete_service(
+        self,
+        service_id: int,
+    ) -> DevopnessResponse[None]:
+        """
+        Delete a given service
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/services/{service_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._delete(endpoint)
+
+        return DevopnessResponse(response, None)
+
+    def get_service(
+        self,
+        service_id: int,
+    ) -> DevopnessResponse[Service]:
+        """
+        Get details of a single service
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/services/{service_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._get(endpoint)
+
+        return DevopnessResponse(response, Service)
+
+    def get_status_service(
+        self,
+        service_id: int,
+        service_get_status: Union[
+            ServiceGetStatus,
+            ServiceGetStatusPlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Get current status of a service
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/services/{service_id}/get-status",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._post(endpoint, service_get_status)
+
+        return DevopnessResponse(response, None)
+
+    def list_environment_services(
+        self,
+        environment_id: int,
+        page: Optional[int] = None,
+        per_page: Optional[int] = None,
+    ) -> DevopnessResponse[List[ServiceRelation]]:
+        """
+        Return a list of all services belonging to a environment
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = parse_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            f"/environments/{environment_id}/services",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._get(endpoint)
+
+        return DevopnessResponse(response, List[ServiceRelation])
+
+    def reload_service(
+        self,
+        service_id: int,
+        service_reload: Union[
+            ServiceReload,
+            ServiceReloadPlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Reload a service
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/services/{service_id}/reload",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._post(endpoint, service_reload)
+
+        return DevopnessResponse(response, None)
+
+    def restart_service(
+        self,
+        service_id: int,
+        service_restart: Union[
+            ServiceRestart,
+            ServiceRestartPlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Restart a service
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/services/{service_id}/restart",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._post(endpoint, service_restart)
+
+        return DevopnessResponse(response, None)
+
+    def start_service(
+        self,
+        service_id: int,
+        service_start: Union[
+            ServiceStart,
+            ServiceStartPlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Start a service
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/services/{service_id}/start",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._post(endpoint, service_start)
+
+        return DevopnessResponse(response, None)
+
+    def stop_service(
+        self,
+        service_id: int,
+        service_stop: Union[
+            ServiceStop,
+            ServiceStopPlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Stop a service
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/services/{service_id}/stop",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._post(endpoint, service_stop)
+
+        return DevopnessResponse(response, None)
+
+    def update_service(
+        self,
+        service_id: int,
+        service_update: Union[
+            ServiceUpdate,
+            ServiceUpdatePlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Update an existing service
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/services/{service_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._put(endpoint, service_update)
+
+        return DevopnessResponse(response, None)
+
+
+class ServicesApiServiceAsync(DevopnessBaseServiceAsync):
+    """
+    ServicesApiServiceAsync - Auto Generated
     """
 
     async def add_environment_service(
@@ -55,32 +320,8 @@ class ServicesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint, service_environment_create)
-
-        return DevopnessResponse(response, Service)
-
-    def add_environment_service_sync(
-        self,
-        environment_id: int,
-        service_environment_create: Union[
-            ServiceEnvironmentCreate,
-            ServiceEnvironmentCreatePlain,
-        ],
-    ) -> DevopnessResponse[Service]:
-        """
-        Add a Service to the given environment
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/environments/{environment_id}/services",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, service_environment_create)
 
         return DevopnessResponse(response, Service)
 
@@ -101,28 +342,8 @@ class ServicesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._delete(endpoint)
-
-        return DevopnessResponse(response, None)
-
-    def delete_service_sync(
-        self,
-        service_id: int,
-    ) -> DevopnessResponse[None]:
-        """
-        Delete a given service
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/services/{service_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._delete_sync(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -143,28 +364,8 @@ class ServicesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, Service)
-
-    def get_service_sync(
-        self,
-        service_id: int,
-    ) -> DevopnessResponse[Service]:
-        """
-        Get details of a single service
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/services/{service_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, Service)
 
@@ -189,32 +390,8 @@ class ServicesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint, service_get_status)
-
-        return DevopnessResponse(response, None)
-
-    def get_status_service_sync(
-        self,
-        service_id: int,
-        service_get_status: Union[
-            ServiceGetStatus,
-            ServiceGetStatusPlain,
-        ],
-    ) -> DevopnessResponse[None]:
-        """
-        Get current status of a service
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/services/{service_id}/get-status",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, service_get_status)
 
         return DevopnessResponse(response, None)
 
@@ -232,7 +409,7 @@ class ServicesApiService(DevopnessBaseService):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -245,38 +422,8 @@ class ServicesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, List[ServiceRelation])
-
-    def list_environment_services_sync(
-        self,
-        environment_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[ServiceRelation]]:
-        """
-        Return a list of all services belonging to a environment
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        query_string = DevopnessBaseService._get_query_string(
-            {
-                "page": page,
-                "per_page": per_page,
-            }
-        )
-
-        endpoint_parts = [
-            f"/environments/{environment_id}/services",
-            f"?{query_string}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, List[ServiceRelation])
 
@@ -301,32 +448,8 @@ class ServicesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint, service_reload)
-
-        return DevopnessResponse(response, None)
-
-    def reload_service_sync(
-        self,
-        service_id: int,
-        service_reload: Union[
-            ServiceReload,
-            ServiceReloadPlain,
-        ],
-    ) -> DevopnessResponse[None]:
-        """
-        Reload a service
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/services/{service_id}/reload",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, service_reload)
 
         return DevopnessResponse(response, None)
 
@@ -351,32 +474,8 @@ class ServicesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint, service_restart)
-
-        return DevopnessResponse(response, None)
-
-    def restart_service_sync(
-        self,
-        service_id: int,
-        service_restart: Union[
-            ServiceRestart,
-            ServiceRestartPlain,
-        ],
-    ) -> DevopnessResponse[None]:
-        """
-        Restart a service
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/services/{service_id}/restart",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, service_restart)
 
         return DevopnessResponse(response, None)
 
@@ -401,32 +500,8 @@ class ServicesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint, service_start)
-
-        return DevopnessResponse(response, None)
-
-    def start_service_sync(
-        self,
-        service_id: int,
-        service_start: Union[
-            ServiceStart,
-            ServiceStartPlain,
-        ],
-    ) -> DevopnessResponse[None]:
-        """
-        Start a service
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/services/{service_id}/start",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, service_start)
 
         return DevopnessResponse(response, None)
 
@@ -451,32 +526,8 @@ class ServicesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint, service_stop)
-
-        return DevopnessResponse(response, None)
-
-    def stop_service_sync(
-        self,
-        service_id: int,
-        service_stop: Union[
-            ServiceStop,
-            ServiceStopPlain,
-        ],
-    ) -> DevopnessResponse[None]:
-        """
-        Stop a service
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/services/{service_id}/stop",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, service_stop)
 
         return DevopnessResponse(response, None)
 
@@ -501,31 +552,7 @@ class ServicesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._put(endpoint, service_update)
-
-        return DevopnessResponse(response, None)
-
-    def update_service_sync(
-        self,
-        service_id: int,
-        service_update: Union[
-            ServiceUpdate,
-            ServiceUpdatePlain,
-        ],
-    ) -> DevopnessResponse[None]:
-        """
-        Update an existing service
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/services/{service_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._put_sync(endpoint, service_update)
 
         return DevopnessResponse(response, None)

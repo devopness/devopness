@@ -8,13 +8,98 @@ Note:
 
 from typing import List, Optional
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import Member, MemberRelation
+from ..utils import parse_query_string
 
 
 class TeamsMembersApiService(DevopnessBaseService):
     """
     TeamsMembersApiService - Auto Generated
+    """
+
+    def delete_team_member(
+        self,
+        team_id: int,
+        user_id: int,
+    ) -> DevopnessResponse[None]:
+        """
+        Delete a given team member
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/teams/{team_id}/members/{user_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._delete(endpoint)
+
+        return DevopnessResponse(response, None)
+
+    def get_team_member(
+        self,
+        team_id: int,
+        user_id: int,
+    ) -> DevopnessResponse[Member]:
+        """
+        Get a member of team by ID
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/teams/{team_id}/members/{user_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._get(endpoint)
+
+        return DevopnessResponse(response, Member)
+
+    def list_team_members(
+        self,
+        team_id: int,
+        page: Optional[int] = None,
+        per_page: Optional[int] = None,
+    ) -> DevopnessResponse[List[MemberRelation]]:
+        """
+        Return a list of all members belonging to a team
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = parse_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            f"/teams/{team_id}/members",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._get(endpoint)
+
+        return DevopnessResponse(response, List[MemberRelation])
+
+
+class TeamsMembersApiServiceAsync(DevopnessBaseServiceAsync):
+    """
+    TeamsMembersApiServiceAsync - Auto Generated
     """
 
     async def delete_team_member(
@@ -35,29 +120,8 @@ class TeamsMembersApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._delete(endpoint)
-
-        return DevopnessResponse(response, None)
-
-    def delete_team_member_sync(
-        self,
-        team_id: int,
-        user_id: int,
-    ) -> DevopnessResponse[None]:
-        """
-        Delete a given team member
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/teams/{team_id}/members/{user_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._delete_sync(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -79,29 +143,8 @@ class TeamsMembersApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, Member)
-
-    def get_team_member_sync(
-        self,
-        team_id: int,
-        user_id: int,
-    ) -> DevopnessResponse[Member]:
-        """
-        Get a member of team by ID
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/teams/{team_id}/members/{user_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, Member)
 
@@ -119,7 +162,7 @@ class TeamsMembersApiService(DevopnessBaseService):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -132,37 +175,7 @@ class TeamsMembersApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, List[MemberRelation])
-
-    def list_team_members_sync(
-        self,
-        team_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[MemberRelation]]:
-        """
-        Return a list of all members belonging to a team
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        query_string = DevopnessBaseService._get_query_string(
-            {
-                "page": page,
-                "per_page": per_page,
-            }
-        )
-
-        endpoint_parts = [
-            f"/teams/{team_id}/members",
-            f"?{query_string}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, List[MemberRelation])

@@ -8,7 +8,7 @@ Note:
 
 from typing import List, Optional, Union
 
-from .. import DevopnessBaseService, DevopnessResponse
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Application,
     ApplicationEnvironmentCreate,
@@ -19,11 +19,172 @@ from ..models import (
     DeploymentApplicationCreate,
     DeploymentApplicationCreatePlain,
 )
+from ..utils import parse_query_string
 
 
 class ApplicationsApiService(DevopnessBaseService):
     """
     ApplicationsApiService - Auto Generated
+    """
+
+    def add_application_deployment(
+        self,
+        application_id: int,
+        deployment_application_create: Union[
+            DeploymentApplicationCreate,
+            DeploymentApplicationCreatePlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Trigger a new deployment for current application
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/applications/{application_id}/deployments",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._post(endpoint, deployment_application_create)
+
+        return DevopnessResponse(response, None)
+
+    def add_environment_application(
+        self,
+        environment_id: int,
+        application_environment_create: Union[
+            ApplicationEnvironmentCreate,
+            ApplicationEnvironmentCreatePlain,
+        ],
+    ) -> DevopnessResponse[Application]:
+        """
+        Create a new application
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/environments/{environment_id}/applications",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._post(endpoint, application_environment_create)
+
+        return DevopnessResponse(response, Application)
+
+    def delete_application(
+        self,
+        application_id: int,
+    ) -> DevopnessResponse[None]:
+        """
+        Delete a given application
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/applications/{application_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._delete(endpoint)
+
+        return DevopnessResponse(response, None)
+
+    def get_application(
+        self,
+        application_id: int,
+    ) -> DevopnessResponse[Application]:
+        """
+        Get an application by ID
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/applications/{application_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._get(endpoint)
+
+        return DevopnessResponse(response, Application)
+
+    def list_environment_applications(
+        self,
+        environment_id: int,
+        page: Optional[int] = None,
+        per_page: Optional[int] = None,
+    ) -> DevopnessResponse[List[ApplicationRelation]]:
+        """
+        Return a list of all Applications belonging to an environment
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = parse_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            f"/environments/{environment_id}/applications",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._get(endpoint)
+
+        return DevopnessResponse(response, List[ApplicationRelation])
+
+    def update_application(
+        self,
+        application_id: int,
+        application_update: Union[
+            ApplicationUpdate,
+            ApplicationUpdatePlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Update an existing application
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/applications/{application_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+
+        response = self._put(endpoint, application_update)
+
+        return DevopnessResponse(response, None)
+
+
+class ApplicationsApiServiceAsync(DevopnessBaseServiceAsync):
+    """
+    ApplicationsApiServiceAsync - Auto Generated
     """
 
     async def add_application_deployment(
@@ -47,32 +208,8 @@ class ApplicationsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint, deployment_application_create)
-
-        return DevopnessResponse(response, None)
-
-    def add_application_deployment_sync(
-        self,
-        application_id: int,
-        deployment_application_create: Union[
-            DeploymentApplicationCreate,
-            DeploymentApplicationCreatePlain,
-        ],
-    ) -> DevopnessResponse[None]:
-        """
-        Trigger a new deployment for current application
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/applications/{application_id}/deployments",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, deployment_application_create)
 
         return DevopnessResponse(response, None)
 
@@ -97,32 +234,8 @@ class ApplicationsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._post(endpoint, application_environment_create)
-
-        return DevopnessResponse(response, Application)
-
-    def add_environment_application_sync(
-        self,
-        environment_id: int,
-        application_environment_create: Union[
-            ApplicationEnvironmentCreate,
-            ApplicationEnvironmentCreatePlain,
-        ],
-    ) -> DevopnessResponse[Application]:
-        """
-        Create a new application
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/environments/{environment_id}/applications",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post_sync(endpoint, application_environment_create)
 
         return DevopnessResponse(response, Application)
 
@@ -143,28 +256,8 @@ class ApplicationsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._delete(endpoint)
-
-        return DevopnessResponse(response, None)
-
-    def delete_application_sync(
-        self,
-        application_id: int,
-    ) -> DevopnessResponse[None]:
-        """
-        Delete a given application
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/applications/{application_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._delete_sync(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -185,28 +278,8 @@ class ApplicationsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, Application)
-
-    def get_application_sync(
-        self,
-        application_id: int,
-    ) -> DevopnessResponse[Application]:
-        """
-        Get an application by ID
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/applications/{application_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, Application)
 
@@ -224,7 +297,7 @@ class ApplicationsApiService(DevopnessBaseService):
             DevopnessNetworkError: If a network error occurs.
         """
 
-        query_string = DevopnessBaseService._get_query_string(
+        query_string = parse_query_string(
             {
                 "page": page,
                 "per_page": per_page,
@@ -237,38 +310,8 @@ class ApplicationsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._get(endpoint)
-
-        return DevopnessResponse(response, List[ApplicationRelation])
-
-    def list_environment_applications_sync(
-        self,
-        environment_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[ApplicationRelation]]:
-        """
-        Return a list of all Applications belonging to an environment
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        query_string = DevopnessBaseService._get_query_string(
-            {
-                "page": page,
-                "per_page": per_page,
-            }
-        )
-
-        endpoint_parts = [
-            f"/environments/{environment_id}/applications",
-            f"?{query_string}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get_sync(endpoint)
 
         return DevopnessResponse(response, List[ApplicationRelation])
 
@@ -293,31 +336,7 @@ class ApplicationsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
+
         response = await self._put(endpoint, application_update)
-
-        return DevopnessResponse(response, None)
-
-    def update_application_sync(
-        self,
-        application_id: int,
-        application_update: Union[
-            ApplicationUpdate,
-            ApplicationUpdatePlain,
-        ],
-    ) -> DevopnessResponse[None]:
-        """
-        Update an existing application
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/applications/{application_id}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._put_sync(endpoint, application_update)
 
         return DevopnessResponse(response, None)
