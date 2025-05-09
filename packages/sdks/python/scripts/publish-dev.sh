@@ -7,7 +7,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$SCRIPT_DIR/.."
 PYPROJECT_FILE="$PROJECT_ROOT/pyproject.toml"
-VERSION_FILE="$PROJECT_ROOT/.version"
+VERSION_FILE="$PROJECT_ROOT/package.json"
 
 # Function to update version in pyproject.toml
 set_version_in_pyproject() {
@@ -23,7 +23,7 @@ fi
 
 # Store original and test version
 ORIGINAL_VERSION=$(poetry version --short)
-TEST_VERSION=$(grep 'TestPyPI==' "$VERSION_FILE" | cut -d '=' -f 3)
+TEST_VERSION=$(grep '"version"' "$VERSION_FILE" | cut -d '"' -f 4)
 
 # Ensure test version was found
 if [[ -z "$TEST_VERSION" ]]; then
