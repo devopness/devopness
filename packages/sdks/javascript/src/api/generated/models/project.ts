@@ -12,9 +12,7 @@
  */
 
 
-import { EnvironmentRelation } from './environment-relation';
-import { RoleRelation } from './role-relation';
-import { TeamRelation } from './team-relation';
+import { ResourceSummaryItem } from './resource-summary-item';
 import { UserRelation } from './user-relation';
 
 /**
@@ -48,6 +46,12 @@ export interface Project {
      */
     logo_url: string | null;
     /**
+     * Summary of the resource
+     * @type {Array<ResourceSummaryItem>}
+     * @memberof Project
+     */
+    resource_summary?: Array<ResourceSummaryItem>;
+    /**
      * The list of the operating system users found in all the servers linked to a project
      * @type {Array<object>}
      * @memberof Project
@@ -59,24 +63,6 @@ export interface Project {
      * @memberof Project
      */
     created_by_user: UserRelation;
-    /**
-     * 
-     * @type {Array<EnvironmentRelation>}
-     * @memberof Project
-     */
-    environments: Array<EnvironmentRelation>;
-    /**
-     * 
-     * @type {Array<TeamRelation>}
-     * @memberof Project
-     */
-    teams: Array<TeamRelation>;
-    /**
-     * 
-     * @type {Array<RoleRelation>}
-     * @memberof Project
-     */
-    roles: Array<RoleRelation>;
     /**
      * The date and time when the record was created
      * @type {string}

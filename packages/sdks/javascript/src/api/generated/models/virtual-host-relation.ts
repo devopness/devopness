@@ -12,7 +12,7 @@
  */
 
 
-import { ActionRelation } from './action-relation';
+import { ActionRelationShallow } from './action-relation-shallow';
 import { ApplicationRelation } from './application-relation';
 import { SslCertificateRelation } from './ssl-certificate-relation';
 import { UserRelation } from './user-relation';
@@ -41,7 +41,7 @@ export interface VirtualHostRelation {
      * @type {string}
      * @memberof VirtualHostRelation
      */
-    type_human_readable: string;
+    type_human_readable?: string;
     /**
      * The name of the Virtual Host
      * @type {string}
@@ -74,27 +74,27 @@ export interface VirtualHostRelation {
     ssl_certificate: SslCertificateRelation | null;
     /**
      * 
-     * @type {ActionRelation}
+     * @type {ActionRelationShallow}
      * @memberof VirtualHostRelation
      */
-    last_action: ActionRelation | null;
+    last_action?: ActionRelationShallow | null;
     /**
      * 
      * @type {UserRelation}
      * @memberof VirtualHostRelation
      */
-    created_by_user: UserRelation;
+    created_by_user?: UserRelation;
     /**
      * The date and time when the record was created
      * @type {string}
      * @memberof VirtualHostRelation
      */
-    created_at: string;
+    created_at?: string;
     /**
      * The date and time when the record was updated
      * @type {string}
      * @memberof VirtualHostRelation
      */
-    updated_at: string;
+    updated_at?: string;
 }
 

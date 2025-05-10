@@ -17,8 +17,8 @@ required_permissions:
 1. Find the `Servers` card
 1. Click the `View` in the `Servers` card
 1. On the upper-right corner, click `ACTIONS` to see a list of actions for all `Servers` of the current environment
-1. In the list of actions, find the action you want to inspect and click `LOGS` to see the list of action steps
+1. In the list of actions, locate the action you want to inspect and click its Action ID (e.g., #51899) in the Actions column to open the action details page
     > There are 3 actions related to the server provision process: `Provision`, `Provision-check` and `Add`;
     > each action can have one of the following status: `Queued`, `Pending`, `In progress`, `Completed` or `Failed`.
-1. In the action details view, find the server and the action step you want to inspect and click `LOGS`
+1. In the action details view, you'll see a list of action steps. For each step, click the `LOGS` button to view its detailed logs
 1. A text area will be displayed containing the output log of the action step execution

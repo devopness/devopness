@@ -34,7 +34,7 @@ export interface VariableCreate {
      */
     value: string;
     /**
-     * A text describing the variable, provided by the end user.
+     * A text describing the variable, provided by the end user. Must not be greater than 255 characters.
      * @type {string}
      * @memberof VariableCreate
      */

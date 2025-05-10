@@ -8,7 +8,7 @@ const meta = {
   argTypes: {
     name: {
       control: 'select',
-      options: iconList.map(({ accessor }) => accessor),
+      options: iconList.map(({ name }) => name),
     },
     opacity: {
       control: 'range',
@@ -20,7 +20,7 @@ const meta = {
   render: (props) => (
     <Icon
       {...props}
-      opacity={(props.opacity ?? 1) / 100}
+      opacity={(props.opacity ?? 100) / 100}
     />
   ),
 } satisfies Meta<typeof Icon>
@@ -30,9 +30,10 @@ type Story = StoryObj<typeof meta>
 const Primary: Story = {
   args: {
     name: 'help',
-    size: 40,
-    color: 'purple.800',
     ariaLabel: 'help',
+    color: 'purple.800',
+    opacity: 100,
+    size: 40,
   },
 }
 

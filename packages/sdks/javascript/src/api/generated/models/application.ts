@@ -87,6 +87,12 @@ export interface Application {
      */
     programming_language: string;
     /**
+     * The human readable version of the programming language of the application.
+     * @type {string}
+     * @memberof Application
+     */
+    programming_language_human_readable: string;
+    /**
      * The language runtime engine version to be used to execute this application on the deployed servers
      * @type {string}
      * @memberof Application
@@ -98,6 +104,12 @@ export interface Application {
      * @memberof Application
      */
     framework: string;
+    /**
+     * The human readable version of the framework of the application.
+     * @type {string}
+     * @memberof Application
+     */
+    framework_human_readable: string;
     /**
      * The relative directory where package manager\'s manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository.
      * @type {string}

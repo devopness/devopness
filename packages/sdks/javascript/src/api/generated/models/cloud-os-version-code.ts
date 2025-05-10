@@ -22,7 +22,8 @@ export enum CloudOsVersionCode {
     Centos7 = 'centos_7',
     Ubuntu1804 = 'ubuntu_18_04',
     Ubuntu2004 = 'ubuntu_20_04',
-    Ubuntu2204 = 'ubuntu_22_04'
+    Ubuntu2204 = 'ubuntu_22_04',
+    Ubuntu2404 = 'ubuntu_24_04'
 }
 
 

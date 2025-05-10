@@ -12,6 +12,7 @@
  */
 
 
+import { ResourceSummaryItem } from './resource-summary-item';
 import { UserRelation } from './user-relation';
 
 /**
@@ -44,6 +45,12 @@ export interface ProjectRelation {
      * @memberof ProjectRelation
      */
     logo_url: string | null;
+    /**
+     * Summary of the resource
+     * @type {Array<ResourceSummaryItem>}
+     * @memberof ProjectRelation
+     */
+    resource_summary?: Array<ResourceSummaryItem>;
     /**
      * The list of the operating system users found in all the servers linked to a project
      * @type {Array<object>}

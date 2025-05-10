@@ -82,6 +82,12 @@ export interface ApplicationRelation {
      */
     programming_language: string;
     /**
+     * The human readable version of the programming language of the application.
+     * @type {string}
+     * @memberof ApplicationRelation
+     */
+    programming_language_human_readable: string;
+    /**
      * The language runtime engine version to be used to execute this application on the deployed servers
      * @type {string}
      * @memberof ApplicationRelation
@@ -94,11 +100,17 @@ export interface ApplicationRelation {
      */
     framework: string;
     /**
+     * The human readable version of the framework of the application.
+     * @type {string}
+     * @memberof ApplicationRelation
+     */
+    framework_human_readable: string;
+    /**
      * The relative directory where package manager\'s manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository.
      * @type {string}
      * @memberof ApplicationRelation
      */
-    root_directory: string;
+    root_directory: string | null;
     /**
      * The number of deployment history, logs and artifacts to keep stored in both devopness servers and user\'s servers. OR The number of deployment artifacts to be retained in the user\'s servers, making it easier and faster to rollback to previous versions
      * @type {number}
@@ -134,12 +146,12 @@ export interface ApplicationRelation {
      * @type {string}
      * @memberof ApplicationRelation
      */
-    created_at: string;
+    created_at?: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof ApplicationRelation
      */
-    updated_at: string;
+    updated_at?: string;
 }
 

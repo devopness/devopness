@@ -20,12 +20,6 @@
  */
 export interface ServiceGetStatus {
     /**
-     * The ID of the environment this service is running in.
-     * @type {number}
-     * @memberof ServiceGetStatus
-     */
-    environment_id: number;
-    /**
      * List of valid resource IDs
      * @type {Array<number>}
      * @memberof ServiceGetStatus

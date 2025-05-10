@@ -22,10 +22,10 @@ import { Language } from './language';
 export interface UserUpdate {
     /**
      * The unique ID of the given User.
-     * @type {number}
+     * @type {string}
      * @memberof UserUpdate
      */
-    id: number;
+    id: string;
     /**
      * User\'s full name. Must be at least 5 characters. Must not be greater than 60 characters.
      * @type {string}
@@ -38,6 +38,12 @@ export interface UserUpdate {
      * @memberof UserUpdate
      */
     email: string;
+    /**
+     * The URL Slug of the user. Must not be greater than 255 characters.
+     * @type {string}
+     * @memberof UserUpdate
+     */
+    url_slug: string;
     /**
      * 
      * @type {Language}

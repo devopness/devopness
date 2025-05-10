@@ -4,48 +4,61 @@ import type { ButtonProps } from '.'
 import { getColor } from 'src/colors'
 import { getFont } from 'src/fonts'
 
-type CustomButton = {
-  backgroundColor?: string
-  color?: string
-  borderColor?: string
-}
-
 type StyledProps = {
-  noMargin?: boolean
-  noPadding?: boolean
-  size: NonNullable<ButtonProps['typeSize']>
-  variant?: string
-  custom?: CustomButton
-  icon?: boolean
-  alignEnd?: boolean
-  reversed: boolean
-  noPointerEvents?: boolean
+  /**
+   * Button props related to styling
+   *
+   * Adds a `$` prefix to the prop name to prevent it from being passed to the
+   * underlying React node or rendered to the DOM element
+   *
+   * @see {@link https://styled-components.com/docs/api#transient-props | Styled Components - Transient props}
+   */
+  [Key in keyof Pick<
+    ButtonProps,
+    | 'backgroundColor'
+    | 'borderColor'
+    | 'buttonType'
+    | 'color'
+    | 'iconSize'
+    | 'noIconMargin'
+    | 'noMargin'
+    | 'noPadding'
+    | 'noPointerEvents'
+    | 'revertOrientation'
+    | 'typeSize'
+  > as `$${Key}`]: ButtonProps[Key]
 }
 
-const backgroundColor = (buttonType?: string, custom?: CustomButton) => {
+const getBackgroundColor = (
+  buttonType: StyledProps['$buttonType'],
+  backgroundColor: StyledProps['$backgroundColor']
+) => {
   switch (buttonType) {
     case 'borderless':
       return 'transparent'
     case 'outlinedSecondary':
     case 'outlinedAuxiliary':
-      return custom?.backgroundColor ?? getColor('white')
+      return backgroundColor ?? getColor('white')
     default:
-      return custom?.backgroundColor ?? getColor('purple.800')
+      return backgroundColor ?? getColor('purple.800')
   }
 }
 
-const getTextColor = (buttonType?: string, custom?: CustomButton) => {
+const getTextColor = (
+  buttonType: StyledProps['$buttonType'],
+  color: StyledProps['$color']
+) => {
   switch (buttonType) {
     case 'borderless':
     case 'outlinedSecondary':
     case 'outlinedAuxiliary':
-      return custom?.color ?? getColor('purple.800')
+      return color ?? getColor('purple.800')
     default:
-      return custom?.color ?? getColor('white')
+      return color ?? getColor('white')
   }
 }
 
-const getBorderStyle = (buttonType?: string) => {
+const getBorderStyle = (buttonType: StyledProps['$buttonType']) => {
   switch (buttonType) {
     case 'borderless':
       return 'none'
@@ -54,20 +67,23 @@ const getBorderStyle = (buttonType?: string) => {
   }
 }
 
-const getBorderColor = (buttonType?: string, custom?: CustomButton) => {
+const getBorderColor = (
+  buttonType: StyledProps['$buttonType'],
+  borderColor: StyledProps['$borderColor']
+) => {
   switch (buttonType) {
     case 'borderless':
       return ''
     case 'outlinedSecondary':
-      return custom?.borderColor ?? getColor('purple.800')
+      return borderColor ?? getColor('purple.800')
     case 'outlinedAuxiliary':
-      return custom?.borderColor ?? getColor('gray.800')
+      return borderColor ?? getColor('gray.800')
     default:
-      return custom?.borderColor ?? getColor('purple.800')
+      return borderColor ?? getColor('purple.800')
   }
 }
 
-const getBorderWidth = (typeSize: StyledProps['size']) => {
+const getBorderWidth = (typeSize: StyledProps['$typeSize']) => {
   switch (typeSize) {
     case 'medium':
       return 1
@@ -76,7 +92,7 @@ const getBorderWidth = (typeSize: StyledProps['size']) => {
   }
 }
 
-const getTypeSize = (typeSize: StyledProps['size']) => {
+const getHeight = (typeSize: StyledProps['$typeSize']) => {
   switch (typeSize) {
     case 'auto':
       return 'auto'
@@ -87,89 +103,86 @@ const getTypeSize = (typeSize: StyledProps['size']) => {
   }
 }
 
-const ContentIcon = styled.div<
-  Pick<ButtonProps, 'noIconMargin'> & {
-    reversed: ButtonProps['revertOrientation']
-    size: Required<ButtonProps['iconSize']>
-  }
->`
-  ${({ noIconMargin, reversed: revertOrientation, size: iconSize }) => css`
+const ContentIcon = styled.div<Pick<StyledProps, '$iconSize'>>`
+  ${({ $iconSize }) => css`
+    /** Base */
     display: flex;
+    height: ${$iconSize}px;
+    width: ${$iconSize}px;
+
+    /** Flex Layout */
     align-items: center;
-    width: ${iconSize}px;
-    height: ${iconSize}px;
-    ${noIconMargin
-      ? ''
-      : revertOrientation
-        ? 'margin-left: 10px;'
-        : 'margin-right: 10px;'}
   `}
 `
 
 const Label = styled.span``
 
-const WrapperButtons = styled.div<StyledProps>`
-  ${({ alignEnd }) => css`
-    display: flex;
-    justify-content: ${alignEnd && 'flex-end'};
-    align-items: center;
-
-    width: 100%;
-    height: 126px;
-  `}
-`
-
-const BaseButton = styled.button<StyledProps>`
+const BaseButton = styled.button<
+  Pick<
+    StyledProps,
+    | '$backgroundColor'
+    | '$borderColor'
+    | '$buttonType'
+    | '$color'
+    | '$noIconMargin'
+    | '$noMargin'
+    | '$noPadding'
+    | '$noPointerEvents'
+    | '$revertOrientation'
+    | '$typeSize'
+  >
+>`
   ${({
-    size: typeSize,
-    variant: buttonType,
-    custom,
-    noMargin,
-    reversed: revertOrientation,
-    noPointerEvents,
-    noPadding,
+    $backgroundColor,
+    $borderColor,
+    $buttonType,
+    $color,
+    $noIconMargin,
+    $noMargin,
+    $noPadding,
+    $noPointerEvents,
+    $revertOrientation,
+    $typeSize,
   }) => css`
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    /** Base */
     cursor: pointer;
-    border: 1px;
-    border-radius: 25px;
+    display: flex;
+    background-color: ${getBackgroundColor($buttonType, $backgroundColor)};
+    height: ${getHeight($typeSize)};
+    margin: ${$noMargin ? '0' : '0 15px'};
+    padding: ${$noPadding ? '0' : '5px 15px'};
+    user-select: none;
+
+    /** Flex Layout */
+    gap: ${$noIconMargin ? '0' : '10px'};
+    align-items: center;
+    flex-direction: ${$revertOrientation ? 'row-reverse' : 'row'};
+    justify-content: center;
+
+    /** Text */
+    color: ${getTextColor($buttonType, $color)};
     font-family: ${getFont('roboto')};
-    text-transform: uppercase;
-    padding: ${noPadding ? '0' : '5px 15px'};
-    nomargin: ${noMargin ? '0' : '0 15px'};
     font-size: 13px;
-    flex-direction: ${revertOrientation ? 'row-reverse' : 'row'};
-    border-width: ${getBorderWidth(typeSize)};
-    border-style: ${getBorderStyle(buttonType)};
-    border-color: ${getBorderColor(buttonType, custom)};
-    color: ${getTextColor(buttonType, custom)};
-    background-color: ${backgroundColor(buttonType, custom)};
-    height: ${getTypeSize(typeSize)};
     line-height: 1;
+    text-transform: uppercase;
     transition: filter 0.3s;
+
+    /** Border */
+    border-color: ${getBorderColor($buttonType, $borderColor)};
+    border-radius: 25px;
+    border-style: ${getBorderStyle($buttonType)};
+    border-width: ${getBorderWidth($typeSize)}px;
 
     &:hover:enabled {
       filter: brightness(75%);
     }
 
     &:disabled {
-      pointer-events: ${noPointerEvents ? 'none' : 'auto'};
-      opacity: 0.5;
       cursor: not-allowed;
+      opacity: 0.5;
+      pointer-events: ${$noPointerEvents ? 'none' : 'auto'};
     }
-
-    user-select: none;
   `}
 `
 
-const SmallWrapper = styled.div<StyledProps>`
-  ${({ icon }) => css`
-    width: 16px;
-    height: 16px;
-    margin-right: ${icon ? '9px' : '10px'};
-  `}
-`
-
-export { ContentIcon, Label, WrapperButtons, BaseButton, SmallWrapper }
+export { BaseButton, ContentIcon, Label }

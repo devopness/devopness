@@ -21,10 +21,11 @@ links:
 1. In the `Set Permissions` step click `Attach policies directly`
 1. Search and select the policies `AmazonEC2FullAccess` and `IAMReadOnlyAccess`
 1. Follow the prompts then click `Create user`
-1. In the `Users` list, click the username link of the user recently created
-1. Click `Security credentials`
-1. In this page, search for `Access keys` section and click `Create access key`
+1. In the `Users` list, click the username link of the user you've just created
+1. Navigate to the `Security credentials` tab
+1. In this page, scroll down to the `Access keys` section and click `Create access key`
 1. Choose `Other` and click `Next`
-1. Click `Create access key`
+1. Give the key a description (Optional) and click 'Next'
+1. Click `Create access key`  
 1. Copy the values of `Access key ID` and `Secret access key`
 1. To add the copied credentials to Devopness see [/docs/credentials/add-credential]

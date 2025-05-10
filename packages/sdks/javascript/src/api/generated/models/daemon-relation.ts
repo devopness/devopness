@@ -12,7 +12,7 @@
  */
 
 
-import { ActionRelation } from './action-relation';
+import { ActionRelationShallow } from './action-relation-shallow';
 import { ApplicationRelation } from './application-relation';
 import { UserRelation } from './user-relation';
 
@@ -66,10 +66,10 @@ export interface DaemonRelation {
     is_auto_generated: boolean;
     /**
      * 
-     * @type {ActionRelation}
+     * @type {ActionRelationShallow}
      * @memberof DaemonRelation
      */
-    last_action: ActionRelation | null;
+    last_action?: ActionRelationShallow | null;
     /**
      * 
      * @type {ApplicationRelation}
@@ -81,18 +81,18 @@ export interface DaemonRelation {
      * @type {UserRelation}
      * @memberof DaemonRelation
      */
-    created_by_user: UserRelation;
+    created_by_user?: UserRelation;
     /**
      * The date and time when the record was created
      * @type {string}
      * @memberof DaemonRelation
      */
-    created_at: string;
+    created_at?: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof DaemonRelation
      */
-    updated_at: string;
+    updated_at?: string;
 }
 

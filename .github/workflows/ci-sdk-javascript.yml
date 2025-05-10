@@ -1,0 +1,95 @@
+name: CI - SDK JavaScript
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
+
+defaults:
+  run:
+    working-directory: packages/sdks/javascript
+
+jobs:
+  detect-changes:
+    name: Detect changes in SDK-JS
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
+    outputs:
+      changes: ${{ steps.filter.outputs.changes }}
+    steps:
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            changes:
+              - 'packages/sdks/common/**'
+              - 'packages/sdks/javascript/**'
+
+  build:
+    name: Build SDK-JS
+    needs: detect-changes
+    if: ${{ needs.detect-changes.outputs.changes == 'true' }}
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        node: [20]
+        os: [ubuntu-latest]
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.head_ref }}
+          persist-credentials: true
+          fetch-depth: 0
+
+      - name: Use node ${{ matrix.node }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+          registry-url: https://registry.npmjs.org
+
+      - name: install
+        run: npm ci --ignore-scripts
+
+      - name: build
+        run: npm run build-api-models
+
+      - name: lint
+        run: npm run lint
+
+      - name: test
+        run: npm test
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        if: github.repository == 'devopness/devopness'
+        with:
+          commit_message: 'docs: Update auto generated models'
+          file_pattern: 'packages/sdks/javascript/*'
+          commit_user_name: devopness-automations
+          commit_user_email: automations@devopness.com
+
+  verify-build:
+    name: Verify build of SDK-JS
+    needs: [build, detect-changes]
+    if: success() || failure()
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Fail if build did not succeed
+        run: |
+          if [ "${{ needs.build.result }}" != "success" ]; then
+            echo "❌ Build job failed or was cancelled"
+            exit 1
+          fi
+
+          echo "✅ Build job succeeded"

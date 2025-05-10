@@ -12,7 +12,7 @@
  */
 
 
-import { ActionRelation } from './action-relation';
+import { ActionRelationShallow } from './action-relation-shallow';
 import { NetworkRuleDirection } from './network-rule-direction';
 import { NetworkRuleProtocol } from './network-rule-protocol';
 
@@ -66,10 +66,10 @@ export interface NetworkRuleRelation {
     is_auto_generated: boolean;
     /**
      * 
-     * @type {ActionRelation}
+     * @type {ActionRelationShallow}
      * @memberof NetworkRuleRelation
      */
-    last_action: ActionRelation | null;
+    last_action?: ActionRelationShallow | null;
     /**
      * The date and time when the record was created
      * @type {string}

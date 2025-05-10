@@ -15,6 +15,7 @@ export default defineConfig({
         'src/**/*.test.*',
         'src/**/*.stories.*',
         'src/setupTest.ts',
+        'src/test-utils/**/*.ts',
         '.storybook/**/*.ts',
       ],
     }),

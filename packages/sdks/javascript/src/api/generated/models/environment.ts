@@ -12,20 +12,10 @@
  */
 
 
-import { ApplicationRelation } from './application-relation';
-import { CredentialRelation } from './credential-relation';
-import { CronJobRelation } from './cron-job-relation';
-import { DaemonRelation } from './daemon-relation';
 import { EnvironmentType } from './environment-type';
-import { NetworkRelation } from './network-relation';
-import { NetworkRuleRelation } from './network-rule-relation';
-import { ServerRelation } from './server-relation';
-import { ServiceRelation } from './service-relation';
-import { SshKeyRelation } from './ssh-key-relation';
-import { SslCertificateRelation } from './ssl-certificate-relation';
+import { ResourceSummaryItem } from './resource-summary-item';
 import { TeamRelation } from './team-relation';
 import { UserRelation } from './user-relation';
-import { VirtualHostRelation } from './virtual-host-relation';
 
 /**
  * 
@@ -70,77 +60,17 @@ export interface Environment {
      */
     is_archived: boolean;
     /**
-     * 
-     * @type {Array<ServerRelation>}
+     * Summary of the resource
+     * @type {Array<ResourceSummaryItem>}
      * @memberof Environment
      */
-    servers: Array<ServerRelation>;
-    /**
-     * 
-     * @type {Array<CredentialRelation>}
-     * @memberof Environment
-     */
-    credentials: Array<CredentialRelation>;
-    /**
-     * 
-     * @type {Array<CronJobRelation>}
-     * @memberof Environment
-     */
-    cron_jobs: Array<CronJobRelation>;
-    /**
-     * 
-     * @type {Array<DaemonRelation>}
-     * @memberof Environment
-     */
-    daemons: Array<DaemonRelation>;
-    /**
-     * 
-     * @type {Array<NetworkRelation>}
-     * @memberof Environment
-     */
-    networks: Array<NetworkRelation>;
-    /**
-     * 
-     * @type {Array<NetworkRuleRelation>}
-     * @memberof Environment
-     */
-    network_rules: Array<NetworkRuleRelation>;
-    /**
-     * 
-     * @type {Array<ApplicationRelation>}
-     * @memberof Environment
-     */
-    applications: Array<ApplicationRelation>;
-    /**
-     * 
-     * @type {Array<ServiceRelation>}
-     * @memberof Environment
-     */
-    services: Array<ServiceRelation>;
-    /**
-     * 
-     * @type {Array<SshKeyRelation>}
-     * @memberof Environment
-     */
-    ssh_keys: Array<SshKeyRelation>;
-    /**
-     * 
-     * @type {Array<SslCertificateRelation>}
-     * @memberof Environment
-     */
-    ssl_certificates: Array<SslCertificateRelation>;
+    resource_summary?: Array<ResourceSummaryItem>;
     /**
      * 
      * @type {Array<TeamRelation>}
      * @memberof Environment
      */
     teams: Array<TeamRelation>;
-    /**
-     * 
-     * @type {Array<VirtualHostRelation>}
-     * @memberof Environment
-     */
-    virtual_hosts: Array<VirtualHostRelation>;
     /**
      * 
      * @type {UserRelation}

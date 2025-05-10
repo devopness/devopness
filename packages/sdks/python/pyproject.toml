@@ -1,0 +1,151 @@
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[project]
+name = "devopness"
+version = "0.0.0"
+description = "Devopness API Python SDK - Painless essential DevOps to everyone"
+license = "MIT"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "Devopness (https://www.devopness.com)" }]
+keywords = [
+  "API Client",
+  "Cloud Engineering",
+  "Cloud Infrastructure",
+  "Cloud Platform",
+  "Cloud Resource Management",
+  "Configuration Management",
+  "Deployment Automation",
+  "Devopness",
+  "DevOps",
+  "Infrastructure as Code",
+  "Platform Engineering",
+  "Python SDK",
+  "Server Management",
+  "Server Provisioning",
+  "Zero Downtime Deployment",
+]
+classifiers = [
+  "Development Status :: 2 - Pre-Alpha",
+  "Environment :: Console",
+  "Framework :: Pydantic",
+  "Intended Audience :: Developers",
+  "Intended Audience :: System Administrators",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Software Development",
+  "Topic :: Software Development :: Libraries",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Topic :: System :: Systems Administration",
+  "Topic :: Utilities",
+]
+dependencies = [
+  # Explicitly added `httpcore` to ensure a secure version of h11 is used.
+  # httpcore is a transitive dependency of httpx (which allows any 1.*),
+  # but only httpcore >=1.0.9 guarantees h11 >=0.16 with the security fix.
+  # Related issue: https://github.com/devopness/devopness/security/dependabot/63
+  "httpcore (>=1.0.9)",
+  "httpx (>=0.28.1,<0.29.0)",
+  "pydantic (>=2.11.3,<3.0.0)",
+]
+
+[project.urls]
+homepage = "https://www.devopness.com"
+repository = "https://github.com/devopness/devopness"
+
+[tool.poetry]
+packages = [
+  { include = "devopness/__init__.py" },
+  { include = "devopness/py.typed" },
+  { include = "devopness/client.py" },
+  { include = "devopness/client_config.py" },
+  { include = "devopness/models.py" },
+  { include = "devopness/base/*.py" },
+  { include = "devopness/core/*.py" },
+  { include = "devopness/services/*.py" },
+  { include = "devopness/generated/*.py" },
+  { include = "devopness/generated/api/*.py" },
+  { include = "devopness/generated/models/*.py" },
+]
+
+[tool.poetry.group.dev.dependencies]
+openapi-generator-cli = { version = "7.12.0", markers = "python_version < '4.0'" }
+ruff = "^0.11.6"
+mypy = "1.15.0"
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+
+[tool.ruff.lint]
+preview = true
+
+extend-select = [
+  "A",   # flake8-builtins (avoid shadowing built-ins)
+  "ANN", # flake8-annotations (type hints for public APIs)
+  "B",   # flake8-bugbear (common bugs and best practices)
+  "E",   # pycodestyle (error)
+  "F",   # pyflakes (basic errors)
+  "I",   # isort (import sorting)
+  "N",   # pep8-naming
+  "PIE", # flake8-pie (extra cleanups)
+  "PLC", # pylint conventions
+  "PLE", # pylint errors
+  "PLW", # pylint warnings
+  "Q",   # flake8-quotes (quote consistency)
+  "RET", # flake8-return (return statement rules)
+  "RUF", # Ruff-specific rules
+  "S",   # flake8-bandit (security rules)
+  "SIM", # flake8-simplify
+  "W",   # pycodestyle (warning)
+]
+
+ignore = [
+  "PLC2701", # Private name import `*` from external module `*`
+  "RET504",  # Unnecessary assignment to `**kwargs` before `return` statement
+]
+
+[tool.ruff.lint.per-file-ignores]
+"devopness/generated/**/*" = [
+  "E501", # Line too long
+]
+"devopness/generated/**/__init__.py" = [
+  "F401", # Module imported but unused
+]
+"scripts/**/*" = [
+  "ANN",  # flake8-annotations
+  "S404", # `subprocess` module is possibly insecure
+  "S602", # `subprocess` call with `shell=True` identified, security issue
+]
+"tests/**/*" = [
+  "ANN",  # flake8-annotations
+  "E501", # Line too long
+  "S101", # Use of `assert` detected
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["devopness"]
+case-sensitive = true
+
+[tool.mypy]
+python_version = "3.11"
+
+strict = true
+disallow_any_unimported = true
+strict_optional = true
+warn_no_return = true
+warn_unreachable = true
+
+sqlite_cache = true
+cache_fine_grained = true
+
+[[tool.mypy.overrides]]
+module = "devopness.generated.api.*"
+disable_error_code = ["attr-defined"]

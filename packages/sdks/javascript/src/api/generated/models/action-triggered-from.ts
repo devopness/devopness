@@ -58,15 +58,15 @@ export interface ActionTriggeredFrom {
     user_id: number | null;
     /**
      * The hook\'s ID if the action have been triggered by a hook.
-     * @type {number}
+     * @type {string}
      * @memberof ActionTriggeredFrom
      */
-    hook_id: number | null;
+    hook_id: string | null;
     /**
      * The hook request\'s ID if the action have been triggered by a hook.
-     * @type {number}
+     * @type {string}
      * @memberof ActionTriggeredFrom
      */
-    hook_request_id: number | null;
+    hook_request_id: string | null;
 }
 

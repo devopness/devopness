@@ -28,11 +28,11 @@ export interface PipelineSettings {
      */
     max_pipelines_per_resource?: number;
     /**
-     * 
+     * Indicates whether the user has permission to manage the pipeline for the resource operation
      * @type {boolean}
      * @memberof PipelineSettings
      */
-    allow_custom_steps?: boolean;
+    is_user_managed?: boolean;
     /**
      * The list of pipeline setting stage
      * @type {Array<PipelineSettingsStage>}

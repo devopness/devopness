@@ -1,9 +1,9 @@
-name: "Stale issues handler"
+name: Issue - Stale handler
 
 on:
   workflow_dispatch: # allows workflow to be manually triggered from GitHub UI
   schedule:
-    - cron: "0 15 * * *" # daily, at 3pm UTC
+    - cron: '0 15 * * *' # daily, at 3pm UTC
 
 jobs:
   stale:
@@ -21,9 +21,9 @@ jobs:
             priority: P1 must have,
             priority: P2 should have,
             priority: P3 could have
-          labels-to-remove-when-unstale: "status: no issue activity"
+          labels-to-remove-when-unstale: 'status: no issue activity'
           operations-per-run: 100
-          stale-issue-label: "status: no issue activity"
+          stale-issue-label: 'status: no issue activity'
           stale-issue-message: |
             👋 Hi there!
             This issue has been automatically marked as stale because there wasn't any activity in the past

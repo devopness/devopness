@@ -1,0 +1,27 @@
+name: PR - Labeler
+
+on:
+  pull_request_target:
+    # triggers on `pull_request_target` as this is a fork-based repository
+    # for security reasons, `npm` or other code execution jobs must not
+    # be executed on this workflow
+    types:
+      - opened
+      - reopened
+      - synchronize
+
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    name: Label PR - Triage
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - name: Label PR - Step
+        uses: actions/labeler@v4
+        with:
+          repo-token: '${{ secrets.GITHUB_TOKEN }}'
+          configuration-path: .github/labeler-pr.yml
+          sync-labels: true
