@@ -61,6 +61,7 @@ const StyledTooltip = ({
       <MuiTooltip
         {...tooltipProps}
         classes={{ popper: className }}
+        data-testid="tooltip"
       />
     )
   )(() => ({
@@ -123,7 +124,6 @@ const Tooltip = ({
       <ContentChildren
         ref={contentChildrenRef}
         className="translate"
-        role="tooltip"
       >
         {children}
       </ContentChildren>

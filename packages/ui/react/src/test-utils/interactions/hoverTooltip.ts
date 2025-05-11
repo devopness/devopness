@@ -28,7 +28,7 @@ type TestHoverTooltipOptions = {
 export async function testHoverTooltip({
   element,
   tooltipText,
-}: TestHoverTooltipOptions) {
+}: TestHoverTooltipOptions): Promise<void> {
   expect(element).toBeInTheDocument()
 
   const user = userEvent.setup()
