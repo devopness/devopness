@@ -82,7 +82,12 @@ const ERROR_MESSAGE_TEST_ID = 'error-message'
  * @param props.error - Error object in various possible formats
  * @param props.className - Additional CSS classes to apply to the container
  */
-const ErrorMessage = ({ error, className, id, role = "status" }: ErrorMessageProps) => {
+const ErrorMessage = ({
+  error,
+  className,
+  id,
+  role = 'status',
+}: ErrorMessageProps) => {
   const errorMessage = handleErrorMessage(error)
   const classNames = [
     'translate',

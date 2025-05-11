@@ -13,9 +13,7 @@ vi.mock('styled-components', async () => ({
 vi.mock('src/colors', () => ({
   getColor: (color: string) =>
     ({
-      'blue.950': '#172554',
       'slate.400': '#94a3b8',
-      'blue.800': '#1e40af',
       white: '#ffffff',
     })[color],
 }))
@@ -73,12 +71,12 @@ describe('Label', () => {
         />
       )
       const svg = screen.getByLabelText('Help text').querySelector('svg')
-      expect(svg).toHaveStyle('fill: #1e40af')
+      expect(svg).toHaveStyle('fill: #94a3b8')
       if (svg) {
         fireEvent.mouseOver(svg)
-        expect(svg).toHaveStyle('fill: #1e40af')
+        expect(svg).toHaveStyle('fill: #94a3b8')
         fireEvent.mouseLeave(svg)
-        expect(svg).toHaveStyle('fill: #1e40af')
+        expect(svg).toHaveStyle('fill: #94a3b8')
       }
     })
   })

@@ -21,13 +21,12 @@ describe('Input', () => {
     it('with label', () => {
       render(
         <Input
-          id="username"
           type="text"
           labelProps={{ htmlFor: 'username', value: 'Username' }}
         />
       )
-      const label = screen.getByText('Username')
-      expect(label).toBeInTheDocument()
+      const input = screen.getByLabelText('Username')
+      expect(input).toBeInTheDocument()
     })
 
     it('with error message', () => {

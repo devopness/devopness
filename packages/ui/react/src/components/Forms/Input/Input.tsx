@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useMemo, useRef } from 'react'
+import { forwardRef, useEffect, useRef } from 'react'
 
 import { Container, InputText } from './Input.styled'
 import type { ErrorMessageProps } from 'src/components/Primitives/ErrorMessage'
@@ -71,7 +71,11 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const internalRef = useRef<HTMLInputElement>(null)
   const inputRef =
     (ref as React.RefObject<HTMLInputElement> | undefined) ?? internalRef
-  const { autoFocusOnError, error } = props
+  const { autoFocusOnError, error, inputProps, labelProps, ...restProps } =
+    props
+
+  const inputId =
+    inputProps?.id ?? `input-${Math.random().toString(36).slice(2, 11)}`
 
   useEffect(() => {
     if (autoFocusOnError && error && inputRef.current) {
@@ -83,30 +87,26 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     inputRef,
   ])
 
-  const uniqueId = useMemo(
-    () => `input-${Math.random().toString(36).slice(2, 9)}`,
-    []
-  )
-  const errorId = `${uniqueId}-error`
+  const errorId = `${inputId}-error`
 
   return (
     <Container>
-      {props.labelProps && (
+      {labelProps && (
         <Label
-          {...props.labelProps}
-          htmlFor={uniqueId}
+          {...labelProps}
+          htmlFor={inputId}
         />
       )}
       <InputText
-        id={uniqueId}
         className="translate"
         ref={inputRef}
         hasError={Boolean(error)}
         aria-invalid={Boolean(error)}
         aria-errormessage={error ? errorId : undefined}
         aria-describedby={error ? errorId : undefined}
-        {...props}
-        {...props.inputProps}
+        {...restProps}
+        {...inputProps}
+        id={inputId}
       />
       {Boolean(error) && (
         <ErrorMessage
