@@ -133,4 +133,111 @@ describe('Input', () => {
       expect(ref.current).toBe(input)
     })
   })
+
+  describe('accessibility', () => {
+    it('has appropriate ARIA attributes when there is an error', () => {
+      render(
+        <Input
+          type="text"
+          error={{ message: 'Required field' }}
+          data-testid="input-with-error"
+        />
+      )
+
+      const input = screen.getByTestId('input-with-error')
+      expect(input).toHaveAttribute('aria-invalid', 'true')
+      expect(input).toHaveAttribute('aria-errormessage')
+      expect(input).toHaveAttribute('aria-describedby')
+
+      const errorId = input.getAttribute('aria-errormessage')
+      const errorMessage = errorId ? document.getElementById(errorId) : null
+      if (!errorMessage) {
+        throw new Error('Error message element not found')
+      }
+      expect(errorMessage).toHaveTextContent('Required field')
+    })
+
+    it('associates label correctly with input using htmlFor', () => {
+      render(
+        <Input
+          type="text"
+          labelProps={{ htmlFor: 'user-name', value: 'Username' }}
+        />
+      )
+
+      const input = screen.getByLabelText('Username')
+      expect(input).toBeInTheDocument()
+      expect(input.tagName).toBe('INPUT')
+    })
+
+    it('can be navigated and operated with keyboard', () => {
+      const handleChange = vi.fn()
+      render(
+        <Input
+          type="text"
+          onChange={handleChange}
+          placeholder="Enter your text"
+        />
+      )
+
+      const input = screen.getByPlaceholderText('Enter your text')
+      input.focus()
+      expect(input).toHaveFocus()
+
+      fireEvent.keyDown(input, { key: 'A', code: 'KeyA' })
+      fireEvent.keyPress(input, { key: 'A', code: 'KeyA' })
+      fireEvent.keyUp(input, { key: 'A', code: 'KeyA' })
+      fireEvent.change(input, { target: { value: 'A' } })
+
+      expect(handleChange).toHaveBeenCalled()
+      expect(input).toHaveValue('A')
+    })
+
+    it('maintains focus after user interaction', () => {
+      render(
+        <Input
+          type="text"
+          placeholder="Field with focus"
+          data-testid="focus-input"
+        />
+      )
+
+      const input = screen.getByTestId('focus-input')
+      input.focus()
+      expect(input).toHaveFocus()
+
+      fireEvent.change(input, { target: { value: 'Focus test' } })
+      expect(input).toHaveFocus()
+      expect(input).toHaveValue('Focus test')
+    })
+
+    it('properly manages focus with multiple inputs', () => {
+      render(
+        <>
+          <Input
+            type="text"
+            labelProps={{ value: 'First field' }}
+            data-testid="first-field"
+          />
+          <Input
+            type="text"
+            labelProps={{ value: 'Second field' }}
+            data-testid="second-field"
+          />
+        </>
+      )
+
+      const firstInput = screen.getByTestId('first-field')
+      const secondInput = screen.getByTestId('second-field')
+
+      firstInput.focus()
+      expect(firstInput).toHaveFocus()
+      expect(secondInput).not.toHaveFocus()
+
+      fireEvent.keyDown(firstInput, { key: 'Tab' })
+      secondInput.focus()
+      expect(firstInput).not.toHaveFocus()
+      expect(secondInput).toHaveFocus()
+    })
+  })
 })
