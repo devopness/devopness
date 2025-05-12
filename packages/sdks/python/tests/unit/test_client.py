@@ -27,6 +27,14 @@ from devopness.services.environment_service import (
     EnvironmentService,
     EnvironmentServiceAsync,
 )
+from devopness.services.hook_service import (
+    HookService,
+    HookServiceAsync,
+)
+from devopness.services.network_rule_service import (
+    NetworkRuleService,
+    NetworkRuleServiceAsync,
+)
 from devopness.services.network_service import (
     NetworkService,
     NetworkServiceAsync,
@@ -39,9 +47,17 @@ from devopness.services.project_service import (
     ProjectService,
     ProjectServiceAsync,
 )
+from devopness.services.resource_event_service import (
+    ResourceEventService,
+    ResourceEventServiceAsync,
+)
 from devopness.services.resource_link_service import (
     ResourceLinkService,
     ResourceLinkServiceAsync,
+)
+from devopness.services.role_service import (
+    RoleService,
+    RoleServiceAsync,
 )
 from devopness.services.server_service import (
     ServerService,
@@ -51,13 +67,29 @@ from devopness.services.service_service import (
     ServiceService,
     ServiceServiceAsync,
 )
+from devopness.services.social_account_service import (
+    SocialAccountService,
+    SocialAccountServiceAsync,
+)
 from devopness.services.ssh_key_service import (
     SSHKeyService,
     SSHKeyServiceAsync,
 )
+from devopness.services.ssl_certificate_service import (
+    SSLCertificateService,
+    SSLCertificateServiceAsync,
+)
+from devopness.services.static_service import (
+    StaticService,
+    StaticServiceAsync,
+)
 from devopness.services.subnet_service import (
     SubnetService,
     SubnetServiceAsync,
+)
+from devopness.services.team_service import (
+    TeamService,
+    TeamServiceAsync,
 )
 from devopness.services.user_service import (
     UserService,
@@ -91,14 +123,22 @@ EXPECTED_SERVICES: dict[
         ("cron_jobs", CronJobServiceAsync),
         ("daemons", DaemonServiceAsync),
         ("environments", EnvironmentServiceAsync),
+        ("hooks", HookServiceAsync),
+        ("network_rules", NetworkRuleServiceAsync),
         ("networks", NetworkServiceAsync),
         ("pipelines", PipelineServiceAsync),
         ("projects", ProjectServiceAsync),
+        ("resource_events", ResourceEventServiceAsync),
         ("resource_links", ResourceLinkServiceAsync),
+        ("roles", RoleServiceAsync),
         ("servers", ServerServiceAsync),
         ("services", ServiceServiceAsync),
+        ("social_accounts", SocialAccountServiceAsync),
         ("ssh_keys", SSHKeyServiceAsync),
+        ("ssl_certificates", SSLCertificateServiceAsync),
+        ("static", StaticServiceAsync),
         ("subnets", SubnetServiceAsync),
+        ("teams", TeamServiceAsync),
         ("users", UserServiceAsync),
         ("variables", VariableServiceAsync),
         ("virtual_hosts", VirtualHostServiceAsync),
@@ -110,14 +150,22 @@ EXPECTED_SERVICES: dict[
         ("cron_jobs", CronJobService),
         ("daemons", DaemonService),
         ("environments", EnvironmentService),
+        ("hooks", HookService),
+        ("network_rules", NetworkRuleService),
         ("networks", NetworkService),
         ("pipelines", PipelineService),
         ("projects", ProjectService),
+        ("resource_events", ResourceEventService),
         ("resource_links", ResourceLinkService),
+        ("roles", RoleService),
         ("servers", ServerService),
         ("services", ServiceService),
+        ("social_accounts", SocialAccountService),
         ("ssh_keys", SSHKeyService),
+        ("ssl_certificates", SSLCertificateService),
+        ("static", StaticService),
         ("subnets", SubnetService),
+        ("teams", TeamService),
         ("users", UserService),
         ("variables", VariableService),
         ("virtual_hosts", VirtualHostService),
