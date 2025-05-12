@@ -30,6 +30,10 @@ from ..generated.api.teams_members_api import (
     TeamsMembersApiService,
     TeamsMembersApiServiceAsync,
 )
+from ..generated.api.users_team_invitations_api import (
+    UsersTeamInvitationsApiService,
+    UsersTeamInvitationsApiServiceAsync,
+)
 
 __all__ = ["TeamService", "TeamServiceAsync"]
 
@@ -37,6 +41,7 @@ __all__ = ["TeamService", "TeamServiceAsync"]
 class TeamInvitationService(
     TeamInvitationsApiService,
     TeamsInvitationsApiService,
+    UsersTeamInvitationsApiService,
 ):
     """Service for team invitations in the Devopness API."""
 
@@ -44,6 +49,7 @@ class TeamInvitationService(
 class TeamInvitationServiceAsync(
     TeamInvitationsApiServiceAsync,
     TeamsInvitationsApiServiceAsync,
+    UsersTeamInvitationsApiServiceAsync,
 ):
     """Async service for team invitations in the Devopness API."""
 

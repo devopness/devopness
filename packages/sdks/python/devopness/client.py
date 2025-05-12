@@ -42,6 +42,10 @@ from .services.network_service import (
     NetworkService,
     NetworkServiceAsync,
 )
+from .services.organization_service import (
+    OrganizationService,
+    OrganizationServiceAsync,
+)
 from .services.pipeline_service import (
     PipelineService,
     PipelineServiceAsync,
@@ -124,6 +128,7 @@ class DevopnessClient:
     hooks: HookService
     network_rules: NetworkRuleService
     networks: NetworkService
+    organizations: OrganizationService
     pipelines: PipelineService
     projects: ProjectService
     resource_events: ResourceEventService
@@ -163,6 +168,7 @@ class DevopnessClient:
         self.hooks = HookService()
         self.network_rules = NetworkRuleService()
         self.networks = NetworkService()
+        self.organizations = OrganizationService()
         self.pipelines = PipelineService()
         self.projects = ProjectService()
         self.resource_events = ResourceEventService()
@@ -205,6 +211,7 @@ class DevopnessClientAsync:
     hooks: HookServiceAsync
     network_rules: NetworkRuleServiceAsync
     networks: NetworkServiceAsync
+    organizations: OrganizationServiceAsync
     pipelines: PipelineServiceAsync
     projects: ProjectServiceAsync
     resource_events: ResourceEventServiceAsync
@@ -244,6 +251,7 @@ class DevopnessClientAsync:
         self.hooks = HookServiceAsync()
         self.network_rules = NetworkRuleServiceAsync()
         self.networks = NetworkServiceAsync()
+        self.organizations = OrganizationServiceAsync()
         self.pipelines = PipelineServiceAsync()
         self.projects = ProjectServiceAsync()
         self.resource_events = ResourceEventServiceAsync()
