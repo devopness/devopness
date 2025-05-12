@@ -2,10 +2,6 @@
 Devopness API Python SDK - Painless essential DevOps to everyone
 """
 
-from ..generated.api.environments_actions_api import (
-    EnvironmentsActionsApiService,
-    EnvironmentsActionsApiServiceAsync,
-)
 from ..generated.api.environments_api import (
     EnvironmentsApiService,
     EnvironmentsApiServiceAsync,
@@ -23,7 +19,6 @@ __all__ = ["EnvironmentService", "EnvironmentServiceAsync"]
 
 
 class EnvironmentService(
-    EnvironmentsActionsApiService,
     EnvironmentsApiService,
     ProjectsArchivedEnvironmentsApiService,
     ProjectsEnvironmentsApiService,
@@ -32,7 +27,6 @@ class EnvironmentService(
 
 
 class EnvironmentServiceAsync(
-    EnvironmentsActionsApiServiceAsync,
     EnvironmentsApiServiceAsync,
     ProjectsArchivedEnvironmentsApiServiceAsync,
     ProjectsEnvironmentsApiServiceAsync,

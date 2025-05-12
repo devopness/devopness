@@ -254,6 +254,7 @@ class DevopnessClientAsync:
         self.social_accounts = SocialAccountServiceAsync()
         self.ssh_keys = SSHKeyServiceAsync()
         self.ssl_certificates = SSLCertificateServiceAsync()
+        self.static = StaticServiceAsync()
         self.subnets = SubnetServiceAsync()
         self.teams = TeamServiceAsync()
         self.users = UserServiceAsync()

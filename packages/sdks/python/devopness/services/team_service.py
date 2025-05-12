@@ -34,14 +34,14 @@ from ..generated.api.teams_members_api import (
 __all__ = ["TeamService", "TeamServiceAsync"]
 
 
-class _TeamInvitationService(
+class TeamInvitationService(
     TeamInvitationsApiService,
     TeamsInvitationsApiService,
 ):
     """Service for team invitations in the Devopness API."""
 
 
-class _TeamInvitationServiceAsync(
+class TeamInvitationServiceAsync(
     TeamInvitationsApiServiceAsync,
     TeamsInvitationsApiServiceAsync,
 ):
@@ -56,8 +56,14 @@ class TeamService(
 ):
     """Service for teams in the Devopness API."""
 
-    invitations = _TeamInvitationService()
-    members = TeamsMembersApiService()
+    invitations: TeamInvitationService
+    members: TeamsMembersApiService
+
+    def __init__(self) -> None:
+        super().__init__()
+
+        self.invitations = TeamInvitationService()
+        self.members = TeamsMembersApiService()
 
 
 class TeamServiceAsync(
@@ -68,5 +74,11 @@ class TeamServiceAsync(
 ):
     """Async service for teams in the Devopness API."""
 
-    invitations = _TeamInvitationServiceAsync()
-    members = TeamsMembersApiServiceAsync()
+    invitations: TeamInvitationServiceAsync
+    members: TeamsMembersApiServiceAsync
+
+    def __init__(self) -> None:
+        super().__init__()
+
+        self.invitations = TeamInvitationServiceAsync()
+        self.members = TeamsMembersApiServiceAsync()
