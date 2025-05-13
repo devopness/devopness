@@ -8,7 +8,7 @@ export const StyledErrorMessage = styled.span`
   font-size: 0.8em;
   font-weight: 400;
   margin-top: 5px;
-  color: ${getColor('red.500')};
+  color: ${getColor('red.600')};
   width: 100%;
   display: ${({ children }) => (children ? 'inline-block' : 'none')};
   text-align: right;

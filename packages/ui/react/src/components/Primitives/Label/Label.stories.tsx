@@ -11,6 +11,7 @@ type Story = StoryObj<typeof meta>
 
 const Default: Story = {
   args: {
+    htmlFor: 'site',
     value: 'Site',
     helpValue: 'Help here!',
   },

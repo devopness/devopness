@@ -63,7 +63,7 @@ const StyledContent = styled.div<StyledProps>`
 const StyledIcon = styled.div<StyledProps>`
   height: 13px;
   width: 13px;
-  padding: 0px;
+  padding: 0;
   margin-right: 15px;
   color: ${(props) => handleIconColor(props.type)};
 `

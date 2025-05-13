@@ -5,6 +5,8 @@ import { getColor } from 'src/colors'
 import { Tooltip } from 'src/components/Primitives'
 
 type LabelProps = {
+  /** HTML element type for the label */
+  htmlFor?: string
   /** Main label text/node */
   value: React.ReactNode
   /** Help text shown in tooltip */
@@ -32,9 +34,17 @@ type LabelProps = {
  * />
  * ```
  */
-const Label = ({ value, helpValue, isOptional = false }: LabelProps) => (
+const Label = ({
+  value,
+  helpValue,
+  isOptional = false,
+  htmlFor,
+}: LabelProps) => (
   <ContentFlex>
-    <LabelElement className="translate">
+    <LabelElement
+      htmlFor={htmlFor}
+      className="translate"
+    >
       {value}
       {isOptional ? ' (Optional)' : ''}
     </LabelElement>
@@ -49,7 +59,10 @@ const Label = ({ value, helpValue, isOptional = false }: LabelProps) => (
           height: '16px',
         }}
       >
-        <QuestionIcon />
+        <QuestionIcon
+          role="img"
+          aria-label="Help"
+        />
       </Tooltip>
     )}
   </ContentFlex>
