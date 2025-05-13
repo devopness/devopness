@@ -30,9 +30,21 @@ from .services.environment_service import (
     EnvironmentService,
     EnvironmentServiceAsync,
 )
+from .services.hook_service import (
+    HookService,
+    HookServiceAsync,
+)
+from .services.network_rule_service import (
+    NetworkRuleService,
+    NetworkRuleServiceAsync,
+)
 from .services.network_service import (
     NetworkService,
     NetworkServiceAsync,
+)
+from .services.organization_service import (
+    OrganizationService,
+    OrganizationServiceAsync,
 )
 from .services.pipeline_service import (
     PipelineService,
@@ -42,9 +54,17 @@ from .services.project_service import (
     ProjectService,
     ProjectServiceAsync,
 )
+from .services.resource_event_service import (
+    ResourceEventService,
+    ResourceEventServiceAsync,
+)
 from .services.resource_link_service import (
     ResourceLinkService,
     ResourceLinkServiceAsync,
+)
+from .services.role_service import (
+    RoleService,
+    RoleServiceAsync,
 )
 from .services.server_service import (
     ServerService,
@@ -54,13 +74,29 @@ from .services.service_service import (
     ServiceService,
     ServiceServiceAsync,
 )
+from .services.social_account_service import (
+    SocialAccountService,
+    SocialAccountServiceAsync,
+)
 from .services.ssh_key_service import (
     SSHKeyService,
     SSHKeyServiceAsync,
 )
+from .services.ssl_certificate_service import (
+    SSLCertificateService,
+    SSLCertificateServiceAsync,
+)
+from .services.static_service import (
+    StaticService,
+    StaticServiceAsync,
+)
 from .services.subnet_service import (
     SubnetService,
     SubnetServiceAsync,
+)
+from .services.team_service import (
+    TeamService,
+    TeamServiceAsync,
 )
 from .services.user_service import (
     UserService,
@@ -89,14 +125,23 @@ class DevopnessClient:
     cron_jobs: CronJobService
     daemons: DaemonService
     environments: EnvironmentService
+    hooks: HookService
+    network_rules: NetworkRuleService
     networks: NetworkService
+    organizations: OrganizationService
     pipelines: PipelineService
     projects: ProjectService
+    resource_events: ResourceEventService
     resource_links: ResourceLinkService
+    roles: RoleService
     servers: ServerService
     services: ServiceService
+    social_accounts: SocialAccountService
     ssh_keys: SSHKeyService
+    ssl_certificates: SSLCertificateService
+    static: StaticService
     subnets: SubnetService
+    teams: TeamService
     users: UserService
     variables: VariableService
     virtual_hosts: VirtualHostService
@@ -120,14 +165,23 @@ class DevopnessClient:
         self.cron_jobs = CronJobService()
         self.daemons = DaemonService()
         self.environments = EnvironmentService()
+        self.hooks = HookService()
+        self.network_rules = NetworkRuleService()
         self.networks = NetworkService()
+        self.organizations = OrganizationService()
         self.pipelines = PipelineService()
         self.projects = ProjectService()
+        self.resource_events = ResourceEventService()
         self.resource_links = ResourceLinkService()
+        self.roles = RoleService()
         self.servers = ServerService()
         self.services = ServiceService()
+        self.social_accounts = SocialAccountService()
         self.ssh_keys = SSHKeyService()
+        self.ssl_certificates = SSLCertificateService()
+        self.static = StaticService()
         self.subnets = SubnetService()
+        self.teams = TeamService()
         self.users = UserService()
         self.variables = VariableService()
         self.virtual_hosts = VirtualHostService()
@@ -154,14 +208,23 @@ class DevopnessClientAsync:
     cron_jobs: CronJobServiceAsync
     daemons: DaemonServiceAsync
     environments: EnvironmentServiceAsync
+    hooks: HookServiceAsync
+    network_rules: NetworkRuleServiceAsync
     networks: NetworkServiceAsync
+    organizations: OrganizationServiceAsync
     pipelines: PipelineServiceAsync
     projects: ProjectServiceAsync
+    resource_events: ResourceEventServiceAsync
     resource_links: ResourceLinkServiceAsync
+    roles: RoleServiceAsync
     servers: ServerServiceAsync
     services: ServiceServiceAsync
+    social_accounts: SocialAccountServiceAsync
     ssh_keys: SSHKeyServiceAsync
+    ssl_certificates: SSLCertificateServiceAsync
+    static: StaticServiceAsync
     subnets: SubnetServiceAsync
+    teams: TeamServiceAsync
     users: UserServiceAsync
     variables: VariableServiceAsync
     virtual_hosts: VirtualHostServiceAsync
@@ -185,14 +248,23 @@ class DevopnessClientAsync:
         self.cron_jobs = CronJobServiceAsync()
         self.daemons = DaemonServiceAsync()
         self.environments = EnvironmentServiceAsync()
+        self.hooks = HookServiceAsync()
+        self.network_rules = NetworkRuleServiceAsync()
         self.networks = NetworkServiceAsync()
+        self.organizations = OrganizationServiceAsync()
         self.pipelines = PipelineServiceAsync()
         self.projects = ProjectServiceAsync()
+        self.resource_events = ResourceEventServiceAsync()
         self.resource_links = ResourceLinkServiceAsync()
+        self.roles = RoleServiceAsync()
         self.servers = ServerServiceAsync()
         self.services = ServiceServiceAsync()
+        self.social_accounts = SocialAccountServiceAsync()
         self.ssh_keys = SSHKeyServiceAsync()
+        self.ssl_certificates = SSLCertificateServiceAsync()
+        self.static = StaticServiceAsync()
         self.subnets = SubnetServiceAsync()
+        self.teams = TeamServiceAsync()
         self.users = UserServiceAsync()
         self.variables = VariableServiceAsync()
         self.virtual_hosts = VirtualHostServiceAsync()

@@ -61,7 +61,7 @@
     "@mui/styled-engine-sc": "^6.4.9",
     "ldrs": "^1.1.7",
     "lodash": "^4.17.21",
-    "material-ui-popup-state": "^5.3.5",
+    "material-ui-popup-state": "^5.3.6",
     "path-browserify": "^1.0.1",
     "react-icons": "^5.5.0",
     "styled-components": "^6.1.18"
@@ -100,7 +100,7 @@
     "react-dom": "^18.3.1",
     "storybook": "8.6.12",
     "typescript": "^5.8.3",
-    "typescript-eslint": "~8.32.0",
+    "typescript-eslint": "~8.32.1",
     "vite": "^6.3.5",
     "vite-plugin-dts": "^4.5.3",
     "vite-tsconfig-paths": "^5.1.4",
