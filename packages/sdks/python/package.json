@@ -1,6 +1,6 @@
 {
   "name": "@devopness/sdk-python-dev",
-  "version": "0.0.78",
+  "version": "0.0.79",
   "description": "This is used by Changesets Action to manage the versions of the SDK-Python, in the same way as it's done for SDK-JS",
   "private": true
 }

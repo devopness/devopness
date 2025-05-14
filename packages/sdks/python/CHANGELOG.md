@@ -1,5 +1,11 @@
 # @devopness/sdk-python-dev
 
+## 0.0.79
+
+### Patch Changes
+
+- [#1694](https://github.com/devopness/devopness/pull/1694) [`a3f987f`](https://github.com/devopness/devopness/commit/a3f987f7f347d0113d60b63b0e0bde222f9e24ca) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Test changeset to confirm the Release - Packages workflow is triggered correctly for the Python SDK after project structure update.
+
 ## 0.0.78
 
 ### Patch Changes
