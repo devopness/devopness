@@ -113,10 +113,10 @@ ignore = [
 ]
 
 [tool.ruff.lint.per-file-ignores]
-"devopness/generated/**/*" = [
+"src/devopness/generated/**/*" = [
   "E501", # Line too long
 ]
-"devopness/generated/**/__init__.py" = [
+"src/devopness/generated/**/__init__.py" = [
   "F401", # Module imported but unused
 ]
 "scripts/**/*" = [
