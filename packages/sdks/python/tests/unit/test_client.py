@@ -11,7 +11,9 @@ from devopness.base import DevopnessBaseService, DevopnessBaseServiceAsync
 
 def build_expected_services() -> set[str]:
     """Get all service module names from the services directory."""
-    services_dir = Path(__file__).parent.parent.parent / "devopness" / "services"
+    services_dir = (
+        Path(__file__).parent.parent.parent / "src" / "devopness" / "services"
+    )
     service_files = services_dir.glob("*_service.py")
 
     services: set[str] = set()

@@ -12,10 +12,10 @@ from glob import glob
 SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
 
 SDK_ROOT_DIR = os.path.join(SCRIPT_DIR, "..")
-GENERATED_DIR = os.path.join(SDK_ROOT_DIR, "devopness", "generated")
+GENERATED_DIR = os.path.join(SDK_ROOT_DIR, "src", "devopness", "generated")
 
 SDK_MODELS_DIR = os.path.join(GENERATED_DIR, "models")
-SDK_MODELS_FILE = os.path.join(SDK_ROOT_DIR, "devopness", "models.py")
+SDK_MODELS_FILE = os.path.join(SDK_ROOT_DIR, "src", "devopness", "models.py")
 
 GENERATED_API_DIR = os.path.join(GENERATED_DIR, "api")
 GENERATED_MODELS_DIR = os.path.join(GENERATED_DIR, "models")
@@ -45,7 +45,7 @@ def run_openapi_generator(extra_args: list[str] | None = None) -> None:
         "openapi-generator-cli generate",
         '--input-spec="../common/spec.json"',
         '--generator-name="python"',
-        '--output="./devopness/generated"',
+        '--output="./src/devopness/generated"',
         '--template-dir="./generator/templates"',
         '--additional-properties="packageName="',
     ]
