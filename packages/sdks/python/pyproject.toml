@@ -62,18 +62,9 @@ repository = "https://github.com/devopness/devopness"
 
 [tool.poetry]
 packages = [
-  { include = "devopness/__init__.py", from = "src", to = "." },
-  { include = "devopness/py.typed", from = "src", to = "." },
-  { include = "devopness/client.py", from = "src", to = "." },
-  { include = "devopness/client_config.py", from = "src", to = "." },
-  { include = "devopness/models.py", from = "src", to = "." },
-  { include = "devopness/base/*.py", from = "src", to = "." },
-  { include = "devopness/core/*.py", from = "src", to = "." },
-  { include = "devopness/services/*.py", from = "src", to = "." },
-  { include = "devopness/generated/*.py", from = "src", to = "." },
-  { include = "devopness/generated/api/*.py", from = "src", to = "." },
-  { include = "devopness/generated/models/*.py", from = "src", to = "." },
+  { include = "devopness", from = "src", to = "." },
 ]
+exclude = ["src/devopness/generated/.openapi-generator-ignore"]
 
 [tool.poetry.group.dev.dependencies]
 openapi-generator-cli = { version = "7.12.0", markers = "python_version < '4.0'" }
