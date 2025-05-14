@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - packages/**
+      - packages/**/src/**
       - packages/**/package.json
     branches:
       - main
