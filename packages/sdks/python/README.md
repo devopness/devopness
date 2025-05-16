@@ -1,14 +1,14 @@
 # Devopness SDK - Python
 
+[![PyPI version](https://img.shields.io/pypi/v/devopness.svg)](https://pypi.org/project/devopness/)
+
 The official Devopness SDK for Python.
 
 This SDK provides predefined classes to access Devopness platform resources. It's suitable for building CLI tools, backend services, or automation scripts, helping you interact with the Devopness API.
 
 ## 📌 Table of Contents
 
-- [Status](#status)
 - [Usage](#usage)
-
   - [Install](#install)
   - [Initializing](#initializing)
   - [Custom Configuration](#custom-configuration)
@@ -21,10 +21,6 @@ This SDK provides predefined classes to access Devopness platform resources. It'
   - [Error Handling](#error-handling)
 - [Development](#development)
   - [With Docker](#with-docker)
-
-## Status
-
-This SDK is in active development and not recommended for production use. Features, structure, and usage may change until a stable version is released.
 
 ## Usage
 
