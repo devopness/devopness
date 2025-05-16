@@ -28,7 +28,7 @@ keywords = [
   "Zero Downtime Deployment",
 ]
 classifiers = [
-  "Development Status :: 4 - Beta",
+  "Development Status :: 5 - Production/Stable",
   "Environment :: Console",
   "Framework :: Pydantic",
   "Intended Audience :: Developers",
