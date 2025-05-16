@@ -75,7 +75,7 @@
     "@storybook/manager-api": "8.6.13",
     "@storybook/react": "8.6.13",
     "@storybook/react-vite": "8.6.13",
-    "@storybook/test": "8.6.12",
+    "@storybook/test": "8.6.13",
     "@storybook/theming": "8.6.12",
     "@testing-library/react": "^16.3.0",
     "@types/lodash": "^4.17.16",
