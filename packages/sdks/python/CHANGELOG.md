@@ -1,5 +1,23 @@
 # @devopness/sdk-python-dev
 
+## 1.0.0
+
+### Major Changes
+
+- [#1708](https://github.com/devopness/devopness/pull/1708) [`17f7aa4`](https://github.com/devopness/devopness/commit/17f7aa482324d02e1cf49e05e983aefc47f9cfef) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Initial stable release of the Devopness SDK for Python (v1.0.0)
+
+  This is the first official release published to PyPI.
+  Previous versions (0.0.x) were only available on TestPyPI
+  for internal testing and early integration.
+
+  Now available at: https://pypi.org/project/devopness/
+
+  The SDK allows developers to interact programmatically with the
+  Devopness API, providing features such as infrastructure provisioning,
+  server and application management, and credential handling.
+
+  Breaking changes are expected to follow semantic versioning from this point onward.
+
 ## 0.0.79
 
 ### Patch Changes
