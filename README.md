@@ -1,5 +1,4 @@
 [![MIT License](https://img.shields.io/badge/license-MIT-green.svg?style=flat-square)](https://github.com/devopness/devopness/blob/main/LICENSE)
-[![SDK JavaScript - CI](https://github.com/devopness/devopness/actions/workflows/ci-sdk-javascript.yml/badge.svg)](https://github.com/devopness/devopness/actions/workflows/ci-sdk-javascript.yml)
 
 # Devopness - Official open-source repository
 
@@ -34,13 +33,12 @@ Detailed changes for each release are documented in the [release notes](https://
 
 This repository has the following packages/sub-projects:
 ### Packages
-| Subpath                    | Package                   | Description                     |
-|:---------------------------|:--------------------------|:--------------------------------|
-| [/docs](docs/)             | 📚 Documentation          | End user product documentation  |
-| [/packages/sdks/javascript](packages/sdks/javascript/) | API SDK JavaScript  | API SDK to interact with Devopness using JavaScript and TypeScript |
-| [/packages/ui/react](packages/ui/react/) | UI React Components  | Devopness Design System UI components for React |
-
-
+| Subpath                    | Package                   | Description                     |Status|
+|:---------------------------|:--------------------------|:--------------------------------|-|
+| [/docs](docs/)             | 📚 Documentation          | End user product documentation  |-|
+| [/packages/sdks/javascript](packages/sdks/javascript/) | API SDK JavaScript  | API SDK to interact with Devopness using JavaScript and TypeScript |[![SDK JavaScript - CI](https://github.com/devopness/devopness/actions/workflows/ci-sdk-javascript.yml/badge.svg)](https://github.com/devopness/devopness/actions/workflows/ci-sdk-javascript.yml)|
+| [/packages/sdks/python](packages/sdks/python/) | API SDK Python  | API SDK to interact with Devopness using Python |[![SDK Python - CI](https://github.com/devopness/devopness/actions/workflows/ci-sdk-python.yml/badge.svg)](https://github.com/devopness/devopness/actions/workflows/ci-sdk-python.yml)|
+| [/packages/ui/react](packages/ui/react/) | UI React Components  | Devopness Design System UI components for React |[![UI React - CI](https://github.com/devopness/devopness/actions/workflows/ci-ui-react.yml/badge.svg)](https://github.com/devopness/devopness/actions/workflows/ci-ui-react.yml)|
 
 ## 📜 <a id="license"></a>License
 
