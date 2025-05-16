@@ -71,7 +71,7 @@
     "@eslint/js": "^9.26.0",
     "@storybook/addon-a11y": "^8.6.13",
     "@storybook/addon-essentials": "8.6.12",
-    "@storybook/blocks": "8.6.12",
+    "@storybook/blocks": "8.6.13",
     "@storybook/manager-api": "8.6.13",
     "@storybook/react": "8.6.13",
     "@storybook/react-vite": "8.6.13",
