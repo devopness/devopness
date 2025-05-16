@@ -69,7 +69,7 @@
   "devDependencies": {
     "@emotion/styled": "^11.14.0",
     "@eslint/js": "^9.26.0",
-    "@storybook/addon-a11y": "^8.6.12",
+    "@storybook/addon-a11y": "^8.6.13",
     "@storybook/addon-essentials": "8.6.12",
     "@storybook/blocks": "8.6.12",
     "@storybook/manager-api": "8.6.13",
