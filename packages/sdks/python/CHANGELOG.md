@@ -1,4 +1,4 @@
-# @devopness/sdk-python-dev
+# @devopness/sdk-python
 
 ## 1.0.0
 
