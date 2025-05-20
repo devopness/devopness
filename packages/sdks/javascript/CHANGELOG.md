@@ -1,5 +1,11 @@
 # @devopness/sdk-js
 
+## 2.164.0
+
+### Minor Changes
+
+- [#1728](https://github.com/devopness/devopness/pull/1728) [`4b99969`](https://github.com/devopness/devopness/commit/4b999691964e897b3046d641db4a3ed86b656711) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Added the `architecture` field to the `CloudInstanceRelation` model, allowing access to the instance architecture (e.g., x86_64, arm64).
+
 ## 2.163.7
 
 ### Patch Changes
