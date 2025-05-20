@@ -7,6 +7,7 @@ Note:
 """
 
 from typing import (
+    Optional,
     Required,
     TypedDict,
     Union,
@@ -25,6 +26,7 @@ class CloudInstanceRelation(DevopnessBaseModel):
         name (str): The name of the cloud instance
         type (str): The type of the cloud instance
         family (str): The family to which the instance belongs
+        architecture (str): The type of CPU used in the cloud server (x86_64 or arm64)
         default_disk_size (int): The default disk size (in GB) used to instance
         price_hourly (float): The price per hour of the instance
         price_monthly (float): The price per month of the instance
@@ -36,6 +38,9 @@ class CloudInstanceRelation(DevopnessBaseModel):
     name: StrictStr = Field(description="The name of the cloud instance")
     type: StrictStr = Field(description="The type of the cloud instance")
     family: StrictStr = Field(description="The family to which the instance belongs")
+    architecture: Optional[StrictStr] = Field(
+        description="The type of CPU used in the cloud server (x86_64 or arm64)"
+    )
     default_disk_size: StrictInt = Field(
         description="The default disk size (in GB) used to instance"
     )
@@ -58,6 +63,7 @@ class CloudInstanceRelationPlain(TypedDict, total=False):
     name: Required[str]
     type: Required[str]
     family: Required[str]
+    architecture: Required[str]
     default_disk_size: Required[int]
     price_hourly: Required[float]
     price_monthly: Required[float]
