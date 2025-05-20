@@ -38,6 +38,12 @@ export interface CloudInstanceRelation {
      */
     family: string;
     /**
+     * The type of CPU used in the cloud server (x86_64 or arm64)
+     * @type {string}
+     * @memberof CloudInstanceRelation
+     */
+    architecture: string | null;
+    /**
      * The default disk size (in GB) used to instance
      * @type {number}
      * @memberof CloudInstanceRelation
