@@ -14059,6 +14059,12 @@
             "example": "Memory Optimized",
             "type": "string"
           },
+          "architecture": {
+            "description": "The type of CPU used in the cloud server (x86_64 or arm64)",
+            "example": "x86_64",
+            "type": "string",
+            "nullable": true
+          },
           "default_disk_size": {
             "description": "The default disk size (in GB) used to instance",
             "example": 25,
@@ -14094,6 +14100,7 @@
           "name",
           "type",
           "family",
+          "architecture",
           "default_disk_size",
           "price_hourly",
           "price_monthly",
