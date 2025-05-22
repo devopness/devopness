@@ -27,3 +27,5 @@ Storybook configuration files
 | main.ts, manager.ts, preview.ts | https://storybook.js.org/docs/configure                                |
 | devopness.ts                    | https://storybook.js.org/docs/configure/user-interface/theming         |
 | preview-head.html               | https://storybook.js.org/docs/configure/story-rendering#adding-to-head |
+
+> Small doc contribution by Wallan — May 2025.
