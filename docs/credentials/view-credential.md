@@ -5,7 +5,7 @@ intro: View details of a credential linked to a project environment.
 links:
   overview:
   quickstart:
-  previous: environments/credentials/list-credentials
+  previous: credentials/list-credentials
   next: credentials/add-credential
   guides:
   related:

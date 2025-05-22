@@ -6,7 +6,7 @@ links:
   overview:
   quickstart:
   previous:
-  next: environments/credentials/view-credential
+  next: credentials/view-credential
   guides:
   related:
   featured:
