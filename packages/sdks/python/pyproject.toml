@@ -28,7 +28,7 @@ keywords = [
   "Zero Downtime Deployment",
 ]
 classifiers = [
-  "Development Status :: 2 - Pre-Alpha",
+  "Development Status :: 5 - Production/Stable",
   "Environment :: Console",
   "Framework :: Pydantic",
   "Intended Audience :: Developers",
@@ -62,18 +62,9 @@ repository = "https://github.com/devopness/devopness"
 
 [tool.poetry]
 packages = [
-  { include = "devopness/__init__.py" },
-  { include = "devopness/py.typed" },
-  { include = "devopness/client.py" },
-  { include = "devopness/client_config.py" },
-  { include = "devopness/models.py" },
-  { include = "devopness/base/*.py" },
-  { include = "devopness/core/*.py" },
-  { include = "devopness/services/*.py" },
-  { include = "devopness/generated/*.py" },
-  { include = "devopness/generated/api/*.py" },
-  { include = "devopness/generated/models/*.py" },
+  { include = "devopness", from = "src", to = "." },
 ]
+exclude = ["src/devopness/generated/.openapi-generator-ignore"]
 
 [tool.poetry.group.dev.dependencies]
 openapi-generator-cli = { version = "7.12.0", markers = "python_version < '4.0'" }
@@ -113,10 +104,10 @@ ignore = [
 ]
 
 [tool.ruff.lint.per-file-ignores]
-"devopness/generated/**/*" = [
+"src/devopness/generated/**/*" = [
   "E501", # Line too long
 ]
-"devopness/generated/**/__init__.py" = [
+"src/devopness/generated/**/__init__.py" = [
   "F401", # Module imported but unused
 ]
 "scripts/**/*" = [

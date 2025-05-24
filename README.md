@@ -1,5 +1,4 @@
 [![MIT License](https://img.shields.io/badge/license-MIT-green.svg?style=flat-square)](https://github.com/devopness/devopness/blob/main/LICENSE)
-[![SDK JavaScript - CI](https://github.com/devopness/devopness/actions/workflows/ci-sdk-javascript.yml/badge.svg)](https://github.com/devopness/devopness/actions/workflows/ci-sdk-javascript.yml)
 
 # Devopness - Official open-source repository
 
@@ -34,13 +33,12 @@ Detailed changes for each release are documented in the [release notes](https://
 
 This repository has the following packages/sub-projects:
 ### Packages
-| Subpath                    | Package                   | Description                     |
-|:---------------------------|:--------------------------|:--------------------------------|
-| [/docs](docs/)             | 📚 Documentation          | End user product documentation  |
-| [/packages/sdks/javascript](packages/sdks/javascript/) | API SDK JavaScript  | API SDK to interact with Devopness using JavaScript and TypeScript |
-| [/packages/ui/react](packages/ui/react/) | UI React Components  | Devopness Design System UI components for React |
-
-
+| Subpath                    | Package                   | Description                     |Status|
+|:---------------------------|:--------------------------|:--------------------------------|-|
+| [/docs](docs/)             | 📚 Documentation          | End user product documentation  |-|
+| [/packages/sdks/javascript](packages/sdks/javascript/) | API SDK JavaScript  | API SDK to interact with Devopness using JavaScript and TypeScript |[![SDK JavaScript - CI](https://img.shields.io/github/actions/workflow/status/devopness/devopness/ci-sdk-javascript.yml?label=SDK%20JavaScript)](https://github.com/devopness/devopness/actions/workflows/ci-sdk-javascript.yml)<br>[![SDK JavaScript - Version](https://img.shields.io/npm/v/@devopness/sdk-js?label=SDK%20JavaScript)](https://www.npmjs.com/package/@devopness/sdk-js)|
+| [/packages/sdks/python](packages/sdks/python/) | API SDK Python  | API SDK to interact with Devopness using Python |[![SDK Python - CI](https://img.shields.io/github/actions/workflow/status/devopness/devopness/ci-sdk-python.yml?label=SDK%20Python)](https://github.com/devopness/devopness/actions/workflows/ci-sdk-python.yml)<br>[![SDK Python - Version](https://img.shields.io/pypi/v/devopness?label=SDK%20Python)](https://pypi.org/project/devopness/)|
+| [/packages/ui/react](packages/ui/react/) | UI React Components  | Devopness Design System UI components for React |[![UI React - CI](https://img.shields.io/github/actions/workflow/status/devopness/devopness/ci-ui-react.yml?label=UI%20React)](https://github.com/devopness/devopness/actions/workflows/ci-ui-react.yml)<br>[![UI React - Version](https://img.shields.io/npm/v/@devopness/ui-react?label=UI%20React)](https://www.npmjs.com/package/@devopness/ui-react)|
 
 ## 📜 <a id="license"></a>License
 

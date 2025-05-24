@@ -8,7 +8,7 @@ expect.extend(matchers)
 type TestHoverTooltipOptions = {
   /** Element to hover over */
   element: HTMLElement
-  /** Expected tooltip text */
+  /** Expected a tooltip text */
   tooltipText: string
 }
 
@@ -18,7 +18,7 @@ type TestHoverTooltipOptions = {
  * @returns Promise that resolves when the hover test is complete
  *
  * @example
- * ```typescript
+ * ```TypeScript
  * await testHoverTooltip({
  *   element: screen.getByText('Hover me'),
  *   tooltipText: 'Tooltip content',
@@ -28,7 +28,7 @@ type TestHoverTooltipOptions = {
 export async function testHoverTooltip({
   element,
   tooltipText,
-}: TestHoverTooltipOptions) {
+}: TestHoverTooltipOptions): Promise<void> {
   expect(element).toBeInTheDocument()
 
   const user = userEvent.setup()
@@ -37,18 +37,17 @@ export async function testHoverTooltip({
   await user.hover(element)
 
   // Verify tooltip appears
-  const tooltip = await screen.findByRole('tooltip', {
-    name: tooltipText,
-  })
-  expect(tooltip).toBeInTheDocument()
+  const tooltip = await screen.findByRole('tooltip', { name: tooltipText })
+  expect(tooltip).toBeVisible()
 
   // Remove hover
   await user.unhover(element)
 
   // Verify tooltip disappears
-  await waitFor(() => {
-    expect(
-      screen.queryByRole('tooltip', { name: tooltipText })
-    ).not.toBeInTheDocument()
-  })
+  await waitFor(
+    () => {
+      expect(tooltip).not.toBeVisible()
+    },
+    { timeout: 3000 }
+  )
 }

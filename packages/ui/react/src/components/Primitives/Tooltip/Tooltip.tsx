@@ -61,6 +61,7 @@ const StyledTooltip = ({
       <MuiTooltip
         {...tooltipProps}
         classes={{ popper: className }}
+        data-testid="tooltip"
       />
     )
   )(() => ({

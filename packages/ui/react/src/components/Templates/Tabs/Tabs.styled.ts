@@ -9,7 +9,7 @@ const StyledTabs = styled(MuiTabs)`
   &.${tabsClasses.root} {
     height: 40px;
     min-height: 40px;
-    position: -webkit-sticky; /* Safari */
+    position: -webkit-sticky;
     position: sticky;
     top: 0;
     background-color: ${getColor('white')};

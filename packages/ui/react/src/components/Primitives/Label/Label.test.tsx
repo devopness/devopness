@@ -13,9 +13,7 @@ vi.mock('styled-components', async () => ({
 vi.mock('src/colors', () => ({
   getColor: (color: string) =>
     ({
-      'blue.950': '#172554',
       'slate.400': '#94a3b8',
-      'blue.800': '#1e40af',
       white: '#ffffff',
     })[color],
 }))
@@ -23,13 +21,19 @@ vi.mock('src/colors', () => ({
 describe('Label', () => {
   describe('renders correctly', () => {
     it('with required props', () => {
-      render(<Label value="Test Label" />)
+      render(
+        <Label
+          htmlFor="test-label"
+          value="Test Label"
+        />
+      )
       expect(screen.getByText('Test Label')).toBeInTheDocument()
     })
 
     it('with optional indicator', () => {
       render(
         <Label
+          htmlFor="test-label"
           value="Test Label"
           isOptional
         />
@@ -38,11 +42,17 @@ describe('Label', () => {
     })
 
     it('with help icon when helpValue provided', () => {
-      const { rerender } = render(<Label value="Test Label" />)
+      const { rerender } = render(
+        <Label
+          htmlFor="test-label"
+          value="Test Label"
+        />
+      )
       expect(screen.queryByLabelText('Help text')).toBeNull()
 
       rerender(
         <Label
+          htmlFor="test-label"
           value="Test Label"
           helpValue="Help text"
         />
@@ -55,17 +65,18 @@ describe('Label', () => {
     it('help icon has consistent color', () => {
       render(
         <Label
+          htmlFor="test-label"
           value="Test Label"
           helpValue="Help text"
         />
       )
       const svg = screen.getByLabelText('Help text').querySelector('svg')
-      expect(svg).toHaveStyle('fill: #1e40af')
+      expect(svg).toHaveStyle('fill: #94a3b8')
       if (svg) {
         fireEvent.mouseOver(svg)
-        expect(svg).toHaveStyle('fill: #1e40af')
+        expect(svg).toHaveStyle('fill: #94a3b8')
         fireEvent.mouseLeave(svg)
-        expect(svg).toHaveStyle('fill: #1e40af')
+        expect(svg).toHaveStyle('fill: #94a3b8')
       }
     })
   })
@@ -74,6 +85,7 @@ describe('Label', () => {
     it('help icon has aria-label', async () => {
       render(
         <Label
+          htmlFor="test-label"
           value="Test Label"
           helpValue="Help text"
         />
@@ -87,7 +99,12 @@ describe('Label', () => {
 
   describe('composition', () => {
     it('has correct flex layout', () => {
-      render(<Label value="Test Label" />)
+      render(
+        <Label
+          htmlFor="test-label"
+          value="Test Label"
+        />
+      )
       const container = screen.getByText('Test Label').parentElement
       expect(container).toHaveStyle('display: flex')
       expect(container).toHaveStyle('align-items: flex-end')
