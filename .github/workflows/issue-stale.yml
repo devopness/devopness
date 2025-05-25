@@ -12,8 +12,8 @@ jobs:
       - uses: actions/stale@v9
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          days-before-pr-stale: -1 # This option is to keep the action workflow from meddling with Pull Requests for now
-          days-before-pr-close: -1 # This option is to keep the action workflow from meddling with Pull Requests for now
+          days-before-pr-stale: 7      # Mark PRs stale after 7 days of inactivity
+          days-before-pr-close: 7      # Close stale PRs after an additional 7 days
           days-before-issue-stale: 21
           days-before-issue-close: 14
           exempt-issue-labels: >-
@@ -34,3 +34,12 @@ jobs:
           close-issue-message: |
             ❌ This issue was closed because it has been open and inactive for a month.
             If you feel this is still a high-priority issue, or are interested in contributing, please open a new issue or pull request linking to this one, for context.
+          stale-pr-label: 'status: no PR activity'
+          stale-pr-message: |
+            👋 Hi there!
+            This pull request has been automatically marked as stale because there wasn't any activity in the past week.
+            * If you've updated it, please comment or push new commits.
+            * Otherwise, it will be closed in another week.
+          close-pr-message: |
+            ❌ This pull request was closed due to inactivity for another week.
+            If you wish to continue working on this, please reopen or comment.

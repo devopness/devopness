@@ -1,0 +1,33 @@
+name: Issue - Stale handler (test)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v9
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          days-before-pr-stale: 0      # immediately mark PR stale
+          days-before-pr-close: 1      # close PR on next run
+          days-before-issue-stale: 0   # immediately mark issue stale
+          days-before-issue-close: 1   # close issue on next run
+          exempt-issue-labels: >-
+            good first issue,
+            priority: P1 must have,
+            priority: P2 should have,
+            priority: P3 could have
+          labels-to-remove-when-unstale: 'status: no issue activity'
+          operations-per-run: 100
+          stale-issue-label: 'status: no issue activity'
+          stale-issue-message: |
+            👋 This test issue is stale.
+          close-issue-message: |
+            ❌ This test issue is closed.
+          stale-pr-label: 'status: no PR activity'
+          stale-pr-message: |
+            👋 This test PR is stale.
+          close-pr-message: |
+            ❌ This test PR is closed.
