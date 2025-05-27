@@ -239,7 +239,7 @@ class TestDevopnessBaseService(unittest.TestCase):
         self.assertLess(
             delta_seconds,
             1,
-            f"Expected Token expiration: {expected.isoformat()}. Actual: {actual.isoformat()}.",  # type: ignore
+            f"Invalid token expiration date. Expected: {expected.isoformat()}. Actual: {actual.isoformat()}.",  # type: ignore
         )
 
 
