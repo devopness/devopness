@@ -1,5 +1,11 @@
 # @devopness/sdk-python
 
+## 1.1.1
+
+### Patch Changes
+
+- [#1746](https://github.com/devopness/devopness/pull/1746) [`a7cbf6e`](https://github.com/devopness/devopness/commit/a7cbf6ef49ec80adf9dbe792ff5b21cb5afe917b) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Corrected the async client \_save_access_token method to use aread() instead of read() for reading response content, preventing runtime errors with async streams.
+
 ## 1.1.0
 
 ### Minor Changes
