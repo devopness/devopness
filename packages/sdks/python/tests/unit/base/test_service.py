@@ -235,10 +235,11 @@ class TestDevopnessBaseService(unittest.TestCase):
         expected = now + timedelta(seconds=3600)
         actual = DevopnessBaseService._token_expires_at
 
-        # Allow up to 1 second of difference
         delta_seconds = abs((expected - actual).total_seconds())  # type: ignore
         self.assertLess(
-            delta_seconds, 1, f"Time difference too large: {delta_seconds:.4f} seconds"
+            delta_seconds,
+            1,
+            f"Token expiration mismatch. Is expected {expected.isoformat()} but was {actual.isoformat()}.",  # type: ignore
         )
 
 
@@ -426,8 +427,9 @@ class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
         expected = now + timedelta(seconds=3600)
         actual = DevopnessBaseServiceAsync._token_expires_at
 
-        # Allow up to 1 second of difference
         delta_seconds = abs((expected - actual).total_seconds())  # type: ignore
         self.assertLess(
-            delta_seconds, 1, f"Time difference too large: {delta_seconds:.4f} seconds"
+            delta_seconds,
+            1,
+            f"Token expiration mismatch. Is expected {expected.isoformat()} but was {actual.isoformat()}.",  # type: ignore
         )
