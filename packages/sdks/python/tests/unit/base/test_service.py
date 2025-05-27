@@ -1,7 +1,7 @@
 import time
 import unittest
 from datetime import datetime, timedelta, timezone
-from typing import Optional, Required, TypedDict
+from typing import AsyncGenerator, Generator, Optional, Required, TypedDict
 from unittest.mock import Mock, patch
 
 import httpx
@@ -36,18 +36,18 @@ class DummyModelPlain(TypedDict, total=False):
 
 
 class DummySyncStream(SyncByteStream):
-    def __iter__(self):
+    def __iter__(self) -> Generator[bytes]:
         yield b'{"access_token": "abc", "refresh_token": "def", "expires_in": 3600}'
 
-    def close(self):
+    def close(self) -> None:
         pass
 
 
 class DummyAsyncStream(AsyncByteStream):
-    async def __aiter__(self):
+    async def __aiter__(self) -> AsyncGenerator[bytes]:
         yield b'{"access_token": "abc", "refresh_token": "def", "expires_in": 3600}'
 
-    async def aclose(self):
+    async def aclose(self) -> None:
         pass
 
 
