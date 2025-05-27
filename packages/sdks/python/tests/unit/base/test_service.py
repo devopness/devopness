@@ -36,7 +36,7 @@ class DummyModelPlain(TypedDict, total=False):
 
 
 class DummySyncStream(SyncByteStream):
-    def __iter__(self) -> Generator[bytes]:
+    def __iter__(self) -> Generator[bytes, None, None]:
         yield b'{"access_token": "abc", "refresh_token": "def", "expires_in": 3600}'
 
     def close(self) -> None:
@@ -44,7 +44,7 @@ class DummySyncStream(SyncByteStream):
 
 
 class DummyAsyncStream(AsyncByteStream):
-    async def __aiter__(self) -> AsyncGenerator[bytes]:
+    async def __aiter__(self) -> AsyncGenerator[bytes, None]:
         yield b'{"access_token": "abc", "refresh_token": "def", "expires_in": 3600}'
 
     async def aclose(self) -> None:
@@ -239,7 +239,7 @@ class TestDevopnessBaseService(unittest.TestCase):
         self.assertLess(
             delta_seconds,
             1,
-            f"Token expiration mismatch. Is expected {expected.isoformat()} but was {actual.isoformat()}.",  # type: ignore
+            f"Expected Token expiration: {expected.isoformat()}. Actual: {actual.isoformat()}.",  # type: ignore
         )
 
 
@@ -431,5 +431,5 @@ class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
         self.assertLess(
             delta_seconds,
             1,
-            f"Token expiration mismatch. Is expected {expected.isoformat()} but was {actual.isoformat()}.",  # type: ignore
+            f"Expected Token expiration: {expected.isoformat()}. Actual: {actual.isoformat()}.",  # type: ignore
         )
