@@ -1,5 +1,11 @@
 # @devopness/sdk-python
 
+## 1.1.2
+
+### Patch Changes
+
+- [#1751](https://github.com/devopness/devopness/pull/1751) [`830e13c`](https://github.com/devopness/devopness/commit/830e13cca7f4d4f4f93f8973551639aeb62e772c) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Make **url_slug** field optional to ensure compatibility with Prod and Dev API versions.
+
 ## 1.1.1
 
 ### Patch Changes
