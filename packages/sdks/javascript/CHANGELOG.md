@@ -1,46 +1,52 @@
 # @devopness/sdk-js
 
+## 2.164.1
+
+### Patch Changes
+
+- [#1751](https://github.com/devopness/devopness/pull/1751) [`830e13c`](https://github.com/devopness/devopness/commit/830e13cca7f4d4f4f93f8973551639aeb62e772c) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Make **url_slug** field optional to ensure compatibility with Prod and Dev API versions.
+
 ## 2.164.0
 
 ### Minor Changes
 
-- [#1728](https://github.com/devopness/devopness/pull/1728) [`4b99969`](https://github.com/devopness/devopness/commit/4b999691964e897b3046d641db4a3ed86b656711) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Added the `architecture` field to the `CloudInstanceRelation` model, allowing access to the instance architecture (e.g., x86_64, arm64).
+- [#1728](https://github.com/devopness/devopness/pull/1728) [`4b99969`](https://github.com/devopness/devopness/commit/4b999691964e897b3046d641db4a3ed86b656711) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Added the `architecture` field to the `CloudInstanceRelation` model, allowing access to the instance architecture (e.g., x86_64, arm64).
 
 ## 2.163.7
 
 ### Patch Changes
 
-- [#1673](https://github.com/devopness/devopness/pull/1673) [`fcb97e2`](https://github.com/devopness/devopness/commit/fcb97e2f616d550fd4e17e96ecb137785b96b8c9) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Fix ActionTarget Model to include ID prop
+- [#1673](https://github.com/devopness/devopness/pull/1673) [`fcb97e2`](https://github.com/devopness/devopness/commit/fcb97e2f616d550fd4e17e96ecb137785b96b8c9) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Fix ActionTarget Model to include ID prop
 
 ## 2.163.6
 
 ### Patch Changes
 
-- [#1660](https://github.com/devopness/devopness/pull/1660) [`2038a77`](https://github.com/devopness/devopness/commit/2038a77aa7b3c971951483c03b2f68e12ef88c36) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Fix the Action Type Enum to include Rotate Key
+- [#1660](https://github.com/devopness/devopness/pull/1660) [`2038a77`](https://github.com/devopness/devopness/commit/2038a77aa7b3c971951483c03b2f68e12ef88c36) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Fix the Action Type Enum to include Rotate Key
 
 ## 2.163.5
 
 ### Patch Changes
 
-- [#1658](https://github.com/devopness/devopness/pull/1658) [`3753d85`](https://github.com/devopness/devopness/commit/3753d858c017a1f08a3c2310fe497243061d503a) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Fix issues in sdk's models
+- [#1658](https://github.com/devopness/devopness/pull/1658) [`3753d85`](https://github.com/devopness/devopness/commit/3753d858c017a1f08a3c2310fe497243061d503a) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Fix issues in sdk's models
 
 ## 2.163.4
 
 ### Patch Changes
 
-- [#1653](https://github.com/devopness/devopness/pull/1653) [`934c4c4`](https://github.com/devopness/devopness/commit/934c4c48567cea490afd68c29fafb84acf17b7b0) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Fix documentation of Action Resource Data
+- [#1653](https://github.com/devopness/devopness/pull/1653) [`934c4c4`](https://github.com/devopness/devopness/commit/934c4c48567cea490afd68c29fafb84acf17b7b0) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Fix documentation of Action Resource Data
 
 ## 2.163.3
 
 ### Patch Changes
 
-- [#1651](https://github.com/devopness/devopness/pull/1651) [`7fa10ba`](https://github.com/devopness/devopness/commit/7fa10ba49132e899f143435f7434026e8a16eee8) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Remove unused 'provider_id' field from ActionDeploymentContent Model
+- [#1651](https://github.com/devopness/devopness/pull/1651) [`7fa10ba`](https://github.com/devopness/devopness/commit/7fa10ba49132e899f143435f7434026e8a16eee8) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Remove unused 'provider_id' field from ActionDeploymentContent Model
 
 ## 2.163.2
 
 ### Patch Changes
 
-- [#1643](https://github.com/devopness/devopness/pull/1643) [`429c6d6`](https://github.com/devopness/devopness/commit/429c6d6686084c07f953ca58f98d60d69a6ab9d5) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Fix server status field type
+- [#1643](https://github.com/devopness/devopness/pull/1643) [`429c6d6`](https://github.com/devopness/devopness/commit/429c6d6686084c07f953ca58f98d60d69a6ab9d5) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Fix server status field type
 
 ## 2.163.1
 
