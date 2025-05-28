@@ -44,7 +44,7 @@ export interface User {
      * @type {string}
      * @memberof User
      */
-    url_slug: string;
+    url_slug?: string;
     /**
      * 
      * @type {Language}
