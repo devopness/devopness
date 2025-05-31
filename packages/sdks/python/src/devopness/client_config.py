@@ -42,9 +42,11 @@ class DevopnessClientConfig(DevopnessBaseModel):
     def validate_base_url(cls, value: str) -> str:
         if not re.match(r"^https?://", value):
             raise DevopnessSdkError(
-                f"\n[DevopnessClientConfig] Invalid base_url '{value}' - "
-                "Expected a URL starting with 'http://' or 'https://' - "
-                "Example: 'https://api.devopness.com'"
+                "\nDevopness SDK Error: Invalid 'base_url' in client configuration."
+                "\nExpected a URL starting with 'http://' or 'https://', but received: "
+                f"'{value}'."
+                "\n\nHint: Make sure the 'base_url' includes the correct protocol,"
+                " e.g., 'https://api.devopness.com'."
             )
 
         return value
