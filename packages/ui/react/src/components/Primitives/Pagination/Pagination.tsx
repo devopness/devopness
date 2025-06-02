@@ -85,6 +85,7 @@ const Pagination = ({
       <Button
         type="button"
         buttonType={'outlinedAuxiliary'}
+        aria-describedby='pagination-last-button'
         typeSize="medium"
         noMargin
         onClick={lastPaginateAction}

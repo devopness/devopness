@@ -39,6 +39,23 @@ describe('Pagination', () => {
     })
   })
 
+  describe('accessibility', () => {
+    it('has navigation role and aria-label', () => {
+      render(<Pagination {...mockHandlers} />)
+      const nav = screen.getByRole('navigation', { name: /pagination/i })
+      expect(nav).toBeInTheDocument()
+      expect(nav).toHaveAttribute('aria-label', 'pagination')
+    })
+
+    it('buttons have aria-labels', () => {
+      render(<Pagination {...mockHandlers} />)
+      expect(screen.getByRole('button', { name: /First/i })).toHaveAttribute('aria-label', 'First page')
+      expect(screen.getByRole('button', { name: /Previous/i })).toHaveAttribute('aria-label', 'Previous page')
+      expect(screen.getByRole('button', { name: /Next/i })).toHaveAttribute('aria-label', 'Next page')
+      expect(screen.getByRole('button', { name: /Last/i })).toHaveAttribute('aria-label', 'Last page')
+    })
+  })
+
   describe('disabled states', () => {
     it('disables all buttons when disableAllActions is true', () => {
       render(

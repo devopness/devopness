@@ -44,6 +44,40 @@ describe('Dropdown', () => {
    */
   const user = userEvent.setup()
 
+  describe('accessibility', () => {
+    it('button has correct ARIA attributes', async () => {
+      render(
+        <Dropdown
+          id="test-dropdown"
+          anchorType="button"
+          label="Menu"
+          options={[{ label: 'Option' }]}
+        />
+      )
+      const button = screen.getByTestId('dropdown-button')
+      expect(button).toHaveAttribute('aria-haspopup', 'menu')
+      expect(button).toHaveAttribute('aria-controls', 'test-dropdown')
+      expect(button).toHaveAttribute('id', 'test-dropdown')
+      await user.click(button)
+      expect(button).toHaveAttribute('aria-expanded', 'true')
+    })
+
+    it('popover has role and aria-labelledby', async () => {
+      render(
+        <Dropdown
+          id="test-dropdown"
+          anchorType="button"
+          label="Menu"
+          options={[{ label: 'Option' }]}
+        />
+      )
+      await user.click(screen.getByTestId('dropdown-button'))
+      const menu = screen.getByRole('menu')
+      expect(menu).toBeInTheDocument()
+      expect(menu).toHaveAttribute('aria-labelledby', 'test-dropdown')
+    })
+  })
+
   describe('badges', () => {
     it('renders icon badge correctly', async () => {
       render(

@@ -10,7 +10,7 @@ import type { Unwrap } from 'src/components/types'
 
 type LinkProps = Omit<
   HTMLProps<HTMLAnchorElement>,
-  'href' | 'target' | 'color' | 'ref' | 'as'
+  'href' | 'target' | 'color' | 'ref' | 'as' 
 > & {
   /**
    * Defines element foreground color
@@ -51,6 +51,12 @@ type LinkProps = Omit<
    * Hides External URL Icon
    */
   hideExternalUrlIcon?: boolean
+
+  /** 
+  * A11y label for the link 
+  */
+  ariaLabel?: string
+  
 }
 
 /**
@@ -66,10 +72,13 @@ const Link = ({
   hideUnderlineOnHover = false,
   hideExternalUrlIcon = false,
   iconProps,
+  ariaLabel,
   ...props
 }: React.PropsWithChildren<LinkProps>) => (
   <StyledLink
     rel={rel}
+    tabIndex={0}
+    aria-label={ariaLabel}
     href={href}
     target={target}
     color={getColor(color)}
