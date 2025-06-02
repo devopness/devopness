@@ -2,9 +2,13 @@
 Devopness API Python SDK - Painless essential DevOps to everyone
 """
 
+import re
 from typing import ClassVar, TypedDict
 
+from pydantic import field_validator
+
 from .base import DevopnessBaseModel
+from .core.sdk_error import DevopnessSdkError
 
 __all__ = ["DevopnessClientConfig", "DevopnessClientConfigDict"]
 
@@ -32,6 +36,20 @@ class DevopnessClientConfig(DevopnessBaseModel):
         "Content-Type": "application/json",
     }
     timeout: int = 30
+
+    @field_validator("base_url", mode="before")
+    @classmethod
+    def validate_base_url(cls, value: str) -> str:
+        if not re.match(r"^https?://", value):
+            raise DevopnessSdkError(
+                "\nDevopness SDK Error: Invalid 'base_url' in client configuration."
+                "\nExpected a URL starting with 'http://' or 'https://', but received: "
+                f"'{value}'."
+                "\n\nHint: Make sure the 'base_url' includes the correct protocol,"
+                " e.g., 'https://api.devopness.com'."
+            )
+
+        return value
 
 
 class DevopnessClientConfigDict(TypedDict, total=False):

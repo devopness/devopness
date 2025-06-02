@@ -1,8 +1,12 @@
+import time
 import unittest
-from typing import Optional, Required, TypedDict
+from datetime import datetime, timedelta, timezone
+from typing import AsyncGenerator, Generator, Optional, Required, TypedDict
 from unittest.mock import Mock, patch
 
 import httpx
+from httpx._client import BoundAsyncStream, BoundSyncStream
+from httpx._types import AsyncByteStream, SyncByteStream
 from pydantic import Field, StrictInt, StrictStr
 
 from devopness import DevopnessClientConfig
@@ -29,6 +33,22 @@ class DummyModelPlain(TypedDict, total=False):
     id: Optional[int]
     name: Required[str]
     description: Optional[str]
+
+
+class DummySyncStream(SyncByteStream):
+    def __iter__(self) -> Generator[bytes, None, None]:
+        yield b'{"access_token": "abc", "refresh_token": "def", "expires_in": 3600}'
+
+    def close(self) -> None:
+        pass
+
+
+class DummyAsyncStream(AsyncByteStream):
+    async def __aiter__(self) -> AsyncGenerator[bytes, None]:
+        yield b'{"access_token": "abc", "refresh_token": "def", "expires_in": 3600}'
+
+    async def aclose(self) -> None:
+        pass
 
 
 class TestDevopnessBaseService(unittest.TestCase):
@@ -190,6 +210,38 @@ class TestDevopnessBaseService(unittest.TestCase):
         self.assertEqual(request.headers["Content-Type"], "application/json")
         self.assertEqual(request.content, b"")
 
+    def test_update_access_and_refresh_tokens(
+        self,
+    ) -> None:
+        response = httpx.Response(
+            status_code=200,
+            headers={"Content-Type": "application/json"},
+            stream=BoundSyncStream(
+                DummySyncStream(),
+                response=None,  # type: ignore
+                start=time.perf_counter(),
+            ),
+        )
+
+        response.stream._response = response  # type: ignore
+
+        now = datetime.now(timezone.utc)
+        self.service._save_access_token(response)
+
+        self.assertEqual(DevopnessBaseService._access_token, "abc")
+        self.assertEqual(DevopnessBaseService._refresh_token, "def")
+        self.assertIsNotNone(DevopnessBaseService._token_expires_at)
+
+        expected = now + timedelta(seconds=3600)
+        actual = DevopnessBaseService._token_expires_at
+
+        delta_seconds = abs((expected - actual).total_seconds())  # type: ignore
+        self.assertLess(
+            delta_seconds,
+            1,
+            f"Invalid token expiration date. Expected: {expected.isoformat()}. Actual: {actual.isoformat()}.",  # type: ignore
+        )
+
 
 class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
     DevopnessBaseServiceAsync._config = DevopnessClientConfig(
@@ -349,3 +401,35 @@ class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
 
         self.assertEqual(request.headers["Content-Type"], "application/json")
         self.assertEqual(request.content, b"")
+
+    async def test_update_access_and_refresh_tokens(
+        self,
+    ) -> None:
+        response = httpx.Response(
+            status_code=200,
+            headers={"Content-Type": "application/json"},
+            stream=BoundAsyncStream(
+                DummyAsyncStream(),
+                response=None,  # type: ignore
+                start=time.perf_counter(),
+            ),
+        )
+
+        response.stream._response = response  # type: ignore
+
+        now = datetime.now(timezone.utc)
+        await self.service._save_access_token(response)
+
+        self.assertEqual(DevopnessBaseServiceAsync._access_token, "abc")
+        self.assertEqual(DevopnessBaseServiceAsync._refresh_token, "def")
+        self.assertIsNotNone(DevopnessBaseServiceAsync._token_expires_at)
+
+        expected = now + timedelta(seconds=3600)
+        actual = DevopnessBaseServiceAsync._token_expires_at
+
+        delta_seconds = abs((expected - actual).total_seconds())  # type: ignore
+        self.assertLess(
+            delta_seconds,
+            1,
+            f"Invalid token expiration date. Expected: {expected.isoformat()}. Actual: {actual.isoformat()}.",  # type: ignore
+        )
