@@ -1,5 +1,11 @@
 # @devopness/sdk-python
 
+## 1.1.3
+
+### Patch Changes
+
+- [#1766](https://github.com/devopness/devopness/pull/1766) [`5145e20`](https://github.com/devopness/devopness/commit/5145e20fff6150087b081eb65118187c2cb19852) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Add validation for base_url in DevopnessClientConfig to ensure it starts with http:// or https://, raising a clear error if invalid.
+
 ## 1.1.2
 
 ### Patch Changes
