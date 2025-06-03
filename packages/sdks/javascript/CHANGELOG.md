@@ -1,5 +1,12 @@
 # @devopness/sdk-js
 
+## 2.164.2
+
+### Patch Changes
+
+- [#1786](https://github.com/devopness/devopness/pull/1786) [`0c52385`](https://github.com/devopness/devopness/commit/0c52385346df92b1c6cffc9452f5944057bb96e4) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Updated SDK methods that accept `hook_type` to use the `HookTypeParam` enum instead of plain strings.
+  This change clearly defines the allowed values for this field, reducing the likelihood of user errors.
+
 ## 2.164.1
 
 ### Patch Changes
