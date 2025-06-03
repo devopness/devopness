@@ -21,7 +21,7 @@ class SslCertificateValidationLevel(str, Enum):
     EV = "EV"
 
     def __str__(self) -> str:
-        """Return the string representation of the HookTypeParam"""
+        """Return the string representation of the SslCertificateValidationLevel"""
         return self.value
 
     @classmethod

@@ -21,7 +21,7 @@ class CloudProviderServiceResourceTypeScope(str, Enum):
     ZONE = "zone"
 
     def __str__(self) -> str:
-        """Return the string representation of the HookTypeParam"""
+        """Return the string representation of the CloudProviderServiceResourceTypeScope"""
         return self.value
 
     @classmethod

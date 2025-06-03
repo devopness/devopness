@@ -21,7 +21,7 @@ class EnvironmentType(str, Enum):
     STAGING = "staging"
 
     def __str__(self) -> str:
-        """Return the string representation of the HookTypeParam"""
+        """Return the string representation of the EnvironmentType"""
         return self.value
 
     @classmethod

@@ -20,7 +20,7 @@ class SslCertificateIssuer(str, Enum):
     LETS_MINUS_ENCRYPT = "lets-encrypt"
 
     def __str__(self) -> str:
-        """Return the string representation of the HookTypeParam"""
+        """Return the string representation of the SslCertificateIssuer"""
         return self.value
 
     @classmethod

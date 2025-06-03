@@ -22,7 +22,7 @@ class CloudProviderCode(str, Enum):
     GCP = "gcp"
 
     def __str__(self) -> str:
-        """Return the string representation of the HookTypeParam"""
+        """Return the string representation of the CloudProviderCode"""
         return self.value
 
     @classmethod

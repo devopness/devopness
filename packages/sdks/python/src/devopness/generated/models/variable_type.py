@@ -20,7 +20,7 @@ class VariableType(str, Enum):
     VARIABLE = "variable"
 
     def __str__(self) -> str:
-        """Return the string representation of the HookTypeParam"""
+        """Return the string representation of the VariableType"""
         return self.value
 
     @classmethod

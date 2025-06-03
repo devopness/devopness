@@ -20,7 +20,7 @@ class ActionTriggerType(str, Enum):
     MANUAL = "manual"
 
     def __str__(self) -> str:
-        """Return the string representation of the HookTypeParam"""
+        """Return the string representation of the ActionTriggerType"""
         return self.value
 
     @classmethod

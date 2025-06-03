@@ -22,7 +22,7 @@ class CloudProviderPropertyType(str, Enum):
     BOOLEAN = "boolean"
 
     def __str__(self) -> str:
-        """Return the string representation of the HookTypeParam"""
+        """Return the string representation of the CloudProviderPropertyType"""
         return self.value
 
     @classmethod

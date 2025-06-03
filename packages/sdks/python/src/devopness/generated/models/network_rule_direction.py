@@ -20,7 +20,7 @@ class NetworkRuleDirection(str, Enum):
     OUTBOUND = "outbound"
 
     def __str__(self) -> str:
-        """Return the string representation of the HookTypeParam"""
+        """Return the string representation of the NetworkRuleDirection"""
         return self.value
 
     @classmethod

@@ -26,7 +26,7 @@ class ServerStatus(str, Enum):
     STOPPED = "stopped"
 
     def __str__(self) -> str:
-        """Return the string representation of the HookTypeParam"""
+        """Return the string representation of the ServerStatus"""
         return self.value
 
     @classmethod

@@ -20,7 +20,7 @@ class HookType(str, Enum):
     OUT = "out"
 
     def __str__(self) -> str:
-        """Return the string representation of the HookTypeParam"""
+        """Return the string representation of the HookType"""
         return self.value
 
     @classmethod

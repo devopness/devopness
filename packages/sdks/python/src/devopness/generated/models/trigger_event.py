@@ -24,7 +24,7 @@ class TriggerEvent(str, Enum):
     REMOVE_MINUS_OLD_MINUS_RELEASES = "remove-old-releases"
 
     def __str__(self) -> str:
-        """Return the string representation of the HookTypeParam"""
+        """Return the string representation of the TriggerEvent"""
         return self.value
 
     @classmethod

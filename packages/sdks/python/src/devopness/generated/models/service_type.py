@@ -27,7 +27,7 @@ class ServiceType(str, Enum):
     UFW = "ufw"
 
     def __str__(self) -> str:
-        """Return the string representation of the HookTypeParam"""
+        """Return the string representation of the ServiceType"""
         return self.value
 
     @classmethod

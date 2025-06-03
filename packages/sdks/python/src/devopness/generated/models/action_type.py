@@ -30,7 +30,7 @@ class ActionType(str, Enum):
     STOP = "stop"
 
     def __str__(self) -> str:
-        """Return the string representation of the HookTypeParam"""
+        """Return the string representation of the ActionType"""
         return self.value
 
     @classmethod

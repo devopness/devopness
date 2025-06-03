@@ -20,7 +20,7 @@ class ProviderType(str, Enum):
     SOURCE_PROVIDER = "source_provider"
 
     def __str__(self) -> str:
-        """Return the string representation of the HookTypeParam"""
+        """Return the string representation of the ProviderType"""
         return self.value
 
     @classmethod

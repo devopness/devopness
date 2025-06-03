@@ -32,7 +32,7 @@ class VariableTarget(str, Enum):
     SYSCTL_MINUS_CONF = "sysctl-conf"
 
     def __str__(self) -> str:
-        """Return the string representation of the HookTypeParam"""
+        """Return the string representation of the VariableTarget"""
         return self.value
 
     @classmethod

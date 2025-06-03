@@ -22,7 +22,7 @@ class NetworkRuleProtocol(str, Enum):
     UDP = "udp"
 
     def __str__(self) -> str:
-        """Return the string representation of the HookTypeParam"""
+        """Return the string representation of the NetworkRuleProtocol"""
         return self.value
 
     @classmethod

@@ -20,7 +20,7 @@ class Language(str, Enum):
     PT = "pt"
 
     def __str__(self) -> str:
-        """Return the string representation of the HookTypeParam"""
+        """Return the string representation of the Language"""
         return self.value
 
     @classmethod

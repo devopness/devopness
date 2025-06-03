@@ -27,7 +27,7 @@ class ActionStatusReasonCode(str, Enum):
     WAITING_CONCURRENCY_TARGET = "WAITING_CONCURRENCY_TARGET"
 
     def __str__(self) -> str:
-        """Return the string representation of the HookTypeParam"""
+        """Return the string representation of the ActionStatusReasonCode"""
         return self.value
 
     @classmethod

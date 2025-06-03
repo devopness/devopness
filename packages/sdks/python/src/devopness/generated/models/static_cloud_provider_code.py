@@ -22,7 +22,7 @@ class StaticCloudProviderCode(str, Enum):
     SELF_MINUS_HOSTED = "self-hosted"
 
     def __str__(self) -> str:
-        """Return the string representation of the HookTypeParam"""
+        """Return the string representation of the StaticCloudProviderCode"""
         return self.value
 
     @classmethod

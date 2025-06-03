@@ -21,7 +21,7 @@ class SourceType(str, Enum):
     TAG = "tag"
 
     def __str__(self) -> str:
-        """Return the string representation of the HookTypeParam"""
+        """Return the string representation of the SourceType"""
         return self.value
 
     @classmethod

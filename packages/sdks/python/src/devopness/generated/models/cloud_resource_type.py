@@ -21,7 +21,7 @@ class CloudResourceType(str, Enum):
     SUBNET = "subnet"
 
     def __str__(self) -> str:
-        """Return the string representation of the HookTypeParam"""
+        """Return the string representation of the CloudResourceType"""
         return self.value
 
     @classmethod

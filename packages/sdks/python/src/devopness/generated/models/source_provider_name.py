@@ -21,7 +21,7 @@ class SourceProviderName(str, Enum):
     GITLAB = "gitlab"
 
     def __str__(self) -> str:
-        """Return the string representation of the HookTypeParam"""
+        """Return the string representation of the SourceProviderName"""
         return self.value
 
     @classmethod

@@ -23,7 +23,7 @@ class SocialAccountDisplayableName(str, Enum):
     GOOGLE = "Google"
 
     def __str__(self) -> str:
-        """Return the string representation of the HookTypeParam"""
+        """Return the string representation of the SocialAccountDisplayableName"""
         return self.value
 
     @classmethod

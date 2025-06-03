@@ -31,7 +31,7 @@ class ResourceType(str, Enum):
     VIRTUAL_MINUS_HOST = "virtual-host"
 
     def __str__(self) -> str:
-        """Return the string representation of the HookTypeParam"""
+        """Return the string representation of the ResourceType"""
         return self.value
 
     @classmethod

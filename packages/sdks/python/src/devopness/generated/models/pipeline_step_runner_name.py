@@ -23,7 +23,7 @@ class PipelineStepRunnerName(str, Enum):
     YARN = "yarn"
 
     def __str__(self) -> str:
-        """Return the string representation of the HookTypeParam"""
+        """Return the string representation of the PipelineStepRunnerName"""
         return self.value
 
     @classmethod

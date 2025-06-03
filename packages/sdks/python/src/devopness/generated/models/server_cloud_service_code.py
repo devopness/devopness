@@ -23,7 +23,7 @@ class ServerCloudServiceCode(str, Enum):
     SELF_MINUS_HOSTED_MINUS_CUSTOM = "self-hosted-custom"
 
     def __str__(self) -> str:
-        """Return the string representation of the HookTypeParam"""
+        """Return the string representation of the ServerCloudServiceCode"""
         return self.value
 
     @classmethod

@@ -19,7 +19,7 @@ class SubnetType(str, Enum):
     PUBLIC = "public"
 
     def __str__(self) -> str:
-        """Return the string representation of the HookTypeParam"""
+        """Return the string representation of the SubnetType"""
         return self.value
 
     @classmethod

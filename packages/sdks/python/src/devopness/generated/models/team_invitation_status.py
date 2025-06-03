@@ -21,7 +21,7 @@ class TeamInvitationStatus(str, Enum):
     PENDING = "pending"
 
     def __str__(self) -> str:
-        """Return the string representation of the HookTypeParam"""
+        """Return the string representation of the TeamInvitationStatus"""
         return self.value
 
     @classmethod

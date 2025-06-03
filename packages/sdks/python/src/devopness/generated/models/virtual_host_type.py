@@ -20,7 +20,7 @@ class VirtualHostType(str, Enum):
     NAME_MINUS_BASED = "name-based"
 
     def __str__(self) -> str:
-        """Return the string representation of the HookTypeParam"""
+        """Return the string representation of the VirtualHostType"""
         return self.value
 
     @classmethod

@@ -21,7 +21,7 @@ class SslCertificateType(str, Enum):
     WILDCARD = "wildcard"
 
     def __str__(self) -> str:
-        """Return the string representation of the HookTypeParam"""
+        """Return the string representation of the SslCertificateType"""
         return self.value
 
     @classmethod

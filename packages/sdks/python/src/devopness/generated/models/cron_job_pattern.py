@@ -25,7 +25,7 @@ class CronJobPattern(str, Enum):
     YEARLY = "Yearly"
 
     def __str__(self) -> str:
-        """Return the string representation of the HookTypeParam"""
+        """Return the string representation of the CronJobPattern"""
         return self.value
 
     @classmethod
