@@ -6,10 +6,10 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional
+from typing import List, Optional, Union
 
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
-from ..models import RequestRelation
+from ..models import HookTypeParam, HookTypeParamPlain, RequestRelation
 from ..utils import parse_query_string
 
 
@@ -21,7 +21,10 @@ class HooksRequestsApiService(DevopnessBaseService):
     def list_hook_requests_by_hook_type(
         self,
         hook_id: str,
-        hook_type: str,
+        hook_type: Union[
+            HookTypeParam,
+            HookTypeParamPlain,
+        ],
         page: Optional[int] = None,
         per_page: Optional[int] = None,
     ) -> DevopnessResponse[List[RequestRelation]]:
@@ -60,7 +63,10 @@ class HooksRequestsApiServiceAsync(DevopnessBaseServiceAsync):
     async def list_hook_requests_by_hook_type(
         self,
         hook_id: str,
-        hook_type: str,
+        hook_type: Union[
+            HookTypeParam,
+            HookTypeParamPlain,
+        ],
         page: Optional[int] = None,
         per_page: Optional[int] = None,
     ) -> DevopnessResponse[List[RequestRelation]]:
