@@ -62,7 +62,7 @@ export class {{classname}}Service extends ApiBaseService {
 
         const requestUrl = '{{{path}}}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.{{#lambda.lowercase}}{{httpMethod}} {{/lambda.lowercase}}<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}void{{/returnType}}{{#allParams}}{{^isHeaderParam}}{{#-last}}{{^isPrimitiveType}}, {{dataType}}{{/isPrimitiveType}}{{/-last}}{{/isHeaderParam}}{{/allParams}}>(requestUrl{{#pathParams}}.replace(`{${"{{baseName}}"}}`, encodeURIComponent(String({{paramName}}))){{/pathParams}}{{#allParams}}{{^isHeaderParam}}{{#-last}}{{^isPrimitiveType}}, {{paramName}}{{/isPrimitiveType}}{{/-last}}{{/isHeaderParam}}{{/allParams}});
+        const response = await this.{{#lambda.lowercase}}{{httpMethod}} {{/lambda.lowercase}}<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}void{{/returnType}}{{#allParams}}{{^isHeaderParam}}{{^isPathParam}}{{#-last}}{{^isPrimitiveType}}, {{dataType}}{{/isPrimitiveType}}{{/-last}}{{/isPathParam}}{{/isHeaderParam}}{{/allParams}}>(requestUrl{{#pathParams}}.replace(`{${"{{baseName}}"}}`, encodeURIComponent(String({{paramName}}))){{/pathParams}}{{#allParams}}{{^isHeaderParam}}{{^isPathParam}}{{#-last}}{{^isPrimitiveType}}, {{paramName}}{{/isPrimitiveType}}{{/-last}}{{/isPathParam}}{{/isHeaderParam}}{{/allParams}});
         return new ApiResponse(response);
     }
     {{^-last}}
