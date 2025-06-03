@@ -4180,11 +4180,11 @@
           {
             "in": "path",
             "name": "hook_type",
-            "description": "The hook type.",
+            "description": "The type of the hook.",
             "example": "incoming",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/HookTypeParam"
             }
           }
         ],
@@ -4233,11 +4233,11 @@
           {
             "in": "path",
             "name": "hook_type",
-            "description": "The hook type.",
+            "description": "The type of the hook.",
             "example": "incoming",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/HookTypeParam"
             }
           }
         ],
@@ -4293,11 +4293,11 @@
           {
             "in": "path",
             "name": "hook_type",
-            "description": "The hook type.",
+            "description": "The type of the hook.",
             "example": "incoming",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/HookTypeParam"
             }
           }
         ],
@@ -4375,11 +4375,11 @@
           {
             "in": "path",
             "name": "hook_type",
-            "description": "The hook type.",
+            "description": "The type of the hook.",
             "example": "incoming",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/HookTypeParam"
             }
           }
         ],
@@ -5750,11 +5750,11 @@
           {
             "in": "path",
             "name": "hook_type",
-            "description": "The hook type.",
+            "description": "The type of the hook.",
             "example": "incoming",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/HookTypeParam"
             }
           },
           {
@@ -16627,6 +16627,14 @@
         "enum": [
           "in",
           "out"
+        ]
+      },
+      "HookTypeParam": {
+        "type": "string",
+        "description": "The type of hook",
+        "enum": [
+          "incoming",
+          "outgoing"
         ]
       },
       "HookUpdate": {
