@@ -269,6 +269,8 @@ HookTriggerWhen:
   $ref: ./auto-generated/models/hook-trigger-when.yaml
 HookType:
   $ref: ./auto-generated/models/hook-type.yaml
+HookTypeParam:
+  $ref: ./auto-generated/models/hook-type-param.yaml
 HookUpdate:
   $ref: ./auto-generated/models/hook-update.yaml
 HookVariable:

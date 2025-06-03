@@ -27,11 +27,11 @@ parameters:
   -
     in: path
     name: hook_type
-    description: 'The hook type.'
+    description: 'The type of the hook.'
     example: incoming
     required: true
     schema:
-      type: string
+      $ref: '#/components/schemas/HookTypeParam'
 responses:
   200:
     description: Ok
