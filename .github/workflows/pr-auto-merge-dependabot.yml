@@ -4,7 +4,7 @@ on:
   pull_request:
     types: [opened, edited, synchronize]
     branches: [main]
-  workflow_dispatch:
+  workflow_call:
 
 permissions:
   pull-requests: write
