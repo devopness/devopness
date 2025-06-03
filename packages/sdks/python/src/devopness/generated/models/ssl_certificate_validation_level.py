@@ -20,6 +20,10 @@ class SslCertificateValidationLevel(str, Enum):
     OV = "OV"
     EV = "EV"
 
+    def __str__(self) -> str:
+        """Return the string representation of the HookTypeParam"""
+        return self.value
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of SslCertificateValidationLevel from a JSON string"""

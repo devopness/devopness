@@ -19,6 +19,10 @@ class HookTypeParam(str, Enum):
     INCOMING = "incoming"
     OUTGOING = "outgoing"
 
+    def __str__(self) -> str:
+        """Return the string representation of the HookTypeParam"""
+        return self.value
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of HookTypeParam from a JSON string"""
