@@ -239,6 +239,7 @@ from .hook_trigger_when_conditions_inner import (
     HookTriggerWhenConditionsInnerPlain,
 )
 from .hook_type import HookType, HookTypePlain
+from .hook_type_param import HookTypeParam, HookTypeParamPlain
 from .hook_update import HookUpdate, HookUpdatePlain
 from .hook_variable import HookVariable, HookVariablePlain
 from .hook_variable_default_value import (
@@ -836,6 +837,8 @@ __all__ = [
     "HookTriggerWhenConditionsInnerPlain",
     "HookTriggerWhenPlain",
     "HookType",
+    "HookTypeParam",
+    "HookTypeParamPlain",
     "HookTypePlain",
     "HookUpdate",
     "HookUpdatePlain",

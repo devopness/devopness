@@ -9,7 +9,14 @@ Note:
 from typing import List, Optional, Union
 
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
-from ..models import Hook, HookPipelineCreate, HookPipelineCreatePlain, HookRelation
+from ..models import (
+    Hook,
+    HookPipelineCreate,
+    HookPipelineCreatePlain,
+    HookRelation,
+    HookTypeParam,
+    HookTypeParamPlain,
+)
 from ..utils import parse_query_string
 
 
@@ -20,7 +27,10 @@ class PipelinesHooksApiService(DevopnessBaseService):
 
     def add_pipeline_hook(
         self,
-        hook_type: str,
+        hook_type: Union[
+            HookTypeParam,
+            HookTypeParamPlain,
+        ],
         pipeline_id: int,
         hook_pipeline_create: Union[
             HookPipelineCreate,
@@ -85,7 +95,10 @@ class PipelinesHooksApiServiceAsync(DevopnessBaseServiceAsync):
 
     async def add_pipeline_hook(
         self,
-        hook_type: str,
+        hook_type: Union[
+            HookTypeParam,
+            HookTypeParamPlain,
+        ],
         pipeline_id: int,
         hook_pipeline_create: Union[
             HookPipelineCreate,

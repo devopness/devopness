@@ -9,7 +9,14 @@ Note:
 from typing import Union
 
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
-from ..models import Hook, HookTriggerResponse, HookUpdate, HookUpdatePlain
+from ..models import (
+    Hook,
+    HookTriggerResponse,
+    HookTypeParam,
+    HookTypeParamPlain,
+    HookUpdate,
+    HookUpdatePlain,
+)
 
 
 class HooksApiService(DevopnessBaseService):
@@ -20,7 +27,10 @@ class HooksApiService(DevopnessBaseService):
     def delete_hook(
         self,
         hook_id: str,
-        hook_type: str,
+        hook_type: Union[
+            HookTypeParam,
+            HookTypeParamPlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Delete a given hook
@@ -36,14 +46,17 @@ class HooksApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
 
-        response = self._delete(endpoint)
+        response = self._delete(endpoint, hook_type)
 
         return DevopnessResponse(response, None)
 
     def get_hook(
         self,
         hook_id: str,
-        hook_type: str,
+        hook_type: Union[
+            HookTypeParam,
+            HookTypeParamPlain,
+        ],
     ) -> DevopnessResponse[Hook]:
         """
         Get a hook by ID
@@ -59,7 +72,7 @@ class HooksApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
 
-        response = self._get(endpoint)
+        response = self._get(endpoint, hook_type)
 
         return DevopnessResponse(response, Hook)
 
@@ -88,7 +101,10 @@ class HooksApiService(DevopnessBaseService):
     def update_hook(
         self,
         hook_id: str,
-        hook_type: str,
+        hook_type: Union[
+            HookTypeParam,
+            HookTypeParamPlain,
+        ],
         hook_update: Union[
             HookUpdate,
             HookUpdatePlain,
@@ -121,7 +137,10 @@ class HooksApiServiceAsync(DevopnessBaseServiceAsync):
     async def delete_hook(
         self,
         hook_id: str,
-        hook_type: str,
+        hook_type: Union[
+            HookTypeParam,
+            HookTypeParamPlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Delete a given hook
@@ -137,14 +156,17 @@ class HooksApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint: str = "".join(endpoint_parts)
 
-        response = await self._delete(endpoint)
+        response = await self._delete(endpoint, hook_type)
 
         return DevopnessResponse(response, None)
 
     async def get_hook(
         self,
         hook_id: str,
-        hook_type: str,
+        hook_type: Union[
+            HookTypeParam,
+            HookTypeParamPlain,
+        ],
     ) -> DevopnessResponse[Hook]:
         """
         Get a hook by ID
@@ -160,7 +182,7 @@ class HooksApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint: str = "".join(endpoint_parts)
 
-        response = await self._get(endpoint)
+        response = await self._get(endpoint, hook_type)
 
         return DevopnessResponse(response, Hook)
 
@@ -189,7 +211,10 @@ class HooksApiServiceAsync(DevopnessBaseServiceAsync):
     async def update_hook(
         self,
         hook_id: str,
-        hook_type: str,
+        hook_type: Union[
+            HookTypeParam,
+            HookTypeParamPlain,
+        ],
         hook_update: Union[
             HookUpdate,
             HookUpdatePlain,
