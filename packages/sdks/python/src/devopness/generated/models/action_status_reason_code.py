@@ -26,6 +26,10 @@ class ActionStatusReasonCode(str, Enum):
     WAITING_CONCURRENCY_PIPELINE = "WAITING_CONCURRENCY_PIPELINE"
     WAITING_CONCURRENCY_TARGET = "WAITING_CONCURRENCY_TARGET"
 
+    def __str__(self) -> str:
+        """Return the string representation of the ActionStatusReasonCode"""
+        return self.value
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of ActionStatusReasonCode from a JSON string"""

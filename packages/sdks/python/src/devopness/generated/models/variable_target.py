@@ -31,6 +31,10 @@ class VariableTarget(str, Enum):
     SUPERVISORD_MINUS_CONF = "supervisord-conf"
     SYSCTL_MINUS_CONF = "sysctl-conf"
 
+    def __str__(self) -> str:
+        """Return the string representation of the VariableTarget"""
+        return self.value
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of VariableTarget from a JSON string"""

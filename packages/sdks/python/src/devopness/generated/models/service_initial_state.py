@@ -19,6 +19,10 @@ class ServiceInitialState(str, Enum):
     STARTED = "started"
     STOPPED = "stopped"
 
+    def __str__(self) -> str:
+        """Return the string representation of the ServiceInitialState"""
+        return self.value
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of ServiceInitialState from a JSON string"""

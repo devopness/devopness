@@ -20,6 +20,10 @@ class SourceType(str, Enum):
     COMMIT = "commit"
     TAG = "tag"
 
+    def __str__(self) -> str:
+        """Return the string representation of the SourceType"""
+        return self.value
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of SourceType from a JSON string"""

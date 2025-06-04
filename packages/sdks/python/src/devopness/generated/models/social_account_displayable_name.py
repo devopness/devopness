@@ -22,6 +22,10 @@ class SocialAccountDisplayableName(str, Enum):
     GITLAB = "GitLab"
     GOOGLE = "Google"
 
+    def __str__(self) -> str:
+        """Return the string representation of the SocialAccountDisplayableName"""
+        return self.value
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of SocialAccountDisplayableName from a JSON string"""
