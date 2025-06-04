@@ -27,12 +27,10 @@ links:
    - Actions history
    - Settings and configuration options
 
-:::note
-
 You can perform various actions from the environment view page:
 - Add new resources (servers, applications, etc.)
 - Manage team memberships
 - Archive/unarchive the environment
 - View and manage environment settings
 
-::: 
+
