@@ -24,6 +24,10 @@ class CronJobPattern(str, Enum):
     MONTHLY = "Monthly"
     YEARLY = "Yearly"
 
+    def __str__(self) -> str:
+        """Return the string representation of the CronJobPattern"""
+        return self.value
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of CronJobPattern from a JSON string"""

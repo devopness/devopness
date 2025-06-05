@@ -19,6 +19,10 @@ class VirtualHostType(str, Enum):
     IP_MINUS_BASED = "ip-based"
     NAME_MINUS_BASED = "name-based"
 
+    def __str__(self) -> str:
+        """Return the string representation of the VirtualHostType"""
+        return self.value
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of VirtualHostType from a JSON string"""

@@ -11,26 +11,26 @@ from enum import Enum
 from typing import Literal, Self
 
 
-class HookType(str, Enum):
+class HookTypeParam(str, Enum):
     """
-    The type of hook (incoming or outgoing)
+    The type of hook
     """
 
-    IN = "in"
-    OUT = "out"
+    INCOMING = "incoming"
+    OUTGOING = "outgoing"
 
     def __str__(self) -> str:
-        """Return the string representation of the HookType"""
+        """Return the string representation of the HookTypeParam"""
         return self.value
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of HookType from a JSON string"""
+        """Create an instance of HookTypeParam from a JSON string"""
         return cls(json.loads(json_str))
 
 
-# The plain version of HookType
-HookTypePlain = Literal[
-    "in",
-    "out",
+# The plain version of HookTypeParam
+HookTypeParamPlain = Literal[
+    "incoming",
+    "outgoing",
 ]

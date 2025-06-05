@@ -21,6 +21,10 @@ class CloudProviderCode(str, Enum):
     DIGITALOCEAN = "digitalocean"
     GCP = "gcp"
 
+    def __str__(self) -> str:
+        """Return the string representation of the CloudProviderCode"""
+        return self.value
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of CloudProviderCode from a JSON string"""

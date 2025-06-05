@@ -301,7 +301,7 @@ class DevopnessBaseServiceAsync:
         """
         Saves the access token and its expiration time.
         """
-        response.read()
+        await response.aread()
         data = response.json()
 
         now = datetime.now(timezone.utc)

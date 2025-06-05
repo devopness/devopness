@@ -73,8 +73,8 @@ jobs:
         with:
           commit_message: 'docs: Update auto generated models'
           file_pattern: 'packages/sdks/python/*'
-          commit_user_name: devopness-automations
-          commit_user_email: automations@devopness.com
+          commit_user_name: ${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}
+          commit_user_email: ${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}
 
   verify-build:
     name: Verify build of SDK-Python

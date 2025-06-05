@@ -107,6 +107,7 @@ export * from './hook-request-relation';
 export * from './hook-trigger-response';
 export * from './hook-trigger-when';
 export * from './hook-type';
+export * from './hook-type-param';
 export * from './hook-update';
 export * from './hook-variable';
 export * from './hook-variable-type';

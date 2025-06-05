@@ -30,6 +30,10 @@ class ResourceType(str, Enum):
     SUBNET = "subnet"
     VIRTUAL_MINUS_HOST = "virtual-host"
 
+    def __str__(self) -> str:
+        """Return the string representation of the ResourceType"""
+        return self.value
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of ResourceType from a JSON string"""

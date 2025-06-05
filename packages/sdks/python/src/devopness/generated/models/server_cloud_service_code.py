@@ -22,6 +22,10 @@ class ServerCloudServiceCode(str, Enum):
     GCP_MINUS_GCE = "gcp-gce"
     SELF_MINUS_HOSTED_MINUS_CUSTOM = "self-hosted-custom"
 
+    def __str__(self) -> str:
+        """Return the string representation of the ServerCloudServiceCode"""
+        return self.value
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of ServerCloudServiceCode from a JSON string"""

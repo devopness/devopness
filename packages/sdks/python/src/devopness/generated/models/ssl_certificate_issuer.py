@@ -19,6 +19,10 @@ class SslCertificateIssuer(str, Enum):
     CUSTOM = "custom"
     LETS_MINUS_ENCRYPT = "lets-encrypt"
 
+    def __str__(self) -> str:
+        """Return the string representation of the SslCertificateIssuer"""
+        return self.value
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of SslCertificateIssuer from a JSON string"""

@@ -20,6 +20,10 @@ class SourceProviderName(str, Enum):
     GITHUB = "github"
     GITLAB = "gitlab"
 
+    def __str__(self) -> str:
+        """Return the string representation of the SourceProviderName"""
+        return self.value
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of SourceProviderName from a JSON string"""

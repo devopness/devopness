@@ -21,6 +21,10 @@ class StaticCloudProviderCode(str, Enum):
     GCP = "gcp"
     SELF_MINUS_HOSTED = "self-hosted"
 
+    def __str__(self) -> str:
+        """Return the string representation of the StaticCloudProviderCode"""
+        return self.value
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of StaticCloudProviderCode from a JSON string"""

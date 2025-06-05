@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { HookTypeParam } from '../../generated/models';
 import { RequestRelation } from '../../generated/models';
 
 /**
@@ -24,11 +25,11 @@ export class HooksRequestsApiService extends ApiBaseService {
      * 
      * @summary Returns a list of all hook requests belonging to a hook
      * @param {string} hookId The ID of the hook.
-     * @param {string} hookType The hook type.
+     * @param {HookTypeParam} hookType The type of the hook.
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */
-    public async listHookRequestsByHookType(hookId: string, hookType: string, page?: number, perPage?: number): Promise<ApiResponse<Array<RequestRelation>>> {
+    public async listHookRequestsByHookType(hookId: string, hookType: HookTypeParam, page?: number, perPage?: number): Promise<ApiResponse<Array<RequestRelation>>> {
         if (hookId === null || hookId === undefined) {
             throw new ArgumentNullException('hookId', 'listHookRequestsByHookType');
         }

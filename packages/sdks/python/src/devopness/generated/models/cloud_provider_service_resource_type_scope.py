@@ -20,6 +20,10 @@ class CloudProviderServiceResourceTypeScope(str, Enum):
     REGION = "region"
     ZONE = "zone"
 
+    def __str__(self) -> str:
+        """Return the string representation of the CloudProviderServiceResourceTypeScope"""
+        return self.value
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of CloudProviderServiceResourceTypeScope from a JSON string"""

@@ -1,5 +1,5 @@
 {{#allParams}}
     {{^isHeaderParam}}
-        {{paramName}}: {{^required}}Optional[{{/required}}{{#isModel}}Union[{{/isModel}}{{dataType}}{{#isModel}}, {{dataType}}Plain,]{{/isModel}}{{^required}}] = None{{/required}},
+        {{paramName}}: {{^required}}Optional[{{/required}}{{#isModel}}Union[{{/isModel}}{{#isEnumRef}}Union[{{/isEnumRef}}{{dataType}}{{#isModel}}, {{dataType}}Plain,{{/isModel}}{{#isEnumRef}},{{dataType}}Plain,{{/isEnumRef}}{{#isModel}}]{{/isModel}}{{#isEnumRef}}]{{/isEnumRef}}{{^required}}] = None{{/required}},
     {{/isHeaderParam}}
 {{/allParams}}

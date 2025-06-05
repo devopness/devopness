@@ -19,6 +19,10 @@ class Language(str, Enum):
     EN = "en"
     PT = "pt"
 
+    def __str__(self) -> str:
+        """Return the string representation of the Language"""
+        return self.value
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of Language from a JSON string"""
