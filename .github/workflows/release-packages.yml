@@ -3,9 +3,9 @@ name: Release - Packages
 on:
   workflow_dispatch:
   push:
-    # paths:
-    #   - packages/**/src/**
-    #   - packages/**/package.json
+    paths:
+      - packages/**/src/**
+      - packages/**/package.json
     branches:
       - main
       - "*.x" # maintenance releases
