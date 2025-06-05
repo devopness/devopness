@@ -226,6 +226,20 @@ describe('Card', () => {
       ).toBeInTheDocument()
     })
 
+      it('header has role and aria-labelledby', () => {
+      render(
+        <Card
+          {...defaultProps}
+          id="accessible-card"
+        />
+      )
+      const header = screen.getByTestId('card-header')
+      expect(header).toHaveAttribute('role', 'heading')
+      expect(header).toHaveAttribute('aria-labelledby')
+      const labelledby = header.getAttribute('aria-labelledby')
+      expect(document.getElementById(labelledby!)).toBeInTheDocument()
+    })  
+
     it('makes links navigable', () => {
       render(
         <Card
@@ -267,7 +281,12 @@ describe('Card', () => {
       const viewAllLink = screen.getByText('view all').closest('a')
 
       expect(addLink).toHaveAttribute('href', '/projects/add')
+      expect(addLink).toHaveAttribute('tabindex', '0')
+      expect(addLink).toHaveAttribute('aria-label', 'Add')
+
       expect(viewAllLink).toHaveAttribute('href', '/projects')
+      expect(viewAllLink).toHaveAttribute('tabindex', '0')
+      expect(viewAllLink).toHaveAttribute('aria-label', 'view all')
     })
 
     it('renders footer items with icons', () => {
