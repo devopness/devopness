@@ -1,0 +1,10 @@
+[project]
+name = "devopness-mcp-server"
+version = "0.1.0"
+description = "A Model Context Protocol (MCP) server that uses Devopness to allow AI Agents to provision infrastructure and deploy any app to any cloud"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "devopness>=1.1.5",
+    "mcp[cli]>=1.9.1",
+]
