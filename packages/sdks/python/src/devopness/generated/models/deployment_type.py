@@ -20,6 +20,10 @@ class DeploymentType(str, Enum):
     REDEPLOY = "redeploy"
     ROLLBACK = "rollback"
 
+    def __str__(self) -> str:
+        """Return the string representation of the DeploymentType"""
+        return self.value
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of DeploymentType from a JSON string"""

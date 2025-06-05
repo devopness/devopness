@@ -20,6 +20,10 @@ class SslCertificateType(str, Enum):
     MULTI_MINUS_DOMAIN = "multi-domain"
     WILDCARD = "wildcard"
 
+    def __str__(self) -> str:
+        """Return the string representation of the SslCertificateType"""
+        return self.value
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of SslCertificateType from a JSON string"""

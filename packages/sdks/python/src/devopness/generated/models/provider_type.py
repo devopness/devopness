@@ -19,6 +19,10 @@ class ProviderType(str, Enum):
     CLOUD_PROVIDER = "cloud_provider"
     SOURCE_PROVIDER = "source_provider"
 
+    def __str__(self) -> str:
+        """Return the string representation of the ProviderType"""
+        return self.value
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of ProviderType from a JSON string"""

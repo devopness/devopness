@@ -18,6 +18,10 @@ class SubnetType(str, Enum):
 
     PUBLIC = "public"
 
+    def __str__(self) -> str:
+        """Return the string representation of the SubnetType"""
+        return self.value
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of SubnetType from a JSON string"""

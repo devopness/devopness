@@ -17,6 +17,7 @@ import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { Hook } from '../../generated/models';
 import { HookTriggerResponse } from '../../generated/models';
+import { HookTypeParam } from '../../generated/models';
 import { HookUpdate } from '../../generated/models';
 
 /**
@@ -27,9 +28,9 @@ export class HooksApiService extends ApiBaseService {
      * 
      * @summary Delete a given hook
      * @param {string} hookId The ID of the hook.
-     * @param {string} hookType The hook type.
+     * @param {HookTypeParam} hookType The type of the hook.
      */
-    public async deleteHook(hookId: string, hookType: string): Promise<ApiResponse<void>> {
+    public async deleteHook(hookId: string, hookType: HookTypeParam): Promise<ApiResponse<void>> {
         if (hookId === null || hookId === undefined) {
             throw new ArgumentNullException('hookId', 'deleteHook');
         }
@@ -49,9 +50,9 @@ export class HooksApiService extends ApiBaseService {
      * 
      * @summary Get a hook by ID
      * @param {string} hookId The ID of the hook.
-     * @param {string} hookType The hook type.
+     * @param {HookTypeParam} hookType The type of the hook.
      */
-    public async getHook(hookId: string, hookType: string): Promise<ApiResponse<Hook>> {
+    public async getHook(hookId: string, hookType: HookTypeParam): Promise<ApiResponse<Hook>> {
         if (hookId === null || hookId === undefined) {
             throw new ArgumentNullException('hookId', 'getHook');
         }
@@ -89,10 +90,10 @@ export class HooksApiService extends ApiBaseService {
      * 
      * @summary Update an existing hook
      * @param {string} hookId The ID of the hook.
-     * @param {string} hookType The hook type.
+     * @param {HookTypeParam} hookType The type of the hook.
      * @param {HookUpdate} hookUpdate A JSON object containing the resource data
      */
-    public async updateHook(hookId: string, hookType: string, hookUpdate: HookUpdate): Promise<ApiResponse<void>> {
+    public async updateHook(hookId: string, hookType: HookTypeParam, hookUpdate: HookUpdate): Promise<ApiResponse<void>> {
         if (hookId === null || hookId === undefined) {
             throw new ArgumentNullException('hookId', 'updateHook');
         }

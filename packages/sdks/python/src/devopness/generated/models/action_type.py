@@ -29,6 +29,10 @@ class ActionType(str, Enum):
     START = "start"
     STOP = "stop"
 
+    def __str__(self) -> str:
+        """Return the string representation of the ActionType"""
+        return self.value
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of ActionType from a JSON string"""

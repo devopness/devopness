@@ -11,6 +11,10 @@ from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessRespons
 from ..models import {{dataType}}
 from ..models import {{dataType}}Plain
       {{/isModel}}
+      {{#isEnumRef}}
+from ..models import {{dataType}}
+from ..models import {{dataType}}Plain
+      {{/isEnumRef}}
     {{/isHeaderParam}}
   {{/allParams}}
 

@@ -29,7 +29,7 @@ class User(DevopnessBaseModel):
         id (int): The unique ID of the given user
         name (str): User&#39;s full name
         email (str): The e-mail that will uniquely identify the user on the system and become its login credential
-        url_slug (str): The URL Slug of the user
+        url_slug (str, optional): The URL Slug of the user
         language (Language):
         active (bool): Tells if the user is active or not
         social_accounts (List[SocialAccountRelation]):
@@ -42,7 +42,9 @@ class User(DevopnessBaseModel):
     email: StrictStr = Field(
         description="The e-mail that will uniquely identify the user on the system and become its login credential"
     )
-    url_slug: StrictStr = Field(description="The URL Slug of the user")
+    url_slug: Optional[StrictStr] = Field(
+        default=None, description="The URL Slug of the user"
+    )
     language: Optional[Language]
     active: StrictBool = Field(description="Tells if the user is active or not")
     social_accounts: List[Optional[SocialAccountRelation]]
@@ -62,7 +64,7 @@ class UserPlain(TypedDict, total=False):
     id: Required[int]
     name: Required[str]
     email: Required[str]
-    url_slug: Required[str]
+    url_slug: Optional[str]
     language: Required[
         Union[
             Language,

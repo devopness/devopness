@@ -23,6 +23,10 @@ class TriggerEvent(str, Enum):
     INSTALL_MINUS_DEPENDENCIES = "install-dependencies"
     REMOVE_MINUS_OLD_MINUS_RELEASES = "remove-old-releases"
 
+    def __str__(self) -> str:
+        """Return the string representation of the TriggerEvent"""
+        return self.value
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of TriggerEvent from a JSON string"""
