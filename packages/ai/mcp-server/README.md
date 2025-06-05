@@ -24,7 +24,7 @@ npx @alpic-ai/grizzly uv run main.py
 
 STDIO
 ```shell
-uv run --directory "/full/path/to/devopness/packages/ai/mcp-server-devopness/" main.py
+uv run --directory "/full/path/to/devopness/packages/ai/mcp-server/" main.py
 ```
 
 ### Claude Desktop
@@ -40,7 +40,7 @@ uv run --directory "/full/path/to/devopness/packages/ai/mcp-server-devopness/" m
       "command": "uv",
       "args": [
         "--directory",
-        "/full/path/to/devopness/packages/ai/mcp-server-devopness/",
+        "/full/path/to/devopness/packages/ai/mcp-server/",
         "run",
         "main.py"
       ],

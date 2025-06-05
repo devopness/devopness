@@ -70,6 +70,21 @@ wheels = [
 ]
 
 [[package]]
+name = "devopness-mcp-server"
+version = "0.1.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "devopness" },
+    { name = "mcp", extra = ["cli"] },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "devopness", specifier = ">=1.1.5" },
+    { name = "mcp", extras = ["cli"], specifier = ">=1.9.1" },
+]
+
+[[package]]
 name = "h11"
 version = "0.16.0"
 source = { registry = "https://pypi.org/simple" }
@@ -160,21 +175,6 @@ wheels = [
 cli = [
     { name = "python-dotenv" },
     { name = "typer" },
-]
-
-[[package]]
-name = "mcp-server-devopness"
-version = "0.1.0"
-source = { virtual = "." }
-dependencies = [
-    { name = "devopness" },
-    { name = "mcp", extra = ["cli"] },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "devopness", specifier = ">=1.1.5" },
-    { name = "mcp", extras = ["cli"], specifier = ">=1.9.1" },
 ]
 
 [[package]]
