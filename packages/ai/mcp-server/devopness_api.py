@@ -10,19 +10,14 @@ from devopness.models import (
 )
 
 
-devopness = DevopnessClientAsync(
-    {
-        "base_url": "https://dev-api.devopness.com",
-    }
-)
+devopness = DevopnessClientAsync()
 
 
 async def ensure_authenticated():
     user_email = os.environ.get("DEVOPNESS_USER_EMAIL")
     user_pass = os.environ.get("DEVOPNESS_USER_PASSWORD")
 
-    # TODO: only invoke loging if not yet authenticated
-    # TODO: API key to the rescue, to skip OAuth flow
+    # TODO: only invoke login if not yet authenticated
     user_data = UserLogin(email=user_email, password=user_pass)
     await devopness.users.login_user(user_data)
 
