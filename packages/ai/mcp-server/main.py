@@ -1,7 +1,7 @@
 from server import server
 
 
-def main():
+def main() -> None:
     server.run()
 
 
