@@ -1,10 +1,21 @@
-import devopness_api
+from typing import List
+
 from mcp.server.fastmcp import FastMCP
 
+import devopness_api
 from devopness.models import (
+    ApplicationRelation,
+    CredentialRelation,
+    EnvironmentRelation,
+    Hook,
     HookPipelineCreate,
-    ServerEnvironmentCreate,
     HookTypeParam,
+    PipelineRelation,
+    ProjectRelation,
+    Server,
+    ServerEnvironmentCreate,
+    ServerRelation,
+    UserMe,
 )
 
 server = FastMCP("Devopness")
@@ -18,32 +29,32 @@ server = FastMCP("Devopness")
 # @server.resource("users://me")
 # @server.resource("users://{user_id}")
 @server.tool()
-async def devopness_get_user_profile() -> str:
+async def devopness_get_user_profile() -> UserMe:
     """Get details for current user"""
     return await devopness_api.get_user_profile()
 
 
 # @server.resource("projects://all")
 @server.tool()
-async def devopness_list_projects():
+async def devopness_list_projects() -> List[ProjectRelation]:
     """List all projects"""
     return await devopness_api.list_projects()
 
 
 @server.tool()
-async def devopness_list_environments(project_id: int):
+async def devopness_list_environments(project_id: int) -> List[EnvironmentRelation]:
     """List all environments for a given project"""
     return await devopness_api.list_environments(project_id)
 
 
 @server.tool()
-async def devopness_list_credentials(environment_id: int):
+async def devopness_list_credentials(environment_id: int) -> List[CredentialRelation]:
     """List all credentials for a given environment"""
     return await devopness_api.list_credentials(environment_id)
 
 
 @server.tool()
-async def devopness_list_servers(environment_id: int):
+async def devopness_list_servers(environment_id: int) -> List[ServerRelation]:
     """List servers in a given environment"""
     return await devopness_api.list_servers(environment_id)
 
@@ -51,26 +62,29 @@ async def devopness_list_servers(environment_id: int):
 @server.tool()
 async def devopness_create_cloud_server(
     environment_id: int, server_input_settings: ServerEnvironmentCreate
-):
+) -> Server:
     """List servers in a given environment"""
 
     # action = create_server.last_action;
     # wait until action.status in ['failed', 'completed']:
     #     # TODO: apply "logger" best practices to display progress of the flow
     # TODO: add validation and recommendation for server_input_settings
-    #   Example: user should be able to tell the spec of the desired instance type, without the need to know the instace type
-    #     e.g.: "I want the cheapest server with at least 4 GB of memory"
+    #   Example: user should be able to tell the spec of the desired instance type,
+    #            without the need to know the instace type
+    #            e.g.: "I want the cheapest server with at least 4 GB of memory"
     return await devopness_api.create_server(environment_id, server_input_settings)
 
 
 @server.tool()
-async def devopness_list_applications(environment_id: int):
+async def devopness_list_applications(environment_id: int) -> List[ApplicationRelation]:
     """List servers in a given environment"""
     return await devopness_api.list_applications(environment_id)
 
 
 @server.tool()
-async def devopness_list_application_pipelines(application_id: int):
+async def devopness_list_application_pipelines(
+    application_id: int,
+) -> List[PipelineRelation]:
     """List pipelines for a given application"""
     return await devopness_api.list_application_pipelines(application_id)
 
@@ -78,7 +92,7 @@ async def devopness_list_application_pipelines(application_id: int):
 @server.tool()
 async def devopness_create_webhook(
     pipeline_id: int, hook_type: HookTypeParam, hook_settings: HookPipelineCreate
-):
+) -> Hook:
     """Creates a webhook for a given pipeline.
     Most common use case is to create an incoming webhook to deploy an application.
     """
