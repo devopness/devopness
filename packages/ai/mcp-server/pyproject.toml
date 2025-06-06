@@ -43,6 +43,7 @@ extend-select = [
 ]
 
 [tool.ruff.lint.isort]
+known-first-party = ["devopness"]
 case-sensitive = true
 
 [tool.mypy]
