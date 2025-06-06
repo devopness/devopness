@@ -8,3 +8,51 @@ dependencies = [
     "devopness>=1.1.5",
     "mcp[cli]>=1.9.1",
 ]
+
+[dependency-groups]
+dev = [
+    "mypy>=1.16.0",
+    "ruff>=0.11.13",
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+
+[tool.ruff.lint]
+preview = true
+
+extend-select = [
+  "A",   # flake8-builtins (avoid shadowing built-ins)
+  "ANN", # flake8-annotations (type hints for public APIs)
+  "B",   # flake8-bugbear (common bugs and best practices)
+  "E",   # pycodestyle (error)
+  "F",   # pyflakes (basic errors)
+  "I",   # isort (import sorting)
+  "N",   # pep8-naming
+  "PIE", # flake8-pie (extra cleanups)
+  "PLC", # pylint conventions
+  "PLE", # pylint errors
+  "PLW", # pylint warnings
+  "Q",   # flake8-quotes (quote consistency)
+  "RET", # flake8-return (return statement rules)
+  "RUF", # Ruff-specific rules
+  "S",   # flake8-bandit (security rules)
+  "SIM", # flake8-simplify
+  "W",   # pycodestyle (warning)
+]
+
+[tool.ruff.lint.isort]
+case-sensitive = true
+
+[tool.mypy]
+python_version = "3.12"
+
+strict = true
+disallow_any_unimported = true
+strict_optional = true
+warn_no_return = true
+warn_unreachable = true
+
+sqlite_cache = true
+cache_fine_grained = true
