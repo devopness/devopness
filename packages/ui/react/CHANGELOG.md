@@ -8,7 +8,7 @@
 
   ### What Changed
 
-  - Updated iconList const with a new icon (home)
+  - Updated iconList constant with a new icon (home)
 
   ### Example Usage
 
