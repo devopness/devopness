@@ -20,7 +20,6 @@ shell: build-image ## 🐚 Open a shell inside the MCP Server container
 	$(info 🔧 Starting interactive shell in MCP Server container...)
 	@docker run --rm -it \
 		-v $(PWD):/$(WORKDIR) \
-		-v $(PWD)/../common:/common \
 		--name devopness-mcp-server-shell \
 		$(IMAGE):$(TAG) \
 		/bin/bash
