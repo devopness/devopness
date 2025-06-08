@@ -68,7 +68,7 @@ dev = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["devopness_mcp_server"]
+packages = ["src/devopness_mcp_server"]
 
 [tool.uv]
 package = true
