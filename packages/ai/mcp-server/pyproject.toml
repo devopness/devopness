@@ -109,7 +109,3 @@ warn_unreachable = true
 
 sqlite_cache = true
 cache_fine_grained = true
-
-[[tool.mypy.overrides]]
-module = ["lib.*", "server.*"]
-ignore_missing_imports = true
