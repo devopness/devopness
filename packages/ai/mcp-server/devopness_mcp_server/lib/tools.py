@@ -3,8 +3,12 @@ from typing import List
 from mcp.server.fastmcp import FastMCP
 
 from devopness.models import (
+    Application,
+    ApplicationEnvironmentCreate,
     ApplicationRelation,
     CredentialRelation,
+    DeploymentApplicationCreate,
+    DeploymentApplicationCreatePlain,
     EnvironmentRelation,
     Hook,
     HookPipelineCreate,
@@ -32,7 +36,10 @@ def register_tools(mcp_server: FastMCP) -> None:
     mcp_server.add_tool(devopness_list_servers)
     mcp_server.add_tool(devopness_list_applications)
     mcp_server.add_tool(devopness_list_application_pipelines)
+
     mcp_server.add_tool(devopness_create_cloud_server)
+    mcp_server.add_tool(devopness_create_application)
+    mcp_server.add_tool(devopness_deploy_application)
     mcp_server.add_tool(devopness_create_webhook)
 
 
@@ -97,7 +104,34 @@ async def devopness_create_cloud_server(
 ) -> Server:
     await ensure_authenticated()
     response = await devopness.servers.add_environment_server(
-        environment_id, server_input_settings
+        environment_id,
+        server_input_settings,
+    )
+
+    return response.data
+
+
+async def devopness_create_application(
+    environment_id: int,
+    application_input_settings: ApplicationEnvironmentCreate,
+) -> Application:
+    await ensure_authenticated()
+    response = await devopness.applications.add_environment_application(
+        environment_id,
+        application_input_settings,
+    )
+
+    return response.data
+
+
+async def devopness_deploy_application(
+    application_id: int,
+    deployment_application_create: DeploymentApplicationCreatePlain,
+) -> None:
+    await ensure_authenticated()
+    response = await devopness.applications.add_application_deployment(
+        application_id,
+        deployment_application_create,
     )
 
     return response.data
@@ -110,7 +144,9 @@ async def devopness_create_webhook(
 ) -> Hook:
     await ensure_authenticated()
     response = await devopness.hooks.add_pipeline_hook(
-        hook_type, pipeline_id, hook_settings
+        hook_type,
+        pipeline_id,
+        hook_settings,
     )
 
     return response.data
