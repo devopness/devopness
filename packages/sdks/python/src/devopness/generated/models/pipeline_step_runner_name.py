@@ -22,6 +22,10 @@ class PipelineStepRunnerName(str, Enum):
     PIP = "pip"
     YARN = "yarn"
 
+    def __str__(self) -> str:
+        """Return the string representation of the PipelineStepRunnerName"""
+        return self.value
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of PipelineStepRunnerName from a JSON string"""

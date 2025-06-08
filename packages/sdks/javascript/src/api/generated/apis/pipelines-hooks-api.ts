@@ -18,6 +18,7 @@ import { ApiError } from '../../generated/models';
 import { Hook } from '../../generated/models';
 import { HookPipelineCreate } from '../../generated/models';
 import { HookRelation } from '../../generated/models';
+import { HookTypeParam } from '../../generated/models';
 
 /**
  * PipelinesHooksApiService - Auto-generated
@@ -26,11 +27,11 @@ export class PipelinesHooksApiService extends ApiBaseService {
     /**
      * 
      * @summary Create a hook to a specific pipeline
-     * @param {string} hookType The hook type.
+     * @param {HookTypeParam} hookType The type of the hook.
      * @param {number} pipelineId The ID of the pipeline that will be executed by the created action
      * @param {HookPipelineCreate} hookPipelineCreate A JSON object containing the resource data
      */
-    public async addPipelineHook(hookType: string, pipelineId: number, hookPipelineCreate: HookPipelineCreate): Promise<ApiResponse<Hook>> {
+    public async addPipelineHook(hookType: HookTypeParam, pipelineId: number, hookPipelineCreate: HookPipelineCreate): Promise<ApiResponse<Hook>> {
         if (hookType === null || hookType === undefined) {
             throw new ArgumentNullException('hookType', 'addPipelineHook');
         }

@@ -21,6 +21,10 @@ class HookVariableType(str, Enum):
     ARRAY = "array"
     BOOLEAN = "boolean"
 
+    def __str__(self) -> str:
+        """Return the string representation of the HookVariableType"""
+        return self.value
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of HookVariableType from a JSON string"""

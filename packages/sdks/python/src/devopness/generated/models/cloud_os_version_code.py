@@ -22,6 +22,10 @@ class CloudOsVersionCode(str, Enum):
     UBUNTU_22_04 = "ubuntu_22_04"
     UBUNTU_24_04 = "ubuntu_24_04"
 
+    def __str__(self) -> str:
+        """Return the string representation of the CloudOsVersionCode"""
+        return self.value
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of CloudOsVersionCode from a JSON string"""

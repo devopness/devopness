@@ -25,6 +25,10 @@ class ServerStatus(str, Enum):
     RUNNING = "running"
     STOPPED = "stopped"
 
+    def __str__(self) -> str:
+        """Return the string representation of the ServerStatus"""
+        return self.value
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of ServerStatus from a JSON string"""
