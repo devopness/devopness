@@ -1,4 +1,4 @@
-from server import server
+from devopness_mcp_server.server import server
 
 
 def run() -> None:
