@@ -7,7 +7,6 @@ from devopness.models import (
     ApplicationEnvironmentCreate,
     ApplicationRelation,
     CredentialRelation,
-    DeploymentApplicationCreate,
     DeploymentApplicationCreatePlain,
     EnvironmentRelation,
     Hook,
