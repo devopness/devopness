@@ -14,7 +14,7 @@ links:
 
 1. On the selected project's page, locate the Teams card.
 2. Click View all on the Teams card to see the list of existing teams.
-   If there are no teams yet, create one by clicking the Add team button.
+    > If there are no teams yet, create one by clicking the Add team button.
 3. Select the team you want to manage.
 4. For each team, you can:
    - Invite new members
