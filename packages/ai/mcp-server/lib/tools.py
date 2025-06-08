@@ -1,7 +1,7 @@
-import os
 from typing import List
 
-from devopness import DevopnessClientAsync
+from mcp.server.fastmcp import FastMCP
+
 from devopness.models import (
     ApplicationRelation,
     CredentialRelation,
@@ -14,61 +14,63 @@ from devopness.models import (
     Server,
     ServerEnvironmentCreate,
     ServerRelation,
-    UserLogin,
     UserMe,
 )
-
-devopness = DevopnessClientAsync()
-
-
-async def ensure_authenticated() -> None:
-    user_email = os.environ.get("DEVOPNESS_USER_EMAIL")
-    user_pass = os.environ.get("DEVOPNESS_USER_PASSWORD")
-
-    if not user_email or not user_pass:
-        raise Exception("DEVOPNESS_USER_EMAIL and DEVOPNESS_USER_PASSWORD must be set")
-
-    # TODO: only invoke login if not yet authenticated
-    user_data = UserLogin(email=user_email, password=user_pass)
-    await devopness.users.login_user(user_data)
+from lib.devopness_api import devopness, ensure_authenticated
 
 
-async def get_user_profile() -> UserMe:
+def register_tools(mcp_server: FastMCP) -> None:
+    """
+    Register all Devopness tools that will be made available for the MCP server.
+    """
+
+    mcp_server.add_tool(devopness_get_user_profile)
+    mcp_server.add_tool(devopness_list_projects)
+    mcp_server.add_tool(devopness_list_environments)
+    mcp_server.add_tool(devopness_list_credentials)
+    mcp_server.add_tool(devopness_list_servers)
+    mcp_server.add_tool(devopness_list_applications)
+    mcp_server.add_tool(devopness_list_application_pipelines)
+    mcp_server.add_tool(devopness_create_cloud_server)
+    mcp_server.add_tool(devopness_create_webhook)
+
+
+async def devopness_get_user_profile() -> UserMe:
     await ensure_authenticated()
     current_user = await devopness.users.get_user_me()
 
     return current_user.data
 
 
-async def list_projects() -> List[ProjectRelation]:
+async def devopness_list_projects() -> List[ProjectRelation]:
     await ensure_authenticated()
     response = await devopness.projects.list_projects()
 
     return response.data
 
 
-async def list_environments(project_id: int) -> List[EnvironmentRelation]:
+async def devopness_list_environments(project_id: int) -> List[EnvironmentRelation]:
     await ensure_authenticated()
     response = await devopness.environments.list_project_environments(project_id)
 
     return response.data
 
 
-async def list_credentials(environment_id: int) -> List[CredentialRelation]:
+async def devopness_list_credentials(environment_id: int) -> List[CredentialRelation]:
     await ensure_authenticated()
     response = await devopness.credentials.list_environment_credentials(environment_id)
 
     return response.data
 
 
-async def list_servers(environment_id: int) -> List[ServerRelation]:
+async def devopness_list_servers(environment_id: int) -> List[ServerRelation]:
     await ensure_authenticated()
     response = await devopness.servers.list_environment_servers(environment_id)
 
     return response.data
 
 
-async def list_applications(environment_id: int) -> List[ApplicationRelation]:
+async def devopness_list_applications(environment_id: int) -> List[ApplicationRelation]:
     await ensure_authenticated()
     response = await devopness.applications.list_environment_applications(
         environment_id
@@ -77,7 +79,9 @@ async def list_applications(environment_id: int) -> List[ApplicationRelation]:
     return response.data
 
 
-async def list_application_pipelines(application_id: int) -> List[PipelineRelation]:
+async def devopness_list_application_pipelines(
+    application_id: int,
+) -> List[PipelineRelation]:
     await ensure_authenticated()
     response = await devopness.pipelines.list_pipelines_by_resource_type(
         application_id, "application"
@@ -86,7 +90,7 @@ async def list_application_pipelines(application_id: int) -> List[PipelineRelati
     return response.data
 
 
-async def create_server(
+async def devopness_create_cloud_server(
     environment_id: int,
     server_input_settings: ServerEnvironmentCreate,
 ) -> Server:
@@ -98,7 +102,7 @@ async def create_server(
     return response.data
 
 
-async def create_webhook(
+async def devopness_create_webhook(
     pipeline_id: int,
     hook_type: HookTypeParam,
     hook_settings: HookPipelineCreate,
