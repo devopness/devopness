@@ -45,24 +45,35 @@ jobs:
   release-pypi-packages:
     name: Release PyPI Packages
     runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: 'Devopness AI - MCP Server'
+            path: 'packages/ai/mcp-server'
+
+          - name: 'Devopness SDK - Python'
+            path: 'packages/sdks/python'
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Python 3.11
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.11"
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
-      - name: Install Poetry
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install poetry
+      - name: Build Docker Image
+        working-directory: ${{ matrix.path }}
+        run: make build-image
 
-      - name: Run PyPi Publish script
-        working-directory: packages/sdks/python
-        run: bash scripts/publish.sh
+      - name: Publish ${{ matrix.name }} to PyPI
+        working-directory: ${{ matrix.path }}
+        run: make publish
         env:
+          DEVOPNESS_MCP_SERVER_PYPI_TOKEN: ${{ secrets.DEVOPNESS_MCP_SERVER_PYPI_TOKEN }}
+          # TODO: rename to DEVOPNESS_SDK_PYTHON_PYPI_TOKEN, and scope it to
+          # only 'packages/sdks/python' project, like DEVOPNESS_MCP_SERVER_PYPI_TOKEN
           POETRY_PYPI_TOKEN: ${{ secrets.POETRY_PYPI_TOKEN }}
 
   update-lockfile-after-release:
