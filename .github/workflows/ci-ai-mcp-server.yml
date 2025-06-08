@@ -1,4 +1,4 @@
-name: CI - (AI) MCP Server
+name: CI - MCP Server
 on:
   pull_request:
     types:
