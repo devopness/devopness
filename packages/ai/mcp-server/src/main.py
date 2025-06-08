@@ -1,4 +1,4 @@
-from server import server
+from .server import server
 
 
 def main() -> None:

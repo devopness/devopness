@@ -16,7 +16,8 @@ from devopness.models import (
     ServerRelation,
     UserMe,
 )
-from lib.devopness_api import devopness, ensure_authenticated
+
+from .devopness_api import devopness, ensure_authenticated
 
 
 def register_tools(mcp_server: FastMCP) -> None:
