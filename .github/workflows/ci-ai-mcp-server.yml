@@ -1,0 +1,88 @@
+name: CI - (AI) MCP Server
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
+
+defaults:
+  run:
+    working-directory: packages/ai/mcp-server
+
+jobs:
+  detect-changes:
+    name: Detect changes in MCP-Server
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
+    outputs:
+      changes: ${{ steps.filter.outputs.changes }}
+    steps:
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            changes:
+              - 'packages/ai/mcp-server/**'
+
+  build:
+    name: Build MCP-Server
+    needs: detect-changes
+    if: ${{ needs.detect-changes.outputs.changes == 'true' }}
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        python:
+          - 3.13
+          - 3.12
+        os:
+          - ubuntu-latest
+
+    env:
+      PYTHON_VERSION: ${{ matrix.python }}
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.head_ref }}
+          persist-credentials: true
+          fetch-depth: 0
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker Image
+        run: make build-image
+
+      - name: Build MCP - Server
+        run: make build-mcp-server
+
+      - name: Lint MCP - Server
+        run: make lint
+
+      # TODO: Test MCP - Server
+
+  verify-build:
+    name: Verify build of MCP-Server
+    needs: [build, detect-changes]
+    if: success() || failure()
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Fail if build did not succeed
+        run: |
+          if [ "${{ needs.build.result }}" != "success" ]; then
+            echo "❌ Build job failed or was cancelled"
+            exit 1
+          fi
+
+          echo "✅ Build job succeeded"
