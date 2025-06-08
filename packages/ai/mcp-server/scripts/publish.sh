@@ -43,7 +43,7 @@ trap restore_version EXIT
 log "🔧" "Temporarily setting version to $PUBLISH_VERSION in pyproject.toml..."
 set_version_in_pyproject "$PUBLISH_VERSION"
 
-log "📦" "Building Devopness SDK (version $PUBLISH_VERSION)..."
+log "📦" "Building Devopness MCP Server (version $PUBLISH_VERSION)..."
 uv build --no-cache
 
 EXPECTED_ARTIFACT="dist/devopness_mcp_server-$PUBLISH_VERSION-py3-none-any.whl"
