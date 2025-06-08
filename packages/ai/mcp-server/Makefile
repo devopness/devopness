@@ -29,9 +29,7 @@ shell: build-image ## 🐚 Open a shell inside the MCP Server container
 build-mcp-server: build-image ## ⚙️  Build the Devopness MCP Server
 	$(info 🏗️  Building MCP Server using Docker...)
 	@docker run --rm \
-		-u $(USER_ID):$(GROUP_ID) \
 		-v $(PWD):/$(WORKDIR) \
-		-v $(PWD)/../common:/common \
 		--name devopness-mcp-server-build \
 		$(IMAGE):$(TAG) \
 		/bin/bash -cex ' \
