@@ -49,7 +49,7 @@ jobs:
           commit_user_name: ${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}
           commit_user_email: ${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}
 
-  sync-lockfile-after-release:
+  sync-main-lockfile:
     name: Sync the package-lock.json
     runs-on: ubuntu-latest
 
