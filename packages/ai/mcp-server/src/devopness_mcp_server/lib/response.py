@@ -1,4 +1,4 @@
-from typing import Generic, List, Literal, Self, TypeVar
+from typing import Any, Generic, List, Literal, Self, TypeVar
 
 from pydantic import BaseModel
 
@@ -12,21 +12,21 @@ class MCPResponse(BaseModel, Generic[T]):
     Args:
         data (T | None): The data to be sent as the response.
         status (Literal["ok", "warning", "error"]): The status of the response.
-        instructions (List[str]): Instructions to be sent to LLM.
+        instructions (List[Any]): Instructions to be sent to LLM.
     """
 
     data: T | None = None
     status: Literal["ok", "warning", "error"]
-    instructions: List[str]
+    instructions: List[Any]
 
     @classmethod
-    def ok(cls, data: T | None = None, instructions: List[str] | None = None) -> Self:
+    def ok(cls, data: T | None = None, instructions: List[Any] | None = None) -> Self:
         """
         Create an MCP response with a status of "ok".
 
         Args:
             data (T | None): The data to be sent as the response.
-            instructions (List[str] | None): Instructions to be sent to LLM.
+            instructions (List[Any] | None): Instructions to be sent to LLM.
 
         Returns:
             Self: The created MCP response.
@@ -38,12 +38,12 @@ class MCPResponse(BaseModel, Generic[T]):
         )
 
     @classmethod
-    def warning(cls, instructions: List[str]) -> Self:
+    def warning(cls, instructions: List[Any]) -> Self:
         """
         Create an MCP response with a status of "warning".
 
         Args:
-            instructions (List[str]): Instructions to be sent to LLM.
+            instructions (List[Any]): Instructions to be sent to LLM.
 
         Returns:
             Self: The created MCP response.
@@ -54,12 +54,12 @@ class MCPResponse(BaseModel, Generic[T]):
         )
 
     @classmethod
-    def error(cls, instructions: List[str] | None = None) -> Self:
+    def error(cls, instructions: List[Any] | None = None) -> Self:
         """
         Create an MCP response with a status of "error".
 
         Args:
-            instructions (List[str] | None): Instructions to be sent to LLM.
+            instructions (List[Any] | None): Instructions to be sent to LLM.
 
         Returns:
             Self: The created MCP response.

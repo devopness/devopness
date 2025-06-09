@@ -261,7 +261,6 @@ async def devopness_deploy_ssh_key(
     Trigger a new deployment for an SSH key.
 
     You Should:
-        - Use this function when you want to trigger a deployment.
         - If the user provides a pipeline ID, use it to trigger the deployment.
         - If the user does not provide a pipeline ID but provides an SSH key ID,
           use this tool to fetch the available deployment pipelines for the SSH key.
@@ -300,20 +299,15 @@ async def devopness_deploy_ssh_key(
                 ]
             )
 
-        msg: List[str] = [
-            "The following deployment pipelines were found for this SSH key:",
-        ]
-
-        for pipeline in response_pipelines.data:
-            msg.append(f"- {pipeline.name} (ID: {pipeline.id})")
-
-        msg.append(
-            "Please ask the user to choose one of the listed pipeline IDs. "
-            "Then call this function again with the selected ID as the 'pipeline_id'"
-            " argument."
+        return MCPResponse.warning(
+            [
+                "The following deployment pipelines were found for this SSH key:",
+                response_pipelines.data,
+                "Please ask the user to choose one of the listed pipeline IDs.",
+                "Then call this function again with the selected ID as the"
+                " 'pipeline_id' argument.",
+            ]
         )
-
-        return MCPResponse.warning(msg)
 
     response = await devopness.actions.add_pipeline_action(
         pipeline_id,
