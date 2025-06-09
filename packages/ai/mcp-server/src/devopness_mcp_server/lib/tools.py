@@ -135,7 +135,7 @@ async def devopness_deploy_application(
     pipeline_id: int | None = None,
     application_id: int | None = None,
     source_type: SourceTypePlain = "branch",
-) -> Action | str:
+) -> MCPResponse[Action]:
     """
     Trigger a new deployment for application.
 
@@ -153,9 +153,11 @@ async def devopness_deploy_application(
 
     if not pipeline_id:
         if not application_id:
-            return (
-                "A pipeline ID or an application ID is required to trigger"
-                " a deployment. Please ask the user to provide one of them."
+            return MCPResponse.error(
+                [
+                    "A pipeline ID or an application ID is required to trigger"
+                    " a deployment. Please ask the user to provide one of them."
+                ]
             )
 
         response_pipelines = await devopness_list_application_pipelines(application_id)
@@ -167,25 +169,22 @@ async def devopness_deploy_application(
         ]
 
         if len(deploy_pipelines) == 0:
-            return (
-                "No deployment pipelines were found for the given application ID. "
-                "Please ask the user to verify the application and try again."
+            return MCPResponse.error(
+                [
+                    "No deployment pipelines were found for the given application ID. "
+                    "Please ask the user to verify the application and try again."
+                ]
             )
 
-        msg: List[str] = [
-            "The following deployment pipelines were found for this application:",
-        ]
-
-        for pipeline in deploy_pipelines:
-            msg.append(f"- {pipeline.name} (ID: {pipeline.id})")
-
-        msg.append(
-            "Please ask the user to choose one of the listed pipeline IDs. "
-            "Then call this function again with the selected ID as the 'pipeline_id'"
-            " argument."
+        return MCPResponse.warning(
+            [
+                "The following deployment pipelines were found for this application:",
+                deploy_pipelines,
+                "Please ask the user to choose one of the listed pipeline IDs. "
+                "Then call this function again with the selected ID as the "
+                "'pipeline_id' argument.",
+            ],
         )
-
-        return "\n".join(msg)
 
     response = await devopness.actions.add_pipeline_action(
         pipeline_id,
@@ -205,7 +204,12 @@ async def devopness_deploy_application(
         f"{response.data.url_web_permalink}"
     )
 
-    return response.data
+    return MCPResponse[Action].ok(response.data, [
+        "To monitor the deployment progress, visit the following URL:",
+        response.data.url_web_permalink,
+            "Explain to the user how to monitor the deployment progress.",
+            "Show the main information's about the action.",
+    ])
 
 
 async def devopness_create_webhook(
