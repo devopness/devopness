@@ -18,8 +18,8 @@ from devopness.models import (
     ServerEnvironmentCreate,
     ServerRelation,
     SourceTypePlain,
-    UserMe,
     SshKey,
+    UserMe,
 )
 
 from .devopness_api import devopness, ensure_authenticated
@@ -32,17 +32,19 @@ def register_tools(mcp_server: FastMCP) -> None:
     """
 
     mcp_server.add_tool(devopness_get_user_profile)
-    mcp_server.add_tool(devopness_list_projects)
-    mcp_server.add_tool(devopness_list_environments)
-    mcp_server.add_tool(devopness_list_credentials)
-    mcp_server.add_tool(devopness_list_servers)
-    mcp_server.add_tool(devopness_list_applications)
     mcp_server.add_tool(devopness_list_application_pipelines)
+    mcp_server.add_tool(devopness_list_applications)
+    mcp_server.add_tool(devopness_list_credentials)
+    mcp_server.add_tool(devopness_list_environments)
+    mcp_server.add_tool(devopness_list_projects)
+    mcp_server.add_tool(devopness_list_servers)
 
-    mcp_server.add_tool(devopness_create_cloud_server)
     mcp_server.add_tool(devopness_create_application)
-    mcp_server.add_tool(devopness_deploy_application)
+    mcp_server.add_tool(devopness_create_cloud_server)
+    mcp_server.add_tool(devopness_create_ssh_key)
     mcp_server.add_tool(devopness_create_webhook)
+    mcp_server.add_tool(devopness_deploy_application)
+    mcp_server.add_tool(devopness_deploy_ssh_key)
 
 
 async def devopness_get_user_profile() -> UserMe:
@@ -251,20 +253,28 @@ async def devopness_create_ssh_key(
 
 async def devopness_deploy_ssh_key(
     ctx: Context[Any, Any],
-    pipeline_id: int,
-    ssh_key_id: int,
+    pipeline_id: int | None = None,
+    ssh_key_id: int | None = None,
+    server_ids: List[int] | None = None,
 ) -> MCPResponse[Action]:
     """
     Trigger a new deployment for an SSH key.
 
     You Should:
-    - Use this function when you want to trigger a deployment.
-    - If the user provides a pipeline ID, use it to trigger the deployment.
-    - If the user does not provide a pipeline ID but provides an SSH key ID,
-      use this tool to fetch the available deployment pipelines for the SSH key.
-    - You MUST ask the user to provide a pipeline ID.
-    - You MUST confirm with the user all the values that will be used before calling
-      this tool with the pipeline_id
+        - Use this function when you want to trigger a deployment.
+        - If the user provides a pipeline ID, use it to trigger the deployment.
+        - If the user does not provide a pipeline ID but provides an SSH key ID,
+          use this tool to fetch the available deployment pipelines for the SSH key.
+        - You MUST ask the user to provide the list of servers to deploy to.
+          - You can use the `devopness_list_servers` tool to help the user select
+            the servers.
+          - The Devopness is able to deploy to multiple servers at the same time.
+          - The Devopness is able to deploy to a server that is still being provisioned.
+          - If the user does not provide a list of servers, the Devopness will try
+            deploy to all servers linked with the SSH key, which may cause errors
+            if there are no servers linked with the SSH key.
+        - You MUST confirm with the user all the values that will be used before calling
+          this tool with the pipeline_id
     """
     await ensure_authenticated()
 
@@ -305,7 +315,12 @@ async def devopness_deploy_ssh_key(
 
         return MCPResponse.warning(msg)
 
-    response = await devopness.actions.add_pipeline_action(pipeline_id, {})
+    response = await devopness.actions.add_pipeline_action(
+        pipeline_id,
+        {
+            "servers": server_ids,
+        },
+    )
 
     await ctx.info(
         f"SSH key deployment has been triggered using pipeline ID {pipeline_id} "
