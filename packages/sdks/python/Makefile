@@ -49,7 +49,7 @@ publish: build-image ## 🚀 Publish the SDK to PyPI (requires PYPI_TOKEN)
 		--name devopness-sdk-python-publish \
 		$(IMAGE):$(TAG) \
 		/bin/bash -ce ' \
-		  rm -rf dist; \
+			rm -rf dist; \
 			VERSION=$$(poetry version --short); \
 			poetry config pypi-token.pypi "$$DEVOPNESS_SDK_PYTHON_PYPI_TOKEN" &> /dev/null; \
 			set +e; \
