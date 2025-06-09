@@ -249,7 +249,17 @@ async def devopness_create_ssh_key(
         },
     )
 
-    return MCPResponse[SshKey].ok(response.data)
+    return MCPResponse[SshKey].ok(
+        response.data,
+        [
+            "SSH key has been successfully created and added to the environment.",
+            "Would you like to deploy this SSH key to your servers now?"
+            " I can help you with the deployment process using the "
+            "devopness_deploy_ssh_key tool.",
+            "To proceed, please confirm if you'd like to deploy this key "
+            "and specify which servers should have access to it.",
+        ],
+    )
 
 
 async def devopness_deploy_ssh_key(
