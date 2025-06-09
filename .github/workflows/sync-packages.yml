@@ -45,8 +45,8 @@ jobs:
       - uses: stefanzweifel/git-auto-commit-action@v4
         if: github.repository == 'devopness/devopness'
         with:
-          commit_message: 'chore: update pyproject.toml'
-          file_pattern: 'pyproject.toml'
+          commit_message: "chore: update '${{ matrix.name }}' pyproject.toml"
+          file_pattern: "${{ matrix.path }}/pyproject.toml"
           commit_user_name: ${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}
           commit_user_email: ${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}
 
