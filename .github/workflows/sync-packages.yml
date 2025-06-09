@@ -31,7 +31,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Sync the package version
+      - name: Sync the '${{ matrix.name }}' version
         run: |
           CHANGESET_PACKAGE_VERSION=$(jq -r .version "${{ matrix.path }}/package.json")
           sed -i "s/^version = \".*\"/version = \"${CHANGESET_PACKAGE_VERSION}\"/" "${{ matrix.path }}/pyproject.toml"

@@ -8,7 +8,7 @@ on:
       - packages/**/package.json
     branches:
       - main
-      - "*.x" # maintenance releases
+      - '*.x' # maintenance releases
 
 permissions:
   contents: write
@@ -28,7 +28,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: "22.x"
+          node-version: '22.x'
 
       - name: Install SDK dependencies
         run: npm ci --ignore-scripts
@@ -36,7 +36,7 @@ jobs:
       - name: Create Release Pull Request or Publish Packages
         uses: changesets/action@v1
         with:
-          title: "chore: version packages"
+          title: 'chore: version packages'
           publish: npx changeset publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -49,14 +49,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - name: 'Devopness AI - MCP Server'
-            path: 'packages/ai/mcp-server'
-            pypi_token: 'DEVOPNESS_MCP_SERVER_PYPI_TOKEN'
-
-          - name: 'Devopness SDK - Python'
-            path: 'packages/sdks/python'
-            pypi_token: 'DEVOPNESS_SDK_PYTHON_PYPI_TOKEN'
+        include: ${{ fromJSON(vars.DEVOPNESS_PYPI_PACKAGES) }}
 
     steps:
       - name: Checkout repository
