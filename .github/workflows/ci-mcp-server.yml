@@ -57,9 +57,6 @@ jobs:
       - name: Build Docker Image
         run: make build-image
 
-      - name: Build MCP - Server
-        run: make build-mcp-server
-
       - name: Lint MCP - Server
         run: make lint
 

@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "devopness-mcp-server"
-version = "0.0.0"
+version = "0.0.4"
 description = "A Model Context Protocol (MCP) server that uses Devopness to allow AI Agents to provision infrastructure and deploy any app to any cloud"
 license = "MIT"
 readme = "README.md"
@@ -29,11 +29,12 @@ keywords = [
   "Utilities",
 ]
 classifiers = [
-  "Development Status :: 1 - Planning",
+  "Development Status :: 3 - Alpha",
   "Environment :: Console",
   "Environment :: Other Environment",
   "Intended Audience :: Developers",
   "Intended Audience :: End Users/Desktop",
+  "Intended Audience :: Information Technology",
   "Intended Audience :: Other Audience",
   "Intended Audience :: System Administrators",
   "Operating System :: OS Independent",
