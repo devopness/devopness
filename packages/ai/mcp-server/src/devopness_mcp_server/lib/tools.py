@@ -204,12 +204,15 @@ async def devopness_deploy_application(
         f"{response.data.url_web_permalink}"
     )
 
-    return MCPResponse[Action].ok(response.data, [
-        "To monitor the deployment progress, visit the following URL:",
-        response.data.url_web_permalink,
+    return MCPResponse[Action].ok(
+        response.data,
+        [
+            "To monitor the deployment progress, visit the following URL:",
+            response.data.url_web_permalink,
             "Explain to the user how to monitor the deployment progress.",
             "Show the main information's about the action.",
-    ])
+        ],
+    )
 
 
 async def devopness_create_webhook(
