@@ -1,0 +1,71 @@
+name: Sync - Packages
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - packages/**/package.json
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  sync-pypi-packages:
+    name: Sync the pyproject.toml
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: 'Devopness AI - MCP Server'
+            path: 'packages/ai/mcp-server'
+
+          - name: 'Devopness SDK - Python'
+            path: 'packages/sdks/python'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Sync the package version
+        run: |
+          PACKAGE_JSON_VERSION=$(jq -r .version "${{ matrix.path }}/package.json")
+          sed -i "s/^version = \".*\"/version = \"${PACKAGE_JSON_VERSION}\"/" "${{ matrix.path }}/pyproject.toml"
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        if: github.repository == 'devopness/devopness'
+        with:
+          commit_message: 'chore: update pyproject.toml'
+          file_pattern: 'pyproject.toml'
+          commit_user_name: ${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}
+          commit_user_email: ${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}
+
+  sync-lockfile-after-release:
+    name: Sync the package-lock.json
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+
+      - name: Sync workspace versions in lockfile
+        run: npm install --workspaces
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        if: github.repository == 'devopness/devopness'
+        with:
+          commit_message: 'chore: update package-lock.json'
+          file_pattern: 'package-lock.json'
+          commit_user_name: ${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}
+          commit_user_email: ${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}
