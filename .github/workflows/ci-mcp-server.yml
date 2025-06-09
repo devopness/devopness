@@ -1,5 +1,4 @@
 name: CI - MCP Server
-
 on:
   pull_request:
     types:
@@ -27,8 +26,8 @@ jobs:
             changes:
               - 'packages/ai/mcp-server/**'
 
-  quality-check:
-    name: Quality Check - MCP-Server
+  build:
+    name: Build MCP-Server
     needs: detect-changes
     if: ${{ needs.detect-changes.outputs.changes == 'true' }}
     runs-on: ${{ matrix.os }}
@@ -58,14 +57,14 @@ jobs:
       - name: Build Docker Image
         run: make build-image
 
-      - name: Run Linter
+      - name: Lint MCP - Server
         run: make lint
 
       # TODO: Test MCP - Server
 
-  verify-quality-check:
-    name: Verify Quality Check of MCP-Server
-    needs: [quality-check, detect-changes]
+  verify-build:
+    name: Verify build of MCP-Server
+    needs: [build, detect-changes]
     if: success() || failure()
     runs-on: ubuntu-latest
 
@@ -76,11 +75,11 @@ jobs:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
 
-      - name: Fail if quality check did not succeed
+      - name: Fail if build did not succeed
         run: |
-          if [ "${{ needs.quality-check.result }}" != "success" ]; then
-            echo "❌ Quality Check job failed or was cancelled"
+          if [ "${{ needs.build.result }}" != "success" ]; then
+            echo "❌ Build job failed or was cancelled"
             exit 1
           fi
 
-          echo "✅ Quality Check job succeeded"
+          echo "✅ Build job succeeded"
