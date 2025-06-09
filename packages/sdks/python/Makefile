@@ -8,7 +8,7 @@ GROUP_ID := $(shell id -g)
 WORKDIR := sdk
 
 .DEFAULT_GOAL := help
-.PHONY: build-image shell build-sdk-python publish publish-dev lint format test-unit help
+.PHONY: build-image shell build-sdk-python publish lint format test-unit help
 
 ##@ Docker
 

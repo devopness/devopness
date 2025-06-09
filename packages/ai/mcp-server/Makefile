@@ -4,7 +4,7 @@ TAG ?= latest
 WORKDIR := mcp
 
 .DEFAULT_GOAL := help
-.PHONY: build-image shell lint format help
+.PHONY: build-image shell publish lint format help
 
 ##@ Docker
 
