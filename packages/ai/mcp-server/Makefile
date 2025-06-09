@@ -33,7 +33,6 @@ publish: build-image ## 🚀 Publish the MCP Server to PyPI (requires PYPI_TOKEN
 		--name devopness-mcp-server-publish \
 		$(IMAGE):$(TAG) \
 		/bin/bash -cex ' \
-			rm -rf dist; \
 			uv build --no-cache; \
 			uv publish --token "$$DEVOPNESS_MCP_SERVER_PYPI_TOKEN"; \
 		'
