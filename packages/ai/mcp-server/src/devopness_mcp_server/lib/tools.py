@@ -335,6 +335,7 @@ async def devopness_deploy_ssh_key(
             "To monitor the deployment progress, visit the following URL:",
             response.data.url_web_permalink,
             "Explain to the user how to monitor the deployment progress.",
-            "Show the main information's about the action in a table.",
+            "Show the main information's about the action.",
+            "Explain the user how to use ssh to connect to the servers.",
         ],
     )
