@@ -29,11 +29,12 @@ keywords = [
   "Utilities",
 ]
 classifiers = [
-  "Development Status :: 1 - Planning",
+  "Development Status :: 3 - Alpha",
   "Environment :: Console",
   "Environment :: Other Environment",
   "Intended Audience :: Developers",
   "Intended Audience :: End Users/Desktop",
+  "Intended Audience :: Information Technology",
   "Intended Audience :: Other Audience",
   "Intended Audience :: System Administrators",
   "Operating System :: OS Independent",
