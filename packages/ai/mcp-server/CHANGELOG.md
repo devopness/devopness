@@ -1,5 +1,12 @@
 # @devopness/mcp-server
 
+## 0.0.6
+
+### Patch Changes
+
+- [#1824](https://github.com/devopness/devopness/pull/1824) [`9296c2e`](https://github.com/devopness/devopness/commit/9296c2ec4b4f1a32169031999bc9a2b02d3a3d04) Thanks [@Diegiwg](https://github.com/Diegiwg)! - The devopness_deploy_application tool now allows deployments to be initiated using only the application ID.
+  If a pipeline ID is not provided, the tool will return a list of available pipelines for the given application, allowing the user to select one before proceeding.
+
 ## 0.0.5
 
 ### Patch Changes
