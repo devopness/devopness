@@ -1,4 +1,14 @@
-name: Sync - Packages
+name: Sync - Package Versions
+
+# This workflow is responsible for synchronizing the versions of Devopness packages that are
+# not published to npm but are managed by changesets. These packages have a package.json file
+# solely for version management purposes, even though they are not npm packages.
+#
+# For example, Python packages use this workflow to sync the version specified in their
+# pyproject.toml file with the version managed by changesets in the package.json file.
+#
+# Additionally, to avoid errors during changeset operations, this workflow ensures that the
+# versions of these packages are also synchronized in the root package-lock.json file.
 
 on:
   pull_request:
@@ -18,7 +28,7 @@ permissions:
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-  sync-pypi-packages:
+  sync-pypi-package-versions:
     name: Sync the pyproject.toml
     runs-on: ubuntu-latest
 
