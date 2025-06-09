@@ -24,6 +24,27 @@ shell: build-image ## 🐚 Open a shell inside the MCP Server container
 		$(IMAGE):$(TAG) \
 		/bin/bash
 
+##@ MCP Server Build & Publish
+
+build-mcp-server: build-image ## ⚙️  Build the Devopness MCP Server
+	$(info 🏗️  Building MCP Server using Docker...)
+	@docker run --rm \
+		-v $(PWD):/$(WORKDIR) \
+		--name devopness-mcp-server-build \
+		$(IMAGE):$(TAG) \
+		/bin/bash -cex ' \
+			uv build --no-cache \
+		'
+
+publish: build-image ## 🚀 Publish the MCP Server to PyPI (requires DEVOPNESS_MCP_SERVER_PYPI_TOKEN)
+	$(info 📦 Publishing MCP Server to PyPI...)
+	@docker run --rm \
+		-v $(PWD):/$(WORKDIR) \
+		--env DEVOPNESS_MCP_SERVER_PYPI_TOKEN=$(DEVOPNESS_MCP_SERVER_PYPI_TOKEN) \
+		--name devopness-mcp-server-publish \
+		$(IMAGE):$(TAG) \
+		/bin/bash scripts/publish.sh
+
 ##@ Lint & Format
 
 lint: build-image ## 🔍 Run linting tools (ruff, mypy)

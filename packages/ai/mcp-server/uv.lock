@@ -71,8 +71,8 @@ wheels = [
 
 [[package]]
 name = "devopness-mcp-server"
-version = "0.1.0"
-source = { virtual = "." }
+version = "0.0.0"
+source = { editable = "." }
 dependencies = [
     { name = "devopness" },
     { name = "mcp", extra = ["cli"] },
