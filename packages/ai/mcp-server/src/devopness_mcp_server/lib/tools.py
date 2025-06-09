@@ -4,6 +4,7 @@ from mcp.server.fastmcp import Context, FastMCP
 
 from devopness.models import (
     Action,
+    ActionPipelineCreatePlain,
     Application,
     ApplicationEnvironmentCreate,
     ApplicationRelation,
@@ -309,11 +310,13 @@ async def devopness_deploy_ssh_key(
             ]
         )
 
+    action_pipeline_create: ActionPipelineCreatePlain = {}
+    if server_ids:
+        action_pipeline_create["servers"] = server_ids
+
     response = await devopness.actions.add_pipeline_action(
         pipeline_id,
-        {
-            "servers": server_ids,
-        },
+        action_pipeline_create,
     )
 
     await ctx.info(
@@ -326,4 +329,12 @@ async def devopness_deploy_ssh_key(
         f"{response.data.url_web_permalink}"
     )
 
-    return MCPResponse[Action].ok(response.data)
+    return MCPResponse[Action].ok(
+        response.data,
+        [
+            "To monitor the deployment progress, visit the following URL:",
+            response.data.url_web_permalink,
+            "Explain to the user how to monitor the deployment progress.",
+            "Show the main information's about the action in a table.",
+        ],
+    )
