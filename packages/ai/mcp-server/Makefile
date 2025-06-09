@@ -42,14 +42,14 @@ publish: build-image ## 🚀 Publish the MCP Server to PyPI (requires PYPI_TOKEN
 			set -e; \
 			if [ $$EXIT_CODE -ne 0 ]; then \
 				if echo "$$OUTPUT" | grep -q "File already exists"; then \
-					echo "⚠️  Package version $$VERSION already exists on PyPI."; \
+					echo "⚠️ Package version $$VERSION already exists on PyPI."; \
 				else \
 					echo "$$OUTPUT"; \
 					exit $$EXIT_CODE; \
 				fi; \
 			else \
-				echo "✅  Successfully published version $$VERSION to PyPI!"; \
-				echo "🔗  https://pypi.org/project/devopness-mcp-server/$$VERSION/"; \
+				echo "✅ Successfully published version $$VERSION to PyPI!"; \
+				echo "🔗 https://pypi.org/project/devopness-mcp-server/$$VERSION/"; \
 			fi'
 
 ##@ Lint & Format

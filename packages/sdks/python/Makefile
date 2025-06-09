@@ -42,7 +42,7 @@ build-sdk-python: build-image ## ⚙️  Build the Devopness SDK for Python
 		scripts/build.py
 
 publish: build-image ## 🚀 Publish the SDK to PyPI (requires PYPI_TOKEN)
-	$(info 📦  Publishing SDK to PyPI...)
+	$(info 📦 Publishing SDK to PyPI...)
 	@docker run --rm \
 		-v $(PWD):/$(WORKDIR) \
 		--env DEVOPNESS_SDK_PYTHON_PYPI_TOKEN=$(PYPI_TOKEN) \
@@ -58,14 +58,14 @@ publish: build-image ## 🚀 Publish the SDK to PyPI (requires PYPI_TOKEN)
 			set -e; \
 			if [ $$EXIT_CODE -ne 0 ]; then \
 				if echo "$$OUTPUT" | grep -q "File already exists"; then \
-					echo "⚠️  Package version $$VERSION already exists on PyPI."; \
+					echo "⚠️ Package version $$VERSION already exists on PyPI."; \
 				else \
 					echo "$$OUTPUT"; \
 					exit $$EXIT_CODE; \
 				fi; \
 			else \
-				echo "✅  Successfully published version $$VERSION to PyPI!"; \
-				echo "🔗  https://pypi.org/project/devopness/$$VERSION/"; \
+				echo "✅ Successfully published version $$VERSION to PyPI!"; \
+				echo "🔗 https://pypi.org/project/devopness/$$VERSION/"; \
 			fi'
 
 ##@ Lint & Format
