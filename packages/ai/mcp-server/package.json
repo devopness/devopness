@@ -1,6 +1,6 @@
 {
   "name": "@devopness/mcp-server",
   "version": "0.0.4",
-  "description": "This file is used by Changesets Action to build and publish versions of Devopness MCP Server. For further details see https://github.com/devopness/devopness/blob/main/package.json",
+  "description": "This file is used by Changesets Action to build and publish versions of Devopness MCP Server package. For further details see https://github.com/devopness/devopness/blob/main/package.json",
   "private": true
 }
