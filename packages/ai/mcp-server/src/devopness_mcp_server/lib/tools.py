@@ -1,4 +1,4 @@
-from typing import List
+from typing import Any, List
 
 from mcp.server.fastmcp import Context, FastMCP
 
@@ -125,7 +125,7 @@ async def devopness_create_application(
 
 
 async def devopness_deploy_application(
-    ctx: Context,
+    ctx: Context[Any, Any],
     source_value: str,
     pipeline_id: int | None = None,
     application_id: int | None = None,
