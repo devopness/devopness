@@ -254,6 +254,18 @@ async def devopness_deploy_ssh_key(
     pipeline_id: int,
     ssh_key_id: int,
 ) -> MCPResponse[Action]:
+    """
+    Trigger a new deployment for an SSH key.
+
+    You Should:
+    - Use this function when you want to trigger a deployment.
+    - If the user provides a pipeline ID, use it to trigger the deployment.
+    - If the user does not provide a pipeline ID but provides an SSH key ID,
+      use this tool to fetch the available deployment pipelines for the SSH key.
+    - You MUST ask the user to provide a pipeline ID.
+    - You MUST confirm with the user all the values that will be used before calling
+      this tool with the pipeline_id
+    """
     await ensure_authenticated()
 
     if not pipeline_id:
