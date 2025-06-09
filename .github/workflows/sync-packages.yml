@@ -35,8 +35,8 @@ jobs:
 
       - name: Sync the package version
         run: |
-          PACKAGE_JSON_VERSION=$(jq -r .version "${{ matrix.path }}/package.json")
-          sed -i "s/^version = \".*\"/version = \"${PACKAGE_JSON_VERSION}\"/" "${{ matrix.path }}/pyproject.toml"
+          CHANGESET_PACKAGE_VERSION=$(jq -r .version "${{ matrix.path }}/package.json")
+          sed -i "s/^version = \".*\"/version = \"${CHANGESET_PACKAGE_VERSION}\"/" "${{ matrix.path }}/pyproject.toml"
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         if: github.repository == 'devopness/devopness'
