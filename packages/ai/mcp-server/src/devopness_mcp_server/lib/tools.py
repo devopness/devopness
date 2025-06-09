@@ -247,3 +247,62 @@ async def devopness_create_ssh_key(
     )
 
     return MCPResponse[SshKey].ok(response.data)
+
+
+async def devopness_deploy_ssh_key(
+    ctx: Context[Any, Any],
+    pipeline_id: int,
+    ssh_key_id: int,
+) -> MCPResponse[Action]:
+    await ensure_authenticated()
+
+    if not pipeline_id:
+        if not ssh_key_id:
+            return MCPResponse.error(
+                [
+                    "A pipeline ID or an SSH key ID is required to trigger"
+                    " a deployment. Please ask the user to provide one of them."
+                ]
+            )
+
+        response_pipelines = await devopness.pipelines.list_pipelines_by_resource_type(
+            ssh_key_id,
+            "ssh-key",
+        )
+
+        if len(response_pipelines.data) == 0:
+            return MCPResponse.error(
+                [
+                    "No deployment pipelines were found for the given SSH key ID. "
+                    "Please ask the user to verify the SSH key and try again."
+                ]
+            )
+
+        msg: List[str] = [
+            "The following deployment pipelines were found for this SSH key:",
+        ]
+
+        for pipeline in response_pipelines.data:
+            msg.append(f"- {pipeline.name} (ID: {pipeline.id})")
+
+        msg.append(
+            "Please ask the user to choose one of the listed pipeline IDs. "
+            "Then call this function again with the selected ID as the 'pipeline_id'"
+            " argument."
+        )
+
+        return MCPResponse.warning(msg)
+
+    response = await devopness.actions.add_pipeline_action(pipeline_id, {})
+
+    await ctx.info(
+        f"SSH key deployment has been triggered using pipeline ID {pipeline_id} "
+        f"with SSH key ID {ssh_key_id}."
+    )
+
+    await ctx.info(
+        "To monitor the deployment progress, visit the following URL:\n"
+        f"{response.data.url_web_permalink}"
+    )
+
+    return MCPResponse[Action].ok(response.data)
