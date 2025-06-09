@@ -85,30 +85,3 @@ jobs:
           # and scope it specifically to the 'packages/sdks/python' project,
           # similar to how DEVOPNESS_MCP_SERVER_PYPI_TOKEN is handled.
           POETRY_PYPI_TOKEN: ${{ secrets.POETRY_PYPI_TOKEN }}
-
-  update-lockfile-after-release:
-    name: Update package-lock.json After Release
-    runs-on: ubuntu-latest
-    needs:
-      - release-npm-packages
-      - release-pypi-packages
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: "22.x"
-
-      - name: Sync workspace versions in lockfile
-        run: npm install --workspaces
-
-      - uses: stefanzweifel/git-auto-commit-action@v4
-        if: github.repository == 'devopness/devopness'
-        with:
-          commit_message: "chore: update package-lock.json after releasing packages"
-          file_pattern: "package-lock.json"
-          commit_user_name: ${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}
-          commit_user_email: ${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}
