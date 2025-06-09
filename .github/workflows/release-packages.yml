@@ -52,9 +52,11 @@ jobs:
         include:
           - name: 'Devopness AI - MCP Server'
             path: 'packages/ai/mcp-server'
+            pypi_token: 'DEVOPNESS_MCP_SERVER_PYPI_TOKEN'
 
           - name: 'Devopness SDK - Python'
             path: 'packages/sdks/python'
+            pypi_token: 'DEVOPNESS_SDK_PYTHON_PYPI_TOKEN'
 
     steps:
       - name: Checkout repository
@@ -67,21 +69,8 @@ jobs:
         working-directory: ${{ matrix.path }}
         run: make build-image
 
-      - name: Publish ${{ matrix.name }} to PyPI
+      - name: Publish '${{ matrix.name }}' to PyPI
         working-directory: ${{ matrix.path }}
         run: make publish
         env:
-          # TODO: Refactor the Makefile to use a generic PYPI_TOKEN variable,
-          # so each package can receive it under a consistent name.
-          # Example:
-          #   - For MCP Server, pass $PYPI_TOKEN to the publish script,
-          #     mapping it internally to DEVOPNESS_MCP_SERVER_PYPI_TOKEN.
-          #   - For Python SDK, pass $PYPI_TOKEN, mapping it to DEVOPNESS_SDK_PYTHON_PYPI_TOKEN.
-          # This allows the GitHub Actions step to use: $ {{ secrets[matrix.pypi_token] }}
-
-          DEVOPNESS_MCP_SERVER_PYPI_TOKEN: ${{ secrets.DEVOPNESS_MCP_SERVER_PYPI_TOKEN }}
-
-          # TODO: Rename this secret to DEVOPNESS_SDK_PYTHON_PYPI_TOKEN
-          # and scope it specifically to the 'packages/sdks/python' project,
-          # similar to how DEVOPNESS_MCP_SERVER_PYPI_TOKEN is handled.
-          POETRY_PYPI_TOKEN: ${{ secrets.POETRY_PYPI_TOKEN }}
+          PYPI_TOKEN: ${{ secrets[matrix.pypi_token] }}

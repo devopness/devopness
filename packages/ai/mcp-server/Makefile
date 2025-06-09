@@ -24,26 +24,33 @@ shell: build-image ## 🐚 Open a shell inside the MCP Server container
 		$(IMAGE):$(TAG) \
 		/bin/bash
 
-##@ MCP Server Build & Publish
-
-build-mcp-server: build-image ## ⚙️  Build the Devopness MCP Server
-	$(info 🏗️  Building MCP Server using Docker...)
-	@docker run --rm \
-		-v $(PWD):/$(WORKDIR) \
-		--name devopness-mcp-server-build \
-		$(IMAGE):$(TAG) \
-		/bin/bash -cex ' \
-			uv build --no-cache \
-		'
-
-publish: build-image ## 🚀 Publish the MCP Server to PyPI (requires DEVOPNESS_MCP_SERVER_PYPI_TOKEN)
+##@ MCP Server Publish
+publish: build-image ## 🚀 Publish the MCP Server to PyPI (requires PYPI_TOKEN)
 	$(info 📦 Publishing MCP Server to PyPI...)
 	@docker run --rm \
 		-v $(PWD):/$(WORKDIR) \
-		--env DEVOPNESS_MCP_SERVER_PYPI_TOKEN=$(DEVOPNESS_MCP_SERVER_PYPI_TOKEN) \
+		--env DEVOPNESS_MCP_SERVER_PYPI_TOKEN=$(PYPI_TOKEN) \
 		--name devopness-mcp-server-publish \
 		$(IMAGE):$(TAG) \
-		/bin/bash scripts/publish.sh
+		/bin/bash -ce ' \
+			VERSION=$$(uv version --short); \
+			rm -rf dist; \
+			uv build --no-cache; \
+			set +e; \
+			OUTPUT=$$(uv publish --token "$$DEVOPNESS_MCP_SERVER_PYPI_TOKEN" 2>&1); \
+			EXIT_CODE=$$?; \
+			set -e; \
+			if [ $$EXIT_CODE -ne 0 ]; then \
+				if echo "$$OUTPUT" | grep -q "File already exists"; then \
+					echo "⚠️  Package version $$VERSION already exists on PyPI."; \
+				else \
+					echo "$$OUTPUT"; \
+					exit $$EXIT_CODE; \
+				fi; \
+			else \
+				echo "✅  Successfully published version $$VERSION to PyPI!"; \
+				echo "🔗  https://pypi.org/project/devopness-mcp-server/$$VERSION/"; \
+			fi'
 
 ##@ Lint & Format
 

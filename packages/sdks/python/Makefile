@@ -41,23 +41,32 @@ build-sdk-python: build-image ## ⚙️  Build the Devopness SDK for Python
 		$(IMAGE):$(TAG) \
 		scripts/build.py
 
-publish: build-image ## 🚀 Publish the SDK to PyPI (requires POETRY_PYPI_TOKEN)
-	$(info 📦 Publishing SDK to PyPI...)
+publish: build-image ## 🚀 Publish the SDK to PyPI (requires PYPI_TOKEN)
+	$(info 📦  Publishing SDK to PyPI...)
 	@docker run --rm \
 		-v $(PWD):/$(WORKDIR) \
-		--env POETRY_PYPI_TOKEN=$(POETRY_PYPI_TOKEN) \
+		--env DEVOPNESS_SDK_PYTHON_PYPI_TOKEN=$(PYPI_TOKEN) \
 		--name devopness-sdk-python-publish \
 		$(IMAGE):$(TAG) \
-		/bin/bash scripts/publish.sh
-
-publish-dev: build-image ## 🚀 Publish the SDK to Test PyPI (requires POETRY_TEST_PYPI_TOKEN)
-	$(info 🧪 Publishing SDK to Test PyPI...)
-	@docker run --rm \
-		-v $(PWD):/$(WORKDIR) \
-		--env POETRY_TEST_PYPI_TOKEN=$(POETRY_TEST_PYPI_TOKEN) \
-		--name devopness-sdk-python-publish-dev \
-		$(IMAGE):$(TAG) \
-		/bin/bash scripts/publish-dev.sh
+		/bin/bash -ce ' \
+		  rm -rf dist; \
+			VERSION=$$(poetry version --short); \
+			poetry config pypi-token.pypi "$$DEVOPNESS_SDK_PYTHON_PYPI_TOKEN" &> /dev/null; \
+			set +e; \
+			OUTPUT=$$(poetry publish --build 2>&1); \
+			EXIT_CODE=$$?; \
+			set -e; \
+			if [ $$EXIT_CODE -ne 0 ]; then \
+				if echo "$$OUTPUT" | grep -q "File already exists"; then \
+					echo "⚠️  Package version $$VERSION already exists on PyPI."; \
+				else \
+					echo "$$OUTPUT"; \
+					exit $$EXIT_CODE; \
+				fi; \
+			else \
+				echo "✅  Successfully published version $$VERSION to PyPI!"; \
+				echo "🔗  https://pypi.org/project/devopness/$$VERSION/"; \
+			fi'
 
 ##@ Lint & Format
 
