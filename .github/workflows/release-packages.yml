@@ -62,7 +62,26 @@ jobs:
         working-directory: ${{ matrix.path }}
         run: make build-image
 
+      - name: Check if version already published on PyPI
+        id: version_check
+        working-directory: ${{ matrix.path }}
+        run: |
+          LOCAL_VERSION=$(jq -r .version package.json)
+          PYPI_VERSION=$(curl -s https://pypi.org/pypi/${{ matrix.pypi_name }}/json | jq -r .info.version)
+
+          echo "Local version: $LOCAL_VERSION"
+          echo "PyPI version:  $PYPI_VERSION"
+
+          if [ "$LOCAL_VERSION" = "$PYPI_VERSION" ]; then
+            echo "Package version is already published on PyPI. Skipping publish."
+            echo "should_publish=false" >> $GITHUB_OUTPUT
+          else
+            echo "New version detected. Proceeding with publish."
+            echo "should_publish=true" >> $GITHUB_OUTPUT
+          fi
+
       - name: Publish '${{ matrix.name }}' to PyPI
+        if: steps.version_check.outputs.should_publish == 'true'
         working-directory: ${{ matrix.path }}
         run: make publish
         env:

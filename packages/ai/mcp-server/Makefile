@@ -32,25 +32,11 @@ publish: build-image ## 🚀 Publish the MCP Server to PyPI (requires PYPI_TOKEN
 		--env DEVOPNESS_MCP_SERVER_PYPI_TOKEN=$(PYPI_TOKEN) \
 		--name devopness-mcp-server-publish \
 		$(IMAGE):$(TAG) \
-		/bin/bash -ce ' \
-			VERSION=$$(uv version --short); \
+		/bin/bash -cex ' \
 			rm -rf dist; \
 			uv build --no-cache; \
-			set +e; \
-			OUTPUT=$$(uv publish --token "$$DEVOPNESS_MCP_SERVER_PYPI_TOKEN" 2>&1); \
-			EXIT_CODE=$$?; \
-			set -e; \
-			if [ $$EXIT_CODE -ne 0 ]; then \
-				if echo "$$OUTPUT" | grep -q "File already exists"; then \
-					echo "⚠️ Package version $$VERSION already exists on PyPI."; \
-				else \
-					echo "$$OUTPUT"; \
-					exit $$EXIT_CODE; \
-				fi; \
-			else \
-				echo "✅ Successfully published version $$VERSION to PyPI!"; \
-				echo "🔗 https://pypi.org/project/devopness-mcp-server/$$VERSION/"; \
-			fi'
+			uv publish --token "$$DEVOPNESS_MCP_SERVER_PYPI_TOKEN"; \
+		'
 
 ##@ Lint & Format
 
