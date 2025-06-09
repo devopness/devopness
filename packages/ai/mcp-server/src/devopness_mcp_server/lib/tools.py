@@ -19,9 +19,11 @@ from devopness.models import (
     ServerRelation,
     SourceTypePlain,
     UserMe,
+    SshKey,
 )
 
 from .devopness_api import devopness, ensure_authenticated
+from .response import MCPResponse
 
 
 def register_tools(mcp_server: FastMCP) -> None:
@@ -216,3 +218,32 @@ async def devopness_create_webhook(
     )
 
     return response.data
+
+
+async def devopness_create_ssh_key(
+    environment_id: int,
+    name: str,
+    public_key: str,
+) -> MCPResponse[SshKey]:
+    """
+    Create a new SSH key and add it to the given environment.
+
+    You Should:
+    - Use this function when you want to create a new SSH key.
+    - Ask the user for a name for the SSH key. If the user does not provide a name,
+      suggest one and ask the user if they accept the suggested name or prefer another.
+    - Ask the user for the public key.
+    - Explain to the user how to get the public key.
+    - If the user asks how to create a new SSH key, ask the user which OS they are using
+      and help them create a new SSH key.
+    """
+    await ensure_authenticated()
+    response = await devopness.ssh_keys.add_environment_ssh_key(
+        environment_id,
+        {
+            "name": name,
+            "public_key": public_key,
+        },
+    )
+
+    return MCPResponse[SshKey].ok(response.data)
