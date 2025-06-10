@@ -1,4 +1,4 @@
-from typing import Any, List
+from typing import Any, List, Literal
 
 from mcp.server.fastmcp import Context, FastMCP
 
@@ -51,6 +51,7 @@ def register_tools(mcp_server: FastMCP) -> None:
     mcp_server.add_tool(devopness_create_service)
     mcp_server.add_tool(devopness_deploy_application)
     mcp_server.add_tool(devopness_deploy_ssh_key)
+    mcp_server.add_tool(devopness_deploy_service)
 
 
 async def devopness_get_user_profile() -> UserMe:
@@ -405,7 +406,7 @@ async def devopness_list_services(
             "Use the template below to format the list:",
             "{service.type_human_readable} (ID: {service.id})",
             "   - Version: {service.version}",
-            "   - Last Action: {service.last_action.type_human_readable} ({service.last_action.status_human_readable})",  # noqa: E501
+            "   - Last Action: {service.last_action.type_human_readable} ({service.last_action.status_human_readable})",
         ],
     )
 
@@ -429,7 +430,7 @@ async def devopness_create_service(
     3. Create a new service:
        - Provide environment_id, service_type, and service_version
        - Example: devopness_create_service(environment_id=123, service_type="nginx", service_version="1.18")
-    """  # noqa: E501
+    """
     await ensure_authenticated()
     if not service_type or not service_version:
         response_services = await devopness.static.get_static_service_options()
@@ -476,4 +477,137 @@ async def devopness_create_service(
             "Service has been successfully created.",
             "Show to user the main information about the service.",
         ],
+    )
+
+
+async def devopness_deploy_service(
+    operation: Literal[
+        "deploy",
+        "list_pipelines",
+        "list_linked_servers",
+    ],
+    pipeline_id: int | None = None,
+    service_id: int | None = None,
+    server_ids: List[int] | None = None,
+) -> MCPResponse[Action]:
+    """
+    Deploy a service to one or more servers using a pipeline.
+
+    You can call this function with the following operations:
+
+    - `deploy`: Deploy the service to one or more servers using a pipeline.
+    - `list_pipelines`: List the available deployment pipelines for the given service ID.
+    - `list_linked_servers`: List the servers that are linked with the given service ID.
+    """
+    await ensure_authenticated()
+
+    if operation == "deploy":
+        if not pipeline_id:
+            return MCPResponse.error(
+                [
+                    "A pipeline ID is required to deploy the service. "
+                    "Please ask the user to provide a pipeline ID."
+                ]
+            )
+
+        if server_ids and len(server_ids) == 0:
+            return MCPResponse.error(
+                [
+                    "You provided an empty list of server IDs.",
+                    "Provide a list with at least one server ID to deploy the service.",
+                    "Or not provide the server_ids argument to deploy the service to all servers linked with the service.",
+                ]
+            )
+
+        action_pipeline_create: ActionPipelineCreatePlain = {}
+        if server_ids:
+            action_pipeline_create["servers"] = server_ids
+
+        deploy_response = await devopness.actions.add_pipeline_action(
+            pipeline_id,
+            action_pipeline_create,
+        )
+
+        return MCPResponse[Action].ok(
+            deploy_response.data,
+            [
+                f"Service deployment has been triggered using pipeline ID {pipeline_id} with service ID {service_id}.",
+                "To monitor the deployment progress, visit the following URL:",
+                deploy_response.data.url_web_permalink,
+                "Explain to the user how to monitor the deployment progress.",
+                "Show the main information's about the action.",
+            ],
+        )
+
+    if operation == "list_pipelines":
+        if not service_id:
+            return MCPResponse.error(
+                [
+                    "A service ID is required to list the deployment pipelines. "
+                    "Please ask the user to provide a service ID."
+                ]
+            )
+
+        list_pipelines_response = (
+            await devopness.pipelines.list_pipelines_by_resource_type(
+                service_id, "service"
+            )
+        )
+
+        if len(list_pipelines_response.data) == 0:
+            return MCPResponse.error(
+                [
+                    "No deployment pipelines were found for the given service ID. "
+                    "Please ask the user to verify the service and try again."
+                ]
+            )
+
+        return MCPResponse.ok(
+            instructions=[
+                "The following deployment pipelines were found for this service:",
+                list_pipelines_response.data,
+                "Please ask the user to choose one of the listed pipeline IDs.",
+                "Then call this function again with the selected ID as the 'pipeline_id' argument.",
+            ]
+        )
+
+    if operation == "list_linked_servers":
+        if not service_id:
+            return MCPResponse.error(
+                [
+                    "A service ID is required to list the linked servers. "
+                    "Please ask the user to provide a service ID."
+                ]
+            )
+
+        list_linked_servers_response = (
+            await devopness.resource_links.list_resource_links_by_resource_type(
+                service_id,
+                "service",
+            )
+        )
+
+        if len(list_linked_servers_response.data) == 0:
+            return MCPResponse.error(
+                [
+                    "No linked servers were found for the given service ID. "
+                    "Please ask the user to verify the service and try again."
+                ]
+            )
+
+        return MCPResponse.ok(
+            instructions=[
+                "The following servers are linked with this service:",
+                list_linked_servers_response.data,
+                "You can use these server IDs to deploy the service to specific servers.",
+                "If you want to deploy the service to all linked servers, "
+                "you can provide an empty list of server IDs.",
+            ],
+        )
+
+    return MCPResponse.error(
+        [
+            f"Invalid operation specified: {operation}.",
+            "Valid operations are: 'deploy', 'list_pipelines', 'list_linked_servers'.",
+        ]
     )
