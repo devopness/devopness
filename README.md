@@ -1,11 +1,27 @@
+# Devopness - `DevOps + Happiness` :-) for AI Agents & humans
+
 [![MIT License](https://img.shields.io/badge/license-MIT-green.svg?style=flat-square)](https://github.com/devopness/devopness/blob/main/LICENSE)
 
-# Devopness - Official open-source repository
+## Installation
+
+[![Install Devopness MCP Server in Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/install-mcp?name=devopness&config=eyJjb21tYW5kIjoidXZ4IGRldm9wbmVzcy1tY3Atc2VydmVyIiwiZW52Ijp7IkRFVk9QTkVTU19VU0VSX0VNQUlMIjoiWU9VUl9ERVZPUE5FU1NfVVNFUl9FTUFJTCIsIkRFVk9QTkVTU19VU0VSX1BBU1NXT1JEIjoiWU9VUl9ERVZPUE5FU1NfVVNFUl9QQVNTV09SRCJ9fQ%3D%3D)
+
+[![Install Devopness MCP Server in VS Code](https://img.shields.io/badge/VS_Code-000000?style=for-the-badge&label=Add%20to&labelColor=000000&color=000000
+)](https://insiders.vscode.dev/redirect/mcp/install?name=devopness&config=%7B%22command%22%3A%22uvx%22%2C%22args%22%3A%5B%22devopness-mcp-server%22%5D%2C%22env%22%3A%7B%22DEVOPNESS_USER_EMAIL%22%3A%22YOUR_DEVOPNESS_USER_EMAIL%22%2C%22DEVOPNESS_USER_PASSWORD%22%3A%22YOUR_DEVOPNESS_USER_PASSWORD%22%7D%7D)
 
 ## About Devopness
-`Devopness` aims to drastically simplify the way we manage cloud applications and multi cloud infrastructure in a secure and productive way.
 
-By streamlining essential DevOps practices, we're making first-class software deployment and cloud infrastructure management tools accessible and affordable to everyone in the world who is involved in software projects.
+`Devopness` drastically simplifies the way we manage cloud applications and multi cloud infrastructure in a secure and productive way.
+
+Deovpness allows AI Agents and humans to provision and manage cloud infrastructure and deploy applications to `AWS`, `Azure`, `DigitalOcean`, `GCP`, ..., and any other major cloud provider.
+
+* Simplified role based access control and permisson management
+* No surprise on your cloud provider bills, as we only deploy the infra that each team of humans or agents have permissions to
+* Full control on what AI Agents can do on your DevOps and CI/CD workflows
+* Full visibility, auditing and traceability on what has been done by each person or agent in your teams
+
+We're making first-class software deployment and cloud infrastructure management tools accessible and affordable to everyone who is involved in software projects.
+
 ## 📚 <a id="docs"></a>Documentation
 
 
@@ -32,10 +48,13 @@ Detailed changes for each release are documented in the [release notes](https://
 ## 📂 <a id="repo"></a>Repo Structure
 
 This repository has the following packages/sub-projects:
+
 ### Packages
+
 | Subpath                    | Package                   | Description                     |Status|
 |:---------------------------|:--------------------------|:--------------------------------|-|
 | [/docs](docs/)             | 📚 Documentation          | End user product documentation  |-|
+| [/packages/ai/mcp-server](packages/ai/mcp-server/) | AI MCP Server  | MCP Server to interact with Devopness using LLM's |[![MCP Server - CI](https://img.shields.io/github/actions/workflow/status/devopness/devopness/ci-mcp-server.yml?label=MCP%20Server)](https://github.com/devopness/devopness/actions/workflows/ci-mcp-server.yml)<br>[![MCP Server - Version](https://img.shields.io/pypi/v/devopness-mcp-server?label=MCP%20Server)](https://pypi.org/project/devopness-mcp-server/)|
 | [/packages/sdks/javascript](packages/sdks/javascript/) | API SDK JavaScript  | API SDK to interact with Devopness using JavaScript and TypeScript |[![SDK JavaScript - CI](https://img.shields.io/github/actions/workflow/status/devopness/devopness/ci-sdk-javascript.yml?label=SDK%20JavaScript)](https://github.com/devopness/devopness/actions/workflows/ci-sdk-javascript.yml)<br>[![SDK JavaScript - Version](https://img.shields.io/npm/v/@devopness/sdk-js?label=SDK%20JavaScript)](https://www.npmjs.com/package/@devopness/sdk-js)|
 | [/packages/sdks/python](packages/sdks/python/) | API SDK Python  | API SDK to interact with Devopness using Python |[![SDK Python - CI](https://img.shields.io/github/actions/workflow/status/devopness/devopness/ci-sdk-python.yml?label=SDK%20Python)](https://github.com/devopness/devopness/actions/workflows/ci-sdk-python.yml)<br>[![SDK Python - Version](https://img.shields.io/pypi/v/devopness?label=SDK%20Python)](https://pypi.org/project/devopness/)|
 | [/packages/ui/react](packages/ui/react/) | UI React Components  | Devopness Design System UI components for React |[![UI React - CI](https://img.shields.io/github/actions/workflow/status/devopness/devopness/ci-ui-react.yml?label=UI%20React)](https://github.com/devopness/devopness/actions/workflows/ci-ui-react.yml)<br>[![UI React - Version](https://img.shields.io/npm/v/@devopness/ui-react?label=UI%20React)](https://www.npmjs.com/package/@devopness/ui-react)|

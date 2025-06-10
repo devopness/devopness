@@ -4,7 +4,7 @@ TAG ?= latest
 WORKDIR := mcp
 
 .DEFAULT_GOAL := help
-.PHONY: build-image shell lint format help
+.PHONY: build-image shell publish lint format help
 
 ##@ Docker
 
@@ -23,6 +23,19 @@ shell: build-image ## 🐚 Open a shell inside the MCP Server container
 		--name devopness-mcp-server-shell \
 		$(IMAGE):$(TAG) \
 		/bin/bash
+
+##@ MCP Server Publish
+publish: build-image ## 🚀 Publish the MCP Server to PyPI (requires PYPI_TOKEN)
+	$(info 📦 Publishing MCP Server to PyPI...)
+	@docker run --rm \
+		-v $(PWD):/$(WORKDIR) \
+		--env DEVOPNESS_MCP_SERVER_PYPI_TOKEN=$(PYPI_TOKEN) \
+		--name devopness-mcp-server-publish \
+		$(IMAGE):$(TAG) \
+		/bin/bash -cex ' \
+			uv build --no-cache; \
+			uv publish --token "$$DEVOPNESS_MCP_SERVER_PYPI_TOKEN"; \
+		'
 
 ##@ Lint & Format
 
