@@ -5,10 +5,10 @@ links:
   overview:
   quickstart:
   previous: teams/list-teams
-  next: teams/invitations/add-invitations
+  next: teams/invitations/add-invitation
   guides:
   related:
-    - teams/add-teams
+    - teams/add-team
     - teams/list-teams
 ---
 
