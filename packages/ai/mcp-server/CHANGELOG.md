@@ -1,5 +1,11 @@
 # @devopness/mcp-server
 
+## 0.0.7
+
+### Patch Changes
+
+- [#1826](https://github.com/devopness/devopness/pull/1826) [`653a5bc`](https://github.com/devopness/devopness/commit/653a5bc0102f21d50252e4df55bbb7d5c9ee58cf) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Add tool's to create and deploy SSH Keys
+
 ## 0.0.6
 
 ### Patch Changes
