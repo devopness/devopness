@@ -1,11 +1,23 @@
 [![MIT License](https://img.shields.io/badge/license-MIT-green.svg?style=flat-square)](https://github.com/devopness/devopness/blob/main/LICENSE)
 
-# Devopness - Official open-source repository
+# Devopness - `DevOps + Happiness` :-) for AI Agents & humans
+
+## Installation
+[![Install Devopness MCP Server in Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/install-mcp?name=devopness&config=eyJjb21tYW5kIjoidXZ4IGRldm9wbmVzcy1tY3Atc2VydmVyIiwiZW52Ijp7IkRFVk9QTkVTU19VU0VSX0VNQUlMIjoiWU9VUl9ERVZPUE5FU1NfVVNFUl9FTUFJTCIsIkRFVk9QTkVTU19VU0VSX1BBU1NXT1JEIjoiWU9VUl9ERVZPUE5FU1NfVVNFUl9QQVNTV09SRCJ9fQ%3D%3D)
+
+[![Install Devopness MCP Server in VS Code](https://img.shields.io/badge/VS_Code-PYPI-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=devopness&config=%7B%22command%22%3A%22uvx%22%2C%22args%22%3A%5B%22devopness-mcp-server%22%5D%2C%22env%22%3A%7B%22DEVOPNESS_USER_EMAIL%22%3A%22YOUR_DEVOPNESS_USER_EMAIL%22%2C%22DEVOPNESS_USER_PASSWORD%22%3A%22YOUR_DEVOPNESS_USER_PASSWORD%22%7D%7D)
 
 ## About Devopness
-`Devopness` aims to drastically simplify the way we manage cloud applications and multi cloud infrastructure in a secure and productive way.
+`Devopness` drastically simplifies the way we manage cloud applications and multi cloud infrastructure in a secure and productive way.
 
-By streamlining essential DevOps practices, we're making first-class software deployment and cloud infrastructure management tools accessible and affordable to everyone in the world who is involved in software projects.
+Deovpness allows AI Agents and humans to provision and manage cloud infrastructure and deploy applications to `AWS`, `Azure`, `DigitalOcean`, `GCP`, ..., and any other major cloud provider.
+* Simplified role based access control and permisson management
+* No surprise on your cloud provider bills, as we only deploy the infra that each team of humans or agents have permissions to
+* Full control on what AI Agents can do on your DevOps and CI/CD workflows
+* Full visibility, auditing and traceability on what has been done by each person or agent in your teams
+
+We're making first-class software deployment and cloud infrastructure management tools accessible and affordable to everyone who is involved in software projects.
+
 ## 📚 <a id="docs"></a>Documentation
 
 
