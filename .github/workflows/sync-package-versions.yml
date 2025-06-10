@@ -60,7 +60,7 @@ jobs:
         if: github.repository == 'devopness/devopness'
         with:
           commit_message: "chore: update '${{ matrix.name }}' pyproject.toml"
-          file_pattern: "${{ matrix.path }}/pyproject.toml"
+          file_pattern: "${{ matrix.path }}/pyproject.toml ${{ matrix.path }}/*.lock"
           commit_user_name: ${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}
           commit_user_email: ${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}
 
