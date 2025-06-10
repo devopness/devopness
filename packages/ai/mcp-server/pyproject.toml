@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "devopness-mcp-server"
-version = "0.0.7"
+version = "0.0.8"
 description = "A Model Context Protocol (MCP) server that uses Devopness to allow AI Agents to provision infrastructure and deploy any app to any cloud"
 license = "MIT"
 readme = "README.md"
