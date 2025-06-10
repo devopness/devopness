@@ -41,6 +41,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+          cache: 'pip'
+
       - name: Sync the '${{ matrix.name }}' version
         run: |
           CHANGESET_PACKAGE_VERSION=$(jq -r .version "${{ matrix.path }}/package.json")
