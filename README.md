@@ -1,6 +1,6 @@
 [![MIT License](https://img.shields.io/badge/license-MIT-green.svg?style=flat-square)](https://github.com/devopness/devopness/blob/main/LICENSE)
 
-# Devopness - `DevOps + Happiness` :-), for AI Agents and even humans
+# Devopness - `DevOps + Happiness` :-) for AI Agents & humans
 
 ## Installation
 [![Install Devopness MCP Server](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/install-mcp?name=devopness&config=eyJjb21tYW5kIjoidXZ4IGRldm9wbmVzcy1tY3Atc2VydmVyIiwiZW52Ijp7IkRFVk9QTkVTU19VU0VSX0VNQUlMIjoiWU9VUl9ERVZPUE5FU1NfVVNFUl9FTUFJTCIsIkRFVk9QTkVTU19VU0VSX1BBU1NXT1JEIjoiWU9VUl9ERVZPUE5FU1NfVVNFUl9QQVNTV09SRCJ9fQ%3D%3D)
