@@ -150,6 +150,8 @@ const Card = ({ children, ...props }: CardProps) => (
     >
       <StyledHeader
         data-testid="card-header"
+        aria-labelledby="card-header-label"
+        role="heading"
         $backgroundColor={props.headerProps?.backgroundColor}
         $borderBottomColor={props.headerProps?.borderBottomColor}
         $hideBorder={!props.footer && !children}
@@ -209,6 +211,7 @@ const Card = ({ children, ...props }: CardProps) => (
             <Link
               hideExternalUrlIcon
               hideUnderline
+              ariaLabel={typeof footer.label === 'object' ? footer.label.content : footer.label}
               style={{
                 alignItems: 'center',
                 display: 'flex',
@@ -232,6 +235,9 @@ const Card = ({ children, ...props }: CardProps) => (
               )}
               <Button
                 buttonType="borderless"
+                aria-describedby='card-footer-label'
+                tabIndex={0}
+                aria-label={typeof footer.label === 'object' ? footer.label.content : footer.label}
                 noMargin
                 noPadding
               >
