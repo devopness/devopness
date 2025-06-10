@@ -46,6 +46,12 @@ jobs:
           CHANGESET_PACKAGE_VERSION=$(jq -r .version "${{ matrix.path }}/package.json")
           sed -i "s/^version = \".*\"/version = \"${CHANGESET_PACKAGE_VERSION}\"/" "${{ matrix.path }}/pyproject.toml"
 
+      - name: Run post-version-sync commands for '${{ matrix.name }}'
+        run: |
+          if [[ -n "${{ matrix.post_version_sync_commands }}" ]]; then
+            bash -c "${{ matrix.post_version_sync_commands }}"
+          fi
+
       - uses: stefanzweifel/git-auto-commit-action@v4
         if: github.repository == 'devopness/devopness'
         with:
