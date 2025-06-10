@@ -1,5 +1,11 @@
 # @devopness/sdk-python
 
+## 1.1.6
+
+### Patch Changes
+
+- [#1821](https://github.com/devopness/devopness/pull/1821) [`274e260`](https://github.com/devopness/devopness/commit/274e26006d53eba37b37753af0fa9e3386f2a639) Thanks [@Diegiwg](https://github.com/Diegiwg)! - chore: bump patch versions to test release system
+
 ## 1.1.5
 
 ### Patch Changes

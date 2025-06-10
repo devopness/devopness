@@ -1,6 +1,6 @@
 from mcp.server.fastmcp import FastMCP
 
-from lib.tools import register_tools
+from devopness_mcp_server.lib.tools import register_tools
 
 server = FastMCP("Devopness")
 

@@ -14,6 +14,6 @@ ENV UV_LINK_MODE=copy
 ENV VIRTUAL_ENV=/opt/venv
 ENV PATH="${VIRTUAL_ENV}/bin:${PATH}"
 
-COPY uv.lock pyproject.toml ./
+COPY uv.lock pyproject.toml README.md ./
 RUN uv venv $VIRTUAL_ENV --allow-existing -q
 RUN uv sync --active --all-groups --compile-bytecode
