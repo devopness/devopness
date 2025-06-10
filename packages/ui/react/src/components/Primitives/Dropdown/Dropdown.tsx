@@ -28,8 +28,7 @@ const DEFAULT_BUTTON_ICON_SIZE = 10
 const DEFAULT_ICON_MARGIN = 10
 
 type DropdownOptionIcon = Unwrap<
-  Partial<Pick<IconProps, 'name' | 'size'>> &
-    Pick<React.CSSProperties, 'backgroundColor' | 'color'>
+  IconProps & Pick<React.CSSProperties, 'backgroundColor'>
 > & { icon: true }
 
 type DropdownOptionLetter = Unwrap<
@@ -218,7 +217,7 @@ const ElementAnchor = ({
     return <ClickableContainer {...popupTrigger}>{content}</ClickableContainer>
   }
 
-  const dropdownIcon = popupState.isOpen ? 'upArrow' : 'downArrow'
+  const dropdownIcon = popupState.isOpen ? 'arrowUp' : 'arrowDown'
 
   return (
     <ConditionalWrapper
@@ -350,7 +349,7 @@ const Dropdown = ({
                           >
                             {option.badge.icon ? (
                               <Icon
-                                name={option.badge.name}
+                                {...option.badge}
                                 size={option.badge.size ?? 12}
                               />
                             ) : (

@@ -1,0 +1,23 @@
+class {{classname}}({{vendorExtensions.x-py-enum-type}}, Enum):
+    """
+    {{{description}}}{{^description}}{{{classname}}}{{/description}}
+    """
+
+{{#allowableValues}}
+    {{#enumVars}}
+    {{{name}}} = {{{value}}}
+    {{/enumVars}}
+
+    def __str__(self) -> str:
+        """Return the string representation of the {{classname}}"""
+        return self.value
+
+    @classmethod
+    def from_json(cls, json_str: str) -> Self:
+        """Create an instance of {{classname}} from a JSON string"""
+        return cls(json.loads(json_str))
+{{/allowableValues}}
+
+
+# The plain version of {{classname}}
+{{classname}}Plain = {{#allowableValues}} Literal[ {{#enumVars}} {{{value}}}, {{/enumVars}} ] {{/allowableValues}}

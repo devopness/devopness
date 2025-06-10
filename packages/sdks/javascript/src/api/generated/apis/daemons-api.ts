@@ -16,7 +16,9 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { Daemon } from '../../generated/models';
+import { DaemonEnvironmentCreate } from '../../generated/models';
 import { DaemonGetStatus } from '../../generated/models';
+import { DaemonRelation } from '../../generated/models';
 import { DaemonRestart } from '../../generated/models';
 import { DaemonStart } from '../../generated/models';
 import { DaemonStop } from '../../generated/models';
@@ -26,6 +28,28 @@ import { DaemonUpdate } from '../../generated/models';
  * DaemonsApiService - Auto-generated
  */
 export class DaemonsApiService extends ApiBaseService {
+    /**
+     * 
+     * @summary Add a Daemon to the given environment
+     * @param {number} environmentId The ID of the environment.
+     * @param {DaemonEnvironmentCreate} daemonEnvironmentCreate A JSON object containing the resource data
+     */
+    public async addEnvironmentDaemon(environmentId: number, daemonEnvironmentCreate: DaemonEnvironmentCreate): Promise<ApiResponse<Daemon>> {
+        if (environmentId === null || environmentId === undefined) {
+            throw new ArgumentNullException('environmentId', 'addEnvironmentDaemon');
+        }
+        if (daemonEnvironmentCreate === null || daemonEnvironmentCreate === undefined) {
+            throw new ArgumentNullException('daemonEnvironmentCreate', 'addEnvironmentDaemon');
+        }
+
+        let queryString = '';
+
+        const requestUrl = '/environments/{environment_id}/daemons' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <Daemon, DaemonEnvironmentCreate>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))), daemonEnvironmentCreate);
+        return new ApiResponse(response);
+    }
+
     /**
      * 
      * @summary Delete a given Daemon
@@ -81,6 +105,34 @@ export class DaemonsApiService extends ApiBaseService {
         const requestUrl = '/daemons/{daemon_id}/get-status' + (queryString? `?${queryString}` : '');
 
         const response = await this.post <void, DaemonGetStatus>(requestUrl.replace(`{${"daemon_id"}}`, encodeURIComponent(String(daemonId))), daemonGetStatus);
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Return a list of all Daemons belonging to an environment
+     * @param {number} environmentId The ID of the environment.
+     * @param {number} [page] Number of the page to be retrieved
+     * @param {number} [perPage] Number of items returned per page
+     */
+    public async listEnvironmentDaemons(environmentId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<DaemonRelation>>> {
+        if (environmentId === null || environmentId === undefined) {
+            throw new ArgumentNullException('environmentId', 'listEnvironmentDaemons');
+        }
+
+        let queryString = '';
+        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
+        const requestUrl = '/environments/{environment_id}/daemons' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <Array<DaemonRelation>>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
         return new ApiResponse(response);
     }
 

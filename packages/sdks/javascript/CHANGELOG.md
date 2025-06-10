@@ -1,5 +1,230 @@
 # @devopness/sdk-js
 
+## 2.164.2
+
+### Patch Changes
+
+- [#1786](https://github.com/devopness/devopness/pull/1786) [`0c52385`](https://github.com/devopness/devopness/commit/0c52385346df92b1c6cffc9452f5944057bb96e4) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Updated SDK methods that accept `hook_type` to use the `HookTypeParam` enum instead of plain strings.
+  This change clearly defines the allowed values for this field, reducing the likelihood of user errors.
+
+## 2.164.1
+
+### Patch Changes
+
+- [#1751](https://github.com/devopness/devopness/pull/1751) [`830e13c`](https://github.com/devopness/devopness/commit/830e13cca7f4d4f4f93f8973551639aeb62e772c) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Make **url_slug** field optional to ensure compatibility with Prod and Dev API versions.
+
+## 2.164.0
+
+### Minor Changes
+
+- [#1728](https://github.com/devopness/devopness/pull/1728) [`4b99969`](https://github.com/devopness/devopness/commit/4b999691964e897b3046d641db4a3ed86b656711) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Added the `architecture` field to the `CloudInstanceRelation` model, allowing access to the instance architecture (e.g., x86_64, arm64).
+
+## 2.163.7
+
+### Patch Changes
+
+- [#1673](https://github.com/devopness/devopness/pull/1673) [`fcb97e2`](https://github.com/devopness/devopness/commit/fcb97e2f616d550fd4e17e96ecb137785b96b8c9) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Fix ActionTarget Model to include ID prop
+
+## 2.163.6
+
+### Patch Changes
+
+- [#1660](https://github.com/devopness/devopness/pull/1660) [`2038a77`](https://github.com/devopness/devopness/commit/2038a77aa7b3c971951483c03b2f68e12ef88c36) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Fix the Action Type Enum to include Rotate Key
+
+## 2.163.5
+
+### Patch Changes
+
+- [#1658](https://github.com/devopness/devopness/pull/1658) [`3753d85`](https://github.com/devopness/devopness/commit/3753d858c017a1f08a3c2310fe497243061d503a) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Fix issues in sdk's models
+
+## 2.163.4
+
+### Patch Changes
+
+- [#1653](https://github.com/devopness/devopness/pull/1653) [`934c4c4`](https://github.com/devopness/devopness/commit/934c4c48567cea490afd68c29fafb84acf17b7b0) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Fix documentation of Action Resource Data
+
+## 2.163.3
+
+### Patch Changes
+
+- [#1651](https://github.com/devopness/devopness/pull/1651) [`7fa10ba`](https://github.com/devopness/devopness/commit/7fa10ba49132e899f143435f7434026e8a16eee8) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Remove unused 'provider_id' field from ActionDeploymentContent Model
+
+## 2.163.2
+
+### Patch Changes
+
+- [#1643](https://github.com/devopness/devopness/pull/1643) [`429c6d6`](https://github.com/devopness/devopness/commit/429c6d6686084c07f953ca58f98d60d69a6ab9d5) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Fix server status field type
+
+## 2.163.1
+
+### Patch Changes
+
+- [#1632](https://github.com/devopness/devopness/pull/1632) [`bcbfb36`](https://github.com/devopness/devopness/commit/bcbfb36b947143134c0c6b8f705f6cc5401d3a6a) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Add Azure Service to Credential and Provider List
+
+## 2.163.0
+
+### Minor Changes
+
+- [#1587](https://github.com/devopness/devopness/pull/1587) [`f30e7be`](https://github.com/devopness/devopness/commit/f30e7be9d66de180a4e2caef2acb5cc190104729) Thanks [@Diegiwg](https://github.com/Diegiwg)!
+
+  ## ⚠️ Breaking Change
+
+  ### What changed?
+
+  All `<ResourceType>` services that were previously accessed through the `EnvironmentService` (such as `applications`) have been moved to their respective standalone services (e.g., `ApplicationService`). Properties like `application` no longer exist in `EnvironmentService`.
+
+  ### Why was this change made?
+
+  This refactor simplifies the SDK structure by consolidating all `<ResourceType>` methods into their respective services. It eliminates redundancy, improves maintainability, and makes the SDK more intuitive and aligned with common API design principles.
+
+  ### Previous usage example
+
+  Previously, creating an application required accessing the method through `environment.application`:
+
+  ```ts
+  const apiClient = new DevopnessApiClient();
+  const options =
+    await apiClient.environment.application.addEnvironmentApplication();
+  ```
+
+  ### New usage example
+
+  Now, all application-related methods are available directly under `application`:
+
+  ```ts
+  const apiClient = new DevopnessApiClient();
+  const options = await apiClient.application.addEnvironmentApplication();
+  ```
+
+  ### Impact & Migration Guide
+
+  Update all references that use `environment.<resourceType>` to the new direct service call format.
+  For example:
+
+  ```ts
+  // Before
+  apiClient.environment.application.listEnvironmentApplications();
+
+  // After
+  apiClient.application.listEnvironmentApplications();
+  ```
+
+  Repeat this migration for all affected `<ResourceType>` services.
+
+## 2.162.2
+
+### Patch Changes
+
+- [#1573](https://github.com/devopness/devopness/pull/1573) [`5ffe0f5`](https://github.com/devopness/devopness/commit/5ffe0f5cd5d67ab5c29b476194a9c05c9b0b2bdb) Thanks [@Diegiwg](https://github.com/Diegiwg)! - add url_slug in user-relation model
+
+- [#1573](https://github.com/devopness/devopness/pull/1573) [`5ffe0f5`](https://github.com/devopness/devopness/commit/5ffe0f5cd5d67ab5c29b476194a9c05c9b0b2bdb) Thanks [@Diegiwg](https://github.com/Diegiwg)! - add version of action-relation model without resource field
+
+## 2.162.1
+
+### Patch Changes
+
+- [#1549](https://github.com/devopness/devopness/pull/1549) [`0302fb6`](https://github.com/devopness/devopness/commit/0302fb6671ae865b47ba1bd202dfe6d5b236c3d0) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Fix type of 'ID' field in UserUpdate
+
+## 2.162.0
+
+### Minor Changes
+
+- [#1536](https://github.com/devopness/devopness/pull/1536) [`147c541`](https://github.com/devopness/devopness/commit/147c5411bfd29c0324584ad41ee60f07f5c74c76) Thanks [@Diegiwg](https://github.com/Diegiwg)!
+
+  ## ⚠️ Breaking Change
+
+  ### What changed?
+
+  All static data services have been consolidated into `StaticService`, removing individual static service properties like `applicationOptions`.
+
+  ### Why was this change made?
+
+  This refactor simplifies the SDK structure by consolidating all static data retrieval methods into a single service. This reduces redundancy, improves maintainability, and ensures a more intuitive API design.
+
+  ### How was it used before?
+
+  Previously, retrieving static data required calling specific static services, such as:
+
+  ```ts
+  const apiClient = new DevopnessApiClient();
+  const options =
+    await apiClient.static.applicationOptions.getStaticApplicationOptions();
+  ```
+
+  ### How should it be used now?
+
+  Now, all static data methods are centralized under `StaticService`:
+
+  ```ts
+  const apiClient = new DevopnessApiClient();
+  const options = await apiClient.static.getStaticApplicationOptions();
+  ```
+
+  ### Impact & Migration
+
+  Replace all occurrences of static service calls, e.g., `static.applicationOptions.getStaticApplicationOptions()` with `static.getStaticApplicationOptions()`.
+
+- [#1536](https://github.com/devopness/devopness/pull/1536) [`147c541`](https://github.com/devopness/devopness/commit/147c5411bfd29c0324584ad41ee60f07f5c74c76) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Added resource summary in organization get and list methods
+
+## 2.161.1
+
+### Patch Changes
+
+- [#1532](https://github.com/devopness/devopness/pull/1532) [`43e8ef1`](https://github.com/devopness/devopness/commit/43e8ef1ac3dea78f4afa7276f56a019916602dc7) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Expose organization service in Devopness API
+
+## 2.161.0
+
+### Minor Changes
+
+- [#1530](https://github.com/devopness/devopness/pull/1530) [`09b7be4`](https://github.com/devopness/devopness/commit/09b7be4d81b96da798c77f722771c7b9c41434d2) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Add Support for Organizations
+
+  Include methods to:
+
+  - Create Organization
+  - List Organizations
+  - Get Organization
+  - Update Organization
+  - Get Organization Activity
+  - Get Organization Environments
+  - Get Organization Projects
+  - Create Project to Organization
+
+## 2.160.0
+
+### Minor Changes
+
+- [#1458](https://github.com/devopness/devopness/pull/1458) [`509d2fa`](https://github.com/devopness/devopness/commit/509d2fa226a680f5e7427014c944228d487b35ef) Thanks [@Diegiwg](https://github.com/Diegiwg)! - 🚨 Breaking Changes
+
+  - Removed the direct _team_memberships_ relation from EnvironmentRelation and ArchivedEnvironmentRelation.
+
+  🔄 Changes
+
+  - Added the _resource_summary_ field to the EnvironmentRelation and ArchivedEnvironmentRelation.
+
+  📌 Reason for Changes
+
+  The _resource_summary_ field centralizes summary information about linked resources, replacing explicit relations with a standardized summary format.
+
+  To retrieve a full list of team memberships, use the appropriate SDK method.
+
+  If you need to determine the number of linked team memberships, use:
+
+  ```ruby
+    environment
+      .resource_summary['team-membership']
+        .summary
+        .count
+  ```
+
+## 2.159.0
+
+### Minor Changes
+
+- [#1453](https://github.com/devopness/devopness/pull/1453) [`dc153a7`](https://github.com/devopness/devopness/commit/dc153a72bdd07d3f209f22ee11309c2b427784a6) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Added methods to delete and reject team invitations
+
+  - `deleteTeamInvitation`: Allows to cancel a pending team invitation
+  - `rejectTeamInvitation`: Allows to reject a pending team invitation
+
 ## 2.158.0
 
 ### Minor Changes

@@ -19,14 +19,16 @@
  * @enum {string}
  */
 export enum ActionType {
-    Configure = 'configure',
     CheckProvisioned = 'check_provisioned',
+    Configure = 'configure',
     Delete = 'delete',
     Deploy = 'deploy',
     GetStatus = 'get_status',
     Provision = 'provision',
     Reload = 'reload',
+    Remove = 'remove',
     Restart = 'restart',
+    RotateKey = 'rotate_key',
     Start = 'start',
     Stop = 'stop'
 }

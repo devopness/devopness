@@ -1,0 +1,34 @@
+from typing import Union, Optional, List
+from urllib.parse import urlencode
+
+from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
+
+{{#operations}}
+{{#operation}}
+  {{#allParams}}
+    {{^isHeaderParam}}
+      {{#isModel}}
+from ..models import {{dataType}}
+from ..models import {{dataType}}Plain
+      {{/isModel}}
+      {{#isEnumRef}}
+from ..models import {{dataType}}
+from ..models import {{dataType}}Plain
+      {{/isEnumRef}}
+    {{/isHeaderParam}}
+  {{/allParams}}
+
+  {{#returnProperty}}
+    {{#isModel}}
+from ..models import {{complexType}}
+    {{/isModel}}
+    {{#isContainer}}
+      {{#complexType}}
+from ..models import {{complexType}}
+      {{/complexType}}
+    {{/isContainer}}
+  {{/returnProperty}}
+{{/operation}}
+{{/operations}}
+
+from ..utils import parse_query_string

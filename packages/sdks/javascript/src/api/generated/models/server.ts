@@ -13,7 +13,6 @@
 
 
 import { ActionRelation } from './action-relation';
-import { ActionStatus } from './action-status';
 import { CloudOsVersionCode } from './cloud-os-version-code';
 import { CredentialRelation } from './credential-relation';
 import { EnvironmentRelation } from './environment-relation';
@@ -22,6 +21,7 @@ import { ProjectRelation } from './project-relation';
 import { ServerBlueprint } from './server-blueprint';
 import { ServerCloudServiceCode } from './server-cloud-service-code';
 import { ServerProvisionInput } from './server-provision-input';
+import { ServerStatus } from './server-status';
 import { UserRelation } from './user-relation';
 
 /**
@@ -77,7 +77,7 @@ export interface Server {
      * @type {string}
      * @memberof Server
      */
-    ip_address: string;
+    ip_address?: string;
     /**
      * The network port to which the SSH daemon is listening to SSH connections on the server
      * @type {number}
@@ -104,10 +104,10 @@ export interface Server {
     active: boolean;
     /**
      * 
-     * @type {ActionStatus}
+     * @type {ServerStatus}
      * @memberof Server
      */
-    status: ActionStatus;
+    status: ServerStatus;
     /**
      * Maximum number of actions that can run in parallel on this server. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run on this server,
      * @type {number}

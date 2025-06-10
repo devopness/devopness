@@ -20,6 +20,7 @@
  */
 export enum ServerCloudServiceCode {
     AwsEc2 = 'aws-ec2',
+    AzureRm = 'azure-rm',
     DigitaloceanDroplet = 'digitalocean-droplet',
     GcpGce = 'gcp-gce',
     SelfHostedCustom = 'self-hosted-custom'

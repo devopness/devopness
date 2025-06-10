@@ -12,7 +12,7 @@
  */
 
 
-import { ActionRelation } from './action-relation';
+import { ActionRelationShallow } from './action-relation-shallow';
 
 /**
  * 
@@ -58,10 +58,10 @@ export interface SshKeyRelation {
     fingerprint: string;
     /**
      * 
-     * @type {ActionRelation}
+     * @type {ActionRelationShallow}
      * @memberof SshKeyRelation
      */
-    last_action?: ActionRelation | null;
+    last_action?: ActionRelationShallow | null;
     /**
      * The date and time when the record was created
      * @type {string}

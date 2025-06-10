@@ -12,9 +12,9 @@
  */
 
 
-import { ActionRelation } from './action-relation';
-import { ActionStatus } from './action-status';
+import { ActionRelationShallow } from './action-relation-shallow';
 import { CredentialRelation } from './credential-relation';
+import { ServerStatus } from './server-status';
 
 /**
  * 
@@ -63,7 +63,7 @@ export interface ServerRelation {
      * @type {CredentialRelation}
      * @memberof ServerRelation
      */
-    credential: CredentialRelation | null;
+    credential?: CredentialRelation | null;
     /**
      * The region in which the server is located
      * @type {string}
@@ -81,7 +81,7 @@ export interface ServerRelation {
      * @type {string}
      * @memberof ServerRelation
      */
-    ip_address: string;
+    ip_address?: string;
     /**
      * The network port to which the SSH daemon is listening to SSH connections on the server
      * @type {number}
@@ -96,27 +96,27 @@ export interface ServerRelation {
     active: boolean;
     /**
      * 
-     * @type {ActionStatus}
+     * @type {ServerStatus}
      * @memberof ServerRelation
      */
-    status: ActionStatus;
+    status: ServerStatus;
     /**
      * 
-     * @type {ActionRelation}
+     * @type {ActionRelationShallow}
      * @memberof ServerRelation
      */
-    last_action: ActionRelation | null;
+    last_action?: ActionRelationShallow | null;
     /**
      * The date and time when the record was created
      * @type {string}
      * @memberof ServerRelation
      */
-    created_at: string;
+    created_at?: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof ServerRelation
      */
-    updated_at: string;
+    updated_at?: string;
 }
 

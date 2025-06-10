@@ -13,6 +13,7 @@
 
 
 import { ApplicationRelation } from './application-relation';
+import { CredentialRelation } from './credential-relation';
 import { CronJobRelation } from './cron-job-relation';
 import { DaemonRelation } from './daemon-relation';
 import { NetworkRelation } from './network-relation';
@@ -51,9 +52,9 @@ export interface ActionResource {
     type_human_readable: string;
     /**
      * The resource data of type specified on `resource.type`
-     * @type {ApplicationRelation | CronJobRelation | DaemonRelation | NetworkRelation | NetworkRuleRelation | ServerRelation | ServiceRelation | SshKeyRelation | SslCertificateRelation | SubnetRelation | VirtualHostRelation}
+     * @type {ApplicationRelation | CredentialRelation | CronJobRelation | DaemonRelation | NetworkRelation | NetworkRuleRelation | ServerRelation | ServiceRelation | SshKeyRelation | SslCertificateRelation | SubnetRelation | VirtualHostRelation}
      * @memberof ActionResource
      */
-    data?: ApplicationRelation | CronJobRelation | DaemonRelation | NetworkRelation | NetworkRuleRelation | ServerRelation | ServiceRelation | SshKeyRelation | SslCertificateRelation | SubnetRelation | VirtualHostRelation | null;
+    data?: ApplicationRelation | CredentialRelation | CronJobRelation | DaemonRelation | NetworkRelation | NetworkRuleRelation | ServerRelation | ServiceRelation | SshKeyRelation | SslCertificateRelation | SubnetRelation | VirtualHostRelation | null;
 }
 

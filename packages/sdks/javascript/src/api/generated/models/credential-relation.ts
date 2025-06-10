@@ -69,12 +69,12 @@ export interface CredentialRelation {
      * @type {string}
      * @memberof CredentialRelation
      */
-    created_at: string;
+    created_at?: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof CredentialRelation
      */
-    updated_at: string;
+    updated_at?: string;
 }
 
