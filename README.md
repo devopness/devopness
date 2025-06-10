@@ -3,8 +3,9 @@
 # Devopness - `DevOps + Happiness` :-) for AI Agents & humans
 
 ## Installation
-[![Install Devopness MCP Server](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/install-mcp?name=devopness&config=eyJjb21tYW5kIjoidXZ4IGRldm9wbmVzcy1tY3Atc2VydmVyIiwiZW52Ijp7IkRFVk9QTkVTU19VU0VSX0VNQUlMIjoiWU9VUl9ERVZPUE5FU1NfVVNFUl9FTUFJTCIsIkRFVk9QTkVTU19VU0VSX1BBU1NXT1JEIjoiWU9VUl9ERVZPUE5FU1NfVVNFUl9QQVNTV09SRCJ9fQ%3D%3D)
+[![Install Devopness MCP Server in Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/install-mcp?name=devopness&config=eyJjb21tYW5kIjoidXZ4IGRldm9wbmVzcy1tY3Atc2VydmVyIiwiZW52Ijp7IkRFVk9QTkVTU19VU0VSX0VNQUlMIjoiWU9VUl9ERVZPUE5FU1NfVVNFUl9FTUFJTCIsIkRFVk9QTkVTU19VU0VSX1BBU1NXT1JEIjoiWU9VUl9ERVZPUE5FU1NfVVNFUl9QQVNTV09SRCJ9fQ%3D%3D)
 
+[![Install Devopness MCP Server in VS Code](https://img.shields.io/badge/VS_Code-PYPI-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name%3Ddevopness%26config%3D%7B%22command%22%3A%22uvx%22%2C%22args%22%3A%5B%22-q%22%2C%22-U%22%2C%22devopness-mcp-server%22%5D%7D)
 
 ## About Devopness
 `Devopness` drastically simplifies the way we manage cloud applications and multi cloud infrastructure in a secure and productive way.
