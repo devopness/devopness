@@ -18,7 +18,9 @@ from devopness.models import (
     Server,
     ServerEnvironmentCreate,
     ServerRelation,
+    Service,
     ServiceRelation,
+    ServiceType,
     SourceTypePlain,
     SshKey,
     UserMe,
@@ -46,6 +48,7 @@ def register_tools(mcp_server: FastMCP) -> None:
     mcp_server.add_tool(devopness_create_cloud_server)
     mcp_server.add_tool(devopness_create_ssh_key)
     mcp_server.add_tool(devopness_create_webhook)
+    mcp_server.add_tool(devopness_create_service)
     mcp_server.add_tool(devopness_deploy_application)
     mcp_server.add_tool(devopness_deploy_ssh_key)
 
@@ -377,8 +380,6 @@ async def devopness_list_services(
           and request a valid environment ID. DO NOT INVOKE THIS TOOL
           WITHOUT USER CONFIRMATION THAT THE ID IS VALID.
     """
-    await ensure_authenticated()
-
     if environment_id is None:
         return MCPResponse.error(
             [
@@ -395,6 +396,7 @@ async def devopness_list_services(
             ]
         )
 
+    await ensure_authenticated()
     response = await devopness.services.list_environment_services(environment_id)
 
     return MCPResponse.ok(
@@ -404,5 +406,74 @@ async def devopness_list_services(
             "{service.type_human_readable} (ID: {service.id})",
             "   - Version: {service.version}",
             "   - Last Action: {service.last_action.type_human_readable} ({service.last_action.status_human_readable})",  # noqa: E501
+        ],
+    )
+
+
+async def devopness_create_service(
+    environment_id: int | None = None,
+    service_type: ServiceType | None = None,
+    service_version: str | None = None,
+) -> MCPResponse[Service]:
+    """
+    Usage:
+
+    1. List all available service types:
+       - Call without any arguments
+       - Example: devopness_create_service()
+
+    2. List versions for a specific service type:
+       - Provide service_type
+       - Example: devopness_create_service(service_type="nginx")
+
+    3. Create a new service:
+       - Provide environment_id, service_type, and service_version
+       - Example: devopness_create_service(environment_id=123, service_type="nginx", service_version="1.18")
+    """  # noqa: E501
+    await ensure_authenticated()
+    if not service_type or not service_version:
+        response_services = await devopness.static.get_static_service_options()
+
+        if service_type:
+            service_type_versions = [
+                static_service_type.supported_versions
+                for static_service_type in response_services.data.types
+                if static_service_type.value == service_type
+            ]
+
+            return MCPResponse.warning(
+                [
+                    "Here are the available service versions for the selected type:",
+                    service_type_versions,
+                ]
+            )
+
+        return MCPResponse.warning(
+            [
+                "Here are the available service types and versions:",
+                response_services.data.types,
+            ]
+        )
+
+    if not isinstance(environment_id, int) or environment_id <= 0:
+        return MCPResponse.error(
+            [
+                "The provided environment ID is invalid. "
+                "Please ask the user to provide a valid environment ID."
+            ]
+        )
+
+    response = await devopness.services.add_environment_service(
+        environment_id,
+        {
+            "type": service_type,
+            "version": service_version,
+        },
+    )
+    return MCPResponse.ok(
+        response.data,
+        [
+            "Service has been successfully created.",
+            "Show to user the main information about the service.",
         ],
     )
