@@ -18,6 +18,7 @@ from devopness.models import (
     Server,
     ServerEnvironmentCreate,
     ServerRelation,
+    ServiceRelation,
     SourceTypePlain,
     SshKey,
     UserMe,
@@ -39,6 +40,7 @@ def register_tools(mcp_server: FastMCP) -> None:
     mcp_server.add_tool(devopness_list_environments)
     mcp_server.add_tool(devopness_list_projects)
     mcp_server.add_tool(devopness_list_servers)
+    mcp_server.add_tool(devopness_list_services)
 
     mcp_server.add_tool(devopness_create_application)
     mcp_server.add_tool(devopness_create_cloud_server)
@@ -354,5 +356,53 @@ async def devopness_deploy_ssh_key(
             "Explain to the user how to monitor the deployment progress.",
             "Show the main information's about the action.",
             "Explain the user how to use ssh to connect to the servers.",
+        ],
+    )
+
+
+async def devopness_list_services(
+    environment_id: int | None = None,
+) -> MCPResponse[List[ServiceRelation]]:
+    """
+    List all services in the given environment.
+
+    You Should:
+        - Use this function to list all services within a specific environment.
+        - Prompt the user to provide an environment ID if none is given.
+        - If the user is unaware of the environment ID, utilize the
+          `devopness_list_environments` tool to assist them in selecting the environment
+        - Do NOT assume an environment ID without CONFIRMING with the user
+          that the ID is appropriate for use.
+        - If an invalid environment ID is given by the user, inform them
+          and request a valid environment ID. DO NOT INVOKE THIS TOOL
+          WITHOUT USER CONFIRMATION THAT THE ID IS VALID.
+    """
+    await ensure_authenticated()
+
+    if environment_id is None:
+        return MCPResponse.error(
+            [
+                "An environment ID is required to list services. "
+                "Please ask the user to provide an environment ID."
+            ]
+        )
+
+    if not isinstance(environment_id, int) or environment_id <= 0:
+        return MCPResponse.error(
+            [
+                "The provided environment ID is invalid. "
+                "Please ask the user to provide a valid environment ID."
+            ]
+        )
+
+    response = await devopness.services.list_environment_services(environment_id)
+
+    return MCPResponse.ok(
+        response.data,
+        [
+            "Use the template below to format the list:",
+            "{service.type_human_readable} (ID: {service.id})",
+            "   - Version: {service.version}",
+            "   - Last Action: {service.last_action.type_human_readable} ({service.last_action.status_human_readable})",  # noqa: E501
         ],
     )
