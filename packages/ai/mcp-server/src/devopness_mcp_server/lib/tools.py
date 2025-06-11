@@ -424,15 +424,6 @@ async def devopness_create_service(
     service_version: str | None = None,
 ) -> MCPResponse[Service] | None:
     """
-    Tips:
-    1. You can offer the user to list available environments by calling
-       `devopness_list_environments` before executing this tool, if in
-       the conversation the user has selected a project.
-
-    2. You can offer the user to list available projects by calling
-       `devopness_list_projects` before executing this tool, if in
-       the conversation the user has not selected a project yet.
-
     Rules:
     1. DO NOT execute this tool without first confirming with the user which
        environment ID to use.
@@ -442,6 +433,15 @@ async def devopness_create_service(
 
     3. DO NOT execute this tool without first confirming with the user which
        service version to use.
+
+    Tips:
+    1. You can offer the user to list available environments by calling
+       `devopness_list_environments` before executing this tool, if in
+       the conversation the user has selected a project.
+
+    2. You can offer the user to list available projects by calling
+       `devopness_list_projects` before executing this tool, if in
+       the conversation the user has not selected a project yet.
 
     Usage:
     1. To create a service:
