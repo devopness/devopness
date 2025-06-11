@@ -388,47 +388,51 @@ async def devopness_create_service(
         "list_available_service_types",
         "list_available_service_type_versions",
     ],
-    environment_id: int | None = None,
+    environment_id: int,
     service_type: ServiceType | None = None,
     service_version: str | None = None,
 ) -> MCPResponse[Service] | None:
     """
-    Usage:
+    Rules:
+    1. DO NOT execute this tool without first confirming with the user which
+       environment ID to use.
+    2. DO NOT execute this tool without first confirming with the user which
+       service type to use.
+    3. DO NOT execute this tool without first confirming with the user which
+       service version to use.
 
+    Usage:
     1. To create a service:
         - Call this function with `operation='create'`, providing a valid
           `environment_id`, `service_type`, and `service_version`.
         - Example: devopness_create_service(
             operation='create',
             environment_id=123,
-            service_type=ServiceType.DATABASE,
-            service_version='14.0'
+            service_type=ServiceType.DOCKER,
+            service_version='20.10',
         )
 
     2. To list available service types:
-        - Call this function with `operation='list_available_service_types'`.
-        - Example: devopness_create_service(operation='list_available_service_types')
+        - Call this function with `operation='list_available_service_types'`,
+          providing a valid `environment_id`.
+        - Example: devopness_create_service(
+            operation='list_available_service_types',
+            environment_id=123,
+        )
 
     3. To list available service type versions:
-        - Call this function with `operation='list_available_service_type_versions'`
-          and provide a valid `service_type`.
+        - Call this function with `operation='list_available_service_type_versions'`,
+          providing a valid `environment_id` and `service_type`.
         - Example: devopness_create_service(
             operation='list_available_service_type_versions',
-            service_type=ServiceType.DATABASE
+            environment_id=123,
+            service_type=ServiceType.DOCKER,
         )
     """
     await ensure_authenticated()
 
     match operation:
         case "create":
-            if not environment_id:
-                return MCPResponse.error(
-                    [
-                        "A valid environment ID is required to create a service. "
-                        "Please ask the user to provide a valid environment ID."
-                    ]
-                )
-
             if not service_type or not service_version:
                 return MCPResponse.error(
                     [
@@ -481,14 +485,6 @@ async def devopness_create_service(
                 for static_service_type in response_services.data.types
                 if static_service_type.value == service_type
             ]
-
-            if not service_type_versions:
-                return MCPResponse.error(
-                    [
-                        f"No versions found for the service type '{service_type}'. "
-                        "Please ask the user to provide a valid service type."
-                    ]
-                )
 
             return MCPResponse.ok(
                 instructions=[
