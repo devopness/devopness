@@ -570,6 +570,13 @@ async def devopness_deploy_service(
     server_ids: List[int] | None = None,
 ) -> MCPResponse[Action] | None:
     """
+    Rules:
+    1. DO NOT execute this tool without first confirming with the user which
+       pipeline ID to use for deployment.
+
+    2. DO NOT execute this tool without first confirming with the user which
+       service ID to use for listing deployment pipelines or linked servers.
+
     Usage:
 
     1. To deploy a service:
