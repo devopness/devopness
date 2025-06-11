@@ -466,7 +466,7 @@ class ServiceListAvailableServiceTypesOperation:
     Operation to list all available service types and their versions.
     """
 
-    async def execute(self) -> MCPResponse:
+    async def execute(self) -> MCPResponse[None]:
         response_services = await devopness.static.get_static_service_options()
 
         return MCPResponse.ok(
@@ -488,7 +488,7 @@ class ServiceListAvailableServiceTypeVersionsOperation:
     The type of the service for which to list available versions.
     """
 
-    async def execute(self) -> MCPResponse:
+    async def execute(self) -> MCPResponse[None]:
         response_services = await devopness.static.get_static_service_options()
 
         service_type_versions = [
@@ -519,7 +519,7 @@ async def devopness_create_service(
     | None = None,
     list_available_service_type_versions_operation: ServiceListAvailableServiceTypeVersionsOperation
     | None = None,
-) -> MCPResponse[Service]:
+) -> MCPResponse[Service] | MCPResponse[None]:
     """
     Usage:
 
@@ -624,7 +624,7 @@ class ServiceListPipelinesOperation:
     The ID of the service to list the deployment pipelines for.
     """
 
-    async def execute(self) -> MCPResponse:
+    async def execute(self) -> MCPResponse[None]:
         if not self.service_id:
             return MCPResponse.error(
                 [
@@ -666,7 +666,7 @@ class ServiceListLinkedServersOperation:
     The ID of the service to list the linked servers for.
     """
 
-    async def execute(self) -> MCPResponse:
+    async def execute(self) -> MCPResponse[None]:
         if not isinstance(self.service_id, int) or self.service_id <= 0:
             return MCPResponse.error(
                 [
@@ -705,7 +705,7 @@ async def devopness_deploy_service(
     deploy_operation: ServiceDeployOperation | None = None,
     list_pipelines_operation: ServiceListPipelinesOperation | None = None,
     list_linked_servers_operation: ServiceListLinkedServersOperation | None = None,
-) -> MCPResponse[Action]:
+) -> MCPResponse[Action] | MCPResponse[None]:
     """
     Usage:
 
