@@ -47,12 +47,12 @@ def register_tools(mcp_server: FastMCP) -> None:
 
     mcp_server.add_tool(devopness_create_application)
     mcp_server.add_tool(devopness_create_cloud_server)
+    mcp_server.add_tool(devopness_create_service)
     mcp_server.add_tool(devopness_create_ssh_key)
     mcp_server.add_tool(devopness_create_webhook)
-    mcp_server.add_tool(devopness_create_service)
     mcp_server.add_tool(devopness_deploy_application)
-    mcp_server.add_tool(devopness_deploy_ssh_key)
     mcp_server.add_tool(devopness_deploy_service)
+    mcp_server.add_tool(devopness_deploy_ssh_key)
 
 
 async def devopness_get_user_profile() -> UserMe:
