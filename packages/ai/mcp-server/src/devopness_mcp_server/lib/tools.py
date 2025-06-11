@@ -61,18 +61,49 @@ async def devopness_get_user_profile() -> UserMe:
     return current_user.data
 
 
-async def devopness_list_projects() -> List[ProjectRelation]:
+async def devopness_list_projects() -> MCPResponse[List[ProjectRelation]]:
     await ensure_authenticated()
     response = await devopness.projects.list_projects()
 
-    return response.data
+    return MCPResponse.ok(
+        response.data,
+        [
+            "If the user has multiple projects",
+            "ask them to choose one of the listed project IDs",
+            "to continue with the conversation.",
+            "If the user has only one project, you can use it directly,",
+            "and communicate with the user about it.",
+            "Show the user the main information about the projects.",
+            "{project.name} (ID: {project.id})",
+        ],
+    )
 
 
-async def devopness_list_environments(project_id: int) -> List[EnvironmentRelation]:
+async def devopness_list_environments(
+    project_id: int,
+) -> MCPResponse[List[EnvironmentRelation]]:
+    """
+    Rules:
+    1. DO NOT execute this tool without first confirming with the user which
+       project ID to use.
+    """
     await ensure_authenticated()
     response = await devopness.environments.list_project_environments(project_id)
 
-    return response.data
+    return MCPResponse.ok(
+        response.data,
+        [
+            "If the user has multiple environments",
+            "ask them to choose one of the listed environment IDs",
+            "to continue with the conversation.",
+            "If the user has only one environment, you can use it directly,",
+            "and communicate with the user about it.",
+            "Show the user the main information about the environments.",
+            "{environment.name} (ID: {environment.id})",
+            "  - Type: {environment.type_human_readable}",
+            "  - Resources: {environment.resource_summary}",
+        ],
+    )
 
 
 async def devopness_list_credentials(environment_id: int) -> List[CredentialRelation]:
