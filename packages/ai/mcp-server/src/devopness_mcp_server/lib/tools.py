@@ -9,6 +9,7 @@ from devopness.models import (
     ApplicationEnvironmentCreate,
     ApplicationRelation,
     CredentialRelation,
+    EnvironmentRelation,
     Hook,
     HookPipelineCreate,
     HookTypeParam,
@@ -80,7 +81,7 @@ async def devopness_list_projects() -> MCPResponse[List[ProjectRelation]]:
 
 async def devopness_list_environments(
     project_id: int,
-) -> MCPResponse[Any]:
+) -> MCPResponse[List[EnvironmentRelation]]:
     """
     Rules:
     1. DO NOT execute this tool without first confirming with the user which
@@ -89,30 +90,8 @@ async def devopness_list_environments(
     await ensure_authenticated()
     response = await devopness.environments.list_project_environments(project_id)
 
-    environments = [
-        {
-            "id": environment.id,
-            "name": environment.name,
-            "type": environment.type_human_readable,
-            "description": environment.description,
-        }
-        for environment in response.data
-    ]
-
-    project = (
-        {
-            "id": response.data[0].project.id,
-            "name": response.data[0].project.name,
-        }
-        if (len(response.data) > 0 and response.data[0].project)
-        else None
-    )
-
     return MCPResponse.ok(
-        {
-            "project": project,
-            "environments": environments,
-        },
+        response.data,
         [
             "If the user has multiple environments "
             "ask them to choose one of the listed environment IDs "
@@ -120,7 +99,6 @@ async def devopness_list_environments(
             "If the user has only one environment, you can use it directly, "
             "and communicate with the user about it.",
             "Show the list in the following format:",
-            "Project: {project.name} (ID: {project.id})"
             "[N]. {environment.name} (ID: {environment.id})",
             "   - Type: {environment.type}",
             "   - Description: {environment.description}",
