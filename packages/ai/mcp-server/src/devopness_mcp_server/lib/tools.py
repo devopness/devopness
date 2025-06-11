@@ -9,7 +9,6 @@ from devopness.models import (
     ApplicationEnvironmentCreate,
     ApplicationRelation,
     CredentialRelation,
-    EnvironmentRelation,
     Hook,
     HookPipelineCreate,
     HookTypeParam,
