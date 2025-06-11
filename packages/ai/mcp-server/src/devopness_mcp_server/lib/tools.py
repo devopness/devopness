@@ -421,6 +421,11 @@ async def devopness_deploy_ssh_key(
 async def devopness_list_services(
     environment_id: int,
 ) -> MCPResponse[List[ServiceRelation]]:
+    """
+    Rules:
+    1. DO NOT execute this tool without first confirming with the user which
+       environment ID to use.
+    """
     await ensure_authenticated()
     response = await devopness.services.list_environment_services(environment_id)
 
@@ -456,15 +461,6 @@ async def devopness_create_service(
 
     3. DO NOT execute this tool without first confirming with the user which
        service version to use.
-
-    Tips:
-    1. You can offer the user to list available environments by calling
-       `devopness_list_environments` before executing this tool, if in
-       the conversation the user has selected a project.
-
-    2. You can offer the user to list available projects by calling
-       `devopness_list_projects` before executing this tool, if in
-       the conversation the user has not selected a project yet.
 
     Usage:
     1. To create a service:
