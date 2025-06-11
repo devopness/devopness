@@ -497,7 +497,7 @@ async def devopness_create_service(
 async def devopness_deploy_service(
     operation: Literal[
         "deploy",
-        "list_pipelines",
+        "list_deploy_pipelines",
         "list_linked_servers",
     ],
     pipeline_id: int | None = None,
@@ -574,7 +574,7 @@ async def devopness_deploy_service(
                 ],
             )
 
-        case "list_pipelines":
+        case "list_deploy_pipelines":
             if not service_id:
                 return MCPResponse.error(
                     [
@@ -606,7 +606,7 @@ async def devopness_deploy_service(
             )
 
         case "list_linked_servers":
-            if not isinstance(service_id, int) or service_id <= 0:
+            if not service_id:
                 return MCPResponse.error(
                     [
                         "A service ID is required to list the linked servers. "
