@@ -81,7 +81,7 @@ async def devopness_list_projects() -> MCPResponse[List[ProjectRelation]]:
 
 async def devopness_list_environments(
     project_id: int,
-) -> MCPResponse[List[EnvironmentRelation]]:
+) -> MCPResponse[Any]:
     """
     Rules:
     1. DO NOT execute this tool without first confirming with the user which
@@ -90,18 +90,41 @@ async def devopness_list_environments(
     await ensure_authenticated()
     response = await devopness.environments.list_project_environments(project_id)
 
+    environments = [
+        {
+            "id": environment.id,
+            "name": environment.name,
+            "type": environment.type_human_readable,
+            "description": environment.description,
+        }
+        for environment in response.data
+    ]
+
+    project = (
+        {
+            "id": response.data[0].project.id,
+            "name": response.data[0].project.name,
+        }
+        if (len(response.data) > 0 and response.data[0].project)
+        else None
+    )
+
     return MCPResponse.ok(
-        response.data,
+        {
+            "project": project,
+            "environments": environments,
+        },
         [
-            "If the user has multiple environments",
-            "ask them to choose one of the listed environment IDs",
+            "If the user has multiple environments "
+            "ask them to choose one of the listed environment IDs "
             "to continue with the conversation.",
-            "If the user has only one environment, you can use it directly,",
+            "If the user has only one environment, you can use it directly, "
             "and communicate with the user about it.",
-            "Show the user the main information about the environments.",
-            "{environment.name} (ID: {environment.id})",
-            "  - Type: {environment.type_human_readable}",
-            "  - Resources: {environment.resource_summary}",
+            "Show the list in the following format:",
+            "Project: {project.name} (ID: {project.id})"
+            "[N]. {environment.name} (ID: {environment.id})",
+            "   - Type: {environment.type}",
+            "   - Description: {environment.description}",
         ],
     )
 
