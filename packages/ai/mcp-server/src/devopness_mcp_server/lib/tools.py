@@ -369,18 +369,11 @@ async def devopness_list_services(
     environment_id: int | None = None,
 ) -> MCPResponse[List[ServiceRelation]]:
     """
-    List all services in the given environment.
+    Usage:
 
-    You Should:
-        - Use this function to list all services within a specific environment.
-        - Prompt the user to provide an environment ID if none is given.
-        - If the user is unaware of the environment ID, utilize the
-          `devopness_list_environments` tool to assist them in selecting the environment
-        - Do NOT assume an environment ID without CONFIRMING with the user
-          that the ID is appropriate for use.
-        - If an invalid environment ID is given by the user, inform them
-          and request a valid environment ID. DO NOT INVOKE THIS TOOL
-          WITHOUT USER CONFIRMATION THAT THE ID IS VALID.
+    1. If you want to list all services in an environment:
+       - Provide the environment_id as an argument.
+       - Example: devopness_list_services(environment_id=123)
     """
     if environment_id is None:
         return MCPResponse.error(
@@ -412,72 +405,156 @@ async def devopness_list_services(
     )
 
 
+@dataclass
+class ServiceCreateOperation:
+    """
+    Operation to create a new service in a specific environment.
+    """
+
+    environment_id: int
+    """
+    The ID of the environment where the service will be created.
+    """
+
+    service_type: ServiceType
+    """
+    The type of the service to be created.
+    """
+
+    service_version: str
+    """
+    The version of the service to be created.
+    """
+
+    async def execute(self) -> MCPResponse[Service]:
+        if not isinstance(self.environment_id, int) or self.environment_id <= 0:
+            return MCPResponse.error(
+                [
+                    "A valid environment ID is required to create a service. "
+                    "Please ask the user to provide a valid environment ID."
+                ]
+            )
+
+        if not self.service_type or not self.service_version:
+            return MCPResponse.error(
+                [
+                    "Both service type and version are required to create a service. "
+                    "Please ask the user to provide these details."
+                ]
+            )
+
+        response = await devopness.services.add_environment_service(
+            self.environment_id,
+            {
+                "type": self.service_type,
+                "version": self.service_version,
+            },
+        )
+
+        return MCPResponse.ok(
+            response.data,
+            [
+                "Service has been successfully created.",
+                "Show to user the main information about the service.",
+            ],
+        )
+
+
+@dataclass
+class ServiceListAvailableServiceTypesOperation:
+    """
+    Operation to list all available service types and their versions.
+    """
+
+    async def execute(self) -> MCPResponse:
+        response_services = await devopness.static.get_static_service_options()
+
+        return MCPResponse.ok(
+            instructions=[
+                "Here are the available service types and versions:",
+                response_services.data.types,
+            ],
+        )
+
+
+@dataclass
+class ServiceListAvailableServiceTypeVersionsOperation:
+    """
+    Operation to list all available versions for a specific service type.
+    """
+
+    service_type: ServiceType
+    """
+    The type of the service for which to list available versions.
+    """
+
+    async def execute(self) -> MCPResponse:
+        response_services = await devopness.static.get_static_service_options()
+
+        service_type_versions = [
+            static_service_type.supported_versions
+            for static_service_type in response_services.data.types
+            if static_service_type.value == self.service_type
+        ]
+
+        if not service_type_versions:
+            return MCPResponse.error(
+                [
+                    f"No versions found for the service type '{self.service_type}'. "
+                    "Please ask the user to provide a valid service type."
+                ]
+            )
+
+        return MCPResponse.ok(
+            instructions=[
+                "Here are the available service versions for the selected type:",
+                service_type_versions,
+            ],
+        )
+
+
 async def devopness_create_service(
-    environment_id: int | None = None,
-    service_type: ServiceType | None = None,
-    service_version: str | None = None,
+    create_operation: ServiceCreateOperation | None = None,
+    list_available_service_types_operation: ServiceListAvailableServiceTypesOperation
+    | None = None,
+    list_available_service_type_versions_operation: ServiceListAvailableServiceTypeVersionsOperation
+    | None = None,
 ) -> MCPResponse[Service]:
     """
     Usage:
 
-    1. List all available service types:
-       - Call without any arguments
-       - Example: devopness_create_service()
+    1. If you want to create a new service:
+       - Provide an instance of `ServiceCreateOperation` with the environment_id,
+         service_type, and service_version.
+       - Example: devopness_create_service(create_operation=ServiceCreateOperation(environment_id=123, service_type='web', service_version='1.0'))
 
-    2. List versions for a specific service type:
-       - Provide service_type
-       - Example: devopness_create_service(service_type="nginx")
+    2. If you want to list all available service types:
+       - Provide an instance of `ServiceListAvailableServiceTypesOperation`.
+       - Example: devopness_create_service(list_available_service_types_operation=ServiceListAvailableServiceTypesOperation())
 
-    3. Create a new service:
-       - Provide environment_id, service_type, and service_version
-       - Example: devopness_create_service(environment_id=123, service_type="nginx", service_version="1.18")
+    3. If you want to list all available versions for a specific service type:
+       - Provide an instance of `ServiceListAvailableServiceTypeVersionsOperation` with the service_type.
+       - Example: devopness_create_service(list_available_service_type_versions_operation=ServiceListAvailableServiceTypeVersionsOperation(service_type='web'))
     """
     await ensure_authenticated()
-    if not service_type or not service_version:
-        response_services = await devopness.static.get_static_service_options()
 
-        if service_type:
-            service_type_versions = [
-                static_service_type.supported_versions
-                for static_service_type in response_services.data.types
-                if static_service_type.value == service_type
-            ]
+    if create_operation:
+        return await create_operation.execute()
 
-            return MCPResponse.warning(
-                [
-                    "Here are the available service versions for the selected type:",
-                    service_type_versions,
-                ]
-            )
+    if list_available_service_types_operation:
+        return await list_available_service_types_operation.execute()
 
-        return MCPResponse.warning(
-            [
-                "Here are the available service types and versions:",
-                response_services.data.types,
-            ]
-        )
+    if list_available_service_type_versions_operation:
+        return await list_available_service_type_versions_operation.execute()
 
-    if not isinstance(environment_id, int) or environment_id <= 0:
-        return MCPResponse.error(
-            [
-                "The provided environment ID is invalid. "
-                "Please ask the user to provide a valid environment ID."
-            ]
-        )
-
-    response = await devopness.services.add_environment_service(
-        environment_id,
-        {
-            "type": service_type,
-            "version": service_version,
-        },
-    )
-    return MCPResponse.ok(
-        response.data,
+    return MCPResponse.error(
         [
-            "Service has been successfully created.",
-            "Show to user the main information about the service.",
-        ],
+            "No operation provided. Please provide an instance of:",
+            ServiceCreateOperation.__name__,
+            ServiceListAvailableServiceTypesOperation.__name__,
+            ServiceListAvailableServiceTypeVersionsOperation.__name__,
+            "To perform the desired action.",
+        ]
     )
 
 
