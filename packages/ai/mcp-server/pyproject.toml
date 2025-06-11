@@ -95,10 +95,6 @@ extend-select = [
   "W",   # pycodestyle (warning)
 ]
 
-ignore = [
-  "E501", # line too long
-]
-
 [tool.ruff.lint.isort]
 known-first-party = ["devopness"]
 case-sensitive = true
@@ -114,7 +110,3 @@ warn_unreachable = true
 
 sqlite_cache = true
 cache_fine_grained = true
-
-[[tool.mypy.overrides]]
-module = "devopness_mcp_server.*"
-disable_error_code = ["unreachable"]

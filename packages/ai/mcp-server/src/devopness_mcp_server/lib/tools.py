@@ -366,31 +366,11 @@ async def devopness_deploy_ssh_key(
 
 
 async def devopness_list_services(
-    environment_id: int | None = None,
+    environment_id: int,
 ) -> MCPResponse[List[ServiceRelation]]:
     """
-    Usage:
-
-    1. If you want to list all services in an environment:
-       - Provide the environment_id as an argument.
-       - Example: devopness_list_services(environment_id=123)
+    List all services in an environment.
     """
-    if environment_id is None:
-        return MCPResponse.error(
-            [
-                "An environment ID is required to list services. "
-                "Please ask the user to provide an environment ID."
-            ]
-        )
-
-    if not isinstance(environment_id, int) or environment_id <= 0:
-        return MCPResponse.error(
-            [
-                "The provided environment ID is invalid. "
-                "Please ask the user to provide a valid environment ID."
-            ]
-        )
-
     await ensure_authenticated()
     response = await devopness.services.list_environment_services(environment_id)
 
@@ -400,7 +380,8 @@ async def devopness_list_services(
             "Use the template below to format the list:",
             "{service.type_human_readable} (ID: {service.id})",
             "   - Version: {service.version}",
-            "   - Last Action: {service.last_action.type_human_readable} ({service.last_action.status_human_readable})",
+            "   - Last Action: {service.last_action.type_human_readable}"
+            " ({service.last_action.status_human_readable})",
         ],
     )
 
