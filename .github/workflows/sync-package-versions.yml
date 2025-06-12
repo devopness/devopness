@@ -16,10 +16,6 @@ on:
       - opened
       - edited
       - synchronize
-    paths:
-      - packages/**/package.json
-    branches:
-      - main
 
 permissions:
   contents: write
@@ -28,8 +24,25 @@ permissions:
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
+  detect-changes:
+    name: Detect changes in package.json files
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
+    outputs:
+      changes: ${{ steps.filter.outputs.changes }}
+    steps:
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            changes:
+              - 'packages/**/package.json'
+
   sync-pypi-package-versions:
     name: Sync the pyproject.toml
+    needs: detect-changes
+    if: ${{ needs.detect-changes.outputs.changes == 'true' }}
     runs-on: ubuntu-latest
 
     strategy:
@@ -60,12 +73,14 @@ jobs:
         if: github.repository == 'devopness/devopness'
         with:
           commit_message: "chore: sync '${{ matrix.name }}' version"
-          file_pattern: "${{ matrix.path }}/pyproject.toml ${{ matrix.path }}/*.lock"
+          file_pattern: '${{ matrix.path }}/pyproject.toml ${{ matrix.path }}/*.lock'
           commit_user_name: ${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}
           commit_user_email: ${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}
 
   sync-main-lockfile:
     name: Sync the package-lock.json
+    needs: detect-changes
+    if: ${{ needs.detect-changes.outputs.changes == 'true' }}
     runs-on: ubuntu-latest
 
     steps:
@@ -87,3 +102,28 @@ jobs:
           file_pattern: 'package-lock.json'
           commit_user_name: ${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}
           commit_user_email: ${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}
+
+  verify-sync:
+    name: Verify sync of package versions
+    needs: [detect-changes, sync-pypi-package-versions, sync-main-lockfile]
+    if: success() || failure()
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Fail if sync-pypi-package-versions did not succeed
+        run: |
+          if [ "${{ needs.sync-pypi-package-versions.result }}" != "success" ]; then
+            exit 1
+          fi
+
+      - name: Fail if sync-main-lockfile did not succeed
+        run: |
+          if [ "${{ needs.sync-main-lockfile.result }}" != "success" ]; then
+            exit 1
+          fi
