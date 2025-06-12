@@ -16,8 +16,6 @@ on:
       - opened
       - edited
       - synchronize
-    paths:
-      - packages/**/package.json
     branches:
       - main
 
@@ -28,8 +26,25 @@ permissions:
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
+  detect-changes:
+    name: Detect changes in package.json files
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
+    outputs:
+      changes: ${{ steps.filter.outputs.changes }}
+    steps:
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            changes:
+              - 'packages/**/package.json'
+
   sync-pypi-package-versions:
     name: Sync the pyproject.toml
+    needs: detect-changes
+    if: ${{ needs.detect-changes.outputs.changes == 'true' }}
     runs-on: ubuntu-latest
 
     strategy:
@@ -60,12 +75,14 @@ jobs:
         if: github.repository == 'devopness/devopness'
         with:
           commit_message: "chore: sync '${{ matrix.name }}' version"
-          file_pattern: "${{ matrix.path }}/pyproject.toml ${{ matrix.path }}/*.lock"
+          file_pattern: '${{ matrix.path }}/pyproject.toml ${{ matrix.path }}/*.lock'
           commit_user_name: ${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}
           commit_user_email: ${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}
 
   sync-main-lockfile:
     name: Sync the package-lock.json
+    needs: detect-changes
+    if: ${{ needs.detect-changes.outputs.changes == 'true' }}
     runs-on: ubuntu-latest
 
     steps:
