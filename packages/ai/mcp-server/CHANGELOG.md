@@ -1,5 +1,14 @@
 # @devopness/mcp-server
 
+## 0.0.10
+
+### Patch Changes
+
+- [#1839](https://github.com/devopness/devopness/pull/1839) [`c1c2dd4`](https://github.com/devopness/devopness/commit/c1c2dd412f1df8f93210a1bfc94ee033461ea64d) Thanks [@Diegiwg](https://github.com/Diegiwg)! - - New MCP tools for service management:
+  - **devopness_list_services:** List all available services
+  - **devopness_create_service:** Support for multiple operations as create service, list service types, list service type versions
+  - **devopness_deploy_service:** Support for multiple operations as deploy service, list service deploy pipelines, list service linked servers
+
 ## 0.0.7
 
 ### Patch Changes
