@@ -16,8 +16,6 @@ on:
       - opened
       - edited
       - synchronize
-    branches:
-      - main
 
 permissions:
   contents: write
