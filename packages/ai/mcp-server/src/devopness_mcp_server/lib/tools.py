@@ -8,7 +8,9 @@ from devopness.models import (
     Application,
     ApplicationEnvironmentCreate,
     ApplicationRelation,
+    CloudInstanceRelation,
     CloudOsVersionCode,
+    CloudProviderServiceRegion,
     CredentialRelation,
     EnvironmentRelation,
     Hook,
@@ -18,7 +20,6 @@ from devopness.models import (
     ProjectRelation,
     Server,
     ServerCloudServiceCode,
-    ServerEnvironmentCreate,
     ServerRelation,
     Service,
     ServiceRelation,
@@ -37,6 +38,9 @@ def register_tools(mcp_server: FastMCP) -> None:
     Register all Devopness tools that will be made available for the MCP server.
     """
 
+    # TODO: Convert to Resource or ResourceTemplate
+    mcp_server.add_tool(devopness_get_regions_of_cloud_service)
+    mcp_server.add_tool(devopness_get_instance_types_of_cloud_service_region)
     mcp_server.add_tool(devopness_get_user_profile)
     mcp_server.add_tool(devopness_list_application_pipelines)
     mcp_server.add_tool(devopness_list_applications)
@@ -54,6 +58,53 @@ def register_tools(mcp_server: FastMCP) -> None:
     mcp_server.add_tool(devopness_deploy_application)
     mcp_server.add_tool(devopness_deploy_service)
     mcp_server.add_tool(devopness_deploy_ssh_key)
+
+
+async def devopness_get_regions_of_cloud_service(
+    cloud_provider_service_code: ServerCloudServiceCode,
+) -> MCPResponse[List[CloudProviderServiceRegion]]:
+    await ensure_authenticated()
+
+    response = await devopness.static.get_static_cloud_provider_service(
+        str(cloud_provider_service_code)
+    )
+
+    return MCPResponse.ok(
+        response.data.regions,
+        [
+            "Show the list in the following format:",
+            "#N. {region.name} (Code: {region.code})",
+            "Rules:",
+            "1. Sort the regions by name.",
+        ],
+    )
+
+
+async def devopness_get_instance_types_of_cloud_service_region(
+    cloud_provider_service_code: ServerCloudServiceCode,
+    region_code: str,
+) -> MCPResponse[List[CloudInstanceRelation]]:
+    await ensure_authenticated()
+
+    response = await devopness.static.list_static_cloud_instances_by_cloud_provider_service_code_and_region_code(  # noqa: E501
+        str(cloud_provider_service_code),
+        region_code,
+    )
+
+    return MCPResponse.ok(
+        response.data,
+        [
+            "Show the list in the following format:",
+            "#N. {instance.name} ({instance.architecture})",
+            " - CPU: {instance.vcpus} | RAM: {instance.memory}"
+            " | Min Disk: {instance.default_disk_size}",
+            " - Price: {instance.price_hourly}/hour (~{instance.price_monthly}/month)"
+            " in {instance.price_currency}",
+            "Rules:",
+            "1. Group the instances by architecture.",
+            "2. Sort the instances by price.",
+        ],
+    )
 
 
 async def devopness_get_user_profile() -> UserMe:
