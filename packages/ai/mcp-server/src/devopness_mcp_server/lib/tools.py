@@ -68,13 +68,13 @@ async def devopness_list_projects() -> MCPResponse[List[ProjectRelation]]:
     return MCPResponse.ok(
         response.data,
         [
-            "If the user has multiple projects",
-            "ask them to choose one of the listed project IDs",
-            "to continue with the conversation.",
-            "If the user has only one project, you can use it directly,",
-            "and communicate with the user about it.",
-            "Show the user the main information about the projects.",
-            "{project.name} (ID: {project.id})",
+            "Show the list in the following format:",
+            "#N. {project.name} (ID: {project.id})",
+            "Rules:"
+            "1. If the user has multiple projects ask them to choose one"
+            " of the listed project IDs to continue with the conversation.",
+            "2. If the user has only one project, you can use it directly,"
+            " and communicate with the user about it.",
         ],
     )
 
@@ -93,15 +93,15 @@ async def devopness_list_environments(
     return MCPResponse.ok(
         response.data,
         [
-            "If the user has multiple environments "
-            "ask them to choose one of the listed environment IDs "
-            "to continue with the conversation.",
-            "If the user has only one environment, you can use it directly, "
-            "and communicate with the user about it.",
             "Show the list in the following format:",
-            "[N]. {environment.name} (ID: {environment.id})",
+            "#N. {environment.name} (ID: {environment.id})",
             "   - Type: {environment.type}",
             "   - Description: {environment.description}",
+            "Rules:"
+            "1. If the user has multiple environments ask them to choose one"
+            " of the listed environment IDs to continue with the conversation.",
+            "2. If the user has only one environment, you can use it directly,"
+            " and communicate with the user about it.",
         ],
     )
 
