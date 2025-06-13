@@ -8,6 +8,7 @@ from devopness.models import (
     Application,
     ApplicationEnvironmentCreate,
     ApplicationRelation,
+    CloudOsVersionCode,
     CredentialRelation,
     EnvironmentRelation,
     Hook,
@@ -16,6 +17,7 @@ from devopness.models import (
     PipelineRelation,
     ProjectRelation,
     Server,
+    ServerCloudServiceCode,
     ServerEnvironmentCreate,
     ServerRelation,
     Service,
@@ -142,12 +144,41 @@ async def devopness_list_application_pipelines(
 
 async def devopness_create_cloud_server(
     environment_id: int,
-    server_input_settings: ServerEnvironmentCreate,
+    credential_id: int,
+    cloud_service_code: ServerCloudServiceCode,
+    cloud_service_region: str,
+    cloud_service_instance_type: str,
+    os_hostname: str,
+    os_disk_size: int,
+    os_version_code: CloudOsVersionCode = CloudOsVersionCode.UBUNTU_24_04,
 ) -> Server:
+    """
+    Rules:
+    1. DO NOT execute this tool without first confirming with the user which
+       environment ID to use.
+    2. DO NOT execute this tool without first confirming with the user all
+       parameters.
+    3. BEFORE executing this tool, show to the user all values that will be
+       used to create the server.
+    """
     await ensure_authenticated()
     response = await devopness.servers.add_environment_server(
         environment_id,
-        server_input_settings,
+        {
+            "hostname": os_hostname,
+            # TODO: credential_id type as INT on API Docs/SDK
+            "credential_id": str(credential_id),
+            "provision_input": {
+                "cloud_service_code": cloud_service_code,
+                # TODO: support server provision with custom subnet
+                "settings": {
+                    "region": cloud_service_region,
+                    "instance_type": cloud_service_instance_type,
+                    "os_version_code": os_version_code,
+                    "storage_size": os_disk_size,
+                },
+            },
+        },
     )
 
     return response.data
