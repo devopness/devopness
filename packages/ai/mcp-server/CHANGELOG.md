@@ -1,5 +1,22 @@
 # @devopness/mcp-server
 
+## 0.0.11
+
+### Patch Changes
+
+- [#1852](https://github.com/devopness/devopness/pull/1852) [`c66fcdc`](https://github.com/devopness/devopness/commit/c66fcdc2fe3c2a8e945b804e9361e94585518529) Thanks [@Diegiwg](https://github.com/Diegiwg)! - ### Added
+
+  - New MCP tools for cloud service discovery:
+    - `devopness_get_regions_of_cloud_service`
+    - `devopness_get_instance_types_of_cloud_service_region`
+
+  ### Changed
+
+  - Enhanced `devopness_create_cloud_server` with explicit parameters and improved validation
+  - Refined response formats for better LLM interaction in:
+    - `devopness_list_projects`
+    - `devopness_list_environments`
+
 ## 0.0.10
 
 ### Patch Changes
