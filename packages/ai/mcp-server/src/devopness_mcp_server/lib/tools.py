@@ -8,6 +8,9 @@ from devopness.models import (
     Application,
     ApplicationEnvironmentCreate,
     ApplicationRelation,
+    CloudInstanceRelation,
+    CloudOsVersionCode,
+    CloudProviderServiceRegion,
     CredentialRelation,
     EnvironmentRelation,
     Hook,
@@ -16,7 +19,7 @@ from devopness.models import (
     PipelineRelation,
     ProjectRelation,
     Server,
-    ServerEnvironmentCreate,
+    ServerCloudServiceCode,
     ServerRelation,
     Service,
     ServiceRelation,
@@ -35,6 +38,9 @@ def register_tools(mcp_server: FastMCP) -> None:
     Register all Devopness tools that will be made available for the MCP server.
     """
 
+    # TODO: Convert to Resource or ResourceTemplate
+    mcp_server.add_tool(devopness_get_regions_of_cloud_service)
+    mcp_server.add_tool(devopness_get_instance_types_of_cloud_service_region)
     mcp_server.add_tool(devopness_get_user_profile)
     mcp_server.add_tool(devopness_list_application_pipelines)
     mcp_server.add_tool(devopness_list_applications)
@@ -54,6 +60,53 @@ def register_tools(mcp_server: FastMCP) -> None:
     mcp_server.add_tool(devopness_deploy_ssh_key)
 
 
+async def devopness_get_regions_of_cloud_service(
+    cloud_provider_service_code: ServerCloudServiceCode,
+) -> MCPResponse[List[CloudProviderServiceRegion]]:
+    await ensure_authenticated()
+
+    response = await devopness.static.get_static_cloud_provider_service(
+        str(cloud_provider_service_code)
+    )
+
+    return MCPResponse.ok(
+        response.data.regions,
+        [
+            "Show the list in the following format:",
+            "#N. {region.name} (Code: {region.code})",
+            "Rules:",
+            "1. Sort the regions by name.",
+        ],
+    )
+
+
+async def devopness_get_instance_types_of_cloud_service_region(
+    cloud_provider_service_code: ServerCloudServiceCode,
+    region_code: str,
+) -> MCPResponse[List[CloudInstanceRelation]]:
+    await ensure_authenticated()
+
+    response = await devopness.static.list_static_cloud_instances_by_cloud_provider_service_code_and_region_code(  # noqa: E501
+        str(cloud_provider_service_code),
+        region_code,
+    )
+
+    return MCPResponse.ok(
+        response.data,
+        [
+            "Show the list in the following format:",
+            "#N. {instance.name} ({instance.architecture})",
+            " - CPU: {instance.vcpus} | RAM: {instance.memory}"
+            " | Min Disk: {instance.default_disk_size}",
+            " - Price: {instance.price_hourly}/hour (~{instance.price_monthly}/month)"
+            " in {instance.price_currency}",
+            "Rules:",
+            "1. Group the instances by architecture.",
+            "2. Sort the instances by price.",
+        ],
+    )
+
+
 async def devopness_get_user_profile() -> UserMe:
     await ensure_authenticated()
     current_user = await devopness.users.get_user_me()
@@ -68,13 +121,13 @@ async def devopness_list_projects() -> MCPResponse[List[ProjectRelation]]:
     return MCPResponse.ok(
         response.data,
         [
-            "If the user has multiple projects",
-            "ask them to choose one of the listed project IDs",
-            "to continue with the conversation.",
-            "If the user has only one project, you can use it directly,",
-            "and communicate with the user about it.",
-            "Show the user the main information about the projects.",
-            "{project.name} (ID: {project.id})",
+            "Show the list in the following format:",
+            "#N. {project.name} (ID: {project.id})",
+            "Rules:"
+            "1. If the user has multiple projects ask them to choose one"
+            " of the listed project IDs to continue with the conversation.",
+            "2. If the user has only one project, you can use it directly,"
+            " and communicate with the user about it.",
         ],
     )
 
@@ -93,15 +146,15 @@ async def devopness_list_environments(
     return MCPResponse.ok(
         response.data,
         [
-            "If the user has multiple environments "
-            "ask them to choose one of the listed environment IDs "
-            "to continue with the conversation.",
-            "If the user has only one environment, you can use it directly, "
-            "and communicate with the user about it.",
             "Show the list in the following format:",
-            "[N]. {environment.name} (ID: {environment.id})",
+            "#N. {environment.name} (ID: {environment.id})",
             "   - Type: {environment.type}",
             "   - Description: {environment.description}",
+            "Rules:"
+            "1. If the user has multiple environments ask them to choose one"
+            " of the listed environment IDs to continue with the conversation.",
+            "2. If the user has only one environment, you can use it directly,"
+            " and communicate with the user about it.",
         ],
     )
 
@@ -142,12 +195,41 @@ async def devopness_list_application_pipelines(
 
 async def devopness_create_cloud_server(
     environment_id: int,
-    server_input_settings: ServerEnvironmentCreate,
+    credential_id: int,
+    cloud_service_code: ServerCloudServiceCode,
+    cloud_service_region: str,
+    cloud_service_instance_type: str,
+    os_hostname: str,
+    os_disk_size: int,
+    os_version_code: CloudOsVersionCode = CloudOsVersionCode.UBUNTU_24_04,
 ) -> Server:
+    """
+    Rules:
+    1. DO NOT execute this tool without first confirming with the user which
+       environment ID to use.
+    2. DO NOT execute this tool without first confirming with the user all
+       parameters.
+    3. BEFORE executing this tool, show to the user all values that will be
+       used to create the server.
+    """
     await ensure_authenticated()
     response = await devopness.servers.add_environment_server(
         environment_id,
-        server_input_settings,
+        {
+            "hostname": os_hostname,
+            # TODO: credential_id type as INT on API Docs/SDK
+            "credential_id": str(credential_id),
+            "provision_input": {
+                "cloud_service_code": cloud_service_code,
+                # TODO: support server provision with custom subnet
+                "settings": {
+                    "region": cloud_service_region,
+                    "instance_type": cloud_service_instance_type,
+                    "os_version_code": os_version_code,
+                    "storage_size": os_disk_size,
+                },
+            },
+        },
     )
 
     return response.data
