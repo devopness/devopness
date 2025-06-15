@@ -49,7 +49,7 @@ const Error: Story = {
       fontStylePlaceholder: 'Placeholder font style',
     },
     error: {
-      message: 'It is a error message',
+      message: 'It is an error message',
     },
     disabled: false,
     readOnly: false,
