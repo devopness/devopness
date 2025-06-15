@@ -1,6 +1,6 @@
 import { create } from '@storybook/theming/create'
 
-import { getImageAssetUrl } from 'src/icons'
+import { getImageAssetUrl } from '../src/icons'
 
 export default create({
   brandTitle: 'Devopness Design System React Components',
