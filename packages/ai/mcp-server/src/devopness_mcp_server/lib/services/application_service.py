@@ -84,9 +84,7 @@ class ApplicationService:
                 )
 
             response_pipelines = (
-                await ApplicationService.devopness_list_application_pipelines(
-                    application_id
-                )
+                await ApplicationService.tool_list_application_pipelines(application_id)
             )
 
             deploy_pipelines = [

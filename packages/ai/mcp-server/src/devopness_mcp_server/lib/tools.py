@@ -1,4 +1,4 @@
-from typing import Any, Type
+from typing import Any, TypedDict
 
 from mcp.server.fastmcp import FastMCP
 
@@ -12,41 +12,64 @@ from .services.ssh_key_service import SSHKeyService
 from .services.user_service import UserService
 from .services.webhook_service import WebHookService
 
+
+class Tool(TypedDict):
+    name: str
+    func: Any
+
+
 MCP_TOOL_PREFIX = "tool_"
 MCP_TOOL_PREFIX_LEN = len(MCP_TOOL_PREFIX)
+MCP_TOOL_FINAL_PREFIX = "devopness_"
 
 
 def is_mcp_tool(name: str, member: Any) -> bool:  # noqa: ANN401
     return name.startswith(MCP_TOOL_PREFIX) and isinstance(member, staticmethod)
 
 
-def register_tools_of_service(mcp_server: FastMCP, service: Type) -> None:
-    tools: list[tuple[str, Any]] = []
+def extract_tools_from_service(service: type) -> list[Tool]:
+    tools: list[Tool] = []
 
     for name, member in service.__dict__.items():
         if not is_mcp_tool(name, member):
             continue
 
-        tool_name: str = "devopness_" + name[MCP_TOOL_PREFIX_LEN:]
-        tools.append((tool_name, member))
+        tool_name: str = MCP_TOOL_FINAL_PREFIX + name[MCP_TOOL_PREFIX_LEN:]
+        tool_func: Any = member.__func__
 
-    # Sort tools by name
-    tools.sort(key=lambda x: x[0])
-
-    for name, func in tools:
-        mcp_server.add_tool(
-            name=name,
-            fn=func,
+        tool = Tool(
+            name=tool_name,
+            func=tool_func,
         )
+
+        tools.append(tool)
+
+    return tools
 
 
 def register_tools(mcp_server: FastMCP) -> None:
-    register_tools_of_service(mcp_server, ApplicationService)
-    register_tools_of_service(mcp_server, CredentialService)
-    register_tools_of_service(mcp_server, EnvironmentService)
-    register_tools_of_service(mcp_server, ProjectService)
-    register_tools_of_service(mcp_server, ServerService)
-    register_tools_of_service(mcp_server, ServiceService)
-    register_tools_of_service(mcp_server, SSHKeyService)
-    register_tools_of_service(mcp_server, UserService)
-    register_tools_of_service(mcp_server, WebHookService)
+    services = [
+        ApplicationService,
+        CredentialService,
+        EnvironmentService,
+        ProjectService,
+        ServerService,
+        ServiceService,
+        SSHKeyService,
+        UserService,
+        WebHookService,
+    ]
+
+    all_tools: list[Tool] = []
+
+    for service in services:
+        service_tools = extract_tools_from_service(service)
+        all_tools.extend(service_tools)
+
+    all_tools.sort(key=lambda tool: tool["name"])
+
+    for tool in all_tools:
+        mcp_server.add_tool(
+            name=tool["name"],
+            fn=tool["func"],
+        )
