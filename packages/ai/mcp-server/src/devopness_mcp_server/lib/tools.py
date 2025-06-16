@@ -1,4 +1,4 @@
-from typing import Any, List, Literal
+from typing import Any, List, Literal, Type
 
 from mcp.server.fastmcp import Context, FastMCP
 
@@ -31,6 +31,25 @@ from devopness.models import (
 
 from .devopness_api import devopness, ensure_authenticated
 from .response import MCPResponse
+
+MCP_TOOL_PREFIX = "tool_"
+MCP_TOOL_PREFIX_LEN = len(MCP_TOOL_PREFIX)
+
+
+def is_mcp_tool(name: str, member: Any) -> bool:  # noqa: ANN401
+    return name.startswith(MCP_TOOL_PREFIX) and isinstance(member, staticmethod)
+
+
+def register_tools_of_service(mcp_server: FastMCP, service: Type) -> None:
+    for name, member in service.__dict__.items():
+        if not is_mcp_tool(name, member):
+            continue
+
+        tool_name: str = "devopness_" + name[MCP_TOOL_PREFIX_LEN:]
+        mcp_server.add_tool(
+            name=tool_name,
+            fn=member.__func__,
+        )
 
 
 def register_tools(mcp_server: FastMCP) -> None:
