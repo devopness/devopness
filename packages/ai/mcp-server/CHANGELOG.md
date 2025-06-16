@@ -4,8 +4,9 @@
 
 ### Patch Changes
 
-- [#1852](https://github.com/devopness/devopness/pull/1852) [`c66fcdc`](https://github.com/devopness/devopness/commit/c66fcdc2fe3c2a8e945b804e9361e94585518529) Thanks [@Diegiwg](https://github.com/Diegiwg)! - ### Added
+- [#1852](https://github.com/devopness/devopness/pull/1852) [`c66fcdc`](https://github.com/devopness/devopness/commit/c66fcdc2fe3c2a8e945b804e9361e94585518529) Thanks [@Diegiwg](https://github.com/Diegiwg)!
 
+### Added
   - New MCP tools for cloud service discovery:
     - `devopness_get_regions_of_cloud_service`
     - `devopness_get_instance_types_of_cloud_service_region`
