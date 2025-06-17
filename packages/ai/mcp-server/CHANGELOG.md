@@ -1,5 +1,13 @@
 # @devopness/mcp-server
 
+## 0.0.13
+
+### Patch Changes
+
+- [#1863](https://github.com/devopness/devopness/pull/1863) [`9211452`](https://github.com/devopness/devopness/commit/9211452c255b592fb7cc0bfc34641a84b53f3216) Thanks [@Diegiwg](https://github.com/Diegiwg)! - **New**
+  - Added `tool_create_application_variable` to allow creation of application environment variables
+  - Added `tool_create_application_config_file` to allow creation of application configuration files
+
 ## 0.0.12
 
 ### Patch Changes
