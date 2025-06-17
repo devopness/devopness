@@ -1,6 +1,7 @@
-from typing import Any, List
+from typing import Annotated, Any, List, Optional
 
 from mcp.server.fastmcp import Context
+from pydantic import Field, StringConstraints
 
 from devopness.models import (
     Action,
@@ -9,6 +10,7 @@ from devopness.models import (
     ApplicationRelation,
     PipelineRelation,
     SourceTypePlain,
+    Variable,
 )
 
 from ..devopness_api import devopness, ensure_authenticated
@@ -136,5 +138,82 @@ class ApplicationService:
                 response.data.url_web_permalink,
                 "Explain to the user how to monitor the deployment progress.",
                 "Show the main information's about the action.",
+            ],
+        )
+
+    @staticmethod
+    async def tool_create_application_variable(
+        application_id: int,
+        variable_name: Annotated[
+            str,
+            StringConstraints(
+                # Define a POSIX-compliant pattern for environment variable names.
+                # See: https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap08.html
+                pattern=r"^[a-zA-Z_][a-zA-Z0-9_]*$",
+            ),
+        ],
+        variable_value: str,
+        variable_is_secret: bool = False,
+        variable_description: Optional[str] = None,
+    ) -> MCPResponse[Variable]:
+        await ensure_authenticated()
+
+        response = await devopness.variables.add_variable(
+            application_id,
+            "application",
+            {
+                "key": variable_name,
+                "value": variable_value,
+                "type": "variable",
+                "target": "os-env-var",
+                "hidden": variable_is_secret,
+                "description": variable_description,
+            },
+        )
+
+        return MCPResponse[Variable].ok(
+            response.data,
+            [
+                "Inform the user that the variable has been created.",
+            ],
+        )
+
+    @staticmethod
+    async def tool_create_application_config_file(
+        application_id: int,
+        file_path: Annotated[
+            str,
+            Field(
+                description="The path to the configuration file,"
+                "relative to the application directory.",
+                examples=[
+                    ".env",
+                    "config.json",
+                    "config/database.yml",
+                ],
+            ),
+        ],
+        file_content: str,
+        file_description: Optional[str] = None,
+    ) -> MCPResponse[Variable]:
+        await ensure_authenticated()
+
+        response = await devopness.variables.add_variable(
+            application_id,
+            "application",
+            {
+                "key": file_path,
+                "value": file_content,
+                "type": "file",
+                "target": "resource-config-file",
+                "hidden": False,
+                "description": file_description,
+            },
+        )
+
+        return MCPResponse[Variable].ok(
+            response.data,
+            [
+                "Inform the user that the configuration file has been created.",
             ],
         )
