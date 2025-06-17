@@ -1,8 +1,9 @@
 from typing import List
 
-from devopness.models import EnvironmentRelation
+from pydantic import Field
 
 from ..devopness_api import devopness, ensure_authenticated
+from ..models import EnvironmentSummary
 from ..response import MCPResponse
 
 
@@ -10,21 +11,36 @@ class EnvironmentService:
     @staticmethod
     async def tool_list_environments(
         project_id: int,
-    ) -> MCPResponse[List[EnvironmentRelation]]:
+        page: int = Field(
+            default=1,
+            gt=0,
+        ),
+    ) -> MCPResponse[List[EnvironmentSummary]]:
         """
         Rules:
         1. DO NOT execute this tool without first confirming with the user which
           project ID to use.
         """
         await ensure_authenticated()
-        response = await devopness.environments.list_project_environments(project_id)
+        response = await devopness.environments.list_project_environments(
+            project_id,
+            page,
+        )
+
+        environments = [
+            EnvironmentSummary(
+                id=environment.id,
+                name=environment.name,
+                description=environment.description,
+            )
+            for environment in response.data
+        ]
 
         return MCPResponse.ok(
-            response.data,
+            environments,
             [
                 "Show the list in the following format:",
                 "#N. {environment.name} (ID: {environment.id})",
-                "   - Type: {environment.type}",
                 "   - Description: {environment.description}",
                 "Rules:"
                 "1. If the user has multiple environments ask them to choose one"
