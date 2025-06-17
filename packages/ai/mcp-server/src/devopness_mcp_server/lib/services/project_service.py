@@ -1,19 +1,26 @@
 from typing import List
 
-from devopness.models import ProjectRelation
-
 from ..devopness_api import devopness, ensure_authenticated
+from ..models import Project
 from ..response import MCPResponse
 
 
 class ProjectService:
     @staticmethod
-    async def tool_list_projects() -> MCPResponse[List[ProjectRelation]]:
+    async def tool_list_projects() -> MCPResponse[List[Project]]:
         await ensure_authenticated()
         response = await devopness.projects.list_projects()
 
+        projects = [
+            Project(
+                id=project.id,
+                name=project.name,
+            )
+            for project in response.data
+        ]
+
         return MCPResponse.ok(
-            response.data,
+            projects,
             [
                 "Show the list in the following format:",
                 "#N. {project.name} (ID: {project.id})",
