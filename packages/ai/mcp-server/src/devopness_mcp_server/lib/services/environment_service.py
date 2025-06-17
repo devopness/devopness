@@ -3,7 +3,7 @@ from typing import List
 from pydantic import Field
 
 from ..devopness_api import devopness, ensure_authenticated
-from ..models import Environment
+from ..models import EnvironmentSummary
 from ..response import MCPResponse
 
 
@@ -15,7 +15,7 @@ class EnvironmentService:
             default=1,
             gt=0,
         ),
-    ) -> MCPResponse[List[Environment]]:
+    ) -> MCPResponse[List[EnvironmentSummary]]:
         """
         Rules:
         1. DO NOT execute this tool without first confirming with the user which
@@ -28,7 +28,7 @@ class EnvironmentService:
         )
 
         environments = [
-            Environment(
+            EnvironmentSummary(
                 id=environment.id,
                 name=environment.name,
                 description=environment.description,

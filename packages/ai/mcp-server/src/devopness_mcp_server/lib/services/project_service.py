@@ -3,7 +3,7 @@ from typing import List
 from pydantic import Field
 
 from ..devopness_api import devopness, ensure_authenticated
-from ..models import Project
+from ..models import ProjectSummary
 from ..response import MCPResponse
 
 
@@ -14,12 +14,12 @@ class ProjectService:
             default=1,
             gt=0,
         ),
-    ) -> MCPResponse[List[Project]]:
+    ) -> MCPResponse[List[ProjectSummary]]:
         await ensure_authenticated()
         response = await devopness.projects.list_projects(page)
 
         projects = [
-            Project(
+            ProjectSummary(
                 id=project.id,
                 name=project.name,
             )
