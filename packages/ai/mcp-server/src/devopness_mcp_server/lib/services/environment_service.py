@@ -1,5 +1,7 @@
 from typing import List
 
+from pydantic import Field
+
 from ..devopness_api import devopness, ensure_authenticated
 from ..models import Environment
 from ..response import MCPResponse
@@ -9,6 +11,10 @@ class EnvironmentService:
     @staticmethod
     async def tool_list_environments(
         project_id: int,
+        page: int = Field(
+            default=1,
+            gt=0,
+        ),
     ) -> MCPResponse[List[Environment]]:
         """
         Rules:
@@ -16,7 +22,10 @@ class EnvironmentService:
           project ID to use.
         """
         await ensure_authenticated()
-        response = await devopness.environments.list_project_environments(project_id)
+        response = await devopness.environments.list_project_environments(
+            project_id,
+            page,
+        )
 
         environments = [
             Environment(

@@ -1,5 +1,7 @@
 from typing import List
 
+from pydantic import Field
+
 from ..devopness_api import devopness, ensure_authenticated
 from ..models import Project
 from ..response import MCPResponse
@@ -7,9 +9,14 @@ from ..response import MCPResponse
 
 class ProjectService:
     @staticmethod
-    async def tool_list_projects() -> MCPResponse[List[Project]]:
+    async def tool_list_projects(
+        page: int = Field(
+            default=1,
+            gt=0,
+        ),
+    ) -> MCPResponse[List[Project]]:
         await ensure_authenticated()
-        response = await devopness.projects.list_projects()
+        response = await devopness.projects.list_projects(page)
 
         projects = [
             Project(
