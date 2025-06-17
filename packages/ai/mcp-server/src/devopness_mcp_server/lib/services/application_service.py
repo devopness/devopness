@@ -1,7 +1,7 @@
 from typing import Annotated, Any, List, Optional
 
 from mcp.server.fastmcp import Context
-from pydantic import StringConstraints
+from pydantic import Field, StringConstraints
 
 from devopness.models import (
     Action,
@@ -175,5 +175,45 @@ class ApplicationService:
             response.data,
             [
                 "Inform the user that the variable has been created.",
+            ],
+        )
+
+    @staticmethod
+    async def tool_create_application_config_file(
+        application_id: int,
+        file_path: Annotated[
+            str,
+            Field(
+                description="The path to the configuration file,"
+                "relative to the application directory.",
+                examples=[
+                    ".env",
+                    "config.json",
+                    "config/database.yml",
+                ],
+            ),
+        ],
+        file_content: str,
+        file_description: Optional[str] = None,
+    ) -> MCPResponse[Variable]:
+        await ensure_authenticated()
+
+        response = await devopness.variables.add_variable(
+            application_id,
+            "application",
+            {
+                "key": file_path,
+                "value": file_content,
+                "type": "file",
+                "target": "resource-config-file",
+                "hidden": False,
+                "description": file_description,
+            },
+        )
+
+        return MCPResponse[Variable].ok(
+            response.data,
+            [
+                "Inform the user that the configuration file has been created.",
             ],
         )
