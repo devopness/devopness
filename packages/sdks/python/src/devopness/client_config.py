@@ -3,14 +3,31 @@ Devopness API Python SDK - Painless essential DevOps to everyone
 """
 
 import re
-from typing import ClassVar, TypedDict
+from importlib.metadata import version
+from platform import python_version, system
+from typing import TypedDict
 
 from pydantic import field_validator
 
 from .base import DevopnessBaseModel
 from .core.sdk_error import DevopnessSdkError
 
-__all__ = ["DevopnessClientConfig", "DevopnessClientConfigDict"]
+__all__ = ["DevopnessClientConfig", "DevopnessClientConfigDict", "get_user_agent"]
+
+
+def get_user_agent(
+    product_name: str = "devopness-sdk-python",
+    product_package_name: str = "devopness",
+) -> str:
+    product_version = version(product_package_name)
+    product_home_url = "https://github.com/devopness/devopness"
+
+    platform = "python"
+    platform_version = python_version()
+    platform_system = system()
+
+    # Example: devopness-sdk-python/1.0.0 +https://github.com/devopness/devopness (python/3.13.0 Linux)               # noqa: E501
+    return f"{product_name}/{product_version} +{product_home_url} ({platform}/{platform_version} {platform_system})"  # noqa: E501
 
 
 class DevopnessClientConfig(DevopnessBaseModel):
@@ -23,7 +40,7 @@ class DevopnessClientConfig(DevopnessBaseModel):
         base_url (str): Base URL for API requests.
         debug (bool): Controls whether debug information is printed to the console.
         default_encoding (str): Default encoding for response content.
-        headers (ClassVar[dict[str, str]]): Default headers for API requests.
+        headers (dict[str, str]): Default headers for API requests.
         timeout (int): Request timeout in seconds.
     """
 
@@ -31,9 +48,10 @@ class DevopnessClientConfig(DevopnessBaseModel):
     base_url: str = "https://api.devopness.com"
     debug: bool = False
     default_encoding: str = "utf-8"
-    headers: ClassVar[dict[str, str]] = {
+    headers: dict[str, str] = {  # noqa: RUF012
         "Accept": "application/json",
         "Content-Type": "application/json",
+        "User-Agent": get_user_agent(),
     }
     timeout: int = 30
 
@@ -63,3 +81,4 @@ class DevopnessClientConfigDict(TypedDict, total=False):
     default_encoding: str
     headers: dict[str, str]
     timeout: int
+    user_agent: str
