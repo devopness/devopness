@@ -55,11 +55,6 @@ class TestDevopnessBaseService(unittest.TestCase):
     DevopnessBaseService._config = DevopnessClientConfig(
         base_url="https://test.local",
         auto_refresh_token=False,
-        headers={
-            "Accept": "application/json",
-            "Content-Type": "application/json",
-            "User-Agent": "custom-user-agent",
-        },
     )
     service = DevopnessBaseService()
 
@@ -248,7 +243,7 @@ class TestDevopnessBaseService(unittest.TestCase):
         )
 
     @patch("httpx.Client.send")
-    def test_request_use_custom_user_agent(
+    def test_request_includes_expected_user_agent_header(
         self,
         mock: Mock,
     ) -> None:
@@ -259,18 +254,22 @@ class TestDevopnessBaseService(unittest.TestCase):
         request: httpx.Request = mock.call_args[0][0]
         self.assertIsInstance(request, httpx.Request)
 
-        self.assertEqual(request.headers["User-Agent"], "custom-user-agent")
+        user_agent = request.headers.get("User-Agent")
+        self.assertIsNotNone(user_agent)
+
+        # Expected User-Agent format:
+        # devopness-sdk-python/<version> +https://github.com/devopness/devopness (python/<python_version> <os>)
+        pattern = (
+            r"devopness-sdk-python/\d+\.\d+\.\d+ \+https://github\.com/devopness/devopness "
+            r"\(python/\d+\.\d+\.\d+ [A-Za-z0-9_\-]+\)"
+        )
+        self.assertRegex(user_agent, pattern)
 
 
 class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
     DevopnessBaseServiceAsync._config = DevopnessClientConfig(
         base_url="https://test.local",
         auto_refresh_token=False,
-        headers={
-            "Accept": "application/json",
-            "Content-Type": "application/json",
-            "User-Agent": "custom-user-agent",
-        },
     )
     service = DevopnessBaseServiceAsync()
 
@@ -459,7 +458,7 @@ class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
         )
 
     @patch("httpx.AsyncClient.send")
-    async def test_request_use_custom_user_agent(
+    async def test_request_includes_expected_user_agent_header(
         self,
         mock: Mock,
     ) -> None:
@@ -470,4 +469,13 @@ class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
         request: httpx.Request = mock.call_args[0][0]
         self.assertIsInstance(request, httpx.Request)
 
-        self.assertEqual(request.headers["User-Agent"], "custom-user-agent")
+        user_agent = request.headers.get("User-Agent")
+        self.assertIsNotNone(user_agent)
+
+        # Expected User-Agent format:
+        # devopness-sdk-python/<version> +https://github.com/devopness/devopness (python/<python_version> <os>)
+        pattern = (
+            r"devopness-sdk-python/\d+\.\d+\.\d+ \+https://github\.com/devopness/devopness "
+            r"\(python/\d+\.\d+\.\d+ [A-Za-z0-9_\-]+\)"
+        )
+        self.assertRegex(user_agent, pattern)
