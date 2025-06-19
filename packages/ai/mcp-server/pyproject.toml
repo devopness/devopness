@@ -49,7 +49,10 @@ classifiers = [
   "Topic :: System :: Systems Administration",
   "Topic :: Utilities",
 ]
-dependencies = ["devopness>=1.1.5", "mcp[cli]>=1.9.1"]
+dependencies = [
+    "devopness>=1.2.0",
+    "mcp[cli]>=1.9.1",
+]
 
 [project.urls]
 homepage = "https://www.devopness.com"
