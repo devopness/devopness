@@ -1,5 +1,19 @@
 # @devopness/mcp-server
 
+## 0.0.15
+
+### Patch Changes
+
+- [#1870](https://github.com/devopness/devopness/pull/1870) [`dfe647e`](https://github.com/devopness/devopness/commit/dfe647e04b6f5d4fd9ca63ea2c08d08ccb276ec6) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Set a custom `User-Agent` header for all outgoing HTTP requests made by the MCP.
+
+  This helps improve observability and debugging by allowing the Devopness Team to identify MCP usage and runtime environment metadata.
+
+  The `User-Agent` format looks like:
+
+  ```
+  devopness-mcp-server/1.0.0 +https://github.com/devopness/devopness (python/3.13.0 Linux)
+  ```
+
 ## 0.0.14
 
 ### Patch Changes
