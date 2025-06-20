@@ -6,8 +6,8 @@ from pydantic import Field, StringConstraints
 from devopness.models import (
     Action,
     Application,
-    ApplicationEnvironmentCreate,
     ApplicationRelation,
+    LanguageRuntime,
     PipelineRelation,
     SourceTypePlain,
     Variable,
@@ -18,6 +18,26 @@ from ..response import MCPResponse
 
 
 class ApplicationService:
+    @staticmethod
+    async def tool_get_available_language_runtimes() -> MCPResponse[
+        List[LanguageRuntime]
+    ]:
+        await ensure_authenticated()
+
+        response = await devopness.static.get_static_application_options()
+
+        runtimes = response.data.language_runtimes
+
+        return MCPResponse.ok(
+            runtimes,
+            [
+                "Show the list of available language runtimes.",
+                "You MUST guide the user to select a programming language "
+                "based in current information's about the application and "
+                "application repository.",
+            ],
+        )
+
     @staticmethod
     async def tool_list_applications(
         environment_id: int,
@@ -43,20 +63,91 @@ class ApplicationService:
     @staticmethod
     async def tool_create_application(
         environment_id: int,
-        application_input_settings: ApplicationEnvironmentCreate,
-    ) -> Application:
+        source_credential_id: int,
+        name: Annotated[
+            str,
+            StringConstraints(
+                max_length=60,
+                pattern=r"^[a-z0-9\.\-\_]+$",
+            ),
+        ],
+        repository: Annotated[
+            str,
+            StringConstraints(
+                max_length=100,
+                pattern=r"^[\w.-]+[\/][\w.-]+$",
+            ),
+            Field(description="Expecting a repository in the format 'owner/repo'."),
+        ],
+        programming_language: str,
+        programming_language_version: str,
+        programming_language_framework: str,
+        root_directory: Optional[
+            Annotated[
+                str,
+                StringConstraints(
+                    # Required to start with a slash
+                    pattern=r"^/.*$",
+                ),
+            ]
+        ],
+        build_command: Optional[str],
+        install_dependencies_command: Optional[str],
+        default_branch: str,
+        deployments_keep: Optional[int],
+    ) -> MCPResponse[Application]:
+        """
+        Rules:
+        - The source_credential_id must be of the source provider where the repository
+           is hosted. You MUST ensure the user has selected the correct credential
+           if user provided the link to the repository. Eg: https://github.com/devopness/devopness
+           should use a GitHub credential.
+        - If the environment selected by the user does not have a credential of the
+           source provider where the repository is hosted, you MUST inform the user
+           that they need to create a credential for that source provider in the
+           selected environment.
+           Please guide the user to access the url
+           https://app.devopness.com/projects/<project_id>/environments/<environment_id>/credentials/add
+        - Use the `devopness_get_available_language_runtimes` tool help the user to
+           select the programming language, version and framework for the new
+           application.
+        - If the user does not provide an engine version, assume the latest version
+           available for the programming language.
+        """
         await ensure_authenticated()
         response = await devopness.applications.add_environment_application(
             environment_id,
-            application_input_settings,
+            {
+                "credential_id": source_credential_id,
+                "name": name,
+                "repository": repository,
+                "programming_language": programming_language,
+                "engine_version": programming_language_version,
+                "framework": programming_language_framework,
+                "root_directory": root_directory,
+                "build_command": build_command,
+                "install_dependencies_command": install_dependencies_command,
+                "default_branch": default_branch,
+                "deployments_keep": deployments_keep,
+            },
         )
 
-        return response.data
+        return MCPResponse[Application].ok(
+            response.data,
+            [
+                "Inform the user that the application has been created.",
+                "Show the main information's about the application.",
+                "Show the following link to the application in the Devopness App: "
+                f"https://app.devopness.com/projects/{response.data.project_id}/environments/{environment_id}/applications/{response.data.id}",
+                "You MUST suggest the user to deploy the created application.",
+            ],
+        )
 
     @staticmethod
     async def tool_deploy_application(
         ctx: Context[Any, Any],
         source_value: str,
+        server_ids: List[int],
         pipeline_id: int | None = None,
         application_id: int | None = None,
         source_type: SourceTypePlain = "branch",
@@ -118,6 +209,7 @@ class ApplicationService:
             {
                 "source_type": source_type,
                 "source_ref": source_value,
+                "servers": server_ids,
             },
         )
 
@@ -134,8 +226,8 @@ class ApplicationService:
         return MCPResponse[Action].ok(
             response.data,
             [
-                "To monitor the deployment progress, visit the following URL:",
-                response.data.url_web_permalink,
+                "To monitor the deployment progress, display to the user the following"
+                " URL as a clickable link:" + response.data.url_web_permalink,
                 "Explain to the user how to monitor the deployment progress.",
                 "Show the main information's about the action.",
             ],
