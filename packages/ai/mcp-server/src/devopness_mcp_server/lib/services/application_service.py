@@ -6,8 +6,8 @@ from pydantic import Field, StringConstraints
 from devopness.models import (
     Action,
     Application,
-    ApplicationEnvironmentCreate,
     ApplicationRelation,
+    LanguageRuntime,
     PipelineRelation,
     SourceTypePlain,
     Variable,
@@ -18,6 +18,26 @@ from ..response import MCPResponse
 
 
 class ApplicationService:
+    @staticmethod
+    async def tool_get_available_language_runtimes() -> MCPResponse[
+        List[LanguageRuntime]
+    ]:
+        await ensure_authenticated()
+
+        response = await devopness.static.get_static_application_options()
+
+        runtimes = response.data.language_runtimes
+
+        return MCPResponse.ok(
+            runtimes,
+            [
+                "Show the list of available language runtimes.",
+                "You MUST guide the user to select a programming language "
+                "based in current information's about the application and "
+                "application repository.",
+            ],
+        )
+
     @staticmethod
     async def tool_list_applications(
         environment_id: int,
@@ -62,7 +82,15 @@ class ApplicationService:
         programming_language: str,
         programming_language_version: str,
         programming_language_framework: str,
-        root_directory: Optional[str],
+        root_directory: Optional[
+            Annotated[
+                str,
+                StringConstraints(
+                    # Required to start with a slash
+                    pattern=r"^/.*$",
+                ),
+            ]
+        ],
         build_command: Optional[str],
         install_dependencies_command: Optional[str],
         default_branch: str,
@@ -70,15 +98,20 @@ class ApplicationService:
     ) -> MCPResponse[Application]:
         """
         Rules:
-        1. The source_credential_id must be of the source provider where the repository
-           is hosted. Eg: github, gitlab, bitbucket, ...
-        2. If the environment selected by the user does not have a credential of the
+        - The source_credential_id must be of the source provider where the repository
+           is hosted. You MUST ensure the user has selected the correct credential
+           if user provided the link to the repository. Eg: https://github.com/devopness/devopness
+           should use a GitHub credential.
+        - If the environment selected by the user does not have a credential of the
            source provider where the repository is hosted, you MUST inform the user
            that they need to create a credential for that source provider in the
            selected environment.
            Please guide the user to access the url
            https://app.devopness.com/projects/<project_id>/environments/<environment_id>/credentials/add
-        3. If the user does not provide an engine version, assume the latest version
+        - Use the `devopness_get_available_language_runtimes` tool help the user to
+           select the programming language, version and framework for the new
+           application.
+        - If the user does not provide an engine version, assume the latest version
            available for the programming language.
         """
         await ensure_authenticated()
