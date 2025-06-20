@@ -15,13 +15,13 @@ from ..response import MCPResponse
 
 class ServerService:
     @staticmethod
-    async def tool_get_regions_of_cloud_service(
-        cloud_provider_service_code: ServerCloudServiceCode,
+    async def tool_get_cloud_service_regions(
+        cloud_service_code: ServerCloudServiceCode,
     ) -> MCPResponse[List[CloudProviderServiceRegion]]:
         await ensure_authenticated()
 
         response = await devopness.static.get_static_cloud_provider_service(
-            str(cloud_provider_service_code)
+            str(cloud_service_code)
         )
 
         return MCPResponse.ok(
@@ -35,7 +35,7 @@ class ServerService:
         )
 
     @staticmethod
-    async def tool_get_instance_types_of_cloud_service_region(
+    async def tool_get_available_instance_types(
         cloud_provider_service_code: ServerCloudServiceCode,
         region_code: str,
     ) -> MCPResponse[List[CloudInstanceRelation]]:
