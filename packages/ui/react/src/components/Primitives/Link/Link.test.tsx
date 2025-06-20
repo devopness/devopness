@@ -16,6 +16,11 @@ describe('Link', () => {
 
     const expectedText = screen.getByText('LinkComponent')
     expect(expectedText).toBeInTheDocument()
+
+    // Should be an anchor
+    expect(expectedText.closest('a')).toHaveAttribute('href', LINK_PROPS.url)
+    // Should have default aria-label as undefined when first renders
+    expect(expectedText.closest('a')).not.toHaveAttribute('aria-label')
   })
 
   it('render correctly without props.children', () => {
@@ -36,6 +41,25 @@ describe('Link', () => {
     const expectedText = screen.getByText('https://www.devopness.com')
     expect(expectedText).toBeInTheDocument()
     expect(expectedText.getAttribute('color')).toEqual(getColor('purple.800'))
+  })
+
+  it('renders with aria-label when provided', () => {
+    render(
+      <Link
+        to={LINK_PROPS.url}
+        ariaLabel="Custom A11y Label"
+      >
+        Accessible Link
+      </Link>
+    )
+    const link = screen.getByText('Accessible Link').closest('a')
+    expect(link).toHaveAttribute('aria-label', 'Custom A11y Label')
+  })
+
+  it('has tabIndex=0 for accessibility', () => {
+    render(<Link to={LINK_PROPS.url}>Tabbable Link</Link>)
+    const link = screen.getByText('Tabbable Link').closest('a')
+    expect(link).toHaveAttribute('tabindex', '0')
   })
 
   it('render correctly with new style', () => {

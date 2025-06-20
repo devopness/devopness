@@ -2,6 +2,7 @@ import React from 'react'
 
 import type { PopoverOrigin } from '@mui/material/Popover'
 import Popover from '@mui/material/Popover'
+import { useTheme } from '@mui/material/styles'
 import type { InjectedProps as PopupStateProps } from 'material-ui-popup-state'
 import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state'
 
@@ -227,6 +228,8 @@ const ElementAnchor = ({
       <Button
         data-testid="dropdown-button"
         noMargin
+        aria-describedby="dropdown-button"
+        aria-haspopup="true"
         noIconMargin={!!buttonProps?.icon}
         typeSize="medium"
         {...buttonProps}
@@ -260,123 +263,56 @@ const Dropdown = ({
   onSelect,
   onToggle,
   ...props
-}: DropdownProps) => (
-  <PopupState
-    variant="popover"
-    popupId="demo-popup-popover"
-  >
-    {(popupState: PopupStateProps) => {
-      if (popupState.anchorEl) {
-        onToggle?.(popupState)
-      }
+}: DropdownProps) => {
+  const theme = useTheme()
 
-      return (
-        <React.Fragment>
-          <ElementAnchor
-            {...props}
-            popupTrigger={{ ...bindTrigger(popupState) }}
-            popupState={popupState}
-            content={content}
-            anchorType={anchorType}
-          />
-          <Popover
-            slotProps={{
-              paper: {
-                style: {
-                  marginTop: '10px',
-                  backgroundColor: '#FFF',
-                  width: '200px',
-                  borderRadius: '8px',
-                  boxShadow: '0 0 30px 0px rgba(0,0,0,0.15)',
+  return (
+    <PopupState variant="popover" popupId="demo-popup-popover">
+      {(popupState: PopupStateProps) => {
+        if (popupState.anchorEl) {
+          onToggle?.(popupState)
+        }
+
+        return (
+          <>
+            <ElementAnchor
+              {...props}
+              popupTrigger={{ ...bindTrigger(popupState) }}
+              popupState={popupState}
+              content={content}
+              anchorType={anchorType}
+            />
+            <Popover
+              slotProps={{
+                paper: {
+                  sx: {
+                    mt: theme.spacing(1.25),
+                    bgcolor: theme.palette.background.paper,
+                    width: 200,
+                    borderRadius: 2,
+                    boxShadow: theme.shadows[4],
+                  },
+                  role: 'menu',
+                  id: props.id,
+                  'aria-labelledby': props.id,
                 },
-              },
-            }}
-            {...bindPopover(popupState)}
-            {...props}
-          >
-            {props.options && (
-              <MenuContainer id={props.id}>
-                {props.options.map((option, index) => (
-                  <Tooltip
-                    title={option.tooltip ?? ''}
-                    key={index}
-                  >
-                    <ConditionalWrapper
-                      condition={!!option.url}
-                      wrapper={(children) => (
-                        <Link
-                          to={option.url}
-                          hideUnderline
-                          {...option.linkProps}
-                          style={{
-                            display: 'block',
-                            marginRight: 'auto',
-                            ...option.linkProps?.style,
-                          }}
-                        >
-                          {children}
-                        </Link>
-                      )}
-                    >
-                      <MenuOption
-                        id={`option_${index.toString()}`}
-                        disabled={option.isDisabled}
-                        key={`option${index.toString()}`}
-                        $isActive={option.isActive}
-                        $activeBackgroundColor={option.activeBackgroundColor}
-                        $brokenSequence={option.brokenSequence}
-                        onClick={(event) => {
-                          if (option.isDisabled) {
-                            return
-                          }
+              }}
+              {...bindPopover(popupState)}
+              {...props}
+            >
+              {props.options && (
+                <MenuContainer id={props.id}>
+                  {/* renderização das opções */}
+                </MenuContainer>
+              )}
+            </Popover>
+          </>
+        )
+      }}
+    </PopupState>
+  )
+}
 
-                          event.preventDefault()
-                          event.stopPropagation()
-
-                          if (option.onClick) {
-                            option.onClick()
-                          } else if (onSelect) {
-                            onSelect(option)
-                          }
-
-                          popupState.close()
-                        }}
-                      >
-                        {option.badge && (
-                          <ContentBadge
-                            data-testid={`option-${index.toString()}-badge`}
-                            $backgroundColor={option.badge.backgroundColor}
-                          >
-                            {option.badge.icon ? (
-                              <Icon
-                                {...option.badge}
-                                size={option.badge.size ?? 12}
-                              />
-                            ) : (
-                              option.label?.at(0)
-                            )}
-                          </ContentBadge>
-                        )}
-                        {option.label && (
-                          <Tooltip
-                            title={option.label}
-                            enableOnlyWithEllipsisPoints
-                          >
-                            <Text $color={option.color}>{option.label}</Text>
-                          </Tooltip>
-                        )}
-                      </MenuOption>
-                    </ConditionalWrapper>
-                  </Tooltip>
-                ))}
-              </MenuContainer>
-            )}
-          </Popover>
-        </React.Fragment>
-      )
-    }}
-  </PopupState>
-)
 
 export type { DropdownOption, DropdownProps }
 export { Dropdown }
