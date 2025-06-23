@@ -1,6 +1,5 @@
-from typing import Annotated, Any, List, Optional
+from typing import Annotated, List, Optional
 
-from mcp.server.fastmcp import Context
 from pydantic import Field, StringConstraints
 
 from devopness.models import (
@@ -8,13 +7,18 @@ from devopness.models import (
     Application,
     ApplicationRelation,
     LanguageRuntime,
-    PipelineRelation,
     SourceTypePlain,
     Variable,
 )
 
 from ..devopness_api import devopness, ensure_authenticated
+from ..models import ServerIDs
 from ..response import MCPResponse
+from ..utils import (
+    get_format_list_instructions,
+    get_how_to_monitor_action_instructions,
+    get_next_action_suggestion_instructions,
+)
 
 
 class ApplicationService:
@@ -31,10 +35,15 @@ class ApplicationService:
         return MCPResponse.ok(
             runtimes,
             [
-                "Show the list of available language runtimes.",
-                "You MUST guide the user to select a programming language "
-                "based in current information's about the application and "
-                "application repository.",
+                get_format_list_instructions(
+                    "#N. {runtime.name_human_readable}",
+                    [
+                        "Versions:",
+                        "- {version for item in runtime.engine_versions}",
+                        "Frameworks:",
+                        "- {name_human_readable for item in runtime.frameworks}",
+                    ],
+                )
             ],
         )
 
@@ -45,17 +54,6 @@ class ApplicationService:
         await ensure_authenticated()
         response = await devopness.applications.list_environment_applications(
             environment_id
-        )
-
-        return response.data
-
-    @staticmethod
-    async def tool_list_application_pipelines(
-        application_id: int,
-    ) -> List[PipelineRelation]:
-        await ensure_authenticated()
-        response = await devopness.pipelines.list_pipelines_by_resource_type(
-            application_id, "application"
         )
 
         return response.data
@@ -145,65 +143,11 @@ class ApplicationService:
 
     @staticmethod
     async def tool_deploy_application(
-        ctx: Context[Any, Any],
+        pipeline_id: int,
+        source_type: SourceTypePlain,
         source_value: str,
-        server_ids: List[int],
-        pipeline_id: int | None = None,
-        application_id: int | None = None,
-        source_type: SourceTypePlain = "branch",
+        server_ids: ServerIDs,
     ) -> MCPResponse[Action]:
-        """
-        Trigger a new deployment for application.
-
-        You Should:
-        - Use this function when you want to trigger a deployment.
-        - If the user provides a pipeline ID, use it to trigger the deployment.
-        - If the user does not provide a pipeline ID but provides an application ID,
-          use this tool to fetch the available deployment pipelines for the application.
-        - You MUST ask the user to provide a source value (e.g., branch name, commit)
-          depending on the selected source type (e.g., "branch" or "commit").
-        - You MUST confirm with the user all the values that will be used before calling
-          this tool with the pipeline_id
-        """
-        await ensure_authenticated()
-
-        if not pipeline_id:
-            if not application_id:
-                return MCPResponse.error(
-                    [
-                        "A pipeline ID or an application ID is required to trigger"
-                        " a deployment. Please ask the user to provide one of them."
-                    ]
-                )
-
-            response_pipelines = (
-                await ApplicationService.tool_list_application_pipelines(application_id)
-            )
-
-            deploy_pipelines = [
-                pipeline
-                for pipeline in response_pipelines
-                if pipeline.operation == "deploy"
-            ]
-
-            if len(deploy_pipelines) == 0:
-                return MCPResponse.error(
-                    [
-                        "No pipelines were found for the given application ID. "
-                        "Please ask the user to verify the application and try again."
-                    ]
-                )
-
-            return MCPResponse.warning(
-                [
-                    "The following pipelines were found for this application:",
-                    deploy_pipelines,
-                    "Please ask the user to choose one of the listed pipeline IDs. "
-                    "Then call this function again with the selected ID as the "
-                    "'pipeline_id' argument.",
-                ],
-            )
-
         response = await devopness.actions.add_pipeline_action(
             pipeline_id,
             {
@@ -213,23 +157,10 @@ class ApplicationService:
             },
         )
 
-        await ctx.info(
-            f"Deployment has been triggered using pipeline ID {pipeline_id} "
-            f"with source type '{source_type}' and source value '{source_value}'."
-        )
-
-        await ctx.info(
-            "To monitor the deployment progress, visit the following URL:\n"
-            f"{response.data.url_web_permalink}"
-        )
-
-        return MCPResponse[Action].ok(
+        return MCPResponse.ok(
             response.data,
             [
-                "To monitor the deployment progress, display to the user the following"
-                " URL as a clickable link:" + response.data.url_web_permalink,
-                "Explain to the user how to monitor the deployment progress.",
-                "Show the main information's about the action.",
+                get_how_to_monitor_action_instructions(response.data.url_web_permalink),
             ],
         )
 
@@ -263,10 +194,10 @@ class ApplicationService:
             },
         )
 
-        return MCPResponse[Variable].ok(
+        return MCPResponse.ok(
             response.data,
             [
-                "Inform the user that the variable has been created.",
+                get_next_action_suggestion_instructions("deploy", "application"),
             ],
         )
 
@@ -303,9 +234,9 @@ class ApplicationService:
             },
         )
 
-        return MCPResponse[Variable].ok(
+        return MCPResponse.ok(
             response.data,
             [
-                "Inform the user that the configuration file has been created.",
+                get_next_action_suggestion_instructions("deploy", "application"),
             ],
         )
