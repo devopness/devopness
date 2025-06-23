@@ -34,3 +34,10 @@ class SSHKeySummary(DevopnessBaseModel):
     id: int
     name: str
     fingerprint: str
+
+
+class CredentialSummary(DevopnessBaseModel):
+    id: int
+    name: str
+    provider: str
+    provider_type: str
