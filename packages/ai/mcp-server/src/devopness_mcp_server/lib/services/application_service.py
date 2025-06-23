@@ -4,20 +4,20 @@ from pydantic import Field, StringConstraints
 
 from devopness.models import (
     Action,
-    Application,
-    ApplicationRelation,
     LanguageRuntime,
     SourceTypePlain,
     Variable,
 )
 
 from ..devopness_api import devopness, ensure_authenticated
-from ..models import ServerIDs
+from ..models import ApplicationSummary, ServerIDs
 from ..response import MCPResponse
 from ..utils import (
     get_format_list_instructions,
+    get_format_resource_instructions,
     get_how_to_monitor_action_instructions,
     get_next_action_suggestion_instructions,
+    get_web_link_to_environment_resource,
 )
 
 
@@ -50,13 +50,47 @@ class ApplicationService:
     @staticmethod
     async def tool_list_applications(
         environment_id: int,
-    ) -> List[ApplicationRelation]:
+    ) -> MCPResponse[List[ApplicationSummary]]:
         await ensure_authenticated()
+
         response = await devopness.applications.list_environment_applications(
             environment_id
         )
 
-        return response.data
+        applications = [
+            ApplicationSummary(
+                id=application.id,
+                name=application.name,
+                repository=application.repository,
+                programming_language=application.programming_language,
+                programming_language_version=application.engine_version,
+                programming_language_framework=application.framework,
+                root_directory=application.root_directory,
+                install_dependencies_command=application.install_dependencies_command,
+                build_command=application.build_command,
+            )
+            for application in response.data
+        ]
+
+        return MCPResponse.ok(
+            applications,
+            [
+                get_format_list_instructions(
+                    "#N. {application.name}",
+                    [
+                        "Repository: {application.repository}",
+                        "Root directory: {application.root_directory}",
+                        "Stack:",
+                        "- Language: {application.programming_language}",
+                        "- Version: {application.programming_language_version}",
+                        "- Framework: {application.programming_language_framework}",
+                        "Commands:",
+                        "- Install: {application.install_dependencies_command}",
+                        "- Build: {application.build_command}",
+                    ],
+                )
+            ],
+        )
 
     @staticmethod
     async def tool_create_application(
@@ -93,7 +127,7 @@ class ApplicationService:
         install_dependencies_command: Optional[str],
         default_branch: str,
         deployments_keep: Optional[int],
-    ) -> MCPResponse[Application]:
+    ) -> MCPResponse[ApplicationSummary]:
         """
         Rules:
         - The source_credential_id must be of the source provider where the repository
@@ -113,6 +147,7 @@ class ApplicationService:
            available for the programming language.
         """
         await ensure_authenticated()
+
         response = await devopness.applications.add_environment_application(
             environment_id,
             {
@@ -130,14 +165,44 @@ class ApplicationService:
             },
         )
 
-        return MCPResponse[Application].ok(
-            response.data,
+        application = ApplicationSummary(
+            id=response.data.id,
+            name=response.data.name,
+            repository=response.data.repository,
+            programming_language=response.data.programming_language,
+            programming_language_version=response.data.engine_version,
+            programming_language_framework=response.data.framework,
+            root_directory=response.data.root_directory,
+            install_dependencies_command=response.data.install_dependencies_command,
+            build_command=response.data.build_command,
+        )
+
+        return MCPResponse.ok(
+            application,
             [
-                "Inform the user that the application has been created.",
-                "Show the main information's about the application.",
-                "Show the following link to the application in the Devopness App: "
-                f"https://app.devopness.com/projects/{response.data.project_id}/environments/{environment_id}/applications/{response.data.id}",
-                "You MUST suggest the user to deploy the created application.",
+                get_format_resource_instructions(
+                    "application",
+                    [
+                        "Name: {application.name}",
+                        "Repository: {application.repository}",
+                        "Root directory: {application.root_directory}",
+                        "Stack:",
+                        "- Language: {application.programming_language}",
+                        "- Version: {application.programming_language_version}",
+                        "- Framework: {application.programming_language_framework}",
+                        "Commands:",
+                        "- Install: {application.install_dependencies_command}",
+                        "- Build: {application.build_command}",
+                    ],
+                ),
+                "See more details at: "
+                + get_web_link_to_environment_resource(
+                    response.data.project_id,
+                    response.data.environment_id,
+                    "application",
+                    response.data.id,
+                ),
+                get_next_action_suggestion_instructions("deploy", "application"),
             ],
         )
 

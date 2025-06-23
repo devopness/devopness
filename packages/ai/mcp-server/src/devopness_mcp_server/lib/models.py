@@ -58,3 +58,15 @@ class ServiceSummary(DevopnessBaseModel):
     name: str
     type: str
     version: str
+
+
+class ApplicationSummary(DevopnessBaseModel):
+    id: int
+    name: str
+    repository: str
+    programming_language: str
+    programming_language_version: str
+    programming_language_framework: str
+    root_directory: Optional[str] = None
+    install_dependencies_command: Optional[str] = None
+    build_command: Optional[str] = None
