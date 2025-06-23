@@ -1,8 +1,9 @@
 from typing import List
 
 from ..devopness_api import devopness, ensure_authenticated
-from ..models import PipelineSummary, ResourceType
+from ..models import PipelineSummary
 from ..response import MCPResponse
+from ..types import ResourceType
 from ..utils import (
     get_instructions_format_list,
     get_instructions_next_action_suggestion,

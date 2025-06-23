@@ -9,8 +9,9 @@ from devopness.models import (
 )
 
 from ..devopness_api import devopness, ensure_authenticated
-from ..models import ActionSummary, ApplicationSummary, ServerIDs
+from ..models import ActionSummary, ApplicationSummary
 from ..response import MCPResponse
+from ..types import ServerIDs
 from ..utils import (
     get_instructions_format_list,
     get_instructions_format_resource,

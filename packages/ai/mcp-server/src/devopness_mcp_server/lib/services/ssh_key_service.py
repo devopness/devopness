@@ -1,6 +1,7 @@
 from ..devopness_api import devopness, ensure_authenticated
-from ..models import ActionSummary, SSHKeySummary, ServerIDs
+from ..models import ActionSummary, SSHKeySummary
 from ..response import MCPResponse
+from ..types import ServerIDs
 from ..utils import (
     get_instructions_how_to_monitor_action,
     get_instructions_next_action_suggestion,

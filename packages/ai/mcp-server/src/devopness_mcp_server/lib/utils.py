@@ -1,4 +1,5 @@
-from .models import ActionSummary, ResourceType
+from .models import ActionSummary
+from .types import ResourceType
 
 
 def get_web_link_to_environment_resource(
