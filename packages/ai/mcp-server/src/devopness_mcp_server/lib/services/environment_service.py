@@ -5,6 +5,7 @@ from pydantic import Field
 from ..devopness_api import devopness, ensure_authenticated
 from ..models import EnvironmentSummary
 from ..response import MCPResponse
+from ..utils import get_choose_resource_instructions, get_format_list_instructions
 
 
 class EnvironmentService:
@@ -39,13 +40,14 @@ class EnvironmentService:
         return MCPResponse.ok(
             environments,
             [
-                "Show the list in the following format:",
-                "#N. {environment.name} (ID: {environment.id})",
-                "   - Description: {environment.description}",
-                "Rules:"
-                "1. If the user has multiple environments ask them to choose one"
-                " of the listed environment IDs to continue with the conversation.",
-                "2. If the user has only one environment, you can use it directly,"
-                " and communicate with the user about it.",
+                get_format_list_instructions(
+                    "#N. {environment.name} (ID: {environment.id})",
+                    [
+                        "Description: {environment.description}",
+                    ],
+                ),
+                get_choose_resource_instructions(
+                    "environment",
+                ),
             ],
         )

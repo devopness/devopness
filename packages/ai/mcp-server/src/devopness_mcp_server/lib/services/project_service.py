@@ -5,6 +5,7 @@ from pydantic import Field
 from ..devopness_api import devopness, ensure_authenticated
 from ..models import ProjectSummary
 from ..response import MCPResponse
+from ..utils import get_choose_resource_instructions, get_format_list_instructions
 
 
 class ProjectService:
@@ -29,12 +30,11 @@ class ProjectService:
         return MCPResponse.ok(
             projects,
             [
-                "Show the list in the following format:",
-                "#N. {project.name} (ID: {project.id})",
-                "Rules:"
-                "1. If the user has multiple projects ask them to choose one"
-                " of the listed project IDs to continue with the conversation.",
-                "2. If the user has only one project, you can use it directly,"
-                " and communicate with the user about it.",
+                get_format_list_instructions(
+                    "#N. {project.name} (ID: {project.id})",
+                ),
+                get_choose_resource_instructions(
+                    "project",
+                ),
             ],
         )

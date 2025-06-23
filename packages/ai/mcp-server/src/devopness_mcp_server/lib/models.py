@@ -5,6 +5,8 @@ from devopness.base import DevopnessBaseModel
 type ResourceType = Literal[
     "application",
     "credential",
+    "environment",
+    "project",
     "server",
     "service",
     "ssh-key",

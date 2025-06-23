@@ -47,3 +47,15 @@ def get_how_to_monitor_action_instructions(
         f" real-time progress: {action_url_web_permalink}\n"
         "Make it clear that the page contains status tracking and logs."
     )
+
+
+def get_choose_resource_instructions(
+    resource_type: ResourceType,
+) -> str:
+    return f"""
+        Rules:
+        1. If the user has multiple {resource_type}s ask them to choose one
+           of the listed {resource_type} IDs to continue with the conversation.
+        2. If the user has only one {resource_type}, you can use it directly,
+           and communicate with the user about it.
+    """
