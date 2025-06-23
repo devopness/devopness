@@ -1,4 +1,4 @@
-from .models import ResourceType
+from .models import ActionSummary, ResourceType
 
 
 def get_web_link_to_environment_resource(
@@ -50,12 +50,11 @@ def get_next_action_suggestion_instructions(
 
 
 def get_how_to_monitor_action_instructions(
-    action_url_web_permalink: str,
+    action: ActionSummary,
 ) -> str:
     return (
-        "You MUST explain to the user how to monitor the progress of the operation.\n"
         "You MUST instruct the user to visit the following link to view the"
-        f" real-time progress: {action_url_web_permalink}\n"
+        f" real-time progress: {action.url_web_permalink}\n"
         "Make it clear that the page contains status tracking and logs."
     )
 

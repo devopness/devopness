@@ -1,7 +1,5 @@
-from devopness.models import Action
-
 from ..devopness_api import devopness, ensure_authenticated
-from ..models import SSHKeySummary, ServerIDs
+from ..models import ActionSummary, SSHKeySummary, ServerIDs
 from ..response import MCPResponse
 from ..utils import (
     get_how_to_monitor_action_instructions,
@@ -32,11 +30,7 @@ class SSHKeyService:
             },
         )
 
-        ssh_key = SSHKeySummary(
-            id=response.data.id,
-            name=response.data.name,
-            fingerprint=response.data.fingerprint,
-        )
+        ssh_key = SSHKeySummary.from_sdk_model(response.data)
 
         return MCPResponse.ok(
             ssh_key,
@@ -49,7 +43,7 @@ class SSHKeyService:
     async def tool_deploy_ssh_key(
         pipeline_id: int,
         server_ids: ServerIDs,
-    ) -> MCPResponse[Action]:
+    ) -> MCPResponse[ActionSummary]:
         await ensure_authenticated()
 
         response = await devopness.actions.add_pipeline_action(
@@ -59,10 +53,12 @@ class SSHKeyService:
             },
         )
 
-        return MCPResponse[Action].ok(
-            response.data,
+        action = ActionSummary.from_sdk_model(response.data)
+
+        return MCPResponse.ok(
+            action,
             [
-                get_how_to_monitor_action_instructions(response.data.url_web_permalink),
+                get_how_to_monitor_action_instructions(action),
                 "Show the user the command to remote connect"
                 "the server(s) using the SSH Key.",
             ],

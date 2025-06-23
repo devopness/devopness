@@ -19,13 +19,7 @@ class ProjectService:
         await ensure_authenticated()
         response = await devopness.projects.list_projects(page)
 
-        projects = [
-            ProjectSummary(
-                id=project.id,
-                name=project.name,
-            )
-            for project in response.data
-        ]
+        projects = [ProjectSummary.from_sdk_model(project) for project in response.data]
 
         return MCPResponse.ok(
             projects,

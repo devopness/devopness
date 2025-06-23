@@ -29,11 +29,7 @@ class EnvironmentService:
         )
 
         environments = [
-            EnvironmentSummary(
-                id=environment.id,
-                name=environment.name,
-                description=environment.description,
-            )
+            EnvironmentSummary.from_sdk_model(environment)
             for environment in response.data
         ]
 

@@ -22,12 +22,7 @@ class PipelineService:
         )
 
         pipelines = [
-            PipelineSummary(
-                id=pipeline.id,
-                name=pipeline.name,
-                operation=pipeline.operation_human_readable,
-            )
-            for pipeline in response.data
+            PipelineSummary.from_sdk_model(pipeline) for pipeline in response.data
         ]
 
         return MCPResponse.ok(

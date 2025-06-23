@@ -17,13 +17,7 @@ class CredentialService:
         )
 
         credentials = [
-            CredentialSummary(
-                id=credential.id,
-                name=credential.name,
-                provider=credential.provider.code_human_readable,
-                provider_type=credential.provider_type_human_readable,
-            )
-            for credential in response.data
+            CredentialSummary.from_sdk_model(credential) for credential in response.data
         ]
 
         return MCPResponse.ok(

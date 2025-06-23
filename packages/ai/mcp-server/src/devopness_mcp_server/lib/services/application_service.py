@@ -57,30 +57,7 @@ class ApplicationService:
         )
 
         applications = [
-            ApplicationSummary(
-                id=application.id,
-                name=application.name,
-                repository=application.repository,
-                programming_language=application.programming_language,
-                programming_language_version=application.engine_version,
-                programming_language_framework=application.framework,
-                root_directory=application.root_directory,
-                install_dependencies_command=application.install_dependencies_command,
-                build_command=application.build_command,
-                last_action=(
-                    ActionSummary(
-                        id=application.last_deployments.latest.id,
-                        type=application.last_deployments.latest.type,
-                        url_web_permalink=application.last_deployments.latest.url_web_permalink,
-                        status=application.last_deployments.latest.status,
-                        status_reason_code=application.last_deployments.latest.status_reason_code,
-                        summary=application.last_deployments.latest.summary,
-                    )
-                    if application.last_deployments
-                    and application.last_deployments.latest
-                    else None
-                ),
-            )
+            ApplicationSummary.from_sdk_model(application)
             for application in response.data
         ]
 
@@ -177,17 +154,7 @@ class ApplicationService:
             },
         )
 
-        application = ApplicationSummary(
-            id=response.data.id,
-            name=response.data.name,
-            repository=response.data.repository,
-            programming_language=response.data.programming_language,
-            programming_language_version=response.data.engine_version,
-            programming_language_framework=response.data.framework,
-            root_directory=response.data.root_directory,
-            install_dependencies_command=response.data.install_dependencies_command,
-            build_command=response.data.build_command,
-        )
+        application = ApplicationSummary.from_sdk_model(response.data)
 
         return MCPResponse.ok(
             application,
@@ -236,19 +203,12 @@ class ApplicationService:
             },
         )
 
-        action = ActionSummary(
-            id=response.data.id,
-            type=response.data.type,
-            status=response.data.status,
-            status_reason_code=response.data.status_reason_code,
-            url_web_permalink=response.data.url_web_permalink,
-            summary=response.data.summary,
-        )
+        action = ActionSummary.from_sdk_model(response.data)
 
         return MCPResponse.ok(
             action,
             [
-                get_how_to_monitor_action_instructions(action.url_web_permalink),
+                get_how_to_monitor_action_instructions(action),
             ],
         )
 

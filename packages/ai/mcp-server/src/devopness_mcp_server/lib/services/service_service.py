@@ -1,13 +1,12 @@
-from typing import List, cast
+from typing import List
 
 from devopness.models import (
-    Action,
     ServiceType,
     StaticServiceType,
 )
 
 from ..devopness_api import devopness, ensure_authenticated
-from ..models import ServerIDs, ServiceSummary
+from ..models import ActionSummary, ServerIDs, ServiceSummary
 from ..response import MCPResponse
 from ..utils import (
     get_format_list_instructions,
@@ -54,12 +53,7 @@ class ServiceService:
             },
         )
 
-        service = ServiceSummary(
-            id=response.data.id,
-            name=response.data.name,
-            type=response.data.type,
-            version=cast(str, response.data.version),
-        )
+        service = ServiceSummary.from_sdk_model(response.data)
 
         return MCPResponse.ok(
             service,
@@ -80,7 +74,7 @@ class ServiceService:
     async def tool_deploy_service(
         pipeline_id: int,
         server_ids: ServerIDs,
-    ) -> MCPResponse[Action]:
+    ) -> MCPResponse[ActionSummary]:
         await ensure_authenticated()
 
         response = await devopness.actions.add_pipeline_action(
@@ -90,10 +84,12 @@ class ServiceService:
             },
         )
 
+        action = ActionSummary.from_sdk_model(response.data)
+
         return MCPResponse.ok(
-            response.data,
+            action,
             [
-                get_how_to_monitor_action_instructions(response.data.url_web_permalink),
+                get_how_to_monitor_action_instructions(action),
             ],
         )
 
@@ -105,15 +101,7 @@ class ServiceService:
 
         response = await devopness.services.list_environment_services(environment_id)
 
-        services = [
-            ServiceSummary(
-                id=service.id,
-                name=service.name,
-                type=service.type_human_readable,
-                version=cast(str, service.version),
-            )
-            for service in response.data
-        ]
+        services = [ServiceSummary.from_sdk_model(service) for service in response.data]
 
         return MCPResponse.ok(
             services,
