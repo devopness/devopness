@@ -1,4 +1,6 @@
-from typing import Literal, Optional
+from typing import Annotated, List, Literal, Optional
+
+from pydantic import Field
 
 from devopness.base import DevopnessBaseModel
 
@@ -10,6 +12,14 @@ type ResourceType = Literal[
     "server",
     "service",
     "ssh-key",
+]
+
+type ServerIDs = Annotated[
+    List[int],
+    Field(
+        min_length=1,
+        description="List of Server IDs to which the action will be targeted.",
+    ),
 ]
 
 
@@ -41,3 +51,10 @@ class CredentialSummary(DevopnessBaseModel):
     name: str
     provider: str
     provider_type: str
+
+
+class ServiceSummary(DevopnessBaseModel):
+    id: int
+    name: str
+    type: str
+    version: str

@@ -15,6 +15,17 @@ def get_web_link_to_environment_resource(
     )
 
 
+def get_format_resource_instructions(
+    resource_type: ResourceType,
+    pattern: list[str],
+) -> str:
+    return (
+        f"You MUST present the {resource_type} using the exact format shown below:\n"
+        f"{' '.join(pattern)}\n"
+        "Make sure the formatting is consistent and follows the structure."
+    )
+
+
 def get_format_list_instructions(
     header: str,
     extra_instructions: list[str] | None = None,

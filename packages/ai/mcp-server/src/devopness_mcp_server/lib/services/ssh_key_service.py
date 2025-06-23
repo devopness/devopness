@@ -1,49 +1,15 @@
-from typing import List
-
 from devopness.models import Action
 
 from ..devopness_api import devopness, ensure_authenticated
-from ..models import PipelineSummary, SSHKeySummary
+from ..models import SSHKeySummary, ServerIDs
 from ..response import MCPResponse
 from ..utils import (
-    get_format_list_instructions,
     get_how_to_monitor_action_instructions,
     get_next_action_suggestion_instructions,
 )
 
 
 class SSHKeyService:
-    @staticmethod
-    async def tool_list_ssh_key_pipelines(
-        ssh_key_id: int,
-    ) -> MCPResponse[List[PipelineSummary]]:
-        await ensure_authenticated()
-        response = await devopness.pipelines.list_pipelines_by_resource_type(
-            ssh_key_id,
-            "ssh-key",
-        )
-
-        pipelines = [
-            PipelineSummary(
-                id=pipeline.id,
-                name=pipeline.name,
-                operation=pipeline.operation_human_readable,
-            )
-            for pipeline in response.data
-        ]
-
-        return MCPResponse.ok(
-            pipelines,
-            [
-                get_format_list_instructions(
-                    "#N. {pipeline.name} (ID: {pipeline.id})",
-                    [
-                        "Operation: {pipeline.operation}",
-                    ],
-                ),
-            ],
-        )
-
     @staticmethod
     async def tool_create_ssh_key(
         environment_id: int,
@@ -57,6 +23,7 @@ class SSHKeyService:
         - You MUST offer to generate a new ssh key pair for the user.
         """
         await ensure_authenticated()
+
         response = await devopness.ssh_keys.add_environment_ssh_key(
             environment_id,
             {
@@ -81,7 +48,7 @@ class SSHKeyService:
     @staticmethod
     async def tool_deploy_ssh_key(
         pipeline_id: int,
-        server_ids: List[int],
+        server_ids: ServerIDs,
     ) -> MCPResponse[Action]:
         await ensure_authenticated()
 
