@@ -50,8 +50,8 @@ classifiers = [
   "Topic :: Utilities",
 ]
 dependencies = [
-    "devopness>=1.2.0",
-    "mcp[cli]>=1.9.1",
+  "devopness>=1.2.0",
+  "mcp[cli]>=1.9.1",
 ]
 
 [project.urls]
