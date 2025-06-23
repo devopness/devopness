@@ -242,6 +242,29 @@ class TestDevopnessBaseService(unittest.TestCase):
             f"Invalid token expiration date. Expected: {expected.isoformat()}. Actual: {actual.isoformat()}.",  # type: ignore
         )
 
+    @patch("httpx.Client.send")
+    def test_request_includes_expected_user_agent_header(
+        self,
+        mock: Mock,
+    ) -> None:
+        self.service._put("/resource")
+
+        mock.assert_called_once()
+
+        request: httpx.Request = mock.call_args[0][0]
+        self.assertIsInstance(request, httpx.Request)
+
+        user_agent = request.headers.get("User-Agent")
+        self.assertIsNotNone(user_agent)
+
+        # Expected User-Agent format:
+        # devopness-sdk-python/<version> +https://github.com/devopness/devopness (python/<python_version> <os>)
+        pattern = (
+            r"devopness-sdk-python/\d+\.\d+\.\d+ \+https://github\.com/devopness/devopness "
+            r"\(python/\d+\.\d+\.\d+ [A-Za-z0-9_\-]+\)"
+        )
+        self.assertRegex(user_agent, pattern)
+
 
 class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
     DevopnessBaseServiceAsync._config = DevopnessClientConfig(
@@ -433,3 +456,26 @@ class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
             1,
             f"Invalid token expiration date. Expected: {expected.isoformat()}. Actual: {actual.isoformat()}.",  # type: ignore
         )
+
+    @patch("httpx.AsyncClient.send")
+    async def test_request_includes_expected_user_agent_header(
+        self,
+        mock: Mock,
+    ) -> None:
+        await self.service._put("/resource")
+
+        mock.assert_called_once()
+
+        request: httpx.Request = mock.call_args[0][0]
+        self.assertIsInstance(request, httpx.Request)
+
+        user_agent = request.headers.get("User-Agent")
+        self.assertIsNotNone(user_agent)
+
+        # Expected User-Agent format:
+        # devopness-sdk-python/<version> +https://github.com/devopness/devopness (python/<python_version> <os>)
+        pattern = (
+            r"devopness-sdk-python/\d+\.\d+\.\d+ \+https://github\.com/devopness/devopness "
+            r"\(python/\d+\.\d+\.\d+ [A-Za-z0-9_\-]+\)"
+        )
+        self.assertRegex(user_agent, pattern)

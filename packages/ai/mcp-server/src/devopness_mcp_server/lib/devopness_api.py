@@ -1,11 +1,23 @@
 import os
 
 from devopness import DevopnessClientAsync
+from devopness.client_config import get_user_agent
 from devopness.models import (
     UserLogin,
 )
 
-devopness = DevopnessClientAsync()
+devopness = DevopnessClientAsync(
+    {
+        "headers": {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "User-Agent": get_user_agent(
+                product_name="devopness-mcp-server",
+                product_package_name="devopness-mcp-server",
+            ),
+        },
+    }
+)
 
 
 async def ensure_authenticated() -> None:
