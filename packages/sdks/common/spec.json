@@ -22737,8 +22737,8 @@
           "name": {
             "type": "string",
             "description": "User's full name",
-            "minLength": 5,
-            "maxLength": 60
+            "minLength": 3,
+            "maxLength": 255
           },
           "email": {
             "type": "string",
@@ -22814,7 +22814,7 @@
             "type": "string"
           },
           "name": {
-            "description": "User's full name. Must be at least 5 characters. Must not be greater than 60 characters.",
+            "description": "User's full name. Must be at least 3 characters. Must not be greater than 255 characters.",
             "example": "Com Truise",
             "type": "string"
           },
