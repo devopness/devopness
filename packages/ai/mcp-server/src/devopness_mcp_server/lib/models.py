@@ -3,6 +3,14 @@ from typing import Annotated, List, Literal, Optional
 from pydantic import Field
 
 from devopness.base import DevopnessBaseModel
+from devopness.models import (
+    ActionStatus,
+    ActionStatusReasonCode,
+    ActionType,
+)
+from devopness.models import (
+    ActionSummary as DevopnessActionSummary,
+)
 
 type ResourceType = Literal[
     "application",
@@ -34,6 +42,15 @@ class EnvironmentSummary(DevopnessBaseModel):
     description: Optional[str]
 
 
+class ActionSummary(DevopnessBaseModel):
+    id: int
+    type: ActionType
+    status: ActionStatus
+    status_reason_code: ActionStatusReasonCode
+    url_web_permalink: str
+    summary: Optional[DevopnessActionSummary] = None
+
+
 class PipelineSummary(DevopnessBaseModel):
     id: int
     name: str
@@ -44,6 +61,7 @@ class SSHKeySummary(DevopnessBaseModel):
     id: int
     name: str
     fingerprint: str
+    last_action: Optional[ActionSummary] = None
 
 
 class CredentialSummary(DevopnessBaseModel):
@@ -51,6 +69,7 @@ class CredentialSummary(DevopnessBaseModel):
     name: str
     provider: str
     provider_type: str
+    last_action: Optional[ActionSummary] = None
 
 
 class ServiceSummary(DevopnessBaseModel):
@@ -58,6 +77,7 @@ class ServiceSummary(DevopnessBaseModel):
     name: str
     type: str
     version: str
+    last_action: Optional[ActionSummary] = None
 
 
 class ApplicationSummary(DevopnessBaseModel):
@@ -70,3 +90,4 @@ class ApplicationSummary(DevopnessBaseModel):
     root_directory: Optional[str] = None
     install_dependencies_command: Optional[str] = None
     build_command: Optional[str] = None
+    last_action: Optional[ActionSummary] = None

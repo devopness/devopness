@@ -3,14 +3,13 @@ from typing import Annotated, List, Optional
 from pydantic import Field, StringConstraints
 
 from devopness.models import (
-    Action,
     LanguageRuntime,
     SourceTypePlain,
     Variable,
 )
 
 from ..devopness_api import devopness, ensure_authenticated
-from ..models import ApplicationSummary, ServerIDs
+from ..models import ActionSummary, ApplicationSummary, ServerIDs
 from ..response import MCPResponse
 from ..utils import (
     get_format_list_instructions,
@@ -68,6 +67,19 @@ class ApplicationService:
                 root_directory=application.root_directory,
                 install_dependencies_command=application.install_dependencies_command,
                 build_command=application.build_command,
+                last_action=(
+                    ActionSummary(
+                        id=application.last_deployments.latest.id,
+                        type=application.last_deployments.latest.type,
+                        url_web_permalink=application.last_deployments.latest.url_web_permalink,
+                        status=application.last_deployments.latest.status,
+                        status_reason_code=application.last_deployments.latest.status_reason_code,
+                        summary=application.last_deployments.latest.summary,
+                    )
+                    if application.last_deployments
+                    and application.last_deployments.latest
+                    else None
+                ),
             )
             for application in response.data
         ]
@@ -212,7 +224,7 @@ class ApplicationService:
         source_type: SourceTypePlain,
         source_value: str,
         server_ids: ServerIDs,
-    ) -> MCPResponse[Action]:
+    ) -> MCPResponse[ActionSummary]:
         response = await devopness.actions.add_pipeline_action(
             pipeline_id,
             {
@@ -222,10 +234,19 @@ class ApplicationService:
             },
         )
 
+        action = ActionSummary(
+            id=response.data.id,
+            type=response.data.type,
+            status=response.data.status,
+            status_reason_code=response.data.status_reason_code,
+            url_web_permalink=response.data.url_web_permalink,
+            summary=response.data.summary,
+        )
+
         return MCPResponse.ok(
-            response.data,
+            action,
             [
-                get_how_to_monitor_action_instructions(response.data.url_web_permalink),
+                get_how_to_monitor_action_instructions(action.url_web_permalink),
             ],
         )
 
