@@ -126,7 +126,7 @@ class ApplicationService:
         build_command: Optional[str],
         install_dependencies_command: Optional[str],
         default_branch: str,
-        deployments_keep: Optional[int],
+        deployments_keep: int = 1,
     ) -> MCPResponse[ApplicationSummary]:
         """
         Rules:
