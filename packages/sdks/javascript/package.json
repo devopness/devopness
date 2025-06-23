@@ -58,7 +58,7 @@
     "axios-mock-adapter": "^2.1.0",
     "eslint": "^9.29.0",
     "eslint-import-resolver-typescript": "^4.4.3",
-    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-n": "^17.20.0",
     "eslint-plugin-promise": "^7.2.1",
     "husky": "9.1.7",
