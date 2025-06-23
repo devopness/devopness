@@ -1,5 +1,11 @@
 # @devopness/mcp-server
 
+## 0.0.17
+
+### Patch Changes
+
+- [#1879](https://github.com/devopness/devopness/pull/1879) [`59bba96`](https://github.com/devopness/devopness/commit/59bba96f07ccd49e8f74aa95c8fab9a632605608) Thanks [@Diegiwg](https://github.com/Diegiwg)! - - Bumped `devopness` dependency to version `1.2.1`
+
 ## 0.0.16
 
 ### Patch Changes
@@ -28,12 +34,10 @@
 ### Patch Changes
 
 - [#1862](https://github.com/devopness/devopness/pull/1862) [`1a14adb`](https://github.com/devopness/devopness/commit/1a14adb767e06eabeb84067852cb718710528be7) Thanks [@Diegiwg](https://github.com/Diegiwg)! - **Added**
-
   - `page` argument for project and environment listing tools to enable pagination
   - Summary models (`ProjectSummary`, `EnvironmentSummary`) for lighter responses
 
   **Changed**
-
   - Updated `devopness_list_projects` and `devopness_list_environments` to use summaries and support pagination
   - Improved response format to enhance LLM interpretation and reduce hallucinations
 
