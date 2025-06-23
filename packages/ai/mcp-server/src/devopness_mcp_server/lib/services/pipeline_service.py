@@ -4,8 +4,8 @@ from ..devopness_api import devopness, ensure_authenticated
 from ..models import PipelineSummary, ResourceType
 from ..response import MCPResponse
 from ..utils import (
-    get_format_list_instructions,
-    get_next_action_suggestion_instructions,
+    get_instructions_format_list,
+    get_instructions_next_action_suggestion,
 )
 
 
@@ -28,13 +28,13 @@ class PipelineService:
         return MCPResponse.ok(
             pipelines,
             [
-                get_format_list_instructions(
+                get_instructions_format_list(
                     "#N. {pipeline.name} (ID: {pipeline.id})",
                     [
                         "Operation: {pipeline.operation}",
                     ],
                 ),
-                get_next_action_suggestion_instructions(
+                get_instructions_next_action_suggestion(
                     "deploy",
                     resource_type,
                 ),

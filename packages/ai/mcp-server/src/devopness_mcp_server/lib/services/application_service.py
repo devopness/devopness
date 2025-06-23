@@ -12,10 +12,10 @@ from ..devopness_api import devopness, ensure_authenticated
 from ..models import ActionSummary, ApplicationSummary, ServerIDs
 from ..response import MCPResponse
 from ..utils import (
-    get_format_list_instructions,
-    get_format_resource_instructions,
-    get_how_to_monitor_action_instructions,
-    get_next_action_suggestion_instructions,
+    get_instructions_format_list,
+    get_instructions_format_resource,
+    get_instructions_how_to_monitor_action,
+    get_instructions_next_action_suggestion,
     get_web_link_to_environment_resource,
 )
 
@@ -34,7 +34,7 @@ class ApplicationService:
         return MCPResponse.ok(
             runtimes,
             [
-                get_format_list_instructions(
+                get_instructions_format_list(
                     "#N. {runtime.name_human_readable}",
                     [
                         "Versions:",
@@ -64,7 +64,7 @@ class ApplicationService:
         return MCPResponse.ok(
             applications,
             [
-                get_format_list_instructions(
+                get_instructions_format_list(
                     "#N. {application.name}",
                     [
                         "Repository: {application.repository}",
@@ -159,7 +159,7 @@ class ApplicationService:
         return MCPResponse.ok(
             application,
             [
-                get_format_resource_instructions(
+                get_instructions_format_resource(
                     "application",
                     [
                         "Name: {application.name}",
@@ -181,7 +181,7 @@ class ApplicationService:
                     "application",
                     response.data.id,
                 ),
-                get_next_action_suggestion_instructions("deploy", "application"),
+                get_instructions_next_action_suggestion("deploy", "application"),
             ],
         )
 
@@ -208,7 +208,7 @@ class ApplicationService:
         return MCPResponse.ok(
             action,
             [
-                get_how_to_monitor_action_instructions(action),
+                get_instructions_how_to_monitor_action(action),
             ],
         )
 
@@ -245,7 +245,7 @@ class ApplicationService:
         return MCPResponse.ok(
             response.data,
             [
-                get_next_action_suggestion_instructions("deploy", "application"),
+                get_instructions_next_action_suggestion("deploy", "application"),
             ],
         )
 
@@ -285,6 +285,6 @@ class ApplicationService:
         return MCPResponse.ok(
             response.data,
             [
-                get_next_action_suggestion_instructions("deploy", "application"),
+                get_instructions_next_action_suggestion("deploy", "application"),
             ],
         )

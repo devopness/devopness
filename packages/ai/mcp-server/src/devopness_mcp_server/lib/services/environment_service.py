@@ -5,7 +5,7 @@ from pydantic import Field
 from ..devopness_api import devopness, ensure_authenticated
 from ..models import EnvironmentSummary
 from ..response import MCPResponse
-from ..utils import get_choose_resource_instructions, get_format_list_instructions
+from ..utils import get_instructions_choose_resource, get_instructions_format_list
 
 
 class EnvironmentService:
@@ -36,13 +36,13 @@ class EnvironmentService:
         return MCPResponse.ok(
             environments,
             [
-                get_format_list_instructions(
+                get_instructions_format_list(
                     "#N. {environment.name} (ID: {environment.id})",
                     [
                         "Description: {environment.description}",
                     ],
                 ),
-                get_choose_resource_instructions(
+                get_instructions_choose_resource(
                     "environment",
                 ),
             ],

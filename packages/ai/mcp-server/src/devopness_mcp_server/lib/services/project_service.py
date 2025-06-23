@@ -5,7 +5,7 @@ from pydantic import Field
 from ..devopness_api import devopness, ensure_authenticated
 from ..models import ProjectSummary
 from ..response import MCPResponse
-from ..utils import get_choose_resource_instructions, get_format_list_instructions
+from ..utils import get_instructions_choose_resource, get_instructions_format_list
 
 
 class ProjectService:
@@ -24,10 +24,10 @@ class ProjectService:
         return MCPResponse.ok(
             projects,
             [
-                get_format_list_instructions(
+                get_instructions_format_list(
                     "#N. {project.name} (ID: {project.id})",
                 ),
-                get_choose_resource_instructions(
+                get_instructions_choose_resource(
                     "project",
                 ),
             ],

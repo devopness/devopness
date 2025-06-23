@@ -9,10 +9,10 @@ from ..devopness_api import devopness, ensure_authenticated
 from ..models import ActionSummary, ServerIDs, ServiceSummary
 from ..response import MCPResponse
 from ..utils import (
-    get_format_list_instructions,
-    get_format_resource_instructions,
-    get_how_to_monitor_action_instructions,
-    get_next_action_suggestion_instructions,
+    get_instructions_format_list,
+    get_instructions_format_resource,
+    get_instructions_how_to_monitor_action,
+    get_instructions_next_action_suggestion,
 )
 
 
@@ -28,7 +28,7 @@ class ServiceService:
         return MCPResponse.ok(
             response.data.types,
             [
-                get_format_list_instructions(
+                get_instructions_format_list(
                     "#N. {service_type.human_readable}",
                     [
                         "Versions: {service_type.supported_versions}",
@@ -58,7 +58,7 @@ class ServiceService:
         return MCPResponse.ok(
             service,
             [
-                get_format_resource_instructions(
+                get_instructions_format_resource(
                     "service",
                     [
                         "#N. {service.name} (ID: {service.id})",
@@ -66,7 +66,7 @@ class ServiceService:
                         "Version: {service.version}",
                     ],
                 ),
-                get_next_action_suggestion_instructions("deploy", "service"),
+                get_instructions_next_action_suggestion("deploy", "service"),
             ],
         )
 
@@ -89,7 +89,7 @@ class ServiceService:
         return MCPResponse.ok(
             action,
             [
-                get_how_to_monitor_action_instructions(action),
+                get_instructions_how_to_monitor_action(action),
             ],
         )
 
@@ -106,7 +106,7 @@ class ServiceService:
         return MCPResponse.ok(
             services,
             [
-                get_format_list_instructions(
+                get_instructions_format_list(
                     "#N. {service.name} (ID: {service.id})",
                 ),
             ],

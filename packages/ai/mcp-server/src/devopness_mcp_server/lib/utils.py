@@ -15,7 +15,7 @@ def get_web_link_to_environment_resource(
     )
 
 
-def get_format_resource_instructions(
+def get_instructions_format_resource(
     resource_type: ResourceType,
     pattern: list[str],
 ) -> str:
@@ -26,7 +26,7 @@ def get_format_resource_instructions(
     )
 
 
-def get_format_list_instructions(
+def get_instructions_format_list(
     header: str,
     extra_instructions: list[str] | None = None,
 ) -> list[str]:
@@ -39,7 +39,7 @@ def get_format_list_instructions(
     ]
 
 
-def get_next_action_suggestion_instructions(
+def get_instructions_next_action_suggestion(
     action: str,
     resource_type: ResourceType,
 ) -> str:
@@ -49,7 +49,7 @@ def get_next_action_suggestion_instructions(
     )
 
 
-def get_how_to_monitor_action_instructions(
+def get_instructions_how_to_monitor_action(
     action: ActionSummary,
 ) -> str:
     return (
@@ -59,7 +59,7 @@ def get_how_to_monitor_action_instructions(
     )
 
 
-def get_choose_resource_instructions(
+def get_instructions_choose_resource(
     resource_type: ResourceType,
 ) -> str:
     return f"""

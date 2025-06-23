@@ -3,7 +3,7 @@ from typing import List
 from ..devopness_api import devopness, ensure_authenticated
 from ..models import CredentialSummary
 from ..response import MCPResponse
-from ..utils import get_choose_resource_instructions, get_format_list_instructions
+from ..utils import get_instructions_choose_resource, get_instructions_format_list
 
 
 class CredentialService:
@@ -23,14 +23,14 @@ class CredentialService:
         return MCPResponse.ok(
             credentials,
             [
-                get_format_list_instructions(
+                get_instructions_format_list(
                     "#N. {credential.name} (ID: {credential.id})",
                     [
                         "Provider: {credential.provider}",
                         "Provider Type: {credential.provider_type}",
                     ],
                 ),
-                get_choose_resource_instructions(
+                get_instructions_choose_resource(
                     "credential",
                 ),
             ],

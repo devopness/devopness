@@ -2,8 +2,8 @@ from ..devopness_api import devopness, ensure_authenticated
 from ..models import ActionSummary, SSHKeySummary, ServerIDs
 from ..response import MCPResponse
 from ..utils import (
-    get_how_to_monitor_action_instructions,
-    get_next_action_suggestion_instructions,
+    get_instructions_how_to_monitor_action,
+    get_instructions_next_action_suggestion,
 )
 
 
@@ -35,7 +35,7 @@ class SSHKeyService:
         return MCPResponse.ok(
             ssh_key,
             [
-                get_next_action_suggestion_instructions("deploy", "ssh-key"),
+                get_instructions_next_action_suggestion("deploy", "ssh-key"),
             ],
         )
 
@@ -58,7 +58,7 @@ class SSHKeyService:
         return MCPResponse.ok(
             action,
             [
-                get_how_to_monitor_action_instructions(action),
+                get_instructions_how_to_monitor_action(action),
                 "Show the user the command to remote connect"
                 "the server(s) using the SSH Key.",
             ],
