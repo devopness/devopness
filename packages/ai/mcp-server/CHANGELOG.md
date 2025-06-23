@@ -1,5 +1,14 @@
 # @devopness/mcp-server
 
+## 0.0.16
+
+### Patch Changes
+
+- [#1873](https://github.com/devopness/devopness/pull/1873) [`6817f9c`](https://github.com/devopness/devopness/commit/6817f9c8c51601025baca546a8887f1db054adc0) Thanks [@Diegiwg](https://github.com/Diegiwg)! - **Changed**
+  - Improved the `create application` tool by adding parameter-level validation with clear error messages
+  - Enhanced the tool response with suggested next steps after application creation
+  - Introduced `get_available_language_runtimes` tool to list supported programming languages, versions, and frameworks
+
 ## 0.0.15
 
 ### Patch Changes
