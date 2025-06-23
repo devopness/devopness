@@ -8,7 +8,7 @@ GROUP_ID := $(shell id -g)
 WORKDIR := sdk
 
 .DEFAULT_GOAL := help
-.PHONY: build-image shell build-sdk-python publish publish-dev lint format test-unit help
+.PHONY: build-image shell build-sdk-python publish lint format test-unit help
 
 ##@ Docker
 
@@ -41,23 +41,17 @@ build-sdk-python: build-image ## ⚙️  Build the Devopness SDK for Python
 		$(IMAGE):$(TAG) \
 		scripts/build.py
 
-publish: build-image ## 🚀 Publish the SDK to PyPI (requires POETRY_PYPI_TOKEN)
+publish: build-image ## 🚀 Publish the SDK to PyPI (requires PYPI_TOKEN)
 	$(info 📦 Publishing SDK to PyPI...)
 	@docker run --rm \
 		-v $(PWD):/$(WORKDIR) \
-		--env POETRY_PYPI_TOKEN=$(POETRY_PYPI_TOKEN) \
+		--env DEVOPNESS_SDK_PYTHON_PYPI_TOKEN=$(PYPI_TOKEN) \
 		--name devopness-sdk-python-publish \
 		$(IMAGE):$(TAG) \
-		/bin/bash scripts/publish.sh
-
-publish-dev: build-image ## 🚀 Publish the SDK to Test PyPI (requires POETRY_TEST_PYPI_TOKEN)
-	$(info 🧪 Publishing SDK to Test PyPI...)
-	@docker run --rm \
-		-v $(PWD):/$(WORKDIR) \
-		--env POETRY_TEST_PYPI_TOKEN=$(POETRY_TEST_PYPI_TOKEN) \
-		--name devopness-sdk-python-publish-dev \
-		$(IMAGE):$(TAG) \
-		/bin/bash scripts/publish-dev.sh
+		/bin/bash -cex ' \
+			poetry config pypi-token.pypi "$$DEVOPNESS_SDK_PYTHON_PYPI_TOKEN" &> /dev/null; \
+			poetry publish --build; \
+		'
 
 ##@ Lint & Format
 

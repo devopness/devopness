@@ -1,4 +1,4 @@
-name: CI - SDK JavaScript
+name: CI - MCP Server
 on:
   pull_request:
     types:
@@ -8,11 +8,11 @@ on:
 
 defaults:
   run:
-    working-directory: packages/sdks/javascript
+    working-directory: packages/ai/mcp-server
 
 jobs:
   detect-changes:
-    name: Detect changes in SDK-JS
+    name: Detect changes in MCP-Server
     runs-on: ubuntu-latest
     permissions:
       pull-requests: read
@@ -24,19 +24,24 @@ jobs:
         with:
           filters: |
             changes:
-              - 'packages/sdks/common/**'
-              - 'packages/sdks/javascript/**'
+              - 'packages/ai/mcp-server/**'
 
   build:
-    name: Build SDK-JS
+    name: Build MCP-Server
     needs: detect-changes
     if: ${{ needs.detect-changes.outputs.changes == 'true' }}
     runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
-        node: [20]
-        os: [ubuntu-latest]
+        python:
+          - 3.13
+          - 3.12
+        os:
+          - ubuntu-latest
+
+    env:
+      PYTHON_VERSION: ${{ matrix.python }}
 
     steps:
       - uses: actions/checkout@v3
@@ -46,34 +51,19 @@ jobs:
           persist-credentials: true
           fetch-depth: 0
 
-      - name: Use node ${{ matrix.node }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node }}
-          registry-url: https://registry.npmjs.org
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
-      - name: install
-        run: npm ci --ignore-scripts
+      - name: Build Docker Image
+        run: make build-image
 
-      - name: build
-        run: npm run build-api-models
+      - name: Lint MCP - Server
+        run: make lint
 
-      - name: lint
-        run: npm run lint
-
-      - name: test
-        run: npm test
-
-      - uses: stefanzweifel/git-auto-commit-action@v4
-        if: github.repository == 'devopness/devopness'
-        with:
-          commit_message: 'docs: Update auto generated models'
-          file_pattern: 'packages/sdks/javascript/*'
-          commit_user_name: ${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}
-          commit_user_email: ${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}
+      # TODO: Test MCP - Server
 
   verify-build:
-    name: Verify build of SDK-JS
+    name: Verify build of MCP-Server
     needs: [build, detect-changes]
     if: success() || failure()
     runs-on: ubuntu-latest
