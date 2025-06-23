@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- [#1877](https://github.com/devopness/devopness/pull/1877) [`46fa571`](https://github.com/devopness/devopness/commit/46fa571a0434bb8a3fd648195149f918ad2bd7e4) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Corrected validation rules for the `user name` field
+- [#1877](https://github.com/devopness/devopness/pull/1877) [`46fa571`](https://github.com/devopness/devopness/commit/46fa571a0434bb8a3fd648195149f918ad2bd7e4) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Corrected validation rules for the `user name` field
 
 ## 1.2.0
 
