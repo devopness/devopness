@@ -27,7 +27,7 @@ export interface UserUpdate {
      */
     id: string;
     /**
-     * User\'s full name. Must be at least 5 characters. Must not be greater than 60 characters.
+     * User\'s full name. Must be at least 3 characters. Must not be greater than 255 characters.
      * @type {string}
      * @memberof UserUpdate
      */

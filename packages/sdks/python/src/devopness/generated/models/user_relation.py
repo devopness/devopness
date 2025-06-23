@@ -37,7 +37,7 @@ class UserRelation(DevopnessBaseModel):
     """
 
     id: StrictInt = Field(description="The Id of the given user")
-    name: Annotated[str, Field(min_length=5, strict=True, max_length=60)] = Field(
+    name: Annotated[str, Field(min_length=3, strict=True, max_length=255)] = Field(
         description="User's full name"
     )
     email: StrictStr = Field(

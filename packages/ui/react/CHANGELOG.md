@@ -7,7 +7,6 @@
 - [#1675](https://github.com/devopness/devopness/pull/1675) [`c9b3206`](https://github.com/devopness/devopness/commit/c9b3206b2c8dddb5b0cdd97f1c2da6da5de142cf) Thanks [@TiagoMontes](https://github.com/TiagoMontes)! - Add new Icon (Home) to devopness-ui
 
   ### What Changed
-
   - Updated iconList const with a new icon (home)
 
   ### Example Usage
@@ -29,7 +28,6 @@
 - [#1487](https://github.com/devopness/devopness/pull/1487) [`e49817d`](https://github.com/devopness/devopness/commit/e49817da6225daa8890fdf1b1b1eb47d42e8c653) Thanks [@unnati06](https://github.com/unnati06)! - Make Input error auto-focus behavior optional
 
   ### What Changed
-
   - Added new `autoFocusOnError` prop to Input component
   - Changed error auto-focus to be opt-in rather than default behavior
   - Updated documentation to reflect the optional nature of auto-focus
@@ -61,7 +59,6 @@
   "DOMException: Failed to execute 'createElement' on 'Document': The tag name provided is not a valid name."
 
   This change:
-
   - Updates the shieldLock icon type from 'icon' to 'image', to correctly render it as an <img> element
   - Fixes the runtime error when using the `shieldLock` icon
   - Maintains backward compatibility - the icon name and usage remain the same
@@ -73,7 +70,6 @@
 - [#1554](https://github.com/devopness/devopness/pull/1554) [`153d24e`](https://github.com/devopness/devopness/commit/153d24ea124683d1d43fa3de3ab97c0336102edf) Thanks [@thlmenezes](https://github.com/thlmenezes)! - Remove deprecated icon types and clean up icon system
 
   ### What Changed
-
   - Removed deprecated icon types from iconList
   - Maintained core icon system functionality while removing legacy code
 
@@ -86,34 +82,31 @@
 - [#1538](https://github.com/devopness/devopness/pull/1538) [`7e9e5a7`](https://github.com/devopness/devopness/commit/7e9e5a70b30ec479e87c13fd68f63ede7236fd61) Thanks [@thlmenezes](https://github.com/thlmenezes)! - Enhanced icon system with consistent naming patterns
 
   ### What Changed
-
   - Added consistent naming patterns for all icons
   - Introduced type-safe deprecation system for old icon names
   - Updated icon organization with logical grouping
   - Added missing icons with proper naming
 
   ### Icon Naming Conventions
-
   - Use camelCase for general icons
   - Use kebab-case for technology/brand icons
   - Follow consistent patterns:
 
     ```tsx
     // Actions
-    'add', 'remove', 'edit'
+    ;('add', 'remove', 'edit')
 
     // States
-    'loading', 'error', 'success'
+    ;('loading', 'error', 'success')
 
     // Variants
-    'checkOutline', 'checkFilled'
-    'eyeOpen', 'eyeClosed'
+    ;('checkOutline', 'checkFilled')
+    ;('eyeOpen', 'eyeClosed')
     ```
 
   ### Migration Guide
 
   Old icon names are deprecated but will continue to work during runtime. There are two ways to handle deprecated icons:
-
   1. Update to the new icon name (Recommended)
 
   ```tsx
@@ -123,7 +116,6 @@
   // After
   <Icon name="eyeClosed" />
   ```
-
   2. Use the `deprecatedToNewIconMap` helper
 
   ```tsx
@@ -144,7 +136,6 @@
 - [#1529](https://github.com/devopness/devopness/pull/1529) [`f32f1ac`](https://github.com/devopness/devopness/commit/f32f1ac512c0c4727500bb312e274f6ed005e9f1) Thanks [@thlmenezes](https://github.com/thlmenezes)! - Enhanced Card component URL handling
 
   ### What Changed
-
   - Updated Card component's URL handling to support full LinkProps configuration
   - Added support for all Link component props (except 'style') in:
     - Card's main `url` prop
@@ -184,7 +175,6 @@
 - [#1515](https://github.com/devopness/devopness/pull/1515) [`e4de917`](https://github.com/devopness/devopness/commit/e4de917742db54d705494a1e8e2403d54bfaef92) Thanks [@thlmenezes](https://github.com/thlmenezes)! - Add `borderBottomColor` prop to Card component header
 
   ### What Changed
-
   - Added new `borderBottomColor` prop to Card's `headerProps` for customizing the bottom border color
   - Updated tests to verify border color styling behavior
   - Maintains backward compatibility with existing header styling options
@@ -210,13 +200,11 @@
 - [#1501](https://github.com/devopness/devopness/pull/1501) [`69386d8`](https://github.com/devopness/devopness/commit/69386d8060886db806fdcc5ce339873fd08b06bc) Thanks [@thlmenezes](https://github.com/thlmenezes)! - Add [`components#Card`](./src/components/Templates/Card/Card.tsx) and test utilities
 
   ### What Changed
-
   - Added new `Card` component for displaying content in a structured layout
   - Added test utilities to standardize component testing
   - Updated Tooltip tests to use new test utilities
 
   ### Card Component Features
-
   - Flexible header with avatar/icon, title, and subtitle
   - Optional indicator display
   - Customizable footer with actions
@@ -244,7 +232,6 @@
   ### Test Utilities
 
   Added new test utilities to help write consistent and maintainable tests:
-
   - `testHoverTooltip`: Standardizes testing of tooltip hover interactions
   - Additional utilities can be added to the `test-utils` directory
 
@@ -286,7 +273,6 @@ This change helps users quickly identify and fix form validation issues by autom
 - [#1188](https://github.com/devopness/devopness/pull/1188) [`e2d89c0`](https://github.com/devopness/devopness/commit/e2d89c03d6652540cb1bdf03dd9c5969760cdd60) Thanks [@thlmenezes](https://github.com/thlmenezes)! - Added `linkProps` property to `DropdownOption` type to provide granular control over link behavior when using URL options.
 
   ### What Changed
-
   - Added new `linkProps` property of type `LinkProps` to `DropdownOption`
   - Link options now support all props from the base `Link` component
   - Properties like `target`, `rel`, `hideExternalUrlIcon` and custom styling can be configured
@@ -374,7 +360,6 @@ This change helps users quickly identify and fix form validation issues by autom
 ### Patch Changes
 
 - [#1135](https://github.com/devopness/devopness/pull/1135) [`23606df`](https://github.com/devopness/devopness/commit/23606dfed3d3671465c000e10b3fea67535cf8d9) Thanks [@pvdevs](https://github.com/pvdevs)! - enhance ErrorMessage component type definitions:
-
   - add support for custom error types using Record<string,any>
   - update JSDoc documentation for error formats
   - add linter exceptions with proper documentation

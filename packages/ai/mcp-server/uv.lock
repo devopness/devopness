@@ -57,21 +57,21 @@ wheels = [
 
 [[package]]
 name = "devopness"
-version = "1.2.0"
+version = "1.2.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "httpcore" },
     { name = "httpx" },
     { name = "pydantic" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/99/d5/4553f7cefaa6736ddd68c9abfe5ff6fbc1500789083dfd21e6a272db8181/devopness-1.2.0.tar.gz", hash = "sha256:ba36ddb4f150880d69d7a41df6d9c2609d873644f6886a956ea0549d6dcb87f4", size = 112149, upload-time = "2025-06-18T19:24:56.518Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/b5/d7/6669f792dd00ca7f0b97cc619cef9fa6b3c07c062fea464f7dccd6ae70cb/devopness-1.2.1.tar.gz", hash = "sha256:f9a94e03bbb97cbd8d33241cdfed3e094f1d690d16283525a901fa1a7cdda30b", size = 112149, upload-time = "2025-06-23T17:22:33.893Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/7d/3a/ee2cc927105f369d09ad80c88af5201d298b4e1188a6c0d7ce005540ccfd/devopness-1.2.0-py3-none-any.whl", hash = "sha256:08147dcef9cde7b6c6a65356b75d39741dbdba1742e02bc86dd9ffac8158444e", size = 361214, upload-time = "2025-06-18T19:24:55.424Z" },
+    { url = "https://files.pythonhosted.org/packages/23/11/37dee1c51bd863b790257f821eba7db2e31044489d72e287661fabbcf848/devopness-1.2.1-py3-none-any.whl", hash = "sha256:cd97a09586c63d9fbf10c174534a751ffaac96435d646d0e3909d0b2c48ec816", size = 361209, upload-time = "2025-06-23T17:22:32.664Z" },
 ]
 
 [[package]]
 name = "devopness-mcp-server"
-version = "0.0.16"
+version = "0.0.17"
 source = { editable = "." }
 dependencies = [
     { name = "devopness" },
@@ -86,7 +86,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "devopness", specifier = ">=1.2.0" },
+    { name = "devopness", specifier = ">=1.2.1" },
     { name = "mcp", extras = ["cli"], specifier = ">=1.9.1" },
 ]
 
