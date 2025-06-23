@@ -8,8 +8,8 @@ properties:
   name:
     type: string
     description: "User's full name"
-    minLength: 5
-    maxLength: 60
+    minLength: 3
+    maxLength: 255
   email:
     type: string
     format: email
