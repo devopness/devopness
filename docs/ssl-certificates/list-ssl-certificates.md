@@ -43,5 +43,4 @@ The main table shows:
 
 ## Next Steps
 - [Add new SSL certificate](add-ssl-certificate)
-- [View certificate details](view-ssl-certificate)
-- [Manage certificates](manage-ssl-certificates) 
+- [View certificate details](view-ssl-certificate) 

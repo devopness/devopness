@@ -8,6 +8,8 @@ links:
     next: teams/add-team
     guides:
     related:
+        - ssl-certificates/list-ssl-certificates
+        - ssl-certificates/view-ssl-certificate
     featured:
 required_permissions:
     - ssl-certificate:create

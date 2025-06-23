@@ -5,7 +5,7 @@ links:
     overview:
     quickstart:
     previous: ssl-certificates/list-ssl-certificates
-    next: ssl-certificates/manage-ssl-certificate
+    next: ssl-certificates/add-ssl-certificate
     guides:
     related:
         - ssl-certificates/list-ssl-certificates
@@ -58,5 +58,4 @@ This page displays detailed information about a specific SSL certificate. Here y
 
 ## Next Steps
 - [List all certificates](list-ssl-certificates)
-- [Add new certificate](add-ssl-certificate)
-- [Manage certificates](manage-ssl-certificates) 
+- [Add new certificate](add-ssl-certificate) 

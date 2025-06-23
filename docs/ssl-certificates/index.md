@@ -8,6 +8,9 @@ links:
   next:
   guides:
   related:
+    - ssl-certificates/add-ssl-certificate
+    - ssl-certificates/list-ssl-certificates
+    - ssl-certificates/view-ssl-certificate
   featured:
 ---
 
@@ -20,10 +23,8 @@ Documentation on managing SSL certificates in Devopness.
 - [Add SSL Certificate](add-ssl-certificate)
 - [List SSL Certificates](list-ssl-certificates)
 - [View SSL Certificate](view-ssl-certificate)
-- [Manage SSL Certificates](manage-ssl-certificates)
 
 ## Additional Resources
 
-- [SSL Certificates API Documentation](../../api/ssl-certificates)
-- [Security Best Practices](../../security/best-practices)
-- [Troubleshooting Guide](../../security/troubleshooting)
+- [Security Documentation](../security/index.md)
+- [Reporting Security Vulnerabilities](../security/reporting-a-security-vulnerability)
