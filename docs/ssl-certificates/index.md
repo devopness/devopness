@@ -1,29 +1,29 @@
 ---
 title: SSL Certificates
-intro:
+intro: Documentation on managing SSL certificates in Devopness.
 links:
-    overview:
-    quickstart:
-    previous:
-    next:
-    guides:
-    related:
-    featured:
+  overview:
+  quickstart:
+  previous:
+  next:
+  guides:
+  related:
+  featured:
 ---
 
-# Certificados SSL
+# SSL Certificates
 
-Documentação sobre gerenciamento de certificados SSL na Devopness.
+Documentation on managing SSL certificates in Devopness.
 
-## Páginas Disponíveis
+## Available Pages
 
-- [Adicionar Certificado SSL](add-ssl-certificate)
-- [Listar Certificados SSL](list-ssl-certificates)
-- [Visualizar Certificado SSL](view-ssl-certificate)
-- [Gerenciar Certificados SSL](manage-ssl-certificates)
+- [Add SSL Certificate](add-ssl-certificate)
+- [List SSL Certificates](list-ssl-certificates)
+- [View SSL Certificate](view-ssl-certificate)
+- [Manage SSL Certificates](manage-ssl-certificates)
 
-## Recursos Adicionais
+## Additional Resources
 
-- [Documentação da API de Certificados SSL](../../api/ssl-certificates)
-- [Melhores Práticas de Segurança](../../security/best-practices)
-- [Guia de Troubleshooting](../../security/troubleshooting)
+- [SSL Certificates API Documentation](../../api/ssl-certificates)
+- [Security Best Practices](../../security/best-practices)
+- [Troubleshooting Guide](../../security/troubleshooting)
