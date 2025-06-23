@@ -225,6 +225,8 @@ class ApplicationService:
         source_value: str,
         server_ids: ServerIDs,
     ) -> MCPResponse[ActionSummary]:
+        await ensure_authenticated()
+
         response = await devopness.actions.add_pipeline_action(
             pipeline_id,
             {
