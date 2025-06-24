@@ -5,6 +5,7 @@ from pydantic import Field
 from ..devopness_api import devopness, ensure_authenticated
 from ..models import ProjectSummary
 from ..response import MCPResponse
+from ..types import MAX_RESOURCES_PER_PAGE
 from ..utils import get_instructions_choose_resource, get_instructions_format_list
 
 
@@ -18,7 +19,10 @@ class ProjectService:
     ) -> MCPResponse[List[ProjectSummary]]:
         await ensure_authenticated()
 
-        response = await devopness.projects.list_projects(page)
+        response = await devopness.projects.list_projects(
+            page,
+            per_page=MAX_RESOURCES_PER_PAGE,
+        )
 
         projects = [ProjectSummary.from_sdk_model(project) for project in response.data]
 

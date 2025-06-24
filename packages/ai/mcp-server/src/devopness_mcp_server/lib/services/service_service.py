@@ -1,15 +1,16 @@
 from typing import List
 
+from pydantic import Field
+
 from devopness.models import (
     ServiceType,
     StaticServiceType,
 )
-from pydantic import Extra, Field
 
 from ..devopness_api import devopness, ensure_authenticated
 from ..models import ActionSummary, ServiceSummary
 from ..response import MCPResponse
-from ..types import ExtraData, TypeListServerID
+from ..types import MAX_RESOURCES_PER_PAGE, ExtraData, TypeListServerID
 from ..utils import (
     get_instructions_choose_resource,
     get_instructions_format_list,
@@ -123,6 +124,7 @@ class ServiceService:
         response = await devopness.services.list_environment_services(
             environment_id,
             page,
+            per_page=MAX_RESOURCES_PER_PAGE,
         )
 
         services = [

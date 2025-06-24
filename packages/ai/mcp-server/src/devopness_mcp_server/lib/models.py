@@ -1,15 +1,10 @@
-from typing import List, Optional, cast
+from typing import Optional, cast
 
 from devopness.base import DevopnessBaseModel
 from devopness.models import (
     Action,
     ActionRelation,
     ActionRelationShallow,
-    ActionStatus,
-    ActionStatusReasonCode,
-    ActionStep,
-    ActionTarget,
-    ActionType,
     Application,
     ApplicationRelation,
     CredentialRelation,

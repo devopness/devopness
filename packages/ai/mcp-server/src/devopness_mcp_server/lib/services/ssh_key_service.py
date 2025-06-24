@@ -3,9 +3,9 @@ from ..models import ActionSummary, SSHKeySummary
 from ..response import MCPResponse
 from ..types import TypeListServerID
 from ..utils import (
+    get_instructions_format_resource,
     get_instructions_how_to_monitor_action,
     get_instructions_next_action_suggestion,
-    get_instructions_format_resource,
 )
 
 

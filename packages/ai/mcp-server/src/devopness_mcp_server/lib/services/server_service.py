@@ -12,7 +12,7 @@ from devopness.models import (
 from ..devopness_api import devopness, ensure_authenticated
 from ..models import ServerSummary
 from ..response import MCPResponse
-from ..types import ExtraData
+from ..types import MAX_RESOURCES_PER_PAGE, ExtraData
 from ..utils import (
     get_instructions_choose_resource,
     get_instructions_format_list,
@@ -89,6 +89,7 @@ class ServerService:
         response = await devopness.servers.list_environment_servers(
             environment_id,
             page,
+            per_page=MAX_RESOURCES_PER_PAGE,
         )
 
         servers = [

@@ -5,7 +5,7 @@ from pydantic import Field
 from ..devopness_api import devopness, ensure_authenticated
 from ..models import EnvironmentSummary
 from ..response import MCPResponse
-from ..types import ExtraData
+from ..types import MAX_RESOURCES_PER_PAGE, ExtraData
 from ..utils import get_instructions_choose_resource, get_instructions_format_list
 
 
@@ -28,6 +28,7 @@ class EnvironmentService:
         response = await devopness.environments.list_project_environments(
             project_id,
             page,
+            per_page=MAX_RESOURCES_PER_PAGE,
         )
 
         environments = [

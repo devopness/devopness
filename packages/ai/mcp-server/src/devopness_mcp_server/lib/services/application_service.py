@@ -11,14 +11,14 @@ from devopness.models import (
 from ..devopness_api import devopness, ensure_authenticated
 from ..models import ActionSummary, ApplicationSummary
 from ..response import MCPResponse
-from ..types import ExtraData, TypeListServerID
+from ..types import MAX_RESOURCES_PER_PAGE, ExtraData, TypeListServerID
 from ..utils import (
+    get_instructions_choose_resource,
     get_instructions_format_list,
     get_instructions_format_resource,
     get_instructions_how_to_monitor_action,
     get_instructions_next_action_suggestion,
     get_web_link_to_environment_resource,
-    get_instructions_choose_resource,
 )
 
 
@@ -62,7 +62,7 @@ class ApplicationService:
         response = await devopness.applications.list_environment_applications(
             environment_id,
             page,
-            per_page=5,
+            per_page=MAX_RESOURCES_PER_PAGE,
         )
 
         applications = [
