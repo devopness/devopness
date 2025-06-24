@@ -1,5 +1,17 @@
 # @devopness/mcp-server
 
+## 0.0.18
+
+### Patch Changes
+
+- [#1881](https://github.com/devopness/devopness/pull/1881) [`ad9dbfc`](https://github.com/devopness/devopness/commit/ad9dbfc8e6fa4a349f588166877cdc724d3920e4) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Changes:
+  - Refactor listing tools to enforce pagination with a maximum of 5 resources per page.
+  - Introduce simplified data models for MCP Server resources to reduce payload size and minimize LLM hallucinations.
+  - Standardize output formatting across all listing tools using utility functions, including consistent web app links and next step suggestions.
+  - Update deployment tools to require `pipeline_id` and `server_ids` list, with uniform communication on tracking deployment actions.
+  - Refactor creation tools to use utility helpers for consistent presentation of newly created resource data.
+  - Add utility methods for generating clear, consistent instructions and formatted output for LLM interactions.
+
 ## 0.0.17
 
 ### Patch Changes
