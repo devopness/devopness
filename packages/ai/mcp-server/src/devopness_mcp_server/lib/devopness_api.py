@@ -1,3 +1,12 @@
+"""
+Initializes an asynchronous Devopness Client and ensures it is authenticated using
+environment-provided credentials.
+
+This module is used by the MCP Server to authenticate as a system user for performing
+operations with the Devopness API. It expects the environment variables
+`DEVOPNESS_USER_EMAIL` and `DEVOPNESS_USER_PASSWORD` to be set with valid credentials.
+"""
+
 import os
 
 from devopness import DevopnessClientAsync
