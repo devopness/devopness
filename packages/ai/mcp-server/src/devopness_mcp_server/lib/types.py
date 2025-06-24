@@ -1,3 +1,8 @@
+"""
+This module defines types and constants used to manage data visibility
+when interacting with Large Language Models (LLMs) in the MCP Server.
+"""
+
 from typing import Annotated, List, Literal, Optional
 
 from pydantic import Field
