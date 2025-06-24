@@ -1,3 +1,16 @@
+"""
+This module defines simplified data models tailored for use in the MCP Server.
+
+These models are derived from the SDK models but include only the essential fields.
+The purpose of this is to reduce the amount of data being sent to the LLM's,
+which helps prevent unnecessary context noise and reduces the chances of hallucinations,
+especially when working with large payloads.
+
+By stripping down the models to their most relevant attributes, we ensure
+leaner communication with the LLM and improve the quality and reliability
+of its responses.
+"""
+
 from typing import Optional, cast
 
 from devopness.base import DevopnessBaseModel
