@@ -5,6 +5,7 @@ from ..types import TypeListServerID
 from ..utils import (
     get_instructions_how_to_monitor_action,
     get_instructions_next_action_suggestion,
+    get_instructions_format_resource,
 )
 
 
@@ -36,6 +37,13 @@ class SSHKeyService:
         return MCPResponse.ok(
             ssh_key,
             [
+                get_instructions_format_resource(
+                    "ssh-key",
+                    [
+                        "[{ssh_key.name}]({ssh_key.url_web_permalink})"
+                        " (ID: {ssh_key.id})",
+                    ],
+                ),
                 get_instructions_next_action_suggestion("deploy", "ssh-key"),
             ],
         )
