@@ -59,7 +59,7 @@ class SSHKeyService:
         return MCPResponse.ok(
             action,
             [
-                get_instructions_how_to_monitor_action(action),
+                get_instructions_how_to_monitor_action(action.url_web_permalink),
                 "Show the user the command to remote connect"
                 "the server(s) using the SSH Key.",
             ],

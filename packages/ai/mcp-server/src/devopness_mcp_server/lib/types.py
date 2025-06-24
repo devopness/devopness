@@ -1,6 +1,8 @@
-from typing import Annotated, List, Literal
+from typing import Annotated, List, Literal, Optional
 
 from pydantic import Field
+
+from devopness.base.base_model import DevopnessBaseModel
 
 type ResourceType = Literal[
     "application",
@@ -27,3 +29,10 @@ type TypePage = Annotated[
         gt=0,
     ),
 ]
+
+
+class ExtraData(DevopnessBaseModel):
+    url_web_permalink: Optional[str] = None
+
+
+type TypeExtraData = Optional[ExtraData]

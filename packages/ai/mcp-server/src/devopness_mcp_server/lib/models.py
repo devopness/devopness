@@ -16,11 +16,16 @@ from devopness.models import (
     EnvironmentRelation,
     PipelineRelation,
     ProjectRelation,
+    Server,
+    ServerRelation,
+    ServerStatus,
     Service,
     ServiceRelation,
     SshKey,
     SshKeyRelation,
 )
+
+from .types import TypeExtraData
 
 
 class ProjectSummary(DevopnessBaseModel):
@@ -55,33 +60,12 @@ class EnvironmentSummary(DevopnessBaseModel):
         )
 
 
-class ActionTargetSummary(DevopnessBaseModel):
-    id: int | None
-    target_id: int | None
-    target_type: str | None
-    status: ActionStatus | None
-    status_reason_code: ActionStatusReasonCode | None
-    steps: List[ActionStep | None] | None
-
-    @classmethod
-    def from_sdk_model(cls, data: ActionTarget) -> "ActionTargetSummary":
-        return cls(
-            id=data.id,
-            target_id=data.resource_id,
-            target_type=data.resource_type,
-            status=data.status,
-            status_reason_code=data.status_reason_code,
-            steps=data.steps,
-        )
-
-
 class ActionSummary(DevopnessBaseModel):
     id: int
-    type: ActionType
-    status: ActionStatus
-    status_reason_code: ActionStatusReasonCode
+    type: str
+    status: str
+    status_reason_code: str
     url_web_permalink: str
-    targets: List[ActionTargetSummary]
 
     @classmethod
     def from_sdk_model(
@@ -89,14 +73,10 @@ class ActionSummary(DevopnessBaseModel):
     ) -> "ActionSummary":
         return cls(
             id=data.id,
-            type=data.type,
-            status=data.status,
-            status_reason_code=data.status_reason_code,
+            type=data.type_human_readable,
+            status=data.status_human_readable,
+            status_reason_code=data.status_reason_human_readable,
             url_web_permalink=data.url_web_permalink,
-            targets=[
-                ActionTargetSummary.from_sdk_model(target)
-                for target in data.targets or []
-            ],
         )
 
 
@@ -204,4 +184,46 @@ class ApplicationSummary(DevopnessBaseModel):
                 and data.last_deployments.latest is not None
                 else None
             ),
+        )
+
+
+class ServerSummary(DevopnessBaseModel):
+    id: int
+    name: str
+    status: ServerStatus
+    ip_address: Optional[str] = None
+    ssh_port: int
+    provider_code: str
+    provider_region: Optional[str] = None
+    last_action: Optional[ActionSummary] = None
+    url_web_permalink: Optional[str] = None
+
+    @classmethod
+    def from_sdk_model(
+        cls,
+        data: Server | ServerRelation,
+        extra_data: TypeExtraData = None,
+    ) -> "ServerSummary":
+        return cls(
+            id=data.id,
+            name=data.name,
+            status=data.status,
+            ip_address=data.ip_address,
+            ssh_port=data.ssh_port,
+            provider_code=data.provider_name,
+            provider_region=(
+                data.region
+                if isinstance(data, ServerRelation)
+                else getattr(
+                    data.provision_input.settings,
+                    "region",
+                    None,
+                )
+            ),
+            last_action=(
+                ActionSummary.from_sdk_model(data.last_action)
+                if data.last_action is not None
+                else None
+            ),
+            url_web_permalink=extra_data.url_web_permalink if extra_data else None,
         )

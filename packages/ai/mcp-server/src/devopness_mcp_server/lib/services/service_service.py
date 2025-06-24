@@ -90,7 +90,7 @@ class ServiceService:
         return MCPResponse.ok(
             action,
             [
-                get_instructions_how_to_monitor_action(action),
+                get_instructions_how_to_monitor_action(action.url_web_permalink),
             ],
         )
 

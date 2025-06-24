@@ -1,4 +1,3 @@
-from .models import ActionSummary
 from .types import ResourceType
 
 
@@ -10,9 +9,9 @@ def get_web_link_to_environment_resource(
 ) -> str:
     return (
         "https://app.devopness.com/"
-        f"projects/{project_id}/"
-        f"environments/{environment_id}/"
-        f"{resource_type}s/{resource_id}/"
+        + f"projects/{project_id}/"
+        + f"environments/{environment_id}/"
+        + f"{resource_type}s/{resource_id}/"
     )
 
 
@@ -32,11 +31,13 @@ def get_instructions_format_list(
     extra_instructions: list[str] | None = None,
 ) -> list[str]:
     return [
-        "You MUST present the list using the exact format shown below:",
+        "You MUST present the list in the exact format shown below:",
         header,
         *(extra_instructions or []),
         "Make sure each item follows this structure and "
-        "that the formatting is consistent.",
+        "that the formatting is consistent. Do not modify "
+        "the order of the list items. Do not add or remove "
+        "any items. Include all the required items in the list.",
     ]
 
 
@@ -51,11 +52,11 @@ def get_instructions_next_action_suggestion(
 
 
 def get_instructions_how_to_monitor_action(
-    action: ActionSummary,
+    action_url_web_permalink: str,
 ) -> str:
     return (
         "You MUST instruct the user to visit the following link to view the"
-        f" real-time progress: {action.url_web_permalink}\n"
+        f" real-time progress: {action_url_web_permalink}\n"
         "Make it clear that the page contains status tracking and logs."
     )
 
