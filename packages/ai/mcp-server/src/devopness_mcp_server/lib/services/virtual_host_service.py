@@ -10,6 +10,7 @@ from ..utils import (
     get_instructions_choose_resource,
     get_instructions_format_list,
     get_instructions_format_resource,
+    get_instructions_next_action_suggestion,
     get_web_link_to_environment_resource,
 )
 
@@ -108,7 +109,8 @@ class VirtualHostService:
                 description="Only applicable if `application_id` is set."
                 "Must be the address where the application is listening to.",
                 examples=[
-                    "http://localhost:3000http://127.0.0.1:8080",
+                    "http://localhost:3000",
+                    "http://127.0.0.1:8080",
                     "unix:/var/run/example.sock",
                 ],
             ),
@@ -164,5 +166,6 @@ class VirtualHostService:
                         "otherwise `-`",
                     ],
                 ),
+                get_instructions_next_action_suggestion("deploy", "virtual-host"),
             ],
         )
