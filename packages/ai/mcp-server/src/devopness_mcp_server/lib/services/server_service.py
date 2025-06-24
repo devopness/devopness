@@ -1,5 +1,7 @@
 from typing import List
 
+from pydantic import Field
+
 from devopness.models import (
     CloudInstanceRelation,
     CloudOsVersionCode,
@@ -10,6 +12,7 @@ from devopness.models import (
 from ..devopness_api import devopness, ensure_authenticated
 from ..models import ServerSummary
 from ..response import MCPResponse
+from ..types import ExtraData
 from ..utils import (
     get_instructions_choose_resource,
     get_instructions_format_list,
@@ -19,7 +22,6 @@ from ..utils import (
     get_last_action_repl,
     get_web_link_to_environment_resource,
 )
-from ..types import ExtraData, TypePage
 
 
 class ServerService:
@@ -77,7 +79,10 @@ class ServerService:
     async def tool_list_servers(
         project_id: int,
         environment_id: int,
-        page: TypePage,
+        page: int = Field(
+            default=1,
+            gt=0,
+        ),
     ) -> MCPResponse[List[ServerSummary]]:
         await ensure_authenticated()
 

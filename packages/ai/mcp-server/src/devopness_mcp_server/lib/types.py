@@ -22,14 +22,6 @@ type TypeListServerID = Annotated[
     ),
 ]
 
-type TypePage = Annotated[
-    int,
-    Field(
-        default=1,
-        gt=0,
-    ),
-]
-
 
 class ExtraData(DevopnessBaseModel):
     url_web_permalink: Optional[str] = None

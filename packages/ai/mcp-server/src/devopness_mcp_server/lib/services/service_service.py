@@ -4,11 +4,12 @@ from devopness.models import (
     ServiceType,
     StaticServiceType,
 )
+from pydantic import Field
 
 from ..devopness_api import devopness, ensure_authenticated
 from ..models import ActionSummary, ServiceSummary
 from ..response import MCPResponse
-from ..types import TypeListServerID, TypePage
+from ..types import TypeListServerID
 from ..utils import (
     get_instructions_format_list,
     get_instructions_format_resource,
@@ -97,7 +98,10 @@ class ServiceService:
     @staticmethod
     async def tool_list_services(
         environment_id: int,
-        page: TypePage,
+        page: int = Field(
+            default=1,
+            gt=0,
+        ),
     ) -> MCPResponse[List[ServiceSummary]]:
         await ensure_authenticated()
 

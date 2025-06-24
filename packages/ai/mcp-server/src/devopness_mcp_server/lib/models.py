@@ -31,6 +31,7 @@ from .types import TypeExtraData
 class ProjectSummary(DevopnessBaseModel):
     id: int
     name: str
+    url_web_permalink: str
 
     @classmethod
     def from_sdk_model(
@@ -40,6 +41,7 @@ class ProjectSummary(DevopnessBaseModel):
         return cls(
             id=data.id,
             name=data.name,
+            url_web_permalink=f"https://app.devopness.com/projects/{data.id}",
         )
 
 
@@ -47,16 +49,19 @@ class EnvironmentSummary(DevopnessBaseModel):
     id: int
     name: str
     description: Optional[str]
+    url_web_permalink: Optional[str] = None
 
     @classmethod
     def from_sdk_model(
         cls,
         data: EnvironmentRelation,
+        extra_data: TypeExtraData = None,
     ) -> "EnvironmentSummary":
         return cls(
             id=data.id,
             name=data.name,
             description=data.description,
+            url_web_permalink=extra_data.url_web_permalink if extra_data else None,
         )
 
 

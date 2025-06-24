@@ -1,9 +1,11 @@
 from typing import List
 
+from pydantic import Field
+
 from ..devopness_api import devopness, ensure_authenticated
 from ..models import EnvironmentSummary
 from ..response import MCPResponse
-from ..types import TypePage
+from ..types import ExtraData
 from ..utils import get_instructions_choose_resource, get_instructions_format_list
 
 
@@ -11,7 +13,10 @@ class EnvironmentService:
     @staticmethod
     async def tool_list_environments(
         project_id: int,
-        page: TypePage,
+        page: int = Field(
+            default=1,
+            gt=0,
+        ),
     ) -> MCPResponse[List[EnvironmentSummary]]:
         """
         Rules:
@@ -26,7 +31,12 @@ class EnvironmentService:
         )
 
         environments = [
-            EnvironmentSummary.from_sdk_model(environment)
+            EnvironmentSummary.from_sdk_model(
+                environment,
+                ExtraData(
+                    url_web_permalink=f"https://app.devopness.com/projects/{project_id}/environments/{environment.id}",
+                ),
+            )
             for environment in response.data
         ]
 
@@ -34,11 +44,13 @@ class EnvironmentService:
             environments,
             [
                 get_instructions_format_list(
-                    "#N. {environment.name} (ID: {environment.id})",
+                    "`N.` [{environment.name}]({environment.url_web_permalink})"
+                    " (ID: {environment.id})",
                     [
                         "Description: {environment.description}",
                     ],
                 ),
+                f"Founded {len(environments)} environments.",
                 get_instructions_choose_resource(
                     "environment",
                 ),
