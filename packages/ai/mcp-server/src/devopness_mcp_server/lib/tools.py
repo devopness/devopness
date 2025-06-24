@@ -1,3 +1,15 @@
+"""
+This module is responsible for discovering and registering Devopness tools
+from service classes into the MCP Server.
+
+Each tool is defined as a static method starting with the prefix 'tool_'
+and is extracted automatically. These tools are renamed with a final prefix
+'devopness_' and added to the FastMCP server, making them available for use
+by the LLM.
+
+Call `register_tools(mcp_server)` to make all tools available.
+"""
+
 from typing import Any, TypedDict
 
 from mcp.server.fastmcp import FastMCP
