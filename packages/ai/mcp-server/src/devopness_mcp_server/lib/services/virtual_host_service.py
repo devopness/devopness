@@ -56,7 +56,7 @@ class VirtualHostService:
                     "- [{virtual_host.name}]({virtual_host.url_web_permalink})"
                     " (ID: {virtual_host.id})",
                     [
-                        "**Has active SSL:** {virtual_host.ssl_certificate}",
+                        "**Has active SSL:** {virtual_host.ssl_certificate_id}",
                         "**Working directory:** "
                         "`~/{virtual_host.application_name}/current/{virtual_host.root_directory}`"
                         "if {virtual_host.application_name} is set, "
@@ -155,7 +155,7 @@ class VirtualHostService:
                     [
                         "**Name:** [{virtual_host.name}]({virtual_host.url_web_permalink})"  # noqa: E501
                         " (ID: {virtual_host.id})",
-                        "**Has active SSL:** {virtual_host.ssl_certificate}",
+                        "**Has active SSL:** {virtual_host.ssl_certificate_id}",
                         "**Application:** {virtual_host.application_name} "
                         "(ID: {virtual_host.application_id})"
                         "if {virtual_host.application_name} is set, otherwise `-`",
@@ -193,7 +193,7 @@ class VirtualHostService:
             [
                 get_instructions_how_to_monitor_action(action.url_web_permalink),
                 "Show to the user how to access the virtual host using the URL --> "
-                "IF {virtual_host.ssl_certificate} is set, 'https://{virtual_host.name}'"
+                "IF {virtual_host.ssl_certificate_id} is set, 'https://{virtual_host.name}'"
                 "otherwise 'http://{virtual_host.name}'.",
             ],
         )

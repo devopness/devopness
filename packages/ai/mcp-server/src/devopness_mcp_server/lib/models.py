@@ -301,7 +301,7 @@ class VirtualHostSummary(DevopnessBaseModel):
     id: int
     name: str
     root_directory: Optional[str]
-    ssl_certificate: bool
+    ssl_certificate_id: Optional[int] = None
     application_id: Optional[int] = None
     application_name: Optional[str] = None
     application_listen_address: Optional[str] = None
@@ -316,7 +316,9 @@ class VirtualHostSummary(DevopnessBaseModel):
         return cls(
             id=data.id,
             name=data.name,
-            ssl_certificate=data.ssl_certificate is not None,
+            ssl_certificate_id=data.ssl_certificate.id
+            if data.ssl_certificate is not None
+            else None,
             root_directory=data.root_directory,
             application_id=data.application.id
             if data.application is not None
