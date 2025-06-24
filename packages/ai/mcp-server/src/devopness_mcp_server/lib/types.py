@@ -25,6 +25,7 @@ the LLM is able to list the <page + 1> until it finds the user's resource.
 type ResourceType = Literal[
     "application",
     "credential",
+    "daemon",
     "environment",
     "project",
     "server",

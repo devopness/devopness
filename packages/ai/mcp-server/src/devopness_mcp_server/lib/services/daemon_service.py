@@ -1,0 +1,67 @@
+from typing import List
+
+from pydantic import Field
+
+from ..devopness_api import devopness, ensure_authenticated
+from ..models import DaemonSummary
+from ..response import MCPResponse
+from ..types import MAX_RESOURCES_PER_PAGE, ExtraData
+from ..utils import (
+    get_instructions_choose_resource,
+    get_instructions_format_list,
+    get_web_link_to_environment_resource,
+)
+
+
+class DaemonService:
+    @staticmethod
+    async def tool_list_daemons(
+        project_id: int,
+        environment_id: int,
+        page: int = Field(
+            default=1,
+            gt=0,
+        ),
+    ) -> MCPResponse[List[DaemonSummary]]:
+        await ensure_authenticated()
+
+        response = await devopness.daemons.list_environment_daemons(
+            environment_id,
+            page,
+            per_page=MAX_RESOURCES_PER_PAGE,
+        )
+
+        daemons = [
+            DaemonSummary.from_sdk_model(
+                daemon,
+                ExtraData(
+                    url_web_permalink=get_web_link_to_environment_resource(
+                        project_id,
+                        environment_id,
+                        "daemon",
+                        daemon.id,
+                    ),
+                ),
+            )
+            for daemon in response.data
+        ]
+
+        return MCPResponse.ok(
+            daemons,
+            [
+                get_instructions_format_list(
+                    "- [{daemon.name}]({daemon.url_web_permalink}) (ID: {daemon.id})",
+                    [
+                        "**Command:** `{daemon.command}`",
+                        "**Run as user:** {daemon.run_as_user}",
+                        "**Working directory:** "
+                        "`~/{daemon.application_name}/current/{daemon.working_directory}`"
+                        "if {daemon.application_name} is set, "
+                        "otherwise `{daemon.working_directory}`",
+                    ],
+                ),
+                get_instructions_choose_resource(
+                    "daemon",
+                ),
+            ],
+        )

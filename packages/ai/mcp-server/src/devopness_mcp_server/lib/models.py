@@ -21,6 +21,8 @@ from devopness.models import (
     Application,
     ApplicationRelation,
     CredentialRelation,
+    Daemon,
+    DaemonRelation,
     EnvironmentRelation,
     PipelineRelation,
     ProjectRelation,
@@ -257,5 +259,37 @@ class ServerSummary(DevopnessBaseModel):
                 if data.last_action is not None
                 else None
             ),
+            url_web_permalink=extra_data.url_web_permalink if extra_data else None,
+        )
+
+
+class DaemonSummary(DevopnessBaseModel):
+    id: int
+    name: str
+    command: str
+    run_as_user: str
+    working_directory: Optional[str]
+    application_id: Optional[int] = None
+    application_name: Optional[str] = None
+    url_web_permalink: Optional[str] = None
+
+    @classmethod
+    def from_sdk_model(
+        cls,
+        data: Daemon | DaemonRelation,
+        extra_data: TypeExtraData = None,
+    ) -> "DaemonSummary":
+        return cls(
+            id=data.id,
+            name=data.name,
+            command=data.command,
+            run_as_user=data.run_as_user,
+            working_directory=data.working_directory,
+            application_id=data.application.id
+            if data.application is not None
+            else None,
+            application_name=data.application.name
+            if data.application is not None
+            else None,
             url_web_permalink=extra_data.url_web_permalink if extra_data else None,
         )

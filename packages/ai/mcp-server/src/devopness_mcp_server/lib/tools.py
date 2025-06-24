@@ -16,6 +16,7 @@ from mcp.server.fastmcp import FastMCP
 
 from .services.application_service import ApplicationService
 from .services.credential_service import CredentialService
+from .services.daemon_service import DaemonService
 from .services.environment_service import EnvironmentService
 from .services.pipeline_service import PipelineService
 from .services.project_service import ProjectService
@@ -64,6 +65,7 @@ def register_tools(mcp_server: FastMCP) -> None:
     services = [
         ApplicationService,
         CredentialService,
+        DaemonService,
         EnvironmentService,
         PipelineService,
         ProjectService,
