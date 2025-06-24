@@ -45,7 +45,7 @@ class EnvironmentService:
             environments,
             [
                 get_instructions_format_list(
-                    "`N.` [{environment.name}]({environment.url_web_permalink})"
+                    "- [{environment.name}]({environment.url_web_permalink})"
                     " (ID: {environment.id})",
                     [
                         "Description: {environment.description}",

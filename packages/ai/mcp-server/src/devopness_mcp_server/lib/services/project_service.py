@@ -30,7 +30,7 @@ class ProjectService:
             projects,
             [
                 get_instructions_format_list(
-                    "`N.` [{project.name}]({project.url_web_permalink})"
+                    "- [{project.name}]({project.url_web_permalink})"
                     " (ID: {project.id})",
                 ),
                 f"Founded {len(projects)} projects.",

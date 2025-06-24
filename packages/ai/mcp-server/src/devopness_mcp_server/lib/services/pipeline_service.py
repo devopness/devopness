@@ -30,7 +30,7 @@ class PipelineService:
             pipelines,
             [
                 get_instructions_format_list(
-                    "`N.` {pipeline.name} (ID: {pipeline.id})",
+                    "- {pipeline.name} (ID: {pipeline.id})",
                     [
                         "Operation: {pipeline.operation}",
                     ],

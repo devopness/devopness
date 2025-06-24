@@ -61,7 +61,7 @@ def get_instructions_format_list(
     extra_instructions: list[str] | None = None,
 ) -> list[str]:
     return [
-        "You MUST present the list in the exact format shown below:",
+        "You MUST present a bullet list in the below format:",
         header,
         *(extra_instructions or []),
         "Make sure each item follows this structure and "
@@ -96,10 +96,10 @@ def get_instructions_choose_resource(
 ) -> str:
     return f"""
         Rules:
-        1. If the user has multiple {resource_type}s ask them to choose one
-           of the listed {resource_type} IDs to continue with the conversation.
-        2. If the user has only one {resource_type}, you can use it directly,
-           and communicate with the user about it.
-        3. Inform the user that the {resource_type} might be located on a different
+        - If the user has multiple {resource_type}s ask them to choose one
+          of the listed {resource_type} IDs to continue with the conversation.
+        - If the user has only one {resource_type}, you can use it directly,
+          and communicate with the user about it.
+        - Inform the user that the {resource_type} might be located on a different
           'page' and offer to display the next page.
     """
