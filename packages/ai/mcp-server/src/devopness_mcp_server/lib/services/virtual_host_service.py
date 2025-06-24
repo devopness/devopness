@@ -3,13 +3,14 @@ from typing import Annotated, List, Literal, Optional
 from pydantic import Field
 
 from ..devopness_api import devopness, ensure_authenticated
-from ..models import VirtualHostSummary
+from ..models import ActionSummary, VirtualHostSummary
 from ..response import MCPResponse
-from ..types import MAX_RESOURCES_PER_PAGE, ExtraData
+from ..types import MAX_RESOURCES_PER_PAGE, ExtraData, TypeListServerID
 from ..utils import (
     get_instructions_choose_resource,
     get_instructions_format_list,
     get_instructions_format_resource,
+    get_instructions_how_to_monitor_action,
     get_instructions_next_action_suggestion,
     get_web_link_to_environment_resource,
 )
@@ -168,5 +169,31 @@ class VirtualHostService:
                     ],
                 ),
                 get_instructions_next_action_suggestion("deploy", "virtual-host"),
+            ],
+        )
+
+    @staticmethod
+    async def tool_deploy_virtual_host(
+        pipeline_id: int,
+        server_ids: TypeListServerID,
+    ) -> MCPResponse[ActionSummary]:
+        await ensure_authenticated()
+
+        response = await devopness.actions.add_pipeline_action(
+            pipeline_id,
+            {
+                "servers": server_ids,
+            },
+        )
+
+        action = ActionSummary.from_sdk_model(response.data)
+
+        return MCPResponse.ok(
+            action,
+            [
+                get_instructions_how_to_monitor_action(action.url_web_permalink),
+                "Show to the user how to access the virtual host using the URL --> "
+                "IF {virtual_host.ssl_certificate} is set, 'https://{virtual_host.name}'"
+                "otherwise 'http://{virtual_host.name}'.",
             ],
         )
