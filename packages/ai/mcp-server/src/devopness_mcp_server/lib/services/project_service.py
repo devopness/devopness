@@ -37,5 +37,8 @@ class ProjectService:
                 get_instructions_choose_resource(
                     "project",
                 ),
+                "EVEN if a candidate project is found by name or ID, please confirm"
+                " with the user the project to be used.",
+                "Do not use environment 'name or ID' as project 'name or ID'.",
             ],
         )
