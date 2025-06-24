@@ -11,13 +11,14 @@ from devopness.models import (
 from ..devopness_api import devopness, ensure_authenticated
 from ..models import ActionSummary, ApplicationSummary
 from ..response import MCPResponse
-from ..types import TypeListServerID
+from ..types import ExtraData, TypeListServerID
 from ..utils import (
     get_instructions_format_list,
     get_instructions_format_resource,
     get_instructions_how_to_monitor_action,
     get_instructions_next_action_suggestion,
     get_web_link_to_environment_resource,
+    get_instructions_choose_resource,
 )
 
 
@@ -49,6 +50,7 @@ class ApplicationService:
 
     @staticmethod
     async def tool_list_applications(
+        project_id: int,
         environment_id: int,
         page: int = Field(
             default=1,
@@ -63,7 +65,17 @@ class ApplicationService:
         )
 
         applications = [
-            ApplicationSummary.from_sdk_model(application)
+            ApplicationSummary.from_sdk_model(
+                application,
+                ExtraData(
+                    url_web_permalink=get_web_link_to_environment_resource(
+                        project_id,
+                        environment_id,
+                        "application",
+                        application.id,
+                    ),
+                ),
+            )
             for application in response.data
         ]
 
@@ -71,7 +83,8 @@ class ApplicationService:
             applications,
             [
                 get_instructions_format_list(
-                    "#N. {application.name}",
+                    "`N.` [{application.name}]({application.url_web_permalink})"
+                    " (ID: {application.id})",
                     [
                         "Repository: {application.repository}",
                         "Root directory: {application.root_directory}",
@@ -83,12 +96,16 @@ class ApplicationService:
                         "- Install: {application.install_dependencies_command}",
                         "- Build: {application.build_command}",
                     ],
-                )
+                ),
+                f"Founded {len(applications)} applications.",
+                get_instructions_choose_resource("application"),
+                get_instructions_next_action_suggestion("deploy", "application"),
             ],
         )
 
     @staticmethod
     async def tool_create_application(
+        project_id: int,
         environment_id: int,
         source_credential_id: int,
         name: Annotated[
@@ -182,8 +199,8 @@ class ApplicationService:
                 ),
                 "See more details at: "
                 + get_web_link_to_environment_resource(
-                    response.data.project_id,
-                    response.data.environment_id,
+                    project_id,
+                    environment_id,
                     "application",
                     response.data.id,
                 ),

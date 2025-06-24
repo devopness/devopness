@@ -74,7 +74,8 @@ class ActionSummary(DevopnessBaseModel):
 
     @classmethod
     def from_sdk_model(
-        cls, data: Action | ActionRelation | ActionRelationShallow
+        cls,
+        data: Action | ActionRelation | ActionRelationShallow,
     ) -> "ActionSummary":
         return cls(
             id=data.id,
@@ -91,7 +92,10 @@ class PipelineSummary(DevopnessBaseModel):
     operation: str
 
     @classmethod
-    def from_sdk_model(cls, data: PipelineRelation) -> "PipelineSummary":
+    def from_sdk_model(
+        cls,
+        data: PipelineRelation,
+    ) -> "PipelineSummary":
         return cls(
             id=data.id,
             name=data.name,
@@ -104,9 +108,14 @@ class SSHKeySummary(DevopnessBaseModel):
     name: str
     fingerprint: str
     last_action: Optional[ActionSummary] = None
+    url_web_permalink: Optional[str] = None
 
     @classmethod
-    def from_sdk_model(cls, data: SshKey | SshKeyRelation) -> "SSHKeySummary":
+    def from_sdk_model(
+        cls,
+        data: SshKey | SshKeyRelation,
+        extra_data: TypeExtraData = None,
+    ) -> "SSHKeySummary":
         return cls(
             id=data.id,
             name=data.name,
@@ -116,6 +125,7 @@ class SSHKeySummary(DevopnessBaseModel):
                 if data.last_action is not None
                 else None
             ),
+            url_web_permalink=extra_data.url_web_permalink if extra_data else None,
         )
 
 
@@ -124,14 +134,20 @@ class CredentialSummary(DevopnessBaseModel):
     name: str
     provider: str
     provider_type: str
+    url_web_permalink: Optional[str] = None
 
     @classmethod
-    def from_sdk_model(cls, data: CredentialRelation) -> "CredentialSummary":
+    def from_sdk_model(
+        cls,
+        data: CredentialRelation,
+        extra_data: TypeExtraData = None,
+    ) -> "CredentialSummary":
         return cls(
             id=data.id,
             name=data.name,
             provider=data.provider.code_human_readable,
             provider_type=data.provider_type_human_readable,
+            url_web_permalink=extra_data.url_web_permalink if extra_data else None,
         )
 
 
@@ -141,9 +157,14 @@ class ServiceSummary(DevopnessBaseModel):
     type: str
     version: str
     last_action: Optional[ActionSummary] = None
+    url_web_permalink: Optional[str] = None
 
     @classmethod
-    def from_sdk_model(cls, data: Service | ServiceRelation) -> "ServiceSummary":
+    def from_sdk_model(
+        cls,
+        data: Service | ServiceRelation,
+        extra_data: TypeExtraData = None,
+    ) -> "ServiceSummary":
         return cls(
             id=data.id,
             name=data.name,
@@ -154,6 +175,7 @@ class ServiceSummary(DevopnessBaseModel):
                 if data.last_action is not None
                 else None
             ),
+            url_web_permalink=extra_data.url_web_permalink if extra_data else None,
         )
 
 
@@ -168,10 +190,13 @@ class ApplicationSummary(DevopnessBaseModel):
     install_dependencies_command: Optional[str] = None
     build_command: Optional[str] = None
     last_action: Optional[ActionSummary] = None
+    url_web_permalink: Optional[str] = None
 
     @classmethod
     def from_sdk_model(
-        cls, data: Application | ApplicationRelation
+        cls,
+        data: Application | ApplicationRelation,
+        extra_data: TypeExtraData = None,
     ) -> "ApplicationSummary":
         return cls(
             id=data.id,
@@ -189,6 +214,7 @@ class ApplicationSummary(DevopnessBaseModel):
                 and data.last_deployments.latest is not None
                 else None
             ),
+            url_web_permalink=extra_data.url_web_permalink if extra_data else None,
         )
 
 
