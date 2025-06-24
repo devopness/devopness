@@ -1,4 +1,4 @@
-from typing import Annotated, List, Optional
+from typing import Annotated, List, Literal, Optional
 
 from pydantic import Field
 
@@ -88,6 +88,7 @@ class VirtualHostService:
         ],
         vh_type: Annotated[
             str,
+            Literal["ip-based", "name-based"],
             Field(
                 examples=[
                     "IF domain or subdomain: name-based",
