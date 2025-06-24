@@ -16,6 +16,7 @@ from ..utils import (
     get_instructions_format_resource,
     get_instructions_how_to_monitor_action,
     get_instructions_next_action_suggestion,
+    get_last_action_repl,
     get_web_link_to_environment_resource,
 )
 from ..types import ExtraData, TypePage
@@ -111,7 +112,7 @@ class ServerService:
                         "**SSH Port:** {server.ssh_port}",
                         "**Provider:** {server.provider_code}",
                         "**Region:** {server.provider_region}",
-                        "**Last Action:** [{server.last_action.type}]({server.last_action.url_web_permalink}) **({server.last_action.status})**",  # noqa: E501
+                        get_last_action_repl("server"),
                     ],
                 ),
                 f"Founded {len(servers)} servers.",

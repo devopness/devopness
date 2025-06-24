@@ -1,6 +1,17 @@
 from .types import ResourceType
 
 
+def get_last_action_repl(
+    resource_type: ResourceType,
+) -> str:
+    return (
+        "**Last Action:** "
+        "[{" + resource_type + "}.last_action.type}]"
+        "({" + resource_type + ".last_action.url_web_permalink}) "
+        "**({" + resource_type + ".last_action.status})**"
+    )
+
+
 def get_web_link_to_environment_resource(
     project_id: int,
     environment_id: int,
