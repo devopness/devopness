@@ -1,9 +1,26 @@
+"""
+Utility functions for generating formatted strings and instructions related to
+MCP Server.
+
+These helpers produce consistent textual patterns, URLs, and instructions
+for various resource types such as applications, servers, environments, etc.,
+to be used primarily in communication with LLMs.
+
+All functions ensure consistent, clear, and user-friendly communication patterns
+when interacting with resources in the Devopness MCP server ecosystem.
+"""
+
+
 from .types import ResourceType
 
 
 def get_last_action_repl(
     resource_type: ResourceType,
 ) -> str:
+    """
+    Returns a formatted markdown string representing the last action performed
+    on a resource.
+    """
     return (
         "**Last Action:** "
         "[{" + resource_type + "}.last_action.type}]"
@@ -18,6 +35,9 @@ def get_web_link_to_environment_resource(
     resource_type: ResourceType,
     resource_id: int,
 ) -> str:
+    """
+    Constructs a URL linking to a specific resource within a project environment.
+    """
     return (
         "https://app.devopness.com/"
         + f"projects/{project_id}/"
