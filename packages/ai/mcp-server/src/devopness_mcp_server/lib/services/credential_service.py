@@ -3,6 +3,7 @@ from typing import List
 from ..devopness_api import devopness, ensure_authenticated
 from ..models import CredentialSummary
 from ..response import MCPResponse
+from ..types import TypePage
 from ..utils import get_instructions_choose_resource, get_instructions_format_list
 
 
@@ -10,10 +11,13 @@ class CredentialService:
     @staticmethod
     async def tool_list_credentials(
         environment_id: int,
+        page: TypePage,
     ) -> MCPResponse[List[CredentialSummary]]:
         await ensure_authenticated()
+
         response = await devopness.credentials.list_environment_credentials(
-            environment_id
+            environment_id,
+            page,
         )
 
         credentials = [

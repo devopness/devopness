@@ -8,7 +8,7 @@ from devopness.models import (
 from ..devopness_api import devopness, ensure_authenticated
 from ..models import ActionSummary, ServiceSummary
 from ..response import MCPResponse
-from ..types import ServerIDs
+from ..types import TypeListServerID, TypePage
 from ..utils import (
     get_instructions_format_list,
     get_instructions_format_resource,
@@ -74,7 +74,7 @@ class ServiceService:
     @staticmethod
     async def tool_deploy_service(
         pipeline_id: int,
-        server_ids: ServerIDs,
+        server_ids: TypeListServerID,
     ) -> MCPResponse[ActionSummary]:
         await ensure_authenticated()
 
@@ -97,10 +97,14 @@ class ServiceService:
     @staticmethod
     async def tool_list_services(
         environment_id: int,
+        page: TypePage,
     ) -> MCPResponse[List[ServiceSummary]]:
         await ensure_authenticated()
 
-        response = await devopness.services.list_environment_services(environment_id)
+        response = await devopness.services.list_environment_services(
+            environment_id,
+            page,
+        )
 
         services = [ServiceSummary.from_sdk_model(service) for service in response.data]
 

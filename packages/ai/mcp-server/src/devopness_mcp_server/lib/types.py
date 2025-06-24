@@ -12,10 +12,18 @@ type ResourceType = Literal[
     "ssh-key",
 ]
 
-type ServerIDs = Annotated[
+type TypeListServerID = Annotated[
     List[int],
     Field(
         min_length=1,
         description="List of Server IDs to which the action will be targeted.",
+    ),
+]
+
+type TypePage = Annotated[
+    int,
+    Field(
+        default=1,
+        gt=0,
     ),
 ]

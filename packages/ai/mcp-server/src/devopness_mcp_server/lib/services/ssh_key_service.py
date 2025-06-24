@@ -1,7 +1,7 @@
 from ..devopness_api import devopness, ensure_authenticated
 from ..models import ActionSummary, SSHKeySummary
 from ..response import MCPResponse
-from ..types import ServerIDs
+from ..types import TypeListServerID
 from ..utils import (
     get_instructions_how_to_monitor_action,
     get_instructions_next_action_suggestion,
@@ -43,7 +43,7 @@ class SSHKeyService:
     @staticmethod
     async def tool_deploy_ssh_key(
         pipeline_id: int,
-        server_ids: ServerIDs,
+        server_ids: TypeListServerID,
     ) -> MCPResponse[ActionSummary]:
         await ensure_authenticated()
 

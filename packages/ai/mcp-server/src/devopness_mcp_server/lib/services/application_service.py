@@ -11,7 +11,7 @@ from devopness.models import (
 from ..devopness_api import devopness, ensure_authenticated
 from ..models import ActionSummary, ApplicationSummary
 from ..response import MCPResponse
-from ..types import ServerIDs
+from ..types import TypeListServerID, TypePage
 from ..utils import (
     get_instructions_format_list,
     get_instructions_format_resource,
@@ -50,11 +50,13 @@ class ApplicationService:
     @staticmethod
     async def tool_list_applications(
         environment_id: int,
+        page: TypePage,
     ) -> MCPResponse[List[ApplicationSummary]]:
         await ensure_authenticated()
 
         response = await devopness.applications.list_environment_applications(
-            environment_id
+            environment_id,
+            page,
         )
 
         applications = [
@@ -191,7 +193,7 @@ class ApplicationService:
         pipeline_id: int,
         source_type: SourceTypePlain,
         source_value: str,
-        server_ids: ServerIDs,
+        server_ids: TypeListServerID,
     ) -> MCPResponse[ActionSummary]:
         await ensure_authenticated()
 
