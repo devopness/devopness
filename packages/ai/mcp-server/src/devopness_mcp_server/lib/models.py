@@ -189,7 +189,6 @@ class ApplicationSummary(DevopnessBaseModel):
     root_directory: Optional[str] = None
     install_dependencies_command: Optional[str] = None
     build_command: Optional[str] = None
-    last_action: Optional[ActionSummary] = None
     url_web_permalink: Optional[str] = None
 
     @classmethod
@@ -208,12 +207,6 @@ class ApplicationSummary(DevopnessBaseModel):
             root_directory=data.root_directory,
             install_dependencies_command=data.install_dependencies_command,
             build_command=data.build_command,
-            last_action=(
-                ActionSummary.from_sdk_model(data.last_deployments.latest)
-                if data.last_deployments is not None
-                and data.last_deployments.latest is not None
-                else None
-            ),
             url_web_permalink=extra_data.url_web_permalink if extra_data else None,
         )
 

@@ -81,4 +81,6 @@ def get_instructions_choose_resource(
            of the listed {resource_type} IDs to continue with the conversation.
         2. If the user has only one {resource_type}, you can use it directly,
            and communicate with the user about it.
+        3. Inform the user that the {resource_type} might be located on a different
+          'page' and offer to display the next page.
     """

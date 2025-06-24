@@ -62,6 +62,7 @@ class ApplicationService:
         response = await devopness.applications.list_environment_applications(
             environment_id,
             page,
+            per_page=5,
         )
 
         applications = [
@@ -86,15 +87,14 @@ class ApplicationService:
                     "`N.` [{application.name}]({application.url_web_permalink})"
                     " (ID: {application.id})",
                     [
-                        "Repository: {application.repository}",
-                        "Root directory: {application.root_directory}",
-                        "Stack:",
-                        "- Language: {application.programming_language}",
-                        "- Version: {application.programming_language_version}",
-                        "- Framework: {application.programming_language_framework}",
-                        "Commands:",
-                        "- Install: {application.install_dependencies_command}",
-                        "- Build: {application.build_command}",
+                        "- Repository: {application.repository}",
+                        "- Root directory: {application.root_directory}",
+                        "- Stack: {application.programming_language}"
+                        " {application.programming_language_version}"
+                        " ({application.programming_language_framework})",
+                        "- Commands:",
+                        "  - Install: {application.install_dependencies_command}",
+                        "  - Build: {application.build_command}",
                     ],
                 ),
                 f"Founded {len(applications)} applications.",
