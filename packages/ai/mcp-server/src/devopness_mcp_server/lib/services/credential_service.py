@@ -5,12 +5,18 @@ from pydantic import Field
 from ..devopness_api import devopness, ensure_authenticated
 from ..models import CredentialSummary
 from ..response import MCPResponse
-from ..utils import get_instructions_choose_resource, get_instructions_format_list
+from ..types import ExtraData
+from ..utils import (
+    get_instructions_choose_resource,
+    get_instructions_format_list,
+    get_web_link_to_environment_resource,
+)
 
 
 class CredentialService:
     @staticmethod
     async def tool_list_credentials(
+        project_id: int,
         environment_id: int,
         page: int = Field(
             default=1,
@@ -25,19 +31,32 @@ class CredentialService:
         )
 
         credentials = [
-            CredentialSummary.from_sdk_model(credential) for credential in response.data
+            CredentialSummary.from_sdk_model(
+                credential,
+                ExtraData(
+                    url_web_permalink=get_web_link_to_environment_resource(
+                        project_id,
+                        environment_id,
+                        "credential",
+                        credential.id,
+                    ),
+                ),
+            )
+            for credential in response.data
         ]
 
         return MCPResponse.ok(
             credentials,
             [
                 get_instructions_format_list(
-                    "#N. {credential.name} (ID: {credential.id})",
+                    "`N.` [{credential.name}]({credential.url_web_permalink})"
+                    " (ID: {credential.id})",
                     [
                         "Provider: {credential.provider}",
                         "Provider Type: {credential.provider_type}",
                     ],
                 ),
+                f"Founded {len(credentials)} credentials.",
                 get_instructions_choose_resource(
                     "credential",
                 ),
