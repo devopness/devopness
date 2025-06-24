@@ -60,7 +60,10 @@ class VirtualHostService:
                         "**Working directory:** "
                         "`~/{virtual_host.application_name}/current/{virtual_host.root_directory}`"
                         "if {virtual_host.application_name} is set, "
-                        "otherwise `{virtual_host.root_directory}`",
+                        "otherwise `not include the field`",
+                        "**Routes to:** <<{virtual_host.application_listen_address}>>"
+                        "if {virtual_host.application_listen_address} is set, "
+                        "otherwise `not include the field`",
                     ],
                 ),
                 get_instructions_choose_resource(
