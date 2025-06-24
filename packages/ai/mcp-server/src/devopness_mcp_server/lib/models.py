@@ -33,6 +33,8 @@ from devopness.models import (
     ServiceRelation,
     SshKey,
     SshKeyRelation,
+    VirtualHost,
+    VirtualHostRelation,
 )
 
 from .types import TypeExtraData
@@ -291,5 +293,37 @@ class DaemonSummary(DevopnessBaseModel):
             application_name=data.application.name
             if data.application is not None
             else None,
+            url_web_permalink=extra_data.url_web_permalink if extra_data else None,
+        )
+
+
+class VirtualHostSummary(DevopnessBaseModel):
+    id: int
+    name: str
+    root_directory: Optional[str]
+    ssl_certificate: bool
+    application_id: Optional[int] = None
+    application_name: Optional[str] = None
+    application_listen_address: Optional[str] = None
+    url_web_permalink: Optional[str] = None
+
+    @classmethod
+    def from_sdk_model(
+        cls,
+        data: VirtualHost | VirtualHostRelation,
+        extra_data: TypeExtraData = None,
+    ) -> "VirtualHostSummary":
+        return cls(
+            id=data.id,
+            name=data.name,
+            ssl_certificate=data.ssl_certificate is not None,
+            root_directory=data.root_directory,
+            application_id=data.application.id
+            if data.application is not None
+            else None,
+            application_name=data.application.name
+            if data.application is not None
+            else None,
+            application_listen_address=data.application_listen_address,
             url_web_permalink=extra_data.url_web_permalink if extra_data else None,
         )

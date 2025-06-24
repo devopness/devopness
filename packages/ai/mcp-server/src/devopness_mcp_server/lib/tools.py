@@ -24,6 +24,7 @@ from .services.server_service import ServerService
 from .services.service_service import ServiceService
 from .services.ssh_key_service import SSHKeyService
 from .services.user_service import UserService
+from .services.virtual_host_service import VirtualHostService
 from .services.webhook_service import WebHookService
 
 
@@ -73,6 +74,7 @@ def register_tools(mcp_server: FastMCP) -> None:
         ServiceService,
         SSHKeyService,
         UserService,
+        VirtualHostService,
         WebHookService,
     ]
 

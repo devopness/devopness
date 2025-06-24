@@ -31,6 +31,7 @@ type ResourceType = Literal[
     "server",
     "service",
     "ssh-key",
+    "virtual-host",
 ]
 
 type TypeListServerID = Annotated[
