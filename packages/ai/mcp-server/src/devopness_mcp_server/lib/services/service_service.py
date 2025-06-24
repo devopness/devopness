@@ -146,7 +146,7 @@ class ServiceService:
             services,
             [
                 get_instructions_format_list(
-                    "`N.` [{service.name}]({service.url_web_permalink})"
+                    "- [{service.name}]({service.url_web_permalink})"
                     " (ID: {service.id})",
                 ),
                 f"Founded {len(services)} services.",

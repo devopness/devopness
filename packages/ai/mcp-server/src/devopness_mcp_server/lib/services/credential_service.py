@@ -50,7 +50,7 @@ class CredentialService:
             credentials,
             [
                 get_instructions_format_list(
-                    "`N.` [{credential.name}]({credential.url_web_permalink})"
+                    "- [{credential.name}]({credential.url_web_permalink})"
                     " (ID: {credential.id})",
                     [
                         "Provider: {credential.provider}",

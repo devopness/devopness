@@ -61,7 +61,7 @@ def get_instructions_format_list(
     extra_instructions: list[str] | None = None,
 ) -> list[str]:
     return [
-        "You MUST present the list in the exact format shown below:",
+        "You MUST present a bullet list in the below format:",
         header,
         *(extra_instructions or []),
         "Make sure each item follows this structure and "
@@ -93,13 +93,15 @@ def get_instructions_how_to_monitor_action(
 
 def get_instructions_choose_resource(
     resource_type: ResourceType,
-) -> str:
-    return f"""
-        Rules:
-        1. If the user has multiple {resource_type}s ask them to choose one
-           of the listed {resource_type} IDs to continue with the conversation.
-        2. If the user has only one {resource_type}, you can use it directly,
-           and communicate with the user about it.
-        3. Inform the user that the {resource_type} might be located on a different
-          'page' and offer to display the next page.
-    """
+) -> list[str]:
+    return [
+        f"IF the list contains multiple {resource_type}s. "
+        "You MUST show the following message to the user:",
+        f"Please enter the ID or name of the {resource_type} you want to work with, "
+        f"or type `next page` if your {resource_type} isn't listed here.",
+        #
+        f"IF the list contains only one {resource_type}. "
+        "You MUST show the following message to the user:",
+        "Found one " + resource_type + " with ID {resource_id}. "
+        "I will use it to achieve our goal.",
+    ]

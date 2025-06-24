@@ -20,8 +20,14 @@ class EnvironmentService:
     ) -> MCPResponse[List[EnvironmentSummary]]:
         """
         Rules:
-        1. DO NOT execute this tool without first confirming with the user which
+        - BEFORE executing this tool, show to the user all the existing projects,
+          so that the user can choose the project to be used, using the tool
+          `devopness_list_projects`.
+        - DO NOT execute this tool without first confirming with the user which
           project ID to use.
+        - EVEN if a candidate project is found by name or ID, please confirm with
+          the user the project to be used.
+        - Do not use environment 'name or ID' as project 'name or ID'.
         """
         await ensure_authenticated()
 
@@ -45,7 +51,7 @@ class EnvironmentService:
             environments,
             [
                 get_instructions_format_list(
-                    "`N.` [{environment.name}]({environment.url_web_permalink})"
+                    "- [{environment.name}]({environment.url_web_permalink})"
                     " (ID: {environment.id})",
                     [
                         "Description: {environment.description}",

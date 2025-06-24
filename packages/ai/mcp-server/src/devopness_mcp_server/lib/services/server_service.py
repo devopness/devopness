@@ -111,8 +111,7 @@ class ServerService:
             servers,
             [
                 get_instructions_format_list(
-                    "`N.` [{server.name}]({server.url_web_permalink})"
-                    " (ID: {server.id})",
+                    "- [{server.name}]({server.url_web_permalink}) (ID: {server.id})",
                     [
                         "**Status:** {server.status}",
                         "**IP Address:** {server.ip_address}",

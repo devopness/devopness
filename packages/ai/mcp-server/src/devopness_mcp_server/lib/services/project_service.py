@@ -30,12 +30,15 @@ class ProjectService:
             projects,
             [
                 get_instructions_format_list(
-                    "`N.` [{project.name}]({project.url_web_permalink})"
+                    "- [{project.name}]({project.url_web_permalink})"
                     " (ID: {project.id})",
                 ),
                 f"Founded {len(projects)} projects.",
                 get_instructions_choose_resource(
                     "project",
                 ),
+                "EVEN if a candidate project is found by name or ID, please confirm"
+                " with the user the project to be used.",
+                "Do not use environment 'name or ID' as project 'name or ID'.",
             ],
         )

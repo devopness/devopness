@@ -16,6 +16,7 @@ from mcp.server.fastmcp import FastMCP
 
 from .services.application_service import ApplicationService
 from .services.credential_service import CredentialService
+from .services.daemon_service import DaemonService
 from .services.environment_service import EnvironmentService
 from .services.pipeline_service import PipelineService
 from .services.project_service import ProjectService
@@ -23,6 +24,7 @@ from .services.server_service import ServerService
 from .services.service_service import ServiceService
 from .services.ssh_key_service import SSHKeyService
 from .services.user_service import UserService
+from .services.virtual_host_service import VirtualHostService
 from .services.webhook_service import WebHookService
 
 
@@ -64,6 +66,7 @@ def register_tools(mcp_server: FastMCP) -> None:
     services = [
         ApplicationService,
         CredentialService,
+        DaemonService,
         EnvironmentService,
         PipelineService,
         ProjectService,
@@ -71,6 +74,7 @@ def register_tools(mcp_server: FastMCP) -> None:
         ServiceService,
         SSHKeyService,
         UserService,
+        VirtualHostService,
         WebHookService,
     ]
 

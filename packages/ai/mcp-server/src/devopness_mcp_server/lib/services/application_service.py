@@ -84,7 +84,7 @@ class ApplicationService:
             applications,
             [
                 get_instructions_format_list(
-                    "`N.` [{application.name}]({application.url_web_permalink})"
+                    "- [{application.name}]({application.url_web_permalink})"
                     " (ID: {application.id})",
                     [
                         "- Repository: {application.repository}",
