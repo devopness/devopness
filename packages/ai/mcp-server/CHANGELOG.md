@@ -1,5 +1,14 @@
 # @devopness/mcp-server
 
+## 0.0.19
+
+### Patch Changes
+
+- [#1887](https://github.com/devopness/devopness/pull/1887) [`5394f56`](https://github.com/devopness/devopness/commit/5394f5695be5aac404192d0905db88ebf086f1c8) Thanks [@Diegiwg](https://github.com/Diegiwg)! - **Changes**
+  - Added support for listing, creating, and deploying `daemon` and `virtual-host` resources.
+  - Improved resource listing instructions by switching from numbered to bullet-point format to prevent miscommunication.
+  - Enhanced `list-projects` and `list-environments` instructions to ensure LLMs request user confirmation before using `project_id` and `environment_id`.
+
 ## 0.0.18
 
 ### Patch Changes
