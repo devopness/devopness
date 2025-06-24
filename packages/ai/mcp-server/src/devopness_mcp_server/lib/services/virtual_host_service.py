@@ -56,7 +56,7 @@ class VirtualHostService:
                     "- [{virtual_host.name}]({virtual_host.url_web_permalink})"
                     " (ID: {virtual_host.id})",
                     [
-                        "**Has active SSL:** {virtual_host.ssl_certificate_id}",
+                        "**Has active SSL:** {virtual_host.ssl_certificate_id.is.set}",
                         "**Working directory:** "
                         "`~/{virtual_host.application_name}/current/{virtual_host.root_directory}`"
                         "if {virtual_host.application_name} is set, "
@@ -155,7 +155,7 @@ class VirtualHostService:
                     [
                         "**Name:** [{virtual_host.name}]({virtual_host.url_web_permalink})"  # noqa: E501
                         " (ID: {virtual_host.id})",
-                        "**Has active SSL:** {virtual_host.ssl_certificate_id}",
+                        "**Has active SSL:** {virtual_host.ssl_certificate_id.is.set}",
                         "**Application:** {virtual_host.application_name} "
                         "(ID: {virtual_host.application_id})"
                         "if {virtual_host.application_name} is set, otherwise `-`",
