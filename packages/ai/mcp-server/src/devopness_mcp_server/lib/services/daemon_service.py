@@ -3,13 +3,14 @@ from typing import Annotated, List, Optional
 from pydantic import Field
 
 from ..devopness_api import devopness, ensure_authenticated
-from ..models import DaemonSummary
+from ..models import ActionSummary, DaemonSummary
 from ..response import MCPResponse
-from ..types import MAX_RESOURCES_PER_PAGE, ExtraData
+from ..types import MAX_RESOURCES_PER_PAGE, ExtraData, TypeListServerID
 from ..utils import (
     get_instructions_choose_resource,
     get_instructions_format_list,
     get_instructions_format_resource,
+    get_instructions_how_to_monitor_action,
     get_instructions_next_action_suggestion,
     get_web_link_to_environment_resource,
 )
@@ -132,5 +133,28 @@ class DaemonService:
                     ],
                 ),
                 get_instructions_next_action_suggestion("deploy", "daemon"),
+            ],
+        )
+
+    @staticmethod
+    async def tool_deploy_daemon(
+        pipeline_id: int,
+        server_ids: TypeListServerID,
+    ) -> MCPResponse[ActionSummary]:
+        await ensure_authenticated()
+
+        response = await devopness.actions.add_pipeline_action(
+            pipeline_id,
+            {
+                "servers": server_ids,
+            },
+        )
+
+        action = ActionSummary.from_sdk_model(response.data)
+
+        return MCPResponse.ok(
+            action,
+            [
+                get_instructions_how_to_monitor_action(action.url_web_permalink),
             ],
         )
