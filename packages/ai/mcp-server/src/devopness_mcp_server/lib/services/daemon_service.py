@@ -120,7 +120,8 @@ class DaemonService:
                 get_instructions_format_resource(
                     "daemon",
                     [
-                        "**Name:** [{daemon.name}]({daemon.url_web_permalink})",
+                        "**Name:** [{daemon.name}]({daemon.url_web_permalink})"
+                        " (ID: {daemon.id})",
                         "**Command:** `{daemon.command}`",
                         "**Run as user:** {daemon.run_as_user}",
                         "**Working directory:** "
