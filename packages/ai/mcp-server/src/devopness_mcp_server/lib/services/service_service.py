@@ -4,17 +4,19 @@ from devopness.models import (
     ServiceType,
     StaticServiceType,
 )
-from pydantic import Field
+from pydantic import Extra, Field
 
 from ..devopness_api import devopness, ensure_authenticated
 from ..models import ActionSummary, ServiceSummary
 from ..response import MCPResponse
-from ..types import TypeListServerID
+from ..types import ExtraData, TypeListServerID
 from ..utils import (
+    get_instructions_choose_resource,
     get_instructions_format_list,
     get_instructions_format_resource,
     get_instructions_how_to_monitor_action,
     get_instructions_next_action_suggestion,
+    get_web_link_to_environment_resource,
 )
 
 
@@ -41,6 +43,7 @@ class ServiceService:
 
     @staticmethod
     async def tool_create_service(
+        project_id: int,
         environment_id: int,
         service_type: ServiceType,
         service_version: str,
@@ -55,7 +58,17 @@ class ServiceService:
             },
         )
 
-        service = ServiceSummary.from_sdk_model(response.data)
+        service = ServiceSummary.from_sdk_model(
+            response.data,
+            ExtraData(
+                url_web_permalink=get_web_link_to_environment_resource(
+                    project_id,
+                    environment_id,
+                    "service",
+                    response.data.id,
+                ),
+            ),
+        )
 
         return MCPResponse.ok(
             service,
@@ -63,7 +76,8 @@ class ServiceService:
                 get_instructions_format_resource(
                     "service",
                     [
-                        "#N. {service.name} (ID: {service.id})",
+                        "[{service.name}]({service.url_web_permalink})"
+                        " (ID: {service.id})",
                         "Type: {service.type}",
                         "Version: {service.version}",
                     ],
@@ -97,6 +111,7 @@ class ServiceService:
 
     @staticmethod
     async def tool_list_services(
+        project_id: int,
         environment_id: int,
         page: int = Field(
             default=1,
@@ -110,13 +125,30 @@ class ServiceService:
             page,
         )
 
-        services = [ServiceSummary.from_sdk_model(service) for service in response.data]
+        services = [
+            ServiceSummary.from_sdk_model(
+                service,
+                ExtraData(
+                    url_web_permalink=get_web_link_to_environment_resource(
+                        project_id,
+                        environment_id,
+                        "service",
+                        service.id,
+                    ),
+                ),
+            )
+            for service in response.data
+        ]
 
         return MCPResponse.ok(
             services,
             [
                 get_instructions_format_list(
-                    "#N. {service.name} (ID: {service.id})",
+                    "`N.` [{service.name}]({service.url_web_permalink})"
+                    " (ID: {service.id})",
                 ),
+                f"Founded {len(services)} services.",
+                get_instructions_choose_resource("service"),
+                get_instructions_next_action_suggestion("deploy", "service"),
             ],
         )
