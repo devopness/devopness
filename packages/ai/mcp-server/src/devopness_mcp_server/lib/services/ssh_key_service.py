@@ -3,7 +3,7 @@ from ..models import ActionSummary, SSHKeySummary
 from ..response import MCPResponse
 from ..types import TypeListServerID
 from ..utils import (
-    get_instructions_format_resource,
+    get_instructions_format_resource_table,
     get_instructions_how_to_monitor_action,
     get_instructions_next_action_suggestion,
 )
@@ -37,12 +37,17 @@ class SSHKeyService:
         return MCPResponse.ok(
             ssh_key,
             [
-                get_instructions_format_resource(
-                    "ssh-key",
+                get_instructions_format_resource_table(
                     [
-                        "[{ssh_key.name}]({ssh_key.url_web_permalink})"
-                        " (ID: {ssh_key.id})",
-                    ],
+                        (
+                            "ID",
+                            "{ssh_key.id}",
+                        ),
+                        (
+                            "Name",
+                            "[{ssh_key.name}]({ssh_key.url_web_permalink})",
+                        ),
+                    ]
                 ),
                 get_instructions_next_action_suggestion("deploy", "ssh-key"),
             ],

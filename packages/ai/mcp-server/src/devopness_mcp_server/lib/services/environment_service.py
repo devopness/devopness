@@ -6,7 +6,10 @@ from ..devopness_api import devopness, ensure_authenticated
 from ..models import EnvironmentSummary
 from ..response import MCPResponse
 from ..types import MAX_RESOURCES_PER_PAGE, ExtraData
-from ..utils import get_instructions_choose_resource, get_instructions_format_list
+from ..utils import (
+    get_instructions_choose_resource,
+    get_instructions_format_resource_table,
+)
 
 
 class EnvironmentService:
@@ -50,14 +53,22 @@ class EnvironmentService:
         return MCPResponse.ok(
             environments,
             [
-                get_instructions_format_list(
-                    "- [{environment.name}]({environment.url_web_permalink})"
-                    " (ID: {environment.id})",
+                get_instructions_format_resource_table(
                     [
-                        "Description: {environment.description}",
-                    ],
+                        (
+                            "ID",
+                            "{environment.id}",
+                        ),
+                        (
+                            "Name",
+                            "[{environment.name}]({environment.url_web_permalink})",
+                        ),
+                        (
+                            "Description",
+                            "{environment.description} OR `-`",
+                        ),
+                    ]
                 ),
-                f"Founded {len(environments)} environments.",
                 get_instructions_choose_resource(
                     "environment",
                 ),

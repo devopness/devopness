@@ -14,12 +14,13 @@ from ..models import ServerSummary
 from ..response import MCPResponse
 from ..types import MAX_RESOURCES_PER_PAGE, ExtraData
 from ..utils import (
+    format_last_action_field,
     get_instructions_choose_resource,
     get_instructions_format_list,
-    get_instructions_format_resource,
+    get_instructions_format_resource_table,
+    get_instructions_format_table,
     get_instructions_how_to_monitor_action,
     get_instructions_next_action_suggestion,
-    get_last_action_repl,
     get_web_link_to_environment_resource,
 )
 
@@ -110,19 +111,45 @@ class ServerService:
         return MCPResponse.ok(
             servers,
             [
-                get_instructions_format_list(
-                    "- [{server.name}]({server.url_web_permalink}) (ID: {server.id})",
+                get_instructions_format_table(
                     [
-                        "**Status:** {server.status}",
-                        "**IP Address:** {server.ip_address}",
-                        "**SSH Port:** {server.ssh_port}",
-                        "**Provider:** {server.provider_code}",
-                        "**Region:** {server.provider_region}",
-                        get_last_action_repl("server"),
-                    ],
+                        (
+                            "ID",
+                            "{server.id}",
+                        ),
+                        (
+                            "Name",
+                            "[{server.name}]({server.url_web_permalink})",
+                        ),
+                        (
+                            "🚦 Status",
+                            "MATCHING {server.status}"
+                            " CASE 'running' THEN '🟢 {server.status}'"
+                            " CASE 'failed' THEN '🔴 {server.status}'"
+                            " ELSE '🟠 {server.status}'",
+                        ),
+                        (
+                            "IP Address",
+                            "{server.ip_address} OR `-`",
+                        ),
+                        (
+                            "SSH Port",
+                            "{server.ssh_port}",
+                        ),
+                        (
+                            "Provider",
+                            "{server.provider_code}",
+                        ),
+                        (
+                            "Region",
+                            "{server.provider_region} OR `-`",
+                        ),
+                        (
+                            "Last Action",
+                            format_last_action_field("server"),
+                        ),
+                    ]
                 ),
-                f"Founded {len(servers)} servers.",
-                "Names of servers: " + ", ".join([server.name for server in servers]),
                 get_instructions_choose_resource("server"),
             ],
         )
@@ -184,16 +211,40 @@ class ServerService:
         return MCPResponse.ok(
             server,
             [
-                get_instructions_format_resource(
-                    "server",
+                get_instructions_format_resource_table(
                     [
-                        "[{server.name}]({server.url_web_permalink}) (ID: {server.id})",
-                        "Status: {server.status}",
-                        "IP Address: {server.ip_address}",
-                        "SSH Port: {server.ssh_port}",
-                        "Provider: {server.provider_code}",
-                        "Region: {server.provider_region}",
-                    ],
+                        (
+                            "ID",
+                            "{server.id}",
+                        ),
+                        (
+                            "Name",
+                            "[{server.name}]({server.url_web_permalink})",
+                        ),
+                        (
+                            "🚦 Status",
+                            "MATCHING {server.status}"
+                            " CASE 'running' THEN '🟢 {server.status}'"
+                            " CASE 'failed' THEN '🔴 {server.status}'"
+                            " ELSE '🟠 {server.status}'",
+                        ),
+                        (
+                            "IP Address",
+                            "{server.ip_address} OR `-`",
+                        ),
+                        (
+                            "SSH Port",
+                            "{server.ssh_port}",
+                        ),
+                        (
+                            "Provider",
+                            "{server.provider_code}",
+                        ),
+                        (
+                            "Region",
+                            "{server.provider_region} OR `-`",
+                        ),
+                    ]
                 ),
                 (
                     get_instructions_how_to_monitor_action(
@@ -202,5 +253,6 @@ class ServerService:
                     if server.last_action is not None
                     else ""
                 ),
+                get_instructions_next_action_suggestion("deploy", "application"),
             ],
         )
