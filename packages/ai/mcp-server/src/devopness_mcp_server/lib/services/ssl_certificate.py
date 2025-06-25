@@ -1,17 +1,15 @@
-from typing import Annotated, List, Literal, Optional
+from typing import List
 
 from pydantic import Field
 
 from ..devopness_api import devopness, ensure_authenticated
-from ..models import ActionSummary, SSLCertificateSummary
+from ..models import SSLCertificateSummary
 from ..response import MCPResponse
-from ..types import MAX_RESOURCES_PER_PAGE, ExtraData, TypeListServerID
+from ..types import MAX_RESOURCES_PER_PAGE, ExtraData
 from ..utils import (
     get_instructions_choose_resource,
-    get_instructions_format_list,
     get_instructions_format_resource,
     get_instructions_format_table,
-    get_instructions_how_to_monitor_action,
     get_instructions_next_action_suggestion,
     get_web_link_to_environment_resource,
 )
@@ -69,6 +67,49 @@ class SSLCertificateService:
                             "IF {ssl_certificate.active} THEN `🔒 Yes` ELSE `🔓 False`",
                         ),
                     ]
-                )
+                ),
+                get_instructions_choose_resource("ssl-certificate"),
+                get_instructions_next_action_suggestion("deploy", "ssl-certificate"),
+            ],
+        )
+
+    @staticmethod
+    async def tool_create_ssl_certificate(
+        project_id: int,
+        environment_id: int,
+        virtual_host_id: int,
+    ) -> MCPResponse[SSLCertificateSummary]:
+        await ensure_authenticated()
+
+        response = await devopness.ssl_certificates.add_environment_ssl_certificate(
+            environment_id,
+            {
+                "virtual_host_id": virtual_host_id,
+                "issuer": "lets-encrypt",
+            },
+        )
+
+        ssl_certificate = SSLCertificateSummary.from_sdk_model(
+            response.data,
+            ExtraData(
+                url_web_permalink=get_web_link_to_environment_resource(
+                    project_id,
+                    environment_id,
+                    "ssl-certificate",
+                    response.data.id,
+                ),
+            ),
+        )
+
+        return MCPResponse.ok(
+            ssl_certificate,
+            [
+                get_instructions_format_resource(
+                    "ssl-certificate",
+                    [
+                        "[{ssl_certificate.name}]({ssl_certificate.url_web_permalink})",
+                    ],
+                ),
+                get_instructions_next_action_suggestion("deploy", "ssl-certificate"),
             ],
         )
