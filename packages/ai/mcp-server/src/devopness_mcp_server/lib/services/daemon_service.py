@@ -79,7 +79,8 @@ class DaemonService:
             str,
             Field(
                 examples=[
-                    "IF application is set: 'relative/path/in/app/directory'",
+                    "IF application is set: 'relative/path/in/app/directory'"
+                    " or EMPTY STRING",
                     "IF application is not set: '/absolute/path'",
                 ],
             ),
