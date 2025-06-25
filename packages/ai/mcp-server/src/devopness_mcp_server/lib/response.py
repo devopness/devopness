@@ -1,3 +1,21 @@
+"""
+This module defines a generic response model (`MCPResponse`) used to communicate
+between the MCP Server and LLM-based clients.
+
+The response encapsulates:
+- A status indicator ("ok", "warning", or "error")
+- A generic payload (`data`) that can be any serializable type
+- An optional list of instructions for guiding LLM behavior
+
+To simplify response creation, the class provides classmethods
+that return pre-structured response objects based on the context.
+
+Example usage:
+    MCPResponse.ok(data={"message": "All good"})
+    MCPResponse.warning(instructions=["Ask the user to verify the server name."])
+    MCPResponse.error(instructions=["Inform the user the operation failed."])
+"""
+
 from typing import Any, Generic, List, Literal, Self, TypeVar
 
 from pydantic import BaseModel

@@ -5,6 +5,8 @@ from pydantic import Field
 from ..devopness_api import devopness, ensure_authenticated
 from ..models import ProjectSummary
 from ..response import MCPResponse
+from ..types import MAX_RESOURCES_PER_PAGE
+from ..utils import get_instructions_choose_resource, get_instructions_format_list
 
 
 class ProjectService:
@@ -16,25 +18,27 @@ class ProjectService:
         ),
     ) -> MCPResponse[List[ProjectSummary]]:
         await ensure_authenticated()
-        response = await devopness.projects.list_projects(page)
 
-        projects = [
-            ProjectSummary(
-                id=project.id,
-                name=project.name,
-            )
-            for project in response.data
-        ]
+        response = await devopness.projects.list_projects(
+            page,
+            per_page=MAX_RESOURCES_PER_PAGE,
+        )
+
+        projects = [ProjectSummary.from_sdk_model(project) for project in response.data]
 
         return MCPResponse.ok(
             projects,
             [
-                "Show the list in the following format:",
-                "#N. {project.name} (ID: {project.id})",
-                "Rules:"
-                "1. If the user has multiple projects ask them to choose one"
-                " of the listed project IDs to continue with the conversation.",
-                "2. If the user has only one project, you can use it directly,"
-                " and communicate with the user about it.",
+                get_instructions_format_list(
+                    "- [{project.name}]({project.url_web_permalink})"
+                    " (ID: {project.id})",
+                ),
+                f"Founded {len(projects)} projects.",
+                get_instructions_choose_resource(
+                    "project",
+                ),
+                "EVEN if a candidate project is found by name or ID, please confirm"
+                " with the user the project to be used.",
+                "Do not use environment 'name or ID' as project 'name or ID'.",
             ],
         )

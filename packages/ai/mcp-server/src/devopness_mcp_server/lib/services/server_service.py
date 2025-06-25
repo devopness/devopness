@@ -1,16 +1,27 @@
 from typing import List
 
+from pydantic import Field
+
 from devopness.models import (
     CloudInstanceRelation,
     CloudOsVersionCode,
     CloudProviderServiceRegion,
-    Server,
     ServerCloudServiceCode,
-    ServerRelation,
 )
 
 from ..devopness_api import devopness, ensure_authenticated
+from ..models import ServerSummary
 from ..response import MCPResponse
+from ..types import MAX_RESOURCES_PER_PAGE, ExtraData
+from ..utils import (
+    get_instructions_choose_resource,
+    get_instructions_format_list,
+    get_instructions_format_resource,
+    get_instructions_how_to_monitor_action,
+    get_instructions_next_action_suggestion,
+    get_last_action_repl,
+    get_web_link_to_environment_resource,
+)
 
 
 class ServerService:
@@ -27,10 +38,13 @@ class ServerService:
         return MCPResponse.ok(
             response.data.regions,
             [
-                "Show the list in the following format:",
-                "#N. {region.name} (Code: {region.code})",
-                "Rules:",
-                "1. Sort the regions by name.",
+                get_instructions_format_list(
+                    "#N. {region.name} (Code: {region.code})",
+                    [
+                        "You MUST sort the regions by name.",
+                    ],
+                ),
+                get_instructions_next_action_suggestion("create", "server"),
             ],
         )
 
@@ -49,25 +63,73 @@ class ServerService:
         return MCPResponse.ok(
             response.data,
             [
-                "Show the list in the following format:",
-                "#N. {instance.name} ({instance.architecture})",
-                " - CPU: {instance.vcpus} | RAM: {instance.memory} | Min Disk: {instance.default_disk_size}",  # noqa: E501
-                " - Price: {instance.price_hourly}/hour (~{instance.price_monthly}/month) in {instance.price_currency}",  # noqa: E501
-                "Rules:",
-                "1. Group the instances by architecture.",
-                "2. Sort the instances by price.",
+                get_instructions_format_list(
+                    "#N. {instance.name} ({instance.architecture})",
+                    [
+                        "CPU: {instance.vcpus} | RAM: {instance.memory} | Min Disk: {instance.default_disk_size}",  # noqa: E501
+                        "Price: {instance.price_hourly}/hour (~{instance.price_monthly}/month) in {instance.price_currency}",  # noqa: E501
+                        "You MUST sort the instances by lowest price per month.",
+                    ],
+                ),
+                get_instructions_next_action_suggestion("create", "server"),
             ],
         )
 
     @staticmethod
-    async def tool_list_servers(environment_id: int) -> List[ServerRelation]:
+    async def tool_list_servers(
+        project_id: int,
+        environment_id: int,
+        page: int = Field(
+            default=1,
+            gt=0,
+        ),
+    ) -> MCPResponse[List[ServerSummary]]:
         await ensure_authenticated()
-        response = await devopness.servers.list_environment_servers(environment_id)
 
-        return response.data
+        response = await devopness.servers.list_environment_servers(
+            environment_id,
+            page,
+            per_page=MAX_RESOURCES_PER_PAGE,
+        )
+
+        servers = [
+            ServerSummary.from_sdk_model(
+                server,
+                ExtraData(
+                    url_web_permalink=get_web_link_to_environment_resource(
+                        project_id,
+                        environment_id,
+                        "server",
+                        server.id,
+                    ),
+                ),
+            )
+            for server in response.data
+        ]
+
+        return MCPResponse.ok(
+            servers,
+            [
+                get_instructions_format_list(
+                    "- [{server.name}]({server.url_web_permalink}) (ID: {server.id})",
+                    [
+                        "**Status:** {server.status}",
+                        "**IP Address:** {server.ip_address}",
+                        "**SSH Port:** {server.ssh_port}",
+                        "**Provider:** {server.provider_code}",
+                        "**Region:** {server.provider_region}",
+                        get_last_action_repl("server"),
+                    ],
+                ),
+                f"Founded {len(servers)} servers.",
+                "Names of servers: " + ", ".join([server.name for server in servers]),
+                get_instructions_choose_resource("server"),
+            ],
+        )
 
     @staticmethod
     async def tool_create_cloud_server(
+        project_id: int,
         environment_id: int,
         credential_id: int,
         cloud_service_code: ServerCloudServiceCode,
@@ -76,7 +138,7 @@ class ServerService:
         os_hostname: str,
         os_disk_size: int,
         os_version_code: CloudOsVersionCode = CloudOsVersionCode.UBUNTU_24_04,
-    ) -> Server:
+    ) -> MCPResponse[ServerSummary]:
         """
         Rules:
         1. DO NOT execute this tool without first confirming with the user which
@@ -87,6 +149,7 @@ class ServerService:
           used to create the server.
         """
         await ensure_authenticated()
+
         response = await devopness.servers.add_environment_server(
             environment_id,
             {
@@ -106,4 +169,38 @@ class ServerService:
             },
         )
 
-        return response.data
+        server = ServerSummary.from_sdk_model(
+            response.data,
+            ExtraData(
+                url_web_permalink=get_web_link_to_environment_resource(
+                    project_id,
+                    environment_id,
+                    "server",
+                    response.data.id,
+                ),
+            ),
+        )
+
+        return MCPResponse.ok(
+            server,
+            [
+                get_instructions_format_resource(
+                    "server",
+                    [
+                        "[{server.name}]({server.url_web_permalink}) (ID: {server.id})",
+                        "Status: {server.status}",
+                        "IP Address: {server.ip_address}",
+                        "SSH Port: {server.ssh_port}",
+                        "Provider: {server.provider_code}",
+                        "Region: {server.provider_region}",
+                    ],
+                ),
+                (
+                    get_instructions_how_to_monitor_action(
+                        server.last_action.url_web_permalink,
+                    )
+                    if server.last_action is not None
+                    else ""
+                ),
+            ],
+        )
