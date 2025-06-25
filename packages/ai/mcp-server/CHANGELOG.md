@@ -1,5 +1,13 @@
 # @devopness/mcp-server
 
+## 0.0.21
+
+### Patch Changes
+
+- [#1896](https://github.com/devopness/devopness/pull/1896) [`a795164`](https://github.com/devopness/devopness/commit/a79516467472c97489055c2d1762ab4b861f7798) Thanks [@Diegiwg](https://github.com/Diegiwg)! - **Changes**
+  - Added CLI tools to list, create, and deploy `ssl-certificate`
+  - Changed output format of `list` and `create` operations to use tables instead of bullet lists for improved readability
+
 ## 0.0.20
 
 ### Patch Changes

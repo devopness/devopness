@@ -15,7 +15,8 @@ from ..types import MAX_RESOURCES_PER_PAGE, ExtraData, TypeListServerID
 from ..utils import (
     get_instructions_choose_resource,
     get_instructions_format_list,
-    get_instructions_format_resource,
+    get_instructions_format_resource_table,
+    get_instructions_format_table,
     get_instructions_how_to_monitor_action,
     get_instructions_next_action_suggestion,
     get_web_link_to_environment_resource,
@@ -83,21 +84,44 @@ class ApplicationService:
         return MCPResponse.ok(
             applications,
             [
-                get_instructions_format_list(
-                    "- [{application.name}]({application.url_web_permalink})"
-                    " (ID: {application.id})",
+                get_instructions_format_table(
                     [
-                        "- Repository: {application.repository}",
-                        "- Root directory: {application.root_directory}",
-                        "- Stack: {application.programming_language}"
-                        " {application.programming_language_version}"
-                        " ({application.programming_language_framework})",
-                        "- Commands:",
-                        "  - Install: {application.install_dependencies_command}",
-                        "  - Build: {application.build_command}",
-                    ],
+                        (
+                            "ID",
+                            "{application.id}",
+                        ),
+                        (
+                            "Name",
+                            "[{application.name}]({application.url_web_permalink})",
+                        ),
+                        (
+                            "Repository",
+                            "{application.repository}",
+                        ),
+                        (
+                            "Root directory",
+                            "{application.root_directory}",
+                        ),
+                        (
+                            "Stack (Language, Version, Framework)",
+                            "{application.programming_language} "
+                            #
+                            "[IF {application.programming_language_version} == 'none'"
+                            " THEN `` ELSE {application.programming_language_version}]"
+                            #
+                            "[IF {application.programming_language_framework} == 'none'"
+                            " THEN `` ELSE ({application.programming_language_framework})]",  # noqa: E501
+                        ),
+                        (
+                            "Build command",
+                            "{application.build_command} or `-`",
+                        ),
+                        (
+                            "Install dependencies command",
+                            "{application.install_dependencies_command} or `-`",
+                        ),
+                    ]
                 ),
-                f"Founded {len(applications)} applications.",
                 get_instructions_choose_resource("application"),
                 get_instructions_next_action_suggestion("deploy", "application"),
             ],
@@ -182,20 +206,43 @@ class ApplicationService:
         return MCPResponse.ok(
             application,
             [
-                get_instructions_format_resource(
-                    "application",
+                get_instructions_format_resource_table(
                     [
-                        "Name: {application.name}",
-                        "Repository: {application.repository}",
-                        "Root directory: {application.root_directory}",
-                        "Stack:",
-                        "- Language: {application.programming_language}",
-                        "- Version: {application.programming_language_version}",
-                        "- Framework: {application.programming_language_framework}",
-                        "Commands:",
-                        "- Install: {application.install_dependencies_command}",
-                        "- Build: {application.build_command}",
-                    ],
+                        (
+                            "ID",
+                            "{application.id}",
+                        ),
+                        (
+                            "Name",
+                            "[{application.name}]({application.url_web_permalink})",
+                        ),
+                        (
+                            "Repository",
+                            "{application.repository}",
+                        ),
+                        (
+                            "Root directory",
+                            "{application.root_directory}",
+                        ),
+                        (
+                            "Stack (Language, Version, Framework)",
+                            "{application.programming_language} "
+                            #
+                            "[IF {application.programming_language_version} == 'none'"
+                            " THEN `` ELSE {application.programming_language_version}]"
+                            #
+                            "[IF {application.programming_language_framework} == 'none'"
+                            " THEN `` ELSE ({application.programming_language_framework})]",  # noqa: E501
+                        ),
+                        (
+                            "Build command",
+                            "{application.build_command} or `-`",
+                        ),
+                        (
+                            "Install dependencies command",
+                            "{application.install_dependencies_command} or `-`",
+                        ),
+                    ]
                 ),
                 "See more details at: "
                 + get_web_link_to_environment_resource(

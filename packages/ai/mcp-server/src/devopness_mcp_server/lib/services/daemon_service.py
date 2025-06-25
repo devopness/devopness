@@ -8,8 +8,8 @@ from ..response import MCPResponse
 from ..types import MAX_RESOURCES_PER_PAGE, ExtraData, TypeListServerID
 from ..utils import (
     get_instructions_choose_resource,
-    get_instructions_format_list,
-    get_instructions_format_resource,
+    get_instructions_format_resource_table,
+    get_instructions_format_table,
     get_instructions_how_to_monitor_action,
     get_instructions_next_action_suggestion,
     get_web_link_to_environment_resource,
@@ -52,20 +52,38 @@ class DaemonService:
         return MCPResponse.ok(
             daemons,
             [
-                get_instructions_format_list(
-                    "- [{daemon.name}]({daemon.url_web_permalink}) (ID: {daemon.id})",
+                get_instructions_format_table(
                     [
-                        "**Command:** `{daemon.command}`",
-                        "**Run as user:** {daemon.run_as_user}",
-                        "**Working directory:** "
-                        "`~/{daemon.application_name}/current/{daemon.working_directory}`"
-                        "if {daemon.application_name} is set, "
-                        "otherwise `{daemon.working_directory}`",
-                    ],
+                        (
+                            "ID",
+                            "{daemon.id}",
+                        ),
+                        (
+                            "Name",
+                            "[{daemon.name}]({daemon.url_web_permalink})",
+                        ),
+                        (
+                            "Command",
+                            "{daemon.command}",
+                        ),
+                        (
+                            "Run as user",
+                            "{daemon.run_as_user}",
+                        ),
+                        (
+                            "Application",
+                            "{daemon.application_name} OR `-`",
+                        ),
+                        (
+                            "Working directory",
+                            "IF {daemon.application_name} "
+                            "THEN `~/{daemon.application_name}/current/{daemon.working_directory}`"  # noqa: E501
+                            "ELSE `{daemon.working_directory}`",
+                        ),
+                    ]
                 ),
-                get_instructions_choose_resource(
-                    "daemon",
-                ),
+                get_instructions_choose_resource("daemon"),
+                get_instructions_next_action_suggestion("deploy", "daemon"),
             ],
         )
 
@@ -79,7 +97,8 @@ class DaemonService:
             str,
             Field(
                 examples=[
-                    "IF application is set: 'relative/path/in/app/directory'",
+                    "IF application is set: 'relative/path/in/app/directory'"
+                    " or EMPTY STRING",
                     "IF application is not set: '/absolute/path'",
                 ],
             ),
@@ -117,21 +136,35 @@ class DaemonService:
         return MCPResponse.ok(
             daemon,
             [
-                get_instructions_format_resource(
-                    "daemon",
+                get_instructions_format_resource_table(
                     [
-                        "**Name:** [{daemon.name}]({daemon.url_web_permalink})"
-                        " (ID: {daemon.id})",
-                        "**Command:** `{daemon.command}`",
-                        "**Run as user:** {daemon.run_as_user}",
-                        "**Working directory:** "
-                        "`~/{daemon.application_name}/current/{daemon.working_directory}`"
-                        "if {daemon.application_name} is set, "
-                        "otherwise `{daemon.working_directory}`",
-                        "**Application:** {daemon.application_name} "
-                        "(ID: {daemon.application_id})"
-                        "if {daemon.application_name} is set, otherwise `-`",
-                    ],
+                        (
+                            "ID",
+                            "{daemon.id}",
+                        ),
+                        (
+                            "Name",
+                            "[{daemon.name}]({daemon.url_web_permalink})",
+                        ),
+                        (
+                            "Command",
+                            "{daemon.command}",
+                        ),
+                        (
+                            "Run as user",
+                            "{daemon.run_as_user}",
+                        ),
+                        (
+                            "Application",
+                            "{daemon.application_name} OR `-`",
+                        ),
+                        (
+                            "Working directory",
+                            "IF {daemon.application_name} "
+                            "THEN `~/{daemon.application_name}/current/{daemon.working_directory}`"  # noqa: E501
+                            "ELSE `{daemon.working_directory}`",
+                        ),
+                    ]
                 ),
                 get_instructions_next_action_suggestion("deploy", "daemon"),
             ],
