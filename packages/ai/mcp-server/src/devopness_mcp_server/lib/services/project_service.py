@@ -6,7 +6,10 @@ from ..devopness_api import devopness, ensure_authenticated
 from ..models import ProjectSummary
 from ..response import MCPResponse
 from ..types import MAX_RESOURCES_PER_PAGE
-from ..utils import get_instructions_choose_resource, get_instructions_format_list
+from ..utils import (
+    get_instructions_choose_resource,
+    get_instructions_format_table,
+)
 
 
 class ProjectService:
@@ -29,11 +32,18 @@ class ProjectService:
         return MCPResponse.ok(
             projects,
             [
-                get_instructions_format_list(
-                    "- [{project.name}]({project.url_web_permalink})"
-                    " (ID: {project.id})",
+                get_instructions_format_table(
+                    [
+                        (
+                            "ID",
+                            "{project.id}",
+                        ),
+                        (
+                            "Name",
+                            "[{project.name}]({project.url_web_permalink})",
+                        ),
+                    ]
                 ),
-                f"Founded {len(projects)} projects.",
                 get_instructions_choose_resource(
                     "project",
                 ),
