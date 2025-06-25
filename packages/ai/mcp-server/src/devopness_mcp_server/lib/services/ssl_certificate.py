@@ -8,7 +8,7 @@ from ..response import MCPResponse
 from ..types import MAX_RESOURCES_PER_PAGE, ExtraData
 from ..utils import (
     get_instructions_choose_resource,
-    get_instructions_format_resource,
+    get_instructions_format_resource_table,
     get_instructions_format_table,
     get_instructions_next_action_suggestion,
     get_web_link_to_environment_resource,
@@ -64,7 +64,7 @@ class SSLCertificateService:
                         ),
                         (
                             "Active",
-                            "IF {ssl_certificate.active} THEN `🔒 Yes` ELSE `🔓 False`",
+                            "IF {ssl_certificate.active} THEN `🔒 Yes` ELSE `🔓 No`",
                         ),
                     ]
                 ),
@@ -104,11 +104,21 @@ class SSLCertificateService:
         return MCPResponse.ok(
             ssl_certificate,
             [
-                get_instructions_format_resource(
-                    "ssl-certificate",
+                get_instructions_format_resource_table(
                     [
-                        "[{ssl_certificate.name}]({ssl_certificate.url_web_permalink})",
-                    ],
+                        (
+                            "ID",
+                            "{ssl_certificate.id}",
+                        ),
+                        (
+                            "Name",
+                            "[{ssl_certificate.name}]({ssl_certificate.url_web_permalink})",
+                        ),
+                        (
+                            "Active",
+                            "IF {ssl_certificate.active} THEN `🔒 Yes` ELSE `🔓 No`",
+                        ),
+                    ]
                 ),
                 get_instructions_next_action_suggestion("deploy", "ssl-certificate"),
             ],
