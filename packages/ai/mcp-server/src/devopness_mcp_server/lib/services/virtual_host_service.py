@@ -8,8 +8,8 @@ from ..response import MCPResponse
 from ..types import MAX_RESOURCES_PER_PAGE, ExtraData, TypeListServerID
 from ..utils import (
     get_instructions_choose_resource,
-    get_instructions_format_list,
-    get_instructions_format_resource,
+    get_instructions_format_resource_table,
+    get_instructions_format_table,
     get_instructions_how_to_monitor_action,
     get_instructions_next_action_suggestion,
     get_web_link_to_environment_resource,
@@ -52,23 +52,40 @@ class VirtualHostService:
         return MCPResponse.ok(
             virtual_hosts,
             [
-                get_instructions_format_list(
-                    "- [{virtual_host.name}]({virtual_host.url_web_permalink})"
-                    " (ID: {virtual_host.id})",
+                get_instructions_format_table(
                     [
-                        "**Has active SSL:** {virtual_host.ssl_certificate_id.is.set}",
-                        "**Working directory:** "
-                        "`~/{virtual_host.application_name}/current/{virtual_host.root_directory}`"
-                        "if {virtual_host.application_name} is set, "
-                        "otherwise `not include the field`",
-                        "**Routes to:** <<{virtual_host.application_listen_address}>>"
-                        "if {virtual_host.application_listen_address} is set, "
-                        "otherwise `not include the field`",
-                    ],
+                        (
+                            "ID",
+                            "{virtual_host.id}",
+                        ),
+                        (
+                            "Name",
+                            "[{virtual_host.name}]({virtual_host.url_web_permalink})",
+                        ),
+                        (
+                            "Has active SSL",
+                            "IF {virtual_host.ssl_certificate_id} THEN `🔒 Yes` ELSE `🔓 No`",  # noqa: E501
+                        ),
+                        (
+                            "Application",
+                            "{virtual_host.application_name} OR `-`",
+                        ),
+                        (
+                            "Working directory",
+                            "IF {virtual_host.application_name}` "
+                            "THEN ~/{virtual_host.application_name}/current/{virtual_host.root_directory}` "  # noqa: E501
+                            "ELSE `-`",
+                        ),
+                        (
+                            "Routes to",
+                            "{virtual_host.application_listen_address} OR `-`",
+                        ),
+                    ]
                 ),
                 get_instructions_choose_resource(
                     "virtual-host",
                 ),
+                get_instructions_next_action_suggestion("deploy", "virtual-host"),
             ],
         )
 
@@ -150,23 +167,35 @@ class VirtualHostService:
         return MCPResponse.ok(
             virtual_host,
             [
-                get_instructions_format_resource(
-                    "virtual-host",
+                get_instructions_format_resource_table(
                     [
-                        "**Name:** [{virtual_host.name}]({virtual_host.url_web_permalink})"  # noqa: E501
-                        " (ID: {virtual_host.id})",
-                        "**Has active SSL:** {virtual_host.ssl_certificate_id.is.set}",
-                        "**Application:** {virtual_host.application_name} "
-                        "(ID: {virtual_host.application_id})"
-                        "if {virtual_host.application_name} is set, otherwise `-`",
-                        "**Working directory:** "
-                        "`~/{virtual_host.application_name}/current/{virtual_host.root_directory}`"
-                        "if {virtual_host.application_name} is set, "
-                        "otherwise `-`",
-                        "**Routes to:** <<{virtual_host.application_listen_address}>>"
-                        "if {virtual_host.application_listen_address} is set, "
-                        "otherwise `-`",
-                    ],
+                        (
+                            "ID",
+                            "{virtual_host.id}",
+                        ),
+                        (
+                            "Name",
+                            "[{virtual_host.name}]({virtual_host.url_web_permalink})",
+                        ),
+                        (
+                            "Has active SSL",
+                            "IF {virtual_host.ssl_certificate_id} THEN `🔒 Yes` ELSE `🔓 No`",  # noqa: E501
+                        ),
+                        (
+                            "Application",
+                            "{virtual_host.application_name} OR `-`",
+                        ),
+                        (
+                            "Working directory",
+                            "IF {virtual_host.application_name}` "
+                            "THEN ~/{virtual_host.application_name}/current/{virtual_host.root_directory}` "  # noqa: E501
+                            "ELSE `-`",
+                        ),
+                        (
+                            "Routes to",
+                            "{virtual_host.application_listen_address} OR `-`",
+                        ),
+                    ]
                 ),
                 get_instructions_next_action_suggestion("deploy", "virtual-host"),
             ],
