@@ -35,6 +35,8 @@ from devopness.models import (
     ServiceRelation,
     SshKey,
     SshKeyRelation,
+    SslCertificate,
+    SslCertificateRelation,
     Step,
     VirtualHost,
     VirtualHostRelation,
@@ -324,6 +326,26 @@ class DaemonSummary(DevopnessBaseModel):
             application_name=data.application.name
             if data.application is not None
             else None,
+            url_web_permalink=extra_data.url_web_permalink if extra_data else None,
+        )
+
+
+class SSLCertificateSummary(DevopnessBaseModel):
+    id: int
+    name: str
+    active: bool
+    url_web_permalink: Optional[str] = None
+
+    @classmethod
+    def from_sdk_model(
+        cls,
+        data: SslCertificate | SslCertificateRelation,
+        extra_data: TypeExtraData = None,
+    ) -> "SSLCertificateSummary":
+        return cls(
+            id=data.id,
+            name=data.name,
+            active=data.active,
             url_web_permalink=extra_data.url_web_permalink if extra_data else None,
         )
 
