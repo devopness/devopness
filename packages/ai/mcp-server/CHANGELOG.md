@@ -1,5 +1,12 @@
 # @devopness/mcp-server
 
+## 0.0.20
+
+### Patch Changes
+
+- [#1889](https://github.com/devopness/devopness/pull/1889) [`9f13df2`](https://github.com/devopness/devopness/commit/9f13df21224cccc77d0729caa338c63246e970f0) Thanks [@Diegiwg](https://github.com/Diegiwg)! - **Changes**
+  - Added support for listing and creating pipeline steps.
+
 ## 0.0.19
 
 ### Patch Changes
