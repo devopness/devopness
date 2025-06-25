@@ -1,20 +1,25 @@
-from typing import Annotated, Any, List, Optional
+from typing import Annotated, List, Optional
 
-from mcp.server.fastmcp import Context
 from pydantic import Field, StringConstraints
 
 from devopness.models import (
-    Action,
-    Application,
-    ApplicationRelation,
     LanguageRuntime,
-    PipelineRelation,
     SourceTypePlain,
     Variable,
 )
 
 from ..devopness_api import devopness, ensure_authenticated
+from ..models import ActionSummary, ApplicationSummary
 from ..response import MCPResponse
+from ..types import MAX_RESOURCES_PER_PAGE, ExtraData, TypeListServerID
+from ..utils import (
+    get_instructions_choose_resource,
+    get_instructions_format_list,
+    get_instructions_format_resource,
+    get_instructions_how_to_monitor_action,
+    get_instructions_next_action_suggestion,
+    get_web_link_to_environment_resource,
+)
 
 
 class ApplicationService:
@@ -31,37 +36,76 @@ class ApplicationService:
         return MCPResponse.ok(
             runtimes,
             [
-                "Show the list of available language runtimes.",
-                "You MUST guide the user to select a programming language "
-                "based in current information's about the application and "
-                "application repository.",
+                get_instructions_format_list(
+                    "#N. {runtime.name_human_readable}",
+                    [
+                        "Versions:",
+                        "- {version for item in runtime.engine_versions}",
+                        "Frameworks:",
+                        "- {name_human_readable for item in runtime.frameworks}",
+                    ],
+                )
             ],
         )
 
     @staticmethod
     async def tool_list_applications(
+        project_id: int,
         environment_id: int,
-    ) -> List[ApplicationRelation]:
+        page: int = Field(
+            default=1,
+            gt=0,
+        ),
+    ) -> MCPResponse[List[ApplicationSummary]]:
         await ensure_authenticated()
+
         response = await devopness.applications.list_environment_applications(
-            environment_id
+            environment_id,
+            page,
+            per_page=MAX_RESOURCES_PER_PAGE,
         )
 
-        return response.data
+        applications = [
+            ApplicationSummary.from_sdk_model(
+                application,
+                ExtraData(
+                    url_web_permalink=get_web_link_to_environment_resource(
+                        project_id,
+                        environment_id,
+                        "application",
+                        application.id,
+                    ),
+                ),
+            )
+            for application in response.data
+        ]
 
-    @staticmethod
-    async def tool_list_application_pipelines(
-        application_id: int,
-    ) -> List[PipelineRelation]:
-        await ensure_authenticated()
-        response = await devopness.pipelines.list_pipelines_by_resource_type(
-            application_id, "application"
+        return MCPResponse.ok(
+            applications,
+            [
+                get_instructions_format_list(
+                    "- [{application.name}]({application.url_web_permalink})"
+                    " (ID: {application.id})",
+                    [
+                        "- Repository: {application.repository}",
+                        "- Root directory: {application.root_directory}",
+                        "- Stack: {application.programming_language}"
+                        " {application.programming_language_version}"
+                        " ({application.programming_language_framework})",
+                        "- Commands:",
+                        "  - Install: {application.install_dependencies_command}",
+                        "  - Build: {application.build_command}",
+                    ],
+                ),
+                f"Founded {len(applications)} applications.",
+                get_instructions_choose_resource("application"),
+                get_instructions_next_action_suggestion("deploy", "application"),
+            ],
         )
-
-        return response.data
 
     @staticmethod
     async def tool_create_application(
+        project_id: int,
         environment_id: int,
         source_credential_id: int,
         name: Annotated[
@@ -94,8 +138,8 @@ class ApplicationService:
         build_command: Optional[str],
         install_dependencies_command: Optional[str],
         default_branch: str,
-        deployments_keep: Optional[int],
-    ) -> MCPResponse[Application]:
+        deployments_keep: int = 4,
+    ) -> MCPResponse[ApplicationSummary]:
         """
         Rules:
         - The source_credential_id must be of the source provider where the repository
@@ -115,6 +159,7 @@ class ApplicationService:
            available for the programming language.
         """
         await ensure_authenticated()
+
         response = await devopness.applications.add_environment_application(
             environment_id,
             {
@@ -132,77 +177,45 @@ class ApplicationService:
             },
         )
 
-        return MCPResponse[Application].ok(
-            response.data,
+        application = ApplicationSummary.from_sdk_model(response.data)
+
+        return MCPResponse.ok(
+            application,
             [
-                "Inform the user that the application has been created.",
-                "Show the main information's about the application.",
-                "Show the following link to the application in the Devopness App: "
-                f"https://app.devopness.com/projects/{response.data.project_id}/environments/{environment_id}/applications/{response.data.id}",
-                "You MUST suggest the user to deploy the created application.",
+                get_instructions_format_resource(
+                    "application",
+                    [
+                        "Name: {application.name}",
+                        "Repository: {application.repository}",
+                        "Root directory: {application.root_directory}",
+                        "Stack:",
+                        "- Language: {application.programming_language}",
+                        "- Version: {application.programming_language_version}",
+                        "- Framework: {application.programming_language_framework}",
+                        "Commands:",
+                        "- Install: {application.install_dependencies_command}",
+                        "- Build: {application.build_command}",
+                    ],
+                ),
+                "See more details at: "
+                + get_web_link_to_environment_resource(
+                    project_id,
+                    environment_id,
+                    "application",
+                    response.data.id,
+                ),
+                get_instructions_next_action_suggestion("deploy", "application"),
             ],
         )
 
     @staticmethod
     async def tool_deploy_application(
-        ctx: Context[Any, Any],
+        pipeline_id: int,
+        source_type: SourceTypePlain,
         source_value: str,
-        server_ids: List[int],
-        pipeline_id: int | None = None,
-        application_id: int | None = None,
-        source_type: SourceTypePlain = "branch",
-    ) -> MCPResponse[Action]:
-        """
-        Trigger a new deployment for application.
-
-        You Should:
-        - Use this function when you want to trigger a deployment.
-        - If the user provides a pipeline ID, use it to trigger the deployment.
-        - If the user does not provide a pipeline ID but provides an application ID,
-          use this tool to fetch the available deployment pipelines for the application.
-        - You MUST ask the user to provide a source value (e.g., branch name, commit)
-          depending on the selected source type (e.g., "branch" or "commit").
-        - You MUST confirm with the user all the values that will be used before calling
-          this tool with the pipeline_id
-        """
+        server_ids: TypeListServerID,
+    ) -> MCPResponse[ActionSummary]:
         await ensure_authenticated()
-
-        if not pipeline_id:
-            if not application_id:
-                return MCPResponse.error(
-                    [
-                        "A pipeline ID or an application ID is required to trigger"
-                        " a deployment. Please ask the user to provide one of them."
-                    ]
-                )
-
-            response_pipelines = (
-                await ApplicationService.tool_list_application_pipelines(application_id)
-            )
-
-            deploy_pipelines = [
-                pipeline
-                for pipeline in response_pipelines
-                if pipeline.operation == "deploy"
-            ]
-
-            if len(deploy_pipelines) == 0:
-                return MCPResponse.error(
-                    [
-                        "No pipelines were found for the given application ID. "
-                        "Please ask the user to verify the application and try again."
-                    ]
-                )
-
-            return MCPResponse.warning(
-                [
-                    "The following pipelines were found for this application:",
-                    deploy_pipelines,
-                    "Please ask the user to choose one of the listed pipeline IDs. "
-                    "Then call this function again with the selected ID as the "
-                    "'pipeline_id' argument.",
-                ],
-            )
 
         response = await devopness.actions.add_pipeline_action(
             pipeline_id,
@@ -213,23 +226,12 @@ class ApplicationService:
             },
         )
 
-        await ctx.info(
-            f"Deployment has been triggered using pipeline ID {pipeline_id} "
-            f"with source type '{source_type}' and source value '{source_value}'."
-        )
+        action = ActionSummary.from_sdk_model(response.data)
 
-        await ctx.info(
-            "To monitor the deployment progress, visit the following URL:\n"
-            f"{response.data.url_web_permalink}"
-        )
-
-        return MCPResponse[Action].ok(
-            response.data,
+        return MCPResponse.ok(
+            action,
             [
-                "To monitor the deployment progress, display to the user the following"
-                " URL as a clickable link:" + response.data.url_web_permalink,
-                "Explain to the user how to monitor the deployment progress.",
-                "Show the main information's about the action.",
+                get_instructions_how_to_monitor_action(action.url_web_permalink),
             ],
         )
 
@@ -263,10 +265,10 @@ class ApplicationService:
             },
         )
 
-        return MCPResponse[Variable].ok(
+        return MCPResponse.ok(
             response.data,
             [
-                "Inform the user that the variable has been created.",
+                get_instructions_next_action_suggestion("deploy", "application"),
             ],
         )
 
@@ -303,9 +305,9 @@ class ApplicationService:
             },
         )
 
-        return MCPResponse[Variable].ok(
+        return MCPResponse.ok(
             response.data,
             [
-                "Inform the user that the configuration file has been created.",
+                get_instructions_next_action_suggestion("deploy", "application"),
             ],
         )

@@ -5,6 +5,8 @@ from pydantic import Field
 from ..devopness_api import devopness, ensure_authenticated
 from ..models import EnvironmentSummary
 from ..response import MCPResponse
+from ..types import MAX_RESOURCES_PER_PAGE, ExtraData
+from ..utils import get_instructions_choose_resource, get_instructions_format_list
 
 
 class EnvironmentService:
@@ -18,20 +20,29 @@ class EnvironmentService:
     ) -> MCPResponse[List[EnvironmentSummary]]:
         """
         Rules:
-        1. DO NOT execute this tool without first confirming with the user which
+        - BEFORE executing this tool, show to the user all the existing projects,
+          so that the user can choose the project to be used, using the tool
+          `devopness_list_projects`.
+        - DO NOT execute this tool without first confirming with the user which
           project ID to use.
+        - EVEN if a candidate project is found by name or ID, please confirm with
+          the user the project to be used.
+        - Do not use environment 'name or ID' as project 'name or ID'.
         """
         await ensure_authenticated()
+
         response = await devopness.environments.list_project_environments(
             project_id,
             page,
+            per_page=MAX_RESOURCES_PER_PAGE,
         )
 
         environments = [
-            EnvironmentSummary(
-                id=environment.id,
-                name=environment.name,
-                description=environment.description,
+            EnvironmentSummary.from_sdk_model(
+                environment,
+                ExtraData(
+                    url_web_permalink=f"https://app.devopness.com/projects/{project_id}/environments/{environment.id}",
+                ),
             )
             for environment in response.data
         ]
@@ -39,13 +50,16 @@ class EnvironmentService:
         return MCPResponse.ok(
             environments,
             [
-                "Show the list in the following format:",
-                "#N. {environment.name} (ID: {environment.id})",
-                "   - Description: {environment.description}",
-                "Rules:"
-                "1. If the user has multiple environments ask them to choose one"
-                " of the listed environment IDs to continue with the conversation.",
-                "2. If the user has only one environment, you can use it directly,"
-                " and communicate with the user about it.",
+                get_instructions_format_list(
+                    "- [{environment.name}]({environment.url_web_permalink})"
+                    " (ID: {environment.id})",
+                    [
+                        "Description: {environment.description}",
+                    ],
+                ),
+                f"Founded {len(environments)} environments.",
+                get_instructions_choose_resource(
+                    "environment",
+                ),
             ],
         )

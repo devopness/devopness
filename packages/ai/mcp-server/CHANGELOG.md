@@ -1,5 +1,33 @@
 # @devopness/mcp-server
 
+## 0.0.20
+
+### Patch Changes
+
+- [#1889](https://github.com/devopness/devopness/pull/1889) [`9f13df2`](https://github.com/devopness/devopness/commit/9f13df21224cccc77d0729caa338c63246e970f0) Thanks [@Diegiwg](https://github.com/Diegiwg)! - **Changes**
+  - Added support for listing and creating pipeline steps.
+
+## 0.0.19
+
+### Patch Changes
+
+- [#1887](https://github.com/devopness/devopness/pull/1887) [`5394f56`](https://github.com/devopness/devopness/commit/5394f5695be5aac404192d0905db88ebf086f1c8) Thanks [@Diegiwg](https://github.com/Diegiwg)! - **Changes**
+  - Added support for listing, creating, and deploying `daemon` and `virtual-host` resources.
+  - Improved resource listing instructions by switching from numbered to bullet-point format to prevent miscommunication.
+  - Enhanced `list-projects` and `list-environments` instructions to ensure LLMs request user confirmation before using `project_id` and `environment_id`.
+
+## 0.0.18
+
+### Patch Changes
+
+- [#1881](https://github.com/devopness/devopness/pull/1881) [`ad9dbfc`](https://github.com/devopness/devopness/commit/ad9dbfc8e6fa4a349f588166877cdc724d3920e4) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Changes:
+  - Refactor listing tools to enforce pagination with a maximum of 5 resources per page.
+  - Introduce simplified data models for MCP Server resources to reduce payload size and minimize LLM hallucinations.
+  - Standardize output formatting across all listing tools using utility functions, including consistent web app links and next step suggestions.
+  - Update deployment tools to require `pipeline_id` and `server_ids` list, with uniform communication on tracking deployment actions.
+  - Refactor creation tools to use utility helpers for consistent presentation of newly created resource data.
+  - Add utility methods for generating clear, consistent instructions and formatted output for LLM interactions.
+
 ## 0.0.17
 
 ### Patch Changes
