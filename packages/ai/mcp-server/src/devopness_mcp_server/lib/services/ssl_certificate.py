@@ -3,13 +3,14 @@ from typing import List
 from pydantic import Field
 
 from ..devopness_api import devopness, ensure_authenticated
-from ..models import SSLCertificateSummary
+from ..models import ActionSummary, SSLCertificateSummary
 from ..response import MCPResponse
-from ..types import MAX_RESOURCES_PER_PAGE, ExtraData
+from ..types import MAX_RESOURCES_PER_PAGE, ExtraData, TypeListServerID
 from ..utils import (
     get_instructions_choose_resource,
     get_instructions_format_resource_table,
     get_instructions_format_table,
+    get_instructions_how_to_monitor_action,
     get_instructions_next_action_suggestion,
     get_web_link_to_environment_resource,
 )
@@ -121,5 +122,29 @@ class SSLCertificateService:
                     ]
                 ),
                 get_instructions_next_action_suggestion("deploy", "ssl-certificate"),
+            ],
+        )
+
+    @staticmethod
+    async def tool_deploy_ssl_certificate(
+        pipeline_id: int,
+        server_ids: TypeListServerID,
+    ) -> MCPResponse[ActionSummary]:
+        await ensure_authenticated()
+
+        response = await devopness.actions.add_pipeline_action(
+            pipeline_id,
+            {
+                "servers": server_ids,
+            },
+        )
+
+        action = ActionSummary.from_sdk_model(response.data)
+
+        return MCPResponse.ok(
+            action,
+            [
+                get_instructions_how_to_monitor_action(action.url_web_permalink),
+                "Show to the user how to access the domain using the URL 'https://{ssl_certificate.name}'",
             ],
         )
