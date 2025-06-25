@@ -64,7 +64,9 @@ class VirtualHostService:
                         ),
                         (
                             "Has active SSL",
-                            "IF {virtual_host.ssl_certificate_id} THEN `🔒 Yes` ELSE `🔓 No`",  # noqa: E501
+                            "IF {virtual_host.ssl_certificate_id}"
+                            " THEN `🔒 Yes`"
+                            " ELSE `🔓 No`",
                         ),
                         (
                             "Application",
@@ -72,9 +74,9 @@ class VirtualHostService:
                         ),
                         (
                             "Working directory",
-                            "IF {virtual_host.application_name}` "
-                            "THEN ~/{virtual_host.application_name}/current/{virtual_host.root_directory}` "  # noqa: E501
-                            "ELSE `-`",
+                            "IF {virtual_host.application_name}`"
+                            " THEN ~/{virtual_host.application_name}/current/{virtual_host.root_directory}`"  # noqa: E501
+                            " ELSE `-`",
                         ),
                         (
                             "Routes to",
@@ -179,7 +181,9 @@ class VirtualHostService:
                         ),
                         (
                             "Has active SSL",
-                            "IF {virtual_host.ssl_certificate_id} THEN `🔒 Yes` ELSE `🔓 No`",  # noqa: E501
+                            "IF {virtual_host.ssl_certificate_id}"
+                            " THEN `🔒 Yes`"
+                            " ELSE `🔓 No`",
                         ),
                         (
                             "Application",
@@ -187,9 +191,9 @@ class VirtualHostService:
                         ),
                         (
                             "Working directory",
-                            "IF {virtual_host.application_name}` "
-                            "THEN ~/{virtual_host.application_name}/current/{virtual_host.root_directory}` "  # noqa: E501
-                            "ELSE `-`",
+                            "IF {virtual_host.application_name}`"
+                            " THEN ~/{virtual_host.application_name}/current/{virtual_host.root_directory}`"  # noqa: E501
+                            " ELSE `-`",
                         ),
                         (
                             "Routes to",
