@@ -5,9 +5,9 @@ from pydantic import StringConstraints
 from ..devopness_api import devopness, ensure_authenticated
 from ..models import PipelineStepSummary, PipelineSummary
 from ..response import MCPResponse
-from ..types import ResourceType
+from ..types import ExtraData, ResourceType
 from ..utils import (
-    get_instructions_format_list,
+    get_instructions_format_table,
     get_instructions_next_action_suggestion,
 )
 
@@ -25,22 +25,41 @@ class PipelineService:
         )
 
         pipelines = [
-            PipelineSummary.from_sdk_model(pipeline) for pipeline in response.data
+            PipelineSummary.from_sdk_model(
+                pipeline,
+                ExtraData(
+                    url_web_permalink=(
+                        "https://app.devopness.com/"
+                        f"projects/{pipeline.project_id}/"
+                        f"environments/{pipeline.environment_id}/"
+                        f"{resource_type}s/{resource_id}/"
+                        f"pipelines/{pipeline.id}"
+                    )
+                ),
+            )
+            for pipeline in response.data
         ]
 
         return MCPResponse.ok(
             pipelines,
             [
-                get_instructions_format_list(
-                    "- {pipeline.name} (ID: {pipeline.id})",
+                get_instructions_format_table(
                     [
-                        "Operation: {pipeline.operation}",
+                        (
+                            "ID",
+                            "{pipeline.id}",
+                        ),
+                        (
+                            "Name",
+                            "[{pipeline.name}]({pipeline.url_web_permalink})",
+                        ),
+                        (
+                            "Operation",
+                            "{pipeline.operation}",
+                        ),
                     ],
                 ),
-                get_instructions_next_action_suggestion(
-                    "deploy",
-                    resource_type,
-                ),
+                get_instructions_next_action_suggestion("deploy", resource_type),
             ],
         )
 
@@ -52,18 +71,46 @@ class PipelineService:
 
         response = await devopness.pipelines.get_pipeline(pipeline_id)
 
+        pipeline = response.data
         pipeline_steps = [
-            PipelineStepSummary.from_sdk_model(step) for step in response.data.steps
+            PipelineStepSummary.from_sdk_model(
+                step,
+                ExtraData(
+                    url_web_permalink=(
+                        "https://app.devopness.com/"
+                        f"projects/{pipeline.project_id}/"
+                        f"environments/{pipeline.environment_id}/"
+                        f"{pipeline.resource_type}s/{pipeline.resource_id}/"
+                        f"pipelines/{step.pipeline_id}/"
+                        f"steps/{step.id}"
+                    )
+                ),
+            )
+            for step in pipeline.steps
         ]
 
         return MCPResponse.ok(
             pipeline_steps,
             [
-                get_instructions_format_list(
-                    "- **{pipeline_step.name}** "
-                    "IF {pipeline_step.is_auto_generated} "
-                    "ELSE {pipeline_step.name} `{pipeline_step.command}` "
-                    "(ID: {pipeline_step.id}, Order: {pipeline_step.trigger_order})",
+                get_instructions_format_table(
+                    [
+                        (
+                            "ID",
+                            "{pipeline_step.id}",
+                        ),
+                        (
+                            "Name",
+                            "IF {pipeline_step.is_auto_generated}"
+                            " THEN **{pipeline_step.name}**"
+                            " ELSE [{pipeline_step.name}]({pipeline_step.url_web_permalink})",  # noqa: E501
+                        ),
+                        (
+                            "Command",
+                            "IF {pipeline_step.is_auto_generated}"
+                            " THEN ``"
+                            " ELSE `{pipeline_step.command}`",
+                        ),
+                    ]
                 ),
                 get_instructions_next_action_suggestion(
                     "deploy",

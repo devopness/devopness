@@ -13,7 +13,7 @@ when interacting with resources in the Devopness MCP server ecosystem.
 from .types import ResourceType
 
 
-def get_last_action_repl(
+def format_last_action_field(
     resource_type: ResourceType,
 ) -> str:
     """
@@ -21,7 +21,6 @@ def get_last_action_repl(
     on a resource.
     """
     return (
-        "**Last Action:** "
         "[{" + resource_type + "}.last_action.type}]"
         "({" + resource_type + ".last_action.url_web_permalink}) "
         "**({" + resource_type + ".last_action.status})**"
@@ -56,6 +55,20 @@ def get_instructions_format_resource(
     )
 
 
+def get_instructions_format_resource_table(
+    column_and_value_templates: list[tuple[str, str]],
+) -> str:
+    table = "Field | Value\n"
+
+    for column, value in column_and_value_templates:
+        table += f"{column} | {value}\n"
+    table += "\n"
+
+    return f"""You MUST present a table in the below format:
+    {table}
+    """
+
+
 def get_instructions_format_list(
     header: str,
     extra_instructions: list[str] | None = None,
@@ -69,6 +82,24 @@ def get_instructions_format_list(
         "the order of the list items. Do not add or remove "
         "any items. Include all the required items in the list.",
     ]
+
+
+def get_instructions_format_table(
+    column_and_value_templates: list[tuple[str, str]],
+) -> str:
+    table = ""
+
+    for column, _ in column_and_value_templates:
+        table += f"{column} |"
+    table += "\n"
+
+    for _, value in column_and_value_templates:
+        table += f"- {value} |"
+    table += "\n"
+
+    return f"""You MUST present a table in the below format:
+    {table}
+    """
 
 
 def get_instructions_next_action_suggestion(

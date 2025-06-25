@@ -8,7 +8,7 @@ from ..response import MCPResponse
 from ..types import MAX_RESOURCES_PER_PAGE, ExtraData
 from ..utils import (
     get_instructions_choose_resource,
-    get_instructions_format_list,
+    get_instructions_format_table,
     get_web_link_to_environment_resource,
 )
 
@@ -49,17 +49,26 @@ class CredentialService:
         return MCPResponse.ok(
             credentials,
             [
-                get_instructions_format_list(
-                    "- [{credential.name}]({credential.url_web_permalink})"
-                    " (ID: {credential.id})",
+                get_instructions_format_table(
                     [
-                        "Provider: {credential.provider}",
-                        "Provider Type: {credential.provider_type}",
-                    ],
+                        (
+                            "ID",
+                            "{credential.id}",
+                        ),
+                        (
+                            "Name",
+                            "[{credential.name}]({credential.url_web_permalink})",
+                        ),
+                        (
+                            "Provider",
+                            "{credential.provider}",
+                        ),
+                        (
+                            "Provider Type",
+                            "{credential.provider_type}",
+                        ),
+                    ]
                 ),
-                f"Founded {len(credentials)} credentials.",
-                get_instructions_choose_resource(
-                    "credential",
-                ),
+                get_instructions_choose_resource("credential"),
             ],
         )
