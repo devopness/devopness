@@ -13,7 +13,7 @@ when interacting with resources in the Devopness MCP server ecosystem.
 from .types import ResourceType
 
 
-def get_last_action_repl(
+def format_last_action_field(
     resource_type: ResourceType,
 ) -> str:
     """
@@ -21,7 +21,6 @@ def get_last_action_repl(
     on a resource.
     """
     return (
-        "**Last Action:** "
         "[{" + resource_type + "}.last_action.type}]"
         "({" + resource_type + ".last_action.url_web_permalink}) "
         "**({" + resource_type + ".last_action.status})**"
