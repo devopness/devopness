@@ -110,11 +110,13 @@ class PipelineStepSummary(DevopnessBaseModel):
     runner: PipelineStepRunnerName
     trigger_order: int
     is_auto_generated: bool
+    url_web_permalink: Optional[str]
 
     @classmethod
     def from_sdk_model(
         cls,
         data: Step,
+        extra_data: TypeExtraData = None,
     ) -> "PipelineStepSummary":
         return cls(
             id=data.id,
@@ -123,6 +125,7 @@ class PipelineStepSummary(DevopnessBaseModel):
             runner=data.runner,
             trigger_order=data.trigger_order,
             is_auto_generated=data.is_auto_generated,
+            url_web_permalink=extra_data.url_web_permalink if extra_data else None,
         )
 
 
@@ -131,11 +134,13 @@ class PipelineSummary(DevopnessBaseModel):
     name: str
     operation: str
     steps: Optional[list[PipelineStepSummary]] = None
+    url_web_permalink: Optional[str] = None
 
     @classmethod
     def from_sdk_model(
         cls,
         data: Pipeline | PipelineRelation,
+        extra_data: TypeExtraData = None,
     ) -> "PipelineSummary":
         return cls(
             id=data.id,
@@ -145,6 +150,7 @@ class PipelineSummary(DevopnessBaseModel):
                 PipelineStepSummary.from_sdk_model(step)
                 for step in getattr(data, "steps", [])
             ],
+            url_web_permalink=extra_data.url_web_permalink if extra_data else None,
         )
 
 
