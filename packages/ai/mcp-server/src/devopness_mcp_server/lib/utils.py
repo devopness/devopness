@@ -71,6 +71,24 @@ def get_instructions_format_list(
     ]
 
 
+def get_instructions_format_table(
+    column_and_value_templates: list[tuple[str, str]],
+) -> str:
+    table = ""
+
+    for column, _ in column_and_value_templates:
+        table += f"{column} |"
+    table += "\n"
+
+    for _, value in column_and_value_templates:
+        table += f"- {value} |"
+    table += "\n"
+
+    return f"""You MUST present a table in the below format:
+    {table}
+    """
+
+
 def get_instructions_next_action_suggestion(
     action: str,
     resource_type: ResourceType,
