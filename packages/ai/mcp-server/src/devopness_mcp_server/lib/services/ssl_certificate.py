@@ -10,6 +10,7 @@ from ..utils import (
     get_instructions_choose_resource,
     get_instructions_format_list,
     get_instructions_format_resource,
+    get_instructions_format_table,
     get_instructions_how_to_monitor_action,
     get_instructions_next_action_suggestion,
     get_web_link_to_environment_resource,
@@ -53,12 +54,21 @@ class SSLCertificateService:
             data=ssl_certificates,
             status="ok",
             instructions=[
-                get_instructions_format_list(
-                    "- [{ssl_certificate.name}]({ssl_certificate.url_web_permalink})"
-                    " (ID: {ssl_certificate.id},"
-                    " Active: IF {ssl_certificate.active}"
-                    " THEN `🔒 Yes`"
-                    " ELSE `🔓 False`)",
-                ),
+                get_instructions_format_table(
+                    [
+                        (
+                            "ID",
+                            "{ssl_certificate.id}",
+                        ),
+                        (
+                            "Name",
+                            "[{ssl_certificate.name}]({ssl_certificate.url_web_permalink})",
+                        ),
+                        (
+                            "Active",
+                            "IF {ssl_certificate.active} THEN `🔒 Yes` ELSE `🔓 False`",
+                        ),
+                    ]
+                )
             ],
         )
