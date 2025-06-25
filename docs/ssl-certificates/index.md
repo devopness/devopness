@@ -1,6 +1,6 @@
 ---
 title: SSL Certificates
-intro: Documentation on managing SSL certificates in Devopness.
+intro: Devopness allows you to manage SSL certificates to secure your applications and websites.
 links:
   overview:
   quickstart:
@@ -13,12 +13,3 @@ links:
     - ssl-certificates/view-ssl-certificate
   featured:
 ---
-
-# SSL Certificates
-
-Documentation on managing SSL certificates in Devopness.
-
-## Additional Resources
-
-- [Security Documentation](../security/index.md)
-- [Reporting Security Vulnerabilities](../security/reporting-a-security-vulnerability)
