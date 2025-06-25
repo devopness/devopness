@@ -55,7 +55,3 @@ This page displays detailed information about a specific SSL certificate. Here y
 - Configure alerts
 - Check validation status
 - Access event history
-
-## Next Steps
-- [List all certificates](list-ssl-certificates)
-- [Add new certificate](add-ssl-certificate) 

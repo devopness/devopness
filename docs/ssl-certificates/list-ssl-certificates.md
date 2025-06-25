@@ -4,7 +4,7 @@ intro: View and manage all SSL certificates associated with your project.
 links:
     overview:
     quickstart:
-    previous: ssl-certificates/index
+    previous: ssl-certificates/add-ssl-certificate
     next: ssl-certificates/view-ssl-certificate
     guides:
     related:
@@ -40,7 +40,3 @@ The main table shows:
 - Renew certificate
 - Revoke certificate
 - Delete certificate
-
-## Next Steps
-- [Add new SSL certificate](add-ssl-certificate)
-- [View certificate details](view-ssl-certificate) 

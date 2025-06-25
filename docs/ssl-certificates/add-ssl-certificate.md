@@ -4,8 +4,8 @@ intro: Add an SSL Certificate to secure communication between clients and server
 links:
     overview:
     quickstart:
-    previous: virtual-hosts/add-virtual-host
-    next: teams/add-team
+    previous: ssl-certificates/index
+    next: ssl-certificates/list-ssl-certificates
     guides:
     related:
         - ssl-certificates/list-ssl-certificates

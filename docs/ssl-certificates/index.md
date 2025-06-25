@@ -5,7 +5,7 @@ links:
   overview:
   quickstart:
   previous:
-  next:
+  next: ssl-certificates/add-ssl-certificate
   guides:
   related:
     - ssl-certificates/add-ssl-certificate
@@ -17,12 +17,6 @@ links:
 # SSL Certificates
 
 Documentation on managing SSL certificates in Devopness.
-
-## Available Pages
-
-- [Add SSL Certificate](add-ssl-certificate)
-- [List SSL Certificates](list-ssl-certificates)
-- [View SSL Certificate](view-ssl-certificate)
 
 ## Additional Resources
 
