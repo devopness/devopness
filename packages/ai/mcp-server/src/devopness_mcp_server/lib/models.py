@@ -24,7 +24,9 @@ from devopness.models import (
     Daemon,
     DaemonRelation,
     EnvironmentRelation,
+    Pipeline,
     PipelineRelation,
+    PipelineStepRunnerName,
     ProjectRelation,
     Server,
     ServerRelation,
@@ -33,6 +35,7 @@ from devopness.models import (
     ServiceRelation,
     SshKey,
     SshKeyRelation,
+    Step,
     VirtualHost,
     VirtualHostRelation,
 )
@@ -98,20 +101,48 @@ class ActionSummary(DevopnessBaseModel):
         )
 
 
-class PipelineSummary(DevopnessBaseModel):
+class PipelineStepSummary(DevopnessBaseModel):
     id: int
-    name: str
-    operation: str
+    name: Optional[str]
+    command: str
+    runner: PipelineStepRunnerName
+    trigger_order: int
+    is_auto_generated: bool
 
     @classmethod
     def from_sdk_model(
         cls,
-        data: PipelineRelation,
+        data: Step,
+    ) -> "PipelineStepSummary":
+        return cls(
+            id=data.id,
+            name=data.name,
+            command=data.command,
+            runner=data.runner,
+            trigger_order=data.trigger_order,
+            is_auto_generated=data.is_auto_generated,
+        )
+
+
+class PipelineSummary(DevopnessBaseModel):
+    id: int
+    name: str
+    operation: str
+    steps: Optional[list[PipelineStepSummary]] = None
+
+    @classmethod
+    def from_sdk_model(
+        cls,
+        data: Pipeline | PipelineRelation,
     ) -> "PipelineSummary":
         return cls(
             id=data.id,
             name=data.name,
             operation=data.operation,
+            steps=[
+                PipelineStepSummary.from_sdk_model(step)
+                for step in getattr(data, "steps", [])
+            ],
         )
 
 
