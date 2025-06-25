@@ -56,6 +56,20 @@ def get_instructions_format_resource(
     )
 
 
+def get_instructions_format_resource_table(
+    column_and_value_templates: list[tuple[str, str]],
+) -> str:
+    table = "Field | Value\n"
+
+    for column, value in column_and_value_templates:
+        table += f"{column} | {value}\n"
+    table += "\n"
+
+    return f"""You MUST present a table in the below format:
+    {table}
+    """
+
+
 def get_instructions_format_list(
     header: str,
     extra_instructions: list[str] | None = None,
