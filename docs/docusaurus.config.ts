@@ -6,6 +6,12 @@ import mentionPostPlugin from "./src/plugins/mention-post-plugin";
 import relatedLinksPlugin from "./src/plugins/related-links-plugin";
 import staticContentLinksEscapePlugin from "./src/plugins/static-content-links-escape-plugin";
 import requiredPermissionsPlugin from "./src/plugins/required-permissions-plugin";
+import "dotenv-expand/config";
+import { validateEnv } from "./src/lib/env.mjs";
+
+// Validate env vars at build/startup time
+validateEnv();
+
 /**
  * Docusaurus Configuration
  * @see https://docusaurus.io/docs/configuration
@@ -14,9 +20,14 @@ const config: Config = {
   // 1. Essential Site Configuration
   // These are the core settings that define your website
   title: "Devopness Docs",
+  tagline: 'DevOps Happiness: for AI Agents & Humans',
   url: "https://www.devopness.com",
   baseUrl: "/",
   favicon: `${process.env.DEVOPNESS_URL_IMAGES}/favicon-devopness-site-512x512.png`,
+  // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
+  future: {
+    v4: true, // Improve compatibility with the upcoming Docusaurus v4
+  },
   // Static files are copied to the output folder directly
   staticDirectories: ["static"],
 
