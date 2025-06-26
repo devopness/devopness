@@ -1,51 +1,62 @@
 import {themes as prismThemes} from 'prism-react-renderer';
-import type {Config} from '@docusaurus/types';
-import type * as Preset from '@docusaurus/preset-classic';
+import type { Config } from "@docusaurus/types";
+import type * as Preset from "@docusaurus/preset-classic";
+import { resolve } from "path";
+import introContentPlugin from "./src/plugins/intro-content-plugin";
+import mentionPostPlugin from "./src/plugins/mention-post-plugin";
+import relatedLinksPlugin from "./src/plugins/related-links-plugin";
+import staticContentLinksEscapePlugin from "./src/plugins/static-content-links-escape-plugin";
+import requiredPermissionsPlugin from "./src/plugins/required-permissions-plugin";
+import "dotenv-expand/config";
+import { validateEnv } from "./src/lib/env.mjs";
 
-// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
+// Validate env vars at build/startup time
+validateEnv();
 
+/**
+ * Docusaurus Configuration
+ * @see https://docusaurus.io/docs/configuration
+ */
 const config: Config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
-  favicon: 'img/favicon.ico',
-
+  // 1. Essential Site Configuration
+  // These are the core settings that define your website
+  title: "Devopness Docs",
+  tagline: 'DevOps Happiness: for AI Agents & Humans',
+  url: "https://www.devopness.com",
+  baseUrl: "/",
+  favicon: `${process.env.DEVOPNESS_URL_IMAGES}/favicon-devopness-site-512x512.png`,
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
     v4: true, // Improve compatibility with the upcoming Docusaurus v4
   },
+  // Static files are copied to the output folder directly
+  staticDirectories: ["static"],
 
-  // Set the production url of your site here
-  url: 'https://your-docusaurus-site.example.com',
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
-
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
-
-  onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
-
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
+  // 2. Internationalization (i18n)
+  // Language and localization settings
   i18n: {
-    defaultLocale: 'en',
-    locales: ['en'],
+    defaultLocale: "en",
+    locales: ["en"],
   },
 
+  // 3. Presets and Themes
+  // Core functionality and appearance
   presets: [
     [
-      'classic',
+      "classic",
       {
         docs: {
-          sidebarPath: './sidebars.ts',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          exclude: ["README.md"],
+          sidebarPath: resolve(__dirname, "sidebars.ts"),
+          remarkPlugins: [
+            introContentPlugin,
+            requiredPermissionsPlugin,
+            relatedLinksPlugin,
+            staticContentLinksEscapePlugin,
+            mentionPostPlugin, // Must be last to process after other plugins modify content
+          ],
+          // Source Provider URL to documentation repo
+          editUrl: `${process.env.DEVOPNESS_URL_DOCS_REPO}/edit/main/`,
         },
         blog: {
           showReadingTime: true,
@@ -53,83 +64,177 @@ const config: Config = {
             type: ['rss', 'atom'],
             xslt: true,
           },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
           // Useful options to enforce blogging best practices
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
           onUntruncatedBlogPosts: 'warn',
         },
         theme: {
-          customCss: './src/css/custom.css',
+          customCss: resolve(__dirname, "src", "theme", "docusaurus.css"),
         },
       } satisfies Preset.Options,
     ],
   ],
+  themes: ["@easyops-cn/docusaurus-search-local"],
 
+  // 4. Theme Configuration
+  // Customize the appearance and behavior of your site
   themeConfig: {
-    // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    colorMode: {
+      // We're assuming here that most people reading our docs on the website are technical users,
+      // so we enable dark mode in the documentation by default. Human friendly for those setting
+      // up Devopness for the first time late at night, 3am, where a white theme can really hurt.
+      // We're devs, we love dark mode <3
+      defaultMode: "dark",
+    },
     navbar: {
-      title: 'My Site',
       logo: {
-        alt: 'My Site Logo',
-        src: 'img/logo.svg',
+        alt: "Devopness Logo",
+        src: `${process.env.DEVOPNESS_URL_IMAGES}/logo-devopness-primary.svg`,
+        /**
+         * "The `pathname://` protocol is useful for referencing any content in the static folder"
+         *
+         * @see {https://docusaurus.io/docs/advanced/routing#escaping-from-spa-redirects}
+         */
+        href: "pathname:///",
+        target: "_self",
       },
+      /**
+       * Check "Docusaurus Docs - Navbar items" to see available types and expected params
+       *
+       * @see {https://docusaurus.io/docs/next/api/themes/configuration#navbar-items | Docusaurus Docs - Navbar items}
+       */
       items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
-          position: 'left',
-          label: 'Tutorial',
+          label: "Documentation",
+          position: "left",
+          type: "docSidebar",
+          sidebarId: "documentation",
         },
-        {to: '/docs', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
-          label: 'GitHub',
-          position: 'right',
+          label: "Blog",
+          position: "left",
+          to: "blog",
+        },
+        {
+          label: "Pricing",
+          position: "left",
+          to: "pathname:///pricing",
+          target: "_self",
+        },
+        {
+          label: "Careers",
+          position: "left",
+          to: "pathname:///careers",
+          target: "_self",
+        },
+        {
+          label: "Sign In",
+          position: "right",
+          href: process.env.DEVOPNESS_URL_WEB_APP,
+        },
+        {
+          label: "Sign Up",
+          position: "right",
+          href: process.env.DEVOPNESS_URL_SIGNUP,
         },
       ],
+      hideOnScroll: true,
     },
     footer: {
-      style: 'dark',
+      style: "dark",
       links: [
         {
-          title: 'Docs',
           items: [
             {
-              label: 'Documentation',
-              to: '/docs/',
+              label: "Documentation",
+              to: "/docs",
+            },
+            {
+              label: "Pricing",
+              to: "pathname:///pricing",
+              target: "_self",
+            },
+            {
+              label: "Careers",
+              to: "pathname:///careers",
+              target: "_self",
             },
           ],
         },
         {
-          title: 'Community',
+          title: "Community",
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              label: "GitHub",
+              href: process.env.DEVOPNESS_GITHUB_CONTACT,
             },
             {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
+              label: "Linkedin",
+              href: "https://www.linkedin.com/company/devopness",
             },
             {
-              label: 'X',
-              href: 'https://x.com/docusaurus',
+              label: "YouTube",
+              href: "https://www.youtube.com/@devopness",
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
     },
     prism: {
-      theme: prismThemes.github,
-      darkTheme: prismThemes.dracula,
+      // TODO: test code syntax highlighting with prism or remove prism if not needed
+      // theme: prismThemes.github,
+      // darkTheme: prismThemes.dracula,
     },
   } satisfies Preset.ThemeConfig,
+
+  // 5. Content Processing
+  // How Markdown and other content is handled
+  markdown: {
+    format: "md",
+    parseFrontMatter: async (params) => {
+      const result = await params.defaultParseFrontMatter(params);
+
+      type FrontMatter = {
+        links?: {
+          next: string | null;
+          previous: string | null;
+        };
+      };
+      const frontMatter = {
+        ...result.frontMatter,
+        description:
+          result.frontMatter.description ?? result.frontMatter.intro ?? "",
+        pagination_next:
+          result.frontMatter.pagination_next ??
+          (result.frontMatter as FrontMatter).links?.next,
+        pagination_prev:
+          result.frontMatter.pagination_prev ??
+          (result.frontMatter as FrontMatter).links?.previous,
+      };
+
+      return {
+        ...result,
+        frontMatter,
+      };
+    },
+  },
+
+  // 6. Error Handling
+  // How to handle broken links and other issues
+  onBrokenLinks: "throw",
+  onBrokenMarkdownLinks: "throw",
+
+  // 7. Custom Configuration
+  // Site-specific settings and extensions
+  customFields: {
+    communitySupportUrl: process.env.DEVOPNESS_COMMUNITY_SUPPORT,
+    buildTimestamp: Date.now(),
+  },
+
+  // 8. External Resources
+  // Third-party resources and assets
+  stylesheets: ["https://fonts.googleapis.com/icon?family=Material+Icons"],
 };
 
 export default config;
