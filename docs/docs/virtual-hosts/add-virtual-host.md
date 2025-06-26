@@ -5,7 +5,7 @@ links:
     overview:
     quickstart:
     previous: applications/deploy-application
-    next: virtual-hosts/list-virtual-hosts
+    next: ssl-certificates/add-ssl-certificate
     guides:
     related:
         - virtual-hosts/list-virtual-hosts
