@@ -1,0 +1,65 @@
+/**
+ * Updated Color Palette using Devopness purple.800 as primary color
+ *
+ * @see {@link https://docusaurus.io/docs/styling-layout#styling-your-site-with-infima}
+ */
+:root {
+  --ifm-color-primary: #786efd;
+  --ifm-color-primary-dark: #574afd;
+  --ifm-color-primary-darker: #4638fc;
+  --ifm-color-primary-darkest: #1503fb;
+  --ifm-color-primary-light: #9992fd;
+  --ifm-color-primary-lighter: #aaa4fe;
+  --ifm-color-primary-lightest: #dcd9fe;
+}
+
+/* Hide all non-content elements when data-embed is present */
+html[data-embed] .navbar,
+html[data-embed] .sidebar,
+html[data-embed] .footer,
+html[data-embed] .theme-doc-toc-desktop,
+html[data-embed] .theme-doc-breadcrumbs,
+html[data-embed] .theme-doc-sidebar-container,
+html[data-embed] .theme-back-to-top-button,
+html[data-embed] .pagination-nav,
+html[data-embed] .theme-last-updated,
+html[data-embed] .theme-doc-version-badge {
+  display: none;
+}
+
+/* Adjust layout for embedded view */
+html[data-embed] {
+  overflow-x: hidden;
+}
+
+html[data-embed] body {
+  overflow: auto;
+  margin: 0;
+  padding: 0;
+}
+
+html[data-embed] main {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  max-width: none;
+}
+
+html[data-embed] .container {
+  margin: 0;
+  padding: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  max-width: none;
+}
+
+html[data-embed] article {
+  margin: 0;
+  padding: 0;
+  max-width: none;
+}
+
+/* Show community support only in embedded view */
+html[data-embed] #community-support-link {
+  display: flex !important;
+}
