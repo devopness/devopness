@@ -5,9 +5,11 @@ links:
     overview:
     quickstart:
     previous: applications/deploy-application
-    next: ssl-certificates/add-ssl-certificate
+    next: virtual-hosts/list-virtual-hosts
     guides:
     related:
+        - virtual-hosts/list-virtual-hosts
+        - virtual-hosts/view-virtual-host
     featured:
 required_permissions:
     - virtual-host:create
