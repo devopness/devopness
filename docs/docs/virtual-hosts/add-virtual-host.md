@@ -8,6 +8,8 @@ links:
     next: ssl-certificates/add-ssl-certificate
     guides:
     related:
+        - virtual-hosts/list-virtual-hosts
+        - virtual-hosts/view-virtual-host
     featured:
 required_permissions:
     - virtual-host:create

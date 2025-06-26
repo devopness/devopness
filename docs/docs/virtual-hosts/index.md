@@ -9,6 +9,8 @@ links:
     guides:
     related:
         - virtual-hosts/add-virtual-host
+        - virtual-hosts/list-virtual-hosts
+        - virtual-hosts/view-virtual-host
         - virtual-hosts/edit-virtual-host
     featured:
 required_permissions:
