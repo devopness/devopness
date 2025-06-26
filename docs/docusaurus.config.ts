@@ -1,3 +1,4 @@
+import {themes as prismThemes} from 'prism-react-renderer';
 import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
 import { resolve } from "path";
@@ -56,6 +57,17 @@ const config: Config = {
           ],
           // Source Provider URL to documentation repo
           editUrl: `${process.env.DEVOPNESS_URL_DOCS_REPO}/edit/main/`,
+        },
+        blog: {
+          showReadingTime: true,
+          feedOptions: {
+            type: ['rss', 'atom'],
+            xslt: true,
+          },
+          // Useful options to enforce blogging best practices
+          onInlineTags: 'warn',
+          onInlineAuthors: 'warn',
+          onUntruncatedBlogPosts: 'warn',
         },
         theme: {
           customCss: resolve(__dirname, "src", "theme", "docusaurus.css"),
@@ -168,6 +180,11 @@ const config: Config = {
           ],
         },
       ],
+    },
+    prism: {
+      // TODO: test code syntax highlighting with prism or remove prism if not needed
+      // theme: prismThemes.github,
+      // darkTheme: prismThemes.dracula,
     },
   } satisfies Preset.ThemeConfig,
 
