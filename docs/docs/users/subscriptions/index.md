@@ -43,11 +43,11 @@ At the moment Devopness does not allow usage-based billing, so user projects can
 
 There will be no surprises in your monthly or annual billing, as Devopness will charge you upfront for the included amounts of credits in your subscription plan.
 
-You can see the amount of credits included in your account's billing settings at Billing & Plans 
+You can see the amount of credits included in your account's billing settings at Billing & Plans
 
 ## Usage limits
 There are some limits when using Devopness actions, depending on the subscription plan.
-These limits are subject to change every time our plans are updated. For details, see our [pricing page](/pricing)
+These limits are subject to change every time our plans are updated. For details, see our [pricing page](https://www.devopness.com/pricing/)
 
 Below you have a table with the current applied limits, per plan, followed by an explanation on the impact of each limit:
 |                                                             | Free       | Standard             |
