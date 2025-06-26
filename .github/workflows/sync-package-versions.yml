@@ -1,0 +1,129 @@
+name: Sync - Package Versions
+
+# This workflow is responsible for synchronizing the versions of Devopness packages that are
+# not published to npm but are managed by changesets. These packages have a package.json file
+# solely for version management purposes, even though they are not npm packages.
+#
+# For example, Python packages use this workflow to sync the version specified in their
+# pyproject.toml file with the version managed by changesets in the package.json file.
+#
+# Additionally, to avoid errors during changeset operations, this workflow ensures that the
+# versions of these packages are also synchronized in the root package-lock.json file.
+
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  detect-changes:
+    name: Detect changes in package.json files
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
+    outputs:
+      changes: ${{ steps.filter.outputs.changes }}
+    steps:
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            changes:
+              - 'packages/**/package.json'
+
+  sync-pypi-package-versions:
+    name: Sync the pyproject.toml
+    needs: detect-changes
+    if: ${{ needs.detect-changes.outputs.changes == 'true' }}
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include: ${{ fromJSON(vars.DEVOPNESS_PYPI_PACKAGES) }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Sync the '${{ matrix.name }}' version
+        run: |
+          CHANGESET_PACKAGE_VERSION=$(jq -r .version "${{ matrix.path }}/package.json")
+          sed -i "s/^version = \".*\"/version = \"${CHANGESET_PACKAGE_VERSION}\"/" "${{ matrix.path }}/pyproject.toml"
+
+      - name: Run post-version-sync commands for '${{ matrix.name }}'
+        if: ${{ matrix.post_version_sync_commands }} != ''
+        working-directory: ${{ matrix.path }}
+        run: bash -c "${{ matrix.post_version_sync_commands }}"
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        if: github.repository == 'devopness/devopness'
+        with:
+          commit_message: "chore: sync '${{ matrix.name }}' version"
+          file_pattern: '${{ matrix.path }}/pyproject.toml ${{ matrix.path }}/*.lock'
+          commit_user_name: ${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}
+          commit_user_email: ${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}
+
+  sync-main-lockfile:
+    name: Sync the package-lock.json
+    needs: detect-changes
+    if: ${{ needs.detect-changes.outputs.changes == 'true' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+
+      - name: Sync workspace versions in lockfile
+        run: npm install --workspaces
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        if: github.repository == 'devopness/devopness'
+        with:
+          commit_message: 'chore: update package-lock.json'
+          file_pattern: 'package-lock.json'
+          commit_user_name: ${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}
+          commit_user_email: ${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}
+
+  verify-sync:
+    name: Verify sync of package versions
+    needs: [detect-changes, sync-pypi-package-versions, sync-main-lockfile]
+    if: success() || failure()
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Fail if sync-pypi-package-versions did not succeed
+        run: |
+          if [ "${{ needs.sync-pypi-package-versions.result }}" != "success" ]; then
+            exit 1
+          fi
+
+      - name: Fail if sync-main-lockfile did not succeed
+        run: |
+          if [ "${{ needs.sync-main-lockfile.result }}" != "success" ]; then
+            exit 1
+          fi

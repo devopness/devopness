@@ -4180,11 +4180,11 @@
           {
             "in": "path",
             "name": "hook_type",
-            "description": "The hook type.",
+            "description": "The type of the hook.",
             "example": "incoming",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/HookTypeParam"
             }
           }
         ],
@@ -4233,11 +4233,11 @@
           {
             "in": "path",
             "name": "hook_type",
-            "description": "The hook type.",
+            "description": "The type of the hook.",
             "example": "incoming",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/HookTypeParam"
             }
           }
         ],
@@ -4293,11 +4293,11 @@
           {
             "in": "path",
             "name": "hook_type",
-            "description": "The hook type.",
+            "description": "The type of the hook.",
             "example": "incoming",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/HookTypeParam"
             }
           }
         ],
@@ -4375,11 +4375,11 @@
           {
             "in": "path",
             "name": "hook_type",
-            "description": "The hook type.",
+            "description": "The type of the hook.",
             "example": "incoming",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/HookTypeParam"
             }
           }
         ],
@@ -5750,11 +5750,11 @@
           {
             "in": "path",
             "name": "hook_type",
-            "description": "The hook type.",
+            "description": "The type of the hook.",
             "example": "incoming",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/HookTypeParam"
             }
           },
           {
@@ -14059,6 +14059,12 @@
             "example": "Memory Optimized",
             "type": "string"
           },
+          "architecture": {
+            "description": "The type of CPU used in the cloud server (x86_64 or arm64)",
+            "example": "x86_64",
+            "type": "string",
+            "nullable": true
+          },
           "default_disk_size": {
             "description": "The default disk size (in GB) used to instance",
             "example": 25,
@@ -14094,6 +14100,7 @@
           "name",
           "type",
           "family",
+          "architecture",
           "default_disk_size",
           "price_hourly",
           "price_monthly",
@@ -16620,6 +16627,14 @@
         "enum": [
           "in",
           "out"
+        ]
+      },
+      "HookTypeParam": {
+        "type": "string",
+        "description": "The type of hook",
+        "enum": [
+          "incoming",
+          "outgoing"
         ]
       },
       "HookUpdate": {
@@ -22449,7 +22464,6 @@
           "id",
           "name",
           "email",
-          "url_slug",
           "language",
           "active",
           "social_accounts",
@@ -22626,7 +22640,6 @@
           "id",
           "name",
           "email",
-          "url_slug",
           "language",
           "active",
           "social_accounts",
@@ -22724,8 +22737,8 @@
           "name": {
             "type": "string",
             "description": "User's full name",
-            "minLength": 5,
-            "maxLength": 60
+            "minLength": 3,
+            "maxLength": 255
           },
           "email": {
             "type": "string",
@@ -22801,7 +22814,7 @@
             "type": "string"
           },
           "name": {
-            "description": "User's full name. Must be at least 5 characters. Must not be greater than 60 characters.",
+            "description": "User's full name. Must be at least 3 characters. Must not be greater than 255 characters.",
             "example": "Com Truise",
             "type": "string"
           },

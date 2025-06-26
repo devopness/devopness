@@ -29,7 +29,6 @@ src/icons/
 We follow patterns from successful icon libraries like [Material-UI](https://material.io/design/iconography/system-icons.html) and [Heroicons](https://heroicons.com/):
 
 1. **General Rules**:
-
    - Use camelCase (e.g. `arrowUp`, `arrowDown`, `arrowLeft`, `arrowRight`)
      - Except for technology/brand icons (e.g. `aws`, `docker`, `nodejs`)
    - Be descriptive and action-oriented (e.g. `add`, `remove`, `edit`, `delete`)
@@ -39,25 +38,25 @@ We follow patterns from successful icon libraries like [Material-UI](https://mat
 
    ```typescript
    // Actions
-   'add', 'remove', 'edit', 'delete'
+   ;('add', 'remove', 'edit', 'delete')
 
    // States
-   'loading', 'error', 'success', 'warning'
+   ;('loading', 'error', 'success', 'warning')
 
    // Directional
-   'arrowUp', 'arrowDown', 'arrowLeft', 'arrowRight'
+   ;('arrowUp', 'arrowDown', 'arrowLeft', 'arrowRight')
 
    // Variants
-   'checkOutline', 'checkFilled'
-   'eyeOpen', 'eyeClosed'
+   ;('checkOutline', 'checkFilled')
+   ;('eyeOpen', 'eyeClosed')
    ```
 
 3. **Technology/Brand Icons**:
    - Use lowercase
    - Use hyphens for compounds
    ```typescript
-   'aws', 'docker', 'nodejs'
-   'dotnet-core', 'python-django'
+   ;('aws', 'docker', 'nodejs')
+   ;('dotnet-core', 'python-django')
    ```
 
 #### Implementation Example

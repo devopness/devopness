@@ -289,7 +289,7 @@ describe('Card', () => {
       )
 
       expect(screen.getByText('Settings')).toBeInTheDocument()
-      // Find SVG element within the footer link
+      // Find an SVG element within the footer link
       const link = screen.getByText('Settings').closest('a')
       expect(link?.querySelector('svg')).toBeInTheDocument()
     })

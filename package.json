@@ -2,11 +2,12 @@
   "$schema": "https://json.schemastore.org/package.json",
   "name": "devopness",
   "workspaces": [
+    "packages/ai/*",
     "packages/sdks/*",
     "packages/ui/*"
   ],
   "dependencies": {
     "@changesets/changelog-github": "^0.5.1",
-    "@changesets/cli": "^2.29.3"
+    "@changesets/cli": "^2.29.5"
   }
 }

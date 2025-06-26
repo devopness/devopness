@@ -1,40 +1,65 @@
 # @devopness/sdk-js
 
+## 2.164.3
+
+### Patch Changes
+
+- [#1877](https://github.com/devopness/devopness/pull/1877) [`46fa571`](https://github.com/devopness/devopness/commit/46fa571a0434bb8a3fd648195149f918ad2bd7e4) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Corrected validation rules for the `user name` field
+
+## 2.164.2
+
+### Patch Changes
+
+- [#1786](https://github.com/devopness/devopness/pull/1786) [`0c52385`](https://github.com/devopness/devopness/commit/0c52385346df92b1c6cffc9452f5944057bb96e4) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Updated SDK methods that accept `hook_type` to use the `HookTypeParam` enum instead of plain strings.
+  This change clearly defines the allowed values for this field, reducing the likelihood of user errors.
+
+## 2.164.1
+
+### Patch Changes
+
+- [#1751](https://github.com/devopness/devopness/pull/1751) [`830e13c`](https://github.com/devopness/devopness/commit/830e13cca7f4d4f4f93f8973551639aeb62e772c) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Make **url_slug** field optional to ensure compatibility with Prod and Dev API versions.
+
+## 2.164.0
+
+### Minor Changes
+
+- [#1728](https://github.com/devopness/devopness/pull/1728) [`4b99969`](https://github.com/devopness/devopness/commit/4b999691964e897b3046d641db4a3ed86b656711) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Added the `architecture` field to the `CloudInstanceRelation` model, allowing access to the instance architecture (e.g., x86_64, arm64).
+
 ## 2.163.7
 
 ### Patch Changes
 
-- [#1673](https://github.com/devopness/devopness/pull/1673) [`fcb97e2`](https://github.com/devopness/devopness/commit/fcb97e2f616d550fd4e17e96ecb137785b96b8c9) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Fix ActionTarget Model to include ID prop
+- [#1673](https://github.com/devopness/devopness/pull/1673) [`fcb97e2`](https://github.com/devopness/devopness/commit/fcb97e2f616d550fd4e17e96ecb137785b96b8c9) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Fix ActionTarget Model to include ID prop
 
 ## 2.163.6
 
 ### Patch Changes
 
-- [#1660](https://github.com/devopness/devopness/pull/1660) [`2038a77`](https://github.com/devopness/devopness/commit/2038a77aa7b3c971951483c03b2f68e12ef88c36) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Fix the Action Type Enum to include Rotate Key
+- [#1660](https://github.com/devopness/devopness/pull/1660) [`2038a77`](https://github.com/devopness/devopness/commit/2038a77aa7b3c971951483c03b2f68e12ef88c36) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Fix the Action Type Enum to include Rotate Key
 
 ## 2.163.5
 
 ### Patch Changes
 
-- [#1658](https://github.com/devopness/devopness/pull/1658) [`3753d85`](https://github.com/devopness/devopness/commit/3753d858c017a1f08a3c2310fe497243061d503a) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Fix issues in sdk's models
+- [#1658](https://github.com/devopness/devopness/pull/1658) [`3753d85`](https://github.com/devopness/devopness/commit/3753d858c017a1f08a3c2310fe497243061d503a) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Fix issues in sdk's models
 
 ## 2.163.4
 
 ### Patch Changes
 
-- [#1653](https://github.com/devopness/devopness/pull/1653) [`934c4c4`](https://github.com/devopness/devopness/commit/934c4c48567cea490afd68c29fafb84acf17b7b0) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Fix documentation of Action Resource Data
+- [#1653](https://github.com/devopness/devopness/pull/1653) [`934c4c4`](https://github.com/devopness/devopness/commit/934c4c48567cea490afd68c29fafb84acf17b7b0) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Fix documentation of Action Resource Data
 
 ## 2.163.3
 
 ### Patch Changes
 
-- [#1651](https://github.com/devopness/devopness/pull/1651) [`7fa10ba`](https://github.com/devopness/devopness/commit/7fa10ba49132e899f143435f7434026e8a16eee8) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Remove unused 'provider_id' field from ActionDeploymentContent Model
+- [#1651](https://github.com/devopness/devopness/pull/1651) [`7fa10ba`](https://github.com/devopness/devopness/commit/7fa10ba49132e899f143435f7434026e8a16eee8) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Remove unused 'provider_id' field from ActionDeploymentContent Model
 
 ## 2.163.2
 
 ### Patch Changes
 
-- [#1643](https://github.com/devopness/devopness/pull/1643) [`429c6d6`](https://github.com/devopness/devopness/commit/429c6d6686084c07f953ca58f98d60d69a6ab9d5) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Fix server status field type
+- [#1643](https://github.com/devopness/devopness/pull/1643) [`429c6d6`](https://github.com/devopness/devopness/commit/429c6d6686084c07f953ca58f98d60d69a6ab9d5) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Fix server status field type
 
 ## 2.163.1
 
@@ -160,7 +185,6 @@
 - [#1530](https://github.com/devopness/devopness/pull/1530) [`09b7be4`](https://github.com/devopness/devopness/commit/09b7be4d81b96da798c77f722771c7b9c41434d2) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Add Support for Organizations
 
   Include methods to:
-
   - Create Organization
   - List Organizations
   - Get Organization
@@ -175,11 +199,9 @@
 ### Minor Changes
 
 - [#1458](https://github.com/devopness/devopness/pull/1458) [`509d2fa`](https://github.com/devopness/devopness/commit/509d2fa226a680f5e7427014c944228d487b35ef) Thanks [@Diegiwg](https://github.com/Diegiwg)! - 🚨 Breaking Changes
-
   - Removed the direct _team_memberships_ relation from EnvironmentRelation and ArchivedEnvironmentRelation.
 
   🔄 Changes
-
   - Added the _resource_summary_ field to the EnvironmentRelation and ArchivedEnvironmentRelation.
 
   📌 Reason for Changes
@@ -202,7 +224,6 @@
 ### Minor Changes
 
 - [#1453](https://github.com/devopness/devopness/pull/1453) [`dc153a7`](https://github.com/devopness/devopness/commit/dc153a72bdd07d3f209f22ee11309c2b427784a6) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Added methods to delete and reject team invitations
-
   - `deleteTeamInvitation`: Allows to cancel a pending team invitation
   - `rejectTeamInvitation`: Allows to reject a pending team invitation
 
@@ -213,7 +234,6 @@
 - [#1422](https://github.com/devopness/devopness/pull/1422) [`9386735`](https://github.com/devopness/devopness/commit/93867352ab65ff6e129ed13e5e372be6767019f8) Thanks [@Diegiwg](https://github.com/Diegiwg)!
 
   🚨 Breaking Changes
-
   - Removed: Direct resource relation fields from the Environment model:
     - applications
     - credentials
@@ -228,7 +248,6 @@
     - virtual_hosts
 
   🔄 Changes
-
   - Added: resource_summary field to the Environment model.
 
   📌 Reason for Changes
@@ -238,7 +257,6 @@
   This change enhances efficiency by reducing response payload size while still providing resource count details.
 
   Each entry in resource_summary includes:
-
   - resource_type: The singular identifier of the resource.
   - resource_type_plural: The plural form of the resource type.
   - resource_type_human_readable: A user-friendly singular name.
@@ -260,7 +278,6 @@
 - [#1422](https://github.com/devopness/devopness/pull/1422) [`9386735`](https://github.com/devopness/devopness/commit/93867352ab65ff6e129ed13e5e372be6767019f8) Thanks [@Diegiwg](https://github.com/Diegiwg)!
 
   🔄 Changes
-
   - Added: resource_summary field to the ProjectRelation model.
 
   📌 Reason for Changes
@@ -270,7 +287,6 @@
   This ensures efficient access to resource counts without exposing full lists.
 
   Each entry in resource_summary includes:
-
   - resource_type: The singular identifier of the resource.
   - resource_type_plural: The plural form of the resource type.
   - resource_type_human_readable: A user-friendly singular name.
@@ -290,11 +306,9 @@
 - [#1422](https://github.com/devopness/devopness/pull/1422) [`9386735`](https://github.com/devopness/devopness/commit/93867352ab65ff6e129ed13e5e372be6767019f8) Thanks [@Diegiwg](https://github.com/Diegiwg)
 
   🚨 Breaking Changes
-
   - Removed: environments, teams, and roles fields from the Project model.
 
   🔄 Changes
-
   - Added: resource_summary field to the Project model.
 
   📌 Reason for Changes
@@ -302,7 +316,6 @@
   The resource_summary field centralizes summary information about linked resources (environments, teams, and roles) within a project.
 
   Each resource in resource_summary is an object containing:
-
   - resource_type: Identifies the resource type.
   - resource_type_plural: Identifies the resource type in plural form.
   - resource_type_human_readable: Identifies the resource type in human readable form.
@@ -340,7 +353,6 @@
 ### Minor Changes
 
 - [#1298](https://github.com/devopness/devopness/pull/1298) [`6e2ccd8`](https://github.com/devopness/devopness/commit/6e2ccd8d093d3d7b5fafc8ca0cce4b3b5323008c) Thanks [@Diegiwg](https://github.com/Diegiwg)! - **Breaking Change:** Renamed `allow_custom_steps` property to `is_user_managed` in `PipelineSettings` interface.
-
   - The new property indicates whether the user has permission to see and manage the pipeline for the resource operation.
 
 - [#1298](https://github.com/devopness/devopness/pull/1298) [`6e2ccd8`](https://github.com/devopness/devopness/commit/6e2ccd8d093d3d7b5fafc8ca0cce4b3b5323008c) Thanks [@Diegiwg](https://github.com/Diegiwg)! - **Breaking Change:** Removed the deprecated `is_auto_generated` property from both `Pipeline` and `PipelineRelation` interfaces as it's no longer used by the Devopness API.
@@ -390,7 +402,6 @@
 - [#1061](https://github.com/devopness/devopness/pull/1061) [`d917573`](https://github.com/devopness/devopness/commit/d917573f811c25f51356830e4808e0e4d9764ccf) Thanks [@Diegiwg](https://github.com/Diegiwg)! - **Add** the `region_human_readable` field to `SubnetProvisionInput` providing users with more context about the selected region
 
 - [#1063](https://github.com/devopness/devopness/pull/1063) [`e8d5df6`](https://github.com/devopness/devopness/commit/e8d5df641b684ceaf9232c5803f5181851d2a357) Thanks [@souz4-my](https://github.com/souz4-my)! - Enhancements to Pipeline Step creation and editing
-
   - The `Name` field is now optional (nullable) when creating/editing a Pipeline Step.
   - Added a `Description` field for creating/editing Pipeline Steps, also optional (nullable).
 
@@ -405,7 +416,6 @@
 - [#1038](https://github.com/devopness/devopness/pull/1038) [`44f5126`](https://github.com/devopness/devopness/commit/44f5126ac03d52254d413e28cddfe03e4f9bd00a) Thanks [@souz4-my](https://github.com/souz4-my)! - **Add** support for _OS Environment Variables (os-env-var)_ as a new target for application variables, expanding configuration options. This functionality is accessible via the _variable_targets_ field in the ApplicationOptions model.
 
 - [#1038](https://github.com/devopness/devopness/pull/1038) [`44f5126`](https://github.com/devopness/devopness/commit/44f5126ac03d52254d413e28cddfe03e4f9bd00a) Thanks [@souz4-my](https://github.com/souz4-my)! - **Rename** AWS credential fields to align with AWS tool standards (e.g., CLI):
-
   - `access_key` → `access_key_id`
   - `secret` → `secret_access_key`
 
@@ -422,7 +432,6 @@
 - [#1028](https://github.com/devopness/devopness/pull/1028) [`07e005a`](https://github.com/devopness/devopness/commit/07e005a0895219caa764af6ff9112cd533b2dc9f) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Remove **action_type** field from **HookPipelineCreate** and **HookUpdate** models
 
 - [#1028](https://github.com/devopness/devopness/pull/1028) [`07e005a`](https://github.com/devopness/devopness/commit/07e005a0895219caa764af6ff9112cd533b2dc9f) Thanks [@souz4-my](https://github.com/souz4-my)! - Rename **auto_generated** field to **is_auto_generated** in models:
-
   - CronJob
   - CronJobRelation
   - Daemon
