@@ -19,7 +19,8 @@ All your projects can have teams and users collaborating on it, for FREE.
 When your projects grow you may need more deployment options, security controls and collaboration features that may require upgrading to a paid plan.
 
 See also:
-- [Pricing](/pricing/)
+- [What Devopness users pay for?](#what-devopness-users-pay-for)
+- [Pricing](https://www.devopness.com/pricing/)
 
 ## What Devopness users pay for?
 You pay for action steps that Devopness executes for you.
@@ -31,7 +32,7 @@ Paid plans also differ in the number of premium features available to increase y
 See also:
 - [What are actions and action steps?](#what-are-actions-and-action-steps)
 - [What are credits?](#what-are-credits)
-- [Pricing](/pricing/)
+- [Pricing](https://www.devopness.com/pricing/)
 
 ## How do I pay?
 You can pay inside the Devopness web app.
