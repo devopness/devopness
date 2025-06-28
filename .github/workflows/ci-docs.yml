@@ -1,0 +1,84 @@
+name: CI - Docs
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
+
+defaults:
+  run:
+    working-directory: docs
+
+jobs:
+  detect-changes:
+    name: Detect changes in Docs
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
+    outputs:
+      changes: ${{ steps.filter.outputs.changes }}
+    steps:
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            changes:
+              - 'docs/**'
+
+  build:
+    name: Build Docs web app
+    needs: detect-changes
+    if: ${{ needs.detect-changes.outputs.changes == 'true' }}
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        node: [23]
+        os: [ubuntu-latest]
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.head_ref }}
+          persist-credentials: true
+          fetch-depth: 0
+
+      - name: Create `.env` file
+        run: |
+          cp .env.example .env
+
+      - name: Use node ${{ matrix.node }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+          registry-url: https://registry.npmjs.org
+
+      - name: install
+        run: npm ci --ignore-scripts
+
+      - name: build
+        run: npm run build
+
+  verify-build:
+    name: Verify build of Docs web app
+    needs: [build, detect-changes]
+    if: success() || failure()
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Fail if build did not succeed
+        run: |
+          if [ "${{ needs.build.result }}" != "success" ]; then
+            echo "❌ Build job failed or was cancelled"
+            exit 1
+          fi
+
+          echo "✅ Build job succeeded"
