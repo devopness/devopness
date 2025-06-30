@@ -4,10 +4,10 @@
 
 ## Installation
 
-[![Install Devopness MCP Server in Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/install-mcp?name=devopness&config=eyJjb21tYW5kIjoidXZ4IGRldm9wbmVzcy1tY3Atc2VydmVyIiwiZW52Ijp7IkRFVk9QTkVTU19VU0VSX0VNQUlMIjoiWU9VUl9ERVZPUE5FU1NfVVNFUl9FTUFJTCIsIkRFVk9QTkVTU19VU0VSX1BBU1NXT1JEIjoiWU9VUl9ERVZPUE5FU1NfVVNFUl9QQVNTV09SRCJ9fQ%3D%3D)
+[![Install Devopness MCP Server in Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/install-mcp?name=devopness&config=eyJjb21tYW5kIjoidXZ4IGRldm9wbmVzcy1tY3Atc2VydmVyIC0tdHJhbnNwb3J0IHN0ZGlvIiwiZW52Ijp7IkRFVk9QTkVTU19VU0VSX0VNQUlMIjoiWU9VUl9ERVZPUE5FU1NfVVNFUl9FTUFJTCIsIkRFVk9QTkVTU19VU0VSX1BBU1NXT1JEIjoiWU9VUl9ERVZPUE5FU1NfVVNFUl9QQVNTV09SRCJ9fQo=)
 
 [![Install Devopness MCP Server in VS Code](https://img.shields.io/badge/VS_Code-000000?style=for-the-badge&label=Add%20to&labelColor=000000&color=000000
-)](https://insiders.vscode.dev/redirect/mcp/install?name=devopness&config=%7B%22command%22%3A%22uvx%22%2C%22args%22%3A%5B%22devopness-mcp-server%22%5D%2C%22env%22%3A%7B%22DEVOPNESS_USER_EMAIL%22%3A%22YOUR_DEVOPNESS_USER_EMAIL%22%2C%22DEVOPNESS_USER_PASSWORD%22%3A%22YOUR_DEVOPNESS_USER_PASSWORD%22%7D%7D)
+)](https://insiders.vscode.dev/redirect/mcp/install?name=devopness&config=%7B%22command%22%3A%22uvx%22%2C%22args%22%3A%5B%22devopness-mcp-server%22%2C%20%22--transport%22%2C%20%22stdio%22%5D%2C%22env%22%3A%7B%22DEVOPNESS_USER_EMAIL%22%3A%22YOUR_DEVOPNESS_USER_EMAIL%22%2C%22DEVOPNESS_USER_PASSWORD%22%3A%22YOUR_DEVOPNESS_USER_PASSWORD%22%7D%7D)
 
 ## About Devopness
 
