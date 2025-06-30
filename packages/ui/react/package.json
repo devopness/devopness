@@ -23,7 +23,8 @@
   "scripts": {
     "build": "rm -Rf dist && tsc -b && vite build",
     "build-storybook": "NODE_ENV=production storybook build -c .storybook -o ./storybook-static",
-    "lint": "eslint --max-warnings=0 . && prettier --write . && prettier --check .",
+    "lint": "eslint --max-warnings=0 . && prettier --check .",
+    "format": "eslint --fix . && prettier --write .",
     "prepublishOnly": "npm run lint && npm test && npm run build",
     "storybook": "storybook dev -p 6006",
     "test": "vitest"
