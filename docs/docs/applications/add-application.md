@@ -5,7 +5,7 @@ links:
     overview:
     quickstart:
     previous: servers/ssh-into-server
-    next: pipelines/steps/add-step
+    next: applications/list-applications
     guides:
     related:
     featured:
@@ -23,3 +23,7 @@ required_permissions:
 1. Once a `Credential` is selected, select the git repository where the application source code is hosted
 1. Follow the prompts then click `CONFIRM`
 1. In the `Application` details view, the recently created `Application` details can be seen
+
+:::note
+After adding an application, you can view all your applications in the [list applications](/docs/applications/list-applications) page and access specific application details on the [view application](/docs/applications/view-application) page.
+:::
