@@ -4,8 +4,8 @@ intro: Add one or multiple projects to group your infrastructure resources in a 
 links:
     overview:
     quickstart:
-    previous: index
-    next: environments/add-environment
+    previous: pipelines/steps/remove-step
+    next: projects/list-projects
     guides:
     related:
     featured:
