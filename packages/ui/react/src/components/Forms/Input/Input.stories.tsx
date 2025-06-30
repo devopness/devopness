@@ -49,7 +49,7 @@ const Error: Story = {
       fontStylePlaceholder: 'Placeholder font style',
     },
     error: {
-      message: 'It is a error message',
+      message: 'It is an error message',
     },
     disabled: false,
     readOnly: false,
@@ -93,7 +93,7 @@ const WithAutoFocusOnError: Story = {
   args: {
     name: 'name',
     type: 'text',
-    placeholder: 'This input will auto-focus when error occurs',
+    placeholder: 'This input will auto-focus when an error occurs',
     labelProps: {
       htmlFor: 'name',
       value: 'Auto-focus on error',
@@ -148,6 +148,6 @@ const MultipleInputs: Story = {
   ),
 }
 
-export { Default, Error, Number, WithAutoFocusOnError, MultipleInputs }
+export { Default, Error, MultipleInputs, Number, WithAutoFocusOnError }
 
 export default meta
