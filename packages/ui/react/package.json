@@ -76,7 +76,7 @@
     "@storybook/react-vite": "9.0.14",
     "@testing-library/react": "^16.3.0",
     "@types/lodash": "^4.17.19",
-    "@types/node": "^22.15.30",
+    "@types/node": "^24.0.7",
     "@types/path-browserify": "^1.0.3",
     "@types/react": "^18.3.13",
     "@types/react-dom": "^18.3.0",
