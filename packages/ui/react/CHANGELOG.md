@@ -116,6 +116,7 @@
   // After
   <Icon name="eyeClosed" />
   ```
+
   2. Use the `deprecatedToNewIconMap` helper
 
   ```tsx
