@@ -11,7 +11,7 @@ name: Sync - Package Versions
 # versions of these packages are also synchronized in the root package-lock.json file.
 
 on:
-  pull_request:
+  pull_request_target:
     types:
       - opened
       - edited
