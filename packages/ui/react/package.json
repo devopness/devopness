@@ -73,7 +73,7 @@
     "@storybook/addon-a11y": "^9.0.15",
     "@storybook/addon-docs": "9.0.14",
     "@storybook/csf": "^0.1.13",
-    "@storybook/react-vite": "9.0.14",
+    "@storybook/react-vite": "9.0.15",
     "@testing-library/react": "^16.3.0",
     "@types/lodash": "^4.17.19",
     "@types/node": "^22.15.30",
