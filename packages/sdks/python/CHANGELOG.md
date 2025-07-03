@@ -1,5 +1,14 @@
 # @devopness/sdk-python
 
+## 1.2.2
+
+### Patch Changes
+
+- [#1942](https://github.com/devopness/devopness/pull/1942) [`4a57b88`](https://github.com/devopness/devopness/commit/4a57b88cd497c02f8f202bc130a834257d04f789) Thanks [@Diegiwg](https://github.com/Diegiwg)! - **Changes**
+  - Added support for a target query parameter to filter variables by target in the listing endpoint
+  - Added a query parameter to allow exclusion of Devopness-generated virtual variables from the listing
+  - Fixed the documentation for the variable.created_by_user field to indicate it is nullable, which applies to virtual variables
+
 ## 1.2.1
 
 ### Patch Changes
