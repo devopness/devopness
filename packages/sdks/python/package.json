@@ -1,6 +1,6 @@
 {
   "name": "@devopness/sdk-python",
   "version": "1.2.2",
-  "description": "This file is used by Changesets Action to build and publish versions of Devopness Python SDK. For further details see https://github.com/devopness/devopness/blob/main/package.json",
-  "private": true
+  "private": true,
+  "description": "This file is used by Changesets Action to build and publish versions of Devopness Python SDK. For further details see https://github.com/devopness/devopness/blob/main/package.json"
 }
