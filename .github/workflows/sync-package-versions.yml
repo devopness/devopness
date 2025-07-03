@@ -51,8 +51,11 @@ jobs:
         include: ${{ fromJSON(vars.DEVOPNESS_PYPI_PACKAGES) }}
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v3
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -71,7 +74,6 @@ jobs:
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         if: github.repository == 'devopness/devopness'
-        continue-on-error: true
         with:
           commit_message: "chore: sync '${{ matrix.name }}' version"
           file_pattern: '${{ matrix.path }}/pyproject.toml ${{ matrix.path }}/*.lock'
@@ -85,8 +87,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v3
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -98,7 +103,6 @@ jobs:
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         if: github.repository == 'devopness/devopness'
-        continue-on-error: true
         with:
           commit_message: 'chore: update package-lock.json'
           file_pattern: 'package-lock.json'
