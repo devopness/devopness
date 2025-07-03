@@ -79,7 +79,7 @@ type DropdownOption = {
   /**
    * Event handler called when this option is clicked.
    */
-  onClick?: () => null
+  onClick?: () => void | Promise<void>
   /**
    * Tooltip's title
    *
@@ -118,7 +118,7 @@ type DropdownSharedProps = {
    *
    * @see {DropdownOption}
    */
-  onSelect?: (itemClicked: DropdownOption) => void
+  onSelect?: (itemClicked: DropdownOption) => void | Promise<void>
   /**
    * Event handler called when the dropdown is opened or closed.
    */
@@ -260,123 +260,152 @@ const Dropdown = ({
   onSelect,
   onToggle,
   ...props
-}: DropdownProps) => (
-  <PopupState
-    variant="popover"
-    popupId="demo-popup-popover"
-  >
-    {(popupState: PopupStateProps) => {
-      if (popupState.anchorEl) {
-        onToggle?.(popupState)
+}: DropdownProps) => {
+  const handleDropdownOptionClick = async (
+    option: DropdownOption,
+    onSelect: DropdownProps['onSelect'],
+    popupState: PopupStateProps,
+    event: React.MouseEvent
+  ) => {
+    if (option.isDisabled) return
+
+    const isExternalUrl = option.url?.startsWith('http')
+
+    if (!isExternalUrl) {
+      event.preventDefault()
+      event.stopPropagation()
+    }
+
+    try {
+      if (option.onClick) {
+        const result = option.onClick()
+        if (result instanceof Promise) {
+          await result
+        }
+      } else if (onSelect) {
+        const result = onSelect(option)
+        if (result instanceof Promise) {
+          await result
+        }
       }
+    } catch (error) {
+      console.error('Dropdown option click error:', error)
+    } finally {
+      popupState.close()
+    }
+  }
 
-      return (
-        <React.Fragment>
-          <ElementAnchor
-            {...props}
-            popupTrigger={{ ...bindTrigger(popupState) }}
-            popupState={popupState}
-            content={content}
-            anchorType={anchorType}
-          />
-          <Popover
-            slotProps={{
-              paper: {
-                style: {
-                  marginTop: '10px',
-                  backgroundColor: '#FFF',
-                  width: '200px',
-                  borderRadius: '8px',
-                  boxShadow: '0 0 30px 0px rgba(0,0,0,0.15)',
+  return (
+    <PopupState
+      variant="popover"
+      popupId="demo-popup-popover"
+    >
+      {(popupState: PopupStateProps) => {
+        if (popupState.anchorEl) {
+          onToggle?.(popupState)
+        }
+
+        return (
+          <React.Fragment>
+            <ElementAnchor
+              {...props}
+              popupTrigger={{ ...bindTrigger(popupState) }}
+              popupState={popupState}
+              content={content}
+              anchorType={anchorType}
+            />
+            <Popover
+              slotProps={{
+                paper: {
+                  style: {
+                    marginTop: '10px',
+                    backgroundColor: '#FFF',
+                    width: '200px',
+                    borderRadius: '8px',
+                    boxShadow: '0 0 30px 0px rgba(0,0,0,0.15)',
+                  },
                 },
-              },
-            }}
-            {...bindPopover(popupState)}
-            {...props}
-          >
-            {props.options && (
-              <MenuContainer id={props.id}>
-                {props.options.map((option, index) => (
-                  <Tooltip
-                    title={option.tooltip ?? ''}
-                    key={index}
-                  >
-                    <ConditionalWrapper
-                      condition={!!option.url}
-                      wrapper={(children) => (
-                        <Link
-                          to={option.url}
-                          hideUnderline
-                          {...option.linkProps}
-                          style={{
-                            display: 'block',
-                            marginRight: 'auto',
-                            ...option.linkProps?.style,
-                          }}
-                        >
-                          {children}
-                        </Link>
-                      )}
+              }}
+              {...bindPopover(popupState)}
+              {...props}
+            >
+              {props.options && (
+                <MenuContainer id={props.id}>
+                  {props.options.map((option, index) => (
+                    <Tooltip
+                      title={option.tooltip ?? ''}
+                      key={index}
                     >
-                      <MenuOption
-                        id={`option_${index.toString()}`}
-                        disabled={option.isDisabled}
-                        key={`option${index.toString()}`}
-                        $isActive={option.isActive}
-                        $activeBackgroundColor={option.activeBackgroundColor}
-                        $brokenSequence={option.brokenSequence}
-                        onClick={(event) => {
-                          if (option.isDisabled) {
-                            return
-                          }
-
-                          event.preventDefault()
-                          event.stopPropagation()
-
-                          if (option.onClick) {
-                            option.onClick()
-                          } else if (onSelect) {
-                            onSelect(option)
-                          }
-
-                          popupState.close()
-                        }}
+                      <ConditionalWrapper
+                        condition={!!option.url}
+                        wrapper={(children) => (
+                          <Link
+                            to={option.url}
+                            hideUnderline
+                            hideExternalUrlIcon
+                            {...option.linkProps}
+                            style={{
+                              display: 'block',
+                              marginRight: 'auto',
+                              ...option.linkProps?.style,
+                            }}
+                          >
+                            {children}
+                          </Link>
+                        )}
                       >
-                        {option.badge && (
-                          <ContentBadge
-                            data-testid={`option-${index.toString()}-badge`}
-                            $backgroundColor={option.badge.backgroundColor}
-                          >
-                            {option.badge.icon ? (
-                              <Icon
-                                {...option.badge}
-                                size={option.badge.size ?? 12}
-                              />
-                            ) : (
-                              option.label?.at(0)
-                            )}
-                          </ContentBadge>
-                        )}
-                        {option.label && (
-                          <Tooltip
-                            title={option.label}
-                            enableOnlyWithEllipsisPoints
-                          >
-                            <Text $color={option.color}>{option.label}</Text>
-                          </Tooltip>
-                        )}
-                      </MenuOption>
-                    </ConditionalWrapper>
-                  </Tooltip>
-                ))}
-              </MenuContainer>
-            )}
-          </Popover>
-        </React.Fragment>
-      )
-    }}
-  </PopupState>
-)
+                        <MenuOption
+                          id={`option_${index.toString()}`}
+                          disabled={option.isDisabled}
+                          key={`option${index.toString()}`}
+                          $isActive={option.isActive}
+                          $activeBackgroundColor={option.activeBackgroundColor}
+                          $brokenSequence={option.brokenSequence}
+                          onClick={(event) =>
+                            void handleDropdownOptionClick(
+                              option,
+                              onSelect,
+                              popupState,
+                              event
+                            )
+                          }
+                        >
+                          {option.badge && (
+                            <ContentBadge
+                              data-testid={`option-${index.toString()}-badge`}
+                              $backgroundColor={option.badge.backgroundColor}
+                            >
+                              {option.badge.icon ? (
+                                <Icon
+                                  {...option.badge}
+                                  size={option.badge.size ?? 12}
+                                />
+                              ) : (
+                                option.label?.at(0)
+                              )}
+                            </ContentBadge>
+                          )}
+                          {option.label && (
+                            <Tooltip
+                              title={option.label}
+                              enableOnlyWithEllipsisPoints
+                            >
+                              <Text $color={option.color}>{option.label}</Text>
+                            </Tooltip>
+                          )}
+                        </MenuOption>
+                      </ConditionalWrapper>
+                    </Tooltip>
+                  ))}
+                </MenuContainer>
+              )}
+            </Popover>
+          </React.Fragment>
+        )
+      }}
+    </PopupState>
+  )
+}
 
 export type { DropdownOption, DropdownProps }
 export { Dropdown }
