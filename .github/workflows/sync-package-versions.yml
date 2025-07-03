@@ -71,6 +71,7 @@ jobs:
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         if: github.repository == 'devopness/devopness'
+        continue-on-error: true
         with:
           commit_message: "chore: sync '${{ matrix.name }}' version"
           file_pattern: '${{ matrix.path }}/pyproject.toml ${{ matrix.path }}/*.lock'
@@ -97,6 +98,7 @@ jobs:
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         if: github.repository == 'devopness/devopness'
+        continue-on-error: true
         with:
           commit_message: 'chore: update package-lock.json'
           file_pattern: 'package-lock.json'
