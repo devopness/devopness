@@ -93,8 +93,10 @@ export class VariablesApiService extends ApiBaseService {
      * @param {string} resourceType The resource type to get variables from.
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
+     * @param {boolean} [includeVirtualVariables] If true, include all &#x60;virtual variables&#x60; in the list. Defaults to true.
+     * @param {string} [variableTarget] Filter by variable\&#39;s target.
      */
-    public async listVariablesByResourceType(resourceId: number, resourceType: string, page?: number, perPage?: number): Promise<ApiResponse<Array<VariableRelation>>> {
+    public async listVariablesByResourceType(resourceId: number, resourceType: string, page?: number, perPage?: number, includeVirtualVariables?: boolean, variableTarget?: string): Promise<ApiResponse<Array<VariableRelation>>> {
         if (resourceId === null || resourceId === undefined) {
             throw new ArgumentNullException('resourceId', 'listVariablesByResourceType');
         }
@@ -103,7 +105,7 @@ export class VariablesApiService extends ApiBaseService {
         }
 
         let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
+        const queryParams = { page: page, per_page: perPage, include_virtual_variables: includeVirtualVariables, variable_target: variableTarget, } as { [key: string]: any };
         for (const key in queryParams) {
             if (queryParams[key] === undefined || queryParams[key] === null) {
                 continue;
