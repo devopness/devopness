@@ -36,7 +36,7 @@ class Variable(DevopnessBaseModel):
         resource_id (int): The ID of the resource this variable is linked to
         resource_type (str): The name of the resource this variable is linked to
         hidden (bool): Indicates if the variable value should be visible or not in the deployment logs
-        created_by_user (UserRelation):
+        created_by_user (UserRelation, optional):
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was last updated
     """
@@ -65,7 +65,7 @@ class Variable(DevopnessBaseModel):
     hidden: StrictBool = Field(
         description="Indicates if the variable value should be visible or not in the deployment logs"
     )
-    created_by_user: UserRelation
+    created_by_user: Optional[UserRelation] = None
     created_at: StrictStr = Field(
         description="The date and time when the record was created"
     )
@@ -99,7 +99,7 @@ class VariablePlain(TypedDict, total=False):
     resource_id: Required[int]
     resource_type: Required[str]
     hidden: Required[bool]
-    created_by_user: Required[
+    created_by_user: Optional[
         Union[
             UserRelation,
             UserRelationPlain,

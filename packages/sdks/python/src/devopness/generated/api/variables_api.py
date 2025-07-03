@@ -102,6 +102,8 @@ class VariablesApiService(DevopnessBaseService):
         resource_type: str,
         page: Optional[int] = None,
         per_page: Optional[int] = None,
+        include_virtual_variables: Optional[bool] = None,
+        variable_target: Optional[str] = None,
     ) -> DevopnessResponse[List[VariableRelation]]:
         """
         Return a list of variables belonging to a resource
@@ -115,6 +117,8 @@ class VariablesApiService(DevopnessBaseService):
             {
                 "page": page,
                 "per_page": per_page,
+                "include_virtual_variables": include_virtual_variables,
+                "variable_target": variable_target,
             }
         )
 
@@ -238,6 +242,8 @@ class VariablesApiServiceAsync(DevopnessBaseServiceAsync):
         resource_type: str,
         page: Optional[int] = None,
         per_page: Optional[int] = None,
+        include_virtual_variables: Optional[bool] = None,
+        variable_target: Optional[str] = None,
     ) -> DevopnessResponse[List[VariableRelation]]:
         """
         Return a list of variables belonging to a resource
@@ -251,6 +257,8 @@ class VariablesApiServiceAsync(DevopnessBaseServiceAsync):
             {
                 "page": page,
                 "per_page": per_page,
+                "include_virtual_variables": include_virtual_variables,
+                "variable_target": variable_target,
             }
         )
 
