@@ -17,6 +17,14 @@ parameters:
   -
     $ref: '#/components/parameters/pageSize'
   -
+    in: query
+    name: include_virtual_variables
+    description: 'If true, include all `virtual variables` in the list. Defaults to true.'
+    example: false
+    required: false
+    schema:
+      type: boolean
+  -
     in: path
     name: resource_id
     description: 'The resource ID.'
@@ -31,6 +39,14 @@ parameters:
     description: 'The resource type to get variables from.'
     example: server
     required: true
+    schema:
+      type: string
+  -
+    in: query
+    name: variable_target
+    description: "Filter by variable's target."
+    example: resource-config-file
+    required: false
     schema:
       type: string
 responses:

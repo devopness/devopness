@@ -61,6 +61,5 @@ required:
   - resource_id
   - resource_type
   - hidden
-  - created_by_user
   - created_at
   - updated_at
