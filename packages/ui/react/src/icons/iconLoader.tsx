@@ -71,7 +71,7 @@ import {
   RiMapPinLine,
   RiShieldCheckFill,
   RiTeamLine,
-  RiGithubFill,
+  RiDiscordFill,
 } from 'react-icons/ri'
 import { RxOpenInNewWindow } from 'react-icons/rx'
 
@@ -193,7 +193,7 @@ const iconList = [
   { type: 'icon', name: 'unlink', component: BiUnlink },
   { type: 'icon', name: 'user', component: MdPersonOutline },
   { type: 'icon', name: 'warning', component: MdWarning },
-  { type: 'icon', name: 'github', component: RiGithubFill },
+  { type: 'icon', name: 'discord', component: RiDiscordFill },
 
   // Technology/Brand icons
   { type: 'image', name: 'aws', component: awsSVG },
