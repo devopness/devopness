@@ -22,9 +22,6 @@
   },
   "scripts": {
     "build": "rm -Rf dist && tsc -b && vite build",
-    "build:watch": "concurrently \"tsc -b --watch\" \"vite build --watch\"",
-    "ui-package:link": "rm -rf dist && npm run build && npm link && echo 'Build and link made in open source!'",
-    "ui-package:unlink": "npm unlink -g @devopness/ui-react && echo 'Unlink made in open source!'",
     "build-storybook": "NODE_ENV=production storybook build -c .storybook -o ./storybook-static",
     "lint": "eslint --max-warnings=0 . && prettier --check .",
     "format": "eslint --fix . && prettier --write .",
@@ -84,7 +81,6 @@
     "@types/react": "^18.3.13",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react-swc": "^3.10.2",
-    "concurrently": "^9.2.0",
     "eslint": "^9.30.1",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-import-helpers": "^2.0.1",

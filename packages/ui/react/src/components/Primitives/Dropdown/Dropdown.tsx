@@ -336,24 +336,65 @@ const Dropdown = ({
                       title={option.tooltip ?? ''}
                       key={index}
                     >
-                      <ConditionalWrapper
-                        condition={!!option.url}
-                        wrapper={(children) => (
-                          <Link
-                            to={option.url}
-                            hideUnderline
-                            hideExternalUrlIcon
-                            {...option.linkProps}
-                            style={{
-                              display: 'block',
-                              marginRight: 'auto',
-                              ...option.linkProps?.style,
+                      {option.url ? (
+                        <Link
+                          to={option.url}
+                          hideUnderline
+                          {...option.linkProps}
+                          style={{
+                            display: 'block',
+                            marginRight: 'auto',
+                            ...option.linkProps?.style,
+                          }}
+                        >
+                          <MenuOption
+                            id={`option_${index.toString()}`}
+                            disabled={option.isDisabled}
+                            key={`option${index.toString()}`}
+                            $isActive={option.isActive}
+                            $activeBackgroundColor={
+                              option.activeBackgroundColor
+                            }
+                            $brokenSequence={option.brokenSequence}
+                            onClick={(event) => {
+                              if (!option.url?.startsWith('http')) {
+                                void handleDropdownOptionClick(
+                                  option,
+                                  onSelect,
+                                  popupState,
+                                  event
+                                )
+                              }
                             }}
                           >
-                            {children}
-                          </Link>
-                        )}
-                      >
+                            {option.badge && (
+                              <ContentBadge
+                                data-testid={`option-${index.toString()}-badge`}
+                                $backgroundColor={option.badge.backgroundColor}
+                              >
+                                {option.badge.icon ? (
+                                  <Icon
+                                    {...option.badge}
+                                    size={option.badge.size ?? 12}
+                                  />
+                                ) : (
+                                  option.label?.at(0)
+                                )}
+                              </ContentBadge>
+                            )}
+                            {option.label && (
+                              <Tooltip
+                                title={option.label}
+                                enableOnlyWithEllipsisPoints
+                              >
+                                <Text $color={option.color}>
+                                  {option.label}
+                                </Text>
+                              </Tooltip>
+                            )}
+                          </MenuOption>
+                        </Link>
+                      ) : (
                         <MenuOption
                           id={`option_${index.toString()}`}
                           disabled={option.isDisabled}
@@ -394,7 +435,7 @@ const Dropdown = ({
                             </Tooltip>
                           )}
                         </MenuOption>
-                      </ConditionalWrapper>
+                      )}
                     </Tooltip>
                   ))}
                 </MenuContainer>
