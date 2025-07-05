@@ -277,16 +277,20 @@ const Dropdown = ({
     }
 
     try {
+      /**
+       * We use Promise.resolve() here to handle both sync and async callbacks (onClick/onSelect),
+       * which are typed as `void | Promise<void>`.
+       *
+       * This makes the component flexible and reusable, allowing consumers to implement
+       * either a simple sync action (e.g. logging, UI updates) or an async one (e.g. API call).
+       *
+       * By using Promise.resolve(), we ensure any value is treated as a Promise,
+       * which simplifies the logic and avoids errors in runtime while maintaining type safety.
+       */
       if (option.onClick) {
-        const result = option.onClick()
-        if (result instanceof Promise) {
-          await result
-        }
+        await Promise.resolve(option.onClick())
       } else if (onSelect) {
-        const result = onSelect(option)
-        if (result instanceof Promise) {
-          await result
-        }
+        await Promise.resolve(onSelect(option))
       }
     } catch (error) {
       console.error('Dropdown option click error:', error)
