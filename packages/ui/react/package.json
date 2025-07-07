@@ -58,6 +58,7 @@
   },
   "homepage": "https://github.com/devopness/devopness#readme",
   "dependencies": {
+    "@devopness/ui-react": "^2.163.0",
     "@mui/material": "^6.4.12",
     "@mui/styled-engine-sc": "^6.4.9",
     "ldrs": "^1.1.7",
