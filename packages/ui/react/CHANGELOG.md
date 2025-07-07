@@ -1,5 +1,41 @@
 # @devopness/ui-react
 
+## 2.164.0
+
+### Minor Changes
+
+- [#1948](https://github.com/devopness/devopness/pull/1948) [`ff73888`](https://github.com/devopness/devopness/commit/ff7388887ef8063c949be362db9f21020d67500e) Thanks [@WillianSantosC](https://github.com/WillianSantosC)! - Improve Dropdown to support both sync and async handlers and add new Icon option
+
+  ### What Changed
+  - Refactored `onClick` and `onSelect` props to support both synchronous and asynchronous functions using `Promise.resolve()`
+  - Introduced `handleDropdownOptionClick()` to centralize and simplify the click/select logic in the `Dropdown` component
+  - Added support for the new `discord` icon in `iconLoader.tsx`
+
+  ### Example Usage
+
+  ```tsx
+  <Dropdown
+    options={[
+      {
+        label: 'Log out',
+        onClick: async () => {
+          await api.logout()
+        },
+      },
+    ]}
+  />
+  ```
+
+  ```tsx
+  <Icon
+    name={discord}
+    size={14}
+    color={'blue.950'}
+  />
+  ```
+
+  This improves reusability and flexibility while ensuring the component gracefully handles both sync and async handlers and also adds support for a new icon.
+
 ## 2.163.0
 
 ### Minor Changes
