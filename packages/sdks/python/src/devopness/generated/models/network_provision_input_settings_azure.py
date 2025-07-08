@@ -38,12 +38,7 @@ class NetworkProvisionInputSettingsAzure(DevopnessBaseModel):
 
 class NetworkProvisionInputSettingsAzurePlain(TypedDict, total=False):
     """
-    Plain version of NetworkProvisionInputSettingsAzure
-
-    Attributes:
-        region (str): The cloud provider region where the network will be created
-        region_human_readable (str): Human readable version of the network region
-        cidr_block (str): The IP CIDR range of the network
+    Plain version of NetworkProvisionInputSettingsAzure.
     """
 
     region: Required[str]

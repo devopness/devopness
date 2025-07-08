@@ -31,10 +31,7 @@ class UserRefreshToken(DevopnessBaseModel):
 
 class UserRefreshTokenPlain(TypedDict, total=False):
     """
-    Plain version of UserRefreshToken
-
-    Attributes:
-        refresh_token (str): A token to be used after the original access token has expired, to issue a new token without requiring a new request to the /users/login endpoint.
+    Plain version of UserRefreshToken.
     """
 
     refresh_token: Required[str]

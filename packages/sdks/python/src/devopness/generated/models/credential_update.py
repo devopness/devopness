@@ -41,12 +41,7 @@ class CredentialUpdate(DevopnessBaseModel):
 
 class CredentialUpdatePlain(TypedDict, total=False):
     """
-    Plain version of CredentialUpdate
-
-    Attributes:
-        id (int): The unique ID of the given Credential.
-        name (str): The name of the credential. Must not be greater than 60 characters.
-        settings (CredentialInputSettings):
+    Plain version of CredentialUpdate.
     """
 
     id: Required[int]

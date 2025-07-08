@@ -40,12 +40,7 @@ class ApplicationOptions(DevopnessBaseModel):
 
 class ApplicationOptionsPlain(TypedDict, total=False):
     """
-    Plain version of ApplicationOptions
-
-    Attributes:
-        variable_targets (List[VariableTargets]): The list of VariableTarget
-        language_runtimes (List[LanguageRuntime]):
-        script_runners (List[ScriptRunner]):
+    Plain version of ApplicationOptions.
     """
 
     variable_targets: Required[

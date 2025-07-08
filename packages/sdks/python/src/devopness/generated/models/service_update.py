@@ -29,10 +29,7 @@ class ServiceUpdate(DevopnessBaseModel):
 
 class ServiceUpdatePlain(TypedDict, total=False):
     """
-    Plain version of ServiceUpdate
-
-    Attributes:
-        id (int): The unique ID of the given Service.
+    Plain version of ServiceUpdate.
     """
 
     id: Required[int]

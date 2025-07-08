@@ -36,11 +36,7 @@ class TeamProjectCreate(DevopnessBaseModel):
 
 class TeamProjectCreatePlain(TypedDict, total=False):
     """
-    Plain version of TeamProjectCreate
-
-    Attributes:
-        name (str): The name of the team. Must not be greater than 255 characters.
-        photo_url (str): The URL to team&#39;s image. Must be a valid URL.
+    Plain version of TeamProjectCreate.
     """
 
     name: Required[str]

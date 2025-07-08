@@ -83,25 +83,7 @@ class ActionRelationShallow(DevopnessBaseModel):
 
 class ActionRelationShallowPlain(TypedDict, total=False):
     """
-    Plain version of ActionRelationShallow
-
-    Attributes:
-        id (int): The Id of the action
-        status (ActionStatus):
-        status_human_readable (str): Human readable version of the action status
-        status_reason_code (ActionStatusReasonCode):
-        status_reason_human_readable (str): Human readable version of the status reason code
-        type (ActionType):
-        type_human_readable (str): Human readable version of the action type
-        url_web_permalink (str): Permalink to view the action on Devopness web
-        action_data (ActionDeploymentData, optional):
-        triggered_from (ActionTriggeredFrom):
-        summary (ActionSummary):
-        targets (List[ActionTarget]): List of actions dispatched to cloud resource targets
-        started_at (datetime, optional): When the action started
-        completed_at (datetime, optional): When the action completed
-        created_at (datetime): When the action was created
-        updated_at (datetime): When the action was last updated
+    Plain version of ActionRelationShallow.
     """
 
     id: Required[int]

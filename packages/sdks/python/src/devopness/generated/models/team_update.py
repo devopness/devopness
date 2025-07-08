@@ -38,12 +38,7 @@ class TeamUpdate(DevopnessBaseModel):
 
 class TeamUpdatePlain(TypedDict, total=False):
     """
-    Plain version of TeamUpdate
-
-    Attributes:
-        id (int): The unique ID of the given Team.
-        name (str): The name of the team. Must not be greater than 255 characters.
-        photo_url (str): The URL to team&#39;s image. Must be a valid URL.
+    Plain version of TeamUpdate.
     """
 
     id: Required[int]

@@ -35,12 +35,7 @@ class ScriptRunner(DevopnessBaseModel):
 
 class ScriptRunnerPlain(TypedDict, total=False):
     """
-    Plain version of ScriptRunner
-
-    Attributes:
-        value (str): How to call the runner in CLI
-        human_readable (str): The formatted name of the runner
-        hint (str): Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
+    Plain version of ScriptRunner.
     """
 
     value: Required[str]

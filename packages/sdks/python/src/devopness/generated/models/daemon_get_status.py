@@ -33,10 +33,7 @@ class DaemonGetStatus(DevopnessBaseModel):
 
 class DaemonGetStatusPlain(TypedDict, total=False):
     """
-    Plain version of DaemonGetStatus
-
-    Attributes:
-        servers (List[int]): List of valid resource IDs
+    Plain version of DaemonGetStatus.
     """
 
     servers: Required[List[int]]

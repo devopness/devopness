@@ -59,15 +59,7 @@ class StepPipelineCreate(DevopnessBaseModel):
 
 class StepPipelineCreatePlain(TypedDict, total=False):
     """
-    Plain version of StepPipelineCreate
-
-    Attributes:
-        name (str): Name/short description of the script. Must be at least 4 characters. Must not be greater than 60 characters.
-        description (str): A short text describing the command. Can be helpful for other team members to understand why a pipeline step is needed. Must not be greater than 255 characters.
-        type (str): The pipeline step&#39;s type. Must not be greater than 20 characters.
-        command (str): A command line or multiline bash script. Must be at least 10 characters. Must not be greater than 300 characters.
-        runner (PipelineStepRunnerName):
-        run_as_user (str): The name of the Unix user on behalf of which the script will be executed. Must not be greater than 60 characters.
+    Plain version of StepPipelineCreate.
     """
 
     name: Required[str]

@@ -42,14 +42,7 @@ class TeamRelation(DevopnessBaseModel):
 
 class TeamRelationPlain(TypedDict, total=False):
     """
-    Plain version of TeamRelation
-
-    Attributes:
-        id (int): The unique ID of the given team
-        name (str): The name of the given team
-        photo_url (str, optional): The URL to team&#39;s image
-        created_at (str): The date and time when the record was created
-        updated_at (str): The date and time when the record was last updated
+    Plain version of TeamRelation.
     """
 
     id: Required[int]

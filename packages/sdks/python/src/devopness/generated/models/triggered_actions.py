@@ -37,11 +37,7 @@ class TriggeredActions(DevopnessBaseModel):
 
 class TriggeredActionsPlain(TypedDict, total=False):
     """
-    Plain version of TriggeredActions
-
-    Attributes:
-        summary (TriggeredActionSummary):
-        operations (List[TriggeredActionStats]):
+    Plain version of TriggeredActions.
     """
 
     summary: Required[

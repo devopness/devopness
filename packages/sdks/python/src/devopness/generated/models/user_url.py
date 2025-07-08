@@ -31,10 +31,7 @@ class UserUrl(DevopnessBaseModel):
 
 class UserUrlPlain(TypedDict, total=False):
     """
-    Plain version of UserUrl
-
-    Attributes:
-        billing_management_url (str): The URL leading to a billing management page
+    Plain version of UserUrl.
     """
 
     billing_management_url: Required[str]

@@ -36,11 +36,7 @@ class HookOutgoingTriggerWhenCondition(DevopnessBaseModel):
 
 class HookOutgoingTriggerWhenConditionPlain(TypedDict, total=False):
     """
-    Plain version of HookOutgoingTriggerWhenCondition
-
-    Attributes:
-        path (str): A dot-notation path of the outgoing hook variable to be used as the value to evaluate this condition.
-        accepted_values (List[str]): List of accepted values for this condition.
+    Plain version of HookOutgoingTriggerWhenCondition.
     """
 
     path: Required[str]

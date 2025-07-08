@@ -43,12 +43,7 @@ class ProviderSettings(DevopnessBaseModel):
 
 class ProviderSettingsPlain(TypedDict, total=False):
     """
-    Plain version of ProviderSettings
-
-    Attributes:
-        connect_url (str): The URL used to connect Devopness to a credential provider of type &#x60;source_provider&#x60;
-        input_settings (List[ProviderInputSettings]): The list of input settings for credentials of specific provider
-        cloud_services (List[CloudProviderService]):
+    Plain version of ProviderSettings.
     """
 
     connect_url: Required[str]

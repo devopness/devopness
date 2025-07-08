@@ -130,36 +130,7 @@ class Application(DevopnessBaseModel):
 
 class ApplicationPlain(TypedDict, total=False):
     """
-    Plain version of Application
-
-    Attributes:
-        id (int): Unique ID of the application
-        project_id (int): Numeric ID of the project to which the application belongs to
-        environment_id (int): Numeric ID of the environment to which the application belongs to
-        created_by (int): The id of the user who created the application and to whom the application belongs
-        name (str): The application&#39;s unique name
-        repository (str): The full name of a repository (&#x60;repository_owner/repository_name&#x60;) containing the application source code.
-        repository_name (str): The name part of a repository full name (&#x60;repository_owner/repository_name&#x60;)
-        repository_owner (str): The owner part of a repository full name (&#x60;repository_owner/repository_name&#x60;)
-        default_branch (str): The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed.
-        programming_language (str): The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be &#x60;html&#x60;.
-        programming_language_human_readable (str): The human readable version of the programming language of the application.
-        engine_version (str): The language runtime engine version to be used to execute this application on the deployed servers
-        framework (str): The base framework on top of which the application has been implemented - it might have impact on the steps to be performed during application deployment
-        framework_human_readable (str): The human readable version of the framework of the application.
-        root_directory (str): The relative directory where package manager&#39;s manifest files (&#x60;package.json&#x60;, &#x60;composer.json&#x60;, &#x60;yarn.lock&#x60;, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository.
-        deployments_keep (int): The number of deployment history, logs and artifacts to keep stored in both devopness servers and user&#39;s servers. OR The number of deployment artifacts to be retained in the user&#39;s servers, making it easier and faster to rollback to previous versions
-        install_dependencies_command (str, optional): Indicates command that Devopness must execute to install application dependencies
-        build_command (str, optional): The optional command that should be executed once during deployment to build the source code and get the application in a ready state
-        created_by_user (UserRelation):
-        last_deployments (ApplicationLastDeployments):
-        environment (EnvironmentRelation, optional):
-        servers (List[ServerRelation]):
-        credential (CredentialRelation, optional):
-        virtual_hosts (List[VirtualHostRelation]):
-        daemons (List[DaemonRelation]):
-        created_at (str): The date and time when the record was created
-        updated_at (str): The date and time when the record was last updated
+    Plain version of Application.
     """
 
     id: Required[int]

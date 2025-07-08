@@ -40,12 +40,7 @@ class PermissionRelation(DevopnessBaseModel):
 
 class PermissionRelationPlain(TypedDict, total=False):
     """
-    Plain version of PermissionRelation
-
-    Attributes:
-        resource_type (str): The type of resource this permission affects
-        human_readable (str): Human readable resource name
-        permissions (List[StaticPermission]): List of permissions available for this resource
+    Plain version of PermissionRelation.
     """
 
     resource_type: Required[str]

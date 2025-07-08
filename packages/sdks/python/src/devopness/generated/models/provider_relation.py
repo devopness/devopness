@@ -45,14 +45,7 @@ class ProviderRelation(DevopnessBaseModel):
 
 class ProviderRelationPlain(TypedDict, total=False):
     """
-    Plain version of ProviderRelation
-
-    Attributes:
-        active (bool): Tells if the provider is active or not
-        code (ProviderCode):
-        code_human_readable (str): Human readable version of provider code
-        type (ProviderType):
-        type_human_readable (str): Human readable version of provider type
+    Plain version of ProviderRelation.
     """
 
     active: Required[bool]

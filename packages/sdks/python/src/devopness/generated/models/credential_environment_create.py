@@ -46,14 +46,7 @@ class CredentialEnvironmentCreate(DevopnessBaseModel):
 
 class CredentialEnvironmentCreatePlain(TypedDict, total=False):
     """
-    Plain version of CredentialEnvironmentCreate
-
-    Attributes:
-        name (str): The name of the credential. Must not be greater than 60 characters.
-        provider_code (ProviderCode):
-        provider_type (ProviderType):
-        active (bool): If this credential is active or not.
-        settings (CredentialInputSettings):
+    Plain version of CredentialEnvironmentCreate.
     """
 
     name: Required[str]

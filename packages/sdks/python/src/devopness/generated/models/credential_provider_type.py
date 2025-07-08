@@ -33,11 +33,7 @@ class CredentialProviderType(DevopnessBaseModel):
 
 class CredentialProviderTypePlain(TypedDict, total=False):
     """
-    Plain version of CredentialProviderType
-
-    Attributes:
-        type (str): Type of provider.
-        type_human_readable (str): Human readable version of provider type
+    Plain version of CredentialProviderType.
     """
 
     type: Required[str]

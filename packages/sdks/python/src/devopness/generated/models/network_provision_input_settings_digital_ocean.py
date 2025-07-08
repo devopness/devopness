@@ -38,12 +38,7 @@ class NetworkProvisionInputSettingsDigitalOcean(DevopnessBaseModel):
 
 class NetworkProvisionInputSettingsDigitalOceanPlain(TypedDict, total=False):
     """
-    Plain version of NetworkProvisionInputSettingsDigitalOcean
-
-    Attributes:
-        region (str): The cloud provider region where the network will be created
-        region_human_readable (str): Human readable version of the network region
-        cidr_block (str): The IP CIDR range of the network
+    Plain version of NetworkProvisionInputSettingsDigitalOcean.
     """
 
     region: Required[str]

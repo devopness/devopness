@@ -39,12 +39,7 @@ class SubnetProvisionInputSettingsAzure(DevopnessBaseModel):
 
 class SubnetProvisionInputSettingsAzurePlain(TypedDict, total=False):
     """
-    Plain version of SubnetProvisionInputSettingsAzure
-
-    Attributes:
-        region (str): The cloud provider region where the subnet will be created
-        region_human_readable (str): Human readable version of the subnet region
-        cidr_block (str): The IP CIDR range of the subnet
+    Plain version of SubnetProvisionInputSettingsAzure.
     """
 
     region: Required[str]

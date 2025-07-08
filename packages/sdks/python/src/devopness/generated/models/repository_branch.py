@@ -37,12 +37,7 @@ class RepositoryBranch(DevopnessBaseModel):
 
 class RepositoryBranchPlain(TypedDict, total=False):
     """
-    Plain version of RepositoryBranch
-
-    Attributes:
-        name (str): The name of the branch
-        repo_full_name (str): The full name of the repository (&#x60;owner/repository&#x60;)
-        commit (Commit):
+    Plain version of RepositoryBranch.
     """
 
     name: Required[str]

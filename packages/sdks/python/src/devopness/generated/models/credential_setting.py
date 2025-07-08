@@ -41,12 +41,7 @@ class CredentialSetting(DevopnessBaseModel):
 
 class CredentialSettingPlain(TypedDict, total=False):
     """
-    Plain version of CredentialSetting
-
-    Attributes:
-        provider (CredentialProviderType):
-        environment_id (int): Numeric ID of the environment to which the network belongs to
-        settings (ProviderSettings):
+    Plain version of CredentialSetting.
     """
 
     provider: Required[

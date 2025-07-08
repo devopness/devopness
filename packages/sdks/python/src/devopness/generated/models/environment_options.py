@@ -34,10 +34,7 @@ class EnvironmentOptions(DevopnessBaseModel):
 
 class EnvironmentOptionsPlain(TypedDict, total=False):
     """
-    Plain version of EnvironmentOptions
-
-    Attributes:
-        types (List[StaticEnvironmentType]): The supported environments types
+    Plain version of EnvironmentOptions.
     """
 
     types: Required[

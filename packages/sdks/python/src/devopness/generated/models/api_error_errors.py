@@ -39,10 +39,7 @@ class ApiErrorErrors(DevopnessBaseModel):
 
 class ApiErrorErrorsPlain(TypedDict, total=False):
     """
-    Plain version of ApiErrorErrors
-
-    Attributes:
-        field_name (List[ApiErrorErrorsFieldNameInner]): Error message specific to each field included in the errors object
+    Plain version of ApiErrorErrors.
     """
 
     field_name: Required[

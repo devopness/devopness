@@ -48,14 +48,7 @@ class ResourceSummaryItem(DevopnessBaseModel):
 
 class ResourceSummaryItemPlain(TypedDict, total=False):
     """
-    Plain version of ResourceSummaryItem
-
-    Attributes:
-        resource_type (str): The type of the resource
-        resource_type_plural (str): The plural name of the resource type
-        resource_type_human_readable (str): The human readable name of the resource type
-        resource_type_human_readable_plural (str): The human readable plural name of the resource type
-        summary (ResourceSummaryItemSummary):
+    Plain version of ResourceSummaryItem.
     """
 
     resource_type: Required[str]

@@ -31,11 +31,7 @@ class ApplicationPipeline(DevopnessBaseModel):
 
 class ApplicationPipelinePlain(TypedDict, total=False):
     """
-    Plain version of ApplicationPipeline
-
-    Attributes:
-        id (int): The unique id of the given record
-        name (str): The pipeline&#39;s name
+    Plain version of ApplicationPipeline.
     """
 
     id: Required[int]

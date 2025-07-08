@@ -43,13 +43,7 @@ class CredentialAzure(DevopnessBaseModel):
 
 class CredentialAzurePlain(TypedDict, total=False):
     """
-    Plain version of CredentialAzure
-
-    Attributes:
-        tenant_id (str): ID that identifies your company space (directory) inside Azure
-        subscription_id (str): ID that identifies your billing account where Azure resources are stored
-        client_id (str): ID that identifies the application when connecting to Azure
-        client_secret (str): Secret password used by the application to authenticate to Azure
+    Plain version of CredentialAzure.
     """
 
     tenant_id: Required[str]

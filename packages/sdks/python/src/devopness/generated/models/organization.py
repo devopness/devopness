@@ -52,16 +52,7 @@ class Organization(DevopnessBaseModel):
 
 class OrganizationPlain(TypedDict, total=False):
     """
-    Plain version of Organization
-
-    Attributes:
-        id (int): The unique identifier for the organization
-        name (str): The name of the organization
-        url_slug (str): The URL Slug of the organization
-        resource_summary (List[ResourceSummaryItem]): Summary of the resource
-        owner (UserRelation):
-        created_at (str): The date and time when the organization was created
-        updated_at (str): The date and time when the organization was last updated
+    Plain version of Organization.
     """
 
     id: Required[int]

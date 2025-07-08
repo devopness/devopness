@@ -45,11 +45,7 @@ class NetworkRuleOptions(DevopnessBaseModel):
 
 class NetworkRuleOptionsPlain(TypedDict, total=False):
     """
-    Plain version of NetworkRuleOptions
-
-    Attributes:
-        directions (List[StaticNetworkRuleDirection]): The supported network rule&#39;s traffic directions
-        protocols (List[StaticNetworkRuleProtocol]): The supported network rule&#39;s protocols
+    Plain version of NetworkRuleOptions.
     """
 
     directions: Required[

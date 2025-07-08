@@ -66,20 +66,7 @@ class SubnetRelation(DevopnessBaseModel):
 
 class SubnetRelationPlain(TypedDict, total=False):
     """
-    Plain version of SubnetRelation
-
-    Attributes:
-        id (int): The unique id of the given record
-        project_id (int): Numeric ID of the project to which the subnet belongs to
-        environment_id (int): Numeric ID of the environment to which the subnet belongs to
-        created_by (int): The id of the user who created the subnet
-        network_id (int): Numeric ID of the network to which the subnet belongs to
-        name (str): The subnet&#39;s name
-        type (SubnetType):
-        is_auto_generated (bool): True if this subnet is auto-generated or false if this was created by the user
-        provision_input (SubnetProvisionInput):
-        created_at (str): The date and time when the record was created
-        updated_at (str): The date and time when the record was last updated
+    Plain version of SubnetRelation.
     """
 
     id: Required[int]

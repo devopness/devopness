@@ -42,12 +42,7 @@ class Credits(DevopnessBaseModel):
 
 class CreditsPlain(TypedDict, total=False):
     """
-    Plain version of Credits
-
-    Attributes:
-        limit (float): Total credits that can be used to perform actions in the subscription period
-        used (float): Total credits that were used to perform actions
-        remaining (float): Total credits available to use to perform actions
+    Plain version of Credits.
     """
 
     limit: Required[float]

@@ -66,17 +66,7 @@ class StepPipelineUpdate(DevopnessBaseModel):
 
 class StepPipelineUpdatePlain(TypedDict, total=False):
     """
-    Plain version of StepPipelineUpdate
-
-    Attributes:
-        id (int): The unique ID of the given Pipeline Step.
-        name (str): Name/short description of the script. Must be at least 4 characters. Must not be greater than 60 characters.
-        description (str): A short text describing the command. Can be helpful for other team members to understand why a pipeline step is needed. Must not be greater than 255 characters.
-        type (str): The pipeline step&#39;s type. Must not be greater than 20 characters.
-        command (str): A command line or multiline bash script. Must be at least 10 characters. Must not be greater than 300 characters.
-        runner (PipelineStepRunnerName):
-        run_as_user (str): The name of the Unix user on behalf of which the script will be executed. Must not be greater than 60 characters.
-        trigger_after (int): Repositions the pipeline step after the step with the given &#x60;trigger_order&#x60;. Must be at least 0. Must not be greater than 16777214.
+    Plain version of StepPipelineUpdate.
     """
 
     id: Required[int]

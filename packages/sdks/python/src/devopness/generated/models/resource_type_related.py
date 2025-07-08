@@ -46,13 +46,7 @@ class ResourceTypeRelated(DevopnessBaseModel):
 
 class ResourceTypeRelatedPlain(TypedDict, total=False):
     """
-    Plain version of ResourceTypeRelated
-
-    Attributes:
-        resource_type (ResourceType):
-        resource_type_human_readable (str): Human readable version of the resource type name
-        resource_type_human_readable_plural (str): Plural human readable version of the resource type name
-        can_be_linked (bool): If true, the relation with this resource type can be changed manually by the user
+    Plain version of ResourceTypeRelated.
     """
 
     resource_type: Required[

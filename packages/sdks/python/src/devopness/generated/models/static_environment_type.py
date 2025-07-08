@@ -37,12 +37,7 @@ class StaticEnvironmentType(DevopnessBaseModel):
 
 class StaticEnvironmentTypePlain(TypedDict, total=False):
     """
-    Plain version of StaticEnvironmentType
-
-    Attributes:
-        value (str): The internal name of the environment
-        human_readable (str): The formatted name to be displayed in user interfaces
-        hint (str): Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
+    Plain version of StaticEnvironmentType.
     """
 
     value: Required[str]

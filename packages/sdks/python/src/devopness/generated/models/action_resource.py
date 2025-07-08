@@ -41,13 +41,7 @@ class ActionResource(DevopnessBaseModel):
 
 class ActionResourcePlain(TypedDict, total=False):
     """
-    Plain version of ActionResource
-
-    Attributes:
-        id (int): The unique id of the resource
-        type (ResourceType):
-        type_human_readable (str): Human readable version of the resource type
-        data (ActionResourceData, optional):
+    Plain version of ActionResource.
     """
 
     id: Required[int]

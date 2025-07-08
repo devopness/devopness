@@ -30,10 +30,7 @@ class LanguageRuntimeEngineVersionsInner(DevopnessBaseModel):
 
 class LanguageRuntimeEngineVersionsInnerPlain(TypedDict, total=False):
     """
-    Plain version of LanguageRuntimeEngineVersionsInner
-
-    Attributes:
-        version (str):
+    Plain version of LanguageRuntimeEngineVersionsInner.
     """
 
     version: Required[str]

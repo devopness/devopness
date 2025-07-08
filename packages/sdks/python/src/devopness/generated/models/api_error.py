@@ -34,11 +34,7 @@ class ApiError(DevopnessBaseModel):
 
 class ApiErrorPlain(TypedDict, total=False):
     """
-    Plain version of ApiError
-
-    Attributes:
-        message (str): The main exception raised by the server
-        errors (ApiErrorErrors):
+    Plain version of ApiError.
     """
 
     message: Required[str]

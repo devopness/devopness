@@ -31,10 +31,7 @@ class CredentialSourceProvider(DevopnessBaseModel):
 
 class CredentialSourceProviderPlain(TypedDict, total=False):
     """
-    Plain version of CredentialSourceProvider
-
-    Attributes:
-        callback_code (str): The temporary code forwarded by the OAuth provider as a parameter to our callback URL
+    Plain version of CredentialSourceProvider.
     """
 
     callback_code: Required[str]

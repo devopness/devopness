@@ -36,10 +36,7 @@ class ServerBlueprintSpec(DevopnessBaseModel):
 
 class ServerBlueprintSpecPlain(TypedDict, total=False):
     """
-    Plain version of ServerBlueprintSpec
-
-    Attributes:
-        services (List[BlueprintService]): The service names and their respective versions for a blueprint.
+    Plain version of ServerBlueprintSpec.
     """
 
     services: Required[

@@ -49,14 +49,7 @@ class CloudProviderPropertyValidation(DevopnessBaseModel):
 
 class CloudProviderPropertyValidationPlain(TypedDict, total=False):
     """
-    Plain version of CloudProviderPropertyValidation
-
-    Attributes:
-        required (bool): Defines if the property is required
-        type (CloudProviderPropertyType):
-        min (int): The minimum allowed property value. For properties of type &#x60;string&#x60; the validation checks the length of the property value
-        max (int): The maximum allowed property value. For properties of type &#x60;string&#x60; the validation checks the length of the property value
-        allowed_values (List[str]): List of allowed values for the property. If empty, any value is allowed
+    Plain version of CloudProviderPropertyValidation.
     """
 
     required: Required[bool]

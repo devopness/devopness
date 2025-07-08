@@ -33,10 +33,7 @@ class ServiceStop(DevopnessBaseModel):
 
 class ServiceStopPlain(TypedDict, total=False):
     """
-    Plain version of ServiceStop
-
-    Attributes:
-        servers (List[int]): List of valid resource IDs
+    Plain version of ServiceStop.
     """
 
     servers: Required[List[int]]

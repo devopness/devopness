@@ -48,14 +48,7 @@ class CloudServiceSettingsAzureRm(DevopnessBaseModel):
 
 class CloudServiceSettingsAzureRmPlain(TypedDict, total=False):
     """
-    Plain version of CloudServiceSettingsAzureRm
-
-    Attributes:
-        instance_type (str): The instance type to be launched on the cloud provider
-        region (str): Datacenter region where the cloud instance will be launched
-        region_human_readable (str): Human readable version of the server region
-        storage_size (int): The storage&#39;s size of the cloud instance
-        os_version_code (CloudOsVersionCode, optional):
+    Plain version of CloudServiceSettingsAzureRm.
     """
 
     instance_type: Required[str]

@@ -33,11 +33,7 @@ class RepositoryTag(DevopnessBaseModel):
 
 class RepositoryTagPlain(TypedDict, total=False):
     """
-    Plain version of RepositoryTag
-
-    Attributes:
-        name (str): The name of the tag
-        commit (RepositoryTagCommit):
+    Plain version of RepositoryTag.
     """
 
     name: Required[str]

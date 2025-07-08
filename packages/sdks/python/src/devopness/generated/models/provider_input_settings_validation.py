@@ -39,14 +39,7 @@ class ProviderInputSettingsValidation(DevopnessBaseModel):
 
 class ProviderInputSettingsValidationPlain(TypedDict, total=False):
     """
-    Plain version of ProviderInputSettingsValidation
-
-    Attributes:
-        required (bool):
-        type (str):
-        min (int):
-        max (int):
-        allowed_values (List[str]):
+    Plain version of ProviderInputSettingsValidation.
     """
 
     required: Required[bool]

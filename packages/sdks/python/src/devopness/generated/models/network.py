@@ -65,21 +65,7 @@ class Network(DevopnessBaseModel):
 
 class NetworkPlain(TypedDict, total=False):
     """
-    Plain version of Network
-
-    Attributes:
-        id (int): The unique id of the given record
-        provider_name (str): The name of the cloud provider
-        provider_name_human_readable (str): The human readable version of the provider&#39;s name
-        name (str): The networks&#39;s name
-        provision_input (NetworkProvisionInput):
-        created_by_user (UserRelation):
-        project (ProjectRelation, optional):
-        environment (EnvironmentRelation, optional):
-        credential (CredentialRelation, optional):
-        last_action (ActionRelation, optional):
-        created_at (str): The date and time when the record was created
-        updated_at (str): The date and time when the record was last updated
+    Plain version of Network.
     """
 
     id: Required[int]

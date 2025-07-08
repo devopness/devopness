@@ -41,12 +41,7 @@ class EnvironmentProjectCreate(DevopnessBaseModel):
 
 class EnvironmentProjectCreatePlain(TypedDict, total=False):
     """
-    Plain version of EnvironmentProjectCreate
-
-    Attributes:
-        type (EnvironmentType):
-        name (str): The environment&#39;s name. Must not be greater than 60 characters.
-        description (str): The environment&#39;s description. Must not be greater than 255 characters.
+    Plain version of EnvironmentProjectCreate.
     """
 
     type: Required[

@@ -38,10 +38,7 @@ class CloudProviderSettingsList(DevopnessBaseModel):
 
 class CloudProviderSettingsListPlain(TypedDict, total=False):
     """
-    Plain version of CloudProviderSettingsList
-
-    Attributes:
-        credential (List[CloudProviderInputSettings]): Settings of the cloud provider credential
+    Plain version of CloudProviderSettingsList.
     """
 
     credential: Required[

@@ -34,12 +34,7 @@ class SubscriptionPlan(DevopnessBaseModel):
 
 class SubscriptionPlanPlain(TypedDict, total=False):
     """
-    Plain version of SubscriptionPlan
-
-    Attributes:
-        provider_plan_id (str):
-        human_readable (str):
-        allow_subscriptions (bool):
+    Plain version of SubscriptionPlan.
     """
 
     provider_plan_id: Required[str]

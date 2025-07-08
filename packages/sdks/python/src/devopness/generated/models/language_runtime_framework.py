@@ -42,12 +42,7 @@ class LanguageRuntimeFramework(DevopnessBaseModel):
 
 class LanguageRuntimeFrameworkPlain(TypedDict, total=False):
     """
-    Plain version of LanguageRuntimeFramework
-
-    Attributes:
-        name (str): The internal name/code of the language runtime
-        name_human_readable (str): The formatted name to be displayed in user interfaces
-        defaults (LanguageRuntimeFrameworkDefaults):
+    Plain version of LanguageRuntimeFramework.
     """
 
     name: Required[str]

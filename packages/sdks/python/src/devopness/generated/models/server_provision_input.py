@@ -46,12 +46,7 @@ class ServerProvisionInput(DevopnessBaseModel):
 
 class ServerProvisionInputPlain(TypedDict, total=False):
     """
-    Plain version of ServerProvisionInput
-
-    Attributes:
-        subnet_id (int): The ID of the subnet where to create the server. If not defined, create the server on the default subnet of the cloud provider
-        cloud_service_code (ServerCloudServiceCode):
-        settings (ServerProvisionInputSettings):
+    Plain version of ServerProvisionInput.
     """
 
     subnet_id: Required[int]

@@ -41,14 +41,7 @@ class CredentialProvider(DevopnessBaseModel):
 
 class CredentialProviderPlain(TypedDict, total=False):
     """
-    Plain version of CredentialProvider
-
-    Attributes:
-        code (str): The provider code
-        name (str): The provider name
-        hint (str): Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
-        type (str): Type of provider.
-        type_human_readable (str): Human readable version of provider type
+    Plain version of CredentialProvider.
     """
 
     code: Required[str]

@@ -39,12 +39,7 @@ class MemberRelation(DevopnessBaseModel):
 
 class MemberRelationPlain(TypedDict, total=False):
     """
-    Plain version of MemberRelation
-
-    Attributes:
-        user (UserRelation):
-        created_at (str): The date and time when the record was created
-        updated_at (str): The date and time when the record was last updated
+    Plain version of MemberRelation.
     """
 
     user: Required[

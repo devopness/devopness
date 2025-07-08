@@ -49,15 +49,7 @@ class Repository(DevopnessBaseModel):
 
 class RepositoryPlain(TypedDict, total=False):
     """
-    Plain version of Repository
-
-    Attributes:
-        name (str): The name of the repository
-        user_name (str): The name of the user/account on the Version Control System
-        full_name (str): The fully qualified repository name. Usually composed of user_name/name
-        html_url (str): The URL for viewing repository details on the provider&#39;s web application
-        branches (List[RepositoryBranch]): List of repository branches
-        tags (List[RepositoryTag]): List of repository tags
+    Plain version of Repository.
     """
 
     name: Required[str]

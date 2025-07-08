@@ -60,17 +60,7 @@ class UserRelation(DevopnessBaseModel):
 
 class UserRelationPlain(TypedDict, total=False):
     """
-    Plain version of UserRelation
-
-    Attributes:
-        id (int): The Id of the given user
-        name (str): User&#39;s full name
-        email (str): The e-mail that will uniquely identify the user on the system and become its login credential
-        url_slug (str): The URL Slug of the user
-        language (Language, optional):
-        active (bool): Tells if the user is active or not
-        created_at (datetime): The date and time when the record was created
-        updated_at (datetime): The date and time when the record was last updated
+    Plain version of UserRelation.
     """
 
     id: Required[int]

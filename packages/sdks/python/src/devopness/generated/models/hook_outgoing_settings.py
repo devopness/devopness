@@ -44,11 +44,7 @@ class HookOutgoingSettings(DevopnessBaseModel):
 
 class HookOutgoingSettingsPlain(TypedDict, total=False):
     """
-    Plain version of HookOutgoingSettings
-
-    Attributes:
-        request_headers (List[HookOutgoingRequestHeader]): List of outgoing hook request headers
-        request_body (HookOutgoingSettingsRequestBody):
+    Plain version of HookOutgoingSettings.
     """
 
     request_headers: Required[

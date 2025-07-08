@@ -39,12 +39,7 @@ class StaticVirtualHostType(DevopnessBaseModel):
 
 class StaticVirtualHostTypePlain(TypedDict, total=False):
     """
-    Plain version of StaticVirtualHostType
-
-    Attributes:
-        name (VirtualHostType):
-        name_human_readable (str): Human readable version of the virtual host type
-        hint (str): Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
+    Plain version of StaticVirtualHostType.
     """
 
     name: Required[

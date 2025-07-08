@@ -89,23 +89,7 @@ class Subscription(DevopnessBaseModel):
 
 class SubscriptionPlain(TypedDict, total=False):
     """
-    Plain version of Subscription
-
-    Attributes:
-        id (int): The ID of the subscription
-        user_id (int): The ID of the user this subscription belongs to
-        plan_name (str): The plan name of this subscription
-        status (str): Status of this subscription
-        quantity (int): Amount of plans purchased in this subscription
-        price_unit (float): Unitary price of the subscribed plan
-        price_total (float): Total price of this subscription (quantity x price_unit)
-        price_currency (str): Currency of the prices
-        cancelled_at (datetime, optional): If not null, indicates the date when this subscription was cancelled
-        ends_at (datetime): Indicates the date and time when this subscription ends
-        created_at (datetime): The date and time when the record was created
-        updated_at (datetime): The date and time when the record was last updated
-        current_balance (SubscriptionBalance, optional):
-        balances (List[SubscriptionBalance]): The list of subscription balances
+    Plain version of Subscription.
     """
 
     id: Required[int]

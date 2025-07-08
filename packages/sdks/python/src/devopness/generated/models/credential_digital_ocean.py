@@ -31,10 +31,7 @@ class CredentialDigitalOcean(DevopnessBaseModel):
 
 class CredentialDigitalOceanPlain(TypedDict, total=False):
     """
-    Plain version of CredentialDigitalOcean
-
-    Attributes:
-        api_token (str): The API token used to authenticate to DigitalOcean
+    Plain version of CredentialDigitalOcean.
     """
 
     api_token: Required[str]

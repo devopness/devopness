@@ -38,11 +38,7 @@ class LanguageRuntimeFrameworkCommands(DevopnessBaseModel):
 
 class LanguageRuntimeFrameworkCommandsPlain(TypedDict, total=False):
     """
-    Plain version of LanguageRuntimeFrameworkCommands
-
-    Attributes:
-        build (List[str]): Available build command options for the stack
-        dependencies (List[str]): Available dependencies installation command options for the stack
+    Plain version of LanguageRuntimeFrameworkCommands.
     """
 
     build: Required[List[str]]

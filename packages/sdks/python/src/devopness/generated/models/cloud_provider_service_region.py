@@ -40,13 +40,7 @@ class CloudProviderServiceRegion(DevopnessBaseModel):
 
 class CloudProviderServiceRegionPlain(TypedDict, total=False):
     """
-    Plain version of CloudProviderServiceRegion
-
-    Attributes:
-        code (str): The code name of the region
-        name (str): The formatted name of the region
-        hint (str): Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
-        zones (List[str]): List of availability zones of the cloud provider region
+    Plain version of CloudProviderServiceRegion.
     """
 
     code: Required[str]

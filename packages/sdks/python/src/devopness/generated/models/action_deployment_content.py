@@ -46,15 +46,7 @@ class ActionDeploymentContent(DevopnessBaseModel):
 
 class ActionDeploymentContentPlain(TypedDict, total=False):
     """
-    Plain version of ActionDeploymentContent
-
-    Attributes:
-        type (DeploymentType):
-        source_type (SourceType):
-        source_ref (str): A git reference pointing to a commit in a source provider repository from which the application source code will be retrieved and deployed. It can be a branch name, tag name or a specific commit hash.
-        repository (str): The repository of the deployed application
-        provider_name (str): The source provider&#39;s name
-        pipeline_id (int): The ID of the pipeline
+    Plain version of ActionDeploymentContent.
     """
 
     type: Required[

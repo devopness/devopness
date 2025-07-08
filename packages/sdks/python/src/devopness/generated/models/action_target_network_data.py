@@ -45,14 +45,7 @@ class ActionTargetNetworkData(DevopnessBaseModel):
 
 class ActionTargetNetworkDataPlain(TypedDict, total=False):
     """
-    Plain version of ActionTargetNetworkData
-
-    Attributes:
-        id (int): The unique id of the network
-        name (str): The networks&#39;s name
-        provider_name (str): The name of the network&#39;s cloud provider.
-        provider_name_human_readable (str): The human readable version of the cloud provider&#39;s name
-        provision_input (NetworkProvisionInput):
+    Plain version of ActionTargetNetworkData.
     """
 
     id: Required[int]

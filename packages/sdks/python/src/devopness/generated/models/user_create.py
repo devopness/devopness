@@ -31,10 +31,7 @@ class UserCreate(DevopnessBaseModel):
 
 class UserCreatePlain(TypedDict, total=False):
     """
-    Plain version of UserCreate
-
-    Attributes:
-        email (str): The e-mail that will uniquely identify the user on the system and become its login credential. Must be a valid email address. Must not be greater than 255 characters.
+    Plain version of UserCreate.
     """
 
     email: Required[str]

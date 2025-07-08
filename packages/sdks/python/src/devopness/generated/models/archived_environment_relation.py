@@ -68,20 +68,7 @@ class ArchivedEnvironmentRelation(DevopnessBaseModel):
 
 class ArchivedEnvironmentRelationPlain(TypedDict, total=False):
     """
-    Plain version of ArchivedEnvironmentRelation
-
-    Attributes:
-        id (int): Unique id of the given record
-        type (EnvironmentType):
-        type_human_readable (str): The human readable version of the type
-        name (str): Environment&#39;s name
-        description (str, optional): Environment&#39;s description
-        used_credits (int): Number of credits used in the current monthly billing cycle by actions of resources in the environment.
-        resource_summary (List[ResourceSummaryItem]): Summary of the resource
-        created_at (str): The date and time when the record was created
-        updated_at (str): The date and time when the record was last updated
-        archived_at (str, optional): The date and time when the record was archived
-        project (ProjectRelation, optional):
+    Plain version of ArchivedEnvironmentRelation.
     """
 
     id: Required[int]

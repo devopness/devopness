@@ -44,12 +44,7 @@ class ActionDeploymentData(DevopnessBaseModel):
 
 class ActionDeploymentDataPlain(TypedDict, total=False):
     """
-    Plain version of ActionDeploymentData
-
-    Attributes:
-        release_name (str): The name generated to release created by this deployment
-        commit (ActionDeploymentCommit):
-        deployment (ActionDeploymentContent):
+    Plain version of ActionDeploymentData.
     """
 
     release_name: Required[str]

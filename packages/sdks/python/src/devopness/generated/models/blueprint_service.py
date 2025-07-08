@@ -42,13 +42,7 @@ class BlueprintService(DevopnessBaseModel):
 
 class BlueprintServicePlain(TypedDict, total=False):
     """
-    Plain version of BlueprintService
-
-    Attributes:
-        auto_start (bool): Indicates if the service will start automatically on operating system boot
-        initial_state (ServiceInitialState):
-        type (ServiceType):
-        version (str): The service version
+    Plain version of BlueprintService.
     """
 
     auto_start: Required[bool]

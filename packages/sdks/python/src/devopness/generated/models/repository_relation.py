@@ -41,13 +41,7 @@ class RepositoryRelation(DevopnessBaseModel):
 
 class RepositoryRelationPlain(TypedDict, total=False):
     """
-    Plain version of RepositoryRelation
-
-    Attributes:
-        name (str): The name of the repository
-        user_name (str): The name of the user/account on the Version Control System
-        full_name (str): The fully qualified repository name. Usually composed of user_name/name
-        html_url (str): The URL for viewing repository details on the provider&#39;s web application
+    Plain version of RepositoryRelation.
     """
 
     name: Required[str]

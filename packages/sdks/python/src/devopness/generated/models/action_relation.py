@@ -93,26 +93,7 @@ class ActionRelation(DevopnessBaseModel):
 
 class ActionRelationPlain(TypedDict, total=False):
     """
-    Plain version of ActionRelation
-
-    Attributes:
-        id (int): The Id of the given action
-        status (ActionStatus):
-        status_human_readable (str): Human readable version of action status
-        status_reason_code (ActionStatusReasonCode):
-        status_reason_human_readable (str): Human readable version of the status reason code
-        type (ActionType):
-        type_human_readable (str): Human readable version of the action type
-        url_web_permalink (str): The permalink URL to the action details on Devopness web app
-        action_data (ActionDeploymentData, optional):
-        triggered_from (ActionTriggeredFrom):
-        resource (ActionResource):
-        summary (ActionSummary):
-        targets (List[ActionTarget]): List of actions dispatched to cloud resource targets
-        started_at (str, optional): The date and time when the action started execution (i.e., left the &#x60;pending/queued&#x60; status)
-        completed_at (str, optional): The date and time when the action has finished execution
-        created_at (str): The date and time when the record was created
-        updated_at (str): The date and time when the record was last updated
+    Plain version of ActionRelation.
     """
 
     id: Required[int]

@@ -37,12 +37,7 @@ class PipelineSettingsStage(DevopnessBaseModel):
 
 class PipelineSettingsStagePlain(TypedDict, total=False):
     """
-    Plain version of PipelineSettingsStage
-
-    Attributes:
-        value (str):
-        human_readable (str):
-        hint (str): Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
+    Plain version of PipelineSettingsStage.
     """
 
     value: Required[str]

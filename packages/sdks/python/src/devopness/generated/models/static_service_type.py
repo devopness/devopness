@@ -48,13 +48,7 @@ class StaticServiceType(DevopnessBaseModel):
 
 class StaticServiceTypePlain(TypedDict, total=False):
     """
-    Plain version of StaticServiceType
-
-    Attributes:
-        value (ServiceType):
-        human_readable (str): Displayable version of the service name
-        hint (str): Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
-        supported_versions (List[StaticServiceTypeSupportedVersionsInner]): List of service versions supported by Devopness
+    Plain version of StaticServiceType.
     """
 
     value: Required[

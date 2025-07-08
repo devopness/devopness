@@ -33,12 +33,7 @@ class SocialAccountStatus(DevopnessBaseModel):
 
 class SocialAccountStatusPlain(TypedDict, total=False):
     """
-    Plain version of SocialAccountStatus
-
-    Attributes:
-        provider (str): Name of the provider
-        connected (bool): If the account is currently connected
-        connect_url (str): URL of the connection
+    Plain version of SocialAccountStatus.
     """
 
     provider: Required[str]

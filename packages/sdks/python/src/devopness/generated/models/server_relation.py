@@ -80,25 +80,7 @@ class ServerRelation(DevopnessBaseModel):
 
 class ServerRelationPlain(TypedDict, total=False):
     """
-    Plain version of ServerRelation
-
-    Attributes:
-        id (int): The unique id of the given record
-        created_by (int): The id of the user who created the server and to whom the server belongs
-        name (str): The server&#39;s name
-        hostname (str): The server&#39;s hostname
-        provider_name (str): The name of the server&#39;s provider.
-        provider_name_human_readable (str): The human readable version of the provider&#39;s name
-        credential (CredentialRelation, optional):
-        region (str, optional): The region in which the server is located
-        region_human_readable (str, optional): The human readable version of the region
-        ip_address (str): Public ipv4 address for server access
-        ssh_port (int): The network port to which the SSH daemon is listening to SSH connections on the server
-        active (bool): Tells if the server is active or not
-        status (ServerStatus):
-        last_action (ActionRelationShallow, optional):
-        created_at (str): The date and time when the record was created
-        updated_at (str): The date and time when the record was last updated
+    Plain version of ServerRelation.
     """
 
     id: Required[int]

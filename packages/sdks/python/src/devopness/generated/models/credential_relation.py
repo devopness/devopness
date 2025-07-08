@@ -56,18 +56,7 @@ class CredentialRelation(DevopnessBaseModel):
 
 class CredentialRelationPlain(TypedDict, total=False):
     """
-    Plain version of CredentialRelation
-
-    Attributes:
-        id (int): The unique ID of the credential
-        name (str): The name of the credential
-        provider (ProviderRelation):
-        provider_type (ProviderType):
-        provider_type_human_readable (str): The human readable version of the type of the credential
-        active (bool): If this credential is active or not
-        created_by_user (UserRelation):
-        created_at (str): The date and time when the record was created
-        updated_at (str): The date and time when the record was last updated
+    Plain version of CredentialRelation.
     """
 
     id: Required[int]

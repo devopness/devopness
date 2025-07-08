@@ -37,12 +37,7 @@ class NetworkEnvironmentCreate(DevopnessBaseModel):
 
 class NetworkEnvironmentCreatePlain(TypedDict, total=False):
     """
-    Plain version of NetworkEnvironmentCreate
-
-    Attributes:
-        name (str): The network&#39;s name. Must not be one of &lt;code&gt;default&lt;/code&gt; Must be between 1 and 63 characters.
-        provision_input (NetworkProvisionInput):
-        credential_id (int): The ID of the cloud credential.
+    Plain version of NetworkEnvironmentCreate.
     """
 
     name: Required[str]

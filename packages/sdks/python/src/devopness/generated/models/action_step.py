@@ -86,23 +86,7 @@ class ActionStep(DevopnessBaseModel):
 
 class ActionStepPlain(TypedDict, total=False):
     """
-    Plain version of ActionStep
-
-    Attributes:
-        id (int): The unique id of the action step
-        action_id (int): The unique id of the action linked to this step
-        action_target_id (int): The unique id of the action target linked to this step
-        name (str, optional): Name of the action describing your purpose
-        description (str, optional): A short text describing the command. Can be helpful for other team members to understand why a pipeline step is needed.
-        order (int): The execution order of the given step
-        status (ActionStatus):
-        status_human_readable (str): Human readable version of the action status
-        status_reason_code (ActionStatusReasonCode):
-        status_reason_human_readable (str): Human readable version of the status reason code
-        started_at (datetime, optional): The date and time when the action started execution (i.e., left the &#x60;pending/queued&#x60; status)
-        completed_at (datetime, optional): The date and time when the action has finished execution
-        created_at (datetime): The date and time when the record was created
-        updated_at (datetime): The date and time when the record was last updated
+    Plain version of ActionStep.
     """
 
     id: Required[int]

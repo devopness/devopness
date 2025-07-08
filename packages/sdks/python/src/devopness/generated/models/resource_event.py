@@ -38,12 +38,7 @@ class ResourceEvent(DevopnessBaseModel):
 
 class ResourceEventPlain(TypedDict, total=False):
     """
-    Plain version of ResourceEvent
-
-    Attributes:
-        resource_type (str): The resource type to create events for.
-        resource_id (int): The resource ID.
-        resource_data (Subscription, optional):
+    Plain version of ResourceEvent.
     """
 
     resource_type: Required[str]

@@ -39,11 +39,7 @@ class UserTeamStats(DevopnessBaseModel):
 
 class UserTeamStatsPlain(TypedDict, total=False):
     """
-    Plain version of UserTeamStats
-
-    Attributes:
-        owner_of (float): Total number of teams that user has access to, as owner.
-        member_of (float): Total number of teams that user has access to, as team member.
+    Plain version of UserTeamStats.
     """
 
     owner_of: Required[float]

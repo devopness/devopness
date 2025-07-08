@@ -58,17 +58,7 @@ class ActionTriggeredFrom(DevopnessBaseModel):
 
 class ActionTriggeredFromPlain(TypedDict, total=False):
     """
-    Plain version of ActionTriggeredFrom
-
-    Attributes:
-        origin (str, optional): The HTTP origin of the request that have been dispatched the action.
-        trigger_type (ActionTriggerType):
-        name (str): The hook or user name that have been triggered the action.
-        email (str, optional): The user&#39;s email if the action have been manually triggered.
-        ip_address (str): The IP address of the request origin.
-        user_id (int, optional): The user&#39;s ID if the action have been manually triggered.
-        hook_id (str, optional): The hook&#39;s ID if the action have been triggered by a hook.
-        hook_request_id (str, optional): The hook request&#39;s ID if the action have been triggered by a hook.
+    Plain version of ActionTriggeredFrom.
     """
 
     origin: Optional[str]

@@ -50,15 +50,7 @@ class CloudProvider(DevopnessBaseModel):
 
 class CloudProviderPlain(TypedDict, total=False):
     """
-    Plain version of CloudProvider
-
-    Attributes:
-        code (str): Cloud provider code
-        name (str): Cloud provider name
-        hint (str): Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
-        logo_url (str): The provider&#39;s logo URL.
-        cloud_services (List[CloudProviderService]):
-        settings (CloudProviderSettingsList):
+    Plain version of CloudProvider.
     """
 
     code: Required[str]

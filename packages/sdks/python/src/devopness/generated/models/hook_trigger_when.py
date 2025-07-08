@@ -42,11 +42,7 @@ class HookTriggerWhen(DevopnessBaseModel):
 
 class HookTriggerWhenPlain(TypedDict, total=False):
     """
-    Plain version of HookTriggerWhen
-
-    Attributes:
-        events (List[str]): List of events that will trigger an outgoing hook
-        conditions (List[HookTriggerWhenConditionsInner]): Conditions that must be met to trigger the hook
+    Plain version of HookTriggerWhen.
     """
 
     events: Required[List[str]]

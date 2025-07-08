@@ -70,21 +70,7 @@ class Invitation(DevopnessBaseModel):
 
 class InvitationPlain(TypedDict, total=False):
     """
-    Plain version of Invitation
-
-    Attributes:
-        id (str): The unique UUID of the given invitation
-        email (str): The email of the user that has been invited to team
-        status (TeamInvitationStatus):
-        status_human_readable (str): Human readable version of the invitation status
-        accepted_from_ip (str, optional): The IP of the user who accepted the invitation
-        created_by_user (UserRelation):
-        user (UserRelation):
-        team (TeamRelation, optional):
-        accepted_at (str, optional): The date and time when the invitation was accepted
-        expires_at (str): The date and time when the invitation will expire
-        created_at (str): The date and time when the record was created
-        updated_at (str): The date and time when the record was last updated
+    Plain version of Invitation.
     """
 
     id: Required[str]

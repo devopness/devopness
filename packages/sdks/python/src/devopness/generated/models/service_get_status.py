@@ -33,10 +33,7 @@ class ServiceGetStatus(DevopnessBaseModel):
 
 class ServiceGetStatusPlain(TypedDict, total=False):
     """
-    Plain version of ServiceGetStatus
-
-    Attributes:
-        servers (List[int]): List of valid resource IDs
+    Plain version of ServiceGetStatus.
     """
 
     servers: Required[List[int]]

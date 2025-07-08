@@ -37,13 +37,7 @@ class CloudProviderRelation(DevopnessBaseModel):
 
 class CloudProviderRelationPlain(TypedDict, total=False):
     """
-    Plain version of CloudProviderRelation
-
-    Attributes:
-        code (str): Cloud provider code
-        name (str): Cloud provider name
-        hint (str): Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
-        logo_url (str): The provider&#39;s logo URL.
+    Plain version of CloudProviderRelation.
     """
 
     code: Required[str]

@@ -53,13 +53,7 @@ class LanguageRuntime(DevopnessBaseModel):
 
 class LanguageRuntimePlain(TypedDict, total=False):
     """
-    Plain version of LanguageRuntime
-
-    Attributes:
-        name (str): The internal name/code of the language runtime
-        name_human_readable (str): The formatted name to be displayed in user interfaces
-        engine_versions (List[LanguageRuntimeEngineVersionsInner]): The list of the supported versions of the runtime engine
-        frameworks (List[LanguageRuntimeFramework]): The list of supported frameworks built on top of the runtime engine
+    Plain version of LanguageRuntime.
     """
 
     name: Required[str]

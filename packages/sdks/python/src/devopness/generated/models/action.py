@@ -120,34 +120,7 @@ class Action(DevopnessBaseModel):
 
 class ActionPlain(TypedDict, total=False):
     """
-    Plain version of Action
-
-    Attributes:
-        id (int): The Id of the given action
-        pipeline_id (int, optional): The ID of the pipeline executed by this action
-        retry_of (int, optional): The Id of the parent action that this action is a retry of
-        status (ActionStatus):
-        status_human_readable (str): Human readable version of action status
-        status_reason_code (ActionStatusReasonCode):
-        status_reason_human_readable (str): Human readable version of the status reason code
-        type (ActionType):
-        type_human_readable (str): Human readable version of the action type
-        url_web_permalink (str): The permalink URL to the action details on Devopness web app
-        action_data (ActionDeploymentData, optional):
-        triggered_from (ActionTriggeredFrom):
-        parent (RelatedAction, optional):
-        children (List[RelatedAction]): List of related actions
-        triggered_by_user (UserRelation):
-        resource (ActionResource):
-        summary (ActionSummary):
-        environment (EnvironmentRelation, optional):
-        project (ProjectRelation, optional):
-        targets (List[ActionTarget]): List of actions dispatched to cloud resource targets
-        hook_requests (ActionHookRequest):
-        started_at (str, optional): The date and time when the action started execution (i.e., left the &#x60;pending/queued&#x60; status)
-        completed_at (str, optional): The date and time when the action has finished execution
-        created_at (str): The date and time when the record was created
-        updated_at (str): The date and time when the record was last updated
+    Plain version of Action.
     """
 
     id: Required[int]

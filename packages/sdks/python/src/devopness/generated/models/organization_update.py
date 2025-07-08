@@ -37,12 +37,7 @@ class OrganizationUpdate(DevopnessBaseModel):
 
 class OrganizationUpdatePlain(TypedDict, total=False):
     """
-    Plain version of OrganizationUpdate
-
-    Attributes:
-        id (str): The unique ID of the given Organization.
-        name (str): The Name of the organization. Must not be greater than 255 characters.
-        url_slug (str): The URL Slug of the organization. Must not be greater than 255 characters.
+    Plain version of OrganizationUpdate.
     """
 
     id: Required[str]

@@ -44,13 +44,7 @@ class CloudServiceSettingsDigitalOceanDroplet(DevopnessBaseModel):
 
 class CloudServiceSettingsDigitalOceanDropletPlain(TypedDict, total=False):
     """
-    Plain version of CloudServiceSettingsDigitalOceanDroplet
-
-    Attributes:
-        instance_type (str): The instance type to be launched on the cloud provider
-        region (str): Datacenter region where the cloud instance will be launched
-        region_human_readable (str): Human readable version of the server region
-        os_version_code (CloudOsVersionCode, optional):
+    Plain version of CloudServiceSettingsDigitalOceanDroplet.
     """
 
     instance_type: Required[str]

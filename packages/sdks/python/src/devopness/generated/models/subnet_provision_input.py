@@ -32,10 +32,7 @@ class SubnetProvisionInput(DevopnessBaseModel):
 
 class SubnetProvisionInputPlain(TypedDict, total=False):
     """
-    Plain version of SubnetProvisionInput
-
-    Attributes:
-        settings (SubnetProvisionInputSettings):
+    Plain version of SubnetProvisionInput.
     """
 
     settings: Required[

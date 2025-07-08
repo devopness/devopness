@@ -52,15 +52,7 @@ class VariableCreate(DevopnessBaseModel):
 
 class VariableCreatePlain(TypedDict, total=False):
     """
-    Plain version of VariableCreate
-
-    Attributes:
-        key (str): The unique key used to identify the variable on the target. Must not be greater than 100 characters.
-        value (str): The value to be assigned to this variable when deployed to its target.                 When variable is of type &#x60;file&#x60;, this is the file content. Must not be greater than 21504 characters.
-        description (str): A text describing the variable, provided by the end user. Must not be greater than 255 characters.
-        target (VariableTarget):
-        type (VariableType):
-        hidden (bool): Indicates if the variable value should be visible or not in the deployment logs.
+    Plain version of VariableCreate.
     """
 
     key: Required[str]

@@ -46,15 +46,7 @@ class ActionTargetCredentialData(DevopnessBaseModel):
 
 class ActionTargetCredentialDataPlain(TypedDict, total=False):
     """
-    Plain version of ActionTargetCredentialData
-
-    Attributes:
-        id (int): The unique id of the credential
-        name (str): The name of the credential
-        provider_type (ProviderType):
-        provider_code (CloudProviderCode):
-        provider_name (str): The name of the cloud provider of the credential
-        provider_name_human_readable (str): The human readable version of the provider name
+    Plain version of ActionTargetCredentialData.
     """
 
     id: Required[int]

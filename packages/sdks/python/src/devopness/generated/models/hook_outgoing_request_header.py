@@ -36,11 +36,7 @@ class HookOutgoingRequestHeader(DevopnessBaseModel):
 
 class HookOutgoingRequestHeaderPlain(TypedDict, total=False):
     """
-    Plain version of HookOutgoingRequestHeader
-
-    Attributes:
-        name (str): Name of the HTTP header.
-        value (str): Value of the HTTP header.
+    Plain version of HookOutgoingRequestHeader.
     """
 
     name: Required[str]

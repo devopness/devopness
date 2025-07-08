@@ -43,13 +43,7 @@ class EnvironmentUpdate(DevopnessBaseModel):
 
 class EnvironmentUpdatePlain(TypedDict, total=False):
     """
-    Plain version of EnvironmentUpdate
-
-    Attributes:
-        id (int): The unique ID of the given Environment.
-        type (EnvironmentType):
-        name (str): The environment&#39;s name. Must not be greater than 60 characters.
-        description (str): The environment&#39;s description. Must not be greater than 255 characters.
+    Plain version of EnvironmentUpdate.
     """
 
     id: Required[int]

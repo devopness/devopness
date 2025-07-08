@@ -31,11 +31,7 @@ class NetworkUpdate(DevopnessBaseModel):
 
 class NetworkUpdatePlain(TypedDict, total=False):
     """
-    Plain version of NetworkUpdate
-
-    Attributes:
-        id (int): The unique ID of the given Network.
-        credential_id (int): The ID of the cloud credential.
+    Plain version of NetworkUpdate.
     """
 
     id: Required[int]

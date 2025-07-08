@@ -33,11 +33,7 @@ class SshKeyUpdate(DevopnessBaseModel):
 
 class SshKeyUpdatePlain(TypedDict, total=False):
     """
-    Plain version of SshKeyUpdate
-
-    Attributes:
-        id (int): The unique ID of the given SSH Key.
-        name (str): The ssh key&#39;s name. Must not be greater than 60 characters.
+    Plain version of SshKeyUpdate.
     """
 
     id: Required[int]

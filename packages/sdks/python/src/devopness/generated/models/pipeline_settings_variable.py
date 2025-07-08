@@ -41,14 +41,7 @@ class PipelineSettingsVariable(DevopnessBaseModel):
 
 class PipelineSettingsVariablePlain(TypedDict, total=False):
     """
-    Plain version of PipelineSettingsVariable
-
-    Attributes:
-        name (str):
-        human_readable (str):
-        hint (str): Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
-        type (str):
-        required (bool):
+    Plain version of PipelineSettingsVariable.
     """
 
     name: Required[str]

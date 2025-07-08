@@ -33,10 +33,7 @@ class DaemonRestart(DevopnessBaseModel):
 
 class DaemonRestartPlain(TypedDict, total=False):
     """
-    Plain version of DaemonRestart
-
-    Attributes:
-        servers (List[int]): List of valid resource IDs
+    Plain version of DaemonRestart.
     """
 
     servers: Required[List[int]]

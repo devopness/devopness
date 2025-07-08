@@ -38,13 +38,7 @@ class UserActivity(DevopnessBaseModel):
 
 class UserActivityPlain(TypedDict, total=False):
     """
-    Plain version of UserActivity
-
-    Attributes:
-        projects (UserProjectStats):
-        environments (UserEnvironmentStats):
-        teams (UserTeamStats):
-        triggered_actions (TriggeredActions):
+    Plain version of UserActivity.
     """
 
     projects: Required[

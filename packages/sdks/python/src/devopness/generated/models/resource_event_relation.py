@@ -48,17 +48,7 @@ class ResourceEventRelation(DevopnessBaseModel):
 
 class ResourceEventRelationPlain(TypedDict, total=False):
     """
-    Plain version of ResourceEventRelation
-
-    Attributes:
-        id (int): The ID of the given resource event
-        event_type (str): The type of resource event
-        resource_type (str): The event&#39;s resource type
-        resource_id (int): The event&#39;s resource ID
-        message (str, optional):
-        triggered_by (int, optional):
-        created_at (str): The date and time when the record was created
-        updated_at (str): The date and time when the record was last updated
+    Plain version of ResourceEventRelation.
     """
 
     id: Required[int]

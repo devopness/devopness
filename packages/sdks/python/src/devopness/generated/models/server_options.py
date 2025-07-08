@@ -34,10 +34,7 @@ class ServerOptions(DevopnessBaseModel):
 
 class ServerOptionsPlain(TypedDict, total=False):
     """
-    Plain version of ServerOptions
-
-    Attributes:
-        variable_targets (List[VariableTargets]): The list of VariableTarget
+    Plain version of ServerOptions.
     """
 
     variable_targets: Required[

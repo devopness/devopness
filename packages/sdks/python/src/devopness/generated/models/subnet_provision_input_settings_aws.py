@@ -43,13 +43,7 @@ class SubnetProvisionInputSettingsAws(DevopnessBaseModel):
 
 class SubnetProvisionInputSettingsAwsPlain(TypedDict, total=False):
     """
-    Plain version of SubnetProvisionInputSettingsAws
-
-    Attributes:
-        region (str): The cloud provider region where the subnet will be created
-        region_human_readable (str): Human readable version of the subnet region
-        zone (str): The cloud provider availability zone where the subnet will be created
-        cidr_block (str): The IP CIDR range of the subnet
+    Plain version of SubnetProvisionInputSettingsAws.
     """
 
     region: Required[str]

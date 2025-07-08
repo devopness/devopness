@@ -72,23 +72,7 @@ class HookRequest(DevopnessBaseModel):
 
 class HookRequestPlain(TypedDict, total=False):
     """
-    Plain version of HookRequest
-
-    Attributes:
-        id (str): The unique UUID of the hook request
-        hook_id (str): The UUID of the hook that the request belongs to
-        action_id (int, optional): The ID of the action that the request belongs to
-        retry_of (str, optional): The UUID of the request that this request is a retry of
-        ip_address (str): The IP address of the source that triggered the hook
-        url (str): Original URL used on the request
-        request_headers (object): The headers of the request
-        request_body (object): The body of the request
-        response_status_code (int): The response status code
-        response_headers (object): The headers of the response
-        response_body (object): The body of the response
-        hook (HookRelation, optional):
-        created_at (str): The date and time when the record was created
-        updated_at (str): The date and time when the record was last updated
+    Plain version of HookRequest.
     """
 
     id: Required[str]

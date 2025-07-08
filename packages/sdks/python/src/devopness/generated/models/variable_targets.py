@@ -41,12 +41,7 @@ class VariableTargets(DevopnessBaseModel):
 
 class VariableTargetsPlain(TypedDict, total=False):
     """
-    Plain version of VariableTargets
-
-    Attributes:
-        name (VariableTarget):
-        name_human_readable (str): Human readable version of the variable target name
-        hint (str): Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
+    Plain version of VariableTargets.
     """
 
     name: Required[

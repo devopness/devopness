@@ -35,10 +35,7 @@ class StaticBillingInfo(DevopnessBaseModel):
 
 class StaticBillingInfoPlain(TypedDict, total=False):
     """
-    Plain version of StaticBillingInfo
-
-    Attributes:
-        subscription_plans (List[SubscriptionPlan]): The list of subscription plans
+    Plain version of StaticBillingInfo.
     """
 
     subscription_plans: Required[

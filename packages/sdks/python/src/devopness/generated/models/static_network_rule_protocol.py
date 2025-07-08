@@ -41,12 +41,7 @@ class StaticNetworkRuleProtocol(DevopnessBaseModel):
 
 class StaticNetworkRuleProtocolPlain(TypedDict, total=False):
     """
-    Plain version of StaticNetworkRuleProtocol
-
-    Attributes:
-        value (NetworkRuleProtocol):
-        human_readable (str): The formatted name to be displayed in user interfaces
-        defaults (StaticNetworkRuleProtocolDefaults):
+    Plain version of StaticNetworkRuleProtocol.
     """
 
     value: Required[

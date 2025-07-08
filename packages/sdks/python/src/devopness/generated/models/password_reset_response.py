@@ -31,10 +31,7 @@ class PasswordResetResponse(DevopnessBaseModel):
 
 class PasswordResetResponsePlain(TypedDict, total=False):
     """
-    Plain version of PasswordResetResponse
-
-    Attributes:
-        message (str): Message with information about the response
+    Plain version of PasswordResetResponse.
     """
 
     message: Required[str]

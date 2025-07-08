@@ -42,11 +42,7 @@ class CredentialOptions(DevopnessBaseModel):
 
 class CredentialOptionsPlain(TypedDict, total=False):
     """
-    Plain version of CredentialOptions
-
-    Attributes:
-        provider_types (List[CredentialProviderType]): The list of credential provider types
-        supported_providers (List[CredentialProvider]): The list of supported credential providers
+    Plain version of CredentialOptions.
     """
 
     provider_types: Required[

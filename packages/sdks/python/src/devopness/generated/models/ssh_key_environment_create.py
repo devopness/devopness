@@ -41,12 +41,7 @@ class SshKeyEnvironmentCreate(DevopnessBaseModel):
 
 class SshKeyEnvironmentCreatePlain(TypedDict, total=False):
     """
-    Plain version of SshKeyEnvironmentCreate
-
-    Attributes:
-        linked_resources (List[ResourceToBeLinked]): The resources to be linked with this resource
-        name (str): The ssh key&#39;s name. Must not be greater than 60 characters.
-        public_key (str): The public key of the ssh key.
+    Plain version of SshKeyEnvironmentCreate.
     """
 
     linked_resources: Required[

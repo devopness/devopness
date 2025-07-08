@@ -36,12 +36,7 @@ class UserProfileOptions(DevopnessBaseModel):
 
 class UserProfileOptionsPlain(TypedDict, total=False):
     """
-    Plain version of UserProfileOptions
-
-    Attributes:
-        billing (StaticBillingInfo):
-        languages (List[str]): Supported languages
-        timezones (List[str]): Supported time zones
+    Plain version of UserProfileOptions.
     """
 
     billing: Required[

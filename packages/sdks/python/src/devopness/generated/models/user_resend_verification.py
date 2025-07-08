@@ -31,10 +31,7 @@ class UserResendVerification(DevopnessBaseModel):
 
 class UserResendVerificationPlain(TypedDict, total=False):
     """
-    Plain version of UserResendVerification
-
-    Attributes:
-        email (str): The user email to resend the verification link to. Must be a valid email address.
+    Plain version of UserResendVerification.
     """
 
     email: Required[str]

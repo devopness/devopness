@@ -33,11 +33,7 @@ class UserLogin(DevopnessBaseModel):
 
 class UserLoginPlain(TypedDict, total=False):
     """
-    Plain version of UserLogin
-
-    Attributes:
-        email (str): The user&#39;s registered e-mail address. Must be a valid email address.
-        password (str): The user password.
+    Plain version of UserLogin.
     """
 
     email: Required[str]

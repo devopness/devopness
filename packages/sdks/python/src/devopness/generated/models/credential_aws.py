@@ -35,11 +35,7 @@ class CredentialAws(DevopnessBaseModel):
 
 class CredentialAwsPlain(TypedDict, total=False):
     """
-    Plain version of CredentialAws
-
-    Attributes:
-        access_key_id (str): The key used to authenticate on AWS cloud provider
-        secret_access_key (str): The secret used to authenticate on AWS cloud provider
+    Plain version of CredentialAws.
     """
 
     access_key_id: Required[str]

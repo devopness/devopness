@@ -31,10 +31,7 @@ class TeamEnvironmentLink(DevopnessBaseModel):
 
 class TeamEnvironmentLinkPlain(TypedDict, total=False):
     """
-    Plain version of TeamEnvironmentLink
-
-    Attributes:
-        role_id (int): The role&#39;s ID to use for this team on environment.
+    Plain version of TeamEnvironmentLink.
     """
 
     role_id: Required[int]

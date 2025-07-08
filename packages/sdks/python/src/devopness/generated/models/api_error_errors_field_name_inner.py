@@ -34,10 +34,7 @@ class ApiErrorErrorsFieldNameInner(DevopnessBaseModel):
 
 class ApiErrorErrorsFieldNameInnerPlain(TypedDict, total=False):
     """
-    Plain version of ApiErrorErrorsFieldNameInner
-
-    Attributes:
-        field (str): Field name and respective error message
+    Plain version of ApiErrorErrorsFieldNameInner.
     """
 
     field: Required[str]

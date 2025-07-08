@@ -29,10 +29,7 @@ class OsUsersInner(DevopnessBaseModel):
 
 class OsUsersInnerPlain(TypedDict, total=False):
     """
-    Plain version of OsUsersInner
-
-    Attributes:
-        name (str): Operating system username
+    Plain version of OsUsersInner.
     """
 
     name: Required[str]

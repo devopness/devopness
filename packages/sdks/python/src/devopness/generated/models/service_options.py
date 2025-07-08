@@ -32,10 +32,7 @@ class ServiceOptions(DevopnessBaseModel):
 
 class ServiceOptionsPlain(TypedDict, total=False):
     """
-    Plain version of ServiceOptions
-
-    Attributes:
-        types (List[StaticServiceType]): List of service types
+    Plain version of ServiceOptions.
     """
 
     types: Required[

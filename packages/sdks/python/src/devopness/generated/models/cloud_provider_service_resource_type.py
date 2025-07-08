@@ -66,16 +66,7 @@ class CloudProviderServiceResourceType(DevopnessBaseModel):
 
 class CloudProviderServiceResourceTypePlain(TypedDict, total=False):
     """
-    Plain version of CloudProviderServiceResourceType
-
-    Attributes:
-        provider_resource_type (str): The resource type&#39;s name on the cloud provider
-        devopness_resource_type (str): The resource type&#39;s name on Devopness
-        scope (CloudProviderServiceResourceTypeScope):
-        input_settings (List[CloudProviderInputSettings]): Settings of the cloud provider credential
-        os (List[OperatingSystem]):
-        can_keep_disk_after_delete_server (bool): Tells if this cloud service allows keeping server&#39;s persistent disks after a server is deleted. If true, Devopness API will allow users to send a parameter when deleting a server to indicate if the server persistent disks must be retained, keeping data in the disk volumes - possibly incurring extra costs on the user&#39;s cloud provider account. For cloud services that do not support this option, server disks will always be deleted when a server is deleted.
-        operation_custom_settings (OperationCustomSettings):
+    Plain version of CloudProviderServiceResourceType.
     """
 
     provider_resource_type: Required[str]

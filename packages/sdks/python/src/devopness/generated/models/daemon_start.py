@@ -33,10 +33,7 @@ class DaemonStart(DevopnessBaseModel):
 
 class DaemonStartPlain(TypedDict, total=False):
     """
-    Plain version of DaemonStart
-
-    Attributes:
-        servers (List[int]): List of valid resource IDs
+    Plain version of DaemonStart.
     """
 
     servers: Required[List[int]]

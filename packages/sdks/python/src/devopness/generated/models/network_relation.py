@@ -72,22 +72,7 @@ class NetworkRelation(DevopnessBaseModel):
 
 class NetworkRelationPlain(TypedDict, total=False):
     """
-    Plain version of NetworkRelation
-
-    Attributes:
-        id (int): The unique id of the given record
-        project_id (int): Numeric ID of the project to which the network belongs to
-        environment_id (int): Numeric ID of the environment to which the network belongs to
-        created_by (int): The id of the user who created the network
-        is_auto_generated (bool): If true, the network is auto-generated
-        provider_name (str): The name of the cloud provider
-        provider_name_human_readable (str): The human readable version of the provider&#39;s name
-        credential (Credential):
-        name (str): The networks&#39;s name
-        provision_input (NetworkProvisionInput):
-        last_action (ActionRelationShallow, optional):
-        created_at (str): The date and time when the record was created
-        updated_at (str): The date and time when the record was last updated
+    Plain version of NetworkRelation.
     """
 
     id: Required[int]

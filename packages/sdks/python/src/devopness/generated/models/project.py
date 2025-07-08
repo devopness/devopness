@@ -61,18 +61,7 @@ class Project(DevopnessBaseModel):
 
 class ProjectPlain(TypedDict, total=False):
     """
-    Plain version of Project
-
-    Attributes:
-        id (int): The Id of the project
-        user_id (int): The id of the user that own the project
-        name (str): The project&#39;s name
-        logo_url (str, optional): A URL path to the project&#39;s logo image
-        resource_summary (List[ResourceSummaryItem]): Summary of the resource
-        os_users (List[OsUsersInner]): The list of the operating system users found in all the servers linked to a project
-        created_by_user (UserRelation):
-        created_at (str): The date and time when the record was created
-        updated_at (str): The date and time when the record was last updated
+    Plain version of Project.
     """
 
     id: Required[int]

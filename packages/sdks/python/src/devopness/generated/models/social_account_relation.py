@@ -62,18 +62,7 @@ class SocialAccountRelation(DevopnessBaseModel):
 
 class SocialAccountRelationPlain(TypedDict, total=False):
     """
-    Plain version of SocialAccountRelation
-
-    Attributes:
-        id (int): The ID of the given social account
-        user_id (int): The current user&#39;s ID
-        provider (SocialAccountProvider):
-        provider_human_readable (SocialAccountDisplayableName):
-        provider_user_nickname (str): The nickname of the user on the Source Authentication provider
-        is_vcs (bool): Tells if the social account provider is a Source Code Provider/Version Control System. e.g. false for Facebook, true for Github
-        token_expires_at (str, optional): The date and time indicating when the authentication token will expire at
-        created_at (str): The date and time when the record was created
-        updated_at (str): The date and time when the record was last updated
+    Plain version of SocialAccountRelation.
     """
 
     id: Required[int]

@@ -39,14 +39,7 @@ class ActionSummaryTarget(DevopnessBaseModel):
 
 class ActionSummaryTargetPlain(TypedDict, total=False):
     """
-    Plain version of ActionSummaryTarget
-
-    Attributes:
-        count (int): The total number of action targets
-        pending (int): The number of action targets pending
-        in_progress (int): The number of action targets in progress
-        completed (int): The number of action targets completed
-        failed (int): The number of action targets failed
+    Plain version of ActionSummaryTarget.
     """
 
     count: Required[int]

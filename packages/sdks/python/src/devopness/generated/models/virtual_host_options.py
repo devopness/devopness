@@ -37,11 +37,7 @@ class VirtualHostOptions(DevopnessBaseModel):
 
 class VirtualHostOptionsPlain(TypedDict, total=False):
     """
-    Plain version of VirtualHostOptions
-
-    Attributes:
-        variable_targets (List[VariableTargets]): The list of VariableTarget
-        virtual_host_types (List[StaticVirtualHostType]):
+    Plain version of VirtualHostOptions.
     """
 
     variable_targets: Required[

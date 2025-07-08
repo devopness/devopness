@@ -36,11 +36,7 @@ class NetworkProvisionInputSettingsGcp(DevopnessBaseModel):
 
 class NetworkProvisionInputSettingsGcpPlain(TypedDict, total=False):
     """
-    Plain version of NetworkProvisionInputSettingsGcp
-
-    Attributes:
-        region (str): The cloud provider region where the network will be created
-        region_human_readable (str): Human readable version of the network region
+    Plain version of NetworkProvisionInputSettingsGcp.
     """
 
     region: Required[str]

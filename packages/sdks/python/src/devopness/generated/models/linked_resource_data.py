@@ -51,14 +51,7 @@ class LinkedResourceData(DevopnessBaseModel):
 
 class LinkedResourceDataPlain(TypedDict, total=False):
     """
-    Plain version of LinkedResourceData
-
-    Attributes:
-        id (int): The unique ID of the resource
-        name (str): Resource name
-        summary_fields (List[LinkedResourceSummaryField]): The summary of linked resource fields
-        created_at (datetime): The date and time when the record was created
-        updated_at (datetime): The date and time when the record was last updated
+    Plain version of LinkedResourceData.
     """
 
     id: Required[int]

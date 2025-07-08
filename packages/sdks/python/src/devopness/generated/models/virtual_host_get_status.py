@@ -33,10 +33,7 @@ class VirtualHostGetStatus(DevopnessBaseModel):
 
 class VirtualHostGetStatusPlain(TypedDict, total=False):
     """
-    Plain version of VirtualHostGetStatus
-
-    Attributes:
-        servers (List[int]): List of valid resource IDs
+    Plain version of VirtualHostGetStatus.
     """
 
     servers: Required[List[int]]

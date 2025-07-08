@@ -39,11 +39,7 @@ class UserProjectStats(DevopnessBaseModel):
 
 class UserProjectStatsPlain(TypedDict, total=False):
     """
-    Plain version of UserProjectStats
-
-    Attributes:
-        owner_of (float): Total number of projects that user has access to, as owner.
-        member_of (float): Total number of projects that user has access to, as team member.
+    Plain version of UserProjectStats.
     """
 
     owner_of: Required[float]

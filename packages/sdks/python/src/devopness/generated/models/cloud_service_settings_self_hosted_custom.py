@@ -29,10 +29,7 @@ class CloudServiceSettingsSelfHostedCustom(DevopnessBaseModel):
 
 class CloudServiceSettingsSelfHostedCustomPlain(TypedDict, total=False):
     """
-    Plain version of CloudServiceSettingsSelfHostedCustom
-
-    Attributes:
-        os_version_code (CloudOsVersionCode, optional):
+    Plain version of CloudServiceSettingsSelfHostedCustom.
     """
 
     os_version_code: Optional[

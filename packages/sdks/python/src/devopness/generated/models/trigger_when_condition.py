@@ -50,13 +50,7 @@ class TriggerWhenCondition(DevopnessBaseModel):
 
 class TriggerWhenConditionPlain(TypedDict, total=False):
     """
-    Plain version of TriggerWhenCondition
-
-    Attributes:
-        name (str): Name of the condition
-        type (TriggerWhenConditionType):
-        path (str): A dot-notation path of the request body attribute to be used as the value to evaluate this condition.
-        accepted_values (List[TriggerWhenConditionAcceptedValuesInner]): List of accepted values for this condition.
+    Plain version of TriggerWhenCondition.
     """
 
     name: Required[str]

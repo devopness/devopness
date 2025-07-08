@@ -68,20 +68,7 @@ class SslCertificateRelation(DevopnessBaseModel):
 
 class SslCertificateRelationPlain(TypedDict, total=False):
     """
-    Plain version of SslCertificateRelation
-
-    Attributes:
-        id (int): The unique ID of the given SSL certificate
-        name (str): The name given to SSL certificate
-        type (SslCertificateType):
-        issuer (SslCertificateIssuer):
-        validation_level (SslCertificateValidationLevel):
-        active (bool): Tells if the certificate is active for all linked servers and applications
-        last_action (ActionRelationShallow, optional):
-        expires_at (str, optional): The date and time when this certificate will no longer be valid, down to minute precision
-        last_renewed_at (str, optional): The date and time when this certificate was renewed for the last time
-        created_at (str): The date and time when the record was created
-        updated_at (str): The date and time when the record was last updated
+    Plain version of SslCertificateRelation.
     """
 
     id: Required[int]

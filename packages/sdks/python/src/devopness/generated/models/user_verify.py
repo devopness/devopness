@@ -49,14 +49,7 @@ class UserVerify(DevopnessBaseModel):
 
 class UserVerifyPlain(TypedDict, total=False):
     """
-    Plain version of UserVerify
-
-    Attributes:
-        email (str): The email of the user&#39;s account. Must be a valid email address. Must not be greater than 255 characters.
-        token (str): The security token of the account. Must not be greater than 255 characters.
-        name (str): The new user name to account. Must be at least 3 characters. Must not be greater than 255 characters.
-        url_slug (str): The URL Slug of the account. Must not be greater than 255 characters.
-        password (str): The new password to account. Must be at least 8 characters.
+    Plain version of UserVerify.
     """
 
     email: Required[str]

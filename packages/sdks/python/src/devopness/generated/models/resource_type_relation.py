@@ -54,15 +54,7 @@ class ResourceTypeRelation(DevopnessBaseModel):
 
 class ResourceTypeRelationPlain(TypedDict, total=False):
     """
-    Plain version of ResourceTypeRelation
-
-    Attributes:
-        resource_type (ResourceType):
-        resource_type_human_readable (str): Human readable version of the resource type
-        resource_type_human_readable_plural (str): Human readable version of the resource type, in plural form
-        supported_operations (List[ResourceOperation]): A list of resource operations
-        can_be_child_of (List[ResourceTypeRelated]): A list of related resources
-        can_be_parent_of (List[ResourceTypeRelated]): A list of related resources
+    Plain version of ResourceTypeRelation.
     """
 
     resource_type: Required[

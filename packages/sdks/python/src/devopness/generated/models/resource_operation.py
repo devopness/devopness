@@ -36,12 +36,7 @@ class ResourceOperation(DevopnessBaseModel):
 
 class ResourceOperationPlain(TypedDict, total=False):
     """
-    Plain version of ResourceOperation
-
-    Attributes:
-        operation (str):
-        operation_human_readable (str):
-        pipeline_settings (PipelineSettings):
+    Plain version of ResourceOperation.
     """
 
     operation: Required[str]

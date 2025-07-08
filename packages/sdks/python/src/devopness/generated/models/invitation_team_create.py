@@ -31,10 +31,7 @@ class InvitationTeamCreate(DevopnessBaseModel):
 
 class InvitationTeamCreatePlain(TypedDict, total=False):
     """
-    Plain version of InvitationTeamCreate
-
-    Attributes:
-        email (str): The user email to send the invitation. Must be a valid email address.
+    Plain version of InvitationTeamCreate.
     """
 
     email: Required[str]

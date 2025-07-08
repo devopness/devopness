@@ -33,10 +33,7 @@ class ServiceRestart(DevopnessBaseModel):
 
 class ServiceRestartPlain(TypedDict, total=False):
     """
-    Plain version of ServiceRestart
-
-    Attributes:
-        servers (List[int]): List of valid resource IDs
+    Plain version of ServiceRestart.
     """
 
     servers: Required[List[int]]

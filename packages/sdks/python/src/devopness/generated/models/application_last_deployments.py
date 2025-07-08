@@ -31,11 +31,7 @@ class ApplicationLastDeployments(DevopnessBaseModel):
 
 class ApplicationLastDeploymentsPlain(TypedDict, total=False):
     """
-    Plain version of ApplicationLastDeployments
-
-    Attributes:
-        latest (ActionRelationShallow, optional):
-        live (ActionRelationShallow, optional):
+    Plain version of ApplicationLastDeployments.
     """
 
     latest: Optional[

@@ -38,11 +38,7 @@ class NetworkProvisionInput(DevopnessBaseModel):
 
 class NetworkProvisionInputPlain(TypedDict, total=False):
     """
-    Plain version of NetworkProvisionInput
-
-    Attributes:
-        cloud_service_code (ServerCloudServiceCode):
-        settings (NetworkProvisionInputSettings):
+    Plain version of NetworkProvisionInput.
     """
 
     cloud_service_code: Required[

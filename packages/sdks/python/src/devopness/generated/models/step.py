@@ -79,23 +79,7 @@ class Step(DevopnessBaseModel):
 
 class StepPlain(TypedDict, total=False):
     """
-    Plain version of Step
-
-    Attributes:
-        id (int): The unique ID of the given pipeline step
-        name (str, optional): The pipeline step&#39;s name
-        description (str, optional): The pipeline step&#39;s description
-        type (str): The pipeline step&#39;s type
-        run_as_user (str): The name of the Unix user on behalf of which the script will be executed
-        command (str): A command line or multiline bash pipeline step
-        runner (PipelineStepRunnerName):
-        script_id (int): The script&#39;s ID of this pipeline step
-        pipeline_id (int): The pipeline&#39;s ID
-        trigger_order (int): The relative order of the step execution in case of multiple steps attached to pipeline
-        is_auto_generated (bool): True if this step is auto-generated or false if this was created by the user
-        is_default_step (bool): True if this step is a default step of the pipeline and cannot be updated/deleted
-        created_at (str): The date and time when the record was created
-        updated_at (str): The date and time when the record was last updated
+    Plain version of Step.
     """
 
     id: Required[int]

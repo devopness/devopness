@@ -35,11 +35,7 @@ class RepositoryTagCommit(DevopnessBaseModel):
 
 class RepositoryTagCommitPlain(TypedDict, total=False):
     """
-    Plain version of RepositoryTagCommit
-
-    Attributes:
-        hash (str): The commit comment&#39;s full hash that uniquely identify it
-        url (str): The direct URL for accessing commit details on the provider&#39;s web application
+    Plain version of RepositoryTagCommit.
     """
 
     hash: Required[str]

@@ -29,10 +29,7 @@ class StaticNetworkRuleProtocolDefaults(DevopnessBaseModel):
 
 class StaticNetworkRuleProtocolDefaultsPlain(TypedDict, total=False):
     """
-    Plain version of StaticNetworkRuleProtocolDefaults
-
-    Attributes:
-        port (int, optional): The default port for the protocol
+    Plain version of StaticNetworkRuleProtocolDefaults.
     """
 
     port: Optional[int]

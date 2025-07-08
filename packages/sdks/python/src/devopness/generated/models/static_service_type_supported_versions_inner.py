@@ -39,11 +39,7 @@ class StaticServiceTypeSupportedVersionsInner(DevopnessBaseModel):
 
 class StaticServiceTypeSupportedVersionsInnerPlain(TypedDict, total=False):
     """
-    Plain version of StaticServiceTypeSupportedVersionsInner
-
-    Attributes:
-        version (str): The service&#39;s version that is supported
-        variable_targets (List[VariableTargets]): The list of VariableTarget
+    Plain version of StaticServiceTypeSupportedVersionsInner.
     """
 
     version: Required[str]

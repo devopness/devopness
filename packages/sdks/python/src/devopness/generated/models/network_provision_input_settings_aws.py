@@ -38,12 +38,7 @@ class NetworkProvisionInputSettingsAws(DevopnessBaseModel):
 
 class NetworkProvisionInputSettingsAwsPlain(TypedDict, total=False):
     """
-    Plain version of NetworkProvisionInputSettingsAws
-
-    Attributes:
-        region (str): The cloud provider region where the network will be created
-        region_human_readable (str): Human readable version of the network region
-        cidr_block (str): The IP CIDR range of the network
+    Plain version of NetworkProvisionInputSettingsAws.
     """
 
     region: Required[str]

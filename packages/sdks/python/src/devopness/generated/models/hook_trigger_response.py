@@ -38,11 +38,7 @@ class HookTriggerResponse(DevopnessBaseModel):
 
 class HookTriggerResponsePlain(TypedDict, total=False):
     """
-    Plain version of HookTriggerResponse
-
-    Attributes:
-        message (str): Message containing information about the hook being triggered
-        errors (object, optional): Optional error object containing details of the server error
+    Plain version of HookTriggerResponse.
     """
 
     message: Required[str]

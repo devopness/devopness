@@ -49,15 +49,7 @@ class ServerBlueprint(DevopnessBaseModel):
 
 class ServerBlueprintPlain(TypedDict, total=False):
     """
-    Plain version of ServerBlueprint
-
-    Attributes:
-        id (int): The unique id of the blueprint
-        name (str): Name of the blueprint
-        type (str): The blueprint type
-        spec (ServerBlueprintSpec):
-        created_at (datetime): The date and time when the record was created
-        updated_at (datetime): The date and time when the record was last updated
+    Plain version of ServerBlueprint.
     """
 
     id: Required[int]

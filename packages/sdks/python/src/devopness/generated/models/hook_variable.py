@@ -51,14 +51,7 @@ class HookVariable(DevopnessBaseModel):
 
 class HookVariablePlain(TypedDict, total=False):
     """
-    Plain version of HookVariable
-
-    Attributes:
-        name (str): The name of the variable
-        path (str): A dot-notation path of the variable to be used as the value to evaluate this condition. If not defined the &#x60;name&#x60; will be used instead.
-        type (HookVariableType):
-        required (bool): Defines if the variable is required
-        default_value (HookVariableDefaultValue, optional):
+    Plain version of HookVariable.
     """
 
     name: Required[str]

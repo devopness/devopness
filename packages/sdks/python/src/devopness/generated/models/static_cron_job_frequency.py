@@ -37,12 +37,7 @@ class StaticCronJobFrequency(DevopnessBaseModel):
 
 class StaticCronJobFrequencyPlain(TypedDict, total=False):
     """
-    Plain version of StaticCronJobFrequency
-
-    Attributes:
-        value (str): Frequency pattern to trigger the cronjob
-        human_readable (CronJobPattern):
-        hint (str): Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
+    Plain version of StaticCronJobFrequency.
     """
 
     value: Required[str]

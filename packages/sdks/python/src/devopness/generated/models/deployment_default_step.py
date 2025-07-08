@@ -37,12 +37,7 @@ class DeploymentDefaultStep(DevopnessBaseModel):
 
 class DeploymentDefaultStepPlain(TypedDict, total=False):
     """
-    Plain version of DeploymentDefaultStep
-
-    Attributes:
-        value (TriggerEvent):
-        human_readable (str): Formatted name of the event
-        hint (str): Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
+    Plain version of DeploymentDefaultStep.
     """
 
     value: Required[

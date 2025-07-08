@@ -31,11 +31,7 @@ class ProviderTypeListInner(DevopnessBaseModel):
 
 class ProviderTypeListInnerPlain(TypedDict, total=False):
     """
-    Plain version of ProviderTypeListInner
-
-    Attributes:
-        type (str):
-        type_human_readable (str):
+    Plain version of ProviderTypeListInner.
     """
 
     type: Required[str]

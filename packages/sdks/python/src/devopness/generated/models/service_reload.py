@@ -33,10 +33,7 @@ class ServiceReload(DevopnessBaseModel):
 
 class ServiceReloadPlain(TypedDict, total=False):
     """
-    Plain version of ServiceReload
-
-    Attributes:
-        servers (List[int]): List of valid resource IDs
+    Plain version of ServiceReload.
     """
 
     servers: Required[List[int]]

@@ -35,10 +35,7 @@ class HookIncomingSettings(DevopnessBaseModel):
 
 class HookIncomingSettingsPlain(TypedDict, total=False):
     """
-    Plain version of HookIncomingSettings
-
-    Attributes:
-        variables (List[HookVariable]): List of variables to incoming hook
+    Plain version of HookIncomingSettings.
     """
 
     variables: Required[

@@ -31,10 +31,7 @@ class CredentialGoogleCloud(DevopnessBaseModel):
 
 class CredentialGoogleCloudPlain(TypedDict, total=False):
     """
-    Plain version of CredentialGoogleCloud
-
-    Attributes:
-        service_account_key (str): The JSON key to service account of Google Cloud provider
+    Plain version of CredentialGoogleCloud.
     """
 
     service_account_key: Required[str]

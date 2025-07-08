@@ -45,13 +45,7 @@ class ProjectCreate(DevopnessBaseModel):
 
 class ProjectCreatePlain(TypedDict, total=False):
     """
-    Plain version of ProjectCreate
-
-    Attributes:
-        name (str): The name of the project. Must not be greater than 60 characters.
-        organization_id (int): The ID of the organization that owns the project.
-        logo_image (str): A base64 string representation of the logo image.
-        logo_url (str): A URL path to the project&#39;s logo image. Must be a valid URL.
+    Plain version of ProjectCreate.
     """
 
     name: Required[str]

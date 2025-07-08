@@ -38,12 +38,7 @@ class Log(DevopnessBaseModel):
 
 class LogPlain(TypedDict, total=False):
     """
-    Plain version of Log
-
-    Attributes:
-        target (ActionTargetData, optional):
-        step (ActionTargetLogStep, optional):
-        updated_at (str, optional): The date and time when the requested log record was last updated
+    Plain version of Log.
     """
 
     target: Optional[

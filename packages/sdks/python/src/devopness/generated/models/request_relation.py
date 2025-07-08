@@ -54,16 +54,7 @@ class RequestRelation(DevopnessBaseModel):
 
 class RequestRelationPlain(TypedDict, total=False):
     """
-    Plain version of RequestRelation
-
-    Attributes:
-        id (str): The unique UUID of the hook request
-        hook_id (str): The UUID of the hook that the request belongs to
-        action_id (int, optional): The ID of the action that the request belongs to
-        retry_of (str, optional): The UUID of the request that this request is a retry of
-        ip_address (str): The IP address of the source that triggered the hook
-        created_at (str): The date and time when the record was created
-        updated_at (str): The date and time when the record was last updated
+    Plain version of RequestRelation.
     """
 
     id: Required[str]

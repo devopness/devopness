@@ -70,21 +70,7 @@ class Environment(DevopnessBaseModel):
 
 class EnvironmentPlain(TypedDict, total=False):
     """
-    Plain version of Environment
-
-    Attributes:
-        id (int): Unique id of the given record
-        type (EnvironmentType):
-        type_human_readable (str): The human readable version of the type
-        name (str): Environment&#39;s name
-        description (str, optional): Environment&#39;s description
-        is_archived (bool): Indicates whether the record was archived
-        resource_summary (List[ResourceSummaryItem]): Summary of the resource
-        teams (List[TeamRelation]):
-        created_by_user (UserRelation):
-        current_user_permissions (List[str]): The list of permissions granted for this role
-        created_at (str): The date and time when the record was created
-        updated_at (str): The date and time when the record was last updated
+    Plain version of Environment.
     """
 
     id: Required[int]

@@ -53,15 +53,7 @@ class SubscriptionBalance(DevopnessBaseModel):
 
 class SubscriptionBalancePlain(TypedDict, total=False):
     """
-    Plain version of SubscriptionBalance
-
-    Attributes:
-        credits (Credits):
-        unit (str): The unit of measurement to count credits
-        billing_period_started_at (datetime): The date and time the subscription plan starts
-        billing_period_ends_at (datetime): The date and time the subscription plan ends
-        created_at (datetime): The date and time when the record was created
-        updated_at (datetime): The date and time when the record was last updated
+    Plain version of SubscriptionBalance.
     """
 
     credits: Required[

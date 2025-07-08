@@ -53,14 +53,7 @@ class CloudProviderService(DevopnessBaseModel):
 
 class CloudProviderServicePlain(TypedDict, total=False):
     """
-    Plain version of CloudProviderService
-
-    Attributes:
-        code (CloudProviderServiceCode):
-        name (str): The full name of the cloud service
-        provider (ProviderRelation):
-        regions (List[CloudProviderServiceRegion]):
-        resource_types (List[CloudProviderServiceResourceType]):
+    Plain version of CloudProviderService.
     """
 
     code: Required[

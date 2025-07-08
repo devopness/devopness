@@ -35,11 +35,7 @@ class SocialAccountCreate(DevopnessBaseModel):
 
 class SocialAccountCreatePlain(TypedDict, total=False):
     """
-    Plain version of SocialAccountCreate
-
-    Attributes:
-        provider (SourceProviderName):
-        callback_code (str): The temporary code forwarded by the OAuth provider as a parameter to our callback URL. Must be at least 8 characters.
+    Plain version of SocialAccountCreate.
     """
 
     provider: Required[

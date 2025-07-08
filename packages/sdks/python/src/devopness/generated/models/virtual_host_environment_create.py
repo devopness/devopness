@@ -56,15 +56,7 @@ class VirtualHostEnvironmentCreate(DevopnessBaseModel):
 
 class VirtualHostEnvironmentCreatePlain(TypedDict, total=False):
     """
-    Plain version of VirtualHostEnvironmentCreate
-
-    Attributes:
-        linked_resources (List[ResourceToBeLinked]): The resources to be linked with this resource
-        type (str): The type of virtual host to be created.
-        name (str): The name of the virtual host, unique within the environment. For &#x60;name-based&#x60; type, it must be a valid domain name (e.g., &#x60;my-site.example.com&#x60;). For &#x60;ip-based&#x60; type, it must be a valid IPv4 address or an IPv4 address with port (e.g., &#x60;127.0.0.1:3000&#x60;). Must not be greater than 255 characters.
-        root_directory (str): The document root location, within the application directory, that contains the public files to be served when a user visits the domain name associated with this virtual host. Must not be greater than 255 characters.
-        application_listen_address (str, optional): The network name or IP address on which the application linked to this virtual host is configured to listen for incoming requests. A valid address has &#x60;http&#x60; or &#x60;https&#x60; protocol, a domain name or IP address, an optional port and optional path. You can also specify a UNIX-socket using &#x60;unix:&#x60; protocol. Examples: &#x60;http://127.0.0.1:8080&#x60; (for applications exposing port &#x60;8080&#x60;, for example running in a Docker container), &#x60;http://127.0.0.1:3000&#x60; (for applications kept alive by a daemon/background process that listens on port &#x60;3000&#x60;), &#x60;unix:/var/run/example.sock&#x60; (for applications listening on a custom socket). Must not be greater than 255 characters.
-        application_id (int, optional): The ID of the application to be associated with the virtual host. The value of &#x60;root_directory&#x60; will be relative to this application directory.
+    Plain version of VirtualHostEnvironmentCreate.
     """
 
     linked_resources: Required[

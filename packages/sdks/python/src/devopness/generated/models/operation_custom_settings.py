@@ -43,12 +43,7 @@ class OperationCustomSettings(DevopnessBaseModel):
 
 class OperationCustomSettingsPlain(TypedDict, total=False):
     """
-    Plain version of OperationCustomSettings
-
-    Attributes:
-        operation (str): The resource&#39;s custom operation that are CSP specific
-        operation_human_readable (str): Human redable version of the resource&#39;s custom operation
-        triggers_action (bool): Whether the &#x60;server:remove&#x60; operation will trigger an action or not
+    Plain version of OperationCustomSettings.
     """
 
     operation: Required[str]

@@ -52,16 +52,7 @@ class ResourceLinkRelation(DevopnessBaseModel):
 
 class ResourceLinkRelationPlain(TypedDict, total=False):
     """
-    Plain version of ResourceLinkRelation
-
-    Attributes:
-        link_type (str): The link type to related resource (&#x60;child&#x60; or &#x60;parent&#x60;)
-        resource_type_human_readable (str): The human readable resource type
-        resource_type (str): The linked resource type
-        resource_id (int): The linked resource ID
-        can_be_unlinked (bool): If false, the link cannot be manually removed
-        linked_resource_data (LinkedResourceData):
-        children (List[ResourceLinkChild]):
+    Plain version of ResourceLinkRelation.
     """
 
     link_type: Required[str]

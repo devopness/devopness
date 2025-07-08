@@ -40,13 +40,7 @@ class SubnetNetworkCreate(DevopnessBaseModel):
 
 class SubnetNetworkCreatePlain(TypedDict, total=False):
     """
-    Plain version of SubnetNetworkCreate
-
-    Attributes:
-        name (str): The subnet&#39;s name. Must be between 1 and 63 characters.
-        type (SubnetType):
-        provision_input (SubnetProvisionInput):
-        credential_id (int): The ID of the cloud credential.
+    Plain version of SubnetNetworkCreate.
     """
 
     name: Required[str]

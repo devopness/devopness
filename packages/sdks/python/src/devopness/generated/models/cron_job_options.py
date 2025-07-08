@@ -33,10 +33,7 @@ class CronJobOptions(DevopnessBaseModel):
 
 class CronJobOptionsPlain(TypedDict, total=False):
     """
-    Plain version of CronJobOptions
-
-    Attributes:
-        frequencies (List[StaticCronJobFrequency]):
+    Plain version of CronJobOptions.
     """
 
     frequencies: Required[

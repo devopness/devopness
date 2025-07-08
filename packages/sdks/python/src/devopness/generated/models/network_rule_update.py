@@ -45,14 +45,7 @@ class NetworkRuleUpdate(DevopnessBaseModel):
 
 class NetworkRuleUpdatePlain(TypedDict, total=False):
     """
-    Plain version of NetworkRuleUpdate
-
-    Attributes:
-        id (int): The unique ID of the given Network Rule.
-        name (str): The rule&#39;s name/description/reminder. Must be at least 3 characters. Must not be greater than 60 characters.
-        direction (NetworkRuleDirection):
-        protocol (NetworkRuleProtocol):
-        cidr_block (str): IP address range this rule applies for, defined using CIDR notation.
+    Plain version of NetworkRuleUpdate.
     """
 
     id: Required[int]

@@ -33,11 +33,7 @@ class ResourceToBeLinked(DevopnessBaseModel):
 
 class ResourceToBeLinkedPlain(TypedDict, total=False):
     """
-    Plain version of ResourceToBeLinked
-
-    Attributes:
-        resource_type (str): The type of the resource to be linked
-        resource_id (int): The ID of the resource to be linked
+    Plain version of ResourceToBeLinked.
     """
 
     resource_type: Required[str]

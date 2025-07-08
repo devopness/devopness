@@ -95,25 +95,7 @@ class ActionTarget(DevopnessBaseModel):
 
 class ActionTargetPlain(TypedDict, total=False):
     """
-    Plain version of ActionTarget
-
-    Attributes:
-        id (int): The ID of the action target
-        resource_type (str): The type of the cloud resource on which the action must be performed
-        resource_type_human_readable (str): Human readable version of the resource type
-        resource_id (int): The Id of the cloud resource on which the action must be performed
-        status (ActionStatus):
-        status_human_readable (str): Human readable version of the action status
-        status_reason_code (ActionStatusReasonCode):
-        status_reason_human_readable (str): Human readable version of the status reason code
-        total_steps (int, optional): The total number of steps to complete the action
-        current_step (ActionStep, optional):
-        steps (List[ActionStep]): The list of action steps
-        resource_data (ActionTargetData, optional):
-        started_at (datetime, optional): The date and time when the action started execution (i.e., left the &#x60;pending/queued&#x60; status)
-        completed_at (datetime, optional): The date and time when the action has finished execution
-        created_at (datetime): The date and time when the record was created
-        updated_at (datetime): The date and time when the record was last updated
+    Plain version of ActionTarget.
     """
 
     id: Required[int]

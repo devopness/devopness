@@ -33,10 +33,7 @@ class DaemonStop(DevopnessBaseModel):
 
 class DaemonStopPlain(TypedDict, total=False):
     """
-    Plain version of DaemonStop
-
-    Attributes:
-        servers (List[int]): List of valid resource IDs
+    Plain version of DaemonStop.
     """
 
     servers: Required[List[int]]

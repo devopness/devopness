@@ -39,12 +39,7 @@ class StaticNetworkRuleDirection(DevopnessBaseModel):
 
 class StaticNetworkRuleDirectionPlain(TypedDict, total=False):
     """
-    Plain version of StaticNetworkRuleDirection
-
-    Attributes:
-        value (NetworkRuleDirection):
-        human_readable (str): The formatted name to be displayed in user interfaces
-        hint (str): Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
+    Plain version of StaticNetworkRuleDirection.
     """
 
     value: Required[

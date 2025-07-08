@@ -58,15 +58,7 @@ class TriggeredActionSummary(DevopnessBaseModel):
 
 class TriggeredActionSummaryPlain(TypedDict, total=False):
     """
-    Plain version of TriggeredActionSummary
-
-    Attributes:
-        count (float): Total of actions that were triggered by the user
-        queued (float): Total of actions that were triggered by the user with status queued
-        pending (float): Total of actions that were triggered by the user with status pending
-        in_progress (float): Total of actions that were triggered by the user with status in_progress
-        completed (float): Total of actions that were triggered by the user with status completed
-        failed (float): Total of actions that were triggered by the user with status failed
+    Plain version of TriggeredActionSummary.
     """
 
     count: Required[float]

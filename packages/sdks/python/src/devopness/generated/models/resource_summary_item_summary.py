@@ -32,10 +32,7 @@ class ResourceSummaryItemSummary(DevopnessBaseModel):
 
 class ResourceSummaryItemSummaryPlain(TypedDict, total=False):
     """
-    Plain version of ResourceSummaryItemSummary
-
-    Attributes:
-        count (float): Total number of entries of this resource
+    Plain version of ResourceSummaryItemSummary.
     """
 
     count: Required[float]

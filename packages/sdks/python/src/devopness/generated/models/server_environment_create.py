@@ -68,17 +68,7 @@ class ServerEnvironmentCreate(DevopnessBaseModel):
 
 class ServerEnvironmentCreatePlain(TypedDict, total=False):
     """
-    Plain version of ServerEnvironmentCreate
-
-    Attributes:
-        linked_resources (List[ResourceToBeLinked]): The resources to be linked with this resource
-        hostname (str): The hostname to be set on Linux servers. Accepts numbers (0-9), dash (-) and lower case non accented characters. Must not be greater than 60 characters.
-        ip_address (str): Public ipv4 address for server access. This field is required when &lt;code&gt;provision_input.cloud_service_code&lt;/code&gt; is &lt;code&gt;self-hosted-custom&lt;/code&gt;.
-        ssh_port (int): The network port to which the SSH daemon is listening to SSH connections on the server. This field is required when &lt;code&gt;provision_input.cloud_service_code&lt;/code&gt; is &lt;code&gt;self-hosted-custom&lt;/code&gt;. Must be between 22 and 65535.
-        max_parallel_actions (int): Maximum number of actions that can run in parallel on this server. &#x60;0&#x60; means no limit of simultaneous actions. &#x60;1&#x60; means just a single action will be started at a time to run on this server. Must be between 0 and 10.
-        blueprint (List[BlueprintService]): The service names and their respective versions for a blueprint.
-        provision_input (ServerProvisionInput):
-        credential_id (str): The ID of the cloud credential. This field is required unless &lt;code&gt;provision_input.cloud_service_code&lt;/code&gt; is in &lt;code&gt;self-hosted-custom&lt;/code&gt;.
+    Plain version of ServerEnvironmentCreate.
     """
 
     linked_resources: Required[

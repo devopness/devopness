@@ -43,13 +43,7 @@ class OperatingSystem(DevopnessBaseModel):
 
 class OperatingSystemPlain(TypedDict, total=False):
     """
-    Plain version of OperatingSystem
-
-    Attributes:
-        code (str): The name of the operating system
-        name (str): The formatted name of the operating system
-        hint (str): Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
-        supported_versions (List[OperatingSystemVersion]):
+    Plain version of OperatingSystem.
     """
 
     code: Required[str]

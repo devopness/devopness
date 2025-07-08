@@ -35,11 +35,7 @@ class OrganizationCreate(DevopnessBaseModel):
 
 class OrganizationCreatePlain(TypedDict, total=False):
     """
-    Plain version of OrganizationCreate
-
-    Attributes:
-        name (str): The Name of the organization. Must not be greater than 255 characters.
-        url_slug (str): The URL Slug of the organization. Must not be greater than 255 characters.
+    Plain version of OrganizationCreate.
     """
 
     name: Required[str]

@@ -53,17 +53,7 @@ class ActionTargetServerData(DevopnessBaseModel):
 
 class ActionTargetServerDataPlain(TypedDict, total=False):
     """
-    Plain version of ActionTargetServerData
-
-    Attributes:
-        id (int): The unique id of the server
-        hostname (str): The server&#39;s hostname
-        provider_name (str): The name of the server&#39;s provider.
-        provider_name_human_readable (str): The human readable version of the provider&#39;s name
-        ip_address (str, optional): Public ipv4 address for server access
-        ssh_port (int): The network port to which the SSH daemon is listening to SSH connections on the server
-        os_version_code (CloudOsVersionCode, optional):
-        provision_input (ServerProvisionInput):
+    Plain version of ActionTargetServerData.
     """
 
     id: Required[int]

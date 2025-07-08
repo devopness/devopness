@@ -33,10 +33,7 @@ class ServiceStart(DevopnessBaseModel):
 
 class ServiceStartPlain(TypedDict, total=False):
     """
-    Plain version of ServiceStart
-
-    Attributes:
-        servers (List[int]): List of valid resource IDs
+    Plain version of ServiceStart.
     """
 
     servers: Required[List[int]]

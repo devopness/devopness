@@ -51,14 +51,7 @@ class CloudProviderInputSettings(DevopnessBaseModel):
 
 class CloudProviderInputSettingsPlain(TypedDict, total=False):
     """
-    Plain version of CloudProviderInputSettings
-
-    Attributes:
-        name (str): Name of the property
-        name_human_readable (str): Human readable version of the property&#39;s name
-        default_value (CloudProviderInputSettingsDefaultValue, optional):
-        sensitive (bool): Defines if the property data is a sensitive content
-        validation (CloudProviderPropertyValidation):
+    Plain version of CloudProviderInputSettings.
     """
 
     name: Required[str]

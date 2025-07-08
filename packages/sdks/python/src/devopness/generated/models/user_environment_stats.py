@@ -39,11 +39,7 @@ class UserEnvironmentStats(DevopnessBaseModel):
 
 class UserEnvironmentStatsPlain(TypedDict, total=False):
     """
-    Plain version of UserEnvironmentStats
-
-    Attributes:
-        owner_of (float): Total number of environments that user has access to, as owner.
-        member_of (float): Total number of environments that user has access to, as team member.
+    Plain version of UserEnvironmentStats.
     """
 
     owner_of: Required[float]

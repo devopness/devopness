@@ -63,18 +63,7 @@ class SshKeyRelation(DevopnessBaseModel):
 
 class SshKeyRelationPlain(TypedDict, total=False):
     """
-    Plain version of SshKeyRelation
-
-    Attributes:
-        id (int): The Id of the given SSH public key
-        created_by (int): The Id of the user to which the SSH key belongs to
-        project_id (int): The project id to which the SSH public key belongs to
-        environment_id (int): The environment id to which the SSH public key belongs to
-        name (str): The name entered by the user to uniquely identify the public SSH key
-        fingerprint (str): The hashed fingerprint of the public key
-        last_action (ActionRelationShallow, optional):
-        created_at (str): The date and time when the record was created
-        updated_at (str): The date and time when the record was last updated
+    Plain version of SshKeyRelation.
     """
 
     id: Required[int]

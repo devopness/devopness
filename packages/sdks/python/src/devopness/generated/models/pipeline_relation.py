@@ -75,23 +75,7 @@ class PipelineRelation(DevopnessBaseModel):
 
 class PipelineRelationPlain(TypedDict, total=False):
     """
-    Plain version of PipelineRelation
-
-    Attributes:
-        id (int): The unique ID of the given pipeline
-        name (str): The pipeline&#39;s name
-        environment_id (int): ID of the environment this pipeline belongs to
-        project_id (int): ID of the project this pipeline belongs to
-        resource_type (str): The pipeline&#39;s resource type
-        resource_type_human_readable (str): Human readable version of the resource type
-        resource_id (int): The pipeline&#39;s resource ID
-        operation (str): The resource operation associated to the pipeline.
-        operation_human_readable (str): Human readable version of the operation
-        max_parallel_actions (int): Maximum number of actions that can run in parallel for this pipeline. &#x60;0&#x60; means no limit of simultaneous actions. &#x60;1&#x60; means just a single action will be started at a time to run this pipeline.
-        trigger_when (PipelineTriggerWhen, optional):
-        created_by_user (UserRelation):
-        created_at (str): The date and time when the record was created
-        updated_at (str): The date and time when the record was last updated
+    Plain version of PipelineRelation.
     """
 
     id: Required[int]

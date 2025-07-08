@@ -15,12 +15,7 @@ class {{classname}}(DevopnessBaseModel):
 
 class {{classname}}Plain(TypedDict, total=False):
     """
-    Plain version of {{classname}}
-
-    Attributes:
-    {{#allVars}}
-        {{baseName}} ({{dataType}}{{#isNullable}}, optional{{/isNullable}}): {{description}}
-    {{/allVars}}
+    Plain version of {{classname}}.
     """
 
 {{#vars}}

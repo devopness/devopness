@@ -53,17 +53,7 @@ class Commit(DevopnessBaseModel):
 
 class CommitPlain(TypedDict, total=False):
     """
-    Plain version of Commit
-
-    Attributes:
-        hash (str): The commit comment&#39;s full hash that uniquely identify it
-        message (str): The commit&#39;s comment message
-        committed_at (str): The date and time when the commit has been submitted
-        provider (SourceProviderName):
-        repository (str): The full name of the repository (&#x60;owner/repository&#x60;) to which the commit belongs to
-        url (str): The direct URL for accessing commit details on the provider&#39;s web application
-        author_email (str): The e-mail of the commit&#39;s author
-        author_name (str): The name of the commit&#39;s author
+    Plain version of Commit.
     """
 
     hash: Required[str]

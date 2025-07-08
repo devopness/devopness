@@ -41,13 +41,7 @@ class ActionTargetLogStep(DevopnessBaseModel):
 
 class ActionTargetLogStepPlain(TypedDict, total=False):
     """
-    Plain version of ActionTargetLogStep
-
-    Attributes:
-        order (int): The execution order of the given step
-        started_at (datetime, optional): The date and time when the step started execution (i.e., left the &#x60;pending/queued&#x60; status)
-        completed_at (datetime, optional): The date and time when the step has finished execution
-        output (str, optional): The full text output log
+    Plain version of ActionTargetLogStep.
     """
 
     order: Required[int]

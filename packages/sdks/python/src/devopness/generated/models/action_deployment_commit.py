@@ -54,18 +54,7 @@ class ActionDeploymentCommit(DevopnessBaseModel):
 
 class ActionDeploymentCommitPlain(TypedDict, total=False):
     """
-    Plain version of ActionDeploymentCommit
-
-    Attributes:
-        repository (str): The repository of the deployed application
-        author_name (str): The author of the commit
-        author_email (str): The commit author&#39;s email
-        committed_at (datetime): The date and time when the commit was created
-        hash (str): The commit hash used on deployment
-        message (str): The commit message
-        url (str): The commit URL on the source provider
-        clone_url (str): The URL to clone the repository on the specific commit
-        download_url (str): The URL to download the commit source code
+    Plain version of ActionDeploymentCommit.
     """
 
     repository: Required[str]

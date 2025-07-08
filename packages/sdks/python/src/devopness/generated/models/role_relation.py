@@ -55,17 +55,7 @@ class RoleRelation(DevopnessBaseModel):
 
 class RoleRelationPlain(TypedDict, total=False):
     """
-    Plain version of RoleRelation
-
-    Attributes:
-        id (int): The unique ID of the given role
-        name (str): The name of the given role
-        description (str): Description of this role
-        project_id (int, optional): The ID of the project this role belongs to
-        is_predefined (bool): Defines if the role is predefined or a custom role for specific project
-        permissions (List[str]): The list of permissions granted for this role
-        created_at (str): The date and time when the record was created
-        updated_at (str): The date and time when the record was last updated
+    Plain version of RoleRelation.
     """
 
     id: Required[int]

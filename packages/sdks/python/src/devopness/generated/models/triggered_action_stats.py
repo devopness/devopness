@@ -49,14 +49,7 @@ class TriggeredActionStats(DevopnessBaseModel):
 
 class TriggeredActionStatsPlain(TypedDict, total=False):
     """
-    Plain version of TriggeredActionStats
-
-    Attributes:
-        resource_type (str): Type of resource used in the action
-        action_type (str): Type of action
-        resource_type_human_readable (str): Human readable version of the resource type
-        action_type_human_readable (str): Type of action human readable
-        summary (TriggeredActionSummary):
+    Plain version of TriggeredActionStats.
     """
 
     resource_type: Required[str]

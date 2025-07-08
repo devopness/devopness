@@ -35,12 +35,7 @@ class LinkedResourceSummaryField(DevopnessBaseModel):
 
 class LinkedResourceSummaryFieldPlain(TypedDict, total=False):
     """
-    Plain version of LinkedResourceSummaryField
-
-    Attributes:
-        field_name (str): The field name
-        field_name_human_readable (str): Human readable version of the field name
-        value (str): The field value
+    Plain version of LinkedResourceSummaryField.
     """
 
     field_name: Required[str]

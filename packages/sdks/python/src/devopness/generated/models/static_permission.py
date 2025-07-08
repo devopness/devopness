@@ -42,13 +42,7 @@ class StaticPermission(DevopnessBaseModel):
 
 class StaticPermissionPlain(TypedDict, total=False):
     """
-    Plain version of StaticPermission
-
-    Attributes:
-        name (str): Name of permission
-        human_readable (str): Human readable permission name
-        hint (str): Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
-        required_permissions (List[str]): List of permissions the role must have before receiving this one
+    Plain version of StaticPermission.
     """
 
     name: Required[str]

@@ -35,10 +35,7 @@ class PipelineTriggerWhen(DevopnessBaseModel):
 
 class PipelineTriggerWhenPlain(TypedDict, total=False):
     """
-    Plain version of PipelineTriggerWhen
-
-    Attributes:
-        conditions (List[TriggerWhenCondition]): Conditions that must be met to trigger the pipeline
+    Plain version of PipelineTriggerWhen.
     """
 
     conditions: Required[

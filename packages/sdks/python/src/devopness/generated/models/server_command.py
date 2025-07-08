@@ -31,10 +31,7 @@ class ServerCommand(DevopnessBaseModel):
 
 class ServerCommandPlain(TypedDict, total=False):
     """
-    Plain version of ServerCommand
-
-    Attributes:
-        connect_command (str): The Shell Script command to be executed in an existing Linux server in order to connect it to the &#x60;devopness&#x60;
+    Plain version of ServerCommand.
     """
 
     connect_command: Required[str]
